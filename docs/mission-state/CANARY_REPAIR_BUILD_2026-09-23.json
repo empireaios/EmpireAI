@@ -1,0 +1,4290 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "**Deployment 81fd99e8-7b16-42b7-9a7d-42830adc5319** [DEPLOYING]\nservice: 3687e91f-2a12-477e-8fc1-79ad0e559d3c, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Build logs (143)\n2026-09-23T11:18:21.446256788Z info unpacking archive\n2026-09-23T11:18:21.526964341Z info using build driver railpack-v0.39.0\n2026-09-23T11:18:21.641551337Z info uploading snapshot\n2026-09-23T11:18:21.839500518Z info [railway] prepare railpack-v0.39.0\n2026-09-23T11:18:21.839504024Z info local://prepare-driver\n2026-09-23T11:18:21.839505326Z info local://prepare-context\n2026-09-23T11:18:21.839505706Z info docker-image://ghcr.io/railwayapp/railpack-builder:latest\n2026-09-23T11:18:21.839507018Z info docker-image://ghcr.io/railwayapp/railpack-builder:latest\n2026-09-23T11:18:21.839507459Z info docker-image://ghcr.io/railwayapp/railpack-builder:latest\n2026-09-23T11:18:21.839591194Z info local://prepare-driver\n2026-09-23T11:18:21.839593187Z info local://prepare-context\n2026-09-23T11:18:21.839597494Z info local://prepare-context\n2026-09-23T11:18:21.841211806Z info local://prepare-context\n2026-09-23T11:18:21.841213939Z info local://prepare-driver\n2026-09-23T11:18:22.390906995Z info local://prepare-driver\n2026-09-23T11:18:25.125080571Z info local://prepare-context\n2026-09-23T11:18:25.307628384Z info [railway] prepare railpack-v0.39.0\n2026-09-23T11:18:27.897564458Z info                    \n\u001b[38;2;125;86;243m╭─────────────────╮\u001b[0m\n\u001b[38;2;125;86;243m│\u001b[0m Railpack 0.39.0 \u001b[38;2;125;86;243m│\u001b[0m\n\u001b[38;2;125;86;243m╰─────────────────╯\u001b[0m\n\n  \u001b[97m↳ Using config file `railpack.json`\u001b[0m\n  \u001b[33m⚠ The config file format is not yet finalized and subject to change.\u001b[0m\n  \u001b[97m↳ Detected Node\u001b[0m\n  \u001b[97m↳ Using npm package manager\u001b[0m\n  \u001b[97m↳ Custom start command detected, skipping Caddy start\u001b[0m\n  \u001b[97m↳ Installing npm@10.9.8 with Corepack\u001b[0m\n            \n  \u001b[1mPackages\u001b[0m  \n  \u001b[38;5;238m──────────\u001b[0m\n  \u001b[95mnode\u001b[0m  \u001b[38;5;238m│\u001b[0m  \u001b[96m22.23.2\u001b[0m  \u001b[38;5;238m│\u001b[0m  custom config (22.23.2)\n            \n  \u001b[1mSteps\u001b[0m     \n  \u001b[38;5;238m──────────\u001b[0m\n  \u001b[95m▸ install\u001b[0m\n    \u001b[38;5;245m$\u001b[0m \u001b[1mcorepack prepare npm@10.9.8 --activate\u001b[0m\n    \u001b[38;5;245m$\u001b[0m \u001b[1mnpm ci --include=dev\u001b[0m\n         \n  \u001b[95m▸ build\u001b[0m\n    \u001b[38;5;245m$\u001b[0m \u001b[1mNPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend\u001b[0m\n            \n  \u001b[1mDeploy\u001b[0m    \n  \u001b[38;5;238m──────────\u001b[0m\n    \u001b[38;5;245m$\u001b[0m \u001b[1mnode deployment/canary-launcher.cjs\u001b[0m\n\n\n2026-09-23T11:18:29.085048841Z info [railway] prepare railpack-v0.39.0\n2026-09-23T11:18:30.234660822Z info resolve image config for docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0\n2026-09-23T11:18:30.706548419Z info resolve image config for docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0\n2026-09-23T11:18:30.706881579Z info docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0@sha256:db24dc37640b6887c3d455b40876ea30f75182964479670cba6e4cde7ffef103\n2026-09-23T11:18:30.706882440Z info docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0@sha256:db24dc37640b6887c3d455b40876ea30f75182964479670cba6e4cde7ffef103\n2026-09-23T11:18:30.706882941Z info docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0@sha256:db24dc37640b6887c3d455b40876ea30f75182964479670cba6e4cde7ffef103\n2026-09-23T11:18:31.345767549Z info load build definition from ./railpack-plan.json\n2026-09-23T11:18:31.345807439Z info load build definition from ./railpack-plan.json\n2026-09-23T11:18:31.345900548Z info load build definition from ./railpack-plan.json\n2026-09-23T11:18:31.965057708Z info load build definition from ./railpack-plan.json\n2026-09-23T11:18:32.605435737Z info copy .node-version\n2026-09-23T11:18:32.605438571Z info loading .\n2026-09-23T11:18:32.605439372Z info install apt packages: libatomic1\n2026-09-23T11:18:32.605439863Z info create mise config\n2026-09-23T11:18:32.605440995Z info install mise packages: node\n2026-09-23T11:18:32.605442347Z info copy /mise/shims\n2026-09-23T11:18:32.605442988Z info mkdir /etc/mise\n2026-09-23T11:18:32.605443859Z info docker-image://ghcr.io/railwayapp/railpack-builder:latest\n2026-09-23T11:18:32.605444279Z info docker-image://ghcr.io/railwayapp/railpack-builder:latest\n2026-09-23T11:18:32.605445111Z info docker-image://ghcr.io/railwayapp/railpack-builder:mise-2026.8.16\n2026-09-23T11:18:32.605445732Z info docker-image://ghcr.io/railwayapp/railpack-builder:mise-2026.8.16\n2026-09-23T11:18:32.605446162Z info docker-image://ghcr.io/railwayapp/railpack-runtime:mise-2026.8.16\n2026-09-23T11:18:32.605446663Z info docker-image://ghcr.io/railwayapp/railpack-runtime:mise-2026.8.16\n2026-09-23T11:18:32.605570048Z info copy / /app\n2026-09-23T11:18:32.605573804Z info npm ci --include=dev\n2026-09-23T11:18:32.605574625Z info corepack prepare npm@10.9.8 --activate\n2026-09-23T11:18:32.605575897Z info copy / /app\n2026-09-23T11:18:32.605576798Z info copy /root/.local/state/mise\n2026-09-23T11:18:32.605577209Z info copy /etc/mise/config.toml\n2026-09-23T11:18:32.605577570Z info copy /usr/local/bin/mise\n2026-09-23T11:18:32.605579052Z info copy /mise/installs\n2026-09-23T11:18:32.605641636Z info copy /mise/installs\n2026-09-23T11:18:32.605643018Z info copy /opt/corepack\n2026-09-23T11:18:32.605646723Z info copy /app\n2026-09-23T11:18:32.605647615Z info copy /root/.cache\n2026-09-23T11:18:32.605648216Z info copy /app/node_modules\n2026-09-23T11:18:32.605650279Z info NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend\n2026-09-23T11:18:32.605651070Z info [railpack] secrets hash\n2026-09-23T11:18:32.605651861Z info copy .\n2026-09-23T11:18:32.605676418Z info copy /app\n2026-09-23T11:18:32.605677019Z info copy /mise/shims\n2026-09-23T11:18:32.606175487Z info [railpack] secrets hash\n2026-09-23T11:18:32.606534806Z info loading .\n2026-09-23T11:18:32.655276938Z info loading .\n2026-09-23T11:18:32.655290548Z info [railpack] secrets hash\n2026-09-23T11:18:33.499789770Z info [railpack] secrets hash\n2026-09-23T11:18:35.057113267Z info loading .\n2026-09-23T11:18:35.644338547Z info copy .node-version\n2026-09-23T11:18:35.644340550Z info mkdir /etc/mise\n2026-09-23T11:18:35.644341391Z info create mise config\n2026-09-23T11:18:35.644342352Z info install mise packages: node\n2026-09-23T11:18:35.644347830Z info install mise packages: node\n2026-09-23T11:18:35.646079038Z info copy / /app\n2026-09-23T11:18:37.767859013Z info copy / /app\n2026-09-23T11:18:37.915866853Z info corepack prepare npm@10.9.8 --activate\n2026-09-23T11:18:39.842664697Z info Preparing npm@10.9.8 for immediate activation...\n\n2026-09-23T11:18:42.168651132Z info corepack prepare npm@10.9.8 --activate\n2026-09-23T11:18:42.344937962Z info npm ci --include=dev\n2026-09-23T11:18:43.209682990Z info npm warn config production Use `--omit=dev` instead.\n\n2026-09-23T11:18:44.158435998Z info scheduling build on Metal builder \"builder-hzhoqo\"\n2026-09-23T11:18:44.838690292Z info \n> empireai@0.1.0 preinstall\n> node scripts/verify-build-runtime.mjs\n\n\n2026-09-23T11:18:44.901190627Z info {\"event\":\"build_runtime_verified\",\"nodeVersion\":\"22.23.2\",\"npmVersion\":\"10.9.8\",\"npmVersionVerified\":true}\n\n2026-09-23T11:18:44.919422602Z info \nadded 127 packages, and audited 128 packages in 2s\n\n2026-09-23T11:18:44.953259220Z info \n12 vulnerabilities (2 moderate, 9 high, 1 critical)\n\nTo address issues that do not require attention, run:\n  npm audit fix\n\nTo address all issues (including breaking changes), run:\n  npm audit fix --force\n\nRun `npm audit` for details.\n\n2026-09-23T11:18:45.426398705Z info npm ci --include=dev\n2026-09-23T11:18:45.544514586Z info copy / /app\n2026-09-23T11:18:52.170682494Z info copy / /app\n2026-09-23T11:18:52.366797164Z info copy .\n2026-09-23T11:18:57.478201351Z info copy .\n2026-09-23T11:18:57.591219252Z info NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend\n2026-09-23T11:18:58.706253172Z info npm warn config production Use `--omit=dev` instead.\n\n2026-09-23T11:18:59.475938383Z info \n> @empireai/pillow@0.1.0 preinstall\n> node ../scripts/verify-build-runtime.mjs\n\n\n2026-09-23T11:18:59.514225949Z info {\"event\":\"build_runtime_verified\",\"nodeVersion\":\"22.23.2\",\"npmVersion\":\"10.9.8\",\"npmVersionVerified\":true}\n\n2026-09-23T11:18:59.525362348Z info \nadded 6 packages, and audited 7 packages in 844ms\n\n2026-09-23T11:18:59.526959294Z info \nfound 0 vulnerabilities\n\n2026-09-23T11:18:59.684127328Z info npm warn config production Use `--omit=dev` instead.\n\n2026-09-23T11:19:01.087679588Z info npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead\n\n2026-09-23T11:19:02.226000097Z info \n> @empireai/backend@0.1.0 preinstall\n> node ../scripts/verify-build-runtime.mjs\n\n\n2026-09-23T11:19:02.271787806Z info {\"event\":\"build_runtime_verified\",\"nodeVersion\":\"22.23.2\",\"npmVersion\":\"10.9.8\",\"npmVersionVerified\":true}\n\n2026-09-23T11:19:02.279894440Z info \n> @empireai/backend@0.1.0 postinstall\n> node scripts/verify-dev-environment.mjs --postinstall\n\n\n2026-09-23T11:19:02.346748417Z info \nadded 140 packages, and audited 142 packages in 3s\n\n2026-09-23T11:19:02.352434608Z info \n3 vulnerabilities (1 moderate, 2 high)\n\nTo address all issues, run:\n  npm audit fix\n\nRun `npm audit` for details.\n\n2026-09-23T11:19:03.413040094Z info [sync-pillow-governance] Bundle ready at /app/backend/.pillow-governance-bundle\n\n2026-09-23T11:19:03.583613782Z info npm warn config production Use `--omit=dev` instead.\n\n2026-09-23T11:19:03.605960260Z info \n> @empireai/pillow@0.1.0 build\n> tsc -p tsconfig.json\n\n\n2026-09-23T11:19:08.020769151Z info docker-image://ghcr.io/railwayapp/railpack-runtime:mise-2026.8.16\n2026-09-23T11:19:08.020803121Z info docker-image://ghcr.io/railwayapp/railpack-runtime:mise-2026.8.16\n2026-09-23T11:20:02.522751637Z info npm warn config production Use `--omit=dev` instead.\n\n2026-09-23T11:20:02.546311446Z info \n> @empireai/backend@0.1.0 prebuild\n> node ../scripts/sync-pillow-governance.mjs\n\n\n2026-09-23T11:20:03.744810346Z info [sync-pillow-governance] Bundle ready at /app/backend/.pillow-governance-bundle\n\n2026-09-23T11:20:03.767357495Z info \n> @empireai/backend@0.1.0 build\n> tsc -p tsconfig.json\n\n\n2026-09-23T11:21:01.743223664Z info NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend\n2026-09-23T11:21:22.279459328Z info install apt packages: libatomic1\n2026-09-23T11:21:22.279472848Z info copy /mise/shims\n2026-09-23T11:21:22.279476864Z info copy /mise/installs\n2026-09-23T11:21:22.279477565Z info copy /usr/local/bin/mise\n2026-09-23T11:21:22.279478386Z info copy /etc/mise/config.toml\n2026-09-23T11:21:22.279479017Z info copy /root/.local/state/mise\n2026-09-23T11:21:22.279480179Z info copy /app/node_modules\n2026-09-23T11:21:22.279480820Z info copy /root/.cache\n2026-09-23T11:21:22.279866969Z info copy /app\n2026-09-23T11:21:27.625305740Z info copy /app\n2026-09-23T11:21:27.783849048Z info copy /opt/corepack\n2026-09-23T11:21:29.280006062Z info copy /opt/corepack\n2026-09-23T11:21:29.418050062Z info copy /mise/installs\n2026-09-23T11:21:33.182747179Z info copy /mise/installs\n2026-09-23T11:21:33.351675398Z info copy /mise/shims\n2026-09-23T11:21:34.160322417Z info copy /mise/shims\n2026-09-23T11:21:34.331353370Z info copy /app\n2026-09-23T11:21:41.351265320Z info copy /app\n2026-09-23T11:21:41.535700005Z info exporting to docker image format\n2026-09-23T11:21:50.042083006Z info exporting to docker image format\n2026-09-23T11:21:50.743885886Z info containerimage.descriptor: eyJtZWRpYVR5cGUiOiJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLm1hbmlmZXN0LnYxK2pzb24iLCJkaWdlc3QiOiJzaGEyNTY6MDA5NjkzZDk5YmMwMDA3ODUwZDg1YTY0NTc2ZjA2MjdhMzhkZjMxZDg1MmM5Y2M3MzVmYWI3YzM1ZWVmNTJlOCIsInNpemUiOjMxNDgsImFubm90YXRpb25zIjp7Im9yZy5vcGVuY29udGFpbmVycy5pbWFnZS5jcmVhdGVkIjoiMjAyNi0wOS0yM1QxMToyMTo0OVoifSwicGxhdGZvcm0iOnsiYXJjaGl0ZWN0dXJlIjoiYW1kNjQiLCJvcyI6ImxpbnV4In19\n2026-09-23T11:21:50.743892686Z info containerimage.config.digest: sha256:f76cad3e99dbc93ca745d39af72aedf92b4347bf62aea51490e3edaf00fa2674\n2026-09-23T11:21:50.743897533Z info containerimage.digest: sha256:009693d99bc0007850d85a64576f0627a38df31d852c9cc735fab7c35eef52e8\n2026-09-23T11:22:01.263039185Z info image push\n2026-09-23T11:22:01.263064462Z info image push\n2026-09-23T11:22:39.744687643Z info \n2026-09-23T11:22:39.744692662Z info \u001b[35m====================\nStarting Healthcheck\n====================\n\u001b[0m\n2026-09-23T11:22:39.744693886Z info \u001b[37mPath: /health/ready\u001b[0m\n2026-09-23T11:22:39.744695190Z info \u001b[37mRetry window: 5m0s\u001b[0m\n2026-09-23T11:22:39.744696819Z info \n2026-09-23T11:22:39.845921863Z info \u001b[93mAttempt #1 failed with HTTP 503. Continuing to retry for 4m59s\u001b[0m\n2026-09-23T11:22:40.891630586Z info \u001b[93mAttempt #2 failed with HTTP 503. Continuing to retry for 4m58s\u001b[0m\n2026-09-23T11:22:42.941518311Z info \u001b[93mAttempt #3 failed with HTTP 503. Continuing to retry for 4m56s\u001b[0m"
+    }
+  ],
+  "structuredContent": {
+    "deploymentId": "81fd99e8-7b16-42b7-9a7d-42830adc5319",
+    "serviceId": "3687e91f-2a12-477e-8fc1-79ad0e559d3c",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "DEPLOYING",
+    "build": [
+      {
+        "timestamp": "2026-09-23T11:18:21.446256788Z",
+        "severity": "info",
+        "message": "unpacking archive",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"complete\""
+          },
+          {
+            "key": "size",
+            "value": "95508480"
+          },
+          {
+            "key": "duration_ms",
+            "value": "679"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.526964341Z",
+        "severity": "info",
+        "message": "using build driver railpack-v0.39.0",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.641551337Z",
+        "severity": "info",
+        "message": "uploading snapshot",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"complete\""
+          },
+          {
+            "key": "size",
+            "value": "16210617"
+          },
+          {
+            "key": "duration_ms",
+            "value": "774"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839500518Z",
+        "severity": "info",
+        "message": "[railway] prepare railpack-v0.39.0",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b66b51dbb0a09271e6924290e6d4059ad93f307e9dab4bc8ecc10d184c8c3134\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:56f3f57001b11667178741501c7fe0bc973e9e10e1e21857cf6a5f495dfa1652\",\"sha256:d96ec75665ab6d565d81b4a814fdeee871a48f80bdea75cbfdf6c7b5fc646178\",\"sha256:8e577f475d4c072df9c86f663505cfa59046b3ba7238bef7c5b3cc9addeb3159\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839504024Z",
+        "severity": "info",
+        "message": "local://prepare-driver",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8e577f475d4c072df9c86f663505cfa59046b3ba7238bef7c5b3cc9addeb3159\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839505326Z",
+        "severity": "info",
+        "message": "local://prepare-context",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d96ec75665ab6d565d81b4a814fdeee871a48f80bdea75cbfdf6c7b5fc646178\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839505706Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-builder:latest",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:56f3f57001b11667178741501c7fe0bc973e9e10e1e21857cf6a5f495dfa1652\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:10.154994011Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:10.771503869Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839507018Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-builder:latest",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:56f3f57001b11667178741501c7fe0bc973e9e10e1e21857cf6a5f495dfa1652\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:10.772221345Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:10.772913764Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839507459Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-builder:latest",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:56f3f57001b11667178741501c7fe0bc973e9e10e1e21857cf6a5f495dfa1652\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:10.772221345Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:10.772913764Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839591194Z",
+        "severity": "info",
+        "message": "local://prepare-driver",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8e577f475d4c072df9c86f663505cfa59046b3ba7238bef7c5b3cc9addeb3159\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:21.839254309Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:21.839332386Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839593187Z",
+        "severity": "info",
+        "message": "local://prepare-context",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d96ec75665ab6d565d81b4a814fdeee871a48f80bdea75cbfdf6c7b5fc646178\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:21.839330173Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.839597494Z",
+        "severity": "info",
+        "message": "local://prepare-context",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d96ec75665ab6d565d81b4a814fdeee871a48f80bdea75cbfdf6c7b5fc646178\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:21.839330173Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:21.839389161Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.841211806Z",
+        "severity": "info",
+        "message": "local://prepare-context",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d96ec75665ab6d565d81b4a814fdeee871a48f80bdea75cbfdf6c7b5fc646178\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:21.84100095Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:21.841213939Z",
+        "severity": "info",
+        "message": "local://prepare-driver",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8e577f475d4c072df9c86f663505cfa59046b3ba7238bef7c5b3cc9addeb3159\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:21.841009552Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:22.390906995Z",
+        "severity": "info",
+        "message": "local://prepare-driver",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8e577f475d4c072df9c86f663505cfa59046b3ba7238bef7c5b3cc9addeb3159\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:21.841009552Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:22.39075694Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:25.125080571Z",
+        "severity": "info",
+        "message": "local://prepare-context",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d96ec75665ab6d565d81b4a814fdeee871a48f80bdea75cbfdf6c7b5fc646178\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:21.84100095Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:25.121730655Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:25.307628384Z",
+        "severity": "info",
+        "message": "[railway] prepare railpack-v0.39.0",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b66b51dbb0a09271e6924290e6d4059ad93f307e9dab4bc8ecc10d184c8c3134\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:56f3f57001b11667178741501c7fe0bc973e9e10e1e21857cf6a5f495dfa1652\",\"sha256:d96ec75665ab6d565d81b4a814fdeee871a48f80bdea75cbfdf6c7b5fc646178\",\"sha256:8e577f475d4c072df9c86f663505cfa59046b3ba7238bef7c5b3cc9addeb3159\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:25.307349536Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:27.897564458Z",
+        "severity": "info",
+        "message": "                   \n\u001b[38;2;125;86;243m╭─────────────────╮\u001b[0m\n\u001b[38;2;125;86;243m│\u001b[0m Railpack 0.39.0 \u001b[38;2;125;86;243m│\u001b[0m\n\u001b[38;2;125;86;243m╰─────────────────╯\u001b[0m\n\n  \u001b[97m↳ Using config file `railpack.json`\u001b[0m\n  \u001b[33m⚠ The config file format is not yet finalized and subject to change.\u001b[0m\n  \u001b[97m↳ Detected Node\u001b[0m\n  \u001b[97m↳ Using npm package manager\u001b[0m\n  \u001b[97m↳ Custom start command detected, skipping Caddy start\u001b[0m\n  \u001b[97m↳ Installing npm@10.9.8 with Corepack\u001b[0m\n            \n  \u001b[1mPackages\u001b[0m  \n  \u001b[38;5;238m──────────\u001b[0m\n  \u001b[95mnode\u001b[0m  \u001b[38;5;238m│\u001b[0m  \u001b[96m22.23.2\u001b[0m  \u001b[38;5;238m│\u001b[0m  custom config (22.23.2)\n            \n  \u001b[1mSteps\u001b[0m     \n  \u001b[38;5;238m──────────\u001b[0m\n  \u001b[95m▸ install\u001b[0m\n    \u001b[38;5;245m$\u001b[0m \u001b[1mcorepack prepare npm@10.9.8 --activate\u001b[0m\n    \u001b[38;5;245m$\u001b[0m \u001b[1mnpm ci --include=dev\u001b[0m\n         \n  \u001b[95m▸ build\u001b[0m\n    \u001b[38;5;245m$\u001b[0m \u001b[1mNPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend\u001b[0m\n            \n  \u001b[1mDeploy\u001b[0m    \n  \u001b[38;5;238m──────────\u001b[0m\n    \u001b[38;5;245m$\u001b[0m \u001b[1mnode deployment/canary-launcher.cjs\u001b[0m\n\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:b66b51dbb0a09271e6924290e6d4059ad93f307e9dab4bc8ecc10d184c8c3134\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"ICAgICAgICAgICAgICAgICAgIAobWzM4OzI7MTI1Ozg2OzI0M23ila3ilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDila4bWzBtChtbMzg7MjsxMjU7ODY7MjQzbeKUghtbMG0gUmFpbHBhY2sgMC4zOS4wIBtbMzg7MjsxMjU7ODY7MjQzbeKUghtbMG0KG1szODsyOzEyNTs4NjsyNDNt4pWw4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pWvG1swbQoKICAbWzk3beKGsyBVc2luZyBjb25maWcgZmlsZSBgcmFpbHBhY2suanNvbmAbWzBtCiAgG1szM23imqAgVGhlIGNvbmZpZyBmaWxlIGZvcm1hdCBpcyBub3QgeWV0IGZpbmFsaXplZCBhbmQgc3ViamVjdCB0byBjaGFuZ2UuG1swbQogIBtbOTdt4oazIERldGVjdGVkIE5vZGUbWzBtCiAgG1s5N23ihrMgVXNpbmcgbnBtIHBhY2thZ2UgbWFuYWdlchtbMG0KICAbWzk3beKGsyBDdXN0b20gc3RhcnQgY29tbWFuZCBkZXRlY3RlZCwgc2tpcHBpbmcgQ2FkZHkgc3RhcnQbWzBtCiAgG1s5N23ihrMgSW5zdGFsbGluZyBucG1AMTAuOS44IHdpdGggQ29yZXBhY2sbWzBtCiAgICAgICAgICAgIAogIBtbMW1QYWNrYWdlcxtbMG0gIAogIBtbMzg7NTsyMzht4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAG1swbQogIBtbOTVtbm9kZRtbMG0gIBtbMzg7NTsyMzht4pSCG1swbSAgG1s5Nm0yMi4yMy4yG1swbSAgG1szODs1OzIzOG3ilIIbWzBtICBjdXN0b20gY29uZmlnICgyMi4yMy4yKQogICAgICAgICAgICAKICAbWzFtU3RlcHMbWzBtICAgICAKICAbWzM4OzU7MjM4beKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgBtbMG0KICAbWzk1beKWuCBpbnN0YWxsG1swbQogICAgG1szODs1OzI0NW0kG1swbSAbWzFtY29yZXBhY2sgcHJlcGFyZSBucG1AMTAuOS44IC0tYWN0aXZhdGUbWzBtCiAgICAbWzM4OzU7MjQ1bSQbWzBtIBtbMW1ucG0gY2kgLS1pbmNsdWRlPWRldhtbMG0KICAgICAgICAgCiAgG1s5NW3ilrggYnVpbGQbWzBtCiAgICAbWzM4OzU7MjQ1bSQbWzBtIBtbMW1OUE1fQ09ORklHX1BST0RVQ1RJT049ZmFsc2UgbnBtIGNpIC0tcHJlZml4IHBpbGxvdyAmJiBOUE1fQ09ORklHX1BST0RVQ1RJT049ZmFsc2UgbnBtIGNpIC0tcHJlZml4IGJhY2tlbmQgJiYgbm9kZSBzY3JpcHRzL3N5bmMtcGlsbG93LWdvdmVybmFuY2UubWpzICYmIG5wbSBydW4gYnVpbGQgLS1wcmVmaXggcGlsbG93ICYmIG5wbSBydW4gYnVpbGQgLS1wcmVmaXggYmFja2VuZBtbMG0KICAgICAgICAgICAgCiAgG1sxbURlcGxveRtbMG0gICAgCiAgG1szODs1OzIzOG3ilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAbWzBtCiAgICAbWzM4OzU7MjQ1bSQbWzBtIBtbMW1ub2RlIGRlcGxveW1lbnQvY2FuYXJ5LWxhdW5jaGVyLmNqcxtbMG0KCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:27.897123576Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:29.085048841Z",
+        "severity": "info",
+        "message": "[railway] prepare railpack-v0.39.0",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b66b51dbb0a09271e6924290e6d4059ad93f307e9dab4bc8ecc10d184c8c3134\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:56f3f57001b11667178741501c7fe0bc973e9e10e1e21857cf6a5f495dfa1652\",\"sha256:d96ec75665ab6d565d81b4a814fdeee871a48f80bdea75cbfdf6c7b5fc646178\",\"sha256:8e577f475d4c072df9c86f663505cfa59046b3ba7238bef7c5b3cc9addeb3159\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:25.307349536Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:29.084580008Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:30.234660822Z",
+        "severity": "info",
+        "message": "resolve image config for docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:33798ac83e87face1192e5633c5d8099e12fa829325dac33431920b16c0269e1\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:30.234273521Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:30.706548419Z",
+        "severity": "info",
+        "message": "resolve image config for docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:33798ac83e87face1192e5633c5d8099e12fa829325dac33431920b16c0269e1\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:30.234273521Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:30.705981598Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:30.706881579Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0@sha256:db24dc37640b6887c3d455b40876ea30f75182964479670cba6e4cde7ffef103",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d069463b57183a9c204bc4286bed473cc586e974e422334a385f77d2528276d1\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:17.090906339Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:17.382444841Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:30.706882440Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0@sha256:db24dc37640b6887c3d455b40876ea30f75182964479670cba6e4cde7ffef103",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d069463b57183a9c204bc4286bed473cc586e974e422334a385f77d2528276d1\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:17.38374341Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:17.383811321Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:30.706882941Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-frontend:v0.39.0@sha256:db24dc37640b6887c3d455b40876ea30f75182964479670cba6e4cde7ffef103",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d069463b57183a9c204bc4286bed473cc586e974e422334a385f77d2528276d1\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:17.38374341Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:17.383811321Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:31.345767549Z",
+        "severity": "info",
+        "message": "load build definition from ./railpack-plan.json",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d5572dea3290071438dad5c28a53d0ae5169153f7e7e598412caffd8cfeec5cf\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:31.345807439Z",
+        "severity": "info",
+        "message": "load build definition from ./railpack-plan.json",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d5572dea3290071438dad5c28a53d0ae5169153f7e7e598412caffd8cfeec5cf\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:31.345530103Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:31.345579136Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:31.345900548Z",
+        "severity": "info",
+        "message": "load build definition from ./railpack-plan.json",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d5572dea3290071438dad5c28a53d0ae5169153f7e7e598412caffd8cfeec5cf\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:31.345719196Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:31.965057708Z",
+        "severity": "info",
+        "message": "load build definition from ./railpack-plan.json",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d5572dea3290071438dad5c28a53d0ae5169153f7e7e598412caffd8cfeec5cf\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:31.345719196Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:31.957218466Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605435737Z",
+        "severity": "info",
+        "message": "copy .node-version",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:0fe0d3af2ceb887b5d8c31edc4460670e5364686990467b05c9c9ff48412142c\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:6f1702f8f2933127e8b6a9407027a133afdd8f9ec47ee9ac3c905ba6538c8eef\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605438571Z",
+        "severity": "info",
+        "message": "loading .",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605439372Z",
+        "severity": "info",
+        "message": "install apt packages: libatomic1",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b69d425f76af13a27cb59ef275b9bb8c7467590e99813cec7c0fe81ce2fdfe09\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:ad13f376d072f75b2a92429144623dd8eedb7fb0a3fb5d8dd1a3aa2f0fd02d14\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605439863Z",
+        "severity": "info",
+        "message": "create mise config",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:43b7328b01b344d6b4be7a248cd7b2c66a03b9731861113f1ca50d7143e59a0b\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:f09f33c2727c221a5bc6f10f6b4f2e48f5bc0c3c932c7c797614a2179a183692\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605440995Z",
+        "severity": "info",
+        "message": "install mise packages: node",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:43b7328b01b344d6b4be7a248cd7b2c66a03b9731861113f1ca50d7143e59a0b\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605442347Z",
+        "severity": "info",
+        "message": "copy /mise/shims",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:19e1fff8abc0d765f9987fcb9605f3dffe10be44f2d4712441484c6162408be4\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:b69d425f76af13a27cb59ef275b9bb8c7467590e99813cec7c0fe81ce2fdfe09\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605442988Z",
+        "severity": "info",
+        "message": "mkdir /etc/mise",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:f09f33c2727c221a5bc6f10f6b4f2e48f5bc0c3c932c7c797614a2179a183692\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:0fe0d3af2ceb887b5d8c31edc4460670e5364686990467b05c9c9ff48412142c\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605443859Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-builder:latest",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:56f3f57001b11667178741501c7fe0bc973e9e10e1e21857cf6a5f495dfa1652\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:10.154994011Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:10.771503869Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605444279Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-builder:latest",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:56f3f57001b11667178741501c7fe0bc973e9e10e1e21857cf6a5f495dfa1652\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:10.772221345Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:10.772913764Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605445111Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-builder:mise-2026.8.16",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:6f1702f8f2933127e8b6a9407027a133afdd8f9ec47ee9ac3c905ba6538c8eef\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:18.570949286Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:19.554033559Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605445732Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-builder:mise-2026.8.16",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:6f1702f8f2933127e8b6a9407027a133afdd8f9ec47ee9ac3c905ba6538c8eef\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:18.570949286Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:19.554033559Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605446162Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-runtime:mise-2026.8.16",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:ad13f376d072f75b2a92429144623dd8eedb7fb0a3fb5d8dd1a3aa2f0fd02d14\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:18.57109259Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:19.791950728Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605446663Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-runtime:mise-2026.8.16",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:ad13f376d072f75b2a92429144623dd8eedb7fb0a3fb5d8dd1a3aa2f0fd02d14\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:18.57109259Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:19.791950728Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605570048Z",
+        "severity": "info",
+        "message": "copy / /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:aaa02ad03572c93cb43f78d0962871e1258164469200cc128b0050a6b72e17ad\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605573804Z",
+        "severity": "info",
+        "message": "npm ci --include=dev",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:c2ea36b090d751bd2b1bfbf3fe3f879a74c4ddcd54c8e63898a56ea29e48303e\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605574625Z",
+        "severity": "info",
+        "message": "corepack prepare npm@10.9.8 --activate",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:c2ea36b090d751bd2b1bfbf3fe3f879a74c4ddcd54c8e63898a56ea29e48303e\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:dc01faa863969ef8c6776fe6ae5c8c7e0e9170cf49b8533b847bce41343b7329\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605575897Z",
+        "severity": "info",
+        "message": "copy / /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:dc01faa863969ef8c6776fe6ae5c8c7e0e9170cf49b8533b847bce41343b7329\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605576798Z",
+        "severity": "info",
+        "message": "copy /root/.local/state/mise",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:13bbfd7af9bb1a0b71b0eb6428a4a7a61a9b38ffd322f50bb54a85a28541632c\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:23746def7be960413889d56ab68d89d7de973e82f282b7c0659cec281395b272\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605577209Z",
+        "severity": "info",
+        "message": "copy /etc/mise/config.toml",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:23746def7be960413889d56ab68d89d7de973e82f282b7c0659cec281395b272\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:d58ca865e0a8edf87c2d5b03e1d1f93978bb6dbe7c09a706bea8d59ba9ede918\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605577570Z",
+        "severity": "info",
+        "message": "copy /usr/local/bin/mise",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d58ca865e0a8edf87c2d5b03e1d1f93978bb6dbe7c09a706bea8d59ba9ede918\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:0e56c63833c51935db36f7d2d47abc798c56fad4456dd9297ca2547c3bb9cab0\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605579052Z",
+        "severity": "info",
+        "message": "copy /mise/installs",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:0e56c63833c51935db36f7d2d47abc798c56fad4456dd9297ca2547c3bb9cab0\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:19e1fff8abc0d765f9987fcb9605f3dffe10be44f2d4712441484c6162408be4\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605641636Z",
+        "severity": "info",
+        "message": "copy /mise/installs",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8aa075ea8b6750d93407393663d7e326fcf3db4d4e0b44bf28272dda0cd3c9c9\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:cdf4aea25e5e22376ea713e7136e2544dabe8cad44536bb7636fea175eae62f7\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605643018Z",
+        "severity": "info",
+        "message": "copy /opt/corepack",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:cdf4aea25e5e22376ea713e7136e2544dabe8cad44536bb7636fea175eae62f7\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:5e7eea6953e168c6baa9c87d3307e6b119c005a11695b43d5efd5dce59008460\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605646723Z",
+        "severity": "info",
+        "message": "copy /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:5e7eea6953e168c6baa9c87d3307e6b119c005a11695b43d5efd5dce59008460\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:dc89f1fc82ecf70d37e218c8b525ac796fd4d67b2c5702fc70bb8e6501266156\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605647615Z",
+        "severity": "info",
+        "message": "copy /root/.cache",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:dc89f1fc82ecf70d37e218c8b525ac796fd4d67b2c5702fc70bb8e6501266156\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:c91d1c7de14ebea8e10a8bbaf5b8dc67d46c8798c98b1bb651247f8901571ae5\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605648216Z",
+        "severity": "info",
+        "message": "copy /app/node_modules",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:c91d1c7de14ebea8e10a8bbaf5b8dc67d46c8798c98b1bb651247f8901571ae5\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:13bbfd7af9bb1a0b71b0eb6428a4a7a61a9b38ffd322f50bb54a85a28541632c\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605650279Z",
+        "severity": "info",
+        "message": "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:fa3d6395ad9a44746a3ea7fc16247eff55b31a2ffbce76d83567cff2f755492e\",\"sha256:b3f6df49a56a18d51bb304f43e59447a4fbbfac8371aaaae2f586d87d3416b33\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605651070Z",
+        "severity": "info",
+        "message": "[railpack] secrets hash",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b3f6df49a56a18d51bb304f43e59447a4fbbfac8371aaaae2f586d87d3416b33\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605651861Z",
+        "severity": "info",
+        "message": "copy .",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:fa3d6395ad9a44746a3ea7fc16247eff55b31a2ffbce76d83567cff2f755492e\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:aaa02ad03572c93cb43f78d0962871e1258164469200cc128b0050a6b72e17ad\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605676418Z",
+        "severity": "info",
+        "message": "copy /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:6189c3aab9e7d4f81708a4ad48a7039cec4d4dd2c364fc035e8dc12f5dcf5eb5\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:91988be8e2bb95cf3035d6ddd7935ec7377c6e490064c4515c17783ddf545134\",\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.605677019Z",
+        "severity": "info",
+        "message": "copy /mise/shims",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:91988be8e2bb95cf3035d6ddd7935ec7377c6e490064c4515c17783ddf545134\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:8aa075ea8b6750d93407393663d7e326fcf3db4d4e0b44bf28272dda0cd3c9c9\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.606175487Z",
+        "severity": "info",
+        "message": "[railpack] secrets hash",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b3f6df49a56a18d51bb304f43e59447a4fbbfac8371aaaae2f586d87d3416b33\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:32.605875146Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:32.60593794Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.606534806Z",
+        "severity": "info",
+        "message": "loading .",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:32.606029207Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:32.606100224Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.655276938Z",
+        "severity": "info",
+        "message": "loading .",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:32.654815446Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:32.655290548Z",
+        "severity": "info",
+        "message": "[railpack] secrets hash",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b3f6df49a56a18d51bb304f43e59447a4fbbfac8371aaaae2f586d87d3416b33\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:32.654823508Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:33.499789770Z",
+        "severity": "info",
+        "message": "[railpack] secrets hash",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b3f6df49a56a18d51bb304f43e59447a4fbbfac8371aaaae2f586d87d3416b33\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:32.654823508Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:33.499665974Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:35.057113267Z",
+        "severity": "info",
+        "message": "loading .",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:32.654815446Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:35.053258875Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:35.644338547Z",
+        "severity": "info",
+        "message": "copy .node-version",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:0fe0d3af2ceb887b5d8c31edc4460670e5364686990467b05c9c9ff48412142c\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:6f1702f8f2933127e8b6a9407027a133afdd8f9ec47ee9ac3c905ba6538c8eef\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:35.643725937Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:35.643725937Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:35.644340550Z",
+        "severity": "info",
+        "message": "mkdir /etc/mise",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:f09f33c2727c221a5bc6f10f6b4f2e48f5bc0c3c932c7c797614a2179a183692\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:0fe0d3af2ceb887b5d8c31edc4460670e5364686990467b05c9c9ff48412142c\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:35.643725937Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:35.643725937Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:35.644341391Z",
+        "severity": "info",
+        "message": "create mise config",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:43b7328b01b344d6b4be7a248cd7b2c66a03b9731861113f1ca50d7143e59a0b\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:f09f33c2727c221a5bc6f10f6b4f2e48f5bc0c3c932c7c797614a2179a183692\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:35.643725937Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:35.643725937Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:35.644342352Z",
+        "severity": "info",
+        "message": "install mise packages: node",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:43b7328b01b344d6b4be7a248cd7b2c66a03b9731861113f1ca50d7143e59a0b\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:35.643725937Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:35.644347830Z",
+        "severity": "info",
+        "message": "install mise packages: node",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:43b7328b01b344d6b4be7a248cd7b2c66a03b9731861113f1ca50d7143e59a0b\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:35.643725937Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:35.64397433Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:35.646079038Z",
+        "severity": "info",
+        "message": "copy / /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:dc01faa863969ef8c6776fe6ae5c8c7e0e9170cf49b8533b847bce41343b7329\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:35.645754611Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:37.767859013Z",
+        "severity": "info",
+        "message": "copy / /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:dc01faa863969ef8c6776fe6ae5c8c7e0e9170cf49b8533b847bce41343b7329\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:35.645754611Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:37.767418262Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:37.915866853Z",
+        "severity": "info",
+        "message": "corepack prepare npm@10.9.8 --activate",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:c2ea36b090d751bd2b1bfbf3fe3f879a74c4ddcd54c8e63898a56ea29e48303e\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:dc01faa863969ef8c6776fe6ae5c8c7e0e9170cf49b8533b847bce41343b7329\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:37.915381394Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:39.842664697Z",
+        "severity": "info",
+        "message": "Preparing npm@10.9.8 for immediate activation...\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:c2ea36b090d751bd2b1bfbf3fe3f879a74c4ddcd54c8e63898a56ea29e48303e\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"UHJlcGFyaW5nIG5wbUAxMC45LjggZm9yIGltbWVkaWF0ZSBhY3RpdmF0aW9uLi4uCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:39.842168924Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:42.168651132Z",
+        "severity": "info",
+        "message": "corepack prepare npm@10.9.8 --activate",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:c2ea36b090d751bd2b1bfbf3fe3f879a74c4ddcd54c8e63898a56ea29e48303e\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:dc01faa863969ef8c6776fe6ae5c8c7e0e9170cf49b8533b847bce41343b7329\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:37.915381394Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:42.168221117Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:42.344937962Z",
+        "severity": "info",
+        "message": "npm ci --include=dev",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:c2ea36b090d751bd2b1bfbf3fe3f879a74c4ddcd54c8e63898a56ea29e48303e\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:42.333035033Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:43.209682990Z",
+        "severity": "info",
+        "message": "npm warn config production Use `--omit=dev` instead.\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\""
+          },
+          {
+            "key": "stream",
+            "value": "2"
+          },
+          {
+            "key": "data",
+            "value": "\"bnBtIHdhcm4gY29uZmlnIHByb2R1Y3Rpb24gVXNlIGAtLW9taXQ9ZGV2YCBpbnN0ZWFkLgo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:43.209446625Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:44.158435998Z",
+        "severity": "info",
+        "message": "scheduling build on Metal builder \"builder-hzhoqo\"",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:44.838690292Z",
+        "severity": "info",
+        "message": "\n> empireai@0.1.0 preinstall\n> node scripts/verify-build-runtime.mjs\n\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"Cj4gZW1waXJlYWlAMC4xLjAgcHJlaW5zdGFsbAo+IG5vZGUgc2NyaXB0cy92ZXJpZnktYnVpbGQtcnVudGltZS5tanMKCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:44.838211463Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:44.901190627Z",
+        "severity": "info",
+        "message": "{\"event\":\"build_runtime_verified\",\"nodeVersion\":\"22.23.2\",\"npmVersion\":\"10.9.8\",\"npmVersionVerified\":true}\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"eyJldmVudCI6ImJ1aWxkX3J1bnRpbWVfdmVyaWZpZWQiLCJub2RlVmVyc2lvbiI6IjIyLjIzLjIiLCJucG1WZXJzaW9uIjoiMTAuOS44IiwibnBtVmVyc2lvblZlcmlmaWVkIjp0cnVlfQo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:44.900740431Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:44.919422602Z",
+        "severity": "info",
+        "message": "\nadded 127 packages, and audited 128 packages in 2s\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"CmFkZGVkIDEyNyBwYWNrYWdlcywgYW5kIGF1ZGl0ZWQgMTI4IHBhY2thZ2VzIGluIDJzCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:44.919045426Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:44.953259220Z",
+        "severity": "info",
+        "message": "\n12 vulnerabilities (2 moderate, 9 high, 1 critical)\n\nTo address issues that do not require attention, run:\n  npm audit fix\n\nTo address all issues (including breaking changes), run:\n  npm audit fix --force\n\nRun `npm audit` for details.\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"CjEyIHZ1bG5lcmFiaWxpdGllcyAoMiBtb2RlcmF0ZSwgOSBoaWdoLCAxIGNyaXRpY2FsKQoKVG8gYWRkcmVzcyBpc3N1ZXMgdGhhdCBkbyBub3QgcmVxdWlyZSBhdHRlbnRpb24sIHJ1bjoKICBucG0gYXVkaXQgZml4CgpUbyBhZGRyZXNzIGFsbCBpc3N1ZXMgKGluY2x1ZGluZyBicmVha2luZyBjaGFuZ2VzKSwgcnVuOgogIG5wbSBhdWRpdCBmaXggLS1mb3JjZQoKUnVuIGBucG0gYXVkaXRgIGZvciBkZXRhaWxzLgo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:44.952898098Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:45.426398705Z",
+        "severity": "info",
+        "message": "npm ci --include=dev",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:c2ea36b090d751bd2b1bfbf3fe3f879a74c4ddcd54c8e63898a56ea29e48303e\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:42.333035033Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:45.425845065Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:45.544514586Z",
+        "severity": "info",
+        "message": "copy / /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:aaa02ad03572c93cb43f78d0962871e1258164469200cc128b0050a6b72e17ad\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:45.544166724Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:52.170682494Z",
+        "severity": "info",
+        "message": "copy / /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:aaa02ad03572c93cb43f78d0962871e1258164469200cc128b0050a6b72e17ad\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:45.544166724Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:52.170238398Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:52.366797164Z",
+        "severity": "info",
+        "message": "copy .",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:fa3d6395ad9a44746a3ea7fc16247eff55b31a2ffbce76d83567cff2f755492e\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:aaa02ad03572c93cb43f78d0962871e1258164469200cc128b0050a6b72e17ad\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:52.366292747Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:57.478201351Z",
+        "severity": "info",
+        "message": "copy .",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:fa3d6395ad9a44746a3ea7fc16247eff55b31a2ffbce76d83567cff2f755492e\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:aaa02ad03572c93cb43f78d0962871e1258164469200cc128b0050a6b72e17ad\",\"sha256:8585e84a0edb98a8233e931cbb3e8ba2f7e15c17b3da3e206c8c5e0660ca29f0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:52.366292747Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:18:57.477846719Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:57.591219252Z",
+        "severity": "info",
+        "message": "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:fa3d6395ad9a44746a3ea7fc16247eff55b31a2ffbce76d83567cff2f755492e\",\"sha256:b3f6df49a56a18d51bb304f43e59447a4fbbfac8371aaaae2f586d87d3416b33\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:57.590625421Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:58.706253172Z",
+        "severity": "info",
+        "message": "npm warn config production Use `--omit=dev` instead.\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "2"
+          },
+          {
+            "key": "data",
+            "value": "\"bnBtIHdhcm4gY29uZmlnIHByb2R1Y3Rpb24gVXNlIGAtLW9taXQ9ZGV2YCBpbnN0ZWFkLgo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:58.705804949Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:59.475938383Z",
+        "severity": "info",
+        "message": "\n> @empireai/pillow@0.1.0 preinstall\n> node ../scripts/verify-build-runtime.mjs\n\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"Cj4gQGVtcGlyZWFpL3BpbGxvd0AwLjEuMCBwcmVpbnN0YWxsCj4gbm9kZSAuLi9zY3JpcHRzL3ZlcmlmeS1idWlsZC1ydW50aW1lLm1qcwoK\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:59.47542382Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:59.514225949Z",
+        "severity": "info",
+        "message": "{\"event\":\"build_runtime_verified\",\"nodeVersion\":\"22.23.2\",\"npmVersion\":\"10.9.8\",\"npmVersionVerified\":true}\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"eyJldmVudCI6ImJ1aWxkX3J1bnRpbWVfdmVyaWZpZWQiLCJub2RlVmVyc2lvbiI6IjIyLjIzLjIiLCJucG1WZXJzaW9uIjoiMTAuOS44IiwibnBtVmVyc2lvblZlcmlmaWVkIjp0cnVlfQo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:59.513792298Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:59.525362348Z",
+        "severity": "info",
+        "message": "\nadded 6 packages, and audited 7 packages in 844ms\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"CmFkZGVkIDYgcGFja2FnZXMsIGFuZCBhdWRpdGVkIDcgcGFja2FnZXMgaW4gODQ0bXMK\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:59.524962017Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:59.526959294Z",
+        "severity": "info",
+        "message": "\nfound 0 vulnerabilities\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"CmZvdW5kIDAgdnVsbmVyYWJpbGl0aWVzCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:59.526609239Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:18:59.684127328Z",
+        "severity": "info",
+        "message": "npm warn config production Use `--omit=dev` instead.\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "2"
+          },
+          {
+            "key": "data",
+            "value": "\"bnBtIHdhcm4gY29uZmlnIHByb2R1Y3Rpb24gVXNlIGAtLW9taXQ9ZGV2YCBpbnN0ZWFkLgo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:18:59.683634148Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:01.087679588Z",
+        "severity": "info",
+        "message": "npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "2"
+          },
+          {
+            "key": "data",
+            "value": "\"bnBtIHdhcm4gZGVwcmVjYXRlZCBub2RlLWRvbWV4Y2VwdGlvbkAxLjAuMDogVXNlIHlvdXIgcGxhdGZvcm0ncyBuYXRpdmUgRE9NRXhjZXB0aW9uIGluc3RlYWQK\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:01.087348291Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:02.226000097Z",
+        "severity": "info",
+        "message": "\n> @empireai/backend@0.1.0 preinstall\n> node ../scripts/verify-build-runtime.mjs\n\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"Cj4gQGVtcGlyZWFpL2JhY2tlbmRAMC4xLjAgcHJlaW5zdGFsbAo+IG5vZGUgLi4vc2NyaXB0cy92ZXJpZnktYnVpbGQtcnVudGltZS5tanMKCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:02.225569771Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:02.271787806Z",
+        "severity": "info",
+        "message": "{\"event\":\"build_runtime_verified\",\"nodeVersion\":\"22.23.2\",\"npmVersion\":\"10.9.8\",\"npmVersionVerified\":true}\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"eyJldmVudCI6ImJ1aWxkX3J1bnRpbWVfdmVyaWZpZWQiLCJub2RlVmVyc2lvbiI6IjIyLjIzLjIiLCJucG1WZXJzaW9uIjoiMTAuOS44IiwibnBtVmVyc2lvblZlcmlmaWVkIjp0cnVlfQo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:02.271425603Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:02.279894440Z",
+        "severity": "info",
+        "message": "\n> @empireai/backend@0.1.0 postinstall\n> node scripts/verify-dev-environment.mjs --postinstall\n\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"Cj4gQGVtcGlyZWFpL2JhY2tlbmRAMC4xLjAgcG9zdGluc3RhbGwKPiBub2RlIHNjcmlwdHMvdmVyaWZ5LWRldi1lbnZpcm9ubWVudC5tanMgLS1wb3N0aW5zdGFsbAoK\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:02.279578326Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:02.346748417Z",
+        "severity": "info",
+        "message": "\nadded 140 packages, and audited 142 packages in 3s\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"CmFkZGVkIDE0MCBwYWNrYWdlcywgYW5kIGF1ZGl0ZWQgMTQyIHBhY2thZ2VzIGluIDNzCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:02.346249368Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:02.352434608Z",
+        "severity": "info",
+        "message": "\n3 vulnerabilities (1 moderate, 2 high)\n\nTo address all issues, run:\n  npm audit fix\n\nRun `npm audit` for details.\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"CjMgdnVsbmVyYWJpbGl0aWVzICgxIG1vZGVyYXRlLCAyIGhpZ2gpCgpUbyBhZGRyZXNzIGFsbCBpc3N1ZXMsIHJ1bjoKICBucG0gYXVkaXQgZml4CgpSdW4gYG5wbSBhdWRpdGAgZm9yIGRldGFpbHMuCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:02.352103251Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:03.413040094Z",
+        "severity": "info",
+        "message": "[sync-pillow-governance] Bundle ready at /app/backend/.pillow-governance-bundle\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"W3N5bmMtcGlsbG93LWdvdmVybmFuY2VdIEJ1bmRsZSByZWFkeSBhdCAvYXBwL2JhY2tlbmQvLnBpbGxvdy1nb3Zlcm5hbmNlLWJ1bmRsZQo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:03.408417378Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:03.583613782Z",
+        "severity": "info",
+        "message": "npm warn config production Use `--omit=dev` instead.\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "2"
+          },
+          {
+            "key": "data",
+            "value": "\"bnBtIHdhcm4gY29uZmlnIHByb2R1Y3Rpb24gVXNlIGAtLW9taXQ9ZGV2YCBpbnN0ZWFkLgo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:03.583200031Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:03.605960260Z",
+        "severity": "info",
+        "message": "\n> @empireai/pillow@0.1.0 build\n> tsc -p tsconfig.json\n\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"Cj4gQGVtcGlyZWFpL3BpbGxvd0AwLjEuMCBidWlsZAo+IHRzYyAtcCB0c2NvbmZpZy5qc29uCgo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:19:03.605590135Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:08.020769151Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-runtime:mise-2026.8.16",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:ad13f376d072f75b2a92429144623dd8eedb7fb0a3fb5d8dd1a3aa2f0fd02d14\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:19:08.020425164Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:19:08.020803121Z",
+        "severity": "info",
+        "message": "docker-image://ghcr.io/railwayapp/railpack-runtime:mise-2026.8.16",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:ad13f376d072f75b2a92429144623dd8eedb7fb0a3fb5d8dd1a3aa2f0fd02d14\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:19:08.020425164Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:19:08.020613487Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:20:02.522751637Z",
+        "severity": "info",
+        "message": "npm warn config production Use `--omit=dev` instead.\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "2"
+          },
+          {
+            "key": "data",
+            "value": "\"bnBtIHdhcm4gY29uZmlnIHByb2R1Y3Rpb24gVXNlIGAtLW9taXQ9ZGV2YCBpbnN0ZWFkLgo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:20:02.522496685Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:20:02.546311446Z",
+        "severity": "info",
+        "message": "\n> @empireai/backend@0.1.0 prebuild\n> node ../scripts/sync-pillow-governance.mjs\n\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"Cj4gQGVtcGlyZWFpL2JhY2tlbmRAMC4xLjAgcHJlYnVpbGQKPiBub2RlIC4uL3NjcmlwdHMvc3luYy1waWxsb3ctZ292ZXJuYW5jZS5tanMKCg==\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:20:02.546035101Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:20:03.744810346Z",
+        "severity": "info",
+        "message": "[sync-pillow-governance] Bundle ready at /app/backend/.pillow-governance-bundle\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"W3N5bmMtcGlsbG93LWdvdmVybmFuY2VdIEJ1bmRsZSByZWFkeSBhdCAvYXBwL2JhY2tlbmQvLnBpbGxvdy1nb3Zlcm5hbmNlLWJ1bmRsZQo=\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:20:03.744615524Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:20:03.767357495Z",
+        "severity": "info",
+        "message": "\n> @empireai/backend@0.1.0 build\n> tsc -p tsconfig.json\n\n",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"log\""
+          },
+          {
+            "key": "vertex",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "stream",
+            "value": "1"
+          },
+          {
+            "key": "data",
+            "value": "\"Cj4gQGVtcGlyZWFpL2JhY2tlbmRAMC4xLjAgYnVpbGQKPiB0c2MgLXAgdHNjb25maWcuanNvbgoK\""
+          },
+          {
+            "key": "timestamp",
+            "value": "\"2026-09-23T11:20:03.767015412Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:01.743223664Z",
+        "severity": "info",
+        "message": "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:fa3d6395ad9a44746a3ea7fc16247eff55b31a2ffbce76d83567cff2f755492e\",\"sha256:b3f6df49a56a18d51bb304f43e59447a4fbbfac8371aaaae2f586d87d3416b33\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:18:57.590625421Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:01.74263452Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279459328Z",
+        "severity": "info",
+        "message": "install apt packages: libatomic1",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:b69d425f76af13a27cb59ef275b9bb8c7467590e99813cec7c0fe81ce2fdfe09\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:ad13f376d072f75b2a92429144623dd8eedb7fb0a3fb5d8dd1a3aa2f0fd02d14\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279472848Z",
+        "severity": "info",
+        "message": "copy /mise/shims",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:19e1fff8abc0d765f9987fcb9605f3dffe10be44f2d4712441484c6162408be4\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:b69d425f76af13a27cb59ef275b9bb8c7467590e99813cec7c0fe81ce2fdfe09\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279476864Z",
+        "severity": "info",
+        "message": "copy /mise/installs",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:0e56c63833c51935db36f7d2d47abc798c56fad4456dd9297ca2547c3bb9cab0\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:19e1fff8abc0d765f9987fcb9605f3dffe10be44f2d4712441484c6162408be4\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279477565Z",
+        "severity": "info",
+        "message": "copy /usr/local/bin/mise",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:d58ca865e0a8edf87c2d5b03e1d1f93978bb6dbe7c09a706bea8d59ba9ede918\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:0e56c63833c51935db36f7d2d47abc798c56fad4456dd9297ca2547c3bb9cab0\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279478386Z",
+        "severity": "info",
+        "message": "copy /etc/mise/config.toml",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:23746def7be960413889d56ab68d89d7de973e82f282b7c0659cec281395b272\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:d58ca865e0a8edf87c2d5b03e1d1f93978bb6dbe7c09a706bea8d59ba9ede918\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279479017Z",
+        "severity": "info",
+        "message": "copy /root/.local/state/mise",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:13bbfd7af9bb1a0b71b0eb6428a4a7a61a9b38ffd322f50bb54a85a28541632c\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:23746def7be960413889d56ab68d89d7de973e82f282b7c0659cec281395b272\",\"sha256:23e0c3335948827d5d8a3c897b57f1cb052e5852d6f32c88ac9c169a223bbcfa\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279480179Z",
+        "severity": "info",
+        "message": "copy /app/node_modules",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:c91d1c7de14ebea8e10a8bbaf5b8dc67d46c8798c98b1bb651247f8901571ae5\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:13bbfd7af9bb1a0b71b0eb6428a4a7a61a9b38ffd322f50bb54a85a28541632c\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279480820Z",
+        "severity": "info",
+        "message": "copy /root/.cache",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:dc89f1fc82ecf70d37e218c8b525ac796fd4d67b2c5702fc70bb8e6501266156\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:c91d1c7de14ebea8e10a8bbaf5b8dc67d46c8798c98b1bb651247f8901571ae5\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.278783664Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:22.278956743Z\""
+          },
+          {
+            "key": "cached",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:22.279866969Z",
+        "severity": "info",
+        "message": "copy /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:5e7eea6953e168c6baa9c87d3307e6b119c005a11695b43d5efd5dce59008460\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:dc89f1fc82ecf70d37e218c8b525ac796fd4d67b2c5702fc70bb8e6501266156\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.279551536Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:27.625305740Z",
+        "severity": "info",
+        "message": "copy /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:5e7eea6953e168c6baa9c87d3307e6b119c005a11695b43d5efd5dce59008460\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:dc89f1fc82ecf70d37e218c8b525ac796fd4d67b2c5702fc70bb8e6501266156\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:22.279551536Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:27.623335364Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:27.783849048Z",
+        "severity": "info",
+        "message": "copy /opt/corepack",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:cdf4aea25e5e22376ea713e7136e2544dabe8cad44536bb7636fea175eae62f7\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:5e7eea6953e168c6baa9c87d3307e6b119c005a11695b43d5efd5dce59008460\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:27.78323753Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:29.280006062Z",
+        "severity": "info",
+        "message": "copy /opt/corepack",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:cdf4aea25e5e22376ea713e7136e2544dabe8cad44536bb7636fea175eae62f7\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:5e7eea6953e168c6baa9c87d3307e6b119c005a11695b43d5efd5dce59008460\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:27.78323753Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:29.279567774Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:29.418050062Z",
+        "severity": "info",
+        "message": "copy /mise/installs",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8aa075ea8b6750d93407393663d7e326fcf3db4d4e0b44bf28272dda0cd3c9c9\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:cdf4aea25e5e22376ea713e7136e2544dabe8cad44536bb7636fea175eae62f7\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:29.417472405Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:33.182747179Z",
+        "severity": "info",
+        "message": "copy /mise/installs",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:8aa075ea8b6750d93407393663d7e326fcf3db4d4e0b44bf28272dda0cd3c9c9\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:cdf4aea25e5e22376ea713e7136e2544dabe8cad44536bb7636fea175eae62f7\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:29.417472405Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:33.182304635Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:33.351675398Z",
+        "severity": "info",
+        "message": "copy /mise/shims",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:91988be8e2bb95cf3035d6ddd7935ec7377c6e490064c4515c17783ddf545134\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:8aa075ea8b6750d93407393663d7e326fcf3db4d4e0b44bf28272dda0cd3c9c9\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:33.351224631Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:34.160322417Z",
+        "severity": "info",
+        "message": "copy /mise/shims",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:91988be8e2bb95cf3035d6ddd7935ec7377c6e490064c4515c17783ddf545134\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:8aa075ea8b6750d93407393663d7e326fcf3db4d4e0b44bf28272dda0cd3c9c9\",\"sha256:49566584d2baf02e407bc569913c2fe055a0e6a51a537659197191f94198a0b0\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:33.351224631Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:34.159601965Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:34.331353370Z",
+        "severity": "info",
+        "message": "copy /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:6189c3aab9e7d4f81708a4ad48a7039cec4d4dd2c364fc035e8dc12f5dcf5eb5\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:91988be8e2bb95cf3035d6ddd7935ec7377c6e490064c4515c17783ddf545134\",\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:34.330921111Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:41.351265320Z",
+        "severity": "info",
+        "message": "copy /app",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:6189c3aab9e7d4f81708a4ad48a7039cec4d4dd2c364fc035e8dc12f5dcf5eb5\""
+          },
+          {
+            "key": "inputs",
+            "value": "[\"sha256:91988be8e2bb95cf3035d6ddd7935ec7377c6e490064c4515c17783ddf545134\",\"sha256:49b7a654f1112283bb9575c21aaea61e604c0f7c6a971a253819179b948a3140\"]"
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:34.330921111Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:41.350756787Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:41.535700005Z",
+        "severity": "info",
+        "message": "exporting to docker image format",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:7cee968d5619ebee199b75093e1fb6768bb127713f72172d89f8b6e5cc4f24cc\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:41.535015478Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:50.042083006Z",
+        "severity": "info",
+        "message": "exporting to docker image format",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"buildkit\""
+          },
+          {
+            "key": "type",
+            "value": "\"vertex\""
+          },
+          {
+            "key": "digest",
+            "value": "\"sha256:7cee968d5619ebee199b75093e1fb6768bb127713f72172d89f8b6e5cc4f24cc\""
+          },
+          {
+            "key": "started",
+            "value": "\"2026-09-23T11:21:41.535015478Z\""
+          },
+          {
+            "key": "completed",
+            "value": "\"2026-09-23T11:21:50.041866711Z\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:50.743885886Z",
+        "severity": "info",
+        "message": "containerimage.descriptor: eyJtZWRpYVR5cGUiOiJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLm1hbmlmZXN0LnYxK2pzb24iLCJkaWdlc3QiOiJzaGEyNTY6MDA5NjkzZDk5YmMwMDA3ODUwZDg1YTY0NTc2ZjA2MjdhMzhkZjMxZDg1MmM5Y2M3MzVmYWI3YzM1ZWVmNTJlOCIsInNpemUiOjMxNDgsImFubm90YXRpb25zIjp7Im9yZy5vcGVuY29udGFpbmVycy5pbWFnZS5jcmVhdGVkIjoiMjAyNi0wOS0yM1QxMToyMTo0OVoifSwicGxhdGZvcm0iOnsiYXJjaGl0ZWN0dXJlIjoiYW1kNjQiLCJvcyI6ImxpbnV4In19",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:50.743892686Z",
+        "severity": "info",
+        "message": "containerimage.config.digest: sha256:f76cad3e99dbc93ca745d39af72aedf92b4347bf62aea51490e3edaf00fa2674",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:21:50.743897533Z",
+        "severity": "info",
+        "message": "containerimage.digest: sha256:009693d99bc0007850d85a64576f0627a38df31d852c9cc735fab7c35eef52e8",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:01.263039185Z",
+        "severity": "info",
+        "message": "image push",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"complete\""
+          },
+          {
+            "key": "size",
+            "value": "230622769"
+          },
+          {
+            "key": "total_size",
+            "value": "230622769"
+          },
+          {
+            "key": "duration_ms",
+            "value": "10123"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:01.263064462Z",
+        "severity": "info",
+        "message": "image push",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "source",
+            "value": "\"railway.progress\""
+          },
+          {
+            "key": "status",
+            "value": "\"in-progress\""
+          },
+          {
+            "key": "size",
+            "value": "230496612"
+          },
+          {
+            "key": "total_size",
+            "value": "230625472"
+          },
+          {
+            "key": "duration_ms",
+            "value": "10123"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:39.744687643Z",
+        "severity": "info",
+        "message": "",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:39.744692662Z",
+        "severity": "info",
+        "message": "\u001b[35m====================\nStarting Healthcheck\n====================\n\u001b[0m",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:39.744693886Z",
+        "severity": "info",
+        "message": "\u001b[37mPath: /health/ready\u001b[0m",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:39.744695190Z",
+        "severity": "info",
+        "message": "\u001b[37mRetry window: 5m0s\u001b[0m",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:39.744696819Z",
+        "severity": "info",
+        "message": "",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:39.845921863Z",
+        "severity": "info",
+        "message": "\u001b[93mAttempt #1 failed with HTTP 503. Continuing to retry for 4m59s\u001b[0m",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:40.891630586Z",
+        "severity": "info",
+        "message": "\u001b[93mAttempt #2 failed with HTTP 503. Continuing to retry for 4m58s\u001b[0m",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T11:22:42.941518311Z",
+        "severity": "info",
+        "message": "\u001b[93mAttempt #3 failed with HTTP 503. Continuing to retry for 4m56s\u001b[0m",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      }
+    ]
+  },
+  "isError": false
+}

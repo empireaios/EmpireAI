@@ -1,0 +1,185 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import { spawnSync } from "node:child_process";
+import os from "node:os";
+import path from "node:path";
+import { DatabaseSync } from "node:sqlite";
+import { test } from "node:test";
+import { buildApp } from "../../app.js";
+import { getDatabase, resetDatabaseInstance } from "../../brain/database.js";
+import { EmpireDatabase } from "../../brain/sqlite-database.js";
+import { withQuiescedBrainAndShadowCapture } from "../../orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js";
+import { openShadowCeoRepository, runVerticalSliceDemo } from "../../orchestration/shadow-ceo/index.js";
+import { configureValidationEnvironment } from "../harness.js";
+
+test("application local drain saves both RAM-backed SQL handles before caller readback", async t => {
+  configureValidationEnvironment();
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "app-local-capture-"));
+  const primaryFile = path.join(dir, "brain.db");
+  const shadowFile = path.join(dir, "shadow.db");
+  process.env.DATABASE_PATH = primaryFile;
+  const empire = await buildApp({ startWorkers: false, startScheduler: false, pillowEnabled: false, earlyListen: true });
+  const shadow = openShadowCeoRepository({ dbPath: shadowFile });
+  let degradedCaptureCalled = false;
+  await assert.rejects(async () => empire.withDrainedSharedBrainNativeCapture(shadow, () => {
+    degradedCaptureCalled = true;
+  }), /connected Redis/);
+  assert.equal(degradedCaptureCalled, false);
+  t.after(async () => {
+    shadow.close();
+    await empire.shutdown();
+    resetDatabaseInstance();
+    delete process.env.DATABASE_PATH;
+    fs.rmSync(dir, { recursive: true, force: true });
+  });
+  const primary = getDatabase();
+  primary.exec("CREATE TABLE capture_local_evidence (value TEXT)");
+  primary.prepare("INSERT INTO capture_local_evidence VALUES ('pending RAM')").run();
+  const slice = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_local_capture", runKey: "pending" });
+
+  await empire.withDrainedLocalSqliteCapture(shadow, () => {
+    assert.throws(() => primary.exec("DELETE FROM capture_local_evidence"), /quiesced/);
+    assert.throws(() => runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_local_capture", runKey: "blocked" }), /quiesced/);
+    const brainCopy = path.join(dir, "brain.copy.db");
+    const shadowCopy = path.join(dir, "shadow.copy.db");
+    fs.copyFileSync(primaryFile, brainCopy);
+    fs.copyFileSync(shadowFile, shadowCopy);
+    const b = new DatabaseSync(brainCopy, { readOnly: true });
+    const s = new DatabaseSync(shadowCopy, { readOnly: true });
+    try {
+      assert.equal(b.prepare("SELECT value FROM capture_local_evidence").get()?.value, "pending RAM");
+      assert.ok(Number(s.prepare("SELECT COUNT(*) AS n FROM shadow_ceo_records WHERE objective_id = ?")
+        .get(slice.objectiveId)?.n) >= 12);
+    } finally { b.close(); s.close(); }
+  });
+
+  for (const [filename, id, version, ddl] of [
+    [primaryFile + ".missions.sqlite", 0x454d5352, 3, "CREATE TABLE mission_snapshot(value INTEGER); INSERT INTO mission_snapshot VALUES (1)"],
+    [primaryFile + ".mission-execution.sqlite", 0x454d4558, 1,
+      "CREATE TABLE execution_events(value INTEGER); CREATE TABLE execution_jobs(value INTEGER); CREATE TABLE execution_meta(value INTEGER)"],
+  ] as const) {
+    const db = new DatabaseSync(filename);
+    db.exec(`${ddl}; PRAGMA application_id=${id}; PRAGMA user_version=${version};`);
+    db.close();
+  }
+  await empire.withDrainedLocalNativeCapture(shadow, () => {
+    const copy = path.join(dir, "native-mission.copy.db");
+    fs.copyFileSync(primaryFile + ".missions.sqlite", copy);
+    const independent = spawnSync(process.execPath, ["-e", `
+      const {DatabaseSync}=require('node:sqlite');
+      const db=new DatabaseSync(process.argv[1],{timeout:0});
+      try { db.exec('BEGIN IMMEDIATE; UPDATE mission_snapshot SET value=2; COMMIT'); }
+      catch { process.exitCode=7; } finally { db.close(); }
+    `, primaryFile + ".missions.sqlite"], { timeout: 5000 });
+    assert.equal(independent.status, 7, "native writer stays blocked after parent disk copy");
+    const restored = new DatabaseSync(copy, { readOnly: true });
+    assert.equal(restored.prepare("SELECT value FROM mission_snapshot").get()?.value, 1);
+    restored.close();
+  });
+});
+
+test("both open SQL.js handles save RAM and refuse writes through one verified capture", async t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "two-handle-capture-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const primaryFile = path.join(dir, "brain.db");
+  const shadowFile = path.join(dir, "shadow.db");
+  const primary = new EmpireDatabase(primaryFile);
+  const shadow = openShadowCeoRepository({ dbPath: shadowFile });
+  t.after(() => { shadow.close(); primary.close(); });
+  primary.exec("CREATE TABLE checkpoint_evidence (value TEXT)");
+  primary.prepare("INSERT INTO checkpoint_evidence VALUES ('RAM record')").run();
+  const slice = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_two_handle", runKey: "ram-only" });
+  const count = shadow.countByObjective(slice.objectiveId);
+  assert.ok(count >= 12);
+  assert.equal(fs.existsSync(primaryFile), false);
+  assert.equal(fs.existsSync(shadowFile), false);
+
+  await withQuiescedBrainAndShadowCapture(primary, shadow, () => {
+    assert.throws(() => primary.prepare("INSERT INTO checkpoint_evidence VALUES ('blocked')").run(), /quiesced/);
+    assert.throws(() => runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_two_handle", runKey: "blocked" }), /quiesced/);
+    fs.copyFileSync(primaryFile, path.join(dir, "brain.copy.db"));
+    fs.copyFileSync(shadowFile, path.join(dir, "shadow.copy.db"));
+    const b = new DatabaseSync(path.join(dir, "brain.copy.db"), { readOnly: true });
+    const s = new DatabaseSync(path.join(dir, "shadow.copy.db"), { readOnly: true });
+    try {
+      assert.equal(b.prepare("SELECT value FROM checkpoint_evidence").get()?.value, "RAM record");
+      assert.equal(s.prepare("SELECT COUNT(*) AS n FROM shadow_ceo_records WHERE objective_id = ?")
+        .get(slice.objectiveId)?.n, count);
+    } finally { s.close(); b.close(); }
+  });
+  await assert.rejects(withQuiescedBrainAndShadowCapture(primary, shadow,
+    () => { throw new Error("copy integrity refused"); }), /copy integrity refused/);
+  primary.prepare("INSERT INTO checkpoint_evidence VALUES ('resumed')").run();
+  const later = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_two_handle", runKey: "resumed" });
+  assert.ok(shadow.countByObjective(later.objectiveId) >= 12);
+});
+
+test("Shadow CEO writes are fenced before the first Brain save yields", async t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-before-yield-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const primary = new EmpireDatabase(path.join(dir, "brain.db"));
+  const shadow = openShadowCeoRepository({ dbPath: path.join(dir, "shadow.db") });
+  t.after(() => { shadow.close(); primary.close(); });
+  primary.exec("CREATE TABLE evidence (id INTEGER)");
+  let entered!: () => void;
+  let resume!: () => void;
+  const saveEntered = new Promise<void>(resolve => { entered = resolve; });
+  const saveCanFinish = new Promise<void>(resolve => { resume = resolve; });
+  t.after(() => resume());
+  const actualSave = primary.requestCriticalPersist.bind(primary);
+  t.mock.method(primary, "requestCriticalPersist", async () => {
+    entered();
+    await saveCanFinish;
+    return actualSave();
+  });
+  const capture = withQuiescedBrainAndShadowCapture(primary, shadow, () => "saved");
+  await saveEntered;
+  assert.throws(() => primary.exec("INSERT INTO evidence VALUES (1)"), /quiesced/);
+  assert.throws(() => runVerticalSliceDemo({
+    repo: shadow, workspaceId: "ws_before_yield", runKey: "blocked",
+  }), /quiesced/, "second handle must already be fenced during the first save");
+  resume();
+  assert.equal(await capture, "saved");
+  const result = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_before_yield", runKey: "resumed" });
+  assert.ok(shadow.countByObjective(result.objectiveId) >= 12);
+});
+
+test("capture refuses a second SQL.js handle and blocks a new alias until release", async t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-sqljs-alias-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const file = path.join(dir, "brain.db");
+  const first = new EmpireDatabase(file);
+  first.exec("CREATE TABLE capture_identity (id INTEGER)");
+  await first.requestCriticalPersist();
+  const second = new EmpireDatabase(file);
+  t.after(() => { second.close(); first.close(); });
+  assert.throws(() => first.holdWritesForCapture(), /independently opened SQL.js handle/);
+  second.close();
+  const release = first.holdWritesForCapture();
+  try {
+    assert.throws(() => new EmpireDatabase(file), /capture active/);
+    assert.throws(() => new EmpireDatabase(path.join(dir, ".", "brain.db")), /capture active/);
+  } finally { release(); }
+  const reopened = new EmpireDatabase(file);
+  reopened.close();
+});
+
+test("a hard-link alias of a persisted Brain file cannot evade capture admission", async t => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-sqljs-hardlink-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const file = path.join(dir, "brain.db");
+  const alias = path.join(dir, "brain-alias.db");
+  const primary = new EmpireDatabase(file);
+  t.after(() => primary.close());
+  primary.exec("CREATE TABLE evidence (id INTEGER)");
+  await primary.requestCriticalPersist();
+  fs.linkSync(file, alias);
+  const competitor = new EmpireDatabase(alias);
+  assert.throws(() => primary.holdWritesForCapture(), /independently opened SQL.js handle/);
+  competitor.close();
+  fs.unlinkSync(alias);
+  fs.linkSync(file, alias);
+  const release = primary.holdWritesForCapture();
+  try { assert.throws(() => new EmpireDatabase(alias), /capture active/); }
+  finally { release(); }
+});

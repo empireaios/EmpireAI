@@ -7,6 +7,7 @@ import { buildSmartViableKpiSnapshot } from "../pillow-commerce-presale/smart-vi
 import { buildCostGuardStatus } from "./cost-guard.js";
 import { getLatestFlightEvent, listFlightEvents } from "./flight-recorder.js";
 import { getBirthRecord } from "./birth.js";
+import type { PillowAuthority } from "./pillow-authority.js";
 import {
   WINNING_OPERATING_QUESTION,
   PILLOW_WINNING_PURPOSE,
@@ -38,6 +39,7 @@ export type PillowOperatingState = {
   needsGrandKingReason: string | null;
   costGuardLevel: string;
   birthStatus: string;
+  authority: PillowAuthority;
   evidence: string[];
   /** Mission 006 — activity mode distinct from raw state code. */
   activityMode: PillowActivityMode;
@@ -61,7 +63,7 @@ export function buildPillowOperatingState(workspaceId: string): PillowOperatingS
 
   // Presale automation: every 4 hours from last cycle when known
   let nextScheduledCycleAt: string | null = null;
-  if (lastOperatingCycleAt) {
+  if (birth.authority.realCommerceAuthorized && lastOperatingCycleAt) {
     const next = new Date(lastOperatingCycleAt);
     next.setUTCHours(next.getUTCHours() + 4);
     nextScheduledCycleAt = next.toISOString();
@@ -81,6 +83,11 @@ export function buildPillowOperatingState(workspaceId: string): PillowOperatingS
     needsGrandKing = true;
     needsGrandKingReason = cost.hardStopReasons.join("; ") || "Cost Guard hard stop";
     evidence.push("cost-guard:hard-stop");
+  } else if (birth.status === "NOT_BORN") {
+    state = "COMMISSIONING";
+    humanLabel = "Not born — independent certification incomplete; live commerce locked";
+    currentFocus = "Establish and independently accept the missing certification evidence";
+    evidence.push("authority:NOT_BORN", "commerce:LOCKED", birth.authority.reason);
   } else if (birth.status === "TECHNICALLY_READY_AWAITING_GRAND_KING") {
     state = "BIRTH_AWAITING_GRAND_KING";
     humanLabel = "Pillow birth technically ready — awaiting Grand King authorisation";
@@ -145,6 +152,7 @@ export function buildPillowOperatingState(workspaceId: string): PillowOperatingS
     needsGrandKingReason,
     costGuardLevel: cost.level,
     birthStatus: birth.status,
+    authority: birth.authority,
     evidence,
     activityMode: activityModeFromOperatingState(state),
     winningPurpose: PILLOW_WINNING_PURPOSE,

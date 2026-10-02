@@ -1,0 +1,60 @@
+{
+  "schema": "post-request-reconciliation-v1",
+  "sourceSha256": "4e955badbd5fd3e650d7683dfcc1ede18fb544bc2e575d0d3a4b70300942a0d6",
+  "requestId": "pcr_871cd1411e2449a7",
+  "requestKey": "37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3",
+  "capability": "summarization (owner exact request)",
+  "intendedRoute": [
+    "gemini",
+    "openai"
+  ],
+  "attempts": [
+    {
+      "id": "831aa927-70ea-4be8-96be-6c25553d1c56",
+      "timestamp": "2026-10-02T04:30:26.350Z",
+      "model": "gemini-3.8-flash",
+      "status": "failed_uncertain",
+      "reserved_micro_usd": 329237,
+      "estimated_micro_usd": null,
+      "invoice_actual_micro_usd": null,
+      "provider_response_id": null,
+      "provider": "gemini",
+      "usage": null,
+      "request_key": "37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3"
+    },
+    {
+      "id": "c13e7a02-b06b-4551-902c-475d807ded5e",
+      "timestamp": "2026-10-02T04:30:26.977Z",
+      "model": "gpt-6.1-sol",
+      "status": "usage_recorded",
+      "reserved_micro_usd": 349468,
+      "estimated_micro_usd": 62544,
+      "invoice_actual_micro_usd": null,
+      "provider_response_id": "resp_0ed1ed14ef45321d016abf3363d89487d0a387a9067e7e80e6",
+      "provider": "openai",
+      "usage": {
+        "inputTokens": 22587,
+        "outputTokens": 39,
+        "totalTokens": 22626,
+        "cachedInputTokens": 0,
+        "reasoningTokens": 0
+      },
+      "request_key": "37810e79e8e83040c35062effd90b3c9aad2eb181c4ce63e50ba98537b14d0e3"
+    }
+  ],
+  "allPriorRecordsUnchanged": true,
+  "newReservationCount": 2,
+  "newRequestCount": 1,
+  "requestHeldMicroUsd": 678705,
+  "totalHeldMicroUsd": 4020427,
+  "remainingMicroUsd": 15979573,
+  "totalRecordedEstimateMicroUsd": 829363,
+  "uncertainHeldMicroUsd": 930181,
+  "releaseMicroUsd": 0,
+  "invoiceActual": "UNKNOWN",
+  "fallback": true,
+  "geminiSuccess": false,
+  "exactGeminiError": "UNKNOWN: old adapter discarded HTTP status/body; health and source establish only fallback-eligible refusal (429/503/529)",
+  "retryInterpretation": "retryUsed=false is host retry; router fallback occurred. degradedUsed=false means genuine OpenAI completion, not stock degraded advice.",
+  "duplicateInterpretation": "Exactly one new inference_requests claim and two sequential different-provider reservations; not duplicate execution of the same provider. No second inference by Work."
+}

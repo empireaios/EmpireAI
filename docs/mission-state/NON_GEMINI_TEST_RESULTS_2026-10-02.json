@@ -1,0 +1,91 @@
+{
+  "testCommit": "d57a1e6c782100d1ee972ecc8712ea8b947f4640",
+  "productionSource": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+  "paidCalls": 0,
+  "uniqueTests": 38,
+  "scope": "Local actual-component integration; provider HTTP fixtures; not unseen certification/live provider evidence",
+  "results": [
+    {
+      "file": "phase-a-closure-tests.log",
+      "sha256": "affed0878a78b031a00576ce24b7d59dea5ba351bbe909e1c93a0144088c66f1",
+      "summary": [
+        "# tests 37",
+        "# suites 1",
+        "# pass 37",
+        "# fail 0",
+        "# cancelled 0",
+        "# skipped 0",
+        "# todo 0",
+        "# duration_ms 10407.557584"
+      ],
+      "cases": [
+        "fresh authenticated conversation is allowed while Birth and commerce stay locked",
+        "NOT_BORN inference is durable and never changes HTTP mutation authority",
+        "cumulative ceiling survives a separate process; uncertainty and missing ledger fail closed",
+        "three actual wire contracts preserve roles, priced usage, provenance and no tool authority",
+        "one bounded fallback on refusal; both reservations retained; replay cannot pay again",
+        "uncertain transport, invalid credentials and corrupt usage never trigger fallback",
+        "capability routing and credential isolation do not silently substitute explicit provider",
+        "existing cumulative charges and independent provider sublimits cannot reset",
+        "legacy v1 ledger rows remain byte-for-byte values and count against all providers",
+        "two temporary refusals stop without a third provider; bad usage cannot masquerade as a response",
+        "real shared router consultation reserves two distinct identities and replay cannot pay again",
+        "concurrent duplicate requests admit one paid transport and one durable reservation",
+        "Pillow engine through Brain adapter preserves capability, metadata separation, bounded fallback and duplicate guard",
+        "operator receipts retain safe failure status and budget without prompts or credentials",
+        "durable transcript and pending evidence survive reopen without importing authority",
+        "genuine receipt, exact rational arithmetic and scope/operation denials",
+        "capability selection and explicit consultation do not fan out ordinary requests",
+        "model-selected arithmetic executes once; generated write request cannot execute",
+        "bounded pure repository context never dispatches operational resolvers",
+        "ambient state cannot manufacture recommendation; correction preserves unrelated reasoning",
+        "full release gate retains a new non-commerce explanation rather than ambient commercial advice",
+        "fresh devices and restart resolve one canonical conversation; isolated sessions cannot replace it",
+        "browser historical archive is idempotent, owner scoped and excluded from reasoning/authority",
+        "retrieval receipts bind actual results; unavailable evidence is explicit and source failure rejects",
+        "corrections remain separate pending observations; neither replay nor browser claims promote authority",
+        "durable worker completion contract",
+        "fails known no-provider fallback once without claiming reasoning completion",
+        "stops a typed inference failure without a new paid attempt",
+        "does not infer a terminal configuration failure from text or an unknown typed failure",
+        "accepts the canonical authority facts for the failed canary question without treating fallback as success",
+        "rejects production fallback kinds rather than misreporting completed capability",
+        "permits complete reasoning and deliberate non-action constitutional responses",
+        "never promotes a contradictory pending/blocked/empty llm response",
+        "classifies authentication refusal as fatal; infrastructure as retryable",
+        "rejects action replay before making any request",
+        "shutdown cancels an in-flight real HTTP request without acknowledging completion",
+        "sweeper stop awaits its readiness probe and does not claim new work after shutdown",
+        "shutdown propagates an in-flight failure instead of reporting a confirmed queue drain"
+      ]
+    },
+    {
+      "file": "phase-a-cancellation-tests.log",
+      "sha256": "6ca282ee65e31cd118d2b98571587e69ab84d10f4ad1b8445e4fdcff21285fe2",
+      "summary": [
+        "# tests 12",
+        "# suites 0",
+        "# pass 12",
+        "# fail 0",
+        "# cancelled 0",
+        "# skipped 0",
+        "# todo 0",
+        "# duration_ms 3326.787107"
+      ],
+      "cases": [
+        "three actual wire contracts preserve roles, priced usage, provenance and no tool authority",
+        "one bounded fallback on refusal; both reservations retained; replay cannot pay again",
+        "uncertain transport, invalid credentials and corrupt usage never trigger fallback",
+        "capability routing and credential isolation do not silently substitute explicit provider",
+        "existing cumulative charges and independent provider sublimits cannot reset",
+        "legacy v1 ledger rows remain byte-for-byte values and count against all providers",
+        "two temporary refusals stop without a third provider; bad usage cannot masquerade as a response",
+        "real shared router consultation reserves two distinct identities and replay cannot pay again",
+        "concurrent duplicate requests admit one paid transport and one durable reservation",
+        "caller cancellation after dispatch retains uncertainty and never starts fallback",
+        "Pillow engine through Brain adapter preserves capability, metadata separation, bounded fallback and duplicate guard",
+        "operator receipts retain safe failure status and budget without prompts or credentials"
+      ]
+    }
+  ]
+}

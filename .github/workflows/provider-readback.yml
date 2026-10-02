@@ -1,0 +1,45 @@
+name: Isolated read-only provider observation
+on:
+  push:
+    branches: ['ci/provider-readback-amazon-v1', 'ci/provider-readback-cj-v1']
+permissions:
+  contents: read
+concurrency:
+  group: isolated-provider-readback
+  cancel-in-progress: false
+jobs:
+  observe:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: ${{ contains(github.ref_name, 'amazon') && 'empireai-readonly-amazon' || 'empireai-readonly-cj' }}
+    steps:
+      - name: Checkout exact reviewed source without stored GitHub credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Use pinned Node runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Verify read-only allowlist and failure behavior without provider calls
+        run: node --test deployment/provider-readback.test.mjs
+      - name: One bounded authenticated observation without application startup
+        env:
+          ISOLATED_PROVIDER_READBACK: '1'
+          READBACK_PROVIDER: ${{ contains(github.ref_name, 'amazon') && 'amazon' || 'cj' }}
+          CJ_READBACK_POINT_LIMIT: '50'
+          VERIFY_AMAZON_CLIENT_ID: ${{ secrets.VERIFY_AMAZON_CLIENT_ID }}
+          VERIFY_AMAZON_CLIENT_SECRET: ${{ secrets.VERIFY_AMAZON_CLIENT_SECRET }}
+          VERIFY_AMAZON_REFRESH_TOKEN: ${{ secrets.VERIFY_AMAZON_REFRESH_TOKEN }}
+          VERIFY_AMAZON_SELLER_ID: ${{ secrets.VERIFY_AMAZON_SELLER_ID }}
+          VERIFY_CJ_API_KEY: ${{ secrets.VERIFY_CJ_API_KEY }}
+        run: node deployment/provider-readback.mjs
+      - name: Preserve sanitized provider receipt and pre-request admission
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: provider-readback-${{ github.run_id }}
+          path: provider-readback-evidence
+          retention-days: 14

@@ -192,6 +192,7 @@ export type MsrValidationReport = {
 };
 
 export type MsrRunReport = {
+  authorityExecution?: { acceptedDurably: boolean; jobId: string | null; operation: "authority.snapshot.v1"; certificationCredit: false };
   action: string;
   runTimestamp: string;
   durationMs: number;

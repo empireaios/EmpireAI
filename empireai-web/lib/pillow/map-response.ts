@@ -6,6 +6,25 @@ export function mapPillowChatToAssistantResponse(
   result: PillowChatResult,
   query: string,
 ): GlobalAssistantResponse {
+  if (result.kind === "durable_pending" || result.kind === "error" || result.kind === "terminal_infrastructure") {
+    return {
+      action: "ask",
+      currentContext: "Pillow request status — no completed answer",
+      reason: result.message,
+      supportingEvidence: result.requestId
+        ? [{ source: "pillow-request", label: "Request reference", value: result.requestId }]
+        : [],
+      recommendedNextAction: result.kind === "durable_pending"
+        ? "Reopen the conversation to check this saved request. Do not send the same instruction again."
+        : "Review the reported failure before requesting further work.",
+      confidence: "unavailable",
+      suggestedFollowUps: [],
+      interactionIntent: result.kind,
+      interactionSummary: result.message,
+      computedAt: new Date().toISOString(),
+      futureCapabilities: [],
+    };
+  }
   const awareness = result.command?.awareness;
   const recommendation = result.executiveRecommendation;
 

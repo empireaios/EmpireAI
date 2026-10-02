@@ -1,0 +1,36 @@
+{
+  "codeHead": "2855b4e96adba2d7e3c6abdbf2cb7e94aa375555",
+  "observedAt": "2026-09-29T15:28:15.710904+00:00",
+  "workflow_runs": [
+    {
+      "id": 36589825324,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 305,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36589825324/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36589825324/logs",
+      "workflow_id": 362674549
+    },
+    {
+      "id": 36589825330,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 305,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36589825330/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36589825330/logs",
+      "workflow_id": 362309382
+    },
+    {
+      "id": 36589825429,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 303,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36589825429/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36589825429/logs",
+      "workflow_id": 362688325
+    }
+  ]
+}

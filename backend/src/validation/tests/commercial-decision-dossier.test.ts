@@ -15,6 +15,11 @@ import { buildCommerceOperatingLoopReadiness } from "../../orchestration/pillow-
 import { computeActualContribution } from "../../orchestration/pillow-commerce-presale/commerce-actual-pnl.js";
 
 describe("commercial decision dossier FD-CDD-001", () => {
+  it("keeps missing economics unknown instead of claiming a loss or approval", () => {
+    const result = decideDossierVerdict({ brandRoute: "UNKNOWN", deliveryCanMeet: "UNKNOWN", amazonEligibility: "UNKNOWN", profitOk: null, pricePremiumPct: null, demandEvidencePresent: false, competingOfferCount: null });
+    assert.equal(result.verdict, "INVESTIGATE");
+    assert.equal(result.rejectCode, undefined);
+  });
   it("rejects branded catalog without authenticity verification", () => {
     const brand = classifyBrandRoute({ brandName: "Sony", productName: "Headphones" });
     assert.equal(brand.route, "EXISTING_BRANDED_CATALOG");
@@ -100,7 +105,7 @@ describe("commercial decision dossier FD-CDD-001", () => {
         freshness: "LIVE",
         source: "test",
       },
-      freightOption: { logisticPrice: 8.3, logisticAging: "7-12", countryCode: "CN" },
+      freightOption: { logisticName: "CJPacket", logisticPrice: 8.3, logisticAging: "7-12", countryCode: "CN" },
       salesRank: 120000,
       risks: ["test"],
     });
@@ -113,12 +118,32 @@ describe("commercial decision dossier FD-CDD-001", () => {
 
   it("picks cheapest freight and keeps transit aging", () => {
     const picked = pickCheapestFreight([
-      { logisticPrice: 12, logisticAging: "10-15" },
-      { logisticPrice: 8.3, logisticAging: "7-12" },
-      { logisticPrice: 9.1, logisticAging: "8-14" },
+      { logisticName: "CJ Standard", logisticPrice: 12, logisticAging: "10-15" },
+      { logisticName: "CJPacket", logisticPrice: 8.3, logisticAging: "7-12" },
+      { logisticName: "CJ Express", logisticPrice: 9.1, logisticAging: "8-14" },
     ]);
     assert.equal(picked.priceUsd, 8.3);
     assert.equal(picked.option?.logisticAging, "7-12");
+  });
+
+  it("refuses negative and sub-cent CJ freight quotes before margin calculation", () => {
+    assert.deepEqual(pickCheapestFreight([
+      { logisticPrice: -4 }, { logisticPrice: 0.001 }, { logisticPrice: Number.NaN },
+    ]), { priceUsd: null, option: null });
+    assert.equal(pickCheapestFreight([
+      { logisticPrice: -4 }, { logisticPrice: 0.001 }, { logisticName: "CJPacket", logisticPrice: 8.3 },
+    ]).priceUsd, 8.3);
+  });
+
+  it("refuses unnamed CJ freight even when it is the cheapest quote", () => {
+    const picked = pickCheapestFreight([
+      { logisticPrice: 1.25, logisticAging: "3-5" },
+      { logisticName: "  ", logisticPrice: 2.5, logisticAging: "3-5" },
+      { logisticName: "CJPacket", logisticPrice: 8.3, logisticAging: "7-12" },
+    ]);
+    assert.equal(picked.priceUsd, 8.3);
+    assert.equal(picked.option?.logisticName, "CJPacket");
+    assert.deepEqual(pickCheapestFreight([{ logisticPrice: 1.25 }]), { priceUsd: null, option: null });
   });
 
   it("keeps expected vs actual P&L distinct", () => {
@@ -151,5 +176,19 @@ describe("commercial decision dossier FD-CDD-001", () => {
           s.status === "READY_AWAITING_FIRST_REAL_ORDER",
       ),
     );
+  });
+
+  it("withholds discovery readiness when durable CJ point admission is not configured", () => {
+    const missing = buildCommerceOperatingLoopReadiness({});
+    assert.equal(missing.stages.find(s => s.stage === "DISCOVERY_DOSSIER")?.status, "BLOCKED");
+    assert.match(missing.stages.find(s => s.stage === "DISCOVERY_DOSSIER")?.detail ?? "", /budgets/);
+    const configured = buildCommerceOperatingLoopReadiness({
+      DATABASE_PATH: "/tmp/offline-brain.sqlite",
+      CJ_PRESALE_ACCOUNT_ID: "seller-account",
+      CJ_PRESALE_CYCLE_POINT_LIMIT: "50",
+      CJ_PRESALE_DAILY_POINT_LIMIT: "100",
+    });
+    assert.equal(configured.stages.find(s => s.stage === "DISCOVERY_DOSSIER")?.status, "IMPLEMENTED_READY");
+    assert.match(configured.stages.find(s => s.stage === "DISCOVERY_DOSSIER")?.detail ?? "", /not proof of live provider access/);
   });
 });

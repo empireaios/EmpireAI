@@ -1,0 +1,105 @@
+{
+  "observedAt": "2026-09-23T15:32:00Z",
+  "prHead": "da930baf8c32314579fb7ea0d1f5d2e01b3a2bf4",
+  "testedMergeCommit": "c55c11d8dc9a55d61742c29bf51e1a2d861b459f",
+  "runId": 35881857421,
+  "jobId": 107252038307,
+  "receipt": {
+    "schema": "redis-expiry-image-proof-v1",
+    "passed": true,
+    "checks": [
+      {
+        "case": "authenticated_aof_and_external_sigterm",
+        "passed": true,
+        "exitCode": 0,
+        "lifecycle": [
+          {
+            "event": "bounded_redis_start",
+            "message": "bounded_redis_start",
+            "schema": "bounded-redis-expiry-v1",
+            "projectId": "97e5e140-1a44-4fab-9755-9b685e8c9571",
+            "environmentId": "704e87e1-cbeb-42a7-8f66-bab97edfcff5",
+            "serviceId": "0d1dc241-efdb-463c-816d-61091de7e6cd",
+            "sourceCommit": "c55c11d8dc9a55d61742c29bf51e1a2d861b459f",
+            "expiresAt": "2026-09-23T15:30:12.148Z",
+            "deploymentId": "5bbea34d-d694-445c-9603-5b3fab8c4a58",
+            "launcherSha256": "8799b7976b862155052b031e758021cc691d578315f61f1a820da6b04e9cb034"
+          },
+          {
+            "event": "bounded_redis_stopped",
+            "message": "bounded_redis_stopped",
+            "schema": "bounded-redis-expiry-v1",
+            "projectId": "97e5e140-1a44-4fab-9755-9b685e8c9571",
+            "environmentId": "704e87e1-cbeb-42a7-8f66-bab97edfcff5",
+            "serviceId": "0d1dc241-efdb-463c-816d-61091de7e6cd",
+            "sourceCommit": "c55c11d8dc9a55d61742c29bf51e1a2d861b459f",
+            "expiresAt": "2026-09-23T15:30:12.148Z",
+            "deploymentId": "5bbea34d-d694-445c-9603-5b3fab8c4a58",
+            "launcherSha256": "8799b7976b862155052b031e758021cc691d578315f61f1a820da6b04e9cb034",
+            "reason": "signal",
+            "childExitCode": 0,
+            "childSignal": null,
+            "forcedTermination": false,
+            "forcedSignal": null,
+            "redisAofRecoveryProven": false,
+            "providerCleanupRequired": true
+          }
+        ]
+      },
+      {
+        "case": "persisted_expiry_renewal_refused",
+        "passed": true,
+        "exitCode": 1
+      },
+      {
+        "case": "real_aof_reopen_same_scope_same_expiry",
+        "passed": true
+      },
+      {
+        "case": "absolute_expiry_stops_real_redis_and_supervisor",
+        "passed": true,
+        "finishedAt": "2026-09-23T15:29:52.245712103Z",
+        "expiresAt": "2026-09-23T15:30:12.148Z",
+        "lifecycle": [
+          {
+            "event": "bounded_redis_start",
+            "message": "bounded_redis_start",
+            "schema": "bounded-redis-expiry-v1",
+            "projectId": "97e5e140-1a44-4fab-9755-9b685e8c9571",
+            "environmentId": "704e87e1-cbeb-42a7-8f66-bab97edfcff5",
+            "serviceId": "0d1dc241-efdb-463c-816d-61091de7e6cd",
+            "sourceCommit": "c55c11d8dc9a55d61742c29bf51e1a2d861b459f",
+            "expiresAt": "2026-09-23T15:30:12.148Z",
+            "deploymentId": "d8d88b76-021b-452e-9e34-d9ac348ae24c",
+            "launcherSha256": "8799b7976b862155052b031e758021cc691d578315f61f1a820da6b04e9cb034"
+          },
+          {
+            "event": "bounded_redis_stopped",
+            "message": "bounded_redis_stopped",
+            "schema": "bounded-redis-expiry-v1",
+            "projectId": "97e5e140-1a44-4fab-9755-9b685e8c9571",
+            "environmentId": "704e87e1-cbeb-42a7-8f66-bab97edfcff5",
+            "serviceId": "0d1dc241-efdb-463c-816d-61091de7e6cd",
+            "sourceCommit": "c55c11d8dc9a55d61742c29bf51e1a2d861b459f",
+            "expiresAt": "2026-09-23T15:30:12.148Z",
+            "deploymentId": "d8d88b76-021b-452e-9e34-d9ac348ae24c",
+            "launcherSha256": "8799b7976b862155052b031e758021cc691d578315f61f1a820da6b04e9cb034",
+            "reason": "expired",
+            "childExitCode": 0,
+            "childSignal": null,
+            "forcedTermination": false,
+            "forcedSignal": null,
+            "redisAofRecoveryProven": false,
+            "providerCleanupRequired": true
+          }
+        ]
+      }
+    ],
+    "cleanupComplete": true,
+    "scope": "ephemeral Linux CI Docker only",
+    "hostedProviderProof": false,
+    "powerLossRecoveryProven": false
+  },
+  "source": "GitHub Actions job logs",
+  "hostedRailwayProof": false
+}

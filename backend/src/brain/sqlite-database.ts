@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { randomUUID } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import initSqlJs, { type BindParams } from "sql.js";
@@ -39,6 +40,25 @@ const MAX_FLUSH_INTERVAL_MS = Number(process.env.SQLITE_MAX_FLUSH_INTERVAL_MS ??
 const FIRST_FLUSH_DELAY_MS = Number(process.env.SQLITE_FIRST_FLUSH_DELAY_MS ?? 3_600_000);
 const processStartedAtMs = Date.now();
 
+/** Same-process SQL.js aliases must not escape an in-process capture fence. */
+const openSqlJsHandles = new Map<string, Set<EmpireDatabase>>();
+function captureFileIdentity(filePath: string): string {
+  const absolute = path.resolve(filePath);
+  let ancestor = absolute;
+  while (!fs.existsSync(ancestor)) {
+    const parent = path.dirname(ancestor);
+    if (parent === ancestor) throw new Error("SQLite path has no existing ancestor");
+    ancestor = parent;
+  }
+  return path.join(fs.realpathSync.native(ancestor), path.relative(ancestor, absolute));
+}
+function sameExistingSqliteFile(left: string, right: string): boolean {
+  if (!fs.existsSync(left) || !fs.existsSync(right)) return false;
+  const a = fs.statSync(left);
+  const b = fs.statSync(right);
+  return a.dev === b.dev && a.ino === b.ino;
+}
+
 type RunResult = { changes: number; lastInsertRowid: number | bigint };
 
 type PersistStats = {
@@ -69,20 +89,26 @@ let persistStats: PersistStats = {
 
 /** Optional SharedArrayBuffer slot: main sets 1 during sync export so HA worker ignores stalls. */
 let flushGuardView: Int32Array | null = null;
+let flushCompletionHeartbeat: (() => void) | null = null;
 
 export function getSqlitePersistStats(): Readonly<PersistStats> {
   return persistStats;
 }
 
 /** Wire HA watchdog SharedArrayBuffer index 1 as flush-in-flight guard. */
-export function bindSqliteFlushGuard(view: Int32Array): void {
+export function bindSqliteFlushGuard(view: Int32Array | null, onExportComplete?: () => void): void {
   flushGuardView = view;
-  Atomics.store(flushGuardView, 1, persistStats.flushInFlight ? 1 : 0);
+  flushCompletionHeartbeat = view ? onExportComplete ?? null : null;
+  if (flushGuardView) Atomics.store(flushGuardView, 1, persistStats.flushInFlight ? 1 : 0);
 }
 
 function setFlushInFlight(active: boolean): void {
   persistStats = { ...persistStats, flushInFlight: active };
   if (flushGuardView) {
+    // Publish main-thread liveness BEFORE clearing the export guard. Otherwise
+    // a long, successful export exposes an old heartbeat until the next timer
+    // tick and can be mistaken for a stall. This is not a durability receipt.
+    if (!active) flushCompletionHeartbeat?.();
     Atomics.store(flushGuardView, 1, active ? 1 : 0);
   }
 }
@@ -187,9 +213,21 @@ export class EmpireDatabase {
   private persistDirty = false;
   private persistTimer: ReturnType<typeof setTimeout> | null = null;
   private persistInFlight: Promise<void> | null = null;
+  private mutationRevision = 0;
+  private persistedRevision = 0;
+  private persistGeneration = 0;
+  private closed = false;
+  private captureWriteFence = false;
+  private readonly captureIdentity: string | null;
 
   constructor(private readonly filePath: string) {
     this.inMemory = isInMemoryDatabasePath(filePath);
+    this.captureIdentity = this.inMemory ? null : captureFileIdentity(filePath);
+    if (this.captureIdentity && [...openSqlJsHandles.values()].flatMap(handles => [...handles])
+      .some(handle => handle.captureWriteFence &&
+        (handle.captureIdentity === this.captureIdentity || sameExistingSqliteFile(handle.filePath, filePath)))) {
+      throw new Error("SQLite capture active; another SQL.js handle cannot open this file");
+    }
     lastOpenRecovery = { recovered: false, quarantinedPath: null, reason: null };
 
     if (!this.inMemory && fs.existsSync(filePath)) {
@@ -197,6 +235,15 @@ export class EmpireDatabase {
         this.db = tryOpenExistingDatabase(filePath);
       } catch (error) {
         const reason = error instanceof Error ? error.message : String(error);
+        // A production startup must not replace a damaged business database with
+        // an empty one: the service could look healthy while durable state is missing.
+        // Keep the original file in place for an explicit, reviewed restore.
+        if (process.env.NODE_ENV === "production" || Boolean(
+          process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME ||
+          process.env.RAILWAY_SERVICE_NAME || process.env.RAILWAY_DEPLOYMENT_ID
+        )) {
+          throw new Error(`Production SQLite open refused; original file retained: ${reason}`, { cause: error });
+        }
         const quarantinedPath = quarantineSqliteFile(filePath, reason);
         lastOpenRecovery = {
           recovered: true,
@@ -218,15 +265,22 @@ export class EmpireDatabase {
     } else {
       this.db = new SQL.Database();
     }
+    if (this.captureIdentity) {
+      const handles = openSqlJsHandles.get(this.captureIdentity) ?? new Set<EmpireDatabase>();
+      handles.add(this);
+      openSqlJsHandles.set(this.captureIdentity, handles);
+    }
   }
 
   exec(sql: string): void {
+    this.assertCaptureWritesAllowed();
     this.db.exec(sql);
     this.schedulePersist();
   }
 
   pragma(name: string, options?: { simple?: boolean }): unknown {
     if (name.includes("=")) {
+      this.assertCaptureWritesAllowed();
       this.db.run(`PRAGMA ${name}`);
       this.schedulePersist();
       return undefined;
@@ -244,6 +298,7 @@ export class EmpireDatabase {
   prepare(sql: string) {
     return {
       run: (params?: Record<string, unknown>): RunResult => {
+        this.assertCaptureWritesAllowed();
         const stmt = this.db.prepare(sql);
         if (params) stmt.bind(normalizeParams(params));
         stmt.step();
@@ -278,23 +333,74 @@ export class EmpireDatabase {
   }
 
   close(): void {
+    if (this.closed) return;
+    this.assertCaptureWritesAllowed();
+    // Invalidate an older async export before writing the final snapshot. Its
+    // pending file I/O may complete, but it must never replace this snapshot.
+    this.persistGeneration += 1;
     if (this.persistTimer) {
       clearTimeout(this.persistTimer);
       this.persistTimer = null;
     }
-    this.flushPersistSync();
+    try {
+      this.flushPersistSync();
+    } catch (error) {
+      this.persistDirty = true;
+      persistStats = {
+        ...persistStats,
+        pending: true,
+        lastFlushError: error instanceof Error ? error.message : String(error),
+        lastFlushErrorAt: new Date().toISOString(),
+      };
+      throw error;
+    }
     this.db.close();
+    this.closed = true;
+    if (this.captureIdentity) {
+      const handles = openSqlJsHandles.get(this.captureIdentity);
+      handles?.delete(this);
+      if (handles?.size === 0) openSqlJsHandles.delete(this.captureIdentity);
+    }
+  }
+
+  /** Fence synchronous writes on this SQL.js handle while an in-process
+   * critical save and external disk capture complete. Another open SQL.js
+   * handle for this file refuses capture; other processes, native SQLite,
+   * JSON, Redis and request admission need separate fences.
+   */
+  holdWritesForCapture(): () => void {
+    if (this.closed || this.captureWriteFence) throw new Error("SQLite capture fence unavailable");
+    if (this.captureIdentity && [...openSqlJsHandles.values()].some(handles => [...handles].some(handle =>
+      handle !== this && !handle.closed &&
+      (handle.captureIdentity === this.captureIdentity || sameExistingSqliteFile(handle.filePath, this.filePath))))) {
+      throw new Error("SQLite capture refused; independently opened SQL.js handle shares the file");
+    }
+    this.captureWriteFence = true;
+    let released = false;
+    return () => {
+      if (released) throw new Error("SQLite capture fence already released");
+      released = true;
+      this.captureWriteFence = false;
+    };
+  }
+
+  private assertCaptureWritesAllowed(): void {
+    if (this.captureWriteFence) throw new Error("SQLite writes quiesced for capture");
   }
 
   /**
    * Critical durability path (commissioning / birth gates).
    * Bypasses the first-flush delay and lag-skip so a Railway restart before the
-   * default 10-minute window cannot erase in-memory SQL that was never exported.
+   * deferred flush window cannot erase in-memory SQL that was never exported.
    * Still yields briefly so /health/live can run before sync export.
+   * Await this promise to observe a successful file save or its failure. Legacy
+   * fire-and-forget callers request a save only; they do not establish durability.
+   * This is a per-instance write boundary, not a quiesced multi-store backup.
    */
-  requestCriticalPersist(): void {
+  requestCriticalPersist(): Promise<void> {
+    if (this.closed) throw new Error("Database is closed");
     if (this.inMemory) {
-      return;
+      return Promise.resolve();
     }
     persistStats = {
       ...persistStats,
@@ -306,15 +412,24 @@ export class EmpireDatabase {
       clearTimeout(this.persistTimer);
       this.persistTimer = null;
     }
-    if (this.persistInFlight) {
-      return;
-    }
-    // Immediate critical flush — commissioning must hit disk before a restart window.
-    void this.flushPersistAsync({ critical: true });
+    const requestedRevision = this.mutationRevision;
+    const completion = (async () => {
+      // An existing flush may have exported before the requested write. Wait for
+      // it, then flush again if needed, without waiting for unrelated later writes.
+      do {
+        if (this.persistInFlight) await this.persistInFlight;
+        else await this.flushPersistAsync({ critical: true });
+      } while (this.persistedRevision < requestedRevision);
+    })();
+    // Preserve safe fire-and-forget compatibility. Awaiters still receive the
+    // original rejected promise; background failures remain visible in stats.
+    void completion.catch(() => {});
+    return completion;
   }
 
   /** Batches writes — avoids blocking the event loop on every INSERT/UPDATE. */
   private schedulePersist(): void {
+    this.mutationRevision += 1;
     if (this.inMemory) {
       return;
     }
@@ -341,7 +456,7 @@ export class EmpireDatabase {
 
     this.persistTimer = setTimeout(() => {
       this.persistTimer = null;
-      void this.flushPersistAsync({ critical: false });
+      void this.flushPersistAsync({ critical: false }).catch(() => {});
     }, delay);
 
     if (typeof this.persistTimer.unref === "function") {
@@ -350,18 +465,17 @@ export class EmpireDatabase {
   }
 
   private async flushPersistAsync(opts: { critical: boolean }): Promise<void> {
-    if (this.inMemory || !this.persistDirty) {
+    if (this.closed || this.inMemory || !this.persistDirty) {
       return;
     }
 
     // Coalesce concurrent writers — never tight-loop recurse under write storms.
     if (this.persistInFlight) {
-      this.persistDirty = true;
-      persistStats.pending = true;
-      return;
+      return this.persistInFlight;
     }
 
     const critical = opts.critical;
+    const generation = this.persistGeneration;
 
     this.persistInFlight = (async () => {
       try {
@@ -430,16 +544,18 @@ export class EmpireDatabase {
           return;
         }
 
-        if (!this.persistDirty) {
+        if (!this.persistDirty || this.closed || generation !== this.persistGeneration) {
           return;
         }
 
-        this.persistDirty = false;
         const started = performance.now();
 
         // Yield so auth / health HTTP can run before synchronous sql.js export.
         await new Promise<void>((resolve) => setImmediate(resolve));
         await new Promise<void>((resolve) => setTimeout(resolve, 0));
+        if (this.closed || generation !== this.persistGeneration) return;
+        const snapshotRevision = this.mutationRevision;
+        this.persistDirty = false;
 
         // Sync export blocks the loop; guard tells HA watchdog not to stall-exit mid-flush.
         setFlushInFlight(true);
@@ -452,9 +568,25 @@ export class EmpireDatabase {
           clearEventLoopLagAfterKnownBlock("sql.js-db.export");
         }
         await fs.promises.mkdir(path.dirname(this.filePath), { recursive: true });
-        const tempPath = `${this.filePath}.tmp-${process.pid}`;
-        await fs.promises.writeFile(tempPath, data);
-        await fs.promises.rename(tempPath, this.filePath);
+        const tempPath = `${this.filePath}.tmp-${process.pid}-${randomUUID()}`;
+        try {
+          const file = await fs.promises.open(tempPath, "wx", 0o600);
+          try {
+            await file.writeFile(data);
+            await file.sync();
+          } finally {
+            await file.close();
+          }
+          if (this.closed || generation !== this.persistGeneration) return;
+          // Keep the generation check + rename in one JS turn. An awaited rename
+          // could finish after synchronous close and overwrite its newer export.
+          fs.renameSync(tempPath, this.filePath);
+          syncParentDirectory(this.filePath);
+        } finally {
+          await fs.promises.rm(tempPath, { force: true }).catch(() => {});
+        }
+        if (this.closed || generation !== this.persistGeneration) return;
+        this.persistedRevision = Math.max(this.persistedRevision, snapshotRevision);
 
         const durationMs = Math.round(performance.now() - started);
         persistStats = {
@@ -471,6 +603,7 @@ export class EmpireDatabase {
         };
       } catch (error) {
         // Keep dirty so a later schedule retries; do not crash the process.
+        if (this.closed || generation !== this.persistGeneration) throw error;
         this.persistDirty = true;
         persistStats.pending = true;
         persistStats = {
@@ -484,7 +617,7 @@ export class EmpireDatabase {
       } finally {
         this.persistInFlight = null;
         persistStats.pending = this.persistDirty;
-        if (this.persistDirty) {
+        if (this.persistDirty && !this.closed) {
           if (critical) {
             // Avoid tight ENOSPC spin — backoff before critical retry.
             if (this.persistTimer !== null) {
@@ -492,7 +625,7 @@ export class EmpireDatabase {
             }
             this.persistTimer = setTimeout(() => {
               this.persistTimer = null;
-              void this.flushPersistAsync({ critical: true });
+              void this.flushPersistAsync({ critical: true }).catch(() => {});
             }, 5_000);
             if (typeof this.persistTimer.unref === "function") {
               this.persistTimer.unref();
@@ -504,11 +637,7 @@ export class EmpireDatabase {
       }
     })();
 
-    try {
-      await this.persistInFlight;
-    } catch {
-      // Logged by caller paths via unhandled rejection avoidance — schedulePersist retries.
-    }
+    await this.persistInFlight;
   }
 
   /** Synchronous flush for process shutdown — ensures durability on close. */
@@ -532,10 +661,22 @@ export class EmpireDatabase {
       setFlushInFlight(false);
       clearEventLoopLagAfterKnownBlock("sql.js-db.export-sync-shutdown");
     }
-    const tempPath = `${this.filePath}.tmp-shutdown`;
-    fs.writeFileSync(tempPath, Buffer.from(data));
-    fs.renameSync(tempPath, this.filePath);
+    const tempPath = `${this.filePath}.tmp-shutdown-${process.pid}-${randomUUID()}`;
+    try {
+      const fd = fs.openSync(tempPath, "wx", 0o600);
+      try {
+        fs.writeFileSync(fd, Buffer.from(data));
+        fs.fsyncSync(fd);
+      } finally {
+        fs.closeSync(fd);
+      }
+      fs.renameSync(tempPath, this.filePath);
+      syncParentDirectory(this.filePath);
+    } finally {
+      fs.rmSync(tempPath, { force: true });
+    }
     this.persistDirty = false;
+    this.persistedRevision = this.mutationRevision;
     persistStats = {
       pending: false,
       flushCount: persistStats.flushCount + 1,
@@ -548,6 +689,15 @@ export class EmpireDatabase {
       criticalFlushSucceeded: persistStats.criticalFlushSucceeded,
     };
   }
+}
+
+/** Persist the rename on platforms that support syncing directory descriptors. */
+function syncParentDirectory(filePath: string): void {
+  // Windows cannot open a directory with this Node API. File contents are synced
+  // there; the additional directory durability guarantee applies to POSIX only.
+  if (process.platform === "win32") return;
+  const fd = fs.openSync(path.dirname(filePath), "r");
+  try { fs.fsyncSync(fd); } finally { fs.closeSync(fd); }
 }
 
 function isInMemoryDatabasePath(filePath: string): boolean {

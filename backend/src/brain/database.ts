@@ -29,6 +29,11 @@ function resolveDatabasePath(): string {
   return resolved;
 }
 
+/** The canonical path shared by Brain and its dedicated native sidecars. */
+export function getActiveDatabasePath(): string {
+  return resolveDatabasePath();
+}
+
 export function getDatabase(): EmpireDatabase {
   const dbPath = resolveDatabasePath();
   if (dbInstance && activeDbPath !== dbPath) {
@@ -2085,6 +2090,11 @@ function migrate(db: EmpireDatabase): void {
     CREATE INDEX IF NOT EXISTS idx_gkr_timeline_product ON gkr_timeline_events(workspace_id, company_id, product_id);
     CREATE INDEX IF NOT EXISTS idx_gkr_missions_workspace ON gkr_pipeline_missions(workspace_id, company_id);
   `);
+}
+
+/** Save the existing instance without replacing repository-held handles. */
+export async function persistDatabase(): Promise<void> {
+  await dbInstance?.requestCriticalPersist();
 }
 
 export function closeDatabase(): void {

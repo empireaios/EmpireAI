@@ -1,0 +1,165 @@
+{
+  "ownerApproval": "Explicit approval to delete recovery2-canary, recovery2-redis and their two associated recovery2 volumes; production excluded.",
+  "services": [
+    "78d7c0ad-523a-4b70-89eb-1815aa3bd577",
+    "4815f3ec-bff4-4c81-9faf-cde533d92af3"
+  ],
+  "volumes": [
+    "20fbeefa-0311-4bf2-98e7-75a4e967c9f9",
+    "de6f9bd8-6389-4456-9cca-6eba6b31e9d5"
+  ],
+  "capturedAt": "2026-09-23T13:39:24.958Z",
+  "readback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "**empireai-canary-20260923** (feb90d26-c54b-4435-ac32-f666e3e25447)\nWorkspace: empireaios's Projects\nEnvironment: **production** (3b0664a3-8655-4fc1-b9cf-113034a81e0a)\nNo services in this environment.\n\nNo pending (staged/applying) work."
+      }
+    ],
+    "structuredContent": {
+      "project": {
+        "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+        "name": "empireai-canary-20260923",
+        "workspaceName": "empireaios's Projects"
+      },
+      "environment": {
+        "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "name": "production",
+        "unmergedChangesCount": null,
+        "stagedChanges": null
+      },
+      "services": [],
+      "buckets": [],
+      "pendingWork": []
+    },
+    "isError": false
+  },
+  "appStop": {
+    "content": [
+      {
+        "type": "text",
+        "text": "**Deployment 02302b9f-5899-4990-89bd-34b2a69b835b** [REMOVED]\nservice: 78d7c0ad-523a-4b70-89eb-1815aa3bd577, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (5)\n2026-09-23T13:26:00.551546102Z info Pillow host stopped\n2026-09-23T13:26:00.551550262Z info Event-loop lag cleared after known synchronous block\n2026-09-23T13:26:00.551563092Z info EmpireAI Brain shutdown complete\n2026-09-23T13:26:00.551574942Z info primary_shutdown_complete\n2026-09-23T13:26:04.413287217Z info Stopping Container"
+      }
+    ],
+    "structuredContent": {
+      "deploymentId": "02302b9f-5899-4990-89bd-34b2a69b835b",
+      "serviceId": "78d7c0ad-523a-4b70-89eb-1815aa3bd577",
+      "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+      "status": "REMOVED",
+      "deploy": [
+        {
+          "timestamp": "2026-09-23T13:26:00.551546102Z",
+          "severity": "info",
+          "message": "Pillow host stopped",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790169952375"
+            },
+            {
+              "key": "pid",
+              "value": "28"
+            },
+            {
+              "key": "hostname",
+              "value": "\"532a32e3dd07\""
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T13:26:00.551550262Z",
+          "severity": "info",
+          "message": "Event-loop lag cleared after known synchronous block",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790169952384"
+            },
+            {
+              "key": "pid",
+              "value": "28"
+            },
+            {
+              "key": "hostname",
+              "value": "\"532a32e3dd07\""
+            },
+            {
+              "key": "reason",
+              "value": "\"sql.js-db.export\""
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T13:26:00.551563092Z",
+          "severity": "info",
+          "message": "EmpireAI Brain shutdown complete",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790169952409"
+            },
+            {
+              "key": "pid",
+              "value": "28"
+            },
+            {
+              "key": "hostname",
+              "value": "\"532a32e3dd07\""
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T13:26:00.551574942Z",
+          "severity": "info",
+          "message": "primary_shutdown_complete",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790169952441"
+            },
+            {
+              "key": "pid",
+              "value": "16"
+            },
+            {
+              "key": "hostname",
+              "value": "\"532a32e3dd07\""
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T13:26:04.413287217Z",
+          "severity": "info",
+          "message": "Stopping Container",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  },
+  "notes": [
+    "An initial Redis deletion staging was lost on full-page navigation before application; no deletion was claimed from staging.",
+    "Application deletion then committed alone; final explicit provider confirmation named only Redis and the two approved volumes."
+  ]
+}

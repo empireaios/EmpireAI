@@ -5,7 +5,11 @@
 import { randomUUID } from "node:crypto";
 
 import { logger } from "../../../config/logger.js";
+import { getDatabase } from "../../../brain/database.js";
 import { createCjApiClient } from "../../../suppliers/cj-dropshipping/cj-api-client.js";
+import { cjManagedStockByVid } from "../cj-variant-stock.js";
+import { buildCommerceProviderReceipts } from "../commerce-provider-receipts.js";
+import { createCjPresalePointReservation } from "../cj-point-reservation.js";
 import { loadCjConfig, isCjLiveApiEnabled } from "../../../suppliers/cj-dropshipping/cj-config.js";
 import {
   estimateAmazonFees,
@@ -74,24 +78,6 @@ export type ReevaluateOpportunityResult = {
   operatingLoop: ReturnType<typeof buildCommerceOperatingLoopReadiness>;
   nextPillowAction: string;
 };
-
-function sumStock(stockPayload: unknown): number {
-  const rows = Array.isArray(stockPayload)
-    ? stockPayload
-    : stockPayload && typeof stockPayload === "object"
-      ? [stockPayload]
-      : [];
-  let total = 0;
-  for (const row of rows) {
-    if (!row || typeof row !== "object") continue;
-    const r = row as Record<string, unknown>;
-    for (const key of ["inventory", "totalInventoryNum", "cjInventoryNum", "storageNum"]) {
-      const n = r[key];
-      if (typeof n === "number" && Number.isFinite(n) && n > total) total = n;
-    }
-  }
-  return total;
-}
 
 export async function reevaluateCommerceOpportunity(
   input: ReevaluateOpportunityInput,
@@ -169,7 +155,17 @@ export async function reevaluateCommerceOpportunity(
     };
   }
 
-  const cj = createCjApiClient(cjConfig);
+  let cj: ReturnType<typeof createCjApiClient>;
+  try {
+    cj = createCjApiClient(cjConfig, fetch,
+      createCjPresalePointReservation({ config: cjConfig, env, cycleId: randomUUID() }));
+  } catch (error) {
+    return {
+      ...base, target, outcome: "BLOCKED_INTEGRATION", opportunity: targetOpp,
+      dossierSummary: null, rejectReason: error instanceof Error ? error.message : String(error),
+      rejectCode: "SUPPLIER_UNAVAILABLE", nextPillowAction: "Resolve CJ point budget or durable ledger before retrying.",
+    };
+  }
   const commerceMemory = getCommerceInstitutionalContext(input.workspaceId);
 
   let detail;
@@ -201,32 +197,19 @@ export async function reevaluateCommerceOpportunity(
     };
   }
 
-  let picked = pickLiveCjVariant(detail);
+  let costCapturedAt = new Date().toISOString();
+  const preferredVid = targetOpp?.mapping.cjVid;
+  let picked = pickLiveCjVariant(detail, preferredVid);
   if (picked.costUsd === null) {
     try {
       const variantQuery = await cj.queryProductVariants(cjPid);
       detail = mergeCjVariantQueryIntoProduct(detail, variantQuery.data);
-      picked = pickLiveCjVariant(detail);
+      costCapturedAt = new Date().toISOString();
+      picked = pickLiveCjVariant(detail, preferredVid);
     } catch {
       /* keep */
     }
   }
-  const variant = picked.variant;
-  const preferredVid = targetOpp?.mapping.cjVid;
-  if (preferredVid && detail.variantList?.length) {
-    const match = detail.variantList.find((v) => v.vid === preferredVid);
-    if (match) {
-      const matchRec = match as Record<string, unknown>;
-      const cost =
-        coerceUsdNumber(matchRec.variantSellPrice) ??
-        coerceUsdNumber(matchRec.sellPrice) ??
-        coerceUsdNumber(matchRec.price);
-      if (cost !== null) {
-        picked = { variant: match, costUsd: cost };
-      }
-    }
-  }
-
   if (!picked.variant?.vid || picked.costUsd === null) {
     return finalizeReject({
       input,
@@ -256,11 +239,15 @@ export async function reevaluateCommerceOpportunity(
   }
 
   let stockUnits = 0;
+  let stockPayload: unknown = null;
+  let stockCapturedAt = "";
   try {
     const byVid = await cj.queryStockByVid(picked.variant.vid);
-    stockUnits = sumStock(byVid.data);
+    stockPayload = byVid.data;
+    stockCapturedAt = new Date().toISOString();
+    stockUnits = cjManagedStockByVid(byVid.data, picked.variant.vid, "CN");
   } catch {
-    stockUnits = typeof picked.variant.inventory === "number" ? picked.variant.inventory : 0;
+    stockUnits = 0;
   }
   if (stockUnits <= 0) {
     return finalizeReject({
@@ -275,13 +262,17 @@ export async function reevaluateCommerceOpportunity(
 
   let freightOption = null;
   let shippingAmount: number | null = null;
+  let freightPayload: NonNullable<Awaited<ReturnType<typeof cj.calculateFreight>>["data"]> = [];
+  let freightCapturedAt = "";
   try {
     const freight = await cj.calculateFreight({
       startCountryCode: "CN",
       endCountryCode: "US",
       products: [{ quantity: 1, vid: picked.variant.vid }],
     });
-    const pickedFreight = pickCheapestFreight(freight.data ?? []);
+    freightPayload = freight.data ?? [];
+    freightCapturedAt = new Date().toISOString();
+    const pickedFreight = pickCheapestFreight(freightPayload);
     shippingAmount = pickedFreight.priceUsd;
     freightOption = pickedFreight.option;
   } catch (error) {
@@ -324,10 +315,7 @@ export async function reevaluateCommerceOpportunity(
       coerceUsdNumber(picked.variant.suggestSellPrice) ?? coerceUsdNumber(detail.suggestSellPrice),
   });
   let fees = await estimateAmazonFees(amazon.session, asin, price);
-  if (fees.totalFeesUsd === null) {
-    price = Number((price * 1.2).toFixed(2));
-    fees = await estimateAmazonFees(amazon.session, asin, price);
-  }
+  const feeCapturedAt = new Date().toISOString();
   if (fees.totalFeesUsd === null) {
     return finalizeReject({
       input,
@@ -419,6 +407,16 @@ export async function reevaluateCommerceOpportunity(
   }
 
   const approvalSurface = dossierVerdictAllowsApprovalSurface(assembled.verdict);
+  const providerReceipts = buildCommerceProviderReceipts({
+    marketplaceId: amazon.session.marketplaceId, sellerId: amazon.session.sellerId,
+    asin, cjPid, cjVid: picked.variant.vid, sellingPriceUsd: price,
+    costUsd: picked.costUsd, stockUnits, shippingUsd: shippingAmount,
+    freightOption, feeUsd: fees.totalFeesUsd,
+    cost: { payload: detail, capturedAt: costCapturedAt },
+    stock: { payload: stockPayload, capturedAt: stockCapturedAt },
+    freight: { payload: freightPayload, capturedAt: freightCapturedAt },
+    fee: { payload: fees.raw, capturedAt: feeCapturedAt },
+  });
   const mapping = {
     marketplaceId: amazon.session.marketplaceId,
     asin,
@@ -426,6 +424,7 @@ export async function reevaluateCommerceOpportunity(
     cjPid,
     cjVid: picked.variant.vid,
     cjVariantSku: picked.variant.sku || picked.variant.vid,
+    providerReceipts,
     supplierCostUsd: costEv,
     shippingUsd: shipEv,
     amazonFeesUsd: feeEv,
@@ -458,13 +457,42 @@ export async function reevaluateCommerceOpportunity(
     fullNarrative: `${assembled.dossier.grandKingSummary}\n\n${commerceMemory.formatted}`,
   };
 
-  let approvalId = targetOpp?.approvalId ?? null;
-  let approvalStatus = targetOpp?.approvalStatus ?? ("none" as const);
+  const existingApprovalId = approvalSurface &&
+    targetOpp?.approvalStatus !== "Rejected" &&
+    targetOpp?.approvalStatus !== "Cancelled"
+      ? targetOpp?.approvalId ?? null
+      : null;
+  const opportunity: QualifiedOpportunity = {
+    opportunityId: targetOpp?.opportunityId ?? randomUUID(),
+    workspaceId: input.workspaceId,
+    companyId: input.companyId,
+    disposition: existingApprovalId ? "AWAITING_APPROVAL" : approvalSurface ? "APPROVAL_READY" : "QUALIFIED",
+    preflightOfferState: "NOT_PUBLISHED",
+    mapping,
+    stockUnits,
+    stockFreshness: "LIVE",
+    risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
+    recommendation,
+    dossier: assembled.dossier,
+    approvalId: existingApprovalId,
+    approvalStatus: existingApprovalId ? "Pending" : "none",
+    publicationAllowed: false,
+    supplierSpendAllowed: false,
+    createdAt: targetOpp?.createdAt ?? now,
+    updatedAt: now,
+  };
+
+  // A Grand King approval must never reference a proposal that exists only in SQL.js RAM.
+  repo.saveMapping(mapping, input.workspaceId);
+  repo.saveOpportunity(opportunity);
+  await getDatabase().requestCriticalPersist();
+
   if (
     approvalSurface &&
-    (!approvalId || approvalStatus === "Rejected" || approvalStatus === "Cancelled") &&
+    !existingApprovalId &&
     input.approvalGate
   ) {
+    let newApprovalId: string | null = null;
     try {
       const approval = input.approvalGate.register({
         workspaceId: input.workspaceId,
@@ -478,6 +506,7 @@ export async function reevaluateCommerceOpportunity(
           evidence: [
             `asin:${asin}`,
             `cjPid:${cjPid}`,
+            `providerDecisionSha256:${providerReceipts.decisionSha256}`,
             "dossier:FD-CDD-001",
             "reevaluated:true",
             "publicationAttempted:false",
@@ -494,39 +523,18 @@ export async function reevaluateCommerceOpportunity(
           },
         },
       });
-      approvalId = approval.approvalId;
-      approvalStatus = "Pending";
+      newApprovalId = approval.approvalId;
     } catch (error) {
       logger.warn({ err: error }, "Re-eval approval registration failed");
     }
+    if (newApprovalId) {
+      opportunity.approvalId = newApprovalId;
+      opportunity.approvalStatus = "Pending";
+      opportunity.disposition = "AWAITING_APPROVAL";
+      repo.saveOpportunity(opportunity);
+      await getDatabase().requestCriticalPersist();
+    }
   }
-
-  const opportunity: QualifiedOpportunity = {
-    opportunityId: targetOpp?.opportunityId ?? randomUUID(),
-    workspaceId: input.workspaceId,
-    companyId: input.companyId,
-    disposition: approvalId
-      ? "AWAITING_APPROVAL"
-      : approvalSurface
-        ? "APPROVAL_READY"
-        : "QUALIFIED",
-    preflightOfferState: "NOT_PUBLISHED",
-    mapping,
-    stockUnits,
-    stockFreshness: "LIVE",
-    risks: assembled.dossier.demandFulfilmentRisk.riskReasons,
-    recommendation,
-    dossier: assembled.dossier,
-    approvalId: approvalSurface ? approvalId : null,
-    approvalStatus: approvalSurface && approvalId ? "Pending" : "none",
-    publicationAllowed: false,
-    supplierSpendAllowed: false,
-    createdAt: targetOpp?.createdAt ?? now,
-    updatedAt: now,
-  };
-
-  repo.saveMapping(mapping, input.workspaceId);
-  repo.saveOpportunity(opportunity);
 
   captureInstitutionalMemory({
     workspaceId: input.workspaceId,

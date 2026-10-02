@@ -6,6 +6,7 @@ import {
   getAmazonMarketplaceProfile,
   resolveAmazonMarketplaceRefreshToken,
 } from "../reality-integration/live-commerce/amazon-marketplace-profiles.js";
+import { randomUUID } from "node:crypto";
 import { getAmazonSpApiConfig } from "../reality-integration/live-commerce/config.js";
 import { httpTransport } from "../reality-integration/live-commerce/http-transport.js";
 import {
@@ -229,6 +230,14 @@ export async function estimateAmazonFees(
   asin: string,
   listingPriceUsd: number,
 ): Promise<FeesEstimateResult> {
+  const priceCents = Math.round(listingPriceUsd * 100);
+  if (!Number.isFinite(listingPriceUsd) || listingPriceUsd <= 0 ||
+      !Number.isSafeInteger(priceCents) ||
+      Math.abs(listingPriceUsd * 100 - priceCents) >= 1e-8) {
+    return { totalFeesUsd: null, freshness: "UNAVAILABLE", raw: null,
+      blocker: "Invalid selling price; no Amazon fee request made" };
+  }
+  const requestIdentifier = `empireai-presale-fees-${randomUUID()}`;
   const response = await httpTransport({
     url: `${session.endpoint}/products/fees/v0/items/${encodeURIComponent(asin)}/feesEstimate`,
     method: "POST",
@@ -240,7 +249,7 @@ export async function estimateAmazonFees(
         PriceToEstimateFees: {
           ListingPrice: { CurrencyCode: "USD", Amount: listingPriceUsd },
         },
-        Identifier: `empireai-presale-fees-${asin}`,
+        Identifier: requestIdentifier,
       },
     },
   });
@@ -249,7 +258,17 @@ export async function estimateAmazonFees(
     payload?: {
       FeesEstimateResult?: {
         Status?: string;
+        FeesEstimateIdentifier?: {
+          MarketplaceId?: string;
+          IdType?: string;
+          IdValue?: string;
+          SellerId?: string;
+          SellerInputIdentifier?: string;
+          IsAmazonFulfilled?: boolean;
+          PriceToEstimateFees?: { ListingPrice?: { CurrencyCode?: string; Amount?: number } };
+        };
         FeesEstimate?: {
+          TimeOfFeesEstimation?: string;
           TotalFeesEstimate?: { Amount?: number; CurrencyCode?: string };
         };
         Error?: { Message?: string; Code?: string };
@@ -260,14 +279,37 @@ export async function estimateAmazonFees(
 
   const total =
     json.payload?.FeesEstimateResult?.FeesEstimate?.TotalFeesEstimate?.Amount;
-  if (typeof total === "number" && Number.isFinite(total)) {
+  const currency = json.payload?.FeesEstimateResult?.FeesEstimate?.TotalFeesEstimate?.CurrencyCode;
+  const status = json.payload?.FeesEstimateResult?.Status;
+  const estimatedAt = json.payload?.FeesEstimateResult?.FeesEstimate?.TimeOfFeesEstimation;
+  const estimatedAtMs = typeof estimatedAt === "string" && estimatedAt.trim()
+    ? Date.parse(estimatedAt) : NaN;
+  const estimateAgeMs = Date.now() - estimatedAtMs;
+  const freshEstimate = Number.isFinite(estimateAgeMs) &&
+    estimateAgeMs >= -60_000 && estimateAgeMs <= 10 * 60_000;
+  const identifier = json.payload?.FeesEstimateResult?.FeesEstimateIdentifier;
+  const echoedPrice = identifier?.PriceToEstimateFees?.ListingPrice;
+  const matchingIdentifier = identifier?.MarketplaceId === session.marketplaceId &&
+    identifier.IdType === "ASIN" && identifier.IdValue === asin &&
+    identifier.SellerId === session.sellerId &&
+    identifier.SellerInputIdentifier === requestIdentifier &&
+    identifier.IsAmazonFulfilled === false && echoedPrice?.CurrencyCode === "USD" &&
+    typeof echoedPrice.Amount === "number" && Number.isSafeInteger(Math.round(echoedPrice.Amount * 100)) &&
+    Math.abs(echoedPrice.Amount * 100 - priceCents) < 1e-8;
+  if (response.ok && status === "Success" && currency === "USD" && freshEstimate &&
+      matchingIdentifier &&
+      typeof total === "number" && Number.isFinite(total) && total >= 0 &&
+      Number.isSafeInteger(Math.round(total * 100)) &&
+      Math.abs(total * 100 - Math.round(total * 100)) < 1e-8 &&
+      !json.payload?.FeesEstimateResult?.Error && !json.errors?.length) {
     return { totalFeesUsd: total, freshness: "LIVE", raw: json, blocker: null };
   }
 
   const err =
     json.payload?.FeesEstimateResult?.Error?.Message ||
     json.errors?.map((e) => e.message).filter(Boolean).join("; ") ||
-    `Fees estimate unavailable HTTP ${response.status}`;
+    (!freshEstimate ? "Fee estimate timestamp missing or outside ten-minute freshness window" : null) ||
+    `Fees estimate unavailable, unbound or invalid (status ${status ?? "unknown"}, currency ${currency ?? "unknown"}, HTTP ${response.status})`;
   return { totalFeesUsd: null, freshness: "UNAVAILABLE", raw: json, blocker: err };
 }
 

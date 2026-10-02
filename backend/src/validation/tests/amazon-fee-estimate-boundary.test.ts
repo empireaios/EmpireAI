@@ -1,0 +1,83 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { estimateAmazonFees } from "../../orchestration/pillow-commerce-presale/amazon-commerce-preflight.js";
+import { resetHttpTransportOverride, setHttpTransportOverride } from "../../orchestration/reality-integration/live-commerce/http-transport.js";
+
+const session = { accessToken: "offline", sellerId: "seller", endpoint: "https://amazon.invalid", marketplaceId: "US" };
+
+test("only successful exact-cent USD Amazon fee estimates become live economics", async t => {
+  t.after(resetHttpTransportOverride);
+  const cases = [
+    { amount: 2.5, currency: "USD", status: "Success", http: 200, expected: 2.5 },
+    { amount: 0, currency: "USD", status: "Success", http: 200, expected: 0 },
+    { amount: -1, currency: "USD", status: "Success", http: 200 },
+    { amount: 1.001, currency: "USD", status: "Success", http: 200 },
+    { amount: 2.5, currency: "EUR", status: "Success", http: 200 },
+    { amount: 2.5, currency: undefined, status: "Success", http: 200 },
+    { amount: 2.5, currency: "USD", status: "Error", http: 200 },
+    { amount: 2.5, currency: "USD", status: "Success", http: 503 },
+    { amount: Infinity, currency: "USD", status: "Success", http: 200 },
+  ];
+  for (const row of cases) {
+    setHttpTransportOverride(async request => ({ status: row.http, ok: row.http === 200, latencyMs: 1,
+      json: { payload: { FeesEstimateResult: { Status: row.status,
+        FeesEstimateIdentifier: {
+          MarketplaceId: session.marketplaceId, IdType: "ASIN", IdValue: "B00TEST",
+          SellerId: session.sellerId, SellerInputIdentifier: (request.body as { FeesEstimateRequest: { Identifier: string } }).FeesEstimateRequest.Identifier,
+          IsAmazonFulfilled: false, PriceToEstimateFees: { ListingPrice: { CurrencyCode: "USD", Amount: 20 } },
+        },
+        FeesEstimate: { TimeOfFeesEstimation: new Date().toISOString(),
+          TotalFeesEstimate: { Amount: row.amount, CurrencyCode: row.currency } },
+      } } },
+    }));
+    const result = await estimateAmazonFees(session, "B00TEST", 20);
+    assert.equal(result.totalFeesUsd, row.expected ?? null, JSON.stringify(row));
+    assert.equal(result.freshness, row.expected === undefined ? "UNAVAILABLE" : "LIVE");
+  }
+  for (const mismatch of [
+    { MarketplaceId: "OTHER" }, { IdType: "SellerSKU" }, { IdValue: "OTHER" },
+    { SellerId: "OTHER" }, { SellerInputIdentifier: "stale" },
+    { IsAmazonFulfilled: true }, { PriceToEstimateFees: { ListingPrice: { CurrencyCode: "USD", Amount: 19 } } },
+    { PriceToEstimateFees: { ListingPrice: { CurrencyCode: "EUR", Amount: 20 } } },
+  ]) {
+    setHttpTransportOverride(async request => ({ status: 200, ok: true, latencyMs: 1,
+      json: { payload: { FeesEstimateResult: { Status: "Success",
+        FeesEstimateIdentifier: {
+          MarketplaceId: session.marketplaceId, IdType: "ASIN", IdValue: "B00TEST",
+          SellerId: session.sellerId, SellerInputIdentifier: (request.body as { FeesEstimateRequest: { Identifier: string } }).FeesEstimateRequest.Identifier,
+          IsAmazonFulfilled: false, PriceToEstimateFees: { ListingPrice: { CurrencyCode: "USD", Amount: 20 } },
+          ...mismatch,
+        },
+        FeesEstimate: { TimeOfFeesEstimation: new Date().toISOString(),
+          TotalFeesEstimate: { Amount: 2.5, CurrencyCode: "USD" } },
+      } } },
+    }));
+    const result = await estimateAmazonFees(session, "B00TEST", 20);
+    assert.equal(result.totalFeesUsd, null, JSON.stringify(mismatch));
+    assert.match(result.blocker ?? "", /unbound/);
+  }
+  for (const timestamp of [undefined, "invalid", new Date(Date.now() - 11 * 60_000).toISOString(),
+    new Date(Date.now() + 2 * 60_000).toISOString()]) {
+    setHttpTransportOverride(async request => ({ status: 200, ok: true, latencyMs: 1,
+      json: { payload: { FeesEstimateResult: { Status: "Success",
+        FeesEstimateIdentifier: {
+          MarketplaceId: session.marketplaceId, IdType: "ASIN", IdValue: "B00TEST",
+          SellerId: session.sellerId, SellerInputIdentifier: (request.body as { FeesEstimateRequest: { Identifier: string } }).FeesEstimateRequest.Identifier,
+          IsAmazonFulfilled: false, PriceToEstimateFees: { ListingPrice: { CurrencyCode: "USD", Amount: 20 } },
+        },
+        FeesEstimate: { TimeOfFeesEstimation: timestamp,
+          TotalFeesEstimate: { Amount: 2.5, CurrencyCode: "USD" } },
+      } } },
+    }));
+    const result = await estimateAmazonFees(session, "B00TEST", 20);
+    assert.equal(result.freshness, "UNAVAILABLE", String(timestamp));
+  }
+  let calls = 0;
+  setHttpTransportOverride(async () => { calls++; throw new Error("provider request should not occur"); });
+  for (const price of [0, -1, NaN, Infinity, 20.001, Number.MAX_VALUE]) {
+    const result = await estimateAmazonFees(session, "B00TEST", price);
+    assert.equal(result.totalFeesUsd, null);
+    assert.match(result.blocker ?? "", /Invalid selling price/);
+  }
+  assert.equal(calls, 0);
+});

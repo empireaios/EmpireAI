@@ -18,6 +18,7 @@ describe("G4-05B — Authentication verification", () => {
   it("rejects invalid login credentials", async () => {
     const empire = await buildApp({ startWorkers: false, startScheduler: false, pillowEnabled: false });
     try {
+      assert.ok(empire.app.hasRoute({ method: "POST", url: "/brain/dispatch" }));
       const response = await empire.app.inject({
         method: "POST",
         url: "/auth/login",
@@ -59,11 +60,15 @@ describe("G4-05B — Authentication verification", () => {
   it("validates session on /auth/me and allows Executive Home dispatch", async () => {
     const empire = await buildApp({ startWorkers: false, startScheduler: false, pillowEnabled: false });
     try {
+      // Each new application owns its cockpit routes, including after prior shutdowns.
+      assert.ok(empire.app.hasRoute({ method: "POST", url: "/brain/dispatch" }));
       const login = await empire.app.inject({
         method: "POST",
         url: "/auth/login",
         payload: { email: env.FOUNDER_EMAIL, password: env.FOUNDER_PASSWORD },
       });
+      assert.equal(login.statusCode, 200);
+      assert.ok(login.headers["set-cookie"]);
       const cookie = String(login.headers["set-cookie"]);
 
       const me = await empire.app.inject({

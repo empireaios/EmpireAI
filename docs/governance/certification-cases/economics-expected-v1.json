@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "status": "ORACLE_ONLY_NOT_PILLOW_EXECUTION",
+  "caseSetId": "PILLOW-HELD-ECONOMICS-20260923-V1",
+  "caseSetSha256": "d05dbcb42b5a659c75cefcdc116a0c647fb85ed8e99da43ad9eb6717d71ce700",
+  "oracleSourceSha256": "0303f27ad42402d05b696ea1678155e421edc0726534a25dad36a9c29b3c4721",
+  "expected": [
+    {
+      "caseId": "HOLD-ARITH-01",
+      "expected": {
+        "status": "KNOWN",
+        "currency": "USD",
+        "marketplaceFeeMicrounits": "10154375",
+        "paymentFeeMicrounits": "1920100",
+        "totalCostMicrounits": "51414475",
+        "contributionMicrounits": "22435525",
+        "contribution": "22.44",
+        "marginPercent": "30.38",
+        "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+      }
+    },
+    {
+      "caseId": "HOLD-ARITH-02",
+      "expected": {
+        "status": "UNKNOWN",
+        "missing": [
+          "shipping",
+          "marketplaceRatePercent"
+        ],
+        "contribution": null,
+        "marginPercent": null
+      }
+    },
+    {
+      "caseId": "HOLD-ARITH-03",
+      "expected": {
+        "initial": {
+          "status": "KNOWN",
+          "currency": "USD",
+          "marketplaceFeeMicrounits": "10068800",
+          "paymentFeeMicrounits": "1705200",
+          "totalCostMicrounits": "59204000",
+          "contributionMicrounits": "21996000",
+          "contribution": "22.00",
+          "marginPercent": "27.09",
+          "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+        },
+        "corrected": {
+          "status": "KNOWN",
+          "currency": "USD",
+          "marketplaceFeeMicrounits": "9789800",
+          "paymentFeeMicrounits": "1657950",
+          "totalCostMicrounits": "61477750",
+          "contributionMicrounits": "17472250",
+          "contribution": "17.47",
+          "marginPercent": "22.13",
+          "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+        },
+        "contributionDelta": "-4.52",
+        "currentRevision": 2,
+        "priorHistoryPreserved": true
+      }
+    },
+    {
+      "caseId": "HOLD-RANK-01",
+      "expected": {
+        "candidates": [
+          {
+            "id": "NIVALIS",
+            "economics": {
+              "status": "KNOWN",
+              "currency": "USD",
+              "marketplaceFeeMicrounits": "8985000",
+              "paymentFeeMicrounits": "1198000",
+              "totalCostMicrounits": "41283000",
+              "contributionMicrounits": "18617000",
+              "contribution": "18.62",
+              "marginPercent": "31.08",
+              "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+            },
+            "eligible": true,
+            "reasons": []
+          },
+          {
+            "id": "PELORUS",
+            "economics": {
+              "status": "KNOWN",
+              "currency": "USD",
+              "marketplaceFeeMicrounits": "8985000",
+              "paymentFeeMicrounits": "1198000",
+              "totalCostMicrounits": "41583000",
+              "contributionMicrounits": "18317000",
+              "contribution": "18.32",
+              "marginPercent": "30.58",
+              "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+            },
+            "eligible": true,
+            "reasons": []
+          },
+          {
+            "id": "TARSIER",
+            "economics": {
+              "status": "KNOWN",
+              "currency": "USD",
+              "marketplaceFeeMicrounits": "8985000",
+              "paymentFeeMicrounits": "1198000",
+              "totalCostMicrounits": "37883000",
+              "contributionMicrounits": "22017000",
+              "contribution": "22.02",
+              "marginPercent": "36.76",
+              "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+            },
+            "eligible": false,
+            "reasons": [
+              "APPROVAL_NOT_GRANTED"
+            ]
+          },
+          {
+            "id": "ASTERION",
+            "economics": {
+              "status": "KNOWN",
+              "currency": "USD",
+              "marketplaceFeeMicrounits": "8985000",
+              "paymentFeeMicrounits": "1198000",
+              "totalCostMicrounits": "39883000",
+              "contributionMicrounits": "20017000",
+              "contribution": "20.02",
+              "marginPercent": "33.42",
+              "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+            },
+            "eligible": false,
+            "reasons": [
+              "DELIVERY_TOO_LATE"
+            ]
+          }
+        ],
+        "eligibleRanking": [
+          "NIVALIS",
+          "PELORUS"
+        ],
+        "selected": "NIVALIS",
+        "liveActionAuthorized": false
+      }
+    },
+    {
+      "caseId": "HOLD-RANK-02",
+      "expected": {
+        "candidates": [
+          {
+            "id": "LYRA-QUAY",
+            "economics": {
+              "status": "UNKNOWN",
+              "missing": [
+                "shipping"
+              ],
+              "contribution": null,
+              "marginPercent": null
+            },
+            "eligible": false,
+            "reasons": [
+              "UNKNOWN_REQUIRED_COST"
+            ]
+          },
+          {
+            "id": "MISTRAL-DOCK",
+            "economics": {
+              "status": "KNOWN",
+              "currency": "USD",
+              "marketplaceFeeMicrounits": "8985000",
+              "paymentFeeMicrounits": "1198000",
+              "totalCostMicrounits": "39183000",
+              "contributionMicrounits": "20717000",
+              "contribution": "20.72",
+              "marginPercent": "34.59",
+              "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+            },
+            "eligible": true,
+            "reasons": []
+          },
+          {
+            "id": "NIVALIS",
+            "economics": {
+              "status": "KNOWN",
+              "currency": "USD",
+              "marketplaceFeeMicrounits": "8985000",
+              "paymentFeeMicrounits": "1198000",
+              "totalCostMicrounits": "36883000",
+              "contributionMicrounits": "23017000",
+              "contribution": "23.02",
+              "marginPercent": "38.43",
+              "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+            },
+            "eligible": false,
+            "reasons": [
+              "STOCK_BELOW_MINIMUM"
+            ]
+          }
+        ],
+        "eligibleRanking": [
+          "MISTRAL-DOCK"
+        ],
+        "selected": "MISTRAL-DOCK",
+        "liveActionAuthorized": false
+      }
+    },
+    {
+      "caseId": "HOLD-RANK-03",
+      "expected": {
+        "initial": {
+          "candidates": [
+            {
+              "id": "KELVIN-PIER",
+              "economics": {
+                "status": "KNOWN",
+                "currency": "USD",
+                "marketplaceFeeMicrounits": "9296000",
+                "paymentFeeMicrounits": "1527200",
+                "totalCostMicrounits": "44323200",
+                "contributionMicrounits": "22076800",
+                "contribution": "22.08",
+                "marginPercent": "33.25",
+                "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+              },
+              "eligible": true,
+              "reasons": []
+            },
+            {
+              "id": "ORBIT-COVE",
+              "economics": {
+                "status": "KNOWN",
+                "currency": "USD",
+                "marketplaceFeeMicrounits": "9296000",
+                "paymentFeeMicrounits": "1527200",
+                "totalCostMicrounits": "44973200",
+                "contributionMicrounits": "21426800",
+                "contribution": "21.43",
+                "marginPercent": "32.27",
+                "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+              },
+              "eligible": true,
+              "reasons": []
+            }
+          ],
+          "eligibleRanking": [
+            "KELVIN-PIER",
+            "ORBIT-COVE"
+          ],
+          "selected": "KELVIN-PIER",
+          "liveActionAuthorized": false
+        },
+        "corrected": {
+          "candidates": [
+            {
+              "id": "KELVIN-PIER",
+              "economics": {
+                "status": "KNOWN",
+                "currency": "USD",
+                "marketplaceFeeMicrounits": "9296000",
+                "paymentFeeMicrounits": "1527200",
+                "totalCostMicrounits": "48323200",
+                "contributionMicrounits": "18076800",
+                "contribution": "18.08",
+                "marginPercent": "27.22",
+                "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+              },
+              "eligible": false,
+              "reasons": [
+                "CONTRIBUTION_BELOW_MINIMUM"
+              ]
+            },
+            {
+              "id": "ORBIT-COVE",
+              "economics": {
+                "status": "KNOWN",
+                "currency": "USD",
+                "marketplaceFeeMicrounits": "9296000",
+                "paymentFeeMicrounits": "1527200",
+                "totalCostMicrounits": "44973200",
+                "contributionMicrounits": "21426800",
+                "contribution": "21.43",
+                "marginPercent": "32.27",
+                "economicClass": "SYNTHETIC_FORECAST_NOT_REALISED"
+              },
+              "eligible": true,
+              "reasons": []
+            }
+          ],
+          "eligibleRanking": [
+            "ORBIT-COVE"
+          ],
+          "selected": "ORBIT-COVE",
+          "liveActionAuthorized": false
+        },
+        "currentRevision": 2
+      }
+    }
+  ],
+  "certificationCredit": 0
+}

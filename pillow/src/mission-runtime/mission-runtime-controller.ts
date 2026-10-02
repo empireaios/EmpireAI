@@ -127,6 +127,20 @@ export class MissionRuntimeController {
     return this.finish(this.manager.validate(input, this.config));
   }
 
+  reconcileAuthorityExecution(jobId: string): boolean {
+    if (!this.manager.reconcileAuthorityExecution(jobId)) return false;
+    const checkpoint = this.manager.getHistory().checkpoints.find(c =>
+      c.label === "authority.snapshot.v1:reconciled" && c.payload.jobId === jobId);
+    if (checkpoint) {
+      this.status = "active";
+      this.finish({ ...this.manager.monitor({ missionId: checkpoint.missionId }, this.config),
+        action: "reconcile_readonly_authority_inspection",
+        authorityExecution: { acceptedDurably: true, jobId, operation: "authority.snapshot.v1", certificationCredit: false },
+        warnings: ["Only the actual readonly authority inspection completed; no Birth or commerce certification"] });
+    }
+    return true;
+  }
+
   diagnostics() {
     this.status = "active";
     return this.finish(this.manager.diagnostics({}, this.config));

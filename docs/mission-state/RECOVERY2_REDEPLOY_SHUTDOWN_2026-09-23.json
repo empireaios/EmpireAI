@@ -1,0 +1,135 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "**Deployment 613e22c1-62db-4387-b5dc-d31571156084** [REMOVED]\nservice: 78d7c0ad-523a-4b70-89eb-1815aa3bd577, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (6)\n2026-09-23T13:16:38.104455141Z info Pillow host stopped\n2026-09-23T13:16:38.104459061Z info Event-loop lag cleared after known synchronous block\n2026-09-23T13:16:38.104463041Z info EmpireAI Brain shutdown complete\n2026-09-23T13:16:38.104466681Z info primary_shutdown_complete\n2026-09-23T13:16:41.286614401Z info Stopping Container\n2026-09-23T13:17:27.938975926Z info Stopping Container"
+    }
+  ],
+  "structuredContent": {
+    "deploymentId": "613e22c1-62db-4387-b5dc-d31571156084",
+    "serviceId": "78d7c0ad-523a-4b70-89eb-1815aa3bd577",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "REMOVED",
+    "deploy": [
+      {
+        "timestamp": "2026-09-23T13:16:38.104455141Z",
+        "severity": "info",
+        "message": "Pillow host stopped",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169389194"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:16:38.104459061Z",
+        "severity": "info",
+        "message": "Event-loop lag cleared after known synchronous block",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169389202"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "reason",
+            "value": "\"sql.js-db.export\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:16:38.104463041Z",
+        "severity": "info",
+        "message": "EmpireAI Brain shutdown complete",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169389221"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:16:38.104466681Z",
+        "severity": "info",
+        "message": "primary_shutdown_complete",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169389266"
+          },
+          {
+            "key": "pid",
+            "value": "16"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:16:41.286614401Z",
+        "severity": "info",
+        "message": "Stopping Container",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:17:27.938975926Z",
+        "severity": "info",
+        "message": "Stopping Container",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      }
+    ]
+  },
+  "isError": false
+}

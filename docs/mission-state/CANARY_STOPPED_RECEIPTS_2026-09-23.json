@@ -1,0 +1,1405 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "**empireai-canary-20260923** (feb90d26-c54b-4435-ac32-f666e3e25447)\nWorkspace: empireaios's Projects\nEnvironment: **production** (3b0664a3-8655-4fc1-b9cf-113034a81e0a)\nServices (2):\n- **recovery-canary** (3687e91f-2a12-477e-8fc1-79ad0e559d3c) [FAILED]\n  volume: recovery-canary-volume-f5iq (cf5765a8-9892-4899-8726-4bb36b44c585) at /data · 50000MB · sfo\n  deployment: c945a744-d542-4cc5-98c4-a2b96a5a17a7 · 2026-09-23T11:03:18.607Z\n- **recovery-redis** (d76003c0-d65f-446c-90d1-7caa1de5164c) [—]\n  volume: recovery-redis-volume-i3ZX (ec5ca870-0e3e-484d-b7fa-29f0c3122f8e) at /data · 50000MB · sfo\n\nNo pending (staged/applying) work."
+        }
+      ],
+      "structuredContent": {
+        "project": {
+          "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+          "name": "empireai-canary-20260923",
+          "workspaceName": "empireaios's Projects"
+        },
+        "environment": {
+          "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+          "name": "production",
+          "unmergedChangesCount": null,
+          "stagedChanges": null
+        },
+        "services": [
+          {
+            "id": "3687e91f-2a12-477e-8fc1-79ad0e559d3c",
+            "name": "recovery-canary",
+            "numReplicas": null,
+            "cronSchedule": null,
+            "volumes": [
+              {
+                "id": "cf5765a8-9892-4899-8726-4bb36b44c585",
+                "name": "recovery-canary-volume-f5iq",
+                "mountPath": "/data",
+                "sizeMB": 50000,
+                "region": "sfo"
+              }
+            ],
+            "latestDeployment": {
+              "id": "c945a744-d542-4cc5-98c4-a2b96a5a17a7",
+              "status": "FAILED",
+              "createdAt": "2026-09-23T11:03:18.607Z",
+              "url": null
+            }
+          },
+          {
+            "id": "d76003c0-d65f-446c-90d1-7caa1de5164c",
+            "name": "recovery-redis",
+            "numReplicas": null,
+            "cronSchedule": null,
+            "volumes": [
+              {
+                "id": "ec5ca870-0e3e-484d-b7fa-29f0c3122f8e",
+                "name": "recovery-redis-volume-i3ZX",
+                "mountPath": "/data",
+                "sizeMB": 50000,
+                "region": "sfo"
+              }
+            ],
+            "latestDeployment": null
+          }
+        ],
+        "buckets": [],
+        "pendingWork": []
+      },
+      "isError": false
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "**Deployment 81fd99e8-7b16-42b7-9a7d-42830adc5319** [REMOVED]\nservice: 3687e91f-2a12-477e-8fc1-79ad0e559d3c, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (40)\n2026-09-23T11:22:38.504102452Z info Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/bc2f303c-b140-448f-9060-3e9bdefda08b/vol_dnghkwm7a01vqek5\n2026-09-23T11:22:38.504126538Z info Starting Container\n2026-09-23T11:22:39.331271153Z info \n2026-09-23T11:22:39.331275353Z info Creating ioredis client\n2026-09-23T11:22:39.331277993Z info Tier-0 primary binds shared Redis; unavailable commands fail closed while connection recovers\n2026-09-23T11:22:39.331280863Z info Tier-0 isolated primary listening (auth/health independent of sql.js worker)\n2026-09-23T11:22:40.010701250Z info Tier-0 primary spawned Brain worker\n2026-09-23T11:22:40.146988423Z info Volume reclaim completed (temps/old quarantines only)\n2026-09-23T11:22:41.632789330Z error (node:28) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n2026-09-23T11:22:41.632793420Z error (Use `node --trace-warnings ...` to show where the warning was created)\n2026-09-23T11:22:41.632796800Z info Production persistence verification passed\n2026-09-23T11:22:41.632802060Z info Creating ioredis client\n2026-09-23T11:22:41.632805340Z info Creating ioredis client\n2026-09-23T11:22:41.632808250Z info Creating ioredis client\n2026-09-23T11:22:41.708683775Z info Brain database initialized\n2026-09-23T11:22:41.708693275Z info Event bus started\n2026-09-23T11:22:41.850616762Z info EmpireAI Brain initialized\n2026-09-23T11:22:41.921798161Z info Seeded bootstrap account\n2026-09-23T11:22:42.151989642Z info Seeded bootstrap account\n2026-09-23T11:22:42.156304005Z info Event stream hub started\n2026-09-23T11:22:42.195513146Z info Domain data seeded\n2026-09-23T11:22:42.195521315Z info Grand King account seeded\n2026-09-23T11:22:42.195526015Z info Deferred production bootstrap completed\n2026-09-23T11:22:42.195529465Z info Auth routes registered\n2026-09-23T11:22:42.596992216Z info Institutional memory bootstrap complete\n2026-09-23T11:22:42.888369149Z info Institutional memory bootstrap seeded\n2026-09-23T11:22:42.889237711Z info Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)\n2026-09-23T11:22:42.889243661Z info EmpireAI Brain API listening\n2026-09-23T11:22:42.889247631Z info Executive continuity watchdog started\n2026-09-23T11:22:42.889251390Z info Skipping REAL module HTTP route registration in production (Cockpit-critical routes only)\n2026-09-23T11:23:02.967614250Z info Pillow host started (PILLOW-016)\n2026-09-23T11:26:43.703796981Z info Request failed\n2026-09-23T11:26:43.703801121Z info CANARY_PROBE_BEFORE {\"schema\":\"empireai-bounded-canary-probe-v2\",\"phase\":\"before\",\"startedAt\":\"2026-09-23T11:26:39.621Z\",\"checks\":[{\"name\":\"scope_and_runtime\",\"pass\":true,\"actualProbeSha256\":\"e518ec44b4bf8ccdd78ae7331ef5d5883e703db08df1d87046ad0d8f34104e25\",\"actualNodeVersion\":\"22.23.2\",\"npmBuildIdentity\":\"SEPARATE_RECEIPT_REQUIRED\"},{\"name\":\"launcher_identity\",\"pass\":true,\"launchId\":\"6a3bfe04-496e-4760-8bdb-ec5a6a455518\",\"launcherSha256\":\"923d73b476750d911fa1ea6b5922dfacd8efa8db8945a90de23b90979c94773b\",\"childPid\":16},{\"name\":\"live_identity\",\"pass\":true},{\"name\":\"readiness\",\"pass\":true,\"httpStatus\":200,\"workerReady\":true,\"sessionStore\":\"redis\",\"redisReady\":true},{\"name\":\"redis_persistence_configuration\",\"pass\":true,\"maxmemory\":\"268435456\",\"maxmemory-policy\":\"noeviction\",\"appendonly\":\"yes\",\"appendfsync\":\"always\"},{\"name\":\"unauthorized_me\",\"pass\":true,\"httpStatus\":401},{\"name\":\"unauthorized_request\",\"pass\":true,\"httpStatus\":401},{\"name\":\"unauthorized_birth\",\"pass\":true,\"httpStatus\":401},{\"name\":\"unauthorized_mission\",\"pass\":true,\"httpStatus\":401},{\"name\":\"founder_login\",\"pass\":true,\"httpStatus\":200},{\"name\":\"founder_session\",\"pass\":true},{\"name\":\"admin_login\",\"pass\":true,\"httpStatus\":200},{\"name\":\"admin_session\",\"pass\":true},{\"name\":\"worker_founder_login\",\"pass\":true,\"httpStatus\":200},{\"name\":\"worker_founder_session\",\"pass\":true},{\"name\":\"worker_admin_login\",\"pass\":true,\"httpStatus\":200},{\"name\":\"worker_admin_session\",\"pass\":true},{\"name\":\"birth_locks\",\"pass\":true,\"httpStatus\":200,\"status\":\"NOT_BORN\",\"authority\":{\"birthStatus\":\"NOT_BORN\",\"technicallyReady\":false,\"commerceStatus\":\"LOCKED\",\"realCommerceAuthorized\":false,\"waveCredit\":0,\"independentCertification\":\"UNVERIFIED\",\"certificationReceiptIngestion\":\"NOT_IMPLEMENTED\",\"reason\":\"No independently accepted V53 certification receipts. Certification receipt ingestion is not implemented; legacy commissioning, engineering passes, prose and owner approval alone cannot authorise Birth or live commerce.\"}},{\"name\":\"cross_workspace_denied\",\"pass\":true},{\"name\":\"commerce_rejected\",\"pass\":true,\"httpStatus\":500,\"expectedRejection\":true},{\"name\":\"mission_created\",\"pass\":false},{\"name\":\"probe_prerequisite_or_operation\",\"pass\":false,\"failure\":\"STOPPED_WITHOUT_SECRET_OUTPUT\"},{\"name\":\"marker_saved\",\"pass\":true,\"partialFailure\":true}],\"scope\":\"private disposable canary, same-candidate application redeploy recovery only\",\"limitations\":[\"Not production, live-commerce, model quality or Birth certification.\",\"No Redis restart, abrupt process kill, lost-volume or power-loss proof is claimed by this probe.\",\"npm identity requires its separate exact build receipt; it is not inferred from runtime configuration.\"],\"service\":\"3687e91f-2a12-477e-8fc1-79ad0e559d3c\",\"commit\":\"59c393a53b64155577de874b97650865a2dfb836\",\"probeSha\":\"e518ec44b4bf8ccdd78ae7331ef5d5883e703db08df1d87046ad0d8f34104e25\",\"deploymentId\":\"81fd99e8-7b16-42b7-9a7d-42830adc5319\",\"nodeVersion\":\"22.23.2\",\"expiresAt\":\"2026-09-23T11:58:10.303Z\",\"requiredChecks\":[\"scope_and_runtime\",\"launcher_identity\",\"live_identity\",\"readiness\",\"redis_persistence_configuration\",\"unauthorized_me\",\"unauthorized_request\",\"unauthorized_birth\",\"unauthorized_mission\",\"founder_login\",\"founder_session\",\"admin_login\",\"admin_session\",\"worker_founder_login\",\"worker_founder_session\",\"worker_admin_login\",\"worker_admin_session\",\"worker_founder_logout\",\"worker_admin_logout\",\"birth_locks\",\"commerce_rejected\",\"cross_workspace_denied\",\"mission_history\",\"mission_fake_completion_rejected\",\"native_mission_history\",\"authority_completed\",\"missing_provider_failed_truthfully\",\"request_owner_isolation\",\"admin_logout\",\"mission_created\",\"durable_acceptance\",\"idempotent_acceptance\",\"idempotency_conflict_denied\",\"missing_provider_accepted\",\"marker_saved\"],\"missingRequiredChecks\":[\"worker_founder_logout\",\"worker_admin_logout\",\"mission_history\",\"mission_fake_completion_rejected\",\"native_mission_history\",\"authority_completed\",\"missing_provider_failed_truthfully\",\"request_owner_isolation\",\"admin_logout\",\"durable_acceptance\",\"idempotent_acceptance\",\"idempotency_conflict_denied\",\"missing_provider_accepted\"],\"duplicateChecks\":[],\"passed\":false,\"finishedAt\":\"2026-09-23T11:26:40.261Z\",\"birthCertificationGranted\":false,\"commerceAuthorized\":false,\"productionReadiness\":\"NOT_PROVEN\",\"additionalRequiredProof\":{\"abruptKillRecovery\":\"NOT_PROVEN\",\"redisRestartRecovery\":\"NOT_PROVEN\",\"volumeRestore\":\"NOT_PROVEN\",\"v53BirthCertification\":\"NOT_PROVEN\",\"realProviderLifecycle\":\"NOT_PROVEN\",\"absentHandlerAndDependencyExecution\":\"NOT_PROVEN\"}}\n2026-09-23T11:28:23.933459594Z info CANARY_MISSION_DIAGNOSTIC {\"status\":200,\"body\":{\"computedAt\":\"2026-09-23T11:28:19.710Z\",\"report\":{\"action\":\"create_mission\",\"runTimestamp\":\"2026-09-23T11:28:19.710Z\",\"durationMs\":0,\"decision\":\"fail\",\"validation\":{\"validationReportId\":\"msr-val-1790162899710\",\"validationTimestamp\":\"2026-09-23T11:28:19.710Z\",\"decision\":\"fail\",\"errors\":[\"High-risk mission execution requires grandKingApproved=true\"],\"warnings\":[],\"durationMs\":0,\"metadataVersion\":\"MSR-001-v1\"},\"mission\":null,\"missionRuntimeReport\":null,\"transitions\":[],\"errors\":[\"High-risk mission execution requires grandKingApproved=true\"],\"warnings\":[]}}}\n2026-09-23T11:29:24.092248383Z info CANARY_FAILED_MARKER {\"schema\":\"canary-restart-marker-v2\",\"service\":\"3687e91f-2a12-477e-8fc1-79ad0e559d3c\",\"commit\":\"59c393a53b64155577de874b97650865a2dfb836\",\"probeSha\":\"e518ec44b4bf8ccdd78ae7331ef5d5883e703db08df1d87046ad0d8f34104e25\",\"expiresAt\":\"2026-09-23T11:58:10.303Z\",\"beforeDeploymentId\":\"81fd99e8-7b16-42b7-9a7d-42830adc5319\",\"beforeLaunchId\":\"6a3bfe04-496e-4760-8bdb-ec5a6a455518\",\"nonce\":\"2a36fabb-e89a-4d30-9f5b-7a3e4b980587\",\"accountIds\":{\"founder\":\"usr_52dfb87c281146d3\",\"admin\":\"usr_ec9ae43b75aac2d4\"},\"databaseAccountIds\":{\"founder\":\"67bfe391-ad85-4d3a-b881-a2981ac3c6b7\",\"admin\":\"10dfe7ac-0c36-482f-a167-627da8f33bc0\"},\"missionName\":\"BOUNDED_CANARY_UNAPPROVED_2a36fabb-e89a-4d30-9f5b-7a3e4b980587\",\"missionDigest\":\"74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b\",\"beforePassed\":false}\n2026-09-23T11:30:54.283441635Z info Pillow host stopped\n2026-09-23T11:30:54.283445714Z info Event-loop lag cleared after known synchronous block\n2026-09-23T11:30:54.283449704Z info EmpireAI Brain shutdown complete\n2026-09-23T11:30:54.283453264Z info primary_shutdown_complete\n2026-09-23T11:30:55.211262500Z info Stopping Container"
+        }
+      ],
+      "structuredContent": {
+        "deploymentId": "81fd99e8-7b16-42b7-9a7d-42830adc5319",
+        "serviceId": "3687e91f-2a12-477e-8fc1-79ad0e559d3c",
+        "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "status": "REMOVED",
+        "deploy": [
+          {
+            "timestamp": "2026-09-23T11:22:38.504102452Z",
+            "severity": "info",
+            "message": "Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/bc2f303c-b140-448f-9060-3e9bdefda08b/vol_dnghkwm7a01vqek5",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:38.504126538Z",
+            "severity": "info",
+            "message": "Starting Container",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:39.331271153Z",
+            "severity": "info",
+            "message": "",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "event",
+                "value": "\"bounded_canary_start\""
+              },
+              {
+                "key": "schema",
+                "value": "\"canary-launch-v1\""
+              },
+              {
+                "key": "launchId",
+                "value": "\"6a3bfe04-496e-4760-8bdb-ec5a6a455518\""
+              },
+              {
+                "key": "nodeVersion",
+                "value": "\"22.23.2\""
+              },
+              {
+                "key": "execPath",
+                "value": "\"/mise/installs/node/22.23.2/bin/node\""
+              },
+              {
+                "key": "launcherPid",
+                "value": "1"
+              },
+              {
+                "key": "launcherSha256",
+                "value": "\"923d73b476750d911fa1ea6b5922dfacd8efa8db8945a90de23b90979c94773b\""
+              },
+              {
+                "key": "serviceId",
+                "value": "\"3687e91f-2a12-477e-8fc1-79ad0e559d3c\""
+              },
+              {
+                "key": "deploymentId",
+                "value": "\"81fd99e8-7b16-42b7-9a7d-42830adc5319\""
+              },
+              {
+                "key": "gitCommitSha",
+                "value": "\"59c393a53b64155577de874b97650865a2dfb836\""
+              },
+              {
+                "key": "expiresAt",
+                "value": "\"2026-09-23T11:58:10.303Z\""
+              },
+              {
+                "key": "scope",
+                "value": "\"engineering_test_only\""
+              },
+              {
+                "key": "commerce",
+                "value": "\"LOCKED\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:39.331275353Z",
+            "severity": "info",
+            "message": "Creating ioredis client",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162558465"
+              },
+              {
+                "key": "pid",
+                "value": "16"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "redisUrl",
+                "value": "\"redis://default:***@recovery-redis.railway.internal:6379/0\""
+              },
+              {
+                "key": "clientKind",
+                "value": "\"persistent\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:39.331277993Z",
+            "severity": "info",
+            "message": "Tier-0 primary binds shared Redis; unavailable commands fail closed while connection recovers",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162558466"
+              },
+              {
+                "key": "pid",
+                "value": "16"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:39.331280863Z",
+            "severity": "info",
+            "message": "Tier-0 isolated primary listening (auth/health independent of sql.js worker)",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162558504"
+              },
+              {
+                "key": "pid",
+                "value": "16"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "port",
+                "value": "3000"
+              },
+              {
+                "key": "workerPort",
+                "value": "3001"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:40.010701250Z",
+            "severity": "info",
+            "message": "Tier-0 primary spawned Brain worker",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162560008"
+              },
+              {
+                "key": "pid",
+                "value": "16"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "workerPort",
+                "value": "3001"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:40.146988423Z",
+            "severity": "info",
+            "message": "Volume reclaim completed (temps/old quarantines only)",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162560141"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "freedBytes",
+                "value": "0"
+              },
+              {
+                "key": "deletedCount",
+                "value": "0"
+              },
+              {
+                "key": "keptCorrupt",
+                "value": "null"
+              },
+              {
+                "key": "beforeBytes",
+                "value": "469"
+              },
+              {
+                "key": "afterBytes",
+                "value": "469"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.632789330Z",
+            "severity": "error",
+            "message": "(node:28) ExperimentalWarning: SQLite is an experimental feature and might change at any time",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"error\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.632793420Z",
+            "severity": "error",
+            "message": "(Use `node --trace-warnings ...` to show where the warning was created)",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"error\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.632796800Z",
+            "severity": "info",
+            "message": "Production persistence verification passed",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162560142"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "databasePath",
+                "value": "\"/data/canary/recovery-20260923.sqlite\""
+              },
+              {
+                "key": "onPersistentVolume",
+                "value": "true"
+              },
+              {
+                "key": "writable",
+                "value": "true"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.632802060Z",
+            "severity": "info",
+            "message": "Creating ioredis client",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162561574"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "redisUrl",
+                "value": "\"redis://default:***@recovery-redis.railway.internal:6379/0\""
+              },
+              {
+                "key": "clientKind",
+                "value": "\"probe\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.632805340Z",
+            "severity": "info",
+            "message": "Creating ioredis client",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162561612"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "redisUrl",
+                "value": "\"redis://default:***@recovery-redis.railway.internal:6379/0\""
+              },
+              {
+                "key": "clientKind",
+                "value": "\"persistent\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.632808250Z",
+            "severity": "info",
+            "message": "Creating ioredis client",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162561614"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "redisUrl",
+                "value": "\"redis://default:***@recovery-redis.railway.internal:6379/0\""
+              },
+              {
+                "key": "clientKind",
+                "value": "\"bullmq\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.708683775Z",
+            "severity": "info",
+            "message": "Brain database initialized",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162561669"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "dbPath",
+                "value": "\"/data/canary/recovery-20260923.sqlite\""
+              },
+              {
+                "key": "driver",
+                "value": "\"sql.js\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.708693275Z",
+            "severity": "info",
+            "message": "Event bus started",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162561701"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.850616762Z",
+            "severity": "info",
+            "message": "EmpireAI Brain initialized",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162561701"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "agents",
+                "value": "13"
+              },
+              {
+                "key": "tools",
+                "value": "942"
+              },
+              {
+                "key": "llmProviders",
+                "value": "[]"
+              },
+              {
+                "key": "redisMode",
+                "value": "\"connected\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:41.921798161Z",
+            "severity": "info",
+            "message": "Seeded bootstrap account",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162561918"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "email",
+                "value": "\"founder@recovery.invalid\""
+              },
+              {
+                "key": "role",
+                "value": "\"founder\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.151989642Z",
+            "severity": "info",
+            "message": "Seeded bootstrap account",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562127"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "email",
+                "value": "\"admin@recovery.invalid\""
+              },
+              {
+                "key": "role",
+                "value": "\"admin\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.156304005Z",
+            "severity": "info",
+            "message": "Event stream hub started",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562128"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.195513146Z",
+            "severity": "info",
+            "message": "Domain data seeded",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562163"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "workspaceId",
+                "value": "\"ws_empire_1\""
+              },
+              {
+                "key": "companies",
+                "value": "4"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.195521315Z",
+            "severity": "info",
+            "message": "Grand King account seeded",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562165"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "workspaceId",
+                "value": "\"ws_empire_1\""
+              },
+              {
+                "key": "companyId",
+                "value": "\"co-grand-king\""
+              },
+              {
+                "key": "account",
+                "value": "\"Grand King\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.195526015Z",
+            "severity": "info",
+            "message": "Deferred production bootstrap completed",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562186"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.195529465Z",
+            "severity": "info",
+            "message": "Auth routes registered",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562187"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.596992216Z",
+            "severity": "info",
+            "message": "Institutional memory bootstrap complete",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562576"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "workspaceId",
+                "value": "\"ws_empire_1\""
+              },
+              {
+                "key": "seeded",
+                "value": "47"
+              },
+              {
+                "key": "total",
+                "value": "47"
+              },
+              {
+                "key": "birthCreated",
+                "value": "38"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.888369149Z",
+            "severity": "info",
+            "message": "Institutional memory bootstrap seeded",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562576"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "seeded",
+                "value": "{\"seeded\":47,\"keys\":[\"gk.directive.first_dollar_dropshipping\",\"gk.directive.pillow_initiates_commerce\",\"gk.directive.cursor_minimization\",\"gk.directive.no_publish_without_approval\",\"commerce.lesson.accepted_ne_buyable\",\"commerce.lesson.anker_brand_gate\",\"commerce.lesson.preflight_restrictions_mandatory\",\"ops.lesson.eos_session_storm\",\"collab.memory.ready\",\"birth.lesson.estimate_ne_realised\",\"birth.lesson.cooccurrence_ne_identity\",\"birth.lesson.unknown_stays_local\",\"birth.lesson.hypothetical_ne_current\",\"birth.lesson.synthetic_isolation\",\"birth.lesson.current_turn_intent\",\"birth.lesson.partial_gate_ne_full_unlock\",\"birth.lesson.eligibility_ne_preference\",\"birth.lesson.observation_ne_causation\",\"birth.lesson.canonical_proposition_authority\",\"birth.lesson.compound_claim_all_components\",\"birth.lesson.auth_ne_capability\",\"birth.lesson.capability_ne_execution\",\"birth.lesson.newer_owner_wins\",\"birth.lesson.accepted_request_server_owned\",\"birth.lesson.cumulative_exposure_propagates\",\"birth.lesson.sibling_identity\",\"birth.lesson.no_lifecycle_residue_on_evidence\",\"birth.lesson.first_accepted_must_complete\",\"birth.lesson.normal_response_no_recovery_residue\",\"birth.lesson.certification_grades_visible_surface\",\"birth.lesson.first_request_vs_retry\",\"birth.lesson.http_success_ne_semantic_success\",\"birth.lesson.later_outcome_ne_nonoccurrence\",\"birth.lesson.explicit_claim_set_complete\",\"birth.lesson.memory_transfers_principle_not_surface\",\"birth.lesson.exact_section_contract\",\"birth.lesson.middle_claim_cannot_drop\",\"birth.lesson.cross_section_conclusion_reuse\",\"birth.lesson.lesson_principle_not_dump\",\"birth.lesson.source_domain_surface_purity\",\"birth.lesson.registry_outranks_cooccurrence\",\"birth.lesson.measured_subset_not_full_population\",\"birth.lesson.section_headings_are_not_claims\",\"birth.lesson.no_duplicate_post_answer_synthesis\",\"birth.lesson.evidence_ne_authority_route\",\"birth.lesson.temporal_supersession\",\"birth.doctrine.grand_king_ultimate\"]}"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.889237711Z",
+            "severity": "info",
+            "message": "Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562576"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.889243661Z",
+            "severity": "info",
+            "message": "EmpireAI Brain API listening",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562805"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "port",
+                "value": "3001"
+              },
+              {
+                "key": "earlyListen",
+                "value": "true"
+              },
+              {
+                "key": "role",
+                "value": "\"brain-worker\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.889247631Z",
+            "severity": "info",
+            "message": "Executive continuity watchdog started",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562809"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "stallExitMs",
+                "value": "45000"
+              },
+              {
+                "key": "highLagExitMs",
+                "value": "120000"
+              },
+              {
+                "key": "highLagExitThresholdMs",
+                "value": "4000"
+              },
+              {
+                "key": "postFlushCooldownMs",
+                "value": "90000"
+              },
+              {
+                "key": "pollMs",
+                "value": "2000"
+              },
+              {
+                "key": "bootGraceMs",
+                "value": "600000"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:22:42.889251390Z",
+            "severity": "info",
+            "message": "Skipping REAL module HTTP route registration in production (Cockpit-critical routes only)",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162562809"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:23:02.967614250Z",
+            "severity": "info",
+            "message": "Pillow host started (PILLOW-016)",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162577825"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "repositoryRoot",
+                "value": "\"/app/backend/.pillow-governance-bundle\""
+              },
+              {
+                "key": "llmProviders",
+                "value": "[]"
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:26:43.703796981Z",
+            "severity": "info",
+            "message": "Request failed",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790162800248"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "error",
+                "value": "\"Commerce automation is disabled during engineering deployment/recovery testing\""
+              },
+              {
+                "key": "stack",
+                "value": "\"Error: Commerce automation is disabled during engineering deployment/recovery testing\\n    at assertCommerceAutomationAllowed (file:///app/backend/dist/runtime/engineering-test-mode.js:12:15)\\n    at runPillowCommercePresaleCycle (file:///app/backend/dist/orchestration/pillow-commerce-presale/services/presale-cycle-service.js:124:5)\\n    at Object.<anonymous> (file:///app/backend/dist/orchestration/pillow-commerce-presale/routes/pillow-commerce-presale-routes.js:95:29)\\n    at preHandlerCallbackInner (/app/backend/node_modules/fastify/lib/handle-request.js:168:24)\\n    at preHandlerCallback (/app/backend/node_modules/fastify/lib/handle-request.js:134:5)\\n    at next (/app/backend/node_modules/fastify/lib/hooks.js:236:9)\\n    at handleResolve (/app/backend/node_modules/fastify/lib/hooks.js:253:7)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\""
+              },
+              {
+                "key": "path",
+                "value": "\"/pillow-commerce-presale/run-cycle\""
+              },
+              {
+                "key": "method",
+                "value": "\"POST\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:26:43.703801121Z",
+            "severity": "info",
+            "message": "CANARY_PROBE_BEFORE {\"schema\":\"empireai-bounded-canary-probe-v2\",\"phase\":\"before\",\"startedAt\":\"2026-09-23T11:26:39.621Z\",\"checks\":[{\"name\":\"scope_and_runtime\",\"pass\":true,\"actualProbeSha256\":\"e518ec44b4bf8ccdd78ae7331ef5d5883e703db08df1d87046ad0d8f34104e25\",\"actualNodeVersion\":\"22.23.2\",\"npmBuildIdentity\":\"SEPARATE_RECEIPT_REQUIRED\"},{\"name\":\"launcher_identity\",\"pass\":true,\"launchId\":\"6a3bfe04-496e-4760-8bdb-ec5a6a455518\",\"launcherSha256\":\"923d73b476750d911fa1ea6b5922dfacd8efa8db8945a90de23b90979c94773b\",\"childPid\":16},{\"name\":\"live_identity\",\"pass\":true},{\"name\":\"readiness\",\"pass\":true,\"httpStatus\":200,\"workerReady\":true,\"sessionStore\":\"redis\",\"redisReady\":true},{\"name\":\"redis_persistence_configuration\",\"pass\":true,\"maxmemory\":\"268435456\",\"maxmemory-policy\":\"noeviction\",\"appendonly\":\"yes\",\"appendfsync\":\"always\"},{\"name\":\"unauthorized_me\",\"pass\":true,\"httpStatus\":401},{\"name\":\"unauthorized_request\",\"pass\":true,\"httpStatus\":401},{\"name\":\"unauthorized_birth\",\"pass\":true,\"httpStatus\":401},{\"name\":\"unauthorized_mission\",\"pass\":true,\"httpStatus\":401},{\"name\":\"founder_login\",\"pass\":true,\"httpStatus\":200},{\"name\":\"founder_session\",\"pass\":true},{\"name\":\"admin_login\",\"pass\":true,\"httpStatus\":200},{\"name\":\"admin_session\",\"pass\":true},{\"name\":\"worker_founder_login\",\"pass\":true,\"httpStatus\":200},{\"name\":\"worker_founder_session\",\"pass\":true},{\"name\":\"worker_admin_login\",\"pass\":true,\"httpStatus\":200},{\"name\":\"worker_admin_session\",\"pass\":true},{\"name\":\"birth_locks\",\"pass\":true,\"httpStatus\":200,\"status\":\"NOT_BORN\",\"authority\":{\"birthStatus\":\"NOT_BORN\",\"technicallyReady\":false,\"commerceStatus\":\"LOCKED\",\"realCommerceAuthorized\":false,\"waveCredit\":0,\"independentCertification\":\"UNVERIFIED\",\"certificationReceiptIngestion\":\"NOT_IMPLEMENTED\",\"reason\":\"No independently accepted V53 certification receipts. Certification receipt ingestion is not implemented; legacy commissioning, engineering passes, prose and owner approval alone cannot authorise Birth or live commerce.\"}},{\"name\":\"cross_workspace_denied\",\"pass\":true},{\"name\":\"commerce_rejected\",\"pass\":true,\"httpStatus\":500,\"expectedRejection\":true},{\"name\":\"mission_created\",\"pass\":false},{\"name\":\"probe_prerequisite_or_operation\",\"pass\":false,\"failure\":\"STOPPED_WITHOUT_SECRET_OUTPUT\"},{\"name\":\"marker_saved\",\"pass\":true,\"partialFailure\":true}],\"scope\":\"private disposable canary, same-candidate application redeploy recovery only\",\"limitations\":[\"Not production, live-commerce, model quality or Birth certification.\",\"No Redis restart, abrupt process kill, lost-volume or power-loss proof is claimed by this probe.\",\"npm identity requires its separate exact build receipt; it is not inferred from runtime configuration.\"],\"service\":\"3687e91f-2a12-477e-8fc1-79ad0e559d3c\",\"commit\":\"59c393a53b64155577de874b97650865a2dfb836\",\"probeSha\":\"e518ec44b4bf8ccdd78ae7331ef5d5883e703db08df1d87046ad0d8f34104e25\",\"deploymentId\":\"81fd99e8-7b16-42b7-9a7d-42830adc5319\",\"nodeVersion\":\"22.23.2\",\"expiresAt\":\"2026-09-23T11:58:10.303Z\",\"requiredChecks\":[\"scope_and_runtime\",\"launcher_identity\",\"live_identity\",\"readiness\",\"redis_persistence_configuration\",\"unauthorized_me\",\"unauthorized_request\",\"unauthorized_birth\",\"unauthorized_mission\",\"founder_login\",\"founder_session\",\"admin_login\",\"admin_session\",\"worker_founder_login\",\"worker_founder_session\",\"worker_admin_login\",\"worker_admin_session\",\"worker_founder_logout\",\"worker_admin_logout\",\"birth_locks\",\"commerce_rejected\",\"cross_workspace_denied\",\"mission_history\",\"mission_fake_completion_rejected\",\"native_mission_history\",\"authority_completed\",\"missing_provider_failed_truthfully\",\"request_owner_isolation\",\"admin_logout\",\"mission_created\",\"durable_acceptance\",\"idempotent_acceptance\",\"idempotency_conflict_denied\",\"missing_provider_accepted\",\"marker_saved\"],\"missingRequiredChecks\":[\"worker_founder_logout\",\"worker_admin_logout\",\"mission_history\",\"mission_fake_completion_rejected\",\"native_mission_history\",\"authority_completed\",\"missing_provider_failed_truthfully\",\"request_owner_isolation\",\"admin_logout\",\"durable_acceptance\",\"idempotent_acceptance\",\"idempotency_conflict_denied\",\"missing_provider_accepted\"],\"duplicateChecks\":[],\"passed\":false,\"finishedAt\":\"2026-09-23T11:26:40.261Z\",\"birthCertificationGranted\":false,\"commerceAuthorized\":false,\"productionReadiness\":\"NOT_PROVEN\",\"additionalRequiredProof\":{\"abruptKillRecovery\":\"NOT_PROVEN\",\"redisRestartRecovery\":\"NOT_PROVEN\",\"volumeRestore\":\"NOT_PROVEN\",\"v53BirthCertification\":\"NOT_PROVEN\",\"realProviderLifecycle\":\"NOT_PROVEN\",\"absentHandlerAndDependencyExecution\":\"NOT_PROVEN\"}}",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:28:23.933459594Z",
+            "severity": "info",
+            "message": "CANARY_MISSION_DIAGNOSTIC {\"status\":200,\"body\":{\"computedAt\":\"2026-09-23T11:28:19.710Z\",\"report\":{\"action\":\"create_mission\",\"runTimestamp\":\"2026-09-23T11:28:19.710Z\",\"durationMs\":0,\"decision\":\"fail\",\"validation\":{\"validationReportId\":\"msr-val-1790162899710\",\"validationTimestamp\":\"2026-09-23T11:28:19.710Z\",\"decision\":\"fail\",\"errors\":[\"High-risk mission execution requires grandKingApproved=true\"],\"warnings\":[],\"durationMs\":0,\"metadataVersion\":\"MSR-001-v1\"},\"mission\":null,\"missionRuntimeReport\":null,\"transitions\":[],\"errors\":[\"High-risk mission execution requires grandKingApproved=true\"],\"warnings\":[]}}}",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:29:24.092248383Z",
+            "severity": "info",
+            "message": "CANARY_FAILED_MARKER {\"schema\":\"canary-restart-marker-v2\",\"service\":\"3687e91f-2a12-477e-8fc1-79ad0e559d3c\",\"commit\":\"59c393a53b64155577de874b97650865a2dfb836\",\"probeSha\":\"e518ec44b4bf8ccdd78ae7331ef5d5883e703db08df1d87046ad0d8f34104e25\",\"expiresAt\":\"2026-09-23T11:58:10.303Z\",\"beforeDeploymentId\":\"81fd99e8-7b16-42b7-9a7d-42830adc5319\",\"beforeLaunchId\":\"6a3bfe04-496e-4760-8bdb-ec5a6a455518\",\"nonce\":\"2a36fabb-e89a-4d30-9f5b-7a3e4b980587\",\"accountIds\":{\"founder\":\"usr_52dfb87c281146d3\",\"admin\":\"usr_ec9ae43b75aac2d4\"},\"databaseAccountIds\":{\"founder\":\"67bfe391-ad85-4d3a-b881-a2981ac3c6b7\",\"admin\":\"10dfe7ac-0c36-482f-a167-627da8f33bc0\"},\"missionName\":\"BOUNDED_CANARY_UNAPPROVED_2a36fabb-e89a-4d30-9f5b-7a3e4b980587\",\"missionDigest\":\"74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b\",\"beforePassed\":false}",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:30:54.283441635Z",
+            "severity": "info",
+            "message": "Pillow host stopped",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790163044472"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:30:54.283445714Z",
+            "severity": "info",
+            "message": "Event-loop lag cleared after known synchronous block",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790163044478"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              },
+              {
+                "key": "reason",
+                "value": "\"sql.js-db.export\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:30:54.283449704Z",
+            "severity": "info",
+            "message": "EmpireAI Brain shutdown complete",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790163044493"
+              },
+              {
+                "key": "pid",
+                "value": "28"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:30:54.283453264Z",
+            "severity": "info",
+            "message": "primary_shutdown_complete",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              },
+              {
+                "key": "time",
+                "value": "1790163044522"
+              },
+              {
+                "key": "pid",
+                "value": "16"
+              },
+              {
+                "key": "hostname",
+                "value": "\"2b844b8043a6\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:30:55.211262500Z",
+            "severity": "info",
+            "message": "Stopping Container",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          }
+        ]
+      },
+      "isError": false
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "**Deployment 4829b414-51ad-405d-8be0-15117ba1f13c** [REMOVED]\nservice: d76003c0-d65f-446c-90d1-7caa1de5164c, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (19)\n2026-09-23T11:03:23.287014855Z info 1:M 23 Sep 2026 11:03:23.268 * Creating AOF base file appendonly.aof.1.base.rdb on server start\n2026-09-23T11:03:23.287021015Z info 1:M 23 Sep 2026 11:03:23.274 * Creating AOF incr file appendonly.aof.1.incr.aof on server start\n2026-09-23T11:03:23.287026625Z info 1:M 23 Sep 2026 11:03:23.274 * Ready to accept connections tcp\n2026-09-23T11:03:23.287031694Z info 1:M 23 Sep 2026 11:03:23.261 * monotonic clock: POSIX clock_gettime\n2026-09-23T11:03:23.287042234Z info 1:M 23 Sep 2026 11:03:23.261 * Running mode=standalone, port=6379.\n2026-09-23T11:03:23.287048954Z info 1:M 23 Sep 2026 11:03:23.262 * Server initialized\n2026-09-23T11:03:23.287065944Z info 1:C 23 Sep 2026 11:03:23.260 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.\n2026-09-23T11:03:23.287073374Z info 1:C 23 Sep 2026 11:03:23.261 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo\n2026-09-23T11:03:23.287077464Z info 1:C 23 Sep 2026 11:03:23.261 * Redis version=7.2.16, bits=64, commit=00000000, modified=0, pid=1, just started\n2026-09-23T11:03:23.287081614Z info 1:C 23 Sep 2026 11:03:23.261 * Configuration loaded\n2026-09-23T11:03:23.605886388Z info Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/d9c9734a-a154-49b8-b929-14eada53f10a/vol_3qqdiu8rxro607yf\n2026-09-23T11:03:23.606130804Z info Starting Container\n2026-09-23T11:31:32.164750871Z info Stopping Container\n2026-09-23T11:31:32.972143610Z info 1:M 23 Sep 2026 11:31:31.252 * User requested shutdown...\n2026-09-23T11:31:32.972149880Z info 1:M 23 Sep 2026 11:31:31.252 * Calling fsync() on the AOF file.\n2026-09-23T11:31:32.972153990Z info 1:M 23 Sep 2026 11:31:31.252 * Saving the final RDB snapshot before exiting.\n2026-09-23T11:31:32.972158550Z info 1:M 23 Sep 2026 11:31:31.259 * DB saved on disk\n2026-09-23T11:31:32.972162170Z info 1:M 23 Sep 2026 11:31:31.259 # Redis is now ready to exit, bye bye...\n2026-09-23T11:31:32.972247479Z info 1:signal-handler (1790163091) Received SIGTERM scheduling shutdown..."
+        }
+      ],
+      "structuredContent": {
+        "deploymentId": "4829b414-51ad-405d-8be0-15117ba1f13c",
+        "serviceId": "d76003c0-d65f-446c-90d1-7caa1de5164c",
+        "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "status": "REMOVED",
+        "deploy": [
+          {
+            "timestamp": "2026-09-23T11:03:23.287014855Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:03:23.268 * Creating AOF base file appendonly.aof.1.base.rdb on server start",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287021015Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:03:23.274 * Creating AOF incr file appendonly.aof.1.incr.aof on server start",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287026625Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:03:23.274 * Ready to accept connections tcp",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287031694Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:03:23.261 * monotonic clock: POSIX clock_gettime",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287042234Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:03:23.261 * Running mode=standalone, port=6379.",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287048954Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:03:23.262 * Server initialized",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287065944Z",
+            "severity": "info",
+            "message": "1:C 23 Sep 2026 11:03:23.260 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287073374Z",
+            "severity": "info",
+            "message": "1:C 23 Sep 2026 11:03:23.261 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287077464Z",
+            "severity": "info",
+            "message": "1:C 23 Sep 2026 11:03:23.261 * Redis version=7.2.16, bits=64, commit=00000000, modified=0, pid=1, just started",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.287081614Z",
+            "severity": "info",
+            "message": "1:C 23 Sep 2026 11:03:23.261 * Configuration loaded",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.605886388Z",
+            "severity": "info",
+            "message": "Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/d9c9734a-a154-49b8-b929-14eada53f10a/vol_3qqdiu8rxro607yf",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:03:23.606130804Z",
+            "severity": "info",
+            "message": "Starting Container",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:31:32.164750871Z",
+            "severity": "info",
+            "message": "Stopping Container",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:31:32.972143610Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:31:31.252 * User requested shutdown...",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:31:32.972149880Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:31:31.252 * Calling fsync() on the AOF file.",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:31:32.972153990Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:31:31.252 * Saving the final RDB snapshot before exiting.",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:31:32.972158550Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:31:31.259 * DB saved on disk",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:31:32.972162170Z",
+            "severity": "info",
+            "message": "1:M 23 Sep 2026 11:31:31.259 # Redis is now ready to exit, bye bye...",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          },
+          {
+            "timestamp": "2026-09-23T11:31:32.972247479Z",
+            "severity": "info",
+            "message": "1:signal-handler (1790163091) Received SIGTERM scheduling shutdown...",
+            "attributes": [
+              {
+                "key": "level",
+                "value": "\"info\""
+              }
+            ]
+          }
+        ]
+      },
+      "isError": false
+    }
+  }
+]

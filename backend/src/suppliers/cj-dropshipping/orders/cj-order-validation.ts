@@ -107,6 +107,10 @@ export function validateApprovalGate(
 export function assertSubmissionAllowed(config: CjConfig, order: Order): "SANDBOX" | "LIVE" {
   validateApprovalGate(order);
 
+  if ((config.integrationMode === "LIVE" || order.integrationMode === "LIVE") && !isCjLiveApiEnabled(config)) {
+    throw new CjOrderSubmissionDisabledError("Live credentials and LIVE configuration are required; sandbox substitution is forbidden.");
+  }
+
   const validation = validateOrder(order);
   if (!validation.valid) {
     throw new CjOrderValidationError("Order validation failed.", validation.issues);
@@ -122,8 +126,8 @@ export function assertSubmissionAllowed(config: CjConfig, order: Order): "SANDBO
 /** Returns true when submitOrder would proceed (approval + valid order). */
 export function canSubmitOrder(config: CjConfig, order: Order): boolean {
   try {
-    assertSubmissionAllowed(config, order);
-    return true;
+    // The legacy client is sandbox-only; an enabled LIVE config is not readiness.
+    return assertSubmissionAllowed(config, order) === "SANDBOX";
   } catch {
     return false;
   }

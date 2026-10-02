@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "caseSetId": "PILLOW-HELD-ECONOMICS-20260923-V1",
+  "status": "FROZEN_NOT_EXECUTED",
+  "certificationCredit": 0,
+  "files": [
+    {
+      "path": "economics-held-cases-v1.json",
+      "sha256": "d05dbcb42b5a659c75cefcdc116a0c647fb85ed8e99da43ad9eb6717d71ce700"
+    },
+    {
+      "path": "economics-oracle-v1.mjs",
+      "sha256": "0303f27ad42402d05b696ea1678155e421edc0726534a25dad36a9c29b3c4721"
+    },
+    {
+      "path": "economics-expected-v1.json",
+      "sha256": "bdb96b1951c5745080de0adf46b8d3bcb769b691d0dff2b135afd3600ee78f2f"
+    }
+  ],
+  "validation": {
+    "caseCount": 6,
+    "arithmeticVariants": 3,
+    "rankingVariants": 3,
+    "deterministicOracleRegeneratedExactly": true,
+    "manualArithmeticRankingCrosscheck": true
+  },
+  "scope": "Arithmetic and cost-based eligibility subclaims only; no full CAP/COM/Wave acceptance"
+}

@@ -37,21 +37,26 @@ export function realizeDomainNativeMemorySurface(
     LESSON_TEXT_SURFACED: false,
   };
 
-  if (DOCTRINE_DUMP.test(out) || LIVE_SURFACE.test(out) || isSourceDomainLanguageLeak(out)) {
+  if (DOCTRINE_DUMP.test(out) || (scopedSynthetic && (LIVE_SURFACE.test(out) || isSourceDomainLanguageLeak(out)))) {
     telemetry.LESSON_RETRIEVED = true;
     telemetry.LESSON_TEXT_SURFACED = true;
   }
   DOCTRINE_DUMP.lastIndex = 0;
   LIVE_SURFACE.lastIndex = 0;
 
-  out = stripSourceDomainSurfaceLanguage(out, userMessage);
-  out = out.replace(DOCTRINE_DUMP, "").replace(LIVE_SURFACE, "").trim();
+  // A current-reality truth correction is relevant evidence, not a synthetic
+  // lesson leak. Removing it used to erase the entire repaired sales answer.
+  if (scopedSynthetic) {
+    out = stripSourceDomainSurfaceLanguage(out, userMessage);
+    out = out.replace(LIVE_SURFACE, "");
+  }
+  out = out.replace(DOCTRINE_DUMP, "").trim();
 
   if (scopedSynthetic && /\bsales-history|Event-state reading|realised orders remain/i.test(out)) {
     out = stripSourceDomainSurfaceLanguage(out, userMessage);
   }
 
-  const stillLeaking = isSourceDomainLanguageLeak(out) || /\*\*Event-state reading:\*\*/i.test(out);
+  const stillLeaking = (scopedSynthetic && isSourceDomainLanguageLeak(out)) || /\*\*Event-state reading:\*\*/i.test(out);
   telemetry.LESSON_TEXT_SURFACED = stillLeaking;
   telemetry.LESSON_APPLIED = telemetry.LESSON_RETRIEVED && !stillLeaking;
 

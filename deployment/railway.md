@@ -1,6 +1,14 @@
 # Railway — Backend deployment
 
-Railway is the **preferred** host for EmpireAI Brain (Fastify API), Pillow runtime (in-process), and the BullMQ worker.
+Railway is the **preferred** backend host for EmpireAI Brain and Pillow.
+
+**Production cutover: NOT VERIFIED.** This page describes the repository's
+current configuration, not a receipt that it is deployed or safe to promote.
+The old production process has no demonstrated quiesce-and-durable-save barrier;
+do not restart it or attach test workers to its state based on this guide.
+Use the separately reviewed [bounded-canary procedure](./railway-canary.md) and
+[canary configuration](./railway.canary.toml) for a disposable engineering test.
+Passing that test does not certify V53/Birth, commerce or zero-data-loss cutover.
 
 Deploy from the **monorepo root** so `@empireai/pillow` (`file:../pillow`) resolves during install and build.
 
@@ -10,36 +18,50 @@ Deploy from the **monorepo root** so `@empireai/pillow` (`file:../pillow`) resol
 
 | Service | Start command | Purpose |
 |---------|---------------|---------|
-| **brain-api** | `node backend/dist/index.js` | HTTP API, Pillow host, Guardian |
-| **brain-worker** | `node backend/dist/worker.js` | BullMQ jobs, scheduled tasks |
+| **Brain service** | `node backend/dist/index.js` | Default production Tier-0 primary: authentication, health and proxy |
+| **Managed Brain child** | Spawned by the primary using its own Node executable | Full API/Pillow graph on a private loopback port, with `EMPIRE_ROLE=brain-worker` |
+| **Redis** | Separately configured dependency | Sessions/queues; require actual readiness and persistence evidence |
 
-Both services share the same environment variables and persistent volume.
+The managed child is part of the same application service. It is not the
+standalone `backend/dist/worker.js` queue-consumer entrypoint. Do not duplicate
+services or share a SQL.js volume between independently writing processes.
+Actual unattended scheduler/consumer operation remains a separate acceptance gate.
 
 ---
 
-## Quick start
+## Repository configuration reference
 
-1. [railway.app](https://railway.app) → New Project → Deploy from GitHub repo.
-2. Set **root directory** to repository root.
-3. Railway reads `railway.toml` at repo root:
+The normal source configuration is [root railway.toml](../railway.toml), with
+the repository root as its working directory. It currently specifies:
 
 ```toml
 [build]
-buildCommand = "npm install --prefix pillow && npm install --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
+builder = "NIXPACKS"
+buildCommand = "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend"
 
 [deploy]
 startCommand = "node backend/dist/index.js"
-healthcheckPath = "/health/live"
+healthcheckPath = "/health/ready"
 healthcheckTimeout = 300
 ```
 
-4. Add a **volume** mounted at `/data` (required — without it, `DATABASE_PATH=/data/empireai-brain.db` is ephemeral and redeploys lose state).
-5. Configure environment variables (below). Confirm service variable `DATABASE_PATH=/data/empireai-brain.db` (also defaulted in `nixpacks.toml`).
-6. Generate a public domain for the API service.
+Read back the effective provider build/start/health configuration and exact source
+revision; dashboard values alone may be overridden by source. The root configuration
+retains direct Node startup and is not the bounded-canary configuration. Nixpacks
+selects major 22 while the install guard requires exact 22.23.2: a mismatch fails
+installation, and a successful installation does not prove the startup binary.
+Do not silently replace production configuration to get a test running.
+
+An approved application deployment requires a durable `/data` volume and confirmed
+`DATABASE_PATH`. Disposable canaries require their own volume, Redis and generated
+test credentials, and remain private. No new public domain is required for that test.
 
 ### Production 502 / event-loop stall (known failure mode)
 
-If Railway shows the service **Online** but `/health/live` returns **502** after ~15s, the Brain process is usually **event-loop wedged** (sql.js full-database export thrash), not a DNS or routing failure. Check runtime logs for `Event loop lag detected` with multi-second `lagMs`. Fix: deploy persist throttling (`SQLITE_*` defaults in `sqlite-database.ts`) and ensure a volume is attached so the DB path is durable.
+Provider **Online** or a 200 liveness response is insufficient. Inspect the primary,
+worker and Redis readiness responses plus logs. Event-loop/export stalls are a
+known failure family, but a 502 alone does not establish their cause. Repairs require
+reviewed source, exact-head CI and scoped recovery evidence before any promotion.
 
 ---
 
@@ -51,7 +73,12 @@ V1 Brain uses **SQLite** (`sql.js`). The database file must survive redeploys.
 |------------|----------|---------|
 | `/data` | `DATABASE_PATH` | `/data/empireai-brain.db` |
 
-Without a volume, all audit logs, users, Pillow state, and REAL module data are lost on redeploy.
+An ephemeral filesystem is not durable across redeploy. A mounted volume alone
+also does not prove pending SQL.js RAM has been saved. Current mission snapshots
+use native `.missions.sqlite`, and the read-only execution worker has its own
+database; include every actual state file plus Redis in the coordinated restore
+scope. Preserve legacy JSON bytes during explicit migration. Component restore
+passes do not establish application recovery or a safe old-production cutover.
 
 ---
 
@@ -100,14 +127,12 @@ EMPIREAI_REPO_ROOT=/app
 
 (Adjust if Railway uses a different working directory — verify with `GET /api/pillow/status` → `repositoryRoot`.)
 
-### Version 1 operational activation (when go-live ready)
+### Commercial authority
 
-```env
-LIVE_COMMERCE_INTEGRATION_MODE=production
-CREDENTIAL_VAULT_KEY=...
-EMPIRE_V1_OPERATIONAL_READY=true
-# Plus Amazon SP-API, CJ, etc. — see backend/.env.example
-```
+Environment readiness flags and account credentials cannot grant Birth or
+commercial authority. Canonical state remains `NOT_BORN` and commerce `LOCKED`
+until independently accepted evidence and the required explicit owner pilot
+authorization exist. Do not use this guide to enable live provider effects.
 
 ### Canva Connect (Visual Generation Layer)
 
@@ -124,21 +149,15 @@ The Vercel BFF at that URL proxies to Brain `GET /canva/oauth/callback`.
 
 ---
 
-## Worker service
+## Worker topology is a separate gate
 
-Production requires a **separate long-running worker**:
-
-1. Duplicate the Brain service in the same Railway project.
-2. Use the **same** build settings and env vars.
-3. Override start command:
-
-```bash
-node backend/dist/worker.js
-```
-
-4. Attach the **same volume** at `/data` (worker reads the same SQLite and Redis queues).
-
-Without the worker: async REAL jobs, scheduled cron, and queue consumers do not run.
+The production entrypoint starts the Tier-0 primary and its managed Brain child.
+The standalone `backend/dist/worker.js` source exists, but this does not establish
+a safe independently deployed consumer service. Production early-listen and
+engineering-test policy can suppress background workers/scheduling. Prove actual
+queue admission, consumers, retries, state ownership, restart recovery and bounded
+side effects before calling unattended processing operational. Do not launch a
+second SQL.js writer against the primary's database to satisfy a checklist.
 
 ---
 
@@ -146,27 +165,30 @@ Without the worker: async REAL jobs, scheduled cron, and queue consumers do not 
 
 | Endpoint | Auth | Expected |
 |----------|------|----------|
-| `GET /health` | Public | 200, Brain summary |
-| `GET /health/integrations-hub` | Public | 200 |
+| `GET /health/live` | Public | Primary liveness diagnostics; not acceptance of worker/Pillow readiness |
+| `GET /health/ready` | Public | 200 only when primary Redis session storage and worker/Pillow readiness satisfy the actual checks; otherwise 503 |
 | `GET /guardian/health` | Session | Subsystem report |
 
-Configure Railway health check on `/health` (see `railway.toml`).
+The configured admission health check is `/health/ready`. It is infrastructure
+readiness, not proof of a useful completed answer, durable mission or commerce.
 
 ---
 
 ## Networking
 
-- Expose the API service on Railway's public HTTPS domain.
-- Use that URL as Vercel `VITE_API_BASE_URL`.
+- For an approved website deployment, the canonical Next.js `empireai-web` BFF uses server-side `BRAIN_API_URL` for the Brain origin; its Vercel path requires HTTPS. Verify the actual authenticated website-to-Brain flow.
+- `VITE_API_BASE_URL` belongs only to the legacy Vite frontend; it is not the canonical Next.js BFF setting.
+- Disposable canary testing remains private and does not require a public domain.
 - No Docker networking required.
 
 ---
 
 ## Build notes
 
-- **Node:** 22+ (matches `engines` in `backend/package.json`).
+- **Node:** exact `22.23.2`; **npm:** exact `10.9.8`, matching repository pins and hosted CI. Preserve actual build and runtime receipts separately.
+- **Install:** locked `npm ci`; never regenerate locks or accept `npm install` as equivalent release evidence.
 - **Pillow package:** Built before backend (`npm run build --prefix pillow`).
-- **No Dockerfile required** — Nixpacks builds from `railway.toml`.
+- **Builder:** normal root configuration remains Nixpacks. Only the disposable canary reference selects Railpack and the bounded launcher; it must not be merged as production configuration.
 
 Optional: `docker-compose.yml` and `backend/Dockerfile` remain for local/self-host but are **not** the V1 managed path.
 
@@ -174,11 +196,13 @@ Optional: `docker-compose.yml` and `backend/Dockerfile` remain for local/self-ho
 
 ## Verification checklist
 
-- [ ] `GET /health` → 200
+- [ ] Effective source/build/start configuration and exact Node/npm identities independently observed
+- [ ] `GET /health/live` responds; `GET /health/ready` passes actual Redis/worker/Pillow checks
 - [ ] Redis connected (not degraded mode in logs)
 - [ ] `GET /api/pillow/status` (authenticated) → `lifecycle: running`
-- [ ] Worker service running; no queue backlog errors
-- [ ] Volume mounted; database persists across redeploy
+- [ ] Managed Brain child and any separately accepted consumers have the correct roles; real task results are observed
+- [ ] Whole application state, mission histories and failure outcomes survive the scoped recovery test, with all earlier failures preserved
+- [ ] Safe old-production quiescence/cutover and rollback independently established before production change
 - [ ] `CORS_ORIGIN` matches Vercel URL; founder login works from browser
 
 ---
@@ -190,7 +214,7 @@ Optional: `docker-compose.yml` and `backend/Dockerfile` remain for local/self-ho
 | Redis degraded mode | Wrong `REDIS_URL`; use Upstash `rediss://` URL |
 | Pillow repo root error | Set `EMPIREAI_REPO_ROOT` to checkout root |
 | CORS errors from Vercel | `CORS_ORIGIN` mismatch |
-| Empty data after redeploy | No volume on `DATABASE_PATH` |
-| Jobs never complete | Worker service not running |
+| Empty data after redeploy | Investigate volume/path, pending RAM, migration and missing state-file coverage; preserve failed evidence |
+| Jobs never complete | Inspect admission, scheduling, consumer policy, dependencies and receipts; a running child alone is insufficient |
 
 See also [upstash.md](./upstash.md) and [MANAGED_DEPLOYMENT.md](./MANAGED_DEPLOYMENT.md).

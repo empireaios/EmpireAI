@@ -47,15 +47,23 @@ export type PillowChatArtifact = {
   metadata?: Record<string, unknown>;
 };
 
+export type PillowCompletedReasoningKind = "llm" | "authority_refusal" | "authority_facts" | "response_contract";
+
 export type PillowChatResult = {
   requestId: string;
   sessionId: string;
   message: string;
-  kind: "llm" | "command_fallback" | "error" | "durable_pending" | "terminal_infrastructure";
+  kind: PillowCompletedReasoningKind | "command_fallback" | "error" | "durable_pending" | "terminal_infrastructure";
+  reboundSessionId?: string;
   requestRemainsRunning?: boolean;
   resultRetrievable?: boolean;
   durableRetrieved?: boolean;
   durableRequest?: boolean;
+  /** Transport state is not an executive answer or certification. */
+  status?: string;
+  failureClass?: string;
+  semanticSuccess?: boolean;
+  userResubmissionRequired?: boolean;
   provider?: string;
   latencyMs: number;
   command?: {

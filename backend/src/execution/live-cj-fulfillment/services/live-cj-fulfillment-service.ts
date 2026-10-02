@@ -10,6 +10,7 @@ import {
 import { completePipelineDelivery } from "../../../revenue/customer-order-pipeline/services/customer-order-pipeline-service.js";
 import { fulfillInventoryReservation } from "../../../revenue/customer-order-pipeline/services/inventory-reservation-service.js";
 import { loadLiveCjFulfillmentEnv } from "../config/live-cj-fulfillment-env.js";
+import { LiveCjSubmissionUncertainError } from "./cj-submission-uncertain.js";
 import type { LiveCjFulfillmentRecord } from "../models/live-cj-fulfillment-record.js";
 import {
   createAttemptRecord,
@@ -188,8 +189,14 @@ export async function executeLiveCjSubmit(
 
   fulfillment = saveFulfillment(fulfillment, { status: "SUBMITTING" });
 
+  let providerMayHaveAccepted = false;
   try {
     const result = await submitLiveCjOrder(fulfillment.fulfillmentOrder);
+    providerMayHaveAccepted = true;
+    // Retain the actual acknowledgement for reconciliation even if a later
+    // inventory/persistence step fails. This is evidence, not a delivery claim.
+    fulfillment = { ...fulfillment, supplierOrderId: result.supplierOrderId,
+      trackingNumber: result.trackingNumber, integrationMode: result.integrationMode, mock: result.mock };
 
     const submittedOrder: Order = {
       ...fulfillment.fulfillmentOrder,
@@ -221,9 +228,13 @@ export async function executeLiveCjSubmit(
     syncPipelineFromFulfillment(fulfillment, submittedOrder);
     return fulfillment;
   } catch (error) {
-    const err = error instanceof Error ? error : new Error(String(error));
+    // A local persistence failure after acceptance must never authorize another
+    // provider create. Keep SUBMITTING if even recording this uncertainty fails.
+    const err = providerMayHaveAccepted
+      ? new LiveCjSubmissionUncertainError("CJ accepted an order, but local completion could not be recorded. Reconcile provider state before any retry.")
+      : error instanceof Error ? error : new Error(String(error));
     fulfillment = recordSubmitFailure(fulfillment, err);
-    throw error;
+    throw err;
   }
 }
 

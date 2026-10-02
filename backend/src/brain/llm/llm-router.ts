@@ -1,8 +1,6 @@
 import { env } from "../../config/env.js";
-import {
-  assertPaidAutonomousAllowed,
-  recordCostSpend,
-} from "../../orchestration/pillow-commissioning/cost-guard.js";
+import { quoteBoundedLLMCall, reserveBoundedLLMCall } from "./llm-spend-reservation.js";
+import { assertPaidAutonomousAllowed } from "../../orchestration/pillow-commissioning/cost-guard.js";
 import type {
   LLMCompletionRequest,
   LLMCompletionResponse,
@@ -12,9 +10,7 @@ import { AnthropicProvider } from "./anthropic-provider.js";
 import { GeminiProvider } from "./gemini-provider.js";
 import { OpenAIProvider } from "./openai-provider.js";
 import type { LLMProvider } from "./provider.js";
-
-/** Rough USD estimate before the call — Cost Guard uses this for projection only. */
-const LLM_PREFLIGHT_ESTIMATE_USD = 0.02;
+import { parseLLMTimeout, withLLMDeadline } from "./call-control.js";
 
 export class LLMRouter {
   private readonly providers: Map<LLMProviderName, LLMProvider>;
@@ -37,63 +33,35 @@ export class LLMRouter {
     const preferred = providerName ?? env.DEFAULT_LLM_PROVIDER;
     const provider = this.providers.get(preferred);
 
-    if (provider?.isAvailable()) {
-      return provider;
+    // An unreviewed provider substitution changes pricing, data destination,
+    // and model behavior. Require an explicit selection/approval for each provider.
+    if (!provider?.isAvailable()) {
+      throw new Error(`Requested LLM provider ${preferred} is unavailable; implicit fallback refused`);
     }
-
-    const fallback = this.listAvailable()[0];
-    if (!fallback) {
-      throw new Error(
-        "No LLM providers configured. Set OPENAI_API_KEY, ANTHROPIC_API_KEY, or GOOGLE_AI_API_KEY.",
-      );
-    }
-
-    const resolved = this.providers.get(fallback)!;
-    return resolved;
+    return provider;
   }
 
   async complete(request: LLMCompletionRequest): Promise<LLMCompletionResponse> {
-    const gate = assertPaidAutonomousAllowed(request.workspaceId, LLM_PREFLIGHT_ESTIMATE_USD);
-    if (!gate.allowed) {
-      throw new Error(`Cost Guard HARD STOP: ${gate.reason}`);
-    }
-
+    const timeoutMs = parseLLMTimeout(process.env.LLM_REQUEST_TIMEOUT_MS);
+    request.signal?.throwIfAborted();
+    // Unknown owner limits and engineering mode stop before provider resolution.
+    // The priced upper-bound gate below performs the final atomic admission.
+    const preliminary = assertPaidAutonomousAllowed(request.workspaceId, 0);
+    if (!preliminary.allowed) throw new Error(`Cost Guard HARD STOP: ${preliminary.reason}`);
     const provider = this.resolve(request.provider);
-    const timeoutMs = Number(process.env.LLM_REQUEST_TIMEOUT_MS ?? 45_000);
-    const completion = provider.complete({ ...request, provider: provider.name });
-
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const timeout = new Promise<never>((_, reject) => {
-      timer = setTimeout(
-        () => reject(new Error(`LLM request timed out after ${timeoutMs}ms (${provider.name})`)),
-        timeoutMs,
-      );
-    });
-
-    try {
-      const result = await Promise.race([completion, timeout]);
-      const tokens = result.usage?.totalTokens ?? 0;
-      // Conservative token→USD estimate when provider does not return invoice cents.
-      const attributableUsd =
-        tokens > 0 ? Math.max(0.0001, (tokens / 1000) * 0.01) : LLM_PREFLIGHT_ESTIMATE_USD;
-      try {
-        recordCostSpend({
-          workspaceId: request.workspaceId,
-          kind: "ai",
-          amountUsd: attributableUsd,
-          provider: result.provider,
-          attribution: {
-            model: result.model,
-            correlationId: request.correlationId,
-            tokens: String(tokens),
-          },
-        });
-      } catch {
-        /* cost ledger must not break completions */
-      }
-      return result;
-    } finally {
-      if (timer) clearTimeout(timer);
+    const quote = quoteBoundedLLMCall(request, provider.name);
+    await reserveBoundedLLMCall({ request, provider: provider.name, quote });
+    const result = await withLLMDeadline(
+      signal => provider.complete({
+        ...request, provider: provider.name, model: quote.model,
+        maxTokens: quote.maxOutputTokens, signal,
+      }), timeoutMs, request.signal,
+    );
+    if (result.provider !== provider.name || result.model !== quote.model) {
+      throw new Error("LLM provider/model response mismatch; charge reservation remains");
     }
+    // The conservative commitment remains until actual provider billing is
+    // reconciled. Usage tokens are not a verified invoice and do not release it.
+    return result;
   }
 }

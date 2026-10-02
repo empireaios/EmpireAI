@@ -1,0 +1,70 @@
+{
+  "observedAt": "2026-09-30T12:50:45.671Z",
+  "mode": "AUTHENTICATED_READ_ONLY_BROWSER",
+  "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
+  "projectName": "empireai-canary-20260923",
+  "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+  "environmentName": "production (inside isolated test project; NOT EmpireAI protected production)",
+  "page": "https://railway.com/project/feb90d26-c54b-4435-ac32-f666e3e25447/settings/usage?environmentId=3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+  "projectDescriptionObserved": "Disposable isolated restart/recovery test only. Additional owner-approved cap US$5. No production data or external provider credentials. Delete test resources after retained evidence.",
+  "displayedUsd": {
+    "currentTotal": 0.07,
+    "estimatedTotal": 0.11,
+    "currentMemory": 0.01,
+    "currentCpu": 0,
+    "currentEgress": 0,
+    "currentVolume": 0.06,
+    "estimatedVolume": 0.1
+  },
+  "detailedCurrentUsd": {
+    "memory": 0.0053,
+    "cpu": 0.0004,
+    "egress": 0,
+    "volume": 0.0605,
+    "sumDerived": 0.0662
+  },
+  "costByService": {
+    "label": "deleted services",
+    "memory": 0.0053,
+    "cpu": 0.0004,
+    "egress": 0,
+    "volume": 0.0602,
+    "total": 0.0659
+  },
+  "derivedHeadroomUsd": {
+    "againstRoundedCurrent": 4.93,
+    "againstDisplayedEstimate": 4.89
+  },
+  "scopeLimits": [
+    "Displayed current and estimated usage, not settled billing or a guaranteed spend balance.",
+    "Service breakdown and project detail differ by0.0003 in volume charge; preserve both, do not force equality.",
+    "UI did not show an explicit billing date range.",
+    "Railway Agent charges and other historical test-attributable costs were not reconciled from this project resource page."
+  ],
+  "resources": {
+    "browserArchitectureEmpty": true,
+    "connectorServices": [],
+    "connectorBuckets": [],
+    "connectorPendingWork": [],
+    "connectorStagedChanges": null,
+    "existingServiceResourceLimits": "NOT_APPLICABLE_NO_SERVICES; no configured CPU/RAM limits could be verified"
+  },
+  "result": "PROJECT_DISPLAYED_HEADROOM_EXISTS; HOSTED_REHEARSAL_NOT_EXECUTED",
+  "blockingBoundary": "Owner directive explicitly excludes resource creation, configuration/service/volume changes and restart/redeploy. Empty test project cannot host rehearsal without those operations. Conditional continue instruction cannot silently override explicit exclusions.",
+  "additionalAmountRequestedUsd": 0,
+  "additionalFundsRequired": "No shortfall established; exact additional requirement cannot be asserted from incomplete settled/all-cost evidence.",
+  "actionsPerformed": [
+    "Read project General/Usage/Cost-by-Service UI",
+    "Read isolated project connector status",
+    "Capture browser screenshots; shared-file synchronization failed"
+  ],
+  "screenshotPersisted": false,
+  "screenshotLimitation": "Browser captured screenshots, but corresponding shared files remained absent after5-second check. No screenshot attachment or durable screenshot claim.",
+  "resourceMutations": 0,
+  "newMeteredAgentCalls": 0,
+  "amazonCjCalls": 0,
+  "productionChanges": 0,
+  "rehearsalRuns": 0,
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED"
+}

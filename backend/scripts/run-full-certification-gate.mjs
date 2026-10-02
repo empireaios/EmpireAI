@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * FULL CERTIFICATION GATE — independent-closure + key existing Pillow regressions.
- * Not a Wave exam. Permanent engineering certification layer.
+ * OFFLINE ENGINEERING GATE — supplied-evidence Pillow regression checks.
+ * This does not certify V53, Wave mastery, Birth, production or live commerce.
  */
 import { spawnSync } from "node:child_process";
 import path from "node:path";
@@ -11,6 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const backendRoot = path.resolve(__dirname, "..");
 
 const suites = [
+  "src/validation/tests/pillow-birth-authority.test.ts",
   "src/validation/tests/independent-closure-invariants-fast.test.ts",
   "src/validation/tests/independent-closure-invariants-deploy.test.ts",
   "src/validation/tests/independent-closure-invariants-full.test.ts",
@@ -28,12 +29,15 @@ const suites = [
   "src/validation/tests/memory-relevance-contract.test.ts",
   "src/validation/tests/memory-relevance-raw-pipeline.test.ts",
   "src/validation/tests/causal-state-atomic.test.ts",
+  "src/validation/tests/chronology-evidence-contract.test.ts",
+  "src/validation/tests/executive-truth-grounding.test.ts",
   "src/validation/tests/reasoning-core-l1-l4.test.ts",
   "src/validation/tests/post-foundation-repair4-levela.test.ts",
   "src/validation/tests/foundation-reset-learning.test.ts",
 ];
 
-console.log("FULL_CERTIFICATION_GATE: starting");
+console.log("OFFLINE_ENGINEERING_GATE: starting");
+console.log("Scope: offline engineering regressions only; not V53, Wave, Birth, production or commerce certification.");
 let failed = 0;
 for (const suite of suites) {
   console.log(`\n▶ ${suite}`);
@@ -72,8 +76,8 @@ for (const script of [
 }
 
 if (failed > 0) {
-  console.error(`FULL_CERTIFICATION_GATE: FAIL (${failed} suites)`);
+  console.error(`OFFLINE_ENGINEERING_GATE: FAIL (${failed} suites)`);
   process.exit(1);
 }
-console.log("FULL_CERTIFICATION_GATE: PASS");
+console.log("OFFLINE_ENGINEERING_GATE: PASS");
 process.exit(0);

@@ -20,11 +20,14 @@ export function loadLiveCjFulfillmentEnv(
   env: NodeJS.ProcessEnv = process.env,
 ): LiveCjFulfillmentEnv {
   const parsed = liveCjFulfillmentEnvSchema.parse(env);
-  const mockMode =
-    parsed.LIVE_CJ_FULFILLMENT_MOCK ||
-    !(process.env.CJ_API_KEY?.trim() || process.env.CJ_DROPSHIPPING_API_KEY?.trim());
-
-  return { ...parsed, LIVE_CJ_FULFILLMENT_MOCK: mockMode };
+  const deployedRuntime = env.NODE_ENV === "production" || Boolean(
+    env.RAILWAY_ENVIRONMENT || env.RAILWAY_ENVIRONMENT_NAME || env.RAILWAY_SERVICE_NAME || env.RAILWAY_DEPLOYMENT_ID,
+  );
+  if (deployedRuntime && parsed.LIVE_CJ_FULFILLMENT_MOCK) {
+    throw new Error("CJ mock fulfillment is forbidden in production");
+  }
+  // Missing live configuration is a blocker, never implicit permission to fake it.
+  return parsed;
 }
 
 export function isLiveCjFulfillmentAllowed(config: LiveCjFulfillmentEnv): boolean {

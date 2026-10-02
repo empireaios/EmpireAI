@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-29T21:19:06Z",
+  "ownerLocalDate": "2026-09-30",
+  "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+  "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+  "volumeId": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+  "environment": "production",
+  "authenticatedBrowser": true,
+  "inspected": [
+    "project architecture",
+    "volume metrics",
+    "volume settings",
+    "service settings/navigation",
+    "service backups"
+  ],
+  "verifiedUrl": "https://railway.com/project/75374474-2b3a-4b0f-a9bc-203cdc1314d8/service/c3c89cbb-3e10-414a-98a2-f9ec4f1f840e/backups?environmentId=da94aed2-956b-4903-a886-68a5e9a557c8",
+  "visibleBackupText": [
+    "No backup schedule",
+    "No Backups",
+    "This service's volume does not have any backups.",
+    "New backup",
+    "Create Backup"
+  ],
+  "volume": {
+    "mountPath": "/data",
+    "sizeLabel": "5.00 GB",
+    "tabs": [
+      "Metrics",
+      "Settings"
+    ],
+    "fileDownloadControlObserved": false
+  },
+  "serviceTabs": [
+    "Deployments",
+    "Backups",
+    "Variables",
+    "Metrics",
+    "Console",
+    "Settings"
+  ],
+  "consoleOpened": false,
+  "variablesOpened": false,
+  "backupCreated": false,
+  "productionMutations": 0,
+  "commandsExecuted": 0,
+  "providerCalls": 0,
+  "exportedProductionFiles": 0,
+  "newRecordsRestored": 0,
+  "newBusinessStateFindings": 0,
+  "conclusion": "NO_SAFE_READ_ONLY_EXPORT_EXPOSED_IN_INSPECTED_UI",
+  "limits": [
+    "No claim that all Railway transfer mechanisms are impossible",
+    "Platform backup list differs from historical files inside /app/closure-backups",
+    "Prior worker RAM may already have been lost or changed by autonomous exit; current files cannot reconstruct it",
+    "Screenshot capture did not synchronize to local workspace; no durable screenshot claim"
+  ],
+  "cutoverAuthorized": false,
+  "lossAcceptanceAuthorized": false,
+  "nextDecision": "No cutover/loss acceptance recommended. Separately establish a concrete private acquisition mechanism and its safety before any broader access or production intervention."
+}

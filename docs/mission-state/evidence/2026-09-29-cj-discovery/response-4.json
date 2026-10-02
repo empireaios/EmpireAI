@@ -1,0 +1,92 @@
+{
+  "observedAt": "2026-09-29T12:36:40.142Z",
+  "request": {
+    "url": "https://developers.cjdropshipping.com/api2.0/v1/product/query?pid=1872203651945525250",
+    "method": "GET"
+  },
+  "requestBody": null,
+  "requestId": "537a1ea981294b5cb1de86ecfc233e52",
+  "rawBodySha256": "9d6e18fc3a0f0737bb8a224d3df91ab894e80eb6698c4a6ccd6e64775228ccf5",
+  "providerCode": 200,
+  "summary": {
+    "pid": "1872203651945525250",
+    "sku": "CJFU2254439",
+    "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
+    "productType": "SUPPLIER_SHIPPED_PRODUCT",
+    "variants": [
+      {
+        "vid": "1872203652109103106",
+        "pid": "1872203651945525250",
+        "sku": "CJFU225443901AZ",
+        "name": "",
+        "variantSellPrice": 52.25,
+        "priceWireType": "number",
+        "costCents": 5225
+      },
+      {
+        "vid": "1872203652109103107",
+        "pid": "1872203651945525250",
+        "sku": "CJFU225443902BY",
+        "name": "",
+        "variantSellPrice": 52.47,
+        "priceWireType": "number",
+        "costCents": 5247
+      },
+      {
+        "vid": "1872203652109103108",
+        "pid": "1872203651945525250",
+        "sku": "CJFU225443903CX",
+        "name": "",
+        "variantSellPrice": 51.52,
+        "priceWireType": "number",
+        "costCents": 5152
+      },
+      {
+        "vid": "1872203652109103109",
+        "pid": "1872203651945525250",
+        "sku": "CJFU225443904DW",
+        "name": "",
+        "variantSellPrice": 44.52,
+        "priceWireType": "number",
+        "costCents": 4452
+      },
+      {
+        "vid": "1872203652109103110",
+        "pid": "1872203651945525250",
+        "sku": "CJFU225443905EV",
+        "name": "",
+        "variantSellPrice": 52.94,
+        "priceWireType": "number",
+        "costCents": 5294
+      },
+      {
+        "vid": "1933051764958822402",
+        "pid": "1872203651945525250",
+        "sku": "CJFU225443906FU",
+        "name": "",
+        "variantSellPrice": 48.82,
+        "priceWireType": "number",
+        "costCents": 4882
+      },
+      {
+        "vid": "1933051764958822403",
+        "pid": "1872203651945525250",
+        "sku": "CJFU225443907GT",
+        "name": "",
+        "variantSellPrice": 47.99,
+        "priceWireType": "number",
+        "costCents": 4799
+      },
+      {
+        "vid": "1933054345951358977",
+        "pid": "1872203651945525250",
+        "sku": "CJFU225443908HS",
+        "name": "",
+        "variantSellPrice": 44.73,
+        "priceWireType": "number",
+        "costCents": 4473
+      }
+    ]
+  },
+  "sanitizedSummarySha256": "e93981fec0eaedf0142c7bd5879d66371c486b775be59048f36b4eac85da5a47"
+}

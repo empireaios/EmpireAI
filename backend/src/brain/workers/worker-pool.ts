@@ -8,6 +8,7 @@ import { processBrainTask, type WorkerProcessorDeps } from "./processor.js";
 export class BrainWorkerPool {
   private worker: Worker<BrainTaskPayload, unknown, BrainTaskType> | null =
     null;
+  private capturePaused = false;
 
   constructor(
     private readonly connection: ConnectionOptions | null,
@@ -15,6 +16,7 @@ export class BrainWorkerPool {
   ) {}
 
   start(): void {
+    if (this.capturePaused) throw new Error("Brain worker capture pause active");
     if (!this.connection) {
       logger.info("Brain worker pool skipped (Redis unavailable — degraded mode)");
       return;
@@ -56,8 +58,51 @@ export class BrainWorkerPool {
   }
 
   async stop(): Promise<void> {
+    if (this.capturePaused) throw new Error("Brain worker capture pause active; stop must wait");
     await this.worker?.close();
     this.worker = null;
+  }
+
+  /** Pause this process's BullMQ consumer and drain in-flight jobs before a
+   * caller's capture. Redis producers and other consumers need separate gates.
+   */
+  async withPausedProcessing<T>(capture: () => T | Promise<T>, timeoutMs = 30_000): Promise<T> {
+    if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 30_000 || this.capturePaused) {
+      throw new Error("Brain worker capture pause unavailable or timeout invalid");
+    }
+    this.capturePaused = true;
+    const worker = this.worker;
+    if (!worker) {
+      try { return await capture(); }
+      finally { this.capturePaused = false; }
+    }
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let drained = false;
+    let pause: Promise<void> | undefined;
+    try {
+      pause = worker.pause(false);
+      await Promise.race([
+        pause.then(() => { drained = true; }),
+        new Promise<never>((_, reject) => {
+          timer = setTimeout(() => reject(new Error("Brain worker drain timed out; no snapshot taken")), timeoutMs);
+        }),
+      ]);
+      if (this.worker !== worker) throw new Error("Brain worker identity changed during capture");
+      return await capture();
+    } finally {
+      if (timer) clearTimeout(timer);
+      if (drained) {
+        worker.resume();
+        this.capturePaused = false;
+      } else if (pause) {
+        // A timed-out pause may still be draining active work. Keep capture
+        // unavailable until that same pause resolves, then restore the worker.
+        void pause.then(() => worker.resume()).catch(error =>
+          logger.error({ error: error instanceof Error ? error.message : String(error) },
+            "Brain worker failed to resume after capture drain refusal"))
+          .finally(() => { this.capturePaused = false; });
+      } else this.capturePaused = false;
+    }
   }
 
   isActive(): boolean {

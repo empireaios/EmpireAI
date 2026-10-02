@@ -1,3 +1,4 @@
+import { requireCjSandboxEstimate, requireCjSandboxOrderContext, CjFulfillmentEstimateUnavailableError } from "../../../suppliers/cj-dropshipping/orders/cj-fulfillment-estimate-gate.js";
 import { randomUUID } from "node:crypto";
 
 import { financialLedger } from "../../../finance/ledger.js";
@@ -14,7 +15,6 @@ import type { StripeWebhookEvent } from "./stripe-client.js";
 
 const STRIPE_FEE_BPS = 290;
 const STRIPE_FEE_FIXED_CENTS = 30;
-const SHIPPING_ESTIMATE_CENTS = 599;
 
 export type IngestCheckoutInput = {
   event: StripeWebhookEvent;
@@ -89,7 +89,18 @@ export async function ingestCheckoutCompleted(
   const repository = getRevenueLoopRepository();
 
   const existing = repository.getOrderByStripeSession(sessionId);
-  if (existing) return existing;
+  if (existing) {
+    if (!existing.fulfillmentOrder) {
+      throw new CjFulfillmentEstimateUnavailableError({
+        source: "UNAVAILABLE", liveQuoteVerified: false, estimatedCost: null,
+        currency: /^[A-Z]{3}$/.test(existing.currency) ? existing.currency : null,
+        estimatedDeliveryDaysMin: null, estimatedDeliveryDaysMax: null, shippingMethod: null, valid: false,
+        issues: ["Existing revenue record has no fulfillment order or verifiable quote context; prior numeric profit cannot authorize reuse."],
+      });
+    }
+    requireCjSandboxOrderContext(existing.fulfillmentOrder, loadCjConfig());
+    return existing;
+  }
 
   const metadata = (session.metadata ?? {}) as Record<string, string>;
   const store =
@@ -103,14 +114,13 @@ export async function ingestCheckoutCompleted(
   const customerDetails = (session.customer_details ?? {}) as Record<string, unknown>;
   const revenueCents = Number(session.amount_total ?? store.priceCents);
   const currency = String(session.currency ?? store.currency).toUpperCase();
-  const costCents = store.unitCostCents + SHIPPING_ESTIMATE_CENTS;
   const stripeFeeCents = estimateStripeFeeCents(revenueCents);
-  const profitCents = revenueCents - costCents - stripeFeeCents;
   const config = loadRevenueLoopEnv();
 
   let fulfillmentOrder = buildFulfillmentOrder(store, session);
   const client = createCjOrderClient();
   const estimate = await client.estimateFulfillment(fulfillmentOrder);
+  requireCjSandboxEstimate(estimate);
   fulfillmentOrder = {
     ...fulfillmentOrder,
     estimatedCost: estimate.estimatedCost,
@@ -223,6 +233,7 @@ export function applyFulfillmentApproval(
     throw new Error(`Order status ${record.status} cannot be approved for fulfillment`);
   }
 
+  requireCjSandboxOrderContext(record.fulfillmentOrder, loadCjConfig());
   const approvedOrder = applyOrderApproval(record.fulfillmentOrder, {
     approvalToken: input.approvalToken,
     approvedBy: input.approvedBy,

@@ -1,3 +1,4 @@
+import type { AuthorityMissionAdapter } from "./authority-execution.js";
 import type { IntegrationHandshake } from "./types.js";
 
 export type SharedRuntimeCoreHandle = {
@@ -38,6 +39,7 @@ export type RecoveryHandle = {
 };
 
 export type MissionRuntimeDependencies = {
+  authorityMissionExecutor?: AuthorityMissionAdapter;
   sharedRuntimeCore?: SharedRuntimeCoreHandle;
   pillowOrchestrationRuntime?: PillowOrchestrationRuntimeHandle;
   workerRegistry?: WorkerRegistryHandle;

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "packages": {
+    "node": "22.23.2"
+  },
+  "steps": {
+    "install": {
+      "commands": [
+        "corepack prepare npm@10.9.8 --activate",
+        "npm ci --include=dev"
+      ]
+    }
+  }
+}

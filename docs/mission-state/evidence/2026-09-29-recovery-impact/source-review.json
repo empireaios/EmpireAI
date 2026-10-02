@@ -1,0 +1,15 @@
+{
+  "revision": "21384342c401def948926904913840e63c18dff7",
+  "sourceSha256": {
+    "backend/src/brain/database.ts": "aedad4408e211d2db56283454e11ea16ac8367d3843a3820ba8d4a500682167b",
+    "backend/src/runtime/executive-continuity-watchdog.ts": "8f4b5f60089db610a3d02b39efea9ed671610b1c7b6f52509d616fffe742937a",
+    "backend/src/orchestration/pillow-commissioning/commissioning-durability-mirror.ts": "22862f149815e399cfb20ab6fcb728b8a9cfb52350a977595ee86e0dd2a90d9d",
+    "backend/src/orchestration/pillow-commissioning/one-product-commissioning.ts": "c2dadc157f98be2351bc08e2e4d3d01abb736ca75915007a9ce2dfefcade4d0e",
+    "backend/src/orchestration/version-1-activation/version-1-activation-config.ts": "0479fe08555fac4f9492b31396f602df919344d6864ca7993852456a7be2e919",
+    "backend/src/execution/live-cj-fulfillment/config/live-cj-fulfillment-env.ts": "c5ec4bf9ca9c79ec9c8cecdf0d9d8181d5b6ebb1fd0beda35607ded68350906e",
+    "backend/src/revenue/live-payment-engine/config/live-payment-env.ts": "65ea1c3773f27e5a3ed3df6b41f1e32417d06ced1ff9910ff96f7919619fb757",
+    "backend/src/orchestration/shadow-ceo/repository.ts": "4b4fa67bde6b0cbc5dae22c34663d058703418de1ad13fb0bd3ccb3edbbf6811"
+  },
+  "baseBrainSchemaTables": 152,
+  "warning": "Source declares potential state; not evidence that production rows exist. No effective environment values read."
+}

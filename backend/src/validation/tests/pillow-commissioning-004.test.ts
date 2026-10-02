@@ -111,6 +111,13 @@ describe("Mission 004 pillow commissioning", () => {
   });
 
   it("one-product commissioning refuses Cursor preselection when no production opportunity", () => {
+    // Test-only authorization reaches the missing-opportunity branch; production
+    // budgets remain unknown until explicitly configured by the owner.
+    setCostGuardLimits(WS, {
+      dailyAiBudgetUsd: 1,
+      autonomousPaidActionLimitUsd: 1,
+      monthlyOperatingBudgetUsd: 1,
+    }, "unit-test-fixture");
     const result = runPillowOneProductCommissioning(WS);
     assert.equal(result.ok, false);
     assert.match(result.error ?? "", /Cursor must not preselect/i);

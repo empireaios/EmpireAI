@@ -1,0 +1,1744 @@
+{
+  "recordedAt": "2026-09-23T10:09:35.709Z",
+  "source": "Direct connector readbacks in Resume EmpireAI Pillow mission",
+  "ci": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "workflow_runs": [
+        {
+          "id": 35578668496,
+          "name": "Product path CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 10,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/35578668496/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/35578668496/logs",
+          "workflow_id": 362309382
+        },
+        {
+          "id": 35578668500,
+          "name": "Pillow semantic repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 10,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/35578668500/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/35578668500/logs",
+          "workflow_id": 362674549
+        },
+        {
+          "id": 35578668523,
+          "name": "Pillow runtime repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 8,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/35578668523/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/35578668523/logs",
+          "workflow_id": 362688325
+        }
+      ]
+    },
+    "isError": false
+  },
+  "jobs": [
+    {
+      "runId": 35578668496,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "jobs": [
+            {
+              "id": 106266209333,
+              "name": "Repository and deployment-root contract",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668496,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Verify package scripts, lockfiles and the production web contract",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Verify deterministic build configuration and reject runtime drift",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Verify bounded canary configuration and child-process cleanup",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Record tested revision and limits",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Post Use Node.js 22",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 13
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 14
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 15
+                }
+              ]
+            },
+            {
+              "id": 106266301059,
+              "name": "Pillow — clean install, typecheck, build, offline test",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668496,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install Pillow dependencies",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Typecheck Pillow",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Build Pillow",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Run reviewed in-process Pillow commerce and operations suites",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 13
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 14
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 15
+                }
+              ]
+            },
+            {
+              "id": 106266301090,
+              "name": "Legacy Vite compatibility — clean install, typecheck, build",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668496,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install legacy frontend dependencies",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Typecheck legacy frontend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Build legacy frontend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Record current test coverage gap",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 13
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 14
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 15
+                }
+              ]
+            },
+            {
+              "id": 106266301119,
+              "name": "Backend — clean install, typecheck, build, offline tests",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668496,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install and build linked Pillow package",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Clean install backend dependencies",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Verify backend development environment",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Typecheck backend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Build backend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 8
+                },
+                {
+                  "name": "Run fast invariant gate",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 9
+                },
+                {
+                  "name": "Run ranking, correction and authority lock tests",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 10
+                },
+                {
+                  "name": "Run chat, recovery and canonical-truth tests",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 11
+                },
+                {
+                  "name": "Record reviewed offline scope",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 12
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 23
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 24
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 25
+                }
+              ]
+            },
+            {
+              "id": 106266301158,
+              "name": "Canonical Next.js web — clean install, typecheck, test, build",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668496,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install Next.js web dependencies",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Typecheck Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Test Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Build Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Diagnose known lint debt without masking product checks",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 8
+                },
+                {
+                  "name": "Record lint baseline debt",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 9
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 17
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 18
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 19
+                }
+              ]
+            },
+            {
+              "id": 106267084567,
+              "name": "Product path result (no deployment)",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668496,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Require every product check to pass",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "runId": 35578668500,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "jobs": [
+            {
+              "id": 106266209133,
+              "name": "Semantic evidence preservation — offline full engineering gate",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668500,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install, typecheck and build Pillow",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Clean install, typecheck and build backend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Create network-denial preload for offline child processes",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Run full semantic engineering regressions with no provider access",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Require CJ receipt truth and authorization regressions without provider access",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 8
+                },
+                {
+                  "name": "Record exact revision and verification limits",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 9
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 17
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 18
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 19
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "runId": 35578668523,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "jobs": [
+            {
+              "id": 106266209240,
+              "name": "Durable runtime — real Redis, restart, ownership and authorization",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668523,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Install Redis binary for test-owned isolated AOF processes",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Clean install, typecheck and build Pillow",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Run mandatory Pillow observer and reasoning-only policy tests",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Clean install, verify, typecheck and build backend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Run mandatory isolated runtime and session tests",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 8
+                },
+                {
+                  "name": "Record exact tested revision and scope",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 9
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 17
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 18
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 19
+                }
+              ]
+            },
+            {
+              "id": 106266209328,
+              "name": "Durable web — receipt recovery, one submission, tests and build",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668523,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install and typecheck canonical Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Run web tests with mandatory durable-delivery coverage",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Build canonical Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Record exact tested revision and scope",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 13
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 14
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 15
+                }
+              ]
+            },
+            {
+              "id": 106267512197,
+              "name": "Runtime repair result (no deployment)",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35578668523,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Require both mandatory repair gates to pass",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    }
+  ],
+  "railwayConfig": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Config for **EmpireAI** in **production**:\n\n```json\n{\n  \"source\": {\n    \"repo\": \"empireaios/EmpireAI\",\n    \"branch\": \"main\",\n    \"checkSuites\": true\n  },\n  \"networking\": {\n    \"serviceDomains\": {\n      \"empireai-production.up.railway.app\": {\n        \"port\": 8080\n      }\n    },\n    \"privateNetworkEndpoint\": \"empireai\"\n  },\n  \"build\": {\n    \"builder\": \"RAILPACK\",\n    \"buildEnvironment\": \"V3\"\n  },\n  \"deploy\": {\n    \"useLegacyStacker\": false,\n    \"ipv6EgressEnabled\": false,\n    \"runtime\": \"V2\",\n    \"multiRegionConfig\": {\n      \"sfo\": {\n        \"numReplicas\": 1\n      }\n    }\n  },\n  \"volumeMounts\": {\n    \"40ab30d1-2759-4eba-b3c8-255436610bb0\": {\n      \"mountPath\": \"/data\"\n    }\n  }\n}\n```\n\nVariables defined (30): ADMIN_PASSWORD, AMAZON_SP_API_CLIENT_ID, AMAZON_SP_API_CLIENT_SECRET, AMAZON_SP_API_REFRESH_TOKEN, AMAZON_SP_API_REGION, CANVA_CLIENT_ID, CANVA_CLIENT_SECRET, CANVA_REDIRECT_URI, CJ_API_KEY, CJ_DROPSHIPPING_API_KEY, CJ_INTEGRATION_MODE, CORS_ORIGIN, CREDENTIAL_VAULT_KEY, DATABASE_PATH, EMPIREAI_REPO_ROOT, EMPIRE_EXTENSION_ROUTE_DEFER_MS, EXECUTIVE_CONTINUITY_MAX_FLUSH_GUARD_MS, FOUNDER_PASSWORD, LIVE_COMMERCE_INTEGRATION_MODE, NODE_ENV, OPENAI_API_KEY, PRODUCTION_DEPLOY_VERIFIED, REDIS_URL, SESSION_SECRET, SQLITE_FIRST_FLUSH_DELAY_MS, SQLITE_MIN_FLUSH_INTERVAL_MS, SQLITE_PERSIST_DEBOUNCE_MS, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, VITE_API_BASE_URL"
+      }
+    ],
+    "structuredContent": {
+      "service": {
+        "id": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+        "name": "EmpireAI"
+      },
+      "environment": {
+        "id": "da94aed2-956b-4903-a886-68a5e9a557c8",
+        "name": "production"
+      },
+      "config": {
+        "source": {
+          "repo": "empireaios/EmpireAI",
+          "branch": "main",
+          "checkSuites": true
+        },
+        "networking": {
+          "serviceDomains": {
+            "empireai-production.up.railway.app": {
+              "port": 8080
+            }
+          },
+          "privateNetworkEndpoint": "empireai"
+        },
+        "build": {
+          "builder": "RAILPACK",
+          "buildEnvironment": "V3"
+        },
+        "deploy": {
+          "useLegacyStacker": false,
+          "ipv6EgressEnabled": false,
+          "runtime": "V2",
+          "multiRegionConfig": {
+            "sfo": {
+              "numReplicas": 1
+            }
+          }
+        },
+        "volumeMounts": {
+          "40ab30d1-2759-4eba-b3c8-255436610bb0": {
+            "mountPath": "/data"
+          }
+        }
+      },
+      "variableNames": [
+        "ADMIN_PASSWORD",
+        "AMAZON_SP_API_CLIENT_ID",
+        "AMAZON_SP_API_CLIENT_SECRET",
+        "AMAZON_SP_API_REFRESH_TOKEN",
+        "AMAZON_SP_API_REGION",
+        "CANVA_CLIENT_ID",
+        "CANVA_CLIENT_SECRET",
+        "CANVA_REDIRECT_URI",
+        "CJ_API_KEY",
+        "CJ_DROPSHIPPING_API_KEY",
+        "CJ_INTEGRATION_MODE",
+        "CORS_ORIGIN",
+        "CREDENTIAL_VAULT_KEY",
+        "DATABASE_PATH",
+        "EMPIREAI_REPO_ROOT",
+        "EMPIRE_EXTENSION_ROUTE_DEFER_MS",
+        "EXECUTIVE_CONTINUITY_MAX_FLUSH_GUARD_MS",
+        "FOUNDER_PASSWORD",
+        "LIVE_COMMERCE_INTEGRATION_MODE",
+        "NODE_ENV",
+        "OPENAI_API_KEY",
+        "PRODUCTION_DEPLOY_VERIFIED",
+        "REDIS_URL",
+        "SESSION_SECRET",
+        "SQLITE_FIRST_FLUSH_DELAY_MS",
+        "SQLITE_MIN_FLUSH_INTERVAL_MS",
+        "SQLITE_PERSIST_DEBOUNCE_MS",
+        "STRIPE_SECRET_KEY",
+        "STRIPE_WEBHOOK_SECRET",
+        "VITE_API_BASE_URL"
+      ],
+      "staged": null
+    },
+    "isError": false
+  },
+  "railwayDeployments": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Found 3 deployment(s):\n\n- **86302878-25b5-4990-87d9-86580cd4e976** [SUCCESS]\n  service: c3c89cbb-3e10-414a-98a2-f9ec4f1f840e, env: da94aed2-956b-4903-a886-68a5e9a557c8\n  created: 2026-09-18T15:50:31.809Z\n  branch main · commit 2138434 · docs(audit): seal Pass2 soak rerun PASS after blocker fixes\n\nFrozen-candidate >=120m soak on ab6ac3b7 clears lostAdmitted, restart retrieve, p95, and durability gates. WAVE_CREDIT=0.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>\n- **ad554877-9e1e-47f6-b5f7-addb64281eaf** [REMOVED]\n  service: c3c89cbb-3e10-414a-98a2-f9ec4f1f840e, env: da94aed2-956b-4903-a886-68a5e9a557c8\n  created: 2026-09-18T13:38:09.956Z\n  branch main · commit ab6ac3b · fix(soak): harden Pass2 soak admit, retrieve, restart proof\n\nCount only durable requestIds as admitted, poll chat-request until COMPLETED, prove restart against a pre-restart completed id, and health-gate paced short fills to clear latency/durability blockers.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>\n- **1b20270e-4136-4daf-8d74-a683018ee1b3** [REMOVED]\n  service: c3c89cbb-3e10-414a-98a2-f9ec4f1f840e, env: da94aed2-956b-4903-a886-68a5e9a557c8\n  created: 2026-09-18T12:46:44.788Z\n  branch main · commit 24f7d67 · docs(audit): note Pass 2 docs seal SHA on HANDOFF\n\nCo-authored-by: Cursor <cursoragent@cursor.com>"
+      }
+    ],
+    "structuredContent": {
+      "deployments": [
+        {
+          "id": "86302878-25b5-4990-87d9-86580cd4e976",
+          "status": "SUCCESS",
+          "createdAt": "2026-09-18T15:50:31.809Z",
+          "updatedAt": "2026-09-18T15:54:22.677Z",
+          "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+          "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+          "url": null,
+          "snapshotId": "c1870ea8-d190-422c-bce0-c67068dd476d",
+          "meta": {
+            "reason": "deploy",
+            "commitMessage": "docs(audit): seal Pass2 soak rerun PASS after blocker fixes\n\nFrozen-candidate >=120m soak on ab6ac3b7 clears lostAdmitted, restart retrieve, p95, and durability gates. WAVE_CREDIT=0.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+            "commitHash": "21384342c401def948926904913840e63c18dff7",
+            "branch": "main"
+          }
+        },
+        {
+          "id": "ad554877-9e1e-47f6-b5f7-addb64281eaf",
+          "status": "REMOVED",
+          "createdAt": "2026-09-18T13:38:09.956Z",
+          "updatedAt": "2026-09-18T15:54:25.727Z",
+          "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+          "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+          "url": null,
+          "snapshotId": "76ada43e-07c6-4b57-8c5c-6056ddd46f3e",
+          "meta": {
+            "reason": "deploy",
+            "commitMessage": "fix(soak): harden Pass2 soak admit, retrieve, restart proof\n\nCount only durable requestIds as admitted, poll chat-request until COMPLETED, prove restart against a pre-restart completed id, and health-gate paced short fills to clear latency/durability blockers.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+            "commitHash": "ab6ac3b771d97e694e45db4a7ddc4bcea713decc",
+            "branch": "main"
+          }
+        },
+        {
+          "id": "1b20270e-4136-4daf-8d74-a683018ee1b3",
+          "status": "REMOVED",
+          "createdAt": "2026-09-18T12:46:44.788Z",
+          "updatedAt": "2026-09-18T13:41:16.096Z",
+          "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+          "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+          "url": null,
+          "snapshotId": "b126db2b-5895-46d9-ad52-53793effe370",
+          "meta": {
+            "reason": "deploy",
+            "commitMessage": "docs(audit): note Pass 2 docs seal SHA on HANDOFF\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+            "commitHash": "24f7d672abf16d188975a7dcdd77fbba8829be6d",
+            "branch": "main"
+          }
+        }
+      ]
+    },
+    "isError": false
+  },
+  "railwayRuntimeLogs": {
+    "content": [
+      {
+        "type": "text",
+        "text": "**Deployment 86302878-25b5-4990-87d9-86580cd4e976** [SUCCESS]\nservice: c3c89cbb-3e10-414a-98a2-f9ec4f1f840e, env: da94aed2-956b-4903-a886-68a5e9a557c8\n\n### Deploy logs (21)\n2026-09-23T10:06:07.135347188Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:06:13.791570928Z info Event loop lag detected\n2026-09-23T10:06:17.142190686Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:06:27.000922214Z info Event loop lag detected\n2026-09-23T10:06:30.259344267Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:06:50.101984273Z info Event loop lag detected\n2026-09-23T10:06:50.101991513Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:06:50.649644421Z info Event loop lag detected\n2026-09-23T10:06:54.119001662Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:07:00.742641914Z info Event loop lag detected\n2026-09-23T10:07:04.119833841Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:07:10.843843872Z info Event loop lag detected\n2026-09-23T10:07:14.220830209Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:07:21.156786300Z info Event loop lag detected\n2026-09-23T10:07:24.553494731Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:07:31.262749951Z info Event loop lag detected\n2026-09-23T10:07:34.629680943Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:07:41.952856663Z info Event loop lag detected\n2026-09-23T10:07:45.504719123Z info Executive continuity alert — elevated event-loop lag\n2026-09-23T10:07:52.552847698Z info Event loop lag detected\n2026-09-23T10:07:55.978626398Z info Executive continuity alert — elevated event-loop lag"
+      }
+    ],
+    "structuredContent": {
+      "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
+      "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+      "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+      "status": "SUCCESS",
+      "deploy": [
+        {
+          "timestamp": "2026-09-23T10:06:07.135347188Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790157963355"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "3194"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:06:13.791570928Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790157973788"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2885"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "3105"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:06:17.142190686Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790157973789"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2885"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:06:27.000922214Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790157986989"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2803"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2945"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:06:30.259344267Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790157986990"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2803"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:06:50.101984273Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158000218"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2835"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2835"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:06:50.101991513Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158000219"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2835"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:06:50.649644421Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158010645"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "3173"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2834"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:06:54.119001662Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158010646"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "3173"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:00.742641914Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158020737"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2789"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2834"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:04.119833841Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158020738"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2789"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:10.843843872Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158030838"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2854"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2869"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:14.220830209Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158030839"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2854"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:21.156786300Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158041145"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2904"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2878"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:24.553494731Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158041146"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2904"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:31.262749951Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158051257"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2924"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2878"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:34.629680943Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158051258"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "2924"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:41.952856663Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158061931"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "3319"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2903"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:45.504719123Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158061932"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "3319"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:52.552847698Z",
+          "severity": "info",
+          "message": "Event loop lag detected",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158072550"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "3080"
+            },
+            {
+              "key": "smoothedLagMs",
+              "value": "2992"
+            }
+          ]
+        },
+        {
+          "timestamp": "2026-09-23T10:07:55.978626398Z",
+          "severity": "info",
+          "message": "Executive continuity alert — elevated event-loop lag",
+          "attributes": [
+            {
+              "key": "level",
+              "value": "\"info\""
+            },
+            {
+              "key": "time",
+              "value": "1790158072551"
+            },
+            {
+              "key": "pid",
+              "value": "294"
+            },
+            {
+              "key": "hostname",
+              "value": "\"0ee73ebff028\""
+            },
+            {
+              "key": "lagMs",
+              "value": "3080"
+            },
+            {
+              "key": "sustainedMs",
+              "value": "0"
+            },
+            {
+              "key": "exitThresholdMs",
+              "value": "4000"
+            },
+            {
+              "key": "sqlite",
+              "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790140314690,\"lastFlushDurationMs\":563,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+            }
+          ]
+        }
+      ]
+    },
+    "isError": false
+  },
+  "pr5": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "url": "https://github.com/empireaios/EmpireAI/pull/5",
+      "number": 5,
+      "state": "open",
+      "merged": false,
+      "mergeable": true,
+      "draft": true,
+      "body": "## Result\n\nRepairs the Pillow engineering candidate’s durable request delivery, result recovery, reasoning evidence, Birth authority, supplier receipts and SQL.js persistence boundaries. A Pillow reasoning request is accepted only after its Redis storage succeeds; retries cannot replay operational tools; retrieved results remain owner/workspace scoped; unsupported completion claims fail closed.\n\nA critical SQL.js save now waits for the requested writes and propagates disk failures. An older asynchronous export cannot overwrite a newer shutdown snapshot. Managed shutdown awaits persistence, and temporary export files cannot collide after close/reopen.\n\nThis PR remains draft and unmerged. Birth remains NOT_BORN, Wave credit remains 0 and commerce remains LOCKED.\n\n## Scope\n\n- Redis acceptance/indexing, bounded reasoning retries, session recovery, restart/process-death tests and authenticated owner/workspace access.\n- Readiness and production bootstrap checks; reasoning-only boundaries; reliable cockpit route registration.\n- Browser submits once and retrieves the same request after refresh; pending or degraded replies cannot masquerade as completed useful answers.\n- Evidence chronology, uncertainty and grounding survive final response generation.\n- Shared Birth authority rejects contradictory legacy readiness; CJ execution requires genuine receipts and valid authority. Uncertain supplier submissions are not blindly retried.\n- SQL.js awaited saves, failure propagation, file/parent-directory sync, generation fences and unique temporary files. Windows does not receive the POSIX directory-sync guarantee.\n- Three mandatory hosted workflows run for pull requests and main. They receive no provider credentials and perform no deployment.\n\n## Previously verified head — cffa6e17\n\nPublished head `cffa6e17a620bebc58f1f18885f0eac1cfd64bae` was tested as merge checkout `3f7f49f62437012ae496701bb9d2a518ff2e4fa6` against main `21384342c401def948926904913840e63c18dff7`. Its tested tree is `e296be1f8f6b636b9e8504e45dd682ec69a855f1`. All three required hosted workflows and all ten jobs completed successfully; this evidence supersedes the earlier head for the current engineering checks only.\n\nThis revision adds bounded primary/worker shutdown, interruption recovery without consuming the last reasoning retry, engineering test mode that suppresses commerce/background loops and paid model calls, fail-closed unknown budgets, and the disposable canary launcher. The launcher enforces an absolute expiry, separate test resources and credentials, and truthful nonzero failure/forced-shutdown results.\n\n| Workflow | Current-head verification |\n| --- | --- |\n| [Product path CI](https://github.com/empireaios/EmpireAI/actions/runs/35544874966) | Six jobs passed. Canary launcher 14; Pillow 55; backend groups 79 + 15 + 36; canonical web 136; required clean installs, typechecks and builds. |\n| [Runtime repair CI](https://github.com/empireaios/EmpireAI/actions/runs/35544875032) | Three jobs passed. Policy 7; backend runtime 170; web 136; required typechecks and builds. Two additional independent held shutdown tests passed separately. |\n| [Semantic repair CI](https://github.com/empireaios/EmpireAI/actions/runs/35544874961) | One job passed. 150 tests across 23 files; all nine qualification scripts; 88 CJ receipt/authorization tests; required typechecks and builds. |\n\nThe inspected test groups reported zero failed, skipped, cancelled or todo tests. Counts overlap and are not unique coverage. Web lint still reports 164 errors and 11 warnings as non-gating diagnostic debt. Earlier evidence and prior failures are retained below and in the audit record; current green engineering checks do not erase them.\n\n### Bounded hosted-test status\n\nThe first isolated Railway attempt, `ae2376e5-853a-4782-9bc1-91dee2d97a0a`, was stopped and removed before runtime startup. The effective build plan used the repository root `railway.toml`, overriding the native service's safe test settings and selecting `node backend/dist/index.js` instead of the bounded launcher. No runtime logs were present. This is a preserved failed configuration attempt, not a deployment pass.\n\n[Temporary draft PR7 — DO NOT MERGE](https://github.com/empireaios/EmpireAI/pull/7) addresses that provider configuration behavior for the disposable test service only. Its head `91fc78eb6ef37ef1e5fdad82e465004baade65e0` changes exactly one file relative to this PR's head: root `railway.toml` is a byte-for-byte copy of the reviewed `deployment/railway.canary.toml`. All application code is identical. PR7 subsequently passed all three required hosted gates and all ten jobs on this exact head. It was closed unmerged on 21 September 2026 at 00:19 UTC after bounded testing and cleanup.\n\nHosted canary acceptance, production restart/restore, large-database shutdown durability, independent V53/Birth certification and commercial commissioning remain unproven. This PR remains draft and unmerged. NOT_BORN, Wave credit 0 and commerce LOCKED are unchanged.\n\n\n### Actual bounded deployment and restart results — 21 September 2026\n\nThe temporary service successfully ran the bounded launcher on application source identical to cffa6e17. Deployment `098d75f0-2405-4e19-86e6-d0147833820d` passed readiness. Its controlled replacement `fefb5a6f-3b59-4b92-8b6d-7fa5adf396c2` also passed readiness after the first process completed SQL.js export and graceful shutdown. Both used the same temporary mounted volume and private Redis. Provider-selected build/runtime changed from Nixpacks/Node 24.10.0 to Railpack/Node 20.20.2, so this does not prove an identical-binary restart.\n\nThe independently inspected runtime probe passed 19 of 22 before-restart checks and 17 of 20 after-restart checks. These are separate phases with overlapping checks. Founder/admin test login, authenticated readback, cross-workspace rejection, request idempotency and request ownership controls passed. The saved test-account database survived graceful shutdown and passed integrity checking (2,686,976 bytes; 176 tables).\n\nFailures remain explicit: unauthorized Birth and engineering-guard endpoints returned generic 503 responses; a successfully created mission disappeared from a successful history response after restart; and the retained request ended FAILED_FATAL/BRAIN_RETRYABLE_FAILURE after three attempts without proving a useful answer. Before shutdown, no completed SQLite snapshot could be verified. No authenticated Birth-state assertion was executed. An older intermediate probe was actually uploaded (SHA256 `59583b3adce8c01637a9e9505a04131cf995d2ec504b5bd030e206bdc3293b4d`); claims are limited to that exact script. After-restart download attempts failed, so the preserved complete visible Console readback is explicitly distinguished from a raw downloaded JSON artifact.\n\nBoth disposable services and the temporary volume were removed before the fixed expiry. Native readback confirmed the original production service and its original volume remained, with deployment `86302878-25b5-4990-87d9-86580cd4e976` still on main `21384342c401def948926904913840e63c18dff7`. No commerce, model-provider or supplier/payment action was performed. Production and website were not promoted.\n\nThese failures drive the next reviewed repair. Hosted CI success and successful boot do not constitute full runtime, Birth, Wave or commerce certification.\n\n## Hosted verification — 20 September 2026\n\nAll three workflows and all ten jobs passed on published head `0d51568b911cb41b44ca5a299b931e9afcc6c932`, tested as merge checkout `c8a4a0b7a8c5e299219ee38069ca3a4bc6a6cc67` against main `21384342c401def948926904913840e63c18dff7`. Tested tree `a2c5b49c862ac59705afc9da207d133f0346dad8` matches the independently reviewed repair. Node 22.23.2; test-owned Redis 7.0.15. Raw logs were independently inspected.\n\n| Workflow | Executed verification |\n| --- | --- |\n| [Product path CI](https://github.com/empireaios/EmpireAI/actions/runs/35518557140) | Clean installs, typechecks and builds; Pillow 55; backend groups 79 + 15 + 36; canonical web 136. |\n| [Runtime repair CI](https://github.com/empireaios/EmpireAI/actions/runs/35518557134) | Policy 7; backend runtime 131; web 136; required builds. The runtime count includes 12 new persistence/shutdown tests and 3 existing corruption tests newly required by this workflow. |\n| [Semantic repair CI](https://github.com/empireaios/EmpireAI/actions/runs/35518557130) | 150 tests across 23 files, all 9 qualification scripts, and 88 CJ receipt/authorization tests. |\n\nEvery counted group has zero failed, skipped, cancelled or todo tests. Groups overlap; do not total them as unique coverage. Web lint remains diagnostic debt: 164 errors and 11 warnings, not a lint pass.\n\n## Independent review and release controls\n\nScoped independent engineering reviews accepted the integrated changes. The persistence reviewer reran all 15 persistence/shutdown/corruption tests and additionally exercised failed close plus concurrent critical saves.\n\n[Main release ruleset](https://github.com/empireaios/EmpireAI/rules/23730826) is active, with no bypass: all three exact GitHub Actions gates, an up-to-date branch, a pull request, resolved review threads, and blocked force pushes/deletion. A separate negative probe demonstrated that a failed required check blocks merge; that probe was closed unmerged. Railway Wait for CI was separately enabled and verified; this did not restart production.\n\n## Remaining acceptance work\n\nHosted engineering checks do not replace the authenticated production browser/runtime examination, historical real-interface failure retests, independent V53/Birth examination, sustained-operation testing or a complete real commerce lifecycle.\n\nA last-completed production SQL.js disk snapshot was separately restored offline with matching size/hash and SQLite integrity check. It excludes pending RAM changes, Redis and external provider state; application-functional restore remains untested. Production credential readiness, coordinated recovery, a bounded canary and large-database shutdown timing still require verification.\n\nLegacy commissioning/Shadow callers that do not await critical saves are not newly certified durable. The persistence boundary is per instance, without cross-process writer exclusion. Some existing commerce route registration guards also remain unsuitable for repeated full app instances in one process.\n\nNo production deployment, real supplier/payment action, commerce activation, Birth certification or autonomous profitability is claimed.\n\n\n\n## Unfinished repair checkpoint — 21 September 2026\n\nParallel workers reached the Work usage limit. Production and this PR head are unchanged. Further engineering and billable testing stopped; a recoverable source checkpoint was saved separately at [checkpoint/post-canary-20260921](https://github.com/empireaios/EmpireAI/tree/checkpoint/post-canary-20260921/docs/checkpoints/20260921), commit `783fba1a1f90bcd6a4a41eb1fcd45753202fda73`. It stores patches as data, is not a release, creates no PR, and disables Vercel automatic deployment within that checkpoint branch only. Do not merge it. Both patch contents and suppression configurations were read back.\n\nLocal integrated source `6a2493d3cd4b6ec3d43a0695c80d5770b62037ae` contains scoped watchdog, proxy/authority, owner-organization mission-route and Node/npm build pin changes. Component checks passed (watchdog 24; proxy 54 plus 22 real-Redis; build guard 5 and product contract), but this combined head has NOT passed hosted CI or provider verification. The mission persistence patch remains separate and UNREVIEWED. Earlier independent tests found persisted high-risk mission approval bypass and malformed nested history acceptance; the author's latest corrections require independent reruns and integration. No completion credit is granted for those unverified edits.\n\nNext execution: re-check current remote state, restore the patches, finish and independently accept the mission fixes, integrate, run all mandatory hosted gates on the new exact head, reconcile the remaining scoped test budget and rerun only repaired provider failures with fixed runtime/probe identity. Old production has a conditional commissioning flush route but no established safe zero-data-loss quiesce/cutover barrier. Phone website, original V53/Birth and complete commerce remain unproved. The existing US$5 additional-total testing approval remains recorded; test-only actual cost and all-provider total remain unknown.\n\n\n## Resumed engineering — 21 September 2026\n\nPublished `ab4ff0907001d3601b55b64d96ae26e50d703b38`, exact tree `d8a2988d915280a2c7979a4671bde0e0058e6cf3`, restores the independently reviewed source after transient workspace loss. The recovered 52-file baseline exactly matched tree `14748d445ea14ca25914dc00551747e757e17f14`; additionally restored authority, bounded read-only worker and canary corrections were freshly tested and independently reviewed. Missing historical raw logs remain disclosed as unavailable; reconstructed review summaries are not new test executions.\n\nThe repair now persists scoped mission checkpoints, rejects malformed restored state and high-risk approval bypass, enforces exact canary Node identity, supplies a repository-owned source-bound probe, and requires native mission persistence plus authentication checks. Amazon publishing rejects before provider access when canonical authority is locked. A bounded read-only authority worker has a durable outbox and fenced execution receipts; its baseline does not yet certify automatic mission reconciliation.\n\nFresh local checks include corrected-cwd mission persistence20/20, Amazon authority8 plus3 held tests, worker19 plus4 held tests, canary32/32 and Pillow build. An initial root-cwd mission test invocation failed3 of57 due child-process import resolution; the affected20 tests were rerun successfully from the package directory. These checks used local Node24; exact required Node22 hosted CI is pending for this new revision. No production deployment, live-commerce action or Birth/Wave credit is granted. The review branch suppresses automatic Vercel deployment; main and Railway production remain unchanged.\n\nFurther isolated repairs for actual dispatch-to-mission reconciliation and truthful Amazon submission admission are undergoing source review. CI or testing on this baseline must not be attributed to later revisions. Earlier failed canary and checkpoint records above are preserved.\n\n## Corrected checkpoint verified — 21 September 2026\n\nCurrent head `972dbfc2dd34c62388c83db06c311d9d74813969` passed all three required workflows and all ten jobs. The tested merge checkout `3da920e73223a1dcebcc438ed62d7d47f6896354` has tree `71fad00617cc41a20ad8592697ac3e2931aee473`, independently matched to reviewed local source `4629316a1806925315e1802fa16d3affde311036`. Eight substantive job logs confirm Node 22.23.2 / npm 10.9.8.\n\n| Required workflow | Actual result |\n| --- | --- |\n| [Product CI](https://github.com/empireaios/EmpireAI/actions/runs/35578668496) | PASS, six jobs. Contract 5 + canary 27; Pillow 55; backend 79 + 17 + 36; canonical web 136; required installs, typechecks and builds. Legacy Vite is typecheck/build only. |\n| [Runtime CI](https://github.com/empireaios/EmpireAI/actions/runs/35578668523) | PASS, three jobs. Runtime policy 52; backend 274; durable web 136; required typechecks/builds. |\n| [Semantic/CJ CI](https://github.com/empireaios/EmpireAI/actions/runs/35578668500) | PASS. Semantic 155 across 23 files, all nine qualification scripts, full CJ receipt/economics gate 116. |\n\nCounted groups have zero failed, skipped, cancelled or todo tests; groups overlap and must not be summed as unique coverage. Diagnostic web lint remains **164 errors and 11 warnings**, not a lint pass.\n\nThis source adds actual durable read-only authority dispatch and trusted receipt reconciliation into mission state; strict Amazon submission admission without falsely calling an acknowledgement a published listing; unknown CJ costs/timing retained as unknown with downstream readiness blocked; Birth diagnostics that reject missing or synthetic proof; and an offline three-store backup/restore tool with integrity and staging checks. Independent review also tested crash/restart and failure branches. These are scoped engineering results, not general autonomous mission execution or live-commerce certification.\n\nThe immediately preceding head `68fedf987c931846c4170f739f18463a4eb9fba7` **failed** its mandatory CJ gate: 111/116 passed, despite the other nine jobs passing. Five cases shared obsolete uncatalogued Mission105 test identifiers. The correction changes exactly those two fixture identifiers to actual sandbox catalog values; production guards and all assertions are unchanged. Both author and independent full offline runs passed 116/116 before the fresh hosted campaign. That failed candidate and the earlier canary failures remain preserved.\n\nAn earlier local CJ consumer session has unknown original outbound effects/cost after an automatic approval-review rejection; subsequent tests ran under explicit outbound denial. They do not retrospectively establish zero effects or cost for the earlier session.\n\nPR5 remains draft and unmerged. Railway's 08:29 UTC readback shows the original production deployment/service/volume and no temporary services or buckets. That status response did not return a fresh source SHA. Vercel still rejects the existing connection for team `empireai-os`; website operation is unverified. Test-only spend and the remaining portion of the approved US$5 allowance remain unknown.\n\nRemaining requirements include repaired-source provider restart/recovery, an independently established stopped-writer/final-save barrier for old production, coordinated recovery including Redis, authenticated phone/browser verification, original V53/Birth certification and the complete controlled commerce lifecycle. The offline backup tool does not itself prove production quiescence. No production promotion, Birth, Wave credit, paid model evaluation or live-commerce authority is granted by these checks. **NOT_BORN, Wave credit 0 and commerce LOCKED remain unchanged.**\n",
+      "title": "Integrate reviewed Pillow runtime, authority and commerce safeguards",
+      "base": "main",
+      "base_sha": "21384342c401def948926904913840e63c18dff7",
+      "head": "fix/pillow-integrated-closure-20260920",
+      "head_sha": "972dbfc2dd34c62388c83db06c311d9d74813969",
+      "head_repo_id": 1275922460,
+      "head_repo_full_name": "empireaios/EmpireAI",
+      "merge_commit_sha": "3da920e73223a1dcebcc438ed62d7d47f6896354",
+      "user": {
+        "login": "empireaios",
+        "name": "empireaios",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "id": 295548100
+      },
+      "requested_reviewers": null,
+      "requested_team_reviewers": null,
+      "diff": null,
+      "comments": null,
+      "created_at": "2026-09-20T14:09:37Z",
+      "updated_at": "2026-09-21T08:42:49Z",
+      "closed_at": null,
+      "merged_at": null,
+      "commits": 6,
+      "changed_files": 188,
+      "additions": 14560,
+      "deletions": 2278,
+      "display_url": "https://github.com/empireaios/EmpireAI/pull/5",
+      "display_title": "Integrate reviewed Pillow runtime, authority and commerce safeguards"
+    },
+    "isError": false
+  },
+  "vercel": {
+    "status": 403,
+    "teamId": "team_gdcskAnaJteKW7BYtw8zlSWy",
+    "scope": "empireai-os",
+    "message": "Not authorized; re-authenticate to this scope."
+  },
+  "browser": {
+    "url": "https://empire-ai.co/login",
+    "observed": "Grand King Access; email/password fields; no authenticated session verified"
+  },
+  "priorTask": {
+    "id": "6aa68a21-8980-83ec-a8f8-e58b7320298b",
+    "title": "EmpireAI 2",
+    "readStatus": "timed out; recovery uses GitHub and local source, not complete conversation"
+  }
+}

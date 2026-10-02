@@ -1,3 +1,4 @@
+import { listOfflineCommerceTransactions } from "../offline-commerce-lifecycle.js";
 import { randomUUID } from "node:crypto";
 
 import type { FastifyInstance } from "fastify";
@@ -147,6 +148,24 @@ export async function registerPillowCommercePresaleRoutes(
       });
 
       return reply.send(cycle);
+    },
+  );
+
+  app.get(
+    "/pillow-commerce-presale/transactions",
+    { preHandler: deps.authenticate },
+    async (request,reply) => {
+      const user = request.user!;
+      if (!user || (user.role !== "founder" && user.role !== "admin") || !user.workspaceId) {
+        return reply.code(403).send({error:"Workspace founder access required"});
+      }
+      const parsed = z.object({limit:z.coerce.number().int().min(1).max(50).optional()})
+        .strict().safeParse(request.query ?? {});
+      if (!parsed.success) return reply.code(400).send({error:"Invalid transaction query"});
+      return reply.send({
+        evidenceMode:"OFFLINE_FIXTURE",realCommerceVerified:false,
+        transactions:listOfflineCommerceTransactions(user.workspaceId,parsed.data.limit ?? 20),
+      });
     },
   );
 

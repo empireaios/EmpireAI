@@ -45,6 +45,20 @@ export type RequestOwnerRecord = {
   instructionDigest: string;
 };
 
+let captureFenceHeld = false;
+
+/** Synchronous, local-process write fence for owner records. */
+export function acquireRequestOwnerCaptureFence(): () => void {
+  if (captureFenceHeld) throw new Error("REQUEST_OWNER_CAPTURE_BUSY");
+  captureFenceHeld = true;
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    captureFenceHeld = false;
+  };
+}
+
 function ownersPath(): string {
   return path.join(resolveShadowCeoDataRoot(), "shadow-ceo-request-owners.json");
 }
@@ -54,16 +68,43 @@ function loadOwners(): Record<string, RequestOwnerRecord> {
   if (!fs.existsSync(p)) return {};
   try {
     const raw = JSON.parse(fs.readFileSync(p, "utf8")) as Record<string, RequestOwnerRecord>;
-    return raw && typeof raw === "object" ? raw : {};
-  } catch {
-    return {};
+    if (!raw || typeof raw !== "object" || Array.isArray(raw) ||
+        Object.entries(raw).some(([id, owner]) =>
+          !owner || typeof owner !== "object" || owner.requestId !== id ||
+          typeof owner.instructionDigest !== "string" ||
+          typeof owner.completeInstruction !== "string" ||
+          typeof owner.workspaceId !== "string" ||
+          owner.birthStatus !== "NOT_BORN" ||
+          owner.realCommerceAuthority !== "unauthorized")) {
+      throw new Error("invalid request-owner records");
+    }
+    return raw;
+  } catch (error) {
+    throw new Error("REQUEST_OWNER_STATE_UNREADABLE: refusing to replace existing authority state", { cause: error });
   }
 }
 
 function saveOwners(map: Record<string, RequestOwnerRecord>): void {
+  if (captureFenceHeld) throw new Error("REQUEST_OWNER_CAPTURE_FENCED");
   const p = ownersPath();
   fs.mkdirSync(path.dirname(p), { recursive: true });
-  fs.writeFileSync(p, JSON.stringify(map, null, 2), "utf8");
+  const temp = `${p}.tmp-${process.pid}-${randomUUID()}`;
+  try {
+    const fd = fs.openSync(temp, "wx", 0o600);
+    try {
+      fs.writeFileSync(fd, JSON.stringify(map, null, 2), "utf8");
+      fs.fsyncSync(fd);
+    } finally {
+      fs.closeSync(fd);
+    }
+    fs.renameSync(temp, p);
+    if (process.platform !== "win32") {
+      const parent = fs.openSync(path.dirname(p), "r");
+      try { fs.fsyncSync(parent); } finally { fs.closeSync(parent); }
+    }
+  } finally {
+    fs.rmSync(temp, { force: true });
+  }
 }
 
 export function normalizeInstruction(message: string): string {
@@ -104,6 +145,7 @@ export function getRequestOwner(requestId: string): RequestOwnerRecord | null {
 }
 
 export function persistRequestOwner(record: RequestOwnerRecord): RequestOwnerRecord {
+  if (captureFenceHeld) throw new Error("REQUEST_OWNER_CAPTURE_FENCED");
   const existing = findOwnerByDigest(record.instructionDigest);
   if (existing) {
     // Recover same request on retry — never mix with a different instruction.

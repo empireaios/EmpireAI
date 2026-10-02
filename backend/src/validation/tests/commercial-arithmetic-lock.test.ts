@@ -224,3 +224,62 @@ describe("Given-metric arithmetic authority (Juniper class)", () => {
   // Silence unused const if tree-shaken oddly
   void JUNIPER_GK;
 });
+
+
+describe("owner-supplied monetary facts in ordinary prose", () => {
+  it("preserves explicitly supplied prices and computes through the answer path", () => {
+    for (const amount of [29.99, 47.35, 1234.56]) {
+      for (const price of [`Selling price is US$${amount}`, `US$${amount} selling price`, `selling price: usd ${amount}`]) {
+        const message = `${price}; supplier cost is USD 8; shipping cost is USD 3; marketplace fixed fee is USD 2. Calculate contribution and margin.`;
+        const result = resolveCommercialArithmetic(message);
+        assert.equal(result.operands.sellingPrice, amount, message);
+        assert.equal(result.currency, "USD");
+        assert.equal(result.ok, true, result.unknownReason || message);
+        assert.ok(Math.abs(result.contribution! - (amount - 13)) < 1e-8);
+        const answer = synthesizeCommercialArithmeticAnswer(message);
+        assert.ok(answer);
+        assert.doesNotMatch(answer, /SELLING_PRICE unknown/i);
+        const contract = parseExecutiveTaskContract(message);
+        const ownerAnswer = synthesizeTaskUnitAnswer(contract.tasks[0]!, truth() as never, { userMessage: message });
+        assert.ok(ownerAnswer.includes((amount - 13).toFixed(2)), ownerAnswer);
+        assert.doesNotMatch(ownerAnswer, /SELLING_PRICE unknown/i);
+      }
+    }
+  });
+  it("does not borrow another field or interpret malformed/ranged money as a price", () => {
+    for (const input of ["Selling price unknown; supplier cost US$29.99", "Selling price is US$29.99.50", "Selling price is US$29.99–US$39.99", "Selling price is 29.99%", "Selling price is US$29,99"]) {
+      assert.equal(parseCommercialOperands(input).sellingPrice, null, input);
+    }
+    assert.equal(parseCommercialOperands("Selling price is US$1,234.56").sellingPrice, 1234.56);
+  });
+});
+
+
+describe("supplied marketplace fees remain in scenario economics", () => {
+  it("uses the recovered owner fact summary without claiming the original transcript or provider qualification", () => {
+    const message = "Selling price US$29.99, supplier US$8.40, freight US$5.60, Amazon fees US$6.20, stock 180. Give a decision, economics, unverifiable items, and next action.";
+    assert.equal(isCommercialArithmeticAsk(message), true);
+    const result = resolveCommercialArithmetic(message);
+    assert.equal(result.ok, true);
+    assert.equal(result.operands.marketplaceFixedFee, 6.2);
+    assert.equal(result.totalCosts, 20.2);
+    assert.equal(result.displayContribution, "$9.79");
+    assert.equal(result.displayMargin, "32.64%");
+    const contract = parseExecutiveTaskContract(message);
+    const answers = contract.tasks.map(task => synthesizeTaskUnitAnswer(task, truth() as never, { userMessage: message })).join("\n");
+    assert.match(answers, /9\.79/);
+    assert.doesNotMatch(answers, /15\.99|UNKNOWN SELLING_PRICE/);
+  });
+  it("reads plural fixed and percentage fees without stealing a later margin", () => {
+    for (const phrase of ["Amazon fees US$4.70; intended margin 30%", "marketplace fees 10% of price"]) {
+      const result = resolveCommercialArithmetic(`Selling price US$47, supplier US$8, freight US$3, ${phrase}. Contribution?`);
+      assert.equal(result.ok, true);
+      assert.equal(result.displayContribution, "$31.30");
+    }
+    for (const fees of ["fees unknown; intended margin 30%", "fees US$6.20.50", "fees US$6.20–US$9.20", "fees 10%-20%"]) {
+      const result = resolveCommercialArithmetic(`Selling price US$29.99, supplier US$8.40, freight US$5.60, Amazon ${fees}. Contribution?`);
+      assert.equal(result.ok, false, fees);
+      assert.match(result.unknownReason ?? "", /FEE|fee/);
+    }
+  });
+});

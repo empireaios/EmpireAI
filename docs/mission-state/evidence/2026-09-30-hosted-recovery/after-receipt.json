@@ -1,0 +1,226 @@
+{
+  "schema": "empireai-bounded-canary-probe-v2",
+  "phase": "after",
+  "startedAt": "2026-09-30T13:41:40.656Z",
+  "checks": [
+    {
+      "name": "scope_and_runtime",
+      "pass": true,
+      "actualProbeSha256": "8b2eb4245a28477f29baa49b1665c9d89af3a95bb5f40420e98acf38fa438181",
+      "actualNodeVersion": "22.23.2",
+      "npmBuildIdentity": "SEPARATE_RECEIPT_REQUIRED"
+    },
+    {
+      "name": "launcher_identity",
+      "pass": true,
+      "launchId": "ebe61407-fa71-4f0a-9081-fe4eacea8371",
+      "launcherSha256": "cd959338913bc7b20f7d72a6814611a19ab520d19080b89b59e0b2527e1916d5",
+      "childPid": 16
+    },
+    {
+      "name": "live_identity",
+      "pass": true
+    },
+    {
+      "name": "readiness",
+      "pass": true,
+      "httpStatus": 200,
+      "workerReady": true,
+      "sessionStore": "redis",
+      "redisReady": true
+    },
+    {
+      "name": "redis_persistence_configuration",
+      "pass": true,
+      "maxmemory": "268435456",
+      "maxmemory-policy": "noeviction",
+      "appendonly": "yes",
+      "appendfsync": "always"
+    },
+    {
+      "name": "unauthorized_me",
+      "pass": true,
+      "httpStatus": 401
+    },
+    {
+      "name": "unauthorized_request",
+      "pass": true,
+      "httpStatus": 401
+    },
+    {
+      "name": "unauthorized_birth",
+      "pass": true,
+      "httpStatus": 401
+    },
+    {
+      "name": "unauthorized_mission",
+      "pass": true,
+      "httpStatus": 401
+    },
+    {
+      "name": "founder_login",
+      "pass": true,
+      "httpStatus": 200
+    },
+    {
+      "name": "founder_session",
+      "pass": true
+    },
+    {
+      "name": "admin_login",
+      "pass": true,
+      "httpStatus": 200
+    },
+    {
+      "name": "admin_session",
+      "pass": true
+    },
+    {
+      "name": "worker_founder_login",
+      "pass": true,
+      "httpStatus": 200
+    },
+    {
+      "name": "worker_founder_session",
+      "pass": true
+    },
+    {
+      "name": "worker_admin_login",
+      "pass": true,
+      "httpStatus": 200
+    },
+    {
+      "name": "worker_admin_session",
+      "pass": true
+    },
+    {
+      "name": "birth_locks",
+      "pass": true,
+      "httpStatus": 200,
+      "status": "NOT_BORN",
+      "authority": {
+        "birthStatus": "NOT_BORN",
+        "technicallyReady": false,
+        "commerceStatus": "LOCKED",
+        "realCommerceAuthorized": false,
+        "waveCredit": 0,
+        "independentCertification": "UNVERIFIED",
+        "certificationReceiptIngestion": "IMPLEMENTED_UNVERIFIED_ONLY",
+        "reason": "Unverified certification receipt intake is implemented. The owner-authorized replacement certification requirements (PILLOW-REPLACEMENT-CERTIFICATION-V1) remain unverified and certification acceptance is not implemented; legacy commissioning, engineering passes, prose and owner approval alone cannot authorise Birth or live commerce."
+      }
+    },
+    {
+      "name": "cross_workspace_denied",
+      "pass": true
+    },
+    {
+      "name": "commerce_rejected",
+      "pass": true,
+      "httpStatus": 500,
+      "expectedRejection": true
+    },
+    {
+      "name": "account_identity_preserved",
+      "pass": true
+    },
+    {
+      "name": "prior_phase_passed",
+      "pass": true
+    },
+    {
+      "name": "same_candidate_restarted",
+      "pass": false,
+      "beforeDeploymentId": "562d64c8-3a00-425a-bc39-c10a8a02cf54",
+      "afterDeploymentId": "562d64c8-3a00-425a-bc39-c10a8a02cf54",
+      "proofScope": "new application launch and deployment at same exact source commit; not same-image proof"
+    },
+    {
+      "name": "probe_prerequisite_or_operation",
+      "pass": false,
+      "failure": "STOPPED_WITHOUT_SECRET_OUTPUT"
+    }
+  ],
+  "scope": "private disposable canary, same-candidate application redeploy recovery only",
+  "limitations": [
+    "Not production, live-commerce, model quality or Birth certification.",
+    "No Redis restart, abrupt process kill, lost-volume or power-loss proof is claimed by this probe.",
+    "npm identity requires its separate exact build receipt; it is not inferred from runtime configuration."
+  ],
+  "service": "3ccf12ed-da3c-4d7a-9f9f-5f2cb982104b",
+  "commit": "bea6f0d490041cb2c85f5ca1ae68902bb3761f6c",
+  "probeSha": "8b2eb4245a28477f29baa49b1665c9d89af3a95bb5f40420e98acf38fa438181",
+  "deploymentId": "562d64c8-3a00-425a-bc39-c10a8a02cf54",
+  "nodeVersion": "22.23.2",
+  "expiresAt": "2026-09-30T14:07:09.699Z",
+  "requiredChecks": [
+    "scope_and_runtime",
+    "launcher_identity",
+    "live_identity",
+    "readiness",
+    "redis_persistence_configuration",
+    "unauthorized_me",
+    "unauthorized_request",
+    "unauthorized_birth",
+    "unauthorized_mission",
+    "founder_login",
+    "founder_session",
+    "admin_login",
+    "admin_session",
+    "worker_founder_login",
+    "worker_founder_session",
+    "worker_admin_login",
+    "worker_admin_session",
+    "worker_founder_logout",
+    "worker_admin_logout",
+    "birth_locks",
+    "commerce_rejected",
+    "cross_workspace_denied",
+    "mission_history",
+    "mission_fake_completion_rejected",
+    "native_mission_history",
+    "authority_completed",
+    "missing_provider_failed_truthfully",
+    "request_owner_isolation",
+    "admin_logout",
+    "prior_phase_passed",
+    "same_candidate_restarted",
+    "mission_history_preserved",
+    "native_history_preserved",
+    "authority_result_preserved",
+    "failure_result_preserved",
+    "brain_snapshot_integrity",
+    "brain_accounts_persisted",
+    "account_identity_preserved"
+  ],
+  "missingRequiredChecks": [
+    "worker_founder_logout",
+    "worker_admin_logout",
+    "mission_history",
+    "mission_fake_completion_rejected",
+    "native_mission_history",
+    "authority_completed",
+    "missing_provider_failed_truthfully",
+    "request_owner_isolation",
+    "admin_logout",
+    "mission_history_preserved",
+    "native_history_preserved",
+    "authority_result_preserved",
+    "failure_result_preserved",
+    "brain_snapshot_integrity",
+    "brain_accounts_persisted"
+  ],
+  "duplicateChecks": [],
+  "passed": false,
+  "finishedAt": "2026-09-30T13:41:41.322Z",
+  "birthCertificationGranted": false,
+  "commerceAuthorized": false,
+  "productionReadiness": "NOT_PROVEN",
+  "additionalRequiredProof": {
+    "abruptKillRecovery": "NOT_PROVEN",
+    "redisRestartRecovery": "NOT_PROVEN",
+    "volumeRestore": "NOT_PROVEN",
+    "v53BirthCertification": "NOT_PROVEN",
+    "realProviderLifecycle": "NOT_PROVEN",
+    "absentHandlerAndDependencyExecution": "NOT_PROVEN"
+  }
+}

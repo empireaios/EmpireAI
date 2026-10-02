@@ -130,10 +130,6 @@ describe("Mission 076 Order Execution Bridge", () => {
   });
 
   it("rejects sandbox submit when CJ integration mode is LIVE", async () => {
-    process.env.CJ_INTEGRATION_MODE = "LIVE";
-    process.env.CJ_API_KEY = "test-key";
-    process.env.CJ_API_SECRET = "test-secret";
-
     await invokeTool("order.prepare_fulfillment_from_manufacturing_run", {
       useDeterministicMocks: true,
     });
@@ -143,6 +139,10 @@ describe("Mission 076 Order Execution Bridge", () => {
       approvedBy: "founder@empireai.test",
       approvedAt: new Date().toISOString(),
     });
+
+    process.env.CJ_INTEGRATION_MODE = "LIVE";
+    process.env.CJ_API_KEY = "test-key";
+    process.env.CJ_API_SECRET = "test-secret";
 
     await assert.rejects(
       () => invokeTool("order.submit_approved_order_sandbox_only"),

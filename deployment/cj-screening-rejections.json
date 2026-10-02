@@ -1,0 +1,12 @@
+{
+ "schemaVersion":1,
+ "assessedAt":"2026-09-29T13:12:00Z",
+ "policy":"CJ-controlled fulfilment launch requirement",
+ "reopenRule":"Do not automatically retry these products. Reopening requires materially new source evidence and an explicit reviewed decision superseding the rejection.",
+ "products":[
+  {"pid":"1872203651945525250","vid":"1872203652109103106","sku":"CJFU225443901AZ","code":"SUPPLIER_CONTROLS_FULFILMENT","decision":"REJECT","reason":"Supplier manages and ships the product; CJ-controlled fulfilment not established. Exact Amazon identity, applicable freight and complete economics remain unverified."},
+  {"pid":"1873650472634056705","code":"SUPPLIER_CONTROLS_FULFILMENT","decision":"REJECT","reason":"Same supplier-shipped classification fails the CJ-controlled fulfilment launch screen."},
+  {"pid":"2609291119211612600","code":"NO_CJ_STOCK","decision":"REJECT","reason":"Prior exact-variant evidence showed zero CJ stock; factory stock is ineligible."}
+ ],
+ "sources":["docs/mission-state/evidence/2026-09-29-cj-discovery/receipt.json","docs/mission-state/evidence/2026-09-29-cj-supplier/receipt.json","https://developers.cjdropshipping.com/en/api/api2/api/product.html#producttype-reference"]
+}

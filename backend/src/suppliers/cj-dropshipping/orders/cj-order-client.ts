@@ -1,8 +1,8 @@
+import { isCjLiveEstimateContext } from "./cj-fulfillment-estimate-gate.js";
 import type { Order } from "../../../orders/index.js";
 import type { CjApiClient } from "../cj-api-client.js";
-import { createCjApiClient } from "../cj-api-client.js";
 import type { CjConfig } from "../cj-config.js";
-import { isCjLiveApiEnabled, loadCjConfig } from "../cj-config.js";
+import { loadCjConfig } from "../cj-config.js";
 import { getCjSandboxProducts } from "../cj-sandbox-fixtures.js";
 import {
   recordDeliveryOutcome,
@@ -38,11 +38,9 @@ export type CjOrderClientOptions = {
 /** CJ Dropshipping order fulfillment client — submission is approval-gated. */
 export class CjOrderClient {
   readonly config: CjConfig;
-  private readonly apiClient: CjApiClient;
 
   constructor(options: CjOrderClientOptions = {}) {
     this.config = options.config ?? loadCjConfig();
-    this.apiClient = options.apiClient ?? createCjApiClient(this.config);
   }
 
   /** Validates order without requiring approval. */
@@ -60,19 +58,27 @@ export class CjOrderClient {
     const validation = validateOrder(order);
     const issues = [...validation.issues];
 
-    const itemCost = order.items.reduce((sum, item) => sum + item.unitCost * item.quantity, 0);
-    const shippingEstimate = 5.99;
-    const currency = order.currency || "USD";
-
-    let estimatedDeliveryDaysMin = 7;
-    let estimatedDeliveryDaysMax = 14;
-    let shippingMethod = "CJ_STANDARD_SANDBOX";
-
-    if (isCjLiveApiEnabled(this.config)) {
-      shippingMethod = "CJ_STANDARD";
-      estimatedDeliveryDaysMin = 5;
-      estimatedDeliveryDaysMax = 12;
+    const currency = typeof order.currency === "string" && /^[A-Z]{3}$/.test(order.currency) ? order.currency : null;
+    const liveIntent = isCjLiveEstimateContext(order, this.config);
+    const itemCostsKnown = order.items.length > 0 && order.items.every(item =>
+      Number.isFinite(item.unitCost) && item.unitCost >= 0 && Number.isSafeInteger(item.quantity) && item.quantity > 0 && item.currency === currency);
+    const itemCost = itemCostsKnown ? order.items.reduce((sum, item) => sum + item.unitCost * item.quantity, 0) : NaN;
+    const estimatedCents = Math.round((itemCost + 5.99) * 100);
+    if (liveIntent || !currency || !Number.isFinite(itemCost) || !Number.isSafeInteger(estimatedCents)) {
+      return {
+        source: "UNAVAILABLE", liveQuoteVerified: false,
+        estimatedCost: null, currency, estimatedDeliveryDaysMin: null, estimatedDeliveryDaysMax: null, shippingMethod: null,
+        valid: false,
+        issues: [...issues, liveIntent
+          ? "Live CJ fulfillment cost, shipping service and delivery window are unknown: no provider quote was obtained; sandbox estimates cannot authorize live economics."
+          : "Item costs, quantities or currency are unknown, invalid, or exceed safe integer cents; no fulfillment estimate can be calculated."],
+      };
     }
+
+    // Deliberate offline fixture only. Credentials cannot upgrade it to a live quote.
+    const estimatedDeliveryDaysMin = 7;
+    const estimatedDeliveryDaysMax = 14;
+    const shippingMethod = "CJ_STANDARD_SANDBOX";
 
     const sandboxMatch = getCjSandboxProducts().find((product) =>
       order.items.some(
@@ -85,7 +91,8 @@ export class CjOrderClient {
     }
 
     return {
-      estimatedCost: Number((itemCost + shippingEstimate).toFixed(2)),
+      source: "SANDBOX_FIXTURE", liveQuoteVerified: false,
+      estimatedCost: estimatedCents / 100,
       currency,
       estimatedDeliveryDaysMin,
       estimatedDeliveryDaysMax,
@@ -98,7 +105,7 @@ export class CjOrderClient {
   /**
    * Submits an order to CJ — DISABLED unless APPROVED=true with full approval gate.
    * Default SANDBOX: simulates submission without live API charges.
-   * LIVE mode only when CJ_INTEGRATION_MODE=LIVE and approval exists.
+   * LIVE execution is blocked here; the controlled ledger must own admission.
    */
   async submitOrder(
     order: Order,
@@ -113,31 +120,17 @@ export class CjOrderClient {
 
     const mode = assertSubmissionAllowed(this.config, order);
 
-    if (mode === "LIVE" && !isCjLiveApiEnabled(this.config)) {
-      throw new CjOrderSubmissionDisabledError(
-        "Live submission requires CJ_INTEGRATION_MODE=LIVE with valid credentials and approval.",
-      );
+    // This legacy client lacks durable admission/reconciliation. Do not let it
+    // bypass the fulfillment ledger or manufacture successful provider receipts.
+    if (mode === "LIVE") {
+      throw new CjOrderSubmissionDisabledError("Legacy live submission is unavailable until provider receipt reconciliation is established. Use the controlled fulfillment ledger.");
     }
 
-    const payload = buildOrderPayload({ ...order, integrationMode: mode });
-
     try {
-      if (mode === "LIVE") {
-        await this.apiClient.request({
-          method: "POST",
-          path: CJ_ORDER_ENDPOINTS.ORDER_CREATE,
-          body: payload,
-          authenticated: true,
-        });
-      }
-
       recordSubmissionAttempt(true);
       recordFulfillmentOutcome(true);
 
-      const supplierOrderId =
-        mode === "SANDBOX"
-          ? `cj-sandbox-order-${order.orderId}`
-          : `cj-live-order-${order.orderId}`;
+      const supplierOrderId = `cj-sandbox-order-${order.orderId}`;
       const trackingNumber = `TRK-${order.orderId.slice(-8).toUpperCase()}`;
 
       syncSandboxTracking(order, supplierOrderId, trackingNumber);
@@ -145,13 +138,10 @@ export class CjOrderClient {
 
       return {
         supplierOrderId,
-        status: mode === "SANDBOX" ? "SANDBOX_SIMULATED" : "SUBMITTED",
+        status: "SANDBOX_SIMULATED",
         integrationMode: mode,
         submittedAt: new Date().toISOString(),
-        message:
-          mode === "SANDBOX"
-            ? "Sandbox order simulated — no live charges or payment execution."
-            : "Order submitted to CJ with approval gate satisfied.",
+        message: "Sandbox order simulated — no live charges or payment execution.",
       };
     } catch (error) {
       recordSubmissionAttempt(false);

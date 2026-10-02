@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-29T13:07:27.345Z",
+  "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
+  "source": "21384342c401def948926904913840e63c18dff7",
+  "pid": 539,
+  "pending": true,
+  "flushCount": 3,
+  "criticalFlushRequested": 0,
+  "criticalFlushSucceeded": 0,
+  "lagMs": 3725,
+  "sourceFileSha256": {
+    "backend/src/index.ts": "8e836f630e3328ac0313bc315af88d61448378193c1514abf322d72455a0d724",
+    "backend/src/brain/sqlite-database.ts": "d40eaae9765d782da3c66f05a51ed351da1da9719e70551c82f270ec196571d6"
+  },
+  "oldCriticalPersistReturns": "void; starts asynchronous export, not an awaitable durable capture receipt",
+  "oldShutdown": "SIGINT/SIGTERM invoke shutdown then process.exit; must not be used as a capture request",
+  "candidateCaptureHooksAvailableInOldProcess": false,
+  "productionChanged": false,
+  "safeToPromote": false
+}

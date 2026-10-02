@@ -304,6 +304,7 @@ export async function registerRealityIntegrationRoutes(
 
   app.post("/reality-integration/live-commerce/oauth/start", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
+    if (user.role !== "founder") return reply.code(403).send({ error: "Founder authorization required" });
     const body = z.object({
       providerId: z.string().min(1),
       redirectUri: z.string().url(),
@@ -330,11 +331,12 @@ export async function registerRealityIntegrationRoutes(
 
   app.post("/reality-integration/live-commerce/oauth/complete", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
+    if (user.role !== "founder") return reply.code(403).send({ error: "Founder authorization required" });
     const body = z.object({ stateId: z.string().min(1), code: z.string().min(1) }).parse(request.body);
     const { completeMarketplaceOAuth } = await import(
       "../live-commerce/services/oauth-lifecycle-service.js"
     );
-    const result = await completeMarketplaceOAuth(body);
+    const result = await completeMarketplaceOAuth({ ...body, workspaceId: user.workspaceId });
     auditLogger.write({
       action: "reality_integration.live_commerce.oauth.complete",
       actor: user.email,

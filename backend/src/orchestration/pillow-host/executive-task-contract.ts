@@ -9,6 +9,7 @@
  */
 
 import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
+import { synthesizeChronologyObligation } from "./executive-chronology-evidence.js";
 import {
   asksForRiskRanking,
   asksForVerificationPriority,
@@ -1128,6 +1129,17 @@ export function synthesizeTaskUnitAnswer(
         "Score this quoted claim against the canonical eligible set / gates for this case. Do not demand external live verification for owner-supplied scenario facts.",
       ].join("\n");
     }
+  }
+
+  // Timestamped incident evidence is not an open commerce-planning request.
+  // Keep each explicit chronology obligation distinct and source-grounded before
+  // generic scoped templates can introduce unrelated nested numbered lists.
+  if (
+    scoped && !decisionCase && !String(task.id).startsWith("claim_") &&
+    ["multipart_unit", "general", "uncertainty", "premise_audit", "temporal_reconciliation", "evidence_explanation", "inference"].includes(task.kind)
+  ) {
+    const chronology = synthesizeChronologyObligation(subject, packText);
+    if (chronology) return chronology;
   }
 
   if (task.kind === "risk_ranking") {

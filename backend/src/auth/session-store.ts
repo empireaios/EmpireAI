@@ -1,9 +1,30 @@
 import { randomBytes, randomUUID } from "node:crypto";
+import { z } from "zod";
 import type { RedisClient } from "../config/redis-client.js";
 import { env } from "../config/env.js";
 import type { SessionRecord, SessionUser } from "./permissions.js";
 
 const SESSION_PREFIX = "empireai:session:";
+
+/** A live Redis connection does not guarantee session commands can succeed. */
+export class SessionStoreUnavailableError extends Error {
+  constructor(options?: ErrorOptions) {
+    super("Shared session store temporarily unavailable", options);
+    this.name = "SessionStoreUnavailableError";
+  }
+}
+
+type SessionRedisClient = Pick<RedisClient, "setex" | "get" | "del">;
+const storedSessionSchema = z.object({
+  id: z.string().min(1),
+  email: z.string().email(),
+  name: z.string(),
+  role: z.enum(["founder", "operator", "admin"]),
+  workspaceId: z.string().min(1),
+  token: z.string().min(1),
+  expiresAt: z.string().datetime(),
+  createdAt: z.string().datetime(),
+});
 
 export interface SessionStoreBackend {
   create(user: SessionUser): Promise<SessionRecord>;
@@ -13,7 +34,7 @@ export interface SessionStoreBackend {
 }
 
 export class SessionStore implements SessionStoreBackend {
-  constructor(private readonly redis: RedisClient) {}
+  constructor(private readonly redis: SessionRedisClient) {}
 
   async create(user: SessionUser): Promise<SessionRecord> {
     const token = randomBytes(32).toString("hex");
@@ -29,23 +50,40 @@ export class SessionStore implements SessionStoreBackend {
       createdAt: now.toISOString(),
     };
 
-    await this.redis.setex(
-      `${SESSION_PREFIX}${token}`,
-      env.SESSION_TTL_SECONDS,
-      JSON.stringify(session),
-    );
+    try {
+      const acknowledgement = await this.redis.setex(
+        `${SESSION_PREFIX}${token}`,
+        env.SESSION_TTL_SECONDS,
+        JSON.stringify(session),
+      );
+      if (acknowledgement !== "OK") throw new Error("session_write_not_acknowledged");
+    } catch (cause) {
+      throw new SessionStoreUnavailableError({ cause });
+    }
 
     return session;
   }
 
   async get(token: string): Promise<SessionRecord | null> {
-    const raw = await this.redis.get(`${SESSION_PREFIX}${token}`);
-    if (!raw) return null;
-    return JSON.parse(raw) as SessionRecord;
+    try {
+      const raw = await this.redis.get(`${SESSION_PREFIX}${token}`);
+      if (!raw) return null;
+      const session = storedSessionSchema.parse(JSON.parse(raw));
+      if (session.token !== token) throw new Error("session_token_mismatch");
+      if (Date.parse(session.expiresAt) <= Date.now()) return null;
+      return session;
+    } catch (cause) {
+      throw new SessionStoreUnavailableError({ cause });
+    }
   }
 
   async destroy(token: string): Promise<void> {
-    await this.redis.del(`${SESSION_PREFIX}${token}`);
+    try {
+      const removed = await this.redis.del(`${SESSION_PREFIX}${token}`);
+      if (removed !== 0 && removed !== 1) throw new Error("session_delete_not_acknowledged");
+    } catch (cause) {
+      throw new SessionStoreUnavailableError({ cause });
+    }
   }
 
   async refresh(token: string): Promise<SessionRecord | null> {

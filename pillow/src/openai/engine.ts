@@ -31,6 +31,8 @@ export interface PillowPriorConversationTurn {
 }
 
 export interface PillowCompletionRequest {
+  /** Durable transport cannot retry tool execution or artifact mutations. */
+  reasoningOnly?: boolean;
   operationalContext: OperationalContext;
   userMessage: string;
   workspaceId: string;
@@ -115,14 +117,15 @@ export class OpenAIIntegrationLayer {
       request.executiveReasoning ?? request.operationalContext.executiveReasoning,
       request.executiveLearningBundle,
       request.executiveCouncilRecommendation,
-      this.intelligencePlatform,
+      request.reasoningOnly ? undefined : this.intelligencePlatform,
       request.priorConversationTurns,
       request.executiveConversationMode,
+      request.reasoningOnly,
     );
 
     const systemContext = messages.find((m) => m.role === "system")?.content ?? "";
 
-    if (this.intelligencePlatform && !request.executiveConversationMode) {
+    if (this.intelligencePlatform && !request.reasoningOnly && !request.executiveConversationMode) {
       const routing = this.intelligencePlatform.assessRouting(
         request.userMessage,
         request.operationalContext,
@@ -176,7 +179,7 @@ export class OpenAIIntegrationLayer {
     const response = await this.adapter.complete(llmRequest);
 
     let artifacts: EmpireAIArtifact[] | undefined;
-    if (this.intelligencePlatform) {
+    if (this.intelligencePlatform && !request.reasoningOnly) {
       const chatArtifact = this.intelligencePlatform.getArtifactRegistry().register({
         artifactType: "chat_response",
         sourceTool: "general_knowledge",
@@ -189,7 +192,7 @@ export class OpenAIIntegrationLayer {
       artifacts = [chatArtifact];
     }
 
-    const routing = this.intelligencePlatform?.assessRouting(
+    const routing = request.reasoningOnly ? undefined : this.intelligencePlatform?.assessRouting(
       request.userMessage,
       request.operationalContext,
     );
@@ -224,6 +227,7 @@ function assembleLlmMessages(
   intelligencePlatform?: IntelligencePlatformEngine,
   priorConversationTurns?: PillowPriorConversationTurn[],
   executiveConversationMode?: boolean,
+  reasoningOnly?: boolean,
 ): BrainLLMMessage[] {
   const snapshot = context.intelligenceSnapshot;
   const hasRepositoryKnowledge = Boolean(context.repositoryKnowledgeAnswer?.trim());
@@ -247,6 +251,7 @@ function assembleLlmMessages(
 
   const systemHeader = [
     "You are Pillow, the AI operating layer inside EmpireAI.",
+    ...(reasoningOnly ? ["REASONING ONLY: No tools, commands, approvals, episodes, listings, orders, payments or other external actions are executed by this request. Do not claim that any action was performed or that live information was fetched. Explain any action requiring a separate authorized execution path."] : []),
     "Constitutional authority: Digital Soul of Pillow V2 (DS-V2-CANONICAL).",
     knowledgeRoutingPolicy,
     `Operating mode: ${mode}`,
@@ -256,7 +261,9 @@ function assembleLlmMessages(
       ? `Journey position: ${snapshot.journeyPosition}`
       : null,
     snapshot.currentMission ? `Current mission: ${snapshot.currentMission}` : null,
-    `Repository health score: ${snapshot.healthScore}`,
+    reasoningOnly
+      ? "Repository health was not assessed by this reasoning-only request."
+      : `Repository health score: ${snapshot.healthScore}`,
   ]
     .filter(Boolean)
     .join("\n");

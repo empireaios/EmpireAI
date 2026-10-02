@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "evidenceMode": "SYNTHETIC_RESTORE_REHEARSAL",
+  "brainAndShadowCaptured": true,
+  "jsonOwnershipAndAuthorityRestored": true,
+  "freshProcessReadback": true,
+  "tamperedCaptureRefused": true,
+  "originalSourceUnchanged": true,
+  "pendingRamCaptured": false,
+  "redisRestored": false,
+  "nativeStoresRestored": false,
+  "oldProcessCaptureBridgeVerified": false,
+  "safeToPromote": false,
+  "productionTouched": false,
+  "businessWrites": 0
+}

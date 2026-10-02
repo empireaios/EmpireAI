@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto";
+import { MissionSnapshotFile, type MissionStoreSnapshot, type MissionPersistenceScope } from "./mission-persistence.js";
 import type {
   Checkpoint,
   ExecutionTimelineEntry,
@@ -16,7 +18,7 @@ export function resetMsrSequenceForTesting() {
 
 export function nextMsrId(prefix: string) {
   sequence += 1;
-  return `${prefix}-${Date.now()}-${sequence}`;
+  return `${prefix}-${Date.now()}-${sequence}-${randomUUID()}`;
 }
 
 export class MissionStore {
@@ -28,16 +30,61 @@ export class MissionStore {
   private timeline: ExecutionTimelineEntry[] = [];
   private reports: MissionRuntimeReport[] = [];
   private auditTrail: string[] = [];
+  private readonly persistence: MissionSnapshotFile | null;
+  private transactionDepth = 0;
+
+  constructor(persistenceFile?: string, persistenceScope: MissionPersistenceScope | null = null) {
+    this.persistence = persistenceFile ? new MissionSnapshotFile(persistenceFile, persistenceScope) : null;
+    const recovered = this.persistence?.load();
+    if (recovered) this.restore(recovered);
+  }
+
+  private snapshot(): MissionStoreSnapshot {
+    return structuredClone({ ...this.getHistory(), auditTrail: this.auditTrail });
+  }
+
+  private restore(snapshot: MissionStoreSnapshot) {
+    this.missions = new Map(snapshot.missions.map(mission => [mission.missionId, mission]));
+    this.transitions = snapshot.transitions;
+    this.checkpoints = snapshot.checkpoints;
+    this.retries = snapshot.retries;
+    this.recoveries = snapshot.recoveries;
+    this.timeline = snapshot.timeline;
+    this.reports = snapshot.reports;
+    this.auditTrail = snapshot.auditTrail;
+  }
+
+  transaction<T>(operation: () => T): T {
+    if (!this.persistence || this.transactionDepth > 0) return operation();
+    const before = this.snapshot();
+    this.transactionDepth += 1;
+    try {
+      const result = operation();
+      this.persistence.save(this.snapshot());
+      return result;
+    } catch (error) {
+      this.restore(before);
+      throw error;
+    } finally {
+      this.transactionDepth -= 1;
+    }
+  }
+
+  private mutate<T>(operation: () => T): T {
+    return this.transaction(operation);
+  }
 
   saveMission(mission: MissionInstance) {
-    this.missions.set(mission.missionId, {
-      ...mission,
-      dependencyMissionIds: [...mission.dependencyMissionIds],
-      workers: [...mission.workers],
-      traceabilityRefs: [...mission.traceabilityRefs],
+    return this.mutate(() => {
+      this.missions.set(mission.missionId, {
+        ...mission,
+        dependencyMissionIds: [...mission.dependencyMissionIds],
+        workers: [...mission.workers],
+        traceabilityRefs: [...mission.traceabilityRefs],
     });
     this.auditTrail.push(`mission_saved:${mission.missionId}@${mission.updatedAt}`);
     return mission;
+    });
   }
 
   getMission(missionId: string) {
@@ -62,9 +109,11 @@ export class MissionStore {
   }
 
   saveTransition(transition: LifecycleTransition) {
-    this.transitions.push({ ...transition });
-    this.auditTrail.push(`transition:${transition.transitionId}@${transition.timestamp}`);
-    return transition;
+    return this.mutate(() => {
+      this.transitions.push({ ...transition });
+      this.auditTrail.push(`transition:${transition.transitionId}@${transition.timestamp}`);
+      return transition;
+    });
   }
 
   listTransitions(missionId?: string) {
@@ -75,9 +124,11 @@ export class MissionStore {
   }
 
   saveCheckpoint(checkpoint: Checkpoint) {
-    this.checkpoints.push({ ...checkpoint, payload: { ...checkpoint.payload } });
-    this.auditTrail.push(`checkpoint:${checkpoint.checkpointId}@${checkpoint.timestamp}`);
-    return checkpoint;
+    return this.mutate(() => {
+      this.checkpoints.push({ ...checkpoint, payload: { ...checkpoint.payload } });
+      this.auditTrail.push(`checkpoint:${checkpoint.checkpointId}@${checkpoint.timestamp}`);
+      return checkpoint;
+    });
   }
 
   listCheckpoints(missionId?: string) {
@@ -88,9 +139,11 @@ export class MissionStore {
   }
 
   saveRetry(retry: RetryRecord) {
-    this.retries.push({ ...retry });
-    this.auditTrail.push(`retry:${retry.retryId}@${retry.timestamp}`);
-    return retry;
+    return this.mutate(() => {
+      this.retries.push({ ...retry });
+      this.auditTrail.push(`retry:${retry.retryId}@${retry.timestamp}`);
+      return retry;
+    });
   }
 
   listRetries(missionId?: string) {
@@ -99,9 +152,11 @@ export class MissionStore {
   }
 
   saveRecovery(recovery: RecoveryRecord) {
-    this.recoveries.push({ ...recovery });
-    this.auditTrail.push(`recovery:${recovery.recoveryId}@${recovery.timestamp}`);
-    return recovery;
+    return this.mutate(() => {
+      this.recoveries.push({ ...recovery });
+      this.auditTrail.push(`recovery:${recovery.recoveryId}@${recovery.timestamp}`);
+      return recovery;
+    });
   }
 
   listRecoveries(missionId?: string) {
@@ -112,9 +167,11 @@ export class MissionStore {
   }
 
   appendTimeline(entry: ExecutionTimelineEntry) {
-    this.timeline.push({ ...entry, notes: [...entry.notes] });
-    this.auditTrail.push(`timeline:${entry.entryId}@${entry.timestamp}`);
-    return entry;
+    return this.mutate(() => {
+      this.timeline.push({ ...entry, notes: [...entry.notes] });
+      this.auditTrail.push(`timeline:${entry.entryId}@${entry.timestamp}`);
+      return entry;
+    });
   }
 
   listTimeline(missionId?: string) {
@@ -125,19 +182,21 @@ export class MissionStore {
   }
 
   saveReport(report: MissionRuntimeReport) {
-    this.reports.push({
-      ...report,
-      executionTimeline: report.executionTimeline.map((e) => ({ ...e, notes: [...e.notes] })),
-      activeWorkers: [...report.activeWorkers],
-      dependencies: report.dependencies.map((d) => ({ ...d })),
-      checkpoints: report.checkpoints.map((c) => ({ ...c, payload: { ...c.payload } })),
-      retryHistory: report.retryHistory.map((r) => ({ ...r })),
-      recoveryHistory: report.recoveryHistory.map((r) => ({ ...r })),
-      supportingEvidence: [...report.supportingEvidence],
-      outstandingIssues: [...report.outstandingIssues],
+    return this.mutate(() => {
+      this.reports.push({
+        ...report,
+        executionTimeline: report.executionTimeline.map((e) => ({ ...e, notes: [...e.notes] })),
+        activeWorkers: [...report.activeWorkers],
+        dependencies: report.dependencies.map((d) => ({ ...d })),
+        checkpoints: report.checkpoints.map((c) => ({ ...c, payload: { ...c.payload } })),
+        retryHistory: report.retryHistory.map((r) => ({ ...r })),
+        recoveryHistory: report.recoveryHistory.map((r) => ({ ...r })),
+        supportingEvidence: [...report.supportingEvidence],
+        outstandingIssues: [...report.outstandingIssues],
     });
     this.auditTrail.push(`report_saved:${report.reportId}@${report.timestamp}`);
     return report;
+    });
   }
 
   listReports() {

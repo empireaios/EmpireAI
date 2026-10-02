@@ -20,6 +20,8 @@ export interface LiveCommerceSyncResult {
   itemsProcessed: number;
   itemsFailed: number;
   liveApiVerified: boolean;
+  /** A server-side provider record was persisted and independently read back. */
+  durableReadbackVerified?: boolean;
 }
 
 export interface LiveCommerceProviderAdapter {

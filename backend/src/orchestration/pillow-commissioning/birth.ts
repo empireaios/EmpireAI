@@ -1,7 +1,6 @@
 /**
- * Pillow birth — one-way commissioning event.
- * Timestamp is created ONLY when Grand King authorises transition to continuous OPERATION.
- * Never invent/reset birth date.
+ * Current Birth authority with preserved legacy commissioning history.
+ * Historical timestamps never grant current authority or get rewritten.
  */
 
 import { getDatabase } from "../../brain/database.js";
@@ -10,7 +9,8 @@ import { listInstitutionalMemory } from "../executive-learning/institutional-mem
 import { buildCostGuardStatus } from "./cost-guard.js";
 import { listFlightEvents } from "./flight-recorder.js";
 import { getOneProductCommissioningRecord } from "./one-product-commissioning.js";
-import { recordFlightEvent } from "./flight-recorder.js";
+import { getPillowAuthority, type PillowAuthority } from "./pillow-authority.js";
+import { hasCompleteSandboxCapabilityPass } from "./executive-operating-loop/capability-run-evidence.js";
 import {
   getLatestCapabilityTestRun,
   getLatestExecutiveCycle,
@@ -18,6 +18,7 @@ import {
 } from "./executive-operating-loop/store.js";
 
 export type BirthStatus =
+  | "NOT_BORN"
   | "NOT_READY"
   | "COMMISSIONING"
   | "TECHNICALLY_READY_AWAITING_GRAND_KING"
@@ -30,9 +31,19 @@ export type BirthGate = {
   evidence: string;
 };
 
+export type LegacyBirthHistory = {
+  status: string | null;
+  birthTimestamp: string | null;
+  authorisedBy: string | null;
+  authorisedAt: string | null;
+  evidenceClass: "LEGACY_UNVERIFIED";
+};
+
 export type BirthRecord = {
   workspaceId: string;
   status: BirthStatus;
+  authority: PillowAuthority;
+  legacyHistory: LegacyBirthHistory | null;
   birthTimestamp: string | null;
   authorisedBy: string | null;
   authorisedAt: string | null;
@@ -93,18 +104,20 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
     getLatestCapabilityTestRun(`${workspaceId}:capability-sandbox`)) as {
     summary?: { passed?: number; failed?: number; total?: number };
   } | null;
-  const capabilityHarnessPass = Boolean(
-    capRun?.summary &&
-      (capRun.summary.total ?? 0) >= 8 &&
-      (capRun.summary.failed ?? 1) === 0,
-  );
+  const capabilityHarnessPass = hasCompleteSandboxCapabilityPass(capRun);
 
   return [
     {
+      id: "independent_v53_certification",
+      label: "Independently accepted replacement certification evidence",
+      passed: getPillowAuthority().technicallyReady,
+      evidence: getPillowAuthority().reason,
+    },
+    {
       id: "ux_baseline",
-      label: "Grand King production UX engineering baseline preserved (003)",
-      passed: true,
-      evidence: "69f5bdfe PRODUCTION ACCEPTANCE READY engineering baseline",
+      label: "Current production UX evidence",
+      passed: false,
+      evidence: "UNVERIFIED: historical engineering baseline 69f5bdfe is not current-release production UX evidence.",
     },
     {
       id: "flight_recorder",
@@ -120,15 +133,15 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
     },
     {
       id: "cost_providers_audited",
-      label: "Cost providers / billing exposure surface available",
-      passed: true,
-      evidence: "Cost Control Centre + billing exposure register",
+      label: "Actual provider costs reconciled",
+      passed: false,
+      evidence: "UNVERIFIED: a Cost Control Centre or billing exposure register does not prove actual provider charges were reconciled.",
     },
     {
       id: "cost_guard_exists",
-      label: "Cost Guard limits/status exist",
-      passed: true,
-      evidence: `level=${cost.level}; unconfigured=${cost.unconfiguredLimitKeys.length}`,
+      label: "Current budget enforcement verified",
+      passed: false,
+      evidence: `UNVERIFIED: Cost Guard reports level=${cost.level}; unconfigured=${cost.unconfiguredLimitKeys.length}. Configuration/status alone is not scoped enforcement evidence.`,
     },
     {
       id: "hard_stop_tested",
@@ -160,9 +173,9 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
     },
     {
       id: "approval_boundary",
-      label: "Publish/spend remain governed",
-      passed: true,
-      evidence: "publicationAutoDisabled + supplierSpendAutoDisabled preserved",
+      label: "Deployed publish/spend boundary verified",
+      passed: false,
+      evidence: "UNVERIFIED: canonical commerce is LOCKED; this policy projection does not prove every deployed side-effect boundary has been independently exercised.",
     },
     {
       id: "executive_operating_loop",
@@ -186,146 +199,59 @@ export function evaluateBirthGates(workspaceId: string): BirthGate[] {
 
 export function getBirthRecord(workspaceId: string): BirthRecord {
   ensureBirthTables();
-  const db = getDatabase();
-  const row = db
-    .prepare(`SELECT record_json FROM pillow_birth_record WHERE workspace_id = @workspaceId`)
-    .get({ workspaceId }) as { record_json: string } | undefined;
+  const row = getDatabase()
+    .prepare(`SELECT status, birth_timestamp, authorised_by, authorised_at FROM pillow_birth_record WHERE workspace_id = @workspaceId`)
+    .get({ workspaceId }) as {
+      status: string | null;
+      birth_timestamp: string | null;
+      authorised_by: string | null;
+      authorised_at: string | null;
+    } | undefined;
 
+  const authority = getPillowAuthority();
   const gates = evaluateBirthGates(workspaceId);
-  const gatesPassedCount = gates.filter((g) => g.passed).length;
-  const technicallyReady = gates.every((g) => g.passed);
-
-  if (row) {
-    const stored = JSON.parse(row.record_json) as BirthRecord;
-    if (stored.status === "BORN" && stored.birthTimestamp) {
-      const age = Math.max(
-        0,
-        Math.floor((Date.now() - Date.parse(stored.birthTimestamp)) / 1000),
-      );
-      return {
-        ...stored,
-        gates,
-        gatesPassedCount,
-        gatesTotal: gates.length,
-        technicallyReady: true,
-        operatingAgeSeconds: age,
-        updatedAt: new Date().toISOString(),
-      };
-    }
-  }
-
-  const status: BirthStatus = technicallyReady
-    ? "TECHNICALLY_READY_AWAITING_GRAND_KING"
-    : gatesPassedCount > 0
-      ? "COMMISSIONING"
-      : "NOT_READY";
-
-  const record: BirthRecord = {
+  // Read-only projection: retain the original table/JSON byte-for-byte as
+  // historical evidence. Never promote even a stored BORN record into authority.
+  return {
     workspaceId,
-    status,
+    status: authority.birthStatus,
+    authority,
+    legacyHistory: row ? {
+      status: row.status,
+      birthTimestamp: row.birth_timestamp,
+      authorisedBy: row.authorised_by,
+      authorisedAt: row.authorised_at,
+      evidenceClass: "LEGACY_UNVERIFIED",
+    } : null,
     birthTimestamp: null,
     authorisedBy: null,
     authorisedAt: null,
     gates,
-    gatesPassedCount,
+    gatesPassedCount: gates.filter((gate) => gate.passed).length,
     gatesTotal: gates.length,
-    technicallyReady,
+    technicallyReady: authority.technicallyReady,
     operatingAgeSeconds: null,
     initialCorridor: "CJdropshipping × Amazon US",
     initialKpi: "1,000 SMART viable listings",
     updatedAt: new Date().toISOString(),
     notes: [
-      technicallyReady
-        ? "BIRTH TECHNICALLY READY — AWAITING GRAND KING. Timestamp not created."
-        : "Birth gates incomplete — continue commissioning.",
-      "Do not confuse repository date / first API call with Pillow birth.",
+      authority.reason,
+      "Legacy gate diagnostics remain available but do not constitute independent certification or unlock live commerce.",
+      ...(row ? ["Historical commissioning fields are preserved separately as LEGACY_UNVERIFIED; their timestamp is not a certified operating age."] : []),
     ],
   };
-
-  db.prepare(
-    `INSERT INTO pillow_birth_record (workspace_id, status, birth_timestamp, authorised_by, authorised_at, record_json, updated_at)
-     VALUES (@workspaceId, @status, NULL, NULL, NULL, @json, @updatedAt)
-     ON CONFLICT(workspace_id) DO UPDATE SET
-       status = excluded.status,
-       record_json = excluded.record_json,
-       updated_at = excluded.updated_at
-     WHERE pillow_birth_record.birth_timestamp IS NULL`,
-  ).run({
-    workspaceId,
-    status: record.status,
-    json: JSON.stringify(record),
-    updatedAt: record.updatedAt,
-  });
-
-  return record;
 }
 
-/** Grand King only — creates immutable birth timestamp once. */
+/** Legacy owner button fails closed until independent receipt acceptance exists. */
 export function authorisePillowBirth(
   workspaceId: string,
   actor: string,
 ): { ok: boolean; record: BirthRecord; error?: string } {
-  ensureBirthTables();
-  const current = getBirthRecord(workspaceId);
-  if (current.status === "BORN" && current.birthTimestamp) {
-    return { ok: false, record: current, error: "Birth already recorded — immutable" };
-  }
-  if (!current.technicallyReady) {
-    return {
-      ok: false,
-      record: current,
-      error: "Birth gates not all passed — cannot authorise yet",
-    };
-  }
-
-  const birthTimestamp = new Date().toISOString();
-  const record: BirthRecord = {
-    ...current,
-    status: "BORN",
-    birthTimestamp,
-    authorisedBy: actor,
-    authorisedAt: birthTimestamp,
-    operatingAgeSeconds: 0,
-    updatedAt: birthTimestamp,
-    notes: [
-      "Pillow birth recorded. EmpireAI continuous operational age begins.",
-      "Aggressive 1,000 release still requires separate Grand King + ChatGPT review.",
-    ],
+  void actor;
+  const record = getBirthRecord(workspaceId);
+  return {
+    ok: false,
+    record,
+    error: record.authority.reason,
   };
-
-  const db = getDatabase();
-  db.prepare(
-    `INSERT INTO pillow_birth_record (workspace_id, status, birth_timestamp, authorised_by, authorised_at, record_json, updated_at)
-     VALUES (@workspaceId, @status, @birthTimestamp, @authorisedBy, @authorisedAt, @json, @updatedAt)
-     ON CONFLICT(workspace_id) DO UPDATE SET
-       status = excluded.status,
-       birth_timestamp = excluded.birth_timestamp,
-       authorised_by = excluded.authorised_by,
-       authorised_at = excluded.authorised_at,
-       record_json = excluded.record_json,
-       updated_at = excluded.updated_at`,
-  ).run({
-    workspaceId,
-    status: record.status,
-    birthTimestamp,
-    authorisedBy: actor,
-    authorisedAt: birthTimestamp,
-    json: JSON.stringify(record),
-    updatedAt: birthTimestamp,
-  });
-
-  recordFlightEvent({
-    workspaceId,
-    eventType: "BIRTH_GATE",
-    businessArea: "birth",
-    subsystem: "pillow-commissioning",
-    objective: "Pillow birth authorised",
-    decision: "BORN",
-    authority: "grand_king",
-    result: `Birth timestamp ${birthTimestamp}`,
-    evidenceRef: birthTimestamp,
-    evidenceConsidered: current.gates.filter((g) => g.passed).map((g) => g.id),
-  });
-
-  return { ok: true, record };
 }

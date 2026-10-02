@@ -1,0 +1,60 @@
+{
+  "at": "2026-10-01T11:28:34.960103+00:00",
+  "stage": "EXACT_SOURCE_SELECTED_BUILD_CONFIG_BLOCKED_SAFE_PAUSE",
+  "candidate": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+  "vercelFallback": "Explicitly approved by King; signed-in EmpireAI project dashboard verified",
+  "railwayProject": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+  "environment": "da94aed2-956b-4903-a886-68a5e9a557c8",
+  "appService": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+  "redisService": "fdef2b8f-a806-455e-bd4a-ab9e93e3b8c9",
+  "appVolume": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+  "redisVolume": "af8cc57d-7175-47c5-8145-3b68713c52c5",
+  "pendingPatch": "27de24e5-8d2f-47cc-b957-0b722316dd89",
+  "limitsVerifiedStaged": {
+    "app": {
+      "cpu": 1,
+      "memoryBytes": 2000000000
+    },
+    "redis": {
+      "cpu": 1,
+      "memoryBytes": 500000000
+    }
+  },
+  "volumeMounts": "Both /data staged; requested 1024MB each",
+  "sourceStatus": "Exact-source mechanism resolved: deployServiceTool with explicit commitSha argument (serviceInstanceDeployV2); actual deployment metadata independently confirms d69. No branch/main/PR changes. Never rely on stored source.commitSha.",
+  "configurationDeviation": "Railway rejects Config-as-Code selector on new services since 2026-08-28. Same approved executable build/start/health/restart settings applied directly; no source change. Caps had to be applied through dashboard after Agent call did not persist them.",
+  "budget": {
+    "canaryProjectObservedUSD": 0.076,
+    "workspaceAgentObservedUSD": 1.08,
+    "conservativeProvisionalUSD": 1.156,
+    "ceilingUSD": 20,
+    "settled": false
+  },
+  "legacy": "Original deployment86302878-25b5-4990-87d9-86580cd4e976 remains SUCCESS. Old service/volume/config/Redis/credentials untouched.",
+  "ownerTraffic": "No Vercel changes or generated backend public endpoint; empire-ai.co remains old production.",
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED",
+  "next": "Resolve provider configuration-path restriction or explicitly authorize a reviewed deployment-configuration revision. Do not rerun exact-source investigation: explicit deploy action commitSha works. No force deployment, no main merge, no recovery or unrelated engineering. Required running-source/backend gate still unpassed; Vercel unchanged.",
+  "credentials": "Four independent cryptographically generated secrets privately configured on new service variables; no values in evidence; do not regenerate on resume",
+  "executionRejection": null,
+  "patchCommitted": true,
+  "appDeployment": "38e1795f-c8df-4200-a6b5-8683acacf63d",
+  "redisDeployment": "c01cd824-3b54-4b5a-8356-613cc629f745",
+  "actualAppRevision": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+  "runtimeFailure": "Correct-source build FAILED before startup: effective Nixpacks22.14.0/npm10.9.2 rejected by unchanged required22.23.2/npm10.9.8 guard.",
+  "safeAbort": "App failed at build, never started. Redis exact image briefly redeployed then stopped via dashboard; both services/volumes/private variables retained. Legacy untouched.",
+  "volumesVerified": {
+    "app": {
+      "id": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+      "sizeMB": 1024,
+      "mountPath": "/data"
+    },
+    "redis": {
+      "id": "af8cc57d-7175-47c5-8145-3b68713c52c5",
+      "sizeMB": 1024,
+      "mountPath": "/data"
+    }
+  },
+  "cost": "Two additional Agent calls and one exact-source failed build plus about3minutesRedis incurred provisional charges; no current settled total. New workloads stopped; retained storage charges possible; US20 ceiling unchanged.",
+  "buildConfigurationBlocker": "Actual deployment propertyFileMapping maps build.builder to committed root railway.toml selectingNIXPACKS, overriding storedRAILPACK. Selecting existing deployment/railway.locked.toml rejected by Railway Config-as-Code deprecation guard. No verified supported override available through exposed deployment/config tools; do not silently edit source or weaken pins."
+}

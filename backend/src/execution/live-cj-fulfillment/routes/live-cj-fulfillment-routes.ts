@@ -1,8 +1,10 @@
-import type { FastifyInstance } from "fastify";
+import type { FastifyInstance, FastifyReply } from "fastify";
 import { z } from "zod";
 
 import type { AuditLogger } from "../../../brain/audit/audit-logger.js";
 import type { createAuthMiddleware } from "../../../auth/middleware.js";
+import type { SessionUser } from "../../../auth/permissions.js";
+import { getCustomerOrderPipelineRepository } from "../../../revenue/customer-order-pipeline/repositories/sqlite-customer-order-pipeline-repository.js";
 import {
   applyFounderApproval,
   executeLiveCjSubmit,
@@ -17,12 +19,44 @@ import {
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
+const defaultServices = {
+  applyFounderApproval,
+  executeLiveCjSubmit,
+  getLiveCjFulfillmentById,
+  listFulfillmentAttempts,
+  listLiveCjFulfillments,
+  prepareLiveCjFulfillment,
+  recoverFailedFulfillment,
+  syncLiveCjTracking,
+  getPipeline: (pipelineId: string) =>
+    getCustomerOrderPipelineRepository().getPipelineById(pipelineId),
+};
+
+export type LiveCjRouteServices = typeof defaultServices;
+
 const approvalSchema = z.object({
   fulfillmentId: z.string().min(1),
   approvalToken: z.string().min(1),
-  approvedBy: z.string().min(1),
-  approvedAt: z.string().datetime({ offset: true }),
+  // Older clients may send these fields; authority and time come from the server.
+  approvedBy: z.string().optional(),
+  approvedAt: z.string().optional(),
 });
+
+function requireWorkspaceBeforeEffect(
+  resource: { workspaceId: string } | null | undefined,
+  user: SessionUser,
+  reply: FastifyReply,
+): boolean {
+  if (!resource) {
+    reply.code(404).send({ error: "Fulfillment resource not found" });
+    return false;
+  }
+  if (resource.workspaceId !== user.workspaceId && user.role !== "admin") {
+    reply.code(403).send({ error: "Workspace mismatch" });
+    return false;
+  }
+  return true;
+}
 
 function requireFounder(role: string, reply: { code: (n: number) => { send: (b: unknown) => unknown } }) {
   if (role !== "founder" && role !== "admin") {
@@ -34,9 +68,10 @@ function requireFounder(role: string, reply: { code: (n: number) => { send: (b: 
 
 export async function registerLiveCjFulfillmentRoutes(
   app: FastifyInstance,
-  deps: { authenticate: AuthMiddleware; auditLogger: AuditLogger },
+  deps: { authenticate: AuthMiddleware; auditLogger: AuditLogger; services?: Partial<LiveCjRouteServices> },
 ): Promise<void> {
   const { authenticate, auditLogger } = deps;
+  const services = { ...defaultServices, ...deps.services };
 
   app.post(
     "/live-cj-fulfillment/prepare",
@@ -45,10 +80,8 @@ export async function registerLiveCjFulfillmentRoutes(
       const user = request.user!;
       const body = z.object({ pipelineId: z.string().min(1) }).parse(request.body);
 
-      const fulfillment = prepareLiveCjFulfillment(body);
-      if (fulfillment.workspaceId !== user.workspaceId && user.role !== "admin") {
-        return reply.code(403).send({ error: "Workspace mismatch" });
-      }
+      if (!requireWorkspaceBeforeEffect(services.getPipeline(body.pipelineId), user, reply)) return;
+      const fulfillment = services.prepareLiveCjFulfillment(body);
 
       auditLogger.write({
         action: "live_cj_fulfillment.prepared",
@@ -71,11 +104,12 @@ export async function registerLiveCjFulfillmentRoutes(
       if (!requireFounder(user.role, reply)) return;
 
       const body = approvalSchema.parse(request.body);
-      const fulfillment = applyFounderApproval(body);
-
-      if (fulfillment.workspaceId !== user.workspaceId && user.role !== "admin") {
-        return reply.code(403).send({ error: "Workspace mismatch" });
-      }
+      if (!requireWorkspaceBeforeEffect(services.getLiveCjFulfillmentById(body.fulfillmentId), user, reply)) return;
+      const fulfillment = services.applyFounderApproval({
+        ...body,
+        approvedBy: user.email,
+        approvedAt: new Date().toISOString(),
+      });
 
       auditLogger.write({
         action: "live_cj_fulfillment.approved",
@@ -98,12 +132,10 @@ export async function registerLiveCjFulfillmentRoutes(
       if (!requireFounder(user.role, reply)) return;
 
       const body = z.object({ fulfillmentId: z.string().min(1) }).parse(request.body);
+      if (!requireWorkspaceBeforeEffect(services.getLiveCjFulfillmentById(body.fulfillmentId), user, reply)) return;
 
       try {
-        const fulfillment = await executeLiveCjSubmit(body.fulfillmentId);
-        if (fulfillment.workspaceId !== user.workspaceId && user.role !== "admin") {
-          return reply.code(403).send({ error: "Workspace mismatch" });
-        }
+        const fulfillment = await services.executeLiveCjSubmit(body.fulfillmentId);
 
         auditLogger.write({
           action: "live_cj_fulfillment.submitted",
@@ -140,13 +172,10 @@ export async function registerLiveCjFulfillmentRoutes(
         })
         .parse(request.body);
 
-      const fulfillment = await syncLiveCjTracking(body.fulfillmentId, {
+      if (!requireWorkspaceBeforeEffect(services.getLiveCjFulfillmentById(body.fulfillmentId), user, reply)) return;
+      const fulfillment = await services.syncLiveCjTracking(body.fulfillmentId, {
         markDelivered: body.markDelivered,
       });
-
-      if (fulfillment.workspaceId !== user.workspaceId && user.role !== "admin") {
-        return reply.code(403).send({ error: "Workspace mismatch" });
-      }
 
       auditLogger.write({
         action: "live_cj_fulfillment.tracking_synced",
@@ -173,7 +202,12 @@ export async function registerLiveCjFulfillmentRoutes(
       if (!requireFounder(user.role, reply)) return;
 
       const body = approvalSchema.parse(request.body);
-      const fulfillment = recoverFailedFulfillment(body);
+      if (!requireWorkspaceBeforeEffect(services.getLiveCjFulfillmentById(body.fulfillmentId), user, reply)) return;
+      const fulfillment = services.recoverFailedFulfillment({
+        ...body,
+        approvedBy: user.email,
+        approvedAt: new Date().toISOString(),
+      });
 
       auditLogger.write({
         action: "live_cj_fulfillment.recovered",
@@ -194,7 +228,7 @@ export async function registerLiveCjFulfillmentRoutes(
     async (request, reply) => {
       const user = request.user!;
       const query = z.object({ companyId: z.string().optional() }).parse(request.query);
-      const fulfillments = listLiveCjFulfillments(user.workspaceId, query.companyId);
+      const fulfillments = services.listLiveCjFulfillments(user.workspaceId, query.companyId);
       return reply.send({ fulfillments });
     },
   );
@@ -205,7 +239,7 @@ export async function registerLiveCjFulfillmentRoutes(
     async (request, reply) => {
       const user = request.user!;
       const params = z.object({ fulfillmentId: z.string().min(1) }).parse(request.params);
-      const fulfillment = getLiveCjFulfillmentById(params.fulfillmentId);
+      const fulfillment = services.getLiveCjFulfillmentById(params.fulfillmentId);
 
       if (!fulfillment) {
         return reply.code(404).send({ error: "Fulfillment not found" });
@@ -216,7 +250,7 @@ export async function registerLiveCjFulfillmentRoutes(
 
       return reply.send({
         fulfillment,
-        attempts: listFulfillmentAttempts(params.fulfillmentId),
+        attempts: services.listFulfillmentAttempts(params.fulfillmentId),
       });
     },
   );

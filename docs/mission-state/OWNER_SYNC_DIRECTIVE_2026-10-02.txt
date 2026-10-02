@@ -1,0 +1,445 @@
+Owner action completed: Vercel Production Branch Tracking is now set to `production/empireai-web` and saved.
+
+Proceed immediately. This is the synchronization checkpoint after `02bb15a`.
+
+==================================================
+1. RECONCILE THE PREVIOUS RUN — DO NOT LOSE OPEN WORK
+==================================================
+
+Evidence reported from the previous run:
+
+PROVEN:
+- `a9358a2` preserved.
+- Desktop geometry tests passed across four widths, both sidebar states and reload.
+- Phone geometry passed.
+- Backend regression CI passed.
+- Frontend geometry CI passed.
+- No additional paid inference.
+- Production remained unchanged.
+- NOT_BORN / LOCKED remained preserved.
+
+NOT YET PROVEN/CLOSED:
+- `a9358a2` is not yet production owner-accepted.
+- Work-operated production deployment is not yet proven.
+- Work-operated rollback is not yet proven.
+- Failed-provider accounting remains unresolved because the available ledger predates the failed attempt.
+- Three-provider live integration remains unproven.
+- Pillow integration capability closure remains open.
+- Pillow certification remains paused/open.
+- Permanent-supervision implementation remains future/open according to the master mandate.
+
+Do not convert geometry-test success into owner-visible production acceptance.
+
+==================================================
+2. CREATE THE CANONICAL EMPIREAI CLOSURE MATRIX NOW
+==================================================
+
+Create and thereafter maintain a durable canonical EmpireAI requirements/closure matrix in the repository.
+
+Reconcile ALL material requirements from:
+
+- original EmpireAI mission/architecture;
+- historical Pillow requirements;
+- historical commerce requirements;
+- existing canonical handoffs/mission state;
+- the complete 47-section master mandate;
+- the six subsequently saved clarifications;
+- current certification requirements;
+- all subsequently discovered defects;
+- current Owner UX requirements.
+
+Do not use only the most recent prompt as the requirement universe.
+
+For every material requirement record:
+
+- stable requirement ID;
+- requirement;
+- phase/domain;
+- priority;
+- current status;
+- implementation revision/component;
+- tests performed;
+- production/live evidence;
+- owner acceptance where required;
+- dependencies;
+- exact blocker if blocked;
+- remaining work;
+- next executable action;
+- date/time last verified;
+- evidence references.
+
+Allowed states:
+
+NOT_STARTED
+IN_PROGRESS
+IMPLEMENTED_UNVERIFIED
+PROVEN
+BLOCKED
+REGRESSION
+DEFERRED_BY_KING
+NOT_APPLICABLE
+
+Rules:
+
+A requirement omitted from a checkpoint remains open according to the matrix.
+
+Silence never closes a requirement.
+
+Implementation existence does not equal PROVEN.
+
+Unit/CI success does not equal production proof where production proof is required.
+
+Work self-report does not equal owner acceptance where owner acceptance is required.
+
+Previously PROVEN functionality that breaks becomes REGRESSION.
+
+Deliberately postponed requirements remain DEFERRED_BY_KING rather than disappearing.
+
+At the start of every substantial Work run:
+- read/reconcile the matrix;
+- identify highest-priority executable open requirements.
+
+At the end:
+- update it;
+- record state transitions;
+- record new defects/regressions;
+- persist/read back;
+- carry unfinished targeted items forward.
+
+Every future checkpoint to King must contain:
+
+TARGETED THIS RUN
+PROVEN CLOSED THIS RUN
+IMPLEMENTED BUT UNVERIFIED
+STILL OPEN FROM THIS RUN
+NEW DEFECTS / REGRESSIONS
+BLOCKED
+NEXT EXECUTABLE ITEMS
+KING ACTION REQUIRED
+
+Also provide mission-level open/proven/block counts by phase.
+
+The matrix is a mission-control instrument, NOT a reason to pause implementation. Build/reconcile it and continue engineering in this SAME run.
+
+==================================================
+3. PROVE WORK-OPERATED DEPLOYMENT AND ROLLBACK
+==================================================
+
+Now that Production Branch Tracking is `production/empireai-web`, prove the intended autonomous Git→Vercel production path.
+
+Do not ask King to click Promote.
+
+First verify:
+- exact Vercel project;
+- exact tracked production branch;
+- exact production baseline;
+- no unrelated project/environment will be affected.
+
+Then use the authorised path to deploy the appropriate frontend repair.
+
+Verify the resulting production revision on `empire-ai.co`.
+
+Also establish and prove the rollback mechanism to the previously verified production revision without requiring King to operate Vercel.
+
+Do not deliberately break production merely to demonstrate rollback. Use the safest supported evidence/rehearsal mechanism.
+
+Record deployment and rollback evidence in the closure matrix.
+
+==================================================
+4. DESKTOP PILLOW OWNER ACCEPTANCE REMAINS OPEN
+==================================================
+
+The latest owner screenshot shows that the earlier sidebar-overlap/clipping defect appears materially improved.
+
+However, DESKTOP PILLOW ACCEPTANCE REMAINS FAILED/OPEN.
+
+New hard owner requirement:
+
+THE PILLOW CONVERSATION MUST USE ESSENTIALLY THE MAXIMUM USABLE DESKTOP BROWSER HEIGHT.
+
+Pillow conversation/history is the primary purpose of this page and must dominate the viewport.
+
+Target behaviour:
+
+- conversation/history uses roughly 70–80%+ of usable viewport height where practical;
+- surrounding application chrome is minimised;
+- composer remains persistently accessible at the bottom;
+- conversation/history owns the primary scroll region;
+- the outer webpage should not require routine vertical scrolling merely to converse with Pillow;
+- long conversations should have substantial visible reading area;
+- preserve responsive/mobile behaviour.
+
+Remove, collapse, overlay or relocate unnecessary permanent vertical chrome.
+
+Specifically investigate:
+
+- `Executive command data unavailable / Retry`;
+- oversized `CONVERSATION / Pillow` header;
+- permanent `Context` row;
+- permanent `Jump to latest` row;
+- unnecessary separators/padding;
+- redundant status/navigation chrome;
+- development-oriented controls that do not need to occupy King's normal conversation view.
+
+`Jump to latest` should be contextual/floating only when useful rather than permanently consuming a row.
+
+Context/evidence should remain accessible on demand without permanently reducing the conversation viewport.
+
+Do NOT merely make the current small conversation box somewhat taller. Treat this as a conversation-first full-height workspace.
+
+==================================================
+5. DIAGNOSE `EXECUTIVE COMMAND DATA UNAVAILABLE`
+==================================================
+
+Do not merely hide this banner.
+
+Determine:
+
+- what exact data request is failing;
+- why;
+- whether Pillow requires that data for correct operation;
+- whether this represents a backend/context/integration defect;
+- whether retry actually performs a meaningful action.
+
+If operationally required:
+repair the underlying defect and verify it.
+
+If not required for King's normal conversation:
+remove it from permanent owner-facing chrome after ensuring no material capability/evidence is lost.
+
+Record the result in the closure matrix.
+
+==================================================
+6. STATUS SEMANTICS
+==================================================
+
+The current green `Available` label is potentially misleading while Pillow remains NOT_BORN and commerce LOCKED.
+
+Preserve truthful distinctions.
+
+A future owner-facing state should communicate concepts such as:
+
+Chat available
+Commerce locked
+Certification state
+Work assurance state
+
+without implying that conversational availability equals business authority/readiness.
+
+Do not allow UX simplification to erase NOT_BORN / LOCKED semantics.
+
+==================================================
+7. UNIFIED OWNER UX REMAINS OPEN / DEFERRED TO ITS PHASE
+==================================================
+
+Do not mark broader Owner UX complete from this desktop geometry repair.
+
+Still preserved/open for the designated UX phase:
+
+- Executive Home and Pillow must feel like one product;
+- Executive Home simplicity is the structural reference;
+- mobile Pillow's premium black/gold identity is a visual reference;
+- desktop Pillow must stop looking like a separate development console;
+- development navigation/icon rail must be rationalised;
+- Builder/Supervisor/Journey/Production/development machinery should not dominate King's normal interface;
+- contextual Talk to Pillow;
+- Needs King;
+- Since Previous Visit;
+- Pillow activity/evidence;
+- Work assurance;
+- Money;
+- Orders;
+- Health;
+- Blind Spots;
+- Pillow↔Work disagreements;
+- real scoped owner controls.
+
+Preserve these in the closure matrix even though broad UX must not derail current Priority A.
+
+==================================================
+8. MOBILE AND CROSS-DEVICE BEHAVIOUR MUST NOT REGRESS
+==================================================
+
+Mobile Pillow is currently the stronger owner experience.
+
+Preserve:
+- mobile geometry;
+- usable conversation;
+- composer;
+- navigation;
+- authoritative server-side history;
+- same-account desktop/mobile history continuity.
+
+Any desktop full-height repair must run responsive/mobile regression coverage.
+
+==================================================
+9. FAILED-PROVIDER ACCOUNTING — KEEP PUSHING
+==================================================
+
+Accounting remains unresolved because the available ledger predates the failed attempt.
+
+Do not stop at that observation.
+
+Search all available authoritative sources for evidence of the consumed attempt, including where applicable:
+- runtime persistence;
+- inference-request records;
+- spending/reservation state;
+- provider receipts/metadata;
+- application logs;
+- deployment/runtime logs;
+- durable accounting files;
+- provider-side evidence accessible without exposing secrets.
+
+Determine as far as evidence permits:
+- whether any provider call actually occurred;
+- which provider(s);
+- reservation consumed/released;
+- estimated/known usage;
+- whether actual provider billing is knowable;
+- remaining commissioning allowance;
+- whether accounting requires repair.
+
+If actual charge cannot be established, state UNKNOWN rather than inventing zero.
+
+Do not make another paid inference merely to investigate historical accounting.
+
+==================================================
+10. BACKEND FAILURE / IDEMPOTENCY CLOSURE
+==================================================
+
+Carry forward verification of `84ab891`:
+
+- duplicate inference-request handling;
+- idempotency;
+- terminal provider-failure semantics;
+- no failed inference transformed into generic advice;
+- no uncontrolled retry/fan-out;
+- provider-control metadata separated from King's semantic question;
+- authority denials preserved;
+- spending guard preserved.
+
+Move each matrix item independently based on evidence.
+
+==================================================
+11. THREE-PROVIDER LIVE INTEGRATION
+==================================================
+
+Once the repaired path is safe, perform only the minimum necessary bounded paid verification to prove genuine:
+
+- OpenAI;
+- Anthropic Claude;
+- Google Gemini.
+
+Prove:
+- provider/model provenance;
+- deliberate routing;
+- bounded fallback;
+- deliberate cross-provider consultation where requested;
+- no routine uncontrolled three-provider fan-out;
+- timeout/failure behaviour;
+- durable independent accounting.
+
+Do not repeat already-consumed failed requests.
+
+==================================================
+12. PILLOW INTEGRATION CAPABILITIES
+==================================================
+
+Continue closing evidence for:
+
+- authoritative repository/mission/evidence context;
+- genuine read-only tools and receipts;
+- conversation continuity/restart recovery;
+- cross-device authoritative history;
+- pending learning/evidence capture;
+- no unauthorised knowledge promotion;
+- answer integrity;
+- authority invariants.
+
+Do not treat simulated LLM prose as genuine tool use.
+
+==================================================
+13. RESUME PILLOW CERTIFICATION WHEN DEPENDENCIES CLOSE
+==================================================
+
+Do not wait for another general owner instruction once the required Priority-A dependencies are genuinely closed.
+
+Resume the preserved certification automatically.
+
+Use materially new unseen cases.
+
+Preserve consumed failures.
+
+Repair general causes.
+
+Retest with new unseen cases.
+
+Do not weaken criteria to obtain a pass.
+
+==================================================
+14. KEEP THE MASTER MISSION MOVING
+==================================================
+
+After each active boundary closes, immediately continue to the next executable requirement from the canonical closure matrix.
+
+The subsequent major phase remains permanent supervision implementation/proof:
+
+- deterministic continuous sentinels;
+- Work assurance approximately every six hours;
+- dead-man assurance monitoring;
+- omission auditing;
+- independent authoritative evidence;
+- listing-change reverification;
+- fulfilment/payment guards;
+- goods+money transaction lifecycle;
+- refund/recovery/residual-loss supervision;
+- autonomous engineering repair;
+- owner-independent operation.
+
+Then prepare controlled real-commerce readiness.
+
+Do NOT infer or grant Birth or commerce authority.
+
+==================================================
+15. CHECKPOINT DISCIPLINE
+==================================================
+
+When this Work run eventually returns a checkpoint, do not report only the things that succeeded.
+
+Report against the closure matrix:
+
+TARGETED THIS RUN:
+...
+
+PROVEN CLOSED THIS RUN:
+...
+
+IMPLEMENTED BUT UNVERIFIED:
+...
+
+STILL OPEN FROM THIS RUN:
+...
+
+NEW DEFECTS / REGRESSIONS:
+...
+
+BLOCKED:
+...
+
+MISSION BURN-DOWN BY PHASE:
+...
+
+NEXT EXECUTABLE ITEMS:
+...
+
+KING ACTION REQUIRED:
+NONE
+
+or one precise genuinely unavoidable protected owner action.
+
+Persist/read back the matrix and checkpoint.
+
+No Birth.
+No commerce unlock.
+No increase in protected spending authority.
+Continue autonomously through every executable item available during this run.

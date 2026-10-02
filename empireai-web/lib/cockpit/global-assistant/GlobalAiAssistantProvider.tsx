@@ -28,9 +28,10 @@ import {
   type PillowConversationTurn,
   type PillowSessionSnapshot,
 } from "@/lib/cockpit/pillow/pillow-session-store";
-import { createPillowHostSession, fetchPillowHistory, sendPillowChat } from "@/lib/pillow/client";
+import { createPillowHostSession, fetchPillowHistory, retrievePillowChat, sendPillowChat } from "@/lib/pillow/client";
+import { clearPendingPillowReceipt, loadPendingPillowReceipts, savePendingPillowReceipt } from "@/lib/pillow/pending-receipts";
 import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
-import type { PillowChatArtifact } from "@/lib/pillow/types";
+import type { PillowChatArtifact, PillowChatResult } from "@/lib/pillow/types";
 import {
   EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
   EXECUTIVE_RECOVERING_LABEL,
@@ -100,15 +101,25 @@ type GlobalAiAssistantContextValue = GlobalAiAssistantState & {
 };
 
 const GlobalAiAssistantContext = createContext<GlobalAiAssistantContextValue | null>(null);
+const UNCONFIRMED_REQUEST_MESSAGE = "Pillow is unavailable. This instruction has not been confirmed as accepted or completed. No automatic repeat was attempted.";
 
 export function GlobalAiAssistantProvider({ children }: { children: ReactNode }) {
+  const { user } = useAuth();
+  // Remount on identity change: never render the previous owner's transcript,
+  // context, active request or session for even one frame of the next account.
+  return <GlobalAiAssistantSession key={user?.id ?? "anonymous"}>{children}</GlobalAiAssistantSession>;
+}
+
+function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { user } = useAuth();
   const founderShell = useFounderShellOptional();
   const panelPrefs = loadPillowPanelPreferences();
-  const savedSession = loadPillowSession();
+  const savedSession = loadPillowSession(user?.id);
   const hostSessionInit = useRef(false);
   const recoveryLoopActive = useRef(false);
+  const chatSubmissionActive = useRef(false);
+  const activeOwnerId = useRef(user?.id);
   const navHistoryRef = useRef<string[]>([pathname]);
 
   const [state, setState] = useState<GlobalAiAssistantState>({
@@ -132,6 +143,11 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     proactiveGuidance: [],
     workspaceContext: null,
   });
+
+  useEffect(() => {
+    activeOwnerId.current = user?.id;
+    return () => { activeOwnerId.current = undefined; };
+  }, [user?.id]);
 
   const markReady = useCallback((hostSessionId: string, conversation?: PillowConversationTurn[]) => {
     setState((s) => ({
@@ -237,9 +253,9 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     void (async () => {
       // Remount / Strict-effect safety: reuse a persisted host session instead of
       // creating another and rate-limit storming Brain (/api/pillow/session 503).
-      const existingId = loadPillowSession()?.hostSessionId ?? null;
+      const existingId = loadPillowSession(user.id)?.hostSessionId ?? null;
       if (existingId) {
-        markReady(existingId, loadPillowSession()?.turns ?? []);
+        markReady(existingId, loadPillowSession(user.id)?.turns ?? []);
         return;
       }
 
@@ -247,12 +263,14 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       const maxAttempts = 4;
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
         try {
-          const session = await createPillowHostSession();
+          const session = await createPillowHostSession(user.workspaceId, user.id);
+          if (activeOwnerId.current !== user.id) return;
           // Mark ready immediately — history is non-blocking for conversation readiness.
           markReady(session.sessionId, savedSession?.turns ?? []);
           let turns = savedSession?.turns ?? [];
           try {
             const history = await fetchPillowHistory(session.sessionId);
+            if (activeOwnerId.current !== user.id) return;
             if (history.session.conversationHistory.length > 0) {
               turns = history.session.conversationHistory.flatMap((turn, index) => {
                 const role = turn.role === "user" ? ("grand-king" as const) : ("pillow" as const);
@@ -272,7 +290,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
                 updatedAt: new Date().toISOString(),
                 hostSessionId: session.sessionId,
               };
-              savePillowSession(snapshot);
+              savePillowSession(snapshot, user.id);
               setState((s) => ({ ...s, conversation: turns }));
             } else {
               savePillowSession({
@@ -280,25 +298,27 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
                 lastScreenPath: pathname,
                 updatedAt: new Date().toISOString(),
                 hostSessionId: session.sessionId,
-              });
+              }, user.id);
             }
           } catch {
+            if (activeOwnerId.current !== user.id) return;
             savePillowSession({
               turns,
               lastScreenPath: pathname,
               updatedAt: new Date().toISOString(),
               hostSessionId: session.sessionId,
-            });
+            }, user.id);
           }
           return;
         } catch (error) {
+          if (activeOwnerId.current !== user.id) return;
           // Do not clear a concurrently established session on rate-limit failure.
-          const persisted = loadPillowSession();
+          const persisted = loadPillowSession(user.id);
           if (persisted?.hostSessionId) {
             markReady(persisted.hostSessionId, persisted.turns ?? []);
             return;
           }
-          clearPillowHostSession();
+          clearPillowHostSession(user.id);
           const phase: ExecutiveReadinessPhase =
             attempt >= 3 ? "delayed" : attempt > 1 ? "recovering" : "starting";
           markStarting(
@@ -310,9 +330,10 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           }
         }
       }
-      const recovered = loadPillowSession()?.hostSessionId;
+      if (activeOwnerId.current !== user.id) return;
+      const recovered = loadPillowSession(user.id)?.hostSessionId;
       if (recovered) {
-        markReady(recovered, loadPillowSession()?.turns ?? []);
+        markReady(recovered, loadPillowSession(user.id)?.turns ?? []);
         return;
       }
       markStarting("delayed", EXECUTIVE_RECOVERING_LABEL);
@@ -351,31 +372,34 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
 
   const appendUserTurnNow = useCallback(
     (query: string) => {
-      const session = appendPillowTurn(loadPillowSession(), {
+      if (!user || activeOwnerId.current !== user.id) return;
+      const session = appendPillowTurn(loadPillowSession(user.id), {
         role: "grand-king",
         content: query,
         screenPath: pathname,
-      });
+      }, user.id);
       setState((s) => ({
         ...s,
         conversation: session.turns,
         hostSessionId: session.hostSessionId ?? s.hostSessionId,
       }));
     },
-    [pathname],
+    [pathname, user],
   );
 
   const appendPillowTurnOnly = useCallback(
-    (response: GlobalAssistantResponse, artifacts?: PillowChatArtifact[]) => {
-      const session = appendPillowTurn(loadPillowSession(), {
+    (response: GlobalAssistantResponse, artifacts?: PillowChatArtifact[], requestId?: string, isStatus = false) => {
+      if (!user || activeOwnerId.current !== user.id) return;
+      const session = appendPillowTurn(loadPillowSession(user.id), {
         role: "pillow",
-          content: toExecutiveChatMessage(
+        requestId,
+        content: isStatus ? response.interactionSummary : toExecutiveChatMessage(
           response.interactionSummary,
           EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
         ),
         screenPath: pathname,
         artifacts,
-      });
+      }, user.id);
       setState((s) => ({
         ...s,
         conversation: session.turns,
@@ -383,7 +407,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         lastResponse: response,
       }));
     },
-    [pathname],
+    [pathname, user],
   );
 
   /** Legacy helper — user+response. Prefer appendUserTurnNow + appendPillowTurnOnly. */
@@ -400,25 +424,28 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
   );
 
   const ensureHostSession = useCallback(async (): Promise<string | null> => {
+    if (!user || activeOwnerId.current !== user.id) return null;
     // Reuse first — Executive Home / panel expand must not create parallel sessions.
-    const existing = loadPillowSession();
+    const existing = loadPillowSession(user.id);
     if (existing?.hostSessionId) {
       markReady(existing.hostSessionId, existing.turns ?? []);
       return existing.hostSessionId;
     }
     try {
-      const session = await createPillowHostSession();
+      const session = await createPillowHostSession(user.workspaceId, user.id);
+      if (activeOwnerId.current !== user.id) return null;
       const snapshot: PillowSessionSnapshot = {
-        turns: loadPillowSession()?.turns ?? [],
+        turns: loadPillowSession(user.id)?.turns ?? [],
         lastScreenPath: pathname,
         updatedAt: new Date().toISOString(),
         hostSessionId: session.sessionId,
       };
-      savePillowSession(snapshot);
+      savePillowSession(snapshot, user.id);
       markReady(session.sessionId);
       return session.sessionId;
     } catch (error) {
-      const persisted = loadPillowSession();
+      if (activeOwnerId.current !== user.id) return null;
+      const persisted = loadPillowSession(user.id);
       if (persisted?.hostSessionId) {
         markReady(persisted.hostSessionId, persisted.turns ?? []);
         return persisted.hostSessionId;
@@ -429,7 +456,63 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       );
       return null;
     }
-  }, [markReady, markStarting, pathname]);
+  }, [markReady, markStarting, pathname, user]);
+
+  const presentChatResult = useCallback((chatResult: PillowChatResult, query: string, target?: GlobalAssistantTarget) => {
+    if (!user || activeOwnerId.current !== user.id) return;
+    // Restore/reopen follows the same rebound-session contract as the first send.
+    if (chatResult.reboundSessionId) {
+      const existing = loadPillowSession(user.id);
+      if (existing?.hostSessionId !== chatResult.reboundSessionId) {
+        savePillowSession({
+          turns: existing?.turns ?? [],
+          lastScreenPath: existing?.lastScreenPath ?? pathname,
+          updatedAt: new Date().toISOString(),
+          hostSessionId: chatResult.reboundSessionId,
+        }, user.id);
+        markReady(chatResult.reboundSessionId, existing?.turns ?? []);
+      }
+    }
+    const response = mapPillowChatToAssistantResponse(chatResult, query);
+    const isStatus = chatResult.kind === "durable_pending" ||
+      chatResult.status === "FAILED_FATAL" || chatResult.status === "FAILED" ||
+      chatResult.status === "RESULT_UNAVAILABLE";
+    const surfaced = isStatus ? response : {
+      ...response,
+      interactionSummary: toExecutiveChatMessage(response.interactionSummary, EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY),
+      reason: toExecutiveChatMessage(response.reason, EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY),
+      recommendedNextAction: toExecutiveChatMessage(response.recommendedNextAction, EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY),
+    };
+    appendPillowTurnOnly(surfaced, chatResult.artifacts, chatResult.requestId, isStatus);
+    if (user && chatResult.kind !== "durable_pending" && chatResult.status !== "RESULT_UNAVAILABLE") {
+      clearPendingPillowReceipt(user.id, chatResult.requestId);
+    }
+    setState((s) => ({
+      ...s,
+      lastResponse: surfaced,
+      connectionError: isStatus ? chatResult.message : null,
+      activeTarget: target ?? null,
+    }));
+  }, [appendPillowTurnOnly, markReady, pathname, user]);
+
+  useEffect(() => {
+    if (!user) return;
+    const controller = new AbortController();
+    // Refresh/remount resumes GET on confirmed IDs, never the original POST.
+    const receipts = loadPendingPillowReceipts(user.id);
+    void (async () => {
+      for (const receipt of receipts) {
+        if (controller.signal.aborted) break;
+        try {
+          const result = await retrievePillowChat(receipt, { signal: controller.signal });
+          if (!controller.signal.aborted) presentChatResult(result, receipt.query);
+        } catch {
+          // Unmount/sign-out cancels retrieval; the owner-scoped receipt remains saved.
+        }
+      }
+    })();
+    return () => controller.abort();
+  }, [user, presentChatResult]);
 
   // Slow recovery only after the initial bootstrap exhausted — never parallel with it.
   useEffect(() => {
@@ -462,7 +545,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
     ): Promise<boolean> => {
       const buildContextWithContinuity = (): Record<string, unknown> => {
         const base = buildWorkspaceContext(state.context, state.pageOverride);
-        const turns = (loadPillowSession()?.turns ?? [])
+        const turns = (loadPillowSession(user?.id)?.turns ?? [])
           .slice(-12)
           .map((t) => ({
             role: t.role,
@@ -478,88 +561,52 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       };
 
       const attemptChat = async (sessionId: string): Promise<boolean> => {
-        const chatResult = await sendPillowChat({
-          message: query,
-          sessionId,
-          workspaceContext: buildContextWithContinuity(),
-        });
-        if (chatResult.reboundSessionId && chatResult.reboundSessionId !== sessionId) {
-          const existing = loadPillowSession();
-          savePillowSession({
-            turns: existing?.turns ?? [],
-            lastScreenPath: existing?.lastScreenPath ?? pathname,
-            updatedAt: new Date().toISOString(),
-            hostSessionId: chatResult.reboundSessionId,
+        const priorReceipt = user
+          ? loadPendingPillowReceipts(user.id).find((row) => row.query === query)
+          : undefined;
+        const chatResult: PillowChatResult & { reboundSessionId?: string } = priorReceipt
+          ? await retrievePillowChat(priorReceipt)
+          : await sendPillowChat({
+            message: query,
+            sessionId,
+            workspaceContext: buildContextWithContinuity(),
+          }, {
+            onAccepted: (receipt) => {
+              if (user) savePendingPillowReceipt(user.id, { ...receipt, query });
+            },
           });
-          markReady(chatResult.reboundSessionId, existing?.turns ?? []);
-        }
-        const response = mapPillowChatToAssistantResponse(chatResult, query);
-        // Never pass raw text as fallback — constitutional/infra leaks must not reach UX.
-        const surfaced = {
-          ...response,
-          interactionSummary: toExecutiveChatMessage(
-            response.interactionSummary,
-            EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
-          ),
-          reason: toExecutiveChatMessage(response.reason, EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY),
-          recommendedNextAction: toExecutiveChatMessage(
-            response.recommendedNextAction,
-            EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
-          ),
-        };
-        // User turn already rendered optimistically — append Pillow only.
-        appendPillowTurnOnly(surfaced, chatResult.artifacts);
+        if (!user || activeOwnerId.current !== user.id) return true;
+        presentChatResult(chatResult, query, target);
         setState((s) => ({
           ...s,
           loading: false,
-          lastResponse: surfaced,
           pillowConnected: true,
           executiveReady: true,
           readinessPhase: "ready",
           readinessLabel: formatReadinessLabel("ready"),
-          connectionError: null,
           activeTarget: target ?? null,
         }));
         return true;
       };
 
-      const isInvalidSessionError = (error: unknown): boolean => {
-        const msg = error instanceof Error ? error.message : String(error ?? "");
-        return /session.*(not found|invalid|expired)|404|401/i.test(msg);
-      };
-
-      let sessionId = await ensureHostSession();
+      const sessionId = await ensureHostSession();
       if (!sessionId) return false;
 
       try {
         return await attemptChat(sessionId);
-      } catch (firstError) {
-        // Retry same session once before recreating — preserves server history under lag.
-        try {
-          return await attemptChat(sessionId);
-        } catch (secondError) {
-          if (!isInvalidSessionError(secondError) && !isInvalidSessionError(firstError)) {
-            // Lag/timeout — keep session id; do not wipe local continuity.
-            markStarting(
-              "delayed",
-              secondError instanceof Error ? secondError.message : EXECUTIVE_RECOVERING_LABEL,
-            );
-            return false;
-          }
-          clearPillowHostSession();
-          markStarting("recovering");
-          sessionId = await ensureHostSession();
-          if (!sessionId) return false;
-          try {
-            return await attemptChat(sessionId);
-          } catch (error) {
-            markStarting(
-              "delayed",
-              error instanceof Error ? error.message : EXECUTIVE_RECOVERING_LABEL,
-            );
-            return false;
-          }
-        }
+      } catch (error) {
+        if (!user || activeOwnerId.current !== user.id) return true;
+        // A timeout/401/404 is not proof that the original POST was rejected.
+        // Preserve continuity and never execute the instruction a second time.
+        const message = error instanceof Error ? error.message : "The request status could not be confirmed. No automatic repeat was attempted.";
+        markStarting("delayed", message);
+        appendPillowTurnOnly({
+          ...mapPillowChatToAssistantResponse({
+            requestId: "", sessionId, message, kind: "error", latencyMs: 0,
+          }, query),
+          interactionSummary: message,
+        }, undefined, undefined, true);
+        return true;
       }
     },
     [
@@ -567,15 +614,20 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
       buildWorkspaceContext,
       ensureHostSession,
       markStarting,
+      markReady,
+      pathname,
+      presentChatResult,
       state.context,
       state.pageOverride,
+      user,
     ],
   );
 
   const askPillow = useCallback(
     async (query: string, target?: GlobalAssistantTarget) => {
       const trimmed = query.trim();
-      if (!trimmed) return;
+      if (!trimmed || chatSubmissionActive.current) return;
+      chatSubmissionActive.current = true;
 
       // Render Grand King message immediately; show honest processing state while Pillow works.
       appendUserTurnNow(trimmed);
@@ -599,13 +651,13 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         appendPillowTurnOnly({
           action: "ask",
           currentContext: "Executive infrastructure",
-          reason: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
+          reason: UNCONFIRMED_REQUEST_MESSAGE,
           supportingEvidence: [],
-          recommendedNextAction: "Wait for the same accepted request to complete — do not treat this as an executive answer.",
+          recommendedNextAction: "Restore the connection and check request status before sending this instruction again.",
           confidence: "unavailable",
           suggestedFollowUps: [],
           interactionIntent: "general",
-          interactionSummary: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
+          interactionSummary: UNCONFIRMED_REQUEST_MESSAGE,
           computedAt: new Date().toISOString(),
           futureCapabilities: [],
         });
@@ -614,6 +666,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           connectionError: s.connectionError ?? EXECUTIVE_RECOVERING_LABEL,
         }));
       } finally {
+        chatSubmissionActive.current = false;
         setState((s) => (s.loading ? { ...s, loading: false } : s));
       }
     },
@@ -648,6 +701,8 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         await askPillow(userQuery, target);
         return;
       }
+      if (chatSubmissionActive.current) return;
+      chatSubmissionActive.current = true;
 
       setState((s) => ({
         ...s,
@@ -663,14 +718,14 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
         recordConversation(userQuery, {
           action,
           currentContext: "Executive infrastructure",
-          reason: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
+          reason: UNCONFIRMED_REQUEST_MESSAGE,
           supportingEvidence: [],
           recommendedNextAction:
-            "Wait for the same accepted request to complete — do not treat this as an executive answer.",
+            "Restore the connection and check request status before sending this instruction again.",
           confidence: "unavailable",
           suggestedFollowUps: [],
           interactionIntent: "general",
-          interactionSummary: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
+          interactionSummary: UNCONFIRMED_REQUEST_MESSAGE,
           computedAt: new Date().toISOString(),
           futureCapabilities: [],
         });
@@ -679,20 +734,21 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
           lastResponse: {
             action,
             currentContext: "Executive infrastructure",
-            reason: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
+            reason: UNCONFIRMED_REQUEST_MESSAGE,
             supportingEvidence: [],
             recommendedNextAction:
-              "Wait for the same accepted request to complete — do not treat this as an executive answer.",
+              "Restore the connection and check request status before sending this instruction again.",
             confidence: "unavailable",
             suggestedFollowUps: [],
             interactionIntent: "general",
-            interactionSummary: EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY,
+            interactionSummary: UNCONFIRMED_REQUEST_MESSAGE,
             computedAt: new Date().toISOString(),
             futureCapabilities: [],
           },
           connectionError: s.readinessLabel || EXECUTIVE_RECOVERING_LABEL,
         }));
       } finally {
+        chatSubmissionActive.current = false;
         setState((s) => (s.loading ? { ...s, loading: false } : s));
       }
     },

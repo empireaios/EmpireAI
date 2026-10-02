@@ -1,0 +1,957 @@
+{
+  "capturedAt": "2026-09-23T13:04:13.174Z",
+  "source": "bed51228ada3110373ae671ca72f9d781af3b0e0",
+  "ci": [
+    {
+      "id": 35863001095,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "jobs": [
+            {
+              "id": 107187564844,
+              "name": "Repository and deployment-root contract",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001095,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Verify package scripts, lockfiles and the production web contract",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Verify deterministic build configuration and reject runtime drift",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Verify bounded canary configuration and child-process cleanup",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Record tested revision and limits",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Post Use Node.js 22",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 13
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 14
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 15
+                }
+              ]
+            },
+            {
+              "id": 107187707262,
+              "name": "Canonical Next.js web — clean install, typecheck, test, build",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001095,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install Next.js web dependencies",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Typecheck Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Test Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Build Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Diagnose known lint debt without masking product checks",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 8
+                },
+                {
+                  "name": "Record lint baseline debt",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 9
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 17
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 18
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 19
+                }
+              ]
+            },
+            {
+              "id": 107187707300,
+              "name": "Legacy Vite compatibility — clean install, typecheck, build",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001095,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install legacy frontend dependencies",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Typecheck legacy frontend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Build legacy frontend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Record current test coverage gap",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 13
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 14
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 15
+                }
+              ]
+            },
+            {
+              "id": 107187707326,
+              "name": "Backend — clean install, typecheck, build, offline tests",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001095,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install and build linked Pillow package",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Clean install backend dependencies",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Verify backend development environment",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Typecheck backend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Build backend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 8
+                },
+                {
+                  "name": "Run fast invariant gate",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 9
+                },
+                {
+                  "name": "Run ranking, correction and authority lock tests",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 10
+                },
+                {
+                  "name": "Run chat, recovery and canonical-truth tests",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 11
+                },
+                {
+                  "name": "Record reviewed offline scope",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 12
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 23
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 24
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 25
+                }
+              ]
+            },
+            {
+              "id": 107187707480,
+              "name": "Pillow — clean install, typecheck, build, offline test",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001095,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install Pillow dependencies",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Typecheck Pillow",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Build Pillow",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Run reviewed in-process Pillow commerce and operations suites",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 13
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 14
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 15
+                }
+              ]
+            },
+            {
+              "id": 107188644520,
+              "name": "Product path result (no deployment)",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001095,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Require every product check to pass",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "id": 35863001122,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "jobs": [
+            {
+              "id": 107187564936,
+              "name": "Semantic evidence preservation — offline full engineering gate",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001122,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install, typecheck and build Pillow",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Clean install, typecheck and build backend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Create network-denial preload for offline child processes",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Run full semantic engineering regressions with no provider access",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Require CJ receipt truth and authorization regressions without provider access",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 8
+                },
+                {
+                  "name": "Record exact revision and verification limits",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 9
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 17
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 18
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 19
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "id": 35863001277,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Action completed."
+          }
+        ],
+        "structuredContent": {
+          "jobs": [
+            {
+              "id": 107187565449,
+              "name": "Durable web — receipt recovery, one submission, tests and build",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001277,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Clean install and typecheck canonical Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Run web tests with mandatory durable-delivery coverage",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Build canonical Next.js web",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Record exact tested revision and scope",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 13
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 14
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 15
+                }
+              ]
+            },
+            {
+              "id": 107187565685,
+              "name": "Durable runtime — real Redis, restart, ownership and authorization",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001277,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                },
+                {
+                  "name": "Install Redis binary for test-owned isolated AOF processes",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 4
+                },
+                {
+                  "name": "Clean install, typecheck and build Pillow",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 5
+                },
+                {
+                  "name": "Run mandatory Pillow observer and reasoning-only policy tests",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 6
+                },
+                {
+                  "name": "Clean install, verify, typecheck and build backend",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 7
+                },
+                {
+                  "name": "Run mandatory isolated runtime and session tests",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 8
+                },
+                {
+                  "name": "Record exact tested revision and scope",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 9
+                },
+                {
+                  "name": "Post Use Node.js 22 with npm cache",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 17
+                },
+                {
+                  "name": "Post Checkout exact event revision without persisting credentials",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 18
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 19
+                }
+              ]
+            },
+            {
+              "id": 107189338808,
+              "name": "Runtime repair result (no deployment)",
+              "status": "completed",
+              "conclusion": "success",
+              "run_id": 35863001277,
+              "logs_url": null,
+              "steps": [
+                {
+                  "name": "Set up job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 1
+                },
+                {
+                  "name": "Require both mandatory repair gates to pass",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 2
+                },
+                {
+                  "name": "Complete job",
+                  "status": "completed",
+                  "conclusion": "success",
+                  "number": 3
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    }
+  ],
+  "launch": {
+    "content": [
+      {
+        "type": "text",
+        "text": "**empireai-canary-20260923** (feb90d26-c54b-4435-ac32-f666e3e25447)\nWorkspace: empireaios's Projects\nEnvironment: **production** (3b0664a3-8655-4fc1-b9cf-113034a81e0a)\nServices (2):\n- **recovery2-canary** (78d7c0ad-523a-4b70-89eb-1815aa3bd577) [BUILDING]\n  volume: recovery2-canary-volume (20fbeefa-0311-4bf2-98e7-75a4e967c9f9) at /data · 50000MB · sfo\n  deployment: 613e22c1-62db-4387-b5dc-d31571156084 · 2026-09-23T13:01:35.818Z\n- **recovery2-redis** (4815f3ec-bff4-4c81-9faf-cde533d92af3) [DEPLOYING]\n  volume: recovery2-redis-volume (de6f9bd8-6389-4456-9cca-6eba6b31e9d5) at /data · 50000MB · sfo\n  deployment: 2553f76d-a9c5-47db-8c73-9236ee0b6057 · 2026-09-23T13:01:35.426Z\n\nNo pending (staged/applying) work."
+      }
+    ],
+    "structuredContent": {
+      "project": {
+        "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+        "name": "empireai-canary-20260923",
+        "workspaceName": "empireaios's Projects"
+      },
+      "environment": {
+        "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "name": "production",
+        "unmergedChangesCount": null,
+        "stagedChanges": null
+      },
+      "services": [
+        {
+          "id": "78d7c0ad-523a-4b70-89eb-1815aa3bd577",
+          "name": "recovery2-canary",
+          "numReplicas": null,
+          "cronSchedule": null,
+          "volumes": [
+            {
+              "id": "20fbeefa-0311-4bf2-98e7-75a4e967c9f9",
+              "name": "recovery2-canary-volume",
+              "mountPath": "/data",
+              "sizeMB": 50000,
+              "region": "sfo"
+            }
+          ],
+          "latestDeployment": {
+            "id": "613e22c1-62db-4387-b5dc-d31571156084",
+            "status": "BUILDING",
+            "createdAt": "2026-09-23T13:01:35.818Z",
+            "url": null
+          }
+        },
+        {
+          "id": "4815f3ec-bff4-4c81-9faf-cde533d92af3",
+          "name": "recovery2-redis",
+          "numReplicas": null,
+          "cronSchedule": null,
+          "volumes": [
+            {
+              "id": "de6f9bd8-6389-4456-9cca-6eba6b31e9d5",
+              "name": "recovery2-redis-volume",
+              "mountPath": "/data",
+              "sizeMB": 50000,
+              "region": "sfo"
+            }
+          ],
+          "latestDeployment": {
+            "id": "2553f76d-a9c5-47db-8c73-9236ee0b6057",
+            "status": "DEPLOYING",
+            "createdAt": "2026-09-23T13:01:35.426Z",
+            "url": null
+          }
+        }
+      ],
+      "buckets": [],
+      "pendingWork": []
+    },
+    "isError": false
+  },
+  "config": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Config for **recovery2-canary** in **production**:\n\n```json\n{\n  \"build\": {\n    \"builder\": \"RAILPACK\",\n    \"buildCommand\": \"NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend\",\n    \"buildEnvironment\": \"V3\"\n  },\n  \"deploy\": {\n    \"startCommand\": \"node deployment/canary-launcher.cjs\",\n    \"healthcheckPath\": \"/health/ready\",\n    \"healthcheckTimeout\": 300,\n    \"restartPolicyType\": \"NEVER\",\n    \"useLegacyStacker\": false,\n    \"ipv6EgressEnabled\": false,\n    \"runtime\": \"V2\",\n    \"multiRegionConfig\": {\n      \"sfo\": {\n        \"numReplicas\": 1\n      }\n    }\n  }\n}\n```\n\nVariables defined (13): ADMIN_EMAIL, ADMIN_PASSWORD, CORS_ORIGIN, DATABASE_PATH, EMPIRE_CANARY_ACK, EMPIRE_CANARY_EXPIRES_AT, EMPIRE_CANARY_REDIS_HOST, EMPIRE_ENGINEERING_TEST_MODE, FOUNDER_EMAIL, FOUNDER_PASSWORD, PORT, REDIS_URL, SESSION_SECRET\nStaged but not deployed (6 changes, patch 97a273c6-6e40-408e-9d2f-82d7fc761c70, STAGED):\n```json\n{\n  \"deploy\": {\n    \"limitOverride\": {\n      \"containers\": {\n        \"cpu\": 2,\n        \"memoryBytes\": 6000000000\n      }\n    }\n  },\n  \"source\": {\n    \"repo\": \"empireaios/EmpireAI\",\n    \"branch\": \"codex/bounded-canary-20260923\",\n    \"checkSuites\": true\n  },\n  \"volumeMounts\": {\n    \"20fbeefa-0311-4bf2-98e7-75a4e967c9f9\": {\n      \"mountPath\": \"/data\"\n    }\n  }\n}\n```\nCommit with accept-deploy to apply."
+          }
+        ],
+        "structuredContent": {
+          "service": {
+            "id": "78d7c0ad-523a-4b70-89eb-1815aa3bd577",
+            "name": "recovery2-canary"
+          },
+          "environment": {
+            "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+            "name": "production"
+          },
+          "config": {
+            "build": {
+              "builder": "RAILPACK",
+              "buildCommand": "NPM_CONFIG_PRODUCTION=false npm ci --prefix pillow && NPM_CONFIG_PRODUCTION=false npm ci --prefix backend && node scripts/sync-pillow-governance.mjs && npm run build --prefix pillow && npm run build --prefix backend",
+              "buildEnvironment": "V3"
+            },
+            "deploy": {
+              "startCommand": "node deployment/canary-launcher.cjs",
+              "healthcheckPath": "/health/ready",
+              "healthcheckTimeout": 300,
+              "restartPolicyType": "NEVER",
+              "useLegacyStacker": false,
+              "ipv6EgressEnabled": false,
+              "runtime": "V2",
+              "multiRegionConfig": {
+                "sfo": {
+                  "numReplicas": 1
+                }
+              }
+            }
+          },
+          "variableNames": [
+            "ADMIN_EMAIL",
+            "ADMIN_PASSWORD",
+            "CORS_ORIGIN",
+            "DATABASE_PATH",
+            "EMPIRE_CANARY_ACK",
+            "EMPIRE_CANARY_EXPIRES_AT",
+            "EMPIRE_CANARY_REDIS_HOST",
+            "EMPIRE_ENGINEERING_TEST_MODE",
+            "FOUNDER_EMAIL",
+            "FOUNDER_PASSWORD",
+            "PORT",
+            "REDIS_URL",
+            "SESSION_SECRET"
+          ],
+          "staged": {
+            "patchId": "97a273c6-6e40-408e-9d2f-82d7fc761c70",
+            "patchStatus": "STAGED",
+            "changeCount": 6,
+            "config": {
+              "deploy": {
+                "limitOverride": {
+                  "containers": {
+                    "cpu": 2,
+                    "memoryBytes": 6000000000
+                  }
+                }
+              },
+              "source": {
+                "repo": "empireaios/EmpireAI",
+                "branch": "codex/bounded-canary-20260923",
+                "checkSuites": true
+              },
+              "volumeMounts": {
+                "20fbeefa-0311-4bf2-98e7-75a4e967c9f9": {
+                  "mountPath": "/data"
+                }
+              }
+            },
+            "variableNames": []
+          }
+        },
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Config for **recovery2-redis** in **production**:\n\n```json\n{\n  \"build\": {\n    \"builder\": \"RAILPACK\",\n    \"buildEnvironment\": \"V3\"\n  },\n  \"deploy\": {\n    \"startCommand\": \"sh -c 'exec redis-server --bind 0.0.0.0 :: --protected-mode yes --port 6379 --dir /data --requirepass \\\"$REDIS_PASSWORD\\\" --maxmemory 268435456 --maxmemory-policy noeviction --appendonly yes --appendfsync always'\",\n    \"restartPolicyType\": \"NEVER\",\n    \"useLegacyStacker\": false,\n    \"ipv6EgressEnabled\": false,\n    \"runtime\": \"V2\",\n    \"multiRegionConfig\": {\n      \"sfo\": {\n        \"numReplicas\": 1\n      }\n    }\n  }\n}\n```\n\nVariables defined (1): REDIS_PASSWORD\nStaged but not deployed (4 changes, patch 97a273c6-6e40-408e-9d2f-82d7fc761c70, STAGED):\n```json\n{\n  \"deploy\": {\n    \"limitOverride\": {\n      \"containers\": {\n        \"cpu\": 1,\n        \"memoryBytes\": 500000000\n      }\n    }\n  },\n  \"source\": {\n    \"image\": \"redis:7.2.16-bookworm\"\n  },\n  \"volumeMounts\": {\n    \"de6f9bd8-6389-4456-9cca-6eba6b31e9d5\": {\n      \"mountPath\": \"/data\"\n    }\n  }\n}\n```\nCommit with accept-deploy to apply."
+          }
+        ],
+        "structuredContent": {
+          "service": {
+            "id": "4815f3ec-bff4-4c81-9faf-cde533d92af3",
+            "name": "recovery2-redis"
+          },
+          "environment": {
+            "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+            "name": "production"
+          },
+          "config": {
+            "build": {
+              "builder": "RAILPACK",
+              "buildEnvironment": "V3"
+            },
+            "deploy": {
+              "startCommand": "sh -c 'exec redis-server --bind 0.0.0.0 :: --protected-mode yes --port 6379 --dir /data --requirepass \"$REDIS_PASSWORD\" --maxmemory 268435456 --maxmemory-policy noeviction --appendonly yes --appendfsync always'",
+              "restartPolicyType": "NEVER",
+              "useLegacyStacker": false,
+              "ipv6EgressEnabled": false,
+              "runtime": "V2",
+              "multiRegionConfig": {
+                "sfo": {
+                  "numReplicas": 1
+                }
+              }
+            }
+          },
+          "variableNames": [
+            "REDIS_PASSWORD"
+          ],
+          "staged": {
+            "patchId": "97a273c6-6e40-408e-9d2f-82d7fc761c70",
+            "patchStatus": "STAGED",
+            "changeCount": 4,
+            "config": {
+              "deploy": {
+                "limitOverride": {
+                  "containers": {
+                    "cpu": 1,
+                    "memoryBytes": 500000000
+                  }
+                }
+              },
+              "source": {
+                "image": "redis:7.2.16-bookworm"
+              },
+              "volumeMounts": {
+                "de6f9bd8-6389-4456-9cca-6eba6b31e9d5": {
+                  "mountPath": "/data"
+                }
+              }
+            },
+            "variableNames": []
+          }
+        },
+        "isError": false
+      }
+    }
+  ]
+}

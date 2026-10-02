@@ -1,0 +1,926 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "**Deployment 613e22c1-62db-4387-b5dc-d31571156084** [SUCCESS]\nservice: 78d7c0ad-523a-4b70-89eb-1815aa3bd577, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (31)\n2026-09-23T13:10:10.185199031Z info Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/9f107f92-6be8-4874-988b-f32aa2517c02/vol_8lznxpmvomsmnf34\n2026-09-23T13:10:10.185339141Z info Starting Container\n2026-09-23T13:10:11.035051591Z info \n2026-09-23T13:10:11.035054591Z info Creating ioredis client\n2026-09-23T13:10:11.035057531Z info Tier-0 primary binds shared Redis; unavailable commands fail closed while connection recovers\n2026-09-23T13:10:11.035061671Z info Tier-0 isolated primary listening (auth/health independent of sql.js worker)\n2026-09-23T13:10:12.129058910Z info Tier-0 primary spawned Brain worker\n2026-09-23T13:10:12.129061900Z info Volume reclaim completed (temps/old quarantines only)\n2026-09-23T13:10:13.852103958Z info Creating ioredis client\n2026-09-23T13:10:13.852146068Z error (node:28) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n2026-09-23T13:10:13.852150488Z error (Use `node --trace-warnings ...` to show where the warning was created)\n2026-09-23T13:10:13.852153948Z info Production persistence verification passed\n2026-09-23T13:10:14.100940970Z info Creating ioredis client\n2026-09-23T13:10:14.100943830Z info Creating ioredis client\n2026-09-23T13:10:14.100946780Z info Brain database initialized\n2026-09-23T13:10:14.100949610Z info Event bus started\n2026-09-23T13:10:14.100952470Z info EmpireAI Brain initialized\n2026-09-23T13:10:14.233573291Z info Seeded bootstrap account\n2026-09-23T13:10:14.454603902Z info Seeded bootstrap account\n2026-09-23T13:10:14.498772363Z info Event stream hub started\n2026-09-23T13:10:14.535126662Z info Domain data seeded\n2026-09-23T13:10:14.535130482Z info Grand King account seeded\n2026-09-23T13:10:14.535133832Z info Deferred production bootstrap completed\n2026-09-23T13:10:14.535136822Z info Auth routes registered\n2026-09-23T13:10:15.075556274Z info Institutional memory bootstrap complete\n2026-09-23T13:10:15.152394236Z info Institutional memory bootstrap seeded\n2026-09-23T13:10:15.153499795Z info Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)\n2026-09-23T13:10:15.153510215Z info EmpireAI Brain API listening\n2026-09-23T13:10:15.153516675Z info Executive continuity watchdog started\n2026-09-23T13:10:15.153521805Z info Skipping REAL module HTTP route registration in production (Cockpit-critical routes only)\n2026-09-23T13:10:34.910642172Z info Pillow host started (PILLOW-016)"
+    }
+  ],
+  "structuredContent": {
+    "deploymentId": "613e22c1-62db-4387-b5dc-d31571156084",
+    "serviceId": "78d7c0ad-523a-4b70-89eb-1815aa3bd577",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "SUCCESS",
+    "deploy": [
+      {
+        "timestamp": "2026-09-23T13:10:10.185199031Z",
+        "severity": "info",
+        "message": "Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/9f107f92-6be8-4874-988b-f32aa2517c02/vol_8lznxpmvomsmnf34",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:10.185339141Z",
+        "severity": "info",
+        "message": "Starting Container",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:11.035051591Z",
+        "severity": "info",
+        "message": "",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "event",
+            "value": "\"bounded_canary_start\""
+          },
+          {
+            "key": "schema",
+            "value": "\"canary-launch-v1\""
+          },
+          {
+            "key": "launchId",
+            "value": "\"8a7a75c2-5b9d-4085-a912-aac9275dc4b3\""
+          },
+          {
+            "key": "nodeVersion",
+            "value": "\"22.23.2\""
+          },
+          {
+            "key": "execPath",
+            "value": "\"/mise/installs/node/22.23.2/bin/node\""
+          },
+          {
+            "key": "launcherPid",
+            "value": "1"
+          },
+          {
+            "key": "launcherSha256",
+            "value": "\"923d73b476750d911fa1ea6b5922dfacd8efa8db8945a90de23b90979c94773b\""
+          },
+          {
+            "key": "serviceId",
+            "value": "\"78d7c0ad-523a-4b70-89eb-1815aa3bd577\""
+          },
+          {
+            "key": "deploymentId",
+            "value": "\"613e22c1-62db-4387-b5dc-d31571156084\""
+          },
+          {
+            "key": "gitCommitSha",
+            "value": "\"bed51228ada3110373ae671ca72f9d781af3b0e0\""
+          },
+          {
+            "key": "expiresAt",
+            "value": "\"2026-09-23T13:31:22.745Z\""
+          },
+          {
+            "key": "scope",
+            "value": "\"engineering_test_only\""
+          },
+          {
+            "key": "commerce",
+            "value": "\"LOCKED\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:11.035054591Z",
+        "severity": "info",
+        "message": "Creating ioredis client",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169010310"
+          },
+          {
+            "key": "pid",
+            "value": "16"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "redisUrl",
+            "value": "\"redis://default:***@recovery2-redis.railway.internal:6379/0\""
+          },
+          {
+            "key": "clientKind",
+            "value": "\"persistent\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:11.035057531Z",
+        "severity": "info",
+        "message": "Tier-0 primary binds shared Redis; unavailable commands fail closed while connection recovers",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169010311"
+          },
+          {
+            "key": "pid",
+            "value": "16"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:11.035061671Z",
+        "severity": "info",
+        "message": "Tier-0 isolated primary listening (auth/health independent of sql.js worker)",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169010361"
+          },
+          {
+            "key": "pid",
+            "value": "16"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "port",
+            "value": "3000"
+          },
+          {
+            "key": "workerPort",
+            "value": "3001"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:12.129058910Z",
+        "severity": "info",
+        "message": "Tier-0 primary spawned Brain worker",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169011866"
+          },
+          {
+            "key": "pid",
+            "value": "16"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "workerPort",
+            "value": "3001"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:12.129061900Z",
+        "severity": "info",
+        "message": "Volume reclaim completed (temps/old quarantines only)",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169012037"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "freedBytes",
+            "value": "0"
+          },
+          {
+            "key": "deletedCount",
+            "value": "0"
+          },
+          {
+            "key": "keptCorrupt",
+            "value": "null"
+          },
+          {
+            "key": "beforeBytes",
+            "value": "469"
+          },
+          {
+            "key": "afterBytes",
+            "value": "469"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:13.852103958Z",
+        "severity": "info",
+        "message": "Creating ioredis client",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169013831"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "redisUrl",
+            "value": "\"redis://default:***@recovery2-redis.railway.internal:6379/0\""
+          },
+          {
+            "key": "clientKind",
+            "value": "\"probe\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:13.852146068Z",
+        "severity": "error",
+        "message": "(node:28) ExperimentalWarning: SQLite is an experimental feature and might change at any time",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"error\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:13.852150488Z",
+        "severity": "error",
+        "message": "(Use `node --trace-warnings ...` to show where the warning was created)",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"error\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:13.852153948Z",
+        "severity": "info",
+        "message": "Production persistence verification passed",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169012038"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "databasePath",
+            "value": "\"/data/canary/recovery2-20260923.sqlite\""
+          },
+          {
+            "key": "onPersistentVolume",
+            "value": "true"
+          },
+          {
+            "key": "writable",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.100940970Z",
+        "severity": "info",
+        "message": "Creating ioredis client",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169013874"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "redisUrl",
+            "value": "\"redis://default:***@recovery2-redis.railway.internal:6379/0\""
+          },
+          {
+            "key": "clientKind",
+            "value": "\"persistent\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.100943830Z",
+        "severity": "info",
+        "message": "Creating ioredis client",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169013877"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "redisUrl",
+            "value": "\"redis://default:***@recovery2-redis.railway.internal:6379/0\""
+          },
+          {
+            "key": "clientKind",
+            "value": "\"bullmq\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.100946780Z",
+        "severity": "info",
+        "message": "Brain database initialized",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169013941"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "dbPath",
+            "value": "\"/data/canary/recovery2-20260923.sqlite\""
+          },
+          {
+            "key": "driver",
+            "value": "\"sql.js\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.100949610Z",
+        "severity": "info",
+        "message": "Event bus started",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169013972"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.100952470Z",
+        "severity": "info",
+        "message": "EmpireAI Brain initialized",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169013972"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "agents",
+            "value": "13"
+          },
+          {
+            "key": "tools",
+            "value": "942"
+          },
+          {
+            "key": "llmProviders",
+            "value": "[]"
+          },
+          {
+            "key": "redisMode",
+            "value": "\"connected\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.233573291Z",
+        "severity": "info",
+        "message": "Seeded bootstrap account",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169014227"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "email",
+            "value": "\"founder-recovery2@canary.invalid\""
+          },
+          {
+            "key": "role",
+            "value": "\"founder\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.454603902Z",
+        "severity": "info",
+        "message": "Seeded bootstrap account",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169014453"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "email",
+            "value": "\"admin-recovery2@canary.invalid\""
+          },
+          {
+            "key": "role",
+            "value": "\"admin\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.498772363Z",
+        "severity": "info",
+        "message": "Event stream hub started",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169014454"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.535126662Z",
+        "severity": "info",
+        "message": "Domain data seeded",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169014497"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "workspaceId",
+            "value": "\"ws_empire_1\""
+          },
+          {
+            "key": "companies",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.535130482Z",
+        "severity": "info",
+        "message": "Grand King account seeded",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169014499"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "workspaceId",
+            "value": "\"ws_empire_1\""
+          },
+          {
+            "key": "companyId",
+            "value": "\"co-grand-king\""
+          },
+          {
+            "key": "account",
+            "value": "\"Grand King\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.535133832Z",
+        "severity": "info",
+        "message": "Deferred production bootstrap completed",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169014525"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:14.535136822Z",
+        "severity": "info",
+        "message": "Auth routes registered",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169014526"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:15.075556274Z",
+        "severity": "info",
+        "message": "Institutional memory bootstrap complete",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169015000"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "workspaceId",
+            "value": "\"ws_empire_1\""
+          },
+          {
+            "key": "seeded",
+            "value": "47"
+          },
+          {
+            "key": "total",
+            "value": "47"
+          },
+          {
+            "key": "birthCreated",
+            "value": "38"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:15.152394236Z",
+        "severity": "info",
+        "message": "Institutional memory bootstrap seeded",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169015000"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "seeded",
+            "value": "{\"seeded\":47,\"keys\":[\"gk.directive.first_dollar_dropshipping\",\"gk.directive.pillow_initiates_commerce\",\"gk.directive.cursor_minimization\",\"gk.directive.no_publish_without_approval\",\"commerce.lesson.accepted_ne_buyable\",\"commerce.lesson.anker_brand_gate\",\"commerce.lesson.preflight_restrictions_mandatory\",\"ops.lesson.eos_session_storm\",\"collab.memory.ready\",\"birth.lesson.estimate_ne_realised\",\"birth.lesson.cooccurrence_ne_identity\",\"birth.lesson.unknown_stays_local\",\"birth.lesson.hypothetical_ne_current\",\"birth.lesson.synthetic_isolation\",\"birth.lesson.current_turn_intent\",\"birth.lesson.partial_gate_ne_full_unlock\",\"birth.lesson.eligibility_ne_preference\",\"birth.lesson.observation_ne_causation\",\"birth.lesson.canonical_proposition_authority\",\"birth.lesson.compound_claim_all_components\",\"birth.lesson.auth_ne_capability\",\"birth.lesson.capability_ne_execution\",\"birth.lesson.newer_owner_wins\",\"birth.lesson.accepted_request_server_owned\",\"birth.lesson.cumulative_exposure_propagates\",\"birth.lesson.sibling_identity\",\"birth.lesson.no_lifecycle_residue_on_evidence\",\"birth.lesson.first_accepted_must_complete\",\"birth.lesson.normal_response_no_recovery_residue\",\"birth.lesson.certification_grades_visible_surface\",\"birth.lesson.first_request_vs_retry\",\"birth.lesson.http_success_ne_semantic_success\",\"birth.lesson.later_outcome_ne_nonoccurrence\",\"birth.lesson.explicit_claim_set_complete\",\"birth.lesson.memory_transfers_principle_not_surface\",\"birth.lesson.exact_section_contract\",\"birth.lesson.middle_claim_cannot_drop\",\"birth.lesson.cross_section_conclusion_reuse\",\"birth.lesson.lesson_principle_not_dump\",\"birth.lesson.source_domain_surface_purity\",\"birth.lesson.registry_outranks_cooccurrence\",\"birth.lesson.measured_subset_not_full_population\",\"birth.lesson.section_headings_are_not_claims\",\"birth.lesson.no_duplicate_post_answer_synthesis\",\"birth.lesson.evidence_ne_authority_route\",\"birth.lesson.temporal_supersession\",\"birth.doctrine.grand_king_ultimate\"]}"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:15.153499795Z",
+        "severity": "info",
+        "message": "Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169015000"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:15.153510215Z",
+        "severity": "info",
+        "message": "EmpireAI Brain API listening",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169015145"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "port",
+            "value": "3001"
+          },
+          {
+            "key": "earlyListen",
+            "value": "true"
+          },
+          {
+            "key": "role",
+            "value": "\"brain-worker\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:15.153516675Z",
+        "severity": "info",
+        "message": "Executive continuity watchdog started",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169015149"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "stallExitMs",
+            "value": "45000"
+          },
+          {
+            "key": "highLagExitMs",
+            "value": "120000"
+          },
+          {
+            "key": "highLagExitThresholdMs",
+            "value": "4000"
+          },
+          {
+            "key": "postFlushCooldownMs",
+            "value": "90000"
+          },
+          {
+            "key": "pollMs",
+            "value": "2000"
+          },
+          {
+            "key": "bootGraceMs",
+            "value": "600000"
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:15.153521805Z",
+        "severity": "info",
+        "message": "Skipping REAL module HTTP route registration in production (Cockpit-critical routes only)",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169015149"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          }
+        ]
+      },
+      {
+        "timestamp": "2026-09-23T13:10:34.910642172Z",
+        "severity": "info",
+        "message": "Pillow host started (PILLOW-016)",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          },
+          {
+            "key": "time",
+            "value": "1790169030166"
+          },
+          {
+            "key": "pid",
+            "value": "28"
+          },
+          {
+            "key": "hostname",
+            "value": "\"7d4084d2a504\""
+          },
+          {
+            "key": "repositoryRoot",
+            "value": "\"/app/backend/.pillow-governance-bundle\""
+          },
+          {
+            "key": "llmProviders",
+            "value": "[]"
+          }
+        ]
+      }
+    ]
+  },
+  "isError": false
+}

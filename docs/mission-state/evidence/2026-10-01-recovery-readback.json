@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-30T21:32:48.406744+00:00",
+  "recoveredHead": "84aaacccefbcfce1941fe732de9a6d99fc961147",
+  "ci": {
+    "Product": 36725188941,
+    "Semantic": 36725189108,
+    "Runtime": 36725188989,
+    "conclusion": "success"
+  },
+  "cleanup": {
+    "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
+    "services": 0,
+    "volumes": 0,
+    "emptyStagedPatch": "5d3f4dff-9b0b-4527-9188-dd94ad41e851",
+    "changes": [],
+    "deletedThisTurn": []
+  },
+  "billing": {
+    "priorProvisionalUSD": 1.0693,
+    "priorObservedAt": "2026-09-30T13:53:00Z",
+    "period": "Sep 5 - Oct 5",
+    "settled": false,
+    "freshUsageUnavailable": false,
+    "meteredReadOnlyAgentInspectionThisTurn": 1,
+    "currentTotalUSD": 1.1019,
+    "ceilingUSD": 20,
+    "freshObservedAt": "2026-09-30T21:37:29.473665+00:00",
+    "testProjectCurrentUSD": 0.0719,
+    "testProjectRoundedUSD": 0.07,
+    "testProjectEstimateUSD": 0.11,
+    "workspaceAgentUSD": 1.03,
+    "conservativeDisplayedAllocationUSD": 1.1019,
+    "limitations": "All displayed workspace Agent charges allocated conservatively; not exact incremental cost or settled invoice. Metering may lag. Workspace production costs excluded from rehearsal allocation."
+  },
+  "evidenceReadback": [
+    "provider-receipts.json",
+    "restart-readback.json",
+    "after-receipt.json"
+  ],
+  "observerRepair": {
+    "localNode": "24.19.0",
+    "testsPassed": 14,
+    "hostedCI": "PASS",
+    "historicalAfterFailureUnchanged": true,
+    "hostedReexecution": false
+  },
+  "productionTouched": false,
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED",
+  "interruptedJobContract": {
+    "scope": "test-owned Redis AOF process; no provider effects",
+    "test": "leased job survives Redis process death and rejects stale settlement after recovery",
+    "backendTypecheck": "PASS",
+    "execution": "PASS on mandatory hosted real-Redis suite, job110110680886, test9",
+    "hostedProductionProof": false,
+    "providerApplicationRestartProof": false
+  },
+  "verifiedCodeHead": "da5b452ac6d319cbdc0a6a4da49443f3a6585bc2",
+  "verifiedCodeCI": {
+    "Product": 36780924164,
+    "Semantic": 36780924273,
+    "Runtime": 36780924222,
+    "conclusion": "success"
+  }
+}

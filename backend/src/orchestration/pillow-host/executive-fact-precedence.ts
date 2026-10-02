@@ -8,6 +8,8 @@
  * E LLM prose
  * F Safety/status appenders (may restrict actions; must not rewrite A–C)
  */
+import { getPillowAuthority } from "../pillow-commissioning/pillow-authority.js";
+
 export type FactPrecedenceTier = "A" | "B" | "C" | "D" | "E" | "F";
 
 export type SuppliedContributionFact = {
@@ -27,10 +29,11 @@ export type CanonicalOperatingProjection = {
 
 /** Tier-B defaults — Birth unauthorized, real commerce locked. */
 export function canonicalOperatingProjection(): CanonicalOperatingProjection {
+  const authority = getPillowAuthority();
   return {
     operatingMode: "SYNTHETIC",
-    birthStatus: "NOT_BORN",
-    realCommerceAuthorized: false,
+    birthStatus: authority.birthStatus,
+    realCommerceAuthorized: authority.realCommerceAuthorized,
     realCommerceAuthorityLabel: "unauthorized",
     tier: "B",
   };

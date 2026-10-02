@@ -1,0 +1,270 @@
+(node:6) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: EC01/EC02 commercial arithmetic
+    # Subtest: documents precision policies
+    ok 1 - documents precision policies
+      ---
+      duration_ms: 0.998274
+      type: 'test'
+      ...
+    # Subtest: EC01 classic: 40-18-4-6%-1 = 14.60 not 15
+    ok 2 - EC01 classic: 40-18-4-6%-1 = 14.60 not 15
+      ---
+      duration_ms: 5.522675
+      type: 'test'
+      ...
+    # Subtest: EC02 cost shock: cost 20 → 12.60
+    ok 3 - EC02 cost shock: cost 20 → 12.60
+      ---
+      duration_ms: 5.634849
+      type: 'test'
+      ...
+    # Subtest: 14.5% fee on 39.90 with decimals
+    ok 4 - 14.5% fee on 39.90 with decimals
+      ---
+      duration_ms: 0.271821
+      type: 'test'
+      ...
+    # Subtest: mixed currency without FX → UNKNOWN
+    ok 5 - mixed currency without FX → UNKNOWN
+      ---
+      duration_ms: 1.593764
+      type: 'test'
+      ...
+    # Subtest: US$ amounts alone are USD not MIXED (no S$ false positive inside US$)
+    ok 6 - US$ amounts alone are USD not MIXED (no S$ false positive inside US$)
+      ---
+      duration_ms: 1.655104
+      type: 'test'
+      ...
+    # Subtest: fee mentioned without value → UNKNOWN
+    ok 7 - fee mentioned without value → UNKNOWN
+      ---
+      duration_ms: 1.23316
+      type: 'test'
+      ...
+    # Subtest: synthesizeTaskUnitAnswer uses calculator not whole-number approx
+    ok 8 - synthesizeTaskUnitAnswer uses calculator not whole-number approx
+      ---
+      duration_ms: 20.219545
+      type: 'test'
+      ...
+    # Subtest: detects mismatch 15 vs 14.60
+    ok 9 - detects mismatch 15 vs 14.60
+      ---
+      duration_ms: 0.983703
+      type: 'test'
+      ...
+    # Subtest: margin percent separate from dollar contribution
+    ok 10 - margin percent separate from dollar contribution
+      ---
+      duration_ms: 0.441332
+      type: 'test'
+      ...
+    # Subtest: negative contribution allowed
+    ok 11 - negative contribution allowed
+      ---
+      duration_ms: 0.214737
+      type: 'test'
+      ...
+    # Subtest: isCommercialArithmeticAsk true for unit economics
+    ok 12 - isCommercialArithmeticAsk true for unit economics
+      ---
+      duration_ms: 0.092597
+      type: 'test'
+      ...
+    # Subtest: formatMoneyVisible SGD
+    ok 13 - formatMoneyVisible SGD
+      ---
+      duration_ms: 0.065937
+      type: 'test'
+      ...
+    # Subtest: synthesizeCommercialArithmeticAnswer returns exact
+    ok 14 - synthesizeCommercialArithmeticAnswer returns exact
+      ---
+      duration_ms: 0.357949
+      type: 'test'
+      ...
+    # Subtest: repair overrides invented FX on MIXED currency
+    ok 15 - repair overrides invented FX on MIXED currency
+      ---
+      duration_ms: 0.734264
+      type: 'test'
+      ...
+    # Subtest: repair overrides false-complete when fee unknown
+    ok 16 - repair overrides false-complete when fee unknown
+      ---
+      duration_ms: 0.9476
+      type: 'test'
+      ...
+    1..16
+ok 1 - EC01/EC02 commercial arithmetic
+  ---
+  duration_ms: 42.581864
+  type: 'suite'
+  ...
+# Subtest: Given-metric arithmetic authority (Juniper class)
+    # Subtest: GK forensic: not arith ask, USD only, no unit-econ stub, DecisionCase SELECT Juniper
+    ok 1 - GK forensic: not arith ask, USD only, no unit-econ stub, DecisionCase SELECT Juniper
+      ---
+      duration_ms: 10.464421
+      type: 'test'
+      ...
+    # Subtest: given contribution decision does not hijack via subject Unit economics
+    ok 2 - given contribution decision does not hijack via subject Unit economics
+      ---
+      duration_ms: 1.532693
+      type: 'test'
+      ...
+    # Subtest: negation 'do not recompute unit economics' does not flip given-metric to calc ask
+    ok 3 - negation 'do not recompute unit economics' does not flip given-metric to calc ask
+      ---
+      duration_ms: 0.597262
+      type: 'test'
+      ...
+    # Subtest: repair does not rewrite given-metric decisions
+    ok 4 - repair does not rewrite given-metric decisions
+      ---
+      duration_ms: 0.088601
+      type: 'test'
+      ...
+    1..4
+ok 2 - Given-metric arithmetic authority (Juniper class)
+  ---
+  duration_ms: 12.845067
+  type: 'suite'
+  ...
+# Subtest: owner-supplied monetary facts in ordinary prose
+    # Subtest: preserves explicitly supplied prices and computes through the answer path
+    ok 1 - preserves explicitly supplied prices and computes through the answer path
+      ---
+      duration_ms: 11.095574
+      type: 'test'
+      ...
+    # Subtest: does not borrow another field or interpret malformed/ranged money as a price
+    ok 2 - does not borrow another field or interpret malformed/ranged money as a price
+      ---
+      duration_ms: 3.057895
+      type: 'test'
+      ...
+    1..2
+ok 3 - owner-supplied monetary facts in ordinary prose
+  ---
+  duration_ms: 14.308648
+  type: 'suite'
+  ...
+# Subtest: supplied marketplace fees remain in scenario economics
+    # Subtest: uses the recovered owner fact summary without claiming the original transcript or provider qualification
+    ok 1 - uses the recovered owner fact summary without claiming the original transcript or provider qualification
+      ---
+      duration_ms: 0.689348
+      type: 'test'
+      ...
+    # Subtest: reads plural fixed and percentage fees without stealing a later margin
+    ok 2 - reads plural fixed and percentage fees without stealing a later margin
+      ---
+      duration_ms: 0.541219
+      type: 'test'
+      ...
+    1..2
+ok 4 - supplied marketplace fees remain in scenario economics
+  ---
+  duration_ms: 1.319037
+  type: 'suite'
+  ...
+# (node:14) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:14) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: DC-05421 fact precedence + response contract
+    # Subtest: extracts supplied contributions and sums to 16.00
+    ok 1 - extracts supplied contributions and sums to 16.00
+      ---
+      duration_ms: 2.344441
+      type: 'test'
+      ...
+    # Subtest: does not invoke commercial calculator / SELLING_PRICE
+    ok 2 - does not invoke commercial calculator / SELLING_PRICE
+      ---
+      duration_ms: 1.868559
+      type: 'test'
+      ...
+    # Subtest: projects exact four-line contract without extra prose
+    ok 3 - projects exact four-line contract without extra prose
+      ---
+      duration_ms: 1.827769
+      type: 'test'
+      ...
+    # Subtest: blocks when token missing
+    ok 4 - blocks when token missing
+      ---
+      duration_ms: 0.258392
+      type: 'test'
+      ...
+    # Subtest: US$5000 exceeds US$4950 for ranking facts
+    ok 5 - US$5000 exceeds US$4950 for ranking facts
+      ---
+      duration_ms: 0.133788
+      type: 'test'
+      ...
+    1..5
+ok 5 - DC-05421 fact precedence + response contract
+  ---
+  duration_ms: 7.4974
+  type: 'suite'
+  ...
+# (node:15) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:15) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: W1-T1 corrected-delivery decision authority
+    # Subtest: extractCurrentDeliveryDays prefers corrected over earlier
+    ok 1 - extractCurrentDeliveryDays prefers corrected over earlier
+      ---
+      duration_ms: 1.419756
+      type: 'test'
+      ...
+    # Subtest: DecisionCase: sole eligible Nova, Vega FAIL on corrected 8
+    ok 2 - DecisionCase: sole eligible Nova, Vega FAIL on corrected 8
+      ---
+      duration_ms: 11.439426
+      type: 'test'
+      ...
+    # Subtest: repair removes cross-section contradictions for sole eligible
+    ok 3 - repair removes cross-section contradictions for sole eligible
+      ---
+      duration_ms: 4.581305
+      type: 'test'
+      ...
+    # Subtest: bare contribution numbers in multi-gate packs are given-metric not calc asks
+    ok 4 - bare contribution numbers in multi-gate packs are given-metric not calc asks
+      ---
+      duration_ms: 4.088357
+      type: 'test'
+      ...
+    # Subtest: Helios-shaped Supplier headers: Ember sole eligible; Grove CF changes selection
+    ok 5 - Helios-shaped Supplier headers: Ember sole eligible; Grove CF changes selection
+      ---
+      duration_ms: 3.175869
+      type: 'test'
+      ...
+    1..5
+ok 6 - W1-T1 corrected-delivery decision authority
+  ---
+  duration_ms: 25.912407
+  type: 'suite'
+  ...
+1..6
+# tests 34
+# suites 6
+# pass 34
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 401.961045

@@ -103,11 +103,12 @@ export async function ensurePillowHostReady(
 
   const bootPromise = schedulePillowHostBoot(pillowHost, llmRouter, auditLogger);
   if (bootPromise) {
+    let waitTimer: ReturnType<typeof setTimeout> | undefined;
     try {
       await Promise.race([
         bootPromise,
         new Promise<void>((_, reject) => {
-          setTimeout(
+          waitTimer = setTimeout(
             () => reject(new Error(`Pillow boot wait timed out after ${PILLOW_BOOT_WAIT_MS}ms`)),
             PILLOW_BOOT_WAIT_MS,
           );
@@ -115,6 +116,8 @@ export async function ensurePillowHostReady(
       ]);
     } catch {
       // Fall through to lifecycle check so callers receive the host's lastError.
+    } finally {
+      clearTimeout(waitTimer);
     }
   }
 

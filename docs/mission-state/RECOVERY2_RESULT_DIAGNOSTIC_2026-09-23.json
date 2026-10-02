@@ -1,0 +1,28 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "**Deployment 02302b9f-5899-4990-89bd-34b2a69b835b** [SUCCESS]\nservice: 78d7c0ad-523a-4b70-89eb-1815aa3bd577, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (1)\n2026-09-23T13:22:50.154206035Z info RECOVERY2_RESULT_DIAGNOSTIC {\"event\":\"RECOVERY2_RESULT_DIAGNOSTIC\",\"finalResult\":{\"constitutionalGate\":{\"findings\":[{\"severity\":\"info\",\"principleId\":\"S8-ALTERNATIVES\",\"message\":\"No alternatives considered — evaluate maintain / delay / experiment paths when practical.\"}],\"allowed\":true,\"aligned\":true,\"requiresGrandKingApproval\":false},\"sessionId\":\"42dfbd83-2899-4bb7-a83c-bc8aff08333e\",\"workspaceId\":\"ws_empire_1\",\"durableRequestId\":\"pcr_a42ccb8062864fe7\",\"requestProvenance\":{\"reboundSessionId\":\"42dfbd83-2899-4bb7-a83c-bc8aff08333e\",\"entrypoint\":\"POST /api/pillow/chat\",\"codeSha\":\"bed51228ada3110373ae671ca72f9d781af3b0e0\",\"deploymentId\":\"613e22c1-62db-4387-b5dc-d31571156084\",\"workspaceId\":\"ws_empire_1\",\"layer\":\"brain-pillow-host\",\"sessionId\":\"42dfbd83-2899-4bb7-a83c-bc8aff08333e\",\"requestId\":\"req-4q\"},\"message\":\"Birth status: NOT_BORN. Operating mode: SYNTHETIC. Real commerce authorized: no (unauthorized).\",\"kind\":\"authority_facts\",\"latencyMs\":4,\"durableRequest\":true,\"status\":\"COMPLETED\",\"trace\":{\"totalMs\":4,\"digitalSoulGateMs\":1},\"reboundSessionId\":\"42dfbd83-2899-4bb7-a83c-bc8aff08333e\",\"requestId\":\"pcr_a42ccb8062864fe7\"},\"originalSha256\":\"56efc6618832ec5e35d3be1a64f9a70762ad55b8f7ca5004d43f0963b78857cf\",\"canonicalSha256\":\"a74ab8a2442f72f57ae933a50871c05525f032cedf25ed42238963650fc10e25\"}"
+    }
+  ],
+  "structuredContent": {
+    "deploymentId": "02302b9f-5899-4990-89bd-34b2a69b835b",
+    "serviceId": "78d7c0ad-523a-4b70-89eb-1815aa3bd577",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "SUCCESS",
+    "deploy": [
+      {
+        "timestamp": "2026-09-23T13:22:50.154206035Z",
+        "severity": "info",
+        "message": "RECOVERY2_RESULT_DIAGNOSTIC {\"event\":\"RECOVERY2_RESULT_DIAGNOSTIC\",\"finalResult\":{\"constitutionalGate\":{\"findings\":[{\"severity\":\"info\",\"principleId\":\"S8-ALTERNATIVES\",\"message\":\"No alternatives considered — evaluate maintain / delay / experiment paths when practical.\"}],\"allowed\":true,\"aligned\":true,\"requiresGrandKingApproval\":false},\"sessionId\":\"42dfbd83-2899-4bb7-a83c-bc8aff08333e\",\"workspaceId\":\"ws_empire_1\",\"durableRequestId\":\"pcr_a42ccb8062864fe7\",\"requestProvenance\":{\"reboundSessionId\":\"42dfbd83-2899-4bb7-a83c-bc8aff08333e\",\"entrypoint\":\"POST /api/pillow/chat\",\"codeSha\":\"bed51228ada3110373ae671ca72f9d781af3b0e0\",\"deploymentId\":\"613e22c1-62db-4387-b5dc-d31571156084\",\"workspaceId\":\"ws_empire_1\",\"layer\":\"brain-pillow-host\",\"sessionId\":\"42dfbd83-2899-4bb7-a83c-bc8aff08333e\",\"requestId\":\"req-4q\"},\"message\":\"Birth status: NOT_BORN. Operating mode: SYNTHETIC. Real commerce authorized: no (unauthorized).\",\"kind\":\"authority_facts\",\"latencyMs\":4,\"durableRequest\":true,\"status\":\"COMPLETED\",\"trace\":{\"totalMs\":4,\"digitalSoulGateMs\":1},\"reboundSessionId\":\"42dfbd83-2899-4bb7-a83c-bc8aff08333e\",\"requestId\":\"pcr_a42ccb8062864fe7\"},\"originalSha256\":\"56efc6618832ec5e35d3be1a64f9a70762ad55b8f7ca5004d43f0963b78857cf\",\"canonicalSha256\":\"a74ab8a2442f72f57ae933a50871c05525f032cedf25ed42238963650fc10e25\"}",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      }
+    ]
+  },
+  "isError": false
+}

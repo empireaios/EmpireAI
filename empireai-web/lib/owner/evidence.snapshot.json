@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "snapshotAt": "2026-09-29T12:36:42.890Z",
+  "mode": "HISTORICAL_PROVIDER_EVIDENCE",
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "approvalAllowed": false
+  },
+  "candidates": [
+    {
+      "id": "1873650472634056705",
+      "name": "Tall Dressing Table Cloth Storage Tower",
+      "selected": false,
+      "observedAt": "2026-09-29T12:36:42.890Z",
+      "decision": "REJECT",
+      "recommendation": "Supplier manages and ships this product. Reported CJ inventory does not establish CJ-controlled fulfilment.",
+      "recommendationSource": "Saved launch screening and Pillow commercial rules, not a live autonomous decision",
+      "kingDecision": "Not requested — rejected by launch screening",
+      "qualified": false,
+      "warning": "Closed: does not meet the CJ-controlled fulfilment requirement. Do not investigate or buy again without materially new evidence.",
+      "fields": [
+        {
+          "label": "Exact variant",
+          "value": "CJJT225717101AZ",
+          "kind": "provider-observed",
+          "source": "CJ product detail",
+          "note": "Variant ID 1873650472822800386"
+        },
+        {
+          "label": "Supplier price",
+          "value": "US$57.66",
+          "kind": "provider-observed",
+          "source": "CJ variantSellPrice",
+          "note": "Quote, not an invoice or payment"
+        },
+        {
+          "label": "Warehouse",
+          "value": "US · 1988118945147310081",
+          "kind": "provider-observed",
+          "source": "CJ inventory",
+          "note": ""
+        },
+        {
+          "label": "CJ-reported warehouse units",
+          "value": "9051",
+          "kind": "provider-observed",
+          "source": "CJ inventory",
+          "note": "Factory inventory excluded; not reserved for us"
+        },
+        {
+          "label": "Fulfilment classification",
+          "value": "SUPPLIER_SHIPPED_PRODUCT",
+          "kind": "provider-observed",
+          "source": "CJ product detail",
+          "note": "Supplier manages and ships; not qualified as CJ-controlled fulfilment"
+        },
+        {
+          "label": "US freight quote",
+          "value": "Not requested",
+          "kind": "unknown",
+          "source": "CJ freight calculation",
+          "note": "Only the selected candidate received a freight check."
+        },
+        {
+          "label": "Destination",
+          "value": "United States, quantity 1",
+          "kind": "assumed",
+          "source": "US business mandate",
+          "note": "No customer address or ZIP; not a delivery commitment"
+        },
+        {
+          "label": "Exact Amazon product / ASIN",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "No verified product match",
+          "note": "Similar names or pictures do not establish product identity"
+        },
+        {
+          "label": "Amazon market price / demand",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "No matching marketplace observation",
+          "note": ""
+        },
+        {
+          "label": "Amazon fees",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Needs an exact Amazon product and price",
+          "note": ""
+        },
+        {
+          "label": "Intended selling price",
+          "value": "Not set",
+          "kind": "unknown",
+          "source": "No market-backed price",
+          "note": ""
+        },
+        {
+          "label": "Supplier + quoted freight subtotal",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Supplier quote + one freight quote",
+          "note": "Zero or country-only freight is not validated applicable delivery cost; no favorable subtotal inferred"
+        },
+        {
+          "label": "All-in landed cost",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Costs incomplete",
+          "note": ""
+        },
+        {
+          "label": "Projected profit / margin",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Selling price and costs incomplete",
+          "note": ""
+        },
+        {
+          "label": "Realised profit",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "No actual sale or settled transaction",
+          "note": ""
+        }
+      ],
+      "sources": [
+        {
+          "at": "2026-09-29T12:36:36.149Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/product/listV2?page=1&size=2&countryCode=US&startWarehouseInventory=1&verifiedWarehouse=1&orderBy=4&sort=desc",
+          "requestId": "dadd6d2aee6d4dd4b323ed5d7fb42cd9",
+          "hash": "2befb4775a896281511af50f94eaf2c5b8c403512d44d0ce74a933cea31b5571"
+        },
+        {
+          "at": "2026-09-29T12:36:37.417Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/product/query?pid=1873650472634056705",
+          "requestId": "d3296eeabaca4e0d82edfdc5bb1ead62",
+          "hash": "3ce788cb9f1020aa5b14a0809b9fd5b008fca368493a6255e0d8416723466db1"
+        },
+        {
+          "at": "2026-09-29T12:36:38.690Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/product/stock/getInventoryByPid?pid=1873650472634056705",
+          "requestId": "c6687ed9f2d2462e8044499c2bb8d5b0",
+          "hash": "58c6f177457007b8f51d59c02c79febb515a25d30a98dd3d37ffbdd39eec2059"
+        }
+      ],
+      "receiptPath": "docs/mission-state/evidence/2026-09-29-cj-discovery/receipt.json"
+    },
+    {
+      "id": "1872203651945525250",
+      "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
+      "selected": true,
+      "observedAt": "2026-09-29T12:36:42.890Z",
+      "decision": "REJECT",
+      "recommendation": "Supplier manages and ships this product. Reported CJ inventory does not establish CJ-controlled fulfilment.",
+      "recommendationSource": "Saved launch screening and Pillow commercial rules, not a live autonomous decision",
+      "kingDecision": "Not requested — rejected by launch screening",
+      "qualified": false,
+      "warning": "Closed: does not meet the CJ-controlled fulfilment requirement. Do not investigate or buy again without materially new evidence.",
+      "fields": [
+        {
+          "label": "Exact variant",
+          "value": "CJFU225443901AZ",
+          "kind": "provider-observed",
+          "source": "CJ product detail",
+          "note": "Variant ID 1872203652109103106"
+        },
+        {
+          "label": "Supplier price",
+          "value": "US$52.25",
+          "kind": "provider-observed",
+          "source": "CJ variantSellPrice",
+          "note": "Quote, not an invoice or payment"
+        },
+        {
+          "label": "Warehouse",
+          "value": "US · 1988118945147310081",
+          "kind": "provider-observed",
+          "source": "CJ inventory",
+          "note": ""
+        },
+        {
+          "label": "CJ-reported warehouse units",
+          "value": "12273",
+          "kind": "provider-observed",
+          "source": "CJ inventory",
+          "note": "Factory inventory excluded; not reserved for us"
+        },
+        {
+          "label": "Fulfilment classification",
+          "value": "SUPPLIER_SHIPPED_PRODUCT",
+          "kind": "provider-observed",
+          "source": "CJ product detail",
+          "note": "Supplier manages and ships; not qualified as CJ-controlled fulfilment"
+        },
+        {
+          "label": "US freight quote",
+          "value": "US$0.00",
+          "kind": "provider-observed",
+          "source": "CJ freight calculation",
+          "note": "Amazon Logistic US to US #3 · 3-5 days quoted; country only, no ZIP. Zero quote requires confirmation."
+        },
+        {
+          "label": "Destination",
+          "value": "United States, quantity 1",
+          "kind": "assumed",
+          "source": "US business mandate",
+          "note": "No customer address or ZIP; not a delivery commitment"
+        },
+        {
+          "label": "Exact Amazon product / ASIN",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "No verified product match",
+          "note": "Similar names or pictures do not establish product identity"
+        },
+        {
+          "label": "Amazon market price / demand",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "No matching marketplace observation",
+          "note": ""
+        },
+        {
+          "label": "Amazon fees",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Needs an exact Amazon product and price",
+          "note": ""
+        },
+        {
+          "label": "Intended selling price",
+          "value": "Not set",
+          "kind": "unknown",
+          "source": "No market-backed price",
+          "note": ""
+        },
+        {
+          "label": "Supplier + quoted freight subtotal",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Supplier quote + one freight quote",
+          "note": "Zero or country-only freight is not validated applicable delivery cost; no favorable subtotal inferred"
+        },
+        {
+          "label": "All-in landed cost",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Costs incomplete",
+          "note": ""
+        },
+        {
+          "label": "Projected profit / margin",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Selling price and costs incomplete",
+          "note": ""
+        },
+        {
+          "label": "Realised profit",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "No actual sale or settled transaction",
+          "note": ""
+        }
+      ],
+      "sources": [
+        {
+          "at": "2026-09-29T12:36:36.149Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/product/listV2?page=1&size=2&countryCode=US&startWarehouseInventory=1&verifiedWarehouse=1&orderBy=4&sort=desc",
+          "requestId": "dadd6d2aee6d4dd4b323ed5d7fb42cd9",
+          "hash": "2befb4775a896281511af50f94eaf2c5b8c403512d44d0ce74a933cea31b5571"
+        },
+        {
+          "at": "2026-09-29T12:36:40.142Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/product/query?pid=1872203651945525250",
+          "requestId": "537a1ea981294b5cb1de86ecfc233e52",
+          "hash": "9d6e18fc3a0f0737bb8a224d3df91ab894e80eb6698c4a6ccd6e64775228ccf5"
+        },
+        {
+          "at": "2026-09-29T12:36:41.488Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/product/stock/getInventoryByPid?pid=1872203651945525250",
+          "requestId": "757e874bfd0242e18b6f256f8de71c0a",
+          "hash": "531e771d8b41727e41920f884943b7fb51c5e80b42bba1a4ca20b5e996adaf6a"
+        },
+        {
+          "at": "2026-09-29T12:36:42.887Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/logistic/freightCalculate",
+          "requestId": "7bfc122f533f48718b22f4824627ea0f",
+          "hash": "f3fd4497b553a8dbbbd128d509dcda6458fa0240edbdade962531bf68ce61f68"
+        }
+      ],
+      "receiptPath": "docs/mission-state/evidence/2026-09-29-cj-discovery/receipt.json"
+    },
+    {
+      "id": "2609291119211612600",
+      "name": "Women's Stylish High-neck Lace-trimmed Sleeveless Jumpsuit",
+      "selected": false,
+      "observedAt": "2026-09-29T12:14:25.303Z",
+      "decision": "REJECT",
+      "recommendation": "No CJ-managed warehouse stock was reported. Factory inventory does not satisfy our stock requirement.",
+      "recommendationSource": "Saved supplier stock rule assessment",
+      "kingDecision": "Not requested — rejected by stock rule",
+      "qualified": false,
+      "warning": "Historical rejected candidate; do not buy or list.",
+      "fields": [
+        {
+          "label": "Supplier price",
+          "value": "US$11.28",
+          "kind": "provider-observed",
+          "source": "CJ product detail",
+          "note": "18 exact variants"
+        },
+        {
+          "label": "CJ-managed units",
+          "value": "0",
+          "kind": "provider-observed",
+          "source": "CJ warehouse inventory",
+          "note": "Positive factory quantities excluded"
+        },
+        {
+          "label": "US freight",
+          "value": "Not requested",
+          "kind": "unknown",
+          "source": "Failed stock requirement",
+          "note": ""
+        },
+        {
+          "label": "Projected profit / margin",
+          "value": "Unknown",
+          "kind": "unknown",
+          "source": "Qualification stopped",
+          "note": ""
+        }
+      ],
+      "sources": [
+        {
+          "at": "2026-09-29T12:14:24.117Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/product/query?pid=2609291119211612600",
+          "requestId": "25ff9af8c6bc40948c69d380f36de1f9",
+          "hash": "3f3b5eedece19ee2e52dd769adc22895107f16b856a76f3f372f4a56e4d9144e"
+        },
+        {
+          "at": "2026-09-29T12:14:25.301Z",
+          "request": "https://developers.cjdropshipping.com/api2.0/v1/product/stock/getInventoryByPid?pid=2609291119211612600",
+          "requestId": "331e145f73bb40a5ae33b7f473ed34af",
+          "hash": "798f74bce359ff78af8eaf1b8014ab2070957da3f74ca266c9fd10fac23d11f3"
+        }
+      ],
+      "receiptPath": "docs/mission-state/evidence/2026-09-29-cj-supplier/receipt.json"
+    }
+  ],
+  "amazon": {
+    "observedAt": "2026-09-29T10:18:17.427Z",
+    "status": "Earlier listing read succeeded; that product was not buyable. No match to these candidates."
+  },
+  "production": {
+    "observedAt": "2026-09-29T13:07:27.345Z",
+    "status": "Legacy production remains unchanged by Work. Preparing a separate replacement; full legacy recovery remains unverified. Trading stays locked."
+  },
+  "decisionsAt": "2026-09-29T13:12:00Z",
+  "screeningStatus": "Ready for the next bounded ordinary-CJ-product search; not currently running",
+  "liveActivity": "Not verified from this saved view",
+  "realisedProfit": null,
+  "liveOrdersVerified": false
+}

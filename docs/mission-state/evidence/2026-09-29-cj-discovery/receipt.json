@@ -1,0 +1,3279 @@
+{
+  "schemaVersion": 1,
+  "sourceHead": "6e8815d9de3d060111c25f4a3b76e3216db8434e",
+  "evidenceMode": "AUTHENTICATED_HTTP_OBSERVATION",
+  "startedAt": "2026-09-29T12:36:35.399Z",
+  "status": "SUPPLIER_OBSERVED_MARKETPLACE_QUALIFICATION_PENDING",
+  "maximumRequests": 6,
+  "maximumPoints": 100,
+  "pointsReserved": 100,
+  "requestsAttempted": 6,
+  "retries": 0,
+  "businessWrites": 0,
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "receipts": [
+    {
+      "observedAt": "2026-09-29T12:36:36.149Z",
+      "request": {
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/product/listV2?page=1&size=2&countryCode=US&startWarehouseInventory=1&verifiedWarehouse=1&orderBy=4&sort=desc",
+        "method": "GET"
+      },
+      "requestBody": null,
+      "requestId": "dadd6d2aee6d4dd4b323ed5d7fb42cd9",
+      "rawBodySha256": "2befb4775a896281511af50f94eaf2c5b8c403512d44d0ce74a933cea31b5571",
+      "providerCode": 200,
+      "summary": {
+        "products": [
+          {
+            "pid": "1873650472634056705",
+            "name": "Tall Dressing Table Cloth Storage Tower",
+            "sku": "CJJT2257171",
+            "summaryStockIsNotProof": true
+          },
+          {
+            "pid": "1872203651945525250",
+            "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
+            "sku": "CJFU2254439",
+            "summaryStockIsNotProof": true
+          }
+        ],
+        "page": 1,
+        "maximumProducts": 2
+      },
+      "sanitizedSummarySha256": "f61e0c9586d9696071d88e4db36060d9e97c30efd579f49b41780aea1f24f163"
+    },
+    {
+      "observedAt": "2026-09-29T12:36:37.417Z",
+      "request": {
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/product/query?pid=1873650472634056705",
+        "method": "GET"
+      },
+      "requestBody": null,
+      "requestId": "d3296eeabaca4e0d82edfdc5bb1ead62",
+      "rawBodySha256": "3ce788cb9f1020aa5b14a0809b9fd5b008fca368493a6255e0d8416723466db1",
+      "providerCode": 200,
+      "summary": {
+        "pid": "1873650472634056705",
+        "sku": "CJJT2257171",
+        "name": "Tall Dressing Table Cloth Storage Tower",
+        "productType": "SUPPLIER_SHIPPED_PRODUCT",
+        "variants": [
+          {
+            "vid": "1873650472822800386",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717101AZ",
+            "name": "",
+            "variantSellPrice": 57.66,
+            "priceWireType": "number",
+            "costCents": 5766
+          },
+          {
+            "vid": "1873650472822800387",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717102BY",
+            "name": "",
+            "variantSellPrice": 51.85,
+            "priceWireType": "number",
+            "costCents": 5185
+          },
+          {
+            "vid": "1873650472822800388",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717103CX",
+            "name": "",
+            "variantSellPrice": 43.6,
+            "priceWireType": "number",
+            "costCents": 4360
+          },
+          {
+            "vid": "1873650472822800389",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717104DW",
+            "name": "",
+            "variantSellPrice": 42.53,
+            "priceWireType": "number",
+            "costCents": 4253
+          },
+          {
+            "vid": "1873650472822800390",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717105EV",
+            "name": "",
+            "variantSellPrice": 40.5,
+            "priceWireType": "number",
+            "costCents": 4050
+          },
+          {
+            "vid": "1873650472822800391",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717106FU",
+            "name": "",
+            "variantSellPrice": 49.65,
+            "priceWireType": "number",
+            "costCents": 4965
+          },
+          {
+            "vid": "1873650472822800392",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717107GT",
+            "name": "",
+            "variantSellPrice": 50.71,
+            "priceWireType": "number",
+            "costCents": 5071
+          },
+          {
+            "vid": "1873650472822800393",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717108HS",
+            "name": "",
+            "variantSellPrice": 50.93,
+            "priceWireType": "number",
+            "costCents": 5093
+          },
+          {
+            "vid": "1873650472822800394",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717109IR",
+            "name": "",
+            "variantSellPrice": 50.63,
+            "priceWireType": "number",
+            "costCents": 5063
+          },
+          {
+            "vid": "1873650472822800395",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717110JQ",
+            "name": "",
+            "variantSellPrice": 38.67,
+            "priceWireType": "number",
+            "costCents": 3867
+          },
+          {
+            "vid": "1873650472822800396",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717111KP",
+            "name": "",
+            "variantSellPrice": 40.82,
+            "priceWireType": "number",
+            "costCents": 4082
+          },
+          {
+            "vid": "1873650472822800397",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717112LO",
+            "name": "",
+            "variantSellPrice": 50.36,
+            "priceWireType": "number",
+            "costCents": 5036
+          },
+          {
+            "vid": "1873650472822800398",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717113MN",
+            "name": "",
+            "variantSellPrice": 47.34,
+            "priceWireType": "number",
+            "costCents": 4734
+          },
+          {
+            "vid": "1873650472822800399",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717114NM",
+            "name": "",
+            "variantSellPrice": 49.02,
+            "priceWireType": "number",
+            "costCents": 4902
+          },
+          {
+            "vid": "1873650472822800400",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717115OL",
+            "name": "",
+            "variantSellPrice": 46.7,
+            "priceWireType": "number",
+            "costCents": 4670
+          },
+          {
+            "vid": "1873650472822800401",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717116PK",
+            "name": "",
+            "variantSellPrice": 46.55,
+            "priceWireType": "number",
+            "costCents": 4655
+          },
+          {
+            "vid": "1873650472822800402",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717117QJ",
+            "name": "",
+            "variantSellPrice": 58.76,
+            "priceWireType": "number",
+            "costCents": 5876
+          },
+          {
+            "vid": "1873650472822800403",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717118RI",
+            "name": "",
+            "variantSellPrice": 50.55,
+            "priceWireType": "number",
+            "costCents": 5055
+          },
+          {
+            "vid": "1873650472822800404",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717119SH",
+            "name": "",
+            "variantSellPrice": 42.96,
+            "priceWireType": "number",
+            "costCents": 4296
+          },
+          {
+            "vid": "1873650472822800405",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717120TG",
+            "name": "",
+            "variantSellPrice": 35.51,
+            "priceWireType": "number",
+            "costCents": 3551
+          },
+          {
+            "vid": "1873650472822800406",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717121UF",
+            "name": "",
+            "variantSellPrice": 41.61,
+            "priceWireType": "number",
+            "costCents": 4161
+          },
+          {
+            "vid": "1873650472822800407",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717122VE",
+            "name": "",
+            "variantSellPrice": 49.29,
+            "priceWireType": "number",
+            "costCents": 4929
+          },
+          {
+            "vid": "1873650472822800408",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717123WD",
+            "name": "",
+            "variantSellPrice": 46.85,
+            "priceWireType": "number",
+            "costCents": 4685
+          },
+          {
+            "vid": "1893119287331819522",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717124XC",
+            "name": "",
+            "variantSellPrice": 50.55,
+            "priceWireType": "number",
+            "costCents": 5055
+          },
+          {
+            "vid": "1893119287331819523",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717125YB",
+            "name": "",
+            "variantSellPrice": 43.17,
+            "priceWireType": "number",
+            "costCents": 4317
+          },
+          {
+            "vid": "1893119287331819524",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717126ZA",
+            "name": "",
+            "variantSellPrice": 40.08,
+            "priceWireType": "number",
+            "costCents": 4008
+          },
+          {
+            "vid": "1893120030797369345",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717127AZ",
+            "name": "",
+            "variantSellPrice": 50.51,
+            "priceWireType": "number",
+            "costCents": 5051
+          },
+          {
+            "vid": "1893178761816219649",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717128BY",
+            "name": "",
+            "variantSellPrice": 47.49,
+            "priceWireType": "number",
+            "costCents": 4749
+          }
+        ]
+      },
+      "sanitizedSummarySha256": "52d97628398e1b53641609927f73747ee6dc014f74999f478104356236b9bc1f"
+    },
+    {
+      "observedAt": "2026-09-29T12:36:38.690Z",
+      "request": {
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/product/stock/getInventoryByPid?pid=1873650472634056705",
+        "method": "GET"
+      },
+      "requestBody": null,
+      "requestId": "c6687ed9f2d2462e8044499c2bb8d5b0",
+      "rawBodySha256": "58c6f177457007b8f51d59c02c79febb515a25d30a98dd3d37ffbdd39eec2059",
+      "providerCode": 200,
+      "summary": {
+        "variantInventories": [
+          {
+            "vid": "1893120030797369345",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 6736,
+                "factoryInventory": 0,
+                "totalInventory": 6736,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 6736,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800408",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12044,
+                "factoryInventory": 0,
+                "totalInventory": 12044,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12044,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800402",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 1475,
+                "factoryInventory": 0,
+                "totalInventory": 1475,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 1475,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800401",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 4799,
+                "factoryInventory": 0,
+                "totalInventory": 4799,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 4799,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800404",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12492,
+                "factoryInventory": 0,
+                "totalInventory": 12492,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12492,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800403",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 11230,
+                "factoryInventory": 0,
+                "totalInventory": 11230,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 11230,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800398",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 9591,
+                "factoryInventory": 0,
+                "totalInventory": 9591,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 9591,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800387",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 38859,
+                "factoryInventory": 0,
+                "totalInventory": 38859,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 38859,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800386",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 9051,
+                "factoryInventory": 0,
+                "totalInventory": 9051,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 9051,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800397",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 2759,
+                "factoryInventory": 0,
+                "totalInventory": 2759,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 2759,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800400",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 11637,
+                "factoryInventory": 0,
+                "totalInventory": 11637,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 11637,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800388",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 26038,
+                "factoryInventory": 0,
+                "totalInventory": 26038,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 26038,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800393",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 22400,
+                "factoryInventory": 0,
+                "totalInventory": 22400,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 22400,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800396",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 8724,
+                "factoryInventory": 0,
+                "totalInventory": 8724,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 8724,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1893178761816219649",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12535,
+                "factoryInventory": 0,
+                "totalInventory": 12535,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12535,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800390",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12508,
+                "factoryInventory": 0,
+                "totalInventory": 12508,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12508,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800392",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 2075,
+                "factoryInventory": 0,
+                "totalInventory": 2075,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 2075,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800391",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 351,
+                "factoryInventory": 0,
+                "totalInventory": 351,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 351,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1893119287331819524",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12272,
+                "factoryInventory": 0,
+                "totalInventory": 12272,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12272,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1893119287331819522",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 7608,
+                "factoryInventory": 0,
+                "totalInventory": 7608,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 7608,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sanitizedSummarySha256": "f67c1276139a9ab7280c4cb5c2d80910de3192a3aadeafed5621f508a25cd778"
+    },
+    {
+      "observedAt": "2026-09-29T12:36:40.142Z",
+      "request": {
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/product/query?pid=1872203651945525250",
+        "method": "GET"
+      },
+      "requestBody": null,
+      "requestId": "537a1ea981294b5cb1de86ecfc233e52",
+      "rawBodySha256": "9d6e18fc3a0f0737bb8a224d3df91ab894e80eb6698c4a6ccd6e64775228ccf5",
+      "providerCode": 200,
+      "summary": {
+        "pid": "1872203651945525250",
+        "sku": "CJFU2254439",
+        "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
+        "productType": "SUPPLIER_SHIPPED_PRODUCT",
+        "variants": [
+          {
+            "vid": "1872203652109103106",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443901AZ",
+            "name": "",
+            "variantSellPrice": 52.25,
+            "priceWireType": "number",
+            "costCents": 5225
+          },
+          {
+            "vid": "1872203652109103107",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443902BY",
+            "name": "",
+            "variantSellPrice": 52.47,
+            "priceWireType": "number",
+            "costCents": 5247
+          },
+          {
+            "vid": "1872203652109103108",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443903CX",
+            "name": "",
+            "variantSellPrice": 51.52,
+            "priceWireType": "number",
+            "costCents": 5152
+          },
+          {
+            "vid": "1872203652109103109",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443904DW",
+            "name": "",
+            "variantSellPrice": 44.52,
+            "priceWireType": "number",
+            "costCents": 4452
+          },
+          {
+            "vid": "1872203652109103110",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443905EV",
+            "name": "",
+            "variantSellPrice": 52.94,
+            "priceWireType": "number",
+            "costCents": 5294
+          },
+          {
+            "vid": "1933051764958822402",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443906FU",
+            "name": "",
+            "variantSellPrice": 48.82,
+            "priceWireType": "number",
+            "costCents": 4882
+          },
+          {
+            "vid": "1933051764958822403",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443907GT",
+            "name": "",
+            "variantSellPrice": 47.99,
+            "priceWireType": "number",
+            "costCents": 4799
+          },
+          {
+            "vid": "1933054345951358977",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443908HS",
+            "name": "",
+            "variantSellPrice": 44.73,
+            "priceWireType": "number",
+            "costCents": 4473
+          }
+        ]
+      },
+      "sanitizedSummarySha256": "e93981fec0eaedf0142c7bd5879d66371c486b775be59048f36b4eac85da5a47"
+    },
+    {
+      "observedAt": "2026-09-29T12:36:41.488Z",
+      "request": {
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/product/stock/getInventoryByPid?pid=1872203651945525250",
+        "method": "GET"
+      },
+      "requestBody": null,
+      "requestId": "757e874bfd0242e18b6f256f8de71c0a",
+      "rawBodySha256": "531e771d8b41727e41920f884943b7fb51c5e80b42bba1a4ca20b5e996adaf6a",
+      "providerCode": 200,
+      "summary": {
+        "variantInventories": [
+          {
+            "vid": "1872203652109103110",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 6113,
+                "factoryInventory": 0,
+                "totalInventory": 6113,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 6113,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1933054345951358977",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 13221,
+                "factoryInventory": 0,
+                "totalInventory": 13221,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 13221,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1872203652109103109",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 1385,
+                "factoryInventory": 0,
+                "totalInventory": 1385,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 1385,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1872203652109103106",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12273,
+                "factoryInventory": 0,
+                "totalInventory": 12273,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12273,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1872203652109103108",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 32409,
+                "factoryInventory": 0,
+                "totalInventory": 32409,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 32409,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1872203652109103107",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 10346,
+                "factoryInventory": 0,
+                "totalInventory": 10346,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 10346,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1933051764958822402",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 8417,
+                "factoryInventory": 0,
+                "totalInventory": 8417,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 8417,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1933051764958822403",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 16428,
+                "factoryInventory": 0,
+                "totalInventory": 16428,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 16428,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "sanitizedSummarySha256": "bd3402846cdcee52c941fac1f50e430c56aa39746783a9a3dc4fe8b4cce71269"
+    },
+    {
+      "observedAt": "2026-09-29T12:36:42.887Z",
+      "request": {
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/logistic/freightCalculate",
+        "method": "POST"
+      },
+      "requestBody": {
+        "startCountryCode": "US",
+        "endCountryCode": "US",
+        "storageIdList": [
+          "1988118945147310081"
+        ],
+        "shippingMode": 2,
+        "products": [
+          {
+            "quantity": 1,
+            "vid": "1872203652109103106"
+          }
+        ]
+      },
+      "requestId": "7bfc122f533f48718b22f4824627ea0f",
+      "rawBodySha256": "f3fd4497b553a8dbbbd128d509dcda6458fa0240edbdade962531bf68ce61f68",
+      "providerCode": 200,
+      "summary": {
+        "options": [
+          {
+            "logisticName": "Amazon Logistic US to US #3",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #3",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #3",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #7",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #7",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #7",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #43",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #40",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #44",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #41",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #55",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #49",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #42",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #42",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #43",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #50",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #53",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #49",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #51",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #45",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #51",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #52",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #42",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #39",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #40",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #46",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #53",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #49",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #54",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #39",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #41",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #40",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #55",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #50",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #56",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #57",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #58",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #57",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #53",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #56",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #55",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #54",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #60",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #37",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #60",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #25",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #25",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #25",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #48",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #52",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #50",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #47",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #48",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #47",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #28",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #28",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #28",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #29",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #29",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #29",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #30",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #30",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #30",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #47",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #46",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #45",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #46",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #45",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #44",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #33",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #33",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #33",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #58",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #54",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #52",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #44",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #44",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #43",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #56",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #59",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #59",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #60",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #64",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #64",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Fedex US to US #61",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "Amazon Logistic US to US #65",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          },
+          {
+            "logisticName": "UPS US to US #65",
+            "logisticAging": "3-5",
+            "logisticPriceCents": 0,
+            "taxesFeeCents": 0,
+            "clearanceOperationFeeCents": 0,
+            "totalPostageFeeCents": 0
+          }
+        ]
+      },
+      "sanitizedSummarySha256": "fcbf2c8096da26ad9651f7c30e381f0c452e8414f7dc2959927b5cc7349c34a9"
+    }
+  ],
+  "candidates": [
+    {
+      "pid": "1873650472634056705",
+      "name": "Tall Dressing Table Cloth Storage Tower",
+      "product": {
+        "pid": "1873650472634056705",
+        "sku": "CJJT2257171",
+        "name": "Tall Dressing Table Cloth Storage Tower",
+        "productType": "SUPPLIER_SHIPPED_PRODUCT",
+        "variants": [
+          {
+            "vid": "1873650472822800386",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717101AZ",
+            "name": "",
+            "variantSellPrice": 57.66,
+            "priceWireType": "number",
+            "costCents": 5766
+          },
+          {
+            "vid": "1873650472822800387",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717102BY",
+            "name": "",
+            "variantSellPrice": 51.85,
+            "priceWireType": "number",
+            "costCents": 5185
+          },
+          {
+            "vid": "1873650472822800388",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717103CX",
+            "name": "",
+            "variantSellPrice": 43.6,
+            "priceWireType": "number",
+            "costCents": 4360
+          },
+          {
+            "vid": "1873650472822800389",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717104DW",
+            "name": "",
+            "variantSellPrice": 42.53,
+            "priceWireType": "number",
+            "costCents": 4253
+          },
+          {
+            "vid": "1873650472822800390",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717105EV",
+            "name": "",
+            "variantSellPrice": 40.5,
+            "priceWireType": "number",
+            "costCents": 4050
+          },
+          {
+            "vid": "1873650472822800391",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717106FU",
+            "name": "",
+            "variantSellPrice": 49.65,
+            "priceWireType": "number",
+            "costCents": 4965
+          },
+          {
+            "vid": "1873650472822800392",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717107GT",
+            "name": "",
+            "variantSellPrice": 50.71,
+            "priceWireType": "number",
+            "costCents": 5071
+          },
+          {
+            "vid": "1873650472822800393",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717108HS",
+            "name": "",
+            "variantSellPrice": 50.93,
+            "priceWireType": "number",
+            "costCents": 5093
+          },
+          {
+            "vid": "1873650472822800394",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717109IR",
+            "name": "",
+            "variantSellPrice": 50.63,
+            "priceWireType": "number",
+            "costCents": 5063
+          },
+          {
+            "vid": "1873650472822800395",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717110JQ",
+            "name": "",
+            "variantSellPrice": 38.67,
+            "priceWireType": "number",
+            "costCents": 3867
+          },
+          {
+            "vid": "1873650472822800396",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717111KP",
+            "name": "",
+            "variantSellPrice": 40.82,
+            "priceWireType": "number",
+            "costCents": 4082
+          },
+          {
+            "vid": "1873650472822800397",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717112LO",
+            "name": "",
+            "variantSellPrice": 50.36,
+            "priceWireType": "number",
+            "costCents": 5036
+          },
+          {
+            "vid": "1873650472822800398",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717113MN",
+            "name": "",
+            "variantSellPrice": 47.34,
+            "priceWireType": "number",
+            "costCents": 4734
+          },
+          {
+            "vid": "1873650472822800399",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717114NM",
+            "name": "",
+            "variantSellPrice": 49.02,
+            "priceWireType": "number",
+            "costCents": 4902
+          },
+          {
+            "vid": "1873650472822800400",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717115OL",
+            "name": "",
+            "variantSellPrice": 46.7,
+            "priceWireType": "number",
+            "costCents": 4670
+          },
+          {
+            "vid": "1873650472822800401",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717116PK",
+            "name": "",
+            "variantSellPrice": 46.55,
+            "priceWireType": "number",
+            "costCents": 4655
+          },
+          {
+            "vid": "1873650472822800402",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717117QJ",
+            "name": "",
+            "variantSellPrice": 58.76,
+            "priceWireType": "number",
+            "costCents": 5876
+          },
+          {
+            "vid": "1873650472822800403",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717118RI",
+            "name": "",
+            "variantSellPrice": 50.55,
+            "priceWireType": "number",
+            "costCents": 5055
+          },
+          {
+            "vid": "1873650472822800404",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717119SH",
+            "name": "",
+            "variantSellPrice": 42.96,
+            "priceWireType": "number",
+            "costCents": 4296
+          },
+          {
+            "vid": "1873650472822800405",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717120TG",
+            "name": "",
+            "variantSellPrice": 35.51,
+            "priceWireType": "number",
+            "costCents": 3551
+          },
+          {
+            "vid": "1873650472822800406",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717121UF",
+            "name": "",
+            "variantSellPrice": 41.61,
+            "priceWireType": "number",
+            "costCents": 4161
+          },
+          {
+            "vid": "1873650472822800407",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717122VE",
+            "name": "",
+            "variantSellPrice": 49.29,
+            "priceWireType": "number",
+            "costCents": 4929
+          },
+          {
+            "vid": "1873650472822800408",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717123WD",
+            "name": "",
+            "variantSellPrice": 46.85,
+            "priceWireType": "number",
+            "costCents": 4685
+          },
+          {
+            "vid": "1893119287331819522",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717124XC",
+            "name": "",
+            "variantSellPrice": 50.55,
+            "priceWireType": "number",
+            "costCents": 5055
+          },
+          {
+            "vid": "1893119287331819523",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717125YB",
+            "name": "",
+            "variantSellPrice": 43.17,
+            "priceWireType": "number",
+            "costCents": 4317
+          },
+          {
+            "vid": "1893119287331819524",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717126ZA",
+            "name": "",
+            "variantSellPrice": 40.08,
+            "priceWireType": "number",
+            "costCents": 4008
+          },
+          {
+            "vid": "1893120030797369345",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717127AZ",
+            "name": "",
+            "variantSellPrice": 50.51,
+            "priceWireType": "number",
+            "costCents": 5051
+          },
+          {
+            "vid": "1893178761816219649",
+            "pid": "1873650472634056705",
+            "sku": "CJJT225717128BY",
+            "name": "",
+            "variantSellPrice": 47.49,
+            "priceWireType": "number",
+            "costCents": 4749
+          }
+        ]
+      },
+      "stock": {
+        "variantInventories": [
+          {
+            "vid": "1893120030797369345",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 6736,
+                "factoryInventory": 0,
+                "totalInventory": 6736,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 6736,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800408",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12044,
+                "factoryInventory": 0,
+                "totalInventory": 12044,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12044,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800402",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 1475,
+                "factoryInventory": 0,
+                "totalInventory": 1475,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 1475,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800401",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 4799,
+                "factoryInventory": 0,
+                "totalInventory": 4799,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 4799,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800404",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12492,
+                "factoryInventory": 0,
+                "totalInventory": 12492,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12492,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800403",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 11230,
+                "factoryInventory": 0,
+                "totalInventory": 11230,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 11230,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800398",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 9591,
+                "factoryInventory": 0,
+                "totalInventory": 9591,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 9591,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800387",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 38859,
+                "factoryInventory": 0,
+                "totalInventory": 38859,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 38859,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800386",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 9051,
+                "factoryInventory": 0,
+                "totalInventory": 9051,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 9051,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800397",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 2759,
+                "factoryInventory": 0,
+                "totalInventory": 2759,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 2759,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800400",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 11637,
+                "factoryInventory": 0,
+                "totalInventory": 11637,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 11637,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800388",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 26038,
+                "factoryInventory": 0,
+                "totalInventory": 26038,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 26038,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800393",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 22400,
+                "factoryInventory": 0,
+                "totalInventory": 22400,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 22400,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800396",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 8724,
+                "factoryInventory": 0,
+                "totalInventory": 8724,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 8724,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1893178761816219649",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12535,
+                "factoryInventory": 0,
+                "totalInventory": 12535,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12535,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800390",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12508,
+                "factoryInventory": 0,
+                "totalInventory": 12508,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12508,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800392",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 2075,
+                "factoryInventory": 0,
+                "totalInventory": 2075,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 2075,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1873650472822800391",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 351,
+                "factoryInventory": 0,
+                "totalInventory": 351,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 351,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1893119287331819524",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12272,
+                "factoryInventory": 0,
+                "totalInventory": 12272,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12272,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1893119287331819522",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 7608,
+                "factoryInventory": 0,
+                "totalInventory": 7608,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 7608,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "eligible": {
+        "vid": "1873650472822800386",
+        "sku": "CJJT225717101AZ",
+        "costCents": 5766,
+        "countryCode": "US",
+        "stockId": "1988118945147310081",
+        "cjUnits": 9051
+      },
+      "decision": "SUPPLIER_EVIDENCE_ONLY"
+    },
+    {
+      "pid": "1872203651945525250",
+      "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
+      "product": {
+        "pid": "1872203651945525250",
+        "sku": "CJFU2254439",
+        "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
+        "productType": "SUPPLIER_SHIPPED_PRODUCT",
+        "variants": [
+          {
+            "vid": "1872203652109103106",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443901AZ",
+            "name": "",
+            "variantSellPrice": 52.25,
+            "priceWireType": "number",
+            "costCents": 5225
+          },
+          {
+            "vid": "1872203652109103107",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443902BY",
+            "name": "",
+            "variantSellPrice": 52.47,
+            "priceWireType": "number",
+            "costCents": 5247
+          },
+          {
+            "vid": "1872203652109103108",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443903CX",
+            "name": "",
+            "variantSellPrice": 51.52,
+            "priceWireType": "number",
+            "costCents": 5152
+          },
+          {
+            "vid": "1872203652109103109",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443904DW",
+            "name": "",
+            "variantSellPrice": 44.52,
+            "priceWireType": "number",
+            "costCents": 4452
+          },
+          {
+            "vid": "1872203652109103110",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443905EV",
+            "name": "",
+            "variantSellPrice": 52.94,
+            "priceWireType": "number",
+            "costCents": 5294
+          },
+          {
+            "vid": "1933051764958822402",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443906FU",
+            "name": "",
+            "variantSellPrice": 48.82,
+            "priceWireType": "number",
+            "costCents": 4882
+          },
+          {
+            "vid": "1933051764958822403",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443907GT",
+            "name": "",
+            "variantSellPrice": 47.99,
+            "priceWireType": "number",
+            "costCents": 4799
+          },
+          {
+            "vid": "1933054345951358977",
+            "pid": "1872203651945525250",
+            "sku": "CJFU225443908HS",
+            "name": "",
+            "variantSellPrice": 44.73,
+            "priceWireType": "number",
+            "costCents": 4473
+          }
+        ]
+      },
+      "stock": {
+        "variantInventories": [
+          {
+            "vid": "1872203652109103110",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 6113,
+                "factoryInventory": 0,
+                "totalInventory": 6113,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 6113,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1933054345951358977",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 13221,
+                "factoryInventory": 0,
+                "totalInventory": 13221,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 13221,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1872203652109103109",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 1385,
+                "factoryInventory": 0,
+                "totalInventory": 1385,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 1385,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1872203652109103106",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 12273,
+                "factoryInventory": 0,
+                "totalInventory": 12273,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 12273,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1872203652109103108",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 32409,
+                "factoryInventory": 0,
+                "totalInventory": 32409,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 32409,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1872203652109103107",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 10346,
+                "factoryInventory": 0,
+                "totalInventory": 10346,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 10346,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1933051764958822402",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 8417,
+                "factoryInventory": 0,
+                "totalInventory": 8417,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 8417,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "vid": "1933051764958822403",
+            "inventory": [
+              {
+                "countryCode": "US",
+                "cjInventory": 16428,
+                "factoryInventory": 0,
+                "totalInventory": 16428,
+                "stock": [
+                  {
+                    "stockId": "1988118945147310081",
+                    "inventory": 16428,
+                    "factoryInventory": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "eligible": {
+        "vid": "1872203652109103106",
+        "sku": "CJFU225443901AZ",
+        "costCents": 5225,
+        "countryCode": "US",
+        "stockId": "1988118945147310081",
+        "cjUnits": 12273
+      },
+      "decision": "SUPPLIER_EVIDENCE_ONLY"
+    }
+  ],
+  "selected": {
+    "pid": "1872203651945525250",
+    "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
+    "vid": "1872203652109103106",
+    "sku": "CJFU225443901AZ",
+    "costCents": 5225,
+    "countryCode": "US",
+    "stockId": "1988118945147310081",
+    "cjUnits": 12273
+  },
+  "freight": {
+    "options": [
+      {
+        "logisticName": "Amazon Logistic US to US #3",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #3",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #3",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #7",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #7",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #7",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #43",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #40",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #44",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #41",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #55",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #49",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #42",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #42",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #43",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #50",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #53",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #49",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #51",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #45",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #51",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #52",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #42",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #39",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #40",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #46",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #53",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #49",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #54",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #39",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #41",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #40",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #55",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #50",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #56",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #57",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #58",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #57",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #53",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #56",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #55",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #54",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #60",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #37",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #60",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #25",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #25",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #25",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #48",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #52",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #50",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #47",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #48",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #47",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #28",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #28",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #28",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #29",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #29",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #29",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #30",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #30",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #30",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #47",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #46",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #45",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #46",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #45",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #44",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #33",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #33",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #33",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #58",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #54",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #52",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #44",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #44",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #43",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #56",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #59",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #59",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #60",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #64",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #64",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Fedex US to US #61",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "Amazon Logistic US to US #65",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      },
+      {
+        "logisticName": "UPS US to US #65",
+        "logisticAging": "3-5",
+        "logisticPriceCents": 0,
+        "taxesFeeCents": 0,
+        "clearanceOperationFeeCents": 0,
+        "totalPostageFeeCents": 0
+      }
+    ]
+  },
+  "qualificationAllowed": false,
+  "actualEconomics": null,
+  "limits": {
+    "destination": "US_COUNTRY_ONLY_ZIP_UNKNOWN",
+    "accountIdentity": "UNVERIFIED",
+    "actualPointDebit": null,
+    "amazonIdentity": null,
+    "amazonFees": null,
+    "sellingPrice": null,
+    "landedCost": null,
+    "profit": null,
+    "kingApproval": "LOCKED",
+    "selection": "Highest observed eligible US CJ units, then lowest variant cost; not a profitability rank"
+  },
+  "finishedAt": "2026-09-29T12:36:42.890Z"
+}

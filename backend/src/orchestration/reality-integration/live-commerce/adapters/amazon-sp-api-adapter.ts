@@ -7,6 +7,9 @@ import {
 } from "../amazon-marketplace-profiles.js";
 import { getAmazonSpApiConfig, isProductionLiveCommerce } from "../config.js";
 import { httpTransport } from "../http-transport.js";
+import { syncAmazonUsOrders } from "./amazon-order-import.js";
+import { syncAmazonUsListings } from "./amazon-listings-import.js";
+import { syncAmazonUsSellerInventory } from "./amazon-seller-inventory-import.js";
 import type {
   LiveCommerceAdapterContext,
   LiveCommerceProviderAdapter,
@@ -14,15 +17,9 @@ import type {
   LiveCommerceValidationResult,
 } from "./types.js";
 
-const AMAZON_CAPABILITIES = [
-  "catalog_sync",
-  "inventory",
-  "pricing",
-  "orders",
-  "webhooks",
-  "account_validation",
-  "listing_readiness",
-];
+// A successful Sellers API ping establishes account connectivity only. It is
+// neither an order import nor evidence that inventory/pricing/listing flows work.
+const AMAZON_CAPABILITIES = ["account_validation"];
 
 function createAmazonAdapterHelpers(registryId: AmazonMarketplaceRegistryId) {
   const profile = getAmazonMarketplaceProfile(registryId);
@@ -70,14 +67,14 @@ function createAmazonAdapterHelpers(registryId: AmazonMarketplaceRegistryId) {
 
   function buildSyncResult(
     syncType: LiveCommerceSyncResult["syncType"],
-    ctx: LiveCommerceAdapterContext,
+    _ctx: LiveCommerceAdapterContext,
     itemsProcessed: number,
   ): LiveCommerceSyncResult {
     return {
       syncType,
       itemsProcessed,
       itemsFailed: 0,
-      liveApiVerified: ctx.mode === "production" || hasRequiredCredentials(ctx.credentials, ctx.mode),
+      liveApiVerified: false, // fixture counts are never a live API receipt
     };
   }
 
@@ -108,8 +105,9 @@ export function createAmazonSpApiAdapter(
 
       let liveApiVerified = false;
       if (blockers.length === 0) {
-        liveApiVerified = await helpers.pingMarketplace(ctx);
-        if (!liveApiVerified) {
+        const connected = await helpers.pingMarketplace(ctx);
+        liveApiVerified = ctx.mode === "production" && connected;
+        if (!connected) {
           blockers.push(`Amazon SP-API marketplace validation failed for ${registryId}`);
         }
       }
@@ -125,76 +123,31 @@ export function createAmazonSpApiAdapter(
 
     async syncCatalog(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("catalog", ctx, 12);
-      const response = await httpTransport({
-        url: `${helpers.resolveEndpoint(ctx.mode)}/catalog/2022-04-01/items`,
-        method: "GET",
-        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-      });
-      const items = Array.isArray((response.json as { items?: unknown[] })?.items)
-        ? (response.json as { items: unknown[] }).items.length
-        : response.ok
-          ? 1
-          : 0;
-      return {
-        syncType: "catalog",
-        itemsProcessed: items,
-        itemsFailed: response.ok ? 0 : 1,
-        liveApiVerified: response.ok,
-      };
+      if (registryId === "amazon-us") return syncAmazonUsListings(ctx);
+      throw new Error("AMAZON_CATALOG_SYNC_UNIMPLEMENTED: no persisted catalog receipt");
     },
 
     async syncInventory(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("inventory", ctx, 8);
-      const response = await httpTransport({
-        url: `${helpers.resolveEndpoint(ctx.mode)}/fba/inventory/v1/summaries`,
-        method: "GET",
-        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-      });
-      return {
-        syncType: "inventory",
-        itemsProcessed: response.ok ? 8 : 0,
-        itemsFailed: response.ok ? 0 : 1,
-        liveApiVerified: response.ok,
-      };
+      if (registryId === "amazon-us") return syncAmazonUsSellerInventory(ctx);
+      throw new Error("AMAZON_INVENTORY_SYNC_UNIMPLEMENTED: FBA summaries are not seller-fulfilled stock evidence");
     },
 
     async syncPricing(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("pricing", ctx, 6);
-      const response = await httpTransport({
-        url: `${helpers.resolveEndpoint(ctx.mode)}/products/pricing/v0/price`,
-        method: "GET",
-        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-      });
-      return {
-        syncType: "pricing",
-        itemsProcessed: response.ok ? 6 : 0,
-        itemsFailed: response.ok ? 0 : 1,
-        liveApiVerified: response.ok,
-      };
+      throw new Error("AMAZON_PRICING_SYNC_UNIMPLEMENTED: no seller SKU or persisted price receipt");
     },
 
     async syncOrders(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("orders", ctx, 4);
-      const response = await httpTransport({
-        url: `${helpers.resolveEndpoint(ctx.mode)}/orders/v0/orders`,
-        method: "GET",
-        headers: { "x-amz-access-token": String(ctx.credentials.accessToken ?? "") },
-      });
-      const count = Array.isArray((response.json as { orders?: unknown[] })?.orders)
-        ? (response.json as { orders: unknown[] }).orders.length
-        : response.ok
-          ? 1
-          : 0;
-      return {
-        syncType: "orders",
-        itemsProcessed: count,
-        itemsFailed: response.ok ? 0 : 1,
-        liveApiVerified: response.ok,
-      };
+      if (registryId === "amazon-us") return syncAmazonUsOrders(ctx);
+      throw new Error("AMAZON_ORDERS_SYNC_UNIMPLEMENTED: marketplace importer unavailable");
     },
 
     verifyWebhookSignature(payload, signature, secret) {
-      if (!secret || !signature) return false;
+      // Amazon notifications arrive through an authorized SQS/EventBridge
+      // subscription. A caller-supplied HMAC secret is not provider evidence.
+      if (isProductionLiveCommerce() || !secret || !signature) return false;
       const digest = createHmac("sha256", secret).update(payload).digest("hex");
       try {
         return timingSafeEqual(Buffer.from(digest), Buffer.from(signature));
@@ -219,16 +172,49 @@ export function amazonOAuthAuthorizeUrl(input: {
 }): string {
   const profile = getAmazonMarketplaceProfile(input.registryId);
   const config = getAmazonSpApiConfig(input.registryId);
-  const clientId = config.clientId || "sandbox-client-id";
-  const scope = (input.scopes ?? ["sellingpartnerapi::notifications"]).join(" ");
+  // Seller Central expects an SP-API application ID here; the LWA client ID is
+  // only used in the separate code/token exchange. The redirect URI is the
+  // registered callback, not a consent-page query parameter.
+  if (isProductionLiveCommerce() && !config.applicationId.trim()) {
+    throw new Error("Amazon SP-API application ID is not configured");
+  }
+  if (!input.state.trim()) throw new Error("Amazon OAuth state is required");
   const params = new URLSearchParams({
-    client_id: clientId,
-    scope,
-    response_type: "code",
-    redirect_uri: input.redirectUri,
+    application_id: config.applicationId || "sandbox-application-id",
     state: input.state,
   });
   return `${profile.sellerCentralAuthorizeBaseUrl}?${params.toString()}`;
+}
+
+async function exchangeLwaToken(
+  registryId: AmazonMarketplaceRegistryId,
+  form: URLSearchParams,
+  requireRefreshToken: boolean,
+): Promise<Record<string, unknown>> {
+  const response = await fetch("https://api.amazon.com/auth/o2/token", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    body: form.toString(),
+    signal: AbortSignal.timeout(10_000),
+  });
+  // Do not include response bodies or secrets in errors or logs.
+  if (!response.ok) throw new Error(`Amazon OAuth token exchange failed for ${registryId}`);
+  let json: Record<string, unknown>;
+  try {
+    json = await response.json() as Record<string, unknown>;
+  } catch {
+    throw new Error(`Amazon OAuth token exchange returned invalid JSON for ${registryId}`);
+  }
+  if (
+    !json || typeof json.access_token !== "string" || !json.access_token ||
+    (requireRefreshToken && (typeof json.refresh_token !== "string" || !json.refresh_token)) ||
+    json.token_type !== "bearer" ||
+    typeof json.expires_in !== "number" ||
+    !Number.isFinite(json.expires_in) || json.expires_in <= 0
+  ) {
+    throw new Error(`Amazon OAuth token exchange returned invalid credentials for ${registryId}`);
+  }
+  return json;
 }
 
 export async function amazonOAuthExchangeCode(input: {
@@ -236,8 +222,9 @@ export async function amazonOAuthExchangeCode(input: {
   code: string;
   redirectUri: string;
 }): Promise<Record<string, unknown>> {
+  if (!input.code || !input.redirectUri) throw new Error("Amazon OAuth code and redirect URI are required");
   const config = getAmazonSpApiConfig(input.registryId);
-  if (!isProductionLiveCommerce() || !config.clientId || !config.clientSecret) {
+  if (!isProductionLiveCommerce()) {
     return {
       accessToken: `sandbox-amazon-access-${input.registryId}-${input.code.slice(0, 8)}`,
       refreshToken: `sandbox-amazon-refresh-${input.registryId}-${input.code.slice(0, 8)}`,
@@ -245,19 +232,17 @@ export async function amazonOAuthExchangeCode(input: {
       tokenType: "bearer",
     };
   }
-
-  const response = await httpTransport({
-    url: "https://api.amazon.com/auth/o2/token",
-    method: "POST",
-    headers: { "content-type": "application/x-www-form-urlencoded" },
-    body: undefined,
-  });
-
-  if (!response.ok) {
-    throw new Error(`Amazon OAuth token exchange failed for ${input.registryId}`);
+  if (!config.clientId || !config.clientSecret || !config.applicationId) {
+    throw new Error(`Amazon OAuth application credentials incomplete for ${input.registryId}`);
   }
-
-  const json = response.json as Record<string, unknown>;
+  const form = new URLSearchParams({
+    grant_type: "authorization_code",
+    code: input.code,
+    redirect_uri: input.redirectUri,
+    client_id: config.clientId,
+    client_secret: config.clientSecret,
+  });
+  const json = await exchangeLwaToken(input.registryId, form, true);
   return {
     accessToken: json.access_token,
     refreshToken: json.refresh_token,
@@ -270,8 +255,9 @@ export async function amazonOAuthRefreshToken(
   registryId: AmazonMarketplaceRegistryId,
   refreshToken: string,
 ): Promise<Record<string, unknown>> {
+  if (!refreshToken) throw new Error("Amazon OAuth refresh token is required");
   const config = getAmazonSpApiConfig(registryId);
-  if (!isProductionLiveCommerce() || !config.clientId || !config.clientSecret) {
+  if (!isProductionLiveCommerce()) {
     return {
       accessToken: `sandbox-amazon-access-refreshed-${registryId}-${Date.now()}`,
       refreshToken,
@@ -279,28 +265,16 @@ export async function amazonOAuthRefreshToken(
       tokenType: "bearer",
     };
   }
-
-  // LWA requires application/x-www-form-urlencoded (not JSON).
+  if (!config.clientId || !config.clientSecret) {
+    throw new Error(`Amazon OAuth application credentials incomplete for ${registryId}`);
+  }
   const form = new URLSearchParams({
     grant_type: "refresh_token",
     refresh_token: refreshToken,
     client_id: config.clientId,
     client_secret: config.clientSecret,
   });
-  const raw = await fetch("https://api.amazon.com/auth/o2/token", {
-    method: "POST",
-    headers: { "content-type": "application/x-www-form-urlencoded;charset=UTF-8" },
-    body: form.toString(),
-  });
-  const text = await raw.text();
-  let json: Record<string, unknown> = {};
-  try {
-    json = text ? (JSON.parse(text) as Record<string, unknown>) : {};
-  } catch {
-    throw new Error(`Amazon OAuth refresh failed for ${registryId}: non-JSON response`);
-  }
-
-  if (!raw.ok) throw new Error(`Amazon OAuth refresh failed for ${registryId}`);
+  const json = await exchangeLwaToken(registryId, form, false);
   return {
     accessToken: json.access_token,
     refreshToken: json.refresh_token ?? refreshToken,

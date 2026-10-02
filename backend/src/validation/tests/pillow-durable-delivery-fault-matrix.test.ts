@@ -16,6 +16,7 @@ import {
   getChatRequest,
   markChatRequestRunning,
   markChatRequestRetryable,
+  PillowDurableStoreUnavailableError,
   policyForFailure,
 } from "../../runtime/pillow-chat-request-store.js";
 import { isTransientProxyFailure } from "../../runtime/pillow-accepted-request-recovery.js";
@@ -118,6 +119,107 @@ describe("durable delivery fault matrix (level A)", () => {
         assert.equal(got?.status, "COMPLETED");
         assert.equal(got?.finalResult?.message, "persisted");
       }
+    } finally {
+      configureChatRequestStore(null);
+      dropChatRequestMemoryCacheForTests();
+    }
+  });
+
+  it("fails closed when Redis PING passed but a durable SETEX later fails", async () => {
+    let rejectWrites = true;
+    const fake = new Map<string, string>();
+    configureChatRequestStore({
+      get: async (k) => fake.get(k) ?? null,
+      setex: async (k, _sec, v) => {
+        if (rejectWrites) throw new Error("redis_setex_failed");
+        fake.set(k, String(v));
+        return "OK";
+      },
+      // This fixture tests command-failure propagation only. Actual atomicity,
+      // concurrency and restart safety are required in pillow-durable-queue-redis.
+      eval: async (_script, count, ...args) => {
+        if (rejectWrites) throw new Error("redis_eval_failed");
+        const encoded = String(args[count]);
+        const record = JSON.parse(encoded) as { requestId: string };
+        fake.set(String(args[1]), encoded);
+        fake.set(String(args[0]), record.requestId);
+        return ["CREATED", encoded];
+      },
+    }, { requireRedisDurability: true });
+    try {
+      await assert.rejects(
+        () => acceptDurableChatRequest({ sessionId: "strict_accept", message: "m" }),
+        PillowDurableStoreUnavailableError,
+      );
+
+      rejectWrites = false;
+      const accepted = await acceptDurableChatRequest({
+        sessionId: "strict_complete",
+        message: "m",
+      });
+      rejectWrites = true;
+      let workerFetches = 0;
+      await assert.rejects(async () => {
+        await markChatRequestRunning(accepted.requestId, 1, "worker-A");
+        workerFetches += 1;
+      }, PillowDurableStoreUnavailableError);
+      assert.equal(workerFetches, 0);
+      await assert.rejects(
+        () => completeChatRequest(accepted.requestId, { message: "must persist" }),
+        PillowDurableStoreUnavailableError,
+      );
+      const unchanged = await getChatRequest(accepted.requestId);
+      assert.equal(unchanged?.status, "ACCEPTED");
+      assert.equal(unchanged?.brainResult, null);
+    } finally {
+      configureChatRequestStore(null);
+      dropChatRequestMemoryCacheForTests();
+    }
+  });
+
+  it("fails closed on idempotency GET failure instead of duplicating execution", async () => {
+    let writes = 0;
+    configureChatRequestStore({
+      get: async () => {
+        throw new Error("redis_get_failed");
+      },
+      setex: async () => {
+        writes += 1;
+      },
+    }, { requireRedisDurability: true });
+    try {
+      await assert.rejects(
+        () => acceptDurableChatRequest({ sessionId: "strict_get", message: "same ask" }),
+        PillowDurableStoreUnavailableError,
+      );
+      assert.equal(writes, 0);
+    } finally {
+      configureChatRequestStore(null);
+      dropChatRequestMemoryCacheForTests();
+    }
+  });
+
+  it("fails closed when strict Redis is absent or does not acknowledge SETEX", async () => {
+    configureChatRequestStore(null, { requireRedisDurability: true });
+    try {
+      await assert.rejects(
+        () => getChatRequest("missing_strict_record"),
+        PillowDurableStoreUnavailableError,
+      );
+    } finally {
+      configureChatRequestStore(null);
+      dropChatRequestMemoryCacheForTests();
+    }
+
+    configureChatRequestStore({
+      get: async () => null,
+      setex: async () => undefined,
+    }, { requireRedisDurability: true });
+    try {
+      await assert.rejects(
+        () => acceptDurableChatRequest({ sessionId: "strict_ack", message: "m" }),
+        PillowDurableStoreUnavailableError,
+      );
     } finally {
       configureChatRequestStore(null);
       dropChatRequestMemoryCacheForTests();

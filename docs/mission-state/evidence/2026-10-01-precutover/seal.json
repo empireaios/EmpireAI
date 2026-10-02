@@ -1,0 +1,66 @@
+{
+  "schema": "precutover-seal-v1",
+  "at": "2026-10-01T09:21:01.480990+00:00",
+  "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+  "pr": 5,
+  "merged": false,
+  "closure": "PASS_BOUNDED_PRECUTOVER",
+  "productionCutoverAuthorized": false,
+  "productionTouched": false,
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED",
+  "ci": {
+    "Product": 36841093494,
+    "Semantic": 36841093594,
+    "Runtime": 36841093491
+  },
+  "ciConclusions": "all success",
+  "runtimeJob": 110300124297,
+  "runtimeArtifact": 11150913478,
+  "artifactZipSha256": "3deab18a5ee29ee51e6304723c07d6ec8d7be16ba282d58af028698e77481de7",
+  "artifactDownloadedHashVerified": true,
+  "restoreReceipt": "runtime-restore-receipt.json",
+  "staleWorkTest": "ok 9 - leased job survives Redis process death and rejects stale settlement after recovery",
+  "enabledStores": [
+    "SQL.js primary: accounts, durable application state",
+    "native mission snapshot SQLite: unapproved mission/history",
+    "Shadow CEO SQLite, request-owner JSON, authority JSON",
+    "dedicated Redis AOF/base RDB/manifest: sessions and durable reasoning queue/results"
+  ],
+  "notRequiredForLockedRuntime": [
+    "native mission execution/outbox: execution route denied; no execution sidecar created",
+    "CJ supplier call ledger and credential/provider stores: dispatch disabled and provider credentials absent",
+    "commissioning mirror: none created in this profile; whole-directory copy includes it if later written",
+    "legacy stores and old queues: quarantined, not authoritative or imported"
+  ],
+  "backupBoundary": "All ordinary files under dedicated application directory and Redis persistence directory, after both processes stop cleanly; matching code, independent manifest hash and externally preserved owner/session/Redis secrets required. Restore refuses existing destinations and altered bundle. No automatic remote backup schedule claimed.",
+  "limitations": [
+    "30-second steady bounded process observation plus restore/outage checks; not 24/7 certification",
+    "CI actual process/store proof plus reused Sep30 Railway persistence proof; new production target not yet created",
+    "Shadow records seeded through actual repository/authority modules after clean stop and read through them independently after restore",
+    "legacy RAM/full store recovery not proven and not reopened",
+    "Vercel current read denied403; access required before legacy interruption"
+  ],
+  "defectsClosed": [
+    "existing partial bundle excluded Shadow and Redis: whole dedicated roots now included and independently restored",
+    "canary expiry was unsuitable for permanent operation: separate explicit permanent locked profile tested",
+    "locked authority/readiness now explicit at primary and worker HTTP boundaries"
+  ],
+  "cleanup": {
+    "testServices": [],
+    "testProject": "feb90d26-c54b-4435-ac32-f666e3e25447",
+    "testVolumesPreviouslyReadBackEmpty": true,
+    "freshStatus": "zero services; existing staged patch has zero changes; left alone",
+    "newResourcesThisClosure": 0
+  },
+  "spend": {
+    "lastProvisionalConservativeUSD": 1.1019,
+    "settled": false,
+    "ceilingUSD": 20,
+    "newRailwayResources": 0,
+    "paidAgentCallsThisClosure": 0,
+    "newAuthority": false
+  },
+  "cutoverPackage": "../../ACTUAL_PRODUCTION_CUTOVER_AUTHORIZATION.md",
+  "nextAction": "STOP for King approval of concrete package; no production cutover"
+}

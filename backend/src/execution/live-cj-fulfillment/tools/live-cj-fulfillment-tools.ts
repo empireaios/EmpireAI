@@ -1,15 +1,31 @@
-import type { RegisteredTool } from "../../../brain/types.js";
+import type { RegisteredTool, ToolContext } from "../../../brain/types.js";
+import { getCustomerOrderPipelineRepository } from "../../../revenue/customer-order-pipeline/repositories/sqlite-customer-order-pipeline-repository.js";
+import { loadLiveCjFulfillmentEnv } from "../config/live-cj-fulfillment-env.js";
 import {
-  applyFounderApproval,
   executeLiveCjSubmit,
   getLiveCjFulfillmentById,
   listFulfillmentAttempts,
   listLiveCjFulfillments,
   LiveCjFulfillmentBlockedError,
   prepareLiveCjFulfillment,
-  recoverFailedFulfillment,
   syncLiveCjTracking,
 } from "../services/live-cj-fulfillment-service.js";
+
+function assertWorkspace(resource: { workspaceId: string } | null, context: ToolContext): void {
+  if (!resource || !context.workspaceId || resource.workspaceId !== context.workspaceId) {
+    throw new LiveCjFulfillmentBlockedError("Resource unavailable in this tool workspace");
+  }
+}
+
+function fulfillmentInWorkspace(fulfillmentId: string, context: ToolContext) {
+  const fulfillment = getLiveCjFulfillmentById(fulfillmentId);
+  assertWorkspace(fulfillment, context);
+  return fulfillment!;
+}
+
+function rejectModelApproval(): never {
+  throw new LiveCjFulfillmentBlockedError("Model-generated tokens cannot grant founder authority. Use the authenticated owner approval route; commerce remains locked.");
+}
 
 export const liveCjFulfillmentTools: RegisteredTool[] = [
   {
@@ -22,7 +38,11 @@ export const liveCjFulfillmentTools: RegisteredTool[] = [
       properties: { pipelineId: { type: "string" } },
       required: ["pipelineId"],
     },
-    handler: async (args) => prepareLiveCjFulfillment({ pipelineId: String(args.pipelineId) }),
+    handler: async (args, context) => {
+      const pipelineId = String(args.pipelineId);
+      assertWorkspace(getCustomerOrderPipelineRepository().getPipelineById(pipelineId), context);
+      return prepareLiveCjFulfillment({ pipelineId });
+    },
   },
   {
     name: "live_cj_fulfillment.apply_founder_approval",
@@ -39,13 +59,7 @@ export const liveCjFulfillmentTools: RegisteredTool[] = [
       },
       required: ["fulfillmentId", "approvalToken", "approvedBy", "approvedAt"],
     },
-    handler: async (args) =>
-      applyFounderApproval({
-        fulfillmentId: String(args.fulfillmentId),
-        approvalToken: String(args.approvalToken),
-        approvedBy: String(args.approvedBy),
-        approvedAt: String(args.approvedAt),
-      }),
+    handler: async () => rejectModelApproval(),
   },
   {
     name: "live_cj_fulfillment.submit_live",
@@ -57,15 +71,17 @@ export const liveCjFulfillmentTools: RegisteredTool[] = [
       properties: { fulfillmentId: { type: "string" } },
       required: ["fulfillmentId"],
     },
-    handler: async (args) => {
-      try {
-        return await executeLiveCjSubmit(String(args.fulfillmentId));
-      } catch (error) {
-        if (error instanceof LiveCjFulfillmentBlockedError) {
-          return { blocked: true, error: error.message, protectTheEmpire: true };
-        }
-        throw error;
+    handler: async (args, context) => {
+      fulfillmentInWorkspace(String(args.fulfillmentId), context);
+      // No authenticated actor/authority receipt exists in ToolContext. Only
+      // explicit local synthetic fixtures may exercise this tool path.
+      const env = loadLiveCjFulfillmentEnv();
+      if (process.env.NODE_ENV !== "test" || !env.LIVE_CJ_FULFILLMENT_MOCK) {
+        throw new LiveCjFulfillmentBlockedError("Model tool cannot authorize live supplier execution; trusted owner authority is required.");
       }
+      // Rejections must propagate: the dispatcher labels a resolved tool result
+      // completed, including a resolved {blocked:true} object.
+      return executeLiveCjSubmit(String(args.fulfillmentId));
     },
   },
   {
@@ -81,10 +97,12 @@ export const liveCjFulfillmentTools: RegisteredTool[] = [
       },
       required: ["fulfillmentId"],
     },
-    handler: async (args) =>
-      syncLiveCjTracking(String(args.fulfillmentId), {
+    handler: async (args, context) => {
+      fulfillmentInWorkspace(String(args.fulfillmentId), context);
+      return syncLiveCjTracking(String(args.fulfillmentId), {
         markDelivered: args.markDelivered === true,
-      }),
+      });
+    },
   },
   {
     name: "live_cj_fulfillment.recover_failed",
@@ -101,13 +119,7 @@ export const liveCjFulfillmentTools: RegisteredTool[] = [
       },
       required: ["fulfillmentId", "approvalToken", "approvedBy", "approvedAt"],
     },
-    handler: async (args) =>
-      recoverFailedFulfillment({
-        fulfillmentId: String(args.fulfillmentId),
-        approvalToken: String(args.approvalToken),
-        approvedBy: String(args.approvedBy),
-        approvedAt: String(args.approvedAt),
-      }),
+    handler: async () => rejectModelApproval(),
   },
   {
     name: "live_cj_fulfillment.list",
@@ -122,12 +134,11 @@ export const liveCjFulfillmentTools: RegisteredTool[] = [
       },
       required: ["workspaceId"],
     },
-    handler: async (args) => ({
-      fulfillments: listLiveCjFulfillments(
-        String(args.workspaceId),
-        args.companyId ? String(args.companyId) : undefined,
-      ),
-    }),
+    handler: async (args, context) => {
+      assertWorkspace({workspaceId: String(args.workspaceId)}, context);
+      return { fulfillments: listLiveCjFulfillments(context.workspaceId,
+        args.companyId ? String(args.companyId) : undefined) };
+    },
   },
   {
     name: "live_cj_fulfillment.get",
@@ -139,10 +150,11 @@ export const liveCjFulfillmentTools: RegisteredTool[] = [
       properties: { fulfillmentId: { type: "string" } },
       required: ["fulfillmentId"],
     },
-    handler: async (args) => {
+    handler: async (args, context) => {
       const fulfillmentId = String(args.fulfillmentId);
+      const fulfillment = fulfillmentInWorkspace(fulfillmentId, context);
       return {
-        fulfillment: getLiveCjFulfillmentById(fulfillmentId),
+        fulfillment,
         attempts: listFulfillmentAttempts(fulfillmentId),
       };
     },

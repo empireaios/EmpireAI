@@ -1,0 +1,30 @@
+{
+  "observedAt": "2026-09-29T12:36:36.149Z",
+  "request": {
+    "url": "https://developers.cjdropshipping.com/api2.0/v1/product/listV2?page=1&size=2&countryCode=US&startWarehouseInventory=1&verifiedWarehouse=1&orderBy=4&sort=desc",
+    "method": "GET"
+  },
+  "requestBody": null,
+  "requestId": "dadd6d2aee6d4dd4b323ed5d7fb42cd9",
+  "rawBodySha256": "2befb4775a896281511af50f94eaf2c5b8c403512d44d0ce74a933cea31b5571",
+  "providerCode": 200,
+  "summary": {
+    "products": [
+      {
+        "pid": "1873650472634056705",
+        "name": "Tall Dressing Table Cloth Storage Tower",
+        "sku": "CJJT2257171",
+        "summaryStockIsNotProof": true
+      },
+      {
+        "pid": "1872203651945525250",
+        "name": "Floor Standing Mirror, Wall Mirror With Stand Aluminum Alloy Thin Frame",
+        "sku": "CJFU2254439",
+        "summaryStockIsNotProof": true
+      }
+    ],
+    "page": 1,
+    "maximumProducts": 2
+  },
+  "sanitizedSummarySha256": "f61e0c9586d9696071d88e4db36060d9e97c30efd579f49b41780aea1f24f163"
+}

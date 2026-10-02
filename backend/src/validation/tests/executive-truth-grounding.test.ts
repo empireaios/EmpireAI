@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { ExecutiveTruthSnapshot } from "../../orchestration/pillow-host/executive-truth-types.js";
 import { enforceExecutiveTruthGrounding } from "../../orchestration/pillow-host/executive-release-gate.js";
+import { authorizeTransportRelease } from "../../orchestration/pillow-host/executive-final-visible-contract.js";
+import { realizeDomainNativeMemorySurface } from "../../orchestration/pillow-host/executive-memory-realization.js";
 
 function baseTruth(over: Partial<ExecutiveTruthSnapshot> = {}): ExecutiveTruthSnapshot {
   const base: ExecutiveTruthSnapshot = {
@@ -135,4 +137,44 @@ describe("executive-truth-grounding via release gate", () => {
     assert.equal(result.adjusted, false);
     assert.deepEqual(result.violations, []);
   });
+
+  it("never authorizes an empty final answer after semantic writers", () => {
+    for (const answer of ["", "  \n\t "]) {
+      const result = authorizeTransportRelease({answer, userMessage: "What can be verified?", expectedTopLevelSections: null, claims: []});
+      assert.equal(result.authorized, false);
+      assert.ok(result.assessment.failures.includes("EMPTY_VISIBLE_ANSWER"));
+      assert.ok(result.message.trim().length > 0);
+    }
+  });
+
+  it("keeps current-reality sales uncertainty while removing it from unrelated synthetic cases", () => {
+    const correction = "I don't have verified sales-history evidence beyond realised orders — so I won't treat those performance claims as established.";
+    const live = realizeDomainNativeMemorySurface(correction, "What do we know about our product sales?", false);
+    assert.equal(live.message, correction);
+    assert.equal(live.telemetry.LESSON_TEXT_SURFACED, false);
+    const synthetic = realizeDomainNativeMemorySurface(`The pump stopped at 08:00. ${correction}`, "Synthetic industrial chronology analysis only.", true);
+    assert.match(synthetic.message, /pump stopped at 08:00/);
+    assert.doesNotMatch(synthetic.message, /sales-history|realised orders/);
+  });
+
+  for (const draft of [
+    "Our sales figures confirm 63 units sold and a conversion rate of 8 percent. Evidenced.",
+    "Customer feedback ratings and historical sales show this offer already succeeds.",
+    "Revenue was $8,900 last quarter, proving demand for this product.",
+  ]) {
+    it(`unfamiliar unsupported commercial assertion produces a nonempty grounded correction: ${draft}`, () => {
+      const truth = baseTruth();
+      truth.financial.expectedProfitDisplay = null;
+      truth.financial.expectedProfitTruthClass = "UNKNOWN";
+      for (const userMessage of [undefined, "What commercial results are actually established for our product?"]) {
+        const result = enforceExecutiveTruthGrounding(draft, truth, [], {userMessage});
+        assert.equal(result.adjusted, true);
+        assert.ok(result.violations.includes("FABRICATED_COMMERCE_OR_FINANCIAL_CLAIM"));
+        assert.ok(result.message.trim().length > 20, result.message);
+        assert.match(result.message, /not.*established|unproven|don't have verified/i);
+        assert.doesNotMatch(result.message, /63|8 percent|8,900|Evidenced|already succeeds/);
+        assert.equal(result.telemetry.finalRevalidationPass, true);
+      }
+    });
+  }
 });

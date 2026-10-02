@@ -420,6 +420,7 @@ export function assessFinalVisibleContract(args: {
 }): FinalVisibleContractResult {
   const answer = String(args.answer || "");
   const failures: string[] = [];
+  if (!answer.trim()) failures.push("EMPTY_VISIBLE_ANSWER");
   const diagnosticsVisible = countInternalValidatorDiagnostics(answer);
   if (diagnosticsVisible > 0) failures.push("INTERNAL_DIAGNOSTIC_LEAK");
 
@@ -501,6 +502,7 @@ export function assessFinalVisibleContract(args: {
     claims?.renderedWithVerdict ?? surface.verdictCount;
   const releaseAuthorized = !failures.some((f) =>
     [
+      "EMPTY_VISIBLE_ANSWER",
       "INTERNAL_DIAGNOSTIC_LEAK",
       "TOP_LEVEL_SECTION_COUNT_MISMATCH",
       "NESTED_ITEM_PROMOTED_TO_TOP_LEVEL",
@@ -542,6 +544,7 @@ export function assessFinalVisibleContract(args: {
 
 /** Hard contract failures that must block release (not soft telemetry). */
 export const HARD_FINAL_VISIBLE_FAILURES = new Set([
+  "EMPTY_VISIBLE_ANSWER",
   "INTERNAL_DIAGNOSTIC_LEAK",
   "TOP_LEVEL_SECTION_COUNT_MISMATCH",
   "NESTED_ITEM_PROMOTED_TO_TOP_LEVEL",
@@ -613,4 +616,3 @@ export function authorizeTransportRelease(args: {
     postValidationMutation: false,
   };
 }
-

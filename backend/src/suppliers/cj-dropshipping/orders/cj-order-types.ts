@@ -41,8 +41,10 @@ export type CjTrackingSnapshot = {
   }>;
 };
 
-/** Fulfillment cost and delivery estimate. */
-export type CjFulfillmentEstimate = {
+/** Explicit offline fixture, never a verified live supplier quote. */
+export type CjSandboxFulfillmentEstimate = {
+  source: "SANDBOX_FIXTURE";
+  liveQuoteVerified: false;
   estimatedCost: number;
   currency: string;
   estimatedDeliveryDaysMin: number;
@@ -51,6 +53,21 @@ export type CjFulfillmentEstimate = {
   valid: boolean;
   issues: string[];
 };
+
+/** No provider quote exists: unknown numbers must not become zero or defaults. */
+export type CjUnavailableFulfillmentEstimate = {
+  source: "UNAVAILABLE";
+  liveQuoteVerified: false;
+  estimatedCost: null;
+  currency: string | null;
+  estimatedDeliveryDaysMin: null;
+  estimatedDeliveryDaysMax: null;
+  shippingMethod: null;
+  valid: false;
+  issues: string[];
+};
+
+export type CjFulfillmentEstimate = CjSandboxFulfillmentEstimate | CjUnavailableFulfillmentEstimate;
 
 /** Supplier validation result for an order. */
 export type CjOrderValidationResult = {

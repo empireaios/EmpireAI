@@ -96,8 +96,8 @@ describe("Mission 104 Customer Order Pipeline", () => {
       productName: "Pipeline Product",
       productDescription: "Full lifecycle test",
       priceCents: 5500,
-      cjSupplierSku: "CJ-SKU-M104",
-      cjSupplierProductId: "CJ-PID-M104",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1500,
     });
 
@@ -136,8 +136,8 @@ describe("Mission 104 Customer Order Pipeline", () => {
       productName: "Delivered Product",
       productDescription: "End-to-end test",
       priceCents: 6200,
-      cjSupplierSku: "CJ-SKU-DELIVER",
-      cjSupplierProductId: "CJ-PID-DELIVER",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1800,
     });
 
@@ -190,8 +190,8 @@ describe("Mission 104 Customer Order Pipeline", () => {
       productName: "Stage Product",
       productDescription: "Stage test",
       priceCents: 4000,
-      cjSupplierSku: "CJ-SKU-STAGE",
-      cjSupplierProductId: "CJ-PID-STAGE",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1200,
     });
 
@@ -226,8 +226,8 @@ describe("Mission 104 Customer Order Pipeline", () => {
       productName: "Block Product",
       productDescription: "Live gate test",
       priceCents: 5000,
-      cjSupplierSku: "CJ-SKU-BLOCK",
-      cjSupplierProductId: "CJ-PID-BLOCK",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1400,
     });
 
@@ -287,8 +287,8 @@ describe("Mission 104 Customer Order Pipeline", () => {
       productName: "Idempotent Product",
       productDescription: "Idempotent test",
       priceCents: 3500,
-      cjSupplierSku: "CJ-SKU-IDEM",
-      cjSupplierProductId: "CJ-PID-IDEM",
+      cjSupplierSku: "CJ-BLENDER-001",
+      cjSupplierProductId: "cj-sandbox-blender-v1",
       unitCostCents: 1000,
     });
 

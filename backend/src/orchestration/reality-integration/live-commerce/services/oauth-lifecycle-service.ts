@@ -27,8 +27,6 @@ export function startMarketplaceOAuth(input: {
     createdAt: new Date().toISOString(),
     completedAt: null,
   };
-  getLiveCommerceRepository().saveOAuthState(state);
-
   const registryId = resolveAmazonMarketplaceRegistryId(input.providerId);
   if (!registryId) {
     throw new Error(`Unsupported Amazon marketplace provider: ${input.providerId}`);
@@ -41,28 +39,49 @@ export function startMarketplaceOAuth(input: {
     scopes: state.scopes,
   });
 
+  getLiveCommerceRepository().saveOAuthState(state);
   return { stateId, authorizationUrl, state };
 }
 
 export async function completeMarketplaceOAuth(input: {
+  workspaceId: string;
   stateId: string;
   code: string;
 }): Promise<{ state: LiveCommerceOAuthState; tokens: Record<string, unknown> }> {
   const repo = getLiveCommerceRepository();
   const existing = repo.getOAuthState(input.stateId);
-  if (!existing) throw new Error("OAuth state not found");
+  if (!existing || existing.workspaceId !== input.workspaceId) throw new Error("OAuth state not found");
   if (existing.status !== "pending") throw new Error("OAuth state is not pending");
+  const ageMs = Date.now() - Date.parse(existing.createdAt);
+  if (!Number.isFinite(ageMs) || ageMs < 0 || ageMs > 5 * 60_000) {
+    repo.saveOAuthState({ ...existing, status: "expired", completedAt: new Date().toISOString() });
+    throw new Error("OAuth state expired; begin a new authorization");
+  }
 
   const registryId = resolveAmazonMarketplaceRegistryId(existing.providerId);
   if (!registryId) {
     throw new Error(`Unsupported Amazon marketplace provider: ${existing.providerId}`);
   }
 
-  const tokens = await amazonOAuthExchangeCode({
-    registryId,
-    code: input.code,
-    redirectUri: existing.redirectUri,
-  });
+  // Claim before the network call so a duplicate request cannot redeem or
+  // expose the same code twice in this single-writer runtime.
+  repo.saveOAuthState({ ...existing, status: "exchanging" });
+  let tokens: Record<string, unknown>;
+  try {
+    tokens = await amazonOAuthExchangeCode({
+      registryId,
+      code: input.code,
+      redirectUri: existing.redirectUri,
+    });
+  } catch (error) {
+    if (repo.getOAuthState(input.stateId)?.status === "exchanging") {
+      repo.saveOAuthState({ ...existing, status: "failed", completedAt: new Date().toISOString() });
+    }
+    throw error;
+  }
+  if (repo.getOAuthState(input.stateId)?.status !== "exchanging") {
+    throw new Error("OAuth state changed during token exchange");
+  }
 
   const completed: LiveCommerceOAuthState = {
     ...existing,

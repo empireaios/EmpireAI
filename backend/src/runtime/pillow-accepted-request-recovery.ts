@@ -224,14 +224,20 @@ export async function runAcceptedPillowChatRecovery(opts: {
     sessionId: opts.accepted.sessionId,
   });
 
-  const ready0 = await opts.probeWorker(2_000);
-  if (!ready0) {
+  let readyForFirstAttempt = await opts.probeWorker(2_000);
+  if (!readyForFirstAttempt) {
     emit("worker_unavailable", { phase: "pre_attempt" });
-    const becameReady = await waitForWorkerReady({
-      probe: opts.probeWorker,
-      maxWaitMs: Math.min(workerWaitMs, remainingBudgetMs(opts.accepted.acceptedAt, totalBudgetMs)),
-    });
-    if (becameReady) {
+    const initialWaitMs = Math.min(
+      workerWaitMs,
+      remainingBudgetMs(opts.accepted.acceptedAt, totalBudgetMs),
+    );
+    if (initialWaitMs > 0) {
+      readyForFirstAttempt = await waitForWorkerReady({
+        probe: opts.probeWorker,
+        maxWaitMs: initialWaitMs,
+      });
+    }
+    if (readyForFirstAttempt) {
       emit("worker_ready", { phase: "pre_attempt" });
       // Brief settle after recycle — live probe can pass before chat route is stable.
       await new Promise((r) => setTimeout(r, 1_500));
@@ -242,8 +248,13 @@ export async function runAcceptedPillowChatRecovery(opts: {
     remainingBudgetMs(opts.accepted.acceptedAt, totalBudgetMs),
     attempt1Ms,
   );
-  emit("attempt_started", { attempt: 1, timeoutMs: t1 });
-  const first = await opts.attempt(t1, 1);
+  let first: PillowProxyAttemptResult = { ok: false, reason: "worker_unavailable" };
+  if (readyForFirstAttempt) {
+    emit("attempt_started", { attempt: 1, timeoutMs: t1 });
+    // `attempt` is intentionally forward-only. This recovery loop owns the
+    // readiness gate so each forward has exactly one gate and no nested probe.
+    first = await opts.attempt(t1, 1);
+  }
   if (first.ok && first.messagePreview.length > 0) {
     emit("completed", { attempt: 1, requestId: opts.accepted.requestId });
     return first;
@@ -264,13 +275,24 @@ export async function runAcceptedPillowChatRecovery(opts: {
     workerWaitMs,
     remainingBudgetMs(opts.accepted.acceptedAt, totalBudgetMs) - attempt2Ms - 2_000,
   );
+  let readyForRetry = false;
   if (waitCap > 0) {
-    const ready = await waitForWorkerReady({
+    readyForRetry = await waitForWorkerReady({
       probe: opts.probeWorker,
       maxWaitMs: waitCap,
     });
-    if (ready) emit("worker_ready", { phase: "pre_retry" });
+    if (readyForRetry) emit("worker_ready", { phase: "pre_retry" });
     else emit("worker_unavailable", { phase: "pre_retry" });
+  } else {
+    const finalProbeBudgetMs = remainingBudgetMs(
+      opts.accepted.acceptedAt,
+      totalBudgetMs,
+    );
+    if (finalProbeBudgetMs > 1_000) {
+      readyForRetry = await opts.probeWorker(Math.min(2_000, finalProbeBudgetMs - 1_000));
+      if (readyForRetry) emit("worker_ready", { phase: "pre_retry" });
+      else emit("worker_unavailable", { phase: "pre_retry" });
+    }
   }
 
   const rem = remainingBudgetMs(opts.accepted.acceptedAt, totalBudgetMs);
@@ -280,6 +302,13 @@ export async function runAcceptedPillowChatRecovery(opts: {
   }
 
   const t2 = attemptTimeoutForBudget(rem, attempt2Ms);
+  if (!readyForRetry) {
+    emit("terminal_infrastructure_failure", {
+      requestId: opts.accepted.requestId,
+      reason: "worker_unavailable",
+    });
+    return { ok: false, reason: "worker_unavailable" };
+  }
   emit("attempt_started", { attempt: 2, timeoutMs: t2 });
   const second = await opts.attempt(t2, 2);
   if (second.ok && second.messagePreview.length > 0) {

@@ -1,0 +1,28 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "**Deployment 81fd99e8-7b16-42b7-9a7d-42830adc5319** [SUCCESS]\nservice: 3687e91f-2a12-477e-8fc1-79ad0e559d3c, env: 3b0664a3-8655-4fc1-b9cf-113034a81e0a\n\n### Deploy logs (1)\n2026-09-23T11:28:23.933459594Z info CANARY_MISSION_DIAGNOSTIC {\"status\":200,\"body\":{\"computedAt\":\"2026-09-23T11:28:19.710Z\",\"report\":{\"action\":\"create_mission\",\"runTimestamp\":\"2026-09-23T11:28:19.710Z\",\"durationMs\":0,\"decision\":\"fail\",\"validation\":{\"validationReportId\":\"msr-val-1790162899710\",\"validationTimestamp\":\"2026-09-23T11:28:19.710Z\",\"decision\":\"fail\",\"errors\":[\"High-risk mission execution requires grandKingApproved=true\"],\"warnings\":[],\"durationMs\":0,\"metadataVersion\":\"MSR-001-v1\"},\"mission\":null,\"missionRuntimeReport\":null,\"transitions\":[],\"errors\":[\"High-risk mission execution requires grandKingApproved=true\"],\"warnings\":[]}}}"
+    }
+  ],
+  "structuredContent": {
+    "deploymentId": "81fd99e8-7b16-42b7-9a7d-42830adc5319",
+    "serviceId": "3687e91f-2a12-477e-8fc1-79ad0e559d3c",
+    "environmentId": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "status": "SUCCESS",
+    "deploy": [
+      {
+        "timestamp": "2026-09-23T11:28:23.933459594Z",
+        "severity": "info",
+        "message": "CANARY_MISSION_DIAGNOSTIC {\"status\":200,\"body\":{\"computedAt\":\"2026-09-23T11:28:19.710Z\",\"report\":{\"action\":\"create_mission\",\"runTimestamp\":\"2026-09-23T11:28:19.710Z\",\"durationMs\":0,\"decision\":\"fail\",\"validation\":{\"validationReportId\":\"msr-val-1790162899710\",\"validationTimestamp\":\"2026-09-23T11:28:19.710Z\",\"decision\":\"fail\",\"errors\":[\"High-risk mission execution requires grandKingApproved=true\"],\"warnings\":[],\"durationMs\":0,\"metadataVersion\":\"MSR-001-v1\"},\"mission\":null,\"missionRuntimeReport\":null,\"transitions\":[],\"errors\":[\"High-risk mission execution requires grandKingApproved=true\"],\"warnings\":[]}}}",
+        "attributes": [
+          {
+            "key": "level",
+            "value": "\"info\""
+          }
+        ]
+      }
+    ]
+  },
+  "isError": false
+}

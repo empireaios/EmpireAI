@@ -1,0 +1,102 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# {"level":30,"time":1790770919508,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1790770919598,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1790770919608,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: quiesced real primary/native stores restore and reopen with identical completed receipt, history and business data
+ok 1 - quiesced real primary/native stores restore and reopen with identical completed receipt, history and business data
+  ---
+  duration_ms: 115.742004
+  type: 'test'
+  ...
+# Subtest: offline backup and restore preserve native CJ point history; corrupt ledger refuses publication
+ok 2 - offline backup and restore preserve native CJ point history; corrupt ledger refuses publication
+  ---
+  duration_ms: 20.455264
+  type: 'test'
+  ...
+# {"level":30,"time":1790770919628,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1790770923640,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: offline multi-store backup and restore accept a valid primary above 512 MiB
+ok 3 - offline multi-store backup and restore accept a valid primary above 512 MiB
+  ---
+  duration_ms: 4011.126511
+  type: 'test'
+  ...
+# {"level":30,"time":1790770923659,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: restored queued readonly mission continues its original dispatch and completes once
+ok 4 - restored queued readonly mission continues its original dispatch and completes once
+  ---
+  duration_ms: 19.503422
+  type: 'test'
+  ...
+# {"level":30,"time":1790770923672,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: missing quiescence/build/evidence or wrong primary/native scope is refused before publication
+ok 5 - missing quiescence/build/evidence or wrong primary/native scope is refused before publication
+  ---
+  duration_ms: 13.188378
+  type: 'test'
+  ...
+# {"level":30,"time":1790770923685,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: active readers/writers and WAL/SHM/journal sidecars are refused without copying a live database
+ok 6 - active readers/writers and WAL/SHM/journal sidecars are refused without copying a live database
+  ---
+  duration_ms: 11.995158
+  type: 'test'
+  ...
+# {"level":30,"time":1790770923701,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: manifest/build/scope/required set and exact bytes are checked before restore
+ok 7 - manifest/build/scope/required set and exact bytes are checked before restore
+  ---
+  duration_ms: 16.465607
+  type: 'test'
+  ...
+# {"level":30,"time":1790770923721,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: existing targets, symlink files and linked source identities are never overwritten
+ok 8 - existing targets, symlink files and linked source identities are never overwritten
+  ---
+  duration_ms: 20.177827
+  type: 'test'
+  ...
+# {"level":30,"time":1790770923736,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: SQL.js-style atomic source replacement is detected and never publishes an apparently complete bundle
+ok 9 - SQL.js-style atomic source replacement is detected and never publishes an apparently complete bundle
+  ---
+  duration_ms: 15.087392
+  type: 'test'
+  ...
+# {"level":30,"time":1790770923753,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: failed staged writes preserve source history and leave no published backup or restore
+ok 10 - failed staged writes preserve source history and leave no published backup or restore
+  ---
+  duration_ms: 16.391769
+  type: 'test'
+  ...
+# {"level":30,"time":1790770923788,"pid":12,"hostname":"6a48cba7417a","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: legacy migration lineage is included only when native history binds its original bytes
+ok 11 - legacy migration lineage is included only when native history binds its original bytes
+  ---
+  duration_ms: 34.717557
+  type: 'test'
+  ...
+# Subtest: unexpected staged files or changed restore proof are rejected before publication
+ok 12 - unexpected staged files or changed restore proof are rejected before publication
+  ---
+  duration_ms: 28.790401
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7664.736674

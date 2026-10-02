@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import {
   DEGRADED_CHAT_MESSAGE,
   decideBffChatSurface,
+  isFailClosedPillowResponse,
   stripForbiddenInfraDecoration,
 } from "./bff-chat-sanitize.js";
 
@@ -134,5 +135,33 @@ describe("BFF chat sanitize path-parity + valid-answer invariant", () => {
       userAsk: "Atlas eligibility",
     });
     assert.equal(d.degrade, false);
+  });
+
+  it("preserves explicit Tier-0 durability failures as non-200 responses", () => {
+    assert.equal(
+      isFailClosedPillowResponse(
+        503,
+        JSON.stringify({ code: "PILLOW_DURABILITY_UNAVAILABLE" }),
+      ),
+      true,
+    );
+    assert.equal(
+      isFailClosedPillowResponse(
+        503,
+        JSON.stringify({ code: "PILLOW_STREAM_DURABILITY_REQUIRED" }),
+      ),
+      true,
+    );
+    assert.equal(
+      isFailClosedPillowResponse(503, JSON.stringify({ code: "OTHER_FAILURE" })),
+      false,
+    );
+    assert.equal(
+      isFailClosedPillowResponse(
+        200,
+        JSON.stringify({ code: "PILLOW_DURABILITY_UNAVAILABLE" }),
+      ),
+      false,
+    );
   });
 });

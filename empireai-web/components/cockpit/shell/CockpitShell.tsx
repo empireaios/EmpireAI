@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { OwnerShell } from "@/components/owner/OwnerShell";
 import { CockpitMobileNav } from "./CockpitMobileNav";
 import { CockpitSidebar } from "./CockpitSidebar";
 import { CockpitTopBar } from "./CockpitTopBar";
@@ -37,6 +39,8 @@ function useSidebarOffsetClass() {
 
 export function CockpitShell({ children }: { children: React.ReactNode }) {
   const sidebarOffset = useSidebarOffsetClass();
+  const pathname = usePathname();
+  if (pathname === "/cockpit" || pathname.startsWith("/cockpit/products") || pathname === "/cockpit/commerce/transactions") return <OwnerShell>{children}</OwnerShell>;
   return (
     <CockpitInteractionProvider>
       <CockpitAuthGuard>

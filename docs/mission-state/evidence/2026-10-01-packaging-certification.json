@@ -1,0 +1,133 @@
+{
+  "candidate": "d6e69910384a00b11711a50ccbc2d70826549fa5",
+  "base": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
+  "artifact": 11158868931,
+  "artifactSha256": "88630dcaca24db3aa76b76115609d9a090aa0a2fb30ef6e008dd391647217ccf",
+  "imageId": "sha256:5b985d0ee7189ebbb3576d9ae06595815b5c93f4183ea20ce56fbf52b3909529",
+  "imageCommand": [
+    "node deployment/locked-runtime.cjs"
+  ],
+  "runtime": {
+    "node": "22.23.2",
+    "lockedLauncherSha256": "aff193b679bbf21d37da914b7fbe1fbf26fc7e84af38e9641307c380b70212c8",
+    "backendBuilt": true
+  },
+  "rootConfigMatchesGit": true,
+  "applicationAndLauncherUnchanged": true,
+  "changedPaths": [
+    ".github/workflows/pillow-runtime-repair-ci.yml",
+    "railway.toml",
+    "scripts/verify-build-runtime.mjs",
+    "scripts/verify-build-runtime.test.mjs"
+  ],
+  "ci": {
+    "workflow_runs": [
+      {
+        "id": 36856624215,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 328,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36856624215/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36856624215/logs",
+        "workflow_id": 362674549
+      },
+      {
+        "id": 36856624243,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 328,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36856624243/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36856624243/logs",
+        "workflow_id": 362309382
+      },
+      {
+        "id": 36856624401,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 326,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36856624401/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/36856624401/logs",
+        "workflow_id": 362688325
+      }
+    ]
+  },
+  "restore": {
+    "schema": "precutover-closure-v1",
+    "buildSha": "d6e69910384a00b11711a50ccbc2d70826549fa5",
+    "productionTouched": false,
+    "commerce": "LOCKED",
+    "birth": "NOT_BORN",
+    "passed": true,
+    "permanentProfile": true,
+    "noExpiry": true,
+    "observedSteadySeconds": 30,
+    "independentVolumeRestore": true,
+    "sourceRootsQuarantinedBeforeReopen": true,
+    "identityContinuity": true,
+    "missionHistoryContinuity": true,
+    "shadowOwnershipAuthorityContinuity": true,
+    "redisSessionAndTerminalContinuity": true,
+    "noDuplicateTerminalExecution": true,
+    "providerCredentials": 0,
+    "mutationGuards": true,
+    "unavailableRedisReadiness503": true,
+    "manifestSha256": "b12193d05c4b0cd44b73d1541f364b4a8e9cde6837bb704ef1cff6a6b65eedce",
+    "inventory": {
+      "application": [
+        {
+          "path": "empireai-brain.db",
+          "size": 2678784,
+          "sha256": "44acfcc0483e8c38f85e138d464c107200ac8b93b99ca20bf4fe1c9c228d07a1"
+        },
+        {
+          "path": "empireai-brain.db.missions.sqlite",
+          "size": 8192,
+          "sha256": "0f034be272341380205b4367fa8e4e77243ea77dd158b371ddd6c4403f126cc2"
+        },
+        {
+          "path": "empireai-brain.db.shadow/shadow-ceo-authority/authority-store.json",
+          "size": 708,
+          "sha256": "b012a7c2c28c72fdcfae89313157f41b7cc1d09d354c745c5dea19cb4224e52b"
+        },
+        {
+          "path": "empireai-brain.db.shadow/shadow-ceo-request-owners.json",
+          "size": 767,
+          "sha256": "ea6e5755544047966fc30cb919cbf143c42cf07a6c4167b0882a235651aeb4e2"
+        },
+        {
+          "path": "empireai-brain.db.shadow/shadow-ceo.db",
+          "size": 20480,
+          "sha256": "5141ecf0fd5e02c8b00c3ce5dd221c4c8bb7e944cbbc897058d8e61d4ddb6b39"
+        }
+      ],
+      "redis": [
+        {
+          "path": "appendonlydir/appendonly.aof.1.base.rdb",
+          "size": 89,
+          "sha256": "edd2ea14f7525b39637643f56e5acddd43b8bdc1caf5179b6abe24c5cf04a09f"
+        },
+        {
+          "path": "appendonlydir/appendonly.aof.1.incr.aof",
+          "size": 11541,
+          "sha256": "d62cb5c2bf9b7a150eae36ac37b350def6c5b7b4857ab0d9eb65f2d807e5d579"
+        },
+        {
+          "path": "appendonlydir/appendonly.aof.manifest",
+          "size": 88,
+          "sha256": "ca465c5845ad4d4c0a2b4cda8853efeb9423cb4242a4eaaa5ecbaa00a4e75492"
+        }
+      ]
+    },
+    "limitations": [
+      "bounded CI production-mode process proof, not 24/7 certification",
+      "no legacy state imported",
+      "new production services and routing not activated",
+      "provider accounts absent; real commerce unavailable"
+    ]
+  },
+  "certifiedAt": "2026-10-01T11:44:48.956Z",
+  "deploymentAuthorized": "King explicitly conditionally authorized this deployment-only revision after all listed gates; conditions passed."
+}

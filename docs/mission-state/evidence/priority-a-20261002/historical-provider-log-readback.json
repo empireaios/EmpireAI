@@ -1,0 +1,180 @@
+{
+  "scope": "Historical logs; not provider billing evidence",
+  "request": "pcr_5a792591850849c9",
+  "records": [
+    {
+      "at": "2026-10-02T01:33:14.311879566Z",
+      "message": "Pillow chat request entered",
+      "attributes": [
+        {
+          "key": "correlationId",
+          "value": "\"req-1tm\""
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:34.301606855Z",
+      "message": "Pillow chat trace",
+      "attributes": [
+        {
+          "key": "requestId",
+          "value": "\"a175b14c-a626-4fa2-bf5e-fa79e0f0e7a8\""
+        },
+        {
+          "key": "kind",
+          "value": "\"degraded_useful\""
+        },
+        {
+          "key": "logResult",
+          "value": "\"degraded_synthetic_live_strip\""
+        },
+        {
+          "key": "retryUsed",
+          "value": "false"
+        },
+        {
+          "key": "degradedUsed",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:34.301611365Z",
+      "message": "Pillow chat request completed",
+      "attributes": [
+        {
+          "key": "correlationId",
+          "value": "\"req-1tm\""
+        },
+        {
+          "key": "durationMs",
+          "value": "15313"
+        },
+        {
+          "key": "kind",
+          "value": "\"degraded_useful\""
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:34.301615175Z",
+      "message": "Pillow chat request entered",
+      "attributes": [
+        {
+          "key": "correlationId",
+          "value": "\"req-1tq\""
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:34.301619385Z",
+      "message": "Pillow chat trace",
+      "attributes": [
+        {
+          "key": "requestId",
+          "value": "\"9137d581-7a45-4577-8508-dc1bf5a05337\""
+        },
+        {
+          "key": "kind",
+          "value": "\"degraded_useful\""
+        },
+        {
+          "key": "logResult",
+          "value": "\"degraded_synthetic_live_strip\""
+        },
+        {
+          "key": "retryUsed",
+          "value": "false"
+        },
+        {
+          "key": "degradedUsed",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:34.301623095Z",
+      "message": "Pillow chat request completed",
+      "attributes": [
+        {
+          "key": "correlationId",
+          "value": "\"req-1tq\""
+        },
+        {
+          "key": "durationMs",
+          "value": "98"
+        },
+        {
+          "key": "kind",
+          "value": "\"degraded_useful\""
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:35.108022273Z",
+      "message": "Pillow chat request entered",
+      "attributes": [
+        {
+          "key": "correlationId",
+          "value": "\"req-1tw\""
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:35.160517824Z",
+      "message": "Pillow chat trace",
+      "attributes": [
+        {
+          "key": "requestId",
+          "value": "\"20378cb7-d78d-4e25-9714-af76ae692a72\""
+        },
+        {
+          "key": "kind",
+          "value": "\"degraded_useful\""
+        },
+        {
+          "key": "logResult",
+          "value": "\"degraded_synthetic_live_strip\""
+        },
+        {
+          "key": "retryUsed",
+          "value": "false"
+        },
+        {
+          "key": "degradedUsed",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:35.172957217Z",
+      "message": "Pillow chat request completed",
+      "attributes": [
+        {
+          "key": "correlationId",
+          "value": "\"req-1tw\""
+        },
+        {
+          "key": "durationMs",
+          "value": "92"
+        },
+        {
+          "key": "kind",
+          "value": "\"degraded_useful\""
+        }
+      ]
+    },
+    {
+      "at": "2026-10-02T01:33:55.181116376Z",
+      "message": "Tier-0 primary proxy to worker failed",
+      "attributes": [
+        {
+          "key": "reason",
+          "value": "\"timeout\""
+        }
+      ]
+    }
+  ],
+  "actualCharges": "UNKNOWN",
+  "remainingCeiling": "UNKNOWN"
+}

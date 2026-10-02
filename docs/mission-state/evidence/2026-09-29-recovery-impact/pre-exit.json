@@ -1,0 +1,243 @@
+{
+  "scope": "deployment",
+  "deploymentId": "86302878-25b5-4990-87d9-86580cd4e976",
+  "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+  "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+  "status": "SUCCESS",
+  "deploy": [
+    {
+      "timestamp": "2026-09-29T13:59:29.691962070Z",
+      "severity": "info",
+      "message": "Executive continuity alert — elevated event-loop lag",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790690364844"
+        },
+        {
+          "key": "pid",
+          "value": "539"
+        },
+        {
+          "key": "hostname",
+          "value": "\"0ee73ebff028\""
+        },
+        {
+          "key": "lagMs",
+          "value": "4275"
+        },
+        {
+          "key": "sustainedMs",
+          "value": "42587"
+        },
+        {
+          "key": "exitThresholdMs",
+          "value": "4000"
+        },
+        {
+          "key": "sqlite",
+          "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790662610861,\"lastFlushDurationMs\":956,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-09-29T13:59:44.045253703Z",
+      "severity": "info",
+      "message": "Executive continuity alert — elevated event-loop lag",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790690379369"
+        },
+        {
+          "key": "pid",
+          "value": "539"
+        },
+        {
+          "key": "hostname",
+          "value": "\"0ee73ebff028\""
+        },
+        {
+          "key": "lagMs",
+          "value": "4250"
+        },
+        {
+          "key": "sustainedMs",
+          "value": "57112"
+        },
+        {
+          "key": "exitThresholdMs",
+          "value": "4000"
+        },
+        {
+          "key": "sqlite",
+          "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790662610861,\"lastFlushDurationMs\":956,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-09-29T13:59:58.737068954Z",
+      "severity": "info",
+      "message": "Executive continuity alert — elevated event-loop lag",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790690393895"
+        },
+        {
+          "key": "pid",
+          "value": "539"
+        },
+        {
+          "key": "hostname",
+          "value": "\"0ee73ebff028\""
+        },
+        {
+          "key": "lagMs",
+          "value": "4413"
+        },
+        {
+          "key": "sustainedMs",
+          "value": "71638"
+        },
+        {
+          "key": "exitThresholdMs",
+          "value": "4000"
+        },
+        {
+          "key": "sqlite",
+          "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790662610861,\"lastFlushDurationMs\":956,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-09-29T14:00:18.742044646Z",
+      "severity": "info",
+      "message": "Executive continuity alert — elevated event-loop lag",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790690408808"
+        },
+        {
+          "key": "pid",
+          "value": "539"
+        },
+        {
+          "key": "hostname",
+          "value": "\"0ee73ebff028\""
+        },
+        {
+          "key": "lagMs",
+          "value": "4458"
+        },
+        {
+          "key": "sustainedMs",
+          "value": "86551"
+        },
+        {
+          "key": "exitThresholdMs",
+          "value": "4000"
+        },
+        {
+          "key": "sqlite",
+          "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790662610861,\"lastFlushDurationMs\":956,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-09-29T14:00:28.068572842Z",
+      "severity": "info",
+      "message": "Executive continuity alert — elevated event-loop lag",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790690423176"
+        },
+        {
+          "key": "pid",
+          "value": "539"
+        },
+        {
+          "key": "hostname",
+          "value": "\"0ee73ebff028\""
+        },
+        {
+          "key": "lagMs",
+          "value": "4349"
+        },
+        {
+          "key": "sustainedMs",
+          "value": "100919"
+        },
+        {
+          "key": "exitThresholdMs",
+          "value": "4000"
+        },
+        {
+          "key": "sqlite",
+          "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790662610861,\"lastFlushDurationMs\":956,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-09-29T14:00:42.850788549Z",
+      "severity": "info",
+      "message": "Executive continuity alert — elevated event-loop lag",
+      "attributes": [
+        {
+          "key": "level",
+          "value": "\"info\""
+        },
+        {
+          "key": "time",
+          "value": "1790690437953"
+        },
+        {
+          "key": "pid",
+          "value": "539"
+        },
+        {
+          "key": "hostname",
+          "value": "\"0ee73ebff028\""
+        },
+        {
+          "key": "lagMs",
+          "value": "4434"
+        },
+        {
+          "key": "sustainedMs",
+          "value": "115696"
+        },
+        {
+          "key": "exitThresholdMs",
+          "value": "4000"
+        },
+        {
+          "key": "sqlite",
+          "value": "{\"pending\":true,\"flushCount\":3,\"lastFlushMs\":1790662610861,\"lastFlushDurationMs\":956,\"flushInFlight\":false,\"lastFlushError\":null,\"lastFlushErrorAt\":null,\"criticalFlushRequested\":0,\"criticalFlushSucceeded\":0}"
+        }
+      ]
+    }
+  ]
+}

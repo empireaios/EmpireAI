@@ -33,25 +33,22 @@ This satisfies the Grand King production strategy naming without redesigning Bra
 
 1. Storage → New bucket → `empireai-brain-backups` (private).
 2. Policy: service role only for upload/download.
-3. Schedule backup from Railway (cron) or manual ops runbook:
+3. Remote upload is a separate operational step after a verified offline bundle.
+   Use [offline-state-bundle.md](./offline-state-bundle.md) to preserve the primary
+   database, both native mission stores and any required legacy history together.
 
-```bash
-# Example: upload after stopping writes or using SQLite backup API
-# Use supabase CLI or REST Storage API with service role key
-supabase storage cp /data/empireai-brain.db ss:///empireai-brain-backups/empireai-brain-$(date +%Y%m%d).db
-```
+### 3. Backup boundary
 
-### 3. SQLite backup to Supabase Storage
+Do not copy only the live `empireai-brain.db` on a timer: that omits mission and
+execution receipts and does not establish that SQL.js finished exporting. The
+repository's offline bundle tool requires all writers stopped, a verified final
+flush, native exclusive locks, scope checks and an independently retained manifest
+hash. It restores into a new directory and requires a separate application reopen
+check. It does not upload to Supabase or prove a production/provider restore.
 
-**Goal:** Off-site durability without changing Brain code.
-
-| Step | Action |
-|------|--------|
-| 1 | Railway volume holds live DB at `DATABASE_PATH` |
-| 2 | Nightly cron copies `empireai-brain.db` to Supabase Storage |
-| 3 | Retain 7–30 daily snapshots |
-
-Use Supabase Storage REST API or a small ops script outside Brain — no runtime code change required.
+Remote storage credentials, retention, encryption, Redis recovery, provider volume
+restore and production cutover require their own verified configuration and
+approval boundaries. No scheduled remote backup is implied by these instructions.
 
 ---
 

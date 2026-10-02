@@ -1,0 +1,150 @@
+{
+  "baseline": "76ab1cc",
+  "state": "CONTINUING",
+  "rollback": {
+    "before": {
+      "at": "2026-10-02T06:23:58.645Z",
+      "inferenceCalls": 0,
+      "runtime": {
+        "verified": true,
+        "checkedAt": "2026-10-02T06:24:16.593Z",
+        "backend": "https://empireai-locked-runtime-production.up.railway.app",
+        "backendRevision": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+        "frontendRevision": "792efc86c614ab6c98b1151d2fb045ae7ab72561",
+        "transportReady": true,
+        "readinessScope": "transport_and_storage_only",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      },
+      "historySha256": "80f3bad557f98dad46ffcbfac3e087ca39f9a1d375b60d26400a1a40a6d78306",
+      "result": "PASS"
+    },
+    "during": {
+      "at": "2026-10-02T06:26:47.140Z",
+      "inferenceCalls": 0,
+      "runtime": {
+        "verified": true,
+        "checkedAt": "2026-10-02T06:27:01.762Z",
+        "backend": "https://empireai-locked-runtime-production.up.railway.app",
+        "backendRevision": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+        "frontendRevision": "c03078a4c18cf09c446dc1e9c7015dc0e6ece8b6",
+        "transportReady": true,
+        "readinessScope": "transport_and_storage_only",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      },
+      "historySha256": "80f3bad557f98dad46ffcbfac3e087ca39f9a1d375b60d26400a1a40a6d78306",
+      "result": "PASS"
+    },
+    "after": {
+      "at": "2026-10-02T06:29:23.712Z",
+      "inferenceCalls": 0,
+      "runtime": {
+        "verified": true,
+        "checkedAt": "2026-10-02T06:29:41.577Z",
+        "backend": "https://empireai-locked-runtime-production.up.railway.app",
+        "backendRevision": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+        "frontendRevision": "bd3b090d98fc6c1ed8ef384c2a4f9fd41c382b75",
+        "transportReady": true,
+        "readinessScope": "transport_and_storage_only",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      },
+      "historySha256": "80f3bad557f98dad46ffcbfac3e087ca39f9a1d375b60d26400a1a40a6d78306",
+      "result": "PASS"
+    }
+  },
+  "interface": {
+    "at": "2026-10-02T06:34:47.050Z",
+    "loginStatus": 200,
+    "paidRequests": 0,
+    "viewports": [
+      {
+        "width": 390,
+        "scrollWidth": 390,
+        "composer": {
+          "x": 33,
+          "right": 219,
+          "height": 44
+        },
+        "historyHeight": 459.390625,
+        "railCount": 0,
+        "historyReloadEqual": true,
+        "backNavigation": true
+      },
+      {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "composer": {
+          "x": 272,
+          "right": 1022,
+          "height": 44
+        },
+        "historyHeight": 731,
+        "railCount": 0,
+        "historyReloadEqual": true,
+        "backNavigation": true
+      }
+    ],
+    "denials": [],
+    "transport": "Actual production responses; TLS-verified Node relay using environment CA",
+    "renderedRevisions": [
+      {
+        "verified": true,
+        "checkedAt": "2026-10-02T06:35:06.436Z",
+        "backend": "https://empireai-locked-runtime-production.up.railway.app",
+        "backendRevision": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+        "frontendRevision": "87916cf344d6e1f345368bec13681ecdcc18eb1d",
+        "transportReady": true,
+        "readinessScope": "transport_and_storage_only",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      },
+      {
+        "verified": true,
+        "checkedAt": "2026-10-02T06:36:17.981Z",
+        "backend": "https://empireai-locked-runtime-production.up.railway.app",
+        "backendRevision": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+        "frontendRevision": "87916cf344d6e1f345368bec13681ecdcc18eb1d",
+        "transportReady": true,
+        "readinessScope": "transport_and_storage_only",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      }
+    ],
+    "statusText": "Runtime evidence: NOT_BORN · Commerce LOCKED\n\nCertification: INCOMPLETE — Pillow is not certified.\n\nWork assurance: Continuous independent assurance is not established. Current audit coverage UNKNOWN.\n\nProvider integration: INCOMPLETE. Recorded OpenAI and Claude calls succeeded; Gemini success remains unverified. The recorded Gemini attempt returned 503 UNAVAILABLE.\n\nProvider evidence checkpoint: 2 Oct 2026, 05:25 UTC. Historical verification, not a current provider availability check.\n\nRuntime observed: 2026-10-02T06:37:04.467Z Chat availability does not grant Birth, commerce or spending authority.",
+    "runtime": {
+      "verified": true,
+      "checkedAt": "2026-10-02T06:37:21.717Z",
+      "backend": "https://empireai-locked-runtime-production.up.railway.app",
+      "backendRevision": "9fa1332c6a7d302f54b3875bc50caaef921c2060",
+      "frontendRevision": "87916cf344d6e1f345368bec13681ecdcc18eb1d",
+      "transportReady": true,
+      "readinessScope": "transport_and_storage_only",
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "operational": false
+    },
+    "result": "PASS"
+  },
+  "accounting": {
+    "remainingMicroUsd": 14777154,
+    "heldMicroUsd": 5222846,
+    "records": 16,
+    "invoiceActual": "UNKNOWN",
+    "readAt": "2026-10-02T06:34Z"
+  },
+  "failure": {
+    "case": "U2-N1",
+    "classification": "B_IMPLEMENTATION",
+    "preservedCommit": "3173912f884c939023e733da4fe6f477dd9cdf6b",
+    "repair": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441",
+    "ci": "Product Semantic Runtime PASS",
+    "production": "deployment in progress; new unseen retest pending"
+  }
+}

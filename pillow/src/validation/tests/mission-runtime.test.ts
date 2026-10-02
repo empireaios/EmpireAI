@@ -25,13 +25,20 @@ function sampleInput(overrides: Partial<MsrInput> = {}): MsrInput {
     pillowConfirmed: true,
     grandKingApproved: true,
     validated: true,
+    workers: ["offline-lifecycle-worker"],
     ...overrides,
   };
 }
 
+// Explicit offline adapter receipts exercise lifecycle logic, not real worker delivery.
+function completedReceipt(input: unknown) {
+  const payload = input as { missionId: string; workers: Array<string | { workerId: string }> };
+  return { missionId: payload.missionId, workerReceipts: payload.workers.map(w => ({
+    workerId: typeof w === "string" ? w : w.workerId, status: "completed", receiptId: "offline-fixture-receipt" })) };
+}
 async function build(deps?: MissionRuntimeDependencies) {
   const bootstrap = await runBootstrap({ repositoryRoot: REPO_ROOT, skipHeavyScans: true });
-  const engine = createMissionRuntime(bootstrap, deps ? { dependencies: deps } : undefined);
+  const engine = createMissionRuntime(bootstrap, { dependencies: { workerRegistry: { invokeWorker: completedReceipt }, ...deps } });
   await engine.initialize();
   engine.connect();
   return engine;
@@ -103,7 +110,7 @@ describe("Q10-03 Mission Runtime", () => {
   test("4 mission execution succeeds (Created→…→Running→Completed path)", async () => {
     const engine = await build({
       pillowOrchestrationRuntime: {
-        invokeWorker: () => ({ decision: "pass" }),
+        invokeWorker: completedReceipt,
       },
     });
     const created = engine.createMission(sampleInput({ missionName: "Execute Path Mission" }));
@@ -133,7 +140,7 @@ describe("Q10-03 Mission Runtime", () => {
     assert.ok(resumed.transitions.some((t) => t.fromState === "Resumed" && t.toState === "Running"));
   });
 
-  test("6 retry logic functions correctly (Failed→Retrying→Running)", async () => {
+  test("6 failed mission retry requires outcome reconciliation and never fabricates completion", async () => {
     const engine = await build();
     const created = engine.createMission(sampleInput({ missionName: "Retry Mission" }));
     const missionId = created.mission!.missionId;
@@ -141,10 +148,10 @@ describe("Q10-03 Mission Runtime", () => {
     const mission = engine.getHistory().missions.find((m) => m.missionId === missionId);
     assert.equal(mission!.currentStatus, "Failed");
     const retried = engine.retry({ ...sampleInput(), missionId });
-    assert.equal(retried.decision, "pass");
-    assert.ok(retried.transitions.some((t) => t.fromState === "Failed" && t.toState === "Retrying"));
-    assert.ok(retried.transitions.some((t) => t.fromState === "Retrying" && t.toState === "Running"));
-    assert.equal(retried.mission!.currentStatus, "Completed");
+    assert.equal(retried.decision, "fail");
+    assert.equal(retried.transitions.length, 0);
+    assert.equal(retried.mission!.currentStatus, "Failed");
+    assert.match(retried.errors.join(" "), /reconciled/);
   });
 
   test("7 cancellation functions safely", async () => {
