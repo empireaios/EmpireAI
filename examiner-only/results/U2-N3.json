@@ -1,0 +1,450 @@
+{
+  "caseId": "U2-N3",
+  "frozenCommit": "ca7adb82672e46fe3baef829515735748acc336d",
+  "promptSha256": "0b98f0ee81d9bcef19712148e63b6df3500e1e1fffa143fee25a65347072429f",
+  "startedAt": "2026-10-02T06:54:19.436Z",
+  "attempts": 1,
+  "runtime": {
+    "verified": true,
+    "checkedAt": "2026-10-02T06:54:29.020Z",
+    "backend": "https://empireai-locked-runtime-production.up.railway.app",
+    "backendRevision": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441",
+    "frontendRevision": "87916cf344d6e1f345368bec13681ecdcc18eb1d",
+    "transportReady": true,
+    "readinessScope": "transport_and_storage_only",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "operational": false
+  },
+  "sessionId": "e53caea5-c72e-46b2-a1d2-28f0c182f8f6",
+  "status": 202,
+  "initialResponse": {
+    "result": {
+      "message": "PILLOW_RESULT_PENDING: requestId=pcr_4f7ebfd888c242b8\nYour request is queued. This receipt is not the completed answer.",
+      "kind": "durable_pending",
+      "requestId": "pcr_4f7ebfd888c242b8",
+      "durableRequestId": "pcr_4f7ebfd888c242b8",
+      "status": "ACCEPTED",
+      "requestRemainsRunning": true,
+      "userResubmissionRequired": false,
+      "durableRequest": true,
+      "resultRetrievable": true,
+      "brainCompleted": false,
+      "contextAdmission": "PASS"
+    }
+  },
+  "responseHeaders": {
+    "x-empire-pillow-request-id": "pcr_4f7ebfd888c242b8"
+  },
+  "requestId": "pcr_4f7ebfd888c242b8",
+  "receipt": {
+    "ok": true,
+    "request": {
+      "finalResult": {
+        "requestId": "pcr_4f7ebfd888c242b8",
+        "sessionId": "e53caea5-c72e-46b2-a1d2-28f0c182f8f6",
+        "workspaceId": "ws_empire_1",
+        "message": "{\"readOnlyCalls\":[{\"name\":\"calculate\",\"arguments\":{\"operation\":\"multiply\",\"left\":\"63.25\",\"right\":\"0.147\"}},{\"name\":\"calculate\",\"arguments\":{\"operation\":\"subtract\",\"left\":\"26.50\",\"right\":\"9.29775\"}},{\"name\":\"calculate\",\"arguments\":{\"operation\":\"subtract\",\"left\":\"24.65\",\"right\":\"9.29775\"}}]} \n now need tool receipt will be user?\n{\"readOnlyCalls\":[{\"name\":\"calculate\",\"arguments\":{\"operation\":\"multiply\",\"left\":\"63.25\",\"right\":\"0.147\"}},{\"name\":\"calculate\",\"arguments\":{\"operation\":\"subtract\",\"left\":\"26.50\",\"right\":\"9.29775\"}},{\"name\":\"calculate\",\"arguments\":{\"operation\":\"subtract\",\"left\":\"24.65\",\"right\":\"9.29775\"}}]}",
+        "kind": "llm",
+        "provider": "openai",
+        "inferenceProvenance": {
+          "capability": "reasoning",
+          "requestKey": "51b0f0969f3dc7927dafa5c6bea292449b40561f6b48f92219de13b7d71e00af",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "outcome": "success"
+            }
+          ]
+        },
+        "readOnlyReceipts": [
+          {
+            "tool": "repository",
+            "workspaceId": "ws_empire_1",
+            "requestId": "pcr_4f7ebfd888c242b8",
+            "at": "2026-10-02T06:54:47.954Z",
+            "source": "locked:repository",
+            "sha256": "afcb0d55c08755a7296251759fc778ea5b6a2a032f0326bc0e6a4ce075af7a9a",
+            "result": {
+              "manifest": {
+                "contextVersion": "PILLOW-004",
+                "task": "general",
+                "artifactIds": [],
+                "paths": [],
+                "sliceCount": 0,
+                "totalBytes": 0,
+                "estimatedTokens": 0,
+                "cached": false,
+                "repositoryFingerprint": "1f3e22f90925d9754031a6b46f2f2238115aa972c097d4c610dea108feac818e",
+                "builtAt": "2026-10-02T06:54:47.946Z",
+                "durationMs": 0
+              },
+              "slices": []
+            },
+            "simulated": false,
+            "grantsAuthority": false
+          },
+          {
+            "tool": "mission",
+            "workspaceId": "ws_empire_1",
+            "requestId": "pcr_4f7ebfd888c242b8",
+            "at": "2026-10-02T06:54:47.954Z",
+            "source": "locked:mission",
+            "sha256": "309fd57e67d982d10e7654626678d524a02f7d21e9af7ef8e19336f51eb04a4b",
+            "result": {
+              "source": "mission-runtime",
+              "observedAt": "2026-10-02T06:54:47.954Z",
+              "missions": [
+                {
+                  "missionId": "msr-mission-1790855818301-1-ffbce9f1-3228-4ae4-a061-35c2b252ab0f",
+                  "name": "CUTOVER_UNAPPROVED_1cfa44ae-9296-4063-ab66-c6a7ae9a1f35",
+                  "status": "Created",
+                  "updatedAt": "2026-10-01T11:56:58.301Z",
+                  "authority": "historical fields confer no execution permission"
+                }
+              ]
+            },
+            "simulated": false,
+            "grantsAuthority": false
+          },
+          {
+            "tool": "pending_learning",
+            "workspaceId": "ws_empire_1",
+            "requestId": "pcr_4f7ebfd888c242b8",
+            "at": "2026-10-02T06:54:47.955Z",
+            "source": "locked:pending_learning",
+            "sha256": "8c1d1268fbc4dd1119b3f275293556229afc04b1a7e5d34a25daf37ff8acb8e0",
+            "result": {
+              "redacted": "unrelated conversation content",
+              "sha256": "8c1d1268fbc4dd1119b3f275293556229afc04b1a7e5d34a25daf37ff8acb8e0"
+            },
+            "simulated": false,
+            "grantsAuthority": false
+          },
+          {
+            "tool": "evidence",
+            "workspaceId": "ws_empire_1",
+            "requestId": "pcr_4f7ebfd888c242b8",
+            "at": "2026-10-02T06:54:47.955Z",
+            "source": "locked:evidence",
+            "sha256": "976f39cb83f12c3c0805231b5f5a589e31ef7a7efdb4ca461bd73d17250e9129",
+            "result": {
+              "available": false,
+              "reason": "No bounded persisted commissioning evidence for this workspace"
+            },
+            "simulated": false,
+            "grantsAuthority": false
+          }
+        ],
+        "model": "gpt-6.1-sol",
+        "mode": "general_intelligence",
+        "tokens": {
+          "promptTokens": 11590,
+          "completionTokens": 407,
+          "totalTokens": 11997
+        },
+        "latencyMs": 12994,
+        "trace": {
+          "digitalSoulGateMs": 0,
+          "responseContractMs": 0,
+          "shadowCeoAdmissionMs": 0,
+          "executiveReasoningMs": 2,
+          "executiveDeliberationMs": 0,
+          "executiveCouncilMs": 9,
+          "llmMs": 12963,
+          "totalMs": 12994
+        },
+        "transportContractPassed": true,
+        "degradedUsed": false,
+        "executiveDeliberation": {
+          "deliberationId": "ede-1790924087946",
+          "deliberatedAt": "2026-10-02T06:54:47.946Z",
+          "significance": "routine",
+          "objectiveInference": "Advance Grand King intent (“Fictional product comparison; USD. Sale63.25, fee14.7% of sale. CandidateA landed29.80 and shipping6.95; candidateB landed34.40 and shipping4.20. No other co...”) while protecting the current empire objective: Finish EmpireAI Version 1",
+          "challengeStance": "agree",
+          "selectedApproachSummary": "Proceed exactly as requested",
+          "alternatives": [
+            {
+              "summary": "Proceed exactly as requested",
+              "selected": true,
+              "expectedValue": 70,
+              "risk": 35
+            },
+            {
+              "summary": "Staged pilot with explicit kill criteria, owner-value checkpoint, and reversible spend",
+              "selected": false,
+              "expectedValue": 75,
+              "risk": 35
+            }
+          ],
+          "hiddenRisks": [],
+          "assumptions": [
+            "Grand King seeks durable empire value, not merely immediate agreement",
+            "Requested direction is compatible with validated performance norms",
+            "Current evidence base is incomplete — treat conclusions as provisional"
+          ],
+          "uncertaintyLevel": "high",
+          "uncertaintyNote": "Evidence is weak — state uncertainty explicitly; do not overclaim confidence; still give a useful provisional path and evidence plan.",
+          "executiveConclusions": [
+            "Objective: Advance Grand King intent (“Fictional product comparison; USD. Sale63.25, fee14.7% of sale. CandidateA landed29.80 and shipping6.95; candidateB landed34.40 and shipping4.20. No other co...”) while protecting the current empire objective: Finish EmpireAI Version 1",
+            "Stance: Requested direction is acceptable; still surface material risks and assumptions.",
+            "Selected approach: Proceed exactly as requested",
+            "Routine request — light deliberation; answer directly and briefly; no heavyweight strategy framework.",
+            "No critical hidden risks flagged.",
+            "Assumptions: Grand King seeks durable empire value, not merely immediate agreement; Requested direction is compatible with validated performance norms; Current evidence base is incomplete — treat conclusions as provisional",
+            "Information that would improve the decision: Clear success metric and decision deadline; Evidence of validated performance or comparable precedent",
+            "Long-term consequence: Selected path supports durable owner value if execution stays within constitutional and validated limits.",
+            "Deliberation reinforces Digital Soul duties: truthfulness, no fabrication, Grand King authority on irreversible acts, and Long-Term Empire Value over short-term appeasement.",
+            "Uncertainty (high): Evidence is weak — state uncertainty explicitly; do not overclaim confidence; still give a useful provisional path and evidence plan.",
+            "Optimise for wisdom, judgement, foresight, strategic thinking, and owner value — not response speed or sycophancy.",
+            "Visible answer: be concise, natural, and directly useful — no deliberation jargon.",
+            "Never expose chain-of-thought, stance enums, score numbers, or internal scratch reasoning to the Grand King — share concise executive conclusions only."
+          ],
+          "neverExposeChainOfThought": true,
+          "fidelityAdjusted": false
+        },
+        "requestProvenance": {
+          "requestId": "req-p0",
+          "sessionId": "e53caea5-c72e-46b2-a1d2-28f0c182f8f6",
+          "workspaceId": "ws_empire_1",
+          "codeSha": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441",
+          "deploymentId": "0aae1286-df2a-44d1-8387-e15ef5a20487",
+          "entrypoint": "POST /api/pillow/chat",
+          "reboundSessionId": null,
+          "layer": "brain-pillow-host"
+        },
+        "durableRequestId": "pcr_4f7ebfd888c242b8",
+        "durableRequest": true,
+        "status": "COMPLETED"
+      },
+      "inputHash": "d7f72c5a5050030c36a98bbfc416fcbc",
+      "nextAttemptAt": 1790924087502,
+      "createdAt": "2026-10-02T06:54:47.498Z",
+      "brainResult": {
+        "requestId": "pcr_4f7ebfd888c242b8",
+        "sessionId": "e53caea5-c72e-46b2-a1d2-28f0c182f8f6",
+        "workspaceId": "ws_empire_1",
+        "message": "{\"readOnlyCalls\":[{\"name\":\"calculate\",\"arguments\":{\"operation\":\"multiply\",\"left\":\"63.25\",\"right\":\"0.147\"}},{\"name\":\"calculate\",\"arguments\":{\"operation\":\"subtract\",\"left\":\"26.50\",\"right\":\"9.29775\"}},{\"name\":\"calculate\",\"arguments\":{\"operation\":\"subtract\",\"left\":\"24.65\",\"right\":\"9.29775\"}}]} \n now need tool receipt will be user?\n{\"readOnlyCalls\":[{\"name\":\"calculate\",\"arguments\":{\"operation\":\"multiply\",\"left\":\"63.25\",\"right\":\"0.147\"}},{\"name\":\"calculate\",\"arguments\":{\"operation\":\"subtract\",\"left\":\"26.50\",\"right\":\"9.29775\"}},{\"name\":\"calculate\",\"arguments\":{\"operation\":\"subtract\",\"left\":\"24.65\",\"right\":\"9.29775\"}}]}",
+        "kind": "llm",
+        "provider": "openai",
+        "inferenceProvenance": {
+          "capability": "reasoning",
+          "requestKey": "51b0f0969f3dc7927dafa5c6bea292449b40561f6b48f92219de13b7d71e00af",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "outcome": "success"
+            }
+          ]
+        },
+        "readOnlyReceipts": [
+          {
+            "tool": "repository",
+            "workspaceId": "ws_empire_1",
+            "requestId": "pcr_4f7ebfd888c242b8",
+            "at": "2026-10-02T06:54:47.954Z",
+            "source": "locked:repository",
+            "sha256": "afcb0d55c08755a7296251759fc778ea5b6a2a032f0326bc0e6a4ce075af7a9a",
+            "result": {
+              "manifest": {
+                "contextVersion": "PILLOW-004",
+                "task": "general",
+                "artifactIds": [],
+                "paths": [],
+                "sliceCount": 0,
+                "totalBytes": 0,
+                "estimatedTokens": 0,
+                "cached": false,
+                "repositoryFingerprint": "1f3e22f90925d9754031a6b46f2f2238115aa972c097d4c610dea108feac818e",
+                "builtAt": "2026-10-02T06:54:47.946Z",
+                "durationMs": 0
+              },
+              "slices": []
+            },
+            "simulated": false,
+            "grantsAuthority": false
+          },
+          {
+            "tool": "mission",
+            "workspaceId": "ws_empire_1",
+            "requestId": "pcr_4f7ebfd888c242b8",
+            "at": "2026-10-02T06:54:47.954Z",
+            "source": "locked:mission",
+            "sha256": "309fd57e67d982d10e7654626678d524a02f7d21e9af7ef8e19336f51eb04a4b",
+            "result": {
+              "source": "mission-runtime",
+              "observedAt": "2026-10-02T06:54:47.954Z",
+              "missions": [
+                {
+                  "missionId": "msr-mission-1790855818301-1-ffbce9f1-3228-4ae4-a061-35c2b252ab0f",
+                  "name": "CUTOVER_UNAPPROVED_1cfa44ae-9296-4063-ab66-c6a7ae9a1f35",
+                  "status": "Created",
+                  "updatedAt": "2026-10-01T11:56:58.301Z",
+                  "authority": "historical fields confer no execution permission"
+                }
+              ]
+            },
+            "simulated": false,
+            "grantsAuthority": false
+          },
+          {
+            "tool": "pending_learning",
+            "workspaceId": "ws_empire_1",
+            "requestId": "pcr_4f7ebfd888c242b8",
+            "at": "2026-10-02T06:54:47.955Z",
+            "source": "locked:pending_learning",
+            "sha256": "8c1d1268fbc4dd1119b3f275293556229afc04b1a7e5d34a25daf37ff8acb8e0",
+            "result": {
+              "redacted": "unrelated conversation content",
+              "sha256": "8c1d1268fbc4dd1119b3f275293556229afc04b1a7e5d34a25daf37ff8acb8e0"
+            },
+            "simulated": false,
+            "grantsAuthority": false
+          },
+          {
+            "tool": "evidence",
+            "workspaceId": "ws_empire_1",
+            "requestId": "pcr_4f7ebfd888c242b8",
+            "at": "2026-10-02T06:54:47.955Z",
+            "source": "locked:evidence",
+            "sha256": "976f39cb83f12c3c0805231b5f5a589e31ef7a7efdb4ca461bd73d17250e9129",
+            "result": {
+              "available": false,
+              "reason": "No bounded persisted commissioning evidence for this workspace"
+            },
+            "simulated": false,
+            "grantsAuthority": false
+          }
+        ],
+        "model": "gpt-6.1-sol",
+        "mode": "general_intelligence",
+        "tokens": {
+          "promptTokens": 11590,
+          "completionTokens": 407,
+          "totalTokens": 11997
+        },
+        "latencyMs": 12994,
+        "trace": {
+          "digitalSoulGateMs": 0,
+          "responseContractMs": 0,
+          "shadowCeoAdmissionMs": 0,
+          "executiveReasoningMs": 2,
+          "executiveDeliberationMs": 0,
+          "executiveCouncilMs": 9,
+          "llmMs": 12963,
+          "totalMs": 12994
+        },
+        "transportContractPassed": true,
+        "degradedUsed": false,
+        "executiveDeliberation": {
+          "deliberationId": "ede-1790924087946",
+          "deliberatedAt": "2026-10-02T06:54:47.946Z",
+          "significance": "routine",
+          "objectiveInference": "Advance Grand King intent (“Fictional product comparison; USD. Sale63.25, fee14.7% of sale. CandidateA landed29.80 and shipping6.95; candidateB landed34.40 and shipping4.20. No other co...”) while protecting the current empire objective: Finish EmpireAI Version 1",
+          "challengeStance": "agree",
+          "selectedApproachSummary": "Proceed exactly as requested",
+          "alternatives": [
+            {
+              "summary": "Proceed exactly as requested",
+              "selected": true,
+              "expectedValue": 70,
+              "risk": 35
+            },
+            {
+              "summary": "Staged pilot with explicit kill criteria, owner-value checkpoint, and reversible spend",
+              "selected": false,
+              "expectedValue": 75,
+              "risk": 35
+            }
+          ],
+          "hiddenRisks": [],
+          "assumptions": [
+            "Grand King seeks durable empire value, not merely immediate agreement",
+            "Requested direction is compatible with validated performance norms",
+            "Current evidence base is incomplete — treat conclusions as provisional"
+          ],
+          "uncertaintyLevel": "high",
+          "uncertaintyNote": "Evidence is weak — state uncertainty explicitly; do not overclaim confidence; still give a useful provisional path and evidence plan.",
+          "executiveConclusions": [
+            "Objective: Advance Grand King intent (“Fictional product comparison; USD. Sale63.25, fee14.7% of sale. CandidateA landed29.80 and shipping6.95; candidateB landed34.40 and shipping4.20. No other co...”) while protecting the current empire objective: Finish EmpireAI Version 1",
+            "Stance: Requested direction is acceptable; still surface material risks and assumptions.",
+            "Selected approach: Proceed exactly as requested",
+            "Routine request — light deliberation; answer directly and briefly; no heavyweight strategy framework.",
+            "No critical hidden risks flagged.",
+            "Assumptions: Grand King seeks durable empire value, not merely immediate agreement; Requested direction is compatible with validated performance norms; Current evidence base is incomplete — treat conclusions as provisional",
+            "Information that would improve the decision: Clear success metric and decision deadline; Evidence of validated performance or comparable precedent",
+            "Long-term consequence: Selected path supports durable owner value if execution stays within constitutional and validated limits.",
+            "Deliberation reinforces Digital Soul duties: truthfulness, no fabrication, Grand King authority on irreversible acts, and Long-Term Empire Value over short-term appeasement.",
+            "Uncertainty (high): Evidence is weak — state uncertainty explicitly; do not overclaim confidence; still give a useful provisional path and evidence plan.",
+            "Optimise for wisdom, judgement, foresight, strategic thinking, and owner value — not response speed or sycophancy.",
+            "Visible answer: be concise, natural, and directly useful — no deliberation jargon.",
+            "Never expose chain-of-thought, stance enums, score numbers, or internal scratch reasoning to the Grand King — share concise executive conclusions only."
+          ],
+          "neverExposeChainOfThought": true,
+          "fidelityAdjusted": false
+        },
+        "requestProvenance": {
+          "requestId": "req-p0",
+          "sessionId": "e53caea5-c72e-46b2-a1d2-28f0c182f8f6",
+          "workspaceId": "ws_empire_1",
+          "codeSha": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441",
+          "deploymentId": "0aae1286-df2a-44d1-8387-e15ef5a20487",
+          "entrypoint": "POST /api/pillow/chat",
+          "reboundSessionId": null,
+          "layer": "brain-pillow-host"
+        },
+        "durableRequestId": "pcr_4f7ebfd888c242b8",
+        "durableRequest": true,
+        "status": "COMPLETED"
+      },
+      "status": "COMPLETED",
+      "updatedAt": "2026-10-02T06:55:00.951Z",
+      "messagePreview": "Fictional product comparison; USD. Sale63.25, fee14.7% of sale. CandidateA landed29.80 and shipping6.95; candidateB landed34.40 and shipping4.20. No other costs",
+      "leaseToken": 1,
+      "observability": {
+        "brainCompletedAt": "2026-10-02T06:55:00.951Z",
+        "brainStartedAt": "2026-10-02T06:54:47.934Z",
+        "contextAdmission": "PASS",
+        "deploymentId": "0aae1286-df2a-44d1-8387-e15ef5a20487",
+        "resultPersistedAt": "2026-10-02T06:55:00.951Z"
+      },
+      "sessionId": "e53caea5-c72e-46b2-a1d2-28f0c182f8f6",
+      "failureClass": "BRAIN_SUCCESS",
+      "attemptCount": 1,
+      "workspaceId": "ws_empire_1",
+      "ownerId": "usr_a91d007ebcebe18d",
+      "leaseExpiresAt": 0,
+      "ts": "2026-10-02T06:55:00.951Z",
+      "activeWorker": null,
+      "deliveryState": "PENDING_CLIENT",
+      "idempotencyKey": "idem_d7f72c5a5050030c36a98bbfc416fcbc",
+      "queued": true,
+      "requestId": "pcr_4f7ebfd888c242b8"
+    },
+    "durability": {
+      "REQUEST_STATE_STORE": "redis+memory",
+      "DURABILITY_SCOPE": "cross-process when REDIS_URL set; process-local otherwise",
+      "TTL": "86400s",
+      "CLEANUP_POLICY": "Redis EX TTL 86400s; memory LRU cap 500",
+      "SYNC_WINDOW_MS": 120000,
+      "REQUEST_LIFETIME": "86400s",
+      "RESULT_TTL": "86400s",
+      "RETRY_OWNER": "Tier-0",
+      "IDEMPOTENCY_KEY": "idem_${sessionId}_${inputHash}",
+      "DUPLICATE_EXECUTION_POLICY": "REUSE_INFLIGHT_OR_COMPLETED",
+      "RECOVERY_QUEUE": "Redis due index; boot/periodic sweeper; leased and fenced reasoning only",
+      "MAX_ATTEMPTS": 3,
+      "SIDE_EFFECT_REPLAY": "FORBIDDEN"
+    }
+  },
+  "endedAt": "2026-10-02T06:55:26.438Z",
+  "assessment": {
+    "score": 0,
+    "classification": "B_IMPLEMENTATION",
+    "critical": "Tool protocol surfaced as COMPLETED without tool receipts or requested answer",
+    "cause": "ExactJSON parse failed on concatenated protocol/prose; engine treated malformed tool intent as ordinary answer. Adapter dropsphase oninput and concatenatesalloutputmessages; contribution to this exactpayload uncertain withoutrawproviderstructure.",
+    "repairBoundary": "Preserve documentedphase; parseorrefuse boundedtoolprotocol; no automaticretry, no stockreplacement, no question-specificrepair."
+  }
+}
