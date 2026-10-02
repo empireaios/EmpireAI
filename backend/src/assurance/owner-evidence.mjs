@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {readDemo} from './owner-demo.mjs';
 import {DatabaseSync} from 'node:sqlite';
 import {inspectAssurance,REQUIRED_DOMAINS} from './independent-assurance.mjs';
 export const policy={epoch:0,intervalMs:300000,graceMs:120000};
@@ -35,9 +36,10 @@ export function readOwnerAssurance(filename,now=Date.now()){
    db.exec('COMMIT');
   }catch(e){db.exec('ROLLBACK');throw e;}
   const findings=db.prepare("SELECT * FROM assurance_findings ORDER BY (status='OPEN') DESC,last_at DESC LIMIT 100").all();
+  let demonstration=null;try{demonstration=readDemo(filename);}catch{}
   const latest=cycles.find(c=>c.completedAt!==null);
   return {schema:'owner-assurance-evidence-v1',observedAt:now,status:watchdogFresh?verdict.status:'ASSURANCE_OVERDUE',healthy:watchdogFresh&&verdict.healthy,
-   scope:'Partial internal coverage; external commerce is unverified',nextCycleAt:(Math.floor(now/policy.intervalMs)+1)*policy.intervalMs,
+   demonstration,scope:'Partial internal coverage; external commerce is unverified',nextCycleAt:(Math.floor(now/policy.intervalMs)+1)*policy.intervalMs,
    dueAt:verdict.due??null,lastCompletedAt:latest?.completedAt??null,lastSuccessfulAt:cycles.find(c=>c.checks&&Object.values(c.checks).every(v=>v.status==='PASS'))?.completedAt??null,
    watchdog:{fresh:watchdogFresh,observedAt:heartbeat?.observedAt??null},policy,
    coverage:REQUIRED_DOMAINS.map(source=>({source,classification:internal.has(source)?'IMPLEMENTED_UNVERIFIED':'NOT_IMPLEMENTED',...(latest?.checks?.[source]??{status:'NOT_CHECKED'}),evidenceReference:latest?.id??null})),

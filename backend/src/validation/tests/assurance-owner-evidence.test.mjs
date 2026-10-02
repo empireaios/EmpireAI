@@ -19,3 +19,8 @@ test('durable incidents survive observer restart, resolve only on subsequent PAS
   const d=readOwnerAssurance(file,1030001);assert.equal(d.findings.find(f=>f.source==='cycle-monitor').first_at,1030000);
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
+import {changeDemo,observeDemo,readDemo} from '../../assurance/owner-demo.mjs';
+test('isolated demonstration needs independent observation and preserves healthy failure recovery history',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-demo-')),file=path.join(dir,'demo.sqlite');
+ try{observeDemo(file,1000);changeDemo(file,'inject',2000);assert.equal(readDemo(file).history[0].status,'HEALTHY');observeDemo(file,3000);assert.equal(readDemo(file).history[0].status,'DEGRADED');changeDemo(file,'correct',4000);observeDemo(file,5000);assert.deepEqual(readDemo(file).history.map(x=>x.status),['HEALTHY','DEGRADED','HEALTHY']);assert.throws(()=>changeDemo(file,'buy'));}finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
