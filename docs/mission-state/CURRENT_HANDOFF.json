@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T03:16:53.879Z",
+  "updatedAt": "2026-10-02T03:38:59.927Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER CLOSED. Frontend1352d6b/backend84ab891 last verified; desktopa9358a2 offline geometry PASS, production pending; provider accounting unresolved, certification paused.",
+    "status": "CUTOVER CLOSED; productionfrontendf7a31da/backend84ab891. Full-height local geometryPASS actualowneracceptancePENDING. AccountingUNKNOWN integrationOPEN certificationPAUSED.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -51,9 +51,9 @@
       "savedSourceCommit": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de"
     },
     "vercel": {
-      "deploymentId": "dpl_CivSQEonB9ktzQqNjRMqTbzeSC6j",
-      "source": "1352d6b03990fff356d8b83942e457c80976bb12",
-      "status": "READY production independently verified empire-ai.co alias",
+      "deploymentId": "dpl_GGCasTUVccJFS57nsNVo93gSdnBe",
+      "source": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
+      "status": "READY exact live-domain alias and health readback; owner visual acceptance pending",
       "domain": "empire-ai.co"
     },
     "frontendPromotionVerification": {
@@ -68,8 +68,8 @@
       "verifiedAt": "2026-10-02T01:30:48.194Z"
     },
     "currentVerifiedBinding": {
-      "frontend": "1352d6b03990fff356d8b83942e457c80976bb12",
-      "vercelDeployment": "dpl_CivSQEonB9ktzQqNjRMqTbzeSC6j",
+      "frontend": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
+      "vercelDeployment": "dpl_GGCasTUVccJFS57nsNVo93gSdnBe",
       "backend": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
       "railwayDeployment": "29de981b-4d28-4788-be1a-ad68b9506f28",
       "binding": "Public Pillowhealth200 correlated to newlockedruntime above"
@@ -1623,11 +1623,10 @@
     "Railway tools have noapplicationHTTP orSQL/binaryledgerdownload capability; actualproviderreceipts/accounting readback pending"
   ],
   "nextExecutableActions": [
-    "Establish secure supported Work-accessible production deployment and rollback, preserving production configuration and domain.",
-    "Deploy preserved a9358a2 or justified successor; actual expanded/collapsed desktop and mobile rendering verification.",
-    "Reconcile existing failed-provider ledger before further paid verification; verify 84ab891 failure behavior.",
-    "Complete minimum bounded provider/context/tool/memory/learning/authority evidence.",
-    "Close actual interface acceptance before materially new frozen certification cases."
+    "Owner actual desktop full-height acceptance (no inference)",
+    "Obtain current authoritative ledger and reconcile consumed pcr_5a792591850849c9; no paid calls before reconciliation",
+    "Minimum real shared-router OpenAI/Claude/Gemini receipts, then remaining integration capabilities",
+    "Only after integration/interface close resume new unseen certification"
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2855,7 +2854,7 @@
     "browser": "Fresh live Pillow document still blocked: Browser observation is unavailable for a document containing native credentials. No bypass.",
     "vercel": "deploy_to_vercel returned UNAVAILABLE: MCP tool not returned by tools/list",
     "railway": "Existing connector cannot issue authenticated app requests or return SQLite bytes; do not infer usage from file metadata.",
-    "ownerAction": "Existing Vercel empireai Project Settings > Environments > Production > Branch Tracking: production/empireai-web; Save. One-time configuration, not manual promotion."
+    "ownerAction": "Refresh actual desktop Pillow Centre, inspect full-height conversation/composer/sidebar; no message needed."
   },
   "deploymentCorrectionEvidence": {
     "wrongRepo": "empireai-os/EmpireAI",
@@ -2978,7 +2977,7 @@
     "branch": "fix/pillow-structural-desktop-20261002",
     "preview": "dpl_CqCaheHSEC2JiBRiu6savjp8DX5W",
     "previewState": "READY",
-    "production": false,
+    "production": true,
     "changes": [
       "Pillow-only CSS module makes sidebar an in-flow first grid column, content a minmax(0,1fr) second column.",
       "Actual sidebar width72/256px determines grid allocation; no manual fixed-sidebar padding compensation.",
@@ -2992,7 +2991,8 @@
       "geometryRegression": "PASS actual local Chromium: 16 desktop measurements across four widths, both sidebar states before/after reload; phone390 geometry PASS. Synthetic loopback fixtures only. Actual production acceptance pending.",
       "actualProductionRendering": "PENDING owner-visible after promotion; previous1352d6b explicitlyFAILED"
     },
-    "noPaidInference": true
+    "noPaidInference": true,
+    "successor": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3"
   },
   "inferenceFailureDeployment": {
     "revision": "84ab891fcafc733f9d43e4b30e14a4e0fb2d25de",
@@ -3036,8 +3036,8 @@
       "NOT_BORN / commerce LOCKED"
     ],
     "deploymentAccess": {
-      "status": "OAUTH_OWNER_SUCCESS_CLI_NETWORK_POLICY_BLOCK_GIT_RELEASE_PATH_PREPARED",
-      "productionFrontend": "1352d6b03990fff356d8b83942e457c80976bb12",
+      "status": "GIT_PRODUCTION_PATH_PROVEN",
+      "productionFrontend": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
       "readyCandidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9",
       "connectorWrite": "UNAVAILABLE: deploy_to_vercel not returned by tools/list",
       "cliInstalled": true,
@@ -3084,7 +3084,7 @@
     "preservedCandidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9"
   },
   "priorityAIndependentVerification": {
-    "status": "LOCAL_AND_HOSTED_CI_PASS_PRODUCTION_ACCEPTANCE_PENDING",
+    "status": "GIT_PRODUCTION_DEPLOY_PROVEN_FULLHEIGHT_LIVE_OWNER_ACCEPTANCE_PENDING",
     "evidenceCommit": "b113b2be8082d27ecfa39bfad71cbda7a7bcbd6a",
     "report": "docs/mission-state/PRIORITY_A_INDEPENDENT_VERIFICATION_2026-10-02.md",
     "workflow": "https://github.com/empireaios/EmpireAI/actions/runs/36959294882",
@@ -3097,16 +3097,46 @@
       "paidInferenceCalls": 0
     },
     "accounting": "STALE snapshot ends 2026-10-01T15:58:43.143Z; original failed attempt remains UNRECONCILED",
-    "nextOwnerAction": "Existing Vercel empireai Project Settings > Environments > Production > Branch Tracking: production/empireai-web; Save. One-time configuration, not manual promotion.",
+    "nextOwnerAction": "Refresh actual desktop Pillow Centre, inspect full-height conversation/composer/sidebar; no message needed.",
     "releaseBranch": "production/empireai-web",
     "releaseBranchSource": "1352d6b03990fff356d8b83942e457c80976bb12",
-    "candidate": "a9358a2db7d2eb956537480ecdf114635f9ca6a9",
-    "rollback": "Exact previous-tree rebuild via Git; prepared, not proven",
-    "authority": "NOT_BORN / commerce LOCKED; no extra spending",
-    "hostedCI": {
-      "backend": "SUCCESS",
-      "geometry": "SUCCESS",
-      "run": 36959294882
-    }
+    "candidate": "f7a31dad7615d39fc3192ba8b2d86e784f7429b3",
+    "rollback": "Exact1352tree rebuild rehearsed successfully in Preview; production rollback not exercised.",
+    "authority": "NOT_BORN / commerce LOCKED; no extra spending"
+  },
+  "closureMatrix": {
+    "path": "docs/mission-state/EMPIREAI_CLOSURE_MATRIX.json",
+    "requirements": 219,
+    "readAtRunStart": true,
+    "countsByPhase": {
+      "D": {
+        "DEFERRED_BY_KING": 20
+      },
+      "A": {
+        "IN_PROGRESS": 28,
+        "PROVEN": 2,
+        "IMPLEMENTED_UNVERIFIED": 9,
+        "BLOCKED": 2
+      },
+      "E": {
+        "DEFERRED_BY_KING": 18
+      },
+      "C": {
+        "NOT_STARTED": 98,
+        "PROVEN": 1
+      },
+      "F": {
+        "NOT_STARTED": 37
+      },
+      "B": {
+        "REGRESSION": 1,
+        "IN_PROGRESS": 1,
+        "PROVEN": 1
+      },
+      "CUTOVER": {
+        "PROVEN": 1
+      }
+    },
+    "rule": "Every substantial run must read/reconcile and persist/read back matrix; silence never closes requirements."
   }
 }
