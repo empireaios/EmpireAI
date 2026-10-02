@@ -1,29 +1,21 @@
-# EmpireAI current handoff — 2026-10-02T00:42:44.640Z
+# EmpireAI current handoff — 2026-10-02T01:00:42.924Z
 
-CUTOVER COMPLETE/CLOSED at41b8979. NOT_BORN/commerce LOCKED. Legacy stopped/preserved. Certification PAUSED; broad Owner UX deferred.
+CUTOVER COMPLETE/CLOSED baseline41b8979; legacy stopped/preserved. NOT_BORN / commerce LOCKED. Certification PAUSED; desktop visuals/Owner UX deferred.
 
-## Production and candidates
-Production remains frontend1cfe444 / backend4eb4428 (bf6afb46-9e82-49f2-93f7-7fe7303bbb6b, readiness passed).
-Owner-reported cross-device defect is a certification-blocking ClassB integration defect: phone saved exchanges visible, authenticated desktop empty.
-Published backend **8dcc9284d1222aacc51908ca177c0f01154ac6c0**, branch fix/pillow-cross-device-history-20261002.
-Published frontend **98e9bdc0ac0468df76662b8bb4f2d371b2e6b441**, branch fix/pillow-cross-device-web-20261002.
-Preview **dpl_67u6LVGP87hzSUJzQhirN4RsTiKi READY**, exact98e9bdc.
+## Actual production
+Frontend **98e9bdc0ac0468df76662b8bb4f2d371b2e6b441**, Vercel **dpl_57hNzegD6rfuMrUmdePpKbfkeRrg**, READY production aliases empire-ai.co.
+Backend **8dcc9284d1222aacc51908ca177c0f01154ac6c0**, Railway **718a74de-586d-4818-8904-a152414aa407**, SUCCESS. Node22.23.2 build; locked launcher; /health/ready passed00:58:46.057UTC. Saved source repo empireaios/EmpireAI, branch fix/pillow-cross-device-history-20261002, exact8dcc928.
+Owner provider provisioning applied; names-only confirms OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_AI_API_KEY. No values read. No pending patch.
+Railway agent initially mis-set repo to empireai-os/EmpireAI; caught independently and corrected before successfuldeploy. Previous4eb service remained live duringfailed sourcechange; no secret/data mutation.
 
-## Diagnosed and repaired
-Local session ID bypassed server hydration; client expected wrong history response shape;30minute reuse expiry created fresh sessions. Durable canonical conversation now survives expiry/restart and isolated forceNew cannot replace it. Client resolves canonical server session and rehydrates on reload/focus/online/re-auth.
-Older device-local history is uploaded only as authenticated owner-scoped historical_browser_cache, verified=false/grantsAuthority=false. It remains separate from server transcripts, never reasoning/authority context. No historical records deleted; original local cache preserved if acknowledgement fails. UI provenance distinguishes sources; no desktop visual redesign.
-Report on backend branch: docs/mission-state/PILLOW_CROSS_DEVICE_HISTORY_2026-10-02.md.
-Tests:9 reasoning integration PASS inclchildprocess/crossdevice/archive; actual authenticated app test PASS incltwofreshlogins/sharedhistory/anonymous401/protectedPOST+DELETE423. Frontend78tests PASS; backend/frontend typechecks PASS; Vercel build READY. No new paid inference. Live-device closure is NOT DONE.
+## Bounded live observations
+Production GET/api/pillow/history unauthenticated returned401 at00:59:37GMT; matching newdeploymentHTTP401at00:59:37.842Z confirms effectivefrontend-to-repairedbackendpath. Initial504 duringstartup resolved afterreadiness. Runtime logs additionallyfounder-shellGET200/brain-dispatchPOST423at00:59:39; not initiated byWork and not fullauthenticatedacceptance.
+Three-provider credentials are present, NOT verifiedworking. No newpaidinference made.
 
-## Single current owner action
-Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.
-Vercel production tool returned UNAVAILABLE/not in tools/list. Approved browser fallback remains blocked by native credential protection.
+## Actual blockers and one owner action
+Browser listTabs and a fresh empire-ai.co/cockpit document both blocked by nativecredentialprotection; not bypassed. Railway agent confirmed no applicationHTTPclient/SQLreader. readContainerFile onledgerreturned binaryplaceholder, notbytes orqueryresults. Ledger exists12288bytes/initialized,mtimeOct1 16:49:01; thisis NOT expenditure proof.
+On the original phone, refresh empire-ai.co Pillow Centre once; then refresh Pillow Centre on the desktop using the same owner account. Report whether the same saved Grand King/Pillow exchanges appear on both. Do not clear browser storage or send another inference message for this history check.
 
-## Credential staging — do not blindly apply
-Railway names-only read found staged patch76dd5814-8830-46c9-8e4a-188991f5b15a with ANTHROPIC_API_KEY and GEMINI_API_KEY. Values NOT read. Runtime expects GOOGLE_AI_API_KEY; GEMINI_API_KEY would be rejected by strict launcher. Leave staged patch unapplied. After frontend promotion, give one private correction action, then safely deploy exact8dcc928/update savedsource without unrelated changes. Do not reveal keys or create new credentials in chat.
-
-## Continue
-Verify frontend98e9bdc; resolve staged name safely; deploy8dcc928 existingruntime preservingvolume/OpenAI/US$20ledger/locks. Then original-phone refresh captures local history once, desktop same-owner read/re-auth/restart proof without paidinference. Only close crossdevice gate on actual evidence. Continue bounded multiprovider livecalls/routing/fallback/accounting integration; certification resumes only when all integration gates close. I1 e0fd5ce remains consumed, examiner excluded from runtime.
-
-## Owner UX backlog
-Preserve mobile Pillow as preferred design reference. Desktop excess whitespace, fragmented navigation, unusedwidth and disconnected composer remain deferred. Desktop should become wider responsive expression of same mobileproduct. No mobile redesign to matchdesktop.
+Owner originalphone cache must synchronize before desktop can read its historicalarchive. Then complete freshsameowner/re-auth/durablerestartreadback with no unnecessaryinference. Do notdeclarehistoryclosedfromoffline tests.
+Continue bounded real Claude/Gemini/OpenAIsharedrouter proofs, deliberate routing/consultation/boundedfallback, costledger/read-onlytool/context/learning/answerintegrity/authority evidence. Use oneowneractionatatime wheretools unavailable. No budgetsreset/weakening. Prior ledgerbalance predatesI1 and isnotcurrent.
+ConsumedI1 preserved e0fd5ce; no newexamcase exposed. Certificationresumes onlyafterintegrationclosed. MobileisOwnerUXdesignreference; desktopredesign deferred.

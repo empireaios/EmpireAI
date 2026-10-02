@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02T00:42:44.640Z",
+  "updatedAt": "2026-10-02T01:00:42.924Z",
   "mission": "Deliver a genuinely operational, production-deployed Pillow-led autonomous AI dropshipping business and then a separately owner-authorized bounded real pilot.",
   "ownerMandate": {
     "routineEngineeringAuthorized": true,
@@ -33,7 +33,7 @@
     "integrationPr": "https://github.com/empireaios/EmpireAI/pull/5",
     "lastVerifiedIntegrationHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branch": "fix/pillow-integrated-closure-20260920",
-    "status": "CUTOVER CLOSED41b8979. Productionfrontend1cfe444/backend4eb4428. Cross-device history ClassB repair backend8dcc928/frontend98e9bdc published, not deployed; certification paused.",
+    "status": "CUTOVER CLOSED41b8979. Productionfrontend98e9bdc/backend8dcc928 READY/SUCCESS. Three provider credentials present by names only. History/device and real multiprovider integration proof pending; certification paused.",
     "candidateCodeHead": "d69cdc953a5a2bc21a271eb7a7bce2598ee330ea",
     "branchTipNote": "Following evidence-only seal changes no executable code; deploy frozen candidateCodeHead, not an assumed branch tip.",
     "preRecoveryBranchTip": "9046a3d43b6e085d44c6856a8ede6aab6e12692e"
@@ -43,17 +43,17 @@
       "projectId": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
       "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
       "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
-      "deploymentId": "bf6afb46-9e82-49f2-93f7-7fe7303bbb6b",
-      "source": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b",
+      "deploymentId": "718a74de-586d-4818-8904-a152414aa407",
+      "source": "8dcc9284d1222aacc51908ca177c0f01154ac6c0",
       "origin": "https://empireai-locked-runtime-production.up.railway.app",
-      "status": "SUCCESS; healthcheck /health/ready passed2026-10-02T00:18:33.809Z",
-      "savedSourceBranch": "fix/locked-reasoning-integration-20261002",
-      "savedSourceCommit": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b"
+      "status": "SUCCESS; /health/ready passed2026-10-02T00:58:46.057Z",
+      "savedSourceBranch": "fix/pillow-cross-device-history-20261002",
+      "savedSourceCommit": "8dcc9284d1222aacc51908ca177c0f01154ac6c0"
     },
     "vercel": {
-      "deploymentId": "dpl_7yhqWXmopzKGKtL1u4XeoWUGf6Zp",
-      "source": "1cfe444f01b178842566e303e356655e5c93be94",
-      "status": "READY production; independently verified after owner promotion",
+      "deploymentId": "dpl_57hNzegD6rfuMrUmdePpKbfkeRrg",
+      "source": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
+      "status": "READY production independently verified empire-ai.co alias",
       "domain": "empire-ai.co"
     }
   },
@@ -1601,16 +1601,15 @@
     "independentIntegratedAcceptance": false
   },
   "blockers": [
-    "Frontend production promotion write unavailable; dashboard native credential protection unresolved",
-    "Railway staged Gemini key uses GEMINI_API_KEY; expectedGOOGLE_AI_API_KEY, must correct privately before applying",
-    "Cross-device live closure and bounded provider integration receipts pending"
+    "Work browser native credential protection blocks authenticatedverification; originalphone cache requiresownerrefresh",
+    "Railway tools have noapplicationHTTP orSQL/binaryledgerdownload capability; actualproviderreceipts/accounting readback pending"
   ],
   "nextExecutableActions": [
-    "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
-    "Verify production98e9bdc; inspect stagedRailwaypatch. Privately correct Gemini variable name before source+credential application; never exposevalues.",
-    "Deploy exact8dcc928 onexistinglockedruntime with savedsource; preserveoriginalvolumeledgerandlocks; no unrelatedpatchapplication",
-    "Bounded live history phone-original-cache sync then same-owner desktop/re-auth/restart readback; no paid inference merely for history",
-    "Continue original multi-provider bounded live proof/accounting integration; only then materially new unseen certification"
+    "On the original phone, refresh empire-ai.co Pillow Centre once; then refresh Pillow Centre on the desktop using the same owner account. Report whether the same saved Grand King/Pillow exchanges appear on both. Do not clear browser storage or send another inference message for this history check.",
+    "Use owner CLI ledgerdownload only if necessary; do not requestkeys, tokensorpasswordsinchat",
+    "Bounded deliberate provider verification: Claude+Gemini realcalls and OpenAIsharedrouter asneeded; no blindretries/fanout, keepUS$20durableguard",
+    "After data exists prove durable history/accounting through one bounded restart if not already sufficientlyobserved; no broadrecoveryprogramme",
+    "Closeintegration onlyonevidence; resume frozennewunseencases, neverI1"
   ],
   "oauthEngineering": {
     "candidateHead": "52051fa607fce9715e470ba8d00ddb143a91b89e",
@@ -2468,7 +2467,7 @@
     "activationCondition": "Close scoped multi-provider reasoning integration with bounded live evidence before unseen certification resumes."
   },
   "status": "CUTOVER COMPLETE",
-  "currentPhase": "SCOPED_INTEGRATION_CROSS_DEVICE_REPAIR_PUBLISHED_AWAITING_PROMOTION",
+  "currentPhase": "SCOPED_INTEGRATION_HISTORY_REPAIR_LIVE_OWNER_DEVICE_PROOF_PENDING",
   "cutoverCompletionCheckpoint": {
     "at": "2026-10-01T16:39:24.271Z",
     "status": "CUTOVER COMPLETE",
@@ -2591,7 +2590,7 @@
     "next": "PILLOW CERTIFICATION before broad OWNER UX CLOSURE, per owner revised priority; repair UX first only where it blocks safe certification or owner control; no Birth or commerce unlock."
   },
   "providerArchitectureCheckpoint": {
-    "status": "DEPLOYED_READY_PRIVATE_PROVIDER_ACTIVATION_PENDING",
+    "status": "CREDENTIAL_NAMES_PRESENT_LIVE_PROVIDER_CALLS_PENDING",
     "cutoverBaseline": "41b897950fd83199bcf0e2d36d30d501aff628b1",
     "cutoverStatus": "CLOSED",
     "certification": "PAUSED_BY_OWNER; original unseen I1 implementation failure preserved; no repeated exam calls",
@@ -2619,14 +2618,12 @@
       "liveAlternativeCalls": "NOT RUN; no credentials provisioned",
       "newPaidCalls": 0
     },
-    "blocker": "Frontend production promotion write unavailable; dashboard native credential protection unresolved; Railway staged Gemini key uses GEMINI_API_KEY; expectedGOOGLE_AI_API_KEY, must correct privately before applying; Cross-device live closure and bounded provider integration receipts pending",
-    "ownerAction": "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
+    "blocker": "Browsernativecredentialprotection; no authenticatedapplicationrequest connector",
+    "ownerAction": "On the original phone, refresh empire-ai.co Pillow Centre once; then refresh Pillow Centre on the desktop using the same owner account. Report whether the same saved Grand King/Pillow exchanges appear on both. Do not clear browser storage or send another inference message for this history check.",
     "next": [
-      "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
-      "Verify production98e9bdc; inspect stagedRailwaypatch. Privately correct Gemini variable name before source+credential application; never exposevalues.",
-      "Deploy exact8dcc928 onexistinglockedruntime with savedsource; preserveoriginalvolumeledgerandlocks; no unrelatedpatchapplication",
-      "Bounded live history phone-original-cache sync then same-owner desktop/re-auth/restart readback; no paid inference merely for history",
-      "Continue original multi-provider bounded live proof/accounting integration; only then materially new unseen certification"
+      "Owner phone/desktophistorycomparison",
+      "Currentledger readback and bounded actualprovider calls withoutrepeatspend",
+      "Livecontext/tools/learning/accounting/authority closure thennewunseencertification"
     ],
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
@@ -2665,9 +2662,9 @@
   },
   "integrationRepairCheckpoint": {
     "at": "2026-10-02T00:18:39.324Z",
-    "status": "BASE_INTEGRATION_DEPLOYED_CROSS_DEVICE_EXTENSION_PENDING",
-    "backend": "4eb442823d219b26908c6e3fdd9ce1c1ffdf209b",
-    "frontend": "1cfe444f01b178842566e303e356655e5c93be94",
+    "status": "DEPLOYED_LIVE_ACCEPTANCE_PENDING",
+    "backend": "8dcc9284d1222aacc51908ca177c0f01154ac6c0",
+    "frontend": "98e9bdc0ac0468df76662b8bb4f2d371b2e6b441",
     "report": "docs/mission-state/LOCKED_REASONING_INTEGRATION_2026-10-02.md",
     "parentBackend": "be2423ee711e1866d1a4b21dcde133155aaffb07",
     "frontendPreview": "dpl_7bTaQVkgorana3hGepoNcaj1a4fP",
@@ -2697,8 +2694,8 @@
       "Read tools are bounded catalog/mission/evidence reads and one exact arithmetic round, not arbitrary web/code execution",
       "Claude/Gemini private credentials and live bounded receipts remain pending"
     ],
-    "blocker": "Frontend production promotion write unavailable; dashboard native credential protection unresolved; Railway staged Gemini key uses GEMINI_API_KEY; expectedGOOGLE_AI_API_KEY, must correct privately before applying; Cross-device live closure and bounded provider integration receipts pending",
-    "ownerAction": "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
+    "blocker": "Authenticated browser unavailable; device sync and actual provider/accounting proof pending",
+    "ownerAction": "On the original phone, refresh empire-ai.co Pillow Centre once; then refresh Pillow Centre on the desktop using the same owner account. Report whether the same saved Grand King/Pillow exchanges appear on both. Do not clear browser storage or send another inference message for this history check.",
     "frontendProductionDeployment": "dpl_7yhqWXmopzKGKtL1u4XeoWUGf6Zp",
     "backendProductionDeployment": "bf6afb46-9e82-49f2-93f7-7fe7303bbb6b",
     "next": [
@@ -2775,7 +2772,7 @@
   },
   "crossDeviceHistoryCheckpoint": {
     "at": "2026-10-02T00:42:44.640Z",
-    "status": "REPAIRED_OFFLINE_VERIFIED_PUBLISHED_LIVE_CLOSURE_PENDING",
+    "status": "DEPLOYED_READY_LIVE_DEVICE_PROOF_PENDING",
     "classification": "B_IMPLEMENTATION_MEMORY_HISTORY",
     "ownerEvidence": "Actual phone shows multiple saved GrandKing/Pillow exchanges; authenticated desktop empty",
     "backend": "8dcc9284d1222aacc51908ca177c0f01154ac6c0",
@@ -2798,13 +2795,17 @@
       "frontendTests": "78 durable-delivery/client tests PASS",
       "backendBuild": "PASS Node22.23.2",
       "frontendTypecheck": "PASS",
-      "liveDevices": "PENDING deployment and original phone cache reload; no paid inference needed",
+      "liveDevices": "PENDING owner original-phone refresh and desktop sameownerreadback; no claimclosed",
       "paidInferenceCalls": 0,
-      "frontendBuild": "Exact-source Vercel preview READY"
+      "frontendBuild": "Exact-source Vercel preview READY",
+      "liveDomain": "Anonymous history request4012026-10-02T00:59:37GMT; corresponding new runtime GET/api/pillow/history401 at00:59:37.842Z; bounded effective BFF binding proven. Initial504 duringrollout resolved afterready."
     },
-    "ownerAction": "Promote frontend98e9bdc (dpl_67u6LVGP87hzSUJzQhirN4RsTiKi) using production-environment rebuild in existing empireai Vercel project, preserving BRAIN_API_URL and empire-ai.co. Leave Railway staged credential patch unapplied.",
+    "ownerAction": "On the original phone, refresh empire-ai.co Pillow Centre once; then refresh Pillow Centre on the desktop using the same owner account. Report whether the same saved Grand King/Pillow exchanges appear on both. Do not clear browser storage or send another inference message for this history check.",
     "liveGate": "Not closed until same-owner phone/desktop/re-auth/restart evidence. Do not certify from tests alone.",
-    "previewState": "READY"
+    "previewState": "READY",
+    "deployedAt": "2026-10-02T01:00:42.924Z",
+    "frontendProductionDeployment": "dpl_57hNzegD6rfuMrUmdePpKbfkeRrg",
+    "backendProductionDeployment": "718a74de-586d-4818-8904-a152414aa407"
   },
   "ownerUxDesktopReference": {
     "status": "DEFERRED_OWNER_UX",
@@ -2819,15 +2820,47 @@
     "direction": "Desktop should be responsive wider expression of same mobile Pillow product. Do not redesign mobile to match unfinished desktop."
   },
   "providerCredentialStaging": {
-    "at": "2026-10-02T00:42:44.640Z",
-    "patchId": "76dd5814-8830-46c9-8e4a-188991f5b15a",
-    "status": "STAGED_NOT_APPLIED",
+    "status": "APPLIED_PRIVATE_NAMES_VERIFIED",
     "names": [
+      "OPENAI_API_KEY",
       "ANTHROPIC_API_KEY",
-      "GEMINI_API_KEY"
+      "GOOGLE_AI_API_KEY"
     ],
     "valuesRead": false,
-    "requiredGeminiVariable": "GOOGLE_AI_API_KEY",
-    "warning": "GEMINI_API_KEY is not allowed by current launcher. Do not accept whole staged environment patch while deploying source. One private owner rename/correction action required before applying; do not reveal keys."
+    "unexpectedGeminiNameAbsent": true,
+    "staged": null,
+    "validity": "Not established by names alone; real Claude/Gemini calls still pending"
+  },
+  "integrationAccessBlocker": {
+    "browser": "Native credential protection blocks listTabs and fresh empire-ai.co/cockpit document; not bypassed",
+    "railway": "Infrastructure agent has no HTTP application client or SQL reader; binary readContainerFile returned placeholder only, not ledger bytes",
+    "ledgerMetadata": {
+      "path": "/data/commissioning/openai-october-2026.sqlite",
+      "size": 12288,
+      "modified": "2026-10-01T16:49:01Z",
+      "initializedMarkerPresent": true,
+      "meaning": "Existence only. Does not prove current usage/cost/accounting or remaining budget."
+    },
+    "paidCallsThisTurn": 0
+  },
+  "deploymentCorrectionEvidence": {
+    "wrongRepo": "empireai-os/EmpireAI",
+    "cause": "Railway agent supplied wrong repo despite requested empireaios/EmpireAI",
+    "detectedBy": "Independent tool argument/config readback before claiming deploy",
+    "correctedRepo": "empireaios/EmpireAI",
+    "actualDeployment": "718a74de-586d-4818-8904-a152414aa407",
+    "target": "8dcc9284d1222aacc51908ca177c0f01154ac6c0",
+    "previousProductionContinued": "dba7e711 4eb4428 remained SUCCESS; no data or key changes"
+  },
+  "liveIntegrationVerificationMatrix": {
+    "openai": "Previously proven real; current shared-router path receipt still to verify as needed",
+    "claude": "Credential name present; real bounded call NOT DONE",
+    "gemini": "Corrected credential name present; real bounded call NOT DONE",
+    "routingFallbackConsultation": "Targeted offline tests pass; bounded live routing/explicit consultation receipts pending; do not deliberately cause uncontrolled provider errors",
+    "history": "Offline canonical/two-authenticated-session/archive/childprocess proof pass; owner original phone cache sync and live cross-device/readback/re-auth/restart PENDING",
+    "contextToolsLearningAnswer": "Offline tested; bounded actual runtime receipts/readback PENDING; no self-certification",
+    "accounting": "Original guard preserved; current ledger reconciliation still PENDING; no new paid calls",
+    "authority": "NOT_BORN/LOCKED code and targeted denials preserved; live proof remains required",
+    "certification": "PAUSED; I1 consumed preserved; no new unseen case exposed"
   }
 }
