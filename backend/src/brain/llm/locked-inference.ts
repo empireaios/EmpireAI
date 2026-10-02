@@ -1,3 +1,4 @@
+import {readProviderFailure, type ProviderFailureDetail} from './inference-readback.js';
 /** October commissioning inference only. No tool execution or authority transition. */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -70,7 +71,7 @@ export function settleInference(filename:string,id:string,status:string,usage:ob
 }
 const settle = settleInference;
 export class InferenceFailure extends Error {
-  constructor(readonly fallbackEligible=false) { super('Bounded inference failed; reservation retained for reconciliation'); }
+  constructor(readonly fallbackEligible=false, readonly detail?:ProviderFailureDetail) { super('Bounded inference failed; reservation retained for reconciliation'); }
 }
 function integer(value:unknown):value is number { return Number.isSafeInteger(value) && Number(value)>=0; }
 export async function completeLockedInference(request:LLMCompletionRequest):Promise<LLMCompletionResponse> {
@@ -95,13 +96,14 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
   const id=reserveInference(filename,reserved,Date.now(),{provider:'openai',model:LOCKED_MODEL,ceiling:CEILING_MICRO_USD,requestKey:createHash('sha256').update(request.workspaceId+'\0'+request.correlationId).digest('hex')});
   const signal=AbortSignal.any([AbortSignal.timeout(120000),...(request.signal?[request.signal]:[])]);
   let fallbackEligible=false;
+  let failureDetail:ProviderFailureDetail|undefined;
   try {
     const response=await fetch('https://api.openai.com/v1/responses',{
       method:'POST',redirect:'error',signal,
       headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},
       body:JSON.stringify({model:LOCKED_MODEL,input,store:false,service_tier:'default',reasoning:{effort:'medium'},max_output_tokens:outputBound}),
     });
-    if(!response.ok) { fallbackEligible=[429,503,529].includes(response.status); await response.body?.cancel(); throw Error('Inference HTTP refusal'); }
+    if(!response.ok) { fallbackEligible=[429,503,529].includes(response.status); failureDetail=await readProviderFailure(response); throw Error('Inference HTTP refusal'); }
     const reader=response.body?.getReader(); if(!reader)throw Error('Inference response absent');
     const chunks:Uint8Array[]=[];let size=0;
     while(true){ const part=await reader.read();if(part.done)break;size+=part.value.length;if(size>2*1024*1024){await reader.cancel();throw Error('Inference response exceeds bound');}chunks.push(part.value); }
@@ -124,6 +126,6 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
     // Never log provider bodies, prompts, credentials or exception strings.
     // Keep any usage already saved and the reservation on every failure.
     ledger(filename,db=>db.prepare("UPDATE calls SET status=CASE WHEN usage_json IS NULL THEN 'failed_uncertain' ELSE status END WHERE id=?").run(id));
-    throw new InferenceFailure(fallbackEligible);
+    throw new InferenceFailure(fallbackEligible,failureDetail);
   }
 }

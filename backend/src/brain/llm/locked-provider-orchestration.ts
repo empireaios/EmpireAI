@@ -1,3 +1,4 @@
+import {readProviderFailure, writeInferenceReadback, type ProviderFailureDetail} from './inference-readback.js';
 /** Brain-owned text inference policy. Does not execute tools or change authority. */
 import { createHash } from 'node:crypto';
 import type { LLMCompletionRequest, LLMCompletionResponse, LLMProviderName } from '../types.js';
@@ -73,12 +74,13 @@ export async function completeLockedAlternative(request:LLMCompletionRequest, pr
   const filename=inferenceLedgerPath();request.signal?.throwIfAborted();
   const id=reserveInference(filename,reservation,Date.now(),{provider,model:config.model,ceiling:config.ceiling,requestKey:createHash('sha256').update(request.workspaceId+'\0'+request.correlationId).digest('hex')});
   let eligible=false;
+  let failureDetail:ProviderFailureDetail|undefined;
   try {
     const signal=AbortSignal.any([AbortSignal.timeout(120000),...(request.signal?[request.signal]:[])]);
     const url=provider==='anthropic'?'https://api.anthropic.com/v1/messages':`https://generativelanguage.googleapis.com/v1beta/models/${config.model}:generateContent`;
     const headers:Record<string,string>={'Content-Type':'application/json',...(provider==='anthropic'?{'x-api-key':key,'anthropic-version':'2023-06-01'}:{'x-goog-api-key':key})};
     const response=await fetch(url,{method:'POST',redirect:'error',signal,headers,body:JSON.stringify(body)});
-    if(!response.ok){eligible=[429,503,529].includes(response.status);await response.body?.cancel();throw Error('Provider refusal');}
+    if(!response.ok){eligible=[429,503,529].includes(response.status);failureDetail=await readProviderFailure(response);throw Error('Provider refusal');}
     const data=await responseJson(response);
     let input:number,output:number,reasoning=0,cached=0,cacheWrite=0,content:string,completed:boolean;
     if(provider==='anthropic') {
@@ -106,7 +108,7 @@ export async function completeLockedAlternative(request:LLMCompletionRequest, pr
     return {provider,model:config.model,content,usage:{promptTokens:input,completionTokens:output,totalTokens:input+output}};
   }catch{
     inferenceLedger(filename,db=>db.prepare("UPDATE calls SET status=CASE WHEN usage_json IS NULL THEN 'failed_uncertain' ELSE status END WHERE id=?").run(id));
-    throw new InferenceFailure(eligible);
+    throw new InferenceFailure(eligible,failureDetail);
   }
 }
 
@@ -124,18 +126,22 @@ export async function completeLockedRouted(request:LLMCompletionRequest):Promise
   // Failed uncertain requests need explicit new owner requests, never blind retry.
   const requestKey=createHash('sha256').update(request.workspaceId+'\0'+request.correlationId).digest('hex');
   inferenceLedger(inferenceLedgerPath(),db=>{tables(db);db.prepare('INSERT INTO inference_requests VALUES(?,?)').run(requestKey,new Date().toISOString());});
-  const attempts:Array<{provider:LLMProviderName;outcome:string}>=[];
+  const attempts:Array<{provider:LLMProviderName;outcome:string;model:string;httpStatus?:number;code?:string}>=[];
   for(const provider of candidates.slice(0,2)) {
     request.signal?.throwIfAborted();
     try {
       const routed={...request,provider,model:LOCKED_PROVIDERS[provider].model};
       const result=provider==='openai'?await completeLockedInference(routed):await completeLockedAlternative(routed,provider);
-      health(provider,'success',0);attempts.push({provider,outcome:'success'});
+      health(provider,'success',0);attempts.push({provider,model:LOCKED_PROVIDERS[provider].model,outcome:'success'});
+      writeInferenceReadback(inferenceLedgerPath(),requestKey,capability,attempts);
+      console.info(JSON.stringify({event:'locked_inference_route',requestKey,capability,attempts,fallbackUsed:attempts.length>1}));
       return {...result,provenance:{capability,requestKey,attempts}};
     }catch(error){
       const eligible=error instanceof InferenceFailure&&error.fallbackEligible;
       health(provider,eligible?'temporary_refusal':'failed_closed',Date.now()+60_000);
-      attempts.push({provider,outcome:eligible?'temporary_refusal':'failed_closed'});
+      attempts.push({provider,model:LOCKED_PROVIDERS[provider].model,outcome:eligible?'temporary_refusal':'failed_closed',...(error instanceof InferenceFailure?error.detail:undefined)});
+      writeInferenceReadback(inferenceLedgerPath(),requestKey,capability,attempts);
+      console.info(JSON.stringify({event:'locked_inference_route',requestKey,capability,attempts,fallbackUsed:attempts.length>1}));
       if(!eligible)throw error;
     }
   }

@@ -44,3 +44,59 @@ test('legacy v1 ledger rows remain byte-for-byte values and count against all pr
 test('two temporary refusals stop without a third provider; bad usage cannot masquerade as a response',async()=>{
  const clean=setup();try{let count=0;globalThis.fetch=async()=>{count++;return new Response(null,{status:503});};await assert.rejects(completeLockedRouted(request('two-refusals')));assert.equal(count,2);assert.equal(rows().length,2);globalThis.fetch=async()=>Response.json({modelVersion:LOCKED_PROVIDERS.gemini.model,candidates:[{finishReason:'STOP',content:{parts:[{text:'untrusted'}]}}],usageMetadata:{promptTokenCount:1,candidatesTokenCount:1,thoughtsTokenCount:4,totalTokenCount:2}});await assert.rejects(completeLockedRouted({...request('bad-gemini-usage'),provider:'gemini'}));assert.equal(rows().at(-1)?.estimated_micro_usd,null);}finally{clean();}
 });
+test('real shared router consultation reserves two distinct identities and replay cannot pay again',async()=>{
+ const clean=setup();try{
+  const {LLMRouter}=await import('../../brain/llm/llm-router.js');
+  const router=new LLMRouter();let calls=0;
+  globalThis.fetch=async url=>{calls++;return fixture(String(url).includes('anthropic')?'anthropic':'gemini');};
+  const results=await router.crossCheck(request('distinct-consultation'),['anthropic','gemini'],'Offline integration check');
+  assert.equal(calls,2);assert.deepEqual(results.map(r=>r.provider),['anthropic','gemini']);
+  assert.equal(new Set(rows().map(r=>r.request_key)).size,2);
+  assert.ok(rows().every(r=>r.status==='usage_recorded'));
+  await assert.rejects(router.crossCheck(request('distinct-consultation'),['anthropic','gemini'],'Offline integration replay'));
+  assert.equal(calls,2);assert.equal(rows().length,2);
+ }finally{clean();}
+});
+test('concurrent duplicate requests admit one paid transport and one durable reservation',async()=>{
+ const clean=setup();try{
+  let calls=0;globalThis.fetch=async()=>{calls++;await new Promise(resolve=>setTimeout(resolve,20));return fixture('openai');};
+  const results=await Promise.allSettled([completeLockedRouted(request('concurrent-replay')),completeLockedRouted(request('concurrent-replay'))]);
+  assert.equal(results.filter(r=>r.status==='fulfilled').length,1);
+  assert.equal(results.filter(r=>r.status==='rejected').length,1);
+  assert.equal(calls,1);assert.equal(rows().length,1);
+ }finally{clean();}
+});
+
+test('Pillow engine through Brain adapter preserves capability, metadata separation, bounded fallback and duplicate guard',async()=>{
+ const clean=setup();try{
+  const {LLMRouter}=await import('../../brain/llm/llm-router.js');
+  const {createBrainLLMAdapter}=await import('../../orchestration/pillow-host/brain-llm-adapter.js');
+  const {OpenAIIntegrationLayer}=await import('@empireai/pillow');
+  const engine=new OpenAIIntegrationLayer(createBrainLLMAdapter(new LLMRouter()));
+  const seen:string[]=[];let refuse=false;
+  globalThis.fetch=async(url,init)=>{const p=String(url).includes('googleapis')?'gemini':'openai';seen.push(p);const body=String(init?.body);assert.ok(body.includes('Summarize the supplied maintenance note'));assert.ok(!body.includes('/pillow-request'));return refuse&&p==='gemini'?new Response(null,{status:503}):fixture(p);};
+  const input:any={reasoningOnly:true,userMessage:'/pillow-request '+JSON.stringify({capability:'summarization',message:'Summarize the supplied maintenance note: inspection is pending.'}),workspaceId:'owner',correlationId:'adapter-summary-first',constitutionalGateAttestation:{passed:true},operationalContext:{manifest:{task:'general',repositoryFingerprint:'offline',paths:[],artifactIds:[]},slices:[],intelligenceSnapshot:{currentMission:null,journeyPosition:null,healthScore:0,healthIssueCount:0}}};
+  const first=await engine.complete(input);assert.deepEqual(seen,['gemini']);assert.equal(first.provider,'gemini');assert.equal(first.model,LOCKED_PROVIDERS.gemini.model);assert.equal(first.provenance?.capability,'summarization');
+  refuse=true;const second=await engine.complete({...input,correlationId:'adapter-summary-refusal'});assert.deepEqual(seen,['gemini','gemini','openai']);assert.equal(second.provider,'openai');assert.deepEqual(second.provenance?.attempts.map(({provider,outcome})=>({provider,outcome})),[{provider:'gemini',outcome:'temporary_refusal'},{provider:'openai',outcome:'success'}]);
+  const linked=rows().filter(r=>r.request_key===second.provenance?.requestKey);assert.equal(linked.length,2);assert.deepEqual(linked.map(r=>r.status),['failed_uncertain','usage_recorded']);assert.ok(linked.every(r=>Number(r.reserved_micro_usd)>0&&r.invoice_actual_micro_usd===null));
+  await assert.rejects(engine.complete({...input,correlationId:'adapter-summary-refusal'}));assert.equal(seen.length,3,'replayed engine request cannot pay again');
+ }finally{clean();}
+});
+
+
+test('operator receipts retain safe failure status and budget without prompts or credentials',async()=>{
+ const clean=setup();try{
+  const {readProviderFailure,writeInferenceReadback}=await import('../../brain/llm/inference-readback.js');
+  const safe=await readProviderFailure(Response.json({error:{status:'RESOURCE_EXHAUSTED',message:'secret-key-and-private-prompt',details:[{secret:'private'}]}},{status:429}));
+  assert.deepEqual(safe,{httpStatus:429,code:'RESOURCE_EXHAUSTED'});
+  assert.deepEqual(await readProviderFailure(Response.json({error:{status:'secret-key'}},{status:503})),{httpStatus:503});
+  globalThis.fetch=async url=>String(url).includes('googleapis')?Response.json({error:{status:'RESOURCE_EXHAUSTED',message:'private'}},{status:429}):fixture('openai');
+  const result=await completeLockedRouted({...request('receipt-fallback'),capability:'summarization'});
+  const filename=path.join(path.dirname(inferenceLedgerPath()),'inference-operator-readback.json');const receipt=JSON.parse(fs.readFileSync(filename,'utf8'));
+  assert.equal(receipt.attempts[0].httpStatus,429);assert.equal(receipt.attempts[0].code,'RESOURCE_EXHAUSTED');assert.equal(receipt.records.length,2);assert.equal(receipt.requestKey,result.provenance?.requestKey);
+  assert.equal(receipt.remainingMicroUsd,20_000_000-receipt.heldMicroUsd);assert.ok(receipt.records.every((r:any)=>r.reservationReleased===false));assert.ok(!fs.readFileSync(filename,'utf8').includes('private'));
+  const durableRoute=inferenceLedgerPath()+'.route-'+receipt.requestKey+'.json';const routeBefore=fs.readFileSync(durableRoute);
+  const before=fs.readFileSync(inferenceLedgerPath());writeInferenceReadback(inferenceLedgerPath(),'startup-readback','none',[]);assert.deepEqual(fs.readFileSync(inferenceLedgerPath()),before);
+  assert.equal(JSON.parse(fs.readFileSync(filename,'utf8')).heldMicroUsd,receipt.heldMicroUsd);assert.deepEqual(fs.readFileSync(durableRoute),routeBefore);
+ }finally{clean();}
+});

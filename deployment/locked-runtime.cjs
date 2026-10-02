@@ -32,6 +32,11 @@ async function main(){
   const env=configuration(process.env), dir=path.dirname(env.DATABASE_PATH);
   fs.mkdirSync(dir,{recursive:true,mode:0o700});
   if(fs.realpathSync(dir)!==dir)throw Error('Redirected data directory refused');
+  const ledger=path.join(dir,'openai-october-2026.sqlite');
+  if(fs.existsSync(ledger)){
+    const {writeInferenceReadback}=await import('../backend/dist/brain/llm/inference-readback.js');
+    writeInferenceReadback(ledger,'startup-readback','none',[]);
+  }
   const result=await runBounded({command:process.execPath,args:['backend/dist/index.js'],env,cwd,expiresAt:null,onSpawn:child=>{
     console.log(JSON.stringify({event:'locked_runtime_start',profile:PROFILE,launchId:crypto.randomUUID(),childPid:child.pid,source:env.RAILWAY_GIT_COMMIT_SHA,birth:'NOT_BORN',commerce:'LOCKED',operational:false}));
   }});
