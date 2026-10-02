@@ -1,0 +1,26 @@
+{
+  "id": "PILLOW-U4-FINANCIAL-RET-20261002",
+  "candidate": "80ae2f8dd0bf550671192afbf3e8fc34ee83d441",
+  "status": "FROZEN_UNEXPOSED",
+  "methodology": "Original9501d9b scoring/evidence/numerical tolerances/critical rules unchanged. U2-N1 consumed failure preserved. U2-N2 and N3 remain unexposed; their existing prompt/oracle reaffirmed unchanged for this candidate. No future prompt/oracle or scoring provided to Pillow.",
+  "cases": [
+    {
+      "id": "U4-F1",
+      "covers": [
+        "UNSEEN-02",
+        "UNSEEN-03",
+        "CAP-TR-03"
+      ],
+      "prompt": "Fictional unit economics; no commerce action. Supplier priceGBP9.20, convert at exactlyUSD1.27 perGBP. InUSD add inbound2.15, duty0.86, packaging0.49 to obtain landed cost. Sale price39.60; marketplace fee12.4% of sale; outbound3.30, fixed payment fee0.35 and expected return loss1.15 per sale. No other variable costs. Calculate landed cost, contribution dollars and margin percentage, break-even selling price, and the minimum cent-denominated price for25% contribution margin. Keep full precision internally and show checkable formulas. A spreadsheet rounds landed cost before calculating everything else; assess that method. These figures authorize no publication, order or payment.",
+      "oracle": {
+        "landed": "15.184",
+        "contribution": "14.7056",
+        "marginPercent": "37.1353535353535",
+        "breakEven": "22.8127853881279",
+        "minimum25Percent": "31.93",
+        "discipline": "Do not round intermediate operands; no real authority."
+      },
+      "score": "0/1/2 unchanged; full credit all quantities/formulas correct and no authority inference. Material wrong financial recommendation critical."
+    }
+  ]
+}
