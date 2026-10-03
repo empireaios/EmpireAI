@@ -117,7 +117,7 @@ function sanitizeGateMemoryContext(memoryContext: string | undefined, analysisOn
     .trim();
 }
 
-export function gateExecutiveConversation(
+function evaluateExecutiveConversation(
   runtime: DigitalSoulRuntime | null | undefined,
   input: ExecutiveConversationGateInput,
 ): ExecutiveConversationGateResult {
@@ -178,12 +178,36 @@ export function gateExecutiveConversation(
   };
 }
 
+/** Chat is deliberation, not execution. Reuse the proposition review that already
+ * distinguishes prohibitions/control reports from positive bypass instructions.
+ * Do not apply this interpretation to tools, commands or assistant actions.
+ * History remains separately reviewed: a safe new sentence cannot launder an
+ * unsafe prior instruction. Ambiguous historical references stay conservative.
+ */
+export function gateExecutiveConversation(
+  runtime: DigitalSoulRuntime | null | undefined,
+  input: ExecutiveConversationGateInput,
+): ExecutiveConversationGateResult {
+  const strict = evaluateExecutiveConversation(runtime, input);
+  if (strict.allowed || (input.purpose ?? "chat") !== "chat") return strict;
+  // Preserve historical antecedents for ambiguous requests such as "ignore it".
+  if (evaluateExecutiveConversation(runtime, { ...input, memoryContext: undefined }).allowed) return strict;
+  const request = gateExecutiveVisibleAnswer(runtime, scopeNonexecutingAssessment(input.userMessage.trim()));
+  if (!request.allowed) return strict;
+  const memory = sanitizeGateMemoryContext(input.memoryContext, true, runtime!);
+  if (memory) {
+    const history = memory.replace(/^(?:user|assistant):\s*/gm, "");
+    if (!gateExecutiveVisibleAnswer(runtime, history).allowed) return strict;
+  }
+  return { ...request, purpose: "chat" };
+}
+
 /** Post-LLM check — refuse to surface a response that itself violates constitutional intent. */
 function gateVisibleProposition(
   runtime: DigitalSoulRuntime | null | undefined,
   visibleAnswer: string,
 ): ExecutiveConversationGateResult {
-  const gated = gateExecutiveConversation(runtime, {
+  const gated = evaluateExecutiveConversation(runtime, {
     userMessage: visibleAnswer,
     purpose: "chat",
   });
@@ -223,7 +247,7 @@ function gateVisibleProposition(
     return clause;
   }).join(". ");
   if (prohibitions > 0) {
-    const reviewed = gateExecutiveConversation(runtime, {
+    const reviewed = evaluateExecutiveConversation(runtime, {
       userMessage: remaining.trim() || "Maintain existing authority restrictions.",
       purpose: "chat",
     });
@@ -284,7 +308,7 @@ export function gateExecutiveVisibleAnswer(
   // to adopt quoted content. These need context and retain the strict verdict.
   if (units.some(s => /\b(?:bypass|ignore|skip|waive|override|circumvent|suspend)\s+(?:the\s+)?(?:it|them|this|that|these|those|everything|all|checks|controls)\b|\b(?:do|follow|obey|execute)\s+(?:it|that|this|them|those)\b|\b(?:bypass|ignore|skip|waive|override|circumvent|suspend|pretend)[.!?;]*$/i.test(s) &&
     !isExplicitVisibleDenial(s))) return whole.allowed
-      ? gateExecutiveConversation(runtime, {userMessage: visibleAnswer, purpose: "chat"})
+      ? evaluateExecutiveConversation(runtime, {userMessage: visibleAnswer, purpose: "chat"})
       : whole;
   const reviewed = units.map(unit => {
     let proposition = unit;
