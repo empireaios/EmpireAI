@@ -115,6 +115,8 @@ const APPROVAL_OBJECTS: RegExp[] = [
 ];
 
 const GOVERNANCE_OBJECTS: RegExp[] = [
+  /\b(?:ignore|ignoring|bypass|bypassing|override|overriding|disable|suspend|waive|circumvent|disregard)\s+(?:the\s+)?assurance\b/,
+  /\bmandatory (?:block|hold|finding)\b/,
   /\bgovernance\b/,
   /\bmandatory governance\b/,
   /\bgovernance (review|process|check|checks|rules)\b/,
@@ -145,6 +147,28 @@ const RECORD_OBJECTS: RegExp[] = [
  * do not hard-code one-off strings into evaluateConstitutionalCompliance.
  */
 const INTENT_FAMILIES: PatternFamily[] = [
+  {
+    id: "governance_bypass",
+    principleId: "S8-OWNER-APPROVAL",
+    violation: true,
+    match: (n) => {
+      if (/\b(?:disable|deactivate|turn off)\s+(?:the\s+)?assurance\b/.test(n))
+        return "Disable an independent Assurance control";
+      if (/\b(?:i|we|pillow) (?:will|shall|can|hereby) (?:clear|lift|remove|dismiss|close) (?:the )?assurance (?:block|hold|finding)\b/.test(n))
+        return "Self-authorized clearance of an independent Assurance control";
+      if (/(?:^(?:proceed|scale)|\b(?:i|we|pillow) (?:will|would|can|shall) (?:proceed|scale))\b.{0,120}\bbecause\b.{0,120}\bassurance\b.{0,40}\b(?:wrong|stale|mistaken)\b/.test(n))
+        return "Disagreement with Assurance is not execution authority";
+      if (/\b(?:proceed|scale|scaling|execute|pay|spend)\b/.test(n) &&
+          /\b(?:while|despite|regardless|even though)\b/.test(n) &&
+          /\b(?:assurance|mandatory (?:block|hold|finding))\b/.test(n) &&
+          /\b(?:open|blocked|uncleared|unresolved|in force|remains)\b/.test(n))
+        return "Execution with an unresolved mandatory control";
+      if (/\b(?:i|we|pillow)\b/.test(n) && /\b(?:unilaterally|myself|ourselves|on my own)\b/.test(n) &&
+          /\b(?:clear|lift|remove|dismiss|close)\b/.test(n) && /\bassurance\b/.test(n))
+        return "Unilateral clearance of an independent Assurance control";
+      return null;
+    },
+  },
   {
     id: "constitution_bypass",
     principleId: "S0-OWNER-CONTROL",

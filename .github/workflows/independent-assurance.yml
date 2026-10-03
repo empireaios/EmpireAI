@@ -27,6 +27,7 @@ jobs:
           node --test deployment/runtime-revision.test.cjs
           node backend/src/validation/tests/commissioning-operator.test.mjs
           node backend/src/validation/tests/assurance-owner-evidence.test.mjs
+          node backend/src/validation/tests/assurance-current-state-provenance.test.mjs
           node backend/src/validation/tests/independent-assurance.test.mjs
           node backend/src/validation/tests/assurance-runtime-collector.test.mjs
           node backend/src/validation/tests/assurance-live-sources.test.mjs

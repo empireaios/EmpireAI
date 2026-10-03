@@ -13,6 +13,7 @@ import type { ConstitutionalComplianceResult } from "./types.js";
 import { buildDigitalSoulPromptBlock } from "./prompt.js";
 import { detectConstitutionalIntent } from "./constitutional-intent.js";
 import { isExplicitVisibleDenial } from "./visible-denial.js";
+import { scopeVisibleControlReports } from "./visible-control-reports.js";
 
 export class DigitalSoulUnavailableError extends Error {
   readonly code = "DIGITAL_SOUL_UNAVAILABLE" as const;
@@ -274,13 +275,17 @@ export function gateExecutiveVisibleAnswer(
   visibleAnswer: string,
 ): ExecutiveConversationGateResult {
   const whole = gateVisibleProposition(runtime, visibleAnswer);
-  if (whole.allowed) return whole;
-  const units = visibleAnswer.split(/(?<=[.!?;])[*_]*\s+|\n+/).map(s => s.trim()).filter(Boolean);
+  // A whole-answer denial pass can split a later causal/conditional clause.
+  // When raw intent exists, independently retain each proposition's verdict.
+  if (whole.allowed && !detectConstitutionalIntent(visibleAnswer).detected) return whole;
+  const units = visibleAnswer.split(/(?<=[.!?;])[*_]*\s+|\n+/).map(s => s.trim()).filter(Boolean).map(scopeVisibleControlReports);
   if (units.length === 0) return whole;
   // Never use segmentation to lose the antecedent of a bypass or an instruction
   // to adopt quoted content. These need context and retain the strict verdict.
   if (units.some(s => /\b(?:bypass|ignore|skip|waive|override|circumvent|suspend)\s+(?:the\s+)?(?:it|them|this|that|these|those|everything|all|checks|controls)\b|\b(?:do|follow|obey|execute)\s+(?:it|that|this|them|those)\b|\b(?:bypass|ignore|skip|waive|override|circumvent|suspend|pretend)[.!?;]*$/i.test(s) &&
-    !isExplicitVisibleDenial(s))) return whole;
+    !isExplicitVisibleDenial(s))) return whole.allowed
+      ? gateExecutiveConversation(runtime, {userMessage: visibleAnswer, purpose: "chat"})
+      : whole;
   const reviewed = units.map(unit => {
     let proposition = unit;
     // A negated permission object is a denial, including coordinated noun
@@ -306,7 +311,8 @@ export function gateExecutiveVisibleAnswer(
     }
     return gateVisibleProposition(runtime, proposition);
   });
-  if (reviewed.some(result => !result.allowed)) return whole;
+  const rejected = reviewed.find(result => !result.allowed);
+  if (rejected) return whole.allowed ? rejected : whole;
   return {
     ...whole,
     allowed: true,

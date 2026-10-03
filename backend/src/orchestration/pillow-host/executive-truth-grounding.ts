@@ -154,7 +154,15 @@ export function formatExecutiveTruthBrief(truth: ExecutiveTruthSnapshot): string
     `  birthStatus=${truth.birth.status} (CURRENT_VERIFIED)`,
     `  technicallyReady=${truth.birth.technicallyReady}`,
     `  birthTimestamp=${truth.birth.birthTimestamp ?? "NULL"}`,
-    `  gates=${truth.birth.gatesPassedCount}/${truth.birth.gatesTotal}`,
+    `  legacyBirthDiagnostics=${truth.birth.gatesPassedCount}/${truth.birth.gatesTotal}`,
+    "  Metric=legacy_birth_gate_diagnostics; source=getBirthRecord/evaluateBirthGates; this is NOT independent Assurance coverage.",
+    `  EvaluatedAt=${truth.computedAt}; evaluation time does not refresh the underlying historical evidence.`,
+    "  These legacy diagnostics confer no readiness, certification or execution authority. Never call them Assurance gates or an unqualified current gate count.",
+    "",
+    "INDEPENDENT ASSURANCE (separate metric, authoritative durable cycle):",
+    truth.assurance ? `  ${JSON.stringify(truth.assurance)}` : "  UNKNOWN: independent Assurance cycle was not read for this request.",
+    "  Quote coverage only when status=CURRENT, with metric name, evidenceReference and observedAt. Otherwise disclose missing/stale/conflicting evidence and refresh before a real decision; never substitute a historical count.",
+    "  Conversation history, working context and pending learning are not current operational truth. Hypothetical test premises remain hypothetical; reusable principles require governed learning approval.",
     `  deployGitCommitSha=${truth.deploy.gitCommitSha ?? "UNKNOWN"}`,
     truth.deploy.gitCommitSha
       ? "  HARD RULE: This Brain process is live in production (you are answering now). Do NOT say production deployment is currently blocked."
@@ -190,4 +198,3 @@ export function formatExecutiveTruthBriefWithEpistemics(
   };
   return `${formatExecutiveTruthBrief(truth)}\n\n${formatEpistemicDisciplineBrief(ctx)}\n\n${formatExecutiveDecisionDisciplineBrief()}`;
 }
-

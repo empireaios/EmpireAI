@@ -8,6 +8,11 @@ export type ExecutiveTruthSnapshot = {
   computedAt: string;
   workspaceId: string;
   provenance: "live_sqlite_commissioning_kpi_birth";
+  assurance?: {
+    metric: string; source: string; readAt: number; observedAt: number | null;
+    evidenceReference: string | null; status: string; passed: number | null;
+    total: number; grantsAuthority: false; scope: string;
+  };
   product: {
     commissioningId: string | null;
     asin: string | null;
