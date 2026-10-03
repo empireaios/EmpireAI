@@ -5,6 +5,7 @@ import { createServer } from "node:http";
 import { once } from "node:events";
 import { policyForFailure, type ClaimedReasoningRequest } from "../../runtime/pillow-chat-request-store.js";
 import { isOperatingAuthorityFactAsk, projectOperatingAuthorityFacts } from "../../orchestration/pillow-host/executive-authority-surface.js";
+import { preInferenceRefusal } from "../../orchestration/pillow-host/executive-preinference-refusal.js";
 
 const job = {
   request: { requestId: "test-request", leaseToken: 3 },
@@ -12,6 +13,28 @@ const job = {
 } as ClaimedReasoningRequest;
 
 describe("durable worker completion contract", { concurrency: false }, () => {
+  it("keeps pre-inference failures explicit in the transcript and fatal in transport", async () => {
+    const original = globalThis.fetch;
+    try {
+      for (const unavailable of [false, true]) {
+        const blocked = preInferenceRefusal(unavailable);
+        assert.equal(blocked.semanticSuccess, false);
+        assert.equal(blocked.brainCompleted, false);
+        assert.equal(blocked.reasoningFailure.retryable, false);
+        assert.match(blocked.message, /requested analysis remains incomplete/);
+        assert.match(blocked.message, /authority limits and Assurance holds remain in force/);
+        assert.doesNotMatch(blocked.message, /###|Under assumption|unit economics|profitable|recommendation/i);
+        // Even a reader that ignores the gate field must not promote this to
+        // a completed answer solely because the prose is nonempty.
+        for (const gate of [undefined, { allowed: false }]) {
+          globalThis.fetch = async () => Response.json({ result: { ...blocked, constitutionalGate: gate } });
+          const result = await executeReasoningProxy(job, 9999);
+          assert.equal(result.ok, false);
+          if (gate) assert.deepEqual(result, { ok: false, failureClass: "BRAIN_FATAL", error: "constitutional_gate_refused" });
+        }
+      }
+    } finally { globalThis.fetch = original; }
+  });
   it("preserves the distinct host transcript identity before wrapping the durable response", async () => {
     const original=globalThis.fetch;
     try {
