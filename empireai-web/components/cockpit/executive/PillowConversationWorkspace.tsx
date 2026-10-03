@@ -6,6 +6,7 @@ import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAss
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
 import { ExecutiveChatArtifacts } from "@/components/cockpit/executive/ExecutiveChatArtifacts";
 import { ExecutiveChatMarkdown } from "@/components/cockpit/executive/ExecutiveChatMarkdown";
+import { CopyPillowAnswer } from "@/components/cockpit/executive/CopyPillowAnswer";
 import layout from "./PillowConversationLayout.module.css";
 import Link from "next/link";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
@@ -249,6 +250,7 @@ export function PillowConversationWorkspace({
                       </p>
                     </details>
                     <ExecutiveChatMarkdown content={turn.content} />
+                    {turn.role === "pillow" && <CopyPillowAnswer content={turn.content} />}
                   </div>
                   {turn.artifacts && turn.artifacts.length > 0 && (
                     <ExecutiveChatArtifacts artifacts={turn.artifacts} />

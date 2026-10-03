@@ -1,6 +1,6 @@
 // Explicit deployment manifest: advance only to the reviewed backend release.
 // A historical revision is not proof of the current production release.
-export const expectedBackendRevision = 'bd368ceda8f10deceb20be80e65db436f6ac82c2';
+export const expectedBackendRevision = 'aeaa4ab466e55d5e16568578f0869259346edccc';
 export function verifyOwnerRuntime(identity, state) {
   return identity?.deploy?.gitCommitSha === expectedBackendRevision &&
     state?.ready === true && state?.birth === 'NOT_BORN' &&
