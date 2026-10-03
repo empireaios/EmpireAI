@@ -1,4 +1,4 @@
-/** Continue only owner-started, read-only Amazon US seller listing searches. */
+/** Continue only owner-started, read-only Amazon seller listing searches. */
 import { logger } from "../../../../config/logger.js";
 import {
   nextPendingAmazonUsListingsImport, pauseAmazonUsListingsImport,
@@ -13,17 +13,17 @@ export async function continueOneAmazonUsListingsImport(): Promise<
   const next = nextPendingAmazonUsListingsImport();
   if (!next) return "idle";
   if (next.nextAllowedAt && !Number.isFinite(Date.parse(next.nextAllowedAt))) {
-    await pauseAmazonUsListingsImport(next.workspaceId, "RATE_GATE_CORRUPT", next.startedAt);
+    await pauseAmazonUsListingsImport(next.workspaceId, "RATE_GATE_CORRUPT", next.startedAt, next.providerId);
     return "paused";
   }
   if (next.nextAllowedAt && Date.parse(next.nextAllowedAt) > Date.now()) return "waiting";
   const job = await runLiveCommerceSync({
-    workspaceId: next.workspaceId, providerId: "amazon-us", syncType: "catalog",
+    workspaceId: next.workspaceId, providerId: next.providerId, syncType: "catalog",
     actor: "scheduled-listings-import",
   });
   if (job.status === "completed") return "completed";
   if (job.status === "queued") return "pending";
-  await pauseAmazonUsListingsImport(next.workspaceId, "PROVIDER_FAILURE", next.startedAt);
+  await pauseAmazonUsListingsImport(next.workspaceId, "PROVIDER_FAILURE", next.startedAt, next.providerId);
   return "paused";
 }
 

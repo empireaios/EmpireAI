@@ -1,24 +1,24 @@
-/** Read-only Amazon US seller listing summaries, one durable page per invocation.
+/** Read-only Amazon seller listing summaries, one durable page per invocation.
  * Amazon Listings Items v2021-08-01: https://developer-docs.amazon.com/sp-api/reference/searchlistingsitems
  * Seller offers are current listing prices, not supplier cost, margin or pricing approval.
  */
 import { createHash } from "node:crypto";
 import { getDatabase } from "../../../../brain/database.js";
-import { getAmazonMarketplaceProfile } from "../amazon-marketplace-profiles.js";
+import { getAmazonMarketplaceProfile, isAmazonMarketplaceRegistryId, type AmazonMarketplaceRegistryId } from "../amazon-marketplace-profiles.js";
 import { httpTransport } from "../http-transport.js";
 import type { LiveCommerceAdapterContext, LiveCommerceSyncResult } from "./types.js";
 
 type Listing = {
   sku: string; asin: string | null; marketplaceId: string;
   name: string | null; status: string[]; updatedAt: string | null;
-  sellerOfferPriceCents: number | null; sellerOfferCurrency: "USD" | null;
+  sellerOfferPriceCents: number | null; sellerOfferCurrency: "USD" | "SGD" | null;
   cycleStartedAt: string; sourceSha256: string;
 };
 type Cursor = {
   sellerId: string; nextToken: string; seen: number;
   startedAt: string; completedAt: string | null; status: string; reason: string;
 };
-function sellerOfferCents(raw: unknown, marketplaceId: string): number | null {
+function sellerOfferCents(raw: unknown, marketplaceId: string, expectedCurrency: "USD" | "SGD"): number | null {
   if (raw == null) return null;
   if (!Array.isArray(raw)) throw new Error("Amazon seller offers malformed");
   const matching = raw.filter((offer): offer is Record<string, unknown> =>
@@ -32,13 +32,13 @@ function sellerOfferCents(raw: unknown, marketplaceId: string): number | null {
     throw new Error("Amazon seller B2C price missing");
   }
   const { currency, amount } = price as Record<string, unknown>;
-  if (currency !== "USD" || typeof amount !== "string" ||
+  if (currency !== expectedCurrency || typeof amount !== "string" ||
       !/^(?:0|[1-9]\d{0,10})(?:\.\d{1,2})?$/.test(amount)) {
-    throw new Error("Amazon seller B2C USD price invalid");
+    throw new Error(`Amazon seller B2C ${expectedCurrency} price invalid`);
   }
   const [units, decimals = ""] = amount.split(".");
   const cents = Number(units) * 100 + Number(decimals.padEnd(2, "0"));
-  if (!Number.isSafeInteger(cents) || cents <= 0) throw new Error("Amazon seller B2C USD price invalid");
+  if (!Number.isSafeInteger(cents) || cents <= 0) throw new Error(`Amazon seller B2C ${expectedCurrency} price invalid`);
   return cents;
 }
 function tables(): void {
@@ -70,7 +70,7 @@ function cursor(ctx: LiveCommerceAdapterContext): Cursor | null {
   `).get({ workspaceId: ctx.workspaceId, providerId: ctx.providerId }) as Cursor | undefined;
   return row ?? null;
 }
-function listing(raw: unknown, marketplaceId: string, cycleStartedAt: string): Listing {
+function listing(raw: unknown, marketplaceId: string, cycleStartedAt: string, currency: "USD" | "SGD"): Listing {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw new Error("Amazon listing malformed");
   const item = raw as Record<string, unknown>;
   if (typeof item.sku !== "string" || !item.sku.trim() || item.sku.length > 256 ||
@@ -88,13 +88,13 @@ function listing(raw: unknown, marketplaceId: string, cycleStartedAt: string): L
         !Number.isFinite(Date.parse(summary.lastUpdatedDate)))) {
     throw new Error("Amazon listing summary fields invalid");
   }
-  const priceCents = sellerOfferCents(item.offers, marketplaceId);
+  const priceCents = sellerOfferCents(item.offers, marketplaceId, currency);
   return {
     sku: item.sku, asin: summary.asin as string | undefined ?? null,
     marketplaceId, name: typeof summary.itemName === "string" ? summary.itemName.slice(0, 512) : null,
     status: summary.status as string[] | undefined ?? [],
     updatedAt: summary.lastUpdatedDate as string | undefined ?? null,
-    sellerOfferPriceCents: priceCents, sellerOfferCurrency: priceCents === null ? null : "USD",
+    sellerOfferPriceCents: priceCents, sellerOfferCurrency: priceCents === null ? null : currency,
     cycleStartedAt,
     sourceSha256: createHash("sha256").update(JSON.stringify(raw)).digest("hex"),
   };
@@ -144,15 +144,15 @@ function persistPage(ctx: LiveCommerceAdapterContext, rows: Listing[], next: Cur
     throw error;
   }
 }
-export function listImportedAmazonUsListings(workspaceId: string, sellerId: string): Listing[] {
+export function listImportedAmazonListings(workspaceId: string, sellerId: string, providerId: AmazonMarketplaceRegistryId = "amazon-us"): Listing[] {
   tables();
   const rows = getDatabase().prepare(`SELECT record_json FROM amazon_listing_import_rows
-    WHERE workspace_id=@workspaceId AND provider_id='amazon-us' AND seller_id=@sellerId
-    ORDER BY sku LIMIT 500`).all({ workspaceId, sellerId }) as Array<{ record_json: string }>;
+    WHERE workspace_id=@workspaceId AND provider_id=@providerId AND seller_id=@sellerId
+    ORDER BY sku LIMIT 500`).all({ workspaceId, sellerId, providerId }) as Array<{ record_json: string }>;
   return rows.map(row => {
     const record = JSON.parse(row.record_json) as Listing;
     // Pre-price snapshots must remain explicitly unpriced on a code upgrade.
-    if (record.sellerOfferCurrency !== "USD" ||
+    if (record.sellerOfferCurrency !== getAmazonMarketplaceProfile(providerId).currencyCode ||
         typeof record.sellerOfferPriceCents !== "number" ||
         !Number.isSafeInteger(record.sellerOfferPriceCents) ||
         record.sellerOfferPriceCents <= 0) {
@@ -162,14 +162,14 @@ export function listImportedAmazonUsListings(workspaceId: string, sellerId: stri
   });
 }
 
-export function listCurrentAmazonUsListings(workspaceId: string): Listing[] {
-  const selected = cursor({ workspaceId, providerId: "amazon-us", mode: "production", credentials: {} });
-  return selected ? listImportedAmazonUsListings(workspaceId, selected.sellerId)
+export function listCurrentAmazonListings(workspaceId: string, providerId: AmazonMarketplaceRegistryId = "amazon-us"): Listing[] {
+  const selected = cursor({ workspaceId, providerId, mode: "production", credentials: {} });
+  return selected ? listImportedAmazonListings(workspaceId, selected.sellerId, providerId)
     .filter(row => row.cycleStartedAt === selected.startedAt) : [];
 }
 
 /** No opaque provider token or access credential is exposed to the caller. */
-export function getAmazonUsListingsImportStatus(workspaceId: string): {
+export function getAmazonListingsImportStatus(workspaceId: string, providerId: AmazonMarketplaceRegistryId = "amazon-us"): {
   status: string; reason: string; itemsSeen: number; pagesPending: boolean;
   nextAllowedAt: string | null; completedAt: string | null;
 } | null {
@@ -178,7 +178,7 @@ export function getAmazonUsListingsImportStatus(workspaceId: string): {
       c.completed_at, g.next_allowed_at
     FROM amazon_listing_import_cursor c LEFT JOIN amazon_listing_import_gate g
       ON g.workspace_id=c.workspace_id AND g.provider_id=c.provider_id
-    WHERE c.workspace_id=@workspaceId AND c.provider_id='amazon-us'`).get({ workspaceId }) as {
+    WHERE c.workspace_id=@workspaceId AND c.provider_id=@providerId`).get({ workspaceId, providerId }) as {
     status: string; reason: string; seen: number; next_token: string;
     completed_at: string | null; next_allowed_at: string | null;
   } | undefined;
@@ -187,39 +187,39 @@ export function getAmazonUsListingsImportStatus(workspaceId: string): {
     completedAt: row.completed_at } : null;
 }
 
-export function nextPendingAmazonUsListingsImport(): {
-  workspaceId: string; nextAllowedAt: string | null; startedAt: string;
+export function nextPendingAmazonListingsImport(): {
+  workspaceId: string; providerId: AmazonMarketplaceRegistryId; nextAllowedAt: string | null; startedAt: string;
 } | null {
   tables();
-  return getDatabase().prepare(`SELECT c.workspace_id AS workspaceId,
+  return getDatabase().prepare(`SELECT c.workspace_id AS workspaceId, c.provider_id AS providerId,
       g.next_allowed_at AS nextAllowedAt, c.started_at AS startedAt
     FROM amazon_listing_import_cursor c LEFT JOIN amazon_listing_import_gate g
       ON g.workspace_id=c.workspace_id AND g.provider_id=c.provider_id
-    WHERE c.provider_id='amazon-us' AND c.status='pending' AND c.next_token <> ''
+    WHERE c.provider_id IN ('amazon-us','amazon-sg') AND c.status='pending' AND c.next_token <> ''
     ORDER BY c.started_at ASC LIMIT 1`).get() as {
-    workspaceId: string; nextAllowedAt: string | null; startedAt: string;
+    workspaceId: string; providerId: AmazonMarketplaceRegistryId; nextAllowedAt: string | null; startedAt: string;
   } | undefined ?? null;
 }
 
-export async function pauseAmazonUsListingsImport(workspaceId: string, reason: string, startedAt: string): Promise<void> {
+export async function pauseAmazonListingsImport(workspaceId: string, reason: string, startedAt: string, providerId: AmazonMarketplaceRegistryId = "amazon-us"): Promise<void> {
   if (reason !== "PROVIDER_FAILURE" && reason !== "RATE_GATE_CORRUPT") {
     throw new Error("Amazon listing pause reason invalid");
   }
   tables();
   getDatabase().prepare(`UPDATE amazon_listing_import_cursor SET status='paused', reason=@reason
-    WHERE workspace_id=@workspaceId AND provider_id='amazon-us' AND status='pending'
-      AND started_at=@startedAt`).run({ workspaceId, reason, startedAt });
+    WHERE workspace_id=@workspaceId AND provider_id=@providerId AND status='pending'
+      AND started_at=@startedAt`).run({ workspaceId, reason, startedAt, providerId });
   await getDatabase().requestCriticalPersist();
 }
 
-export async function syncAmazonUsListings(ctx: LiveCommerceAdapterContext): Promise<LiveCommerceSyncResult> {
-  if (ctx.providerId !== "amazon-us" || ctx.mode !== "production") {
-    throw new Error("Amazon US listing import requires production Amazon US context");
+export async function syncAmazonMarketplaceListings(ctx: LiveCommerceAdapterContext): Promise<LiveCommerceSyncResult> {
+  if (!isAmazonMarketplaceRegistryId(ctx.providerId) || ctx.mode !== "production") {
+    throw new Error("Amazon listing import requires production Amazon context");
   }
   const token = ctx.credentials.accessToken, seller = ctx.credentials.sellerId;
   if (typeof token !== "string" || !token.trim() || typeof seller !== "string" ||
       !/^[A-Za-z0-9_-]{1,64}$/.test(seller)) {
-    throw new Error("Amazon US seller ID and access token required for listing import");
+    throw new Error("Amazon seller ID and access token required for listing import");
   }
   const previous = cursor(ctx);
   if (previous && previous.sellerId !== seller) throw new Error("Amazon listing seller binding changed");
@@ -229,30 +229,31 @@ export async function syncAmazonUsListings(ctx: LiveCommerceAdapterContext): Pro
     sellerId: seller, nextToken: "", seen: 0, startedAt: new Date().toISOString(),
     completedAt: null, status: "pending", reason: "",
   };
-  const marketplaceId = getAmazonMarketplaceProfile("amazon-us").marketplaceId;
+  const profile = getAmazonMarketplaceProfile(ctx.providerId);
+  const marketplaceId = profile.marketplaceId;
   const query = new URLSearchParams({ marketplaceIds: marketplaceId, includedData: "summaries,offers", pageSize: "20" });
   if (active.nextToken) query.set("pageToken", active.nextToken);
   await reserveRequest(ctx);
   const response = await httpTransport({
-    url: `https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/${encodeURIComponent(seller)}?${query}`,
+    url: `${profile.productionEndpoint}/listings/2021-08-01/items/${encodeURIComponent(seller)}?${query}`,
     method: "GET", headers: { "x-amz-access-token": token }, timeoutMs: 15_000,
     maxResponseBytes: 2 * 1024 * 1024,
   });
-  if (!response.ok) throw new Error(`Amazon US listing search failed: HTTP ${response.status}`);
+  if (!response.ok) throw new Error(`Amazon listing search failed: HTTP ${response.status}`);
   if (!response.json || typeof response.json !== "object" || Array.isArray(response.json)) {
-    throw new Error("Amazon US listing search response malformed");
+    throw new Error("Amazon listing search response malformed");
   }
   const body = response.json as Record<string, unknown>;
   if (!Array.isArray(body.items) || body.items.length > 20 ||
       body.pagination != null && (typeof body.pagination !== "object" || Array.isArray(body.pagination))) {
-    throw new Error("Amazon US listing page missing or oversized");
+    throw new Error("Amazon listing page missing or oversized");
   }
   const tokenAfter = (body.pagination as Record<string, unknown> | undefined)?.nextToken ?? "";
   if (typeof tokenAfter !== "string" || tokenAfter.length > 4096 ||
       tokenAfter && tokenAfter === active.nextToken || active.seen + body.items.length > 50_000) {
-    throw new Error("Amazon US listing pagination invalid");
+    throw new Error("Amazon listing pagination invalid");
   }
-  const rows = body.items.map(raw => listing(raw, marketplaceId, active.startedAt));
+  const rows = body.items.map(raw => listing(raw, marketplaceId, active.startedAt, profile.currencyCode));
   if (new Set(rows.map(row => row.sku)).size !== rows.length) throw new Error("Amazon listing duplicate SKU page");
   const next: Cursor = {
     sellerId: seller, nextToken: tokenAfter,
@@ -270,9 +271,27 @@ export async function syncAmazonUsListings(ctx: LiveCommerceAdapterContext): Pro
         JSON.parse((read.get({ workspaceId: ctx.workspaceId, providerId: ctx.providerId,
           sellerId: seller, sku: row.sku }) as { record_json: string } | undefined)?.record_json ?? "null")
           ?.sourceSha256 !== row.sourceSha256)) {
-    throw new Error("Amazon US listing durable read-back failed");
+    throw new Error("Amazon listing durable read-back failed");
   }
   if (tokenAfter) throw new Error("AMAZON_LISTINGS_PAGINATION_PENDING: durable page saved");
   return { syncType: "catalog", itemsProcessed: next.seen, itemsFailed: 0,
     liveApiVerified: true, durableReadbackVerified: true };
 }
+
+/** Compatibility export. */
+export const listImportedAmazonUsListings = listImportedAmazonListings;
+
+/** Compatibility export. */
+export const listCurrentAmazonUsListings = listCurrentAmazonListings;
+
+/** Compatibility export. */
+export const getAmazonUsListingsImportStatus = getAmazonListingsImportStatus;
+
+/** Compatibility export. */
+export const nextPendingAmazonUsListingsImport = nextPendingAmazonListingsImport;
+
+/** Compatibility export. */
+export const pauseAmazonUsListingsImport = pauseAmazonListingsImport;
+
+/** Compatibility export. */
+export const syncAmazonUsListings = syncAmazonMarketplaceListings;

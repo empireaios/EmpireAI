@@ -1,4 +1,4 @@
-/** Continue only an owner-started, read-only Amazon US seller availability import. */
+/** Continue only an owner-started, read-only Amazon seller availability import. */
 import { logger } from "../../../../config/logger.js";
 import {
   nextPendingAmazonSellerInventoryImport, pauseAmazonSellerInventoryImport,
@@ -13,15 +13,15 @@ export async function continueOneAmazonSellerInventoryImport(): Promise<
   const next = nextPendingAmazonSellerInventoryImport();
   if (!next) return "idle";
   if (next.nextAllowedAt && !Number.isFinite(Date.parse(next.nextAllowedAt))) {
-    await pauseAmazonSellerInventoryImport(next.workspaceId, "RATE_GATE_CORRUPT", next.startedAt);
+    await pauseAmazonSellerInventoryImport(next.workspaceId, "RATE_GATE_CORRUPT", next.startedAt, next.providerId);
     return "paused";
   }
   if (next.nextAllowedAt && Date.parse(next.nextAllowedAt) > Date.now()) return "waiting";
   const job = await runLiveCommerceSync({ workspaceId: next.workspaceId,
-    providerId: "amazon-us", syncType: "inventory", actor: "scheduled-seller-inventory-import" });
+    providerId: next.providerId, syncType: "inventory", actor: "scheduled-seller-inventory-import" });
   if (job.status === "completed") return "completed";
   if (job.status === "queued") return "pending";
-  await pauseAmazonSellerInventoryImport(next.workspaceId, "PROVIDER_FAILURE", next.startedAt);
+  await pauseAmazonSellerInventoryImport(next.workspaceId, "PROVIDER_FAILURE", next.startedAt, next.providerId);
   return "paused";
 }
 

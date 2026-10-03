@@ -10,6 +10,7 @@ export type AmazonMarketplaceProfile = {
   registryId: AmazonMarketplaceRegistryId;
   displayName: string;
   countryCode: string;
+  currencyCode: "USD" | "SGD";
   spApiRegion: AmazonSpApiRegion;
   marketplaceId: string;
   productionEndpoint: string;
@@ -29,6 +30,7 @@ const AMAZON_US_PROFILE: AmazonMarketplaceProfile = {
   registryId: "amazon-us",
   displayName: "Amazon US",
   countryCode: "US",
+  currencyCode: "USD",
   spApiRegion: "NA",
   marketplaceId: "ATVPDKIKX0DER",
   productionEndpoint: "https://sellingpartnerapi-na.amazon.com",
@@ -43,6 +45,7 @@ const AMAZON_SG_PROFILE: AmazonMarketplaceProfile = {
   registryId: "amazon-sg",
   displayName: "Amazon Singapore",
   countryCode: "SG",
+  currencyCode: "SGD",
   spApiRegion: "FE",
   marketplaceId: "A19VAU5U5O7RUS",
   productionEndpoint: "https://sellingpartnerapi-fe.amazon.com",
