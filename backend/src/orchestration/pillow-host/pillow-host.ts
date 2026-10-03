@@ -29854,10 +29854,10 @@ export class PillowHost {
                     });
                     recordPillowResponseTerminal({
                         requestId,
-                        kind: "complete",
-                        useful: true,
+                        kind: "authority_constrained",
+                        useful: false,
                         degradedUsed: false,
-                        primaryFailureReason: null,
+                        primaryFailureReason: "live_commerce_refused",
                         latencyMs,
                         multipartUnits,
                     });
@@ -29869,8 +29869,7 @@ export class PillowHost {
                         requestId,
                         sessionId: session.sessionId,
                         workspaceId: input.workspaceId,
-                        message: refusal.message,
-                        kind: "authority_refusal",
+                        ...refusal,
                         latencyMs,
                         trace: { ...trace, totalMs: latencyMs },
                         constitutionalGate: {

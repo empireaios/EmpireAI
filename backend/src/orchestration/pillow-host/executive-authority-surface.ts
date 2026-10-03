@@ -13,32 +13,56 @@ function isDirectAuthorityStatusAsk(message: string): boolean {
     /^(?:do not execute tools, commerce or spending|this is a bounded engineering transport test)$/i.test(part));
 }
 
+/** Admission classification only. This never grants execution authority.
+ * Interpret each proposition locally: analytical predicates and unconditional
+ * prohibitions are not instructions to execute their embedded action verbs.
+ * An independent positive action remains blocked even beside a safe disclaimer.
+ * Actual tools/writes retain their independent locked runtime checks.
+ */
 export function isLiveCommerceEffectAsk(message: string): boolean {
-  const t = String(message || "");
-  if (!/\b(?:live|real|amazon|marketplace|ads?|listing|purchase|order|payment|spend)\b/i.test(t)) {
-    return false;
-  }
-  const effect =
-    /\b(?:create|place|publish|buy|purchase|spend|launch|run|start|allocate)\b/i.test(t) &&
-    /\b(?:listing|listings|ad(?:vertis(?:e|ing|ement))?|ads|purchase|order|payment|buy)\b/i.test(t);
-  const explicitLive =
-    /\blive\b/i.test(t) ||
-    /\breal\s+commerce\b/i.test(t) ||
-    /\bamazon\s+us\b/i.test(t) ||
-    /\breal\s+(?:listing|purchase|order|ad)/i.test(t);
-  return effect && explicitLive;
+  const action = /\b(?:create|place|publish|buy|purchase|pay|spend|launch|run|start|allocate|send|transfer|submit|execute|write|update|delete)\b/i;
+  const effectObject = /\b(?:listings?|ads?|advertisements?|campaigns?|purchases?|orders?|payments?|funds|money|inventory|products?|stock|goods|supplier|marketplace|external|commerce)\b|[$€£]/i;
+  const units = String(message || "").replace(/[’]/g, "'")
+    .split(/[.!?;\n]+|,\s*(?=(?:please\s+)?(?:publish|purchase|pay|spend|send|execute|write|update|delete)\b)|\b(?:but|however|then)\b|,?\s+and\s+(?=(?:please\s+)?(?:create|place|publish|buy|purchase|pay|spend|launch|run|start|allocate|send|transfer|submit|execute|write|update|delete)\b)/i);
+  return units.some((unit) => {
+    const text = unit.trim().replace(/^[*#>\s-]+/, "");
+    const verb = action.exec(text);
+    if (!verb || !effectObject.test(text.slice(verb.index))) return false;
+    const before = text.slice(0, verb.index);
+    // Conditional/exception denials cannot erase a positive execution request.
+    const exception = /\b(?:unless|except|until|once|provided|otherwise)\b/i.test(text);
+    const prohibition = /\b(?:do not|don't|must not|shall not|will not|won't|cannot|can't|never)\s+(?:actually\s+|ever\s+)?$/i.test(before);
+    if (prohibition && !exception) return false;
+    // These predicates request a judgment, explanation or model of an action.
+    // No global "hypothetical" flag: a separate execution clause is still checked.
+    const analytical = /^(?:(?:pillow|please)[,:]?\s+)*(?:analy[sz]e|assess|evaluate|compare|explain|discuss|review|calculate|estimate|model|simulate|describe|recommend|consider|reason about|advise (?:on|whether)|decide whether|should (?:we|i)|what (?:if|would|are|is)|how (?:would|could|should)|whether)\b/i.test(text);
+    const delegation = /\b(?:and|also)\s+(?:you\s+)?(?:must|should|will|can|could|please)\b|\b(?:go ahead|carry out|do it|execute it)\b/i.test(text);
+    if (analytical && !delegation) return false;
+    const analyticalArtifact = /^(?:create|write|run|prepare)\s+(?:(?:a|an|the)\s+)?(?:report|analysis|comparison|simulation|model|forecast|recommendation|explanation|plan)\b/i.test(text.slice(verb.index));
+    if (analyticalArtifact && !delegation) return false;
+    // Only explicit counterfactual questions are nonexecuting here; a
+    // condition alone never licenses the action in its consequent.
+    if (/^if\b/i.test(text) && /,\s*(?:what|how|would|should|could)\b/i.test(text) && !delegation) return false;
+    return true;
+  });
 }
 
 export function projectLiveCommerceRefusal(message: string): {
   ok: true;
   message: string;
   kind: "authority_refusal";
+  brainCompleted: false;
+  semanticSuccess: false;
+  reasoningFailure: { code: "LIVE_COMMERCE_REFUSED"; retryable: false };
 } {
   const ops = canonicalOperatingProjection();
   void message;
   return {
     ok: true,
     kind: "authority_refusal",
+    brainCompleted: false,
+    semanticSuccess: false,
+    reasoningFailure: { code: "LIVE_COMMERCE_REFUSED", retryable: false },
     message: [
       `Refused: live commerce effects are blocked.`,
       `Birth status: ${ops.birthStatus}. Operating mode: ${ops.operatingMode}.`,
