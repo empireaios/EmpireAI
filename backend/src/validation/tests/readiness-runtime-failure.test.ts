@@ -25,9 +25,9 @@ test('runtime failures deny worker and primary readiness without hiding liveness
  });
  const check=async(code:number,reason?:string)=>{
   const r=await worker.inject('/health/ready');assert.equal(r.statusCode,code,r.body);
-  assert.equal((await primary.inject('/health/ready')).statusCode,code);
+  const p=await primary.inject('/health/ready');assert.equal(p.statusCode,code);
   assert.equal((await worker.inject('/health/live')).statusCode,200);
-  if(reason)assert.match(JSON.stringify(r.json().blockers),new RegExp(reason));
+  if(reason){assert.match(JSON.stringify(r.json().blockers),new RegExp(reason));assert.match(JSON.stringify(p.json().blockers),new RegExp(reason));}
  };
  try{
   await check(200);

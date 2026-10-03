@@ -309,8 +309,18 @@ export function registerTier0ReadinessRoute(
       workerReady,
       primarySessionStoreReady,
     });
+    const blockers: string[] = [];
+    if (!primarySessionStoreReady) blockers.push("Primary Redis-backed session store unavailable");
+    if (!workerReady) {
+      const reasons = worker.body?.blockers;
+      const workerBlockers = Array.isArray(reasons)
+        ? reasons.filter((reason): reason is string => typeof reason === "string" && reason.length > 0)
+        : [];
+      blockers.push(...(workerBlockers.length ? workerBlockers : ["Brain worker readiness unavailable"]));
+    }
     const payload = {
       ready: readiness.ready,
+      blockers,
       brain: workerReady ? "online" : "tier0_only",
       process: "running",
       tier0Isolation: true,

@@ -169,6 +169,7 @@ describe("tier0 isolated primary", () => {
     assert.equal(response.statusCode, 503);
     assert.deepEqual(response.json(), {
       ready: false,
+      blockers: ["Brain worker readiness unavailable"],
       brain: "tier0_only",
       process: "running",
       tier0Isolation: true,
