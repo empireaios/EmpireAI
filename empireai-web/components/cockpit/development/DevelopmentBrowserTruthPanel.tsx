@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import { DataTable, Panel } from "@/components/platform/ui/PlatformPrimitives";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
@@ -55,9 +57,7 @@ export function DevelopmentBrowserTruthPanel() {
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  useEffect(() => subscribeRead(load), [load]);
 
   if (loading) {
     return <Panel title="Browser Truth">Loading browser acceptance state…</Panel>;
@@ -74,7 +74,7 @@ export function DevelopmentBrowserTruthPanel() {
     );
   }
 
-  const { cockpit, metrics, readiness } = data.browserTruth;
+  const { cockpit, readiness } = data.browserTruth;
 
   return (
     <div className="space-y-6">

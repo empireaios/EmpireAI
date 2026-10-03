@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 
 type SpeechRecognitionCtor = new () => {
   continuous: boolean;
@@ -22,14 +22,15 @@ function getSpeechRecognition(): SpeechRecognitionCtor | null {
   return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null;
 }
 
+const subscribeToCapability = () => () => {};
+const speechCapability = () => Boolean(getSpeechRecognition());
+const serverSpeechCapability = () => false;
+
 export function usePillowVoice(onTranscript: (text: string) => void) {
   const [listening, setListening] = useState(false);
-  const [supported, setSupported] = useState(false);
+  const supported = useSyncExternalStore(subscribeToCapability, speechCapability, serverSpeechCapability);
   const recognitionRef = useRef<InstanceType<SpeechRecognitionCtor> | null>(null);
 
-  useEffect(() => {
-    setSupported(Boolean(getSpeechRecognition()));
-  }, []);
 
   const stop = useCallback(() => {
     recognitionRef.current?.stop();

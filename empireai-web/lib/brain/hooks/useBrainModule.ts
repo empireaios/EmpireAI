@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
 import type { ModuleId } from "@/lib/platform/types";
 import { brainDispatch } from "@/lib/brain/client";
 import type { BrainError } from "@/lib/brain/types";
@@ -15,14 +16,14 @@ export function useBrainModule<T>(
   },
 ) {
   const enabled = options?.enabled ?? true;
-  const payload = options?.payload;
+  const payloadKey = JSON.stringify(options?.payload ?? null);
   const companyId = options?.companyId;
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(enabled);
   const [error, setError] = useState<BrainError | null>(null);
   const [attempt, setAttempt] = useState(0);
   const dataRef = useRef<T | null>(null);
-  dataRef.current = data;
+  useEffect(() => { dataRef.current = data; }, [data]);
 
   const reload = useCallback(() => {
     setAttempt((value) => value + 1);
@@ -47,7 +48,7 @@ export function useBrainModule<T>(
           module,
           action,
           companyId,
-          payload,
+          payload: JSON.parse(payloadKey) ?? undefined,
         });
         if (!cancelled) {
           setData(response.result ?? null);
@@ -63,12 +64,13 @@ export function useBrainModule<T>(
       }
     }
 
-    void load();
+    const unsubscribe = subscribeRead(load);
 
     return () => {
       cancelled = true;
+      unsubscribe();
     };
-  }, [module, action, enabled, attempt, companyId, JSON.stringify(payload ?? null)]);
+  }, [module, action, enabled, attempt, companyId, payloadKey]);
 
   return { data, loading: enabled && loading && data === null, error, reload, refreshing: enabled && loading && data !== null };
 }

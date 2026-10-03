@@ -7,7 +7,6 @@ import {
 import {
   buildShellTraceFromDecision,
   decideBffChatSurface,
-  DEGRADED_CHAT_MESSAGE,
   terminalPillowHttpStatus,
   isFailClosedPillowResponse,
 } from "@/lib/pillow/bff-chat-sanitize";

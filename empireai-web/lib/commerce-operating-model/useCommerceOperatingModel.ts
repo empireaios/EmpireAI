@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
 import type { CommerceOperatingModel } from "@/lib/commerce-operating-model/types";
 import { fetchWithBudget } from "@/lib/cockpit/fetch-with-budget";
 
@@ -44,18 +45,13 @@ export function useCommerceOperatingModel(options?: { enabled?: boolean }) {
   }, [enabled]);
 
   useEffect(() => {
-    if (!enabled) {
-      setLoading(false);
-      return undefined;
-    }
-    void reload();
-    const interval = setInterval(() => void reload(), POLL_MS);
-    return () => clearInterval(interval);
+    if (!enabled) return undefined;
+    return subscribeRead(reload, POLL_MS);
   }, [enabled, reload]);
 
   return {
     data,
-    loading,
+    loading: enabled && loading,
     error,
     reload,
     view: data?.commerceOperatingModel ?? null,

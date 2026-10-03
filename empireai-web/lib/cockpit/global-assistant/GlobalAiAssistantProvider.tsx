@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import {
   createContext,
   useCallback,
@@ -20,7 +22,6 @@ import type {
 } from "@/lib/cockpit/global-assistant/types";
 import {
   appendPillowTurn,
-  clearPillowHostSession,
   loadPillowPanelPreferences,
   loadPillowSession,
   preservePillowLocalArchive,
@@ -246,8 +247,10 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     [buildWorkspaceContext, founderShell?.data],
   );
 
+  const historyOwnerId = user?.id;
+  const historyWorkspaceId = user?.workspaceId;
   useEffect(() => {
-    if (!user) return;
+    if (!historyOwnerId) return;
     let cancelled = false;
     let running = false;
     const hydrate = async () => {
@@ -255,12 +258,12 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       running = true;
       try {
         // Every device resolves the server conversation. Local storage is only a cache.
-        const cached=loadPillowSession(user.id);
+        const cached=loadPillowSession(historyOwnerId);
         const historicalBrowserTurns=(cached?.turns ?? []).filter(turn=>!turn.source && Number.isFinite(Date.parse(turn.recordedAt))).map(turn=>({role:turn.role==='grand-king'?'user' as const:'assistant' as const,content:turn.content,timestamp:new Date(turn.recordedAt).toISOString(),requestId:turn.requestId}));
-        const session = await createPillowHostSession(user.workspaceId, user.id, historicalBrowserTurns);
+        const session = await createPillowHostSession(historyWorkspaceId, historyOwnerId, historicalBrowserTurns);
 
         const history = await fetchPillowHistory(session.sessionId);
-        if (cancelled || activeOwnerId.current !== user.id || chatSubmissionActive.current) return;
+        if (cancelled || activeOwnerId.current !== historyOwnerId || chatSubmissionActive.current) return;
         const serverTurns: PillowConversationTurn[] = history.session.conversationHistory
           .filter(turn => turn.role === "user" || turn.role === "assistant")
           .map((turn, index) => ({
@@ -278,14 +281,14 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
           screenPath:pathname, source:'historical_browser_cache',
         }));
         const turns = reconcilePillowHistory(serverTurns, archiveTurns);
-        const previous = loadPillowSession(user.id);
+        const previous = loadPillowSession(historyOwnerId);
         // Preserve browser-only historical records separately; never silently
         // upload them as server evidence or inference context.
-        preservePillowLocalArchive(previous, turns, user.id);
-        savePillowSession({turns, lastScreenPath: pathname, updatedAt: new Date().toISOString(), hostSessionId: session.sessionId}, user.id);
+        preservePillowLocalArchive(previous, turns, historyOwnerId);
+        savePillowSession({turns, lastScreenPath: pathname, updatedAt: new Date().toISOString(), hostSessionId: session.sessionId}, historyOwnerId);
         markReady(session.sessionId, turns);
       } catch {
-        if (!cancelled && activeOwnerId.current === user.id) {
+        if (!cancelled && activeOwnerId.current === historyOwnerId) {
           markStarting("recovering", "Server conversation history could not be synchronized. Any displayed cached history is device-local and unverified.");
         }
       } finally { running = false; }
@@ -301,7 +304,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       window.removeEventListener("online", refresh);
       document.removeEventListener("visibilitychange", refresh);
     };
-  }, [markReady, markStarting, pathname, user?.id, user?.workspaceId]);
+  }, [markReady, markStarting, pathname, historyOwnerId, historyWorkspaceId]);
 
   const refreshContext = useCallback(async () => {
     // Never share chat `loading` with background context refresh — that disabled Send
@@ -323,13 +326,11 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     }
   }, [pathname, state.pageOverride, syncExecutiveAwareness]);
 
-  useEffect(() => {
-    void refreshContext();
-  }, [refreshContext]);
+  useEffect(() => subscribeRead(refreshContext), [refreshContext]);
 
   useEffect(() => {
     if (state.context) {
-      syncExecutiveAwareness(state.context, state.pageOverride);
+      return subscribeRead(() => syncExecutiveAwareness(state.context, state.pageOverride));
     }
   }, [founderShell?.data, state.context, state.pageOverride, syncExecutiveAwareness]);
 
@@ -567,8 +568,6 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       buildWorkspaceContext,
       ensureHostSession,
       markStarting,
-      markReady,
-      pathname,
       presentChatResult,
       state.context,
       state.pageOverride,

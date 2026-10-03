@@ -6,6 +6,8 @@ export function mapPillowChatToAssistantResponse(
   result: PillowChatResult,
   query: string,
 ): GlobalAssistantResponse {
+  // Kept for callers using the established two-argument mapper contract.
+  void query;
   if (result.kind === "durable_pending" || result.kind === "error" || result.kind === "terminal_infrastructure") {
     return {
       action: "ask",

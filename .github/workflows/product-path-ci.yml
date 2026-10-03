@@ -308,15 +308,8 @@ jobs:
         run: npm test --prefix empireai-web
       - name: Build Next.js web
         run: npm run build --prefix empireai-web
-      - name: Diagnose known lint debt without masking product checks
-        id: lint_diagnostic
-        continue-on-error: true
+      - name: Enforce frontend lint (same command as Vercel promotion check)
         run: npm run lint --prefix empireai-web
-      - name: Record lint baseline debt
-        if: ${{ always() }}
-        shell: bash
-        run: |
-          echo 'Lint is diagnostic and non-gating in this first product-path slice. Baseline observed on origin/main: 164 errors and 11 warnings. This is unresolved debt, not a lint PASS.' >> "$GITHUB_STEP_SUMMARY"
 
   bounded-redis-image:
     name: Real Redis image expiry, AOF and signal proof
@@ -475,4 +468,4 @@ jobs:
             "$LEGACY_CAPTURE_RESULT"; do
             test "$result" = success
           done
-          echo 'All configured offline product gates passed, including the reviewed backend/Pillow suite. Live integrations, lint, deployment, and production certification remain outside this gate.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'All configured offline product gates passed, including the reviewed backend/Pillow suite. Live integrations, deployment, and production certification remain outside this gate.' >> "$GITHUB_STEP_SUMMARY"

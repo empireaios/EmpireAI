@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import type { ExecutiveInsightEngine } from "@/lib/executive-insight-engine/types";
 
@@ -32,11 +34,7 @@ export function useExecutiveInsightEngine() {
     }
   }, []);
 
-  useEffect(() => {
-    void reload();
-    const interval = setInterval(() => void reload(), POLL_MS);
-    return () => clearInterval(interval);
-  }, [reload]);
+  useEffect(() => subscribeRead(reload, POLL_MS), [reload]);
 
   return {
     data,

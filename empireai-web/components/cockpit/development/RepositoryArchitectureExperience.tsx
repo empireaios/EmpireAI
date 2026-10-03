@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import { PlatformPageHeader, Panel, DataTable } from "@/components/platform/ui/PlatformPrimitives";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
@@ -98,9 +100,7 @@ export function RepositoryArchitectureExperience() {
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  useEffect(() => subscribeRead(load), [load]);
 
   if (loading && !data) {
     return <Panel title="Repository Architecture">Loading repository intelligence…</Panel>;

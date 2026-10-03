@@ -32,7 +32,6 @@ export default function CommerceTransactionsPage() {
     let active = true;
     const controller = new AbortController();
     const timer = setTimeout(()=>controller.abort(),12_000);
-    setLoading(true);setError(null);setTransactions(null);
     void (async()=>{
       try {
         const response = await fetch("/api/commerce/transactions?limit=20",{
@@ -62,7 +61,7 @@ export default function CommerceTransactionsPage() {
     <header className="flex flex-wrap items-center justify-between gap-3">
       <div><Link href="/cockpit" className="text-sm text-amber-200 underline">Executive Home</Link>
         <h1 className="mt-2 text-2xl font-semibold text-stone-100">Transaction lifecycle</h1></div>
-      <button type="button" disabled={loading} onClick={()=>setRefresh(n=>n+1)}
+      <button type="button" disabled={loading} onClick={()=>{setLoading(true);setError(null);setTransactions(null);setRefresh(n=>n+1);}}
         className="min-h-11 rounded-lg border border-amber-300/40 px-4 py-2 text-amber-100 disabled:opacity-50">
         {loading ? "Loading…" : "Refresh"}
       </button>

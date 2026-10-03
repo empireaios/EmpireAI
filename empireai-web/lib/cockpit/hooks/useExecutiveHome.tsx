@@ -6,7 +6,6 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
   type ReactNode,
 } from "react";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
@@ -34,13 +33,7 @@ export function ExecutiveHomeProvider({
   refreshMs?: number;
 }) {
   const { data, loading, error, reload, refreshing } = useBrainModule<ExecutiveHomeView>("executive-home");
-  const [lastUpdatedAt, setLastUpdatedAt] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (data?.computedAt) {
-      setLastUpdatedAt(data.computedAt);
-    }
-  }, [data?.computedAt]);
+  const lastUpdatedAt = data?.computedAt ?? null;
 
   useEffect(() => {
     if (refreshMs <= 0) return undefined;
