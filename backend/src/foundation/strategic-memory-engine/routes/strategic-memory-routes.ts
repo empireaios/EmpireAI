@@ -145,6 +145,10 @@ export async function registerStrategicMemoryRoutes(
       .parse(request.body);
 
     try {
+      const target = getStrategicMemory(params.memoryId);
+      if (!target || target.workspaceId !== user.workspaceId) {
+        return reply.code(404).send({ error: "Strategic memory not found" });
+      }
       const memory = modifyStrategicMemory({ memoryId: params.memoryId, ...body, actor: user.email });
       auditLogger.write({
         action: "strategic_memory.modified",
@@ -171,6 +175,10 @@ export async function registerStrategicMemoryRoutes(
     const body = z.object({ reason: z.string().optional() }).parse(request.body ?? {});
 
     try {
+      const target = getStrategicMemory(params.memoryId);
+      if (!target || target.workspaceId !== user.workspaceId) {
+        return reply.code(404).send({ error: "Strategic memory not found" });
+      }
       const memory = archiveStrategicMemory(params.memoryId, user.email, body.reason);
       auditLogger.write({
         action: "strategic_memory.archived",
@@ -194,6 +202,14 @@ export async function registerStrategicMemoryRoutes(
     const body = z.object({ supersededBy: z.string().min(1) }).parse(request.body);
 
     try {
+      const target = getStrategicMemory(params.memoryId);
+      if (!target || target.workspaceId !== user.workspaceId) {
+        return reply.code(404).send({ error: "Strategic memory not found" });
+      }
+      const replacement = getStrategicMemory(body.supersededBy);
+      if (!replacement || replacement.workspaceId !== user.workspaceId) {
+        return reply.code(404).send({ error: "Strategic memory not found" });
+      }
       const memory = supersedeStrategicMemory(params.memoryId, body.supersededBy, user.email);
       auditLogger.write({
         action: "strategic_memory.superseded",
