@@ -9,6 +9,52 @@ import { readCommissioningAccounting, registerOwnerCommissioningReadback } from 
 import { InMemorySessionStore } from '../../auth/session-store.js';
 import { createAuthMiddleware } from '../../auth/middleware.js';
 import { env } from '../../config/env.js';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+
+test('operator decisions reach supervised stdout when production Fastify logging is disabled',()=>{
+ const route=new URL('../../runtime/owner-commissioning-readback.ts',import.meta.url).href;
+ const script=`import Fastify from 'fastify';
+ import {createHash} from 'node:crypto';
+ import {registerOwnerCommissioningReadback} from ${JSON.stringify(route)};
+ const token='c'.repeat(43);
+ process.env.EMPIRE_RUNTIME_PROFILE='LOCKED_COMMISSIONING_V1';
+ process.env.COMMISSIONING_OPERATOR_TOKEN_SHA256=createHash('sha256').update(token).digest('hex');
+ process.env.COMMISSIONING_OPERATOR_EXPIRES_AT=String(Date.now()+60000);
+ const app=Fastify({logger:false});
+ registerOwnerCommissioningReadback(app,async(_r,reply)=>reply.code(401).send({}),()=>({readOnly:true}));
+ const url='/api/commissioning/read-only/accounting';
+ const yes=await app.inject({url,headers:{'x-empire-commissioning-token':token}});
+ const no=await app.inject({url,headers:{'x-empire-commissioning-token':'private-invalid-token'}});
+ if(yes.statusCode!==200||no.statusCode!==403)throw Error('Unexpected authorization');
+ await app.close();`;
+ const result=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',script],{cwd:fileURLToPath(new URL('../../../',import.meta.url)),encoding:'utf8',timeout:30000});
+ assert.equal(result.status,0,result.stderr);
+ const lines=result.stdout.split('\n').filter(s=>s.includes('commissioning_operator_read_authorization')).map(s=>JSON.parse(s));
+ assert.deepEqual(lines.map(r=>r.granted),[true,false]);
+ for(const r of lines){
+  assert.deepEqual(Object.keys(r).sort(),['event','granted','observedAt','requestId','scope']);
+  assert.equal(r.scope,'assurance_accounting_read_only');
+  assert.ok(Number.isFinite(Date.parse(r.observedAt)));
+ }
+ assert.doesNotMatch(result.stdout,/private-invalid-token|cccccccccc|x-empire-commissioning-token/);
+});
+
+test('operator read fails closed when the audit sink fails',async()=>{
+ const keys=['EMPIRE_RUNTIME_PROFILE','COMMISSIONING_OPERATOR_TOKEN_SHA256','COMMISSIONING_OPERATOR_EXPIRES_AT'];
+ const saved=Object.fromEntries(keys.map(k=>[k,process.env[k]])),token='d'.repeat(43);
+ process.env.EMPIRE_RUNTIME_PROFILE='LOCKED_COMMISSIONING_V1';
+ process.env.COMMISSIONING_OPERATOR_TOKEN_SHA256=createHash('sha256').update(token).digest('hex');
+ process.env.COMMISSIONING_OPERATOR_EXPIRES_AT=String(Date.now()+60000);
+ const app=Fastify({logger:false});let reads=0;
+ registerOwnerCommissioningReadback(app,createAuthMiddleware(new InMemorySessionStore()),()=>{reads++;return {} as ReturnType<typeof readCommissioningAccounting>;},()=>{throw Error('private sink failure');});
+ try{
+  const response=await app.inject({url:'/api/commissioning/read-only/accounting',headers:{'x-empire-commissioning-token':token}});
+  assert.equal(response.statusCode,503);assert.equal(reads,0);
+  assert.equal(response.headers['cache-control'],'private, no-store');
+  assert.doesNotMatch(response.body,/private sink failure/);
+ }finally{await app.close();for(const key of keys){if(saved[key]===undefined)delete process.env[key];else process.env[key]=saved[key];}}
+});
 
 test('existing ledger snapshot preserves uncertain reservations and distinguishes estimates from invoices', () => {
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'readback-')),file=path.join(root,'ledger.sqlite');
