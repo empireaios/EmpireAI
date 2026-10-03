@@ -476,6 +476,17 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     pillowEnabled,
     pillowRequired,
     getPillowStatus: () => pillowHost.getStatus(),
+    runtimeSafetyRequired: redisRequired,
+    getRuntimeSafety: async () => {
+      const { getExecutiveContinuityHealth } = await import("./runtime/executive-continuity-watchdog.js");
+      const continuity = getExecutiveContinuityHealth();
+      return {
+        watchdogEnabled: continuity.watchdogEnabled,
+        watchdogRunning: continuity.watchdogRunning,
+        alerts: continuity.alerts,
+        lastFlushError: getSqlitePersistStats().lastFlushError,
+      };
+    },
   });
 
   app.get("/health/executive-continuity", async () => {

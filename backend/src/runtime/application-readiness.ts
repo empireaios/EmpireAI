@@ -39,6 +39,18 @@ export type WorkerReadinessRouteDependencies = {
   pillowEnabled: boolean;
   pillowRequired: boolean;
   getPillowStatus: () => PillowLifecycleSnapshot;
+  runtimeSafetyRequired?: boolean;
+  getRuntimeSafety?: () => {
+    watchdogEnabled: boolean;
+    watchdogRunning: boolean;
+    alerts: string[];
+    lastFlushError: string | null;
+  } | Promise<{
+    watchdogEnabled: boolean;
+    watchdogRunning: boolean;
+    alerts: string[];
+    lastFlushError: string | null;
+  }>;
 };
 
 /**
@@ -98,13 +110,35 @@ export function registerWorkerApplicationReadinessRoute(
     const redisReady =
       !dependencies.redisRequired ||
       (dependencies.redisMode === "connected" && redisReachable);
-    const readiness = buildWorkerApplicationReadiness({
+    const applicationReadiness = buildWorkerApplicationReadiness({
       authReady: report.ready,
       redisReady,
       pillowEnabled: dependencies.pillowEnabled,
       pillowLifecycle: pillowStatus.lifecycle,
       pillowRequired: dependencies.pillowRequired,
     });
+    const safetyBlockers: string[] = [];
+    if (dependencies.runtimeSafetyRequired) {
+      try {
+        const safety = await dependencies.getRuntimeSafety?.();
+        if (!safety) safetyBlockers.push("Runtime safety probe unavailable");
+        else {
+          if (!safety.watchdogEnabled || !safety.watchdogRunning) {
+            safetyBlockers.push("Executive continuity watchdog unavailable");
+          }
+          // Pending dirty writes and a completed slow flush are diagnostic
+          // observations, not proof of failed persistence or failed supervision.
+          safetyBlockers.push(...safety.alerts.filter((alert) =>
+            /^(watchdog_|heartbeat_|graceful_recovery_requested)/.test(alert),
+          ));
+          if (safety.lastFlushError !== null) safetyBlockers.push("SQLite persistence failure remains unresolved");
+        }
+      } catch {
+        safetyBlockers.push("Runtime safety probe failed");
+      }
+    }
+    const ready = applicationReadiness.ready && safetyBlockers.length === 0;
+    const readiness = {...applicationReadiness, ready, statusCode: ready ? 200 : 503};
     const checks = [
       ...report.checks,
       {
@@ -130,8 +164,15 @@ export function registerWorkerApplicationReadinessRoute(
         ok: readiness.pillowReady,
         detail: dependencies.pillowEnabled ? pillowStatus.lifecycle : "disabled",
       },
+      {
+        key: "runtime_safety",
+        ok: safetyBlockers.length === 0,
+        detail: dependencies.runtimeSafetyRequired
+          ? safetyBlockers.join("; ") || "WATCHDOG_AND_PERSISTENCE_READY"
+          : "OPTIONAL",
+      },
     ];
-    const blockers = [...report.blockers];
+    const blockers = [...report.blockers, ...safetyBlockers];
     if (!redisReady) blockers.push("Redis-backed shared session store unavailable");
     if (!readiness.pillowReady) {
       blockers.push(

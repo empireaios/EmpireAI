@@ -259,6 +259,7 @@ jobs:
             src/validation/tests/bootstrap-password-sync.test.ts \
             src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts \
             src/validation/tests/tier0-isolated-primary.test.ts \
+            src/validation/tests/readiness-runtime-failure.test.ts \
             src/validation/tests/worker-http-proxy.test.ts \
             src/validation/tests/exec-cap-authority-compact.lock.test.ts \
             src/validation/tests/commerce-reasoning-admission.test.ts \
