@@ -138,9 +138,9 @@ export function DevelopmentPillowExperience() {
   const { expand, ensureHostSession } = useGlobalAiAssistant();
   const searchParams = useSearchParams();
   const initialTab = (searchParams?.get("tab") as PillowTab | null) ?? "chat";
-  const [activeTab, setActiveTab] = useState<PillowTab>(
-    initialTab === "conversation" ? "chat" : initialTab,
-  );
+  const paramsKey = searchParams?.toString() ?? "";
+  const [selection, setSelection] = useState({paramsKey, tab: initialTab === "conversation" ? "chat" : initialTab});
+  const activeTab = selection.paramsKey === paramsKey ? selection.tab : (initialTab === "conversation" ? "chat" : initialTab);
   const activatedRef = useRef(false);
 
   useEffect(() => {
@@ -150,12 +150,8 @@ export function DevelopmentPillowExperience() {
     void ensureHostSession();
   }, [expand, ensureHostSession]);
 
-  useEffect(() => {
-    const tab = searchParams?.get("tab");
-    if (tab === "conversation" || tab === "chat") setActiveTab("chat");
-  }, [searchParams]);
 
-  const conversationMode = activeTab === "chat" || activeTab === "conversation";
+  const conversationMode = activeTab === "chat";
 
   return (
     <div className="space-y-4 lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:space-y-0">
@@ -181,7 +177,7 @@ export function DevelopmentPillowExperience() {
             <button
               key={tab.id}
               type="button"
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => setSelection({paramsKey, tab: tab.id})}
               className={`rounded-lg px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider ${
                 activeTab === tab.id
                   ? "bg-gold/10 text-[#f0d78c]"

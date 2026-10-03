@@ -1,0 +1,1604 @@
+[
+  {
+    "file": "app/(cockpit)/cockpit/commerce/transactions/page.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 35,
+    "column": 5,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "b3daa298e3dabf14f14fa46dedbb05a5472ab9386045ea310299a4f8b58af2d8"
+  },
+  {
+    "file": "app/api/brain/dispatch/route.ts",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 2,
+    "column": 10,
+    "message": "'brainRouteConfig' is defined but never used.",
+    "normalizedFindingSha256": "92f42d35661d547f38c0a8733d66e3373546ac40062838ce0d0238770c670702"
+  },
+  {
+    "file": "app/api/pillow/[...path]/route.ts",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 10,
+    "column": 3,
+    "message": "'DEGRADED_CHAT_MESSAGE' is defined but never used.",
+    "normalizedFindingSha256": "a544e626c91ff7cc81cc5717e955271bb8f5c50e7d23a30e809796644cfef9e2"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentAccessibilityIntelligencePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 106,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "82db80574f5ccce5f60ca8893fc09b8cf95b11b30388589f8be2983d1ebc6a9a"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentApprovalWorkflowPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 133,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "db3f7328b147a91185f8662ac1af59693946d88541f6c8012ae91345e5b27205"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentAutonomousBuilderCertificationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 101,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "526e32d0971ff14fc8b70fe51ce5297db8bcf42954c597bd8b9911c2cd700236"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentAutonomousRecoveryPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 61,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "fcd5065e18618d608be77e3dbbaf42389b231a65ba41004d92a239199dfd25ee"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentBrainRuntimePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 54,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "19c29b9b7cdd48047731cfc3eeb6afbab1ff3138065f767c7b3981d8f318bec9"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentBrowserTruthPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 59,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "9bd32c895a5486c83d36cf8da178e1cc7b5a8dee1eaed34510cc09e4088c3a3b"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentBrowserTruthPanel.tsx",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 77,
+    "column": 20,
+    "message": "'metrics' is assigned a value but never used.",
+    "normalizedFindingSha256": "986be6f103c96f08494f8d42942fb0faa728f12479992702ac7483d17edfdb1d"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentBuilderMonitorPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 58,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "23086e785d3f7a53b8697d4a53b0a9d343ed4d2aa39ebd378c7ac2988721cc51"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentChangeDocumentationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 91,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "8940c2099386cbff0b2af9dc08fa4547200bbe86a980343ee32715e787305623"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentComponentGeneratorPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 99,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "9036c7f8663706bcdd967acc15c2b7f0b48c99b5218f45220bbef07f58ab8d35"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentComponentRecognitionPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 55,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "33833a1e5b458250382fb839359a67a3150ad5eca15df00c12750d26e5b0aff8"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentContextAwarenessPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 65,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "1d3ed983eaba9997010395d0e062358169527af321a4b428858b2b53367126f8"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentContextSyncPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 56,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "131844c73feebd9001bfe1a2b124eb10a6856d4abdf99b40afa97bfa4917a054"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentContinuousCollaborationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 96,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "395807f3ef4ed611a7c59e0b6f782769a63e1b0f38cb1f914838eff55b601433"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentDesignSystemIntelligencePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 103,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "8a410150ca551437de0615461c493a41cb1eb6ae2c610fb1bc295f2ba6ec25f0"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentDurableSessionsPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 53,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "23e2943843b55f77bd67a909e2feb729ffee98e18683b9567be55d73cecfbe3a"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentExecutionControlCenterPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 61,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "33e268e0c412d4b23ce3b64d6e23273e3151ab4f38beea98aa047487c455cf66"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentExecutiveCollaborationCertificationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 107,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "3bfbec7df1fc41ad105e38f58e6454347bf1b38ac571b981c0d8ce6ed308f657"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentExecutiveStyleLearningPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 110,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "146acbd177bd9b9f372a8ffd11d9e5b27a639bee3ab8f869c12b4732acbeb164"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentExplainDecisionsPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 100,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "793663a8ecdde5febfdcbc002f087ffe7b7fc2e7521ef72c6be835263929b840"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentFounderShellPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 83,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "57a455c04f931e7526a10f16ff4093969e1a1116811e39533ae2894ec68b6b99"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentFrontendBuilderPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 96,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "7c54fb14a2fef27afd7b405a243f2f9329620b396bd1b7caba9b125b14f30280"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentGuardianMonitoringPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 66,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "0a6cf37f4aaed78658f860936a22eee5198a0dbdcee5ac19c2365dc542f94edb"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentInteractionTrackingPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 58,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "1c1b823a8408620335fe633c829f7d9ab9d79fccd9d2744ee77fa2dd74a72b31"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentJourneyPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 62,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "138d42acfdcc8d6922ac55391a7502575bcfc57c58c05a8bdedf17372a9a79d3"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentLayoutEvaluationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 104,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "5a29513aed4b64da4bc364532009f6eaa5c343e36712adf073d6e1602df0c30c"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentLayoutRefactoringPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 97,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "38d637088be99b04c78ee3a6e0b6c7cfc390c352c1eb3bdca6759cf2ecef8fcd"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentLayoutUnderstandingPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 56,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "32e3cecab67b87504b9d3b08b2c38c120c770580baae524e991eba1d4b653050"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentMultiProposalGeneratorPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 96,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "730faa52ae97aec6d0a12ea045a782261bebb1c1f65f7ad5044a9b60cdb318b0"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentNaturalUxConversationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 107,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "8fb052c278ce92945925208b35dc27be4073567d9606974f87899219a81ab8e1"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentNavigationMappingPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 58,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "368d416bc1c47328a4f2e4755c766df1a0f97879c00558e9caaecfbf1acfd2b0"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentPerformanceGovernancePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 58,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "01f457e209b311a1455510e8f2d946d04682a66328007003d563d000b8f37e2a"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentPillowExperience.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 155,
+    "column": 51,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "7034eb8009cfb90cd80dffcd490121aaa0e3de791defe13421f161f72fa3d800"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentPreferenceLearningPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 98,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "05bc39ca5c0fc7193243b8b8aec7ce731542acda94830631ca8524f48330ce08"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentPreviewGeneratorPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 95,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "ce510c1cc72548ca772065b782ebe441fe9a864ab61c684d7f2e66cea0f4f8ed"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentProductionModePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 54,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "e689949c6b0fdaa2c491d986837dc09819befcd49fb16927057ba4dbb5c5ba1f"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentRecommendationEnginePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 108,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "fa54ddce156d79421dd6c7500c4e7d63c8e8ab8c8796a6bcc799820604940fa2"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentRecoveryPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 59,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "f9ad26a59007c374530a10915050fdbdf8cbe5ed43bae063fbbb40f2783cb82b"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentRegressionProtectionPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 96,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "ba579e38d1b26821ec322393e65516971996dc67329d003bcebd54d16a5f1cde"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentRollbackManagerPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 112,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "84d3f7bfd4c02e4a20096fc92064fb199bfb28d228d1fe64512a2acef843f76a"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentScalingArchitecturePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 55,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d67b52a2145384b3f4732ec0f753d2fe33661a837f733248199f6336874c985e"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentScreenAnnotationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 126,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d1e2f7a4e7747c6af56388b286cc7e2482e4405a6d5081665bc18d9c5fcb2380"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentSessionContinuityPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 64,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "ed9c91bfe1255f9a865c51af3c9e30199f9eb235042fdc9a940bae20fce9de6f"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentSideBySideComparisonPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 105,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "10d2075c38c06894d133220f40e97ce15276494939f51010c8fa5a839066e3c3"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentSupervisorSystemPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 58,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "5f15bb788a0f1b6b9bec600dbc3aa89afac8fed59b3025861f5f5b7deacd3792"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentTestingPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 64,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "67df1c28eba182deeaf3048fa6a238625876c9083e20de470b2654edecb3f82f"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentThemeBuilderPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 95,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "60c05eefc5fee3ffa7e78b69490d7d69adf317bde8da9baff0621f9ad6acd5cc"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentUiStateMapperPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 61,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "f996070971bc58fce75cabb5abd4b738ae3c918b456ff405417566083bc7dc09"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentUxIntelligenceCertificationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 97,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "124e4c6f9ff32ccb014ebb27513324c0057a06a8fba1efaeaeeaec07dddc6c44"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentUxRuleEnginePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 100,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "8f54d075c406d2ba4927f861cee07f4995fb03a97e47323b2582f62ed2fd9d65"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentUxScoringPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 109,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "1956d29c0df903ce507ab5968c41c8c614ab85b7f462e1bb3a9e5f53e02f3015"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentValidationEnginePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 95,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "7d76c3d2979534b5c2968931f8282c939a95078e780ab81d96b79f3471ecfa6b"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentVisionIntegrityPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 56,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "60cbb7046f5a84328398975eb636743a3a192bc5fe0bbc39d41ffb55d84777bd"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentVisionSyncPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 53,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "65d48b90f82754e580b078270eaa9f21cf5af4a7b49662753e7b9a63b787c5fd"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentVisualCapturePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 61,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "e1160ce7638e55b1b3e0f2fe409338fdfa82586ff39f8896b9c6cd7e2a20be9a"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentVisualConsistencyPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 108,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d80cc4cecff3281901d2c5707f7cf38a3f6206776f603de3231c092a8901b6fb"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentVisualFoundationCertificationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 97,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "1c7947590ae560cbe229bded16e0ebcc536ec572c629d8508293d0b223cc3200"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentVisualMemoryPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 68,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "4334a01c078a0eaae18483cf660fe2136a69ba352fb7ecddc9b880e178086790"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentVoiceUxCommandsPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 116,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "ec3b13c37a623f918f02abacadccdd452761d22a284d7af0c0a08dd9f5cf736a"
+  },
+  {
+    "file": "components/cockpit/development/DevelopmentWorkflowOptimizationPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 107,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "ae7ad2fc5923af13916bce99c104256e8ed6d7fbbf5159b1ba9dc797ef52724d"
+  },
+  {
+    "file": "components/cockpit/development/RepositoryArchitectureExperience.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 102,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "104974ec54a8ad6be0074fdd05e917da6ca4e4bd99c3771ee2505bbd80455489"
+  },
+  {
+    "file": "components/cockpit/executive/ExecutiveHomeBriefPanel.tsx",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 3,
+    "column": 8,
+    "message": "'Link' is defined but never used.",
+    "normalizedFindingSha256": "4786107695c0b183fc40908808bb980586d10e0a33dbd21cbf901a9fbfb2f9f2"
+  },
+  {
+    "file": "components/cockpit/executive/OneProductDecisionDossierPanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 167,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "fc473bcfd00152b4da77112020d1c5ea931ca13e4297f23fdd2ee48f574fcf14"
+  },
+  {
+    "file": "components/cockpit/finance/CostControlCentrePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 87,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "2574ed08b4e6bec658603437fc08182e7bc9fb28e70b14319fcde0da1522f62d"
+  },
+  {
+    "file": "components/cockpit/shell/CockpitAuthGuard.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 50,
+    "column": 7,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d6b9d3b720ea84b42ab3d208322c9fb65b8a5691ce2984990b47721b3a170946"
+  },
+  {
+    "file": "components/cockpit/ux/ExecutiveEmpireAwarenessStrip.tsx",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 34,
+    "column": 9,
+    "message": "'revenue' is assigned a value but never used.",
+    "normalizedFindingSha256": "2ab874d1c87136d4c89e4736cafd9b9389e50434e15386c0cb7124de3e284a8a"
+  },
+  {
+    "file": "components/cockpit/widgets/CommerceLaunchPanel.tsx",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 6,
+    "column": 3,
+    "message": "'DataTable' is defined but never used.",
+    "normalizedFindingSha256": "9fa3e875930fb4ed9283b9c99d85929baaf04ff9c6e85be161cde0d3cdd06587"
+  },
+  {
+    "file": "components/cockpit/widgets/CommerceMarketplacePanel.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 63,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "02109ee44f6a7fa7dd34d84b7e2c69205711a7ea4af7e26a634223f55508b9a7"
+  },
+  {
+    "file": "lib/ai-evolution/useAiEvolution.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "6c74285c5f5b64fd5a0d605d2363e6710f36ea3a8a4b1ca0748a14e9024ffe8b"
+  },
+  {
+    "file": "lib/architecture-evolution/useArchitectureEvolution.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "549d864c89d1821a99db51f2ccde7ef51ada16db4c5151a096762fea644257e9"
+  },
+  {
+    "file": "lib/autonomous-decision-monitor/useAutonomousDecisionMonitor.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "bfaafcc0cac7be223b25a56c0e0a9316601d99234c6c5498b1a202bc4f288592"
+  },
+  {
+    "file": "lib/brain/fetch-utils.ts",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 19,
+    "column": 56,
+    "message": "'_retries' is assigned a value but never used.",
+    "normalizedFindingSha256": "e4f4ae330dcb0c7e00f1193dc6987d3f40e1a91d47c682395b3716f34e1b2547"
+  },
+  {
+    "file": "lib/brain/hooks/useBrainModule.ts",
+    "rule": "react-hooks/refs",
+    "severity": 2,
+    "line": 25,
+    "column": 3,
+    "message": "Error: Cannot access refs during render",
+    "normalizedFindingSha256": "3623fd2913850c56721e37a5d3bffe62b2b938c8d07b6d17bbed8dfcceb3fdf2"
+  },
+  {
+    "file": "lib/brain/hooks/useBrainModule.ts",
+    "rule": "react-hooks/exhaustive-deps",
+    "severity": 1,
+    "line": 71,
+    "column": 6,
+    "message": "React Hook useEffect has a missing dependency: 'payload'. Either include it or remove the dependency array.",
+    "normalizedFindingSha256": "992492caeeab0dcccd236f873e6e427e79b5709728d15604c44aab91b8984128"
+  },
+  {
+    "file": "lib/brain/hooks/useBrainModule.ts",
+    "rule": "react-hooks/exhaustive-deps",
+    "severity": 1,
+    "line": 71,
+    "column": 52,
+    "message": "React Hook useEffect has a complex expression in the dependency array. Extract it to a separate variable so it can be statically checked.",
+    "normalizedFindingSha256": "adb79ef010e8a30d38715f2e01b81908a5f8e3bed56021d1bdb12df0791e8eb8"
+  },
+  {
+    "file": "lib/builder-console/useBuilderConsole.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "cabf5b2dc38a823b7bc31ac42c1d55c109757ef5e2befdd71a9a919a65dd6d31"
+  },
+  {
+    "file": "lib/business-automation/useBusinessAutomation.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "e1e1e262e71d4b6f4d520df325b1aff70e692ce1858cd26996a98f807efb1dd0"
+  },
+  {
+    "file": "lib/business-factory/useBusinessFactory.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "04a68ad683552f278607472ac42bc20d2ec60c90fc3c407199a0e221573f32e4"
+  },
+  {
+    "file": "lib/capital-allocation-engine/useCapitalAllocationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "f56419d22a8fca20c9b8529cec1944f7eb98530d660e4fe293dc1f8f92bacd2d"
+  },
+  {
+    "file": "lib/capital-risk-engine/useCapitalRiskEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "9f7da93e7436576cd4cca63ea1495c8aacb2116a3145416e7163016737818430"
+  },
+  {
+    "file": "lib/cash-reserve-intelligence/useCashReserveIntelligence.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "30b745d760135a062f33bf36abc2704d7affbfa8988d04e48eed49baddb1a3aa"
+  },
+  {
+    "file": "lib/cockpit-ux/useCockpitUx.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "9f5e7efbe6313a608a03bf7125664dcc3b569917e2782242319850052e574f61"
+  },
+  {
+    "file": "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 23,
+    "column": 3,
+    "message": "'clearPillowHostSession' is defined but never used.",
+    "normalizedFindingSha256": "22d8bb90eeeee94ae80e57b32f2794beea1b6ef3bbd3d53e5298989040a03e6c"
+  },
+  {
+    "file": "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+    "rule": "react-hooks/exhaustive-deps",
+    "severity": 1,
+    "line": 304,
+    "column": 6,
+    "message": "React Hook useEffect has a missing dependency: 'user'. Either include it or remove the dependency array.",
+    "normalizedFindingSha256": "aa39ba73177ee15fd22ed76bf728129e703390c6854151dd9974afbedc49419d"
+  },
+  {
+    "file": "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 327,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "445375f03dcf919b689156475f39ef0ff33cd5ef3ac321470fe949a228ae1436"
+  },
+  {
+    "file": "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 332,
+    "column": 7,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "6a6c308482bad9dfcf7d6b6218d0cbff25e19d422fff3775cc436f337e5b70e8"
+  },
+  {
+    "file": "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+    "rule": "react-hooks/exhaustive-deps",
+    "severity": 1,
+    "line": 565,
+    "column": 5,
+    "message": "React Hook useCallback has unnecessary dependencies: 'markReady' and 'pathname'. Either exclude them or remove the dependency array.",
+    "normalizedFindingSha256": "83caff862e9ff77c43ad9e4cd3e73f391131b7f783618866b62f416d43e63743"
+  },
+  {
+    "file": "lib/cockpit/hooks/useExecutiveHome.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 41,
+    "column": 7,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "ee285bc6006e68ccfb94b734de3d5aefb72e70243644d8560d56fe8e770619e5"
+  },
+  {
+    "file": "lib/cockpit/hooks/useExecutiveRelationshipGraph.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 40,
+    "column": 7,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "c95d7044df5a2d3683842a210bb9d127eacd26cbbe7c36eb9d6c649a0f5fef03"
+  },
+  {
+    "file": "lib/cockpit/interaction/CockpitInteractionProvider.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 70,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "aa93060e5d4713f08a73a140a808c749911f611d04e6248febad64b6ffaf5bb0"
+  },
+  {
+    "file": "lib/cockpit/pillow/use-pillow-voice.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 31,
+    "column": 5,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "1fb046e177cd98113451fd751477b4573f9731f9cd9299ba908d62c8b285837b"
+  },
+  {
+    "file": "lib/commerce-operating-model/useCommerceOperatingModel.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 48,
+    "column": 7,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "a8862e0c71cbce5ce3dc4ae4aaa8c4ed5d04ab0b2d6d6ea20fa0f6767885ae62"
+  },
+  {
+    "file": "lib/commercial-intelligence/useCommercialIntelligence.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "4ef605f745f45e3cd82d32de07014bcfe93ae36c05725526240975f99b32db69"
+  },
+  {
+    "file": "lib/competitor-intelligence-engine/useCompetitorIntelligenceEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "285b449431734b5d5137b828360754d2df20771f82433446dce983eaf1c8fdea"
+  },
+  {
+    "file": "lib/conflict-resolution-engine/useConflictResolutionEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "520beac9a3208075d7424f7da798f16397c7a927fb18b2e075417426eae125a0"
+  },
+  {
+    "file": "lib/corporate-vision-engine/useCorporateVisionEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "684c26867877d5ed9a5e3fb5fbb867f0a6e17f9081cdea767f5fbee3594f3170"
+  },
+  {
+    "file": "lib/cost-optimization-engine/useCostOptimizationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "efd01a30056030bb7e2000588ff72f5561a5a642e0813abf9ba859aa3f88e859"
+  },
+  {
+    "file": "lib/crisis-decision-engine/useCrisisDecisionEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "970403a3747f5270daf07aaeedda8b391ff4e272dd52aa94f12449c7e72f31a0"
+  },
+  {
+    "file": "lib/cross-business-intelligence/useCrossBusinessIntelligence.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "e6c710a1610c451ec279a302b9093c9250affda783a3ae7697855b250cf126f9"
+  },
+  {
+    "file": "lib/customer-behaviour-intelligence/useCustomerBehaviourIntelligence.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "96e45f878a53131e2ec703021d957e603c1a7ad284471fe2a316364442358724"
+  },
+  {
+    "file": "lib/decision-audit-engine/useDecisionAuditEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "13573d49fc10852502dfce91ae392bda44b00f863717fcbe2cd26b4220345ff9"
+  },
+  {
+    "file": "lib/decision-simulation-engine/useDecisionSimulationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "4f41795b55c03aa60b8ae80a7d5c3c431219696310ce26a2f7b55dbde9698b37"
+  },
+  {
+    "file": "lib/department-planning-engine/useDepartmentPlanningEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "3e8800b7612ec7439c4ac386273146f8077ad44ce47e07328e406045d7b3fb2c"
+  },
+  {
+    "file": "lib/empire-evolution/useEmpireEvolution.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "9ac40ad38663dc1fa246e9cb4f90a18e14bd7147b6a16a56033d8d7dbc6d65a0"
+  },
+  {
+    "file": "lib/enterprise-audit-engine/useEnterpriseAuditEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "839924f8c1e8a1260572b1351d79bde6f7e6f34fb4a475fe503d6ea8924c6af7"
+  },
+  {
+    "file": "lib/enterprise-constitutional-guardian/useEnterpriseConstitutionalGuardian.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 35,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "b7e86536b84b3a6e3032f66da325b23531d7e2d6461154e2b041d987be926076"
+  },
+  {
+    "file": "lib/enterprise-governance-framework/useEnterpriseGovernanceFramework.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "5e73f606fc73c5bfaab918d1e8af4fc431c811d7b19be8e2675b592252a2f253"
+  },
+  {
+    "file": "lib/enterprise-pattern-engine/useEnterprisePatternEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "02a90413fe7d2283a3f6951f8c6612d05114fa7bc6592fb0cb117d03c40fbf90"
+  },
+  {
+    "file": "lib/enterprise-risk-governance/useEnterpriseRiskGovernance.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 35,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "b782c606e258a0777e61271dd251116678daf0d6d90d7bcff23b81d2f551891d"
+  },
+  {
+    "file": "lib/enterprise-valuation-engine/useEnterpriseValuationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "e23fdd0c997024f976265db06aabe19ec1761fd0b5f054fe4873d2b1ac741e62"
+  },
+  {
+    "file": "lib/executive-accountability-engine/useExecutiveAccountabilityEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "a7051c901da49dc091dd08e113966e1d708bb8bd5e6e8af86d2604f91474fad8"
+  },
+  {
+    "file": "lib/executive-advisory-engine/useExecutiveAdvisoryEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "f8a2e46571653348409bc6353f1889bca7c07c07cd224479a7d4000e2ebe5f8b"
+  },
+  {
+    "file": "lib/executive-approval-intelligence/useExecutiveApprovalIntelligence.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "8adabb86538681ea900973e34933fc81590831ad57ba74dc677c559b354ee809"
+  },
+  {
+    "file": "lib/executive-architecture-framework/useExecutiveArchitectureFramework.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "e440be65f4fd5518101f73082048f0fc27616062502855df58617d45c7b4c692"
+  },
+  {
+    "file": "lib/executive-benchmark-engine/useExecutiveBenchmarkEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "52480ef5b3759a1dd74fb847123557fb97845cbe45769628e2df87d80d531397"
+  },
+  {
+    "file": "lib/executive-budget-planner/useExecutiveBudgetPlanner.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "96f42786aa1b540ccbc67361ce1412c22a4d05329cc9628c64bc10725a6013a2"
+  },
+  {
+    "file": "lib/executive-calendar-engine/useExecutiveCalendarEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "72080cc3df897c92418b6b23ee577471bf343b0b828d372943322462a1fa0dc6"
+  },
+  {
+    "file": "lib/executive-capital-strategy/useExecutiveCapitalStrategy.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "1307056aead5bf3872bb197a845e1675d41edc8d85c5ea3a41ea93f8bf7c8597"
+  },
+  {
+    "file": "lib/executive-compliance-engine/useExecutiveComplianceEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "f6959044f75c5924458a5b575b0b95853dba8fe465ee29cfe500a4bba807eb24"
+  },
+  {
+    "file": "lib/executive-confidence-engine/useExecutiveConfidenceEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "b8b4acec8933285e51bb66ba20d4aff5c11f8d0e3a27cb0a36928cfa39ad4efc"
+  },
+  {
+    "file": "lib/executive-consensus-engine/useExecutiveConsensusEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "eec437dd18f622ce6b56c19493433e7b743d65780a4258b2ea0f4f174cffe323"
+  },
+  {
+    "file": "lib/executive-constitutional-monitor/useExecutiveConstitutionalMonitor.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "1e9887a724d5abb676ccb1593ceaa35132b13fa074364832de9143addd19b9e1"
+  },
+  {
+    "file": "lib/executive-decision-architecture/useExecutiveDecisionArchitecture.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "242cedeff9f2e5b7800ee01ff7040a4e28ca954e9fc18625368c9a648e152969"
+  },
+  {
+    "file": "lib/executive-decision-certification/useExecutiveDecisionCertification.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "6f0231ea411b07b3146e0ae24d2c42f2efac2771b4743ec8efb9fc8f5bc203c4"
+  },
+  {
+    "file": "lib/executive-dependency-engine/useExecutiveDependencyEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "f7b966fdde1f6e6ffab0f7b237fbecb8fab890fcb3c4250b5b23825a0ec4abc5"
+  },
+  {
+    "file": "lib/executive-escalation-engine/useExecutiveEscalationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "c165a8234cf9eb55c6535de8b555f01f5340f6e4fd3304df1f99c6202a16cbb3"
+  },
+  {
+    "file": "lib/executive-ethics-engine/useExecutiveEthicsEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "da695bbe90fb2be8e7e6a4442887eb462cdca2fe6b6016ef47df53cebf9e633e"
+  },
+  {
+    "file": "lib/executive-exception-manager/useExecutiveExceptionManager.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "06c5e33dba83587d20f4d37b17e5ad97d25e1928a09e70211d96409578b8f215"
+  },
+  {
+    "file": "lib/executive-finance-framework/useExecutiveFinanceFramework.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "126b9399f1b1587b89e86dc0059919619b2b9dde7dc60d637af7ccab677eb9aa"
+  },
+  {
+    "file": "lib/executive-forecast-intelligence/useExecutiveForecastIntelligence.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "17125cb6ca5b2dfce8bfa54a1de28a992117f63288ba547f60b91e0edd52917d"
+  },
+  {
+    "file": "lib/executive-governance-certification/useExecutiveGovernanceCertification.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "6f47850ed17c2e98bda361ca547970ecdc5b356e84a7ec9fc2434213479fbf8c"
+  },
+  {
+    "file": "lib/executive-insight-engine/useExecutiveInsightEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "6e3396e315530c5db442a1faa77ae7cc50aa40b0e9d05a07c88fece2603a50d2"
+  },
+  {
+    "file": "lib/executive-intelligence-certification/useExecutiveIntelligenceCertification.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "1171ea4ac4c0f0a0ce61d07d43ea6af313ab13de54e58fe576fa0791c0a78158"
+  },
+  {
+    "file": "lib/executive-knowledge-graph/useExecutiveKnowledgeGraph.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "e44a493f43c1adb7262d435c21211d3a69accaebae439e5d1c259d77e932d5f5"
+  },
+  {
+    "file": "lib/executive-kpi-engine/useExecutiveKpiEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "2220ead31a3583446a15b476c784f2d1674ef9a7448566258039e90ae34fa3a9"
+  },
+  {
+    "file": "lib/executive-performance-dashboard/useExecutivePerformanceDashboard.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d4006538b980b11b7ee87abfce0c8c895ad326fdbfc89085629b032adfa1e4ea"
+  },
+  {
+    "file": "lib/executive-planning-certification/useExecutivePlanningCertification.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "59c426b95338805ba23e85a4d0ff677149ade5c5eb642d18073efb33164cd903"
+  },
+  {
+    "file": "lib/executive-planning-dashboard/useExecutivePlanningDashboard.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "2611a4c4b0bed4cbe732053b000e1f64f9f52e6fe671692de805a184a583d8b8"
+  },
+  {
+    "file": "lib/executive-policy-engine/useExecutivePolicyEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "60df750bb58169958a9c6e18b355fddf9e28d4d6b15fde1b5cc77fdb2ef02819"
+  },
+  {
+    "file": "lib/executive-policy-evolution/useExecutivePolicyEvolution.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 35,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d192c70952c3b66343b19fec1bbb021928b8b3ec86ad6b0a558aec0f66992fc1"
+  },
+  {
+    "file": "lib/executive-prediction-engine/useExecutivePredictionEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "112573b0e9761b093ef0ef673c626abd9135a859706634f4d3e76bfb276dfc75"
+  },
+  {
+    "file": "lib/executive-recommendation-engine/useExecutiveRecommendationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "46d281dc0a7bcf15180b64dfb2b8d177d3578517ac11ed1c2477b1a88d3573ae"
+  },
+  {
+    "file": "lib/executive-resilience-engine/useExecutiveResilienceEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 35,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d28c0f12ebc39f16b3be3150cb3611a3d05b8edd571f65cd9c3f76c8a4116892"
+  },
+  {
+    "file": "lib/executive-review-board/useExecutiveReviewBoard.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 35,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d8bfffd915e376abda1fb48731f45250b72ba716897618c63a70eb6b4a146c0c"
+  },
+  {
+    "file": "lib/executive-roadmap-engine/useExecutiveRoadmapEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "837136b9b889e6f1cf1a30adcd93cd53cf72e87c62030e8d485b5b341d9ea89a"
+  },
+  {
+    "file": "lib/executive-scenario-planner/useExecutiveScenarioPlanner.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "47e678cb6036121798425b3358fe7e91b7fb02426ca94cad7aa4ab35704fbe56"
+  },
+  {
+    "file": "lib/executive-transparency-engine/useExecutiveTransparencyEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "5366c4974f742d645f3d338b440da4f0e72678b4710eae7267956ace9b28d9c4"
+  },
+  {
+    "file": "lib/executive-trust-engine/useExecutiveTrustEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 35,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "3e9b2a5632850e8bf6e6fbb8a5269c57c9e25a7568be7256aba87f0da6974926"
+  },
+  {
+    "file": "lib/explainability/useExplainability.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "48dfb4eea913fad365805b45d8cf9157bab751e8e565ea5c4828efff14360c37"
+  },
+  {
+    "file": "lib/financial-executive-certification/useFinancialExecutiveCertification.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "c1fcdc30b22120f0dcee78426d73bb15b7c86b0600fe7514de0a8d2b1be8f305"
+  },
+  {
+    "file": "lib/financial-scenario-engine/useFinancialScenarioEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "54952495853440a528ff247c08e554b83fa1f6ad7dae78db45421aae2c2970d8"
+  },
+  {
+    "file": "lib/founder-shell/FounderShellProvider.tsx",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 96,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "7d33f11e6b70018192bbd2e60e082972334ae601b918747c2296b2d328378a0d"
+  },
+  {
+    "file": "lib/grand-king-executive-cockpit/useGrandKingExecutiveCockpit.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 35,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "d0d3e0b09d068602761a096a8a1a019b596fb7a9160ed803e2d5ba6af09ba36d"
+  },
+  {
+    "file": "lib/grand-king-operating-account/useGrandKingOperatingAccount.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "75eb992d05079733d1b1b56414c28e4e72cd65436f84290207f993daf6192f7f"
+  },
+  {
+    "file": "lib/industry-intelligence-engine/useIndustryIntelligenceEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "a126b746dece3d4d382d5437284619d34b493c90addabc033b269032d9eb8121"
+  },
+  {
+    "file": "lib/initiative-portfolio-engine/useInitiativePortfolioEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "48159980cb250edb0b1eb730915953fd524c3865080cd0eaa797781d66645612"
+  },
+  {
+    "file": "lib/innovation-intelligence-engine/useInnovationIntelligenceEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "3776f87be3dc9c1e3f29a9542fa82da9f0b65d60f82b5fe7cdcc44d8d53d6c49"
+  },
+  {
+    "file": "lib/investment-evaluation-engine/useInvestmentEvaluationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "877546854a1999b4a7ef3beed8c763aed8b0f1fe1401d5670f319b8d688e8d4d"
+  },
+  {
+    "file": "lib/knowledge-evolution/useKnowledgeEvolution.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "baed4e6d4ca7aec6c5c1f504bab158710427917b685b4ec943f61d4f90d82882"
+  },
+  {
+    "file": "lib/live-eta/useLiveEta.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "5a16aaf8072a1fdc6f2c252222c6e4a4bef2e39da8e48e3e6a2c65ceec1fe7ba"
+  },
+  {
+    "file": "lib/long-term-growth-planner/useLongTermGrowthPlanner.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "fadf2f6e538dd21147a128baf0de257a4187d8a84d151f66ef97bf94c7de2032"
+  },
+  {
+    "file": "lib/market-intelligence-engine/useMarketIntelligenceEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "551bfa2cda64e35bfa96fcefcb8cc1306ebb39aec3cc119466ce451b87823e29"
+  },
+  {
+    "file": "lib/opportunity-discovery-engine/useOpportunityDiscoveryEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "cc587aba8736d53cac7a31df9f5effd0126eaba8902ac89af142371b04385601"
+  },
+  {
+    "file": "lib/opportunity-prioritization-engine/useOpportunityPrioritizationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "09ac94218fe7e96f0b10216a6e39ff8ff976472a219811965b617f668136b039"
+  },
+  {
+    "file": "lib/pillow/map-response.ts",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "severity": 1,
+    "line": 7,
+    "column": 3,
+    "message": "'query' is defined but never used.",
+    "normalizedFindingSha256": "3ed09a779f282b13dc0831879a1e830600bf53dff0f5427fc52303ded8b90f48"
+  },
+  {
+    "file": "lib/priority-management-engine/usePriorityManagementEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "03e9215766d8e0aec3dcdaffc43fcd91ed365ef261c9d3e89c366416bc5c9e66"
+  },
+  {
+    "file": "lib/profit-optimization-engine/useProfitOptimizationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "81864de555cc7b66dbe833a162c6ab602492f0d34cbd63bb1859cfdd888615c4"
+  },
+  {
+    "file": "lib/repository-evolution/useRepositoryEvolution.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "328217718b2c421475b8f27e5b833add8dcc283d5036b2ed124d4217905de9fa"
+  },
+  {
+    "file": "lib/resource-allocation-engine/useResourceAllocationEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "edf4b62d7295a0b7635edcff52ec0003b379b48a7afb7f64b9831c8b2f5566ea"
+  },
+  {
+    "file": "lib/risk-assessment-engine/useRiskAssessmentEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "3a0f421c26c404a883142a450df342ddfd192719e0b9a543d6ee4e74117e7b6b"
+  },
+  {
+    "file": "lib/roi-intelligence-engine/useRoiIntelligenceEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "5ca1b18a97c43fbbd4bb0e65ef1221f26f92277e030739f440fbf2a742b5d3f5"
+  },
+  {
+    "file": "lib/strategic-alignment-monitor/useStrategicAlignmentMonitor.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "6df3f765471ac0cae686b0f5d82cf3359650f40f0222481d1bba585d59b6ace6"
+  },
+  {
+    "file": "lib/strategic-objective-engine/useStrategicObjectiveEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "e1a6a9b0348c1e6f69fb2a1c670f83f7876b3988a445e3e8f82da9b32526d419"
+  },
+  {
+    "file": "lib/threat-detection-engine/useThreatDetectionEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "3261733699ffbd6a4afe211f8820b304660e3169031a43ce97f971b8a8c71204"
+  },
+  {
+    "file": "lib/trade-off-analysis-engine/useTradeOffAnalysisEngine.ts",
+    "rule": "react-hooks/set-state-in-effect",
+    "severity": 2,
+    "line": 36,
+    "column": 10,
+    "message": "Error: Calling setState synchronously within an effect can trigger cascading renders",
+    "normalizedFindingSha256": "ed0eb0af5eaf3f2dda421f680e4fd297ffcd00f1f94febcfc46838ca333da751"
+  }
+]

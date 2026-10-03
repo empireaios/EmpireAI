@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
 
@@ -83,9 +85,7 @@ export function CostControlCentrePanel() {
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  useEffect(() => subscribeRead(load), [load]);
 
   async function runHardStopProof() {
     setBusy(true);

@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import type { EnterpriseRiskGovernance } from "@/lib/enterprise-risk-governance/types";
 
@@ -31,11 +33,7 @@ export function useEnterpriseRiskGovernance() {
     }
   }, []);
 
-  useEffect(() => {
-    void reload();
-    const id = setInterval(() => void reload(), REFRESH_MS);
-    return () => clearInterval(id);
-  }, [reload]);
+  useEffect(() => subscribeRead(reload, REFRESH_MS), [reload]);
 
   const view = data?.enterpriseRiskGovernance ?? null;
   const live = data?.live !== false;

@@ -31,7 +31,6 @@ export function ExecutiveEmpireAwarenessStrip() {
   const context = founderData?.founderShellEngine.cockpit.context;
 
   const empireHealth = data?.summaryCards.find((c) => c.id === "empire-health");
-  const revenue = data?.summaryCards.find((c) => c.id === "revenue-today");
   const activeMissions = data?.summaryCards.find((c) => c.id === "active-missions");
   const aiRecCard = data?.summaryCards.find((c) => c.id === "ai-recommendations");
   const pillowRecs =

@@ -44,12 +44,14 @@ export function CockpitAuthGuard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [timedOut, setTimedOut] = useState(false);
+  const [previousLoading, setPreviousLoading] = useState(loading);
+  if (previousLoading !== loading) {
+    setPreviousLoading(loading);
+    setTimedOut(false);
+  }
 
   useEffect(() => {
-    if (!loading) {
-      setTimedOut(false);
-      return undefined;
-    }
+    if (!loading) return undefined;
 
     const timer = window.setTimeout(() => setTimedOut(true), SESSION_VERIFY_TIMEOUT_MS);
     return () => window.clearTimeout(timer);
