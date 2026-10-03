@@ -30207,6 +30207,12 @@ export class PillowHost {
             );
             try {
                 executiveTruthSnapshot = buildExecutiveTruthSnapshot(input.workspaceId);
+                if (reasoningOnly) {
+                    const moduleUrl = new URL('../../../src/assurance/current-state-provenance.mjs', import.meta.url).href;
+                    const {readCurrentAssuranceTruth} = await import(moduleUrl);
+                    const root = process.env.RAILWAY_VOLUME_MOUNT_PATH;
+                    executiveTruthSnapshot.assurance = readCurrentAssuranceTruth(root ? root+'/commissioning/assurance.sqlite' : '');
+                }
                 attestExecutiveTruthSnapshotReads(
                     epistemicLedger,
                     executiveTruthSnapshot,
@@ -30266,6 +30272,17 @@ export class PillowHost {
                             .map(c => ({checkpointId:c.checkpointId,missionId:c.missionId,label:c.label,recordedAt:c.timestamp,state:c.state,payload:c.payload,trust:"stored planning evidence only; no execution or approval authority"}))}),
                     pending: () => productionReasoningState()?.pending(input.workspaceId) ?? [],
                     evidence: () => readStoredCommissioningEvidence(input.workspaceId),
+                    currentTruth: () => ({
+                        source:'request_time_operational_projection',readAt:executiveTruthSnapshot?.computedAt??null,
+                        birth:executiveTruthSnapshot ? {
+                            status:executiveTruthSnapshot.birth.status,
+                            metric:'legacy_birth_gate_diagnostics',source:'getBirthRecord/evaluateBirthGates',
+                            passed:executiveTruthSnapshot.birth.gatesPassedCount,total:executiveTruthSnapshot.birth.gatesTotal,
+                            scope:'Legacy diagnostics only; underlying evidence not refreshed by read; not Assurance coverage or certification',
+                        } : null,
+                        assurance:executiveTruthSnapshot?.assurance??{status:'UNKNOWN'},
+                        historicalAfterRequest:true,grantsAuthority:false,
+                    }),
                     calculations: reasoningPlan.calculations,
                 });
                 for (const receipt of readReceipts) epistemicLedger.record({capabilityId:receipt.tool,requestId:receipt.requestId,sourceIdentifier:receipt.source,observedSummary:receipt.sha256,at:receipt.at});

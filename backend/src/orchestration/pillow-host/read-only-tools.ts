@@ -14,11 +14,12 @@ export function exactCalculation(args:Record<string,unknown>):unknown {
   const g=gcd(n<0n?-n:n,q);return {numerator:String(n/g),denominator:String(q/g),representation:'exact rational',operation:args.operation};
 }
 /** Closed registry: never delegates arbitrary names to operational tools. */
-export async function readReasoningTools(input:{workspaceId:string;requestId:string;authorizedWorkspace:string;repository:unknown;mission:()=>unknown;pending:()=>unknown;evidence?:()=>unknown;calculations?:Record<string,unknown>[]; calculationsOnly?:boolean}):Promise<ReadReceipt[]> {
+export async function readReasoningTools(input:{workspaceId:string;requestId:string;authorizedWorkspace:string;repository:unknown;mission:()=>unknown;pending:()=>unknown;evidence?:()=>unknown;currentTruth?:()=>unknown;calculations?:Record<string,unknown>[]; calculationsOnly?:boolean}):Promise<ReadReceipt[]> {
   if(!input.workspaceId||input.workspaceId!==input.authorizedWorkspace) throw Error('Read tool scope denied');
   if((input.calculations?.length??0)>3)throw Error('Read tool budget exceeded');
   const registry=new ToolRegistry();
   const handlers:Record<string,()=>unknown>={repository:()=>input.repository,mission:input.mission,pending_learning:input.pending,evidence:input.evidence??(()=>({available:false,reason:'No evidence reader supplied'}))};
+  if(input.currentTruth)handlers.current_operational_truth=input.currentTruth;
   for(const [name,handler]of Object.entries(handlers)) registry.register({name,description:'Bounded owner-scoped read',parameters:{},module:'locked-reasoning',authorityLevel:'L0',handler:async()=>handler()});
   registry.register({name:'calculate',description:'Exact rational arithmetic; no code execution',parameters:{},module:'locked-reasoning',authorityLevel:'L0',handler:async args=>exactCalculation(args)});
   const ctx:ToolContext={workspaceId:input.workspaceId,agentId:'pillow',correlationId:input.requestId};
