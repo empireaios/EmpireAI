@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import {StoredOrders} from "@/components/owner/StoredOrders";
 import { providerObservationHistory } from "@/lib/commerce-transactions/provider-observation-history";
 import { useEffect, useState } from "react";
 
@@ -66,6 +67,7 @@ export default function CommerceTransactionsPage() {
         {loading ? "Loading…" : "Refresh"}
       </button>
     </header>
+    <StoredOrders key={refresh} refresh={refresh}/>
     <section className="rounded-xl border border-amber-400/40 bg-amber-950/20 p-4 text-sm text-amber-100">
       <strong>Nonproduction evidence</strong>
       <p className="mt-1">These transactions exercise the connected commerce flow. Receipt amounts below are simulated and do not establish real sales, payments or profit.</p>

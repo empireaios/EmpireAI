@@ -9,6 +9,7 @@ import { ExecutiveChatMarkdown } from "@/components/cockpit/executive/ExecutiveC
 import { CopyPillowAnswer } from "@/components/cockpit/executive/CopyPillowAnswer";
 import layout from "./PillowConversationLayout.module.css";
 import Link from "next/link";
+import { PillowMemoryInventory } from "@/components/owner/PillowMemoryInventory";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
@@ -171,6 +172,7 @@ export function PillowConversationWorkspace({
             </p>
           )}
           <PillowVerificationStatus />
+          <PillowMemoryInventory />
           <p className="mt-2 text-xs text-[#8a847a]">The legacy command dashboard uses a dispatch endpoint denied in this locked runtime; it is not Pillow’s authoritative reasoning-context source. Retrying cannot unlock it.</p>
           <Link href="/cockpit/command" className="mt-2 block text-xs text-[#d4af37]">Open command dashboard</Link>
         </div>
