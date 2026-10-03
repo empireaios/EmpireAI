@@ -86,7 +86,7 @@ export class ReconciliationMetadataGenerator {
       matchedTransactionCount: match.matched,
       unmatchedTransactionCount: match.unmatched,
       differenceAmount: match.differenceAmount,
-      reconciliationStatus: status,
+      reconciliationStatus: match.matched === 0 && match.unmatched === 0 ? "pending" : status,
       validationStatus: "passed",
       metadataVersion: RC_METADATA_VERSION,
     };
@@ -100,7 +100,9 @@ export class ReconciliationMetadataGenerator {
     const totalUnmatched = input.records.reduce((s, r) => s + r.unmatchedTransactionCount, 0);
     const totalDifferenceAmount = input.records.reduce((s, r) => s + r.differenceAmount, 0);
     const reconciliationStatus: ReconciliationStatus =
-      totalUnmatched === 0 && totalDifferenceAmount === 0
+      input.records.length === 0 || input.records.some(r=>r.reconciliationStatus === "pending")
+        ? "pending"
+        : totalUnmatched === 0 && totalDifferenceAmount === 0
         ? "matched"
         : totalMatched > 0
           ? "partial"
