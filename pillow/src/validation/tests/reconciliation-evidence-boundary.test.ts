@@ -1,6 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {TransactionMatchingEngine} from '../../reconciliation-engine/transaction-matching-engine.js';
+import {ReconciliationValidator} from '../../reconciliation-engine/reconciliation-validator.js';
 import {ReconciliationMetadataGenerator} from '../../reconciliation-engine/reconciliation-metadata-generator.js';
 import {buildReconciliationEngineConfiguration} from '../../reconciliation-engine/configuration.js';
 import type {PaymentRecord} from '../../payment-gateway-integration/types.js';
@@ -51,4 +52,14 @@ test('customer receipts cannot reconcile supplier expenses without outbound evid
  assert.equal(engine.matchExpenseRecords([expense],[{...payment,direction:'outbound'}],config).matched,1);
  assert.equal(engine.matchExpenseRecords([expense,expense],[{...payment,direction:'outbound'}],config).matched,0);
  assert.equal(engine.matchRevenueRecords([revenue],[{...payment,direction:'outbound'}],config).matched,0);
+});
+
+test('validator refuses nonfinite values and unsupported matched claims',()=>{
+ const validator=new ReconciliationValidator(),metadata=new ReconciliationMetadataGenerator();
+ const matched=metadata.buildReconciliationRecord(engine.matchPaymentsToRevenue([payment],[revenue],config),'matched');
+ assert.equal(validator.validateReconciliationRecord(matched).decision,'pass');
+ for(const patch of [{matchedTransactionCount:0},{matchedTransactionCount:NaN},{unmatchedTransactionCount:0.5},{differenceAmount:NaN},{differenceAmount:Infinity},{differenceAmount:0.01},{unmatchedTransactionCount:1}])
+  assert.equal(validator.validateReconciliationRecord({...matched,...patch}).decision,'fail');
+ assert.equal(validator.validateConfiguration({...config,amountTolerance:NaN}).decision,'fail');
+ assert.equal(validator.validateConfiguration({...config,differenceThreshold:Infinity}).decision,'fail');
 });
