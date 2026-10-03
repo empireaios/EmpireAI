@@ -21,12 +21,14 @@ import {
 
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
-export async function registerStrategicMemoryRoutes(
-  app: FastifyInstance,
-  deps: { authenticate: AuthMiddleware; auditLogger: AuditLogger },
-): Promise<void> {
-  const { authenticate, auditLogger } = deps;
+const inventoryRouteApps = new WeakSet<FastifyInstance>();
 
+/** Production cockpit read surface; no extension mutations or bootstrap. */
+export async function registerStrategicMemoryInventoryRoute(
+  app: FastifyInstance,
+  { authenticate }: { authenticate: AuthMiddleware },
+): Promise<void> {
+  if (inventoryRouteApps.has(app)) return;
   app.get("/strategic-memory/memories", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
     const query = z
@@ -38,6 +40,17 @@ export async function registerStrategicMemoryRoutes(
     const memories = listStrategicMemories(user.workspaceId, query);
     return reply.send({ memories, total: memories.length });
   });
+
+  inventoryRouteApps.add(app);
+}
+
+export async function registerStrategicMemoryRoutes(
+  app: FastifyInstance,
+  deps: { authenticate: AuthMiddleware; auditLogger: AuditLogger },
+): Promise<void> {
+  const { authenticate, auditLogger } = deps;
+
+  await registerStrategicMemoryInventoryRoute(app, { authenticate });
 
   app.get("/strategic-memory/summary", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
