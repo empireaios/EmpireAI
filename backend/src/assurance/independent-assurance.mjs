@@ -80,6 +80,24 @@ export class AssuranceStore {
   close() { this.db.close(); }
 }
 
+export function validateRetainedAssuranceReceipt(row) {
+  const receipt = JSON.parse(row.receipt);
+  const allowed = ['PASS','FAIL','NOT_CHECKED','STALE','SOURCE_UNAVAILABLE'];
+  if (!validTime(row.scheduled_at) || !validTime(row.started_at) || !validTime(row.completed_at) || row.completed_at < row.started_at || row.started_at < row.scheduled_at ||
+    receipt?.schema !== 'independent-assurance-cycle-v1' ||
+    !receipt.checks || Array.isArray(receipt.checks) ||
+    Object.keys(receipt.checks).length !== REQUIRED_DOMAINS.length ||
+    REQUIRED_DOMAINS.some(d => !allowed.includes(receipt.checks[d]?.status)))
+    throw Error('Invalid retained assurance receipt');
+  const passed = REQUIRED_DOMAINS.filter(d => receipt.checks[d].status === 'PASS').length;
+  const healthy = passed === REQUIRED_DOMAINS.length;
+  if (receipt.coverage?.required !== REQUIRED_DOMAINS.length || receipt.coverage?.passed !== passed ||
+    receipt.healthy !== healthy || receipt.liveProof !== false ||
+    receipt.commerceWrites !== 0 || receipt.inferenceCalls !== 0)
+    throw Error('Inconsistent retained assurance receipt');
+  return receipt;
+}
+
 /** Run from a separately supervised monitor, not from the cycle scheduler itself.
  * An incomplete cycle or missing latest scheduled slot can never inherit an older PASS.
  */
@@ -95,20 +113,10 @@ export function inspectAssurance(filename, { now, epoch, intervalMs, graceMs }) 
     if (!row || row.completed_at === null) return { status: 'ASSURANCE_OVERDUE', healthy: false, due };
     if (row.completed_at > now || row.completed_at < row.started_at || row.completed_at > due + graceMs)
       return { status: 'ASSURANCE_OVERDUE', healthy: false, due, reason: 'Cycle completion outside tolerance' };
-    const receipt = JSON.parse(row.receipt);
-    const allowed = ['PASS','FAIL','NOT_CHECKED','STALE','SOURCE_UNAVAILABLE'];
-    if (!validTime(row.started_at) || !validTime(row.completed_at) || row.started_at < due ||
-        receipt?.schema !== 'independent-assurance-cycle-v1' ||
-        !receipt.checks || Array.isArray(receipt.checks) ||
-        Object.keys(receipt.checks).length !== REQUIRED_DOMAINS.length ||
-        REQUIRED_DOMAINS.some(d => !allowed.includes(receipt.checks[d]?.status)))
-      throw Error('Invalid retained assurance receipt');
-    const passed = REQUIRED_DOMAINS.filter(d => receipt.checks[d].status === 'PASS').length;
-    const healthy = passed === REQUIRED_DOMAINS.length;
-    if (receipt.coverage?.required !== REQUIRED_DOMAINS.length || receipt.coverage?.passed !== passed ||
-        receipt.healthy !== healthy || receipt.liveProof !== false ||
-        receipt.commerceWrites !== 0 || receipt.inferenceCalls !== 0)
-      throw Error('Inconsistent retained assurance receipt');
+    let receipt;
+    try { receipt = validateRetainedAssuranceReceipt(row); }
+    catch { return {status: 'SOURCE_UNAVAILABLE', healthy: false, due, invalidReceipt: true}; }
+    const healthy = receipt.healthy;
     return { status: healthy ? 'PASS' : 'DEGRADED', healthy, due, receipt };
   } catch { return { status: 'SOURCE_UNAVAILABLE', healthy: false, due }; }
   finally { db?.close(); }

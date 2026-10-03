@@ -84,3 +84,21 @@ test('a later watchdog outage retains the earlier resolved incident and its time
  assert.equal(later.filter(f=>f.status==='OPEN').length,1);
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
+
+test('corrupted retained PASS cannot resolve findings or claim latest success',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-corrupt-')),file=path.join(dir,'assurance.sqlite');
+ const store=new AssuranceStore(file);
+ try{
+  const checks=Object.fromEntries(REQUIRED_DOMAINS.map(d=>[d,{status:'PASS'}]));
+  store.begin('bad-cycle',300000,300000);store.complete('bad-cycle',301000,{...checks,runtime:{status:'FAIL'}});
+  fs.writeFileSync(file+'.watchdog',JSON.stringify({observedAt:430000}));recordOwnerAssurance(file,430000);
+  store.begin('corrupt-success',600000,600000);const receipt=store.complete('corrupt-success',601000,checks);
+  receipt.coverage.passed=12;store.db.prepare('UPDATE assurance_cycles SET receipt=? WHERE id=?').run(JSON.stringify(receipt),'corrupt-success');
+  fs.writeFileSync(file+'.watchdog',JSON.stringify({observedAt:730000}));
+  const result=recordOwnerAssurance(file,730000);
+  assert.equal(result.healthy,false);assert.equal(result.lastSuccessfulAt,null);
+  assert.equal(result.findings.find(f=>f.source==='runtime').status,'OPEN');
+  assert.ok(result.coverage.every(c=>c.status==='NOT_CHECKED'));
+  assert.equal(readOwnerAssurance(file,730000).lastSuccessfulAt,null);
+ }finally{store.close();fs.rmSync(dir,{recursive:true,force:true});}
+});
