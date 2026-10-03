@@ -233,6 +233,7 @@ jobs:
             src/validation/tests/mission-execution-durability.test.ts \
             src/validation/tests/mission-authority-wiring.test.ts \
             src/validation/tests/strategic-memory-read-preservation.test.ts \
+            src/validation/tests/strategic-memory-production-route.test.ts \
             src/validation/tests/strategic-memory-engine.test.ts \
             src/validation/tests/certification-receipt-intake.test.ts \
             src/validation/tests/held-case-budget-ledger.test.ts \
@@ -258,6 +259,7 @@ jobs:
             src/validation/tests/bootstrap-password-sync.test.ts \
             src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts \
             src/validation/tests/tier0-isolated-primary.test.ts \
+            src/validation/tests/readiness-runtime-failure.test.ts \
             src/validation/tests/worker-http-proxy.test.ts \
             src/validation/tests/exec-cap-authority-compact.lock.test.ts \
             src/validation/tests/commerce-reasoning-admission.test.ts \

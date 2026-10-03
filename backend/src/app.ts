@@ -51,7 +51,7 @@ import { registerPromiseRegisterRoutes } from "./foundation/promise-register/rou
 import { registerObjectiveManagementRoutes } from "./orchestration/objective-management-engine/routes/objective-management-routes.js";
 import { registerKpiEngineRoutes } from "./foundation/kpi-engine/routes/kpi-engine-routes.js";
 import { registerDecisionRegistryRoutes } from "./foundation/decision-registry/routes/decision-registry-routes.js";
-import { registerStrategicMemoryRoutes } from "./foundation/strategic-memory-engine/routes/strategic-memory-routes.js";
+import { registerStrategicMemoryInventoryRoute, registerStrategicMemoryRoutes } from "./foundation/strategic-memory-engine/routes/strategic-memory-routes.js";
 import { registerEcommerceOsRoutes } from "./orchestration/ecommerce-os-orchestrator/routes/ecommerce-os-routes.js";
 import { registerAccountInfrastructureRoutes } from "./orchestration/account-infrastructure-engine/routes/account-infrastructure-routes.js";
 import { registerMarketplaceConnectionRoutes } from "./orchestration/marketplace-connection-engine/routes/marketplace-connection-routes.js";
@@ -476,6 +476,17 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     pillowEnabled,
     pillowRequired,
     getPillowStatus: () => pillowHost.getStatus(),
+    runtimeSafetyRequired: redisRequired,
+    getRuntimeSafety: async () => {
+      const { getExecutiveContinuityHealth } = await import("./runtime/executive-continuity-watchdog.js");
+      const continuity = getExecutiveContinuityHealth();
+      return {
+        watchdogEnabled: continuity.watchdogEnabled,
+        watchdogRunning: continuity.watchdogRunning,
+        alerts: continuity.alerts,
+        lastFlushError: getSqlitePersistStats().lastFlushError,
+      };
+    },
   });
 
   app.get("/health/executive-continuity", async () => {
@@ -790,6 +801,9 @@ async function registerCommerceCriticalRoutes(deps: EmpireRouteDeps): Promise<vo
 
 async function registerCockpitCriticalRoutes(deps: EmpireRouteDeps): Promise<void> {
   const { app, authenticate, brain, pillowEnabled, pillowHost, eventStream } = deps;
+
+  // Owner inventory must be readable before the optional extension routes.
+  await registerStrategicMemoryInventoryRoute(app, { authenticate });
 
   if (pillowEnabled) {
     await breathe();
