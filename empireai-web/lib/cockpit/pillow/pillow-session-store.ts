@@ -244,3 +244,4 @@ export function preservePillowLocalArchive(previous: PillowSessionSnapshot | nul
   // If archival fails, caller must not overwrite the original active cache.
   window.localStorage.setItem(key, JSON.stringify(merged));
 }
+

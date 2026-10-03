@@ -30,6 +30,7 @@ import {
   type PillowSessionSnapshot,
 } from "@/lib/cockpit/pillow/pillow-session-store";
 import { createPillowHostSession, fetchPillowHistory, retrievePillowChat, sendPillowChat } from "@/lib/pillow/client";
+import { reconcilePillowHistory } from "@/lib/pillow/reconcile-history";
 import { clearPendingPillowReceipt, loadPendingPillowReceipts, savePendingPillowReceipt } from "@/lib/pillow/pending-receipts";
 import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
 import type { PillowChatArtifact, PillowChatResult } from "@/lib/pillow/types";
@@ -260,7 +261,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
 
         const history = await fetchPillowHistory(session.sessionId);
         if (cancelled || activeOwnerId.current !== user.id || chatSubmissionActive.current) return;
-        const turns: PillowConversationTurn[] = history.session.conversationHistory
+        const serverTurns: PillowConversationTurn[] = history.session.conversationHistory
           .filter(turn => turn.role === "user" || turn.role === "assistant")
           .map((turn, index) => ({
             id: `server-${turn.requestId ?? index}-${turn.role}-${turn.timestamp}`,
@@ -271,13 +272,12 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
             requestId: turn.requestId,
             source: "server_persisted_transcript",
           }));
-        for (const turn of history.historicalArchive) {
-          const role=turn.role === 'user' ? 'grand-king' as const : 'pillow' as const;
-          if (!turns.some(server=>server.role===role && (turn.requestId ? server.requestId===turn.requestId : server.content===turn.content))) {
-            turns.push({id:`archive-${turn.id}`,role,content:turn.content,recordedAt:turn.timestamp,requestId:turn.requestId,screenPath:pathname,source:'historical_browser_cache'});
-          }
-        }
-        turns.sort((a,b)=>a.recordedAt.localeCompare(b.recordedAt)||a.id.localeCompare(b.id));
+        const archiveTurns: PillowConversationTurn[] = history.historicalArchive.map(turn => ({
+          id:`archive-${turn.id}`, role:turn.role === 'user' ? 'grand-king' : 'pillow',
+          content:turn.content, recordedAt:turn.timestamp, requestId:turn.requestId,
+          screenPath:pathname, source:'historical_browser_cache',
+        }));
+        const turns = reconcilePillowHistory(serverTurns, archiveTurns);
         const previous = loadPillowSession(user.id);
         // Preserve browser-only historical records separately; never silently
         // upload them as server evidence or inference context.

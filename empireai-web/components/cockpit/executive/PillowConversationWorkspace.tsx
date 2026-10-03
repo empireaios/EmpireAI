@@ -160,7 +160,7 @@ export function PillowConversationWorkspace({
           </button>
         </div>
       <details className={layout.context}>
-        <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; context · Not certified ▸</summary>
+        <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; context · Reasoning evidence and owner acceptance ▸</summary>
         <div className={layout.contextBody}>
           {executiveSnapshot ? (
             <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
