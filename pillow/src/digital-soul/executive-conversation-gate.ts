@@ -178,7 +178,7 @@ export function gateExecutiveConversation(
 }
 
 /** Post-LLM check — refuse to surface a response that itself violates constitutional intent. */
-export function gateExecutiveVisibleAnswer(
+function gateVisibleProposition(
   runtime: DigitalSoulRuntime | null | undefined,
   visibleAnswer: string,
 ): ExecutiveConversationGateResult {
@@ -262,6 +262,62 @@ export function gateExecutiveVisibleAnswer(
   }
 
   return gated;
+}
+
+/** A visible answer contains multiple propositions, not one executable command.
+ * Keep the request/action gate strict. For prose, bind action and governance
+ * objects within a proposition instead of composing unrelated paragraphs.
+ * Unresolved references and conditional exceptions remain conservative.
+ */
+export function gateExecutiveVisibleAnswer(
+  runtime: DigitalSoulRuntime | null | undefined,
+  visibleAnswer: string,
+): ExecutiveConversationGateResult {
+  const whole = gateVisibleProposition(runtime, visibleAnswer);
+  if (whole.allowed) return whole;
+  const units = visibleAnswer.split(/(?<=[.!?;])[*_]*\s+|\n+/).map(s => s.trim()).filter(Boolean);
+  if (units.length === 0) return whole;
+  // Never use segmentation to lose the antecedent of a bypass or an instruction
+  // to adopt quoted content. These need context and retain the strict verdict.
+  if (units.some(s => /\b(?:bypass|ignore|skip|waive|override|circumvent|suspend)\s+(?:the\s+)?(?:it|them|this|that|these|those|everything|all|checks|controls)\b|\b(?:do|follow|obey|execute)\s+(?:it|that|this|them|those)\b|\b(?:bypass|ignore|skip|waive|override|circumvent|suspend|pretend)[.!?;]*$/i.test(s) &&
+    !isExplicitVisibleDenial(s))) return whole;
+  const reviewed = units.map(unit => {
+    let proposition = unit;
+    // A negated permission object is a denial, including coordinated noun
+    // objects. Retain the preceding proposition and reject conditional tails.
+    if (!/\b(?:if|unless|until|except|provided|otherwise|when|then)\b/i.test(unit)) {
+      proposition = proposition.replace(/\bnot (?:([a-z -]{1,160}) or )?(?:permission|authority) to (?:bypass|override|ignore|waive) (?:(?:the|any|existing|required|mandatory|owner|constitutional|governance|approval|controls|checks|review|rules)\s*)+[.!?]*[*_]*$/i, (match, coordinatedNoun: string | undefined) => {
+        if (coordinatedNoun && /\b(?:to|and|but|then|not|never|bypass|override|ignore|waive|skip|execute|pay|spend|publish|grant|follow|obey|proceed|do)\b/i.test(coordinatedNoun)) return match;
+        return 'no additional authority';
+      });
+    }
+    // A deadline elapsing in the absence of approval describes a state; it is
+    // not a recommendation to execute without approval. Do not erase a second
+    // operational predicate or an exception attached to that observation.
+    if (!/\b(?:pay|spend|purchase|publish|execute|transfer|unlock|bypass|override|waive|ignore|proceed)\b/i.test(unit)) {
+      proposition = proposition.replace(/\b(?:deadline|decision time|time window|window)\s+(?:passes|expires|elapses|closes)\s+without\s+(?:the\s+)?approval\b/gi, 'deadline expires with approval still absent');
+    }
+    // Nominal risk registers report pressure/attempts; they do not adopt them.
+    // Finite commitments, imperatives and conditional exceptions are excluded.
+    const plain = proposition.replace(/[*#]/g, '').trim();
+    if (/^(?:[a-z -]+\s+)?risks?\s*:/i.test(plain) &&
+      !/\b(?:i|we|you|pillow|will|would|shall|should|must|can|could|do|follow|obey|proceed|if|unless|except|then)\b/i.test(plain)) {
+      proposition = proposition.replace(/\b(?:pressure|attempts?)\s+to\s+(?:bypass|override|waive|ignore|skip)\s+[a-z -]+(?=[,.;]|$)/gi, 'reported governance pressure');
+    }
+    return gateVisibleProposition(runtime, proposition);
+  });
+  if (reviewed.some(result => !result.allowed)) return whole;
+  return {
+    ...whole,
+    allowed: true,
+    refusalMessage: null,
+    compliance: {
+      ...whole.compliance,
+      aligned: true,
+      findings: reviewed.flatMap(result => result.compliance.findings),
+      requiresGrandKingApproval: reviewed.some(result => result.compliance.requiresGrandKingApproval),
+    },
+  };
 }
 
 export function buildPillowUnavailableConstitutionalRefusal(): string {

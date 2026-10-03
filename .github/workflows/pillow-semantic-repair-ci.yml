@@ -135,6 +135,9 @@ jobs:
       - name: Owner regression and certification readback tests (offline)
         working-directory: backend
         run: node --import tsx --test src/validation/tests/pillow-owner-regression.test.ts src/validation/tests/reasoning-certification-readback.test.ts
+      - name: Visible proposition scope and adjacent bypass regressions (offline)
+        working-directory: pillow
+        run: node --import tsx --test src/validation/tests/commissioning-proposition-scope.test.ts src/validation/tests/digital-soul-executive-gate.test.ts
       - name: Record exact revision and verification limits
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
@@ -148,4 +151,3 @@ jobs:
             echo 'This gate uses supplied synthetic evidence and denies network access during tests.'
             echo 'It does not certify a live model, V53/Wave mastery, production runtime, Birth, commerce or autonomous profitability.'
           } >> "$GITHUB_STEP_SUMMARY"
-
