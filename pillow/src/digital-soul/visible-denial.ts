@@ -6,6 +6,21 @@ export function isExplicitVisibleDenial(clause: string): boolean {
   const text = clause.toLowerCase().replace(/[’‘]/g, "'")
     .replace(/[*#]/g, "").trim().replace(/[.!?;:]+$/, "").trim();
   if (/\b(?:if|unless|until|except|provided|otherwise|instead|while|although|when|because|also|anyway)\b/.test(text)) return false;
+  // Passive prohibitions put the governed object before the negated action.
+  // Recognize the entire clause, including coordinated noun subjects and
+  // participles, before conjunction splitting can detach its negative scope.
+  // No free-form tail: exceptions, positive actions and quoted instructions
+  // must remain available to the strict review below.
+  const passive = /^(.+?)\s+(?:cannot|can't|must not|shall not|may not|will not|won't)\s+be\s+(.+)$/.exec(text);
+  if (passive) {
+    const noun = (part: string) => /^[a-z][a-z -]{0,120}$/.test(part.trim()) &&
+      part.trim().split(/\s+/).length <= 16 &&
+      !/\b(?:not|no|never|to|by|but|then|however|yet|if|unless|except|i|we|you|will|would|shall|should|must|can|could|may|do|follow|obey|proceed|execute|pay|spend|publish|ignore|bypass|override|waive|disable|remove|clear|grant)\b/.test(part);
+    const subjects = passive[1]!.split(/,\s*(?:(?:and|or)\s+)?|\s+(?:and|or)\s+/);
+    const predicates = passive[2]!.split(/,\s*(?:(?:and|or)\s+)?|\s+(?:and|or)\s+/);
+    if (subjects.length <= 6 && subjects.every(noun) && predicates.length <= 6 &&
+        predicates.every(part => /^(?:bypassed|overridden|ignored|waived|circumvented|suspended|disregarded|skipped|disabled|set aside)$/.test(part.trim()))) return true;
+  }
   // A denial may coordinate objects or permissions. Recognize the complete
   // sentence before comma/conjunction splitting destroys its negative scope.
   const safeNoun = (value: string) => /^[a-z'"“” -]{1,160}$/.test(value.trim()) &&
