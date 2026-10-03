@@ -51,3 +51,26 @@ test('hung collector is bounded and cannot suppress the independent monitor', as
 test('late completion does not erase missed deadline and completed receipts cannot be overwritten', async () => {
  const f=fixture();try {f.store.begin('late',1000,1000);const checks=Object.fromEntries(REQUIRED_DOMAINS.map(d=>[d,{status:'PASS'}]));f.store.complete('late',1060,checks);assert.equal(inspectAssurance(f.filename,{...policy,now:1070}).status,'ASSURANCE_OVERDUE');assert.throws(()=>f.store.complete('late',1061,checks));}finally{f.close();}
 });
+
+test('retained receipt corruption cannot become healthy or misstate coverage', async () => {
+ const f=fixture();try {
+  const collectors=Object.fromEntries(REQUIRED_DOMAINS.map(d=>[d,async()=>snapshot()]));
+  const valid=await runAssuranceCycle(f.store,{id:'retained',scheduledAt:1000,collectors,maxAgeMs:50,clock:()=>1000});
+  const mutations=[
+   r=>{delete r.schema;},r=>{r.coverage.passed=12;},r=>{r.coverage.required=12;},
+   r=>{r.healthy=false;},r=>{r.liveProof=true;},r=>{r.commerceWrites=1;},r=>{r.inferenceCalls=1;},
+   r=>{delete r.checks.runtime;},r=>{r.checks.extra={status:'PASS'};},
+   r=>{r.checks.runtime.status='INVALID';},r=>{r.checks.runtime.status='FAIL';},
+  ];
+  for(const mutate of mutations){
+   const receipt=structuredClone(valid);mutate(receipt);
+   f.store.db.prepare('UPDATE assurance_cycles SET receipt=? WHERE id=?').run(JSON.stringify(receipt),'retained');
+   const actual=inspectAssurance(f.filename,policy);
+   assert.equal(actual.status,'SOURCE_UNAVAILABLE');assert.equal(actual.healthy,false);
+  }
+  f.store.db.prepare('UPDATE assurance_cycles SET receipt=? WHERE id=?').run(JSON.stringify(valid),'retained');
+  assert.equal(inspectAssurance(f.filename,policy).status,'PASS');
+  f.store.db.prepare('UPDATE assurance_cycles SET started_at=999 WHERE id=?').run('retained');
+  assert.equal(inspectAssurance(f.filename,policy).healthy,false);
+ }finally{f.close();}
+});
