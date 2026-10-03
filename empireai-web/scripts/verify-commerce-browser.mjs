@@ -51,7 +51,7 @@ try {
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   await page.screenshot({path:resolve(output,'phone-home.png'),fullPage:true});
   const nav=page.getByRole('navigation',{name:'Owner navigation'});
-  await nav.getByRole('link',{name:'Products',exact:true}).click();
+  await nav.getByRole('link',{name:'Commerce',exact:true}).click();
   await page.getByRole('heading',{name:'Products',exact:true}).waitFor();
   await page.getByLabel('Show stage',{exact:true}).selectOption('qualified');
   await page.getByText('No products in this stage.',{exact:true}).waitFor();
