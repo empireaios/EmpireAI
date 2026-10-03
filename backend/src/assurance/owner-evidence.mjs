@@ -1,11 +1,11 @@
 import fs from 'node:fs';
 import {readDemo} from './owner-demo.mjs';
 import {DatabaseSync} from 'node:sqlite';
-import {inspectAssurance,REQUIRED_DOMAINS} from './independent-assurance.mjs';
+import {inspectAssurance,REQUIRED_DOMAINS,validateRetainedAssuranceReceipt} from './independent-assurance.mjs';
 import {readCurrentAssuranceTruth} from './current-state-provenance.mjs';
 export const policy={epoch:0,intervalMs:300000,graceMs:120000};
 const internal=new Set(['runtime','workers','scheduler','pillow-omissions','authority-spending']);
-const safeCheck=c=>Object.fromEntries(Object.entries(c??{}).filter(([k,v])=>['status','reason','missing','unexpected','mismatched','observedAt','unbound','authoritativeDigest','internalDigest'].includes(k)&&['string','number','boolean'].includes(typeof v)).map(([k,v])=>[k,typeof v==='string'?v.slice(0,240):v]));
+const safeCheck=c=>Object.fromEntries(Object.entries(c??{}).filter(([k,v])=>['status','reason','missing','unexpected','mismatched','observedAt','unbound','authoritativeCount','internalCount','matched','authoritativeDigest','internalDigest'].includes(k)&&['string','number','boolean'].includes(typeof v)).map(([k,v])=>[k,typeof v==='string'?v.slice(0,240):v]));
 /** Only the independent inspector may reconcile durable incidents. */
 export function recordOwnerAssurance(filename,now=Date.now()){ return ownerEvidence(filename,now,true); }
 /** Owner/operator reads never create schemas, reopen incidents or resolve findings. */
@@ -17,7 +17,11 @@ function ownerEvidence(filename,now,persist){
  try{
   if(persist)db.exec(`PRAGMA trusted_schema=OFF; CREATE TABLE IF NOT EXISTS assurance_findings(id TEXT PRIMARY KEY,source TEXT NOT NULL,severity TEXT NOT NULL,status TEXT NOT NULL,first_at INTEGER NOT NULL,last_at INTEGER NOT NULL,resolved_at INTEGER,detail TEXT NOT NULL);`);
   const rows=db.prepare('SELECT id,scheduled_at,started_at,completed_at,receipt FROM assurance_cycles ORDER BY scheduled_at DESC LIMIT 20').all();
-  const cycles=rows.map(r=>({id:r.id,scheduledAt:r.scheduled_at,startedAt:r.started_at,completedAt:r.completed_at,checks:r.receipt?Object.fromEntries(Object.entries(JSON.parse(r.receipt).checks).map(([d,c])=>[d,safeCheck(c)])):null}));
+  const cycles=rows.map(r=>{
+   let checks=null;
+   try{const receipt=validateRetainedAssuranceReceipt(r);checks=Object.fromEntries(Object.entries(receipt.checks).map(([d,c])=>[d,safeCheck(c)]));}catch{}
+   return {id:r.id,scheduledAt:r.scheduled_at,startedAt:r.started_at,completedAt:r.completed_at,checks};
+  });
   let heartbeat=null;try{heartbeat=JSON.parse(fs.readFileSync(filename+'.watchdog','utf8'));}catch{}
   const watchdogFresh=Number.isSafeInteger(heartbeat?.observedAt)&&heartbeat.observedAt<=now&&now-heartbeat.observedAt<=90000;
   const active=new Map();

@@ -227,6 +227,8 @@ jobs:
             src/validation/tests/mission-execution-binding.test.ts \
             src/validation/tests/mission-execution-durability.test.ts \
             src/validation/tests/mission-authority-wiring.test.ts \
+            src/validation/tests/strategic-memory-read-preservation.test.ts \
+            src/validation/tests/strategic-memory-engine.test.ts \
             src/validation/tests/certification-receipt-intake.test.ts \
             src/validation/tests/held-case-budget-ledger.test.ts \
             src/runtime/held-case-dispatch.test.ts \

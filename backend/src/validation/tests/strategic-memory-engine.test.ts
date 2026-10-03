@@ -207,6 +207,9 @@ describe("S010 Strategic Memory Engine", () => {
   });
 
   it("exposes strategic memory operations via Brain tools", async () => {
+    // Read tools inspect existing records; only explicit initialization seeds defaults.
+    assert.deepEqual(listStrategicMemories(WORKSPACE_ID), []);
+    initializeStrategicMemory(WORKSPACE_ID);
     const listed = (await invokeTool("strategic_memory.list")) as { memories: unknown[] };
     assert.ok(Array.isArray(listed.memories));
     assert.ok((listed.memories as unknown[]).length >= 7);

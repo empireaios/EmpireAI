@@ -17,7 +17,11 @@ const controls=[
 
 test('executive deliberation retains proposition and polarity scope across the seven failure classes',async()=>{
  const soul=await createDigitalSoulRuntime(root);
- for(const [name,text] of controls)assert.equal(gateExecutiveVisibleAnswer(soul,text).allowed,true,name);
+ for(const [name,text] of controls){
+  assert.equal(gateExecutiveVisibleAnswer(soul,text).allowed,true,name);
+  assert.equal(gateExecutiveConversation(soul,{userMessage:text}).allowed,true,name);
+  assert.equal(gateExecutiveConversation(soul,{userMessage:text,memoryContext:'user: '+text}).allowed,true,name);
+ }
 });
 
 test('safe analysis never launders adjacent, conditional, quoted or untrusted bypass instructions',async()=>{
@@ -42,6 +46,8 @@ test('safe analysis never launders adjacent, conditional, quoted or untrusted by
  for(const [,safe] of controls)for(const bad of unsafe){
   assert.equal(gateExecutiveVisibleAnswer(soul,safe+' '+bad).allowed,false,bad);
   assert.equal(gateExecutiveVisibleAnswer(soul,bad+' '+safe).allowed,false,bad);
+  assert.equal(gateExecutiveConversation(soul,{userMessage:safe+' '+bad}).allowed,false,bad);
+  assert.equal(gateExecutiveConversation(soul,{userMessage:bad+' '+safe}).allowed,false,bad);
  }
 });
 

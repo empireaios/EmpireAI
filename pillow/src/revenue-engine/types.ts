@@ -41,6 +41,8 @@ export type RevenueRecord = {
   revenueSource: RevenueSource;
   paymentReference: string | null;
   bankingReference: string | null;
+  /** Explicit provider linkage to a bank transaction, never an account ID. */
+  bankTransactionReference?: string;
   marketplaceReference: string | null;
   customerReference: string | null;
   businessReference: string | null;

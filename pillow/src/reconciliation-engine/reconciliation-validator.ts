@@ -15,8 +15,8 @@ export class ReconciliationValidator {
     const warnings: string[] = [];
 
     if (!config.matchingRulesEnabled) warnings.push("Matching rules disabled");
-    if (config.amountTolerance < 0) errors.push("Amount tolerance must be non-negative");
-    if (config.differenceThreshold < 0) errors.push("Difference threshold must be non-negative");
+    if (!Number.isFinite(config.amountTolerance) || config.amountTolerance < 0) errors.push("Amount tolerance must be non-negative");
+    if (!Number.isFinite(config.differenceThreshold) || config.differenceThreshold < 0) errors.push("Difference threshold must be non-negative");
 
     const decision = errors.length > 0 ? "fail" : warnings.length > 0 ? "partial" : "pass";
 
@@ -66,9 +66,12 @@ export class ReconciliationValidator {
     if (!record.reconciliationRecordId.startsWith("rc-rec-")) {
       errors.push("Invalid reconciliation record ID prefix");
     }
-    if (record.matchedTransactionCount < 0 || record.unmatchedTransactionCount < 0) {
-      errors.push("Transaction counts must be non-negative");
+    if (![record.matchedTransactionCount,record.unmatchedTransactionCount].every(value=>Number.isSafeInteger(value)&&value>=0)) {
+      errors.push("Transaction counts must be non-negative safe integers");
     }
+    if(!Number.isFinite(record.differenceAmount)||record.differenceAmount<0)errors.push("Difference must be finite and non-negative");
+    if(record.reconciliationStatus==="matched"&&(record.matchedTransactionCount===0||record.unmatchedTransactionCount!==0||record.differenceAmount!==0))
+      errors.push("Matched status requires positive matched evidence with no unmatched records or unexplained variance");
 
     const decision = errors.length > 0 ? "fail" : warnings.length > 0 ? "partial" : "pass";
 

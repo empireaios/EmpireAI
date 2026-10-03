@@ -8,7 +8,6 @@ import {
   archiveStrategicMemory,
   getStrategicMemory,
   getStrategicMemorySummary,
-  initializeStrategicMemory,
   listStrategicMemories,
   listStrategicMemoryLifecycle,
   listWorkspaceStrategicMemoryLifecycle,
@@ -49,7 +48,6 @@ export async function registerStrategicMemoryRoutes(
   app.get("/strategic-memory/memories/:memoryId", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
     const params = z.object({ memoryId: z.string().min(1) }).parse(request.params);
-    initializeStrategicMemory(user.workspaceId);
     const memory = getStrategicMemory(params.memoryId);
 
     if (!memory) {
@@ -147,6 +145,10 @@ export async function registerStrategicMemoryRoutes(
       .parse(request.body);
 
     try {
+      const target = getStrategicMemory(params.memoryId);
+      if (!target || target.workspaceId !== user.workspaceId) {
+        return reply.code(404).send({ error: "Strategic memory not found" });
+      }
       const memory = modifyStrategicMemory({ memoryId: params.memoryId, ...body, actor: user.email });
       auditLogger.write({
         action: "strategic_memory.modified",
@@ -173,6 +175,10 @@ export async function registerStrategicMemoryRoutes(
     const body = z.object({ reason: z.string().optional() }).parse(request.body ?? {});
 
     try {
+      const target = getStrategicMemory(params.memoryId);
+      if (!target || target.workspaceId !== user.workspaceId) {
+        return reply.code(404).send({ error: "Strategic memory not found" });
+      }
       const memory = archiveStrategicMemory(params.memoryId, user.email, body.reason);
       auditLogger.write({
         action: "strategic_memory.archived",
@@ -196,6 +202,14 @@ export async function registerStrategicMemoryRoutes(
     const body = z.object({ supersededBy: z.string().min(1) }).parse(request.body);
 
     try {
+      const target = getStrategicMemory(params.memoryId);
+      if (!target || target.workspaceId !== user.workspaceId) {
+        return reply.code(404).send({ error: "Strategic memory not found" });
+      }
+      const replacement = getStrategicMemory(body.supersededBy);
+      if (!replacement || replacement.workspaceId !== user.workspaceId) {
+        return reply.code(404).send({ error: "Strategic memory not found" });
+      }
       const memory = supersedeStrategicMemory(params.memoryId, body.supersededBy, user.email);
       auditLogger.write({
         action: "strategic_memory.superseded",
@@ -217,7 +231,10 @@ export async function registerStrategicMemoryRoutes(
     const user = request.user!;
     const params = z.object({ memoryId: z.string().min(1) }).parse(request.params);
     const query = z.object({ limit: z.coerce.number().int().min(1).max(500).optional() }).parse(request.query);
-    initializeStrategicMemory(user.workspaceId);
+    const memory = getStrategicMemory(params.memoryId);
+    if (!memory || memory.workspaceId !== user.workspaceId) {
+      return reply.code(404).send({ error: "Strategic memory not found" });
+    }
     const lifecycle = listStrategicMemoryLifecycle(params.memoryId, query.limit);
     return reply.send({ lifecycle });
   });
@@ -225,7 +242,6 @@ export async function registerStrategicMemoryRoutes(
   app.get("/strategic-memory/lifecycle", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
     const query = z.object({ limit: z.coerce.number().int().min(1).max(500).optional() }).parse(request.query);
-    initializeStrategicMemory(user.workspaceId);
     const lifecycle = listWorkspaceStrategicMemoryLifecycle(user.workspaceId, query.limit);
     return reply.send({ lifecycle });
   });

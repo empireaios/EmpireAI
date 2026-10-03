@@ -137,7 +137,7 @@ jobs:
         run: node --import tsx --test src/validation/tests/pillow-owner-regression.test.ts src/validation/tests/reasoning-certification-readback.test.ts src/validation/tests/operational-state-metrics.test.ts
       - name: Visible proposition scope and adjacent bypass regressions (offline)
         working-directory: pillow
-        run: node --import tsx --test src/validation/tests/commissioning-proposition-scope.test.ts src/validation/tests/digital-soul-executive-gate.test.ts src/validation/tests/assurance-challenge-semantics.test.ts
+        run: node --import tsx --test src/validation/tests/commissioning-proposition-scope.test.ts src/validation/tests/digital-soul-executive-gate.test.ts src/validation/tests/assurance-challenge-semantics.test.ts src/validation/tests/reconciliation-engine.test.ts src/validation/tests/reconciliation-evidence-boundary.test.ts
       - name: Record exact revision and verification limits
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}

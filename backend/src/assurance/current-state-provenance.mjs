@@ -14,6 +14,7 @@ export function readCurrentAssuranceTruth(filename,now=Date.now()) {
   const stat=fs.lstatSync(filename);
   if(!stat.isFile()||fs.realpathSync(filename)!==filename||stat.size>64*1024*1024)throw Error('Unsafe source');
   const verdict=inspectAssurance(filename,{...policy,now});
+  if(verdict.invalidReceipt)return {...base,status:'CONFLICT'};
   if(!verdict.receipt)return {...base,status:verdict.status};
   db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:1000});
   db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF');

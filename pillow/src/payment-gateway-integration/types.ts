@@ -49,6 +49,10 @@ export type PaymentRecord = {
   timestamp: string;
   gatewayId: string;
   transactionId: string;
+  /** Explicit provider linkage to a bank transaction, never an account ID. */
+  bankTransactionReference?: string;
+  /** Legacy customer capture records are inbound; supplier expense proof needs explicit outbound direction. */
+  direction?: "inbound" | "outbound";
   customerReference: string;
   orderReference: string;
   paymentAmount: number;

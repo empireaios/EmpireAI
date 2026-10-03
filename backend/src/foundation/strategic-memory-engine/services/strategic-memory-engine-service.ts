@@ -329,7 +329,7 @@ export function listStrategicMemories(
   workspaceId: string,
   filters?: { category?: StrategicMemoryCategory; status?: StrategicMemoryEntry["status"] },
 ): StrategicMemoryEntry[] {
-  initializeStrategicMemory(workspaceId);
+  // Inspection must not invent default memories or mutate lifecycle history.
   return getStrategicMemoryRepository().listMemories(
     workspaceId,
     filters?.category,
