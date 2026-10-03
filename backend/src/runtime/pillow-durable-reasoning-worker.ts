@@ -48,6 +48,10 @@ export async function executeReasoningProxy(
       ? body.result as Record<string, unknown> : body;
     const message = typeof result.message === "string" ? result.message.trim() : "";
     const reasoningFailure = result.reasoningFailure as { code?: unknown; retryable?: unknown } | undefined;
+    if (result.kind === "degraded_useful" && result.degradedUsed === true &&
+      ["ANSWER_REJECTED", "POSTPROCESS_FAILED"].includes(String(reasoningFailure?.code)) && reasoningFailure?.retryable === false) {
+      return { ok: false, failureClass: "POSTPROCESS_FAILURE", error: String(reasoningFailure.code).toLowerCase() };
+    }
     // A known missing provider cannot recover by retrying the same frozen configuration.
     // This remains a failure: degraded prose is never promoted to a completed answer.
     if (result.kind === "degraded_useful" && result.degradedUsed === true &&

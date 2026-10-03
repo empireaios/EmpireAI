@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { classifyReasoningFailure } from '../../runtime/reasoning-failure.js';
 import { preserveValidatedReasoningAnswer, READ_ONLY_TASK_DISCIPLINE } from './read-only-answer-integrity.js';
 
 export type PillowHostConfigureOptions = {
@@ -29685,7 +29686,9 @@ export class PillowHost {
         const explicitReasoningPlan = input.message.startsWith("/pillow-request ")
             ? resolveReasoningPlan(input.message, "general") : undefined;
         if (explicitReasoningPlan) input = { ...input, message: explicitReasoningPlan.message };
-        const requestId = newPillowRequestId();
+        // The authenticated durable envelope owns identity across history, receipts and reloads.
+        const requestId = reasoningOnly && /^pcr_[a-f0-9]{16}$/.test(input.correlationId ?? '')
+            ? input.correlationId : newPillowRequestId();
         const started = performance.now();
         recordPillowResponseAccepted(requestId);
         const multipartUnits = countExecutiveTaskUnits(input.message);
@@ -30326,6 +30329,7 @@ export class PillowHost {
             let retryUsed = false;
             let degradedUsed = false;
             let transportContractPassed = false;
+            let providerCompleted = false;
             if (this.llmLayer && providers.length > 0) {
                 try {
                     const caseProvenance = resolveCaseProvenanceContext(session.conversationHistory, llmUserMessage);
@@ -30377,6 +30381,10 @@ export class PillowHost {
                         completion = await this.llmLayer.complete(llmArgs);
                     }
                     message = completion.content;
+                    providerCompleted = true;
+                    inferenceProvenance = completion.provenance;
+                    provider = completion.provider;
+                    model = completion.model;
                     if (conversationalPipeline && !reasoningOnly) {
                         message = stripExecutiveResponseLabels(message);
                     }
@@ -30472,15 +30480,21 @@ export class PillowHost {
                     session.tokenUsage.requestCount++;
                 }
                 catch (error) {
-                    recordPillowProviderFailure();
-                    logResult = "degraded_after_llm_failure";
+                    if (!providerCompleted) recordPillowProviderFailure();
+                    logResult = providerCompleted ? "post_answer_failure" : "degraded_after_llm_failure";
                     this.lastError =
                         error instanceof Error ? error.message : String(error);
                     if (reasoningOnly) {
                         // A failed paid inference must remain a terminal failure, never
                         // fabricated business advice or an automatic new paid attempt.
-                        reasoningFailure = { code: "INFERENCE_FAILED", retryable: false };
-                        message = "Pillow could not complete this inference request. No completed provider answer is available; the existing request and spending reservation are retained for investigation.";
+                        const failure = classifyReasoningFailure(providerCompleted, error);
+                        reasoningFailure = { code: failure.code, retryable: false, providerCompleted };
+                        if (providerCompleted) {
+                            try { recordAnswerGateDiagnostic({requestId:input.correlationId || requestId,
+                                draft:message, findings:{stage:"post_answer", code:failure.code, reason:this.lastError}}); }
+                            catch { logger.warn({requestId,stage:"post_answer",code:"DIAGNOSTIC_UNAVAILABLE"}, "Rejected answer diagnostic unavailable"); }
+                        }
+                        message = failure.message;
                     } else {
                         const sealed = ensureUsefulTerminalChatMessage({
                             draft: null,

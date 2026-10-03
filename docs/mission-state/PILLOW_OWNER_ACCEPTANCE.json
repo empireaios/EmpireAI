@@ -1,0 +1,11 @@
+{
+  "schema": "pillow-owner-acceptance-v1",
+  "status": "FAILED_OWNER_ACCEPTANCE",
+  "reportedAt": "2026-10-03T01:31:53Z",
+  "incidentRequestId": "pcr_c64ece82e02945c3",
+  "historicalReasoningCertification": "PRESERVED",
+  "requiredGate": "KING PILLOW OWNER ACCEPTANCE TEST",
+  "acceptance": null,
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED"
+}
