@@ -21,3 +21,8 @@ export function summarizeAssuranceCoverage(coverage: unknown, current: boolean) 
   }
   return { current: true as const, passed, failed, unverified, required: assuranceDomains.length };
 }
+
+/** A retained check is historical whenever the enclosing evidence is not current. */
+export function displayAssuranceCheck(status: string, current: boolean) {
+  return current ? status : `UNKNOWN — retained result: ${status}`;
+}
