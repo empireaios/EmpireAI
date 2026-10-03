@@ -1,0 +1,54 @@
+{
+  "schema": "commissioning-access-activation-v1",
+  "status": "ROLLED_BACK_AUDIT_FAILURE",
+  "backendRevision": "dccaa535abcde591807d8f0a0970012a14aff711",
+  "activationDeployment": "7620bef0-76dd-413c-956e-f721471367f5",
+  "rollbackDeployment": "96f017f1-449e-4862-afd1-8e53ea7104e1",
+  "rollbackRestoredSnapshot": "852e187c-99b6-43ca-9e63-892dfc8bd99c",
+  "liveAuthorizationChecks": {
+    "accountingValidCredential": 200,
+    "assuranceValidCredential": 200,
+    "missingCredential": 403,
+    "invalidCredential": 403,
+    "queryVariant": 403,
+    "founderIdentityWithOperatorCredential": 401,
+    "cacheControl": "private, no-store"
+  },
+  "failedCriterion": "Authorization audit events absent: locked Tier-0 uses Fastify logger:false, so app.log.info is a no-op.",
+  "rollbackVerification": {
+    "deploymentStatus": "SUCCESS",
+    "readinessHttp": 200,
+    "ready": true,
+    "operatorCredentialHttp": 403,
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "preservationObservation": {
+    "baselineAt": "2026-10-03T02:51:27.415Z",
+    "comparedAt": "2026-10-03T03:25:02.543Z",
+    "databases": 5,
+    "businessRowsMissingOrChanged": 0,
+    "priorAuditRowsMissingOrChanged": 0,
+    "priorLedgerCallRowsMissingOrChanged": 0,
+    "priorAssuranceRowsMissingOrChanged": 0,
+    "ledgerCallsBefore": 74,
+    "ledgerCallsAfter": 90,
+    "mutableRowsChanged": ["one provider_health row", "one transcripts row"],
+    "interpretation": "Concurrent owner activity requires attribution of mutable transcript/provider-health changes. Do not claim byte-identical stores or a fully closed preservation check. No business-row corruption observed. Rollback was required for the audit failure."
+  },
+  "accountingObservation": {
+    "observedAt": "2026-10-03T03:23:25.297Z",
+    "records": 88,
+    "heldMicroUsd": 24338190,
+    "remainingMicroUsd": 15661810,
+    "estimateMicroUsd": 4559453,
+    "estimateUnknownCount": 5,
+    "invoiceActualMicroUsd": null,
+    "invoiceUnknownCount": 88,
+    "note": "Point-in-time read; ongoing owner activity can change it. Reconcile before any paid inference."
+  },
+  "workInferenceCalls": 0,
+  "repair": "Write fixed-schema authorization decisions to supervised stdout independently of Fastify; fail closed if audit output fails. Test the actual logger:false configuration, secret exclusion, and sink failure.",
+  "scopeUnchanged": "Only the existing two GET readbacks. No founder identity, inference, deployment, restart, Birth or commerce authority.",
+  "missionStatus": "CONTINUING_NOT_COMPLETE"
+}
