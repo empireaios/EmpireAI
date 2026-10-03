@@ -5,6 +5,8 @@ on:
       - 'backend/src/assurance/**'
       - 'deployment/locked-runtime.cjs'
       - 'deployment/assurance-supervisor.cjs'
+      - 'deployment/runtime-revision*'
+      - 'backend/scripts/record-runtime-revision.cjs'
       - 'backend/src/runtime/tier0-isolated-primary.ts'
       - 'backend/src/validation/tests/*assurance*.test.mjs'
       - 'backend/src/validation/tests/commissioning-operator.test.mjs'
@@ -22,6 +24,7 @@ jobs:
         with:
           node-version-file: '.node-version'
       - run: |
+          node --test deployment/runtime-revision.test.cjs
           node backend/src/validation/tests/commissioning-operator.test.mjs
           node backend/src/validation/tests/assurance-owner-evidence.test.mjs
           node backend/src/validation/tests/independent-assurance.test.mjs

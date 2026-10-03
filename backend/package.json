@@ -17,7 +17,7 @@
     "grand-king:automation": "node --import tsx scripts/grand-king-automation.ts",
     "db:migrate:postgres": "node --import tsx scripts/postgres-migrate.ts",
     "prebuild": "node ../scripts/sync-pillow-governance.mjs",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && node scripts/record-runtime-revision.cjs",
     "postbuild": "node -e \"require('node:fs').copyFileSync('src/runtime/native-store-capture-lock.cjs','dist/runtime/native-store-capture-lock.cjs')\"",
     "start": "node dist/index.js",
     "start:worker": "node dist/worker.js",

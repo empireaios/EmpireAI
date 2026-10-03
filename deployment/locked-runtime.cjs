@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { superviseAssurance } = require('./assurance-supervisor.cjs');
+const { resolveRuntimeRevision } = require('./runtime-revision.cjs');
 const { runBounded, canaryExitCode, assertRuntimeVersion } = require('./canary-launcher.cjs');
 const PROFILE = 'LOCKED_COMMISSIONING_V1';
 function configuration(input) {
@@ -31,6 +32,9 @@ async function main(){
   const cwd=path.resolve(__dirname,'..');
   if(fs.existsSync(path.join(cwd,'.env')))throw Error('Repository dotenv forbidden');
   const env=configuration(process.env), dir=path.dirname(env.DATABASE_PATH);
+  // Rollbacks can omit Railway Git metadata. Pin both children to the image's
+  // build receipt; never accept a conflicting runtime environment revision.
+  env.RAILWAY_GIT_COMMIT_SHA=resolveRuntimeRevision(cwd,env.RAILWAY_GIT_COMMIT_SHA);
   fs.mkdirSync(dir,{recursive:true,mode:0o700});
   if(fs.realpathSync(dir)!==dir)throw Error('Redirected data directory refused');
   const ledger=path.join(dir,'openai-october-2026.sqlite');
