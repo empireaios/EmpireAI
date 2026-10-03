@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useState} from 'react';
 import Link from 'next/link';
-import {summarizeAssuranceCoverage,displayAssuranceCheck} from '@/lib/owner/assurance-coverage';
+import {summarizeAssuranceCoverage,displayAssuranceCheck,assurancePopulation} from '@/lib/owner/assurance-coverage';
 type Check={source:string;classification:string;status:string;reason?:string;observedAt?:number;evidenceReference:string|null;missing?:number;mismatched?:number};
 type Evidence={demonstration?:{scope:string;history:{status:string;observedAt:number;sourceChangedAt:number}[]};observedAt:number;status:string;scope:string;nextCycleAt:number;dueAt:number|null;lastCompletedAt:number|null;lastSuccessfulAt:number|null;watchdog:{fresh:boolean;observedAt:number|null};coverage:Check[];findings:{id:string;source:string;severity:string;status:string;first_at:number;last_at:number;resolved_at:number|null;detail:string}[];cycles:{id:string;scheduledAt:number;completedAt:number|null}[];accounting:{ceilingMicroUsd:number;heldMicroUsd:number;remainingMicroUsd:number;recordedEstimateMicroUsd:number;invoiceActualMicroUsd:number|null;invoiceUnknownCount:number;observedAt:string}};
 const at=(v:number|null|undefined)=>v?new Date(v).toLocaleString():'Not established';

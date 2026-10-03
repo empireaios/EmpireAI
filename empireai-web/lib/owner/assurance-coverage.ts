@@ -26,3 +26,16 @@ export function summarizeAssuranceCoverage(coverage: unknown, current: boolean) 
 export function displayAssuranceCheck(status: string, current: boolean) {
   return current ? status : `UNKNOWN — retained result: ${status}`;
 }
+
+/** Counts describe only entries actually read by the independent adapter. */
+export function assurancePopulation(check: unknown): string {
+  const unavailable = 'Compared population: unknown';
+  if (!check || typeof check !== 'object') return unavailable;
+  const c = check as Record<string, unknown>;
+  const keys = ['authoritativeCount', 'internalCount', 'matched', 'missing', 'mismatched', 'unexpected'] as const;
+  if (keys.some(k => typeof c[k] !== 'number' || !Number.isSafeInteger(c[k]) || (c[k] as number) < 0)) return unavailable;
+  const [authoritative, internal, matched, missing, mismatched, unexpected] = keys.map(k => c[k] as number);
+  if (BigInt(matched) + BigInt(missing) + BigInt(mismatched) !== BigInt(authoritative) ||
+      BigInt(matched) + BigInt(mismatched) + BigInt(unexpected) !== BigInt(internal)) return unavailable;
+  return `Recorded comparison: ${authoritative} authoritative entries; ${internal} internal entries; ${matched} matched; ${missing} missing; ${mismatched} mismatched; ${unexpected} unexpected. Observed scope only.`;
+}
