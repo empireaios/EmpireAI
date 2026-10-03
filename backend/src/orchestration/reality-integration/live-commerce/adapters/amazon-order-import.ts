@@ -239,13 +239,20 @@ export function getImportedOrder(workspaceId: string, providerId: string, orderI
 }
 
 /** Read-only snapshots, never customer PII or a fulfilment authorization. */
+function hasImportTables(names: string[]): boolean {
+  const db = getDatabase();
+  return names.every(name => Boolean(db.prepare(
+    "SELECT name FROM sqlite_master WHERE type = 'table' AND name = @name",
+  ).get({ name })));
+}
+
 export function listImportedAmazonOrders(
   workspaceId: string, providerId = "amazon-us", limit = 100,
 ): OrderSnapshot[] {
   if (!Number.isSafeInteger(limit) || limit < 1 || limit > 500) {
     throw new Error("Amazon order read limit must be 1..500");
   }
-  ensureTables();
+  if (!hasImportTables(["amazon_order_import_rows"])) return [];
   const rows = getDatabase().prepare(`
     SELECT record_json FROM amazon_order_import_rows
     WHERE workspace_id = @workspaceId AND provider_id = @providerId
@@ -265,7 +272,7 @@ type ImportStatus = {
 
 /** Safe owner-visible state: no pagination token or customer data. */
 export function getAmazonOrderImportStatus(workspaceId: string, providerId = "amazon-us"): ImportStatus | null {
-  ensureTables();
+  if (!hasImportTables(["amazon_order_import_continuations", "amazon_order_import_cursors", "amazon_order_request_gate"])) return null;
   const row = getDatabase().prepare(`
     SELECT c.status, c.reason, c.updated_at, u.completed_at, u.next_token, g.next_allowed_at
     FROM amazon_order_import_continuations c

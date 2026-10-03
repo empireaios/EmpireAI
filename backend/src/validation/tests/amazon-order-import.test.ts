@@ -56,6 +56,28 @@ afterEach(() => {
   else process.env.LIVE_COMMERCE_INTEGRATION_MODE = oldMode;
 });
 
+test("owner order reads preserve an uninitialized and partially initialized import schema", () => {
+  useDiskDatabase();
+  const db = getDatabase();
+  const schema = () => db.prepare("SELECT type, name, sql FROM sqlite_master ORDER BY type, name").all();
+  let before = schema();
+  assert.deepEqual(listImportedAmazonOrders(ctx.workspaceId), []);
+  assert.equal(getAmazonOrderImportStatus(ctx.workspaceId), null);
+  assert.deepEqual(schema(), before, "a read must not create import tables");
+
+  db.exec("CREATE TABLE amazon_order_import_rows (workspace_id TEXT, provider_id TEXT, order_id TEXT, updated_at TEXT, record_json TEXT)");
+  const snapshot = { orderId: "retained-order", sourceSha256: "retained-digest" };
+  db.prepare("INSERT INTO amazon_order_import_rows VALUES (@workspaceId, @providerId, 'retained-order', '2026-10-03', @record)")
+    .run({ workspaceId: ctx.workspaceId, providerId: ctx.providerId, record: JSON.stringify(snapshot) });
+  before = schema();
+  const rowsBefore = db.prepare("SELECT * FROM amazon_order_import_rows").all();
+  assert.deepEqual(listImportedAmazonOrders(ctx.workspaceId), [snapshot]);
+  assert.deepEqual(listImportedAmazonOrders("foreign-workspace"), []);
+  assert.equal(getAmazonOrderImportStatus(ctx.workspaceId), null);
+  assert.deepEqual(schema(), before, "missing status tables stay unknown without DDL");
+  assert.deepEqual(db.prepare("SELECT * FROM amazon_order_import_rows").all(), rowsBefore);
+});
+
 test("Amazon US imports a real-form page, preserves cursor across restart and only finishes after final page", async () => {
   useDiskDatabase();
   const requests: URL[] = [];
