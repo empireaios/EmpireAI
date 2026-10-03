@@ -6,7 +6,7 @@
  */
 import { createHash } from "node:crypto";
 import { getDatabase } from "../../../../brain/database.js";
-import { getAmazonMarketplaceProfile } from "../amazon-marketplace-profiles.js";
+import { getAmazonMarketplaceProfile, isAmazonMarketplaceRegistryId } from "../amazon-marketplace-profiles.js";
 import { httpTransport } from "../http-transport.js";
 import type { LiveCommerceAdapterContext, LiveCommerceSyncResult } from "./types.js";
 
@@ -19,6 +19,7 @@ export type OrderSnapshot = {
   fulfilledBy: string | null;
   orderItems: Array<{ orderItemId: string; sellerSku: string | null; quantityOrdered: number }>;
   grandTotalCents: number | null;
+  grandTotalCurrency: "USD" | "SGD" | null;
   sourceSha256: string;
 };
 type Cursor = {
@@ -118,11 +119,11 @@ function validTime(value: unknown): value is string {
   return typeof value === "string" && Number.isFinite(Date.parse(value));
 }
 
-function moneyCents(value: unknown): number | null {
+function moneyCents(value: unknown, currency: "USD" | "SGD"): number | null {
   if (value == null) return null;
   if (!value || typeof value !== "object") throw new Error("Amazon order proceeds malformed");
   const record = value as Record<string, unknown>;
-  if (record.currencyCode !== "USD" || typeof record.amount !== "string" ||
+  if (record.currencyCode !== currency || typeof record.amount !== "string" ||
       !/^\d+(?:\.\d{1,2})?$/.test(record.amount)) {
     throw new Error("Amazon order proceeds currency or amount unsupported");
   }
@@ -132,7 +133,7 @@ function moneyCents(value: unknown): number | null {
   return Number(cents);
 }
 
-function sanitizeOrder(value: unknown, marketplaceId: string): OrderSnapshot {
+function sanitizeOrder(value: unknown, marketplaceId: string, currency: "USD" | "SGD"): OrderSnapshot {
   if (!value || typeof value !== "object") throw new Error("Amazon order payload malformed");
   const raw = value as Record<string, unknown>;
   const channel = raw.salesChannel as Record<string, unknown> | undefined;
@@ -170,7 +171,8 @@ function sanitizeOrder(value: unknown, marketplaceId: string): OrderSnapshot {
     fulfillmentStatus: typeof fulfillment?.fulfillmentStatus === "string" ? fulfillment.fulfillmentStatus : null,
     fulfilledBy: typeof fulfillment?.fulfilledBy === "string" ? fulfillment.fulfilledBy : null,
     orderItems,
-    grandTotalCents: moneyCents((proceeds?.grandTotal)),
+    grandTotalCents: moneyCents(proceeds?.grandTotal, currency),
+    grandTotalCurrency: proceeds?.grandTotal == null ? null : currency,
     sourceSha256: createHash("sha256").update(JSON.stringify(raw)).digest("hex"),
   };
 }
@@ -322,15 +324,16 @@ export async function pauseAmazonOrderImport(
   await getDatabase().requestCriticalPersist();
 }
 
-export async function syncAmazonUsOrders(ctx: LiveCommerceAdapterContext): Promise<LiveCommerceSyncResult> {
-  if (ctx.providerId !== "amazon-us" || ctx.mode !== "production") {
-    throw new Error("Amazon US order import requires production Amazon US context");
+export async function syncAmazonMarketplaceOrders(ctx: LiveCommerceAdapterContext): Promise<LiveCommerceSyncResult> {
+  if (!isAmazonMarketplaceRegistryId(ctx.providerId) || ctx.mode !== "production") {
+    throw new Error("Amazon order import requires production Amazon context");
   }
   const token = ctx.credentials.accessToken;
   if (typeof token !== "string" || !token.trim()) {
-    throw new Error("Amazon US access token required for order import");
+    throw new Error("Amazon access token required for order import");
   }
-  const marketplaceId = getAmazonMarketplaceProfile("amazon-us").marketplaceId;
+  const profile = getAmazonMarketplaceProfile(ctx.providerId);
+  const marketplaceId = profile.marketplaceId;
   const prior = getCursor(ctx.workspaceId, ctx.providerId);
   const now = Date.now();
   const initialSince = new Date(now - 7 * 24 * 60 * 60_000).toISOString();
@@ -355,7 +358,7 @@ export async function syncAmazonUsOrders(ctx: LiveCommerceAdapterContext): Promi
       Date.parse(active.since) > Date.parse(active.until) ||
       !Number.isSafeInteger(active.seen) || active.seen < 0 ||
       active.seen > 50_000 || active.nextToken.length > 4096) {
-    throw new Error("Amazon US order sync cursor malformed");
+    throw new Error("Amazon order sync cursor malformed");
   }
   const params = new URLSearchParams({
     lastUpdatedAfter: active.since,
@@ -367,33 +370,33 @@ export async function syncAmazonUsOrders(ctx: LiveCommerceAdapterContext): Promi
   if (active.nextToken) params.set("paginationToken", active.nextToken);
   await reserveAmazonOrderRequest(ctx);
   const response = await httpTransport({
-    url: `https://sellingpartnerapi-na.amazon.com/orders/2026-01-01/orders?${params}`,
+    url: `${profile.productionEndpoint}/orders/2026-01-01/orders?${params}`,
     method: "GET",
     headers: { "x-amz-access-token": token },
     timeoutMs: 15_000,
     maxResponseBytes: 2 * 1024 * 1024,
   });
-  if (!response.ok) throw new Error(`Amazon US order search failed: HTTP ${response.status}`);
+  if (!response.ok) throw new Error(`Amazon order search failed: HTTP ${response.status}`);
   if (!response.json || typeof response.json !== "object") {
-    throw new Error("Amazon US order search response malformed");
+    throw new Error("Amazon order search response malformed");
   }
   const payload = response.json as Record<string, unknown>;
   if (!Array.isArray(payload.orders) || payload.orders.length > 100) {
-    throw new Error("Amazon US order search page missing or oversized");
+    throw new Error("Amazon order search page missing or oversized");
   }
   if (payload.pagination != null &&
       (typeof payload.pagination !== "object" || Array.isArray(payload.pagination))) {
-    throw new Error("Amazon US order pagination payload malformed");
+    throw new Error("Amazon order pagination payload malformed");
   }
   const pagination = payload.pagination as Record<string, unknown> | undefined;
   const nextToken = pagination?.nextToken ?? "";
   if (typeof nextToken !== "string" || nextToken.length > 4096 ||
       (nextToken && nextToken === active.nextToken)) {
-    throw new Error("Amazon US order pagination token invalid");
+    throw new Error("Amazon order pagination token invalid");
   }
-  const snapshots = payload.orders.map((order: unknown) => sanitizeOrder(order, marketplaceId));
+  const snapshots = payload.orders.map((order: unknown) => sanitizeOrder(order, marketplaceId, profile.currencyCode));
   if (active.seen + snapshots.length > 50_000) {
-    throw new Error("Amazon US order sync exceeds bounded window");
+    throw new Error("Amazon order sync exceeds bounded window");
   }
   const finished = !nextToken;
   const cursor: Cursor = finished ? {
@@ -410,7 +413,7 @@ export async function syncAmazonUsOrders(ctx: LiveCommerceAdapterContext): Promi
       readback.since !== cursor.since || readback.lastCompletedAt !== cursor.lastCompletedAt ||
       snapshots.some(snapshot =>
         getImportedOrder(ctx.workspaceId, ctx.providerId, snapshot.orderId)?.sourceSha256 !== snapshot.sourceSha256)) {
-    throw new Error("Amazon US order import durable read-back failed");
+    throw new Error("Amazon order import durable read-back failed");
   }
   if (!finished) {
     // One page per call bounds request work. A durable recovery record can
@@ -423,3 +426,6 @@ export async function syncAmazonUsOrders(ctx: LiveCommerceAdapterContext): Promi
     itemsFailed: 0, liveApiVerified: true, durableReadbackVerified: true,
   };
 }
+
+/** Compatibility export; the validated context selects US or SG. */
+export const syncAmazonUsOrders = syncAmazonMarketplaceOrders;

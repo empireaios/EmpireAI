@@ -7,9 +7,9 @@ import {
 } from "../amazon-marketplace-profiles.js";
 import { getAmazonSpApiConfig, isProductionLiveCommerce } from "../config.js";
 import { httpTransport } from "../http-transport.js";
-import { syncAmazonUsOrders } from "./amazon-order-import.js";
-import { syncAmazonUsListings } from "./amazon-listings-import.js";
-import { syncAmazonUsSellerInventory } from "./amazon-seller-inventory-import.js";
+import { syncAmazonMarketplaceOrders } from "./amazon-order-import.js";
+import { syncAmazonMarketplaceListings } from "./amazon-listings-import.js";
+import { syncAmazonMarketplaceSellerInventory } from "./amazon-seller-inventory-import.js";
 import type {
   LiveCommerceAdapterContext,
   LiveCommerceProviderAdapter,
@@ -123,14 +123,14 @@ export function createAmazonSpApiAdapter(
 
     async syncCatalog(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("catalog", ctx, 12);
-      if (registryId === "amazon-us") return syncAmazonUsListings(ctx);
-      throw new Error("AMAZON_CATALOG_SYNC_UNIMPLEMENTED: no persisted catalog receipt");
+      if (ctx.providerId !== registryId) throw new Error("Amazon adapter/context marketplace mismatch");
+      return syncAmazonMarketplaceListings(ctx);
     },
 
     async syncInventory(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("inventory", ctx, 8);
-      if (registryId === "amazon-us") return syncAmazonUsSellerInventory(ctx);
-      throw new Error("AMAZON_INVENTORY_SYNC_UNIMPLEMENTED: FBA summaries are not seller-fulfilled stock evidence");
+      if (ctx.providerId !== registryId) throw new Error("Amazon adapter/context marketplace mismatch");
+      return syncAmazonMarketplaceSellerInventory(ctx);
     },
 
     async syncPricing(ctx) {
@@ -140,8 +140,8 @@ export function createAmazonSpApiAdapter(
 
     async syncOrders(ctx) {
       if (ctx.mode === "sandbox") return helpers.buildSyncResult("orders", ctx, 4);
-      if (registryId === "amazon-us") return syncAmazonUsOrders(ctx);
-      throw new Error("AMAZON_ORDERS_SYNC_UNIMPLEMENTED: marketplace importer unavailable");
+      if (ctx.providerId !== registryId) throw new Error("Amazon adapter/context marketplace mismatch");
+      return syncAmazonMarketplaceOrders(ctx);
     },
 
     verifyWebhookSignature(payload, signature, secret) {

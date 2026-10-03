@@ -10,40 +10,41 @@ import { runLiveCommerceSync } from "../services/live-commerce-integration-servi
 type AuthMiddleware = ReturnType<typeof createAuthMiddleware>;
 
 /**
- * Small production-critical surface for owner-observed read-only Amazon US
+ * Small production-critical surface for owner-observed read-only Amazon
  * order import. This route never publishes, purchases or grants commerce.
  */
 export async function registerAmazonOrderReadRoutes(
   app: FastifyInstance,
   deps: { authenticate: AuthMiddleware; auditLogger: AuditLogger },
 ): Promise<void> {
-  app.get("/commerce/amazon-us/orders/imported", { preHandler: deps.authenticate }, async (request, reply) => {
+  for (const providerId of ["amazon-us", "amazon-sg"] as const) {
+  app.get(`/commerce/${providerId}/orders/imported`, { preHandler: deps.authenticate }, async (request, reply) => {
     const user = request.user!;
     if (user.role !== "founder") return reply.code(403).send({ error: "Founder access required" });
     return reply.send({
-      providerId: "amazon-us",
-      orders: listImportedAmazonOrders(user.workspaceId, "amazon-us", 100),
-      importStatus: getAmazonOrderImportStatus(user.workspaceId, "amazon-us"),
+      providerId,
+      orders: listImportedAmazonOrders(user.workspaceId, providerId, 100),
+      importStatus: getAmazonOrderImportStatus(user.workspaceId, providerId),
       // These are sanitized provider snapshots, not a fulfilment or profit ledger.
       commerceEffect: "none",
     });
   });
 
-  app.post("/commerce/amazon-us/orders/sync", { preHandler: deps.authenticate }, async (request, reply) => {
+  app.post(`/commerce/${providerId}/orders/sync`, { preHandler: deps.authenticate }, async (request, reply) => {
     const user = request.user!;
     if (user.role !== "founder") return reply.code(403).send({ error: "Founder access required" });
     if (resolveLiveCommerceIntegrationMode() !== "production") {
       return reply.code(409).send({ error: "Amazon provider sync requires production integration mode" });
     }
     const job = await runLiveCommerceSync({
-      workspaceId: user.workspaceId, providerId: "amazon-us",
+      workspaceId: user.workspaceId, providerId,
       syncType: "orders", actor: user.email,
     });
     deps.auditLogger.write({
       action: "reality_integration.live_commerce.sync",
       actor: user.email, workspaceId: user.workspaceId,
       correlationId: request.id,
-      metadata: { providerId: "amazon-us", syncType: "orders", jobId: job.jobId, status: job.status },
+      metadata: { providerId, syncType: "orders", jobId: job.jobId, status: job.status },
     });
     return reply.code(job.status === "completed" ? 200 : 409).send({
       job,
@@ -51,46 +52,47 @@ export async function registerAmazonOrderReadRoutes(
     });
   });
 
-  app.get("/commerce/amazon-us/listings/imported", { preHandler: deps.authenticate }, async (request, reply) => {
+  app.get(`/commerce/${providerId}/listings/imported`, { preHandler: deps.authenticate }, async (request, reply) => {
     const user = request.user!;
     if (user.role !== "founder") return reply.code(403).send({ error: "Founder access required" });
-    return reply.send({ providerId: "amazon-us", listings: listCurrentAmazonUsListings(user.workspaceId),
-      importStatus: getAmazonUsListingsImportStatus(user.workspaceId), commerceEffect: "none" });
+    return reply.send({ providerId, listings: listCurrentAmazonUsListings(user.workspaceId, providerId),
+      importStatus: getAmazonUsListingsImportStatus(user.workspaceId, providerId), commerceEffect: "none" });
   });
 
-  app.post("/commerce/amazon-us/listings/sync", { preHandler: deps.authenticate }, async (request, reply) => {
+  app.post(`/commerce/${providerId}/listings/sync`, { preHandler: deps.authenticate }, async (request, reply) => {
     const user = request.user!;
     if (user.role !== "founder") return reply.code(403).send({ error: "Founder access required" });
     if (resolveLiveCommerceIntegrationMode() !== "production") {
       return reply.code(409).send({ error: "Amazon provider sync requires production integration mode" });
     }
     const job = await runLiveCommerceSync({ workspaceId: user.workspaceId,
-      providerId: "amazon-us", syncType: "catalog", actor: user.email });
+      providerId, syncType: "catalog", actor: user.email });
     deps.auditLogger.write({ action: "reality_integration.live_commerce.sync",
       actor: user.email, workspaceId: user.workspaceId, correlationId: request.id,
-      metadata: { providerId: "amazon-us", syncType: "catalog", jobId: job.jobId, status: job.status } });
+      metadata: { providerId, syncType: "catalog", jobId: job.jobId, status: job.status } });
     return reply.code(job.status === "completed" ? 200 : 409).send({ job, commerceEffect: "none" });
   });
 
-  app.get("/commerce/amazon-us/inventory/imported", { preHandler: deps.authenticate }, async (request, reply) => {
+  app.get(`/commerce/${providerId}/inventory/imported`, { preHandler: deps.authenticate }, async (request, reply) => {
     const user = request.user!;
     if (user.role !== "founder") return reply.code(403).send({ error: "Founder access required" });
-    return reply.send({ providerId: "amazon-us", sellerManagedInventory: listCurrentAmazonSellerInventory(user.workspaceId),
-      importStatus: getAmazonSellerInventoryImportStatus(user.workspaceId),
+    return reply.send({ providerId, sellerManagedInventory: listCurrentAmazonSellerInventory(user.workspaceId, providerId),
+      importStatus: getAmazonSellerInventoryImportStatus(user.workspaceId, providerId),
       supplierStockVerified: false, commerceEffect: "none" });
   });
 
-  app.post("/commerce/amazon-us/inventory/sync", { preHandler: deps.authenticate }, async (request, reply) => {
+  app.post(`/commerce/${providerId}/inventory/sync`, { preHandler: deps.authenticate }, async (request, reply) => {
     const user = request.user!;
     if (user.role !== "founder") return reply.code(403).send({ error: "Founder access required" });
     if (resolveLiveCommerceIntegrationMode() !== "production") {
       return reply.code(409).send({ error: "Amazon provider sync requires production integration mode" });
     }
     const job = await runLiveCommerceSync({ workspaceId: user.workspaceId,
-      providerId: "amazon-us", syncType: "inventory", actor: user.email });
+      providerId, syncType: "inventory", actor: user.email });
     deps.auditLogger.write({ action: "reality_integration.live_commerce.sync",
       actor: user.email, workspaceId: user.workspaceId, correlationId: request.id,
-      metadata: { providerId: "amazon-us", syncType: "inventory", jobId: job.jobId, status: job.status } });
+      metadata: { providerId, syncType: "inventory", jobId: job.jobId, status: job.status } });
     return reply.code(job.status === "completed" ? 200 : 409).send({ job, commerceEffect: "none" });
   });
+  }
 }

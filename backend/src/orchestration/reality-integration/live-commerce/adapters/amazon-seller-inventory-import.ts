@@ -3,7 +3,7 @@
  */
 import { createHash } from "node:crypto";
 import { getDatabase } from "../../../../brain/database.js";
-import { getAmazonMarketplaceProfile } from "../amazon-marketplace-profiles.js";
+import { getAmazonMarketplaceProfile, isAmazonMarketplaceRegistryId, type AmazonMarketplaceRegistryId } from "../amazon-marketplace-profiles.js";
 import { httpTransport } from "../http-transport.js";
 import type { LiveCommerceAdapterContext, LiveCommerceSyncResult } from "./types.js";
 
@@ -104,19 +104,19 @@ function persist(ctx: LiveCommerceAdapterContext, rows: Stock[], next: Cursor) {
     throw error;
   }
 }
-export function listImportedAmazonSellerInventory(workspaceId: string, sellerId: string): Stock[] {
+export function listImportedAmazonSellerInventory(workspaceId: string, sellerId: string, providerId: AmazonMarketplaceRegistryId = "amazon-us"): Stock[] {
   tables();
   const rows = getDatabase().prepare(`SELECT record_json FROM amazon_seller_inventory_rows
-    WHERE workspace_id=@workspaceId AND provider_id='amazon-us' AND seller_id=@sellerId
-    ORDER BY sku LIMIT 500`).all({ workspaceId, sellerId }) as Array<{ record_json: string }>;
+    WHERE workspace_id=@workspaceId AND provider_id=@providerId AND seller_id=@sellerId
+    ORDER BY sku LIMIT 500`).all({ workspaceId, sellerId, providerId }) as Array<{ record_json: string }>;
   return rows.map(row => JSON.parse(row.record_json) as Stock);
 }
-export function listCurrentAmazonSellerInventory(workspaceId: string): Stock[] {
-  const selected = cursor({ workspaceId, providerId: "amazon-us", mode: "production", credentials: {} });
-  return selected ? listImportedAmazonSellerInventory(workspaceId, selected.sellerId)
+export function listCurrentAmazonSellerInventory(workspaceId: string, providerId: AmazonMarketplaceRegistryId = "amazon-us"): Stock[] {
+  const selected = cursor({ workspaceId, providerId, mode: "production", credentials: {} });
+  return selected ? listImportedAmazonSellerInventory(workspaceId, selected.sellerId, providerId)
     .filter(row => row.cycleStartedAt === selected.startedAt) : [];
 }
-export function getAmazonSellerInventoryImportStatus(workspaceId: string): {
+export function getAmazonSellerInventoryImportStatus(workspaceId: string, providerId: AmazonMarketplaceRegistryId = "amazon-us"): {
   status: string; reason: string; itemsSeen: number; pagesPending: boolean;
   nextAllowedAt: string | null; completedAt: string | null;
 } | null {
@@ -124,7 +124,7 @@ export function getAmazonSellerInventoryImportStatus(workspaceId: string): {
   const row = getDatabase().prepare(`SELECT c.status, c.reason, c.seen, c.next_token,
       c.completed_at, g.next_allowed_at FROM amazon_seller_inventory_cursor c
     LEFT JOIN amazon_seller_inventory_gate g ON g.workspace_id=c.workspace_id AND g.provider_id=c.provider_id
-    WHERE c.workspace_id=@workspaceId AND c.provider_id='amazon-us'`).get({ workspaceId }) as {
+    WHERE c.workspace_id=@workspaceId AND c.provider_id=@providerId`).get({ workspaceId, providerId }) as {
       status: string; reason: string; seen: number; next_token: string;
       completed_at: string | null; next_allowed_at: string | null;
     } | undefined;
@@ -133,33 +133,33 @@ export function getAmazonSellerInventoryImportStatus(workspaceId: string): {
     completedAt: row.completed_at } : null;
 }
 export function nextPendingAmazonSellerInventoryImport(): {
-  workspaceId: string; nextAllowedAt: string | null; startedAt: string;
+  workspaceId: string; providerId: AmazonMarketplaceRegistryId; nextAllowedAt: string | null; startedAt: string;
 } | null {
   tables();
-  return getDatabase().prepare(`SELECT c.workspace_id AS workspaceId,
+  return getDatabase().prepare(`SELECT c.workspace_id AS workspaceId, c.provider_id AS providerId,
       g.next_allowed_at AS nextAllowedAt, c.started_at AS startedAt
     FROM amazon_seller_inventory_cursor c LEFT JOIN amazon_seller_inventory_gate g
       ON g.workspace_id=c.workspace_id AND g.provider_id=c.provider_id
-    WHERE c.provider_id='amazon-us' AND c.status='pending' AND c.next_token <> ''
+    WHERE c.provider_id IN ('amazon-us','amazon-sg') AND c.status='pending' AND c.next_token <> ''
     ORDER BY c.started_at ASC LIMIT 1`).get() as {
-      workspaceId: string; nextAllowedAt: string | null; startedAt: string;
+      workspaceId: string; providerId: AmazonMarketplaceRegistryId; nextAllowedAt: string | null; startedAt: string;
     } | undefined ?? null;
 }
 export async function pauseAmazonSellerInventoryImport(
-  workspaceId: string, reason: string, startedAt: string,
+  workspaceId: string, reason: string, startedAt: string, providerId: AmazonMarketplaceRegistryId = "amazon-us",
 ): Promise<void> {
   if (reason !== "PROVIDER_FAILURE" && reason !== "RATE_GATE_CORRUPT") {
     throw new Error("Amazon inventory pause reason invalid");
   }
   tables();
   getDatabase().prepare(`UPDATE amazon_seller_inventory_cursor SET status='paused', reason=@reason
-    WHERE workspace_id=@workspaceId AND provider_id='amazon-us' AND status='pending'
-      AND started_at=@startedAt`).run({ workspaceId, reason, startedAt });
+    WHERE workspace_id=@workspaceId AND provider_id=@providerId AND status='pending'
+      AND started_at=@startedAt`).run({ workspaceId, reason, startedAt, providerId });
   await getDatabase().requestCriticalPersist();
 }
-export async function syncAmazonUsSellerInventory(ctx: LiveCommerceAdapterContext): Promise<LiveCommerceSyncResult> {
-  if (ctx.providerId !== "amazon-us" || ctx.mode !== "production") {
-    throw new Error("Amazon seller inventory requires production Amazon US context");
+export async function syncAmazonMarketplaceSellerInventory(ctx: LiveCommerceAdapterContext): Promise<LiveCommerceSyncResult> {
+  if (!isAmazonMarketplaceRegistryId(ctx.providerId) || ctx.mode !== "production") {
+    throw new Error("Amazon seller inventory requires production Amazon context");
   }
   const seller = ctx.credentials.sellerId, access = ctx.credentials.accessToken;
   if (typeof seller !== "string" || !/^[A-Za-z0-9_-]{1,64}$/.test(seller) ||
@@ -172,19 +172,20 @@ export async function syncAmazonUsSellerInventory(ctx: LiveCommerceAdapterContex
       prior.seen < 0 || prior.seen > 50_000)) throw new Error("Amazon inventory cursor invalid");
   const active = prior?.nextToken ? prior : { sellerId: seller, nextToken: "", seen: 0,
     completedAt: null, startedAt: new Date().toISOString(), status: "pending", reason: "" };
-  const marketplaceId = getAmazonMarketplaceProfile("amazon-us").marketplaceId;
+  const profile = getAmazonMarketplaceProfile(ctx.providerId);
+  const marketplaceId = profile.marketplaceId;
   const query = new URLSearchParams({ marketplaceIds: marketplaceId,
     includedData: "summaries,fulfillmentAvailability", pageSize: "20" });
   if (active.nextToken) query.set("pageToken", active.nextToken);
   await reserve(ctx);
   const response = await httpTransport({
-    url: `https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/${encodeURIComponent(seller)}?${query}`,
+    url: `${profile.productionEndpoint}/listings/2021-08-01/items/${encodeURIComponent(seller)}?${query}`,
     method: "GET", headers: { "x-amz-access-token": access },
     timeoutMs: 15_000, maxResponseBytes: 2 * 1024 * 1024,
   });
-  if (!response.ok) throw new Error(`Amazon US inventory search failed: HTTP ${response.status}`);
+  if (!response.ok) throw new Error(`Amazon inventory search failed: HTTP ${response.status}`);
   if (!response.json || typeof response.json !== "object" || Array.isArray(response.json)) {
-    throw new Error("Amazon US inventory response malformed");
+    throw new Error("Amazon inventory response malformed");
   }
   const body = response.json as Record<string, unknown>;
   if (!Array.isArray(body.items) || body.items.length > 20 ||
@@ -213,3 +214,6 @@ export async function syncAmazonUsSellerInventory(ctx: LiveCommerceAdapterContex
   return { syncType: "inventory", itemsProcessed: next.seen, itemsFailed: 0,
     liveApiVerified: true, durableReadbackVerified: true };
 }
+
+/** Compatibility export. */
+export const syncAmazonUsSellerInventory = syncAmazonMarketplaceSellerInventory;
