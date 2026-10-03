@@ -8,6 +8,7 @@ import { env } from '../config/env.js';
 import { inferenceLedgerPath } from '../brain/llm/locked-inference.js';
 import { readAnswerGateDiagnostic } from './answer-gate-diagnostics.js';
 import { readProviderReceipts } from './provider-receipt-readback.js';
+import { readReasoningCertification } from './reasoning-certification-readback.js';
 
 /** Read the existing ledger in one snapshot. Never initialize, settle or release reservations. */
 export function readCommissioningAccounting(filename: string) {
@@ -102,7 +103,7 @@ export function registerOwnerCommissioningReadback(app: FastifyInstance, authent
       if(!root||!root.startsWith('/')||fs.realpathSync(root)!==root)throw Error('Volume unavailable');
       const moduleUrl=new URL('../../src/assurance/owner-evidence.mjs',import.meta.url).href;
       const {readOwnerAssurance}=await import(moduleUrl);
-      return reply.send({...readOwnerAssurance(root+'/commissioning/assurance.sqlite'),accounting:readback()});
+      return reply.send({...readOwnerAssurance(root+'/commissioning/assurance.sqlite'),accounting:readback(),pillowCertification:readReasoningCertification()});
     }catch{return reply.code(503).send({status:'UNKNOWN',error:'Durable Assurance evidence unavailable'});}
   });
   app.get('/api/pillow/commissioning-accounting', { preHandler: authenticate }, async (request, reply) => {

@@ -91,13 +91,17 @@ const CAUSAL_BRIDGE =
   /\b(?:because\s+(?:we\s+)?(?:verified|confirmed|measured)|given\s+(?:verified|confirmed)\s+|evidence\s+(?:shows|supports)\s+that\s+(?:this|the)\s+(?:candidate|option|product|supplier|migration)|economics\s+(?:clear|pass|support)|readiness\s+(?:is\s+)?(?:confirmed|verified))\b/i;
 
 export function hasStrongSpecificRecommendation(text: string): boolean {
-  // A mentioned action is not a recommendation (plans, quotations and refusals
-  // routinely contain action verbs). Require an affirmative recommendation.
-  return text.split(/(?<=[.!?])\s+|\n+/).some((sentence) => {
-    if (/\b(?:do not|don.t|must not|should not|cannot|can.t|never|not authorized)\b/i.test(sentence)) return false;
-    return STRONG_SPECIFIC_ACTION.test(sentence) &&
-      (RECOMMENDATION_STANCE.test(sentence) || UNCONDITIONAL_URGENCY.test(sentence) ||
-       /^\s*(?:launch|publish|migrate|hire|discount|switch|increase\s+.*spend)\b/i.test(sentence));
+  return recommendationClauses(text).length > 0;
+}
+
+/** Bind recommendation stance to its action, not unrelated words elsewhere in an answer. */
+export function recommendationClauses(text: string): string[] {
+  return text.split(/(?<=[.!?])\s+|\n+|;|\bbut\b|\bhowever\b/i).filter((raw) => {
+    const clause = raw.replace(/^[\s#>*\d.)-]+/, '').replace(/\*\*/g, '').trim();
+    const directive = clause.match(/(?:\b(?:i recommend(?: that)?(?: we)?|we should|we must|therefore(?: i recommend)?(?: we)?|must|best (?:next|immediate) action is to)\s+|^)(?:(?:immediately|now)\s+)?((?:launch|publish|go live with|roll out|scale|increase|spend|discount|cut prices?|migrate|switch|hire|replace with|commit to|proceed with)\b[\s\S]*)/i);
+    if (!directive || !STRONG_SPECIFIC_ACTION.test(directive[1]!)) return false;
+    // A review/plan for an action is not the action itself.
+    return !/^(?:launch|publish)\s+(?:readiness|criteria|requirements|planning|plan|review|checklist|evidence|remains?|is|was|has|requires?|needs?)\b/i.test(directive[1]!);
   });
 }
 
@@ -106,6 +110,7 @@ export function hasDecisionConditionality(text: string): boolean {
 }
 
 export function classifyDecisionPosture(text: string): DecisionPosture | null {
+  if (VERIFY_FIRST_FRAMING.test(text) && STRONG_SPECIFIC_ACTION.test(text)) return "VERIFY_THEN_ACT";
   if (!hasStrongSpecificRecommendation(text) && !PROGRESS_GOAL.test(text)) {
     return null;
   }
@@ -147,16 +152,17 @@ export function assessDecisionQuality(
     Number(truth?.financial?.orders ?? -1) === 0 &&
     Number(truth?.financial?.realisedRevenueUsd ?? -1) === 0;
 
+  const recommendations = recommendationClauses(message);
+  const unsupported = recommendations.filter(clause => !hasDecisionConditionality(clause) && !CAUSAL_BRIDGE.test(clause));
+
   for (const leap of GOAL_SOLUTION_LEAPS) {
     const goalHit =
       leap.id === "revenue_to_launch"
         ? leap.goal.test(message)
         : leap.goal.test(message);
-    const solutionHit = leap.solution.test(message);
-    const consequential =
-      strong || RECOMMENDATION_STANCE.test(message) || UNCONDITIONAL_URGENCY.test(message);
-    if (goalHit && solutionHit && consequential) {
-      if (!CAUSAL_BRIDGE.test(message) && !conditional && !verifyFirst && !reversible) {
+    const solutionHit = unsupported.some(clause => leap.solution.test(clause));
+    if (goalHit && solutionHit) {
+      {
         violations.push("GOAL_SOLUTION_CAUSAL_LEAP");
         break;
       }
@@ -165,11 +171,8 @@ export function assessDecisionQuality(
 
   // Material assumption identified but treated as established for an unconditional recommendation.
   if (
-    strong &&
+    unsupported.length > 0 &&
     admitsMaterial &&
-    !conditional &&
-    !verifyFirst &&
-    !reversible &&
     (ADMITS_UNKNOWN_MATERIAL.test(message) ||
       (zeroCommerce && /\b(?:launch|publish|go\s+live)\b/i.test(message)))
   ) {
@@ -183,12 +186,7 @@ export function assessDecisionQuality(
   if (
     zeroCommerce &&
     GOAL_SOLUTION_LEAPS[0]!.goal.test(message) &&
-    /\b(?:launch|publish|go\s+live\s+with|roll\s+out)\b/i.test(message) &&
-    strong &&
-    !conditional &&
-    !verifyFirst &&
-    !reversible &&
-    !CAUSAL_BRIDGE.test(message)
+    unsupported.some(clause => /\b(?:launch|publish|go\s+live\s+with|roll\s+out)\b/i.test(clause))
   ) {
     violations.push("UNVERIFIED_SOLUTION_FROM_VERIFIED_GOAL");
   }
