@@ -38,7 +38,7 @@ import { SqlitePillowApprovalRepository } from "../pillow-approval/repository/sq
 import { buildReasoningBundleForWorkspace, ensureExecutiveLearningTables, observeExecutiveConversation, } from "../executive-learning/index.js";
 import { ensurePillowExecutiveCouncilTables, runAndStoreExecutiveCouncil, } from "../pillow-executive-council/index.js";
 import { isPillowProductionModeEnabled } from "../version-1-activation/version-1-activation-config.js";
-import { shouldRunExecutiveCouncil, summarizeProposalTopic, inferSubjectType, gateExecutiveConversation, gateExecutiveVisibleAnswer, assertDigitalSoulAvailable, DigitalSoulUnavailableError, applyExecutiveDeliberation, toExecutiveDeliberationPublicSummary, alignVisibleAnswerWithDeliberation, } from "@empireai/pillow";
+import { shouldRunExecutiveCouncil, summarizeProposalTopic, inferSubjectType, gateExecutiveConversation, gateExecutiveVisibleAnswer, assertDigitalSoulAvailable, applyExecutiveDeliberation, toExecutiveDeliberationPublicSummary, alignVisibleAnswerWithDeliberation, } from "@empireai/pillow";
 import { createBrainLLMAdapter } from "./brain-llm-adapter.js";
 import { newPillowRequestId, PillowRequestLogger } from "./pillow-logger.js";
 import { formatPillowWorkspaceContext, buildScreenAwarenessBrief } from "./workspace-context.js";
@@ -75,7 +75,6 @@ import {
   isScopedAwayFromLiveEmpire,
 } from "./executive-scoped-reasoning.js";
 import {
-  buildUsefulDegradedExecutiveAnswer,
   countExecutiveTaskUnits,
   ensureUsefulTerminalChatMessage,
   recordPillowProviderFailure,
@@ -83,6 +82,7 @@ import {
   recordPillowResponseTerminal,
 } from "./executive-response-completion.js";
 import { hasAuthoritySemanticsMarker } from "./executive-authority-semantics.js";
+import { preInferenceRefusal } from "./executive-preinference-refusal.js";
 import {
   isLiveCommerceEffectAsk,
   isOperatingAuthorityFactAsk,
@@ -29745,25 +29745,9 @@ export class PillowHost {
                         .join("\n"),
                 });
             }
-            catch (gateError) {
-                const refusal =
-                    gateError instanceof DigitalSoulUnavailableError
-                        ? gateError.message
-                        : gateError instanceof Error
-                            ? gateError.message
-                            : String(gateError);
-                let executiveTruthSnapshot = null;
-                try {
-                    executiveTruthSnapshot = buildExecutiveTruthSnapshot(input.workspaceId);
-                } catch {
-                    /* non-blocking */
-                }
-                const degraded = buildUsefulDegradedExecutiveAnswer({
-                    userMessage: input.message,
-                    truth: executiveTruthSnapshot,
-                    reason: refusal,
-                    authorityConstrained: hasAuthoritySemanticsMarker(input.message),
-                });
+            catch {
+                const blocked = preInferenceRefusal(true);
+                const degraded = blocked.message;
                 const assistantTurn = {
                     role: "assistant",
                     content: degraded,
@@ -29783,8 +29767,8 @@ export class PillowHost {
                 });
                 recordPillowResponseTerminal({
                     requestId,
-                    kind: "degraded_useful",
-                    useful: true,
+                    kind: "authority_constrained",
+                    useful: false,
                     degradedUsed: true,
                     primaryFailureReason: "digital_soul_unavailable",
                     latencyMs,
@@ -29794,8 +29778,7 @@ export class PillowHost {
                     requestId,
                     sessionId: session.sessionId,
                     workspaceId: input.workspaceId,
-                    message: degraded,
-                    kind: "degraded_useful",
+                    ...blocked,
                     latencyMs,
                     trace: { ...trace, totalMs: latencyMs },
                     constitutionalGate: {
@@ -29805,19 +29788,8 @@ export class PillowHost {
                 };
             }
             if (!constitutionalGate.allowed) {
-                let executiveTruthSnapshot = null;
-                try {
-                    executiveTruthSnapshot = buildExecutiveTruthSnapshot(input.workspaceId);
-                } catch {
-                    /* non-blocking */
-                }
-                const degraded = buildUsefulDegradedExecutiveAnswer({
-                    userMessage: input.message,
-                    truth: executiveTruthSnapshot,
-                    reason: constitutionalGate.refusalMessage ?? "authority_constrained",
-                    // Constitutional gate refusal is authority-relevant only when the ask carries authority semantics.
-                    authorityConstrained: true,
-                });
+                const blocked = preInferenceRefusal(false);
+                const degraded = blocked.message;
                 const assistantTurn = {
                     role: "assistant",
                     content: degraded,
@@ -29838,7 +29810,7 @@ export class PillowHost {
                 recordPillowResponseTerminal({
                     requestId,
                     kind: "authority_constrained",
-                    useful: true,
+                    useful: false,
                     degradedUsed: true,
                     primaryFailureReason: "constitutional_refused",
                     latencyMs,
@@ -29848,8 +29820,7 @@ export class PillowHost {
                     requestId,
                     sessionId: session.sessionId,
                     workspaceId: input.workspaceId,
-                    message: degraded,
-                    kind: "degraded_useful",
+                    ...blocked,
                     latencyMs,
                     trace: { ...trace, totalMs: latencyMs },
                     constitutionalGate: {
