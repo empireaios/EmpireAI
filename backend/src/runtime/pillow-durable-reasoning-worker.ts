@@ -13,7 +13,7 @@ export type ReasoningAttempt =
   | { ok: true; result: Record<string, unknown> }
   | { ok: false; failureClass: ChatFailureClass; error: string; upstreamStatus?: number };
 
-const COMPLETED_REASONING_KINDS = new Set(["llm", "authority_refusal", "authority_facts", "response_contract"]);
+const COMPLETED_REASONING_KINDS = new Set(["llm", "authority_facts", "response_contract"]);
 
 export async function executeReasoningProxy(
   job: ClaimedReasoningRequest,
@@ -62,6 +62,9 @@ export async function executeReasoningProxy(
     const constitutionalGate = result.constitutionalGate as { allowed?: boolean } | undefined;
     if (constitutionalGate?.allowed === false) {
       return { ok: false, failureClass: "BRAIN_FATAL", error: "constitutional_gate_refused" };
+    }
+    if (result.kind === "authority_refusal" || reasoningFailure?.code === "LIVE_COMMERCE_REFUSED") {
+      return { ok: false, failureClass: "BRAIN_FATAL", error: "live_commerce_refused" };
     }
     const responseContract = result.responseContract as { code?: string } | undefined;
     if (!message || !COMPLETED_REASONING_KINDS.has(String(result.kind)) ||

@@ -125,7 +125,7 @@ describe("durable worker completion contract", { concurrency: false }, () => {
   it("permits complete reasoning and deliberate non-action constitutional responses", async () => {
     const original = globalThis.fetch;
     try {
-      for (const kind of ["llm", "authority_refusal", "authority_facts", "response_contract"]) {
+      for (const kind of ["llm", "authority_facts", "response_contract"]) {
         globalThis.fetch = async (url, init) => {
           assert.equal(String(url), "http://127.0.0.1:9999/api/pillow/chat");
           assert.equal((init?.headers as Record<string, string>)["x-empire-pillow-request-kind"], "reasoning");
