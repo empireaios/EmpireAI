@@ -1,9 +1,11 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {memoryReadPreservingRevision,summarizeMemoryEvidence} from './memory-evidence';
+import {expectedBackendRevision} from './runtime-identity.mjs';
 import {GET} from '../../app/api/owner/memory/route';
 const record={memoryId:'m1',workspaceId:'ws_empire_1',category:'failures',status:'ACTIVE',source:'secret-source',insight:'secret-insight',metadata:{token:'secret-token'},updatedAt:'2026-10-03T10:00:00Z'};
 test('memory inventory exposes scoped aggregate lifecycle metadata, never private content',()=>{
+ assert.equal(memoryReadPreservingRevision,expectedBackendRevision);
  const summary=summarizeMemoryEvidence({memories:[record,{...record,memoryId:'m2',status:'SUPERSEDED',source:''}],total:2});
  assert.equal(summary.total,2);assert.equal(summary.active,1);assert.equal(summary.superseded,1);assert.equal(summary.archived,0);assert.equal(summary.withSource,1);assert.equal(summary.byCategory.failures,2);
  assert.doesNotMatch(JSON.stringify(summary),/secret|m1|m2/);
