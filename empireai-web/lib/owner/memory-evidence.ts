@@ -1,4 +1,4 @@
-export const memoryReadPreservingRevision='56e72198992ff857da5aa9a7a057069753fe9866';
+export const memoryReadPreservingRevision='3f9f1aacbb0fb265b0141bc27af2d8cf272bab85';
 const categories=['failures','successes','architecture','businessLessons','capitalLessons','supplierLessons','marketingLessons'] as const;
 export type MemoryInventory={total:number;active:number;archived:number;superseded:number;withSource:number;latestChange:string|null;byCategory:Record<string,number>;checkedAt:string};
 /** Aggregate metadata only. Never return insight, context, arbitrary metadata or
