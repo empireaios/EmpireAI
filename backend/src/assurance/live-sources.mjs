@@ -4,8 +4,9 @@ import { DatabaseSync } from 'node:sqlite';
 import { createHash } from 'node:crypto';
 
 // Read stores directly, independently of Pillow's own reports and caches.
-// Scope is explicit: completed requests in the preceding 15 minutes, excluding
-// the most recent 30 seconds to avoid racing the history commit.
+// Completed answers use a 15 minute comparison window. Terminal delivery failures
+// remain in scope for the entire retained durable request inventory: quiet time
+// must not turn a failed owner interaction into a successful delivery.
 export async function collectDurableOmissions({ redis, filename, now = Date.now() }) {
   const stat=fs.lstatSync(filename);
   if(!stat.isFile() || stat.nlink!==1 || stat.size>32*1024*1024 || fs.realpathSync(filename)!==filename) throw Error('Unsafe reasoning source');
@@ -24,6 +25,18 @@ export async function collectDurableOmissions({ redis, filename, now = Date.now(
       const raw=await redis.get(key);if(raw===null)throw Error('Inventory changed during collection');
       if(Buffer.byteLength(raw)>1024*1024)throw Error('Request exceeds bound');
       const r=JSON.parse(raw);
+      if(r.workspaceId!=='ws_empire_1')continue;
+      if(r.status==='FAILED_FATAL'||r.status==='FAILED'){
+        if(key!=='pillow:chatreq:v2:'+r.requestId || typeof r.requestId!=='string' || !r.requestId || typeof r.sessionId!=='string' || !r.sessionId)throw Error('Failed request identity invalid');
+        const failedAt=Date.parse(r.updatedAt);
+        if(!Number.isFinite(failedAt)||failedAt>now)throw Error('Failed request timestamp unavailable');
+        // A provider receipt, rejection diagnostic, or error message is not an
+        // owner answer. Do not use liveness or a historical certification here.
+        authoritative.push({id:r.requestId,value:'owner-answer-delivered'});
+        internal.push({id:r.requestId,value:'terminal-application-delivery-failure'});
+        inspected++;
+        continue;
+      }
       if(r.status!=='COMPLETED')continue;
       // Delivery reads update updatedAt; only the immutable completion receipt
       // defines this window. Raw Redis retains exact result bytes in resultJson.
@@ -52,7 +65,7 @@ export async function collectDurableOmissions({ redis, filename, now = Date.now(
     }
     db.exec('COMMIT');
     if(!inspected&&!unbound)return null;
-    return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; completed 30s–15m window',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal,scopeComplete:unbound===0,unbound};
+    return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; completed 30s–15m window and all retained terminal failures',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal,scopeComplete:unbound===0,unbound};
   }finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}
 }
 

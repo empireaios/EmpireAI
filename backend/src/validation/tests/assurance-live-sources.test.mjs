@@ -7,6 +7,23 @@ import {DatabaseSync} from 'node:sqlite';
 import {collectDurableOmissions} from '../../assurance/live-sources.mjs';
 import {reconcileSnapshot} from '../../assurance/independent-assurance.mjs';
 
+test('provider success followed by application rejection remains a delivery failure during quiet periods',async()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-terminal-')),filename=path.join(dir,'reasoning.sqlite'),now=20000000;
+ const db=new DatabaseSync(filename);db.exec('CREATE TABLE transcripts(workspace TEXT,session TEXT,turns TEXT)');db.close();
+ const rows=Array.from({length:7},(_,i)=>({requestId:'failed-'+i,sessionId:'s',workspaceId:'ws_empire_1',status:'FAILED_FATAL',updatedAt:new Date(now-7200000).toISOString(),brainResult:{providerStatus:'success'},failureClass:'CONSTITUTIONAL_GATE_REFUSED',finalResult:{message:'Application error, not an answer'}}));
+ const redis={scan:async()=>['0',rows.map(r=>'pillow:chatreq:v2:'+r.requestId)],get:async key=>JSON.stringify(rows.find(r=>key==='pillow:chatreq:v2:'+r.requestId))};
+ try{
+  const before=fs.readFileSync(filename),sourceBefore=JSON.stringify(rows);
+  for(const clock of [now,now+86400000]){
+   const verdict=reconcileSnapshot(await collectDurableOmissions({redis,filename,now:clock}),clock,120000);
+   assert.equal(verdict.status,'FAIL');assert.equal(verdict.mismatched,7);
+  }
+  assert.equal(JSON.stringify(rows),sourceBefore);assert.deepEqual(fs.readFileSync(filename),before);
+  rows[0].status='FAILED';assert.equal(reconcileSnapshot(await collectDurableOmissions({redis,filename,now}),now,120000).mismatched,7);
+  rows[0].updatedAt=new Date(now+1).toISOString();await assert.rejects(collectDurableOmissions({redis,filename,now}));
+ }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
+
 test('independent durable sources detect missing delivery without modifying sources',async()=>{
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-source-')),filename=path.join(dir,'reasoning.sqlite'),now=1000000;
   const db=new DatabaseSync(filename);db.exec('CREATE TABLE transcripts(workspace TEXT,session TEXT,turns TEXT)');
