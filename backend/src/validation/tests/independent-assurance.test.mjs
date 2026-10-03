@@ -74,3 +74,16 @@ test('retained receipt corruption cannot become healthy or misstate coverage', a
   assert.equal(inspectAssurance(f.filename,policy).healthy,false);
  }finally{f.close();}
 });
+
+test('population evidence distinguishes checked matches, omissions and unexpected internal rows',()=>{
+ const s=snapshot();s.authoritative.push({id:'order-2',value:{paid:true}},{id:'order-3',value:{paid:true}});
+ s.internal=[{id:'order-1',value:{paid:false}},{id:'order-2',value:{paid:true}},{id:'unexpected',value:{paid:true}}];
+ const result=reconcileSnapshot(s,1000,50);
+ assert.deepEqual([result.authoritativeCount,result.internalCount,result.matched,result.missing,result.mismatched,result.unexpected],[3,3,1,1,1,1]);
+ assert.equal(result.status,'FAIL');
+ const absent=reconcileSnapshot({unavailable:true},1000,50);assert.equal(absent.authoritativeCount,undefined);
+ const empty=reconcileSnapshot({...snapshot(),authoritative:[],internal:[]},1000,50);
+ assert.equal(empty.authoritativeCount,0);assert.equal(empty.matched,0);
+ const partial=reconcileSnapshot({...snapshot(),scopeComplete:false,unbound:1},1000,50);
+ assert.equal(partial.status,'NOT_CHECKED');assert.equal(partial.authoritativeCount,1);
+});

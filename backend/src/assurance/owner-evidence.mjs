@@ -5,7 +5,7 @@ import {inspectAssurance,REQUIRED_DOMAINS,validateRetainedAssuranceReceipt} from
 import {readCurrentAssuranceTruth} from './current-state-provenance.mjs';
 export const policy={epoch:0,intervalMs:300000,graceMs:120000};
 const internal=new Set(['runtime','workers','scheduler','pillow-omissions','authority-spending']);
-const safeCheck=c=>Object.fromEntries(Object.entries(c??{}).filter(([k,v])=>['status','reason','missing','unexpected','mismatched','observedAt','unbound','authoritativeDigest','internalDigest'].includes(k)&&['string','number','boolean'].includes(typeof v)).map(([k,v])=>[k,typeof v==='string'?v.slice(0,240):v]));
+const safeCheck=c=>Object.fromEntries(Object.entries(c??{}).filter(([k,v])=>['status','reason','missing','unexpected','mismatched','observedAt','unbound','authoritativeCount','internalCount','matched','authoritativeDigest','internalDigest'].includes(k)&&['string','number','boolean'].includes(typeof v)).map(([k,v])=>[k,typeof v==='string'?v.slice(0,240):v]));
 /** Only the independent inspector may reconcile durable incidents. */
 export function recordOwnerAssurance(filename,now=Date.now()){ return ownerEvidence(filename,now,true); }
 /** Owner/operator reads never create schemas, reopen incidents or resolve findings. */
