@@ -80,12 +80,35 @@ test('incomplete receipt retains bounded reason and configured ceiling without r
  let calls=0;
  try {
   for(const reason of ['max_output_tokens','content_filter','untrusted text must not be retained']){
-   globalThis.fetch=async(_url,init)=>{calls++;assert.equal(JSON.parse(String(init?.body)).max_output_tokens,2000);return Response.json({id:'resp_incomplete',model:LOCKED_MODEL,status:'incomplete',incomplete_details:{reason},usage:{input_tokens:10,output_tokens:2000,total_tokens:2010,output_tokens_details:{reasoning_tokens:2000}},output:[]});};
+   globalThis.fetch=async(_url,init)=>{calls++;assert.equal(JSON.parse(String(init?.body)).max_output_tokens,10000);return Response.json({id:'resp_incomplete',model:LOCKED_MODEL,status:'incomplete',incomplete_details:{reason},usage:{input_tokens:10,output_tokens:2000,total_tokens:2010,output_tokens_details:{reasoning_tokens:2000}},output:[]});};
    await assert.rejects(completeLockedInference({...request,maxTokens:2000}),/reservation retained/);
    const rows=read(inferenceLedgerPath());const row=rows.at(-1)!;const usage=JSON.parse(String(row.usage_json));
-   assert.equal(row.status,'incomplete');assert.ok(Number(row.reserved_micro_usd)>0);assert.equal(usage.configuredOutputTokens,2000);assert.equal(usage.providerStatus,'incomplete');assert.equal(usage.reasoningTokens,2000);
+   assert.equal(row.status,'incomplete');assert.ok(Number(row.reserved_micro_usd)>0);assert.equal(usage.configuredOutputTokens,10000);assert.equal(usage.providerStatus,'incomplete');assert.equal(usage.reasoningTokens,2000);
    assert.equal(usage.incompleteReason,reason==='untrusted text must not be retained'?null:reason);
   }
   assert.equal(calls,3);
+ }finally{globalThis.fetch=originalFetch;for(const key of Object.keys(process.env))if(!(key in old))delete process.env[key];Object.assign(process.env,old);fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('Pillow OpenAI headroom reserves 10000 tokens and keeps concise answers and budget denial',async()=>{
+ const old={...process.env},originalFetch=globalThis.fetch;
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'headroom-'));fs.mkdirSync(path.join(root,'commissioning'));
+ Object.assign(process.env,{EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'commissioning','empireai-brain.db'),OPENAI_API_KEY:'offline-test-key'});
+ let calls=0;
+ const message='Compare demand evidence and contribution margin before selecting an opportunity.';
+ try {
+  for(const outputTokens of [30,9000]){
+   globalThis.fetch=async(_url,init)=>{
+    calls++;const body=JSON.parse(String(init?.body));assert.equal(body.max_output_tokens,10000);assert.equal(body.reasoning.effort,'medium');assert.equal(body.model,LOCKED_MODEL);
+    const bound=Buffer.byteLength(JSON.stringify(body.input),'utf8')+4096+body.input.length*512;
+    assert.equal(read(inferenceLedgerPath()).at(-1)?.reserved_micro_usd,Math.ceil(bound*2.75+10000*11));
+    return Response.json({model:LOCKED_MODEL,status:'completed',usage:{input_tokens:10,output_tokens:outputTokens,total_tokens:10+outputTokens,output_tokens_details:{reasoning_tokens:outputTokens-20}},output:[{type:'message',role:'assistant',phase:'final_answer',content:[{type:'output_text',text:message}]}]});
+   };
+   const answer=await completeLockedInference({...request,maxTokens:2000});assert.equal(answer.content,message);assert.ok(answer.content.split(/\s+/).length<25);
+  }
+  const file=inferenceLedgerPath(),held=read(file).reduce((s,r)=>s+Number(r.reserved_micro_usd),0);
+  reserveInference(file,40_000_000-held-1);
+  await assert.rejects(completeLockedInference({...request,maxTokens:2000}),/budget exhausted/);assert.equal(calls,2);
+  await assert.rejects(completeLockedInference({...request,maxTokens:10001}),/output bound refused/);assert.equal(calls,2);
  }finally{globalThis.fetch=originalFetch;for(const key of Object.keys(process.env))if(!(key in old))delete process.env[key];Object.assign(process.env,old);fs.rmSync(root,{recursive:true,force:true});}
 });

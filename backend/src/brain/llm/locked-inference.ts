@@ -88,8 +88,10 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
   // images, files, tools, stored conversation, implicit previous response or retries.
   const inputBound=Buffer.byteLength(JSON.stringify(input),'utf8')+4096+input.length*512;
   if(inputBound>1_000_000)throw Error('Inference input exceeds priced bound');
-  const outputBound=request.maxTokens??8192;
-  if(!Number.isSafeInteger(outputBound)||outputBound<1||outputBound>8192)throw Error('Inference output bound refused');
+  // The legacy Pillow 2,000-token allocation is OpenAI reasoning headroom,
+  // not a desired answer length. Other providers and explicit smaller bounds stay unchanged.
+  const outputBound=request.maxTokens===2_000?10_000:request.maxTokens??8192;
+  if(!Number.isSafeInteger(outputBound)||outputBound<1||outputBound>10_000)throw Error('Inference output bound refused');
   // All input reserved as cache writes, with regional 10% premium and long
   // context multiplier. Output includes hidden reasoning; standard tier only.
   const long=inputBound>272000;
