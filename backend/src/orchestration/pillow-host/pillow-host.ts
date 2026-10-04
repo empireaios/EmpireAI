@@ -30,7 +30,7 @@ import { collectZeroHumanAutomationSnapshot } from "./zero-human-automation-brid
 import { collectFounderShellSnapshot } from "./founder-shell-bridge.js";
 import { collectRepositoryArchitectureSnapshot } from "./repository-architecture-bridge.js";
 import { logger } from "../../config/logger.js";
-import { runChatActionStage } from "../../runtime/reasoning-only-policy.js";
+import { runChatActionStage, REASONING_EFFECT_BOUNDARY } from "../../runtime/reasoning-only-policy.js";
 import { ApprovalGateEngine } from "../pillow-approval/approval-gate-engine.js";
 import { CursorBridgeAdapter } from "../pillow-approval/cursor-bridge-adapter.js";
 import { CursorHeartbeatService } from "../pillow-approval/cursor-heartbeat-service.js";
@@ -29675,7 +29675,7 @@ export class PillowHost {
         this.approvalGate.attachCursorBridge(this.cursorBridge);
     }
     async routePrompt(input): any {
-        const reasoningOnly = input.reasoningOnly === true;
+        const reasoningOnly = input.reasoningOnly === true || process.env.EMPIRE_RUNTIME_PROFILE === "LOCKED_COMMISSIONING_V1";
         this.ensureRunning();
         const session = this.sessionStore.get(input.workspaceId, input.sessionId);
         if (!session) {
@@ -29728,6 +29728,7 @@ export class PillowHost {
                 constitutionalGate = gateExecutiveConversation(pillow.digitalSoul, {
                     userMessage: input.message,
                     purpose: "chat",
+                    executionBoundary: reasoningOnly ? "read_only_reasoning" : undefined,
                     // Exclude prior constitutional refusals from gate memory — finding
                     // text contains "bypass" and falsely re-triggers intent detectors.
                     memoryContext: session.conversationHistory
@@ -29833,7 +29834,7 @@ export class PillowHost {
             }
             // ── Deterministic Birth / live-commerce authority (before LLM) ──
             {
-                if (isLiveCommerceEffectAsk(input.message)) {
+                if (!reasoningOnly && isLiveCommerceEffectAsk(input.message)) {
                     const refusal = projectLiveCommerceRefusal(input.message);
                     const assistantTurn = {
                         role: "assistant",
@@ -29881,7 +29882,7 @@ export class PillowHost {
                         },
                     };
                 }
-                if (isOperatingAuthorityFactAsk(input.message)) {
+                if (!reasoningOnly && isOperatingAuthorityFactAsk(input.message)) {
                     const facts = projectOperatingAuthorityFacts(input.message);
                     const assistantTurn = {
                         role: "assistant",
@@ -29934,7 +29935,7 @@ export class PillowHost {
             // ── Typed exact-line response contract (deterministic; LLM not final) ──
             {
                 markStage("responseContractMs");
-                const contractProjection = projectExactLineResponseContract(input.message);
+                const contractProjection = reasoningOnly ? {} : projectExactLineResponseContract(input.message);
                 if ("kind" in contractProjection) {
                     const message = contractProjection.message;
                     const resultKind = contractProjection.ok
@@ -30649,6 +30650,7 @@ export class PillowHost {
                 provider,
                 inferenceProvenance,
                 readOnlyReceipts: readReceipts,
+                effectAdmission: reasoningOnly ? REASONING_EFFECT_BOUNDARY : undefined,
                 model,
                 mode,
                 tokens,
@@ -30663,6 +30665,10 @@ export class PillowHost {
                 transportContractPassed,
                 degradedUsed,
                 reasoningFailure,
+                ...(reasoningOnly ? {
+                    brainCompleted: providerCompleted && kind === "llm" && transportContractPassed && !degradedUsed,
+                    semanticSuccess: providerCompleted && kind === "llm" && transportContractPassed && !degradedUsed,
+                } : {}),
                 executiveRecommendation: executiveCouncilRecommendation
                     ? {
                         recommendationId: executiveCouncilRecommendation.recommendationId,

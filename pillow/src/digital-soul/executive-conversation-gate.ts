@@ -52,6 +52,9 @@ export type ExecutiveConversationGatePurpose =
 export type ExecutiveConversationGateInput = {
   userMessage: string;
   purpose?: ExecutiveConversationGatePurpose;
+  /** Set by the capability-restricted chat orchestration, never inferred from prose.
+   * This admits deliberation only; it cannot attest any tool/command/effect. */
+  executionBoundary?: "read_only_reasoning";
   /** Prior memory / retrieved context that will influence the reply (reviewed for bypass intent). */
   memoryContext?: string;
 };
@@ -188,6 +191,19 @@ export function gateExecutiveConversation(
   runtime: DigitalSoulRuntime | null | undefined,
   input: ExecutiveConversationGateInput,
 ): ExecutiveConversationGateResult {
+  if (input.executionBoundary === "read_only_reasoning") {
+    if ((input.purpose ?? "chat") !== "chat") {
+      throw new Error("Reasoning admission cannot authorize an executable capability");
+    }
+    // Evaluate the operation the server can actually perform. Request/history
+    // are untrusted subject matter, not a proposed executable recommendation.
+    // Inferring authority from their vocabulary would both overblock analysis
+    // and make safety depend on a fallible natural-language classifier.
+    return evaluateExecutiveConversation(runtime, {
+      purpose: "chat",
+      userMessage: "Provide read-only deliberation under existing constitutional governance. Preserve owner approval requirements and existing controls. Grant no execution authority.",
+    });
+  }
   const strict = evaluateExecutiveConversation(runtime, input);
   if (strict.allowed || (input.purpose ?? "chat") !== "chat") return strict;
   // Preserve historical antecedents for ambiguous requests such as "ignore it".

@@ -1,0 +1,77 @@
+{
+  "constitutional_and_capability": {
+    "tests": 32,
+    "pass": 32,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "backend_transport_and_locks": {
+    "tests": 34,
+    "pass": 34,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "inference_and_memory": {
+    "tests": 17,
+    "pass": 17,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "financial": {
+    "tests": 18,
+    "pass": 18,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "order_read": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "typechecks": {
+    "pillow": "PASS",
+    "backend": "PASS",
+    "node": "22.23.2",
+    "npm": "10.9.8"
+  },
+  "retained_failure": {
+    "tests": "reasoning-only-completion",
+    "firstRun": {
+      "pass": 30,
+      "fail": 2
+    },
+    "reason": "Existing assertions required the original read-only receipts prefix. Restored that exact prefix while preserving the broader reasoning/effect contract; rerun 32/32 passed. No safeguard weakened."
+  },
+  "hosted_first_attempt": {
+    "sha": "19546aed9515b981dbbe8c979e25431727740dee",
+    "semantic": {
+      "run": 37166484692,
+      "result": "PASS"
+    },
+    "runtime": {
+      "run": 37166484700,
+      "generated1950": "PASS",
+      "package": "PASS",
+      "failure": "Precutover fixture expected authority projection COMPLETED without provider credentials. Updated to require FAILED_FATAL/BRAIN_FATAL/no_llm_provider/null finalResult and preserve exact failure across restore."
+    },
+    "product": {
+      "run": 37166484695,
+      "failure": "Unchanged CJ concurrent reservation test observed zero admitted instead of one. No excess spend observed. Local exact suite rerun 4/4 PASS; require hosted passing on final revision; CJ code/tests unchanged."
+    }
+  },
+  "precutover_local_rehearsal": {
+    "result": "ENVIRONMENT_BLOCKED",
+    "reason": "Fastify listener startup cannot call os.networkInterfaces in this sandbox: uv_interface_addresses Unknown system error 1. Hosted runner must execute real-process restore fixture. No production touched."
+  }
+}
