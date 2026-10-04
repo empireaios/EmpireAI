@@ -19,7 +19,7 @@ test('worker and independent inspector failures cannot inherit healthy evidence'
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
 
-test('independent reservation baseline detects deletion, mutation and cap breach without ledger writes',async()=>{
+test('independent reservation baseline detects deletion and mutation while allowing new reservations above the former cap without ledger writes',async()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-money-')),file=path.join(dir,'ledger.sqlite');
  const source=new DatabaseSync(file),store=new AssuranceStore(path.join(dir,'assurance.sqlite'));
  try{
@@ -27,6 +27,7 @@ test('independent reservation baseline detects deletion, mutation and cap breach
   fs.writeFileSync(file+'.initialized','');source.prepare('INSERT INTO calls VALUES(?,?,?,?)').run('one','2026-10-02',1000000,null);
   const collector=createSpendingCollector(file,store,()=>1000),check=async()=>reconcileSnapshot(await collector(),1000,100);
   const before=fs.readFileSync(file);assert.equal((await check()).status,'PASS');assert.deepEqual(fs.readFileSync(file),before);
+  source.prepare('INSERT INTO calls VALUES(?,?,?,?)').run('two','2026-10-04',41000000,null);assert.equal((await check()).status,'PASS');
   source.exec('DELETE FROM calls');assert.equal((await check()).status,'FAIL');
   source.prepare('INSERT INTO calls VALUES(?,?,?,?)').run('one','changed',1000000,null);assert.equal((await check()).status,'FAIL');
   source.exec("UPDATE calls SET timestamp='2026-10-02',reserved_micro_usd=41000000");assert.equal((await check()).status,'FAIL');

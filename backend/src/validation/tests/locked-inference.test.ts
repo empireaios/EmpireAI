@@ -47,16 +47,16 @@ test('NOT_BORN inference is durable and never changes HTTP mutation authority',a
   assert.equal(read(inferenceLedgerPath())[3]?.status,'failed_uncertain');
  }finally{await app.close();globalThis.fetch=originalFetch;for(const key of Object.keys(process.env))if(!(key in old))delete process.env[key];Object.assign(process.env,old);fs.rmSync(root,{recursive:true,force:true});}
 });
-test('cumulative ceiling survives a separate process; uncertainty and missing ledger fail closed',()=>{
+test('cumulative reservations cross former ceiling across processes; arithmetic and missing ledger fail closed',()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'inference-ledger-')),file=path.join(root,'ledger.sqlite');
  try{
   reserveInference(file,39_999_999,now);
   const moduleUrl=new URL('../../brain/llm/locked-inference.ts',import.meta.url).href;
-  const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',`import {reserveInference} from ${JSON.stringify(moduleUrl)};try{reserveInference(${JSON.stringify(file)},2,${now});process.exit(3)}catch(e){if(!e.message.includes('budget exhausted'))throw e}`],{encoding:'utf8',cwd:new URL('../../../',import.meta.url)});
-  assert.equal(child.status,0,child.stderr);assert.equal(read(file).length,1);
-  reserveInference(file,1,now);assert.throws(()=>reserveInference(file,1,now),/budget exhausted/);
+  const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',`import {reserveInference} from ${JSON.stringify(moduleUrl)};reserveInference(${JSON.stringify(file)},2,${now})`],{encoding:'utf8',cwd:new URL('../../../',import.meta.url)});
+  assert.equal(child.status,0,child.stderr);assert.equal(read(file).length,2);
+  reserveInference(file,1,now);assert.throws(()=>reserveInference(file,Number.MAX_SAFE_INTEGER,now),/accounting bound/);
   assert.throws(()=>reserveInference(file,1,Date.parse('2026-10-09')),/pricing/);
-  assert.equal(read(file).reduce((sum,row)=>sum+Number(row.reserved_micro_usd),0),40_000_000);
+  assert.equal(read(file).reduce((sum,row)=>sum+Number(row.reserved_micro_usd),0),40_000_002);
   fs.unlinkSync(file);assert.throws(()=>reserveInference(file,1,now),/missing/);
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
@@ -90,7 +90,7 @@ test('incomplete receipt retains bounded reason and configured ceiling without r
  }finally{globalThis.fetch=originalFetch;for(const key of Object.keys(process.env))if(!(key in old))delete process.env[key];Object.assign(process.env,old);fs.rmSync(root,{recursive:true,force:true});}
 });
 
-test('Pillow OpenAI headroom reserves 10000 tokens and keeps concise answers and budget denial',async()=>{
+test('Pillow OpenAI headroom reserves 10000 tokens and keeps concise answers above former ceiling with bounded accounting',async()=>{
  const old={...process.env},originalFetch=globalThis.fetch;
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'headroom-'));fs.mkdirSync(path.join(root,'commissioning'));
  Object.assign(process.env,{EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'commissioning','empireai-brain.db'),OPENAI_API_KEY:'offline-test-key'});
@@ -108,7 +108,8 @@ test('Pillow OpenAI headroom reserves 10000 tokens and keeps concise answers and
   }
   const file=inferenceLedgerPath(),held=read(file).reduce((s,r)=>s+Number(r.reserved_micro_usd),0);
   reserveInference(file,40_000_000-held-1);
-  await assert.rejects(completeLockedInference({...request,maxTokens:2000}),/budget exhausted/);assert.equal(calls,2);
-  await assert.rejects(completeLockedInference({...request,maxTokens:10001}),/output bound refused/);assert.equal(calls,2);
+  assert.equal((await completeLockedInference({...request,maxTokens:2000})).content,message);assert.equal(calls,3);
+  assert.ok(read(file).reduce((s,r)=>s+Number(r.reserved_micro_usd),0)>40_000_000);
+  await assert.rejects(completeLockedInference({...request,maxTokens:10001}),/output bound refused/);assert.equal(calls,3);
  }finally{globalThis.fetch=originalFetch;for(const key of Object.keys(process.env))if(!(key in old))delete process.env[key];Object.assign(process.env,old);fs.rmSync(root,{recursive:true,force:true});}
 });
