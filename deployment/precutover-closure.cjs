@@ -38,7 +38,9 @@ async function login(){const r=await http('/auth/login','POST',{email:base.FOUND
 async function locks(cookie){const birth=await http('/pillow-commissioning/birth','GET',undefined,cookie);assert.equal(birth.status,200);assert.equal(birth.data.status,'NOT_BORN');assert.equal(birth.data.authority.realCommerceAuthorized,false);
  for(const route of ['/pillow-commerce-presale/run','/pillow-commissioning/birth','/amazon/publish','/amazon/inventory','/amazon/price','/cj/orders','/fulfilment','/api/pillow/mission-runtime/execute'])assert.equal((await http(route,'POST',{approved:true,force:true},cookie)).status,423,route);
 }
-async function terminal(id,cookie){for(let i=0;i<180;i++){const r=await http('/api/pillow/chat-request/'+id,'GET',undefined,cookie);if(r.data.request?.status==='COMPLETED')return r.data.request;assert.notEqual(r.data.request?.status,'FAILED_FATAL','Authority request failed');await pause(500);}throw Error('Terminal timeout');}
+// This no-credentials restore fixture must retain an honest incomplete result.
+// Successful reasoning is covered separately by the provider-intercepted corpus.
+async function terminal(id,cookie){for(let i=0;i<180;i++){const r=await http('/api/pillow/chat-request/'+id,'GET',undefined,cookie);const request=r.data.request;if(request?.status==='FAILED_FATAL'){assert.equal(request.failureClass,'BRAIN_FATAL');assert.equal(request.lastError,'no_llm_provider');assert.equal(request.finalResult,null);return request;}assert.notEqual(request?.status,'COMPLETED','No-provider fixture must not fabricate completed reasoning');await pause(500);}throw Error('Terminal timeout');}
 function shadow(env,mode){
  const code=`import assert from 'node:assert/strict';import {openShadowCeoRepository} from './backend/dist/orchestration/shadow-ceo/repository.js';import {persistRequestOwner,getRequestOwner} from './backend/dist/orchestration/shadow-ceo-integration/request-owner.js';import {attemptExternalActionAndPersist,listBlockedActions} from './backend/dist/orchestration/shadow-ceo-authority/index.js';
  const repo=openShadowCeoRepository();const row={id:'closure-shadow',kind:'objective',objectiveId:'closure',idempotencyKey:'closure-shadow',createdAt:'2026-10-01T00:00:00Z',updatedAt:'2026-10-01T00:00:00Z',continuity:'preserved'};
@@ -66,7 +68,7 @@ try{
  port++;redisPort++;const afterEnv=await launch(restoredVolume,restored.redisRoot);const after=await login();assert.equal(after.id,owner.id);await locks(after.cookie);
  assert.equal((await http('/auth/me','GET',undefined,owner.cookie)).status,200,'Redis session continuity');
  assert.deepEqual((await http('/api/pillow/mission-runtime/history','POST',{},after.cookie)).data.report.missions,history.report.missions);
- const reread=await terminal(id,after.cookie);assert.deepEqual(reread.finalResult,result.finalResult);assert.equal(reread.attemptCount,1);
+ const reread=await terminal(id,after.cookie);assert.deepEqual(reread.finalResult,result.finalResult);assert.equal(reread.failureClass,result.failureClass);assert.equal(reread.lastError,result.lastError);assert.equal(reread.attemptCount,1);
  assert.deepEqual(accounts(afterEnv.DATABASE_PATH),identities);
  // Redis loss must degrade real readiness; locked authority remains explicit.
  redis.disconnect();await stop(redisProcess);redisProcess=null;await pause(1500);const unhealthy=await http('/health/ready');assert.equal(unhealthy.status,503);assert.equal(unhealthy.data.operational,false);assert.equal(unhealthy.data.commerce,'LOCKED');
