@@ -1,3 +1,4 @@
+import { hasReasoningFailure } from "./confirmed-reasoning";
 import type { GlobalAssistantResponse } from "@/lib/cockpit/global-assistant/types";
 import type { PillowChatResult } from "@/lib/pillow/types";
 
@@ -8,7 +9,7 @@ export function mapPillowChatToAssistantResponse(
 ): GlobalAssistantResponse {
   // Kept for callers using the established two-argument mapper contract.
   void query;
-  if (result.kind === "durable_pending" || result.kind === "error" || result.kind === "terminal_infrastructure") {
+  if (hasReasoningFailure(result) || result.kind === "durable_pending" || result.kind === "error" || result.kind === "terminal_infrastructure") {
     return {
       action: "ask",
       currentContext: "Pillow request status — no completed answer",
