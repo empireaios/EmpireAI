@@ -1,3 +1,4 @@
+import { hasReasoningFailure, isConfirmedReasoning } from "./confirmed-reasoning";
 /**
  * BFF chat sanitize + valid-answer preservation.
  * Infrastructure only — does not change Pillow reasoning.
@@ -204,36 +205,23 @@ export function decideBffChatSurface(input: {
   userAsk: string;
 }): BffChatDegradeDecision {
   const extracted = extractPillowChatMessage(input.rawBody);
+  // A typed completed provider answer is not an infrastructure message even
+  // when it quotes one. Preserve its exact text and formatting.
+  let result: unknown;
+  try { result = JSON.parse(input.rawBody)?.result; } catch { /* legacy response */ }
+  if (!input.upstreamOk || ((result as {kind?:string} | undefined)?.kind !== 'durable_pending' && hasReasoningFailure(result))) return {
+    degrade:true, reason:input.upstreamOk ? 'upstream_tier0_terminal' : 'upstream_non_2xx',
+    failureClass:input.upstreamOk ? 'BRAIN_ERROR' : 'TRANSPORT_ERROR',
+    brainExtracted:'', deliveredMessage:extracted || DEGRADED_CHAT_MESSAGE,
+    stripped:false, deliveryClass:'DEGRADED_TERMINAL', brainToUserEquivalent:false,
+  };
+  if (input.upstreamOk && isConfirmedReasoning(result)) return {
+    degrade:false, reason:null, failureClass:'NONE', brainExtracted:(result as {message:string}).message,
+    message:(result as {message:string}).message, stripped:false,
+    deliveryClass:'BRAIN_ANSWER_UNCHANGED', brainToUserEquivalent:true,
+    preservedOriginalBecauseStripEmpty:false,
+  };
   const stripped = stripForbiddenInfraDecoration(extracted, input.userAsk);
-
-  if (!input.upstreamOk) {
-    // Prefer forwarding nonempty brain body even on odd status if present.
-    if (extracted.length > 0) {
-      const message = stripped.length > 0 ? stripped : extracted;
-      return {
-        degrade: false,
-        reason: null,
-        failureClass: "NONE",
-        brainExtracted: extracted,
-        message,
-        stripped: message !== extracted,
-        deliveryClass:
-          message === extracted ? "BRAIN_ANSWER_UNCHANGED" : "ALLOWED_FORMAT_TRANSFORM",
-        brainToUserEquivalent: true,
-        preservedOriginalBecauseStripEmpty: stripped.length === 0,
-      };
-    }
-    return {
-      degrade: true,
-      reason: "upstream_non_2xx",
-      failureClass: "TRANSPORT_ERROR",
-      brainExtracted: extracted,
-      deliveredMessage: DEGRADED_CHAT_MESSAGE,
-      stripped: false,
-      deliveryClass: "DEGRADED_TERMINAL",
-      brainToUserEquivalent: false,
-    };
-  }
 
   if (isTransportFailureMessage(extracted) && extracted.length < 120) {
     return {

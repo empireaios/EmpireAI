@@ -1,5 +1,7 @@
 "use client";
 
+import { hasReasoningFailure, isConfirmedReasoning } from "@/lib/pillow/confirmed-reasoning";
+
 import { subscribeRead } from "@/lib/cockpit/subscribe-read";
 
 import {
@@ -427,16 +429,17 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       }
     }
     const response = mapPillowChatToAssistantResponse(chatResult, query);
-    const isStatus = chatResult.kind === "durable_pending" ||
+    const isStatus = hasReasoningFailure(chatResult) || chatResult.kind === "durable_pending" ||
       chatResult.status === "FAILED_FATAL" || chatResult.status === "FAILED" ||
       chatResult.status === "RESULT_UNAVAILABLE";
-    const surfaced = isStatus ? response : {
+    const preserveReasoning = isConfirmedReasoning(chatResult);
+    const surfaced = isStatus || preserveReasoning ? response : {
       ...response,
       interactionSummary: toExecutiveChatMessage(response.interactionSummary, EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY),
       reason: toExecutiveChatMessage(response.reason, EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY),
       recommendedNextAction: toExecutiveChatMessage(response.recommendedNextAction, EXECUTIVE_TERMINAL_INFRASTRUCTURE_REPLY),
     };
-    appendPillowTurnOnly(surfaced, chatResult.artifacts, chatResult.requestId, isStatus);
+    appendPillowTurnOnly(surfaced, chatResult.artifacts, chatResult.requestId, isStatus || preserveReasoning);
     if (user && chatResult.kind !== "durable_pending" && chatResult.status !== "RESULT_UNAVAILABLE") {
       clearPendingPillowReceipt(user.id, chatResult.requestId);
     }
