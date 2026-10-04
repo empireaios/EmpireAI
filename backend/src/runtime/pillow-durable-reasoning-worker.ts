@@ -71,7 +71,7 @@ export async function executeReasoningProxy(
       /blocked/i.test(responseContract?.code ?? "") ||
       result.degradedUsed === true || result.transportContractPassed === false || result.semanticSuccess === false ||
       result.brainCompleted === false || result.requestRemainsRunning === true ||
-      message.startsWith("PILLOW_RESULT_PENDING:")) {
+      (message.startsWith("PILLOW_RESULT_PENDING:") && !(result.kind === "llm" && result.brainCompleted === true && result.semanticSuccess === true && result.transportContractPassed === true))) {
       return { ok: false, failureClass: "BRAIN_RETRYABLE_FAILURE", error: "upstream_not_completed" };
     }
     return { ok: true, result: {

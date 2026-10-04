@@ -53,10 +53,11 @@ describe("reasoning-only completion cannot execute tools", () => {
   });
 });
 
-it('rejects malformed tool protocol after one provider call without dispatch or follow-up',async()=>{
+it('preserves malformed JSON as inert text without dispatch or follow-up',async()=>{
  let calls=0,tools=0;
  const adapter:BrainLLMAdapter={listAvailableProviders:()=>['openai'],complete:async()=>{calls++;return{provider:'openai',model:'mock',content:'{"readOnlyCalls":[]} extra text {"readOnlyCalls":[]}'};}};
- await assert.rejects(new OpenAIIntegrationLayer(adapter).complete({operationalContext:context,userMessage:'Evaluate the supplied figures',workspaceId:'ws-isolated',correlationId:'malformed-protocol',reasoningOnly:true,constitutionalGateAttestation:{passed:true,gatedAt:'test',purpose:'chat'},executeReadOnlyCalls:async()=>{tools++;return[];}}),/Malformed read-only tool protocol/);
+ const result=await new OpenAIIntegrationLayer(adapter).complete({operationalContext:context,userMessage:'Evaluate the supplied figures',workspaceId:'ws-isolated',correlationId:'malformed-protocol',reasoningOnly:true,constitutionalGateAttestation:{passed:true,gatedAt:'test',purpose:'chat'},executeReadOnlyCalls:async()=>{tools++;return[];}});
+ assert.equal(result.content,'{"readOnlyCalls":[]} extra text {"readOnlyCalls":[]}');
  assert.equal(calls,1);assert.equal(tools,0);
 });
 
@@ -72,9 +73,10 @@ it('valid read-only calculation uses one receipt round and preserves commentary 
  assert.equal(calls,2);assert.equal(tools,1);assert.equal(result.content,'The supplied quantities total seven.');
 });
 
-for (const content of ['Progress: {"readOnlyCalls":[]}', '```json\n{"readOnlyCalls":[]}\n```', '[{"readOnlyCalls":[]}]']) it('rejects prefixed, fenced and nested tool intent without another inference',async()=>{
+for (const content of ['Progress: {"readOnlyCalls":[]}', '```json\n{"readOnlyCalls":[]}\n```', '[{"readOnlyCalls":[]}]']) it('preserves prefixed, fenced and nested JSON as inert text without another inference',async()=>{
  let calls=0,tools=0;
  const adapter:BrainLLMAdapter={listAvailableProviders:()=>['openai'],complete:async()=>{calls++;return{provider:'openai',model:'mock',content};}};
- await assert.rejects(new OpenAIIntegrationLayer(adapter).complete({operationalContext:context,userMessage:'Evaluate supplied quantities',workspaceId:'ws-isolated',correlationId:'wrapped-protocol',reasoningOnly:true,constitutionalGateAttestation:{passed:true,gatedAt:'test',purpose:'chat'},executeReadOnlyCalls:async()=>{tools++;return[];}}),/read-only tool|tool envelope/i);
+ const result=await new OpenAIIntegrationLayer(adapter).complete({operationalContext:context,userMessage:'Evaluate supplied quantities',workspaceId:'ws-isolated',correlationId:'wrapped-protocol',reasoningOnly:true,constitutionalGateAttestation:{passed:true,gatedAt:'test',purpose:'chat'},executeReadOnlyCalls:async()=>{tools++;return[];}});
+ assert.equal(result.content,content);
  assert.equal(calls,1);assert.equal(tools,0);
 });

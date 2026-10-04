@@ -1,0 +1,24 @@
+{
+  "result": "PASS",
+  "scope": "production-equivalent primary/auth/real-Redis/durable-worker/registered-worker-route/host/constitution/context/LLM-assembly/router/budget/provider-HTTP-interception/terminal-settlement",
+  "cases": 1950,
+  "categories": {
+    "reasoning": 960,
+    "polarity": 80,
+    "effect": 80,
+    "mixed": 640,
+    "governance_reasoning": 45,
+    "projection": 5,
+    "mutation": 140
+  },
+  "providerCalls": 1951,
+  "effectCalls": 0,
+  "externalConnections": 0,
+  "paidInference": 0,
+  "productionStorageAccess": false,
+  "modelWriteToolDenied": true,
+  "missingConstitutionIncomplete": true,
+  "liveEffectRouteLocks": 7,
+  "ownerAcceptance": "PENDING",
+  "limited": false
+}

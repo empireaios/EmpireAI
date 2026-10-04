@@ -24,7 +24,8 @@ import type { ExecutiveTruthSnapshot } from "./executive-truth-types.js";
 export type ResponseTerminalKind =
   | "complete"
   | "degraded_useful"
-  | "authority_constrained";
+  | "authority_constrained"
+  | "hard_failure";
 
 export type ResponseReliabilityEvent = {
   at: string;
@@ -115,8 +116,9 @@ export function recordPillowResponseTerminal(input: {
   askAgainFallback?: boolean;
   userResubmissionRequired?: boolean;
 }): void {
-  telemetry.completedRequests += 1;
-  if (input.degradedUsed || input.kind === "degraded_useful") {
+  if (input.kind === "hard_failure") telemetry.hardFailures += 1;
+  else telemetry.completedRequests += 1;
+  if (input.kind !== "hard_failure" && (input.degradedUsed || input.kind === "degraded_useful")) {
     telemetry.degradedCompletedRequests += 1;
   }
   if (input.retryUsed) telemetry.internalRetries += 1;

@@ -141,3 +141,11 @@ describe("executive response completion", () => {
     assert.equal(snap.askAgainFallbacks, 0);
   });
 });
+
+it('terminal inference failure never increments completed or useful counters',()=>{
+ resetPillowResponseReliabilityForTesting();
+ recordPillowResponseAccepted('failed-provider');
+ recordPillowResponseTerminal({requestId:'failed-provider',kind:'hard_failure',useful:false,degradedUsed:true});
+ const snapshot=getPillowResponseReliabilitySnapshot();
+ assert.equal(snapshot.completedRequests,0);assert.equal(snapshot.degradedCompletedRequests,0);assert.equal(snapshot.hardFailures,1);
+});

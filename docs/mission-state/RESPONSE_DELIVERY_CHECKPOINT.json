@@ -1,0 +1,52 @@
+{
+  "mission": "targeted-response-delivery",
+  "base": "b0bf36931f487cf599b8a57f9d0ffcec6359c6d1",
+  "branch": "fix/pillow-response-delivery-pr49",
+  "worktree": "/workspace/scratch/0a46d2be661a/admission",
+  "productionChanged": false,
+  "responseCorpusInitial": {
+    "pass": 1369,
+    "effects": 0,
+    "paidInference": 0
+  },
+  "admissionCorpus": {
+    "pass": 1950,
+    "effects": 0,
+    "paidInference": 0
+  },
+  "safeguards": {
+    "pass": 63,
+    "fail": 0
+  },
+  "frontendExisting": {
+    "pass": 86,
+    "fail": 0
+  },
+  "preservation": {
+    "pass": 34,
+    "fail": 0
+  },
+  "remaining": [
+    "Hosted CI on exact remote candidate",
+    "Probe20 cause undetermined: old metadata omitted incomplete reason; production SSH DNS blocked"
+  ],
+  "prohibited": [
+    "deploy",
+    "paid inference",
+    "owner prompt replay",
+    "PR48/44",
+    "general 223 work"
+  ],
+  "nextExecutableAction": "Fetch PR workflow runs for exact successor SHA; inspect and resolve any failure without deploying",
+  "responseCorpus": {
+    "pass": 1381,
+    "deniedActionOnly": 7,
+    "effects": 0,
+    "paidInference": 0
+  },
+  "completionTests": {
+    "pass": 18,
+    "fail": 0
+  },
+  "engineeringState": "LOCAL_PASS_HOSTED_CI_PENDING"
+}

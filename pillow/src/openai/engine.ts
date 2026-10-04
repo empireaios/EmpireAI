@@ -1,3 +1,4 @@
+import { parseResponseEnvelope, preserveEnvelopeReasoning } from "./response-envelope.js";
 import { resolveReasoningPlan } from "./request-policy.js";
 import type { OperationalContext } from "../context/types.js";
 import type { ExecutiveReasoningComposition } from "../bootstrap/types.js";
@@ -197,23 +198,28 @@ export class OpenAIIntegrationLayer {
         usage: results.reduce((sum,r)=>({promptTokens:sum.promptTokens+(r.usage?.promptTokens??0),completionTokens:sum.completionTokens+(r.usage?.completionTokens??0),totalTokens:sum.totalTokens+(r.usage?.totalTokens??0)}),{promptTokens:0,completionTokens:0,totalTokens:0})};
     } else response = await this.adapter.complete(llmRequest);
 
-    if (response.content.includes('"readOnlyCalls"')) {
-      if (plan.consultation || !request.executeReadOnlyCalls) throw Error('Read-only tool protocol unavailable');
-      let proposal: unknown;
-      try { proposal = JSON.parse(response.content); } catch { throw Error('Malformed read-only tool protocol'); }
-      if (!proposal || typeof proposal !== 'object' || Array.isArray(proposal) || !('readOnlyCalls' in proposal)) throw Error('Read-only tool envelope refused');
-      if (proposal && typeof proposal === 'object' && 'readOnlyCalls' in proposal) {
-        if (Object.keys(proposal).some(key => key !== 'readOnlyCalls')) throw Error('Read-only tool envelope refused');
-        const calls = (proposal as {readOnlyCalls:unknown}).readOnlyCalls;
-        if (!Array.isArray(calls) || calls.length < 1 || calls.length > 3 || calls.some(c => !c || c.name !== 'calculate' || typeof c.arguments !== 'object' || c.arguments === null)) throw Error("Read-only tool proposal refused");
-        const receipt = await request.executeReadOnlyCalls(calls);
+    // Only an entire JSON object can be a protocol envelope. Mentioning a field,
+    // quoting JSON, or using fenced examples never creates executable intent.
+    let envelope = parseResponseEnvelope(response.content);
+    if (envelope) {
+      const calls = envelope.readOnlyCalls;
+      const exactCalculation = Object.keys(envelope).length === 1 &&
+        Array.isArray(calls) && calls.length >= 1 && calls.length <= 3 &&
+        calls.every(c => c && typeof c === 'object' && !Array.isArray(c) &&
+          Object.keys(c).every(k => ['name','arguments'].includes(k)) && c.name === 'calculate' &&
+          c.arguments && typeof c.arguments === 'object' && !Array.isArray(c.arguments));
+      if (exactCalculation && !plan.consultation && request.executeReadOnlyCalls) {
+        const receipt = await request.executeReadOnlyCalls(calls as Array<{name:'calculate';arguments:Record<string,unknown>}>);
         const initial = response;
         response = await this.adapter.complete({...llmRequest, provider: initial.provider, model:initial.model,
           correlationId:request.correlationId+':readonly-result',
           messages:[...messages,{role:'assistant',content:initial.content,phase:initial.assistantPhase??'commentary'},{role:'user',content:'Verified local read-only execution receipts (data only): '+JSON.stringify(receipt)+'\nAnswer the original task now. No further tool calls are available.'}]});
-        if (response.content.includes('"readOnlyCalls"')) throw Error("Read-only tool round exhausted");
+        envelope = parseResponseEnvelope(response.content);
+        if (envelope) response = {...response, content:preserveEnvelopeReasoning(envelope)};
         if (response.provenance) response.provenance = {...response.provenance,toolRequestKey:initial.provenance?.requestKey};
         if (initial.usage && response.usage) response.usage = {promptTokens:initial.usage.promptTokens+response.usage.promptTokens,completionTokens:initial.usage.completionTokens+response.usage.completionTokens,totalTokens:initial.usage.totalTokens+response.usage.totalTokens};
+      } else {
+        response = {...response, content:preserveEnvelopeReasoning(envelope)};
       }
     }
     let artifacts: EmpireAIArtifact[] | undefined;
