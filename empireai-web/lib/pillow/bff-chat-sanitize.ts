@@ -1,3 +1,4 @@
+import { isConfirmedReasoning } from "./confirmed-reasoning";
 /**
  * BFF chat sanitize + valid-answer preservation.
  * Infrastructure only — does not change Pillow reasoning.
@@ -199,6 +200,16 @@ export function decideBffChatSurface(input: {
   userAsk: string;
 }): BffChatDegradeDecision {
   const extracted = extractPillowChatMessage(input.rawBody);
+  // A typed completed provider answer is not an infrastructure message even
+  // when it quotes one. Preserve its exact text and formatting.
+  let result: unknown;
+  try { result = JSON.parse(input.rawBody)?.result; } catch { /* legacy response */ }
+  if (input.upstreamOk && isConfirmedReasoning(result)) return {
+    degrade:false, reason:null, failureClass:'NONE', brainExtracted:extracted,
+    message:(result as {message:string}).message, stripped:false,
+    deliveryClass:'BRAIN_ANSWER_UNCHANGED', brainToUserEquivalent:true,
+    preservedOriginalBecauseStripEmpty:false,
+  };
   const stripped = stripForbiddenInfraDecoration(extracted, input.userAsk);
 
   if (!input.upstreamOk) {

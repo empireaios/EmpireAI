@@ -30387,7 +30387,9 @@ export class PillowHost {
                         deliberationFidelityAdjusted = aligned.fidelityAdjusted;
                     }
                     // Post-LLM constitutional gate — never surface a violating visible answer
-                    const answerGate = gateExecutiveVisibleAnswer(pillow.digitalSoul, message);
+                    const answerGate = reasoningOnly
+                        ? gateExecutiveConversation(pillow.digitalSoul, {userMessage: message, executionBoundary: "read_only_reasoning"})
+                        : gateExecutiveVisibleAnswer(pillow.digitalSoul, message);
                     if (!answerGate.allowed) {
                         if (reasoningOnly) {
                             try { recordAnswerGateDiagnostic({requestId:input.correlationId || requestId, draft:message,
@@ -30609,8 +30611,8 @@ export class PillowHost {
             trace.totalMs = latencyMs;
             recordPillowResponseTerminal({
                 requestId,
-                kind: degradedUsed ? "degraded_useful" : "complete",
-                useful: true,
+                kind: reasoningFailure ? "hard_failure" : degradedUsed ? "degraded_useful" : "complete",
+                useful: !reasoningFailure,
                 retryUsed,
                 degradedUsed,
                 primaryFailureReason: degradedUsed ? logResult : null,

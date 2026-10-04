@@ -29,7 +29,8 @@ export class ReasoningState {
     for (const turn of session.conversationHistory.slice(-48).reverse()) {
       if (!['user','assistant'].includes(turn.role)) continue;
       bytes += Buffer.byteLength(turn.content);
-      if (bytes > 64000) break;
+      // Preserve the newest complete answer; the history budget trims older turns only.
+      if (bytes > 64000 && turns.length > 0) break;
       turns.unshift({role:turn.role,content:turn.content,timestamp:turn.timestamp,requestId:turn.requestId,provider:turn.provider});
     }
     this.use(db => {db.prepare('INSERT INTO transcripts VALUES(?,?,?,?) ON CONFLICT(workspace,session) DO UPDATE SET updated=excluded.updated, turns=excluded.turns').run(session.workspaceId,session.sessionId,new Date().toISOString(),JSON.stringify(turns));});

@@ -71,3 +71,21 @@ test('Responses commentary never becomes final answer or duplicated tool protoco
  assert.throws(()=>finalResponseText([message('unexpected','Unknown phase')]),/invalid/);
  assert.equal(finalResponseText([message('commentary','Preparing a calculation'),message('final_answer','{"readOnlyCalls":[]}')]),'{"readOnlyCalls":[]}');
 });
+
+
+test('incomplete receipt retains bounded reason and configured ceiling without replay or release',async()=>{
+ const old={...process.env},originalFetch=globalThis.fetch;
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'incomplete-receipt-'));fs.mkdirSync(path.join(root,'commissioning'));
+ Object.assign(process.env,{EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'commissioning','empireai-brain.db'),OPENAI_API_KEY:'offline-test-key'});
+ let calls=0;
+ try {
+  for(const reason of ['max_output_tokens','content_filter','untrusted text must not be retained']){
+   globalThis.fetch=async(_url,init)=>{calls++;assert.equal(JSON.parse(String(init?.body)).max_output_tokens,2000);return Response.json({id:'resp_incomplete',model:LOCKED_MODEL,status:'incomplete',incomplete_details:{reason},usage:{input_tokens:10,output_tokens:2000,total_tokens:2010,output_tokens_details:{reasoning_tokens:2000}},output:[]});};
+   await assert.rejects(completeLockedInference({...request,maxTokens:2000}),/reservation retained/);
+   const rows=read(inferenceLedgerPath());const row=rows.at(-1)!;const usage=JSON.parse(String(row.usage_json));
+   assert.equal(row.status,'incomplete');assert.ok(Number(row.reserved_micro_usd)>0);assert.equal(usage.configuredOutputTokens,2000);assert.equal(usage.providerStatus,'incomplete');assert.equal(usage.reasoningTokens,2000);
+   assert.equal(usage.incompleteReason,reason==='untrusted text must not be retained'?null:reason);
+  }
+  assert.equal(calls,3);
+ }finally{globalThis.fetch=originalFetch;for(const key of Object.keys(process.env))if(!(key in old))delete process.env[key];Object.assign(process.env,old);fs.rmSync(root,{recursive:true,force:true});}
+});

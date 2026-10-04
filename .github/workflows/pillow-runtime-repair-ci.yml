@@ -193,6 +193,10 @@ jobs:
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/provider-receipt-readback.test.ts backend/src/validation/tests/answer-gate-diagnostics.test.ts backend/src/validation/tests/owner-commissioning-readback.test.ts backend/src/validation/tests/locked-inference.test.ts backend/src/validation/tests/locked-provider-orchestration.test.ts backend/src/validation/tests/locked-reasoning-integration.test.ts
       - name: Verify generated complete reasoning admission path with intercepted provider HTTP
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs backend/scripts/reasoning-admission-full-path.mjs "$RUNNER_TEMP/reasoning-admission-full-path.json"
+      - name: Verify response completion and frontend preservation safeguards
+        run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/executive-response-completion.test.ts empireai-web/lib/pillow/confirmed-reasoning.test.ts empireai-web/lib/pillow/durable-delivery.test.ts empireai-web/lib/pillow/bff-chat-sanitize.test.ts
+      - name: Verify complete generated response delivery to owner UI
+        run: node --import ./backend/node_modules/tsx/dist/loader.mjs backend/scripts/response-delivery-full-path.mjs "$RUNNER_TEMP/response-delivery-full-path.json"
       - name: Prove permanent locked runtime and complete enabled-store restore
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}

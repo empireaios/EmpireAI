@@ -1,3 +1,4 @@
+import { isConfirmedReasoning } from "./confirmed-reasoning";
 import type { PillowChatResult, PillowCompletedReasoningKind } from "./types";
 import { isTerminalInfrastructureSurface } from "./executive-surface";
 
@@ -46,8 +47,8 @@ export function resultFromDurableRecord(
     constitutionalGate?.allowed === false || /blocked/i.test(responseContract?.code ?? "") ||
     result.degradedUsed === true || result.transportContractPassed === false ||
     result.semanticSuccess === false || result.brainCompleted === false ||
-    result.requestRemainsRunning === true || result.message.trim().startsWith("PILLOW_RESULT_PENDING:") ||
-    isTerminalInfrastructureSurface(result.message)
+    result.requestRemainsRunning === true || (!isConfirmedReasoning(result) && (result.message.trim().startsWith("PILLOW_RESULT_PENDING:") ||
+    isTerminalInfrastructureSurface(result.message)))
   ) {
     return unavailableDurableResult(receipt, "INVALID_COMPLETED_RESULT");
   }

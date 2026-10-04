@@ -1,0 +1,39 @@
+{
+  "safeguards": {
+    "tests": 63,
+    "pass": 63,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "frontend": {
+    "tests": 86,
+    "pass": 86,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "preservation": {
+    "tests": 34,
+    "pass": 34,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "completion": {
+    "tests": 18,
+    "pass": 18,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "typechecks": {
+    "pillow": "PASS",
+    "backend": "PASS",
+    "frontend": "PASS after next typegen"
+  }
+}
