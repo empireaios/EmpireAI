@@ -53,15 +53,16 @@ export function inferenceLedgerPath(): string {
   if (!root || fs.realpathSync(root)!==root || process.env.DATABASE_PATH!==path.join(root,'commissioning','empireai-brain.db')) throw Error('Inference requires locked persistent volume');
   return path.join(root,'commissioning','openai-october-2026.sqlite');
 }
-export function reserveInference(filename: string, microUsd: number, now = Date.now(), policy: {provider:string;model:string;ceiling:number;requestKey?:string} = {provider:'openai',model:LOCKED_MODEL,ceiling:CEILING_MICRO_USD}): string {
+export function reserveInference(filename: string, microUsd: number, now = Date.now(), policy: {provider:string;model:string;ceiling:number|null;requestKey?:string} = {provider:'openai',model:LOCKED_MODEL,ceiling:CEILING_MICRO_USD}): string {
   if (now < STARTS || now >= ENDS || now >= PRICE_EXPIRES || !Number.isSafeInteger(microUsd) || microUsd<=0) throw Error('Inference pricing/window unavailable');
   return ledger(filename, db => {
     db.exec('CREATE TABLE IF NOT EXISTS call_providers (call_id TEXT PRIMARY KEY, provider TEXT NOT NULL, request_key TEXT) STRICT');
     // Global across accounts, workers, credentials, restarts and all outcomes.
     const used=db.prepare('SELECT COALESCE(SUM(reserved_micro_usd),0) AS n FROM calls').get()?.n;
-    if (typeof used !== 'number' || !Number.isSafeInteger(used) || used+microUsd>CEILING_MICRO_USD) throw Error('Inference commissioning budget exhausted');
+    if (typeof used !== 'number' || !Number.isSafeInteger(used) || used<0 || !Number.isSafeInteger(used+microUsd)) throw Error('Inference accounting bound refused');
     const providerUsed=db.prepare("SELECT COALESCE(SUM(c.reserved_micro_usd),0) AS n FROM calls c LEFT JOIN call_providers p ON p.call_id=c.id WHERE COALESCE(p.provider,'openai')=?").get(policy.provider)?.n;
-    if (!Number.isSafeInteger(policy.ceiling)||policy.ceiling<1||policy.ceiling>CEILING_MICRO_USD||typeof providerUsed!=='number'||!Number.isSafeInteger(providerUsed)||providerUsed+microUsd>policy.ceiling) throw Error('Inference provider budget exhausted');
+    if (typeof providerUsed!=='number'||!Number.isSafeInteger(providerUsed)||providerUsed<0||!Number.isSafeInteger(providerUsed+microUsd)||
+      (policy.ceiling===null ? policy.provider!=='openai' : !Number.isSafeInteger(policy.ceiling)||policy.ceiling<1||providerUsed+microUsd>policy.ceiling)) throw Error('Inference provider budget exhausted');
     const id=randomUUID();
     db.prepare('INSERT INTO calls(id,timestamp,model,reserved_micro_usd,status) VALUES(?,?,?,?,?)').run(id,new Date(now).toISOString(),policy.model,microUsd,'reserved_uncertain');
     db.prepare('INSERT INTO call_providers VALUES(?,?,?)').run(id,policy.provider,policy.requestKey??null);

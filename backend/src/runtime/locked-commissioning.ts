@@ -25,7 +25,7 @@ export function installLockedCommissioning(app: FastifyInstance): void {
       runtimeProfile:PROFILE,birth:'NOT_BORN',commerce:'LOCKED',
       authorizedCapabilities:{commerce:false,paidProviders:false,birth:false,boundedTextInference:true},
       inference:{provider:'openai',model:'gpt-6.1-sol',credentialConfigured:Boolean(process.env.OPENAI_API_KEY?.trim()),
-        providers:Object.entries(LOCKED_PROVIDERS).map(([provider,p])=>({provider,model:p.model,credentialConfigured:configuredLockedProviders().includes(provider as keyof typeof LOCKED_PROVIDERS),ceilingUsd:p.ceiling/1_000_000})),
-        commissioningCeilingUsd:COMMISSIONING_CEILING_MICRO_USD/1_000_000,readiness:'subject_to_credential_and_durable_budget_admission'}});
+        providers:Object.entries(LOCKED_PROVIDERS).map(([provider,p])=>({provider,model:p.model,credentialConfigured:configuredLockedProviders().includes(provider as keyof typeof LOCKED_PROVIDERS),ceilingUsd:p.ceiling===null?null:p.ceiling/1_000_000})),
+        commissioningCeilingUsd:COMMISSIONING_CEILING_MICRO_USD,readiness:'subject_to_credential_and_durable_budget_admission'}});
   });
 }

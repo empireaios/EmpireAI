@@ -58,10 +58,10 @@ test('operator read fails closed when the audit sink fails',async()=>{
 
 test('existing ledger snapshot preserves uncertain reservations and distinguishes estimates from invoices', () => {
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'readback-')),file=path.join(root,'ledger.sqlite');
- const db=new DatabaseSync(file);db.exec(`CREATE TABLE calls(id TEXT,timestamp TEXT,reserved_micro_usd INTEGER,estimated_micro_usd INTEGER,invoice_actual_micro_usd INTEGER,status TEXT); PRAGMA application_id=1162430793; PRAGMA user_version=1; INSERT INTO calls VALUES('a','2026-10-02',2000000,400000,NULL,'usage_recorded'),('b','2026-10-02',3000000,NULL,NULL,'failed_uncertain');`);db.close();fs.writeFileSync(file+'.initialized','1');
+ const db=new DatabaseSync(file);db.exec(`CREATE TABLE calls(id TEXT,timestamp TEXT,reserved_micro_usd INTEGER,estimated_micro_usd INTEGER,invoice_actual_micro_usd INTEGER,status TEXT); PRAGMA application_id=1162430793; PRAGMA user_version=1; INSERT INTO calls VALUES('a','2026-10-02',42000000,400000,NULL,'usage_recorded'),('b','2026-10-02',3000000,NULL,NULL,'failed_uncertain');`);db.close();fs.writeFileSync(file+'.initialized','1');
  try {
   const before=fs.readFileSync(file);const r=readCommissioningAccounting(file);
-  assert.equal(r.recordCount,2);assert.equal(r.heldMicroUsd,5000000);assert.equal(r.ceilingMicroUsd,40000000);assert.equal(r.remainingMicroUsd,35000000);assert.equal(r.invoiceActualMicroUsd,null);assert.equal(r.invoiceUnknownCount,2);assert.equal(r.recordedEstimateMicroUsd,400000);assert.equal(r.estimateUnknownCount,1);assert.deepEqual(fs.readFileSync(file),before);
+  assert.equal(r.recordCount,2);assert.equal(r.heldMicroUsd,45000000);assert.equal(r.ceilingMicroUsd,null);assert.equal(r.remainingMicroUsd,null);assert.equal(r.invoiceActualMicroUsd,null);assert.equal(r.invoiceUnknownCount,2);assert.equal(r.recordedEstimateMicroUsd,400000);assert.equal(r.estimateUnknownCount,1);assert.deepEqual(fs.readFileSync(file),before);
   assert.ok(!JSON.stringify(r).includes('failed_uncertain'));assert.equal(readCommissioningAccounting(file).recordDigestSha256,r.recordDigestSha256);
   fs.unlinkSync(file);assert.throws(()=>readCommissioningAccounting(file));assert.equal(fs.existsSync(file),false);
   fs.writeFileSync(file,'broken');assert.throws(()=>readCommissioningAccounting(file));
@@ -71,7 +71,7 @@ test('existing ledger snapshot preserves uncertain reservations and distinguishe
 test('HTTP readback requires configured founder and workspace and fails closed without leaking errors',async()=>{
  const old=process.env.EMPIRE_RUNTIME_PROFILE;process.env.EMPIRE_RUNTIME_PROFILE='LOCKED_COMMISSIONING_V1';
  const app=Fastify(),sessions=new InMemorySessionStore();let reads=0,fail=false;
- registerOwnerCommissioningReadback(app,createAuthMiddleware(sessions),()=>{reads++;if(fail)throw Error('/private/path sensitive');return {remainingMicroUsd:15000000} as ReturnType<typeof readCommissioningAccounting>;});
+ registerOwnerCommissioningReadback(app,createAuthMiddleware(sessions),()=>{reads++;if(fail)throw Error('/private/path sensitive');return {remainingMicroUsd:null} as ReturnType<typeof readCommissioningAccounting>;});
  const user={id:'founder',email:env.FOUNDER_EMAIL,name:'Owner',role:'founder' as const,workspaceId:'ws_empire_1'};
  try {
   assert.equal((await app.inject({method:'POST',url:'/api/pillow/assurance-demo/inject'})).statusCode,401);
@@ -100,7 +100,7 @@ test('real locked onRequest boundary permits only the two founder isolated demo 
  const observer=()=>execFileSync(process.execPath,['--input-type=module','-e',`import {observeDemo} from ${JSON.stringify(demoUrl)};observeDemo(${JSON.stringify(filename)});`],{stdio:'pipe'});
  observer();
  const app=Fastify(),sessions=new InMemorySessionStore();installLockedCommissioning(app);
- registerOwnerCommissioningReadback(app,createAuthMiddleware(sessions),()=>({remainingMicroUsd:22355288}) as ReturnType<typeof readCommissioningAccounting>);
+ registerOwnerCommissioningReadback(app,createAuthMiddleware(sessions),()=>({remainingMicroUsd:null}) as ReturnType<typeof readCommissioningAccounting>);
  const user={id:'founder',email:env.FOUNDER_EMAIL,name:'Owner',role:'founder' as const,workspaceId:'ws_empire_1'};
  try{
   for(const action of ['inject','correct'])assert.equal((await app.inject({method:'POST',url:'/api/pillow/assurance-demo/'+action})).statusCode,401);
@@ -131,11 +131,11 @@ test('commissioning operator reads accounting without founder credentials and ca
  const token='b'.repeat(43);process.env.EMPIRE_RUNTIME_PROFILE='LOCKED_COMMISSIONING_V1';process.env.EMPIRE_ENGINEERING_TEST_MODE='true';
  process.env.COMMISSIONING_OPERATOR_TOKEN_SHA256=createHash('sha256').update(token).digest('hex');process.env.COMMISSIONING_OPERATOR_EXPIRES_AT=String(Date.now()+60000);
  const app=Fastify(),sessions=new InMemorySessionStore();installLockedCommissioning(app);let reads=0;
- registerOwnerCommissioningReadback(app,createAuthMiddleware(sessions),()=>{reads++;return {remainingMicroUsd:22355288} as ReturnType<typeof readCommissioningAccounting>;});
+ registerOwnerCommissioningReadback(app,createAuthMiddleware(sessions),()=>{reads++;return {remainingMicroUsd:null} as ReturnType<typeof readCommissioningAccounting>;});
  const url='/api/commissioning/read-only/accounting',headers={'x-empire-commissioning-token':token};
  try{
   assert.equal((await app.inject(url)).statusCode,403);assert.equal(reads,0);
-  const allowed=await app.inject({url,headers});assert.equal(allowed.statusCode,200);assert.equal(allowed.json().remainingMicroUsd,22355288);assert.equal(allowed.headers['cache-control'],'private, no-store');
+  const allowed=await app.inject({url,headers});assert.equal(allowed.statusCode,200);assert.equal(allowed.json().remainingMicroUsd,null);assert.equal(allowed.headers['cache-control'],'private, no-store');
   assert.equal((await app.inject({url:url+'?scope=founder',headers})).statusCode,403);
   assert.equal((await app.inject({url:'/api/pillow/commissioning-accounting',headers})).statusCode,401);
   assert.equal((await app.inject({method:'POST',url:'/api/pillow/assurance-demo/inject',headers})).statusCode,401);

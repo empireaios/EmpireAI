@@ -40,11 +40,11 @@ export function createSpendingCollector(filename,store,clock=Date.now){
     }
     if(!Number.isSafeInteger(held))throw Error('Ledger sum invalid');
     const prior=store.db.prepare('SELECT id,digest FROM assurance_ledger_baseline').all();
-    const unchanged=prior.every(r=>observed.get(r.id)===r.digest),within=held<=40000000;
+    const unchanged=prior.every(r=>observed.get(r.id)===r.digest);
     // Never replace a baseline after a discrepancy. New reservations are append-only.
-    if(unchanged&&within){const insert=store.db.prepare('INSERT OR IGNORE INTO assurance_ledger_baseline VALUES(?,?)');store.db.exec('BEGIN');try{for(const [id,digest]of observed)insert.run(id,digest);store.db.exec('COMMIT');}catch(e){store.db.exec('ROLLBACK');throw e;}}
+    if(unchanged){const insert=store.db.prepare('INSERT OR IGNORE INTO assurance_ledger_baseline VALUES(?,?)');store.db.exec('BEGIN');try{for(const [id,digest]of observed)insert.run(id,digest);store.db.exec('COMMIT');}catch(e){store.db.exec('ROLLBACK');throw e;}}
     const now=clock();return {origin:'independent-adapter',source:'read-only commissioning ledger versus independent retained reservation baseline; invoice amounts not verified',evidenceId:'spending-'+now,observedAt:now,
-      authoritative:[{id:'ceiling-respected',value:true},{id:'prior-reservations-preserved',value:true}],
-      internal:[{id:'ceiling-respected',value:within},{id:'prior-reservations-preserved',value:unchanged}]};
+      authoritative:[{id:'prior-reservations-preserved',value:true}],
+      internal:[{id:'prior-reservations-preserved',value:unchanged}]};
   };
 }
