@@ -19,3 +19,9 @@ test('Memory writes retain owner authentication and same-origin protection',asyn
  assert.equal((await advisorProxy(new Request('https://empire-ai.co/api/owner/advisor/memory',{method:'POST',headers:{origin:'https://empire-ai.co'},body:'{}'}),['memory'])).status,401);
  assert.equal((await advisorProxy(new Request('https://empire-ai.co/api/owner/advisor/memory',{method:'POST',headers:{origin:'https://other.example',cookie:'empireai_session=owner'},body:'{}'}),['memory'])).status,403);
 });
+
+test('Intelligence commands retain same-origin authentication; arbitrary effect routes stay denied',async()=>{
+ assert.equal((await advisorProxy(new Request('https://empire-ai.co/api/owner/advisor/intelligence',{method:'POST',headers:{origin:'https://empire-ai.co'},body:'{}'}),['intelligence'])).status,401);
+ assert.equal((await advisorProxy(new Request('https://empire-ai.co/api/owner/advisor/intelligence',{method:'POST',headers:{origin:'https://evil.example',cookie:'empireai_session=owner'},body:'{}'}),['intelligence'])).status,403);
+ assert.equal((await advisorProxy(new Request('https://empire-ai.co/api/owner/advisor/cj/orders',{method:'POST'}),['cj','orders'])).status,404);
+});
