@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "FRESH_CI_PENDING",
-  "observedAt": "2026-10-07T13:35:49.945Z",
+  "status": "CONCURRENT_RELEASE_SESSION_DETECTED",
+  "observedAt": "2026-10-07T13:41:21.383Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -27,9 +27,11 @@
     "Preserved previous inspection implementation and 15 backend / 185 frontend tests",
     "Verified GitHub PR heads and fresh CI",
     "Confirmed production unchanged through Railway and Vercel deployment records",
-    "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed"
+    "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed",
+    "Frontend exact candidate all three hosted workflows PASS",
+    "Backend product, semantic and Assurance PASS; runtime gate still pending at most recent read"
   ],
-  "nextSafeAction": "Wait for exact candidate CI, recheck heads and production to avoid competing cutovers, capture preservation baseline, merge and deploy changed components, bounded production proof, client connection.",
+  "nextSafeAction": "Establish a single active release controller before mutation. Then recheck exact PR heads/CI and production, reuse prepared /data/commissioning/work2-snapshot.mjs, capture pre-cutover baseline if absent, and continue release. Do not perform competing deployment.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -42,5 +44,10 @@
     "zero commerce effects",
     "no new paid services",
     "no secrets in output"
+  ],
+  "concurrentEvidence": [
+    "PR55 advanced from e9c38eff to ac5e117d during recovery; updated 2026-10-07T13:32:52Z",
+    "PR56 advanced from 12a5ae00 to 9b2b3a79 during recovery; updated 2026-10-07T13:33:45Z",
+    "Railway console reports session active in another tab; Work2 snapshot helper prepared and baselineExists false in visible console output"
   ]
 }
