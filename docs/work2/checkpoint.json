@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "BACKEND_DEPLOYED_PRODUCTION_VERIFICATION",
-  "observedAt": "2026-10-07T13:58:33.041Z",
+  "status": "EMPIREAI_VERIFIED_CLIENT_PENDING",
+  "observedAt": "2026-10-07T14:03:59.102Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -18,7 +18,7 @@
   },
   "production": {
     "backend": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
-    "frontend": "9b2b3a79c6eaa6035633377c239f5a0fe51cb934"
+    "frontend": "e33a0a162afce82757fd39267a3db8bca971f3a9"
   },
   "rollback": {
     "railwayDeployment": "050ddb9b-5b93-41ef-bdd7-9e9dfbee7aad",
@@ -31,7 +31,7 @@
     "Confirmed production unchanged through Railway and Vercel deployment records",
     "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed"
   ],
-  "nextSafeAction": "Merge PR57 exact passing head, deploy frontend only; restart existing runtime for durability proof; client connection.",
+  "nextSafeAction": "Finish owner Home/Pillow/Assurance read-only checks; prepare ChatGPT client connection. All application deployment work complete.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -61,14 +61,17 @@
   },
   "deployments": {
     "backend": "b95af5db-6e57-4b94-80cf-04e585b0528d",
-    "frontend": "dpl_Jx4oBMAqmc1FCyHu5cxNfgF2Fmew"
+    "frontend": "dpl_7Mjc66Mjq8U5Xh8bfM769Eg6ntsv"
   },
   "frontendCorrection": {
     "pr": 57,
     "sha": "e33a0a162afce82757fd39267a3db8bca971f3a9",
     "reason": "Advisor route omitted from owner shell",
     "ci": "ALL_PASS",
-    "targetedLint": "PASS"
+    "targetedLint": "PASS",
+    "merged": true,
+    "mergeSha": "78b8092fe85799449ab9621efc32d197eb25eeb2",
+    "deployed": true
   },
   "verification": {
     "productionProof": "PASS",
@@ -82,6 +85,13 @@
     "commerceEffects": 0,
     "readBridge": "PASS",
     "oauth": "PASS replay denial, read-only scope and revocation",
-    "routing": "PASS deterministic complete, hostile blocked, gap explicit, synthetic CEO no inference, owner authority required"
+    "routing": "PASS deterministic complete, hostile blocked, gap explicit, synthetic CEO no inference, owner authority required",
+    "restart": "PASS",
+    "restartReceipt": "/data/commissioning/work2-restart-proof.json",
+    "compiledCompletionAdapter": "PASS isolated synthetic terminal result, original artifact preserved, no inference",
+    "communicationRecordsSurvivedRestart": 5,
+    "missionLedgerSurvivedRestart": true,
+    "uiImport": "PASS preview, confirmation, duplicate-safe, original provenance returned",
+    "ownerSessionSurvivedRestart": true
   }
 }
