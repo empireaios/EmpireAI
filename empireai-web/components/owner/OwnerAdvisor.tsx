@@ -1,15 +1,16 @@
 'use client';
-import {useEffect,useState} from 'react';
+import {useEffect,useState,useCallback} from 'react';
 import Link from 'next/link';
 type Package={id:string;type:string;domain:string;requestedOutcome:string;requestedHandler:string;effectIntent:string;rationale:string;payload:{text:string};assets:unknown[];synthetic:boolean};
 type Preview={valid:boolean;package:Package;route:{handler:string;status:string;code:string}};
 type Item={id:string;handler:string;status:string;result:string};
 const button='min-h-11 rounded border border-amber-300/40 px-4 py-2 text-amber-100 disabled:opacity-40';
 async function api(path:string,body?:unknown){const r=await fetch('/api/owner/advisor/'+path,{method:body===undefined?'GET':'POST',headers:body===undefined?undefined:{'content-type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),cache:'no-store'});const data=await r.json();if(!r.ok)throw Error(data.error??data.code??'Service unavailable');return data;}
-export function OwnerAdvisor(){
- const [preview,setPreview]=useState<Preview|null>(null),[items,setItems]=useState<Item[]>([]),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[result,setResult]=useState<unknown>(null),[consent,setConsent]=useState<Record<string,string>|null>(null);
- async function reload(){try{const data=await api('read?domain=communications');if(data.status==='UNAVAILABLE')throw Error('Stored communications unavailable');setItems(data.data??[]);}catch(error){setMessage(String(error));}}
- useEffect(()=>{const search=new URLSearchParams(window.location.search);if(search.has('client_id'))setConsent(Object.fromEntries(search));const record=search.get('record');if(record){const [domain,...ids]=record.split(':');void api('read?'+new URLSearchParams({domain,id:ids.join(':')}).toString()).then(setResult).catch(e=>setMessage(String(e)));}void reload();},[]);
+export function OwnerAdvisor({initialQuery}:{initialQuery:Record<string,string>}){
+ const consent=initialQuery.client_id?initialQuery:null;const record=initialQuery.record;
+ const [preview,setPreview]=useState<Preview|null>(null),[items,setItems]=useState<Item[]>([]),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[result,setResult]=useState<unknown>(null);
+ const reload=useCallback(async()=>{try{const data=await api('read?domain=communications');if(data.status==='UNAVAILABLE')throw Error('Stored communications unavailable');setItems(data.data??[]);}catch(error){setMessage(String(error));}},[]);
+ useEffect(()=>{if(record){const [domain,...ids]=record.split(':');void api('read?'+new URLSearchParams({domain,id:ids.join(':')}).toString()).then(setResult).catch(e=>setMessage(String(e)));}void api('read?domain=communications').then(data=>{if(data.status==='UNAVAILABLE')throw Error('Stored communications unavailable');setItems(data.data??[]);}).catch(e=>setMessage(String(e)));},[record]);
  async function upload(file:File|undefined){setPreview(null);setResult(null);if(!file)return;if(file.size>96000||!file.name.toLowerCase().endsWith('.json')){setMessage('Choose one JSON communication package, no larger than 96 KB.');return;}setBusy(true);try{setPreview(await api('validate',JSON.parse(await file.text())));setMessage('Package validated. Review it before importing.');}catch(error){setMessage(String(error));}finally{setBusy(false);}}
  async function confirm(){if(!preview)return;setBusy(true);try{const data=await api('import',preview.package);setResult(data);setPreview(null);setMessage(data.receipt.code==='ALREADY_IMPORTED'?'Already imported; no duplicate work was created.':'Imported. This does not grant approval or execution authority.');await reload();}catch(error){setMessage(String(error));}finally{setBusy(false);}}
  async function authorize(){if(!consent)return;setBusy(true);try{const data=await api('consent',consent);const target=new URL(data.redirect);if(target.origin!=='https://chatgpt.com'||target.pathname!=='/connector_platform_oauth_redirect')throw Error('Invalid connection response');window.location.assign(target.href);}catch(error){setMessage(String(error));setBusy(false);}}
