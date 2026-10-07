@@ -29,7 +29,7 @@ test('ChatGPT ui_locales authorization reaches consent without changing OAuth se
    for(const [key,value] of Object.entries(auth))if(key!=='ui_locales')assert.equal(target.searchParams.get(key),value);
   }
   const {ui_locales,...plain}=auth;assert.equal((await authorize(plain)).statusCode,302);
-  for(const patch of [{client_id:'unknown'},{redirect_uri:'https://evil.example/callback'},{scope:'empire.write'},{resource:'https://evil.example/mcp'},{state:''},{code_challenge:'bad'},{code_challenge_method:'plain'},{response_type:'token'},{ui_locales:'x'.repeat(129)},{ui_locales:'en-US\r\nLocation: evil'},{extra:'not-allowed'}])assert.equal((await authorize({...auth,...patch})).statusCode,400,JSON.stringify(patch));
+  for(const patch of [{client_id:'unknown'},{redirect_uri:'https://evil.example/callback'},{scope:'empire.write'},{resource:'https://evil.example/mcp'},{state:''},{code_challenge:'bad'},{code_challenge_method:'plain'},{response_type:'token'},{ui_locales:'x'.repeat(129)},{ui_locales:'en-US\r\nLocation: evil'},{extra:'not-allowed'}] as Record<string,string>[])assert.equal((await authorize({...auth,...patch})).statusCode,400,JSON.stringify(patch));
   const duplicate=await app.inject({method:'GET',url:'/advisor/oauth/authorize?'+new URLSearchParams(auth)+'&ui_locales=en'});assert.equal(duplicate.statusCode,400);
   assert.equal((await post('/api/owner/advisor/consent',plain)).statusCode,401);
   const consent=await post('/api/owner/advisor/consent',plain,true);assert.equal(consent.statusCode,200);
