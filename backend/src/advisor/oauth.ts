@@ -44,7 +44,8 @@ export function registerAdvisorOAuth(app:FastifyInstance,store:AdvisorStore,owne
   return {access_token:token,token_type:'Bearer',expires_in:30*86400,scope};
  });
  app.post('/api/owner/advisor/revoke',{preHandler:owner,bodyLimit:512},async(request)=>{
-  store.use(db=>{db.exec('BEGIN IMMEDIATE');try{db.prepare('DELETE FROM oauth_tokens WHERE owner=? AND workspace=?').run(request.user!.id,request.user!.workspaceId);db.prepare('DELETE FROM oauth_codes WHERE owner=? AND workspace=?').run(request.user!.id,request.user!.workspaceId);db.exec('COMMIT');}catch(error){db.exec('ROLLBACK');throw error;}});store.audit(request.user!.id,'REVOKE_READ','all-owner-grants','REVOKED');return {revoked:true};
+  const clientId=z.object({clientId:z.string().max(100).optional()}).strict().parse(request.body??{}).clientId;
+  store.use(db=>{db.exec('BEGIN IMMEDIATE');try{for(const table of ['oauth_tokens','oauth_codes']){if(clientId)db.prepare('DELETE FROM '+table+' WHERE owner=? AND workspace=? AND client=?').run(request.user!.id,request.user!.workspaceId,clientId);else db.prepare('DELETE FROM '+table+' WHERE owner=? AND workspace=?').run(request.user!.id,request.user!.workspaceId);}db.exec('COMMIT');}catch(error){db.exec('ROLLBACK');throw error;}});store.audit(request.user!.id,'REVOKE_READ',clientId??'all-owner-grants','REVOKED');return {revoked:true};
  });
 }
 export function authorizeAdvisor(store:AdvisorStore,header:unknown){
