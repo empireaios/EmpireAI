@@ -1,44 +1,46 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "IMPLEMENTATION_LOCAL_VERIFICATION",
-  "observedAt": "2026-10-07T13:00:56.196409+00:00",
-  "baseline": {
+  "status": "FRESH_CI_PENDING",
+  "observedAt": "2026-10-07T13:35:49.945Z",
+  "candidate": {
+    "backend": {
+      "pr": 55,
+      "sha": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
+      "merged": false
+    },
+    "frontend": {
+      "pr": 56,
+      "sha": "9b2b3a79c6eaa6035633377c239f5a0fe51cb934",
+      "merged": false
+    }
+  },
+  "production": {
     "backend": "85bc25414b444cd20108b97c40eb50f543ffb348",
     "frontend": "daaa786d34788972edc1fb162428f39b52b7c8ad"
   },
-  "rollback": "same as baseline",
+  "rollback": {
+    "railwayDeployment": "050ddb9b-5b93-41ef-bdd7-9e9dfbee7aad",
+    "vercelDeployment": "dpl_FSogDtVSvvTxf8vYmKVqCL9dMxeA"
+  },
   "productionChanged": false,
   "completed": [
-    "Read all Work2 instructions",
-    "Fresh Railway and Vercel production deployment identity reads",
-    "Restored exact backend production source",
-    "Inspected Tier0 locks, owner authentication, accounting readback, durable chat queue and mission persistence",
-    "Bounded OAuth PKCE read bridge implemented",
-    "Owner package validation/import, duplicate integrity, deterministic routing and existing Pillow queue boundary implemented",
-    "Frontend built directly on PR54; lint and build pass; 184 existing tests pass",
-    "13 targeted backend auth/routing/persistence/lock tests pass; new BFF test passes",
-    "15 targeted tests pass including durable CEO result copy, real SQLite read-only isolation and timestamp changes query",
-    "Initial backend PR55 CI all passed; final scoped result-durability delta requires fresh CI",
-    "Frontend PR56 CI caught obsolete expected-SHA test literal; update its assertion with final identity, then rerun"
+    "Preserved previous inspection implementation and 15 backend / 185 frontend tests",
+    "Verified GitHub PR heads and fresh CI",
+    "Confirmed production unchanged through Railway and Vercel deployment records",
+    "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed"
   ],
-  "nextSafeAction": "Publish final result-durability/backend changes; align frontend manifest and identity assertion; require fresh hosted CI on both exact candidates before merge/deploy. Production remains PR53/54.",
+  "nextSafeAction": "Wait for exact candidate CI, recheck heads and production to avoid competing cutovers, capture preservation baseline, merge and deploy changed components, bounded production proof, client connection.",
   "mustNotRepeat": [
-    "Prior PR50-54 engineering campaigns",
-    "Consumed owner acceptance prompts",
-    "Amazon marketplace participation call"
+    "Broad inspection and architecture discovery",
+    "Prior passed tests unless changed code or CI requires",
+    "Consumed owner prompts",
+    "Work1 and Works3–9"
   ],
   "constraints": [
     "NOT_BORN",
     "commerce LOCKED",
+    "zero commerce effects",
     "no new paid services",
-    "no paid inference for deterministic verification",
-    "no later Works"
-  ],
-  "candidate": null,
-  "limitations": [
-    "No paid inference used",
-    "Actual ChatGPT connection pending",
-    "No production changes",
-    "Current source is an unpromoted candidate"
+    "no secrets in output"
   ]
 }
