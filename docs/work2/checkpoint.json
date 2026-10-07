@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "OWNER_RECONNECT_REQUIRED",
-  "observedAt": "2026-10-07T14:45:34.615Z",
+  "status": "OWNER_RETRY_REQUIRED",
+  "observedAt": "2026-10-07T14:55:51.207Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -35,7 +35,7 @@
     "Normal backend restart retained Work2 state and synthetic completion",
     "Owner Home, Pillow history, Advisor import, Assurance verified"
   ],
-  "nextSafeAction": "Owner reconnects same ChatGPT plugin. Verify actual client acceptance, read-only tools and state/missions/communication retrieval, record acceptance. Do not repeat CI, deployment, preservation or earlier suites.",
+  "nextSafeAction": "Reload ChatGPT once, reopen the existing EmpireAI — King's Advisor plugin, then click Connect once. Keep existing app and settings. Trace fresh authorization through owner consent, code issuance, token exchange and MCP initialization; verify read-only tools and continuity after connection.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -103,14 +103,14 @@
     "oauthDiscovery": "PASS root protected-resource and authorization-server metadata"
   },
   "clientConnection": {
-    "status": "PENDING_OWNER_RECONNECT",
-    "reason": "Server-side actual ChatGPT ui_locales defect corrected and deployed; owner must restart OAuth from existing plugin to obtain fresh state.",
-    "action": "In ChatGPT Plugins, open EmpireAI — King's Advisor and Connect/reconnect using OAuth; approve the EmpireAI read-only consent. Do not delete/recreate the plugin.",
+    "status": "PENDING_OWNER_RETRY",
+    "reason": "No new discovery, registration, authorization, consent API, token or MCP request observed. Cached metadata/client reuse is not observable. No authorization or token issuance for existing ChatGPT client. Frontend page invocation not independently instrumented. OAuth has not completed; precise client/browser/network cause unproven.",
+    "action": "Reload ChatGPT once, reopen the existing EmpireAI — King's Advisor plugin, then click Connect once. Keep existing app and settings.",
     "scope": "empire.read",
     "duration": "30 days; owner revocable",
     "verificationAfterAction": [
       "Client discovers search, fetch and list_records only",
-      "Fetch state: backend ac5e117d, NOT_BORN and commerce LOCKED",
+      "Fetch state: backend aac50a97, NOT_BORN and commerce LOCKED",
       "Fetch missions: final checkpoint and restart proof",
       "Fetch communications:work2-production-note-v1 with preserved artifact/result; no duplicate work or inference"
     ],
@@ -166,5 +166,30 @@
       "inferenceCalls": 0,
       "commerceEffects": 0
     }
+  },
+  "reconnectDiagnosis": {
+    "observedAt": "2026-10-07T14:55:51.207Z",
+    "status": "RECONNECT_NOT_OBSERVED_AT_SERVER",
+    "httpWindow": {
+      "from": "2026-10-07T14:45:30Z",
+      "through": "2026-10-07T14:55:04.069828889Z",
+      "deployment": "d48a2059-8652-4335-8e61-1f7abecc3934",
+      "requests": 26,
+      "oauthOrMcpRequests": 0,
+      "ordinaryHealthAndAssuranceStatus": 200
+    },
+    "database": {
+      "observedAt": "2026-10-07T14:52:42.221Z",
+      "latestRegistrationAt": "2026-10-07T14:15:01.914Z",
+      "clientCount": 2,
+      "latestClientCodes": 0,
+      "latestClientTokens": 0,
+      "auditSince1446": 0
+    },
+    "conclusion": "No new discovery, registration, authorization, consent API, token or MCP request observed. Cached metadata/client reuse is not observable. No authorization or token issuance for existing ChatGPT client. Frontend page invocation not independently instrumented. OAuth has not completed; precise client/browser/network cause unproven.",
+    "codeChanged": false,
+    "deployed": false,
+    "nextOwnerAction": "Reload ChatGPT once, reopen the existing EmpireAI — King's Advisor plugin, then click Connect once. Keep existing app and settings.",
+    "nextVerification": "Trace fresh authorization through owner consent, code issuance, token exchange and MCP initialization; verify read-only tools and continuity after connection."
   }
 }
