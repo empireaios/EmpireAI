@@ -1,22 +1,52 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "INSPECTION",
+  "status": "EXACT_CANDIDATES_CI_PENDING",
+  "observedAt": "2026-10-07T13:38:45.504627+00:00",
   "baseline": {
     "backend": "85bc25414b444cd20108b97c40eb50f543ffb348",
     "frontend": "daaa786d34788972edc1fb162428f39b52b7c8ad"
   },
+  "rollback": "same as baseline",
   "productionChanged": false,
   "completed": [
-    "Instructions read",
-    "Railway/Vercel production identities verified 2026-10-07",
-    "Exact backend source restored",
-    "Inspected existing owner auth, locks, durable reasoning queue, mission store and accounting"
+    "Read all Work2 instructions",
+    "Fresh Railway and Vercel production deployment identity reads",
+    "Restored exact backend production source",
+    "Inspected Tier0 locks, owner authentication, accounting readback, durable chat queue and mission persistence",
+    "Bounded OAuth PKCE read bridge implemented",
+    "Owner package validation/import, duplicate integrity, deterministic routing and existing Pillow queue boundary implemented",
+    "Frontend built directly on PR54; lint and build pass; 184 existing tests pass",
+    "13 targeted backend auth/routing/persistence/lock tests pass; new BFF test passes",
+    "15 targeted tests pass including durable CEO result copy, real SQLite read-only isolation and timestamp changes query",
+    "Initial backend PR55 CI all passed; final scoped result-durability delta requires fresh CI",
+    "Frontend PR56 CI caught obsolete expected-SHA test literal; update its assertion with final identity, then rerun",
+    "Final backend typecheck/build PASS; frontend lint/build PASS;185 frontend tests and15 targeted backend tests PASS",
+    "Remote candidate source byte-for-byte equals validated local changes",
+    "Final Vercel preview READY; exact-source Railway packaging CI PASS for both revisions"
   ],
-  "nextSafeAction": "Complete targeted inspection and implement bounded Work2 bridge/gateway; no deployment before tests and CI.",
+  "nextSafeAction": "Require remaining runtime hosted checks, merge PR55/56 into isolated baseline release branches, capture fresh preservation baseline, deploy exact candidates. No paid inference.",
+  "mustNotRepeat": [
+    "Prior PR50-54 engineering campaigns",
+    "Consumed owner acceptance prompts",
+    "Amazon marketplace participation call"
+  ],
   "constraints": [
     "NOT_BORN",
     "commerce LOCKED",
-    "no paid deterministic verification",
-    "no acceptance prompt replay"
+    "no new paid services",
+    "no paid inference for deterministic verification",
+    "no later Works"
+  ],
+  "candidate": {
+    "backend": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
+    "backendPR": 55,
+    "frontend": "9b2b3a79c6eaa6035633377c239f5a0fe51cb934",
+    "frontendPR": 56
+  },
+  "limitations": [
+    "No paid inference used",
+    "Actual ChatGPT connection pending",
+    "No production changes",
+    "Current source is an unpromoted candidate"
   ]
 }
