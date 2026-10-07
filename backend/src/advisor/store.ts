@@ -14,6 +14,7 @@ export class AdvisorStore {
   const db=new DatabaseSync(this.filename,{allowExtension:false,timeout:100});
   try{
    const id=db.prepare('PRAGMA application_id').get()?.application_id;
+   if(id===0x45414757&&db.prepare('PRAGMA user_version').get()?.user_version!==1)throw Error('Store version unsupported');
    if(id!==0&&id!==0x45414757)throw Error('Store identity invalid');
    if(id===0&&db.prepare("SELECT name FROM sqlite_schema WHERE type='table'").all().length)throw Error('Store identity invalid');
    db.exec(`PRAGMA trusted_schema=OFF; PRAGMA synchronous=EXTRA; PRAGMA max_page_count=16384;

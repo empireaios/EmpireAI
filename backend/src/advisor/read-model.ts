@@ -5,6 +5,7 @@ import { readCommissioningAccounting } from '../runtime/owner-commissioning-read
 import { inferenceLedgerPath } from '../brain/llm/locked-inference.js';
 import { getPillowCapabilityRegistry } from '../orchestration/pillow-host/pillow-capability-registry.js';
 import { getChatRequest } from '../runtime/pillow-chat-request-store.js';
+import { packageFormat } from './package.js';
 import type { AdvisorStore } from './store.js';
 const domains={
  authority:['pillow_birth_record','workspace_id AS id,status,birth_timestamp,authorised_by,authorised_at,updated_at','workspace_id'],
@@ -35,17 +36,22 @@ function read<T>(filename:string,fn:(db:DatabaseSync)=>T){
  const db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:50});
  try{db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF');return {observedAt:stat.mtime.toISOString(),data:fn(db)};}finally{db.close();}
 }
-export const readDomains=['state','capabilities','pillow','accounting','assurance','missions','communications',...Object.keys(domains)];
-export async function readEmpire(store:AdvisorStore,workspace:string,domain:string,id?:string,after='',limit=20):Promise<unknown>{
+export const readDomains=['package_format','changes','state','capabilities','pillow','accounting','assurance','missions','communications',...Object.keys(domains)];
+export async function readEmpire(store:AdvisorStore,workspace:string,domain:string,id?:string,after='',limit=20,since?:string):Promise<unknown>{
  const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
  const base={retrievedAt:new Date().toISOString(),readOnly:true,inferenceCalls:0,externalRefresh:false,workspace,domain,grantsAuthority:false};
  try{
   let data:unknown,observedAt:string|null=null,source='durable stored evidence';
-  if(domain==='state') {source='current process identity and locked runtime profile';observedAt=base.retrievedAt;data={backendSha:process.env.RAILWAY_GIT_COMMIT_SHA??null,deploymentId:process.env.RAILWAY_DEPLOYMENT_ID??null,profile:process.env.EMPIRE_RUNTIME_PROFILE,birth:process.env.EMPIRE_RUNTIME_PROFILE==='LOCKED_COMMISSIONING_V1'?'NOT_BORN':'UNVERIFIED',commerce:process.env.EMPIRE_RUNTIME_PROFILE==='LOCKED_COMMISSIONING_V1'?'LOCKED':'UNVERIFIED',frontendIdentity:{status:'UNVERIFIED',reason:'Use direct Vercel evidence'},domains:readDomains};}
+  if(domain==='package_format'){data=packageFormat;source='versioned import protocol';}
+  else if(domain==='changes'){
+   const filename=process.env.DATABASE_PATH;if(!filename)throw Error('CAPABILITY_GAP');
+   const record=read(filename,db=>db.prepare('SELECT id,agent_name,action,module,outcome,created_at FROM activity_events WHERE workspace_id=? AND created_at>? AND id>? ORDER BY id LIMIT ?').all(workspace,since??new Date(Date.now()-86400000).toISOString(),after,limit));data=record.data;observedAt=record.observedAt;source='existing activity events only; not a complete changelog for all subsystems';
+  }
+  else if(domain==='state') {source='current process identity and locked runtime profile';observedAt=base.retrievedAt;data={backendSha:process.env.RAILWAY_GIT_COMMIT_SHA??null,deploymentId:process.env.RAILWAY_DEPLOYMENT_ID??null,profile:process.env.EMPIRE_RUNTIME_PROFILE,birth:process.env.EMPIRE_RUNTIME_PROFILE==='LOCKED_COMMISSIONING_V1'?'NOT_BORN':'UNVERIFIED',commerce:process.env.EMPIRE_RUNTIME_PROFILE==='LOCKED_COMMISSIONING_V1'?'LOCKED':'UNVERIFIED',frontendIdentity:{status:'UNVERIFIED',reason:'Use direct Vercel evidence'},domains:readDomains};}
   else if(domain==='capabilities'){source='existing shared Pillow capability declarations; not live provider verification';data={declared:getPillowCapabilityRegistry(),currentProviderAccess:'UNVERIFIED',commerceEffects:'BLOCKED',amazon:{status:'UNVERIFIED',ownerReportedObservation:{date:'2026-10-07',route:'GET /sellers/v1/marketplaceParticipations',httpStatus:200,scope:'legacy service owner-reported call only; not independently reverified by Work2'},lockedRuntimeAccess:'UNVERIFIED',handover:'Work4 cheap heartbeat; do not revive legacy service'},cj:{status:'UNVERIFIED'},keepa:{status:'UNAVAILABLE'},costCentre:{status:'UNAVAILABLE',handover:'Work5'},truthVocabulary:['AVAILABLE','DEGRADED','UNAVAILABLE','STALE','UNVERIFIED','BLOCKED']};}
   else if(domain==='accounting'){data=readCommissioningAccounting(inferenceLedgerPath());observedAt=base.retrievedAt;source='existing accounting snapshot; recorded estimates are not provider invoices';}
   else if(domain==='communications'){data=id?store.get(workspace,id):store.list(workspace,after,limit);if(id&&data&&typeof data==='object'&&'request_id' in data&&data.request_id){const r=await getChatRequest(String(data.request_id));if(r&&r.workspaceId===workspace)data={...data,pillow:{source:'PILLOW',status:r.status,failureClass:r.failureClass,result:r.finalResult}};}source='owner-imported Advisor artifacts and internal work-item results';}
-  else if(domain==='missions'){data=JSON.parse(fs.readFileSync(new URL('../../../docs/work2/checkpoint.json',import.meta.url),'utf8'));source='versioned engineering checkpoint; candidate claims must be checked against process identity';}
+  else if(domain==='missions'){data={checkpoint:JSON.parse(fs.readFileSync(new URL('../../../docs/work2/checkpoint.json',import.meta.url),'utf8')),productionVerification:null as unknown};if(root){const receipt=path.join(root,'commissioning','work2-production-verification.json');if(fs.existsSync(receipt)&&fs.statSync(receipt).size<64000)(data as {productionVerification:unknown}).productionVerification=JSON.parse(fs.readFileSync(receipt,'utf8'));}source='versioned engineering checkpoint; candidate claims must be checked against process identity';}
   else if(domain==='assurance'){
    if(!root)throw Error('CAPABILITY_GAP');
    const {readOwnerAssurance}=await import(new URL('../../src/assurance/owner-evidence.mjs',import.meta.url).href);
@@ -61,7 +67,7 @@ export async function readEmpire(store:AdvisorStore,workspace:string,domain:stri
    data=record.data; if(Array.isArray(data))data=data.map(decodeRecord);else data=decodeRecord(data);observedAt=record.observedAt;source='durable business database snapshot; timestamp is file persistence time, not external observation';
   }else throw Error('CAPABILITY_GAP');
   if(Buffer.byteLength(JSON.stringify(data??null))>256000)return {...base,status:'DEGRADED',data:null,reason:'Result exceeds bound. Reduce limit or fetch one object.'};
-  return redact({...base,status:data===undefined?'UNAVAILABLE':observedAt&&Date.now()-Date.parse(observedAt)>3600000?'STALE':'AVAILABLE',observedAt,source,data:decodeRecord(data)??null,coverage:{limit,after,complete:false,providerAccessVerified:false,missingFields:'Not stored or not exposed; do not infer approval, execution or complete economics'}});
+  return redact({...base,status:data===undefined?'UNAVAILABLE':observedAt&&Date.now()-Date.parse(observedAt)>3600000?'STALE':'AVAILABLE',observedAt,source,data:decodeRecord(data)??null,coverage:{limit,after,since:domain==='changes'?since??'previous 24 hours':null,complete:false,providerAccessVerified:false,businessAuthenticity:'UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce',missingFields:'Not stored or not exposed; do not infer approval, execution or complete economics'}});
  }catch{return {...base,status:'UNAVAILABLE',observedAt:null,data:null,reason:'Stored source unavailable or unreadable; no live refresh attempted'};}
 }
 

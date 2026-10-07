@@ -622,6 +622,16 @@ export async function settleReasoningRequest(options: {
       options.result ? JSON.stringify(options.result) : ""]);
   if (result !== 0 && result !== 1) throw new PillowDurableStoreUnavailableError();
   memory.delete(options.requestId);
+  // Work2 results outlive the request TTL. Ordinary Pillow requests take no new path.
+  if (result === 1 && options.requestId.startsWith("pcr_adv_")) {
+    try {
+      const settled = await getChatRequest(options.requestId);
+      if (settled) {
+        const { persistAdvisorCompletion } = await import("../advisor/completion.js");
+        persistAdvisorCompletion(settled);
+      }
+    } catch { console.warn("Advisor result archive unavailable; canonical Pillow result remains authoritative"); }
+  }
   return result === 1;
 }
 

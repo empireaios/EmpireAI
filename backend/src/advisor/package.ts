@@ -29,3 +29,10 @@ export function routeCommunication(p:Communication){
   if(p.type==='EVIDENCE_REQUEST'&&p.requestedHandler==='SOFTWARE'&&p.targetId)return {handler:'SOFTWARE',status:'ROUTED',code:'READ_STORED_EVIDENCE'};
   return {handler:'BLOCKED',status:'BLOCKED',code:'CAPABILITY_GAP'};
 }
+/** Portable recipe exposed through the read bridge so Advisor can produce the single import file. */
+export const packageFormat={
+ version:'1.0',encoding:'UTF-8 JSON',maximumBytes:96000,unknownFields:'rejected',archives:'unsupported',
+ communicationTypes:communicationSchema.shape.type.options,
+ example:{schemaVersion:'1.0',id:'unique-advisor-communication-id',source:'KING_ADVISOR',createdAt:'2026-10-07T00:00:00.000Z',type:'OWNER_NOTE',domain:'internal',targetId:null,requestedOutcome:'Record this independent observation',requestedHandler:'SOFTWARE',priority:'NORMAL',rationale:'Independent Advisor analysis',payload:{text:'Replace with the intended observation.'},evidenceRefs:[],assets:[],expectedResult:'Durably recorded internal evidence',authorityClass:'INFORMATION',effectIntent:'NONE',correlationId:'unique-correlation-id',parentId:null,synthetic:true} satisfies Communication,
+ instructions:'Generate a unique id and current createdAt. Keep synthetic true for tests; false only for genuine business advice. Import is never approval. Text assets need id, mediaType text/plain, content and exact SHA256. Only explicit executive review types route to Pillow. Missing handlers are capability gaps.',
+};
