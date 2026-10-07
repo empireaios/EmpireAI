@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
   "status": "BACKEND_DEPLOYED_PRODUCTION_VERIFICATION",
-  "observedAt": "2026-10-07T13:47:30.435Z",
+  "observedAt": "2026-10-07T13:58:33.041Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -31,7 +31,7 @@
     "Confirmed production unchanged through Railway and Vercel deployment records",
     "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed"
   ],
-  "nextSafeAction": "Verify deployed backend preservation and protocol; await PR57 required CI and deploy one-line owner shell correction; durable restart proof and client connection.",
+  "nextSafeAction": "Merge PR57 exact passing head, deploy frontend only; restart existing runtime for durability proof; client connection.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -67,7 +67,21 @@
     "pr": 57,
     "sha": "e33a0a162afce82757fd39267a3db8bca971f3a9",
     "reason": "Advisor route omitted from owner shell",
-    "ci": "PENDING",
+    "ci": "ALL_PASS",
     "targetedLint": "PASS"
+  },
+  "verification": {
+    "productionProof": "PASS",
+    "receipt": "/data/commissioning/work2-live-proof-1791381271757.json",
+    "preservation": "PASS: all 191 baseline tables retained; only audit and Assurance append rows",
+    "postReceipt": "/data/commissioning/work2-post-1791381232171.json",
+    "accountingRows": 217,
+    "accountingUnchanged": true,
+    "paidInference": 0,
+    "externalProviderCalls": 0,
+    "commerceEffects": 0,
+    "readBridge": "PASS",
+    "oauth": "PASS replay denial, read-only scope and revocation",
+    "routing": "PASS deterministic complete, hostile blocked, gap explicit, synthetic CEO no inference, owner authority required"
   }
 }
