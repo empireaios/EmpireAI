@@ -22,6 +22,14 @@ test('structured decision expectations and explicitly used memory IDs survive a 
  s.m.captureDecision('ws1',{request:'request',session:'session-new',question:'recommend a strategy',answer,influences:context.retrievedIds});
  const r=s.m.list('ws1').find(r=>r.kind==='EXPERIENCE');assert.deepEqual(r.influences,['doctrine']);assert.equal(r.expectation.description,'Obtain evidence');assert.equal(r.origin.authenticity,'MODEL_GENERATED_CLAIM');assert.equal(r.current.learningEligible,false);
 }finally{s.done();}});
+test('actual provider list-shaped review is bounded, normalized and retained without another inference',()=>{const s=setup();try{
+ s.m.ownerCommand('ws1','owner',{action:'synthetic_experience',experience});
+ const payload={note:'Preserve original expected five to eight days',lesson:'Candidate only; synthetic is not policy',process:'UNKNOWN',outcome:'BAD',causes:['Unknown; no causal evidence'],exogenous:['Unknown; no evidenced external factor'],confidence:0.9};
+ const input={request:'completed-provider-review',session:'fresh-session',question:'Review experience synthetic1 [SYNTHETIC_MEMORY_TEST]',answer:'<executive-review>'+JSON.stringify(payload)+'</executive-review>',influences:['synthetic1']};
+ s.m.captureDecision('ws1',input);assert.equal(s.m.captureDecision('ws1',input).created,false);
+ const r=s.m.get('ws1','synthetic1');assert.equal(r.events.length,2);assert.equal(r.events[0].review.causes,payload.causes[0]);assert.equal(r.events[0].review.exogenous,payload.exogenous[0]);assert.equal(r.events[0].origin.authenticity,'SYNTHETIC');assert.equal(r.current.learningEligible,false);assert.equal(r.expectation.metrics[0].high,8);
+ assert.throws(()=>s.m.captureDecision('ws1',{...input,request:'oversize',answer:'<executive-review>'+JSON.stringify({...payload,causes:['x'.repeat(4000),'y'.repeat(4000)]})+'</executive-review>'}));assert.equal(s.m.get('ws1','synthetic1').events.length,2);
+}finally{s.done();}});
 const evidence={id:'observation1',hash:hash('independent observation'),observedAt:'2026-10-07T00:00:00.000Z',source:'synthetic deterministic test'};
 const experience={id:'synthetic1',scope:{domain:'supplier',entities:['supplierA']},belief:'Delivery may take five days',decision:'Observe only',rationale:'Synthetic acceptance; no trade',evidence:[evidence],expectation:{description:'Delivery range',metrics:[{name:'delivery',unit:'days',low:5,high:8}],dueAt:'2026-10-01T00:00:00.000Z'},influences:[]};
 test('locked production gate admits owner memory only through existing authentication and keeps commerce blocked',async()=>{
