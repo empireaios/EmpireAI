@@ -1,17 +1,19 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "CONCURRENT_RELEASE_SESSION_DETECTED",
-  "observedAt": "2026-10-07T13:41:21.383Z",
+  "status": "CI_PASSED_PRECUTOVER_BASELINE_CAPTURED",
+  "observedAt": "2026-10-07T13:45:17.301Z",
   "candidate": {
     "backend": {
       "pr": 55,
       "sha": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
-      "merged": false
+      "merged": true,
+      "mergeSha": "9cea83e99406e81634ac3ca835a01ed9331d1391"
     },
     "frontend": {
       "pr": 56,
       "sha": "9b2b3a79c6eaa6035633377c239f5a0fe51cb934",
-      "merged": false
+      "merged": true,
+      "mergeSha": "7a0766bb4faf40865e4d9b6e5b5a6a72f6e61676"
     }
   },
   "production": {
@@ -27,11 +29,9 @@
     "Preserved previous inspection implementation and 15 backend / 185 frontend tests",
     "Verified GitHub PR heads and fresh CI",
     "Confirmed production unchanged through Railway and Vercel deployment records",
-    "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed",
-    "Frontend exact candidate all three hosted workflows PASS",
-    "Backend product, semantic and Assurance PASS; runtime gate still pending at most recent read"
+    "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed"
   ],
-  "nextSafeAction": "Establish a single active release controller before mutation. Then recheck exact PR heads/CI and production, reuse prepared /data/commissioning/work2-snapshot.mjs, capture pre-cutover baseline if absent, and continue release. Do not perform competing deployment.",
+  "nextSafeAction": "Deploy exact reviewed backend ac5e117d, verify preservation and production proof; deploy exact frontend 9b2b3a79; verify owner and client connection.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -45,9 +45,18 @@
     "no new paid services",
     "no secrets in output"
   ],
-  "concurrentEvidence": [
-    "PR55 advanced from e9c38eff to ac5e117d during recovery; updated 2026-10-07T13:32:52Z",
-    "PR56 advanced from 12a5ae00 to 9b2b3a79 during recovery; updated 2026-10-07T13:33:45Z",
-    "Railway console reports session active in another tab; Work2 snapshot helper prepared and baselineExists false in visible console output"
-  ]
+  "ci": {
+    "backend": "ALL_PASS",
+    "frontend": "ALL_PASS"
+  },
+  "preservation": {
+    "receipt": "/data/commissioning/work2-pre-1791380601003.json",
+    "at": "2026-10-07T13:43:20.394Z",
+    "tables": 191,
+    "databases": 6,
+    "integrity": "ALL_OK",
+    "redisRequests": 0,
+    "ownerSessions": 16,
+    "accountingRows": 217
+  }
 }
