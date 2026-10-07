@@ -14,3 +14,8 @@ test('Advisor BFF bounds routes, denies anonymous and cross-origin writes, prese
   globalThis.fetch=async()=>{throw Error('unavailable');};assert.equal((await advisorProxy(valid(),['import'])).status,503);
  }finally{globalThis.fetch=original;}
 });
+
+test('Memory writes retain owner authentication and same-origin protection',async()=>{
+ assert.equal((await advisorProxy(new Request('https://empire-ai.co/api/owner/advisor/memory',{method:'POST',headers:{origin:'https://empire-ai.co'},body:'{}'}),['memory'])).status,401);
+ assert.equal((await advisorProxy(new Request('https://empire-ai.co/api/owner/advisor/memory',{method:'POST',headers:{origin:'https://other.example',cookie:'empireai_session=owner'},body:'{}'}),['memory'])).status,403);
+});
