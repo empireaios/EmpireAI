@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "OAUTH_CORRECTION_DEPLOYING",
-  "observedAt": "2026-10-07T14:41:29.600Z",
+  "status": "OWNER_RECONNECT_REQUIRED",
+  "observedAt": "2026-10-07T14:45:34.615Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -17,7 +17,7 @@
     }
   },
   "production": {
-    "backend": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
+    "backend": "aac50a97232e052a37e49e9766c5b224cc4b58cb",
     "frontend": "baf1699e732460acb59f395a18b662701932a934"
   },
   "rollback": {
@@ -35,7 +35,7 @@
     "Normal backend restart retained Work2 state and synthetic completion",
     "Owner Home, Pillow history, Advisor import, Assurance verified"
   ],
-  "nextSafeAction": "Await Railway d48a2059 and Vercel dpl_8PeCNhoE8mv7uP12btsbZwJs1Mvz; verify exact identity; execute stored /data/commissioning/work2-oauth-proof.mjs aac50a97232e052a37e49e9766c5b224cc4b58cb; then owner reconnect same plugin.",
+  "nextSafeAction": "Owner reconnects same ChatGPT plugin. Verify actual client acceptance, read-only tools and state/missions/communication retrieval, record acceptance. Do not repeat CI, deployment, preservation or earlier suites.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -64,7 +64,7 @@
     "accountingRows": 217
   },
   "deployments": {
-    "backend": "b95af5db-6e57-4b94-80cf-04e585b0528d",
+    "backend": "d48a2059-8652-4335-8e61-1f7abecc3934",
     "frontend": "dpl_8PeCNhoE8mv7uP12btsbZwJs1Mvz"
   },
   "frontendCorrection": {
@@ -103,9 +103,9 @@
     "oauthDiscovery": "PASS root protected-resource and authorization-server metadata"
   },
   "clientConnection": {
-    "status": "PENDING_OWNER_ACTION",
-    "reason": "ChatGPT browser signed out; no tool can create an account-owned custom MCP app; actual ChatGPT acceptance not claimed",
-    "action": "Connect King's Advisor custom MCP app in owner's signed-in ChatGPT, using OAuth and https://empireai-locked-runtime-production.up.railway.app/advisor/mcp; approve read-only EmpireAI consent",
+    "status": "PENDING_OWNER_RECONNECT",
+    "reason": "Server-side actual ChatGPT ui_locales defect corrected and deployed; owner must restart OAuth from existing plugin to obtain fresh state.",
+    "action": "In ChatGPT Plugins, open EmpireAI — King's Advisor and Connect/reconnect using OAuth; approve the EmpireAI read-only consent. Do not delete/recreate the plugin.",
     "scope": "empire.read",
     "duration": "30 days; owner revocable",
     "verificationAfterAction": [
@@ -125,7 +125,7 @@
     "tests": "PASS: two affected backend OAuth tests, backend typecheck, frontend exact-identity test",
     "ci": "ALL_PASS",
     "merged": true,
-    "deployed": false,
+    "deployed": true,
     "productionReproduction": {
       "status": "DEFECT_REPRODUCED",
       "http": 400,
@@ -150,6 +150,21 @@
     },
     "preservationReceipt": "/data/commissioning/work2-oauth-pre.json",
     "mergeSha": "5ea34e24ae29f3fd94e11518b99096defa7e0259",
-    "deployment": "d48a2059-8652-4335-8e61-1f7abecc3934"
+    "deployment": "d48a2059-8652-4335-8e61-1f7abecc3934",
+    "productionProof": {
+      "status": "PASS",
+      "receipt": "/data/commissioning/work2-oauth-aac50a97232e052a37e49e9766c5b224cc4b58cb.json",
+      "authorizationStatus": 302,
+      "originalClientRegistrationPreserved": true,
+      "invalidSecurityFieldsRejected": true,
+      "accountingUnchanged": true,
+      "communicationsUnchanged": true,
+      "clientsUnchanged": true,
+      "notBorn": true,
+      "commerceLocked": true,
+      "allSevenEffectRoutes": 423,
+      "inferenceCalls": 0,
+      "commerceEffects": 0
+    }
   }
 }
