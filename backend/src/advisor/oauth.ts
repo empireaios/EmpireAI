@@ -9,6 +9,8 @@ export const scope='empire.read';
 const opaque=()=>randomBytes(32).toString('base64url');
 const callback='https://chatgpt.com/connector_platform_oauth_redirect';
 const authSchema=z.object({client_id:z.string().max(100),redirect_uri:z.literal(callback),response_type:z.literal('code'),scope:z.literal(scope),resource:z.literal(resource),state:z.string().min(16).max(512),code_challenge:z.string().regex(/^[A-Za-z0-9_-]{43}$/),code_challenge_method:z.literal('S256')}).strict();
+// ChatGPT sends this optional display hint. Validate and discard it; it grants no authority.
+const authorizationSchema=authSchema.extend({ui_locales:z.string().min(1).max(128).regex(/^[A-Za-z]{1,8}(?:-[A-Za-z0-9]{1,8})*(?: [A-Za-z]{1,8}(?:-[A-Za-z0-9]{1,8})*)*$/).optional()}).transform(({ui_locales: _locale,...authorization})=>authorization);
 type OwnerAuth=(request:FastifyRequest,reply:FastifyReply)=>Promise<void>;
 export function registerAdvisorOAuth(app:FastifyInstance,store:AdvisorStore,owner:OwnerAuth){
  app.get('/.well-known/oauth-protected-resource',async()=>({resource,authorization_servers:[issuer],scopes_supported:[scope],bearer_methods_supported:['header']}));
@@ -21,7 +23,7 @@ export function registerAdvisorOAuth(app:FastifyInstance,store:AdvisorStore,owne
   return reply.code(201).send({client_id:id,redirect_uris:[callback],token_endpoint_auth_method:'none',grant_types:['authorization_code'],response_types:['code']});
  });
  app.get('/advisor/oauth/authorize',async(request,reply)=>{
-  const p=authSchema.safeParse(request.query);
+  const p=authorizationSchema.safeParse(request.query);
   if(!p.success||!store.use(db=>db.prepare('SELECT id FROM oauth_clients WHERE id=?').get(p.data.client_id)))return reply.code(400).send({error:'invalid_request'});
   return reply.redirect('https://empire-ai.co/cockpit/advisor?'+new URLSearchParams(p.data).toString());
  });
