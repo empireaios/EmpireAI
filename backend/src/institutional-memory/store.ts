@@ -6,6 +6,9 @@ import {z} from 'zod';
 
 const key=z.string().min(1).max(160).regex(/^[A-Za-z0-9_.:-]+$/);
 const text=z.string().min(1).max(6000);
+// Providers may express visible review causes as a paragraph or a bounded list.
+// Normalize representation only; this never changes authenticity or promotion.
+const reviewText=z.union([text,z.array(text).min(1).max(8).transform(v=>v.join('\n'))]).pipe(text);
 const stamp=z.string().datetime();
 const scope=z.object({domain:key,entities:z.array(key).max(12).default([])}).strict();
 const evidence=z.object({id:key,hash:z.string().regex(/^[a-f0-9]{64}$/),observedAt:stamp,source:text}).strict();
@@ -87,7 +90,7 @@ export class InstitutionalMemory {
   const review=reviewId?this.get(workspace,reviewId):null;
   const reviewMatch=input.answer.match(/<executive-review>([\s\S]{1,12000}?)<\/executive-review>/);
   if(review&&reviewMatch){
-   const parsed=z.object({note:text,lesson:text,process:z.enum(['GOOD','BAD','UNKNOWN']),outcome:z.enum(['GOOD','BAD','UNKNOWN']),causes:text,exogenous:text,confidence:z.number().min(0).max(1)}).strict().parse(JSON.parse(reviewMatch[1]!));
+   const parsed=z.object({note:text,lesson:text,process:z.enum(['GOOD','BAD','UNKNOWN']),outcome:z.enum(['GOOD','BAD','UNKNOWN']),causes:reviewText,exogenous:reviewText,confidence:z.number().min(0).max(1)}).strict().parse(JSON.parse(reviewMatch[1]!));
    const reviewEvent='review_'+hash([workspace,input.request]).slice(0,40);
    const originalReview=review.events.find((e:{id:string})=>e.id===reviewEvent);
    const version=originalReview?.expectedVersion??review.version;
