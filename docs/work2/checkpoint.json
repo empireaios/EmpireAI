@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "EMPIREAI_VERIFIED_CLIENT_PENDING",
-  "observedAt": "2026-10-07T14:03:59.102Z",
+  "status": "OWNER_CONNECTION_ACTION_REQUIRED",
+  "observedAt": "2026-10-07T14:06:15.498Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -29,9 +29,13 @@
     "Preserved previous inspection implementation and 15 backend / 185 frontend tests",
     "Verified GitHub PR heads and fresh CI",
     "Confirmed production unchanged through Railway and Vercel deployment records",
-    "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed"
+    "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed",
+    "Production preservation, OAuth/read/import/routing security proof passed",
+    "PR57 merged and final frontend deployed exact tested head",
+    "Normal backend restart retained Work2 state and synthetic completion",
+    "Owner Home, Pillow history, Advisor import, Assurance verified"
   ],
-  "nextSafeAction": "Finish owner Home/Pillow/Assurance read-only checks; prepare ChatGPT client connection. All application deployment work complete.",
+  "nextSafeAction": "After owner connects ChatGPT OAuth app, verify actual client tools and state/missions/communication retrieval, record client acceptance and close Work2. Do not redeploy or rerun completed suites.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -92,6 +96,24 @@
     "communicationRecordsSurvivedRestart": 5,
     "missionLedgerSurvivedRestart": true,
     "uiImport": "PASS preview, confirmation, duplicate-safe, original provenance returned",
-    "ownerSessionSurvivedRestart": true
+    "ownerSessionSurvivedRestart": true,
+    "ownerHome": "PASS exact backend identity, locked trading controls",
+    "pillow": "PASS saved conversation restored and message composer available; no new prompt sent",
+    "assurance": "PASS existing DEGRADED 4/13 coverage preserved, zero failures, fresh watchdog; not full certification",
+    "oauthDiscovery": "PASS root protected-resource and authorization-server metadata"
+  },
+  "clientConnection": {
+    "status": "PENDING_OWNER_ACTION",
+    "reason": "ChatGPT browser signed out; no tool can create an account-owned custom MCP app; actual ChatGPT acceptance not claimed",
+    "action": "Connect King's Advisor custom MCP app in owner's signed-in ChatGPT, using OAuth and https://empireai-locked-runtime-production.up.railway.app/advisor/mcp; approve read-only EmpireAI consent",
+    "scope": "empire.read",
+    "duration": "30 days; owner revocable",
+    "verificationAfterAction": [
+      "Client discovers search, fetch and list_records only",
+      "Fetch state: backend ac5e117d, NOT_BORN and commerce LOCKED",
+      "Fetch missions: final checkpoint and restart proof",
+      "Fetch communications:work2-production-note-v1 with preserved artifact/result; no duplicate work or inference"
+    ],
+    "cost": "No new service or subscription. Existing ChatGPT plan and hosting charges apply; read bridge invokes no paid model inference."
   }
 }
