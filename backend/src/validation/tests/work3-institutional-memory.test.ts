@@ -24,6 +24,22 @@ test('structured decision expectations and explicitly used memory IDs survive a 
 }finally{s.done();}});
 const evidence={id:'observation1',hash:hash('independent observation'),observedAt:'2026-10-07T00:00:00.000Z',source:'synthetic deterministic test'};
 const experience={id:'synthetic1',scope:{domain:'supplier',entities:['supplierA']},belief:'Delivery may take five days',decision:'Observe only',rationale:'Synthetic acceptance; no trade',evidence:[evidence],expectation:{description:'Delivery range',metrics:[{name:'delivery',unit:'days',low:5,high:8}],dueAt:'2026-10-01T00:00:00.000Z'},influences:[]};
+test('locked production gate admits owner memory only through existing authentication and keeps commerce blocked',async()=>{
+ const {default:Fastify}=await import('fastify');const {installLockedCommissioning}=await import('../../runtime/locked-commissioning.js');
+ const {registerAdvisorRoutes}=await import('../../advisor/routes.js');const {createAuthMiddleware}=await import('../../auth/middleware.js');const {InMemorySessionStore}=await import('../../auth/session-store.js');const {env}=await import('../../config/env.js');
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'work3-route-'));fs.mkdirSync(path.join(root,'commissioning'));
+ const prior={profile:process.env.EMPIRE_RUNTIME_PROFILE,test:process.env.EMPIRE_ENGINEERING_TEST_MODE,root:process.env.RAILWAY_VOLUME_MOUNT_PATH};
+ process.env.EMPIRE_RUNTIME_PROFILE='LOCKED_COMMISSIONING_V1';process.env.EMPIRE_ENGINEERING_TEST_MODE='true';process.env.RAILWAY_VOLUME_MOUNT_PATH=root;
+ const app=Fastify(),sessions=new InMemorySessionStore();installLockedCommissioning(app);registerAdvisorRoutes(app,createAuthMiddleware(sessions));
+ const token=(await sessions.create({id:'owner',email:env.FOUNDER_EMAIL,name:'Owner',role:'founder',workspaceId:'ws_empire_1'})).token;
+ const payload={action:'synthetic_experience',experience},headers={authorization:'Bearer '+token};
+ try{
+  assert.equal((await app.inject({method:'POST',url:'/api/owner/advisor/memory',payload})).statusCode,401);
+  assert.equal((await app.inject({method:'POST',url:'/api/owner/advisor/memory',payload,headers:{...headers,origin:'https://evil.example'}})).statusCode,403);
+  const saved=await app.inject({method:'POST',url:'/api/owner/advisor/memory',payload,headers});assert.equal(saved.statusCode,200,saved.body);assert.equal(saved.json().inferenceCalls,0);
+  assert.equal((await app.inject({method:'POST',url:'/amazon/publish',payload:{},headers})).statusCode,423);
+ }finally{await app.close();for(const [k,v] of Object.entries({EMPIRE_RUNTIME_PROFILE:prior.profile,EMPIRE_ENGINEERING_TEST_MODE:prior.test,RAILWAY_VOLUME_MOUNT_PATH:prior.root})){if(v===undefined)delete process.env[k];else process.env[k]=v;}fs.rmSync(root,{recursive:true,force:true});}
+});
 test('identity persists across instances, sessions and model changes without Redis',()=>{const s=setup();try{const a=s.m.identity('ws1');assert.deepEqual(new InstitutionalMemory(s.filename).identity('ws1'),a);assert.equal(a.actorId,'PILLOW');assert.equal(a.modelBinding,'NONE');assert.equal(a.owner,'GRAND_KING');assert.notDeepEqual(a,s.m.identity('ws2'));}finally{s.done();}});
 test('synthetic lifecycle freezes expectation, computes discrepancy and never enters real retrieval',()=>{const s=setup();try{
  s.m.ownerCommand('ws1','owner',{action:'synthetic_experience',experience});
