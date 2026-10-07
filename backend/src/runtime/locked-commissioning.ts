@@ -11,7 +11,10 @@ export function installLockedCommissioning(app: FastifyInstance): void {
   const allowed = new Set(['/auth/login','/auth/logout','/api/pillow/chat','/api/pillow/session',
     '/api/pillow/mission-runtime/create-mission','/api/pillow/mission-runtime/history',
     // Fixed isolated Assurance records only; each route still enforces founder authentication.
-    '/api/pillow/assurance-demo/inject','/api/pillow/assurance-demo/correct']);
+    '/api/pillow/assurance-demo/inject','/api/pillow/assurance-demo/correct',
+    '/advisor/mcp','/advisor/oauth/register','/advisor/oauth/token',
+    '/api/owner/advisor/consent','/api/owner/advisor/revoke',
+    '/api/owner/advisor/validate','/api/owner/advisor/import']);
   app.addHook('onRequest', async (request, reply) => {
     const route = new URL(request.url, 'http://localhost').pathname;
     if (!['GET','HEAD','OPTIONS'].includes(request.method) && !(request.method === 'POST' && allowed.has(route))) {

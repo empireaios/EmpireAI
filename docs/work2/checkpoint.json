@@ -1,0 +1,41 @@
+{
+  "missionId": "WORK-2-ADVISOR-BRIDGE",
+  "status": "IMPLEMENTATION_LOCAL_VERIFICATION",
+  "observedAt": "2026-10-07T13:00:56.196409+00:00",
+  "baseline": {
+    "backend": "85bc25414b444cd20108b97c40eb50f543ffb348",
+    "frontend": "daaa786d34788972edc1fb162428f39b52b7c8ad"
+  },
+  "rollback": "same as baseline",
+  "productionChanged": false,
+  "completed": [
+    "Read all Work2 instructions",
+    "Fresh Railway and Vercel production deployment identity reads",
+    "Restored exact backend production source",
+    "Inspected Tier0 locks, owner authentication, accounting readback, durable chat queue and mission persistence",
+    "Bounded OAuth PKCE read bridge implemented",
+    "Owner package validation/import, duplicate integrity, deterministic routing and existing Pillow queue boundary implemented",
+    "Frontend built directly on PR54; lint and build pass; 184 existing tests pass",
+    "13 targeted backend auth/routing/persistence/lock tests pass; new BFF test passes"
+  ],
+  "nextSafeAction": "Finish security review and exact-source tests, publish backend/frontend candidate PRs, hosted CI. Production still baseline; do not deploy until checks pass. Client connection not accepted.",
+  "mustNotRepeat": [
+    "Prior PR50-54 engineering campaigns",
+    "Consumed owner acceptance prompts",
+    "Amazon marketplace participation call"
+  ],
+  "constraints": [
+    "NOT_BORN",
+    "commerce LOCKED",
+    "no new paid services",
+    "no paid inference for deterministic verification",
+    "no later Works"
+  ],
+  "candidate": null,
+  "limitations": [
+    "No paid inference used",
+    "Actual ChatGPT connection pending",
+    "No production changes",
+    "Current source is an unpromoted candidate"
+  ]
+}

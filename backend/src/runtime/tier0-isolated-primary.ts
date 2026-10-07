@@ -1,3 +1,4 @@
+import { registerAdvisorRoutes } from "../advisor/routes.js";
 import { registerOwnerCommissioningReadback } from "./owner-commissioning-readback.js";
 import { installLockedCommissioning } from "./locked-commissioning.js";
 /**
@@ -629,6 +630,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   registerTier0DurableReadRoutes(app, authenticate);
   registerOwnerCommissioningReadback(app, authenticate);
+  registerAdvisorRoutes(app, authenticate);
 
   registerTier0LoginRoute(app, sessionStore, requireSharedSessionStore);
 
