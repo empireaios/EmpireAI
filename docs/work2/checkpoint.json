@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
   "status": "OAUTH_CORRECTION_DEPLOYING",
-  "observedAt": "2026-10-07T14:38:26.935Z",
+  "observedAt": "2026-10-07T14:41:29.600Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -18,7 +18,7 @@
   },
   "production": {
     "backend": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
-    "frontend": "e33a0a162afce82757fd39267a3db8bca971f3a9"
+    "frontend": "baf1699e732460acb59f395a18b662701932a934"
   },
   "rollback": {
     "railwayDeployment": "050ddb9b-5b93-41ef-bdd7-9e9dfbee7aad",
@@ -65,7 +65,7 @@
   },
   "deployments": {
     "backend": "b95af5db-6e57-4b94-80cf-04e585b0528d",
-    "frontend": "dpl_7Mjc66Mjq8U5Xh8bfM769Eg6ntsv"
+    "frontend": "dpl_8PeCNhoE8mv7uP12btsbZwJs1Mvz"
   },
   "frontendCorrection": {
     "pr": 57,
@@ -139,7 +139,8 @@
       "ci": "ALL_PASS",
       "merged": true,
       "mergeSha": "df5ea9873d5bbbfb8bc5355c7a344d5823ba99ff",
-      "deployment": "dpl_8PeCNhoE8mv7uP12btsbZwJs1Mvz"
+      "deployment": "dpl_8PeCNhoE8mv7uP12btsbZwJs1Mvz",
+      "deployed": true
     },
     "rollback": {
       "backend": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
