@@ -223,6 +223,7 @@ jobs:
           set -euo pipefail
           node --import tsx --test --test-concurrency=1 --test-reporter=tap \
             src/validation/tests/locked-commissioning.test.ts \
+            src/validation/tests/work3-institutional-memory.test.ts \
             src/validation/tests/pillow-durable-queue-redis.test.ts \
             src/validation/tests/capture-shared-brain-redis.test.ts \
             src/validation/tests/pillow-durable-reasoning-worker.test.ts \

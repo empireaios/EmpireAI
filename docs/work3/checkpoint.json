@@ -1,6 +1,6 @@
 {
   "missionId": "WORK-3-INSTITUTIONAL-MEMORY",
-  "status": "TARGETED_INSPECTION",
+  "status": "IMPLEMENTED_TARGETED_TESTS_PASS",
   "baseline": {
     "backend": "aac50a97232e052a37e49e9766c5b224cc4b58cb",
     "frontend": "baf1699e732460acb59f395a18b662701932a934"
@@ -10,7 +10,11 @@
   "completed": [
     "Read Work3 requirements; preserve accepted Work2",
     "Created backend branch directly atop accepted backend",
-    "Identified existing native SQLite durability/read bridge and durable reasoning worker"
+    "Identified existing native SQLite durability/read bridge and durable reasoning worker",
+    "Targeted reuse decision: preserve legacy history, no seeded lessons in locked reasoning; isolated native SQLite lifecycle",
+    "Institutional identity, immutable experiences, owner-scoped writes, events, discrepancy, lesson lifecycle, bounded retrieval and review implemented",
+    "Existing Pillow context/capture and Advisor memory/missions readback integrated",
+    "10 institutional tests and 8 affected Advisor tests PASS; backend typecheck PASS"
   ],
   "constraints": [
     "NOT_BORN",
@@ -19,10 +23,24 @@
     "no new paid service",
     "synthetic never genuine experience"
   ],
-  "nextSafeAction": "Finish targeted memory/reasoning integration inspection; additive isolated storage and bounded context only",
+  "nextSafeAction": "Commit/push candidate, required CI; frontend minimal memory inspection/doctrine UI and exact backend pin; pre-cutover preservation before deployment",
   "mustNotRepeat": [
     "Work2 acceptance and audits",
     "historical broad archaeology"
   ],
-  "paidInference": 0
+  "paidInference": 0,
+  "verification": {
+    "backendInstitutionalTests": 10,
+    "affectedAdvisorTests": 8,
+    "backendTypecheck": "PASS"
+  },
+  "findings": {
+    "legacy": "Seeded approved lessons and legacy sql.js stores are not treated as verified experience",
+    "reuse": "Native SQLite pattern, reasoning/accounting boundary, owner auth and Advisor semantic bridge",
+    "historicalBackfill": "NONE"
+  },
+  "candidate": {
+    "backendBranch": "work3/institutional-memory",
+    "frontendBranch": "work3/frontend-memory"
+  }
 }
