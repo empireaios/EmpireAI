@@ -1,0 +1,22 @@
+{
+  "missionId": "WORK-2-ADVISOR-BRIDGE",
+  "status": "INSPECTION",
+  "baseline": {
+    "backend": "85bc25414b444cd20108b97c40eb50f543ffb348",
+    "frontend": "daaa786d34788972edc1fb162428f39b52b7c8ad"
+  },
+  "productionChanged": false,
+  "completed": [
+    "Instructions read",
+    "Railway/Vercel production identities verified 2026-10-07",
+    "Exact backend source restored",
+    "Inspected existing owner auth, locks, durable reasoning queue, mission store and accounting"
+  ],
+  "nextSafeAction": "Complete targeted inspection and implement bounded Work2 bridge/gateway; no deployment before tests and CI.",
+  "constraints": [
+    "NOT_BORN",
+    "commerce LOCKED",
+    "no paid deterministic verification",
+    "no acceptance prompt replay"
+  ]
+}
