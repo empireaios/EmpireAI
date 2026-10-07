@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "OWNER_CONNECTION_ACTION_REQUIRED",
-  "observedAt": "2026-10-07T14:06:15.498Z",
+  "status": "OAUTH_CLIENT_COMPATIBILITY_FIX_CI",
+  "observedAt": "2026-10-07T14:27:08.213Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -35,7 +35,7 @@
     "Normal backend restart retained Work2 state and synthetic completion",
     "Owner Home, Pillow history, Advisor import, Assurance verified"
   ],
-  "nextSafeAction": "After owner connects ChatGPT OAuth app, verify actual client tools and state/missions/communication retrieval, record client acceptance and close Work2. Do not redeploy or rerun completed suites.",
+  "nextSafeAction": "Wait PR58 exact candidate CI, merge, pin/deploy backend only, replay ChatGPT authorization shape and minimum security/preservation checks; owner reconnect existing plugin.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -115,5 +115,16 @@
       "Fetch communications:work2-production-note-v1 with preserved artifact/result; no duplicate work or inference"
     ],
     "cost": "No new service or subscription. Existing ChatGPT plan and hosting charges apply; read bridge invokes no paid model inference."
+  },
+  "oauthCorrection": {
+    "pr": 58,
+    "sha": "aac50a97232e052a37e49e9766c5b224cc4b58cb",
+    "rootCause": "ChatGPT ui_locales=en-US rejected by strict authorization schema",
+    "change": "Validate bounded optional display locale and discard before owner consent",
+    "security": "Existing client, redirect, state, scope, resource and S256 PKCE unchanged",
+    "tests": "Two affected OAuth tests passed; typecheck being completed",
+    "ci": "PENDING",
+    "merged": false,
+    "deployed": false
   }
 }
