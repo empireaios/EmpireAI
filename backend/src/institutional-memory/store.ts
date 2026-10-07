@@ -98,7 +98,7 @@ export class InstitutionalMemory {
   return this.insert(workspace,e.id,'EXPERIENCE',e.scope.domain,origin,{...e,actorId:'PILLOW',authoritySnapshot:{source:'locked-runtime-profile',birth:'NOT_BORN',commerce:'LOCKED',historicalOnly:true},executionStatus:'NOT_EXECUTED',outcomeStatus:'AWAITING_OUTCOME'});
  }
  /** Model statements are never evidence of execution, owner doctrine or verified facts. */
- captureDecision(workspace:string,input:{request:string;session:string;question:string;answer:string;influences:string[]}){
+ captureDecision(workspace:string,input:{request:string;session:string;question:string;answer:string;influences:string[];evidence?:Array<z.infer<typeof evidence>>}){
   const reviewId=input.question.match(/^Review experience ([A-Za-z0-9_.:-]{1,160})(?:\s|$)/)?.[1];
   const review=reviewId?this.get(workspace,reviewId):null;
   const reviewMatch=input.answer.match(/<executive-review>([\s\S]{1,12000}?)<\/executive-review>/);
@@ -115,7 +115,7 @@ export class InstitutionalMemory {
   let structured:Record<string,unknown>={};
   if(match){try{structured=z.object({belief:text,decision:text,rationale:text,expectation:experienceSchema.shape.expectation,confidence:experienceSchema.shape.confidence,influences:z.array(key).max(6).default([])}).strict().parse(JSON.parse(match[1]!));}catch{/* Keep absent fields absent rather than inventing them. */}}
   const influences=Array.isArray(structured.influences)?structured.influences.filter(id=>input.influences.includes(String(id))):[];
-  return this.experience(workspace,{id:'decision_'+hash([workspace,input.request]).slice(0,40),scope:{domain:inferDomain(input.question),entities:[]},belief:input.answer.slice(0,3000)||'No belief recorded',decision:input.answer.slice(0,3000)||'No decision recorded',rationale:'Stored visible executive response; separate structured rationale/expectation not recorded. See request reference.',...structured,evidence:[],request:input.request,session:input.session,influences}, {actor:'PILLOW',authenticity:input.question.includes('[SYNTHETIC_MEMORY_TEST]')?'SYNTHETIC':'MODEL_GENERATED_CLAIM',source:'completed-reasoning:'+input.request});
+  return this.experience(workspace,{id:'decision_'+hash([workspace,input.request]).slice(0,40),scope:{domain:inferDomain(input.question),entities:[]},belief:input.answer.slice(0,3000)||'No belief recorded',decision:input.answer.slice(0,3000)||'No decision recorded',rationale:'Stored visible executive response; separate structured rationale/expectation not recorded. See request reference.',...structured,evidence:input.evidence??[],request:input.request,session:input.session,influences}, {actor:'PILLOW',authenticity:input.question.includes('[SYNTHETIC_MEMORY_TEST]')?'SYNTHETIC':'MODEL_GENERATED_CLAIM',source:'completed-reasoning:'+input.request});
  }
  /** Trusted event adapters must supply source attribution separately from evidence text. */
  private append(workspace:string,raw:unknown,origin:Origin){

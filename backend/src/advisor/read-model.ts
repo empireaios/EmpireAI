@@ -1,3 +1,5 @@
+import {productionIntelligence} from '../intelligence/store.js';
+import {readIntelligence,intelligenceDomains} from '../intelligence/runtime.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
@@ -28,7 +30,7 @@ export function redact(value:unknown):unknown {
   return text.replace(/\b(?:sk-[A-Za-z0-9_-]{12,}|Bearer\s+[A-Za-z0-9._~-]{12,})/g,'[REDACTED]');
  }
  if(Array.isArray(value))return value.map(redact);
- if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).filter(([k])=>!/password|secret|credential|authorization|cookie|access.?token|refresh.?token/i.test(k)).map(([k,v])=>[k,redact(v)]));
+ if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).filter(([k])=>['credentialPresent','credentialNames'].includes(k)||!/password|secret|credential|authorization|cookie|access.?token|refresh.?token/i.test(k)).map(([k,v])=>[k,redact(v)]));
  return value;
 }
 function read<T>(filename:string,fn:(db:DatabaseSync)=>T){
@@ -37,13 +39,14 @@ function read<T>(filename:string,fn:(db:DatabaseSync)=>T){
  const db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:50});
  try{db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF');return {observedAt:stat.mtime.toISOString(),data:fn(db)};}finally{db.close();}
 }
-export const readDomains=['package_format','changes','state','capabilities','pillow','accounting','assurance','missions','communications',...Object.keys(domains)];
+export const readDomains=['package_format','changes','state','capabilities','pillow','accounting','assurance','missions','communications',...Object.keys(domains),...intelligenceDomains];
 export async function readEmpire(store:AdvisorStore,workspace:string,domain:string,id?:string,after='',limit=20,since?:string):Promise<unknown>{
  const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
  const base={retrievedAt:new Date().toISOString(),readOnly:true,inferenceCalls:0,externalRefresh:false,workspace,domain,grantsAuthority:false};
  try{
   let data:unknown,observedAt:string|null=null,source='durable stored evidence';
-  if(domain==='package_format'){data=packageFormat;source='versioned import protocol';}
+  if(intelligenceDomains.includes(domain)){const intel=productionIntelligence();if(!intel)throw Error('CAPABILITY_GAP');data=readIntelligence(intel,workspace,domain,id,after,limit);source='durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific';}
+  else if(domain==='package_format'){data=packageFormat;source='versioned import protocol';}
   else if(domain==='changes'){
    const filename=process.env.DATABASE_PATH;if(!filename)throw Error('CAPABILITY_GAP');
    const record=read(filename,db=>db.prepare('SELECT id,agent_name,action,module,outcome,created_at FROM activity_events WHERE workspace_id=? AND created_at>? AND id>? ORDER BY id LIMIT ?').all(workspace,since??new Date(Date.now()-86400000).toISOString(),after,limit));data=record.data;observedAt=record.observedAt;source='existing activity events only; not a complete changelog for all subsystems';
@@ -53,11 +56,11 @@ export async function readEmpire(store:AdvisorStore,workspace:string,domain:stri
   else if(domain==='accounting'){data=readCommissioningAccounting(inferenceLedgerPath());observedAt=base.retrievedAt;source='existing accounting snapshot; recorded estimates are not provider invoices';}
   else if(domain==='communications'){data=id?store.get(workspace,id):store.list(workspace,after,limit);if(id&&data&&typeof data==='object'&&'request_id' in data&&data.request_id){const r=await getChatRequest(String(data.request_id));if(r&&r.workspaceId===workspace)data={...data,pillow:{source:'PILLOW',status:r.status,failureClass:r.failureClass,result:r.finalResult}};}source='owner-imported Advisor artifacts and internal work-item results';}
   else if(domain==='memory'){const memory=productionMemory();if(!memory)throw Error('CAPABILITY_GAP');data=id==='identity'?memory.identity(workspace):id?memory.get(workspace,id):{identity:memory.identity(workspace),records:memory.list(workspace,after,limit),legacy:'Not migrated: legacy memory is unverified historical context, not CEO experience',ordinaryReadsInvokeInference:false};source='durable institutional identity, immutable executive experiences and append-only lifecycle; authenticity is record-specific';}
-  else if(domain==='missions'){data={checkpoint:JSON.parse(fs.readFileSync(new URL('../../../docs/work2/checkpoint.json',import.meta.url),'utf8')),productionVerification:null as unknown,work3:null as unknown};if(root){const receipt=path.join(root,'commissioning','work2-production-verification.json');if(fs.existsSync(receipt)&&fs.statSync(receipt).size<64000)(data as {productionVerification:unknown}).productionVerification=JSON.parse(fs.readFileSync(receipt,'utf8'));const work3=path.join(root,'commissioning','work3-production-verification.json');if(fs.existsSync(work3)&&fs.statSync(work3).size<64000)(data as {work3:unknown}).work3=JSON.parse(fs.readFileSync(work3,'utf8'));}source='versioned engineering checkpoint; durable production verification supersedes historical packaged checkpoints';}
+  else if(domain==='missions'){data={checkpoint:JSON.parse(fs.readFileSync(new URL('../../../docs/work2/checkpoint.json',import.meta.url),'utf8')),productionVerification:null as unknown,work3:null as unknown,work4:null as unknown};if(root){const receipt=path.join(root,'commissioning','work2-production-verification.json');if(fs.existsSync(receipt)&&fs.statSync(receipt).size<64000)(data as {productionVerification:unknown}).productionVerification=JSON.parse(fs.readFileSync(receipt,'utf8'));const work3=path.join(root,'commissioning','work3-production-verification.json');if(fs.existsSync(work3)&&fs.statSync(work3).size<64000)(data as {work3:unknown}).work3=JSON.parse(fs.readFileSync(work3,'utf8'));const work4=path.join(root,'commissioning','work4-production-verification.json');if(fs.existsSync(work4)&&fs.statSync(work4).size<64000)(data as {work4:unknown}).work4=JSON.parse(fs.readFileSync(work4,'utf8'));}source='versioned engineering checkpoint; durable production verification supersedes historical packaged checkpoints';}
   else if(domain==='assurance'){
    if(!root)throw Error('CAPABILITY_GAP');
    const {readOwnerAssurance}=await import(new URL('../../src/assurance/owner-evidence.mjs',import.meta.url).href);
-   data=readOwnerAssurance(path.join(root,'commissioning','assurance.sqlite'));source='existing independent Assurance readback';
+   data=readOwnerAssurance(path.join(root,'commissioning','assurance.sqlite'));const intel=productionIntelligence();if(intel)data={...data as object,intelligence:{scheduler:intel.get(workspace,'scheduler','health'),capabilities:intel.arsenal(workspace).map(c=>({id:c.id,status:c.availability,lastGoodAt:c.lastVerifiedRead})),missingCollectorIsPass:false}};source='existing independent Assurance readback';
   }else if(domain==='pillow'){
    if(!root)throw Error('CAPABILITY_GAP');
    const record=read(path.join(root,'commissioning','pillow-reasoning.sqlite'),db=>id?db.prepare('SELECT session,updated,turns FROM transcripts WHERE workspace=? AND session=?').get(workspace,id):db.prepare('SELECT session,updated FROM transcripts WHERE workspace=? AND session>? ORDER BY session LIMIT ?').all(workspace,after,limit));

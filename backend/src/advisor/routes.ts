@@ -1,3 +1,4 @@
+import {registerIntelligence} from '../intelligence/routes.js';
 import path from 'node:path';
 import type { FastifyInstance,FastifyRequest,FastifyReply } from 'fastify';
 import { z } from 'zod';
@@ -34,6 +35,7 @@ export function registerAdvisorRoutes(app:FastifyInstance,authenticate:ReturnTyp
   if(value.n>60||rates.size>1000)return reply.code(429).send({error:'Rate limit'});
  });
  registerAdvisorOAuth(app,store,owner);
+ if(!injectedStore)registerIntelligence(app,owner);
  app.post('/api/owner/advisor/memory',{preHandler:owner,bodyLimit:32000},async(request,reply)=>{
   try{const memory=productionMemory();if(!memory)return reply.code(503).send({error:'Institutional memory unavailable'});const result=memory.ownerCommand(request.user!.workspaceId,request.user!.id,request.body);store.audit(request.user!.id,'MEMORY',result.id,'RECORDED_NO_AUTHORITY');return {result,grantsAuthority:false,inferenceCalls:0};}catch{return reply.code(400).send({error:'Memory command refused: schema, provenance, reference or version conflict'});}
  });
