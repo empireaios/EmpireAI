@@ -9,6 +9,7 @@ import { AdvisorStore } from './store.js';
 import { parseCommunication,routeCommunication,digest } from './package.js';
 import { readEmpire,readDomains } from './read-model.js';
 import { registerAdvisorOAuth,authorizeAdvisor,issuer } from './oauth.js';
+import {productionMemory} from '../institutional-memory/store.js';
 const query=z.object({domain:z.enum(readDomains as [string,...string[]]),id:z.string().max(180).optional(),after:z.string().max(180).default(''),since:z.string().datetime().optional(),limit:z.coerce.number().int().min(1).max(50).default(20)}).strict();
 export function registerAdvisorRoutes(app:FastifyInstance,authenticate:ReturnType<typeof createAuthMiddleware>,injectedStore?:AdvisorStore,enqueue=acceptDurableChatRequestClaim){
  if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')return;
@@ -33,6 +34,9 @@ export function registerAdvisorRoutes(app:FastifyInstance,authenticate:ReturnTyp
   if(value.n>60||rates.size>1000)return reply.code(429).send({error:'Rate limit'});
  });
  registerAdvisorOAuth(app,store,owner);
+ app.post('/api/owner/advisor/memory',{preHandler:owner,bodyLimit:32000},async(request,reply)=>{
+  try{const memory=productionMemory();if(!memory)return reply.code(503).send({error:'Institutional memory unavailable'});const result=memory.ownerCommand(request.user!.workspaceId,request.user!.id,request.body);store.audit(request.user!.id,'MEMORY',result.id,'RECORDED_NO_AUTHORITY');return {result,grantsAuthority:false,inferenceCalls:0};}catch{return reply.code(400).send({error:'Memory command refused: schema, provenance, reference or version conflict'});}
+ });
  app.get('/api/owner/advisor/read',{preHandler:owner},async(request,reply)=>{
   const p=query.safeParse(request.query);if(!p.success)return reply.code(400).send({error:'Invalid bounded query'});
   return readEmpire(store,request.user!.workspaceId,p.data.domain,p.data.id,p.data.after,p.data.limit,p.data.since);
@@ -97,7 +101,7 @@ export function registerAdvisorRoutes(app:FastifyInstance,authenticate:ReturnTyp
   try{
    const name=b.params?.name,args=b.params?.arguments;let output:unknown,target='';
    if(name==='search'){
-    const q=z.object({query:z.string().max(200)}).strict().parse(args).query.toLowerCase();
+    const raw=z.object({query:z.string().max(200)}).strict().parse(args).query.toLowerCase();const q=/lesson|experience|identity|doctrine|outcome|learn/.test(raw)?'memory':raw;
     output={results:readDomains.filter(d=>q.includes(d)||d.includes(q)||/empire|state|all/.test(q)).map(id=>({id,title:'EmpireAI '+id,url:'https://empire-ai.co/cockpit/advisor?record='+id}))};target='domain-index';
    }else if(name==='fetch'){
     const id=z.object({id:z.string().min(1).max(200)}).strict().parse(args).id;target=id;

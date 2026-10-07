@@ -14,7 +14,7 @@ export function installLockedCommissioning(app: FastifyInstance): void {
     '/api/pillow/assurance-demo/inject','/api/pillow/assurance-demo/correct',
     '/advisor/mcp','/advisor/oauth/register','/advisor/oauth/token',
     '/api/owner/advisor/consent','/api/owner/advisor/revoke',
-    '/api/owner/advisor/validate','/api/owner/advisor/import']);
+    '/api/owner/advisor/validate','/api/owner/advisor/import','/api/owner/advisor/memory']);
   app.addHook('onRequest', async (request, reply) => {
     const route = new URL(request.url, 'http://localhost').pathname;
     if (!['GET','HEAD','OPTIONS'].includes(request.method) && !(request.method === 'POST' && allowed.has(route))) {
