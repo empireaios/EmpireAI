@@ -4,10 +4,10 @@ import {createHash} from 'node:crypto';
 import {DatabaseSync} from 'node:sqlite';
 import {execFileSync} from 'node:child_process';
 const root='/data/commissioning/',base='http://127.0.0.1:8080',workspace='ws_empire_1',id='work3-live-supplier-v1';
-const expected='5a7571136f63438c6ca7a6cf83f67d7d58a57f44';
+const expected='148316923ee7676a6bd58d3f9ecd56ffdd984c82';
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const file=root+'work3-production-verification.json',receipt=JSON.parse(fs.readFileSync(file));
-const stage=process.argv[2];assert.ok(['seed','review','final'].includes(stage));
+const stage=process.argv[2];assert.ok(['seed','review','recover','final'].includes(stage));
 const {productionMemory}=await import('/app/backend/dist/institutional-memory/store.js');
 const m=productionMemory();assert.ok(m);
 let token;
@@ -48,6 +48,17 @@ try{
   receipt.liveReview.status=rec.status;receipt.liveReview.failureClass=rec.failureClass;receipt.liveReview.result=rec.finalResult;receipt.liveReview.accounting=accounting().filter(c=>!initialCalls.some(b=>b.id===c.id));save();assert.equal(rec.status,'COMPLETED');
   const record=m.get(workspace,id);receipt.liveReview.recordedReviewEvents=record.events.filter(e=>e.origin.actor==='PILLOW').map(e=>({id:e.id,kind:e.kind,authenticity:e.origin.authenticity,review:e.review,note:e.note}));assert.ok(receipt.liveReview.recordedReviewEvents.some(e=>e.kind==='REVIEW'),'Pillow review not retained');assert.equal(record.expectation.metrics[0].high,8);assert.equal(record.current.learningEligible,false);
   receipt.status='LIVE_PILLOW_REVIEW_PASS';receipt.nextSafeAction='Restart/reload, final preservation and connected bridge closure';
+ }
+ if(stage==='recover'){
+  const prior=receipt.liveReview;assert.equal(prior.status,'COMPLETED');assert.equal(prior.result.kind,'llm');assert.ok(prior.message.includes('[SYNTHETIC_MEMORY_TEST]'));
+  const before=m.get(workspace,id),identity=m.identity(workspace);assert.equal(before.origin.authenticity,'SYNTHETIC');assert.equal(before.expectation.metrics[0].high,8);
+  if(receipt.repairPreCutover){assert.equal(hash(before),receipt.repairPreCutover.memoryHash);assert.equal(hash(identity),receipt.repairPreCutover.identityHash);}
+  const input={request:prior.requestId,session:prior.result.sessionId,question:prior.message,answer:prior.result.message,influences:[id]};
+  m.captureDecision(workspace,input);assert.equal(m.captureDecision(workspace,input).created,false);
+  const after=m.get(workspace,id);assert.equal(after.events.length,before.events.length+2);assert.equal(after.expectation.metrics[0].high,8);assert.equal(after.current.learningEligible,false);
+  prior.recordedReviewEvents=after.events.filter(e=>e.origin.actor==='PILLOW').map(e=>({id:e.id,kind:e.kind,authenticity:e.origin.authenticity,review:e.review,note:e.note}));assert.ok(prior.recordedReviewEvents.some(e=>e.kind==='REVIEW'));
+  assert.equal(hash(accounting()),hash(initialCalls));receipt.recovery={status:'PASS',completedResponseReprocessed:true,idempotent:true,additionalInference:0,originalExpectationPreserved:true,syntheticIsolation:true};receipt.restartDurability={status:'PASS',method:'Actual backend deployment replacement after memory creation',priorBackend:'5a7571136f63438c6ca7a6cf83f67d7d58a57f44',currentBackend:expected,identityAndExperienceUnchangedBeforeAppend:true};
+  receipt.status='LIVE_PILLOW_REVIEW_PASS';receipt.nextSafeAction='Final preservation and connected bridge closure';
  }
  if(stage==='final'){
   const before=JSON.parse(fs.readFileSync(root+'work3-precutover.json'));const preservation={};
