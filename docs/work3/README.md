@@ -29,3 +29,8 @@ Work 5: provide settled/accrued financial outcomes and comparable expected/actua
 Work 6: link execution intent, current authority receipts, reconciliation, recovery and real outcomes; retain future governed Advisor internal submission into the existing gateway.
 Work 7: render structured experience timelines, authenticity, unresolved outcomes and review controls beyond the minimal inspection surface.
 Work 8: fresh independent adversarial certification of source forgery, poisoning, contradiction, stale precedence, review promotion, cross-workspace isolation and bounded retrieval. Work 9 remains locked.
+
+## Persistent owner strategic direction
+The reserved `owner_strategy` scope has one active immutable owner doctrine, installed through the existing authenticated owner route. Replacements must explicitly supersede the active record, checked again within the insertion transaction. The full bounded statement enters every locked reasoning session and explicit review regardless of domain or newer memory volume. Ordinary memory shares the existing context budget. This creates no scheduler, inference loop, new capability, execution authority or financial guarantee. Existing material-decision capture remains selective. Resource strategy uses the existing experience, outcome, review and candidate-lesson lifecycle.
+
+Owner-provided strategic text and production installation evidence are not distributed in this public repository. Tests use synthetic statements only.
