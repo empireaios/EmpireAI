@@ -1,6 +1,6 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "DEPLOYMENTS_BUILDING",
+  "status": "BACKEND_DEPLOYED_PRODUCTION_VERIFICATION",
   "observedAt": "2026-10-07T13:47:30.435Z",
   "candidate": {
     "backend": {
@@ -17,21 +17,21 @@
     }
   },
   "production": {
-    "backend": "85bc25414b444cd20108b97c40eb50f543ffb348",
-    "frontend": "daaa786d34788972edc1fb162428f39b52b7c8ad"
+    "backend": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
+    "frontend": "9b2b3a79c6eaa6035633377c239f5a0fe51cb934"
   },
   "rollback": {
     "railwayDeployment": "050ddb9b-5b93-41ef-bdd7-9e9dfbee7aad",
     "vercelDeployment": "dpl_FSogDtVSvvTxf8vYmKVqCL9dMxeA"
   },
-  "productionChanged": false,
+  "productionChanged": true,
   "completed": [
     "Preserved previous inspection implementation and 15 backend / 185 frontend tests",
     "Verified GitHub PR heads and fresh CI",
     "Confirmed production unchanged through Railway and Vercel deployment records",
     "Earlier failed CI fixed by pending prior-run updates reaching GitHub; no duplicate patch performed"
   ],
-  "nextSafeAction": "Poll these deployments (do not redeploy); verify live revisions; run existing work2-snapshot.mjs post and Work2 production-proof; persist deployed Mission Ledger; UI and durable restart verification.",
+  "nextSafeAction": "Verify deployed backend preservation and protocol; await PR57 required CI and deploy one-line owner shell correction; durable restart proof and client connection.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -62,5 +62,12 @@
   "deployments": {
     "backend": "b95af5db-6e57-4b94-80cf-04e585b0528d",
     "frontend": "dpl_Jx4oBMAqmc1FCyHu5cxNfgF2Fmew"
+  },
+  "frontendCorrection": {
+    "pr": 57,
+    "sha": "e33a0a162afce82757fd39267a3db8bca971f3a9",
+    "reason": "Advisor route omitted from owner shell",
+    "ci": "PENDING",
+    "targetedLint": "PASS"
   }
 }
