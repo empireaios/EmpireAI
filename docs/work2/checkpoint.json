@@ -1,7 +1,7 @@
 {
   "missionId": "WORK-2-ADVISOR-BRIDGE",
-  "status": "OAUTH_CLIENT_COMPATIBILITY_FIX_CI",
-  "observedAt": "2026-10-07T14:31:22.845Z",
+  "status": "OAUTH_CORRECTION_DEPLOYING",
+  "observedAt": "2026-10-07T14:38:26.935Z",
   "candidate": {
     "backend": {
       "pr": 55,
@@ -35,7 +35,7 @@
     "Normal backend restart retained Work2 state and synthetic completion",
     "Owner Home, Pillow history, Advisor import, Assurance verified"
   ],
-  "nextSafeAction": "Wait PR58 exact candidate CI, merge, pin/deploy backend only, replay ChatGPT authorization shape and minimum security/preservation checks; owner reconnect existing plugin.",
+  "nextSafeAction": "Await Railway d48a2059 and Vercel dpl_8PeCNhoE8mv7uP12btsbZwJs1Mvz; verify exact identity; execute stored /data/commissioning/work2-oauth-proof.mjs aac50a97232e052a37e49e9766c5b224cc4b58cb; then owner reconnect same plugin.",
   "mustNotRepeat": [
     "Broad inspection and architecture discovery",
     "Prior passed tests unless changed code or CI requires",
@@ -123,8 +123,8 @@
     "change": "Validate bounded optional display locale and discard before owner consent",
     "security": "Existing client, redirect, state, scope, resource and S256 PKCE unchanged",
     "tests": "PASS: two affected backend OAuth tests, backend typecheck, frontend exact-identity test",
-    "ci": "PENDING",
-    "merged": false,
+    "ci": "ALL_PASS",
+    "merged": true,
     "deployed": false,
     "productionReproduction": {
       "status": "DEFECT_REPRODUCED",
@@ -136,7 +136,10 @@
       "pr": 59,
       "sha": "baf1699e732460acb59f395a18b662701932a934",
       "change": "Required exact backend release pin and matching assertion only",
-      "ci": "PENDING"
+      "ci": "ALL_PASS",
+      "merged": true,
+      "mergeSha": "df5ea9873d5bbbfb8bc5355c7a344d5823ba99ff",
+      "deployment": "dpl_8PeCNhoE8mv7uP12btsbZwJs1Mvz"
     },
     "rollback": {
       "backend": "ac5e117df745767cb5dd50d7f00c5eaf787fbb64",
@@ -144,6 +147,8 @@
       "frontend": "e33a0a162afce82757fd39267a3db8bca971f3a9",
       "vercelDeployment": "dpl_7Mjc66Mjq8U5Xh8bfM769Eg6ntsv"
     },
-    "preservationReceipt": "/data/commissioning/work2-oauth-pre.json"
+    "preservationReceipt": "/data/commissioning/work2-oauth-pre.json",
+    "mergeSha": "5ea34e24ae29f3fd94e11518b99096defa7e0259",
+    "deployment": "d48a2059-8652-4335-8e61-1f7abecc3934"
   }
 }
