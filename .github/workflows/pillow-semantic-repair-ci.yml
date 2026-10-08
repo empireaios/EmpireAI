@@ -145,7 +145,7 @@ jobs:
           REDIS_OPTIONAL: 'true'
         run: |
           node --test src/validation/tests/assurance-control-plane.test.mjs src/validation/tests/assurance-supervisor.test.mjs
-          node --import tsx --test src/validation/tests/assurance-advisor-agent.test.ts src/validation/tests/evidence-reconciliation.test.ts src/validation/tests/investigation-resilience.test.ts src/validation/tests/advanced-assurance-runtime.test.ts src/validation/tests/assurance-functional-probes.test.ts
+          node --import tsx --test src/validation/tests/assurance-readback.test.ts src/validation/tests/assurance-advisor-agent.test.ts src/validation/tests/evidence-reconciliation.test.ts src/validation/tests/investigation-resilience.test.ts src/validation/tests/advanced-assurance-runtime.test.ts src/validation/tests/assurance-functional-probes.test.ts
       - name: Record exact revision and verification limits
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}

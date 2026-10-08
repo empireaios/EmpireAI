@@ -1,3 +1,4 @@
+import {acceptanceRevisionEligible,retainedAcceptance} from './acceptance-continuity.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import {DatabaseSync} from 'node:sqlite';
@@ -14,7 +15,7 @@ const workspace='ws_empire_1';
 const key=z.string().regex(/^[A-Za-z0-9_.:-]{1,160}$/);
 const base={id:key};
 export const assuranceCommandSchema=z.discriminatedUnion('type',[
- z.object({...base,type:z.enum(['health_check','pause','resume']),reason:z.string().max(500).optional()}).strict(),
+ z.object({...base,type:z.enum(['health_check','pause','resume','record_handover']),reason:z.string().max(500).optional()}).strict(),
  z.object({...base,type:z.enum(['approve','reject','defer','revoke_approval']),approvalId:key}).strict(),
  z.object({...base,type:z.literal('retry'),incidentId:key}).strict(),
  z.object({...base,type:z.literal('lease_begin'),expectedRevision:key,scope:z.array(key).min(1).max(10),ttlMs:z.number().int().min(1000).max(3600000)}).strict(),
@@ -101,6 +102,16 @@ export class AssuranceRuntime {
  async command(ownerId:string,input:unknown){
   const c=assuranceCommandSchema.parse(input);
   if(c.type==='mission_close')return this.closeMission(ownerId,c);
+  if(c.type==='record_handover'){
+   const id='work1-compounded-ceo-intelligence',text=fs.readFileSync(new URL('../../../docs/work1/compounded-ceo-intelligence-owner-mandate.md',import.meta.url),'utf8');
+   const sha256=reconciliationHash(text),prior=this.control.get(workspace,'handover',id);
+   if(prior&&prior.sha256!==sha256)throw Error('HANDOVER_IMMUTABILITY_CONFLICT');
+   const inputHash=reconciliationHash({ownerId,c}),previous=this.control.get(workspace,'command',c.id);
+   if(previous){if(previous.inputHash!==inputHash)throw Error('COMMAND_REPLAY_CONFLICT');return previous;}
+   const handover=prior??{id,state:'HANDOVER_ONLY_NOT_STARTED',ownerId,at:Date.now(),revision:this.revision,sha256,text,links:['Work 1 independent audit','Work 8 unseen certification'],grantsExecutionAuthority:false};
+   const receipt={id:c.id,type:c.type,inputHash,ownerId,at:Date.now(),revision:this.revision,status:'ACCEPTED',handoverId:id,sha256};
+   return this.control.tx(()=>{if(!prior){this.control.put(workspace,'handover',id,handover);this.control.event(workspace,'OWNER_STRATEGIC_HANDOVER_RECORDED',handover);}this.control.put(workspace,'command',c.id,receipt);return receipt;});
+  }
   if(c.type!=='acceptance_admit'){const result=await this.control.command(workspace,ownerId,c);if(c.type==='health_check')await this.cycle();return result;}
   const prior=this.control.get(workspace,'command',c.id);if(prior){if(prior.inputHash!==reconciliationHash({ownerId,c}))throw Error('COMMAND_REPLAY_CONFLICT');return prior;}
   const v=verifyReconciliation(this.root,workspace);const snapshot=this.control.snapshot(workspace);
@@ -124,12 +135,12 @@ export class AssuranceRuntime {
  private closeMission(ownerId:string,c:Extract<z.infer<typeof assuranceCommandSchema>,{type:'mission_close'}>){
   const prior=this.control.get(workspace,'command',c.id),inputHash=reconciliationHash({ownerId,c});if(prior){if(prior.inputHash!==inputHash)throw Error('COMMAND_REPLAY_CONFLICT');return prior;}
   const snapshot=this.control.snapshot(workspace),history=this.control.list(workspace,'acceptance_history');
-  const accepted=['AUTOMATIC','API_ADVISOR','OWNER_APPROVAL','DEPLOYMENT_COLLISION'].map(mode=>history.find((h:any)=>h.mode===mode&&h.completed&&h.preservation?.verified===true&&verifySourcePreservation(this.root,h.sourceManifest).verified&&h.revision===this.revision&&snapshot.recoveries.some((r:any)=>r.id===h.recoveryId&&r.incidentId===h.incidentId&&r.status==='VERIFIED'&&(mode!=='OWNER_APPROVAL'||r.ownerApprovalActor)&&(mode!=='API_ADVISOR'||r.actor==='API_ADVISOR'))));
+  const accepted=['AUTOMATIC','API_ADVISOR','OWNER_APPROVAL','DEPLOYMENT_COLLISION'].map(mode=>history.find((h:any)=>h.mode===mode&&h.completed&&h.preservation?.verified===true&&verifySourcePreservation(this.root,h.sourceManifest).verified&&acceptanceRevisionEligible(h,this.revision)&&snapshot.recoveries.some((r:any)=>r.id===h.recoveryId&&r.incidentId===h.incidentId&&r.status==='VERIFIED'&&(mode!=='OWNER_APPROVAL'||r.ownerApprovalActor)&&(mode!=='API_ADVISOR'||r.actor==='API_ADVISOR'))));
   const advisor=accepted[1]&&this.advisor.list(workspace).find(t=>t.incident===accepted[1].incidentId&&t.status==='COMPLETED'&&JSON.parse(String(t.result??'{}')).decision?.action==='RUNBOOK');
-  const monitorAccepted=history.find((h:any)=>h.mode==='MONITOR_FAILURE'&&h.completed&&h.preservation?.verified===true&&verifySourcePreservation(this.root,h.sourceManifest).verified&&h.revision===this.revision&&snapshot.incidents.some((i:any)=>i.id===h.monitorIncidentId&&i.status==='RECOVERED'&&i.verifiedAt>=h.pauseUntil));
-  const blockers=[];if(!monitorAccepted)blockers.push('INDEPENDENT_MONITOR_RESTORATION_UNVERIFIED');if(accepted.some(a=>!a))blockers.push('ACCEPTANCE_CHAIN_INCOMPLETE');if(!advisor)blockers.push('INDEPENDENT_ADVISOR_ACTION_UNVERIFIED');if(snapshot.recoveries.some((r:any)=>['UNKNOWN','RUNNING'].includes(r.status)))blockers.push('EFFECT_RECONCILIATION_REQUIRED');if(!verifyReconciliation(this.root,workspace).healthy)blockers.push('DERIVED_VIEW_UNVERIFIED');if(c.externalEvidence.backendSha!==this.revision)blockers.push('REVISION_MISMATCH');if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')blockers.push('AUTHORITY_PROFILE_UNVERIFIED');
+  const monitorAccepted=history.find((h:any)=>h.mode==='MONITOR_FAILURE'&&h.completed&&h.preservation?.verified===true&&verifySourcePreservation(this.root,h.sourceManifest).verified&&acceptanceRevisionEligible(h,this.revision)&&snapshot.incidents.some((i:any)=>i.id===h.monitorIncidentId&&i.status==='RECOVERED'&&i.verifiedAt>=h.pauseUntil));
+  const blockers=[];if(!this.control.get(workspace,'handover','work1-compounded-ceo-intelligence'))blockers.push('WORK1_HANDOVER_NOT_RECORDED');if(!monitorAccepted)blockers.push('INDEPENDENT_MONITOR_RESTORATION_UNVERIFIED');if(accepted.some(a=>!a))blockers.push('ACCEPTANCE_CHAIN_INCOMPLETE');if(!advisor)blockers.push('INDEPENDENT_ADVISOR_ACTION_UNVERIFIED');if(snapshot.recoveries.some((r:any)=>['UNKNOWN','RUNNING'].includes(r.status)))blockers.push('EFFECT_RECONCILIATION_REQUIRED');if(!verifyReconciliation(this.root,workspace).healthy)blockers.push('DERIVED_VIEW_UNVERIFIED');if(c.externalEvidence.backendSha!==this.revision)blockers.push('REVISION_MISMATCH');if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')blockers.push('AUTHORITY_PROFILE_UNVERIFIED');
   if(c.state==='COMPLETE'&&blockers.length)throw Error('CLOSURE_DENIED:'+blockers.join(','));
-  const checkpoint={id:c.missionId,state:c.state,revision:this.revision,ownerId,at:Date.now(),acceptanceIds:[...accepted,monitorAccepted].filter(Boolean).map(a=>a.id),advisorTaskId:advisor?.id??null,blockers,externalEvidence:{...c.externalEvidence,verification:'AUTHENTICATED_OWNER_ATTESTATION_NOT_SERVER_PLATFORM_VERIFICATION'},authority:{birth:'NOT_BORN',commerce:'LOCKED'}};
+  const checkpoint={id:c.missionId,state:c.state,revision:this.revision,ownerId,at:Date.now(),acceptanceIds:[...accepted,monitorAccepted].filter(Boolean).map(a=>a.id),advisorTaskId:advisor?.id??null,retainedAcceptance,acceptanceRevisions:[...accepted,monitorAccepted].filter(Boolean).map(a=>({id:a.id,revision:a.revision})),handoverId:'work1-compounded-ceo-intelligence',blockers,externalEvidence:{...c.externalEvidence,verification:'AUTHENTICATED_OWNER_ATTESTATION_NOT_SERVER_PLATFORM_VERIFICATION'},authority:{birth:'NOT_BORN',commerce:'LOCKED'}};
   const receipt={id:c.id,type:c.type,inputHash,ownerId,at:Date.now(),revision:this.revision,status:'ACCEPTED',checkpoint};
   return this.control.tx(()=>{this.control.put(workspace,'checkpoint',c.missionId,checkpoint);this.control.put(workspace,'command',c.id,receipt);this.control.event(workspace,'MISSION_CLOSURE_RECORDED',checkpoint);return receipt;});
  }
@@ -148,6 +159,7 @@ export async function createAssuranceRuntime(root:string,revision:string){
 }
 /** Readback never initializes a runtime or executes monitoring/recovery/inference. */
 export async function readAdvancedAssurance(w:string){if(w!==workspace)throw Error('WORKSPACE_REQUIRED');return active?.snapshot()??{status:'NOT_INSTALLED',controlPlane:null,advisor:null,reconciliation:null};}
+export async function readAssuranceRecord(w:string,kind:string,id:string){if(w!==workspace||!active)throw Error('WORKSPACE_OR_RUNTIME_UNAVAILABLE');if(kind==='event'){if(!/^\d+$/.test(id))throw Error('EVENT_ID');const r=active.control.db.prepare('SELECT seq,at,type,body FROM cp_events WHERE workspace=? AND seq=?').get(w,Number(id));return r?{...r,body:JSON.parse(r.body)}:null;}if(!['incident','recovery','approval','command','checkpoint','acceptance_history','probe','handover'].includes(kind))throw Error('RECORD_KIND_UNAVAILABLE');return active.control.get(w,kind,id);}
 export async function assuranceOwnerCommand(ownerId:string,input:unknown){if(!active)throw Error('ASSURANCE_RUNTIME_UNAVAILABLE');return active.command(ownerId,input);}
 export function installAssuranceRuntime(app:FastifyInstance){
  let timer:ReturnType<typeof setInterval>|undefined;
