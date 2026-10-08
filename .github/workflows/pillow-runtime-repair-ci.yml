@@ -225,6 +225,7 @@ jobs:
             src/validation/tests/locked-commissioning.test.ts \
             src/validation/tests/work3-institutional-memory.test.ts \
             src/validation/tests/work4-intelligence.test.ts \
+            src/validation/tests/work1-reconstructed.test.ts \
             src/validation/tests/pillow-investigation.test.ts \
             src/validation/tests/pillow-durable-queue-redis.test.ts \
             src/validation/tests/capture-shared-brain-redis.test.ts \

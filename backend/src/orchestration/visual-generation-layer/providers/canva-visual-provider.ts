@@ -60,7 +60,7 @@ export class CanvaVisualProvider implements VisualProviderAdapter {
 
     return buildResult({
       provider: "canva",
-      status: exported.status === "failed" ? "failed" : "success",
+      status: exported.status === "failed" ? "failed" : exported.status === "in_progress" ? "in_progress" : "success",
       useCase: request.useCase,
       designId: design.designId,
       assetIds: [],
