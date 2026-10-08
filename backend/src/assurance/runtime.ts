@@ -1,3 +1,4 @@
+import {productionFinance} from '../finance/financial-centre.js';
 import {acceptanceRevisionEligible,retainedAcceptance} from './acceptance-continuity.js';
 import {closureHealthBlockers} from '../../src/assurance/closure-health.mjs';
 import {classifyCapability,aggregateCapabilityHealth} from '../../src/assurance/capability-health.mjs';
@@ -63,6 +64,7 @@ export class AssuranceRuntime {
   if(this.busy||this.control.get(workspace,'acceptance','active')?.pauseUntil>Date.now())return;this.busy=true;
   try{
    const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>this.control.observe(workspace,{id,capability:id,status,summary,evidence,classification:id,runbookId});
+   try{const finance=productionFinance().snapshot(workspace);observe('financial_evidence','HEALTHY','Financial journal readable; billing and cash verification remain record-specific',{entryDigest:finance.entryDigest,entries:finance.entries.length,unresolvedFinancialAlerts:finance.alerts.length,completeCashPosition:finance.completeCashPosition});}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
    const contract=checkToolContract();observe('model_server_contract',contract.status,contract.summary,contract.evidence);
    observe('durable_control', 'HEALTHY','Operational event store is readable',{events:this.control.snapshot(workspace).events.length});
    const configured=configuredLockedProviders();const pricing=readLockedPricingPolicy().map(p=>({...p,active:configured.includes(p.provider as any)}));observe('pricing_review',pricing.some(p=>p.active&&p.status==='EXPIRED')?'BLOCKED':pricing.some(p=>p.active&&p.status==='EXPIRING')?'DEGRADED':'HEALTHY','Local inference price review expiry',pricing);
