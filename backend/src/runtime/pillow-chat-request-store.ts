@@ -9,6 +9,7 @@
  * Sync HTTP window ≠ request lifetime. Result persist precedes user delivery.
  */
 import { createHash, randomUUID } from "node:crypto";
+import { preservePillowReceipt } from './pillow-request-receipts.js';
 
 type RedisLike = {
   get(key: string): Promise<string | null>;
@@ -272,6 +273,7 @@ async function persist(rec: DurableChatRequest): Promise<void> {
   // after Redis has acknowledged it. This keeps memory from contradicting the
   // durable source of truth when SETEX fails after a successful PING.
   touchMemory(rec);
+  preservePillowReceipt(rec);
 }
 
 function cloneRecord(rec: DurableChatRequest): DurableChatRequest {
@@ -433,6 +435,7 @@ export async function acceptDurableChatRequestClaim(opts: AcceptOptions): Promis
     if (response[0] === "BROKEN") throw new PillowDurableStoreUnavailableError("pillow_durable_idempotency_record_unavailable");
     const request = decodeStoredRequest(String(response[1]));
     touchMemory(request);
+    preservePillowReceipt(request);
     return { request, disposition: response[0] === "CREATED" ? "CREATED" :
       request.status === "COMPLETED" ? "EXISTING_COMPLETED" :
       request.status === "FAILED_FATAL" || request.status === "FAILED" ? "EXISTING_FAILED" : "EXISTING_PENDING" };
@@ -593,6 +596,7 @@ export async function releaseInterruptedReasoningRequest(options: {
       new Date().toISOString(), TTL_SEC, 3, 0]);
   if (result !== 0 && result !== 1) throw new PillowDurableStoreUnavailableError();
   memory.delete(options.requestId);
+  if(result===1){try{const receipt=await getChatRequest(options.requestId);if(receipt)preservePillowReceipt(receipt);}catch{console.warn('Pillow settlement receipt unavailable');}}
   return result === 1;
 }
 
@@ -622,7 +626,8 @@ export async function settleReasoningRequest(options: {
       options.result ? JSON.stringify(options.result) : ""]);
   if (result !== 0 && result !== 1) throw new PillowDurableStoreUnavailableError();
   memory.delete(options.requestId);
-  // Work2 results outlive the request TTL. Ordinary Pillow requests take no new path.
+  if(result===1){try{const receipt=await getChatRequest(options.requestId);if(receipt)preservePillowReceipt(receipt);}catch{console.warn('Pillow settlement receipt unavailable');}}
+  // Preserve the existing Work2 communication completion path.
   if (result === 1 && options.requestId.startsWith("pcr_adv_")) {
     try {
       const settled = await getChatRequest(options.requestId);
