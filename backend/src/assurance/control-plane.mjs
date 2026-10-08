@@ -47,7 +47,14 @@ export class AssuranceControlPlane {
  snapshot(w){
   const now=this.now(),incidents=this.list(w,'incident'),heart=this.get(w,'heartbeat','monitor');
   const fresh=Boolean(heart&&heart.revision===this.revision&&heart.at<=now&&now-heart.at<=90000);
-  const components=this.list(w,'probe').map(p=>({...p,status:now-p.observedAt>180000&&p.status!=='NOT_INSTALLED'?'STALE':p.status}));
+  const components=this.list(w,'probe').map(p=>{
+   if(p.id==='approval_quarantine'){
+    const accepted=this.list(w,'acceptance_history').find(a=>a.mode==='OWNER_APPROVAL'&&a.completed&&a.incidentId&&incidents.some(i=>i.id===a.incidentId&&i.status==='RECOVERED'));
+    const recovery=accepted&&this.get(w,'recovery',accepted.recoveryId);
+    if(recovery?.status==='VERIFIED'&&recovery.ownerApprovalActor)return {...p,status:'HEALTHY',summary:'Completed one-shot owner approval acceptance; retained recovery verified',evidenceScope:'HISTORICAL_ACCEPTANCE_NOT_RECURRING_HEALTH',verifiedAt:accepted.verifiedAt,recoveryId:recovery.id};
+   }
+   return {...p,status:now-p.observedAt>180000&&p.status!=='NOT_INSTALLED'?'STALE':p.status};
+  });
   const active=incidents.filter(i=>!terminal.has(i.status));
   return {schema:'assurance-control-plane-v1',observedAt:now,revision:this.revision,status:!fresh?'STALE':active.length||components.some(c=>!['HEALTHY','NOT_INSTALLED'].includes(c.status))?'DEGRADED':components.length?'HEALTHY':'NOT_CHECKED',summary:{activeIncidents:active.length,automaticallyRecovered:incidents.filter(i=>i.status==='RECOVERED'&&i.attempts>0).length,ownerActionRequired:active.filter(i=>i.status==='OWNER_ACTION_REQUIRED').length},commands:this.list(w,'command').slice(-50),paused:this.get(w,'setting','pause')??{paused:false},components,incidents,recoveries:this.list(w,'recovery'),approvals:this.list(w,'approval'),lease:this.get(w,'lease','production'),events:this.db.prepare('SELECT seq,at,type,body FROM cp_events WHERE workspace=? ORDER BY seq DESC LIMIT 100').all(w).map(e=>({...e,body:JSON.parse(e.body)})),checkpoints:this.list(w,'checkpoint'),monitor:{fresh,heartbeat:heart}};
  }
