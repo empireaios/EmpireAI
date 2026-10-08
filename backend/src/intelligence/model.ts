@@ -3,8 +3,25 @@ import {createHash} from 'node:crypto';
 export const key=z.string().min(1).max(160).regex(/^[A-Za-z0-9_.:-]+$/);
 export const eyes=['MARKET','SUPPLIER','INTERNET','EMPIRE'] as const;
 export const digest=(v:unknown)=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
-export const subjectSchema=z.object({id:key,variant:key.optional(),marketplace:z.enum(['US','SG','UK','DE','GLOBAL']).default('US'),destination:z.string().regex(/^[A-Z]{2}$/).optional(),query:z.string().min(1).max(120).optional()}).strict();
+export const investigationLimits={queryCharacters:120,jobsPerRound:4,requestsPerRound:12,rounds:2,modelCalls:3} as const;
+// The model receives this exact server contract through investigation.context().
+export const subjectSchema=z.object({id:key,variant:key.optional(),marketplace:z.enum(['US','SG','UK','DE','GLOBAL']).default('US'),destination:z.string().regex(/^[A-Z]{2}$/).optional(),query:z.string().min(1).max(investigationLimits.queryCharacters).optional()}).strict();
 export const jobSchema=z.object({id:key,objective:z.string().min(4).max(800),capabilities:z.array(key).min(1).max(4),subject:subjectSchema,requestLimit:z.number().int().min(1).max(12).default(6),strategyRef:key.optional(),evidenceRefs:z.array(key).max(12).default([])}).strict();
+/** Generate the exposed contract from the validators, so constraints cannot silently diverge. */
+function toolSchema(schema:z.ZodTypeAny):Record<string,unknown>{
+ const d=schema._def as any;
+ switch(d.typeName){
+  case 'ZodOptional':return toolSchema(d.innerType);
+  case 'ZodDefault':return {...toolSchema(d.innerType),default:d.defaultValue()};
+  case 'ZodObject':{const shape=d.shape();return {type:'object',additionalProperties:d.unknownKeys!=='strict',properties:Object.fromEntries(Object.entries(shape).map(([k,v])=>[k,toolSchema(v as z.ZodTypeAny)])),required:Object.entries(shape).filter(([,v])=>!(v as z.ZodTypeAny).isOptional()).map(([k])=>k)};}
+  case 'ZodArray':return {type:'array',items:toolSchema(d.type),...(d.minLength?{minItems:d.minLength.value}:{}),...(d.maxLength?{maxItems:d.maxLength.value}:{})};
+  case 'ZodEnum':return {type:'string',enum:d.values};
+  case 'ZodString':return {type:'string',...Object.fromEntries(d.checks.map((c:any)=>[c.kind==='min'?'minLength':c.kind==='max'?'maxLength':'pattern',c.kind==='regex'?c.regex.source:c.value]))};
+  case 'ZodNumber':return {type:d.checks.some((c:any)=>c.kind==='int')?'integer':'number',...Object.fromEntries(d.checks.filter((c:any)=>['min','max'].includes(c.kind)).map((c:any)=>[c.kind==='min'?'minimum':'maximum',c.value]))};
+  default:throw Error('UNSUPPORTED_TOOL_SCHEMA:'+d.typeName);
+ }
+}
+export const investigationToolContract={version:2,authority:'READ_ONLY',atomic:false,job:toolSchema(jobSchema),limits:investigationLimits,timeoutMs:15000,evidenceReferences:'existing workspace evidence IDs',output:'durable jobs, evidence, rejectedJobs and evidence references',limitClassification:{queryCharacters:'ENGINEERING_CAPACITY; decompose longer research into bounded jobs',rounds:'ACCEPTANCE_ONLY_RESTRICTION; existing grant unchanged',modelCalls:'ACCEPTANCE_ONLY_RESTRICTION; no implicit additional inference',requestsPerRound:'MANDATORY_SAFETY; explicit grant request budget'}} as const;
 export type JobInput=z.infer<typeof jobSchema>;
 export type Eye=typeof eyes[number];
 export type Authenticity='LIVE_PROVIDER'|'INTERNAL_UNVERIFIED'|'SYNTHETIC';

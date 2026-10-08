@@ -151,3 +151,16 @@ test('reviewed OpenAI renewal appends to existing reservations without resetting
   assert.throws(()=>reserveInference(file,1,Date.parse('2026-10-15T00:00:00Z')),/pricing\/window unavailable/);assert.deepEqual(read(file),after);
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
+
+
+test('reviewed alternative renewals remain exact-model scoped and preserve historical reservations',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'alternative-review-')),file=path.join(root,'ledger.sqlite');
+ try{
+  reserveInference(file,100,Date.parse('2026-10-07T23:59:59Z'));
+  const before=read(file);
+  const reviewedModels=[['anthropic','claude-sonnet-5-5'],['gemini','gemini-3.8-flash']] as const;
+  for(const [provider,model] of reviewedModels)reserveInference(file,100,Date.parse('2026-10-08T02:00:00Z'),{provider,model,ceiling:5000000});
+  assert.deepEqual(read(file)[0],before[0]);assert.equal(read(file).length,3);
+  for(const [provider,model] of reviewedModels)assert.throws(()=>reserveInference(file,1,Date.parse('2026-10-15T00:00:00Z'),{provider,model,ceiling:5000000}),/pricing/);
+ }finally{fs.rmSync(root,{recursive:true,force:true});}
+});

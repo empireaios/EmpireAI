@@ -11,7 +11,8 @@ const intervalMs=300000,graceMs=120000;
 const paths=assurancePaths(process.env.RAILWAY_VOLUME_MOUNT_PATH);
 const store=new AssuranceStore(paths.database);fs.chmodSync(paths.database,0o600);
 const redis=new Redis(process.env.REDIS_URL,{maxRetriesPerRequest:1,connectTimeout:5000,lazyConnect:true,enableOfflineQueue:false});
-await redis.connect();
+redis.on('error',()=>{console.error(JSON.stringify({event:'assurance_redis_unavailable',scope:'pillow-omissions'}));});
+try{await redis.connect();}catch{console.error(JSON.stringify({event:'assurance_redis_connect_failed',remainingCollectorsContinue:true}));}
 try{await runSafeLiveProbe();}catch{console.error(JSON.stringify({event:'safe_assurance_probe_failed',inferenceCalls:0,productionRecordsMutated:0}));}
 try{await runSafeDiscrepancyProbe(process.env.RAILWAY_VOLUME_MOUNT_PATH);}catch{console.error(JSON.stringify({event:'safe_assurance_discrepancy_probe_failed',inferenceCalls:0,productionRecordsMutated:0}));}
 let stopping=false;for(const s of ['SIGTERM','SIGINT'])process.on(s,()=>{stopping=true;});

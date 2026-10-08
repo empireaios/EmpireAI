@@ -138,6 +138,14 @@ jobs:
       - name: Visible proposition scope and adjacent bypass regressions (offline)
         working-directory: pillow
         run: node --import tsx --test src/validation/tests/commissioning-proposition-scope.test.ts src/validation/tests/digital-soul-executive-gate.test.ts src/validation/tests/assurance-challenge-semantics.test.ts src/validation/tests/reconciliation-engine.test.ts src/validation/tests/reconciliation-evidence-boundary.test.ts
+      - name: Advanced Assurance deterministic resilience and reconciliation
+        working-directory: backend
+        env:
+          NODE_ENV: test
+          REDIS_OPTIONAL: 'true'
+        run: |
+          node --test src/validation/tests/assurance-control-plane.test.mjs src/validation/tests/assurance-supervisor.test.mjs
+          node --import tsx --test src/validation/tests/assurance-advisor-agent.test.ts src/validation/tests/evidence-reconciliation.test.ts src/validation/tests/investigation-resilience.test.ts src/validation/tests/advanced-assurance-runtime.test.ts src/validation/tests/assurance-functional-probes.test.ts
       - name: Record exact revision and verification limits
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}

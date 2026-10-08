@@ -1,3 +1,4 @@
+import { installAssuranceRuntime, readAdvancedAssurance } from '../assurance/runtime.js';
 import { registerAdvisorRoutes } from "../advisor/routes.js";
 import { registerOwnerCommissioningReadback } from "./owner-commissioning-readback.js";
 import { installLockedCommissioning } from "./locked-commissioning.js";
@@ -287,7 +288,9 @@ export function registerTier0ReadinessRoute(
       const heartbeat=JSON.parse(fs.readFileSync(root+'/commissioning/assurance.sqlite.watchdog','utf8'));
       if(!Number.isSafeInteger(heartbeat.observedAt)||heartbeat.observedAt>Date.now()||Date.now()-heartbeat.observedAt>90000)return reply.code(503).send({status:'ASSURANCE_OVERDUE',healthy:false,reason:'Independent inspector heartbeat missing or stale'});
       const verdict=inspectAssurance(root+'/commissioning/assurance.sqlite',{now:Date.now(),epoch:0,intervalMs:300000,graceMs:120000});
-      return reply.code(verdict.healthy?200:503).send({status:verdict.status,healthy:verdict.healthy,due:verdict.due,coverage:verdict.receipt?.coverage??null,checks:verdict.receipt?Object.fromEntries(Object.entries(verdict.receipt.checks).map(([k,v])=>[k,(v as {status:string}).status])):null,scope:'independent_assurance_partial_coverage',birth:'NOT_BORN',commerce:'LOCKED'});
+      const advanced=await readAdvancedAssurance('ws_empire_1');
+      const functional=advanced.controlPlane?.status==='HEALTHY';
+      return reply.code(verdict.healthy&&functional?200:503).send({status:verdict.healthy&&functional?'HEALTHY':'DEGRADED',healthy:verdict.healthy&&functional,advancedStatus:advanced.controlPlane?.status??'NOT_INSTALLED',due:verdict.due,coverage:verdict.receipt?.coverage??null,checks:verdict.receipt?Object.fromEntries(Object.entries(verdict.receipt.checks).map(([k,v])=>[k,(v as {status:string}).status])):null,scope:'independent_assurance_partial_coverage',birth:'NOT_BORN',commerce:'LOCKED'});
     }catch{return reply.code(503).send({status:'SOURCE_UNAVAILABLE',healthy:false});}
   });
   app.get("/health/ready", async (_req, reply) => {
@@ -630,6 +633,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   registerTier0DurableReadRoutes(app, authenticate);
   registerOwnerCommissioningReadback(app, authenticate);
+  installAssuranceRuntime(app);
   registerAdvisorRoutes(app, authenticate);
 
   registerTier0LoginRoute(app, sessionStore, requireSharedSessionStore);
