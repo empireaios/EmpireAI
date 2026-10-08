@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {freightOrigin} from './freight-origin.js';
 import {DatabaseSync} from 'node:sqlite';
 import {getCjAccessToken} from '../suppliers/cj-dropshipping/cj-auth.js';
 import {loadCjConfig} from '../suppliers/cj-dropshipping/cj-config.js';
@@ -55,7 +56,7 @@ export class ReadAcquirer{
    else if(c.id==='cj.stock'){if(!subject.variant)throw new ReadFailure('VARIANT_REQUIRED');endpoint='/product/stock/queryByVid';p.set('vid',subject.variant);}
    else if(c.id==='cj.freight'){
     if(!subject.variant||!subject.destination)throw new ReadFailure('FREIGHT_OPERANDS_REQUIRED');
-    const stock=this.store.cached(workspace,'cj.stock',subject);const locations=JSON.stringify(stock?.facts??{});const origin=locations.includes('"CN"')?'CN':locations.includes('"US"')?'US':null;if(!origin)throw new ReadFailure('VERIFIED_ORIGIN_REQUIRED');
+    const stock=this.store.cached(workspace,'cj.stock',subject);const origin=freightOrigin(stock,subject.variant);if(!origin)throw new ReadFailure('VERIFIED_ORIGIN_REQUIRED');
     endpoint='/logistic/freightCalculate';body={startCountryCode:origin,endCountryCode:subject.destination,products:[{quantity:1,vid:subject.variant}]};
    }else throw new ReadFailure('READ_SCOPE_UNIMPLEMENTED');
    const r=await request(config.apiBaseUrl+endpoint+(p.size?'?'+p:''),{method:body?'POST':'GET',headers:{'CJ-Access-Token':token,'content-type':'application/json'},...(body?{body:JSON.stringify(body)}:{})},c.cost.units);

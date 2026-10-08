@@ -16,6 +16,7 @@ export class IntelligenceStore{
   try{db.exec(`PRAGMA trusted_schema=OFF; PRAGMA synchronous=FULL; PRAGMA max_page_count=32768;
    CREATE TABLE IF NOT EXISTS objects(workspace TEXT NOT NULL,kind TEXT NOT NULL,id TEXT NOT NULL,updated INTEGER NOT NULL,body TEXT NOT NULL,PRIMARY KEY(workspace,kind,id)) STRICT;
    CREATE INDEX IF NOT EXISTS recent_objects ON objects(workspace,kind,updated DESC);
+   CREATE INDEX IF NOT EXISTS evidence_subject ON objects(workspace,kind,json_extract(body,'$.capabilityId'),json_extract(body,'$.subject'),updated DESC);
    CREATE TABLE IF NOT EXISTS jobs(workspace TEXT NOT NULL,id TEXT NOT NULL,status TEXT NOT NULL,lease TEXT,lease_until INTEGER NOT NULL,created INTEGER NOT NULL,body TEXT NOT NULL,PRIMARY KEY(workspace,id)) STRICT;
    CREATE TABLE IF NOT EXISTS schedules(workspace TEXT NOT NULL,id TEXT NOT NULL,next_at INTEGER NOT NULL,body TEXT NOT NULL,PRIMARY KEY(workspace,id)) STRICT;
    CREATE TABLE IF NOT EXISTS quotas(provider TEXT NOT NULL,day TEXT NOT NULL,used INTEGER NOT NULL,PRIMARY KEY(provider,day)) STRICT;`);return fn(db);}finally{db.close();}
@@ -24,14 +25,36 @@ export class IntelligenceStore{
  list(workspace:string,kind:string,after='',limit=20){key.parse(workspace);return this.use(db=>db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id>? ORDER BY id LIMIT ?').all(workspace,kind,after,Math.min(100,Math.max(1,limit))).map(decode) as Row[]);}
  recent(workspace:string,kind:string,limit=20){return this.use(db=>db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? ORDER BY updated DESC LIMIT ?').all(workspace,kind,Math.min(100,limit)).map(decode) as Row[]);}
  put(workspace:string,kind:string,id:string,body:unknown){key.parse(workspace);key.parse(id);const raw=JSON.stringify(body);if(raw.length>(kind==='model_outputs'?1048576:kind==='investigations'?524288:48000))throw Error('OBJECT_BOUND');if(kind==='model_outputs'){const old=this.get(workspace,kind,id);if(old&&digest(old)!==digest(body))throw Error('IMMUTABLE_MODEL_OUTPUT');}this.use(db=>db.prepare('INSERT INTO objects VALUES(?,?,?,?,?) ON CONFLICT(workspace,kind,id) DO UPDATE SET updated=excluded.updated,body=excluded.body').run(workspace,kind,id,this.now(),raw));}
- arsenal(workspace:string){return capabilities.map(c=>{const s=this.get(workspace,'health',c.id);const credentialPresent=c.credentials.length?c.credentials.every(k=>Boolean(process.env[k])):null;const stale=Boolean(s?.lastGoodAt&&Date.parse(s.lastGoodAt)+c.ttlMs<this.now());return {...c,credentialNames:c.credentials,credentialPresent,configurationState:c.implemented?'CONFIGURED':'CAPABILITY_GAP',authenticationState:s?.authenticatedAt?'AUTHENTICATION_VERIFIED':'UNVERIFIED',readState:s?.lastGoodAt?'READ_VERIFIED':'UNVERIFIED',availability:!c.implemented?'UNAVAILABLE':s?.failure?'DEGRADED':stale?'STALE':s?.lastGoodAt?'AVAILABLE':credentialPresent===false?'UNAVAILABLE':'UNVERIFIED',lastVerifiedRead:s?.lastGoodAt??null,verifiedEndpoint:s?.endpoint??null,currentFailure:s?.failure??null,lastAttemptAt:s?.lastAttemptAt??null,grantsAuthority:false};});}
+ arsenal(workspace:string){return capabilities.map(c=>{
+  const s=this.get(workspace,'health',c.id),now=this.now();
+  const credentialPresent=c.credentials.length?c.credentials.every(k=>Boolean(process.env[k])):null;
+  const lastGood=Date.parse(s?.lastGoodAt??''),authenticated=Date.parse(s?.authenticatedAt??'');
+  const validRead=Number.isFinite(lastGood)&&lastGood<=now;
+  const stale=validRead&&lastGood+c.ttlMs<=now;
+  const validAuth=Number.isFinite(authenticated)&&authenticated<=now&&authenticated+c.ttlMs>now&&credentialPresent!==false;
+  return {...c,credentialNames:c.credentials,credentialPresent,
+   configurationState:!c.implemented?'CAPABILITY_GAP':credentialPresent===false?'NOT_CONFIGURED':'CONFIGURED',
+   authenticationState:validAuth?'AUTHENTICATION_VERIFIED':'UNVERIFIED',
+   readState:validRead?(stale?'STALE':'READ_VERIFIED'):'UNVERIFIED',
+   availability:!c.implemented||credentialPresent===false?'UNAVAILABLE':s?.failure?'DEGRADED':stale?'STALE':validRead?'AVAILABLE':'UNVERIFIED',
+   lastVerifiedRead:s?.lastGoodAt??null,verifiedEndpoint:s?.endpoint??null,currentFailure:s?.failure??null,lastAttemptAt:s?.lastAttemptAt??null,grantsAuthority:false};});}
  evidence(workspace:string,e:Evidence){
-  if(!Number.isFinite(Date.parse(e.observedAt))||Date.parse(e.observedAt)>this.now()+60000||Date.parse(e.staleAfter)<=Date.parse(e.observedAt))throw Error('EVIDENCE_TIME');
+  const observed=Date.parse(e.observedAt),retrieved=Date.parse(e.retrievedAt),expires=Date.parse(e.staleAfter);
+  if(![observed,retrieved,expires].every(Number.isFinite)||observed>retrieved||retrieved>this.now()+60000||expires<=retrieved)throw Error('EVIDENCE_TIME');
   if(e.digest!==digest(e.facts)||e.grantsAuthority!==false)throw Error('EVIDENCE_PROVENANCE');
   const prior=this.get(workspace,'evidence',e.id);if(prior&&digest(prior)!==digest(e))throw Error('IMMUTABLE_EVIDENCE');
   this.put(workspace,'evidence',e.id,e);return e;
  }
- cached(workspace:string,capability:string,subject:unknown){return this.recent(workspace,'evidence',100).find(e=>e.capabilityId===capability&&digest(e.subject)===digest(subject)&&e.authenticity!=='SYNTHETIC'&&Date.parse(e.staleAfter)>this.now());}
+ cached(workspace:string,capability:string,subject:unknown){
+  key.parse(workspace);
+  // Match before LIMIT so unrelated traffic cannot starve a valid cache entry.
+  return this.use(db=>decode(db.prepare(`SELECT body FROM objects WHERE workspace=? AND kind='evidence'
+   AND json_extract(body,'$.capabilityId')=? AND json_extract(body,'$.subject')=?
+   AND json_extract(body,'$.authenticity')!='SYNTHETIC'
+   AND julianday(json_extract(body,'$.staleAfter'))>julianday(?)
+   AND julianday(json_extract(body,'$.observedAt'))<=julianday(?)
+   ORDER BY updated DESC,id LIMIT 1`).get(workspace,capability,JSON.stringify(subject),new Date(this.now()).toISOString(),new Date(this.now()).toISOString())))??undefined;
+ }
  enqueue(workspace:string,requester:string,input:unknown){const p=jobSchema.parse(input);key.parse(workspace);if(p.capabilities.some(id=>!capabilities.some(c=>c.id===id&&c.implemented)))throw Error('CAPABILITY_UNAVAILABLE');for(const id of p.evidenceRefs)if(!this.get(workspace,'evidence',id))throw Error('EVIDENCE_REFERENCE');
   const job={...p,workspace,requester,createdAt:new Date(this.now()).toISOString(),status:'QUEUED',attempts:0,requestsUsed:0,evidence:[],failures:[],inferenceCalls:0,commerceEffects:0,grantsAuthority:false};
   return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{const old=decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,p.id));if(old){if(digest(jobSchema.parse(Object.fromEntries(Object.keys(p).map(k=>[k,old[k]]))))!==digest(p)||old.requester!==requester)throw Error('JOB_ID_CONFLICT');db.exec('COMMIT');return old;}

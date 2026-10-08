@@ -175,7 +175,12 @@ export class InstitutionalMemory {
    return {identity:this.identity(workspace),ownerStrategicDirection,authority:{birth:'NOT_BORN',commerce:'LOCKED',grantsAuthority:false},review:snapshot,retrievedIds:[...(ownerStrategicDirection?[ownerStrategicDirection.id]:[]),review.id],inferenceCalls:0,precedence:'Current canonical authority and current verified evidence outrank this immutable historical snapshot. Synthetic evidence may only inform this explicitly synthetic review.',captureContract:'Review only this experience. Preserve original expectations. Distinguish process from outcome and uncertain causation. Append visible <executive-review> JSON {note,lesson,process:GOOD|BAD|UNKNOWN,outcome:GOOD|BAD|UNKNOWN,causes,exogenous,confidence:0..1}. The lesson remains a candidate, never automatically policy.'};
   }
   const domain=inferDomain(question);
-  const ids=this.use(db=>db.prepare('SELECT id FROM records WHERE workspace=? AND domain IN (?,?) ORDER BY created DESC,id LIMIT 40').all(workspace,domain,'executive'));
+  // Active owner doctrine must not be displaced by newer unreviewed model claims.
+  // Filter immutable supersession and synthetic rows before the bounded window.
+  const ids=this.use(db=>db.prepare(`SELECT r.id FROM records r WHERE r.workspace=? AND r.domain IN (?,?)
+   AND r.authenticity!='SYNTHETIC'
+   AND NOT EXISTS (SELECT 1 FROM records s WHERE s.workspace=r.workspace AND s.kind='OWNER_DOCTRINE' AND json_extract(s.body,'$.supersedes')=r.id)
+   ORDER BY CASE WHEN r.kind='OWNER_DOCTRINE' THEN 0 ELSE 1 END,r.created DESC,r.id LIMIT 40`).all(workspace,domain,'executive'));
   const records=ids.map(r=>this.get(workspace,String(r.id)));
   const selected=records.filter(r=>r.origin.authenticity!=='SYNTHETIC'&&r.current.status==='ACTIVE'&&(r.scope.entities??[]).every((entity:string)=>question.toLowerCase().includes(entity.toLowerCase()))&&(r.kind==='OWNER_DOCTRINE'||r.current.learningEligible)).slice(0,6);
   const summaries=selected.map(r=>({id:r.id,kind:r.kind,scope:r.scope,origin:r.origin,statement:r.statement??r.decision,expectation:r.expectation??null,lesson:r.events.filter((e:{kind:string})=>e.kind==='LESSON').at(-1)??null,current:r.current}));
