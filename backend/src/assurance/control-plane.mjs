@@ -4,7 +4,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {randomUUID,createHash} from 'node:crypto';
 const key=x=>typeof x==='string'&&/^[A-Za-z0-9_.:-]{1,160}$/.test(x);
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
-const statuses=new Set(['HEALTHY','DEGRADED','UNAVAILABLE','STALE','NOT_CHECKED','UNVERIFIED','BLOCKED','NOT_INSTALLED']);
+const statuses=new Set(['HEALTHY','DEGRADED','FAILED','NOT_APPLICABLE','EXTERNALLY_BLOCKED','UNAVAILABLE','STALE','NOT_CHECKED','UNVERIFIED','BLOCKED','NOT_INSTALLED']);
 const terminal=new Set(['CLOSED','RECOVERED']);
 const safe=x=>JSON.parse(JSON.stringify(x??null));
 /** Additive operational state. Callers authenticate actors; this engine scopes and fences every operation. */
@@ -37,7 +37,13 @@ export class AssuranceControlPlane {
    const fingerprint=hash([p.capability,p.classification??'UNKNOWN',p.id,this.revision]);
    let incident=this.list(w,'incident').find(i=>i.fingerprint===fingerprint&&!terminal.has(i.status));
    if(p.status==='HEALTHY'){
-    if(incident){incident.status='RECOVERED';incident.verifiedAt=this.now();incident.closedAt=this.now();this.put(w,'incident',incident.id,incident);this.event(w,'FUNCTION_VERIFIED',{incidentId:incident.id,probe});}return probe;
+    // Current affirmative evidence may resolve the same monitored capability
+    // across revisions. Preserve original incident identity and immutable events;
+    // do not resolve an in-flight or unknown recovery outcome from probe health.
+    for(const prior of this.list(w,'incident').filter(i=>i.probeId===p.id&&i.capability===p.capability&&i.classification===(p.classification??'UNKNOWN')&&!terminal.has(i.status))){
+     if(this.list(w,'recovery').some(r=>r.incidentId===prior.id&&['RUNNING','UNKNOWN'].includes(r.status)))continue;
+     prior.status='RECOVERED';prior.verifiedAt=this.now();prior.closedAt=this.now();prior.verificationRevision=this.revision;this.put(w,'incident',prior.id,prior);this.event(w,'FUNCTION_VERIFIED',{incidentId:prior.id,probe});
+    }return probe;
    }
    if(p.status==='NOT_INSTALLED')return probe;
    if(!incident){incident={id:'inc_'+randomUUID(),fingerprint,probeId:p.id,capability:p.capability,classification:p.classification??'UNKNOWN',severity:p.severity??'HIGH',summary:p.summary,status:'DETECTED',firstAt:this.now(),lastAt:this.now(),revision:this.revision,runbookId:p.runbookId??null,recurrence:1,attempts:0,synthetic:w.startsWith('synthetic:')};this.event(w,'INCIDENT_DETECTED',{incident,probe});}

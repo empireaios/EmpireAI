@@ -31,6 +31,10 @@ jobs:
           node backend/src/validation/tests/independent-assurance.test.mjs
           node backend/src/validation/tests/assurance-runtime-collector.test.mjs
           node backend/src/validation/tests/assurance-live-sources.test.mjs
+          node backend/src/validation/tests/assurance-delivery-resolution.test.mjs
+          node backend/src/validation/tests/assurance-closure-health.test.mjs
+          node backend/src/validation/tests/assurance-capability-health.test.mjs
+          node backend/src/validation/tests/assurance-provider-storage.test.mjs
           node backend/src/validation/tests/assurance-internal-collectors.test.mjs
           node backend/src/validation/tests/assurance-supervisor.test.mjs
           node backend/src/validation/tests/assurance-discrepancy-probe.test.mjs

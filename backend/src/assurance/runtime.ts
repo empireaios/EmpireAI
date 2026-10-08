@@ -1,4 +1,7 @@
 import {acceptanceRevisionEligible,retainedAcceptance} from './acceptance-continuity.js';
+import {closureHealthBlockers} from '../../src/assurance/closure-health.mjs';
+import {classifyCapability,aggregateCapabilityHealth} from '../../src/assurance/capability-health.mjs';
+import {readProviderHealth} from '../../src/assurance/provider-health.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {DatabaseSync} from 'node:sqlite';
@@ -63,7 +66,9 @@ export class AssuranceRuntime {
    const contract=checkToolContract();observe('model_server_contract',contract.status,contract.summary,contract.evidence);
    observe('durable_control', 'HEALTHY','Operational event store is readable',{events:this.control.snapshot(workspace).events.length});
    const configured=configuredLockedProviders();const pricing=readLockedPricingPolicy().map(p=>({...p,active:configured.includes(p.provider as any)}));observe('pricing_review',pricing.some(p=>p.active&&p.status==='EXPIRED')?'BLOCKED':pricing.some(p=>p.active&&p.status==='EXPIRING')?'DEGRADED':'HEALTHY','Local inference price review expiry',pricing);
-   const providers=configuredLockedProviders();observe('provider_configuration',providers.length?'UNVERIFIED':'UNAVAILABLE','Configured credentials are not a functional provider-call verification',{configured:providers,inferenceCalls:0});
+   const providers=configuredLockedProviders();
+   try{const evidence=readProviderHealth(path.join(this.root,'commissioning','openai-october-2026.sqlite'),providers);observe('provider_configuration',evidence.status,'Passive provider response receipts; application delivery is checked independently',evidence);}
+   catch{observe('provider_configuration','NOT_CHECKED','Functional provider receipt source unavailable',{configured:providers,inferenceCalls:0});}
    try{const h=JSON.parse(fs.readFileSync(path.join(this.root,'commissioning','assurance.sqlite.watchdog'),'utf8'));const fresh=Number.isSafeInteger(h.observedAt)&&h.observedAt<=Date.now()&&Date.now()-h.observedAt<90000;observe('independent_inspector',fresh?'HEALTHY':'STALE','External inspector heartbeat',{observedAt:h.observedAt});}catch{observe('independent_inspector','UNAVAILABLE','External inspector heartbeat unavailable');}
    try {
     const filename=path.join(this.root,'commissioning','intelligence.sqlite');
@@ -74,8 +79,8 @@ export class AssuranceRuntime {
      const h=row?JSON.parse(String(row.body)):null;const fresh=h?.heartbeatAt&&Date.parse(h.heartbeatAt)<=Date.now()&&Date.now()-Date.parse(h.heartbeatAt)<120000;
      observe('four_eyes_scheduler',fresh&&h.status==='RUNNING'?'HEALTHY':fresh?'DEGRADED':'STALE','Durable Four Eyes scheduler progress',{heartbeatAt:h?.heartbeatAt??null,status:h?.status??'MISSING'});
      const health=db.prepare("SELECT id,body FROM objects WHERE workspace=? AND kind='health' LIMIT 40").all(workspace).map(r=>({id:r.id,...JSON.parse(String(r.body))}));
-     const reads=capabilities.filter(c=>c.implemented).map(c=>{const h=health.find(h=>h.id===c.id);const at=Date.parse(h?.lastGoodAt??'');return {id:c.id,status:h?.failure?'DEGRADED':!Number.isFinite(at)?'UNVERIFIED':at>Date.now()||Date.now()-at>c.ttlMs?'STALE':'HEALTHY',lastGoodAt:h?.lastGoodAt??null,failure:h?.failure??null};});
-     observe('four_eyes_reads',reads.every(h=>h.status==='HEALTHY')?'HEALTHY':reads.some(h=>h.status==='DEGRADED')?'DEGRADED':'UNVERIFIED','Per-capability saved reads with freshness; no monitoring API calls',reads);
+     const reads=capabilities.map(c=>{const h=health.find(h=>h.id===c.id);return {id:c.id,...classifyCapability({implemented:c.implemented,configured:c.credentials.every(k=>Boolean(process.env[k])),health:h,now:Date.now(),maxAgeMs:c.ttlMs}),lastGoodAt:h?.lastGoodAt??null,failure:h?.failure??null};});
+     observe('four_eyes_reads',aggregateCapabilityHealth(reads),'Per-capability saved reads distinguish failed, stale, missing and external evidence; no monitoring API calls',reads);
     } finally {db.close();}
    } catch {observe('four_eyes_scheduler','UNAVAILABLE','Four Eyes durable scheduler source unavailable');}
    try {const r=readReconciliation(this.root,workspace);observe('response_evidence_linkage',r.conflicts.length?'DEGRADED':r.investigations.length?'HEALTHY':'UNVERIFIED','Cross-source request/assessment/evidence binding',{conflicts:r.conflicts.map((v:any)=>({id:v.id,code:v.code,missionId:v.missionId}))});}catch{observe('response_evidence_linkage','UNAVAILABLE','Required response/evidence source unavailable');}
@@ -139,6 +144,7 @@ export class AssuranceRuntime {
   const advisor=accepted[1]&&this.advisor.list(workspace).find(t=>t.incident===accepted[1].incidentId&&t.status==='COMPLETED'&&JSON.parse(String(t.result??'{}')).decision?.action==='RUNBOOK');
   const monitorAccepted=history.find((h:any)=>h.mode==='MONITOR_FAILURE'&&h.completed&&h.preservation?.verified===true&&verifySourcePreservation(this.root,h.sourceManifest).verified&&acceptanceRevisionEligible(h,this.revision)&&snapshot.incidents.some((i:any)=>i.id===h.monitorIncidentId&&i.status==='RECOVERED'&&i.verifiedAt>=h.pauseUntil));
   const blockers=[];if(!this.control.get(workspace,'handover','work1-compounded-ceo-intelligence'))blockers.push('WORK1_HANDOVER_NOT_RECORDED');if(!monitorAccepted)blockers.push('INDEPENDENT_MONITOR_RESTORATION_UNVERIFIED');if(accepted.some(a=>!a))blockers.push('ACCEPTANCE_CHAIN_INCOMPLETE');if(!advisor)blockers.push('INDEPENDENT_ADVISOR_ACTION_UNVERIFIED');if(snapshot.recoveries.some((r:any)=>['UNKNOWN','RUNNING'].includes(r.status)))blockers.push('EFFECT_RECONCILIATION_REQUIRED');if(!verifyReconciliation(this.root,workspace).healthy)blockers.push('DERIVED_VIEW_UNVERIFIED');if(c.externalEvidence.backendSha!==this.revision)blockers.push('REVISION_MISMATCH');if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')blockers.push('AUTHORITY_PROFILE_UNVERIFIED');
+  blockers.push(...closureHealthBlockers(snapshot,path.join(this.root,'commissioning','assurance.sqlite')));
   if(c.state==='COMPLETE'&&blockers.length)throw Error('CLOSURE_DENIED:'+blockers.join(','));
   const checkpoint={id:c.missionId,state:c.state,revision:this.revision,ownerId,at:Date.now(),acceptanceIds:[...accepted,monitorAccepted].filter(Boolean).map(a=>a.id),advisorTaskId:advisor?.id??null,retainedAcceptance,acceptanceRevisions:[...accepted,monitorAccepted].filter(Boolean).map(a=>({id:a.id,revision:a.revision})),handoverId:'work1-compounded-ceo-intelligence',blockers,externalEvidence:{...c.externalEvidence,verification:'AUTHENTICATED_OWNER_ATTESTATION_NOT_SERVER_PLATFORM_VERIFICATION'},authority:{birth:'NOT_BORN',commerce:'LOCKED'}};
   const receipt={id:c.id,type:c.type,inputHash,ownerId,at:Date.now(),revision:this.revision,status:'ACCEPTED',checkpoint};

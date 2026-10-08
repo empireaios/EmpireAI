@@ -47,6 +47,7 @@ export function reconcileSnapshot(snapshot, now, maxAgeMs) {
     const digest = rows => createHash('sha256').update(canonical([...rows].sort((x,y) => x[0].localeCompare(y[0])))).digest('hex');
     return { status: missing + unexpected + mismatched ? 'FAIL' : snapshot.scopeComplete===false ? 'NOT_CHECKED' : 'PASS', missing, unexpected, mismatched, authoritativeCount: a.size, internalCount: b.size, matched: a.size-missing-mismatched,
       ...(snapshot.scopeComplete===false?{reason:'Durable transcript identity unavailable for part of the source scope',unbound:snapshot.unbound}:{}),
+      ...(Number.isSafeInteger(snapshot.historicalFailuresResolved)&&snapshot.historicalFailuresResolved>=0&&snapshot.historicalFailuresResolved<=a.size&&/^[a-f0-9]{64}$/.test(snapshot.resolutionDigest)?{historicalFailuresResolved:snapshot.historicalFailuresResolved,resolutionDigest:snapshot.resolutionDigest}:{}),
       authoritativeDigest: digest(a), internalDigest: digest(b), observedAt: snapshot.observedAt };
   } catch { return { status: 'FAIL', reason: 'Malformed authoritative or internal records' }; }
 }

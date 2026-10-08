@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import path from 'node:path';
+import {createStorageCollector,createEvidenceFreshnessCollector} from './storage-collector.mjs';
 import {runSafeLiveProbe} from './safe-live-probe.mjs';
 import {runSafeDiscrepancyProbe} from './safe-discrepancy-probe.mjs';
 import {createWorkerCollector,createInspectorCollector,createSpendingCollector} from './internal-collectors.mjs';
@@ -20,12 +22,14 @@ const runtime=createRuntimeCollector({origin:process.env.ASSURANCE_RUNTIME_ORIGI
 const workers=createWorkerCollector({origin:process.env.ASSURANCE_RUNTIME_ORIGIN});
 const scheduler=createInspectorCollector(paths.database+'.watchdog');
 const spending=createSpendingCollector(process.env.RAILWAY_VOLUME_MOUNT_PATH+'/commissioning/openai-october-2026.sqlite',store);
+const persistence=createStorageCollector(path.dirname(paths.reasoning));
+const freshness=createEvidenceFreshnessCollector(path.dirname(paths.reasoning));
 while(!stopping){
   const now=Date.now(),slot=Math.floor(now/intervalMs)*intervalMs;
   // Start only inside the tolerance window; inspector will report missed slots.
   if(now-slot<graceMs && !store.db.prepare('SELECT id FROM assurance_cycles WHERE scheduled_at=?').get(slot)){
     try{
-      const receipt=await runAssuranceCycle(store,{id:'cycle_'+slot,scheduledAt:slot,maxAgeMs:graceMs,timeoutMs:10000,collectors:{runtime,workers,scheduler,'authority-spending':spending,'pillow-omissions':()=>collectDurableOmissions({redis,filename:paths.reasoning})}});
+      const receipt=await runAssuranceCycle(store,{id:'cycle_'+slot,scheduledAt:slot,maxAgeMs:graceMs,timeoutMs:10000,collectors:{runtime,workers,scheduler,'authority-spending':spending,'evidence-freshness':freshness,'persistence-backups-recovery':persistence,'pillow-omissions':()=>collectDurableOmissions({redis,filename:paths.reasoning,resolutionDirectory:path.dirname(paths.reasoning)})}});
       console.log(JSON.stringify({event:'independent_assurance_cycle',slot,...receipt}));
     }catch{console.error(JSON.stringify({event:'independent_assurance_cycle_failed',slot}));}
   }

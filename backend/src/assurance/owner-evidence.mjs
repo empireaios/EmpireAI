@@ -3,9 +3,10 @@ import {readDemo} from './owner-demo.mjs';
 import {DatabaseSync} from 'node:sqlite';
 import {inspectAssurance,REQUIRED_DOMAINS,validateRetainedAssuranceReceipt} from './independent-assurance.mjs';
 import {readCurrentAssuranceTruth} from './current-state-provenance.mjs';
+import {coverageScope} from './coverage-scope.mjs';
 export const policy={epoch:0,intervalMs:300000,graceMs:120000};
-const internal=new Set(['runtime','workers','scheduler','pillow-omissions','authority-spending']);
-const safeCheck=c=>Object.fromEntries(Object.entries(c??{}).filter(([k,v])=>['status','reason','missing','unexpected','mismatched','observedAt','unbound','authoritativeCount','internalCount','matched','authoritativeDigest','internalDigest'].includes(k)&&['string','number','boolean'].includes(typeof v)).map(([k,v])=>[k,typeof v==='string'?v.slice(0,240):v]));
+const internal=new Set(['runtime','workers','scheduler','pillow-omissions','authority-spending','evidence-freshness','persistence-backups-recovery']);
+const safeCheck=c=>Object.fromEntries(Object.entries(c??{}).filter(([k,v])=>['status','reason','missing','unexpected','mismatched','observedAt','unbound','authoritativeCount','internalCount','matched','authoritativeDigest','internalDigest','historicalFailuresResolved','resolutionDigest'].includes(k)&&['string','number','boolean'].includes(typeof v)).map(([k,v])=>[k,typeof v==='string'?v.slice(0,240):v]));
 /** Only the independent inspector may reconcile durable incidents. */
 export function recordOwnerAssurance(filename,now=Date.now()){ return ownerEvidence(filename,now,true); }
 /** Owner/operator reads never create schemas, reopen incidents or resolve findings. */
@@ -59,7 +60,7 @@ function ownerEvidence(filename,now,persist){
    demonstration,currentTruth,scope:'Partial internal coverage; external commerce is unverified',nextCycleAt:(Math.floor(now/policy.intervalMs)+1)*policy.intervalMs,
    dueAt:verdict.due??null,lastCompletedAt:latest?.completedAt??null,lastSuccessfulAt:cycles.find(c=>c.checks&&Object.values(c.checks).every(v=>v.status==='PASS'))?.completedAt??null,
    watchdog:{fresh:watchdogFresh,observedAt:heartbeat?.observedAt??null},policy,
-   coverage:REQUIRED_DOMAINS.map(source=>({source,classification:internal.has(source)?'IMPLEMENTED_UNVERIFIED':'NOT_IMPLEMENTED',...(latest?.checks?.[source]??{status:'NOT_CHECKED'}),evidenceReference:latest?.id??null})),
+   coverage:REQUIRED_DOMAINS.map(source=>({source,classification:internal.has(source)?'IMPLEMENTED_UNVERIFIED':'NOT_IMPLEMENTED',...(latest?.checks?.[source]??{status:'NOT_CHECKED'}),...coverageScope(source,latest?.checks?.[source]??{status:'NOT_CHECKED'}),evidenceReference:latest?.id??null})),
    findings,cycles,inferenceCalls:0,commerceWrites:0};
  }finally{db.close();}
 }

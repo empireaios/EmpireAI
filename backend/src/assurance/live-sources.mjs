@@ -2,12 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { createHash } from 'node:crypto';
+import {readDeliveryResolutions} from './delivery-resolution.mjs';
 
 // Read stores directly, independently of Pillow's own reports and caches.
 // Completed answers use a 15 minute comparison window. Terminal delivery failures
 // remain in scope for the entire retained durable request inventory: quiet time
 // must not turn a failed owner interaction into a successful delivery.
-export async function collectDurableOmissions({ redis, filename, now = Date.now() }) {
+export async function collectDurableOmissions({ redis, filename, resolutionDirectory, now = Date.now() }) {
   const stat=fs.lstatSync(filename);
   if(!stat.isFile() || stat.nlink!==1 || stat.size>32*1024*1024 || fs.realpathSync(filename)!==filename) throw Error('Unsafe reasoning source');
   const keys=new Set();let cursor='0',pages=0;
@@ -17,7 +18,8 @@ export async function collectDurableOmissions({ redis, filename, now = Date.now(
     if(++pages>100 || keys.size>10000)throw Error('Request inventory exceeds bound');
   }while(cursor!=='0');
   const db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:1000});
-  const authoritative=[],internal=[],bindings=new Set();let inspected=0,unbound=0;
+  const authoritative=[],internal=[],bindings=new Set(),resolved=[];let inspected=0,unbound=0;
+  const resolve = resolutionDirectory ? readDeliveryResolutions(resolutionDirectory,'ws_empire_1',now) : () => null;
   try {
     db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; BEGIN');
     if(db.prepare('PRAGMA quick_check').get()?.quick_check!=='ok')throw Error('Reasoning source invalid');
@@ -32,8 +34,10 @@ export async function collectDurableOmissions({ redis, filename, now = Date.now(
         if(!Number.isFinite(failedAt)||failedAt>now)throw Error('Failed request timestamp unavailable');
         // A provider receipt, rejection diagnostic, or error message is not an
         // owner answer. Do not use liveness or a historical certification here.
-        authoritative.push({id:r.requestId,value:'owner-answer-delivered'});
-        internal.push({id:r.requestId,value:'terminal-application-delivery-failure'});
+        const resolution=resolve(r);
+        authoritative.push({id:r.requestId,value:resolution?'historical-failure-resolution-verified':'owner-answer-delivered'});
+        internal.push({id:r.requestId,value:resolution?'historical-failure-resolution-verified':'terminal-application-delivery-failure'});
+        if(resolution)resolved.push(resolution);
         inspected++;
         continue;
       }
@@ -65,7 +69,7 @@ export async function collectDurableOmissions({ redis, filename, now = Date.now(
     }
     db.exec('COMMIT');
     if(!inspected&&!unbound)return null;
-    return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; completed 30s–15m window and all retained terminal failures',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal,scopeComplete:unbound===0,unbound};
+    return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; terminal failures independently checked against bound successor closures',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal,scopeComplete:unbound===0,unbound,historicalFailuresResolved:resolved.length,resolutionDigest:createHash('sha256').update(JSON.stringify(resolved)).digest('hex')};
   }finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}
 }
 
