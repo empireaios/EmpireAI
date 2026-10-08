@@ -15,6 +15,23 @@ import { installLockedCommissioning } from '../../runtime/locked-commissioning.j
 
 const request={workspaceId:'owner',correlationId:'ordinary-request',messages:[{role:'user' as const,content:'Explain why forecasts need uncertainty ranges.'}]};
 const now=Date.parse('2026-10-01T14:00:00Z');
+test('investigation transport enforces collector query bounds and reserves schema input without adding provider tools',async()=>{
+ const old={...process.env},originalFetch=globalThis.fetch;
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'investigation-contract-'));fs.mkdirSync(path.join(root,'commissioning'));
+ Object.assign(process.env,{EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'commissioning','empireai-brain.db'),OPENAI_API_KEY:'offline-test-key'});
+ try{for(const phase of ['plan','review','assessment'] as const){
+  globalThis.fetch=async(_url,init)=>{const body=JSON.parse(String(init?.body));const format=body.text.format;
+   assert.equal(format.type,'json_schema');assert.equal(format.strict,true);assert.equal(format.name,'four_eyes_'+phase);assert.equal(body.tools,undefined);
+   const jobs=format.schema.properties.jobs;assert.equal(jobs.items.properties.subject.properties.query.anyOf[0].maxLength,120);
+   assert.equal(jobs.maxItems,phase==='assessment'?0:4);assert.equal(jobs.minItems,phase==='plan'?1:0);assert.equal(jobs.items.properties.requestLimit.maximum,3);
+   assert.equal(format.schema.additionalProperties,false);assert.equal(jobs.items.properties.subject.additionalProperties,false);
+   const bound=Buffer.byteLength(JSON.stringify(body.input))+Buffer.byteLength(JSON.stringify(body.text))+4096+body.input.length*512;
+   assert.equal(read(inferenceLedgerPath()).at(-1)?.reserved_micro_usd,Math.ceil(bound*2.75+10000*11));
+   return Response.json({model:LOCKED_MODEL,status:'completed',usage:{input_tokens:10,output_tokens:10,total_tokens:20},output:[{type:'message',content:[{type:'output_text',text:'{"jobs":[],"answer":"fixture"}'}]}]});
+  };
+  await completeLockedInference({...request,maxTokens:2000,investigationPhase:phase});
+ }}finally{globalThis.fetch=originalFetch;for(const key of Object.keys(process.env))if(!(key in old))delete process.env[key];Object.assign(process.env,old);fs.rmSync(root,{recursive:true,force:true});}
+});
 function read(filename:string){const db=new DatabaseSync(filename,{readOnly:true});try{return db.prepare('SELECT * FROM calls').all();}finally{db.close();}}
 test('NOT_BORN inference is durable and never changes HTTP mutation authority',async()=>{
  const old={...process.env},originalFetch=globalThis.fetch;

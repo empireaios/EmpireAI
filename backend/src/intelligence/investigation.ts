@@ -36,6 +36,13 @@ export class PillowInvestigation {
   return {missionId:this.grant.id,opportunities,evidence:this.bound(evidence),capabilities:this.store.arsenal(this.workspace).map(c=>({id:c.id,eye:c.eye,implemented:c.implemented,status:c.availability,purpose:c.purpose,limitations:c.limitations})),bounds:{rounds:2,jobsPerRound:4,requestsPerRound:12,totalRequests:24,modelCalls:3},publicSourceIds:['amazon-analytics','cj-logistics','keepa-history','trends-access'],commercialQualification:'UNESTABLISHED'};
  }
  private bound(items:unknown[]){const result:unknown[]=[];for(const item of items){if(JSON.stringify([...result,item]).length>42000)break;result.push(item);}return result;}
+ observe(content:string,round:number,provenance:unknown){
+  const row=this.store.get(this.workspace,'investigations',this.grant.id)!;
+  if(row.status!=='RUNNING'||row.requestId!==this.grant.requestId||round<0||round>2)throw Error('INVESTIGATION_OBSERVATION_REFUSED');
+  row.modelSteps??=[];if(row.modelSteps.length!==round)throw Error('INVESTIGATION_OBSERVATION_REPLAY');
+  row.modelSteps.push({round,content:content.slice(0,64000),complete:content.length<=64000,sha256:digest(content),provenance,at:new Date(this.store.now()).toISOString()});
+  this.store.put(this.workspace,'investigations',row.id,row);
+ }
  async execute(input:unknown,round:number){
   const batch=batchSchema.parse(input);
   if(round<1||round>2||!Number.isInteger(round)||batch.jobs.reduce((n,j)=>n+j.requestLimit,0)>12)throw Error('INVESTIGATION_BOUND');
@@ -68,6 +75,12 @@ export class PillowInvestigation {
  complete(answer:string,provenance:unknown){const row=this.store.get(this.workspace,'investigations',this.grant.id)!;
   if(!row.rounds.length||row.rounds.some((r:Row)=>r.status!=='RECORDED'))throw Error('INVESTIGATION_EVIDENCE_NOT_RETURNED');
   row.status='ASSESSED_PENDING_ACCEPTANCE';row.assessment={answer,sha256:digest(answer),provenance,at:new Date(this.store.now()).toISOString(),requestId:row.requestId,evidenceIds:row.rounds.flatMap((r:Row)=>r.deliveredEvidenceIds??[])};
+  this.store.put(this.workspace,'investigations',row.id,row);
+ }
+ fail(error:unknown){const row=this.store.get(this.workspace,'investigations',this.grant.id)!;
+  // Failure is terminal evidence, never a reset or permission to replay the grant.
+  row.status='FAILED';row.failedAt=new Date(this.store.now()).toISOString();
+  row.failure={stage:row.rounds.length?'EVIDENCE_OR_ASSESSMENT':'COMMISSIONING',name:error instanceof Error?error.name:'UnknownError',code:'INVESTIGATION_FAILED',requestId:row.requestId};
   this.store.put(this.workspace,'investigations',row.id,row);
  }
 }

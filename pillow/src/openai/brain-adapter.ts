@@ -11,6 +11,7 @@ export interface BrainLLMMessage {
 }
 
 export interface BrainLLMCompleteRequest {
+  investigationPhase?: 'plan' | 'review' | 'assessment';
   signal?: AbortSignal;
   capability?: 'reasoning' | 'analysis' | 'summarization' | 'critique';
   messages: BrainLLMMessage[];

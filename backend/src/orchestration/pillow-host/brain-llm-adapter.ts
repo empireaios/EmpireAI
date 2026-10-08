@@ -59,6 +59,7 @@ export function createBrainLLMAdapter(llmRouter: LLMRouter): IntelligencePlatfor
       request: BrainLLMCompleteRequest,
     ): Promise<BrainLLMCompleteResponse> {
       const response = await llmRouter.complete({
+        investigationPhase: request.investigationPhase,
         signal: request.signal,
         capability: request.capability,
         provider: request.provider,
