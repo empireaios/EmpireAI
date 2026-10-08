@@ -1,5 +1,2 @@
-import { FinanceDashboardPanel } from "@/components/cockpit/widgets/FinancePanels";
-
-export default function FinanceProfitPage() {
-  return <FinanceDashboardPanel />;
-}
+import {redirect} from "next/navigation";
+export default function Page(){redirect("/cockpit/finance");}
