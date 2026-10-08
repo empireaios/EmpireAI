@@ -59,7 +59,7 @@ test('cumulative reservations cross former ceiling across processes; arithmetic 
   const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',`import {reserveInference} from ${JSON.stringify(moduleUrl)};reserveInference(${JSON.stringify(file)},2,${now})`],{encoding:'utf8',cwd:new URL('../../../',import.meta.url)});
   assert.equal(child.status,0,child.stderr);assert.equal(read(file).length,2);
   reserveInference(file,1,now);assert.throws(()=>reserveInference(file,Number.MAX_SAFE_INTEGER,now),/accounting bound/);
-  assert.throws(()=>reserveInference(file,1,Date.parse('2026-10-09')),/pricing/);
+  assert.throws(()=>reserveInference(file,1,Date.parse('2026-10-15')),/pricing/);
   assert.equal(read(file).reduce((sum,row)=>sum+Number(row.reserved_micro_usd),0),40_000_002);
   fs.unlinkSync(file);assert.throws(()=>reserveInference(file,1,now),/missing/);
  }finally{fs.rmSync(root,{recursive:true,force:true});}
@@ -119,5 +119,18 @@ test('Pillow OpenAI headroom reserves 10000 tokens and keeps concise answers abo
 });
 
 test('expired production pricing remains fail-closed before any reservation',()=>{
- assert.throws(()=>reserveInference('/nonexistent/never-created.sqlite',1,Date.parse('2026-10-08T00:00:00Z')),/pricing\/window unavailable/);
+ for(const at of ['2026-10-15T00:00:00Z','2026-11-01T00:00:00Z'])assert.throws(()=>reserveInference('/nonexistent/never-created.sqlite',1,Date.parse(at)),/pricing\/window unavailable/);
+ assert.throws(()=>reserveInference('/nonexistent/never-created.sqlite',1,NaN),/pricing\/window unavailable/);
+ for(const provider of ['anthropic','gemini','unreviewed'])assert.throws(()=>reserveInference('/nonexistent/never-created.sqlite',1,Date.parse('2026-10-08T00:00:00Z'),{provider,model:'unreviewed',ceiling:100}),/pricing\/window unavailable/);
+});
+
+test('reviewed OpenAI renewal appends to existing reservations without resetting historical accounting',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'pricing-renewal-')),file=path.join(root,'ledger.sqlite');
+ try {
+  reserveInference(file,500,Date.parse('2026-10-07T23:59:59Z'));
+  const before=read(file);
+  reserveInference(file,700,Date.parse('2026-10-08T02:00:00Z'));
+  const after=read(file);assert.equal(after.length,2);assert.deepEqual(after[0],before[0]);assert.equal(after[1]?.reserved_micro_usd,700);
+  assert.throws(()=>reserveInference(file,1,Date.parse('2026-10-15T00:00:00Z')),/pricing\/window unavailable/);assert.deepEqual(read(file),after);
+ }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
