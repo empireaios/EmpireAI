@@ -10,9 +10,11 @@ import type { LLMCompletionRequest, LLMCompletionResponse } from '../types.js';
 export const LOCKED_MODEL = 'gpt-6.1-sol';
 import { COMMISSIONING_CEILING_MICRO_USD } from "./commissioning-inference-budget.js";
 export const CEILING_MICRO_USD = COMMISSIONING_CEILING_MICRO_USD;
-// Official model/pricing page verified 2026-10-01. Renewal requires price review;
+// Official OpenAI pricing reverified 2026-10-08; see docs/candidate001/pricing-review.md.
+// Other providers retain their existing review deadline. Renewal requires price review;
 // neither renewal nor key/model changes reset the lifetime commissioning ledger.
 const PRICE_EXPIRES = Date.parse('2026-10-08T00:00:00Z');
+const OPENAI_PRICE_EXPIRES = Date.parse('2026-10-15T00:00:00Z');
 const STARTS = Date.parse('2026-09-30T16:00:00Z');
 const ENDS = Date.parse('2026-10-31T16:00:00Z');
 export const lockedInferenceProfile = () => process.env.EMPIRE_RUNTIME_PROFILE === 'LOCKED_COMMISSIONING_V1';
@@ -54,7 +56,8 @@ export function inferenceLedgerPath(): string {
   return path.join(root,'commissioning','openai-october-2026.sqlite');
 }
 export function reserveInference(filename: string, microUsd: number, now = Date.now(), policy: {provider:string;model:string;ceiling:number|null;requestKey?:string} = {provider:'openai',model:LOCKED_MODEL,ceiling:CEILING_MICRO_USD}): string {
-  if (now < STARTS || now >= ENDS || now >= PRICE_EXPIRES || !Number.isSafeInteger(microUsd) || microUsd<=0) throw Error('Inference pricing/window unavailable');
+  const priceExpires = policy.provider==='openai' && policy.model===LOCKED_MODEL ? OPENAI_PRICE_EXPIRES : PRICE_EXPIRES;
+  if (!Number.isFinite(now) || now < STARTS || now >= ENDS || now >= priceExpires || !Number.isSafeInteger(microUsd) || microUsd<=0) throw Error('Inference pricing/window unavailable');
   return ledger(filename, db => {
     db.exec('CREATE TABLE IF NOT EXISTS call_providers (call_id TEXT PRIMARY KEY, provider TEXT NOT NULL, request_key TEXT) STRICT');
     // Global across accounts, workers, credentials, restarts and all outcomes.
