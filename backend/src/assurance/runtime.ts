@@ -1,3 +1,4 @@
+import {productionFinance} from '../finance/financial-centre.js';
 import {acceptanceRevisionEligible,retainedAcceptance} from './acceptance-continuity.js';
 import {closureHealthBlockers} from '../../src/assurance/closure-health.mjs';
 import {classifyCapability,aggregateCapabilityHealth} from '../../src/assurance/capability-health.mjs';
@@ -63,6 +64,7 @@ export class AssuranceRuntime {
   if(this.busy||this.control.get(workspace,'acceptance','active')?.pauseUntil>Date.now())return;this.busy=true;
   try{
    const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>this.control.observe(workspace,{id,capability:id,status,summary,evidence,classification:id,runbookId});
+   try{const finance=productionFinance().snapshot(workspace);observe('financial_evidence','HEALTHY','Financial journal readable; billing and cash verification remain record-specific',{entryDigest:finance.entryDigest,entries:finance.entries.length,unresolvedFinancialAlerts:finance.alerts.length,completeCashPosition:finance.completeCashPosition});}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
    const contract=checkToolContract();observe('model_server_contract',contract.status,contract.summary,contract.evidence);
    observe('durable_control', 'HEALTHY','Operational event store is readable',{events:this.control.snapshot(workspace).events.length});
    const configured=configuredLockedProviders();const pricing=readLockedPricingPolicy().map(p=>({...p,active:configured.includes(p.provider as any)}));observe('pricing_review',pricing.some(p=>p.active&&p.status==='EXPIRED')?'BLOCKED':pricing.some(p=>p.active&&p.status==='EXPIRING')?'DEGRADED':'HEALTHY','Local inference price review expiry',pricing);
@@ -172,3 +174,6 @@ export function installAssuranceRuntime(app:FastifyInstance){
  app.addHook('onReady',async()=>{if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')return;const root=process.env.RAILWAY_VOLUME_MOUNT_PATH,revision=process.env.RAILWAY_GIT_COMMIT_SHA;if(!root||!revision)return;active=await createAssuranceRuntime(root,revision);active.advisor.recoverInterrupted(workspace);const run=()=>active?.cycle().catch(()=>{ /* stale persisted heartbeat exposes failed monitoring */ });void run();timer=setInterval(run,30000);timer.unref();});
  app.addHook('onClose',async()=>{if(timer)clearInterval(timer);if(active?.advisorWork)await active.advisorWork;active?.control.close();active=null;});
 }
+
+/** Work5 financial acceptance writes the existing Mission Ledger; Assurance acceptance is not reused or redefined. */
+export async function recordWork5Outcome(ownerId:string,evidence:import('zod').infer<typeof import('../finance/closure.js').financialClosureSchema>){if(!active)throw Error('ASSURANCE_RUNTIME_UNAVAILABLE');const digest=reconciliationHash(evidence);const old=active.control.get(workspace,'command',evidence.id);if(old){if(old.inputHash!==digest)throw Error('IDEMPOTENCY_CONFLICT');return old;}const checkpoint={id:'WORK-5-FINANCIAL-INTELLIGENCE',state:evidence.state,revision:active.revision,ownerId,at:Date.now(),criteria:evidence.criteria,externalEvidence:{...evidence,verification:'AUTHENTICATED_OWNER_ATTESTATION; SERVER_VERIFIED_CURRENT_RECORD_DIGESTS'},authority:{birth:'NOT_BORN',commerce:'LOCKED'}};const receipt={id:evidence.id,type:'work5_mission_close',status:'ACCEPTED',inputHash:digest,checkpoint};return active.control.tx(()=>{active!.control.put(workspace,'checkpoint',checkpoint.id,checkpoint);active!.control.put(workspace,'command',evidence.id,receipt);active!.control.event(workspace,'WORK5_FINANCIAL_OUTCOME_RECORDED',checkpoint);return receipt;});}

@@ -1,3 +1,4 @@
+import {readFinancialCentre} from '../finance/runtime.js';
 import {verifyPillowContextAssembly} from '../assurance/pillow-context.js';
 import {assurancePage,exactAssuranceRecord} from '../assurance/readback.js';
 import {readReconciliation} from '../assurance/evidence-reconciliation.js';
@@ -43,13 +44,14 @@ function read<T>(filename:string,fn:(db:DatabaseSync)=>T){
  const db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:50});
  try{db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF');return {observedAt:stat.mtime.toISOString(),data:fn(db)};}finally{db.close();}
 }
-export const readDomains=['package_format','changes','state','capabilities','pillow','accounting','assurance','reconciliation','missions','communications',...Object.keys(domains),...intelligenceDomains];
+export const readDomains=['financial_centre','package_format','changes','state','capabilities','pillow','accounting','assurance','reconciliation','missions','communications',...Object.keys(domains),...intelligenceDomains];
 export async function readEmpire(store:AdvisorStore,workspace:string,domain:string,id?:string,after='',limit=20,since?:string):Promise<unknown>{
  const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
  const base={retrievedAt:new Date().toISOString(),readOnly:true,inferenceCalls:0,externalRefresh:false,workspace,domain,grantsAuthority:false};
  try{
   let data:unknown,observedAt:string|null=null,source='durable stored evidence';
   if(intelligenceDomains.includes(domain)){const intel=productionIntelligence();if(!intel)throw Error('CAPABILITY_GAP');data=readIntelligence(intel,workspace,domain,id,after,limit);source='durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific';}
+  else if(domain==='financial_centre'){data=readFinancialCentre(workspace);source='Work5 append-only financial evidence and canonical sources; no payment or inference';}
   else if(domain==='package_format'){data=packageFormat;source='versioned import protocol';}
   else if(domain==='changes'){
    const filename=process.env.DATABASE_PATH;if(!filename)throw Error('CAPABILITY_GAP');
