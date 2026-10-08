@@ -22,8 +22,14 @@ export function registerIntelligence(app:FastifyInstance,owner:(r:FastifyRequest
   const c=command.parse(r.body),w=r.user!.workspaceId;let result:unknown;
   if(c.action==='investigation'){
    const predecessors=[];
-   for(const id of c.grant.predecessors){const read=await readPillow(process.env.RAILWAY_VOLUME_MOUNT_PATH!,w,id) as any;const prior=read.data?.requests?.find((x:any)=>x.requestId===id);if(!prior)throw Error('PREDECESSOR_UNAVAILABLE');predecessors.push({id,hash:digest({status:prior.status,failureClass:prior.failureClass,finalResult:prior.finalResult,responseText:prior.responseText})});}
+   const failedRequests:string[]=[];
+   for(const id of c.grant.predecessors){const read=await readPillow(process.env.RAILWAY_VOLUME_MOUNT_PATH!,w,id) as any;const prior=read.data?.requests?.find((x:any)=>x.requestId===id);if(!prior)throw Error('PREDECESSOR_UNAVAILABLE');if(prior.status==='FAILED_FATAL')failedRequests.push(id);predecessors.push({id,hash:digest({status:prior.status,failureClass:prior.failureClass,finalResult:prior.finalResult,responseText:prior.responseText})});}
    result=authorizeInvestigation(s,w,r.user!.id,c.grant);s.put(w,'investigations',c.grant.id,{...result as object,predecessorProof:predecessors});
+   // Reconcile a previously interrupted status only from its durable terminal request.
+   // Never reset that request, grant, plan or accounting; the successor has its own ID.
+   const recoveredMissionIds:string[]=[];
+   for(const old of s.recent(w,'investigations',100)){if(old.id!==c.grant.id&&failedRequests.includes(old.requestId)&&['RUNNING','FAILED'].includes(old.status)){if(old.status==='RUNNING'){old.status='FAILED';old.failure={code:'DURABLE_REQUEST_FAILED',requestId:old.requestId,source:'AUTHENTICATED_PREDECESSOR_READBACK'};}s.put(w,'investigations',old.id,old);recoveredMissionIds.push(old.id);}}
+   s.put(w,'investigations',c.grant.id,{...result as object,predecessorProof:predecessors,recoveredMissionIds});
   }
   else if(c.action==='close_investigation'){
    const row=s.get(w,'investigations',c.id);
@@ -36,6 +42,7 @@ export function registerIntelligence(app:FastifyInstance,owner:(r:FastifyRequest
    for(const proof of row.predecessorProof){const old=await readPillow(process.env.RAILWAY_VOLUME_MOUNT_PATH!,w,proof.id) as any;const prior=old.data?.requests?.find((x:any)=>x.requestId===proof.id);if(!prior||digest({status:prior.status,failureClass:prior.failureClass,finalResult:prior.finalResult,responseText:prior.responseText})!==proof.hash)throw Error('PREDECESSOR_CHANGED');}
    row.status='COMPLETE';row.closure={at:new Date(s.now()).toISOString(),owner:r.user!.id,advisorReadback:{requestId:c.advisorRequestId,assessmentHash:c.assessmentHash,attestedBy:'AUTHENTICATED_OWNER'},scope:'Investigation workflow acceptance; commercial qualification remains assessment-specific',birth:'NOT_BORN',commerce:'LOCKED',predecessorsPreserved:true};
    s.put(w,'investigations',row.id,row);result=row;
+   for(const id of row.recoveredMissionIds??[]){const old=s.get(w,'investigations',id);if(old&&old.status==='FAILED'){old.resolution={status:'RESOLVED_BY_SUCCESSOR',missionId:row.id,requestId:row.requestId,at:row.closure.at};s.put(w,'investigations',id,old);}}
   }
   else if(c.action==='job')result=s.enqueue(w,'GRAND_KING:'+r.user!.id,c.job);
   else if(c.action==='schedule'){s.setSchedule(w,c.id,c.enabled);result={id:c.id,enabled:c.enabled};}

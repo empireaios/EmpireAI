@@ -30339,7 +30339,7 @@ export class PillowHost {
                 try {
                     const caseProvenance = resolveCaseProvenanceContext(session.conversationHistory, llmUserMessage);
                     const llmArgs = {
-                        investigation: investigation?{context:investigation.context(),execute:async(plan,round)=>{
+                        investigation: investigation?{context:investigation.context(),observe:(content,round,provenance)=>investigation.observe(content,round,provenance),execute:async(plan,round)=>{
                             const receipt=await investigation.execute(plan,round);
                             for(const e of receipt.evidence){epistemicLedger.record({capabilityId:e.capabilityId,requestId:input.correlationId,sourceIdentifier:e.id,observedSummary:JSON.stringify(e.facts),at:e.observedAt});investigationEvidence.push({id:e.id,hash:e.digest,observedAt:e.observedAt,source:e.capabilityId});}
                             return receipt;
@@ -30494,6 +30494,7 @@ export class PillowHost {
                 }
                 catch (error) {
                     if (!providerCompleted) recordPillowProviderFailure();
+                    if(investigation){try{investigation.fail(error);}catch{logger.warn({requestId},'Investigation failure receipt unavailable');}}
                     logResult = providerCompleted ? "post_answer_failure" : "degraded_after_llm_failure";
                     this.lastError =
                         error instanceof Error ? error.message : String(error);

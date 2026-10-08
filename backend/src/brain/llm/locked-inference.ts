@@ -1,4 +1,5 @@
 import { finalResponseText } from "./response-final-text.js";
+import {investigationOutputFormat} from '../../intelligence/model-output.js';
 import {readProviderFailure, type ProviderFailureDetail} from './inference-readback.js';
 /** October commissioning inference only. No tool execution or authority transition. */
 import fs from 'node:fs';
@@ -90,7 +91,8 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
   const input=request.messages.map(({role,content,phase})=>({role,content,...(role==='assistant'?{phase:phase??'final_answer'}:{})}));
   // Text-only UTF-8 bytes bound token count conservatively, plus framing. No
   // images, files, tools, stored conversation, implicit previous response or retries.
-  const inputBound=Buffer.byteLength(JSON.stringify(input),'utf8')+4096+input.length*512;
+  const textFormat=request.investigationPhase?{format:investigationOutputFormat(request.investigationPhase)}:undefined;
+  const inputBound=Buffer.byteLength(JSON.stringify(input),'utf8')+(textFormat?Buffer.byteLength(JSON.stringify(textFormat),'utf8'):0)+4096+input.length*512;
   if(inputBound>1_000_000)throw Error('Inference input exceeds priced bound');
   // The legacy Pillow 2,000-token allocation is OpenAI reasoning headroom,
   // not a desired answer length. Other providers and explicit smaller bounds stay unchanged.
@@ -110,7 +112,7 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
     const response=await fetch('https://api.openai.com/v1/responses',{
       method:'POST',redirect:'error',signal,
       headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},
-      body:JSON.stringify({model:LOCKED_MODEL,input,store:false,service_tier:'default',reasoning:{effort:'medium'},max_output_tokens:outputBound}),
+      body:JSON.stringify({model:LOCKED_MODEL,input,store:false,service_tier:'default',reasoning:{effort:'medium'},max_output_tokens:outputBound,...(textFormat?{text:textFormat}:{})}),
     });
     if(!response.ok) { fallbackEligible=[429,503,529].includes(response.status); failureDetail=await readProviderFailure(response); throw Error('Inference HTTP refusal'); }
     const reader=response.body?.getReader(); if(!reader)throw Error('Inference response absent');

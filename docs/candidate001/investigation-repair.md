@@ -27,3 +27,30 @@ unchanged Work 2, 3, 4 and pricing-repair records. Workflow completion does not
 certify commercial viability. Independent Advisor readback precedes closure.
 
 Production acceptance pending. No prior request may be replayed.
+
+## Production acceptance defect and correction
+
+The first bounded acceptance pcr_5fcf9b139bb54343 failed before commissioning.
+The preserved backend diagnostic reported Zod `too_big`, maximum 120, at
+`jobs[2].subject.query`. The provider call succeeded; no intelligence jobs ran.
+This is a missing machine-readable parameter contract, not a pricing failure.
+The prior failed request and completed successor remain historical records.
+
+The corrected integration sends a fixed strict Responses JSON schema through
+Pillow -> Brain adapter -> accounted OpenAI transport. It constrains query length,
+subject shape and capabilities. Four jobs with at most three HTTP requests each
+keep each round within twelve, including authentication. Optional fields use null
+on the wire and are omitted before the existing strict collector validation.
+A separate final assessment phase cannot commission further jobs. Schema input
+bytes are included in the existing conservative spending reservation.
+
+Model-authored output is persisted before validation; hidden reasoning is never
+requested or stored. Failure is a terminal investigation status and never resets
+the grant. A separately authenticated successor grant may reconcile a prior
+RUNNING record only when its durable request is FAILED_FATAL, preserving that
+request and linking the failed mission to the later accepted successor.
+
+Contract reference (reviewed 2026-10-08):
+https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses
+Strict output supports required object fields, nullable optional values and string
+length constraints. Server validation and authority checks remain mandatory.
