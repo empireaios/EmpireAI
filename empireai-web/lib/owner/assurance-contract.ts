@@ -1,6 +1,6 @@
 export type OwnerCommand = {id:string;type:'health_check'|'pause'|'resume'|'retry'|'approve'|'reject'|'defer';incidentId?:string;approvalId?:string};
 export type ClosureEvidence={backendSha:string;frontendSha:string;backendDeploymentId:string;frontendDeploymentId:string;ciRunIds:string[];preservationDigest:string;readbackProof:string;desktopProof:string;mobileProof:string;collisionProof:string;selfFailureProof:string};
-export type EngineeringCommand = {id:string;type:'acceptance_admit';mode:'AUTOMATIC'|'API_ADVISOR'|'OWNER_APPROVAL'|'MONITOR_FAILURE'|'DEPLOYMENT_COLLISION';expectedRevision:string;expectedSha256:string}|{id:string;type:'lease_begin';expectedRevision:string;scope:string[];ttlMs:number}|{id:string;type:'lease_finish';leaseId:string;fence:number}|{id:string;type:'checkpoint';missionId:string;state:'IN_PROGRESS'|'BLOCKED'|'ACCEPTANCE_PENDING';evidence:string[]}|{id:string;type:'mission_close';missionId:string;state:'COMPLETE'|'INCOMPLETE'|'BLOCKED_EXTERNAL'|'OWNER_ACTION_REQUIRED';externalEvidence:ClosureEvidence};
+export type EngineeringCommand = {id:string;type:'record_handover'}|{id:string;type:'acceptance_admit';mode:'AUTOMATIC'|'API_ADVISOR'|'OWNER_APPROVAL'|'MONITOR_FAILURE'|'DEPLOYMENT_COLLISION';expectedRevision:string;expectedSha256:string}|{id:string;type:'lease_begin';expectedRevision:string;scope:string[];ttlMs:number}|{id:string;type:'lease_finish';leaseId:string;fence:number}|{id:string;type:'checkpoint';missionId:string;state:'IN_PROGRESS'|'BLOCKED'|'ACCEPTANCE_PENDING';evidence:string[]}|{id:string;type:'mission_close';missionId:string;state:'COMPLETE'|'INCOMPLETE'|'BLOCKED_EXTERNAL'|'OWNER_ACTION_REQUIRED';externalEvidence:ClosureEvidence};
 export type AssuranceCommand=OwnerCommand|EngineeringCommand;
 export type CommandReceipt = {id:string;type:string;status:string;reason?:string;at:number;revision:string};
 export type Incident = {id:string;capability:string;classification:string;severity:string;summary:string;status:string;firstAt:number;lastAt:number;revision:string;runbookId:string|null;recurrence:number;attempts:number;limitation?:string;verifiedAt?:number};
@@ -59,6 +59,7 @@ export function validateOwnerCommand(value:unknown):value is OwnerCommand{
 export function validateEngineeringCommand(value:unknown):boolean{
  if(!record(value)||typeof value.id!=='string'||!/^owner_[a-zA-Z0-9_-]{1,100}$/.test(value.id))return false;
  const key=(v:unknown)=>typeof v==='string'&&/^[A-Za-z0-9_.:-]{1,160}$/.test(v);
+ if(value.type==='record_handover')return Object.keys(value).sort().join(',')==='id,type';
  if(value.type==='mission_close'){
   const e=value.externalEvidence;if(!Object.keys(value).every(k=>['id','type','missionId','state','externalEvidence'].includes(k))||!key(value.missionId)||!['COMPLETE','INCOMPLETE','BLOCKED_EXTERNAL','OWNER_ACTION_REQUIRED'].includes(String(value.state))||!record(e))return false;
   if(Object.keys(e).sort().join(',')!==['backendSha','frontendSha','backendDeploymentId','frontendDeploymentId','ciRunIds','preservationDigest','readbackProof','desktopProof','mobileProof','collisionProof','selfFailureProof'].sort().join(','))return false;

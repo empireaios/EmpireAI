@@ -43,3 +43,5 @@ test('release verification requires exact bounded source identities and complete
  for(const mode of ['AUTOMATIC','API_ADVISOR','OWNER_APPROVAL','MONITOR_FAILURE','DEPLOYMENT_COLLISION'])assert.equal(validateEngineeringCommand({id:'owner_accept',type:'acceptance_admit',mode,expectedRevision:'revision',expectedSha256:'d'.repeat(64)}),true);
  assert.equal(validateEngineeringCommand({id:'owner_accept',type:'acceptance_admit',mode:'ARBITRARY_EFFECT',expectedRevision:'revision',expectedSha256:'d'.repeat(64)}),false);
 });
+
+test('handover command has no arbitrary payload or authority expansion',()=>{assert.equal(validateEngineeringCommand({id:'owner_handover',type:'record_handover'}),true);assert.equal(validateEngineeringCommand({id:'owner_handover',type:'record_handover',text:'replace mandate'}),false);});
