@@ -30613,7 +30613,7 @@ export class PillowHost {
             };
             session.conversationHistory.push(assistantTurn);
             if (reasoningOnly) productionReasoningState()?.capture(input.workspaceId, session.sessionId, input.correlationId, input.message, message);
-            if(reasoningOnly && kind==='llm' && !reasoningFailure && !degradedUsed){try{capturePillowIntelligence(input.workspaceId,input.correlationId,message);}catch{logger.warn({requestId},'Intelligence commissioning refused');}}
+            if(reasoningOnly && !investigation && kind==='llm' && !reasoningFailure && !degradedUsed){try{capturePillowIntelligence(input.workspaceId,input.correlationId,message);}catch{logger.warn({requestId},'Intelligence commissioning refused');}}
             if (reasoningOnly && materialExecutiveRequest(input.message) && institutionalContext && kind==='llm' && !reasoningFailure && !degradedUsed) {
                 try { productionMemory()?.captureDecision(input.workspaceId,{request:input.correlationId,session:session.sessionId,question:input.message,answer:message,influences:institutionalContext.retrievedIds,evidence:investigation?investigationEvidence.slice(0,12):(intelligenceContext?.evidence??[]).slice(0,4).map(e=>({id:e.id,hash:e.digest,observedAt:e.observedAt,source:e.capabilityId}))}); }
                 catch { logger.warn({requestId},'Institutional decision capture failed; transcript retained'); }
