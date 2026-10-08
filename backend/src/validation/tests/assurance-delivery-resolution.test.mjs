@@ -14,7 +14,7 @@ test('only exact independently bound successor closure resolves retained operati
  const failed={requestId:'failed',workspaceId:w,sessionId:'session',status:'FAILED_FATAL',failureClass:'APPLICATION_FAILURE',updatedAt:new Date(now-7200000).toISOString(),finalResult:{message:'Failed'}};
  const successor={requestId:'successor',workspaceId:w,sessionId:'session',status:'COMPLETED',finalResult:{message:'Answer'}};
  const mission={id:'followup',status:'COMPLETE',requestId:'successor',predecessors:['failed'],predecessorProof:[{id:'failed',hash:hash({status:failed.status,failureClass:failed.failureClass,finalResult:failed.finalResult,responseText:'Failed'})}],assessment:{requestId:'successor',answer:'Answer',sha256:hash('Answer'),at:new Date(now-3600000).toISOString()},closure:{at:new Date(now-3000000).toISOString(),owner:'owner',predecessorsPreserved:true,advisorReadback:{requestId:'successor',assessmentHash:hash('Answer'),attestedBy:'AUTHENTICATED_OWNER'}}};
- const reason=path.join(dir,'reasoning.sqlite'),requests=path.join(dir,'pillow-request-receipts.sqlite'),intelligence=path.join(dir,'intelligence.sqlite');
+ const reason=path.join(dir,'pillow-reasoning.sqlite'),requests=path.join(dir,'pillow-request-receipts.sqlite'),intelligence=path.join(dir,'intelligence.sqlite');
  let db=new DatabaseSync(reason);db.exec('CREATE TABLE transcripts(workspace TEXT,session TEXT,turns TEXT)');db.close();
  db=new DatabaseSync(requests);db.exec('CREATE TABLE receipts(workspace TEXT,body TEXT)');for(const r of [failed,successor])db.prepare('INSERT INTO receipts VALUES(?,?)').run(w,JSON.stringify(r));db.close();
  db=new DatabaseSync(intelligence);db.exec('CREATE TABLE objects(workspace TEXT,kind TEXT,body TEXT)');db.close();
@@ -28,6 +28,13 @@ test('only exact independently bound successor closure resolves retained operati
    Object.assign(mission,structuredClone(original));mutate(mission);save();assert.equal((await check()).status,'FAIL');
   }
   Object.assign(mission,original);save();failed.finalResult.message='Changed';assert.equal((await check()).status,'FAIL');
+  // Terminal requests can have no result while their exact failure notice is
+  // retained in the independent transcript used by the historical closure.
+  failed.finalResult=null;
+  let edit=new DatabaseSync(requests);edit.prepare('UPDATE receipts SET body=? WHERE body LIKE ?').run(JSON.stringify(failed),'%"requestId":"failed"%');edit.close();
+  edit=new DatabaseSync(reason);edit.prepare('INSERT INTO transcripts VALUES(?,?,?)').run(w,'session',JSON.stringify([{role:'assistant',requestId:'failed',content:'Failure notice'}]));edit.close();
+  mission.predecessorProof=[{id:'failed',hash:hash({status:failed.status,failureClass:failed.failureClass,finalResult:null,responseText:'Failure notice'})}];save();assert.equal((await check()).status,'PASS');
+  edit=new DatabaseSync(reason);edit.exec('DELETE FROM transcripts');edit.close();assert.equal((await check()).status,'FAIL');
   fs.unlinkSync(intelligence);await assert.rejects(check());
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
