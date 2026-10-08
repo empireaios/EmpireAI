@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {AssuranceStore,REQUIRED_DOMAINS} from '../../assurance/independent-assurance.mjs';
-import {closureHealthBlockers} from '../../assurance/closure-health.mjs';
+import {closureHealthBlockers,currentMissionDomains} from '../../assurance/closure-health.mjs';
 test('closure requires current independent coverage, no unresolved severe incident, and no active release',()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'closure-')),filename=path.join(dir,'assurance.sqlite');
  const s={monitor:{fresh:true},paused:{paused:false},incidents:[],lease:null};
@@ -17,4 +17,16 @@ test('closure requires current independent coverage, no unresolved severe incide
   assert.ok(closureHealthBlockers({...s,monitor:{fresh:false}},filename,420000).includes('CURRENT_MONITOR_UNVERIFIED'));
   assert.ok(closureHealthBlockers(s,filename,720000).includes('INDEPENDENT_COVERAGE_NOT_VERIFIED'));
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
+test('future Work scope is not a healthy claim or an exemption for actual discrepancies',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'closure-scope-')),filename=path.join(dir,'assurance.sqlite');
+ const state={monitor:{fresh:true},paused:{paused:false},incidents:[],lease:null};
+ const db=new AssuranceStore(filename);
+ try{
+  const checks=Object.fromEntries(REQUIRED_DOMAINS.map(d=>[d,{status:currentMissionDomains.includes(d)?'PASS':'NOT_CHECKED'}]));
+  db.begin('first',300000,300000);assert.equal(db.complete('first',300001,checks).healthy,false);
+  assert.deepEqual(closureHealthBlockers(state,filename,420000),[]);
+  db.begin('second',600000,600000);db.complete('second',600001,{...checks,'money-transactions':{status:'FAIL'}});
+  assert.ok(closureHealthBlockers(state,filename,720000).includes('INDEPENDENT_DISCREPANCY_UNRESOLVED'));
+ }finally{db.close();fs.rmSync(dir,{recursive:true,force:true});}
 });
