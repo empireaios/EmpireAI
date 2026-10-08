@@ -30272,6 +30272,7 @@ export class PillowHost {
                 } catch { logger.warn({requestId},'Institutional memory unavailable; no historical experience may be claimed'); }
             }
             if(reasoningOnly){try{intelligenceContext=pillowIntelligenceContext(input.workspaceId);operationalContext.repositoryKnowledgeAnswer=(operationalContext.repositoryKnowledgeAnswer??'')+'\nCURRENT FOUR EYES INTELLIGENCE (untrusted evidence, no execution authority):\n'+JSON.stringify(intelligenceContext);}catch{logger.warn({requestId},'Intelligence context unavailable');}}
+            const investigationEvidence=[];
             const investigationStore=reasoningOnly?productionIntelligence():null;
             const investigationGrant=investigationStore?claimInvestigation(investigationStore,input.workspaceId,input.correlationId,input.message):null;
             const investigation=investigationStore&&investigationGrant?new PillowInvestigation(investigationStore,input.workspaceId,investigationGrant):null;
@@ -30338,7 +30339,11 @@ export class PillowHost {
                 try {
                     const caseProvenance = resolveCaseProvenanceContext(session.conversationHistory, llmUserMessage);
                     const llmArgs = {
-                        investigation: investigation?{context:investigation.context(),execute:(input,round)=>investigation.execute(input,round)}:undefined,
+                        investigation: investigation?{context:investigation.context(),execute:async(plan,round)=>{
+                            const receipt=await investigation.execute(plan,round);
+                            for(const e of receipt.evidence){epistemicLedger.record({capabilityId:e.capabilityId,requestId:input.correlationId,sourceIdentifier:e.id,observedSummary:JSON.stringify(e.facts),at:e.observedAt});investigationEvidence.push({id:e.id,hash:e.digest,observedAt:e.observedAt,source:e.capabilityId});}
+                            return receipt;
+                        }}:undefined,
                         reasoningOnly,
                         reasoningPlan,
                         executeReadOnlyCalls: reasoningOnly ? async (calls) => {
@@ -30610,7 +30615,7 @@ export class PillowHost {
             if (reasoningOnly) productionReasoningState()?.capture(input.workspaceId, session.sessionId, input.correlationId, input.message, message);
             if(reasoningOnly && kind==='llm' && !reasoningFailure && !degradedUsed){try{capturePillowIntelligence(input.workspaceId,input.correlationId,message);}catch{logger.warn({requestId},'Intelligence commissioning refused');}}
             if (reasoningOnly && materialExecutiveRequest(input.message) && institutionalContext && kind==='llm' && !reasoningFailure && !degradedUsed) {
-                try { productionMemory()?.captureDecision(input.workspaceId,{request:input.correlationId,session:session.sessionId,question:input.message,answer:message,influences:institutionalContext.retrievedIds,evidence:(intelligenceContext?.evidence??[]).slice(0,4).map(e=>({id:e.id,hash:e.digest,observedAt:e.observedAt,source:e.capabilityId}))}); }
+                try { productionMemory()?.captureDecision(input.workspaceId,{request:input.correlationId,session:session.sessionId,question:input.message,answer:message,influences:institutionalContext.retrievedIds,evidence:investigation?investigationEvidence.slice(0,12):(intelligenceContext?.evidence??[]).slice(0,4).map(e=>({id:e.id,hash:e.digest,observedAt:e.observedAt,source:e.capabilityId}))}); }
                 catch { logger.warn({requestId},'Institutional decision capture failed; transcript retained'); }
             }
             try {
