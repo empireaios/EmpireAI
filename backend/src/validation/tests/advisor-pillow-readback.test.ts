@@ -22,7 +22,7 @@ test('Pillow newest discovery, chronology, exact complete text, failure state, p
   {role:'user',content:'Failed investigation',timestamp:'2026-10-08T01:09:10Z',requestId:'pcr_failed'},
   {role:'assistant',content:'Provider inference failed',timestamp:'2026-10-08T01:09:11Z',requestId:'pcr_failed'}]);
  insert('other','private','2026-10-09T00:00:00Z',[{role:'assistant',content:'Private secret discussion',requestId:'pcr_private'}]);db.close();
- const rec={requestId:'pcr_good',sessionId:'z-new',workspaceId:'ws',createdAt:'2026-10-08T01:09:08Z',updatedAt:'2026-10-08T01:09:09Z',status:'COMPLETED',failureClass:'BRAIN_SUCCESS',finalResult:{message:answer},observability:{resultPersistedAt:'2026-10-08T01:09:09Z'}} as DurableChatRequest;
+ const rec={inputHash:'synthetic',idempotencyKey:'synthetic',ts:'2026-10-08T01:09:09Z',attemptCount:1,activeWorker:null,brainResult:null,deliveryState:'RETRIEVED',messagePreview:'Synthetic fixture',requestId:'pcr_good',sessionId:'z-new',workspaceId:'ws',createdAt:'2026-10-08T01:09:08Z',updatedAt:'2026-10-08T01:09:09Z',status:'COMPLETED',failureClass:'BRAIN_SUCCESS',finalResult:{message:answer},observability:{resultPersistedAt:'2026-10-08T01:09:09Z'}} as DurableChatRequest;
  archivePillowRequest(rec);archivePillowRequest({...rec,requestId:'pcr_failed',status:'FAILED_FATAL',failureClass:'BRAIN_FATAL',finalResult:null});archivePillowRequest({...rec,workspaceId:'other',requestId:'pcr_private'});
  const intel=new DatabaseSync(path.join(dir,'intelligence.sqlite'));intel.exec('CREATE TABLE jobs(workspace TEXT,body TEXT);CREATE TABLE objects(workspace TEXT,kind TEXT,body TEXT)');
  intel.prepare('INSERT INTO jobs VALUES(?,?)').run('ws',JSON.stringify({id:'job1',requester:'PILLOW:pcr_good',status:'COMPLETED',evidence:['e1']}));
