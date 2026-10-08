@@ -1,3 +1,4 @@
+import {registerFinancialCentre} from '../finance/runtime.js';
 import { installAssuranceRuntime, readAdvancedAssurance } from '../assurance/runtime.js';
 import { registerAdvisorRoutes } from "../advisor/routes.js";
 import { registerOwnerCommissioningReadback } from "./owner-commissioning-readback.js";
@@ -633,6 +634,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   registerTier0DurableReadRoutes(app, authenticate);
   registerOwnerCommissioningReadback(app, authenticate);
+  registerFinancialCentre(app, authenticate);
   installAssuranceRuntime(app);
   registerAdvisorRoutes(app, authenticate);
 

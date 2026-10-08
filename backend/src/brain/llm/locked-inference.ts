@@ -1,3 +1,4 @@
+import {ownerProviderLimit} from '../../finance/financial-centre.js';
 import {advisorActionFormat} from '../../assurance/advisor-format.js';
 import { finalResponseText } from "./response-final-text.js";
 import {investigationOutputFormat} from '../../intelligence/model-output.js';
@@ -73,6 +74,8 @@ export function reserveInference(filename: string, microUsd: number, now = Date.
     const providerUsed=db.prepare("SELECT COALESCE(SUM(c.reserved_micro_usd),0) AS n FROM calls c LEFT JOIN call_providers p ON p.call_id=c.id WHERE COALESCE(p.provider,'openai')=?").get(policy.provider)?.n;
     if (typeof providerUsed!=='number'||!Number.isSafeInteger(providerUsed)||providerUsed<0||!Number.isSafeInteger(providerUsed+microUsd)||
       (policy.ceiling===null ? policy.provider!=='openai' : !Number.isSafeInteger(policy.ceiling)||policy.ceiling<1||providerUsed+microUsd>policy.ceiling)) throw Error('Inference provider budget exhausted');
+    const ownerLimit=ownerProviderLimit(policy.provider);
+    if(ownerLimit!==null){const monthly=db.prepare("SELECT COALESCE(SUM(c.reserved_micro_usd),0) AS n FROM calls c LEFT JOIN call_providers p ON p.call_id=c.id WHERE COALESCE(p.provider,'openai')=? AND substr(c.timestamp,1,7)=?").get(policy.provider,new Date(now).toISOString().slice(0,7))?.n;if(typeof monthly!=='number'||!Number.isSafeInteger(monthly)||monthly+microUsd>ownerLimit)throw Error('Owner configured monthly provider limit exhausted');}
     const id=randomUUID();
     db.prepare('INSERT INTO calls(id,timestamp,model,reserved_micro_usd,status) VALUES(?,?,?,?,?)').run(id,new Date(now).toISOString(),policy.model,microUsd,'reserved_uncertain');
     db.prepare('INSERT INTO call_providers VALUES(?,?,?)').run(id,policy.provider,policy.requestKey??null);

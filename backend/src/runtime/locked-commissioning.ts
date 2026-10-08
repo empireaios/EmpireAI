@@ -11,6 +11,7 @@ export function installLockedCommissioning(app: FastifyInstance): void {
   const allowed = new Set(['/auth/login','/auth/logout','/api/pillow/chat','/api/pillow/session',
     '/api/pillow/mission-runtime/create-mission','/api/pillow/mission-runtime/history',
     // Fixed isolated Assurance records only; each route still enforces founder authentication.
+    '/api/owner/finance','/api/owner/finance/calculate/economics','/api/owner/finance/calculate/forecast',
     '/api/pillow/assurance/control','/api/pillow/assurance-demo/inject','/api/pillow/assurance-demo/correct',
     '/advisor/mcp','/advisor/oauth/register','/advisor/oauth/token',
     '/api/owner/advisor/consent','/api/owner/advisor/revoke',
