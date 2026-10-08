@@ -1,0 +1,46 @@
+name: Assurance owner browser contract
+on:
+  pull_request:
+    paths:
+      - 'empireai-web/**'
+      - '.github/workflows/assurance-owner-browser.yml'
+permissions:
+  contents: read
+jobs:
+  owner-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Install locked frontend and supported Chromium runtime
+        working-directory: empireai-web
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Build owner interface
+        working-directory: empireai-web
+        run: npm run build
+      - name: Verify mobile and desktop contracts on loopback fixtures
+        working-directory: empireai-web
+        shell: bash
+        run: |
+          set -euo pipefail
+          node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3123 > "$RUNNER_TEMP/assurance-ui-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --silent --fail http://127.0.0.1:3123/login > /dev/null; then break; fi
+            sleep 1
+          done
+          node --test e2e/assurance-owner.test.mjs
+      - name: Preserve browser server diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: assurance-owner-browser-server
+          path: ${{ runner.temp }}/assurance-ui-server.log
