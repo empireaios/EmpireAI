@@ -1,3 +1,7 @@
+import {before,after} from 'node:test';
+const realClock=Date.now;
+before(()=>{Date.now=()=>Date.parse('2026-10-01T14:00:00Z');});
+after(()=>{Date.now=realClock;});
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import fs from 'node:fs';
@@ -112,4 +116,8 @@ test('Pillow OpenAI headroom reserves 10000 tokens and keeps concise answers abo
   assert.ok(read(file).reduce((s,r)=>s+Number(r.reserved_micro_usd),0)>40_000_000);
   await assert.rejects(completeLockedInference({...request,maxTokens:10001}),/output bound refused/);assert.equal(calls,3);
  }finally{globalThis.fetch=originalFetch;for(const key of Object.keys(process.env))if(!(key in old))delete process.env[key];Object.assign(process.env,old);fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('expired production pricing remains fail-closed before any reservation',()=>{
+ assert.throws(()=>reserveInference('/nonexistent/never-created.sqlite',1,Date.parse('2026-10-08T00:00:00Z')),/pricing\/window unavailable/);
 });

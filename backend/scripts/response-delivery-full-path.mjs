@@ -31,6 +31,10 @@ let providerCalls=0,externalConnections=0,effectCalls=0,currentMode='answer';
 const originalConnect=net.Socket.prototype.connect;
 const originalFetch=globalThis.fetch;
 const originalInfo=console.info;
+// Historical pricing fixture only. Production retains its expiry gate.
+// Advance the simulated clock so timeout checks still progress normally.
+const actualNow=Date.now,clockStart=actualNow();
+Date.now=()=>Date.parse('2026-10-01T14:00:00Z')+actualNow()-clockStart;
 const categories={};
 const completed=[];
 try {
@@ -165,7 +169,7 @@ try {
   console.log(JSON.stringify(result));
   closeDatabase();
 } finally {
-  globalThis.fetch=originalFetch;console.info=originalInfo;
+  globalThis.fetch=originalFetch;console.info=originalInfo;Date.now=actualNow;
   await primary?.close();await worker?.close();redis?.disconnect();
   net.Socket.prototype.connect=originalConnect;
   if(server?.exitCode===null){const exit=new Promise(resolve=>server.once('exit',resolve));server.kill('SIGTERM');await exit;}
