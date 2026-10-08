@@ -1,3 +1,7 @@
+import {before,after} from 'node:test';
+const realClock=Date.now;
+before(()=>{Date.now=()=>Date.parse('2026-10-01T14:00:00Z');});
+after(()=>{Date.now=realClock;});
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import fs from 'node:fs';
