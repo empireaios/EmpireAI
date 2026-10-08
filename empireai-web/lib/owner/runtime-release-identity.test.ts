@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {expectedBackendRevision,verifyOwnerRuntime} from './runtime-identity.mjs';
 
 test('owner verification requires the exact release and every locked readiness invariant',()=>{
- assert.equal(expectedBackendRevision,'d0d07771c5f64fb363ff2e00e35eb461d898fb14');
+ assert.equal(expectedBackendRevision,'c546af129ed00cd0f84afe2c066b24685ccfacac');
  const identity={deploy:{gitCommitSha:expectedBackendRevision}};
  const state={ready:true,birth:'NOT_BORN',commerce:'LOCKED',operational:false,readinessScope:'transport_and_storage_only'};
  assert.equal(verifyOwnerRuntime(identity,state),true);
