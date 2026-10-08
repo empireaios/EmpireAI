@@ -1,3 +1,4 @@
+import {advisorActionFormat} from '../../assurance/advisor-format.js';
 import { finalResponseText } from "./response-final-text.js";
 import {investigationOutputFormat} from '../../intelligence/model-output.js';
 import {readProviderFailure, type ProviderFailureDetail} from './inference-readback.js';
@@ -12,12 +13,17 @@ export const LOCKED_MODEL = 'gpt-6.1-sol';
 import { COMMISSIONING_CEILING_MICRO_USD } from "./commissioning-inference-budget.js";
 export const CEILING_MICRO_USD = COMMISSIONING_CEILING_MICRO_USD;
 // Official OpenAI pricing reverified 2026-10-08; see docs/candidate001/pricing-review.md.
-// Other providers retain their existing review deadline. Renewal requires price review;
+// Anthropic/Gemini reverified 2026-10-08; see docs/advanced-assurance/pricing-review.md.
 // neither renewal nor key/model changes reset the lifetime commissioning ledger.
-const PRICE_EXPIRES = Date.parse('2026-10-08T00:00:00Z');
+const PRICE_EXPIRES = Date.parse('2026-10-15T00:00:00Z');
 const OPENAI_PRICE_EXPIRES = Date.parse('2026-10-15T00:00:00Z');
 const STARTS = Date.parse('2026-09-30T16:00:00Z');
 const ENDS = Date.parse('2026-10-31T16:00:00Z');
+/** Authoritative local admission policy, never a provider price/invoice claim. */
+export function readLockedPricingPolicy(now=Date.now()) {
+ return ['openai','anthropic','gemini'].map(provider=>{const expiresAt=provider==='openai'?OPENAI_PRICE_EXPIRES:PRICE_EXPIRES;return {provider,expiresAt:new Date(expiresAt).toISOString(),status:now>=expiresAt?'EXPIRED':expiresAt-now<86400000?'EXPIRING':'CURRENT',source:'reviewed-local-admission-policy',automaticRenewal:false};});
+}
+
 export const lockedInferenceProfile = () => process.env.EMPIRE_RUNTIME_PROFILE === 'LOCKED_COMMISSIONING_V1';
 
 export function inferenceLedger<T>(filename: string, action: (db: DatabaseSync) => T): T {
@@ -57,7 +63,7 @@ export function inferenceLedgerPath(): string {
   return path.join(root,'commissioning','openai-october-2026.sqlite');
 }
 export function reserveInference(filename: string, microUsd: number, now = Date.now(), policy: {provider:string;model:string;ceiling:number|null;requestKey?:string} = {provider:'openai',model:LOCKED_MODEL,ceiling:CEILING_MICRO_USD}): string {
-  const priceExpires = policy.provider==='openai' && policy.model===LOCKED_MODEL ? OPENAI_PRICE_EXPIRES : PRICE_EXPIRES;
+  const priceExpires = policy.provider==='openai' && policy.model===LOCKED_MODEL ? OPENAI_PRICE_EXPIRES : ((policy.provider==='anthropic'&&policy.model==='claude-sonnet-5-5')||(policy.provider==='gemini'&&policy.model==='gemini-3.8-flash')) ? PRICE_EXPIRES : 0;
   if (!Number.isFinite(now) || now < STARTS || now >= ENDS || now >= priceExpires || !Number.isSafeInteger(microUsd) || microUsd<=0) throw Error('Inference pricing/window unavailable');
   return ledger(filename, db => {
     db.exec('CREATE TABLE IF NOT EXISTS call_providers (call_id TEXT PRIMARY KEY, provider TEXT NOT NULL, request_key TEXT) STRICT');
@@ -91,7 +97,7 @@ export async function completeLockedInference(request:LLMCompletionRequest):Prom
   const input=request.messages.map(({role,content,phase})=>({role,content,...(role==='assistant'?{phase:phase??'final_answer'}:{})}));
   // Text-only UTF-8 bytes bound token count conservatively, plus framing. No
   // images, files, tools, stored conversation, implicit previous response or retries.
-  const textFormat=request.investigationPhase?{format:investigationOutputFormat(request.investigationPhase)}:undefined;
+  const textFormat=request.advisorTask?{format:advisorActionFormat}:request.investigationPhase?{format:investigationOutputFormat(request.investigationPhase)}:undefined;
   const inputBound=Buffer.byteLength(JSON.stringify(input),'utf8')+(textFormat?Buffer.byteLength(JSON.stringify(textFormat),'utf8'):0)+4096+input.length*512;
   if(inputBound>1_000_000)throw Error('Inference input exceeds priced bound');
   // The legacy Pillow 2,000-token allocation is OpenAI reasoning headroom,

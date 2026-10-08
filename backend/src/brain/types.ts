@@ -59,6 +59,7 @@ export type LLMMessage = {
 };
 
 export type LLMCompletionRequest = {
+  advisorTask?: boolean;
   investigationPhase?: 'plan' | 'review' | 'assessment';
   capability?: 'reasoning' | 'analysis' | 'summarization' | 'critique';
   /** Client-side cancellation only; provider charges can remain uncertain. */

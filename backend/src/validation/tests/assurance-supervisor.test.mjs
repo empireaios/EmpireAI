@@ -38,3 +38,8 @@ test('actual inspector restarts, reports missing durable cycles and stops prompt
   }
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
+test('repeated child failures exhaust bounded restart budget',async()=>{
+ const children=[],events=[];
+ const stop=superviseAssurance({cwd:'/safe',env:{PATH:'/bin'},retryMs:1,maxRestarts:1,onEvent:e=>events.push(e),spawnImpl:()=>{const child=new EventEmitter();child.kill=()=>{};children.push(child);return child;}});
+ try{children[0].emit('exit',1,null);await new Promise(r=>setTimeout(r,10));assert.equal(children.length,3);children[2].emit('exit',1,null);await new Promise(r=>setTimeout(r,10));assert.equal(children.length,3);assert.ok(events.some(e=>e.event==='assurance_restart_quarantined'));}finally{stop();}
+});
