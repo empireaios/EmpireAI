@@ -75,3 +75,24 @@ normal review/merge/fenced release are required before production acceptance.
 Production disposition and mission completion must be read from actual server
 receipts after release. This design document is not evidence that any incident
 has closed or either mission is COMPLETE.
+
+## Production correlation discovery, 2026-10-09 17:08 UTC
+
+PR102 deployed as fd07adbac72604170c26d5601e93f0ecb2234ab2, Railway
+06e54504-5e23-4740-ae5a-2b03e6116616, under fence16. The reader refused
+administrative closure: the actual original ledger request_key is
+5553bffbbf280e6f92c67bf0135ca4e8dde341b46e0663bbc99174c441bbc3eb,
+not the hash of transcript request ID 7de0aba7-e62a-443a-b567-d1e735679d9f.
+The row independently confirms failed_uncertain, 288479 microUSD held and null
+usage, response ID, estimate and invoice. Row SHA-256:
+1a6d22221756a8a428b115d55ffea2807c9fd479afc425a09ea5fb0d2157e5b6.
+
+Historical source cfc4365f explains the distinction: routePrompt generated a
+new transcript request ID but passed input.correlationId into the provider
+adapter and ReasoningState.capture. The retained pending_learning row therefore
+provides the exact conversation-to-transport link. The follow-up reader must
+match its hashed correlation to the ledger key and dedupe/route receipt; match
+the exact original user and failure text against the original transcript; and
+retain hashes of both records. Temporal proximity alone cannot authorize closure.
+Missing, corrupt, ambiguous or mismatched binding keeps the incident blocking.
+All prior financial, history, current-monitoring and completion conditions remain.

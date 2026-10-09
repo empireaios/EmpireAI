@@ -2,13 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';import os from 'node:os';import path from 'node:path';
 import {createHash} from 'node:crypto';import {DatabaseSync} from 'node:sqlite';
-import {historicalGemini as policy,historicalProviderDisposition,historicalProviderHistoryCompatible} from '../../assurance/historical-provider.mjs';
+import {historicalGemini as policy,historicalRequestText,historicalFailureText,historicalProviderDisposition,historicalProviderHistoryCompatible} from '../../assurance/historical-provider.mjs';
 import {readProviderHealth} from '../../assurance/provider-health.mjs';
 import {AssuranceControlPlane} from '../../assurance/control-plane.mjs';
 import {currentMissionDomains} from '../../assurance/closure-health.mjs';
 import {operatingScopeDisposition,scopeHistoryCompatible} from '../../assurance/operating-scope.mjs';
 const w=policy.workspace,now=Date.parse('2026-10-09T16:30:00Z');
-const key=createHash('sha256').update(w+'\0'+policy.requestId).digest('hex');
+const transportId='original-transport-distinct-from-transcript';
+const key=createHash('sha256').update(w+'\0'+transportId).digest('hex');
 function fixture(){
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'historical-provider-')),file=path.join(root,'ledger.sqlite'),db=new DatabaseSync(file);
  db.exec('CREATE TABLE calls(id TEXT PRIMARY KEY,timestamp TEXT,model TEXT,reserved_micro_usd INTEGER,status TEXT,usage_json TEXT,estimated_micro_usd INTEGER,provider_response_id TEXT,invoice_actual_micro_usd INTEGER); CREATE TABLE call_providers(call_id TEXT PRIMARY KEY,provider TEXT,request_key TEXT); CREATE TABLE inference_requests(id TEXT PRIMARY KEY,timestamp TEXT); PRAGMA application_id=1162430793; PRAGMA user_version=1;');
@@ -19,22 +20,28 @@ function fixture(){
  const row=db.prepare('SELECT c.*,p.provider,p.request_key FROM calls c JOIN call_providers p ON p.call_id=c.id WHERE c.id=?').get(policy.callId),{usage_json,...record}=row;
  const route={schema:'locked-inference-operator-readback-v1',at:'2026-10-02T11:17:59.000Z',requestKey:key,capability:'summarization',attempts:[{provider:'gemini',model:policy.model,outcome:'temporary_refusal',httpStatus:503}],records:[{...record,usage:null,reservationReleased:false}],heldMicroUsd:policy.reservedMicroUsd+200};
  const routeFile=file+'.route-'+key+'.json';fs.writeFileSync(routeFile,JSON.stringify(route));fs.writeFileSync(file+'.initialized','original marker');
+ const requestFile=path.join(root,'pillow-reasoning.sqlite'),requests=new DatabaseSync(requestFile);
+ requests.exec('CREATE TABLE pending_learning(id TEXT PRIMARY KEY,workspace TEXT,session TEXT,request TEXT,created TEXT,evidence TEXT,status TEXT); CREATE TABLE transcripts(workspace TEXT,session TEXT,turns TEXT);');
+ requests.prepare('INSERT INTO pending_learning VALUES(?,?,?,?,?,?,?)').run(createHash('sha256').update(JSON.stringify([w,transportId])).digest('hex'),w,policy.sessionId,transportId,'2026-10-02T11:17:59.333Z',JSON.stringify({source:'conversation',trust:'untrusted_observation',user:historicalRequestText,answer:historicalFailureText,grantsAuthority:false}),'pending_owner_review');
+ requests.prepare('INSERT INTO transcripts VALUES(?,?,?)').run(w,policy.sessionId,JSON.stringify([{role:'user',requestId:policy.transcriptRequestId,timestamp:'2026-10-02T11:17:14.706Z',content:historicalRequestText},{role:'assistant',requestId:policy.transcriptRequestId,timestamp:'2026-10-02T11:17:59.329Z',content:historicalFailureText}]));requests.close();
  const context={profile:'LOCKED_COMMISSIONING_V1',observedAt:now,coverage:{due:now-1000,receipt:{checks:Object.fromEntries(currentMissionDomains.map(d=>[d,{status:'PASS',...(d==='pillow-omissions'?{inventory:{complete:true,pending:0}}:{})}]))}}};
  const probe=()=>{const evidence=readProviderHealth(file,['openai','anthropic','gemini'],now);return {id:'provider_configuration',capability:'provider_configuration',classification:'provider_configuration',status:evidence.status,summary:'Passive receipts',evidence,scopeContext:context};};
- return {root,file,db,route,routeFile,context,probe,cleanup(){db.close();fs.rmSync(root,{recursive:true,force:true});}};
+ return {root,file,db,route,routeFile,requestFile,context,probe,cleanup(){db.close();fs.rmSync(root,{recursive:true,force:true});}};
 }
 test('exact retained refusal is classified uncertain; original full reservation and evidence remain unchanged',()=>{
- const f=fixture();try{const before=fs.readFileSync(f.file),routeBefore=fs.readFileSync(f.routeFile),p=f.probe(),d=historicalProviderDisposition(w,p,f.context,now);
+ const f=fixture();try{const before=fs.readFileSync(f.file),requestBefore=fs.readFileSync(f.requestFile),routeBefore=fs.readFileSync(f.routeFile),p=f.probe(),d=historicalProviderDisposition(w,p,f.context,now);
  assert.equal(d.disposition,'ADMINISTRATIVELY_RESOLVED_HISTORICAL_FAILURE');assert.equal(d.proof.classification,'C_UNCERTAIN_PROVIDER_EXECUTION_OR_FINANCIAL_SETTLEMENT');assert.equal(d.proof.ledger.reserved_micro_usd,288479);
  for(const field of ['providerSuccess','invoiceVerified','reservationReleased'])assert.equal(d[field],false);
  assert.equal(d.financialSettlement,'UNCERTAIN');assert.equal(d.currentProviderHealth,'UNVERIFIED');assert.equal(p.status,'DEGRADED');
+ assert.equal(d.proof.requestBinding.requestId,transportId);assert.equal(d.proof.requestBinding.transcriptRequestId,policy.transcriptRequestId);assert.notEqual(transportId,policy.transcriptRequestId);
  assert.equal(operatingScopeDisposition(p,f.context,now),null);assert.equal(scopeHistoryCompatible([{at:now,body:{probe:p}}],p),false);
- assert.deepEqual(fs.readFileSync(f.file),before);assert.deepEqual(fs.readFileSync(f.routeFile),routeBefore);
+ assert.deepEqual(fs.readFileSync(f.file),before);assert.deepEqual(fs.readFileSync(f.routeFile),routeBefore);assert.deepEqual(fs.readFileSync(f.requestFile),requestBefore);
  }finally{f.cleanup();}
 });
 test('missing, corrupt, mismatched, settled, released or unbound historical sources cannot authorize disposition',()=>{
  const mutations=[
  f=>fs.unlinkSync(f.routeFile),f=>fs.writeFileSync(f.routeFile,'invalid'),
+ f=>fs.unlinkSync(f.requestFile),f=>fs.writeFileSync(f.requestFile,'corrupt'),
  f=>{fs.renameSync(f.routeFile,f.routeFile+'.target');fs.symlinkSync(f.routeFile+'.target',f.routeFile);},
  f=>f.db.prepare('DELETE FROM inference_requests').run(),
  f=>f.db.prepare('UPDATE calls SET reserved_micro_usd=1 WHERE id=?').run(policy.callId),
@@ -46,6 +53,9 @@ test('missing, corrupt, mismatched, settled, released or unbound historical sour
  f=>{f.route.requestKey='other';fs.writeFileSync(f.routeFile,JSON.stringify(f.route));},
  ];
  for(const mutate of mutations){const f=fixture();try{mutate(f);const p=f.probe();assert.equal(historicalProviderDisposition(w,p,f.context,now),null);}finally{f.cleanup();}}
+});
+test('a temporal transcript association alone cannot substitute for the original correlation binding',()=>{
+ for(const sql of ["DELETE FROM pending_learning","UPDATE pending_learning SET request='wrong-transport'","UPDATE pending_learning SET session='wrong-session'","UPDATE pending_learning SET evidence='{}'","UPDATE pending_learning SET status='approved'","UPDATE transcripts SET turns='[]'"]){const f=fixture();try{const db=new DatabaseSync(f.requestFile);db.exec(sql);db.close();assert.equal(historicalProviderDisposition(w,f.probe(),f.context,now),null);}finally{f.cleanup();}}
 });
 test('all seven current monitoring domains, omission completeness and current source truth remain mandatory',()=>{
  const f=fixture();try{for(const domain of currentMissionDomains){const c=structuredClone(f.context);c.coverage.receipt.checks[domain].status='FAIL';assert.equal(historicalProviderDisposition(w,f.probe(),c,now),null);}
