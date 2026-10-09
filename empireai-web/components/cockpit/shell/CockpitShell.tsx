@@ -53,7 +53,7 @@ export function CockpitShell({ children }: { children: React.ReactNode }) {
   const sidebarOffset = sidebar.collapsed ? "lg:pl-[72px]" : "lg:pl-64";
   const pathname = usePathname();
   const pillowPage = pathname === "/cockpit/development/pillow";
-  if (pathname.startsWith("/cockpit/finance") || pathname === "/cockpit" || pathname === "/cockpit/assurance" || pathname === "/cockpit/assurance/mobile-acceptance" || pathname === "/cockpit/advisor" || pathname === "/cockpit/eyes" || pathname.startsWith("/cockpit/products") || pathname === "/cockpit/commerce/transactions") return <OwnerShell>{children}</OwnerShell>;
+  if (pathname === "/cockpit/commerce/governed" || pathname.startsWith("/cockpit/finance") || pathname === "/cockpit" || pathname === "/cockpit/assurance" || pathname === "/cockpit/assurance/mobile-acceptance" || pathname === "/cockpit/advisor" || pathname === "/cockpit/eyes" || pathname.startsWith("/cockpit/products") || pathname === "/cockpit/commerce/transactions") return <OwnerShell>{children}</OwnerShell>;
   return (
     <CockpitInteractionProvider>
       <CockpitAuthGuard>

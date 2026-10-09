@@ -37,7 +37,7 @@ jobs:
             if curl --silent --fail http://127.0.0.1:3123/login > /dev/null; then break; fi
             sleep 1
           done
-          node --test e2e/assurance-owner.test.mjs e2e/finance-owner.test.mjs
+          node --test e2e/assurance-owner.test.mjs e2e/finance-owner.test.mjs e2e/governed-commerce-owner.test.mjs
       - name: Preserve browser server diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
