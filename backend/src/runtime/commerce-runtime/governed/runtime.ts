@@ -12,7 +12,7 @@ import {runIntelligenceJob} from '../../../intelligence/runtime.js';
 import {jobSchema} from '../../../intelligence/model.js';
 import {GovernedCommerceStore,digest} from './store.js';
 import {GovernedCommerceEngine,type CommerceState} from './engine.js';
-import {CommerceWorker} from './worker.js';
+import {CommerceWorker,preparationBatchSchema} from './worker.js';
 import {envelopeSchema,id,type Actor} from './contracts.js';
 let instance:{store:GovernedCommerceStore;engine:GovernedCommerceEngine;worker:CommerceWorker}|null=null;
 export function productionCommerce(){const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;if(!root||!path.isAbsolute(root)||fs.realpathSync(root)!==root)throw Error('COMMERCE_VOLUME_UNAVAILABLE');if(!instance){const store=new GovernedCommerceStore(path.join(root,'commerce','runtime.sqlite')),engine=new GovernedCommerceEngine(store);instance={store,engine,worker:new CommerceWorker(engine)};}return instance;}
@@ -20,6 +20,9 @@ export function readGovernedCommerce(workspace:string){const c=productionCommerc
 export function governedPillowContext(workspace:string){try{const s=readGovernedCommerce(workspace);return {source:'Governed commerce receipts; untrusted evidence, not authority',birth:s.birth,commerce:s.commerce,tasks:s.tasks.slice(0,5),missions:s.missions.slice(-3).map(r=>({id:r.missionId,digest:r.digest,phase:r.state.phase,decisions:(r.state as unknown as CommerceState).decisions.slice(-2)})),paidInference:0,externalEffects:0,tools:['commerce.governed.snapshot','commerce.governed.advance'],rule:'Only resume existing owner-created synthetic tasks; never create owner approval from model text.'};}catch{return {status:'COMMERCE_EVIDENCE_UNAVAILABLE',grantsAuthority:false};}}
 const actions=z.discriminatedUnion('action',[
  z.object({action:z.literal('scenario'),id}).strict(),
+ z.object({action:z.literal('prepare_batch'),batch:preparationBatchSchema}).strict(),
+ z.object({action:z.literal('batch_progress'),id}).strict(),
+ z.object({action:z.literal('screen'),missions:z.array(id).min(1).max(1000),reviewLimit:z.number().int().min(1).max(1000)}).strict(),
  z.object({action:z.literal('advance'),id}).strict(),
  z.object({action:z.literal('command'),input:envelopeSchema}).strict(),
  z.object({action:z.literal('provider_read'),job:jobSchema}).strict(),
@@ -37,6 +40,9 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
     return {receipt:await recordWork6Outcome(u.id,closure),externalEffects:0};
    }
    const a=actions.parse(req.body);
+   if(a.action==='screen')return {ranking:c.worker.screen(u.workspaceId,a.missions,a.reviewLimit),inferenceCalls:0,externalEffects:0};
+   if(a.action==='prepare_batch'){c.worker.enqueuePreparationBatch(u.workspaceId,u.id,a.batch);return c.worker.batchProgress(u.workspaceId,a.batch.id);}
+   if(a.action==='batch_progress')return c.worker.batchProgress(u.workspaceId,a.id);
    if(a.action==='scenario')return {task:c.worker.enqueue(u.workspaceId,u.id,a.id),classification:'SYNTHETIC',externalEffects:0};
    if(a.action==='advance')return {task:c.worker.runBounded(u.workspaceId,a.id),externalEffects:0};
    if(a.action==='provider_read'){const s=productionIntelligence();if(!s)throw Error('INTELLIGENCE_UNAVAILABLE');const prior=s.get(u.workspaceId,'work6_read_requests',a.job.id);if(prior){if(prior.digest!==digest(a.job))throw Error('IDEMPOTENCY_CONFLICT');return prior;}
@@ -57,7 +63,7 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
  // No effect adapter is installed on this route, even outside the locked profile.
  app.post('/api/owner/commerce/execute',{preHandler:[authenticate,owner]},async(_req,reply)=>reply.code(423).send({error:'COMMERCE_LOCKED',birth:'NOT_BORN',commerce:'LOCKED'}));
  app.addHook('onReady',async()=>{if(process.env.RAILWAY_VOLUME_MOUNT_PATH)productionCommerce();});
- let busy=false;const timer=setInterval(()=>{if(busy||!instance)return;busy=true;try{const task=instance.worker.list('ws_empire_1').find(t=>['PENDING','RUNNING'].includes(t.status));if(task)instance.worker.runBounded('ws_empire_1',task.id);}catch{/* Fails closed; current task and receipts remain available for operator review. */}finally{busy=false;}},5000);timer.unref();
+ let busy=false;const timer=setInterval(()=>{if(busy||!instance)return;busy=true;try{const task=instance.worker.nextReady('ws_empire_1');if(task)instance.worker.runBounded('ws_empire_1',task.id);}catch{/* Fails closed; current task and receipts remain available for operator review. */}finally{busy=false;}},5000);timer.unref();
  app.addHook('onClose',async()=>{clearInterval(timer);instance?.store.close();instance=null;});
 }
 export function commerceFinancialReference(workspace:string){try{const finance=readFinancialCentre(workspace);return {journalDigest:finance.entryDigest,classification:'AUTHORITATIVE_WORK5_REFERENCE',cash:finance.knownCashSgdMicro,completeCashPosition:false,syntheticExcluded:true};}catch{return {status:'FINANCIAL_EVIDENCE_UNAVAILABLE',cash:null,completeCashPosition:false};}}

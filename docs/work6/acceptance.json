@@ -57,10 +57,12 @@
         "backend/src/runtime/commerce-runtime/governed/worker.ts"
       ],
       "tests": [
-        "backend/src/validation/tests/work6-commerce.test.ts"
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
       ],
       "evidenceIds": [
-        "local:work6-final-tests:31-pass"
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
       ],
       "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
       "authority": "PRE_BIRTH_EVIDENCE_ONLY",
@@ -78,10 +80,12 @@
         "backend/src/runtime/commerce-runtime/governed/evidence-bridge.ts"
       ],
       "tests": [
-        "backend/src/validation/tests/work6-commerce.test.ts"
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
       ],
       "evidenceIds": [
-        "local:work6-final-tests:31-pass"
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
       ],
       "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
       "authority": "PRE_BIRTH_EVIDENCE_ONLY",
@@ -142,10 +146,12 @@
       ],
       "tests": [
         "backend/src/validation/tests/work6-commerce.test.ts",
-        "backend/src/validation/tests/work6-provider-contracts.test.ts"
+        "backend/src/validation/tests/work6-provider-contracts.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
       ],
       "evidenceIds": [
-        "local:work6-final-tests:31-pass"
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
       ],
       "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
       "authority": "PRE_BIRTH_EVIDENCE_ONLY",
@@ -163,10 +169,12 @@
         "backend/src/runtime/commerce-runtime/governed/engine.ts"
       ],
       "tests": [
-        "backend/src/validation/tests/work6-commerce.test.ts"
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
       ],
       "evidenceIds": [
-        "local:work6-final-tests:31-pass"
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
       ],
       "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
       "authority": "PRE_BIRTH_EVIDENCE_ONLY",
@@ -328,10 +336,12 @@
         "backend/src/runtime/commerce-runtime/governed/runtime.ts"
       ],
       "tests": [
-        "backend/src/validation/tests/work6-commerce.test.ts"
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
       ],
       "evidenceIds": [
-        "local:work6-final-tests:31-pass"
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
       ],
       "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
       "authority": "PRE_BIRTH_EVIDENCE_ONLY",
@@ -393,10 +403,12 @@
       ],
       "tests": [
         "backend/src/validation/tests/work6-commerce.test.ts",
-        "backend/src/validation/tests/work6-provider-contracts.test.ts"
+        "backend/src/validation/tests/work6-provider-contracts.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
       ],
       "evidenceIds": [
-        "local:work6-final-tests:31-pass"
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
       ],
       "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
       "authority": "PRE_BIRTH_EVIDENCE_ONLY",
@@ -525,5 +537,14 @@
     "frontendTypecheck": "PASS",
     "frontendLint": "PASS",
     "browser": "Local Chromium download failed; mandatory pinned hosted Chromium workflow pending"
+  },
+  "scaleVerification": {
+    "tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "scope": "Synthetic 1000-candidate queue, top-100 deterministic selection, restart, duplicate prevention, partial repair, unknown/stale capacity and existing-ASIN mapping",
+    "providerNetworkEffects": 0,
+    "paidInference": 0,
+    "productionAcceptance": "PENDING"
   }
 }

@@ -21,12 +21,14 @@ export type Outcome = z.infer<typeof outcomeSchema>;
 export type CanonicalOrder = z.infer<typeof orderSchema>;
 export const actorSchema=z.object({id,workspace:id,role:z.enum(['OWNER','PROPOSER','REVIEWER','EXECUTOR'])}).strict();
 export type Actor=z.infer<typeof actorSchema>;
+export const capacitySchema=z.object({account:id,marketplace:id,mode:z.enum(['EXISTING_ASIN_OFFER','NEW_ASIN']),asin:z.string().regex(/^[A-Z0-9]{10}$/).nullable(),newAsinRemaining:z.number().int().nonnegative().nullable(),unsoldRemaining:z.number().int().nonnegative().nullable(),requestsPerSecond:z.number().positive().max(100).nullable(),eligibility:z.enum(['ELIGIBLE','DENIED','UNKNOWN']),provenance:provenanceSchema}).strict();
 export const commandSchema=z.discriminatedUnion('type',[
  z.object({type:z.literal('research'),candidate:candidateSchema}).strict(),
  z.object({type:z.literal('review'),digest:z.string().length(64),decision:z.enum(['APPROVE','REJECT']),reason:z.string().min(3).max(1000)}).strict(),
  z.object({type:z.literal('approve'),digest:z.string().length(64),expiresAt:date,maxExposure:amount}).strict(),
  z.object({type:z.literal('revoke'),reason:z.string().min(3).max(1000)}).strict(),
  z.object({type:z.literal('listing'),listing:listingSchema}).strict(),
+ z.object({type:z.literal('publication_intent'),capacity:capacitySchema}).strict(),
  z.object({type:z.literal('intake'),order:orderSchema,paymentEvidence:id}).strict(),
  z.object({type:z.literal('prepare'),orderId:id,offer:offerSchema}).strict(),
  z.object({type:z.literal('intercept'),orderId:id,result:z.enum(['ACCEPTED','REJECTED','TIMEOUT','PARTIAL']),acceptedQuantity:z.number().int().nonnegative(),providerId:id}).strict(),
