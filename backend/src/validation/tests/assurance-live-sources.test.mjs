@@ -41,7 +41,7 @@ test('independent durable sources detect missing delivery without modifying sour
     row.updatedAt=new Date(now).toISOString();
     assert.equal(reconcileSnapshot(await collectDurableOmissions({redis,filename,now}),now,120000).missing,1);
     row.observability.resultPersistedAt=new Date(now-1000).toISOString();
-    assert.deepEqual(await collectDurableOmissions({redis,filename,now}),null);
+    assert.equal((await collectDurableOmissions({redis,filename,now})).inventory.eligible,0);
   }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
 
@@ -57,7 +57,43 @@ test('production resultJson and distinct transcript IDs join without fabricated 
   const before=fs.readFileSync(filename);assert.equal((await check()).status,'PASS');assert.deepEqual(fs.readFileSync(filename),before);
   row.resultJson=JSON.stringify({...result,message:'Corrupted answer'});assert.equal((await check()).status,'FAIL');
   row.resultJson=JSON.stringify({message:'Exact answer'});const legacy=await check();assert.equal(legacy.status,'NOT_CHECKED');assert.equal(legacy.unbound,1);assert.equal(legacy.missing,0);
-  row.resultJson=JSON.stringify(result);row.observability.resultPersistedAt=new Date(now-1000000).toISOString();assert.equal(await collectDurableOmissions({redis,filename,now}),null);
+  row.resultJson=JSON.stringify(result);row.observability.resultPersistedAt=new Date(now-1000000).toISOString();assert.equal((await collectDurableOmissions({redis,filename,now})).inventory.eligible,0);
   row.observability.resultPersistedAt=new Date(now+1).toISOString();await assert.rejects(collectDurableOmissions({redis,filename,now}));
+ }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+test('complete empty inventories are auditable across quiet cycles and restarts; uncertain sources never pass',async()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-empty-')),filename=path.join(dir,'reasoning.sqlite'),now=2000000;
+ const db=new DatabaseSync(filename);db.exec('CREATE TABLE transcripts(workspace TEXT,session TEXT,turns TEXT)');db.close();
+ const redis={scan:async()=>['0',[]],get:async()=>null};
+ try{
+  const before=fs.readFileSync(filename);
+  for(const clock of [now,now+300000,now+86400000]){
+   const snapshot=await collectDurableOmissions({redis,filename,now:clock});
+   const verdict=reconcileSnapshot(snapshot,clock,120000);
+   assert.equal(verdict.status,'PASS');assert.equal(verdict.authoritativeCount,0);
+   assert.equal(verdict.inventory.complete,true);assert.equal(verdict.inventory.pages,1);
+   assert.equal(verdict.inventory.eligible,0);assert.equal(verdict.inventory.retainedKeys,0);
+   assert.equal(reconcileSnapshot(snapshot,clock+120001,120000).status,'STALE');
+  }
+  assert.deepEqual(fs.readFileSync(filename),before);
+  for(const scan of [async()=>{throw Error('redis down');},async()=>['1',[]],async()=>[0,[]],async()=>['0',null],async()=>['0',['bad']]])await assert.rejects(collectDurableOmissions({redis:{...redis,scan},filename,now}));
+  await assert.rejects(collectDurableOmissions({redis,filename:filename+'-missing',now}));
+  const other=new DatabaseSync(filename+'-wrong');other.close();
+  await assert.rejects(collectDurableOmissions({redis,filename:filename+'-wrong',now}));
+ }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+test('malformed identities and duplicate delivered answers cannot certify an empty or matched window',async()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'assurance-invalid-')),filename=path.join(dir,'reasoning.sqlite'),now=2000000;
+ const db=new DatabaseSync(filename);db.exec('CREATE TABLE transcripts(workspace TEXT,session TEXT,turns TEXT)');
+ db.prepare('INSERT INTO transcripts VALUES(?,?,?)').run('ws_empire_1','s',JSON.stringify(Array(2).fill({role:'assistant',requestId:'host-r',content:'answer'})));db.close();
+ const row={workspaceId:'ws_empire_1',sessionId:'s',requestId:'r',status:'COMPLETED',observability:{resultPersistedAt:new Date(now-60000).toISOString()},finalResult:{message:'answer',transcriptRequestId:'host-r'}};
+ const redis={scan:async()=>['0',['pillow:chatreq:v2:r']],get:async()=>JSON.stringify(row)};
+ try{
+  await assert.rejects(collectDurableOmissions({redis,filename,now}),/Duplicate/);
+  row.observability.resultPersistedAt=new Date(now-1000000).toISOString();row.requestId='wrong';
+  await assert.rejects(collectDurableOmissions({redis,filename,now}),/identity/);
+  row.requestId='r';row.status='UNKNOWN';await assert.rejects(collectDurableOmissions({redis,filename,now}),/status/);
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });

@@ -14,20 +14,25 @@ export async function collectDurableOmissions({ redis, filename, resolutionDirec
   const keys=new Set();let cursor='0',pages=0;
   do {
     const result=await redis.scan(cursor,'MATCH','pillow:chatreq:v2:*','COUNT',100);
+    if(!Array.isArray(result)||result.length!==2||typeof result[0]!=='string'||!/^\d+$/.test(result[0])||!Array.isArray(result[1])||result[1].some(k=>typeof k!=='string'||!k.startsWith('pillow:chatreq:v2:')))throw Error('Request inventory malformed');
     cursor=result[0];for(const key of result[1])keys.add(key);
     if(++pages>100 || keys.size>10000)throw Error('Request inventory exceeds bound');
   }while(cursor!=='0');
   const db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:1000});
-  const authoritative=[],internal=[],bindings=new Set(),resolved=[];let inspected=0,unbound=0;
+  const authoritative=[],internal=[],bindings=new Set(),resolved=[];let inspected=0,unbound=0,pending=0;
   const resolve = resolutionDirectory ? readDeliveryResolutions(resolutionDirectory,'ws_empire_1',now) : () => null;
   try {
     db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; BEGIN');
     if(db.prepare('PRAGMA quick_check').get()?.quick_check!=='ok')throw Error('Reasoning source invalid');
+    // Validate the independent source even when no requests are eligible.
+    db.prepare('SELECT turns FROM transcripts WHERE workspace=? AND session=?').get('ws_empire_1','');
     for(const key of keys){
       const raw=await redis.get(key);if(raw===null)throw Error('Inventory changed during collection');
       if(Buffer.byteLength(raw)>1024*1024)throw Error('Request exceeds bound');
       const r=JSON.parse(raw);
+      if(!r||typeof r.workspaceId!=='string'||!r.workspaceId||typeof r.requestId!=='string'||!r.requestId||key!=='pillow:chatreq:v2:'+r.requestId||typeof r.sessionId!=='string'||!r.sessionId)throw Error('Request identity invalid');
       if(r.workspaceId!=='ws_empire_1')continue;
+      if(!['RECEIVED','ACCEPTED','RUNNING','RETRYABLE','COMPLETED','FAILED_FATAL','FAILED'].includes(r.status))throw Error('Request status invalid');
       if(r.status==='FAILED_FATAL'||r.status==='FAILED'){
         if(key!=='pillow:chatreq:v2:'+r.requestId || typeof r.requestId!=='string' || !r.requestId || typeof r.sessionId!=='string' || !r.sessionId)throw Error('Failed request identity invalid');
         const failedAt=Date.parse(r.updatedAt);
@@ -41,7 +46,7 @@ export async function collectDurableOmissions({ redis, filename, resolutionDirec
         inspected++;
         continue;
       }
-      if(r.status!=='COMPLETED')continue;
+      if(r.status!=='COMPLETED'){pending++;continue;}
       // Delivery reads update updatedAt; only the immutable completion receipt
       // defines this window. Raw Redis retains exact result bytes in resultJson.
       const at=Date.parse(r.observability?.resultPersistedAt);
@@ -68,8 +73,8 @@ export async function collectDurableOmissions({ redis, filename, resolutionDirec
       inspected++;
     }
     db.exec('COMMIT');
-    if(!inspected&&!unbound)return null;
-    return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; terminal failures independently checked against bound successor closures',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal,scopeComplete:unbound===0,unbound,historicalFailuresResolved:resolved.length,resolutionDigest:createHash('sha256').update(JSON.stringify(resolved)).digest('hex')};
+    const inventory={complete:true,pages,retainedKeys:keys.size,eligible:inspected,unbound,pending,windowStart:now-900000,windowEnd:now-30000,terminalFailureScope:'ALL_RETAINED',keyDigest:createHash('sha256').update(JSON.stringify([...keys].sort())).digest('hex'),sqliteIntegrity:'ok'};
+    return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; terminal failures independently checked against bound successor closures',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal,scopeComplete:unbound===0,inventory,unbound,historicalFailuresResolved:resolved.length,resolutionDigest:createHash('sha256').update(JSON.stringify(resolved)).digest('hex')};
   }finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}
 }
 
