@@ -74,3 +74,8 @@
  .middleRow>.card:nth-child(3) h2 svg{color:#197cff;background:#e8f4ff}
  .firstRow .card h2 svg{color:#ffb200;background:#fff9dc}
 }
+
+/* Saved recommendations may contain whole briefs: keep summaries inside the approved cards. */
+.recs li>a{min-width:0;flex:1}
+.recs strong{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;line-height:1.4}
+@media(min-width:1101px){.middleRow>.card{min-height:0;overflow-y:auto}.recs{margin:4px 0}.recs li{padding:6px 2px}}
