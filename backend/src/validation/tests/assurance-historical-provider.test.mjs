@@ -98,3 +98,28 @@ test('older stale-first probe schema needs exact historical Gemini identity and 
  old.evidence.providers[0].reason='FUNCTIONAL_RECEIPT_INVALID';assert.equal(historicalProviderHistoryCompatible(events,current),false);
  }finally{f.cleanup();}
 });
+
+test('legacy configuration-only incidents require exact identities, full schema and retained containment proof',()=>{
+ const f=fixture();try{
+ const current=f.probe(),revision='6826b752906cd2cf0db7da7a9b705cc2c375b8d5';
+ const incident={id:'inc_d4e3fb2e-c767-488c-af75-41419e08455e',revision,probeId:'provider_configuration',capability:'provider_configuration',classification:'provider_configuration',severity:'HIGH',synthetic:false,attempts:0,fingerprint:createHash('sha256').update(JSON.stringify(['provider_configuration','provider_configuration','provider_configuration',revision])).digest('hex')};
+ const old={id:'provider_configuration',capability:'provider_configuration',classification:'provider_configuration',revision,status:'UNVERIFIED',summary:'Configured credentials are not a functional provider-call verification',evidence:{configured:['openai','anthropic','gemini'],inferenceCalls:0}};
+ const history=[{at:now-1000,body:{incident,probe:old}},{at:now-500,body:{incidentId:incident.id,probe:old}}];
+ assert.equal(historicalProviderHistoryCompatible(history,current,incident),true);
+ for(const edit of [x=>x.body.probe.status='FAILED',x=>x.body.probe.status='UNAVAILABLE',x=>x.body.probe.revision='other',x=>x.body.probe.evidence.configured.pop(),x=>x.body.probe.evidence.configured.push('gemini'),x=>x.body.probe.evidence.inferenceCalls=1,x=>x.body.probe.evidence.failure='HTTP_503',x=>x.body.incidentId='other',x=>x.body.probe.summary='unknown']){const h=structuredClone(history);edit(h[1]);assert.equal(historicalProviderHistoryCompatible(h,current,incident),false);}
+ for(const edit of [i=>i.id='other',i=>i.revision='other',i=>i.severity='LOW',i=>i.fingerprint='other',i=>i.attempts=1]){const i=structuredClone(incident);edit(i);assert.equal(historicalProviderHistoryCompatible(history,current,i),false);}
+ for(const edit of [p=>delete p.evidence.historicalReconciliation.requestBinding,p=>p.evidence.historicalReconciliation.requestBinding.verified=false,p=>p.evidence.historicalReconciliation.requestKey='wrong',p=>p.evidence.historicalReconciliation.providerSuccess=true,p=>p.evidence.historicalReconciliation.reservationReleased=true]){const p=structuredClone(current);edit(p);assert.equal(historicalProviderHistoryCompatible(history,p,incident),false);}
+ }finally{f.cleanup();}
+});
+test('legacy configuration lifecycle preserves original HIGH records and every event while retaining current uncertainty',()=>{
+ for(const [id,revision] of [['inc_d4e3fb2e-c767-488c-af75-41419e08455e','6826b752906cd2cf0db7da7a9b705cc2c375b8d5'],['inc_9f3a1a0c-aa84-43e9-a436-91c8ce47e1cc','f0b5322fe9caad3e75f31e8080afd5db7f8c7346']]){
+ const f=fixture(),cp=new AssuranceControlPlane({root:f.root,revision:'new',now:()=>now});try{
+ const incident={id,revision,probeId:'provider_configuration',capability:'provider_configuration',classification:'provider_configuration',severity:'HIGH',synthetic:false,attempts:0,status:'UNRESOLVED',firstAt:now-1000,lastAt:now-500,recurrence:2,fingerprint:createHash('sha256').update(JSON.stringify(['provider_configuration','provider_configuration','provider_configuration',revision])).digest('hex')};
+ const probe={id:'provider_configuration',capability:'provider_configuration',classification:'provider_configuration',revision,status:'UNVERIFIED',summary:'Configured credentials are not a functional provider-call verification',evidence:{configured:['openai','anthropic','gemini'],inferenceCalls:0}};
+ cp.put(w,'incident',id,incident);cp.event(w,'INCIDENT_DETECTED',{incident,probe});cp.event(w,'INCIDENT_OBSERVED',{incidentId:id,probe});
+ const events=cp.db.prepare('SELECT * FROM cp_events ORDER BY seq').all();cp.observe(w,f.probe());const closed=cp.get(w,'incident',id);
+ assert.equal(closed.status,'CLOSED');for(const k of Object.keys(incident).filter(k=>k!=='status'))assert.deepEqual(closed[k],incident[k]);
+ assert.deepEqual(cp.db.prepare('SELECT * FROM cp_events WHERE seq<=? ORDER BY seq').all(events.at(-1).seq),events);assert.equal(closed.historicalDisposition.historyEvidence.count,2);
+ assert.equal(closed.historicalDisposition.providerSuccess,false);assert.equal(closed.historicalDisposition.reservationReleased,false);assert.equal(closed.historicalDisposition.financialSettlement,'UNCERTAIN');assert.equal(f.db.prepare('SELECT reserved_micro_usd FROM calls WHERE id=?').get(policy.callId).reserved_micro_usd,288479);
+ }finally{cp.close();f.cleanup();}}
+});

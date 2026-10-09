@@ -102,8 +102,25 @@ export function historicalProviderDisposition(workspace,probe,context,now){
 
 // Complete immutable history is mandatory. This deliberately does not modify
 // operating-scope's requirement for later functional evidence after real faults.
-export function historicalProviderHistoryCompatible(history,current){
+const legacyConfigurationIncidents=new Map([
+ ['inc_d4e3fb2e-c767-488c-af75-41419e08455e','6826b752906cd2cf0db7da7a9b705cc2c375b8d5'],
+ ['inc_9f3a1a0c-aa84-43e9-a436-91c8ce47e1cc','f0b5322fe9caad3e75f31e8080afd5db7f8c7346'],
+]);
+// These two retained incidents predate receipt-based monitoring. Their complete
+// history must contain only the exact configuration-only schema from their
+// original revisions. Configuration is never treated as generation evidence.
+function legacyConfigurationHistory(history,current,incident){
+ const revision=legacyConfigurationIncidents.get(incident?.id),proof=current?.evidence?.historicalReconciliation;
+ if(!revision||incident.revision!==revision||incident.probeId!=='provider_configuration'||incident.capability!==incident.probeId||incident.classification!==incident.probeId||incident.severity!=='HIGH'||incident.synthetic!==false||incident.attempts!==0||incident.fingerprint!==hash([incident.capability,incident.classification,incident.probeId,revision]))return false;
+ if(proof?.status!=='VERIFIED_CONTAINMENT_EVIDENCE'||proof.policy!==historicalGemini.policy||proof.requestBinding?.verified!==true||typeof proof.requestBinding.requestId!=='string'||proof.requestKey!==correlationHash(proof.requestBinding.requestId)||proof.requestKey!==proof.ledger?.request_key||proof.ledger?.id!==historicalGemini.callId||proof.providerSuccess!==false||proof.reservationReleased!==false||proof.financialSettlement!=='UNCERTAIN')return false;
+ return history.every(event=>{
+  const p=event.body?.probe,e=p?.evidence;
+  return (event.body?.incident?.id??event.body?.incidentId)===incident.id&&p?.revision===revision&&p.id==='provider_configuration'&&p.capability===p.id&&p.classification===p.id&&p.status==='UNVERIFIED'&&p.summary==='Configured credentials are not a functional provider-call verification'&&e&&Object.keys(e).sort().join(',')==='configured,inferenceCalls'&&e.inferenceCalls===0&&Array.isArray(e.configured)&&e.configured.length===3&&[...e.configured].sort().join(',')==='anthropic,gemini,openai';
+ });
+}
+export function historicalProviderHistoryCompatible(history,current,incident){
  if(!history.length||history.length>5000)return false;
+ if(legacyConfigurationHistory(history,current,incident))return true;
  return history.every(event=>{
   const p=event.body?.probe,rows=p?.evidence?.providers;
   if(p?.id!=='provider_configuration'||p.capability!==p.id||p.classification!==p.id||p.status!=='DEGRADED'||!Array.isArray(rows)||rows.length!==3||new Set(rows.map(r=>r.provider)).size!==3)return false;
