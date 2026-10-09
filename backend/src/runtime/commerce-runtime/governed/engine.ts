@@ -38,7 +38,7 @@ export function qualify(c:Candidate,now:number){
  return {qualified:reasons.length===0,reasons,score,confidence:c.evidence.length?valid.length/c.evidence.length:0,economics:e,exposure,available,classification:'SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL',genuinelyProfitable:false};
 }
 export class GovernedCommerceEngine {
- constructor(readonly store:GovernedCommerceStore,readonly clock:()=>number=Date.now){}
+ constructor(readonly store:GovernedCommerceStore,readonly clock:()=>number=Date.now,readonly admission?:(actor:Actor,command:import('./contracts.js').Command,state:CommerceState|null)=>void){}
  execute(actorInput:Actor,input:unknown):Receipt{
   const actor=actorSchema.parse(actorInput),e=envelopeSchema.parse(input);const now=this.clock(),at=new Date(now).toISOString();
   return this.store.transaction(()=>{
@@ -46,7 +46,7 @@ export class GovernedCommerceEngine {
    if(prior){this.store.history(actor.workspace,prior.missionId);if(prior.requestDigest!==requestDigest)fail('IDEMPOTENCY_CONFLICT');return prior;}
    const history=this.store.history(actor.workspace,e.missionId);if(history.length!==e.expectedVersion)fail('VERSION_FENCE_CONFLICT');if(history.length>=500)fail('MISSION_EVENT_LIMIT');
    const last=history.at(-1);let state=last?structuredClone(last.state) as unknown as CommerceState:null;
-   const cmd=e.command;let entities:Array<{kind:EntityKind;id:string}>=[];
+   const cmd=e.command;this.admission?.(actor,cmd,state);let entities:Array<{kind:EntityKind;id:string}>=[];
    const emit=(kind:EntityKind,suffix:string)=>entities.push({kind,id:e.missionId+':'+suffix});
    if(cmd.type==='research'){
     if(actor.role!=='PROPOSER')fail('PROPOSER_REQUIRED');

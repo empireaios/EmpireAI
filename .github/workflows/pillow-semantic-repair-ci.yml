@@ -51,6 +51,9 @@ jobs:
       - name: Work6 governed commerce lifecycle and authority
         run: node --import tsx --test src/validation/tests/work6-commerce.test.ts src/validation/tests/work6-commerce-routes.test.ts src/validation/tests/work6-provider-contracts.test.ts src/validation/tests/work6-scale.test.ts
         working-directory: backend
+      - name: Work7 owner projections and safety policy
+        run: node --import tsx --test src/validation/tests/work7-owner-portfolio.test.ts src/validation/tests/work7-executive.test.ts src/validation/tests/work7-safety.test.ts
+        working-directory: backend
       - name: Work5 financial integrity regressions
         run: node --import tsx --test src/validation/tests/work5-finance.test.ts src/validation/tests/work5-finance-routes.test.ts
         working-directory: backend
