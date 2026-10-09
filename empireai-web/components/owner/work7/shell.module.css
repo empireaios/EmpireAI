@@ -2,3 +2,33 @@
 @media(max-width:900px){.sidebar{width:174px}.workspace{margin-left:174px}.homeTopbar{width:calc(100% - 174px)}.sidebar nav a{font-size:12px;gap:10px}.brand strong{font-size:29px}.main{padding:10px 16px 24px}.search{width:160px}}
 @media(max-width:700px){.sidebar{display:none}.workspace{margin:0}.topbar,.homeTopbar{position:relative;width:100%;background:#f7fcff;padding:8px 12px;min-height:68px;gap:10px}.menuButton{display:block;background:#e6f1ff;border-radius:10px;padding:10px}.mobileBrand{display:block;font-weight:750;margin-right:auto;font-size:17px}.search,.message{display:none}.clock{min-width:0;font-size:9px;padding:6px 8px}.clock strong{font-size:10px}.mobileMenu{display:grid;grid-template-columns:1fr 1fr;padding:12px;gap:8px;background:white;border-bottom:1px solid #c8dced}.mobileMenu a,.mobileMenu button{display:flex;align-items:center;gap:9px;min-height:44px;background:#edf6ff;border-radius:8px;padding:10px;font-size:12px}.main{padding:16px 12px 24px}.footer{padding:16px 12px 86px;font-size:10px}.bottomNav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:50;background:#fcfefff5;backdrop-filter:blur(10px);border-top:1px solid #c3d9ee;padding-bottom:env(safe-area-inset-bottom)}.bottomNav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:60px;font-size:11px}.bottomNav a[aria-current=page]{color:#0759d5;background:#e8f3ff}}
 @media(min-width:701px){.homeTopbar{width:auto;min-width:460px;min-height:58px;top:5px;right:9px;padding:6px 8px;background:#eef6ff;border-radius:20px;gap:12px}.homeTopbar .search{width:210px}.homeTopbar .clock{min-width:135px}}
+
+/* Home-only alignment to the approved reference; legacy pages keep their shell. */
+@media(min-width:1101px){
+ .homeShell{--u:calc(100vw / 1536);font-family:var(--font-inter),Arial,sans-serif}
+ .homeShell .sidebar{width:calc(207 * var(--u));background:#f5fbff url('/work7/approved-home-art.png') left top / 100vw auto no-repeat;border:0}
+ .homeShell .workspace{margin-left:calc(207 * var(--u))}
+ .homeShell .brand{height:calc(149 * var(--u));padding:0;color:transparent}
+ .homeShell .brand svg{opacity:0}.homeShell .brand strong,.homeShell .brand span{opacity:0}
+ .homeShell .sidebar nav{padding:0 calc(10 * var(--u));gap:calc(3 * var(--u));background:linear-gradient(#f6fafe,#faf9f5 70%,#f1f8fe)}
+ .homeShell .sidebar nav a{min-height:calc(44 * var(--u));padding:calc(8 * var(--u)) calc(12 * var(--u));gap:calc(17 * var(--u));font-size:calc(15 * var(--u));line-height:1.2;border-radius:calc(10 * var(--u))}
+ .homeShell .sidebar nav svg{width:calc(22 * var(--u));height:calc(22 * var(--u));stroke-width:1.9;flex-shrink:0}
+ .homeShell .sidebarArt{height:calc(310 * var(--u));margin:0;background:none}
+ .homeShell .signout{background:#eef7ffcc;min-height:36px}
+ .homeShell .homeTopbar{top:calc(14 * var(--u));right:calc(12 * var(--u));padding:0;min-height:0;min-width:0;background:transparent;border-radius:0;gap:calc(15 * var(--u))}
+ .homeShell .search{width:calc(215 * var(--u));padding:calc(6 * var(--u)) calc(12 * var(--u));box-shadow:0 2px 4px #718cbc30;font-size:calc(12 * var(--u))}
+ .homeShell .search input{min-height:calc(23 * var(--u))}
+ .homeShell .message{padding:calc(9 * var(--u));width:calc(38 * var(--u));height:calc(38 * var(--u));display:grid;place-items:center}
+ .homeShell .message svg{width:calc(21 * var(--u));height:calc(21 * var(--u))}
+ .homeShell .clock{min-width:calc(140 * var(--u));padding:calc(8 * var(--u)) calc(12 * var(--u));font-size:calc(10 * var(--u));border-radius:calc(14 * var(--u))}
+ .homeShell .clock strong{font-size:calc(11 * var(--u))}
+}
+
+@media(min-width:1101px){
+ .homeShell .homeTopbar{gap:calc(18 * var(--u))}
+ .homeShell .clock{height:calc(52 * var(--u));background:#fbfdff}
+ .homeShell .attention{position:relative;isolation:isolate}
+ .homeShell .attention:before{content:'';position:absolute;inset:calc(-7 * var(--u));border-radius:50%;background:#eee9fa;z-index:-1}
+ .homeShell .attention svg{fill:#092660;stroke:#092660}
+}
+@media(min-width:1101px){.homeShell .attention:before{display:none}}
