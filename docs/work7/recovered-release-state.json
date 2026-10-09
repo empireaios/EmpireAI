@@ -1,0 +1,989 @@
+{
+  "railway": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Found 2 deployment(s):\n\n- **a3f7200b-5685-47a1-8dd4-c02f2e667388** [SUCCESS]\n  service: 7a25cfc6-7298-480f-91db-1b37871f8cac, env: da94aed2-956b-4903-a886-68a5e9a557c8\n  created: 2026-10-09T08:42:19.258Z by empireaiengine@gmail.com\n  branch work2/backend-release · commit 353ed97 · Merge pull request #95 from empireaios/work6/governed-commerce\n\nWork6: governed commerce execution, durable receipts and locked acceptance\n  regions: sfo\n  can redeploy · can roll back\n- **1c2d4637-f9a2-4bf7-8a07-b394efec159d** [REMOVED]\n  service: 7a25cfc6-7298-480f-91db-1b37871f8cac, env: da94aed2-956b-4903-a886-68a5e9a557c8\n  created: 2026-10-09T05:32:56.797Z by empireaiengine@gmail.com\n  branch work2/backend-release · commit bce4e47 · Merge pull request #94 from empireaios/fix/work5-railway-verifier-scope\n\nWork5: isolate Railway token scope and GraphQL denial\n  regions: sfo\n  can redeploy · can roll back"
+        }
+      ],
+      "structuredContent": {
+        "deployments": [
+          {
+            "id": "a3f7200b-5685-47a1-8dd4-c02f2e667388",
+            "status": "SUCCESS",
+            "createdAt": "2026-10-09T08:42:19.258Z",
+            "updatedAt": "2026-10-09T08:46:43.824Z",
+            "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+            "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+            "url": null,
+            "snapshotId": "558e6ea3-5b5f-470f-a085-dd005d3d15d6",
+            "creator": {
+              "id": "83c5fc23-92e4-43da-acac-3eb02ead2712",
+              "name": null,
+              "email": "empireaiengine@gmail.com"
+            },
+            "canRollback": true,
+            "canRedeploy": true,
+            "regions": [
+              "sfo"
+            ],
+            "meta": {
+              "reason": "deploy",
+              "commitMessage": "Merge pull request #95 from empireaios/work6/governed-commerce\n\nWork6: governed commerce execution, durable receipts and locked acceptance",
+              "commitHash": "353ed974499a2bc78751de0156854117d6185a7d",
+              "branch": "work2/backend-release"
+            }
+          },
+          {
+            "id": "1c2d4637-f9a2-4bf7-8a07-b394efec159d",
+            "status": "REMOVED",
+            "createdAt": "2026-10-09T05:32:56.797Z",
+            "updatedAt": "2026-10-09T08:46:46.774Z",
+            "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+            "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+            "url": null,
+            "snapshotId": "fa0a8989-70bb-483b-a208-1eece486d5a9",
+            "creator": {
+              "id": "83c5fc23-92e4-43da-acac-3eb02ead2712",
+              "name": null,
+              "email": "empireaiengine@gmail.com"
+            },
+            "canRollback": true,
+            "canRedeploy": true,
+            "regions": [
+              "sfo"
+            ],
+            "meta": {
+              "reason": "deploy",
+              "commitMessage": "Merge pull request #94 from empireaios/fix/work5-railway-verifier-scope\n\nWork5: isolate Railway token scope and GraphQL denial",
+              "commitHash": "bce4e47bf749de614630a784b281690b83a88d42",
+              "branch": "work2/backend-release"
+            }
+          }
+        ]
+      },
+      "isError": false
+    }
+  },
+  "vercel": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"result\": {\n    \"deployments\": {\n      \"pagination\": {\n        \"count\": 2,\n        \"next\": 1791524876420,\n        \"prev\": 1791535414904\n      },\n      \"deployments\": [\n        {\n          \"id\": \"dpl_ABSoxkzP1s9mo54FNc14kUyn7osy\",\n          \"name\": \"empireai\",\n          \"url\": \"empireai-gso83lsjs-empireai-os.vercel.app\",\n          \"created\": 1791535414904,\n          \"state\": \"READY\",\n          \"target\": \"production\",\n          \"creator\": {\n            \"uid\": \"OAKeaRWFPyDpeF3FGafAkliz\",\n            \"username\": \"empireaiengine-2061\"\n          },\n          \"meta\": {\n            \"githubCommitRef\": \"b286af22c6e0c4fa0e124596c35a6e7ff217d1ca\",\n            \"githubCommitSha\": \"b286af22c6e0c4fa0e124596c35a6e7ff217d1ca\",\n            \"githubCommitMessage\": \"Merge pull request #96 from empireaios/work6/owner-commerce\\n\\nWork6: authenticated commerce owner operating controls\",\n            \"githubRepo\": \"EmpireAI\",\n            \"githubOrg\": \"empireaios\"\n          },\n          \"inspectorUrl\": \"https://vercel.com/empireai-os/empireai/ABSoxkzP1s9mo54FNc14kUyn7osy\",\n          \"isRollbackCandidate\": true\n        },\n        {\n          \"id\": \"dpl_CutV9MSbPXTgCCSTF4BazTCDPAGT\",\n          \"name\": \"empireai\",\n          \"url\": \"empireai-3v2d6rrxe-empireai-os.vercel.app\",\n          \"created\": 1791524876420,\n          \"state\": \"READY\",\n          \"target\": \"production\",\n          \"creator\": {\n            \"uid\": \"OAKeaRWFPyDpeF3FGafAkliz\",\n            \"username\": \"empireaiengine-2061\"\n          },\n          \"meta\": {\n            \"githubCommitRef\": \"cce91c892a61ed6321cbceb55712e58607de6b6c\",\n            \"githubCommitSha\": \"cce91c892a61ed6321cbceb55712e58607de6b6c\",\n            \"githubCommitMessage\": \"Merge pull request #92 from empireaios/fix/work5-finance-refresh\\n\\nWork 5: refresh financial evidence and pair verifier release identity\",\n            \"githubRepo\": \"EmpireAI\",\n            \"githubOrg\": \"empireaios\"\n          },\n          \"inspectorUrl\": \"https://vercel.com/empireai-os/empireai/CutV9MSbPXTgCCSTF4BazTCDPAGT\",\n          \"isRollbackCandidate\": true\n        }\n      ]\n    }\n  }\n}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "github": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "issues": [
+          {
+            "url": "https://github.com/empireaios/EmpireAI/pull/96",
+            "title": "Work6: authenticated commerce owner operating controls",
+            "issue_number": 96,
+            "body": "Adds the authenticated Work6 governed commerce screen and same-origin owner proxy, with pipeline, suppliers, listings, economics, orders, tracking, remedies, approvals, provider evidence, bounded tasks and immutable receipt visibility. Live execution stays disabled; no provider writes or paid inference.\n\nPaired backend PR #95 is merged at 353ed974499a2bc78751de0156854117d6185a7d. Its merge tree exactly matches tested candidate 6d11042015fd1771d630e3cc9da5cd2133d46156, all four hosted workflows successful. This frontend head fc9d4ee894b50905786df8bdcdb9c272a2fdc05a updates only the runtime identity pin and its contract test from the previously green candidate d65b48d. Focused identity test passed. Required hosted gates, including390px/1440px browser controls, are running on the updated head.\n\nSource security review retained: founder session and same-origin proxy, no client secrets, text-only evidence rendering, bounded JSON actions, explicitly disabled live effects. No human approval claimed. Existing coordinated release lease fence10 is recorded; original volume and224/7/3 financial records must remain preserved. No Work6 COMPLETE or production acceptance claimed before verified release.",
+            "state": null,
+            "user": null,
+            "assignees": null,
+            "labels": null,
+            "milestone": null,
+            "state_reason": null,
+            "comments": null,
+            "created_at": null,
+            "updated_at": null,
+            "closed_at": null,
+            "display_url": "https://github.com/empireaios/EmpireAI/pull/96",
+            "display_title": "Work6: authenticated commerce owner operating controls"
+          },
+          {
+            "url": "https://github.com/empireaios/EmpireAI/pull/95",
+            "title": "Work6: governed commerce execution, durable receipts and locked acceptance",
+            "issue_number": 95,
+            "body": "The existing locked runtime exposes planning and read-only intelligence but needs a governed, durable path through research, independent review, isolated approval, listing preparation, order allocation, intercepted fulfilment, tracking, remedies and outcome-linked reassessment.\n\nThis Work6 candidate extends commerce-runtime with typed canonical Order contracts, immutable native evidence, atomic version fences and restartable bounded tasks. It reuses Work5 economics, Four Eyes provider reads/quotas and Advanced Assurance/Mission Ledger; adds bounded Amazon fee, restriction, product-definition and order reads; exposes authenticated owner controls and Advisor readback. Every commercial effect terminates in interception. NOT_BORN, LOCKED and all seven existing423 routes remain, with a new423 execution route. No provider secrets, subscriptions, paid inference, finance resets or live writes.\n\nValidation:31 focused/affected tests passed, including full persisted synthetic lifecycle, restart after receipt commit, corruption/truncation refusal, partial shipments, timeout reconciliation, expiry/revocation, workspace/owner denials, financial isolation and closure preconditions. Backend typecheck passes. Implementation security review and fixed W6-01–24 matrix are in docs/work6. No production criterion or COMPLETE receipt is claimed yet.\n\nRequired release gates: normal hosted CI and exact-source image build, coordinated owner release lease, original/data and224/7/3 preservation, backend readiness/exact revision, matching frontend browser390/1440 and production release, then verified closure. Rollback remains backend bce4e47bf749de614630a784b281690b83a88d42 and original volume6f8dcd97-59ae-479b-ae6d-199aa476059f. Frontend is prepared separately and will bind the actual backend merge revision.\n\nAuthorised scale clarification (same mission): deterministic saved-candidate reduction, 100/1000 preparation on the existing durable queue, account/marketplace scheduling, backpressure, SKU deduplication, per-item failure repair and distinct existing-ASIN/new-ASIN contracts. Unknown or stale account capacity fails closed; all intents remain synthetic/intercepted. Four new scale tests pass, the 20 affected tests pass, and backend typecheck passes. Work7 clock/KPI/finance and Work8 media/account-capacity handover are in docs/work6/scale-and-owner-handover.md. Exact candidate is 6d11042015fd1771d630e3cc9da5cd2133d46156; fresh hosted gates are running. Original 31 accepted tests and frozen24 criteria retained.",
+            "state": null,
+            "user": null,
+            "assignees": null,
+            "labels": null,
+            "milestone": null,
+            "state_reason": null,
+            "comments": null,
+            "created_at": null,
+            "updated_at": null,
+            "closed_at": null,
+            "display_url": "https://github.com/empireaios/EmpireAI/pull/95",
+            "display_title": "Work6: governed commerce execution, durable receipts and locked acceptance"
+          },
+          {
+            "url": "https://github.com/empireaios/EmpireAI/pull/92",
+            "title": "Work 5: refresh financial evidence and pair verifier release identity",
+            "issue_number": 92,
+            "body": "Targeted Work5 continuation. Add a30-second read-only Financial Centre refresh while visible; pause during writes and after unmount/filter changes, prevent overlapping timer reads, preserve form input and stale-data errors. No financial writes or inference are introduced.\n\nRelease pairing updated to backend PR94 merge bce4e47bf749de614630a784b281690b83a88d42. Railway resolved the branch merge despite the requested candidate pin; git comparison proves the merge code tree identical to tested candidate ad997c4447a9d0b65d545d2ca89f510d922f6a68. Align the frontend before release; no second backend deployment. Deploy frontend only after backend verification and current-head hosted gates. Only the two existing runtime identity literals changed after prior frontend acceptance; focused identity test passes. Existing hosted checks for prior heads5722057e205c508ba9b0b8a45a1c5a827069fe66 and5f98c03b7c10f9ad414c2535cac66612d1143b83 all passed. Current head requires its affected hosted gates.\n\nRetained acceptance: component ESLint, route generation/typecheck, runtime identity and authenticated Chromium390/1440-width contract with clock-based refresh all passed. No unchanged tests are manually repeated.\n\nAgent security review: no new endpoints, dependencies, financial writes, authority or inference. Polling skips hidden pages, cannot overlap itself and cancels superseded state updates. Exact backend identity check is retained.\n\nRetained live mobile/control acceptance: authenticated390x844 production iframe clientWidth/scrollWidth373/373; filters, evidence drill-down, cash, alerts/controls, history and malformed-input rejection worked. Idempotent review replay returned a durable receipt without new journal rows. Scenario base309/optimistic394.8/downside29 SGD profit and30/60/90-day needs139/263/387. Physical phone/touch hardware not claimed. Original persistence acceptance and preservation digests remain retained.",
+            "state": null,
+            "user": null,
+            "assignees": null,
+            "labels": null,
+            "milestone": null,
+            "state_reason": null,
+            "comments": null,
+            "created_at": null,
+            "updated_at": null,
+            "closed_at": null,
+            "display_url": "https://github.com/empireaios/EmpireAI/pull/92",
+            "display_title": "Work 5: refresh financial evidence and pair verifier release identity"
+          },
+          {
+            "url": "https://github.com/empireaios/EmpireAI/pull/94",
+            "title": "Work5: isolate Railway token scope and GraphQL denial",
+            "issue_number": 94,
+            "body": "Continuation of Work5 only. Live denied receipt owner_378bb4cd-36f2-4ace-a8ff-279ddb8beb0d on reviewed deployment 7ea8e42a-33f1-4f59-8073-cef45d3b3cab proves RAILWAY_READ/API_ERROR before any Vercel request. Railway documents that HTTP200 errors include both Not Authorized and internal failures; the previous diagnostic cannot distinguish them.\n\nMap only fixed documented GraphQL error codes and the exact Not Authorized message to safe internal enums. First verify the installed project token is bound to the configured project and environment using Railway's documented projectToken query. No credential values, response bodies, arbitrary error text or authentication headers enter receipts. All existing deployment-history, identity, owner, fence, expiry, replay and immutable-record requirements remain enforced; scope validation adds a fail-closed check.\n\n49 focused verifier/control-plane tests pass, including wrong/missing project/environment scope, provider-text redaction, authorization-denial persistence and unchanged lease fencing. Agent security review completed; normal hosted gates and production diagnostic readback remain required. No credential replacement, paid inference, financial mutations or broad engineering changes.",
+            "state": null,
+            "user": null,
+            "assignees": null,
+            "labels": null,
+            "milestone": null,
+            "state_reason": null,
+            "comments": null,
+            "created_at": null,
+            "updated_at": null,
+            "closed_at": null,
+            "display_url": "https://github.com/empireaios/EmpireAI/pull/94",
+            "display_title": "Work5: isolate Railway token scope and GraphQL denial"
+          },
+          {
+            "url": "https://github.com/empireaios/EmpireAI/pull/93",
+            "title": "Work 5: retain bounded deployment verifier diagnostics",
+            "issue_number": 93,
+            "body": "Existing Work5 continuation. The deployed control plane discards the underlying verifier exception, leaving EXTERNAL_DEPLOYMENT_UNVERIFIED with no actionable cause. Record only allowlisted provider stage and bounded HTTP/internal codes in the immutable denied receipt. Never retain response bodies, headers, URLs, token values or arbitrary error messages. No reconciliation admission checks, ownership, fencing, expiry, replay or authority rules change.\n\nFocused verification: 41 verifier/control-plane tests pass, including provider response redaction, malicious diagnostic sanitization, unchanged blocking lease and immutable replay. Agent security review completed; mandatory hosted gates and live diagnostic readback remain required. This is diagnostic repair only, not a claim that the underlying production verification failure is resolved. Preserve the existing successful deployment, original /data and all Work5 acceptance evidence. No paid inference or financial mutations.",
+            "state": null,
+            "user": null,
+            "assignees": null,
+            "labels": null,
+            "milestone": null,
+            "state_reason": null,
+            "comments": null,
+            "created_at": null,
+            "updated_at": null,
+            "closed_at": null,
+            "display_url": "https://github.com/empireaios/EmpireAI/pull/93",
+            "display_title": "Work 5: retain bounded deployment verifier diagnostics"
+          }
+        ]
+      },
+      "isError": false
+    }
+  },
+  "assurance": {
+    "retrievedAt": "2026-10-09T12:19:46.261Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "assurance",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "Bounded operational summaries; exact immutable records and lossless chunk pagination; no inference",
+    "data": {
+      "schema": "assurance-readback-v2",
+      "controlPlane": {
+        "status": "DEGRADED",
+        "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+        "observedAt": 1791548386272,
+        "summary": {
+          "activeIncidents": 18,
+          "automaticallyRecovered": 14,
+          "ownerActionRequired": 0
+        },
+        "monitor": {
+          "fresh": true,
+          "heartbeat": {
+            "component": "monitor",
+            "at": 1791548380132,
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d"
+          }
+        },
+        "paused": {
+          "paused": false,
+          "ownerId": "usr_a91d007ebcebe18d",
+          "at": 1791449129583,
+          "reason": "Owner decision"
+        },
+        "lease": {
+          "id": "lease_94189c4b-c8f0-414e-aaf8-8818fe45a93b",
+          "ownerId": "usr_a91d007ebcebe18d",
+          "revision": "bce4e47bf749de614630a784b281690b83a88d42",
+          "scope": [
+            "backend",
+            "frontend"
+          ],
+          "fence": 11,
+          "status": "RECONCILED",
+          "createdAt": 1791531011178,
+          "heartbeatAt": 1791531011178,
+          "expiresAt": 1791534611178,
+          "reconciledAt": 1791535847395,
+          "evidence": {
+            "workspace": "ws_empire_1",
+            "ownerId": "usr_a91d007ebcebe18d",
+            "leaseId": "lease_94189c4b-c8f0-414e-aaf8-8818fe45a93b",
+            "fence": 10,
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "noActiveChanges": true,
+            "verifiedAt": 1791535846015,
+            "source": "AUTHENTICATED_RAILWAY_AND_VERCEL_API",
+            "railwayDeployment": "a3f7200b-5685-47a1-8dd4-c02f2e667388",
+            "vercelDeployment": "dpl_ABSoxkzP1s9mo54FNc14kUyn7osy",
+            "frontendRevision": "b286af22c6e0c4fa0e124596c35a6e7ff217d1ca",
+            "railwayRecords": 77,
+            "vercelRecords": 453,
+            "evidenceId": "9c479b48860accc0577a5d650c349ff29acfd6210809214080f9b60b5ffff619"
+          }
+        },
+        "activeAcceptance": null,
+        "components": [
+          {
+            "recordId": "probe:approval_quarantine",
+            "sha256": "2ec0b53088c13e9c5e0c09dcb41d4ab60f791ceba7ed22b3cc5fb36dcf4d42c6",
+            "id": "approval_quarantine",
+            "status": "HEALTHY",
+            "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+            "recoveryId": "rec_aba363af-456e-49b3-ade3-72f97ebb46b2",
+            "runbookId": "quarantine_reconciliation",
+            "verifiedAt": 1791448736750,
+            "summary": "Completed one-shot owner approval acceptance; retained recovery verified",
+            "capability": "approval_quarantine",
+            "observedAt": 1791448657814
+          },
+          {
+            "recordId": "probe:assurance-primary-monitor",
+            "sha256": "6d6902f0f752acd2e2abed898b474550f523a87fa401570f80053800370fcf8b",
+            "id": "assurance-primary-monitor",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Primary Assurance monitor is current",
+            "capability": "assurance-monitor",
+            "observedAt": 1791548372552
+          },
+          {
+            "recordId": "probe:durable_control",
+            "sha256": "e0fbf5d86d28da8af063263a8ff2e2e42a86e772de0474bf0fd5a2fd64af4489",
+            "id": "durable_control",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Operational event store is readable",
+            "capability": "durable_control",
+            "observedAt": 1791548380097
+          },
+          {
+            "recordId": "probe:financial_evidence",
+            "sha256": "213ab4a5fc94836d6ccdcd0a2aaece13f7b85a1ef1c10cd12251c8b9490f7097",
+            "id": "financial_evidence",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Financial journal readable; billing and cash verification remain record-specific",
+            "capability": "financial_evidence",
+            "observedAt": 1791548380087
+          },
+          {
+            "recordId": "probe:four_eyes_reads",
+            "sha256": "9c0e424fb551746fe02618c0d57bea69316e5729319ec514da98f621cd354aa2",
+            "id": "four_eyes_reads",
+            "status": "DEGRADED",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Per-capability saved reads distinguish failed, stale, missing and external evidence; no monitoring API calls",
+            "capability": "four_eyes_reads",
+            "observedAt": 1791548380113
+          },
+          {
+            "recordId": "probe:four_eyes_scheduler",
+            "sha256": "157767a4507a7f5e47351d3a255000552fd2bb4530fc9cb4ce3e49d9b8235989",
+            "id": "four_eyes_scheduler",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Durable Four Eyes scheduler progress",
+            "capability": "four_eyes_scheduler",
+            "observedAt": 1791548380111
+          },
+          {
+            "recordId": "probe:governed_commerce",
+            "sha256": "f773b1571e8db1d2530fa1693cc1eeefd3cd2fae390e940963c3b30781b11a9f",
+            "id": "governed_commerce",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Immutable commerce evidence and bounded synthetic task progress",
+            "capability": "governed_commerce",
+            "observedAt": 1791548380081
+          },
+          {
+            "recordId": "probe:independent_inspector",
+            "sha256": "266ff1db17b52e3353d39874ee7395386ed60b10056663318ad3467d847d3e6c",
+            "id": "independent_inspector",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "External inspector heartbeat",
+            "capability": "independent_inspector",
+            "observedAt": 1791548380109
+          },
+          {
+            "recordId": "probe:model_server_contract",
+            "sha256": "73c8f8d1238c7dba3a7db0a9f102eff17af3df7814d44773bbd924fa3ed9cf2a",
+            "id": "model_server_contract",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Model/server scalar, enum, required-field and collection boundary compatibility",
+            "capability": "model_server_contract",
+            "observedAt": 1791548380091
+          },
+          {
+            "recordId": "probe:pricing_review",
+            "sha256": "d96126a0c13cce0cdf87662a5fb60250dc2cd7652e54bf272e21a1a774272cd5",
+            "id": "pricing_review",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Local inference price review expiry",
+            "capability": "pricing_review",
+            "observedAt": 1791548380103
+          },
+          {
+            "recordId": "probe:provider_configuration",
+            "sha256": "f99110331d74543475dd6798399f0bbe05b639cf1a67d9fc0a22d638a0cecdf3",
+            "id": "provider_configuration",
+            "status": "DEGRADED",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Passive provider response receipts; application delivery is checked independently",
+            "capability": "provider_configuration",
+            "observedAt": 1791548380107
+          },
+          {
+            "recordId": "probe:reconciliation_view",
+            "sha256": "b73172a77dd9684632d9dc137b173a19511cbcbeb4c2297334663b503c7cfd1f",
+            "id": "reconciliation_view",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "runbookId": "rebuild_reconciliation",
+            "summary": "Derived operational evidence reconciliation",
+            "capability": "reconciliation_view",
+            "observedAt": 1791548380127
+          },
+          {
+            "recordId": "probe:response_evidence_linkage",
+            "sha256": "0fcbbc5d71dad1bdfd3edf5679cebe2dc5c22cb30254bda46fc0c774c13ee019",
+            "id": "response_evidence_linkage",
+            "status": "HEALTHY",
+            "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+            "summary": "Cross-source request/assessment/evidence binding",
+            "capability": "response_evidence_linkage",
+            "observedAt": 1791548380120
+          }
+        ]
+      },
+      "advisor": {
+        "mechanism": "API_ADVISOR",
+        "directInteractiveWakeup": "UNVERIFIED",
+        "readBridge": "AVAILABLE",
+        "verifiedTaskIds": [
+          "advisor_inc_81e71808-7d77-403f-92ca-c723f5504ad2"
+        ],
+        "invocation": "VERIFIED_RETAINED_ACCEPTANCE",
+        "writeback": "VERIFIED_DURABLE_RESULT",
+        "pending": 0,
+        "completed": 1,
+        "tasks": [
+          {
+            "id": "advisor_inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+            "incidentId": "inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+            "status": "COMPLETED",
+            "stage": "RESULT_RETURNED",
+            "updated": "2026-10-08T08:36:03.034Z",
+            "error": null
+          }
+        ]
+      },
+      "authority": {
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED"
+      },
+      "reconciliation": {
+        "schema": "empire-reconciliation-v1",
+        "indexStatus": "VERIFIED",
+        "sourceDigest": "49e7cbaaa55e7cfd315e0fdfee13f2ccb7d606076933d6c966e68f04de86c768",
+        "derivedSha256": "b4312d3586a90516d4acd7b745e1c61c1840b8d4dea7796f8dc0b9178dd49fc2",
+        "conflicts": 0,
+        "exactRead": "reconciliation"
+      },
+      "records": [
+        {
+          "recordId": "acceptance_history:owner_786864fa-d97f-411a-8f93-675b74cae336",
+          "sha256": "8f8f240f64bf1970419be4d5d9753f69a654b10511416e4b30ba560261aa44df",
+          "id": "owner_786864fa-d97f-411a-8f93-675b74cae336",
+          "at": 1791448764870,
+          "type": "acceptance_admit",
+          "mode": "MONITOR_FAILURE",
+          "status": "ACCEPTED",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+          "monitorIncidentId": "inc_60b9c9e0-b916-4017-abe4-eb5c73553f7f",
+          "completed": true,
+          "verifiedAt": 1791448916768,
+          "preservation": {
+            "verified": true,
+            "status": "ORIGINAL_RECORDS_PRESERVED",
+            "originalCount": 34,
+            "currentCount": 34,
+            "addedCount": 0,
+            "manifestSha256": "1d8bbba8b9918bd9bf5f7ac066d9ab3b2d78d56ec53f4808d130e23ca2185524",
+            "mismatches": []
+          }
+        },
+        {
+          "recordId": "acceptance_history:owner_baabe720-edc6-4d8c-ad0a-cd178ad7ef21",
+          "sha256": "1b5439e4cec31a83e16c5e31cd518aa334ba2335df39fc9e4e334bf383166f7d",
+          "id": "owner_baabe720-edc6-4d8c-ad0a-cd178ad7ef21",
+          "at": 1791448947125,
+          "type": "acceptance_admit",
+          "mode": "DEPLOYMENT_COLLISION",
+          "status": "ACCEPTED",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+          "incidentId": "inc_e31aae13-1634-4ea8-83ed-d90e29ddc8c2",
+          "recoveryId": "rec_b296a5a1-e2a5-4408-9c51-38e431ef9dd6",
+          "completed": true,
+          "verifiedAt": 1791449075566,
+          "preservation": {
+            "verified": true,
+            "status": "ORIGINAL_RECORDS_PRESERVED",
+            "originalCount": 34,
+            "currentCount": 34,
+            "addedCount": 0,
+            "manifestSha256": "1d8bbba8b9918bd9bf5f7ac066d9ab3b2d78d56ec53f4808d130e23ca2185524",
+            "mismatches": []
+          }
+        },
+        {
+          "recordId": "acceptance_history:owner_c954d2d7-d92d-441b-9b1e-d8c95786ef21",
+          "sha256": "b6149003f8c5e0d1cf8f30e5de73763f1b9b25bef61ec4653fbc1a8b3fdaf76a",
+          "id": "owner_c954d2d7-d92d-441b-9b1e-d8c95786ef21",
+          "at": 1791448475356,
+          "type": "acceptance_admit",
+          "mode": "AUTOMATIC",
+          "status": "ACCEPTED",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+          "incidentId": "inc_ddbfdd71-9d29-4335-a212-fc2b09add08c",
+          "recoveryId": "rec_7c249d03-121d-4460-82f5-926a2c3aac72",
+          "completed": true,
+          "verifiedAt": 1791448496707,
+          "preservation": {
+            "verified": true,
+            "status": "ORIGINAL_RECORDS_PRESERVED",
+            "originalCount": 34,
+            "currentCount": 34,
+            "addedCount": 0,
+            "manifestSha256": "1d8bbba8b9918bd9bf5f7ac066d9ab3b2d78d56ec53f4808d130e23ca2185524",
+            "mismatches": []
+          }
+        },
+        {
+          "recordId": "acceptance_history:owner_f84c0566-d846-426e-a44f-bb5ea412536e",
+          "sha256": "4b303a93bcc6e38446766c39722b9843b6185240e50c4be0284b6b48aefb9083",
+          "id": "owner_f84c0566-d846-426e-a44f-bb5ea412536e",
+          "at": 1791448542234,
+          "type": "acceptance_admit",
+          "mode": "API_ADVISOR",
+          "status": "ACCEPTED",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+          "incidentId": "inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+          "recoveryId": "rec_b7fa22de-e253-42d7-9a9a-6d8f705c155d",
+          "completed": true,
+          "verifiedAt": 1791448586724,
+          "preservation": {
+            "verified": true,
+            "status": "ORIGINAL_RECORDS_PRESERVED",
+            "originalCount": 34,
+            "currentCount": 34,
+            "addedCount": 0,
+            "manifestSha256": "1d8bbba8b9918bd9bf5f7ac066d9ab3b2d78d56ec53f4808d130e23ca2185524",
+            "mismatches": []
+          }
+        },
+        {
+          "recordId": "acceptance_history:owner_fb2ea2c3-b763-435d-8584-3c8b45435c9b",
+          "sha256": "8f608be3aa39da178680fdad278b8e923401064535ba847421277c8cd50a80d7",
+          "id": "owner_fb2ea2c3-b763-435d-8584-3c8b45435c9b",
+          "at": 1791448657808,
+          "type": "acceptance_admit",
+          "mode": "OWNER_APPROVAL",
+          "status": "ACCEPTED",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+          "incidentId": "inc_cd53e49e-671f-47a7-b76e-7a4b500fd5c6",
+          "recoveryId": "rec_aba363af-456e-49b3-ade3-72f97ebb46b2",
+          "completed": true,
+          "verifiedAt": 1791448736750,
+          "preservation": {
+            "verified": true,
+            "status": "ORIGINAL_RECORDS_PRESERVED",
+            "originalCount": 34,
+            "currentCount": 34,
+            "addedCount": 0,
+            "manifestSha256": "1d8bbba8b9918bd9bf5f7ac066d9ab3b2d78d56ec53f4808d130e23ca2185524",
+            "mismatches": []
+          }
+        },
+        {
+          "recordId": "approval:apr_f109ab0d-59a5-45b9-b226-fd361f4e1975",
+          "sha256": "511a8386726b81bd6392b81f119a0a0dcf3c5b86c6012a9df1d33d9550ffd3d5",
+          "id": "apr_f109ab0d-59a5-45b9-b226-fd361f4e1975",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+          "incidentId": "inc_cd53e49e-671f-47a7-b76e-7a4b500fd5c6",
+          "runbookId": "quarantine_reconciliation",
+          "decision": "APPROVED",
+          "consumed": true
+        },
+        {
+          "recordId": "checkpoint:advanced-autonomous-assurance",
+          "sha256": "5cc1060394f47bba405b8ae3ca448610e9120f331a96b7d7563a54fbea7d9470",
+          "id": "advanced-autonomous-assurance",
+          "at": 1791464907977,
+          "state": "INCOMPLETE",
+          "revision": "f3e74fdd58ab9aecf3566118bc27e4ff14440fda"
+        },
+        {
+          "recordId": "checkpoint:WORK-1-COMPREHENSIVE-AUDIT",
+          "sha256": "bfa6187363bdf2a0b024daf2781c973fb77ba03b4ce4d8c6b36ae3234d414c07",
+          "id": "WORK-1-COMPREHENSIVE-AUDIT",
+          "at": 1791477904883,
+          "state": "ACCEPTANCE_PENDING",
+          "revision": "d0d07771c5f64fb363ff2e00e35eb461d898fb14"
+        },
+        {
+          "recordId": "checkpoint:WORK-5-FINANCIAL-INTELLIGENCE",
+          "sha256": "2a6e516cada1c5fc8864fd8ac921c737e8ddca8ece13834e86af95de96ccdde8",
+          "id": "WORK-5-FINANCIAL-INTELLIGENCE",
+          "at": 1791525152712,
+          "state": "COMPLETE",
+          "revision": "bce4e47bf749de614630a784b281690b83a88d42"
+        },
+        {
+          "recordId": "checkpoint:WORK-6-GOVERNED-COMMERCE",
+          "sha256": "444982dde0d56cac391764a71a2828216a7f2db593f5ed242728ede92b2e5369",
+          "id": "WORK-6-GOVERNED-COMMERCE",
+          "at": 1791536272184,
+          "state": "COMPLETE",
+          "revision": "353ed974499a2bc78751de0156854117d6185a7d"
+        },
+        {
+          "recordId": "checkpoint:work6-governed-commerce",
+          "sha256": "de0d1df98d1eabd105ca985fb5303fc361d1d7c1a9246671afb58ffecefb740e",
+          "id": "work6-governed-commerce",
+          "at": 1791535475884,
+          "state": "IN_PROGRESS",
+          "revision": "bce4e47bf749de614630a784b281690b83a88d42"
+        },
+        {
+          "recordId": "command:owner_7ce18e25-ec0e-4433-94d6-776517536dd4",
+          "sha256": "b3195fd6e7fa0fff3362de6f85f63d960856ff4d02d256baca8734c73c50c7f8",
+          "id": "owner_7ce18e25-ec0e-4433-94d6-776517536dd4",
+          "at": 1791508339505,
+          "type": "checkpoint",
+          "status": "ACCEPTED",
+          "revision": "d0d07771c5f64fb363ff2e00e35eb461d898fb14"
+        },
+        {
+          "recordId": "command:owner_7fc21541-b73b-4c33-805d-20e69ce23845",
+          "sha256": "ec42cb30c99f0517fbe8ee14d36b00d1df13a8e949df353027e4275d60593189",
+          "id": "owner_7fc21541-b73b-4c33-805d-20e69ce23845",
+          "at": 1791509009984,
+          "type": "checkpoint",
+          "status": "ACCEPTED",
+          "revision": "d0d07771c5f64fb363ff2e00e35eb461d898fb14"
+        },
+        {
+          "recordId": "command:owner_8a066d77-9ee4-4298-9e87-672cc6dc805e",
+          "sha256": "d336cccd22a946f08960b39134cbda6033b0206e809d382d07e94e8f5a8c36c2",
+          "id": "owner_8a066d77-9ee4-4298-9e87-672cc6dc805e",
+          "at": 1791518640581,
+          "type": "checkpoint",
+          "status": "ACCEPTED",
+          "revision": "422b93d50cdf1eb6e8fe91c6d07045cfbb50a5f5"
+        },
+        {
+          "recordId": "command:owner_8ca69242-0105-463a-a8b7-24b0a0e381a8",
+          "sha256": "82ffd87bbdd40bc07ffab43e460da69854e23e46742920561ae8a131832df6dc",
+          "id": "owner_8ca69242-0105-463a-a8b7-24b0a0e381a8",
+          "at": 1791448451894,
+          "type": "checkpoint",
+          "status": "ACCEPTED",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5"
+        },
+        {
+          "recordId": "command:owner_8f2b611a-3c0e-4592-a705-37fac0921c0d",
+          "sha256": "53857724f337d65ba6c62dd306e35b05602e8eebd02055b7d68ae2d6d4ea911a",
+          "id": "owner_8f2b611a-3c0e-4592-a705-37fac0921c0d",
+          "at": 1791480529745,
+          "type": "lease_begin",
+          "status": "ACCEPTED",
+          "revision": "d0d07771c5f64fb363ff2e00e35eb461d898fb14"
+        },
+        {
+          "recordId": "command:owner_8f2c4d95-944e-4d57-9966-09d595ace364",
+          "sha256": "2085931befa5c0978dae68ee19229f838d0ccf30f42cd472aebcd171fdb53624",
+          "id": "owner_8f2c4d95-944e-4d57-9966-09d595ace364",
+          "at": 1791452143379,
+          "type": "checkpoint",
+          "status": "ACCEPTED",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5"
+        },
+        {
+          "recordId": "command:owner_97f4a1b7-2f76-458d-adc2-b85669f5f57c",
+          "sha256": "0418e94936d88e909dda6a6d18c2ba8aca524ec296f35c9760066d34382209ff",
+          "id": "owner_97f4a1b7-2f76-458d-adc2-b85669f5f57c",
+          "at": 1791531011178,
+          "type": "lease_begin",
+          "status": "ACCEPTED",
+          "revision": "bce4e47bf749de614630a784b281690b83a88d42"
+        },
+        {
+          "recordId": "command:owner_98af6956-80f1-4d0c-b016-40616ffd793c",
+          "sha256": "3c6044fdf1b9d00b5186e6e906825e5c8869bd3f41b5fd96f0b2d52e45636fb8",
+          "id": "owner_98af6956-80f1-4d0c-b016-40616ffd793c",
+          "at": 1791451721238,
+          "type": "checkpoint",
+          "status": "ACCEPTED",
+          "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5"
+        },
+        {
+          "recordId": "command:owner_996c835b-3b2c-4b8a-98ad-469db6159d79",
+          "sha256": "7529e58f27babc86259a31ee786c735c24bfec7d8e11eccb9f92bf9aeb2c545c",
+          "id": "owner_996c835b-3b2c-4b8a-98ad-469db6159d79",
+          "at": 1791460828575,
+          "type": "checkpoint",
+          "status": "ACCEPTED",
+          "revision": "f0b5322fe9caad3e75f31e8080afd5db7f8c7346"
+        }
+      ],
+      "pagination": {
+        "limit": 20,
+        "totalInWindow": 223,
+        "next": "command:owner_996c835b-3b2c-4b8a-98ad-469db6159d79",
+        "coverage": "Retained snapshot window; exact durable record lookup also supported",
+        "exactRecordFormat": "assurance:<kind>:<id>; large records return lossless JSON chunks with after=next"
+      },
+      "independentInspector": {
+        "status": "DEGRADED",
+        "healthy": false,
+        "observedAt": 1791548386343,
+        "scope": "Partial internal coverage; external commerce is unverified",
+        "watchdog": {
+          "fresh": true,
+          "observedAt": 1791548372564
+        },
+        "coverage": [
+          {
+            "source": "runtime",
+            "classification": "IMPLEMENTED_UNVERIFIED",
+            "status": "PASS",
+            "missing": 0,
+            "unexpected": 0,
+            "mismatched": 0,
+            "authoritativeCount": 5,
+            "internalCount": 5,
+            "matched": 5,
+            "authoritativeDigest": "efce201239c89b18c12b255f095f2d2d01e0932e6b9ebeb910c7a018c135a2c1",
+            "internalDigest": "efce201239c89b18c12b255f095f2d2d01e0932e6b9ebeb910c7a018c135a2c1",
+            "observedAt": 1791548100612,
+            "missionScope": "CURRENT_INTERNAL_MONITORING",
+            "scopeStatus": "HEALTHY",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "workers",
+            "classification": "IMPLEMENTED_UNVERIFIED",
+            "status": "PASS",
+            "missing": 0,
+            "unexpected": 0,
+            "mismatched": 0,
+            "authoritativeCount": 2,
+            "internalCount": 2,
+            "matched": 2,
+            "authoritativeDigest": "2f63cc1e0b06946f51adc7129a0a4d9dc8b9380062689b8fe90234e0f754d310",
+            "internalDigest": "2f63cc1e0b06946f51adc7129a0a4d9dc8b9380062689b8fe90234e0f754d310",
+            "observedAt": 1791548100625,
+            "missionScope": "CURRENT_INTERNAL_MONITORING",
+            "scopeStatus": "HEALTHY",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "scheduler",
+            "classification": "IMPLEMENTED_UNVERIFIED",
+            "status": "PASS",
+            "missing": 0,
+            "unexpected": 0,
+            "mismatched": 0,
+            "authoritativeCount": 1,
+            "internalCount": 1,
+            "matched": 1,
+            "authoritativeDigest": "d810c8f2483b533afc4c66257cec7337ebc414d07622db9e434157509cbfd7bf",
+            "internalDigest": "d810c8f2483b533afc4c66257cec7337ebc414d07622db9e434157509cbfd7bf",
+            "observedAt": 1791548072072,
+            "missionScope": "CURRENT_INTERNAL_MONITORING",
+            "scopeStatus": "HEALTHY",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "pillow-omissions",
+            "classification": "IMPLEMENTED_UNVERIFIED",
+            "status": "NOT_CHECKED",
+            "reason": "No collector result",
+            "missionScope": "CURRENT_INTERNAL_MONITORING",
+            "scopeStatus": "NOT_CHECKED",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "marketplace-orders",
+            "classification": "NOT_IMPLEMENTED",
+            "status": "NOT_CHECKED",
+            "reason": "Adapter not configured",
+            "missionScope": "FUTURE_WORK_6_INTEGRATION",
+            "scopeStatus": "NOT_APPLICABLE",
+            "externalEvidence": "UNVERIFIED",
+            "operationalConsequence": "External commerce reconciliation is not implemented; no absence of external activity is established",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "supplier-fulfilment-tracking",
+            "classification": "NOT_IMPLEMENTED",
+            "status": "NOT_CHECKED",
+            "reason": "Adapter not configured",
+            "missionScope": "FUTURE_WORK_6_INTEGRATION",
+            "scopeStatus": "NOT_APPLICABLE",
+            "externalEvidence": "UNVERIFIED",
+            "operationalConsequence": "External commerce reconciliation is not implemented; no absence of external activity is established",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "listing-drift",
+            "classification": "NOT_IMPLEMENTED",
+            "status": "NOT_CHECKED",
+            "reason": "Adapter not configured",
+            "missionScope": "FUTURE_WORK_6_INTEGRATION",
+            "scopeStatus": "NOT_APPLICABLE",
+            "externalEvidence": "UNVERIFIED",
+            "operationalConsequence": "External commerce reconciliation is not implemented; no absence of external activity is established",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "money-transactions",
+            "classification": "NOT_IMPLEMENTED",
+            "status": "NOT_CHECKED",
+            "reason": "Adapter not configured",
+            "missionScope": "FUTURE_WORK_6_INTEGRATION",
+            "scopeStatus": "NOT_APPLICABLE",
+            "externalEvidence": "UNVERIFIED",
+            "operationalConsequence": "External commerce reconciliation is not implemented; no absence of external activity is established",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "refunds-reimbursements",
+            "classification": "NOT_IMPLEMENTED",
+            "status": "NOT_CHECKED",
+            "reason": "Adapter not configured",
+            "missionScope": "FUTURE_WORK_6_INTEGRATION",
+            "scopeStatus": "NOT_APPLICABLE",
+            "externalEvidence": "UNVERIFIED",
+            "operationalConsequence": "External commerce reconciliation is not implemented; no absence of external activity is established",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "provider-accounting",
+            "classification": "NOT_IMPLEMENTED",
+            "status": "NOT_CHECKED",
+            "reason": "Adapter not configured",
+            "missionScope": "INTERNAL_ACCOUNTING_PRESERVATION; LIVE_BILLING_WORK_5",
+            "scopeStatus": "NOT_CHECKED",
+            "externalEvidence": "UNVERIFIED",
+            "operationalConsequence": "Internal receipts are not provider invoices or settled charges",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "evidence-freshness",
+            "classification": "IMPLEMENTED_UNVERIFIED",
+            "status": "PASS",
+            "missing": 0,
+            "unexpected": 0,
+            "mismatched": 0,
+            "authoritativeCount": 12,
+            "internalCount": 12,
+            "matched": 12,
+            "authoritativeDigest": "4eaed25ca3c8b204c375967b223bd2f448ef774de0e7ede82795bf4b692b4929",
+            "internalDigest": "4eaed25ca3c8b204c375967b223bd2f448ef774de0e7ede82795bf4b692b4929",
+            "observedAt": 1791548100634,
+            "missionScope": "CURRENT_INTERNAL_MONITORING",
+            "scopeStatus": "HEALTHY",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "authority-spending",
+            "classification": "IMPLEMENTED_UNVERIFIED",
+            "status": "PASS",
+            "missing": 0,
+            "unexpected": 0,
+            "mismatched": 0,
+            "authoritativeCount": 1,
+            "internalCount": 1,
+            "matched": 1,
+            "authoritativeDigest": "603971fd11b5114e429407d0428d9362aa82e0843773896706a6e1243108a503",
+            "internalDigest": "603971fd11b5114e429407d0428d9362aa82e0843773896706a6e1243108a503",
+            "observedAt": 1791548100638,
+            "missionScope": "CURRENT_INTERNAL_MONITORING",
+            "scopeStatus": "HEALTHY",
+            "evidenceReference": "cycle_1791548100000"
+          },
+          {
+            "source": "persistence-backups-recovery",
+            "classification": "IMPLEMENTED_UNVERIFIED",
+            "status": "PASS",
+            "missing": 0,
+            "unexpected": 0,
+            "mismatched": 0,
+            "authoritativeCount": 7,
+            "internalCount": 7,
+            "matched": 7,
+            "authoritativeDigest": "d212cb4fbfffdb5c87c87cbe7351489942093212bcc165193de713ecc728c316",
+            "internalDigest": "d212cb4fbfffdb5c87c87cbe7351489942093212bcc165193de713ecc728c316",
+            "observedAt": 1791548100665,
+            "missionScope": "LOCAL_STORAGE_INTEGRITY",
+            "scopeStatus": "HEALTHY",
+            "externalEvidence": "UNVERIFIED",
+            "operationalConsequence": "Local integrity does not establish an independent backup or a tested restore",
+            "evidenceReference": "cycle_1791548100000"
+          }
+        ]
+      }
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "backendCi": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "workflow_runs": [
+        {
+          "id": 37902435846,
+          "name": "Independent Assurance Core",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 55,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37902435846/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37902435846/logs",
+          "workflow_id": 373040927
+        },
+        {
+          "id": 37902435856,
+          "name": "Pillow semantic repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 555,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37902435856/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37902435856/logs",
+          "workflow_id": 362674549
+        },
+        {
+          "id": 37902435881,
+          "name": "Product path CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 554,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37902435881/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37902435881/logs",
+          "workflow_id": 362309382
+        },
+        {
+          "id": 37902435853,
+          "name": "Pillow runtime repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 556,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37902435853/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37902435853/logs",
+          "workflow_id": 362688325
+        }
+      ]
+    },
+    "isError": false
+  },
+  "frontendCi": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "workflow_runs": [
+        {
+          "id": 37904809605,
+          "name": "Product path CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 555,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37904809605/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37904809605/logs",
+          "workflow_id": 362309382
+        },
+        {
+          "id": 37904809650,
+          "name": "Pillow semantic repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 556,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37904809650/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37904809650/logs",
+          "workflow_id": 362674549
+        },
+        {
+          "id": 37904809577,
+          "name": "Assurance owner browser contract",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 21,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37904809577/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37904809577/logs",
+          "workflow_id": 378221685
+        },
+        {
+          "id": 37904809619,
+          "name": "Pillow runtime repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 557,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37904809619/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/37904809619/logs",
+          "workflow_id": 362688325
+        }
+      ]
+    },
+    "isError": false
+  }
+}

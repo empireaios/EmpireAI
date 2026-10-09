@@ -1,0 +1,90 @@
+✔ J1: Home money/risk/decision hierarchy leads directly to source recommendation (29534.88311ms)
+✖ J3: isolated1000-row portfolio pagination, inline economics/listing and authority (35188.779981ms)
+✖ J4: actual ledger excludes synthetic orders; partial package and settlement truth (35961.528103ms)
+✔ Owner403 and source503 remain explicit and recoverable (7951.065927ms)
+✔ J2: truthful unset target, dated synthetic receipts and recommendation evidence navigation (15660.444937ms)
+✖ J5: infrastructure invoice/accrual provenance and commercial separation (33461.165955ms)
+✖ Recommendation disposition binds exact version and displays durable isolated receipt (8418.837826ms)
+✖ J6: exact intelligence evidence joins specific Pillow decision and preserves unverified execution truth (32886.524385ms)
+✔ Safety15 guards, unknown order quarantine, cash/payout and independently read back owner pause (27607.226929ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 4
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 227626.518565
+
+✖ failing tests:
+
+test at e2e/work7-owner.test.mjs:25:1
+✖ J3: isolated1000-row portfolio pagination, inline economics/listing and authority (35188.779981ms)
+  locator.selectOption: Timeout 30000ms exceeded.
+  Call log:
+  [2m  - waiting for getByLabel('Evidence classification', { exact: true })[22m
+  
+      at /workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:25:317
+      at async both (/workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:22:130) {
+    name: 'TimeoutError',
+    log: [ "  - waiting for getByLabel('Evidence classification', { exact: true })" ]
+  }
+
+test at e2e/work7-owner.test.mjs:26:1
+✖ J4: actual ledger excludes synthetic orders; partial package and settlement truth (35961.528103ms)
+  locator.click: Timeout 30000ms exceeded.
+  Call log:
+  [2m  - waiting for getByText('Package quantities, tracking and delivery events', { exact: true })[22m
+  
+      at /workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:26:631
+      at async both (/workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:22:130) {
+    name: 'TimeoutError',
+    log: [ "  - waiting for getByText('Package quantities, tracking and delivery events', { exact: true })" ]
+  }
+
+test at e2e/work7-owner.test.mjs:31:1
+✖ J5: infrastructure invoice/accrual provenance and commercial separation (33461.165955ms)
+  locator.waitFor: Timeout 30000ms exceeded.
+  Call log:
+  [2m  - waiting for getByTestId('finance-source').first() to be visible[22m
+  
+      at /workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:31:210
+      at async both (/workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:22:130) {
+    name: 'TimeoutError',
+    log: [ "  - waiting for getByTestId('finance-source').first() to be visible" ]
+  }
+
+test at e2e/work7-owner.test.mjs:33:1
+✖ Recommendation disposition binds exact version and displays durable isolated receipt (8418.837826ms)
+  AssertionError [ERR_ASSERTION]: Uncaught browser errors
+  + actual - expected
+  
+  + [
+  +   "Cannot read properties of null (reading 'removeChild')",
+  +   "Cannot read properties of null (reading 'removeChild')",
+  +   "Cannot read properties of null (reading 'removeChild')"
+  + ]
+  - []
+  
+      at both (file:///workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:22:156)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ "Cannot read properties of null (reading 'removeChild')", "Cannot read properties of null (reading 'removeChild')", "Cannot read properties of null (reading 'removeChild')" ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at e2e/work7-owner.test.mjs:35:1
+✖ J6: exact intelligence evidence joins specific Pillow decision and preserves unverified execution truth (32886.524385ms)
+  locator.selectOption: Timeout 30000ms exceeded.
+  Call log:
+  [2m  - waiting for getByLabel('Discovery period', { exact: true })[22m
+  
+      at /workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:35:232
+      at async both (/workspace/scratch/ea1bdae16e92/work7-frontend/empireai-web/e2e/work7-owner.test.mjs:22:130) {
+    name: 'TimeoutError',
+    log: [ "  - waiting for getByLabel('Discovery period', { exact: true })" ]
+  }

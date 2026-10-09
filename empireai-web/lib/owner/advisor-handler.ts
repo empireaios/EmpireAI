@@ -1,7 +1,7 @@
 import {resolveBrainApiUrl} from '../brain/server-proxy';
 export async function advisorProxy(request:Request,segments:string[]):Promise<Response>{
  const route=segments.join('/');
- const allowed=request.method==='GET'?(route==='read'||/^result\/[A-Za-z0-9_-]{1,100}$/.test(route)):request.method==='POST'&&['validate','import','consent','revoke','memory','intelligence'].includes(route);
+ const allowed=request.method==='GET'?(route==='read'||route==='executive'||route==='safety'||/^result\/[A-Za-z0-9_-]{1,100}$/.test(route)):request.method==='POST'&&['validate','import','consent','revoke','memory','intelligence'].includes(route);
  const headers={'cache-control':'private, no-store'};
  if(!allowed)return Response.json({error:'Route unavailable'},{status:404,headers});
  if(request.method==='POST'&&request.headers.get('origin')!==new URL(request.url).origin)return Response.json({error:'Same-origin request required'},{status:403,headers});

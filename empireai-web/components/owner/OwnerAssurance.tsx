@@ -1,4 +1,5 @@
 'use client';
+import {SafetyCommand} from './work7/SafetyCommand';
 import {useState} from 'react';
 import Link from 'next/link';
 import {AssuranceRelease} from './AssuranceRelease';
@@ -30,6 +31,15 @@ export function OwnerAssurance(){
  const advisor=data?.advisor;const tasks=Array.isArray(advisor?.tasks)?advisor.tasks.filter(t=>!!t&&typeof t==='object') as Record<string,unknown>[]:[];
  return <div className="space-y-5 break-words"><Link className="inline-flex min-h-11 items-center text-amber-200" href="/cockpit">← Executive Home</Link>
   <div className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm text-amber-200">EmpireAI operations</p><h1 className="text-3xl font-semibold">Assurance</h1></div><Status value={fresh?cp!.status:'UNVERIFIED'}/></div>
+  <section aria-label="Six assurance domains" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{[
+   ['Software and recovery','Runtime, durable records and verified recovery','assurance-monitor','/cockpit/assurance#safety-09'],
+   ['Commerce truth','Amazon / CJ / order-state discrepancies','governed_commerce','/cockpit/assurance#safety-02'],
+   ['Financial truth','Charges, payouts, cash and source reconciliation','financial_evidence','/cockpit/assurance#safety-11'],
+   ['Intelligence truth','Source freshness, confidence and commercial meaning','four_eyes_reads','/cockpit/eyes'],
+   ['Governance','Authority, expiry, approval and version fences','approval_quarantine','/cockpit/assurance#safety-14'],
+   ['Autonomy','Pillow claims, action receipts and measured outcomes','response_evidence_linkage','/cockpit/ceo#recommendations']
+  ].map(([title,meaning,capability,href])=>{const source=cp?.components.find(c=>c.capability===capability);return <article className={panel} key={title}><h2 className="font-semibold">{title}</h2><p className="mt-2 text-sm">{meaning}</p><p className="mt-3 text-sm">Recorded probe: {source&&fresh?source.status:'UNVERIFIED'}</p><p className="mt-2 text-xs">{source?.summary??'Source-specific evidence not established.'}</p><p className="mt-2 text-xs">A healthy technical probe does not certify actual business truth or autonomous readiness.</p><Link href={href} className={button+' mt-3'}>Inspect evidence →</Link></article>;})}</section>
+  <SafetyCommand/>
   <section className={panel} aria-label="Operational summary"><h2 className="text-xl font-semibold">{!fresh?'Current health is not established':cp!.summary.ownerActionRequired?'Your decision is needed':cp!.summary.activeIncidents?'Recovery and investigation in progress':'Monitoring your operations'}</h2>
    <p className="mt-2 text-slate-300">{!fresh?(error?'Evidence refresh failed. Saved observations remain below and may be out of date.':'Monitoring is overdue or the operational control plane is unavailable. Saved observations are not current health.'):'Assurance detects operational faults, applies authorised remedies and verifies restoration.'}</p>
    <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">{[['Active incidents',cp?.summary.activeIncidents],['Verified automatic recoveries',cp?.summary.automaticallyRecovered],['Owner decisions',cp?.summary.ownerActionRequired],['Monitoring',cp?.monitor.fresh?'Fresh':'Unverified']].map(([name,value])=><div key={name}><p className="text-sm text-slate-400">{name}</p><p className="mt-1 text-xl font-semibold">{value??'Unknown'}</p></div>)}</div>

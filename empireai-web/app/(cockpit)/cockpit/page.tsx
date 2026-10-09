@@ -1,2 +1,2 @@
-import {OwnerHome} from '@/components/owner/OwnerWorkspace';
-export default function Page(){return <OwnerHome/>;}
+import {PremiumHome} from '@/components/owner/work7/PremiumHome';
+export default function Page(){return <PremiumHome/>;}

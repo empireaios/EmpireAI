@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: Independent readback: isolated execution reference corroborated by exact source record
+ok 1 - Independent readback: isolated execution reference corroborated by exact source record
+  ---
+  duration_ms: 14823.274476
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15454.660745
