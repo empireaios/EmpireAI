@@ -22,3 +22,19 @@ test('existing finish control reconciles expired owner lease, advances fence, pr
 for(const mode of ['forged','stale','future','missing-time','workspace','fence','owner'])test('control rejects '+mode+' verification and retains blocking lease',async t=>{const {cp,advance,now}=control(t);const l=(await cp.command(workspace,'owner',{id:'begin',type:'lease_begin',expectedRevision:revision,scope:['backend'],ttlMs:1000})).lease;advance();const evidence={workspace,ownerId:'owner',leaseId:l.id,fence:l.fence,revision,noActiveChanges:true,verifiedAt:now(),evidenceId:'trusted'};if(mode==='missing-time')delete evidence.verifiedAt;if(mode==='stale')evidence.verifiedAt-=30001;if(mode==='future')evidence.verifiedAt++;if(mode==='workspace')evidence.workspace='other';if(mode==='fence')evidence.fence++;if(mode!=='forged')cp.deploymentVerifier=async()=>evidence;const r=await cp.command(workspace,mode==='owner'?'attacker':'owner',{id:'reconcile',type:'lease_reconcile',leaseId:l.id,fence:l.fence,evidence});assert.equal(r.status,'ACTION_DENIED');assert.equal(cp.get(workspace,'lease','production').status,'ACTIVE');assert.equal((await cp.command(workspace,'owner',{id:'collision',type:'lease_begin',expectedRevision:revision,scope:['backend'],ttlMs:1000})).status,'ACTION_DENIED');});
 
 test('concurrent identical commands preserve the first immutable receipt',async t=>{const {cp,advance,now}=control(t);const l=(await cp.command(workspace,'owner',{id:'begin',type:'lease_begin',expectedRevision:revision,scope:['backend'],ttlMs:1000})).lease;advance();let release;const gate=new Promise(r=>release=r);cp.deploymentVerifier=async()=>{await gate;return {workspace,ownerId:'owner',leaseId:l.id,fence:l.fence,revision,noActiveChanges:true,verifiedAt:now(),evidenceId:'trusted'};};const cmd={id:'finish',type:'lease_finish',leaseId:l.id,fence:l.fence};const a=cp.command(workspace,'owner',cmd),b=cp.command(workspace,'owner',cmd);release();const results=await Promise.all([a,b]);assert.deepEqual(results[0],results[1]);assert.equal(results[0].status,'ACCEPTED');assert.equal(cp.snapshot(workspace).events.filter(e=>e.body.id==='finish').length,1);});
+
+test('provider diagnostics retain only stage and HTTP code, never response secrets',async()=>{
+ const secret='private-provider-response';
+ await assert.rejects(createDeploymentVerifier({env,now:()=>1000,fetcher:async()=>({ok:false,status:403,text:async()=>secret})})(context),e=>{
+  assert.deepEqual(e.diagnostic,{stage:'RAILWAY_READ',code:'HTTP_403'});
+  assert.ok(!JSON.stringify(e).includes(secret));return true;
+ });
+});
+test('failed verification records bounded diagnostic and preserves lease without leaking thrown text',async t=>{
+ const {cp,advance}=control(t);const l=(await cp.command(workspace,'owner',{id:'begin',type:'lease_begin',expectedRevision:revision,scope:['backend'],ttlMs:1000})).lease;advance();
+ cp.deploymentVerifier=async()=>{throw Object.assign(Error('secret'),{diagnostic:{stage:'VERCEL_ALIAS',code:'HTTP_403',headers:'secret'}});};
+ const r=await cp.command(workspace,'owner',{id:'diagnostic',type:'lease_finish',leaseId:l.id,fence:l.fence});
+ assert.deepEqual(r.verificationFailure,{stage:'VERCEL_ALIAS',code:'HTTP_403'});assert.equal(r.status,'ACTION_DENIED');assert.equal(cp.get(workspace,'lease','production').status,'ACTIVE');assert.ok(!JSON.stringify(r).includes('secret'));
+ cp.deploymentVerifier=async()=>{throw Object.assign(Error('secret'),{diagnostic:{stage:'secret',code:'secret'}});};
+ const r2=await cp.command(workspace,'owner',{id:'redacted',type:'lease_finish',leaseId:l.id,fence:l.fence});assert.deepEqual(r2.verificationFailure,{stage:'VERIFIER',code:'UNCLASSIFIED'});assert.ok(!JSON.stringify(r2).includes('secret'));
+});

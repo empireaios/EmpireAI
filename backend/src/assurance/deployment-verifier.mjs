@@ -10,10 +10,14 @@ export function createDeploymentVerifier({env=process.env,fetcher=fetch,now=Date
   if(!/^[a-f0-9]{40}$/.test(revision)||revision!==env.RAILWAY_GIT_COMMIT_SHA||lease.scope.some(s=>!['backend','frontend'].includes(s)))throw Error('DEPLOYMENT_SCOPE_INVALID');
   const startedAt=now(),signal=AbortSignal.timeout(10000);
   const json=async(url,options)=>{
+   const stage=url.includes('backboard.railway.com')?'RAILWAY_READ':url.includes('/v13/')?'VERCEL_ALIAS':'VERCEL_HISTORY';
+   const fail=(code)=>Object.assign(Error(code),{diagnostic:{stage,code}});
+   try{
    const r=await fetcher(url,{...options,signal,redirect:'error',cache:'no-store'});
-   if(!r.ok)throw Error('PLATFORM_READ_FAILED');
+   if(!r.ok)throw fail('HTTP_'+(Number.isInteger(r.status)?r.status:'UNKNOWN'));
    const body=await r.text();if(body.length>1048576)throw Error('PLATFORM_RESPONSE_BOUND');
-   const value=JSON.parse(body);if(value.errors?.length||value.error)throw Error('PLATFORM_READ_FAILED');return value;
+   const value=JSON.parse(body);if(value.errors?.length||value.error)throw fail('API_ERROR');return value;
+   }catch(error){if(error?.diagnostic)throw error;throw fail(error?.name==='TimeoutError'||signal.aborted?'TIMEOUT':'RESPONSE_OR_NETWORK_ERROR');}
   };
   const railway=async(query,variables)=>{
    const result=await json('https://backboard.railway.com/graphql/v2',{method:'POST',headers:{'content-type':'application/json','Project-Access-Token':env.ASSURANCE_RAILWAY_PROJECT_TOKEN},body:JSON.stringify({query,variables})});
