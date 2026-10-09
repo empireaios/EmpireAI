@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: J1: Home money/risk/decision hierarchy leads directly to source recommendation
+ok 1 - J1: Home money/risk/decision hierarchy leads directly to source recommendation
+  ---
+  duration_ms: 19406.897918
+  type: 'test'
+  ...
+# Subtest: J3: isolated1000-row portfolio pagination, inline economics/listing and authority
+ok 2 - J3: isolated1000-row portfolio pagination, inline economics/listing and authority
+  ---
+  duration_ms: 16475.367106
+  type: 'test'
+  ...
+# Subtest: J4: actual ledger excludes synthetic orders; partial package and settlement truth
+ok 3 - J4: actual ledger excludes synthetic orders; partial package and settlement truth
+  ---
+  duration_ms: 14612.511468
+  type: 'test'
+  ...
+# Subtest: J5: infrastructure invoice/accrual provenance and commercial separation
+ok 4 - J5: infrastructure invoice/accrual provenance and commercial separation
+  ---
+  duration_ms: 12281.798911
+  type: 'test'
+  ...
+# Subtest: Recommendation disposition binds exact version and displays durable isolated receipt
+ok 5 - Recommendation disposition binds exact version and displays durable isolated receipt
+  ---
+  duration_ms: 11320.459369
+  type: 'test'
+  ...
+# Subtest: J6: exact intelligence evidence joins specific Pillow decision and preserves unverified execution truth
+ok 6 - J6: exact intelligence evidence joins specific Pillow decision and preserves unverified execution truth
+  ---
+  duration_ms: 19528.614136
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 94407.096739
