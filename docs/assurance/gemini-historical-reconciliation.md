@@ -59,6 +59,11 @@ sequence/count/hash. It never records FUNCTION_VERIFIED or RECOVERED and leaves
 the probe DEGRADED, Gemini health UNVERIFIED, invoice unknown and reservation held.
 Future genuine failures create new incidents. No ledger or routing file is written.
 
+Source review also verified that pre-PR100 probes checked age before completion.
+Their stale labels require binding to the exact Gemini call, and other providers
+require matching independently verified current receipts or later bound evidence.
+The older labels are preserved and never reinterpreted as successful Gemini calls.
+
 ## Verification and release
 
 Targeted negative tests cover missing/corrupt/mismatched proof; retained money;

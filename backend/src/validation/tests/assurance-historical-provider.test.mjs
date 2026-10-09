@@ -78,3 +78,13 @@ test('unknown recoveries, historical current faults, incomplete history, release
  assert.equal(historicalProviderHistoryCompatible([]),false);assert.equal(historicalProviderHistoryCompatible([{body:{probe:{}}}]),false);
  const f=fixture();try{assert.equal(historicalProviderHistoryCompatible(Array(5001).fill({body:{probe:f.probe()}})),false);}finally{f.cleanup();}
 });
+test('older stale-first probe schema needs exact historical Gemini identity and independently verified other receipts',()=>{
+ const f=fixture();try{const current=f.probe(),old=structuredClone(current);
+ for(const r of old.evidence.providers){delete r.retainedResponseVerified;r.reason='FUNCTIONAL_EVIDENCE_STALE';}
+ const events=[{at:now-1000,body:{probe:old}}];assert.equal(historicalProviderHistoryCompatible(events,current),true);
+ old.evidence.providers[2].evidenceId='different-gemini-call';assert.equal(historicalProviderHistoryCompatible(events,current),false);old.evidence.providers[2].evidenceId=policy.callId;
+ old.evidence.providers[0].evidenceId='different-openai-call';assert.equal(historicalProviderHistoryCompatible(events,current),false);
+ events[0].at=Date.parse('2026-10-01T00:00:00Z');assert.equal(historicalProviderHistoryCompatible(events,current),true);
+ old.evidence.providers[0].reason='FUNCTIONAL_RECEIPT_INVALID';assert.equal(historicalProviderHistoryCompatible(events,current),false);
+ }finally{f.cleanup();}
+});

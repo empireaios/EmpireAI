@@ -72,13 +72,18 @@ export function historicalProviderDisposition(workspace,probe,context,now){
 
 // Complete immutable history is mandatory. This deliberately does not modify
 // operating-scope's requirement for later functional evidence after real faults.
-export function historicalProviderHistoryCompatible(history){
+export function historicalProviderHistoryCompatible(history,current){
  if(!history.length||history.length>5000)return false;
  return history.every(event=>{
   const p=event.body?.probe,rows=p?.evidence?.providers;
   if(p?.id!=='provider_configuration'||p.capability!==p.id||p.classification!==p.id||p.status!=='DEGRADED'||!Array.isArray(rows)||rows.length!==3||new Set(rows.map(r=>r.provider)).size!==3)return false;
-  return rows.every(r=>r.provider==='gemini'
-   ?r.evidenceId===historicalGemini.callId&&r.observedAt===historicalGemini.timestamp&&r.status==='DEGRADED'&&r.reason==='LATEST_CALL_NOT_VERIFIED_COMPLETE'
-   :['openai','anthropic'].includes(r.provider)&&r.retainedResponseVerified===true&&['HEALTHY','DEGRADED'].includes(r.status)&&['RECENT_ACCOUNTED_PROVIDER_RESPONSE','FUNCTIONAL_EVIDENCE_STALE'].includes(r.reason));
+  return rows.every(r=>{
+   // Before PR100, age was checked before completion. Bind those stale labels
+   // to this exact failed call; never reinterpret the old observation as success.
+   if(r.provider==='gemini')return r.evidenceId===historicalGemini.callId&&r.observedAt===historicalGemini.timestamp&&r.status==='DEGRADED'&&r.retainedResponseVerified!==true&&['LATEST_CALL_NOT_VERIFIED_COMPLETE','FUNCTIONAL_EVIDENCE_STALE'].includes(r.reason);
+   const verified=current?.evidence?.providers?.find(n=>n.provider===r.provider);
+   return ['openai','anthropic'].includes(r.provider)&&['HEALTHY','DEGRADED'].includes(r.status)&&['RECENT_ACCOUNTED_PROVIDER_RESPONSE','FUNCTIONAL_EVIDENCE_STALE'].includes(r.reason)&&verified?.retainedResponseVerified===true&&
+    ((verified.evidenceId===r.evidenceId&&verified.observedAt===r.observedAt)||Date.parse(verified.observedAt)>event.at);
+  });
  });
 }
