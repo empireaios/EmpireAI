@@ -3,6 +3,7 @@ import path from 'node:path';
 import {DatabaseSync} from 'node:sqlite';
 import {randomUUID,createHash} from 'node:crypto';
 import {operatingScopeDisposition,scopeHistoryCompatible} from './operating-scope.mjs';
+import {historicalProviderDisposition,historicalProviderHistoryCompatible} from './historical-provider.mjs';
 const key=x=>typeof x==='string'&&/^[A-Za-z0-9_.:-]{1,160}$/.test(x);
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const statuses=new Set(['HEALTHY','DEGRADED','FAILED','NOT_APPLICABLE','EXTERNALLY_BLOCKED','UNAVAILABLE','STALE','NOT_CHECKED','UNVERIFIED','BLOCKED','NOT_INSTALLED']);
@@ -37,6 +38,20 @@ export class AssuranceControlPlane {
   return this.tx(()=>{const probe={...safe(p),observedAt:this.now(),revision:this.revision};this.put(w,'probe',p.id,probe);
    const fingerprint=hash([p.capability,p.classification??'UNKNOWN',p.id,this.revision]);
    let incident=this.list(w,'incident').find(i=>i.fingerprint===fingerprint&&!terminal.has(i.status));
+   const historical=historicalProviderDisposition(w,probe,p.scopeContext,this.now());
+   if(historical&&this.get(w,'lease','production')?.status!=='ACTIVE'&&!this.get(w,'setting','pause')?.paused){
+    const recoveries=this.list(w,'recovery');
+    for(const prior of this.list(w,'incident').filter(i=>i.probeId===p.id&&i.capability===p.capability&&i.classification===p.classification&&!terminal.has(i.status))){
+     if(recoveries.some(r=>r.incidentId===prior.id&&['RUNNING','UNKNOWN'].includes(r.status)))continue;
+     const history=this.db.prepare("SELECT seq,at,body FROM cp_events WHERE workspace=? AND ((type='INCIDENT_DETECTED' AND json_extract(body,'$.incident.id')=?) OR (type='INCIDENT_OBSERVED' AND json_extract(body,'$.incidentId')=?)) ORDER BY seq LIMIT 5001").all(w,prior.id,prior.id).map(e=>({...e,body:JSON.parse(e.body)}));
+     if(!historicalProviderHistoryCompatible(history,probe))continue;
+     const previousStatus=prior.status,historyEvidence={count:history.length,firstSeq:history[0].seq,lastSeq:history.at(-1).seq,sha256:hash(history)};
+     prior.status='CLOSED';prior.closedAt=this.now();prior.historicalDisposition={...historical,historyEvidence};prior.dispositionRevision=this.revision;
+     this.put(w,'incident',prior.id,prior);
+     this.event(w,'HISTORICAL_PROVIDER_ADMINISTRATIVELY_RESOLVED',{incidentId:prior.id,originalFingerprint:prior.fingerprint,originalSeverity:prior.severity,previousStatus,probe,historical,historyEvidence});
+    }
+    return probe;
+   }
    const scope=operatingScopeDisposition(probe,p.scopeContext,this.now());
    if(scope&&this.get(w,'lease','production')?.status!=='ACTIVE'&&!this.get(w,'setting','pause')?.paused){
     const recoveries=this.list(w,'recovery');

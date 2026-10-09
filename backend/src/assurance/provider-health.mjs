@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
 import {aggregateCapabilityHealth} from './capability-health.mjs';
+import {readHistoricalProviderEvidence} from './historical-provider.mjs';
 /** Passive functional evidence only. No provider request or cost is incurred.
  * Usage receipts establish a provider response, not successful application delivery.
  */
@@ -22,6 +23,6 @@ export function readProviderHealth(filename, configured, now=Date.now(), maxAgeM
    if(now-at>maxAgeMs)return {...base,status:'DEGRADED',reason:'FUNCTIONAL_EVIDENCE_STALE',retainedResponseVerified:true};
    return {...base,status:'HEALTHY',reason:'RECENT_ACCOUNTED_PROVIDER_RESPONSE',retainedResponseVerified:true};
   });
-  return {status:configured.length?aggregateCapabilityHealth(providers):'EXTERNALLY_BLOCKED',providers,maxAgeMs,inferenceCalls:0,reason:configured.length?'PASSIVE_FUNCTIONAL_RECEIPTS':'PROVIDER_NOT_CONFIGURED'};
+  return {status:configured.length?aggregateCapabilityHealth(providers):'EXTERNALLY_BLOCKED',providers,maxAgeMs,inferenceCalls:0,reason:configured.length?'PASSIVE_FUNCTIONAL_RECEIPTS':'PROVIDER_NOT_CONFIGURED',historicalReconciliation:readHistoricalProviderEvidence(db,filename)};
  }finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}
 }
