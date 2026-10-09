@@ -157,9 +157,10 @@ export class AssuranceRuntime {
 export async function createAssuranceRuntime(root:string,revision:string){
  const moduleUrl=new URL('../../src/assurance/control-plane.mjs',import.meta.url).href;
  const {AssuranceControlPlane}=await import(moduleUrl);
+ const {createDeploymentVerifier}=await import(new URL('../../src/assurance/deployment-verifier.mjs',import.meta.url).href);
  const rebuild={version:'1',authority:'A',capability:'reconciliation_view',timeoutMs:10000,maxAttempts:2,cooldownMs:30000,
  execute:async()=>rebuildReconciliation(root,workspace,revision),verify:async()=>verifyReconciliation(root,workspace),reconcile:async()=>({completed:verifyReconciliation(root,workspace).healthy})};
- const control=new AssuranceControlPlane({root:path.join(root,'commissioning'),revision,runbooks:{
+ const control=new AssuranceControlPlane({root:path.join(root,'commissioning'),revision,deploymentVerifier:createDeploymentVerifier(),runbooks:{
   rebuild_reconciliation:rebuild,rebuild_reconciliation_advisor:{...rebuild,executor:'API_ADVISOR'},
   quarantine_reconciliation:{...rebuild,authority:'B',capability:'approval_quarantine',title:'Quarantine and rebuild the derived operational view',description:'Move only the derived reconciliation JSON to a retained quarantine copy, rebuild it from existing sources, and verify unchanged source digest.',approvalReason:'A deliberate operational view interruption requires your specific approval.',execute:async()=>{const before=reconciliationHash(readReconciliationSources(root,workspace));const file=path.join(root,'commissioning','reconciliation-'+workspace+'.json');if(fs.existsSync(file))fs.renameSync(file,file+'.approved-'+Date.now());const result=rebuildReconciliation(root,workspace,revision);return {...result,sourceUnchanged:before===reconciliationHash(readReconciliationSources(root,workspace))};},verify:async({result}:any)=>({healthy:result?.sourceUnchanged===true&&verifyReconciliation(root,workspace).healthy})}
  }});
