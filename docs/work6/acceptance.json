@@ -1,0 +1,550 @@
+{
+  "schema": "work6-acceptance-v1",
+  "frozenAt": "2026-10-09",
+  "sourceSha256": "cb182c788b9294d4b8c8e49344878db1e82be066d585d6b5a7a8fdac0276bb3c",
+  "criteria": [
+    {
+      "id": "W6-01",
+      "source": "build-mandate.txt#W6-01",
+      "outcome": "Canonical commerce architecture, typed entities and state transitions implemented.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/contracts.ts",
+        "backend/src/runtime/commerce-runtime/governed/entities.ts",
+        "backend/src/runtime/commerce-runtime/governed/engine.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-02",
+      "source": "build-mandate.txt#W6-02",
+      "outcome": "Durable event/audit history, versioning and provenance verified.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/store.ts",
+        "backend/src/runtime/commerce-runtime/governed/entities.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-03",
+      "source": "build-mandate.txt#W6-03",
+      "outcome": "Restart recovery, idempotency and concurrency verified.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/store.ts",
+        "backend/src/runtime/commerce-runtime/governed/worker.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-04",
+      "source": "build-mandate.txt#W6-04",
+      "outcome": "Product research and evidence-backed opportunity ranking functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts",
+        "backend/src/runtime/commerce-runtime/governed/evidence-bridge.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-05",
+      "source": "build-mandate.txt#W6-05",
+      "outcome": "Product qualification, rejection and compliance gates functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-06",
+      "source": "build-mandate.txt#W6-06",
+      "outcome": "CJ supplier safe-read integration and intercepted write contracts functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/providers.ts",
+        "backend/src/intelligence/acquisition.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-provider-contracts.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-07",
+      "source": "build-mandate.txt#W6-07",
+      "outcome": "Amazon marketplace safe-read/validation and intercepted write contracts functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/providers.ts",
+        "backend/src/intelligence/acquisition.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-provider-contracts.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-08",
+      "source": "build-mandate.txt#W6-08",
+      "outcome": "Listing package, content, media provenance and approval versioning functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/contracts.ts",
+        "backend/src/runtime/commerce-runtime/governed/engine.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-09",
+      "source": "build-mandate.txt#W6-09",
+      "outcome": "Work 5 landed cost, contribution margin and price-floor integration functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts",
+        "backend/src/runtime/commerce-runtime/governed/financial-projection.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-10",
+      "source": "build-mandate.txt#W6-10",
+      "outcome": "Cash/FX/liability/budget and capital guardrails enforced.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts",
+        "backend/src/runtime/commerce-runtime/governed/runtime.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-11",
+      "source": "build-mandate.txt#W6-11",
+      "outcome": "Inventory freshness, price drift and stockout handling functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-12",
+      "source": "build-mandate.txt#W6-12",
+      "outcome": "Order intake, mapping, validation and deduplication functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-13",
+      "source": "build-mandate.txt#W6-13",
+      "outcome": "Supplier allocation and governed fulfilment intents functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts",
+        "backend/src/runtime/commerce-runtime/governed/providers.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-14",
+      "source": "build-mandate.txt#W6-14",
+      "outcome": "Shipment, tracking, delivery and reconciliation functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-15",
+      "source": "build-mandate.txt#W6-15",
+      "outcome": "Cancellations, returns, refunds and remedies functional in isolated mode.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts",
+        "backend/src/runtime/commerce-runtime/governed/financial-projection.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-16",
+      "source": "build-mandate.txt#W6-16",
+      "outcome": "Pillow autonomous observe-to-decision-to-outcome workflow durable and bounded.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/worker.ts",
+        "backend/src/runtime/commerce-runtime/governed/runtime.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-17",
+      "source": "build-mandate.txt#W6-17",
+      "outcome": "Adversity scenarios and verified-evidence learning/reversal mechanism demonstrated.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-18",
+      "source": "build-mandate.txt#W6-18",
+      "outcome": "Four Eyes, owner approval, financial authority and anti-replay enforced.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/engine.ts",
+        "backend/src/runtime/commerce-runtime/governed/runtime.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-commerce-routes.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-19",
+      "source": "build-mandate.txt#W6-19",
+      "outcome": "Monitoring, provider failures, worker restart and safe recovery verified.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/worker.ts",
+        "backend/src/runtime/commerce-runtime/governed/store.ts",
+        "backend/src/runtime/commerce-runtime/governed/providers.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-provider-contracts.test.ts",
+        "backend/src/validation/tests/work6-scale.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass",
+        "local:work6-scale-scheduling:4-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-20",
+      "source": "build-mandate.txt#W6-20",
+      "outcome": "Authenticated operational API and affected phone/desktop controls functional.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+        "empireai-web/components/owner/GovernedCommerce.tsx"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-commerce-routes.test.ts",
+        "empireai-web/e2e/governed-commerce-owner.test.mjs"
+      ],
+      "evidenceIds": [
+        "local:owner-api-pass",
+        "hosted-browser:PENDING"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-21",
+      "source": "build-mandate.txt#W6-21",
+      "outcome": "Complete end-to-end intercepted commerce scenario passes with immutable receipts.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/scenario.ts",
+        "backend/src/runtime/commerce-runtime/governed/worker.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-22",
+      "source": "build-mandate.txt#W6-22",
+      "outcome": "Negative/adversarial tests pass and NOT_BORN/LOCKED/seven HTTP 423 remain.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+        "backend/src/runtime/commerce-runtime/governed/engine.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts",
+        "backend/src/validation/tests/work6-commerce-routes.test.ts"
+      ],
+      "evidenceIds": [
+        "local:work6-final-tests:31-pass"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-23",
+      "source": "build-mandate.txt#W6-23",
+      "outcome": "Reviewed GitHub CI, Railway/Vercel release, production identity, original /data and all protected financial records verified; release lease legitimately closed.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/closure.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "hosted-CI:PENDING",
+        "release:PENDING",
+        "preservation:PENDING"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    },
+    {
+      "id": "W6-24",
+      "source": "build-mandate.txt#W6-24",
+      "outcome": "Durable Work 6 COMPLETE receipt recorded and independently read back by King's Advisor, with exact limitations and no false live-transaction claims.",
+      "classification": "IMPLEMENTED_UNVERIFIED",
+      "status": "PENDING_PRODUCTION_ACCEPTANCE",
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/closure.ts",
+        "backend/src/runtime/commerce-runtime/governed/runtime.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work6-commerce.test.ts"
+      ],
+      "evidenceIds": [
+        "durable-receipt:PENDING",
+        "independent-advisor-readback:PENDING"
+      ],
+      "providerCoverage": "SYNTHETIC_INTERCEPTED; saved live read coverage in provider-coverage.md",
+      "authority": "PRE_BIRTH_EVIDENCE_ONLY",
+      "financialEffect": "NONE; reference Work5, synthetic isolated",
+      "productionDisposition": "NOT_RELEASED"
+    }
+  ],
+  "localVerification": {
+    "tests": 31,
+    "passed": 31,
+    "failed": 0,
+    "providerNetworkEffects": 0,
+    "paidInference": 0,
+    "scope": "Work6 focused and affected Four Eyes regression suite; not production acceptance",
+    "frontendTypecheck": "PASS",
+    "frontendLint": "PASS",
+    "browser": "Local Chromium download failed; mandatory pinned hosted Chromium workflow pending"
+  },
+  "scaleVerification": {
+    "tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "scope": "Synthetic 1000-candidate queue, top-100 deterministic selection, restart, duplicate prevention, partial repair, unknown/stale capacity and existing-ASIN mapping",
+    "providerNetworkEffects": 0,
+    "paidInference": 0,
+    "productionAcceptance": "PENDING"
+  }
+}

@@ -1,0 +1,166 @@
+EMPIREAI WORK 6 — NEW BUILD SPECIFICATION (NOT AN AUDIT OR RECOVERY)
+This document explicitly defines what to build. Its fixed 24 acceptance criteria override any earlier generic reference to a prior Work 6.
+
+EMPIREAI — WORK 6: COMPLETE GOVERNED COMMERCE EXECUTION
+GRAND KING — EXISTING CANONICAL MISSION, FULL IMPLEMENTATION TO VERIFIED CLOSURE
+9 OCTOBER 2026 — SINGLE CONTINUOUS WORK MANDATE
+
+PRIMARY DIRECTIVE
+Take end-to-end responsibility for Work 6. Recover the original authoritative specification and audit requirements, assess existing implementation, complete all genuine mandatory gaps, integrate the whole governed commerce lifecycle, test comprehensively, release through approved gates, verify production, and record an independently verified Work 6 COMPLETE receipt. Do not stop at a plan, code, PR, CI, deployment, or partial acceptance. Aim to complete in one Work session without sacrificing security or inventing results. Do not restart previously completed work. Maintain durable checkpoints for any interruption.
+
+EXISTING SYSTEM INPUTS
+This mandate provides execution instructions and comprehensive scope coverage; it is not a claim that the Work 6 contract defined here was independently retrieved. Before changes, inspect existing code, applicable Work 1 findings, prior Works 2–5 evidence, existing EmpireAI finished-state vision, source code, Mission Ledger, and provider commissioning records. The fixed W6-01–W6-24 acceptance contract defined in this document governs. Trace every requirement to source, code, test, and production evidence. Do not silently invent requirements or replace originals with this text. Genuine defects affecting original requirements remain in scope; optional enhancements and future Work 7/8/9 do not become new blockers.
+
+ACCEPTED BASELINE
+Repository: https://github.com/empireaios/EmpireAI
+Work 5 COMPLETE receipt: work5-complete-20261009-0550
+Receipt SHA-256: dba13e87f7b855ade2243ca9a79941214e1677b621fb27b41865f689ddd691c1
+Accepted backend: bce4e47bf749de614630a784b281690b83a88d42
+Railway deployment: 1c2d4637-f9a2-4bf7-8a07-b394efec159d
+Frontend merge: cce91c892a61ed6321cbceb55712e58607de6b6c
+Vercel deployment: dpl_CutV9MSbPXTgCCSTF4BazTCDPAGT
+These are checkpoint identities, not assumptions about current production. Independently inspect live GitHub/Railway/Vercel/King's Advisor before editing. Preserve completed Works 2–5, all original /data, 224 accounting records, seven historical financial rows, three journal entries, Mission Ledger, owner approvals, Four Eyes, Pillow institutional memory and audit evidence. No destructive migration, ledger reset, fixture contamination or historical rewriting.
+
+ABSOLUTE AUTHORITY
+Pillow NOT_BORN. Commerce LOCKED. All seven existing live-effect routes remain HTTP 423. No live listings, marketplace writes, supplier orders, fulfilment submissions, payments, refunds, ads, customer messages or other commercial effects. No paid inference outside existing commissioning authority. No new paid subscription/provider without specific approval. Work 9 alone authorises Birth. Use read-only, sandbox, synthetic or intercepted acceptance and accurately label evidence. Preserve owner approvals, Four Eyes, financial spending limits, lease fencing, replay prevention and audit immutability. Never force a lease or bypass provider security.
+
+PHASE 1 — RECOVER AND FREEZE ACCEPTANCE
+Read existing source architecture, Work 1 audit and completed Works 2–5 interfaces; do not search for a prior Work 6 specification. Recover prior PRs, branch identities, release checkpoints, original provider permissions and accepted tests. Build one fixed, numbered requirement-to-evidence matrix: source ID; business outcome; current implementation; missing gap; provider dependencies; authority class; financial effect; positive/negative tests; production proof; disposition. Classify ALREADY_ACCEPTED, ENGINEERING_REQUIRED, IMPLEMENTED_UNVERIFIED, EXTERNAL_BLOCKED, NOT_COMMISSIONED, NOT_APPLICABLE, WORK_7, WORK_8 or POST_BIRTH. Distinguish genuine engineering failure from uncommissioned optional provider. Freeze W6-01 through W6-24 before implementation; add only proven in-scope defects with justification. Do not request already accessible documents from owner.
+
+PHASE 2 — COMPLETE SYSTEM DEPENDENCY DESIGN
+Inspect Pillow orchestration, product intelligence, Amazon SP-API, CJ, listing media, supplier catalogue, pricing, inventory, order intake, fulfilment, tracking, returns/refunds, Work 5 finance, Four Eyes, owner approvals, workers/queues, persistence, Advanced Assurance, Owner Console, monitoring and Mission Ledger. Identify duplicate state machines, inconsistent IDs, stale data, incomplete transitions, weak evidence, authority gaps, API incompatibilities, hidden provider access assumptions and unsafe retries. Define one coherent architecture using existing canonical models. Validate the full dependency chain before deploying, rather than discovering one defect per release.
+
+PHASE 3 — GOVERNED COMMERCE CORE
+Complete canonical commerce entities with stable identifiers, typed input/output, explicit legal state transitions, versioning, immutable event history, timestamps, source provenance, evidence freshness, workspace isolation, owner authority, approval references, financial references, provider IDs, idempotency keys, retry/backoff, timeout handling, conflict detection and restart recovery. Separate proposed, researched, qualified, approved, prepared, simulated and externally executed states. Provider read success must never be mistaken for transaction success. Protect against duplicate supplier submissions, callback replay, stale approvals, concurrent workers, partial writes, corruption and false completion.
+
+PHASE 4 — PRODUCT DISCOVERY AND QUALIFICATION
+Implement complete evidence-based opportunity research, market demand and competitor assessment, saturation, product differentiation, supplier availability, SKU/variant identity, stock freshness, delivery eligibility, quality, compliance, supplier reliability, expected returns, price position, capital exposure, margin and confidence. Distinguish verified real evidence, stale real evidence, estimates, synthetic fixtures, missing evidence and uncommissioned providers. Do not fabricate orders, sales velocity or profitability. Record rejection reasons; reconsider only with meaningful new evidence. Product scoring cannot override mandatory safety, legal, margin or owner approval gates.
+
+PHASE 5 — SUPPLIER EXECUTION CONTRACTS
+Complete existing CJ catalogue/product/SKU/variant/stock/pricing/freight/destination/lead-time/tracking/cancellation/return/fulfilment contracts. Test authorised read-only endpoints where possible; simulate all write effects with interception. Classify invalid credentials, permission denial, schema mismatch, rate limiting, outage, stale inventory, changed freight, supplier rejection, stockout and discontinued products. Respect cooldown and bounded retries. Preserve source receipts and idempotency. Do not add speculative supplier providers or claim real order execution from a fixture.
+
+PHASE 6 — AMAZON MARKETPLACE CONTRACTS
+Recover Amazon SP-API permissions and marketplace identity. Complete catalogue and ASIN/SKU mapping, category eligibility, listing content and attributes, image compliance, restricted goods, pricing and inventory sync intents, order ingestion, fulfilment confirmation, tracking, cancellation, returns/refunds, fees and reconciliation. Verify safe reads separately from intercepted/sandbox writes. No real listing publication, stock update, order acknowledgement or fulfilment. Mark missing provider permissions accurately; do not misrepresent mock verification as live capability.
+
+PHASE 7 — LISTING CONTENT AND MEDIA
+Prepare complete versioned, approval-ready listing packages: titles, bullets, descriptions, product attributes, variants, category, compliant images, source licensing, supplier claims, prohibited claims, dimensions, specifications, image enhancement when supported, evidence of rights, review and rejection reasons. Reuse existing content/image capabilities. Do not create an unrelated Media Factory, buy Canva, or add speculative paid video services. No publishing.
+
+PHASE 8 — WORK 5 ECONOMICS AND GOVERNED PRICING
+Use Work 5 as authoritative finance ledger. Integrate product acquisition, supplier freight, Amazon referral/transaction fees, taxes/duties, payment fees, FX, shipping variance, returns/refunds, overhead attribution, cash commitments and working capital. Calculate landed cost, contribution margin, break-even, price floors, downside sensitivity, capital at risk and approval thresholds. Keep actual/settled/accrued/estimated/synthetic/unknown separate; exclude historical demo revenues; prevent duplicate charges and FX-based overstatement of cash. Enforce pricing floors, margin guardrails, stock freshness, supplier cost changes, budget and cash availability. No real repricing/inventory writes.
+
+PHASE 9 — COMPLETE ORDER AND FULFILMENT LIFECYCLE
+Use existing canonical order state machine, adding only required legal transitions: intake, validation, supplier mapping, awaiting approval, authorised preparation, supplier submission intent, supplier accepted, processing, partial fulfilment, shipped, in transit, delivered, cancelled, return requested/approved, returned, refund pending/complete, exception and reconciliation required. Test synthetic orders, duplicate ingestion, missing customer/address/payment evidence, supplier rejection, out-of-stock, price drift, partial shipments, late or duplicate tracking, provider callbacks out of order, cancellation races, failed deliveries, lost packages, returns, replacement/refund exposure and restart during execution. Preserve immutable evidence and idempotency. No live commercial effects.
+
+PHASE 10 — AUTONOMOUS PILLOW COMMERCE INTELLIGENCE
+Systematically integrate observe → research → verify → compare → reason → decide within authority → request approval → record → monitor → learn → reassess. Include durable autonomous opportunity monitoring, supplier risk, product rejection, pricing review, listing preparation, order exception triage, recommendations and controlled recovery. Bound inference costs, loops, retries and context. Reuse existing provider router and commissioned providers; do not initiate unapproved paid inference. Demonstrate strategic adaptation to zero sales, weak conversion, falling margins, supplier outages, stockouts, returns, shipping failures, marketplace restrictions, low cash and 30/60/90-day underperformance. Learning must use verified outcomes; reversals remove influence without deleting history. Do not create a standalone CEO Intelligence project or claim real commercial improvement from synthetic scenarios.
+
+PHASE 11 — FOUR EYES, OWNER AUTHORITY AND ASSURANCE
+Integrate independent evidence checks, risk-based owner approval, expiry, revocation, separation of recommendation and execution, immutable receipts, stale approval rejection, nonowner denial, workspace boundaries, replay resistance and financial authority. Reuse Advanced Assurance monitoring, recovery, incident classification, durable Mission Ledger and release controls; do not redesign them. Test malicious provider data, prompt injection, forged owner approval, stale evidence, secret isolation, concurrency, worker crash, data loss and unauthorized live effects. The commerce lock must be enforced server-side, not merely disabled in UI.
+
+PHASE 12 — OWNER OPERATING VISIBILITY
+Ensure Work 6-required views and APIs expose opportunity pipeline, supplier/product qualification, listing readiness, economic decisions, simulated orders, fulfilment/tracking, exceptions, Four Eyes/approvals, provider health, audit receipts and financial impact. Verify authenticated desktop and phone-width operation for affected workflows. Do not expand into Work 7's full Owner Console redesign; record that boundary explicitly.
+
+PHASE 13 — END-TO-END AND ADVERSARIAL ACCEPTANCE
+Run a complete intercepted scenario: research → qualify → supplier verify → economics → Four Eyes → hypothetical/isolated approval → listing preparation → marketplace validation → synthetic order → supplier interception → tracking → delivery → return/refund exception → financial reconciliation → Pillow strategic reassessment. Test negative cases: insufficient cash, absent FX, stale stock, restricted product, missing permission, duplicate order, expired approval, malformed provider response, HTTP 401/403/429/500, timeout, interrupted worker, repeated callback, cross-workspace actor, forged approval, corrupt/missing journal and attempted commerce bypass. All seven live-effect routes must remain HTTP 423. Clearly distinguish local tests, hosted CI, browser acceptance, live read-only provider checks and untested post-Birth writes.
+
+PHASE 14 — COORDINATED ENGINEERING AND CI
+Before changing code, map every integration and release dependency. Prefer one coherent backend candidate and only the necessary frontend candidate. Keep tested source tree, security review, typed contracts, exact-source image build and all mandatory hosted checks. Do not rerun accepted suites without changed affected scope. Do not repeatedly poll long CI jobs; save run IDs and resume from actual terminal status. If CI times out, diagnose configuration without dropping tests. Avoid serial diagnostic-only PRs; verify API contracts, permissions, pagination and provider scope before production release wherever possible. Preserve rollback identity, original volume and ledger digests.
+
+PHASE 15 — CONTROLLED PRODUCTION RELEASE
+Grand King authorises reviewed Work 6 code release subject to established GitHub/Railway/Vercel gates and explicit owner approval wherever required by platform policy. Confirm current PR heads, CI, security review, deployment identity, provider variables by NAME only, release lease, fencing, rollback, /data and finance digests. Merge/deploy backend through Railway; verify SUCCESS, one healthy replica, HTTP 200 readiness, owner authentication, exact commit and preservation. If frontend changes are required, align exact backend merge revision, merge/deploy through Vercel and verify READY, alias, phone/desktop functionality. Reconcile/finish lease with trusted independent evidence. No duplicate deploy, forced lease close or unauthorized restart. Preserve NOT_BORN/LOCKED/423.
+
+PHASE 16 — ORIGINAL WORK 6 ACCEPTANCE AND CLOSURE
+Reconcile every fixed W6-01 through W6-24 criterion and applicable Work 1 finding against actual implementation and evidence. All mandatory internal engineering criteria must pass; classify uncommissioned/post-Birth external effects honestly. Verify end-to-end synthetic lifecycle, adversarial denial, owner controls, provider read-only evidence where available, Work 5 financial integration, Pillow bounded autonomy, restart durability, historical digests, production identity, CI, mobile contract, original /data, accounting count 224, seven historical rows, three journal entries, NOT_BORN, LOCKED and all seven 423 responses. Ensure release lease properly closed. Do not mark COMPLETE merely because tests passed or code deployed. Record Work 6 COMPLETE only when the fixed Work 6 acceptance contract is satisfied; independently read back the Mission Ledger receipt through King's Advisor.
+
+PHASE 17 — COST AND WORK-SESSION EFFICIENCY
+Treat Work usage and financial cost as scarce. Recover prior accepted work and existing CI rather than rerunning. Batch independent read-only checks. Avoid repeated narration, status polling, unnecessary paid inference, new subscriptions, speculative architecture, duplicate deployments and repeated diagnosis of the same provider failure. Preserve exact checkpoint and resume without rework after interruption. Track additional evidenced provider/infrastructure charges separately from ChatGPT credit reloads and OpenAI API inference. Never invent charges, savings or budget availability. Complete all authorised steps continuously; only ask owner for genuinely necessary irreversible authority or inaccessible external credentials.
+
+PHASE 18 — MANDATORY EVIDENCE HANDOVER
+Save: original source-backed acceptance matrix, Work 1 mapping, completed architecture and capability inventory, PR and merge hashes, CI run conclusions, Railway/Vercel deployment IDs, lease/fence closure, provider coverage and access limitations, end-to-end/negative-path results, autonomous decision evidence, financial integration, accounting/historical preservation digests, authority checks, owner UI acceptance, exact remaining limitations, and independent COMPLETE receipt. Make the handover self-contained and restartable. Do not fabricate completion.
+
+FINAL STOP CONDITIONS
+If all W6-01 through W6-24 criteria are genuinely passed and independently read back, report WORK 6 — COMPLETE, its receipt, deployment identities, acceptance matrix and retained limitations, then END immediately. If a genuine external security/permission restriction or mandatory owner approval blocks progress, preserve the exact checkpoint, explain the one precise necessary action, and END without retry loops. If there is a correctable internal defect, resolve it within Work 6 rather than declaring an artificial external blocker. Never bypass authority or start Work 7, 8 or 9.
+
+FINAL DIRECTIVE
+ONE CANONICAL WORK 6. COMPLETE THE WHOLE GOVERNED COMMERCE LIFECYCLE. ANTICIPATE DEPENDENCIES BEFORE DEPLOYING. PRESERVE WORKS 1–5. VERIFY EVERY ORIGINAL ACCEPTANCE REQUIREMENT. RELEASE SAFELY. CLOSE THE LEASE. RECORD INDEPENDENTLY VERIFIED COMPLETE. DO NOT RESTART OR EXPAND THE MISSION. END ONLY AT VERIFIED COMPLETION OR A PRECISE GENUINE BLOCKER.
+
+====================================================================
+AUTHORITATIVE WORK 6 BUILD CONTRACT — OVERRIDES ANY AUDIT-FIRST LANGUAGE ABOVE
+====================================================================
+
+THIS IS A NEW IMPLEMENTATION MISSION. DO NOT SEARCH FOR A PREVIOUS WORK 6 MANDATE. This document DEFINES the required engineering. Prior audits and Works 1–5 are references for reuse and regression prevention, not a substitute for the build. The purpose is to build and connect the hands and legs of EmpireAI dropshipping, not inspect whether someone else has built them. Existing code may satisfy an item ONLY when end-to-end behavior is demonstrated with current evidence. Build everything genuinely missing.
+
+BUILD A — COMMERCE ORCHESTRATOR AND CANONICAL DATA MODEL
+Implement an operational commerce orchestration service, durable event store and typed domain contracts for Opportunity, ResearchEvidence, ProductCandidate, Product, SupplierOffer, SupplierSKU, Variant, InventoryObservation, FreightQuote, EconomicAssessment, RiskAssessment, Approval, ListingPackage, MarketplaceIntent, Order, OrderLine, FulfilmentIntent, SupplierReceipt, Shipment, TrackingEvent, ReturnCase, RefundIntent, ExceptionCase, FinancialReference, StrategyDecision, OutcomeEvidence and ExecutionReceipt. Each needs scoped IDs, immutable provenance, evidence age, timestamps, revision, legal states, transition validation, correlation/causation IDs, approval and finance references, idempotency and restart recovery. Reuse canonical existing entities; do not create competing state machines. Build persistent workers that can resume an interrupted mission without duplicate external effects. Demonstrate actual cross-subsystem state transitions, not disconnected unit tests.
+
+BUILD B — PRODUCT DISCOVERY AND QUALIFICATION
+Implement runnable research-to-qualification: permitted market signals, competitor/price analysis, saturation, differentiation, supplier availability, SKU mapping, stock freshness, delivery geography, quality, restricted categories, compliance, return risk, evidence confidence, economic feasibility and capital exposure. Create candidate rankings with traceable evidence and rejection reasons. Missing evidence must be UNKNOWN, never invented. Hard compliance/margin constraints override a high opportunity score. Reconsider rejected products only with new evidence. Demonstrate a qualified candidate, an unprofitable rejection and a restricted-product denial.
+
+BUILD C — CJ SUPPLIER ENGINE
+Build/complete CJ read-only product, catalogue, variant, inventory, supplier price, warehouse, destination, freight and lead-time integrations where existing permission permits. Map CJ IDs to canonical IDs. Build isolated intercepted contracts for supplier order placement, acknowledgement, cancellation, tracking and returns, with idempotency and reconciliation. Handle 401/403/429/500, schema drift, missing SKU, stockout, quote expiry, supplier rejection, partial fill, changed freight, ambiguous timeout and cooldown. A successful catalogue read is NOT proof of fulfilment readiness. Do not purchase supplier access or place orders.
+
+BUILD D — AMAZON MARKETPLACE ENGINE
+Build/complete Amazon SP-API safe catalogue/ASIN/SKU, category eligibility, listing requirements, fees, marketplace identity and permitted order reads. Build publication-ready listing and inventory/price/order/shipment/return intents behind intercepted write adapters. Preserve strict live effect denial. Model Amazon permission failures, pagination, rate limits, eventual consistency, duplicate events and restricted-product rules. Demonstrate validation and simulated provider responses, clearly distinguishing from actual marketplace certification.
+
+BUILD E — LISTING CONTENT AND MEDIA
+Generate versioned listing packages with source-backed title, bullets, description, attributes, dimensions, variant matrix, category, image manifest, image licensing, truthful claims, compliance checks, quality gate, price/stock readiness and approval digest. Provide actual owner review and rejection flow. Reuse existing media/image enhancement where supported, without inventing a standalone Media Factory or requiring new paid services. No publication.
+
+BUILD F — ECONOMICS AND PRICING
+Use Work 5 as the authoritative financial system. Calculate landed cost, supplier freight, marketplace/payment fees, FX, duties/taxes, expected returns/refunds, contribution margin, minimum price, break-even, cash commitment, working capital, downside exposure and scenario sensitivities. Distinguish actual/settled/accrued/estimated/synthetic/unknown. Missing FX or liability evidence cannot overstate cash. Reject negative margin and insufficient cash. Trigger requalification on supplier price/freight/stock change. No live repricing or stock updates. Do not create a duplicate ledger.
+
+BUILD G — ORDER INTAKE AND GOVERNED FULFILMENT
+Implement synthetic/intercepted marketplace order intake with duplicate detection, variant mapping, destination, payment evidence classification, validation, risk, approval, supplier allocation and fulfilment intent. Explicit legal states must cover received, validation, review, approved/prepared, fulfilment pending/accepted, partial, shipped, delivered, cancelled, return, refund, exception and reconciled (map to existing canonical vocabulary). Handle missing data, repeated callbacks, supplier rejection, stockout, partial shipment, changed costs, cancellation races, unknown write outcome and restart during execution. An unconfirmed provider call must never be reported as accepted. No live order acknowledgement or supplier order.
+
+BUILD H — TRACKING, RETURNS AND REMEDIES
+Implement carrier/tracking identity, out-of-order/duplicate events, estimated arrival, proof of delivery, delayed/lost/damaged delivery, cancellation, return eligibility, partial refunds, replacements, supplier refusal, financial exposure and immutable case receipts. No real refunds, payments or customer communication. Demonstrate delivery success and adverse exception resolution with isolated financial entries.
+
+BUILD I — PILLOW AUTONOMY OPERATING THE ENGINE
+Connect Pillow to typed governed commerce tools. Implement persistent OBSERVE -> RESEARCH -> VERIFY -> COMPARE -> ECONOMIC/RISK ASSESS -> FOUR EYES -> DECIDE WITHIN AUTHORITY -> PREPARE/EXECUTE ONLY IF AUTHORISED -> VERIFY -> LEARN -> REASSESS. Bound tasks, inference, retries, cooldowns, memory and costs. Support autonomous research, rejection, product qualification, listing preparation, supplier/price monitoring, exception triage and corrective recommendations. Demonstrate strategic response to zero sales, weak conversion, falling margins, stockout, delivery failure, rising returns, marketplace restriction and low cash, with 30/60/90-day reviews. Synthetic outcomes prove the mechanism only, not real commercial improvement. Reversed evidence must stop influencing decisions while history remains immutable. Do not claim 'compounded intelligence' without reproducible evidence of updated decisions.
+
+BUILD J — FOUR EYES, AUTHORITY, ASSURANCE AND RECOVERY
+Enforce proposer/reviewer/executor separation, signed or digest-bound intent, approval expiry/revocation, owner identity, financial thresholds, replay prevention, concurrency fencing, provider secrets isolation and server-side LOCKED checks. Add commerce-specific monitoring and safe runbooks using existing Advanced Assurance, not a replacement system. Test forged approvals, prompt injection in provider data, cross-workspace actors, corrupt journal, worker crash, timeout and duplicate messages. All seven existing live-effect routes must remain HTTP 423, and any new external-effect route must also deny under LOCKED.
+
+BUILD K — OWNER OPERATING INTERFACE
+Provide working authenticated API and minimum desktop/390px mobile views to inspect opportunities, suppliers, listing packages, economics, simulated orders, tracking, returns, exceptions, approvals, provider status, autonomy tasks and audit receipts. Every control must work or be accurately disabled with an explanation. Label REAL_READ_ONLY, SYNTHETIC, PREPARED, BLOCKED and UNCOMMISSIONED. Do not defer the minimum controls needed to operate Work 6 to Work 7; do not undertake Work 7's full UX redesign.
+
+BUILD L — END-TO-END RUNNABLE ACCEPTANCE
+Execute one complete deterministic scenario: opportunity research -> candidate selection -> supplier verification -> landed cost and margin -> independent review -> hypothetical approval -> listing package -> Amazon validation -> synthetic order -> supplier allocation -> intercepted fulfilment -> tracking -> delivered -> return/refund exception -> isolated financial reconciliation -> Pillow strategic reassessment. Persist evidence and replay safely after restart. Run negative cases: duplicate order, stale inventory, missing FX, insufficient cash, restricted product, forged approval, expired approval, changed supplier price, partial fulfilment, timeout, 429, provider outage, corrupted journal, interrupted worker, wrong workspace, malicious provider text and commerce bypass. Ensure no real commercial effect and no fixture contamination.
+
+====================================================================
+FIXED WORK 6 ACCEPTANCE MATRIX — ALL 24 MUST BE DISPOSITIONED
+====================================================================
+W6-01 Canonical commerce architecture, typed entities and state transitions implemented.
+W6-02 Durable event/audit history, versioning and provenance verified.
+W6-03 Restart recovery, idempotency and concurrency verified.
+W6-04 Product research and evidence-backed opportunity ranking functional.
+W6-05 Product qualification, rejection and compliance gates functional.
+W6-06 CJ supplier safe-read integration and intercepted write contracts functional.
+W6-07 Amazon marketplace safe-read/validation and intercepted write contracts functional.
+W6-08 Listing package, content, media provenance and approval versioning functional.
+W6-09 Work 5 landed cost, contribution margin and price-floor integration functional.
+W6-10 Cash/FX/liability/budget and capital guardrails enforced.
+W6-11 Inventory freshness, price drift and stockout handling functional.
+W6-12 Order intake, mapping, validation and deduplication functional.
+W6-13 Supplier allocation and governed fulfilment intents functional.
+W6-14 Shipment, tracking, delivery and reconciliation functional.
+W6-15 Cancellations, returns, refunds and remedies functional in isolated mode.
+W6-16 Pillow autonomous observe-to-decision-to-outcome workflow durable and bounded.
+W6-17 Adversity scenarios and verified-evidence learning/reversal mechanism demonstrated.
+W6-18 Four Eyes, owner approval, financial authority and anti-replay enforced.
+W6-19 Monitoring, provider failures, worker restart and safe recovery verified.
+W6-20 Authenticated operational API and affected phone/desktop controls functional.
+W6-21 Complete end-to-end intercepted commerce scenario passes with immutable receipts.
+W6-22 Negative/adversarial tests pass and NOT_BORN/LOCKED/seven HTTP 423 remain.
+W6-23 Reviewed GitHub CI, Railway/Vercel release, production identity, original /data and all protected financial records verified; release lease legitimately closed.
+W6-24 Durable Work 6 COMPLETE receipt recorded and independently read back by King's Advisor, with exact limitations and no false live-transaction claims.
+
+For every criterion record code path, test, evidence ID, provider coverage classification, production disposition and PASS/FAIL/BLOCKED. No 'mostly passed' criterion. Genuine missing mandatory engineering is not an external blocker. Do not demand real sales or post-Birth write effects to pass pre-Birth acceptance. Do not substitute mocked provider behavior for claims of real provider access.
+
+====================================================================
+ONE-SESSION DELIVERY STRATEGY AND RELEASE
+====================================================================
+First: inventory actual code, provider permissions, Work 5 integration, current production and release control ONCE. Then: freeze W6-01–W6-24; map dependencies; build the full coherent backend and necessary frontend in coordinated branches; perform focused and adversarial tests; review external API contracts and safe read-only permissions before deploying; run mandatory hosted CI once per final changed head; complete security review; merge and deploy backend through Railway; verify exact merge revision, health HTTP 200, owner authentication, original volume and preservation digests; align and deploy frontend through Vercel if changed; verify READY, alias, phone/desktop; close the release lease with trusted evidence; independently verify all 24 dispositions and Mission Ledger COMPLETE. Avoid serial diagnostic-only PRs, unnecessary paid inference, repeated accepted suites, long CI polling and duplicated deployments. Save checkpoint before lengthy gates and after material milestones. Use exact actual platform IDs, not invented ones. No unauthorised purchases, provider writes or commerce activation.
+
+The owner has authorised the Work 6 engineering and reviewed deployment process subject to established security/approval gates. Do not interpret this as approval to unlock Birth or bypass any platform security review. If owner approval is genuinely required, request the smallest precise action once, with consequences and rollback. If a genuine external provider permission prevents a safe live READ, classify it accurately and prove the internal contract with intercepted evidence; only original mandatory live-read requirements may block closure. If an internal engineering defect is correctable, fix it within Work 6 rather than stopping at a diagnosis. If a provider or authority barrier cannot safely be overcome, preserve all work, exact checkpoint and one actionable blocker; do not fabricate COMPLETE.
+
+FINAL COMMAND: BUILD THE HANDS AND LEGS OF EMPIREAI DROPSHIPPING. Connect them to Pillow's brain and Work 5's financial controls. Demonstrate a complete governed commerce lifecycle without live effects. Deliver source code, operational controls, end-to-end acceptance, reviewed production release and independent Work 6 COMPLETE receipt. Do not conduct an audit instead of building. Do not invent a prior Work 6. Do not expand into Work 7/8/9. Do not stop at a plan, PR, CI or deployment. END ONLY AFTER VERIFIED COMPLETE OR ONE PRECISE GENUINE BLOCKER.

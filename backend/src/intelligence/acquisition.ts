@@ -32,16 +32,28 @@ export class ReadAcquirer{
     const t=obj(JSON.parse((await request('https://api.amazon.com/auth/o2/token',{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},body:form.toString()})).text));
     if(typeof t.access_token!=='string'||!t.access_token||typeof t.expires_in!=='number')throw new ReadFailure('AUTH_INVALID');this.amazonToken={value:t.access_token,expires:this.store.now()+Math.min(3500,t.expires_in-60)*1000};
    }
-   const p=new URLSearchParams();
+   const p=new URLSearchParams();let requestBody:unknown;
    if(c.id==='amazon.account')endpoint='/sellers/v1/marketplaceParticipations';
    else if(c.id==='amazon.catalog'){endpoint='/catalog/2022-04-01/items';p.set('marketplaceIds',market.id);p.set('includedData','identifiers,summaries,salesRanks,dimensions');p.set('pageSize','10');if(/^[A-Z0-9]{10}$/.test(subject.id)){p.set('identifiers',subject.id);p.set('identifiersType','ASIN');}else{p.set('keywords',subject.query??subject.id);}}
    else if(c.id==='amazon.offers'){if(!/^[A-Z0-9]{10}$/.test(subject.id))throw new ReadFailure('ASIN_REQUIRED');endpoint='/products/pricing/v0/items/'+subject.id+'/offers';p.set('MarketplaceId',market.id);p.set('ItemCondition','New');}
    else if(c.id==='amazon.analytics'){endpoint='/reports/2021-06-30/reports';p.set('reportTypes','GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT,GET_BRAND_ANALYTICS_SEARCH_CATALOG_PERFORMANCE_REPORT,GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT');p.set('pageSize','10');}
+   else if(c.id==='amazon.restrictions'){if(!/^[A-Z0-9]{10}$/.test(subject.id)||!subject.sellerId)throw new ReadFailure('ASIN_SELLER_REQUIRED');endpoint='/listings/2021-08-01/restrictions';p.set('asin',subject.id);p.set('sellerId',subject.sellerId);p.set('marketplaceIds',market.id);p.set('conditionType','new_new');}
+   else if(c.id==='amazon.requirements'){if(!subject.productType||!subject.sellerId)throw new ReadFailure('PRODUCT_TYPE_SELLER_REQUIRED');endpoint='/definitions/2020-09-01/productTypes/'+encodeURIComponent(subject.productType);p.set('sellerId',subject.sellerId);p.set('marketplaceIds',market.id);p.set('requirements','LISTING');}
+   else if(c.id==='amazon.fees'){if(!/^[A-Z0-9]{10}$/.test(subject.id)||!subject.price||!subject.currency)throw new ReadFailure('FEE_OPERANDS_REQUIRED');endpoint='/products/fees/v0/items/'+subject.id+'/feesEstimate';requestBody={FeesEstimateRequest:{MarketplaceId:market.id,IsAmazonFulfilled:false,Identifier:job.id,PriceToEstimateFees:{ListingPrice:{CurrencyCode:subject.currency,Amount:subject.price}}}};}
+   else if(c.id==='amazon.orders'){endpoint='/orders/v0/orders';p.set('MarketplaceIds',market.id);p.set('CreatedAfter',new Date(this.store.now()-7*86400000).toISOString());p.set('MaxResultsPerPage','10');}
    else throw new ReadFailure('READ_SCOPE_UNIMPLEMENTED');
-   const data=obj(JSON.parse((await request('https://'+market.host+endpoint+(p.size?'?'+p:''),{headers:{'x-amz-access-token':this.amazonToken.value}})).text));
+   if(subject.pageToken){if(!['amazon.catalog','amazon.orders'].includes(c.id))throw new ReadFailure('PAGINATION_SCOPE_INVALID');p.set(c.id==='amazon.orders'?'NextToken':'pageToken',subject.pageToken);}
+   const data=obj(JSON.parse((await request('https://'+market.host+endpoint+(p.size?'?'+p:''),{method:requestBody?'POST':'GET',headers:{'x-amz-access-token':this.amazonToken.value,'content-type':'application/json'},...(requestBody?{body:JSON.stringify(requestBody)}:{})})).text));
    if(data.errors)throw new ReadFailure('AMAZON_PROVIDER_ERROR');
    if(c.id==='amazon.account'&&!Array.isArray(data.payload))throw new ReadFailure('INVALID_PROVIDER_SHAPE');
    if(c.id==='amazon.catalog'&&!Array.isArray(data.items))throw new ReadFailure('INVALID_PROVIDER_SHAPE');
+   if(c.id==='amazon.restrictions'&&!Array.isArray(data.restrictions))throw new ReadFailure('INVALID_PROVIDER_SHAPE');
+   if(c.id==='amazon.orders'&&!Array.isArray(data.payload?.Orders))throw new ReadFailure('INVALID_PROVIDER_SHAPE');
+   if(c.id==='amazon.requirements'&&!data.schema?.link?.resource)throw new ReadFailure('INVALID_PROVIDER_SHAPE');
+   if(c.id==='amazon.fees'){
+    const result=data.payload?.FeesEstimateResult,total=result?.FeesEstimate?.TotalFeesEstimate,identifier=result?.FeesEstimateIdentifier,price=identifier?.PriceToEstimateFees?.ListingPrice,at=Date.parse(result?.FeesEstimate?.TimeOfFeesEstimation??'');
+    if(result?.Status!=='Success'||result?.Error||typeof total?.Amount!=='number'||!Number.isFinite(total.Amount)||total.Amount<0||total.CurrencyCode!==subject.currency||!Number.isFinite(at)||at>this.store.now()+60000||this.store.now()-at>600000||identifier?.MarketplaceId!==market.id||identifier?.IdType!=='ASIN'||identifier?.IdValue!==subject.id||identifier?.SellerInputIdentifier!==job.id||identifier?.IsAmazonFulfilled!==false||price?.CurrencyCode!==subject.currency||price?.Amount!==subject.price)throw new ReadFailure('FEE_ESTIMATE_UNVERIFIED');
+   }
    if(c.id==='amazon.analytics'&&!Array.isArray(data.reports))throw new ReadFailure('INVALID_PROVIDER_SHAPE');
    const lowest=data.payload?.Summary?.LowestPrices?.find((x:Row)=>x.condition==='new')?.LandedPrice;
    facts={response:safe(data),...(typeof lowest?.Amount==='number'?{price:lowest.Amount,currency:lowest.CurrencyCode}:{}),marketplaceId:market.id,interpretation:c.id==='amazon.analytics'?'Report-list access only. Empty reports do not prove Brand Registry, SQP, Search Catalog or Search Terms eligibility.':'Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim.'};
@@ -61,6 +73,7 @@ export class ReadAcquirer{
    }else throw new ReadFailure('READ_SCOPE_UNIMPLEMENTED');
    const r=await request(config.apiBaseUrl+endpoint+(p.size?'?'+p:''),{method:body?'POST':'GET',headers:{'CJ-Access-Token':token,'content-type':'application/json'},...(body?{body:JSON.stringify(body)}:{})},c.cost.units);
    const data=obj(JSON.parse(r.text));if(data.result!==true||data.code!==200||data.data===undefined)throw new ReadFailure('CJ_PROVIDER_'+String(data.code??'INVALID').replace(/[^0-9]/g,'').slice(0,12),86400000);
+   if(data.data===null||typeof data.data!=='object')throw new ReadFailure('INVALID_PROVIDER_SHAPE');
    facts={response:safe(data.data),pointsInfo:safe(data.pointsInfo??null),request:body??Object.fromEntries(p),interpretation:c.id==='cj.freight'?'Freight and delivery estimates, not guarantees; quantity 1; duties/returns not established.':'Supplier evidence only; does not establish independent customer demand.'};
   }else if(c.provider==='Keepa'){
    const market=markets[subject.marketplace];if(!market?.keepa||!/^[A-Z0-9]{10}$/.test(subject.id))throw new ReadFailure('KEEPA_ASIN_MARKET_REQUIRED');

@@ -1,3 +1,5 @@
+import {productionCommerce,readGovernedCommerce} from '../governed/runtime.js';
+import {id as governedId} from '../governed/contracts.js';
 import type { RegisteredTool } from "../../../brain/types.js";
 import { RuntimeOperationSchema } from "../models/execution-request.js";
 import { buildCommerceRuntimeDashboard } from "../services/commerce-runtime-dashboard-service.js";
@@ -12,6 +14,8 @@ import { buildPluginRegistrySnapshot, dispatchViaPlugin } from "../services/plug
 import { buildRuntimeHealthReport } from "../services/runtime-health-service.js";
 
 export const commerceRuntimeTools: RegisteredTool[] = [
+  {name:'commerce.governed.snapshot',description:'Read scoped governed commerce receipts; synthetic evidence never grants commercial authority',module:'commerce-runtime',authorityLevel:'L1',parameters:{type:'object',properties:{},additionalProperties:false},handler:async(_args,context)=>readGovernedCommerce(context.workspaceId)},
+  {name:'commerce.governed.advance',description:'Resume at most four steps of an existing owner-authorised isolated commerce task; no provider writes or inference',module:'commerce-runtime',authorityLevel:'L1',parameters:{type:'object',properties:{taskId:{type:'string',maxLength:160}},required:['taskId'],additionalProperties:false},handler:async(args,context)=>productionCommerce().worker.runBounded(context.workspaceId,governedId.parse(args.taskId))},
   {
     name: "commerce_runtime.dashboard",
     description: "Commerce Runtime dashboard — health, adapters, queue, plans, capability coverage (CRT-001)",

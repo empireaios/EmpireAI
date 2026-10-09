@@ -5,7 +5,7 @@ export const eyes=['MARKET','SUPPLIER','INTERNET','EMPIRE'] as const;
 export const digest=(v:unknown)=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 export const investigationLimits={queryCharacters:120,jobsPerRound:4,requestsPerRound:12,rounds:2,modelCalls:3} as const;
 // The model receives this exact server contract through investigation.context().
-export const subjectSchema=z.object({id:key,variant:key.optional(),marketplace:z.enum(['US','SG','UK','DE','GLOBAL']).default('US'),destination:z.string().regex(/^[A-Z]{2}$/).optional(),query:z.string().min(1).max(investigationLimits.queryCharacters).optional()}).strict();
+export const subjectSchema=z.object({id:key,variant:key.optional(),marketplace:z.enum(['US','SG','UK','DE','GLOBAL']).default('US'),destination:z.string().regex(/^[A-Z]{2}$/).optional(),query:z.string().min(1).max(investigationLimits.queryCharacters).optional(),sellerId:key.optional(),price:z.number().positive().max(1000000).optional(),currency:z.string().regex(/^[A-Z]{3}$/).optional(),productType:key.optional(),pageToken:z.string().min(1).max(2000).optional()}).strict();
 export const jobSchema=z.object({id:key,objective:z.string().min(4).max(800),capabilities:z.array(key).min(1).max(4),subject:subjectSchema,requestLimit:z.number().int().min(1).max(12).default(6),strategyRef:key.optional(),evidenceRefs:z.array(key).max(12).default([])}).strict();
 /** Generate the exposed contract from the validators, so constraints cannot silently diverge. */
 function toolSchema(schema:z.ZodTypeAny):Record<string,unknown>{
@@ -34,9 +34,11 @@ export const capabilities:Capability[]=[
  cap('amazon.account','MARKET','Amazon','Seller marketplace participation',amz),
  cap('amazon.catalog','MARKET','Amazon','Product discovery, identifiers, dimensions and sales rank proxy',amz),
  cap('amazon.offers','MARKET','Amazon','Competitive offers and price evidence for one ASIN',amz),
- cap('amazon.fees','MARKET','Amazon','Read-only fee estimate; requires actual price operands',amz,0,false,'HIGH_VALUE_NOW'),
+ cap('amazon.fees','MARKET','Amazon','Read-only fee estimate; requires actual price operands',amz,0,true,'HIGH_VALUE_NOW'),
  cap('amazon.analytics','MARKET','Amazon','Existing Brand Analytics reports; eligibility must be proved',amz),
- cap('amazon.restrictions','MARKET','Amazon','Listing eligibility requires seller identifier and category context',amz,0,false),
+ cap('amazon.restrictions','MARKET','Amazon','Listing eligibility requires seller identifier and category context',amz),
+ cap('amazon.requirements','MARKET','Amazon','Product type schema requirements; no listing writes',amz),
+ cap('amazon.orders','MARKET','Amazon','Bounded existing order metadata; no acknowledgement or restricted buyer data',amz),
  cap('amazon.advertising','MARKET','Amazon Ads','Read-only advertising performance; separate Ads access needed',[],0,false,'USEFUL_LATER'),
  cap('amazon.opportunity','MARKET','Amazon','Product Opportunity Explorer; human dashboard eligibility not API verification',[],0,false,'HIGH_VALUE_NOW'),
  cap('cj.catalog','SUPPLIER','CJ','Independent sourcing discovery; supplier popularity is not demand',['CJ_API_KEY'],50),
