@@ -44,7 +44,7 @@ export class AssuranceControlPlane {
     for(const prior of this.list(w,'incident').filter(i=>i.probeId===p.id&&i.capability===p.capability&&i.classification===p.classification&&!terminal.has(i.status))){
      if(recoveries.some(r=>r.incidentId===prior.id&&['RUNNING','UNKNOWN'].includes(r.status)))continue;
      const history=this.db.prepare("SELECT seq,at,body FROM cp_events WHERE workspace=? AND ((type='INCIDENT_DETECTED' AND json_extract(body,'$.incident.id')=?) OR (type='INCIDENT_OBSERVED' AND json_extract(body,'$.incidentId')=?)) ORDER BY seq LIMIT 5001").all(w,prior.id,prior.id).map(e=>({...e,body:JSON.parse(e.body)}));
-     if(!historicalProviderHistoryCompatible(history,probe))continue;
+     if(!historicalProviderHistoryCompatible(history,probe,prior))continue;
      const previousStatus=prior.status,historyEvidence={count:history.length,firstSeq:history[0].seq,lastSeq:history.at(-1).seq,sha256:hash(history)};
      prior.status='CLOSED';prior.closedAt=this.now();prior.historicalDisposition={...historical,historyEvidence};prior.dispositionRevision=this.revision;
      this.put(w,'incident',prior.id,prior);
