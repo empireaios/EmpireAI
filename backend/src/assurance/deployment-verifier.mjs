@@ -9,21 +9,32 @@ export function createDeploymentVerifier({env=process.env,fetcher=fetch,now=Date
   if(required.some(k=>typeof env[k]!=='string'||!env[k]))throw Error('DEPLOYMENT_VERIFIER_UNCONFIGURED');
   if(!/^[a-f0-9]{40}$/.test(revision)||revision!==env.RAILWAY_GIT_COMMIT_SHA||lease.scope.some(s=>!['backend','frontend'].includes(s)))throw Error('DEPLOYMENT_SCOPE_INVALID');
   const startedAt=now(),signal=AbortSignal.timeout(10000);
-  const json=async(url,options)=>{
-   const stage=url.includes('backboard.railway.com')?'RAILWAY_READ':url.includes('/v13/')?'VERCEL_ALIAS':'VERCEL_HISTORY';
+  const json=async(url,options,stageOverride)=>{
+   const stage=stageOverride??(url.includes('backboard.railway.com')?'RAILWAY_READ':url.includes('/v13/')?'VERCEL_ALIAS':'VERCEL_HISTORY');
    const fail=(code)=>Object.assign(Error(code),{diagnostic:{stage,code}});
    try{
    const r=await fetcher(url,{...options,signal,redirect:'error',cache:'no-store'});
    if(!r.ok)throw fail('HTTP_'+(Number.isInteger(r.status)?r.status:'UNKNOWN'));
    const body=await r.text();if(body.length>1048576)throw Error('PLATFORM_RESPONSE_BOUND');
-   const value=JSON.parse(body);if(value.errors?.length||value.error)throw fail('API_ERROR');return value;
+   const value=JSON.parse(body);
+   if(value.errors?.length||value.error){
+    // Map only documented, fixed provider errors. Never retain free-form messages.
+    const errors=Array.isArray(value.errors)?value.errors:[];
+    const known=new Set(['GRAPHQL_PARSE_FAILED','GRAPHQL_VALIDATION_FAILED','BAD_USER_INPUT','INTERNAL_SERVER_ERROR']);
+    const denied=errors.some(e=>e?.message==='Not Authorized');
+    const providerCode=errors.find(e=>known.has(e?.extensions?.code))?.extensions.code;
+    throw fail(denied?'AUTHORIZATION_DENIED':providerCode??'API_ERROR');
+   }
+   return value;
    }catch(error){if(error?.diagnostic)throw error;throw fail(error?.name==='TimeoutError'||signal.aborted?'TIMEOUT':'RESPONSE_OR_NETWORK_ERROR');}
   };
-  const railway=async(query,variables)=>{
-   const result=await json('https://backboard.railway.com/graphql/v2',{method:'POST',headers:{'content-type':'application/json','Project-Access-Token':env.ASSURANCE_RAILWAY_PROJECT_TOKEN},body:JSON.stringify({query,variables})});
+  const railway=async(query,variables,stage='RAILWAY_READ')=>{
+   const result=await json('https://backboard.railway.com/graphql/v2',{method:'POST',headers:{'content-type':'application/json','Project-Access-Token':env.ASSURANCE_RAILWAY_PROJECT_TOKEN},body:JSON.stringify({query,variables})},stage);
    if(!result.data)throw Error('PLATFORM_READ_FAILED');return result.data;
   };
   const vercel=async(path,params={})=>json('https://api.vercel.com'+path+'?'+new URLSearchParams({teamId:env.ASSURANCE_VERCEL_TEAM_ID,...params}),{method:'GET',headers:{Authorization:'Bearer '+env.ASSURANCE_VERCEL_READ_TOKEN}});
+  const tokenScope=await railway('query LeaseTokenScope { projectToken { projectId environmentId } }',{},'RAILWAY_AUTH');
+  if(tokenScope.projectToken?.projectId!==env.RAILWAY_PROJECT_ID||tokenScope.projectToken?.environmentId!==env.RAILWAY_ENVIRONMENT_ID)throw Object.assign(Error('TOKEN_SCOPE_MISMATCH'),{diagnostic:{stage:'RAILWAY_AUTH',code:'TOKEN_SCOPE_MISMATCH'}});
   // Enumerate the complete bounded history, not merely the newest successful row.
   const deploymentQuery=`query LeaseDeployments($input: DeploymentListInput!, $after: String) { deployments(input:$input, first:50, after:$after) { edges { node { id status meta } } pageInfo { hasNextPage endCursor } } }`;
   const railwayRows=[];let after=null,complete=false;
