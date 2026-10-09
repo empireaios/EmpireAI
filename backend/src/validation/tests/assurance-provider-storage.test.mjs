@@ -18,6 +18,7 @@ test('passive provider receipts do not turn missing, old or failed calls healthy
   assert.equal(readProviderHealth(f,['provider','missing'],now,1000).status,'NOT_CHECKED');
   assert.equal(readProviderHealth(f,['provider'],now+1000,1000).status,'DEGRADED');
   db.exec("UPDATE calls SET status='failed_uncertain'");assert.equal(readProviderHealth(f,['provider'],now,1000).status,'DEGRADED');
+  const oldFailure=readProviderHealth(f,['provider'],now+5000,1000);assert.equal(oldFailure.providers[0].reason,'LATEST_CALL_NOT_VERIFIED_COMPLETE');assert.notEqual(oldFailure.providers[0].retainedResponseVerified,true);
  }finally{db.close();fs.rmSync(root,{recursive:true,force:true});}
 });
 test('storage and freshness collectors read real sources without claiming backup or fresh provider access',async()=>{

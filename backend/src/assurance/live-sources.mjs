@@ -19,7 +19,7 @@ export async function collectDurableOmissions({ redis, filename, resolutionDirec
     if(++pages>100 || keys.size>10000)throw Error('Request inventory exceeds bound');
   }while(cursor!=='0');
   const db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:1000});
-  const authoritative=[],internal=[],bindings=new Set(),resolved=[];let inspected=0,unbound=0;
+  const authoritative=[],internal=[],bindings=new Set(),resolved=[];let inspected=0,unbound=0,pending=0;
   const resolve = resolutionDirectory ? readDeliveryResolutions(resolutionDirectory,'ws_empire_1',now) : () => null;
   try {
     db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; BEGIN');
@@ -46,7 +46,7 @@ export async function collectDurableOmissions({ redis, filename, resolutionDirec
         inspected++;
         continue;
       }
-      if(r.status!=='COMPLETED')continue;
+      if(r.status!=='COMPLETED'){pending++;continue;}
       // Delivery reads update updatedAt; only the immutable completion receipt
       // defines this window. Raw Redis retains exact result bytes in resultJson.
       const at=Date.parse(r.observability?.resultPersistedAt);
@@ -73,7 +73,7 @@ export async function collectDurableOmissions({ redis, filename, resolutionDirec
       inspected++;
     }
     db.exec('COMMIT');
-    const inventory={complete:true,pages,retainedKeys:keys.size,eligible:inspected,unbound,windowStart:now-900000,windowEnd:now-30000,terminalFailureScope:'ALL_RETAINED',keyDigest:createHash('sha256').update(JSON.stringify([...keys].sort())).digest('hex'),sqliteIntegrity:'ok'};
+    const inventory={complete:true,pages,retainedKeys:keys.size,eligible:inspected,unbound,pending,windowStart:now-900000,windowEnd:now-30000,terminalFailureScope:'ALL_RETAINED',keyDigest:createHash('sha256').update(JSON.stringify([...keys].sort())).digest('hex'),sqliteIntegrity:'ok'};
     return {origin:'independent-adapter',source:'Redis durable requests vs SQLite transcripts; terminal failures independently checked against bound successor closures',evidenceId:'durable-omissions-'+now,observedAt:now,authoritative,internal,scopeComplete:unbound===0,inventory,unbound,historicalFailuresResolved:resolved.length,resolutionDigest:createHash('sha256').update(JSON.stringify(resolved)).digest('hex')};
   }finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}
 }

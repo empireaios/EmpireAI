@@ -35,6 +35,7 @@ jobs:
           node backend/src/validation/tests/assurance-delivery-resolution.test.mjs
           node backend/src/validation/tests/assurance-closure-health.test.mjs
           node backend/src/validation/tests/assurance-capability-health.test.mjs
+          node backend/src/validation/tests/assurance-operating-scope.test.mjs
           node backend/src/validation/tests/assurance-provider-storage.test.mjs
           node backend/src/validation/tests/assurance-internal-collectors.test.mjs
           node backend/src/validation/tests/assurance-supervisor.test.mjs

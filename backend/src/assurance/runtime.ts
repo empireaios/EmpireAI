@@ -4,6 +4,8 @@ import {acceptanceRevisionEligible,retainedAcceptance} from './acceptance-contin
 import {closureHealthBlockers} from '../../src/assurance/closure-health.mjs';
 import {classifyCapability,aggregateCapabilityHealth} from '../../src/assurance/capability-health.mjs';
 import {readProviderHealth} from '../../src/assurance/provider-health.mjs';
+// @ts-expect-error The independent inspector is an existing native ESM module.
+import {inspectAssurance} from '../../src/assurance/independent-assurance.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {DatabaseSync} from 'node:sqlite';
@@ -64,7 +66,10 @@ export class AssuranceRuntime {
  async cycle(){
   if(this.busy||this.control.get(workspace,'acceptance','active')?.pauseUntil>Date.now())return;this.busy=true;
   try{
-   const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>this.control.observe(workspace,{id,capability:id,status,summary,evidence,classification:id,runbookId});
+   const scopeNow=Date.now();
+   const coverage=inspectAssurance(path.join(this.root,'commissioning','assurance.sqlite'),{now:scopeNow,epoch:0,intervalMs:300000,graceMs:120000});
+   const scopeContext:any={profile:process.env.EMPIRE_RUNTIME_PROFILE,observedAt:scopeNow,coverage};
+   const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>this.control.observe(workspace,{id,capability:id,status,summary,evidence,classification:id,runbookId,...(['provider_configuration','four_eyes_reads'].includes(id)?{scopeContext}: {})});
    try{const commerce=readGovernedCommerce(workspace);const blocked=commerce.tasks.filter(t=>t.status==='BLOCKED');observe('governed_commerce',blocked.length?'DEGRADED':'HEALTHY','Immutable commerce evidence and bounded synthetic task progress',{tasks:commerce.tasks.map(t=>({id:t.id,status:t.status,cursor:t.cursor,error:t.error})),externalEffects:0,runbook:'Inspect exact failing receipt; reconcile unknown provider identity before resuming. Never retry an uncertain write or reset journal.'});}catch{observe('governed_commerce','UNAVAILABLE','Commerce evidence integrity or storage unavailable; execution stopped');}
    try{const finance=productionFinance().snapshot(workspace);observe('financial_evidence','HEALTHY','Financial journal readable; billing and cash verification remain record-specific',{entryDigest:finance.entryDigest,entries:finance.entries.length,unresolvedFinancialAlerts:finance.alerts.length,completeCashPosition:finance.completeCashPosition});}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
    const contract=checkToolContract();observe('model_server_contract',contract.status,contract.summary,contract.evidence);
@@ -83,7 +88,12 @@ export class AssuranceRuntime {
      const h=row?JSON.parse(String(row.body)):null;const fresh=h?.heartbeatAt&&Date.parse(h.heartbeatAt)<=Date.now()&&Date.now()-Date.parse(h.heartbeatAt)<120000;
      observe('four_eyes_scheduler',fresh&&h.status==='RUNNING'?'HEALTHY':fresh?'DEGRADED':'STALE','Durable Four Eyes scheduler progress',{heartbeatAt:h?.heartbeatAt??null,status:h?.status??'MISSING'});
      const health=db.prepare("SELECT id,body FROM objects WHERE workspace=? AND kind='health' LIMIT 40").all(workspace).map(r=>({id:r.id,...JSON.parse(String(r.body))}));
-     const reads=capabilities.map(c=>{const h=health.find(h=>h.id===c.id);return {id:c.id,...classifyCapability({implemented:c.implemented,configured:c.credentials.every(k=>Boolean(process.env[k])),health:h,now:Date.now(),maxAgeMs:c.ttlMs}),lastGoodAt:h?.lastGoodAt??null,failure:h?.failure??null};});
+     scopeContext.schedules=db.prepare('SELECT body FROM schedules WHERE workspace=? ORDER BY id LIMIT 6').all(workspace).map(r=>JSON.parse(String(r.body)));
+     scopeContext.activeJobs=Number(db.prepare("SELECT count(*) n FROM jobs WHERE workspace=? AND status IN ('QUEUED','RUNNING')").get(workspace)?.n);
+     scopeContext.uncertainJobs=Number(db.prepare("SELECT count(*) n FROM jobs WHERE workspace=? AND status='INTERRUPTED'").get(workspace)?.n);
+     const resource=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='resources' AND id='historical-market-data'").get(workspace);
+     scopeContext.keepa=resource?JSON.parse(String(resource.body)):null;
+     const reads=capabilities.map(c=>{const h=health.find(h=>h.id===c.id);return {id:c.id,...classifyCapability({implemented:c.implemented,configured:c.credentials.every(k=>Boolean(process.env[k])),health:h,now:Date.now(),maxAgeMs:c.ttlMs}),lastGoodAt:h?.lastGoodAt??null,evidenceId:h?.evidenceId??null,failure:h?.failure??null};});
      observe('four_eyes_reads',aggregateCapabilityHealth(reads),'Per-capability saved reads distinguish failed, stale, missing and external evidence; no monitoring API calls',reads);
     } finally {db.close();}
    } catch {observe('four_eyes_scheduler','UNAVAILABLE','Four Eyes durable scheduler source unavailable');}
