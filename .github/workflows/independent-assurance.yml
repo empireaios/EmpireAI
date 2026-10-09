@@ -25,6 +25,7 @@ jobs:
           node-version-file: '.node-version'
       - run: |
           node --test deployment/runtime-revision.test.cjs
+          node --test backend/src/validation/tests/assurance-deployment-verifier.test.mjs backend/src/validation/tests/assurance-control-plane.test.mjs
           node backend/src/validation/tests/commissioning-operator.test.mjs
           node backend/src/validation/tests/assurance-owner-evidence.test.mjs
           node backend/src/validation/tests/assurance-current-state-provenance.test.mjs
