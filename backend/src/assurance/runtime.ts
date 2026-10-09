@@ -1,3 +1,4 @@
+import {readGovernedCommerce} from '../runtime/commerce-runtime/governed/runtime.js';
 import {productionFinance} from '../finance/financial-centre.js';
 import {acceptanceRevisionEligible,retainedAcceptance} from './acceptance-continuity.js';
 import {closureHealthBlockers} from '../../src/assurance/closure-health.mjs';
@@ -64,6 +65,7 @@ export class AssuranceRuntime {
   if(this.busy||this.control.get(workspace,'acceptance','active')?.pauseUntil>Date.now())return;this.busy=true;
   try{
    const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>this.control.observe(workspace,{id,capability:id,status,summary,evidence,classification:id,runbookId});
+   try{const commerce=readGovernedCommerce(workspace);const blocked=commerce.tasks.filter(t=>t.status==='BLOCKED');observe('governed_commerce',blocked.length?'DEGRADED':'HEALTHY','Immutable commerce evidence and bounded synthetic task progress',{tasks:commerce.tasks.map(t=>({id:t.id,status:t.status,cursor:t.cursor,error:t.error})),externalEffects:0,runbook:'Inspect exact failing receipt; reconcile unknown provider identity before resuming. Never retry an uncertain write or reset journal.'});}catch{observe('governed_commerce','UNAVAILABLE','Commerce evidence integrity or storage unavailable; execution stopped');}
    try{const finance=productionFinance().snapshot(workspace);observe('financial_evidence','HEALTHY','Financial journal readable; billing and cash verification remain record-specific',{entryDigest:finance.entryDigest,entries:finance.entries.length,unresolvedFinancialAlerts:finance.alerts.length,completeCashPosition:finance.completeCashPosition});}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
    const contract=checkToolContract();observe('model_server_contract',contract.status,contract.summary,contract.evidence);
    observe('durable_control', 'HEALTHY','Operational event store is readable',{events:this.control.snapshot(workspace).events.length});
@@ -178,3 +180,15 @@ export function installAssuranceRuntime(app:FastifyInstance){
 
 /** Work5 financial acceptance writes the existing Mission Ledger; Assurance acceptance is not reused or redefined. */
 export async function recordWork5Outcome(ownerId:string,evidence:import('zod').infer<typeof import('../finance/closure.js').financialClosureSchema>){if(!active)throw Error('ASSURANCE_RUNTIME_UNAVAILABLE');const digest=reconciliationHash(evidence);const old=active.control.get(workspace,'command',evidence.id);if(old){if(old.inputHash!==digest)throw Error('IDEMPOTENCY_CONFLICT');return old;}const checkpoint={id:'WORK-5-FINANCIAL-INTELLIGENCE',state:evidence.state,revision:active.revision,ownerId,at:Date.now(),criteria:evidence.criteria,externalEvidence:{...evidence,verification:'AUTHENTICATED_OWNER_ATTESTATION; SERVER_VERIFIED_CURRENT_RECORD_DIGESTS'},authority:{birth:'NOT_BORN',commerce:'LOCKED'}};const receipt={id:evidence.id,type:'work5_mission_close',status:'ACCEPTED',inputHash:digest,checkpoint};return active.control.tx(()=>{active!.control.put(workspace,'checkpoint',checkpoint.id,checkpoint);active!.control.put(workspace,'command',evidence.id,receipt);active!.control.event(workspace,'WORK5_FINANCIAL_OUTCOME_RECORDED',checkpoint);return receipt;});}
+
+/** Work6 uses the existing durable Mission Ledger and terminal release lease. Platform/CI checks remain independently retrieved owner evidence. */
+export async function recordWork6Outcome(ownerId:string,evidence:import('../runtime/commerce-runtime/governed/closure.js').CommerceClosure){
+ if(!active)throw Error('ASSURANCE_RUNTIME_UNAVAILABLE');
+ const inputHash=reconciliationHash(evidence),old=active.control.get(workspace,'command',evidence.id);
+ if(old){if(old.inputHash!==inputHash)throw Error('IDEMPOTENCY_CONFLICT');return old;}
+ const lease=active.control.get(workspace,'lease','production');if(!lease||lease.id!==evidence.leaseId||lease.ownerId!==ownerId||!['FINISHED','RECONCILED'].includes(lease.status))throw Error('RELEASE_LEASE_UNRESOLVED');
+ if(active.control.snapshot(workspace).recoveries.some((r:any)=>['RUNNING','UNKNOWN'].includes(r.status)))throw Error('RECOVERY_UNRESOLVED');
+ const checkpoint={id:'WORK-6-GOVERNED-COMMERCE',state:'COMPLETE',revision:active.revision,ownerId,at:Date.now(),criteria:evidence.criteria,externalEvidence:{...evidence,leaseReceipt:lease.evidence??{id:lease.id,fence:lease.fence,status:lease.status},verification:'SERVER_VERIFIED_RUNTIME_PRESERVATION_AND_LEASE; PLATFORM_AND_REVIEWED_CI_OWNER_ATTESTATION'},authority:{birth:'NOT_BORN',commerce:'LOCKED'}};
+ const receipt={id:evidence.id,type:'work6_mission_close',status:'ACCEPTED',inputHash,checkpoint};
+ return active.control.tx(()=>{const current=active!.control.get(workspace,'lease','production');if(current?.id!==lease.id||current?.fence!==lease.fence||current?.status!==lease.status)throw Error('LEASE_CHANGED_DURING_VERIFICATION');active!.control.put(workspace,'checkpoint',checkpoint.id,checkpoint);active!.control.put(workspace,'command',evidence.id,receipt);active!.control.event(workspace,'WORK6_COMMERCE_OUTCOME_RECORDED',checkpoint);return receipt;});
+}
