@@ -1,15 +1,15 @@
 {
   "portfolio": {
-    "at": "2026-10-10T22:13:55.844Z",
+    "at": "2026-10-10T22:26:52.509Z",
     "classification": "ALL",
     "items": [
       {
         "missionId": "acceptance:isolated-owner-walkthrough",
         "receiptId": "2dfc7dc0639bc9ff789b29222c2efe7cb209ded8cf67368aff473859b737186b",
         "version": 19,
-        "digest": "267a240e9f47967869cdc3277dd79904a7449d4f42f54d90051a4439acc29876",
-        "candidateDigest": "64b2a34c0ade942d31f4dd543390f04f65fa457f2b1f1af3a2e9b107ca84fb5b",
-        "at": "2026-10-10T22:13:55.822Z",
+        "digest": "d17ce48f0f157e4d07356fc9696b9bc6cdb4b38faa3fd201d96e1b86f221d6ef",
+        "candidateDigest": "ea76821dd08af12546c93bb19dca912ec565030c6cb656a1eda0235cac78bae8",
+        "at": "2026-10-10T22:26:52.489Z",
         "productId": "cj-product-fixture",
         "title": "Synthetic storage organiser",
         "sku": "cj-sku-fixture",
@@ -20,8 +20,8 @@
           "source": "work6-deterministic-acceptance",
           "reference": "synthetic:work6-fixture-not-provider-evidence",
           "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-          "observedAt": "2026-10-10T22:13:55.620Z",
-          "expiresAt": "2026-10-10T23:13:55.620Z",
+          "observedAt": "2026-10-10T22:26:52.253Z",
+          "expiresAt": "2026-10-10T23:26:52.253Z",
           "classification": "SYNTHETIC"
         },
         "stale": false,
@@ -46,8 +46,8 @@
             "source": "work6-deterministic-acceptance",
             "reference": "synthetic:work6-fixture-not-provider-evidence",
             "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-            "observedAt": "2026-10-10T22:13:55.620Z",
-            "expiresAt": "2026-10-10T23:13:55.620Z",
+            "observedAt": "2026-10-10T22:26:52.253Z",
+            "expiresAt": "2026-10-10T23:26:52.253Z",
             "classification": "SYNTHETIC"
           }
         },
@@ -177,8 +177,8 @@
         "listingDigest": "c430a69c5cc588e22aa30119cc5d4103272fbe325365c66f9caa7a040e7e5342",
         "approval": {
           "actor": "isolated-owner",
-          "digest": "64b2a34c0ade942d31f4dd543390f04f65fa457f2b1f1af3a2e9b107ca84fb5b",
-          "expiresAt": "2026-10-10T23:13:55.620Z",
+          "digest": "ea76821dd08af12546c93bb19dca912ec565030c6cb656a1eda0235cac78bae8",
+          "expiresAt": "2026-10-10T23:26:52.253Z",
           "maxExposure": 100,
           "revoked": false
         },
@@ -226,8 +226,8 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             }
           },
@@ -240,8 +240,8 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             }
           },
@@ -254,8 +254,8 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             }
           },
@@ -268,8 +268,8 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             }
           },
@@ -282,8 +282,8 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             }
           },
@@ -296,8 +296,8 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             }
           },
@@ -310,8 +310,8 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             }
           },
@@ -324,8 +324,8 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             }
           }
@@ -852,8 +852,8 @@
     }
   },
   "commerce": {
-    "at": "2026-10-10T22:13:55.885Z",
-    "revision": "e8cf5ff7181b4e26341fb2a045e5a05f1f55c823",
+    "at": "2026-10-10T22:26:52.542Z",
+    "revision": "a53875afc8107324db3c4b9302411facbb0e78de",
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
     "classification": "SYNTHETIC_EXECUTION_WITH_SEPARATE_REAL_READ_ONLY_EVIDENCE",
@@ -877,7 +877,7 @@
         "missionId": "acceptance:isolated-owner-walkthrough",
         "workspace": "ws_empire_1",
         "version": 19,
-        "at": "2026-10-10T22:13:55.822Z",
+        "at": "2026-10-10T22:26:52.489Z",
         "actor": {
           "id": "pillow-commerce-proposer",
           "workspace": "ws_empire_1",
@@ -887,7 +887,7 @@
           "type": "reassess"
         },
         "requestDigest": "e71ca403b1e9ebca3793347c2e6631afa46b51672c7c2ef5c8c627eab2d29c39",
-        "previous": "d1fb8c22b988ff44043bb2030d51d17fe539cf8fdc6ded9a85777b85fe59e522",
+        "previous": "6c7b1dd8721441a2fa830dae96c81f54e37d774e1b5e8ca5bfcba8ca176bbe3d",
         "state": {
           "phase": "APPROVED",
           "candidate": {
@@ -913,8 +913,8 @@
                 "source": "work6-deterministic-acceptance",
                 "reference": "synthetic:work6-fixture-not-provider-evidence",
                 "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                "observedAt": "2026-10-10T22:13:55.620Z",
-                "expiresAt": "2026-10-10T23:13:55.620Z",
+                "observedAt": "2026-10-10T22:26:52.253Z",
+                "expiresAt": "2026-10-10T23:26:52.253Z",
                 "classification": "SYNTHETIC"
               }
             },
@@ -928,8 +928,8 @@
                   "source": "work6-deterministic-acceptance",
                   "reference": "synthetic:work6-fixture-not-provider-evidence",
                   "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                  "observedAt": "2026-10-10T22:13:55.620Z",
-                  "expiresAt": "2026-10-10T23:13:55.620Z",
+                  "observedAt": "2026-10-10T22:26:52.253Z",
+                  "expiresAt": "2026-10-10T23:26:52.253Z",
                   "classification": "SYNTHETIC"
                 }
               },
@@ -942,8 +942,8 @@
                   "source": "work6-deterministic-acceptance",
                   "reference": "synthetic:work6-fixture-not-provider-evidence",
                   "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                  "observedAt": "2026-10-10T22:13:55.620Z",
-                  "expiresAt": "2026-10-10T23:13:55.620Z",
+                  "observedAt": "2026-10-10T22:26:52.253Z",
+                  "expiresAt": "2026-10-10T23:26:52.253Z",
                   "classification": "SYNTHETIC"
                 }
               },
@@ -956,8 +956,8 @@
                   "source": "work6-deterministic-acceptance",
                   "reference": "synthetic:work6-fixture-not-provider-evidence",
                   "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                  "observedAt": "2026-10-10T22:13:55.620Z",
-                  "expiresAt": "2026-10-10T23:13:55.620Z",
+                  "observedAt": "2026-10-10T22:26:52.253Z",
+                  "expiresAt": "2026-10-10T23:26:52.253Z",
                   "classification": "SYNTHETIC"
                 }
               },
@@ -970,8 +970,8 @@
                   "source": "work6-deterministic-acceptance",
                   "reference": "synthetic:work6-fixture-not-provider-evidence",
                   "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                  "observedAt": "2026-10-10T22:13:55.620Z",
-                  "expiresAt": "2026-10-10T23:13:55.620Z",
+                  "observedAt": "2026-10-10T22:26:52.253Z",
+                  "expiresAt": "2026-10-10T23:26:52.253Z",
                   "classification": "SYNTHETIC"
                 }
               },
@@ -984,8 +984,8 @@
                   "source": "work6-deterministic-acceptance",
                   "reference": "synthetic:work6-fixture-not-provider-evidence",
                   "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                  "observedAt": "2026-10-10T22:13:55.620Z",
-                  "expiresAt": "2026-10-10T23:13:55.620Z",
+                  "observedAt": "2026-10-10T22:26:52.253Z",
+                  "expiresAt": "2026-10-10T23:26:52.253Z",
                   "classification": "SYNTHETIC"
                 }
               },
@@ -998,8 +998,8 @@
                   "source": "work6-deterministic-acceptance",
                   "reference": "synthetic:work6-fixture-not-provider-evidence",
                   "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                  "observedAt": "2026-10-10T22:13:55.620Z",
-                  "expiresAt": "2026-10-10T23:13:55.620Z",
+                  "observedAt": "2026-10-10T22:26:52.253Z",
+                  "expiresAt": "2026-10-10T23:26:52.253Z",
                   "classification": "SYNTHETIC"
                 }
               },
@@ -1012,8 +1012,8 @@
                   "source": "work6-deterministic-acceptance",
                   "reference": "synthetic:work6-fixture-not-provider-evidence",
                   "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                  "observedAt": "2026-10-10T22:13:55.620Z",
-                  "expiresAt": "2026-10-10T23:13:55.620Z",
+                  "observedAt": "2026-10-10T22:26:52.253Z",
+                  "expiresAt": "2026-10-10T23:26:52.253Z",
                   "classification": "SYNTHETIC"
                 }
               },
@@ -1026,8 +1026,8 @@
                   "source": "work6-deterministic-acceptance",
                   "reference": "synthetic:work6-fixture-not-provider-evidence",
                   "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                  "observedAt": "2026-10-10T22:13:55.620Z",
-                  "expiresAt": "2026-10-10T23:13:55.620Z",
+                  "observedAt": "2026-10-10T22:26:52.253Z",
+                  "expiresAt": "2026-10-10T23:26:52.253Z",
                   "classification": "SYNTHETIC"
                 }
               }
@@ -1072,7 +1072,7 @@
               "financialDigest": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
             }
           },
-          "candidateDigest": "64b2a34c0ade942d31f4dd543390f04f65fa457f2b1f1af3a2e9b107ca84fb5b",
+          "candidateDigest": "ea76821dd08af12546c93bb19dca912ec565030c6cb656a1eda0235cac78bae8",
           "qualification": {
             "qualified": true,
             "reasons": [],
@@ -1166,8 +1166,8 @@
                 "carrier": null,
                 "trackingEvents": [],
                 "integrationMode": "SANDBOX",
-                "createdAt": "2026-10-10T22:13:55.620Z",
-                "updatedAt": "2026-10-10T22:13:55.620Z"
+                "createdAt": "2026-10-10T22:26:52.253Z",
+                "updatedAt": "2026-10-10T22:26:52.253Z"
               },
               "outcome": "DELIVERED",
               "accepted": 2,
@@ -1177,7 +1177,7 @@
                 "tracking-shipped",
                 "tracking-delivered"
               ],
-              "lastTrackingAt": "2026-10-10T22:13:55.620Z",
+              "lastTrackingAt": "2026-10-10T22:26:52.253Z",
               "shipments": {
                 "shipment-fixture": {
                   "quantity": 2,
@@ -1202,7 +1202,7 @@
                   "financialClass": "SYNTHETIC_EXCLUDED_FROM_ACTUALS"
                 }
               ],
-              "intentId": "d8cd1c5c8c861e44c4645d5f416223af3a48f242c4deffe6687ffd6c73011cd6",
+              "intentId": "b788c6a55713830f106126ae0056393ab89f3ccf853b43907277d5da2dbf9a6b",
               "providerId": "cj-intercepted-receipt"
             }
           },
@@ -1223,8 +1223,8 @@
                 "source": "work6-deterministic-acceptance",
                 "reference": "synthetic:work6-fixture-not-provider-evidence",
                 "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                "observedAt": "2026-10-10T22:13:55.620Z",
-                "expiresAt": "2026-10-10T23:13:55.620Z",
+                "observedAt": "2026-10-10T22:26:52.253Z",
+                "expiresAt": "2026-10-10T23:26:52.253Z",
                 "classification": "SYNTHETIC"
               }
             },
@@ -1244,8 +1244,8 @@
                 "source": "work6-deterministic-acceptance",
                 "reference": "synthetic:work6-fixture-not-provider-evidence",
                 "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                "observedAt": "2026-10-10T22:13:55.620Z",
-                "expiresAt": "2026-10-10T23:13:55.620Z",
+                "observedAt": "2026-10-10T22:26:52.253Z",
+                "expiresAt": "2026-10-10T23:26:52.253Z",
                 "classification": "SYNTHETIC"
               }
             },
@@ -1265,8 +1265,8 @@
                 "source": "work6-deterministic-acceptance",
                 "reference": "synthetic:work6-fixture-not-provider-evidence",
                 "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                "observedAt": "2026-10-10T22:13:55.620Z",
-                "expiresAt": "2026-10-10T23:13:55.620Z",
+                "observedAt": "2026-10-10T22:26:52.253Z",
+                "expiresAt": "2026-10-10T23:26:52.253Z",
                 "classification": "SYNTHETIC"
               }
             }
@@ -1358,13 +1358,13 @@
           "listingDigest": "c430a69c5cc588e22aa30119cc5d4103272fbe325365c66f9caa7a040e7e5342",
           "review": {
             "actor": "commerce-independent-policy-reviewer",
-            "digest": "64b2a34c0ade942d31f4dd543390f04f65fa457f2b1f1af3a2e9b107ca84fb5b",
+            "digest": "ea76821dd08af12546c93bb19dca912ec565030c6cb656a1eda0235cac78bae8",
             "decision": "APPROVE"
           },
           "approval": {
             "actor": "isolated-owner",
-            "digest": "64b2a34c0ade942d31f4dd543390f04f65fa457f2b1f1af3a2e9b107ca84fb5b",
-            "expiresAt": "2026-10-10T23:13:55.620Z",
+            "digest": "ea76821dd08af12546c93bb19dca912ec565030c6cb656a1eda0235cac78bae8",
+            "expiresAt": "2026-10-10T23:26:52.253Z",
             "maxExposure": 100,
             "revoked": false
           }
@@ -1375,12 +1375,12 @@
             "id": "acceptance:isolated-owner-walkthrough:2dfc7dc0639bc9ff789b29222c2efe7cb209ded8cf67368aff473859b737186b",
             "workspace": "ws_empire_1",
             "revision": 19,
-            "createdAt": "2026-10-10T22:13:55.822Z",
-            "updatedAt": "2026-10-10T22:13:55.822Z",
+            "createdAt": "2026-10-10T22:26:52.489Z",
+            "updatedAt": "2026-10-10T22:26:52.489Z",
             "correlationId": "acceptance:isolated-owner-walkthrough",
             "causationId": "9ddba1de3c3eb3082d90201e941b96ddcbae84fae5ce8b721e9c427453635476",
             "approvalRefs": [
-              "64b2a34c0ade942d31f4dd543390f04f65fa457f2b1f1af3a2e9b107ca84fb5b"
+              "ea76821dd08af12546c93bb19dca912ec565030c6cb656a1eda0235cac78bae8"
             ],
             "financialRefs": [
               "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
@@ -1389,11 +1389,11 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             },
-            "evidenceAgeMs": 202,
+            "evidenceAgeMs": 236,
             "data": [
               {
                 "id": "509587aba15d073b33e1a096896dc456610b55024bda08e0a17dce4345acd9f0",
@@ -1434,12 +1434,12 @@
             "id": "acceptance:isolated-owner-walkthrough:2dfc7dc0639bc9ff789b29222c2efe7cb209ded8cf67368aff473859b737186b",
             "workspace": "ws_empire_1",
             "revision": 19,
-            "createdAt": "2026-10-10T22:13:55.822Z",
-            "updatedAt": "2026-10-10T22:13:55.822Z",
+            "createdAt": "2026-10-10T22:26:52.489Z",
+            "updatedAt": "2026-10-10T22:26:52.489Z",
             "correlationId": "acceptance:isolated-owner-walkthrough",
             "causationId": "9ddba1de3c3eb3082d90201e941b96ddcbae84fae5ce8b721e9c427453635476",
             "approvalRefs": [
-              "64b2a34c0ade942d31f4dd543390f04f65fa457f2b1f1af3a2e9b107ca84fb5b"
+              "ea76821dd08af12546c93bb19dca912ec565030c6cb656a1eda0235cac78bae8"
             ],
             "financialRefs": [
               "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
@@ -1448,11 +1448,11 @@
               "source": "work6-deterministic-acceptance",
               "reference": "synthetic:work6-fixture-not-provider-evidence",
               "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-              "observedAt": "2026-10-10T22:13:55.620Z",
-              "expiresAt": "2026-10-10T23:13:55.620Z",
+              "observedAt": "2026-10-10T22:26:52.253Z",
+              "expiresAt": "2026-10-10T23:26:52.253Z",
               "classification": "SYNTHETIC"
             },
-            "evidenceAgeMs": 202,
+            "evidenceAgeMs": 236,
             "data": {
               "requestId": "2dfc7dc0639bc9ff789b29222c2efe7cb209ded8cf67368aff473859b737186b",
               "externalEffects": 0,
@@ -1462,13 +1462,13 @@
         ],
         "classification": "SYNTHETIC",
         "externalEffects": 0,
-        "digest": "267a240e9f47967869cdc3277dd79904a7449d4f42f54d90051a4439acc29876"
+        "digest": "d17ce48f0f157e4d07356fc9696b9bc6cdb4b38faa3fd201d96e1b86f221d6ef"
       }
     ],
     "simulatedFinancials": [
       {
         "missionId": "acceptance:isolated-owner-walkthrough",
-        "sourceReceiptDigest": "267a240e9f47967869cdc3277dd79904a7449d4f42f54d90051a4439acc29876",
+        "sourceReceiptDigest": "d17ce48f0f157e4d07356fc9696b9bc6cdb4b38faa3fd201d96e1b86f221d6ef",
         "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
         "status": "INCOMPLETE_FINANCIAL_EVIDENCE",
         "orders": [
@@ -1506,17 +1506,17 @@
             "source": {
               "missionId": "acceptance:isolated-owner-walkthrough",
               "receiptId": "2dfc7dc0639bc9ff789b29222c2efe7cb209ded8cf67368aff473859b737186b",
-              "receiptDigest": "267a240e9f47967869cdc3277dd79904a7449d4f42f54d90051a4439acc29876",
+              "receiptDigest": "d17ce48f0f157e4d07356fc9696b9bc6cdb4b38faa3fd201d96e1b86f221d6ef",
               "receiptVersion": 19,
-              "orderCreatedAt": "2026-10-10T22:13:55.620Z",
+              "orderCreatedAt": "2026-10-10T22:26:52.253Z",
               "priceBasis": "CANONICAL_SIMULATION_ECONOMICS_NOT_COLLECTED_PAYMENT",
               "supplierCostBasis": "CANONICAL_ORDER_LINE_AND_OFFER_QUOTE_NOT_INVOICE",
               "offerProvenance": {
                 "source": "work6-deterministic-acceptance",
                 "reference": "synthetic:work6-fixture-not-provider-evidence",
                 "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
-                "observedAt": "2026-10-10T22:13:55.620Z",
-                "expiresAt": "2026-10-10T23:13:55.620Z",
+                "observedAt": "2026-10-10T22:26:52.253Z",
+                "expiresAt": "2026-10-10T23:26:52.253Z",
                 "classification": "SYNTHETIC"
               },
               "refundIntentIds": [
@@ -1552,7 +1552,7 @@
         "mission": "acceptance:isolated-owner-walkthrough",
         "workspace": "ws_empire_1",
         "owner": "isolated-owner",
-        "createdAt": 1791670435620,
+        "createdAt": 1791671212253,
         "cursor": 19,
         "fence": 19,
         "status": "COMPLETE",
@@ -2494,20 +2494,20 @@
     ],
     "providerEvidence": [
       {
-        "id": "ev_042a033c4d1739ea9e31f361bf4eb295b48ed39e",
-        "capability": "amazon.catalog",
-        "classification": "REAL_READ_ONLY",
-        "observedAt": "2026-10-10T18:39:07.980Z",
-        "expiresAt": "2026-10-11T00:39:07.981Z",
-        "digest": "90df87e4d4721b6a4f9398e12e824c924cc8e42d70ec0f1aeb852898faa463d3"
-      },
-      {
         "id": "ev_05c8e6e14b75bc69c657f104fe462d19f5115ad8",
         "capability": "amazon.catalog",
         "classification": "REAL_READ_ONLY",
         "observedAt": "2026-10-10T18:39:07.980Z",
         "expiresAt": "2026-10-11T00:39:07.981Z",
         "digest": "1ac502218c128cb5e3ca3594ddbea265589139a83fb36b5590cf65c4525ee490"
+      },
+      {
+        "id": "ev_042a033c4d1739ea9e31f361bf4eb295b48ed39e",
+        "capability": "amazon.catalog",
+        "classification": "REAL_READ_ONLY",
+        "observedAt": "2026-10-10T18:39:07.980Z",
+        "expiresAt": "2026-10-11T00:39:07.981Z",
+        "digest": "90df87e4d4721b6a4f9398e12e824c924cc8e42d70ec0f1aeb852898faa463d3"
       },
       {
         "id": "ev_6b78ad4ee360cd4a38237a9b3f93508cc9ec33c1",

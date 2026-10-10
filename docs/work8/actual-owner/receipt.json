@@ -1,14 +1,14 @@
 {
   "candidateDigests": {
-    "backendDiffSha256": "f2f2d3ed0e11dbe2e298885dc57fee8c8183f32806e6c2e423e6680334abcba7",
-    "frontendDiffSha256": "b5793aaf507a69e5a47c0698078d9e87770f444af79543976294c785001ef66a",
-    "harnessSha256": "b8328b75ac7328211ab54e4fd600289bb38f0b5e1b9eb5515131e5bfb47ef0d2"
+    "backendDiffSha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+    "frontendDiffSha256": "f680c701dfc64a5d48baae8a547103e25dfcbab3e8427d3b8a1a25d99c9a46e2",
+    "harnessSha256": "f768a15dccc41ee2c0a9f24a598c8054292e69ec326037e556e81270d7b7f808"
   },
   "status": "PASS",
   "scope": "ISOLATED_AUTHENTICATED_BROWSER_NEXT_BFF_ACTUAL_CANDIDATE_FASTIFY",
-  "at": "2026-10-10T22:14:03.040Z",
-  "backendRevision": "e8cf5ff7181b4e26341fb2a045e5a05f1f55c823",
-  "frontendRevision": "3e654b544cca35a5411d830623d5af1fc5b7ce33",
+  "at": "2026-10-10T22:27:00.149Z",
+  "backendRevision": "a53875afc8107324db3c4b9302411facbb0e78de",
+  "frontendRevision": "97f2d223b274d89fbdb18516db22a5a5b8df4ee0",
   "checks": [
     "Actual BFF auth: anonymous401 and foreign/admin403",
     "Canonical isolated scenario completed through authenticated BFF commands",
@@ -26,11 +26,18 @@
   "blockedBrowserOrigins": [],
   "portfolioDigest": "7c4db907fc8ac80bb94201494ad7a6fc3897e34ff3dee52bae68563f67b8e5d2",
   "marketDigest": "688056191de5eef7aea39fe456742e02d20f856e41227a04cbcc93a05ced6736",
-  "missionDigest": "9b2ac86599d525ced1ff789fe5a1bfc62d3a858e0c56076577c85be491faaaad",
+  "missionDigest": "0d2068234cc3607ece4c3e70b1c100fb1da9b1a4d889569b184a1a06c1fbe1d0",
   "screenshots": [
     "portfolio-1440.png",
     "orders-1440.png",
     "portfolio-390.png",
     "orders-390.png"
-  ]
+  ],
+  "executedSourceManifest": {
+    "beforeSha256": "42a229b66586a7678ceb81396e413b1e89c5aed7c199035445b2d634bcac727a",
+    "afterSha256": "42a229b66586a7678ceb81396e413b1e89c5aed7c199035445b2d634bcac727a",
+    "unchanged": true,
+    "fileCount": 5443,
+    "dependencyCount": 11
+  }
 }

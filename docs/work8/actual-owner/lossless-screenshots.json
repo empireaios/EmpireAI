@@ -1,26 +1,26 @@
 [
   {
     "original": "portfolio-390.png",
-    "originalSha256": "ee55853cd1a2b47c8e3ca1344635c8920f0465f1beee568cfb7485a5d2ed16f7",
+    "originalSha256": "a0d25910dd29e3a492cc9de5b196cd7631510336980d326f54019ded10bb548b",
     "losslessCopy": "portfolio-390.webp",
-    "sha256": "3d432ffde10678b7d794513b647521e4af1eaee8e4fb7f9708281590d60ae5e0"
+    "sha256": "3edab332612f5645a8b980f9ff7a481a45c46a2778b34a7a964d419089847645"
   },
   {
     "original": "orders-1440.png",
-    "originalSha256": "200b97aafd1d3ee53a20201f74f55f2340f0f40229ff6fe3a0072fceff5d4830",
+    "originalSha256": "fa4c418f9b3fbbff6389a86a7511e9f7c9da7fb4f6d4c16bbb6a95a2d5f254de",
     "losslessCopy": "orders-1440.webp",
-    "sha256": "d8fe5766360e453023877ee72c99c33f7666cc3e68116fc12c33450384578345"
+    "sha256": "d27b658ef7a13f232eaa0d4f972b83de1bae6a9cf6b041797a0ccc204104b5f0"
   },
   {
     "original": "orders-390.png",
-    "originalSha256": "e30140bd341de35d7b58e65fdd720dd558be830cdd959ade52b7a89fcb840b1f",
+    "originalSha256": "692fe3c6b5379b9b079ef3a55ed79ccce82b113db718d353a34ab16b8fdc755d",
     "losslessCopy": "orders-390.webp",
-    "sha256": "e8e6a935f445383d518ddc2a8686207fa4fcf0ddb8a539dcdf55b37573e994fb"
+    "sha256": "78aa74be7a983f1ddfbf23d565aaae083ff3f1148ee3e5accf2126f05f173489"
   },
   {
     "original": "portfolio-1440.png",
-    "originalSha256": "b93e35d59f1c7ce9131d2169421121341f5105b2d0c81a010d8accd07b5a7c04",
+    "originalSha256": "ca0dedc5d1f5cdc27f18c7098427c78b719054c4b4e7aec09dd44e24a354c7cd",
     "losslessCopy": "portfolio-1440.webp",
-    "sha256": "e90dfdda1b8de64243050b9019352e44d61a3f2f109780981cf38ac2753845ac"
+    "sha256": "c0615615920a0abd69bb8278c96931b630886349a7d0ecbf8d063639d8ecd27c"
   }
 ]
