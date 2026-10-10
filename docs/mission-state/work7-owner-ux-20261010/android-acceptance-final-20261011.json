@@ -1,0 +1,22 @@
+{
+  "candidate": "8f52d7a95fcf06d411995b10d6c4d4eca457e241",
+  "image": "1000033519.jpg",
+  "library_file_id": "libfile_77e60a123a9c81919bfd93fb14feb718",
+  "sha256": "7c9056dc4f4608159ae1b51d449c12efcec66df57b58f76e0a3c6ea0739592db",
+  "observed": [
+    "native keyboard open",
+    "readable existing history",
+    "unsent draft visible",
+    "Other pages, Status & evidence and Jump to latest separately visible",
+    "no apparent toolbar overlap"
+  ],
+  "owner_attestation": "Latest completion directive identifies corrected Vercel preview; image address bar alone does not establish exact SHA.",
+  "decision": "PASS",
+  "scope": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
+  "automated_evidence": "Existing 28/28 browser suite and retained chat regressions cover supported narrow and desktop widths, multiline composition, scroll, viewport resizing, menu/status/jump controls; no repeat campaign.",
+  "governing_sources": [
+    "consolidated-directive-20261011.txt UX-12",
+    "owner-canary-authorisation-20261011.txt section 5",
+    "Latest owner completion directive section 2"
+  ]
+}

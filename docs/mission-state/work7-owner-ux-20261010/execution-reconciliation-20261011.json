@@ -1,30 +1,27 @@
 {
   "kind": "EXECUTION_RECONCILIATION_NOT_NEW_AUDIT",
-  "application_revision": "bbb77bcac46a9e7a28cd7abe52f571970febe17a",
-  "decision": "ENGINEERING_CANDIDATE_DELIVERED_NATIVE_TOOLBAR_ACCEPTANCE_REMAINS",
+  "application_revision": "8f52d7a95fcf06d411995b10d6c4d4eca457e241",
+  "decision": "ACCEPTANCE_COMPLETE_EXCEPT_INDEPENDENT_EXACT_HEAD_REVIEW; PRODUCTION_NOT_AUTHORISED",
   "historical_original_counts": {
     "PASS": 17,
     "PENDING": 74,
     "BLOCKED": 9
   },
   "current_requirement_counts": {
-    "PASS": 91,
-    "ACCEPTANCE REQUIRED": 4,
-    "POST-RELEASE": 5
+    "PASS": 95,
+    "ACCEPTANCE REQUIRED": 1,
+    "POST-RELEASE": 4
   },
   "amendment_counts": {
-    "PASS": 38,
-    "ACCEPTANCE REQUIRED": 6,
-    "POST-RELEASE": 1
+    "PASS": 43,
+    "ACCEPTANCE REQUIRED": 2
   },
   "owner_ux_15_counts": {
-    "PASS": 13,
-    "ACCEPTANCE REQUIRED": 1,
-    "POST-RELEASE": 1
+    "PASS": 14,
+    "ACCEPTANCE REQUIRED": 1
   },
   "control_counts": {
-    "PASS": 49,
-    "ACCEPTANCE REQUIRED": 1,
+    "PASS": 50,
     "denominator": 50,
     "scope": "Named remaining acceptance groups; mixed hosted and explicitly isolated evidence; not all controls on168 source routes"
   },
@@ -701,17 +698,15 @@
       "requirement": "Outer page and conversation compete for scrolling → Bound existing workspace and independently scroll saved history; preserve Same chat provider, backend, turn IDs and composer",
       "source": "Eight Pillow follow-ups UX-01",
       "historical_status": "BLOCKED",
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "PASS",
       "engineering": "Implemented/preserved in bounded Work7 Owner Console scope; two demonstrated source defects corrected at bbb77bca.  /cockpit/development/pillow; element-register.json",
       "automated": "bbb77bca exact-head4/4 workflows PASS, owner browser28/28; prior scoped tests retained. Actual PR111 integration and workspace BFF/session receipts PASS where applicable. No unique test per tracker row is implied.",
       "authenticated_browser": "Retained accepted observations plus named control evidence in this file; hosted and isolated scopes remain explicit. Native corrected-toolbar gap C01 remains.",
-      "owner_acceptance": "Existing Home and owner recordings/native baseline retained; C01 corrected toolbar observation required.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "Baseline frontend41c02/backend51830 only. PR109/110/111 candidate changes NOT deployed.",
       "post_release_verified": "NOT YET for current candidate; obligations68/69/70/84/100 retained.",
-      "gates": [
-        "G1"
-      ],
-      "reason": "Only native corrected-toolbar C01 remains; accepted baseline is credited.",
+      "gates": [],
+      "reason": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "retained_evidence": "Historical19/19 retained; current20/20 PASS. 390/1440 Pillow screenshots.  SECOND OWNER VIDEO: desktop Chat rendered, independent scrolling and fixed composer; selector visible but not selected. Tables flattened and Jump to latest overlays text, corrected in df264379/a8f1f709. See owner-chat-video-20261010/review.json; 11/11 parser tests; hosted verification PASS: browser20/20, all four CI at a8f1f709; live corrected-preview acceptance pending. THIRD OWNER VIDEO19-06-23: desktop saved-exchange selection and scroll verified around15–40s; CEO Chat with Pillow entry verified48–50s, at unchanged prior0bdbe2fc preview. See owner-history-video-20261010/review.json. New chat fixes/mobile remain unverified live. FOURTH OWNER VIDEO19-17-33: current a8f1f709 preview, desktop saved-history selection and Jump to latest placement/action PASS; table not shown. See owner-corrected-chat-video-20261010/review.json. FIFTH OWNER VIDEO19-35-47: a8f1f709 saved table headings and all four rows render in columns; desktop table repair PASS. See owner-table-video-20261010/review.json. Mobile recording 1000033500.mp4 (82.185s,720x1608) inspected: compressed history, small text, keyboard autofocus. Corrected a8d58187: 16px message/selector text, full-width messages, compact headers, visual-viewport keyboard layout, no mobile autofocus. Isolated browser PASS at360/390/1440 and keyboard420px; actual corrected mobile live observation remains required.",
       "prior_audit_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
@@ -813,17 +808,15 @@
       "requirement": "Desktop/mobile composer and scroll geometry → Bound the chat shell at both widths; preserve Existing mobile navigation and controls retained",
       "source": "Eight Pillow follow-ups UX-07",
       "historical_status": "BLOCKED",
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "PASS",
       "engineering": "Implemented/preserved in bounded Work7 Owner Console scope; two demonstrated source defects corrected at bbb77bca.  /cockpit/development/pillow; element-register.json",
       "automated": "bbb77bca exact-head4/4 workflows PASS, owner browser28/28; prior scoped tests retained. Actual PR111 integration and workspace BFF/session receipts PASS where applicable. No unique test per tracker row is implied.",
       "authenticated_browser": "Retained accepted observations plus named control evidence in this file; hosted and isolated scopes remain explicit. Native corrected-toolbar gap C01 remains.",
-      "owner_acceptance": "Existing Home and owner recordings/native baseline retained; C01 corrected toolbar observation required.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "Baseline frontend41c02/backend51830 only. PR109/110/111 candidate changes NOT deployed.",
       "post_release_verified": "NOT YET for current candidate; obligations68/69/70/84/100 retained.",
-      "gates": [
-        "G1"
-      ],
-      "reason": "Only native corrected-toolbar C01 remains; accepted baseline is credited.",
+      "gates": [],
+      "reason": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "retained_evidence": "Historical19/19 retained; current20/20 PASS. 390/1440 Pillow screenshots.  SECOND OWNER VIDEO: desktop Chat rendered, independent scrolling and fixed composer; selector visible but not selected. Tables flattened and Jump to latest overlays text, corrected in df264379/a8f1f709. See owner-chat-video-20261010/review.json; 11/11 parser tests; hosted verification PASS: browser20/20, all four CI at a8f1f709; live corrected-preview acceptance pending. THIRD OWNER VIDEO19-06-23: desktop saved-exchange selection and scroll verified around15–40s; CEO Chat with Pillow entry verified48–50s, at unchanged prior0bdbe2fc preview. See owner-history-video-20261010/review.json. New chat fixes/mobile remain unverified live. FOURTH OWNER VIDEO19-17-33: current a8f1f709 preview, desktop saved-history selection and Jump to latest placement/action PASS; table not shown. See owner-corrected-chat-video-20261010/review.json. FIFTH OWNER VIDEO19-35-47: a8f1f709 saved table headings and all four rows render in columns; desktop table repair PASS. See owner-table-video-20261010/review.json. Mobile recording 1000033500.mp4 (82.185s,720x1608) inspected: compressed history, small text, keyboard autofocus. Corrected a8d58187: 16px message/selector text, full-width messages, compact headers, visual-viewport keyboard layout, no mobile autofocus. Isolated browser PASS at360/390/1440 and keyboard420px; actual corrected mobile live observation remains required.",
       "prior_audit_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
@@ -1302,7 +1295,7 @@
       "requirement": "Normal reviewed GitHub PR/CI/merge, separate Railway/Vercel release gates where needed, exact source revision identity, health checks and rollback readiness. Do not repeat green tests or redeploy unnecessarily.",
       "source": "Original gate I",
       "historical_status": "BLOCKED",
-      "disposition": "POST-RELEASE",
+      "disposition": "ACCEPTANCE REQUIRED",
       "engineering": "Implemented/preserved in bounded Work7 Owner Console scope; two demonstrated source defects corrected at bbb77bca.  docs/work7; work7-review; Mission Ledger / release controls",
       "automated": "bbb77bca exact-head4/4 workflows PASS, owner browser28/28; prior scoped tests retained. Actual PR111 integration and workspace BFF/session receipts PASS where applicable. No unique test per tracker row is implied.",
       "authenticated_browser": "Retained accepted observations plus named control evidence in this file; hosted and isolated scopes remain explicit. No additional unbounded page-load campaign inferred.",
@@ -1310,9 +1303,10 @@
       "production_deployed": "Baseline frontend41c02/backend51830 only. PR109/110/111 candidate changes NOT deployed.",
       "post_release_verified": "NOT YET for current candidate; obligations68/69/70/84/100 retained.",
       "gates": [
+        "G6",
         "G7"
       ],
-      "reason": "Pre-release engineering/review evidence recorded; merge/release/preservation/independent closure await separate authority and deployment.",
+      "reason": "Latest completion directive section 5 mandates independent affected-change review. No independent review receipt exists for PR109/111 exact heads. CI and implementation verification are PASS; merge/deployment remain separately authorised release-stage obligations.",
       "retained_evidence": "abeb0021 four PASS preserved; 0bdbe2fc four mandatory workflows PASS, browser20/20 at390/1440, targeted4/4 PASS; latest-ci-runs.json. No production merge/deploy.",
       "prior_audit_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
@@ -1447,17 +1441,15 @@
       "requirement": "PILLOW CEO, CHAT AND RECOMMENDATIONS — CRITICAL PRIORITY\nThis is one of Grand King's highest-priority interfaces.\n\n### Chat\n\nComplete all eight previously agreed Pillow UX follow-ups, including:\n\n- Readable message text.\n- Correct font sizes, contrast and formatting.\n- No clipped or overlapping responses.\n- Independent chat scrolling.\n- Visible and usable composer.\n- Discoverable conversation history.\n- Reliable restoration of previous conversations.\n- Existing chat functionality preserved.\n- Desktop and mobile usability.\n\nThe approved Home's existing \"Pillow Love Forever\" card must itself open Pillow Chat.\n\nDo not add a separate Open Chat button beneath the artwork.\n\nThe Pillow CEO page must provide clear access to the existing chat.\n\nRemove the incorrect \"8+ kg\" Pancake caption.\n\n### Recommendations\n\nPillow's recommendations must be concise, meaningful and decision-oriented.\n\nThe owner should immediately understand:\n\n- What Pillow recommends.\n- Why Pillow recommends it.\n- What evidence supports it.\n- What business outcome is expected.\n- What risks or uncertainties remain.\n- Whether owner approval is required.\n- What Pillow has actually completed.\n\nDo not display long technical transcripts or historical test narratives as prominent current recommendations.\n\nDo not suppress genuinely actionable historical records.\n\nWhere there is no current recommendation, use a clean, unobtrusive empty state.\n\nPreserve all recommendation evidence and historical records.",
       "source": "Continuation mandate section 5",
       "historical_status": "BLOCKED",
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "PASS",
       "engineering": "Implemented/preserved in bounded Work7 Owner Console scope; two demonstrated source defects corrected at bbb77bca.  Pillow workspace / OwnerJourneys.tsx / PremiumHome.tsx",
       "automated": "bbb77bca exact-head4/4 workflows PASS, owner browser28/28; prior scoped tests retained. Actual PR111 integration and workspace BFF/session receipts PASS where applicable. No unique test per tracker row is implied.",
       "authenticated_browser": "Retained accepted observations plus named control evidence in this file; hosted and isolated scopes remain explicit. Native corrected-toolbar gap C01 remains.",
-      "owner_acceptance": "Existing Home and owner recordings/native baseline retained; C01 corrected toolbar observation required.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "Baseline frontend41c02/backend51830 only. PR109/110/111 candidate changes NOT deployed.",
       "post_release_verified": "NOT YET for current candidate; obligations68/69/70/84/100 retained.",
-      "gates": [
-        "G1"
-      ],
-      "reason": "Only native corrected-toolbar C01 remains; accepted baseline is credited.",
+      "gates": [],
+      "reason": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "retained_evidence": "Existing exact-head CI, source preservation, screenshot index, independent readback and work8-9-handoff.md as applicable. SECOND OWNER VIDEO: desktop Chat rendered, independent scrolling and fixed composer; selector visible but not selected. Tables flattened and Jump to latest overlays text, corrected in df264379/a8f1f709. See owner-chat-video-20261010/review.json; 11/11 parser tests; hosted verification PASS: browser20/20, all four CI at a8f1f709; live corrected-preview acceptance pending. THIRD OWNER VIDEO19-06-23: desktop saved-exchange selection and scroll verified around15–40s; CEO Chat with Pillow entry verified48–50s, at unchanged prior0bdbe2fc preview. See owner-history-video-20261010/review.json. New chat fixes/mobile remain unverified live. FOURTH OWNER VIDEO19-17-33: current a8f1f709 preview, desktop saved-history selection and Jump to latest placement/action PASS; table not shown. See owner-corrected-chat-video-20261010/review.json. FIFTH OWNER VIDEO19-35-47: a8f1f709 saved table headings and all four rows render in columns; desktop table repair PASS. See owner-table-video-20261010/review.json. Mobile recording 1000033500.mp4 (82.185s,720x1608) inspected: compressed history, small text, keyboard autofocus. Corrected a8d58187: 16px message/selector text, full-width messages, compact headers, visual-viewport keyboard layout, no mobile autofocus. Isolated browser PASS at360/390/1440 and keyboard420px; actual corrected mobile live observation remains required.",
       "prior_audit_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
@@ -1760,17 +1752,15 @@
       "requirement": "Pillow Chat: preserve existing chat backend, CEO chat access and history; improve independent conversation scrolling, visible composer and discoverable history. Do not create duplicate chat instances or new authority paths. Verify desktop and mobile behavior.",
       "source": "Site-wide correction v2 clause F",
       "historical_status": "BLOCKED",
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "PASS",
       "engineering": "Implemented/preserved in bounded Work7 Owner Console scope; two demonstrated source defects corrected at bbb77bca.  Primary owner components; owner route map; element-register.json; navigation-reconciliation-current.json",
       "automated": "bbb77bca exact-head4/4 workflows PASS, owner browser28/28; prior scoped tests retained. Actual PR111 integration and workspace BFF/session receipts PASS where applicable. No unique test per tracker row is implied.",
       "authenticated_browser": "Retained accepted observations plus named control evidence in this file; hosted and isolated scopes remain explicit. Native corrected-toolbar gap C01 remains.",
-      "owner_acceptance": "Existing Home and owner recordings/native baseline retained; C01 corrected toolbar observation required.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "Baseline frontend41c02/backend51830 only. PR109/110/111 candidate changes NOT deployed.",
       "post_release_verified": "NOT YET for current candidate; obligations68/69/70/84/100 retained.",
-      "gates": [
-        "G1"
-      ],
-      "reason": "Only native corrected-toolbar C01 remains; accepted baseline is credited.",
+      "gates": [],
+      "reason": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "retained_evidence": "Historical before/after evidence; current source preservation; one verified governed-evidence parent defect fixed 0bdbe2fc. SECOND OWNER VIDEO: desktop Chat rendered, independent scrolling and fixed composer; selector visible but not selected. Tables flattened and Jump to latest overlays text, corrected in df264379/a8f1f709. See owner-chat-video-20261010/review.json; 11/11 parser tests; hosted verification PASS: browser20/20, all four CI at a8f1f709; live corrected-preview acceptance pending. THIRD OWNER VIDEO19-06-23: desktop saved-exchange selection and scroll verified around15–40s; CEO Chat with Pillow entry verified48–50s, at unchanged prior0bdbe2fc preview. See owner-history-video-20261010/review.json. New chat fixes/mobile remain unverified live. FOURTH OWNER VIDEO19-17-33: current a8f1f709 preview, desktop saved-history selection and Jump to latest placement/action PASS; table not shown. See owner-corrected-chat-video-20261010/review.json. FIFTH OWNER VIDEO19-35-47: a8f1f709 saved table headings and all four rows render in columns; desktop table repair PASS. See owner-table-video-20261010/review.json. Mobile recording 1000033500.mp4 (82.185s,720x1608) inspected: compressed history, small text, keyboard autofocus. Corrected a8d58187: 16px message/selector text, full-width messages, compact headers, visual-viewport keyboard layout, no mobile autofocus. Isolated browser PASS at360/390/1440 and keyboard420px; actual corrected mobile live observation remains required.",
       "prior_audit_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
@@ -1993,16 +1983,14 @@
         75,
         91
       ],
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "PASS",
       "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
       "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
       "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
-      "owner_acceptance": "Accepted observations retained; C01 only when G1 listed; no production authority.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "Baseline only; candidate changes not deployed",
       "post_release_verified": "Not yet for current candidates",
-      "gates": [
-        "G1"
-      ],
+      "gates": [],
       "historical_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
         "G1"
@@ -2171,11 +2159,11 @@
       "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
       "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
       "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
-      "owner_acceptance": "Accepted observations retained; C01 only when G1 listed; no production authority.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "Baseline only; candidate changes not deployed",
       "post_release_verified": "Not yet for current candidates",
       "gates": [
-        "G1",
+        "G6",
         "G7"
       ],
       "historical_disposition": "ACCEPTANCE REQUIRED",
@@ -2184,7 +2172,8 @@
         "G3",
         "G6",
         "G7"
-      ]
+      ],
+      "remaining": "Independent review receipt required before production authority; release-stage obligations retained."
     },
     {
       "register": "Owner UX amendments",
@@ -2390,16 +2379,14 @@
       "id": "UX-12",
       "description": "PILLOW CHAT. Preserve response delivery, history picker, saved tables, jump-to-latest, no obscured response and compact composer. Local fixture result at 400x464: 313px reading area, nine full 16px lines; keyboard simulated only. Do not claim 95% achieved or live native keyboard accepted. Test authenticated real mobile/native keyboard, history selection, scrolling, nested navigation and input visibility without submitting unintended messages.",
       "original_items": [],
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "PASS",
       "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
       "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
       "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
-      "owner_acceptance": "Accepted observations retained; C01 only when G1 listed; no production authority.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "Baseline only; candidate changes not deployed",
       "post_release_verified": "Not yet for current candidates",
-      "gates": [
-        "G1"
-      ],
+      "gates": [],
       "historical_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
         "G1"
@@ -2445,27 +2432,6 @@
       "id": "UX-15",
       "description": "GOVERNANCE/RELEASE: No production change until all mandatory Work 7 gates and explicit release authority. PR #109 exact-head check, independent PR #110 lineage and incident status, approved Home fidelity, 15 commerce safety protections, no accidental commerce activation, financial digests, CI, live acceptance, new valid release lease/fence (not prior finished fence), coordinated deployment only if needed, post-deployment independent verification and Mission Ledger/King's Advisor receipts. Work 8 full autonomous certification and Work 9 birth/commerce activation are NOT Work 7 gates. If unresolved, retain BLOCKED and all completed work.",
       "original_items": [],
-      "disposition": "POST-RELEASE",
-      "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
-      "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
-      "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
-      "owner_acceptance": "Accepted observations retained; C01 only when G1 listed; no production authority.",
-      "production_deployed": "Baseline only; candidate changes not deployed",
-      "post_release_verified": "Not yet for current candidates",
-      "gates": [
-        "G7"
-      ],
-      "historical_disposition": "POST-RELEASE",
-      "historical_gates": [
-        "G6",
-        "G7"
-      ]
-    },
-    {
-      "register": "Original element amendments",
-      "id": "UX-01",
-      "description": "Outer page and conversation compete for scrolling → Bound existing workspace and independently scroll saved history; preserve Same chat provider, backend, turn IDs and composer",
-      "original_items": [],
       "disposition": "ACCEPTANCE REQUIRED",
       "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
       "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
@@ -2474,8 +2440,29 @@
       "production_deployed": "Baseline only; candidate changes not deployed",
       "post_release_verified": "Not yet for current candidates",
       "gates": [
-        "G1"
+        "G6",
+        "G7"
       ],
+      "historical_disposition": "POST-RELEASE",
+      "historical_gates": [
+        "G6",
+        "G7"
+      ],
+      "remaining": "Independent review receipt required before production authority; release-stage obligations retained."
+    },
+    {
+      "register": "Original element amendments",
+      "id": "UX-01",
+      "description": "Outer page and conversation compete for scrolling → Bound existing workspace and independently scroll saved history; preserve Same chat provider, backend, turn IDs and composer",
+      "original_items": [],
+      "disposition": "PASS",
+      "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
+      "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
+      "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
+      "production_deployed": "Baseline only; candidate changes not deployed",
+      "post_release_verified": "Not yet for current candidates",
+      "gates": [],
       "historical_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
         "G1"
@@ -2566,16 +2553,14 @@
       "id": "UX-07",
       "description": "Desktop/mobile composer and scroll geometry → Bound the chat shell at both widths; preserve Existing mobile navigation and controls retained",
       "original_items": [],
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "PASS",
       "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
       "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
       "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
-      "owner_acceptance": "Accepted observations retained; C01 only when G1 listed; no production authority.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "Baseline only; candidate changes not deployed",
       "post_release_verified": "Not yet for current candidates",
-      "gates": [
-        "G1"
-      ],
+      "gates": [],
       "historical_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
         "G1"
@@ -2787,16 +2772,14 @@
       "register": "Android continuation",
       "id": "§3/§5",
       "description": "Correct toolbar collision under narrow/native keyboard, scroll, viewport resize, menus and unsent multiline input; preserve accepted native baseline.",
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "PASS",
       "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
       "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
       "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
-      "owner_acceptance": "Accepted observations retained; C01 only when G1 listed; no production authority.",
+      "owner_acceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
       "production_deployed": "No",
       "post_release_verified": "No",
-      "gates": [
-        "G1"
-      ],
+      "gates": [],
       "historical_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
         "G1"
@@ -2826,12 +2809,12 @@
       "area": "Chat",
       "control": "Other pages / Jump to latest / Status & evidence under native keyboard, scroll/resize and multiline draft",
       "intended_behavior": "No overlap; menu and status toggle remain operable; composer/history remain readable. No message sent.",
-      "existing_evidence": "Accepted native baseline; exact-head simulated regression; corrected native interaction not observed.",
+      "existing_evidence": "Accepted native baseline; exact-head simulated regression; corrected native interaction not observed. Latest accepted native image closes corrected keyboard-open state.",
       "governing_gate": "G1",
-      "decision": "ACCEPTANCE REQUIRED",
+      "decision": "PASS",
       "historical_decision": "ACCEPTANCE REQUIRED",
-      "execution_evidence": "ACCEPTANCE REQUIRED: corrected toolbar only on native Android; accepted saved history, keyboard, draft, composer and reduced reading area retained. Existing simulated regression passes.",
-      "application_revision": "bbb77bcac46a9e7a28cd7abe52f571970febe17a"
+      "execution_evidence": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
+      "application_revision": "8f52d7a95fcf06d411995b10d6c4d4eca457e241"
     },
     {
       "id": "C02",
@@ -3459,16 +3442,42 @@
   ],
   "remaining_gates": [
     {
-      "id": "G1",
-      "owner": "Owner/native device observer",
-      "missing": "C01 corrected toolbar only",
+      "id": "G6",
+      "governing_requirement": "Original 68; Owner UX-15; latest completion directive section 5",
+      "owner": "Independent reviewer",
+      "missing": "Independent findings/approval tied to exact PR109 8f52d7a9 and PR111 e6d98fb5; no unresolved release-blocking finding",
       "decision": "ACCEPTANCE REQUIRED"
     },
     {
       "id": "G7",
       "owner": "Owner and authorised release verifier",
-      "missing": "Separate release authority, any enforced independent review, fresh lease, authorised deployment and post-release independent receipts",
+      "missing": "Separate consolidated production authority, valid release controls, deployment and independent production closure receipts",
       "decision": "POST-RELEASE"
     }
-  ]
+  ],
+  "prior_checkpoint_counts": {
+    "current_requirement_counts": {
+      "PASS": 91,
+      "ACCEPTANCE REQUIRED": 4,
+      "POST-RELEASE": 5
+    },
+    "amendment_counts": {
+      "PASS": 38,
+      "ACCEPTANCE REQUIRED": 6,
+      "POST-RELEASE": 1
+    },
+    "owner_ux_15_counts": {
+      "PASS": 13,
+      "ACCEPTANCE REQUIRED": 1,
+      "POST-RELEASE": 1
+    },
+    "control_counts": {
+      "PASS": 49,
+      "ACCEPTANCE REQUIRED": 1,
+      "denominator": 50,
+      "scope": "Named remaining acceptance groups; mixed hosted and explicitly isolated evidence; not all controls on168 source routes"
+    }
+  },
+  "android_acceptance_receipt": "android-acceptance-final-20261011.json",
+  "mission_ledger_receipt": "completion-ledger-receipt-20261011.json"
 }
