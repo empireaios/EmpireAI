@@ -140,3 +140,12 @@ test('Recorded direct profit excludes infrastructure; missing FX and invalid per
  await p.goto(base+'/cockpit/cost-centre');await p.getByLabel('Period',{exact:true}).selectOption('All history');await p.getByText('Currency conversion missing',{exact:true}).waitFor();assert.match(await p.getByRole('region',{name:'Infrastructure expenses'}).innerText(),/80\.00/);assert.match(await p.getByRole('region',{name:'Infrastructure expenses'}).innerText(),/USD 2/);
  await p.getByLabel('Period',{exact:true}).selectOption('Custom');await p.getByLabel('From',{exact:true}).fill('2026-11-01');await p.getByLabel('Through',{exact:true}).fill('2026-10-01');await p.getByText('Choose a valid start and end date.',{exact:true}).waitFor();assert.equal(await p.getByRole('region',{name:'Infrastructure expenses'}).count(),0);await capture(p,width,'finance-period-validation');
 }));
+
+
+test('Financial pagination keeps remaining rows visible when a custom period narrows',()=>both(async({page:p,context})=>{
+ const costs=Array.from({length:12},(_,i)=>({id:'period-row-'+i,sgdMicro:1000000,data:{provider:'openai',authenticity:'REAL',category:'COGS',stage:'INVOICED',periodStart:i<10?'2026-01-01T00:00:00Z':'2026-02-01T00:00:00Z',periodEnd:i<10?'2026-02-01T00:00:00Z':'2026-03-01T00:00:00Z',attribution:{orderId:'period-order-'+i}}}));
+ await context.route('**/api/owner/finance',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({...finance,costs})}));
+ await p.goto(base+'/cockpit/finance');await p.getByLabel('Period',{exact:true}).selectOption('Custom');await p.getByLabel('From',{exact:true}).fill('2026-01-01');await p.getByLabel('Through',{exact:true}).fill('2026-02-28');
+ await p.getByRole('navigation',{name:'Results pages',exact:true}).getByRole('button',{name:'Next',exact:true}).click();await p.getByRole('cell',{name:/^period-order-10/}).waitFor();
+ await p.getByLabel('From',{exact:true}).fill('2026-02-02');await p.getByRole('cell',{name:/^period-order-10/}).waitFor();await p.getByRole('cell',{name:/^period-order-11/}).waitFor();assert.match(await p.getByRole('navigation',{name:'Results pages',exact:true}).innerText(),/1–2 of 2/);
+}));
