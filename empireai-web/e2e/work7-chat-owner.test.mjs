@@ -35,7 +35,8 @@ test('Pillow saved exchange selector, internal scroll, composer and parent conte
   await page.getByTestId('pillow-composer').fill('Unsent local draft');
   assert.equal(await page.getByTestId('pillow-composer').inputValue(),'Unsent local draft');
   await page.getByTestId('pillow-composer').fill('');
-  assert.equal(requests.filter(r=>r.method==='POST'&&r.path!=='/api/pillow/session').length,0);
+  assert.equal(requests.filter(r=>r.method==='POST'&&!['/api/pillow/session','/api/brain/dispatch'].includes(r.path)).length,0,JSON.stringify(requests));
+  assert.equal(requests.filter(r=>r.path==='/api/pillow/chat').length,0,'History selection and unsent draft must never request inference');
   assert.deepEqual(errors,[]);
   if(process.env.WORK7_SCREENSHOTS){await mkdir(process.env.WORK7_SCREENSHOTS,{recursive:true});await page.screenshot({path:`${process.env.WORK7_SCREENSHOTS}/Pillow__AUTHENTICATED_TEST__${width}.png`});}
   await context.close();

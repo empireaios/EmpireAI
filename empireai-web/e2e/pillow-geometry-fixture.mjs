@@ -19,6 +19,8 @@ export async function installGeometryFixture(context, baseUrl) {
     if(url.pathname==='/api/auth/me')return json({user:{id:'offline-owner',email:'fixture@example.invalid',name:'Grand King',role:'founder',workspaceId:'offline-layout',platformIdentity:'grand-king'}});
     if(url.pathname==='/api/pillow/session')return json({session:{sessionId:'offline-canonical',workspaceId:'offline-layout'},historicalArchiveAccepted:true});
     if(url.pathname==='/api/pillow/history')return json({sessionId:'offline-canonical',workspaceId:'offline-layout',history,historicalArchive:[]});
+    // Existing legacy context dispatch is explicitly locked, never accepted as an effect.
+    if(url.pathname==='/api/brain/dispatch')return route.fulfill({status:423,contentType:'application/json',body:JSON.stringify({error:'NOT_BORN_COMMERCE_LOCKED'})});
     // Unneeded secondary panels are explicitly unavailable, not fake successes.
     return route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Unavailable in offline geometry fixture'})});
   });
