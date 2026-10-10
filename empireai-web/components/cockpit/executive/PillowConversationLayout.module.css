@@ -29,3 +29,35 @@
 :global([data-owner-theme="pastel"]) .workspace .contextBody { background:#f1f7ff; color:#294363; }
 :global([data-owner-theme="pastel"]) .workspace .jump { background:#e2efff; }
 :global([data-owner-theme="pastel"]) .workspace textarea::placeholder { color:#526781; }
+
+@media(max-width:700px){
+ .workspace .header{gap:0 8px;padding:4px 10px;align-items:center}
+ .header>div:first-child>p{display:none}
+ .header>div:first-child>div{gap:8px}
+ .header h2{font:600 18px Arial,sans-serif}
+ .workspace .status{flex-wrap:wrap;gap:2px 6px;flex:1;justify-content:flex-end}
+ .status>span{font-size:11px;padding:2px 4px}
+ .status>button{display:none}
+ .workspace .context{flex-basis:auto;margin-left:auto}
+ .context summary{padding:6px 0;font-size:12px}
+ .contextBody{position:fixed;left:12px;right:12px;top:100px;width:auto;max-height:50dvh}
+ .historyPicker{padding:4px 10px;gap:0}
+ .historyPicker>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .historyPicker select{width:100%;font-size:16px;min-height:44px}
+ .workspace :global([data-testid="pillow-message-history"]){padding:12px 10px}
+ .workspace :global([data-history-id])>div{max-width:100%;padding:12px;width:100%}
+ .workspace :global([data-history-id])>div>div>p,.workspace :global([data-history-id])>div>div>div{font-size:16px;line-height:1.65}
+ .workspace footer{padding:6px 10px}
+ .workspace textarea{min-width:0;font-size:16px;max-height:96px;padding:8px}
+ .workspace footer>label{margin-top:4px;font-size:12px}
+ .jump{margin:0;align-self:stretch;border:0;border-radius:0;text-align:right}
+ .jump button{padding:4px 12px}
+ :global([data-chat-keyboard="true"]) .workspace .context,
+ :global([data-chat-keyboard="true"]) .workspace footer>label{display:none}
+}
+@media(max-width:700px){
+ .workspace .header{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 8px}
+ .workspace .status{min-width:0;display:flex;flex-direction:column;align-items:flex-end;gap:0}
+ .status>span{white-space:nowrap}
+ .workspace .context{grid-column:1/-1;justify-self:end;margin:0}
+}

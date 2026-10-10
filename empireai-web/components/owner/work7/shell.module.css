@@ -44,3 +44,23 @@
 .chatShell .breadcrumb{flex-shrink:0;margin-bottom:6px}
 .chatShell .footer{padding-block:6px}
 @media(max-width:700px){.chatShell .workspace{padding-bottom:calc(60px + env(safe-area-inset-bottom))}.chatShell .main{padding-top:5px}.chatShell .footer{padding-bottom:6px}}
+
+/* Phone conversation uses the available viewport, without the legacy inset frame. */
+@media(max-width:700px){
+ .chatShell{position:fixed;inset-inline:0;top:var(--chat-visible-top,0px);height:var(--chat-visible-height,100dvh)}
+ .chatShell .topbar{min-height:48px;padding:2px 8px}
+ .chatShell .main{padding:0 4px 4px;max-width:none}
+ .chatShell .breadcrumb{padding:2px 8px;margin:0;font-size:12px}
+ .chatShell .main [data-legacy-workspace]{padding:0;background:transparent;border-radius:0}
+ .chatShell .footer{display:none}
+ .chatShell .mobileMenu{position:absolute;top:48px;inset-inline:0;z-index:60;max-height:70%;overflow-y:auto}
+ .chatShell [data-pillow-conversation-mode="true"]>details{padding:0 8px}
+ .chatShell [data-pillow-conversation-mode="true"]>details>summary{padding:4px 0}
+ .chatShell[data-chat-keyboard="true"] .topbar,.chatShell[data-chat-keyboard="true"] .breadcrumb,.chatShell[data-chat-keyboard="true"] .bottomNav{display:none}
+ .chatShell[data-chat-keyboard="true"] .workspace{padding-bottom:0}
+ .chatShell[data-chat-keyboard="true"] [data-pillow-conversation-mode="true"]>details{display:none}
+}
+@media(max-width:700px){
+ .chatShell [data-legacy-workspace]>div{gap:0}
+ .chatShell [data-legacy-workspace]>div>details{color:#294363}
+}

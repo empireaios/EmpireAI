@@ -90,7 +90,7 @@ export function PillowConversationWorkspace({
   }, [searchParams, setQueryDraft, ask]);
 
   useEffect(() => {
-    if (!autoFocus) return;
+    if (!autoFocus || window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 700) return;
     window.requestAnimationFrame(() => composerRef.current?.focus({ preventScroll: true }));
   }, [autoFocus]);
 
@@ -149,7 +149,7 @@ export function PillowConversationWorkspace({
           <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37] lg:hidden">Conversation</p>
           <div className="flex items-center gap-4"><a href="/cockpit" aria-label="Back to Executive Home" className="rounded-lg px-2 py-1 text-sm text-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold">← Back</a><h2 className="font-display text-xl text-[#f0d78c]">{title}</h2></div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className={`flex items-center gap-2 ${layout.status}`}>
           <span
             className={`rounded-full px-2.5 py-1 text-[10px] ${
               executiveReady
@@ -172,7 +172,7 @@ export function PillowConversationWorkspace({
           </button>
         </div>
       <details className={layout.context}>
-        <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; context · Reasoning evidence and owner acceptance ▸</summary>
+        <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; evidence</summary>
         <div className={layout.contextBody}>
           {executiveSnapshot ? (
             <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
@@ -188,7 +188,7 @@ export function PillowConversationWorkspace({
       </details>
 
       </header>
-      <label className={layout.historyPicker}>Conversation history
+      <label className={layout.historyPicker}><span>Conversation history</span>
         <select aria-label="Conversation history" value={historySelection} onChange={event => {
           followLatest.current = false;
           setWindowSize(conversation.length);
