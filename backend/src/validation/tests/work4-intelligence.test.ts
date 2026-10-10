@@ -9,7 +9,7 @@ import {runIntelligenceJob,readIntelligence} from '../../intelligence/runtime.js
 import {qualify,rankDiagnosis,reconcileSignals} from '../../intelligence/engines.js';
 import {digest,jobSchema,type Evidence} from '../../intelligence/model.js';
 function setup(){const dir=fs.mkdtempSync(path.join(os.tmpdir(),'eyes-'));let time=Date.now();const s=new IntelligenceStore(path.join(dir,'eyes.sqlite'),()=>time);return {s,advance:(ms:number)=>time+=ms,done:()=>fs.rmSync(dir,{recursive:true,force:true})};}
-const input={id:'job1',objective:'Bounded safety investigation',capabilities:['internet.safety'],subject:{id:'organizer',marketplace:'US'},requestLimit:2};
+const input={id:'job1',objective:'Bounded safety investigation',capabilities:['internet.safety'],subject:{id:'organizer',marketplace:'US' as const},requestLimit:2};
 function ev(s:IntelligenceStore,over:Partial<Evidence>={}):Evidence{const facts={response:{items:[]}};return {id:'ev1',capabilityId:'amazon.catalog',eye:'MARKET',provider:'Amazon',endpoint:'/catalog',subject:{id:'B000000001',marketplace:'US'},observedAt:new Date(s.now()).toISOString(),retrievedAt:new Date(s.now()).toISOString(),staleAfter:new Date(s.now()+1000).toISOString(),authenticity:'LIVE_PROVIDER',facts,digest:digest(facts),jobId:'job1',quality:[],lineage:['Amazon:/catalog'],grantsAuthority:false,...over};}
 test('configured and credential present never mean verified; last good becomes stale',()=>{const x=setup();const keys=['AMAZON_SP_API_CLIENT_ID','AMAZON_SP_API_CLIENT_SECRET','AMAZON_SP_API_REFRESH_TOKEN'];const before=keys.map(k=>process.env[k]);keys.forEach(k=>process.env[k]='test');try{assert.equal(x.s.arsenal('w').find(c=>c.id==='amazon.account')!.readState,'UNVERIFIED');x.s.put('w','health','amazon.account',{lastGoodAt:new Date(x.s.now()).toISOString(),endpoint:'/sellers'});x.advance(86400000);assert.equal(x.s.arsenal('w').find(c=>c.id==='amazon.account')!.availability,'STALE');}finally{keys.forEach((k,i)=>{if(before[i]===undefined)delete process.env[k];else process.env[k]=before[i];});x.done();}});
 test('durable idempotent queue rejects scope injection and ID collisions',()=>{const x=setup();try{x.s.enqueue('w','owner',input);x.s.enqueue('w','owner',input);assert.equal(x.s.jobs('w').length,1);assert.throws(()=>x.s.enqueue('w','owner',{...input,requestLimit:3}));assert.throws(()=>jobSchema.parse({...input,url:'http://169.254.169.254'}));assert.throws(()=>x.s.enqueue('w','owner',{...input,id:'x',capabilities:['cj.orders']}));assert.equal(x.s.jobs('other').length,0);}finally{x.done();}});
@@ -35,3 +35,39 @@ test('cross-source opportunity links require exact source and target variants',(
  x.s.put('w','matches','exact-match',{source:'Amazon',subject:'B000000001',variant:'different-source-variant',targetProvider:'CJ',targetId:'supplier-product',targetVariant:'variant-a',marketplace:'US',status:'OWNER_CONFIRMED'});
  reconcileSignals(x.s,'w');op=x.s.list('w','opportunities').find(o=>o.subject.id==='B000000001')!;assert.deepEqual(op.evidenceRefs,['market']);
  }finally{x.done();}});
+
+
+test('scheduled collection refreshes a previous-period cache just before expiry without rewriting history',async()=>{
+ const x=setup();let calls=0;
+ try{
+  const old=ev(x.s,{capabilityId:'internet.safety',provider:'CPSC',eye:'INTERNET',subject:input.subject,staleAfter:new Date(x.s.now()+21600000).toISOString()});
+  x.s.evidence('w',old);x.advance(21599000);
+  x.s.enqueue('w','SCHEDULER',input);
+  const job=await runIntelligenceJob(x.s,'w',new ReadAcquirer(x.s,async()=>{calls++;return new Response(JSON.stringify([{Title:'Retained test recall',RecallID:1}]));}),undefined,false);
+  assert.equal(calls,1);assert.equal(job!.cacheHits,undefined);assert.equal(job!.status,'COMPLETED');
+  assert.notEqual(job!.evidence[0],old.id);assert.deepEqual(x.s.get('w','evidence',old.id),old);
+  assert.equal(x.s.get('w','health','internet.safety')!.lastGoodAt,new Date(x.s.now()).toISOString());
+  x.advance(2000);assert.notEqual(x.s.cached('w','internet.safety',input.subject)!.id,old.id);
+  assert.equal(job!.inferenceCalls,0);assert.equal(job!.commerceEffects,0);
+ }finally{x.done();}
+});
+test('scheduled refresh honours backoff and never relabels old evidence as a successful current read',async()=>{
+ const x=setup();let calls=0;
+ try{
+  const old=ev(x.s,{capabilityId:'internet.safety',provider:'CPSC',eye:'INTERNET',subject:input.subject});x.s.evidence('w',old);x.advance(1);
+  const health={lastGoodAt:old.observedAt,evidenceId:old.id,failure:'HTTP_429',retryAt:new Date(x.s.now()+3600000).toISOString()};x.s.put('w','health','internet.safety',health);
+  x.s.enqueue('w','SCHEDULER',input);
+  const job=await runIntelligenceJob(x.s,'w',new ReadAcquirer(x.s,async()=>{calls++;throw Error('network forbidden');}),undefined,false);
+  assert.equal(calls,0);assert.equal(job!.status,'FAILED');assert.deepEqual(job!.evidence,[]);assert.equal(job!.failures[0].code,'BACKOFF_ACTIVE');
+  assert.deepEqual(x.s.get('w','health','internet.safety'),health);assert.deepEqual(x.s.get('w','evidence',old.id),old);
+ }finally{x.done();}
+});
+test('scheduled job can reuse genuinely new evidence acquired after it was queued',async()=>{
+ const x=setup();
+ try{
+  x.s.enqueue('w','SCHEDULER',input);x.advance(1);
+  const current=ev(x.s,{capabilityId:'internet.safety',provider:'CPSC',eye:'INTERNET',subject:input.subject});x.s.evidence('w',current);
+  const job=await runIntelligenceJob(x.s,'w',new ReadAcquirer(x.s,async()=>{throw Error('duplicate read forbidden');}),undefined,false);
+  assert.equal(job!.cacheHits,1);assert.equal(job!.requestsUsed,0);assert.deepEqual(job!.evidence,[current.id]);
+ }finally{x.done();}
+});
