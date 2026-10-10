@@ -4,7 +4,7 @@ export const object = (v: unknown): BusinessRow => v && typeof v === 'object' &&
 export const records = (v: unknown): BusinessRow[] => Array.isArray(v) ? v.map(object) : [];
 export const text = (v: unknown, fallback = '—'): string => v == null || v === '' ? fallback : typeof v === 'object' ? 'Details available' : String(v);
 export const sgd = (v: unknown): string => typeof v === 'number' && Number.isFinite(v) ? new Intl.NumberFormat('en-SG', {style:'currency',currency:'SGD',maximumFractionDigits:4}).format(v / 1e6) : '—';
-export const sourceMoney = (amount: unknown, currency: unknown): string => typeof amount === 'number' && Number.isFinite(amount) && typeof currency === 'string' && /^[A-Z]{3}$/.test(currency) ? currency+' '+(amount/1e6).toLocaleString('en-SG',{maximumFractionDigits:6}) : '—';
+export const sourceMoney = (amount: unknown, currency: unknown): string => typeof amount === 'number' && Number.isFinite(amount) && typeof currency === 'string' && /^[A-Z]{3}$/.test(currency) ? currency+' '+(amount!==0&&Math.abs(amount)<10000?(amount<0?'>-0.01':'<0.01'):(amount/1e6).toLocaleString('en-SG',{minimumFractionDigits:2,maximumFractionDigits:2})) : '—';
 export const plainStatus = (v: unknown): string => text(v).replaceAll('_',' ').toLowerCase().replace(/^./, c=>c.toUpperCase());
 export function sumKnown(items: BusinessRow[]): number | null {
   if (!items.length || items.some(c=>typeof c.sgdMicro !== 'number' || !Number.isFinite(c.sgdMicro) || object(object(c.data).attribution).project === 'TEAM_SHARED_UNALLOCATED')) return null;

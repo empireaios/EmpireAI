@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import {TechnicalEvidence} from "@/components/owner/work7/TechnicalEvidence";
+import {ownerDate,ownerLabel} from "@/lib/owner/executive-presentation";
 import { providerObservationHistory } from "@/lib/commerce-transactions/provider-observation-history";
 import { useEffect, useState } from "react";
 
@@ -57,7 +59,7 @@ export default function CommerceTransactionsPage() {
     })();
     return ()=>{active=false;clearTimeout(timer);controller.abort();};
   },[refresh]);
-  return <section aria-label="Historical transaction evidence" className="mx-auto w-full max-w-5xl space-y-5 p-4 sm:p-6">
+  return <section aria-label="Historical transaction evidence" className="mx-auto w-full max-w-5xl space-y-5 p-4 text-slate-800 sm:p-6">
     <header className="flex flex-wrap items-center justify-between gap-3">
       <div><Link href="/cockpit/orders" className="text-sm text-blue-800 underline">Back to Orders &amp; Fulfilment</Link>
         <h1 className="mt-2 text-2xl font-semibold text-slate-900">Transaction lifecycle</h1></div>
@@ -75,12 +77,12 @@ export default function CommerceTransactionsPage() {
       {error && <p role="alert" className="rounded-lg border border-red-400/40 p-4 text-red-800">{error}</p>}
       {transactions?.length===0 && <p className="rounded-lg border border-blue-200 p-4 text-slate-700">No saved transactions in this workspace.</p>}
     </div>
-    {transactions !== null && <section aria-label="Historical provider observations" className="space-y-3 rounded-xl border border-sky-400/30 p-4">
-      <h2 className="text-lg font-semibold text-slate-900">Historical provider observations</h2>
+    {transactions !== null && <details aria-label="Historical provider observations" className="space-y-3 rounded-xl border border-sky-400/30 p-4">
+      <summary className="min-h-11 cursor-pointer font-semibold text-slate-900">Historical provider observations</summary>
       <p className="text-sm text-slate-700">These dated authenticated reads are separate from the simulated orders below. They are not current stock, qualified products, order receipts or realised profit. Refresh reloads this page; it does not call either provider.</p>
       {providerObservationHistory.map(observation=><article key={observation.provider + observation.observedAt} className="min-w-0 rounded-lg border border-blue-200 p-3 text-sm">
         <h3 className="font-medium text-blue-800">{observation.provider} · Observed, not qualified</h3>
-        <time className="text-xs text-slate-600" dateTime={observation.observedAt}>{observation.observedAt}</time>
+        <time className="text-xs text-slate-600" dateTime={observation.observedAt}>{ownerDate(observation.observedAt)}</time>
         <p className="mt-2 break-all text-slate-900">{observation.identity}</p>
         <p className="text-slate-700">{observation.detail}</p>
         <p className="text-amber-900">{observation.limit} Account ownership is not independently verified. Not linked to a transaction.</p>
@@ -91,7 +93,7 @@ export default function CommerceTransactionsPage() {
           <a className="underline text-blue-800" href={"https://github.com/empireaios/EmpireAI/actions/runs/"+observation.runId} target="_blank" rel="noreferrer">View verification run</a>
         </details>
       </article>)}
-    </section>}
+    </details>}
     {transactions?.map(transaction=>{
       const lifecycle = transaction.simulated, actual = lifecycle.economics.actual;
       return <article key={transaction.transactionKey} className="min-w-0 space-y-4 rounded-xl border border-blue-200 bg-white p-4">
@@ -99,6 +101,7 @@ export default function CommerceTransactionsPage() {
           <p className="break-all text-sm text-slate-700">{transaction.sku} · {transaction.asin} · Quantity {transaction.quantity}</p>
           <p className="mt-1 text-xs text-amber-900">Simulated · {lifecycle.receiptCount} receipts · {lifecycle.reconciliation.replaceAll("_"," ")}</p>
         </header>
+        <ol aria-label="Transaction timeline" className="grid gap-3 border-l-4 border-blue-200 pl-4 sm:grid-cols-3"><li><strong>Order recorded</strong><p>{transaction.quantity} units · simulated</p></li><li><strong>Supplier response</strong><p>{lifecycle.supplierOrderId?'Acknowledgement recorded':'Awaiting acknowledgement'}</p></li><li><strong>Delivery</strong><p>{ownerLabel(lifecycle.tracking?.deliveryStatus)}</p></li></ol>
         <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
           <div><dt className="text-slate-600">CJ product / variant</dt><dd className="break-all text-slate-900">{transaction.cjPid} / {transaction.cjVid}</dd></div>
           <div><dt className="text-slate-600">Supplier order</dt><dd className="break-all text-slate-900">{lifecycle.supplierOrderId ?? "Awaiting acknowledgement"}</dd></div>
@@ -130,15 +133,8 @@ export default function CommerceTransactionsPage() {
             <p className="mt-2 text-xs text-slate-600">Fixture payout: {lifecycle.economics.marketplacePayoutReceived}</p>
           </section>
         </div>
-        <details className="text-sm text-slate-700"><summary className="cursor-pointer py-2 text-amber-900">Accounting and source evidence</summary>
-          <div className="mt-2 overflow-x-auto"><table className="w-full text-left text-xs"><thead><tr><th className="p-2">Account</th><th className="p-2">Debit USD</th><th className="p-2">Credit USD</th></tr></thead>
-            <tbody>{lifecycle.journal.map((row,index)=><tr key={row.receiptId+"-"+index}><td className="p-2">{row.account}</td><td className="p-2">{money(row.debitCents/100)}</td><td className="p-2">{money(row.creditCents/100)}</td></tr>)}</tbody>
-          </table></div>
-          <dl className="mt-3 space-y-2 break-all text-xs"><div><dt>Order source</dt><dd>{transaction.orderSourceSha256}</dd></div>
-            <div><dt>Pillow decision</dt><dd>{transaction.decisionSha256}</dd></div>
-            <div><dt>Listing source</dt><dd>{transaction.marketplaceEvidence?.listingSourceSha256 ?? "Unknown"}</dd></div>
-            <div><dt>Inventory source</dt><dd>{transaction.marketplaceEvidence?.inventorySourceSha256 ?? "Unknown"}</dd></div></dl>
-        </details>
+        <TechnicalEvidence label="Accounting and source evidence" value={transaction}/>
+
       </article>;
     })}
   </section>;

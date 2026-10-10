@@ -1,4 +1,5 @@
 'use client';
+import {TechnicalEvidence} from './work7/TechnicalEvidence';
 import {useCallback,useEffect,useState} from 'react';
 import Link from 'next/link';
 type Row=Record<string,unknown>;
@@ -6,8 +7,8 @@ type Snapshot={observedAt:string;backendRevision:string;entryDigest:string;provi
 const field='mt-1 min-h-11 w-full rounded border border-white/25 bg-slate-950 p-2 text-slate-100';
 const button='min-h-11 rounded border border-amber-300/50 px-4 py-2 text-amber-200 disabled:opacity-40';
 const amount=(v:unknown)=>typeof v==='number'?new Intl.NumberFormat('en-SG',{style:'currency',currency:'SGD',maximumFractionDigits:4}).format(v/1e6):'—';
-const text=(v:unknown)=>typeof v==='object'?JSON.stringify(v):String(v??'Unknown');
-function Details({value,label='Source evidence'}:{value:unknown;label?:string}){return <details className="my-3 rounded border border-white/15 p-3"><summary className="cursor-pointer break-words">{label}</summary><pre className="mt-3 whitespace-pre-wrap break-all text-xs leading-5">{JSON.stringify(value,null,2)}</pre></details>;}
+const text=(v:unknown)=>typeof v==='object'?'See technical evidence':String(v??'Unknown');
+function Details({value,label='Technical evidence'}:{value:unknown;label?:string}){return <TechnicalEvidence value={value} label={label}/>;}
 function Numeric({label,value,onChange}:{label:string;value:string;onChange:(v:string)=>void}){return <label className="block text-sm">{label}<input required type="number" min="0" step="any" className={field} value={value} onChange={e=>onChange(e.target.value)}/></label>;}
 export function FinancialCentre(){
  const [data,setData]=useState<Snapshot|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[tab,setTab]=useState('Overview'),[provider,setProvider]=useState(''),[period,setPeriod]=useState('All history'),[receipt,setReceipt]=useState<Row|null>(null),[command,setCommand]=useState(''),[reviewReason,setReviewReason]=useState(''),[confirmed,setConfirmed]=useState(false),[budget,setBudget]=useState(''),[budgetProvider,setBudgetProvider]=useState('openai'),[warning,setWarning]=useState('80'),[result,setResult]=useState<Row|null>(null),[assumptions,setAssumptions]=useState(''),[product,setProduct]=useState(''),[supplier,setSupplier]=useState(''),[channel,setChannel]=useState(''),[country,setCountry]=useState('SG');

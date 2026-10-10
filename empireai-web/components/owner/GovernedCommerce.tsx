@@ -1,4 +1,5 @@
 'use client';
+import {TechnicalEvidence} from './work7/TechnicalEvidence';
 import {useCallback,useEffect,useState} from 'react';
 type Row=Record<string,unknown>;
 type Mission={id:string;missionId:string;version:number;at:string;digest:string;state:{phase:string;candidate:Row;candidateDigest:string;qualification:{qualified:boolean;reasons:string[];score:number;exposure:number;economics:Row};listing?:Row;approval?:Row;orders:Record<string,Row>;outcomes:Row[];reversed:string[];decisions:{actions:string[];evidenceIds:string[]}[]}};
@@ -7,7 +8,7 @@ const button='min-h-11 rounded border border-amber-300/50 px-4 py-2 text-amber-2
 const input='min-h-11 w-full rounded border border-white/25 bg-slate-950 p-2 text-slate-100';
 const card='min-w-0 rounded border border-white/20 p-4';
 const show=(v:unknown)=>v===null||v===undefined?'Unknown':typeof v==='object'?JSON.stringify(v):String(v);
-function Evidence({value,label}:{value:unknown;label:string}){return <details className={card}><summary className="cursor-pointer break-words">{label}</summary><pre className="mt-3 whitespace-pre-wrap break-all text-xs leading-5">{JSON.stringify(value,null,2)}</pre></details>;}
+function Evidence({value,label}:{value:unknown;label:string}){return <TechnicalEvidence value={value} label={label}/>;}
 export function GovernedCommerce({initialMission='',initialTab='Pipeline'}:{initialMission?:string;initialTab?:'Pipeline'|'Approvals'}){
  const [data,setData]=useState<Snapshot|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[tab,setTab]=useState(initialTab as string),[selected,setSelected]=useState(initialMission),[payload,setPayload]=useState(''),[receipt,setReceipt]=useState<unknown>(null),[reason,setReason]=useState(''),[confirmed,setConfirmed]=useState(false);
  const load=useCallback(async()=>{const r=await fetch('/api/owner/commerce'+(initialMission?'?missionId='+encodeURIComponent(initialMission):''),{cache:'no-store'});const value=await r.json();if(!r.ok)throw Error(value.error??'Commerce state unavailable');setData(value);},[initialMission]);
