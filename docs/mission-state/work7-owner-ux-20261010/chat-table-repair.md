@@ -7,3 +7,5 @@ This presentation-only correction recognises a header plus matching Markdown del
 Local parser regressions: 11/11 pass, including retained list formatting, table boundaries, escaped pipes and malformed input. Desktop/mobile isolated browser assertions now check table cells, inert HTML, focus, inherited text colour and viewport containment. Hosted results must be recorded against the new commit; old green results are not presented as testing this change.
 
 Owner recording also verifies desktop internal message scrolling and a visible fixed composer at the parent revision. It does not show history selection, Jump to latest activation, CEO-to-chat navigation or mobile. Fixture screenshots are not live authenticated acceptance. Production merge/release and Work 7 completion remain gated.
+
+The same recording also shows the floating Jump to latest control obscuring response text. Its absolute positioning is replaced with a non-shrinking row between the history and composer. The existing action is unchanged. The desktop/mobile test checks that the button is below the history, above the composer, and disappears after navigation to the latest message.

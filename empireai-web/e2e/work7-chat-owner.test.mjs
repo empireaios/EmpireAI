@@ -19,6 +19,13 @@ test('Pillow saved exchange selector, internal scroll, composer and parent conte
   assert.equal(await selector.locator('option').count(),2);
   await selector.selectOption({index:1});
   await history.getByText('Local layout fixture: show the review steps.',{exact:true}).waitFor();
+  const jump=page.getByRole('button',{name:'Jump to latest',exact:true});
+  await jump.waitFor();
+  const jumpGeometry=await jump.evaluate(el=>({button:el.getBoundingClientRect().toJSON(),history:document.querySelector('[data-testid="pillow-message-history"]').getBoundingClientRect().toJSON(),footer:document.querySelector('[data-testid="pillow-composer-footer"]').getBoundingClientRect().toJSON()}));
+  assert.ok(jumpGeometry.button.top>=jumpGeometry.history.bottom,JSON.stringify(jumpGeometry));
+  assert.ok(jumpGeometry.button.bottom<=jumpGeometry.footer.top,JSON.stringify(jumpGeometry));
+  await jump.click();
+  await jump.waitFor({state:'hidden'});
   const geometry=await page.evaluate(()=>{
     const history=document.querySelector('[data-testid="pillow-message-history"]');
     const composer=document.querySelector('[data-testid="pillow-composer"]');
