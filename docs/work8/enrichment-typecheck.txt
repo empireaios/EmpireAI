@@ -1,0 +1,3 @@
+PASS: focused TypeScript strict + noUncheckedIndexedAccess, ES2022/ESNext bundler, exit0, no diagnostics.
+Entries: backend/src/intelligence/work8-enrichment.ts, backend/src/intelligence/investigation.ts, backend/src/validation/tests/work8-enrichment.test.ts.
+Frontend: full tsc --noEmit PASS; focused ESLint for EnrichmentStatus.tsx, ObservedCandidates.tsx and OwnerJourneys.tsx PASS. Retained source SSR9/9 PASS including enrichment.

@@ -1,3 +1,5 @@
+import {readWork8ResponseBinding} from './work8-response-binding.js';
+import {readWork8FinancialProbe} from './work8-financial-probe.js';
 import {makeWork8FulfilmentProbes} from './work8-fulfilment-probes.js';
 import {makeWork8CommerceRecovery} from './work8-commerce-recovery.js';
 import {productionCommerce,readGovernedCommerce} from '../runtime/commerce-runtime/governed/runtime.js';
@@ -76,7 +78,8 @@ export class AssuranceRuntime {
    try{const commerce=productionCommerce();const recovery=makeWork8CommerceRecovery(commerce);for(const probe of recovery.probes(workspace))this.control.observe(workspace,probe);observe('work8_checkpoint_integrity','HEALTHY','Fresh verified commerce receipt and checkpoint integrity; business outcomes are assessed separately',{observedAt:Date.now()});}catch{observe('work8_checkpoint_integrity','UNAVAILABLE','Commerce checkpoint or receipt integrity unavailable; automatic progress repair denied',{observedAt:Date.now()});}
    try{for(const probe of makeWork8FulfilmentProbes(productionCommerce()).probes(workspace))this.control.observe(workspace,probe);observe('work8_fulfilment_integrity','HEALTHY','Bounded fulfilment slice read successfully; separate coverage probe reports incomplete or stale sweeps',{observedAt:Date.now()});}catch{observe('work8_fulfilment_integrity','UNAVAILABLE','Fulfilment history unavailable; no healthy order outcome may be inferred',{observedAt:Date.now()});}
    try{const discovery=readGovernedCommerce(workspace).retainedDiscovery;const checkpoint=discovery.checkpoint;observe('retained_product_discovery',discovery.availability==='CHECKPOINT_UNAVAILABLE'?'UNAVAILABLE':!checkpoint?'NOT_CHECKED':checkpoint.shortfall>0?'DEGRADED':'HEALTHY','Retained product evidence scan; no new supplier read is implied',{observedAt:Date.now(),availability:discovery.availability,day:checkpoint?.day??null,newCandidates:checkpoint?.newCandidates??null,shortfall:checkpoint?.shortfall??null,externalRefresh:false});}catch{observe('retained_product_discovery','UNAVAILABLE','Retained product discovery evidence unavailable',{observedAt:Date.now()});}
-   try{const finance=productionFinance().snapshot(workspace);observe('financial_evidence','HEALTHY','Financial journal readable; billing and cash verification remain record-specific',{entryDigest:finance.entryDigest,entries:finance.entries.length,unresolvedFinancialAlerts:finance.alerts.length,completeCashPosition:finance.completeCashPosition});}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
+   try{for(const probe of productionCommerce().simulatedFinance.probes(workspace))this.control.observe(workspace,probe);}catch{observe('simulated_financial_integrity','UNAVAILABLE','Durable simulated financial reconciliation unavailable; no actual finance repair authorised',{observedAt:Date.now()});}
+   try{this.control.observe(workspace,readWork8FinancialProbe(productionFinance(),workspace));}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
    const contract=checkToolContract();observe('model_server_contract',contract.status,contract.summary,contract.evidence);
    observe('durable_control', 'HEALTHY','Operational event store is readable',{events:this.control.snapshot(workspace).events.length});
    const configured=configuredLockedProviders();const pricing=readLockedPricingPolicy().map(p=>({...p,active:configured.includes(p.provider as any)}));observe('pricing_review',pricing.some(p=>p.active&&p.status==='EXPIRED')?'BLOCKED':pricing.some(p=>p.active&&p.status==='EXPIRING')?'DEGRADED':'HEALTHY','Local inference price review expiry',pricing);
@@ -102,7 +105,7 @@ export class AssuranceRuntime {
      observe('four_eyes_reads',aggregateCapabilityHealth(reads),'Per-capability saved reads distinguish failed, stale, missing and external evidence; no monitoring API calls',reads);
     } finally {db.close();}
    } catch {observe('four_eyes_scheduler','UNAVAILABLE','Four Eyes durable scheduler source unavailable');}
-   try {const r=readReconciliation(this.root,workspace);observe('response_evidence_linkage',r.conflicts.length?'DEGRADED':r.investigations.length?'HEALTHY':'UNVERIFIED','Cross-source request/assessment/evidence binding',{conflicts:r.conflicts.map((v:any)=>({id:v.id,code:v.code,missionId:v.missionId}))});}catch{observe('response_evidence_linkage','UNAVAILABLE','Required response/evidence source unavailable');}
+   this.control.observe(workspace,readWork8ResponseBinding(this.root,workspace));
    const view=verifyReconciliation(this.root,workspace);
    const admission=this.control.get(workspace,'acceptance','active');
    const advisorMode=admission?.mode==='API_ADVISOR'&&!admission.completed;

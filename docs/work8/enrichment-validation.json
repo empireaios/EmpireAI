@@ -1,0 +1,32 @@
+{
+  "scope": "LOCAL_KERNEL_DENIED_SYNTHETIC_PROTOCOL_EXAM_NOT_PRODUCTION_ACCEPTANCE",
+  "node": "22.23.2",
+  "tests": {
+    "pass": 18,
+    "fail": 0,
+    "log": "enrichment-tests.tap",
+    "command": "cd backend && python ../scripts/work8/isolated-exec.py <Node22> --import tsx --test src/validation/tests/work8-enrichment.test.ts src/validation/tests/work8-acquisition.test.ts src/validation/tests/work8-acquisition-independent.test.ts"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "entries": [
+      "backend/src/intelligence/work8-enrichment.ts",
+      "backend/src/intelligence/investigation.ts",
+      "backend/src/validation/tests/work8-enrichment.test.ts"
+    ]
+  },
+  "frontend": {
+    "fullTypecheck": "PASS",
+    "focusedLint": "PASS",
+    "retainedSourceSsrTests": 9
+  },
+  "sourceSha256": {
+    "backend/src/intelligence/work8-enrichment.ts": "86ef09c3176ed3c2ac3234731481052527b72d8e1eac3804058fad6271c2c29c",
+    "backend/src/intelligence/investigation.ts": "09112bdc340bf9a30df74974222381fb2786b307a0a4008b8a673e488a227af6",
+    "backend/src/intelligence/runtime.ts": "f67e17a44f9f41ed5bd27654fb25ef12a4d78e3e5cd88a98634665a8b999a456",
+    "backend/src/intelligence/store.ts": "87bfd2a1a5605ac512f28003b7c32368da9eb65c4fb03db210d7745d2fcd0d15",
+    "backend/src/validation/tests/work8-enrichment.test.ts": "52776d4a405b0f690a4965413950068a656ed712db22289db5043eb7cf7ee764"
+  }
+}

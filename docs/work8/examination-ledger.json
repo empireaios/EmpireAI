@@ -1,0 +1,861 @@
+{
+  "schema": "work8-examination-ledger-v1",
+  "status": "IN_PROGRESS_NO_GO",
+  "wholeProgrammeCertified": false,
+  "canonicalRegister": "register.json",
+  "faultMap": "assurance-fault-coverage.json",
+  "safetyMap": "safety-matrix.json",
+  "preconditions": "Independent Work7 production gate, NOT_BORN/LOCKED, fresh isolated stores, Node22, kernel network denial",
+  "permittedEffects": "Synthetic local receipts only;0 paid inference,0 realcommerce,0 productionwrites",
+  "runs": [
+    {
+      "id": "integrated-candidate-node22.log",
+      "scope": "Combined candidate run before final adverse regression; invoked from incorrect repository root",
+      "sha256": "8698fda729b9ebcf7ebbd6b2af115667118786982eec322879ed89423b89e7d8",
+      "summary": {
+        "tests": 102,
+        "pass": 99,
+        "fail": 3,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "cases": [
+        {
+          "number": 1,
+          "name": "authenticated owner API, origin protection, workspace isolation, durable scenario and all seven live effects denied",
+          "result": "PASS",
+          "durationMs": 170.478279
+        },
+        {
+          "number": 2,
+          "name": "actual read adapter persists 429/503/schema failure, restart backoff and fresh recovery evidence",
+          "result": "PASS",
+          "durationMs": 148.653773
+        },
+        {
+          "number": 3,
+          "name": "actual expired provider read lease becomes INTERRUPTED on reopen and cannot silently replay",
+          "result": "PASS",
+          "durationMs": 2.717877
+        },
+        {
+          "number": 4,
+          "name": "scheduled observation and due advancement commit atomically across failure and reopening",
+          "result": "PASS",
+          "durationMs": 6.822824
+        },
+        {
+          "number": 5,
+          "name": "full read queue cannot consume a due slot or create unbounded catch-up",
+          "result": "PASS",
+          "durationMs": 11.140693
+        },
+        {
+          "number": 6,
+          "name": "real scheduler drains a full queue before retrying atomic due admission",
+          "result": "PASS",
+          "durationMs": 162.68634
+        },
+        {
+          "number": 7,
+          "name": "candidate runbook repairs only real committed receipt checkpoint gap and independently preserves history",
+          "result": "PASS",
+          "durationMs": 40.761753
+        },
+        {
+          "number": 8,
+          "name": "normal task with no committed gap cannot execute a fresh step through recovery",
+          "result": "PASS",
+          "durationMs": 2.258113
+        },
+        {
+          "number": 9,
+          "name": "altered committed step payload cannot be used as replay authority",
+          "result": "PASS",
+          "durationMs": 14.852638
+        },
+        {
+          "number": 10,
+          "name": "unknown supplier outcome cannot be relabelled as safe checkpoint recovery",
+          "result": "PASS",
+          "durationMs": 22.550651
+        },
+        {
+          "number": 11,
+          "name": "fresh aligned observation closes a gap when normal worker wins race without extra recovery effect",
+          "result": "PASS",
+          "durationMs": 21.609413
+        },
+        {
+          "number": 12,
+          "name": "finance reads every historical digest, not only the final source receipt",
+          "result": "PASS",
+          "durationMs": 55.117821
+        },
+        {
+          "number": 13,
+          "name": "finance rejects recomputed prior receipt digest when next receipt still links original history",
+          "result": "PASS",
+          "durationMs": 7.185482
+        },
+        {
+          "number": 14,
+          "name": "finance cannot select a receipt from a different workspace or mission",
+          "result": "PASS",
+          "durationMs": 7.05246
+        },
+        {
+          "number": 15,
+          "name": "1000 canonical accepted orders receive bounded fresh coverage at actual30second cadence",
+          "result": "PASS",
+          "durationMs": 44908.814909
+        },
+        {
+          "number": 16,
+          "name": "actual overdue missing tracking escalates without writes; fresh delivered observation closes",
+          "result": "PASS",
+          "durationMs": 33.288246
+        },
+        {
+          "number": 17,
+          "name": "partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment",
+          "result": "PASS",
+          "durationMs": 20.156867
+        },
+        {
+          "number": 18,
+          "name": "unknown supplier remains blocked and verified history corruption never produces healthy evidence",
+          "result": "PASS",
+          "durationMs": 13.061023
+        },
+        {
+          "number": 19,
+          "name": "bounded mission scan resumes from durable cursor and never clears skipped order incidents",
+          "result": "PASS",
+          "durationMs": 35.235782
+        },
+        {
+          "number": 20,
+          "name": "history bound fails closed without healthy order probes and stale sweep cannot claim coverage",
+          "result": "PASS",
+          "durationMs": 18.118705
+        },
+        {
+          "number": 21,
+          "name": "new mission inserted behind durable cursor prevents false complete coverage",
+          "result": "PASS",
+          "durationMs": 26.178271
+        },
+        {
+          "number": 22,
+          "name": "Work8 real control-plane exam: cache-expiry",
+          "result": "PASS",
+          "durationMs": 5.497755
+        },
+        {
+          "number": 23,
+          "name": "Work8 real control-plane exam: duplicate-delivery",
+          "result": "PASS",
+          "durationMs": 1.799572
+        },
+        {
+          "number": 24,
+          "name": "Work8 real control-plane exam: failed-repair",
+          "result": "PASS",
+          "durationMs": 2.091912
+        },
+        {
+          "number": 25,
+          "name": "Work8 real control-plane exam: unknown-outcome",
+          "result": "PASS",
+          "durationMs": 1.751119
+        },
+        {
+          "number": 26,
+          "name": "Work8 real control-plane exam: expired-approval",
+          "result": "PASS",
+          "durationMs": 3.106021
+        },
+        {
+          "number": 27,
+          "name": "Work8 real control-plane exam: forbidden-financial-repair",
+          "result": "PASS",
+          "durationMs": 1.129933
+        },
+        {
+          "number": 28,
+          "name": "Work8 real control-plane exam: watchdog-loss",
+          "result": "PASS",
+          "durationMs": 1.580953
+        },
+        {
+          "number": 29,
+          "name": "Work8 real control-plane exam: compounded-cache-worker",
+          "result": "PASS",
+          "durationMs": 2.497173
+        },
+        {
+          "number": 30,
+          "name": "Work8 real control-plane exam: restart-preservation",
+          "result": "PASS",
+          "durationMs": 2.147997
+        },
+        {
+          "number": 31,
+          "name": "Work8 real control-plane exam: recurring-failure",
+          "result": "PASS",
+          "durationMs": 2.401669
+        },
+        {
+          "number": 32,
+          "name": "Work8 real control-plane exam: stale-closure",
+          "result": "PASS",
+          "durationMs": 1.123303
+        },
+        {
+          "number": 33,
+          "name": "unregistered scenarios and non-reproducible seeds rejected",
+          "result": "PASS",
+          "durationMs": 0.458131
+        },
+        {
+          "number": 34,
+          "name": "actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts",
+          "result": "PASS",
+          "durationMs": 147.320907
+        },
+        {
+          "number": 35,
+          "name": "real truncated journal is contained; explicitly approved isolated backup restoration preserves exact history",
+          "result": "PASS",
+          "durationMs": 34.492872
+        },
+        {
+          "number": 36,
+          "name": "corrupt task checkpoint plus lost Assurance heartbeat require two distinct retained incidents",
+          "result": "PASS",
+          "durationMs": 20.575093
+        },
+        {
+          "number": 37,
+          "name": "revision rollback keeps new-revision approval fenced and preserves immutable history",
+          "result": "PASS",
+          "durationMs": 2.241808
+        },
+        {
+          "number": 38,
+          "name": "forged COMPLETE checkpoint with no receipts is rejected by execution and owner read projections",
+          "result": "PASS",
+          "durationMs": 2.260546
+        },
+        {
+          "number": 39,
+          "name": "task plan cannot be truncated after execution; altered committed payload is independently rejected",
+          "result": "PASS",
+          "durationMs": 14.29329
+        },
+        {
+          "number": 40,
+          "name": "canonical chargeback, unknown fees, cutoff and cash traces pass; unsupported currency remains a gap",
+          "result": "PASS",
+          "durationMs": 24.776418
+        },
+        {
+          "number": 41,
+          "name": "canonical amounts and full settlement conserve source money",
+          "result": "PASS",
+          "durationMs": 19.989135
+        },
+        {
+          "number": 42,
+          "name": "unknown costs and period cutoff remain explicit",
+          "result": "PASS",
+          "durationMs": 9.794631
+        },
+        {
+          "number": 43,
+          "name": "forged amounts, state/receipt pairs, duplicate liabilities and unsourced assumptions rejected",
+          "result": "PASS",
+          "durationMs": 16.277891
+        },
+        {
+          "number": 44,
+          "name": "losses, negative cash and delayed payouts remain visible",
+          "result": "PASS",
+          "durationMs": 6.159623
+        },
+        {
+          "number": 45,
+          "name": "100 canonical integer scenarios satisfy independent conservation",
+          "result": "PASS",
+          "durationMs": 552.34358
+        },
+        {
+          "number": 46,
+          "name": "Commerce task, Assurance recovery and finance share real canonical identities and state",
+          "result": "PASS",
+          "durationMs": 64.544761
+        },
+        {
+          "number": 47,
+          "name": "actual Amazon evidence yields broad market context and no inferred supplier match",
+          "result": "PASS",
+          "durationMs": 9.947404
+        },
+        {
+          "number": 48,
+          "name": "expired observation remains historical without refreshed source claim",
+          "result": "PASS",
+          "durationMs": 1.423526
+        },
+        {
+          "number": 49,
+          "name": "malformed or contradictory prices cannot produce a market quote",
+          "result": "PASS",
+          "durationMs": 2.146305
+        },
+        {
+          "number": 50,
+          "name": "wrong ASIN, market identity, missing catalogue, or tampered facts refuses quote",
+          "result": "PASS",
+          "durationMs": 1.521814
+        },
+        {
+          "number": 51,
+          "name": "actual locked router failures feed passive Assurance and require a new successful receipt to recover",
+          "result": "PASS",
+          "durationMs": 57.001241
+        },
+        {
+          "number": 52,
+          "name": "actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers",
+          "result": "PASS",
+          "durationMs": 32.970979
+        },
+        {
+          "number": 53,
+          "name": "seeded canonical commerce, cold crash replay and finance produce reproducible multi-order traces",
+          "result": "PASS",
+          "durationMs": 480.699932
+        },
+        {
+          "number": 54,
+          "name": "examination bounds prevent unbounded scenario or malformed seed requests",
+          "result": "PASS",
+          "durationMs": 0.322436
+        },
+        {
+          "number": 55,
+          "name": "owner financial readback links actual canonical simulated order and leaves unobserved charges unknown",
+          "result": "PASS",
+          "durationMs": 99.19366
+        },
+        {
+          "number": 56,
+          "name": "mission with research but no orders never fabricates zero revenue or complete finance",
+          "result": "PASS",
+          "durationMs": 3.571343
+        },
+        {
+          "number": 57,
+          "name": "independent SQLite worker connections race for 1000th slot; 1001st denied",
+          "result": "FAIL",
+          "durationMs": 42042.39397
+        },
+        {
+          "number": 58,
+          "name": "daily virtual cohorts reach 1000 active products; 1001 blocked after reopen, retirement permits one replacement",
+          "result": "PASS",
+          "durationMs": 43113.052773
+        },
+        {
+          "number": 59,
+          "name": "duplicate product variants cannot consume multiple active slots; owner retirement cannot be forged; replay is unchanged",
+          "result": "PASS",
+          "durationMs": 9.681574
+        },
+        {
+          "number": 60,
+          "name": "guard duplicate-orders positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 21.331203
+        },
+        {
+          "number": 61,
+          "name": "guard order-reconciliation positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 14.474958
+        },
+        {
+          "number": 62,
+          "name": "guard stock positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 0.454915
+        },
+        {
+          "number": 63,
+          "name": "guard profitability positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 0.310107
+        },
+        {
+          "number": 64,
+          "name": "guard capital positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 0.340413
+        },
+        {
+          "number": 65,
+          "name": "guard delivery positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 14.805406
+        },
+        {
+          "number": 66,
+          "name": "guard compliance positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 0.470299
+        },
+        {
+          "number": 67,
+          "name": "guard supplier-reliability positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 0.314223
+        },
+        {
+          "number": 68,
+          "name": "guard durability positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 5.861916
+        },
+        {
+          "number": 69,
+          "name": "guard safe-retry positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 13.643008
+        },
+        {
+          "number": 70,
+          "name": "guard financial-reconciliation positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 10.167776
+        },
+        {
+          "number": 71,
+          "name": "guard monitoring positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 3.360906
+        },
+        {
+          "number": 72,
+          "name": "guard circuit-breakers positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 3.941642
+        },
+        {
+          "number": 73,
+          "name": "guard owner-authority positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 5.129521
+        },
+        {
+          "number": 74,
+          "name": "guard disaster-recovery positive and negative boundaries",
+          "result": "PASS",
+          "durationMs": 6.908414
+        },
+        {
+          "number": 75,
+          "name": "exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact",
+          "result": "PASS",
+          "durationMs": 292.095229
+        },
+        {
+          "number": 76,
+          "name": "exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data",
+          "result": "PASS",
+          "durationMs": 156.447156
+        },
+        {
+          "number": 77,
+          "name": "both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation",
+          "result": "PASS",
+          "durationMs": 111.390041
+        },
+        {
+          "number": 78,
+          "name": "explicit rational quote preserves separate canonical SGD and translated USD journals",
+          "result": "PASS",
+          "durationMs": 23.829249
+        },
+        {
+          "number": 79,
+          "name": "missing, forged, expired, wrong-currency and unsupported rounding/precision quotes fail closed",
+          "result": "PASS",
+          "durationMs": 13.982276
+        },
+        {
+          "number": 80,
+          "name": "unknown fee stays unknown after translation",
+          "result": "PASS",
+          "durationMs": 12.989049
+        },
+        {
+          "number": 81,
+          "name": "bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities",
+          "result": "FAIL",
+          "durationMs": 31.470746
+        },
+        {
+          "number": 82,
+          "name": "authentic retained cohort has truthful under-supply and zero provider discovery",
+          "result": "PASS",
+          "durationMs": 9.739871
+        },
+        {
+          "number": 83,
+          "name": "source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent",
+          "result": "PASS",
+          "durationMs": 6.615051
+        },
+        {
+          "number": 84,
+          "name": "source expiry and snapshot mutation cannot become fresh qualified candidates",
+          "result": "PASS",
+          "durationMs": 2.672418
+        },
+        {
+          "number": 85,
+          "name": "daily target is bounded at 100 and durable receipt tampering fails closed",
+          "result": "PASS",
+          "durationMs": 21.295128
+        },
+        {
+          "number": 86,
+          "name": "changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor",
+          "result": "PASS",
+          "durationMs": 6.801872
+        },
+        {
+          "number": 87,
+          "name": "facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot",
+          "result": "PASS",
+          "durationMs": 15.69631
+        },
+        {
+          "number": 88,
+          "name": "deleted or mutated parent identity blocks read/retry/new day rather than recounting",
+          "result": "PASS",
+          "durationMs": 10.80016
+        },
+        {
+          "number": 89,
+          "name": "retained source projection preserves unknown currency and withholds unlicensed image",
+          "result": "PASS",
+          "durationMs": 1.746102
+        },
+        {
+          "number": 90,
+          "name": "reject forged authenticity, digest, identity, invalid dates and future observations",
+          "result": "PASS",
+          "durationMs": 0.666064
+        },
+        {
+          "number": 91,
+          "name": "expired authentic source remains explicitly historical and deferred",
+          "result": "PASS",
+          "durationMs": 0.282186
+        },
+        {
+          "number": 92,
+          "name": "variant is matched exactly and cannot inherit product price",
+          "result": "PASS",
+          "durationMs": 0.395686
+        },
+        {
+          "number": 93,
+          "name": "catalogue query is not confused with returned product identity, duplicates deduplicated",
+          "result": "PASS",
+          "durationMs": 0.235405
+        },
+        {
+          "number": 94,
+          "name": "workspace reader and absent provider shape cannot substitute fixtures",
+          "result": "PASS",
+          "durationMs": 0.157938
+        },
+        {
+          "number": 95,
+          "name": "retained authenticated readback reproduces ten products without inventing rights or currency",
+          "result": "PASS",
+          "durationMs": 8.839625
+        },
+        {
+          "number": 96,
+          "name": "only exact detail variant price receives documented USD unit; contradictory currency quarantined",
+          "result": "PASS",
+          "durationMs": 0.350288
+        },
+        {
+          "number": 97,
+          "name": "unselected observed variants reject contradictory parent and variant currencies",
+          "result": "PASS",
+          "durationMs": 0.348906
+        },
+        {
+          "number": 98,
+          "name": "real second-connection SQLite lock times out with no partial receipt; release and exact safe retry close incident from fresh readback",
+          "result": "PASS",
+          "durationMs": 1018.353121
+        },
+        {
+          "number": 99,
+          "name": "duplicate delivery of actual durable task is fenced without second receipt; fresh state closes retained incident",
+          "result": "PASS",
+          "durationMs": 7.382509
+        },
+        {
+          "number": 100,
+          "name": "duplicate concurrent recovery deliveries reconcile a committed cursor gap once without another business step",
+          "result": "PASS",
+          "durationMs": 34.33257
+        },
+        {
+          "number": 101,
+          "name": "same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases",
+          "result": "PASS",
+          "durationMs": 42.792743
+        },
+        {
+          "number": 102,
+          "name": "two real SQLite connections competing for3 units admit exactly one2-unit order",
+          "result": "FAIL",
+          "durationMs": 38.948918
+        }
+      ]
+    },
+    {
+      "id": "affected-retest-node22.log",
+      "scope": "Correct backend working directory; covers the3 setup failures and adverse tracking fix",
+      "sha256": "0ade3d51395495ec94995038893514bad155d5a8551c4d3d2b299656025b80f2",
+      "summary": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "cases": [
+        {
+          "number": 1,
+          "name": "actual overdue missing tracking escalates without writes; fresh delivered observation closes",
+          "result": "PASS",
+          "durationMs": 38.150125
+        },
+        {
+          "number": 2,
+          "name": "partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment",
+          "result": "PASS",
+          "durationMs": 20.808946
+        },
+        {
+          "number": 3,
+          "name": "unknown supplier remains blocked and verified history corruption never produces healthy evidence",
+          "result": "PASS",
+          "durationMs": 12.236926
+        },
+        {
+          "number": 4,
+          "name": "bounded mission scan resumes from durable cursor and never clears skipped order incidents",
+          "result": "PASS",
+          "durationMs": 34.946166
+        },
+        {
+          "number": 5,
+          "name": "history bound fails closed without healthy order probes and stale sweep cannot claim coverage",
+          "result": "PASS",
+          "durationMs": 18.612515
+        },
+        {
+          "number": 6,
+          "name": "new mission inserted behind durable cursor prevents false complete coverage",
+          "result": "PASS",
+          "durationMs": 31.478433
+        },
+        {
+          "number": 7,
+          "name": "pre-deadline adverse tracking escalates immediately and fresh delivery closes; uncertainty takes precedence",
+          "result": "PASS",
+          "durationMs": 70.566407
+        },
+        {
+          "number": 8,
+          "name": "independent SQLite worker connections race for 1000th slot; 1001st denied",
+          "result": "PASS",
+          "durationMs": 43762.591436
+        },
+        {
+          "number": 9,
+          "name": "bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities",
+          "result": "PASS",
+          "durationMs": 307.914784
+        },
+        {
+          "number": 10,
+          "name": "authentic retained cohort has truthful under-supply and zero provider discovery",
+          "result": "PASS",
+          "durationMs": 8.254502
+        },
+        {
+          "number": 11,
+          "name": "source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent",
+          "result": "PASS",
+          "durationMs": 6.973642
+        },
+        {
+          "number": 12,
+          "name": "source expiry and snapshot mutation cannot become fresh qualified candidates",
+          "result": "PASS",
+          "durationMs": 2.989857
+        },
+        {
+          "number": 13,
+          "name": "daily target is bounded at 100 and durable receipt tampering fails closed",
+          "result": "PASS",
+          "durationMs": 22.239062
+        },
+        {
+          "number": 14,
+          "name": "changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor",
+          "result": "PASS",
+          "durationMs": 5.963759
+        },
+        {
+          "number": 15,
+          "name": "facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot",
+          "result": "PASS",
+          "durationMs": 14.036147
+        },
+        {
+          "number": 16,
+          "name": "deleted or mutated parent identity blocks read/retry/new day rather than recounting",
+          "result": "PASS",
+          "durationMs": 9.470686
+        },
+        {
+          "number": 17,
+          "name": "same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases",
+          "result": "PASS",
+          "durationMs": 40.657334
+        },
+        {
+          "number": 18,
+          "name": "two real SQLite connections competing for3 units admit exactly one2-unit order",
+          "result": "PASS",
+          "durationMs": 146.79452
+        }
+      ]
+    },
+    {
+      "id": "final-atomic-authority-node22.log",
+      "scope": "Final atomic mission/finance snapshot, existing ownerfinance/actualcycle, and seven ordinary/autonomous route locks",
+      "sha256": "f197192e3ff6c4de958e1a09d53276f18c54b8c7381c5f9debfe2a0a1fc42815",
+      "summary": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "id": "shared-store-days",
+      "scope": "One shared database over10 accelerated days,20orders,190receipts,10 independent verified checkpoint recoveries; fixed56500minorunit oracle",
+      "summary": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      "test": "scripts/work8/shared-store-days.test.ts",
+      "evidence": "shared-store-days.json.gz",
+      "sha256": "a539b9394e7093ebc984c65d8c98399ba4832d33aa1e534f6ace6692470606c7",
+      "limits": "Accelerated virtual time, not elapsed multi-day endurance, source discovery or genuine assessment"
+    }
+  ],
+  "failureLineage": [
+    {
+      "failure": "3 combined-run failures resolving tsx in child workers",
+      "cause": "Command launched from repository root while child loader expects backend package working directory",
+      "repair": "Rerun only affected suites from backend/; no weakened assertions",
+      "retest": "affected-retest-node22.log"
+    },
+    {
+      "failure": "Predeadline LOST/DAMAGED read as healthy",
+      "cause": "Adverse detector gated by assumed deadline",
+      "repair": "Immediate failure for lost/damaged, degradation for delayed, uncertainty precedence and fresh terminal closure",
+      "retest": "affected-retest-node22.log",
+      "review": "fulfilment-adverse-review.md"
+    },
+    {
+      "failure": "Walkthrough incomplete source binding",
+      "repair": "Before/after complete source/input/runtime manifest; exact match required",
+      "evidence": "Frontend docs/work8/actual-owner/receipt.json"
+    },
+    {
+      "failure": "Silent200mission owner truncation",
+      "repair": "Bounded workspace-scoped cursor pagination plus ownercoverage/previous-next controls;202mission actualbrowser verified"
+    },
+    {
+      "failure": "Possible mixed head/finance versions during concurrent writer",
+      "repair": "Both projections computed inside the same SQLite read transaction",
+      "retest": "final-atomic-authority-node22.log"
+    }
+  ],
+  "scenarioEvidence": [
+    "finance-operating-exam-evidence.json.gz",
+    "joint-exam-evidence.json.gz",
+    "finance-boundary-exam-evidence.json",
+    "simulated-fx-evidence.json",
+    "assurance-exam-receipts.json",
+    "sqlite-queue-exam.json",
+    "sidecar-compatibility.json",
+    "shared-store-days.json.gz"
+  ],
+  "endurance": {
+    "pilot": "elapsed-soak.json",
+    "resource": "resource-soak.json",
+    "status": "PASS_SCOPED_LOCAL_RESOURCE_SOAK",
+    "samples": 120,
+    "elapsedMs": 600006.986277,
+    "p99SampleMs": 93.414947,
+    "peakRssBytes": 128380928,
+    "rssGrowthBytes": 34103296,
+    "superseded": "resource-soak-superseded.json"
+  },
+  "capabilityMatrix": "provider-capabilities.json",
+  "source": "candidate-source-manifest.json",
+  "limits": "Finite deterministic/injected cases, not independent full live-business certification; actualCI statuses and final owner acceptance still required.",
+  "ciEvidence": {
+    "priorBackend": "d054cc57bba178df5792e7eceaa82d34bac88c0f",
+    "run": 38091879640,
+    "job": 114329873188,
+    "work8Tests": 105,
+    "passed": 105,
+    "failed": 0,
+    "log": "ci-work8-d054cc57.log",
+    "finalExactHead": "PENDING",
+    "atomicBackend": {
+      "sha": "27b1e23c827eecf82db6ab9b81495a7b6353cbf5",
+      "run": 38092253456,
+      "job": 114330988740,
+      "work8Tests": 106,
+      "passed": 106,
+      "failed": 0,
+      "log": "ci-work8-27b1e23c.log",
+      "scope": "Checkpoint before acquisition bridge and late-effect additions"
+    }
+  }
+}

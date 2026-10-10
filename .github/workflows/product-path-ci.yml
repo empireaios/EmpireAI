@@ -201,7 +201,7 @@ jobs:
           test -f backend/dist/runtime/native-store-capture-lock.cjs
       - name: Work8 bounded integrated exams with kernel network denial
         working-directory: backend
-        run: python3 ../scripts/work8/isolated-exec.py node --import tsx --test --test-concurrency=1 src/validation/tests/work8-*.test.ts src/validation/tests/work8-*.test.mjs src/validation/tests/work6-commerce-routes.test.ts
+        run: python3 ../scripts/work8/isolated-exec.py node --import tsx --test --test-concurrency=1 src/validation/tests/work8-*.test.ts src/validation/tests/work8-*.test.mjs src/validation/tests/work6-commerce-routes.test.ts ../scripts/work8/autonomous-locks.test.ts ../scripts/work8/shared-store-days.test.ts
       - name: Verify isolated SQL.js and HTTP capture admission, save and readback
         working-directory: backend
         env:

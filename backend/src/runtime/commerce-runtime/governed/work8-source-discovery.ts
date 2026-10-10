@@ -14,6 +14,7 @@ function verifyDiscoveryIdentityLedger(db:DatabaseSync,workspace:string){
  for(const record of records){
   const r=JSON.parse(String(record.body)) as TickReceipt,{digest:actual,...body}=r,prior=heads.get(r.day);
   if(digest(body)!==actual||r.previous!==(prior?.digest??null)||r.fence!==(prior?.fence??0)+1||r.checkpoint.workspace!==workspace||r.checkpoint.day!==r.day||r.checkpoint.fence!==r.fence)throw Error('DISCOVERY_RECEIPT_CORRUPT');
+  if(prior&&(['sourceIds','sourceDigests','sourceEnvelopeDigests'] as const).some(field=>digest(r.checkpoint[field].slice(0,prior.checkpoint[field].length))!==digest(prior.checkpoint[field])))throw Error('DISCOVERY_SNAPSHOT_PREFIX_CHANGED');
   for(const examined of r.examined){
    if(!Array.isArray(examined.identityDigests)||examined.identityDigests.length!==examined.newParentIds.length)throw Error('DISCOVERY_IDENTITY_LINEAGE_CORRUPT');
    for(const binding of examined.identityDigests){
@@ -75,7 +76,14 @@ export class RetainedDiscoveryWorker {
    const prior=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,kinds.receipt,receiptId);
    if(prior){const old=JSON.parse(String(prior.body)) as TickReceipt;db.exec('COMMIT');return {...old.checkpoint,lastReceipt:old.digest};}
    if(state.fence!==expectedFence)throw Error('DISCOVERY_FENCE_CONFLICT');
-   if(state.status==='TARGET_REACHED'||state.status==='SOURCE_EXHAUSTED'){db.exec('COMMIT');return state;}
+   if(state.status==='TARGET_REACHED'){db.exec('COMMIT');return state;}
+   // Extend only the new receipt's snapshot. Previously committed batches and
+   // their evidence-envelope bindings remain byte-for-byte immutable.
+   const known=new Set(state.sourceIds);
+   const arrivals=db.prepare("SELECT id,body FROM objects WHERE workspace=? AND kind='evidence' AND json_extract(body,'$.provider')='CJ' AND json_extract(body,'$.capabilityId') IN ('cj.catalog','cj.detail') ORDER BY updated DESC,id LIMIT 1001").all(workspace).filter(r=>!known.has(String(r.id)));
+   const room=1000-state.sourceIds.length,wasTruncated=state.snapshotTruncated;state.snapshotTruncated=state.snapshotTruncated||arrivals.length>room;
+   for(const arrival of arrivals.slice(0,room)){const source=JSON.parse(String(arrival.body));state.sourceIds.push(String(arrival.id));state.sourceDigests.push(String(source.digest??''));state.sourceEnvelopeDigests.push(digest(source));}
+   if(state.cursor===state.sourceIds.length&&state.status==='SOURCE_EXHAUSTED'&&state.snapshotTruncated===wasTruncated){db.exec('COMMIT');return state;}
    const now=this.store.now(),examined:TickReceipt['examined']=[];
    for(let step=0;step<batchSize&&state.cursor<state.sourceIds.length&&state.newCandidates<state.target;step++){
     const sourceId=state.sourceIds[state.cursor]!,expectedDigest=state.sourceDigests[state.cursor]!,expectedEnvelopeDigest=state.sourceEnvelopeDigests[state.cursor++]!;

@@ -25,9 +25,13 @@ The existing worker performs bounded durable scans of authentic retained source 
 | Daily discovery | Target100; retained initial cohort10, shortfall90; no fresh100/day claim |
 | Simulated finance operating examination | 4 virtual mission scenarios, 8 synthetic orders; canonical trace retained separately |
 | Capacity examination | 10 virtual100-product cohorts, ceiling1000 and concurrent boundary checks; synthetic only |
-| Elapsed endurance | 120-second local component soak, 24 samples; not multi-day hosted endurance |
+| Elapsed endurance | 600-second local resource soak, 120 samples; not multi-day hosted endurance |
 
 The authenticated isolated desktop/mobile walkthrough compares actual Next BFF responses to candidate Fastify projections, verifies access denials and preserves the order receipt digest after restart. It displays retained real observations alongside a separate synthetic order scenario. It does not establish a coherent assessed genuine product flowing into its own downstream simulation, nor owner production acceptance.
+
+## Remaining implementation and access restrictions
+
+The daily discovery bridge is being extended. The prior supplier schedule repeats page1 and the retained scanner freezes its source IDs once daily, excluding later observations. Bounded pagination through the existing queue and quotas, plus append-only same-day source batches, must be implemented and examined before this can be treated solely as a provider-access dependency. The ten-day shared-database simulation and delayed supplier acknowledgement examinations now pass within their stated local scope.
 
 ## Exact access restrictions
 
@@ -40,3 +44,15 @@ Supplier image policies found during read-only research are conditional. Exact a
 NO-GO for Work8 COMPLETE, release and Work9 readiness. Continue independent engineering/examinations against the fixed45 register and fixed31 fault map. The fifteen safety regression pairs are scoped candidate evidence, not a blanket certification of live integrations. Completion still requires the genuine linked assessment/owner demonstration, remaining whole-system fault and endurance evidence, independent final verification and legitimate closure receipts. Production release and Work9 activation need separate applicable authority.
 
 The exact next external dependency is an approved callable read-only supplier/marketplace acquisition and assessment capability with its existing enforceable inference budget, plus evidence of image usage permission. No real commerce capability is requested by this dependency.
+
+## Final candidate examination updates
+
+The 600.007second resource soak passed120 samples, with p99 sample latency93.415ms, peak RSS122.43MiB and RSS growth32.52MiB. This measures actual elapsed local execution; each scenario still uses a fresh store. Existing CI compute has not been priced or attributed as an invoice, so no total-dollar cost is claimed.
+
+The corrected owner browser examination covers202 canonical scenarios through next/previous record groups at both widths, with5,445-file before/after manifests matching. It now exposes partial read coverage. A subsequent narrow consistency repair computes order heads and financial projections in one read snapshot; actual two-connection verification passes. All seven forbidden live routes remain423 during admitted simulated repair attempts, and forbidden repair callbacks never execute.
+
+Follow-up production read: the same Work7 revision remains active; journal3 and historical7 digests are unchanged. Accounting is now227 records. Three concurrent completed production Pillow conversations provide supporting lineage for the increase, but the aggregate-only connector does not expose exact accounting-row correspondence or original224 subset preservation. That final closure check remains open. These conversations were not initiated by this Work8 tool session.
+
+A further shared-store examination accumulates20 simulated orders and190 immutable receipts across10 accelerated days, with daily cold restart,10 independently verified Assurance checkpoint repairs and a fixed56500 SGD minor-unit contribution oracle. This is virtual-time continuity evidence, not10 days of elapsed operation.
+
+Continued integration found two further software gaps: per-parent supplier enrichment and candidate-bound assessment linkage, and a durable simulated financial lifecycle (the prior full reconciliation ran only in examination drivers). Both are being implemented using existing stores, queues and authority gates. These gaps are not attributed solely to provider access. Actual paid assessment, authentic data sufficiency and final programme closure remain separate.

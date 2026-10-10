@@ -13,6 +13,7 @@ const secret=()=>crypto.randomBytes(32).toString('hex'),password=secret();
 const base={PATH:process.env.PATH,HOME:process.env.HOME,EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_LOCKED_REDIS_HOST:'127.0.0.1',
  FOUNDER_EMAIL:'closure-owner@example.invalid',ADMIN_EMAIL:'closure-admin@example.invalid',FOUNDER_PASSWORD:secret(),ADMIN_PASSWORD:secret(),SESSION_SECRET:secret(),CORS_ORIGIN:'https://empire-ai.co',RAILWAY_GIT_COMMIT_SHA:buildSha};
 let app,redisProcess,redis,logs='',port=4250,redisPort=6391;
+const httpObservations=[];
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 function child(command,args,env){const p=spawn(command,args,{cwd:repo,env,stdio:['ignore','pipe','pipe']});p.stdout.on('data',b=>{logs+=b});p.stderr.on('data',b=>{logs+=b});return p;}
 async function stop(p){
@@ -23,7 +24,14 @@ async function stop(p){
  });
  p.kill('SIGTERM');await ended;
 }
-async function http(route,method='GET',body,cookie){const r=await fetch(`http://127.0.0.1:${port}${route}`,{method,headers:{...(body?{'content-type':'application/json'}:{}),...(cookie?{cookie}:{})},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(10000)});return{status:r.status,data:await r.json(),headers:r.headers};}
+async function http(route,method='GET',body,cookie){
+ const started=Date.now();const r=await fetch(`http://127.0.0.1:${port}${route}`,{method,headers:{...(body?{'content-type':'application/json'}:{}),...(cookie?{cookie}:{})},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(10000)});
+ const data=await r.json();const response={};
+ // No request body, credentials, cookie, response headers, chat text or tokens are retained.
+ for(const key of ['code','error','reason','ready','workerReady','workerOnline','sessionStore','checks','operational','birth','commerce'])if(data&&Object.hasOwn(data,key))response[key]=data[key];
+ httpObservations.push({sequence:httpObservations.length+1,at:new Date().toISOString(),method,route,status:r.status,elapsedMs:Date.now()-started,response});
+ if(httpObservations.length>1000)httpObservations.shift();return{status:r.status,data,headers:r.headers};
+}
 async function launch(volume,redisDir){
  fs.mkdirSync(volume,{recursive:true});fs.mkdirSync(redisDir,{recursive:true});
  redisProcess=child(process.env.PILLOW_TEST_REDIS_SERVER||'redis-server',['--bind','127.0.0.1','--port',String(redisPort),'--dir',redisDir,'--save','','--appendonly','yes','--appendfsync','always','--requirepass',password],{PATH:process.env.PATH});
@@ -34,8 +42,8 @@ async function launch(volume,redisDir){
  for(let i=0;i<240;i++){assert.equal(app.exitCode,null,'Runtime exited');try{const r=await http('/health/ready');if(r.status===200&&r.data.ready){assert.equal(r.data.operational,false);assert.equal(r.data.birth,'NOT_BORN');assert.equal(r.data.commerce,'LOCKED');return env;}}catch(e){if(/Runtime exited/.test(String(e)))throw e;}await pause(500);}
  throw Error('Permanent runtime readiness timeout');
 }
-async function login(){const r=await http('/auth/login','POST',{email:base.FOUNDER_EMAIL,password:base.FOUNDER_PASSWORD});assert.equal(r.status,200);const cookie=r.headers.get('set-cookie').match(/empireai_session=([^;]+)/)[0];return{cookie,id:r.data.user.id};}
-async function locks(cookie){const birth=await http('/pillow-commissioning/birth','GET',undefined,cookie);assert.equal(birth.status,200);assert.equal(birth.data.status,'NOT_BORN');assert.equal(birth.data.authority.realCommerceAuthorized,false);
+async function login(){const r=await http('/auth/login','POST',{email:base.FOUNDER_EMAIL,password:base.FOUNDER_PASSWORD});assert.equal(r.status,200,'POST /auth/login must succeed after readiness');const cookie=r.headers.get('set-cookie').match(/empireai_session=([^;]+)/)[0];return{cookie,id:r.data.user.id};}
+async function locks(cookie){const birth=await http('/pillow-commissioning/birth','GET',undefined,cookie);assert.equal(birth.status,200,'GET /pillow-commissioning/birth must succeed');assert.equal(birth.data.status,'NOT_BORN');assert.equal(birth.data.authority.realCommerceAuthorized,false);
  for(const route of ['/pillow-commerce-presale/run','/pillow-commissioning/birth','/amazon/publish','/amazon/inventory','/amazon/price','/cj/orders','/fulfilment','/api/pillow/mission-runtime/execute'])assert.equal((await http(route,'POST',{approved:true,force:true},cookie)).status,423,route);
 }
 // This no-credentials restore fixture must retain an honest incomplete result.
@@ -52,10 +60,10 @@ function accounts(filename){const db=new DatabaseSync(filename,{readOnly:true});
 (async()=>{let receipt={schema:'precutover-closure-v1',buildSha,productionTouched:false,commerce:'LOCKED',birth:'NOT_BORN',passed:false};
 try{
  const volume=path.join(root,'source-volume'),redisDir=path.join(root,'source-redis');const env=await launch(volume,redisDir);const owner=await login();await locks(owner.cookie);
- const created=await http('/api/pillow/mission-runtime/create-mission','POST',{missionName:'LOCKED_CLOSURE_UNAPPROVED',missionType:'enterprise',workers:[],highRisk:true,pillowConfirmed:false,grandKingApproved:false},owner.cookie);assert.equal(created.status,200);const mission=created.data.report.mission;assert.ok(mission.missionId);
+ const created=await http('/api/pillow/mission-runtime/create-mission','POST',{missionName:'LOCKED_CLOSURE_UNAPPROVED',missionType:'enterprise',workers:[],highRisk:true,pillowConfirmed:false,grandKingApproved:false},owner.cookie);assert.equal(created.status,200,'POST /api/pillow/mission-runtime/create-mission must succeed');const mission=created.data.report.mission;assert.ok(mission.missionId);
  const body={sessionId:'closure-authority',message:'What is your current authority? Do not execute tools, commerce or spending.'};const accepted=await http('/api/pillow/chat','POST',body,owner.cookie);assert.ok([200,202].includes(accepted.status));const id=accepted.headers.get('x-empire-pillow-request-id')||accepted.data.result.requestId;const result=await terminal(id,owner.cookie);assert.equal(result.attemptCount,1);
  // Observe ongoing process under permanent settings; this is a bounded closure, not 24/7 certification.
- for(let i=0;i<6;i++){await pause(5000);assert.equal((await http('/health/ready')).status,200);await locks(owner.cookie);}
+ for(let i=0;i<6;i++){await pause(5000);assert.equal((await http('/health/ready')).status,200,'Steady-state GET /health/ready must remain ready');await locks(owner.cookie);}
  const history=(await http('/api/pillow/mission-runtime/history','POST',{},owner.cookie)).data;
  await stop(app);app=null;redis.disconnect();await stop(redisProcess);redisProcess=null;
  assert.match(logs,/locked_runtime_stop/);assert.ok(!logs.includes('"forcedTermination":true'),'Forced shutdown cannot support backup');
@@ -79,6 +87,6 @@ try{
  // Hash binding rejects altered backup, without touching restored state.
  fs.appendFileSync(path.join(root,'bundle','application','empireai-brain.db'),'tamper');assert.throws(()=>restore({acknowledgement:ACK,buildSha,bundle:path.join(root,'bundle'),destination:path.join(root,'invalid'),manifestSha256:bound.manifestSha256}));
  receipt={...receipt,passed:true,permanentProfile:true,noExpiry:true,observedSteadySeconds:30,independentVolumeRestore:true,sourceRootsQuarantinedBeforeReopen:true,identityContinuity:true,missionHistoryContinuity:true,shadowOwnershipAuthorityContinuity:true,redisSessionAndTerminalContinuity:true,noDuplicateTerminalExecution:true,providerCredentials:0,mutationGuards:true,unavailableRedisReadiness503:true,manifestSha256:bound.manifestSha256,inventory:bound.inventory,limitations:['bounded CI production-mode process proof, not 24/7 certification','no legacy state imported','new production services and routing not activated','provider accounts absent; real commerce unavailable']};
-}catch(e){receipt.error=String(e).slice(0,1500);throw e;}
-finally{fs.writeFileSync(path.join(output,'receipt.json'),JSON.stringify(receipt,null,2));redis?.disconnect();for(const p of [app,redisProcess])if(p&&p.exitCode===null){try{await stop(p);}catch{}}if(!receipt.passed){let safe=logs;for(const s of [password,base.FOUNDER_PASSWORD,base.ADMIN_PASSWORD,base.SESSION_SECRET])safe=safe.split(s).join('[REDACTED]');fs.writeFileSync(path.join(output,'failure.log'),safe);}fs.rmSync(root,{recursive:true,force:true});}
+}catch(e){receipt.error=String(e).slice(0,1500);receipt.errorStack=String(e?.stack??e).slice(0,6000);receipt.lastHttpObservation=httpObservations.at(-1)??null;throw e;}
+finally{const redact=value=>{let safe=JSON.stringify(value,null,2);for(const secretValue of [password,base.FOUNDER_PASSWORD,base.ADMIN_PASSWORD,base.SESSION_SECRET])safe=safe.split(secretValue).join('[REDACTED]');return safe;};fs.writeFileSync(path.join(output,'http-observations.json'),redact(httpObservations));fs.writeFileSync(path.join(output,'receipt.json'),redact(receipt));redis?.disconnect();for(const p of [app,redisProcess])if(p&&p.exitCode===null){try{await stop(p);}catch{}}if(!receipt.passed){let safe=logs;for(const s of [password,base.FOUNDER_PASSWORD,base.ADMIN_PASSWORD,base.SESSION_SECRET])safe=safe.split(s).join('[REDACTED]');fs.writeFileSync(path.join(output,'failure.log'),safe);}fs.rmSync(root,{recursive:true,force:true});}
 console.log('PRE_CUTOVER_CLOSURE_PASS');})().catch(e=>{console.error(String(e));process.exitCode=1;});

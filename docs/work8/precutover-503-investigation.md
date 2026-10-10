@@ -1,0 +1,11 @@
+# Required runtime CI: unexplained early 503
+
+Observed failure: runtime CI run 38092253465, job 114330975725, source 27b1e23c827eecf82db6ab9b81495a7b6353cbf5. The precutover receipt is failed with `503 !== 200`; this is a required gate failure, not the previously reported workflow timeout.
+
+The retained artifact does not identify the exact assertion. Its harness kept `String(error)` and discarded the stack, and its HTTP helper retained neither route nor response body. There are multiple unlabelled 200 assertions. Redis starts at 23:00:21, the Brain worker listens at 23:00:27.650, Pillow host starts at 23:00:42.922 and shutdown follows approximately immediately. This narrows the failure to early post-readiness interactions, before the 30-second steady-state and restore programme can complete. It does not prove a startup race or identify login versus birth/mission routes. The captured log contains no primary proxy-failure warning. Shared-session availability and worker-proxy readiness remain hypotheses, not findings.
+
+`deployment/precutover-closure.cjs` now retains a bounded HTTP trace with route, method, status, elapsed time and whitelisted readiness/error fields. It excludes request bodies, cookies, response headers, tokens and chat text. Failure receipts retain the stack and last HTTP observation. The relevant 200 assertions have explicit route labels. Existing 200/423/503 expectations, waits, timeouts, locked authority checks, no-provider terminal failure expectation and independent restore requirements are unchanged.
+
+Validation: Node 22 syntax check passed. An isolated injected-fetch probe returned 503 for login and verified the trace identifies the route/code while excluding fixture password, cookie, token, user and chat fields. This tests diagnostics, not the failed runtime itself.
+
+The exact next action is rerunning the required runtime CI on the diagnostic candidate, then using the first failing labelled assertion and response code to reproduce/fix the underlying fault. This workspace presently lacks the built full backend/dist and redis-server executable needed for the complete production-shaped closure harness. No production or new infrastructure is required. No backend/src changes were made during the active shared-runtime examination.

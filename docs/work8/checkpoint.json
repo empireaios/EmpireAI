@@ -3,22 +3,31 @@
   "status": "IN_PROGRESS_NO_GO",
   "frontend": {
     "pr": 112,
-    "sha": "d43c43061debbb1bb8988bfc32b8d2ec7a683966",
-    "previousAllGreenSha": "2a4b6eb3b90342c7b431e774cbad462b61669d41",
-    "previousCiRunIds": [
-      38090163491,
-      38090163409,
-      38090163405,
-      38090163430
-    ]
+    "sha": "915e7c59f6abaf35c99fea7ce6a88cb4e55bc63a",
+    "tree": "cbfdbfeeb54c80ff27a845951f01b07de2ea372f",
+    "localCommit": "fdb66e64",
+    "ciRunIds": [
+      38093167756,
+      38093167685,
+      38093167695,
+      38093167656
+    ],
+    "ciStatus": "NEW_FRESH_STATUS_HEAD_PENDING",
+    "previousAllFourSuccess": "3496eb83ee454726eb327883cbf64277a22c2efc"
   },
   "backend": {
-    "base": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
-    "branch": "work8/autonomous-examination-20261011",
-    "sourceManifest": "candidate-source-manifest.json",
     "pr": 113,
-    "previousSha": "685186169ea8085ccd5af01f576d8c3d6c345e03",
-    "nextCandidate": "FOLLOWUP_SOURCE_IN_THIS_COMMIT"
+    "sha": "27b1e23c827eecf82db6ab9b81495a7b6353cbf5",
+    "tree": "b1a0037946b34b035062d491844ad8e721476f56",
+    "localCommit": "0d375540",
+    "ciRunIds": [
+      38092253500,
+      38092253465,
+      38092253438,
+      38092253456
+    ],
+    "ciStatus": "PRODUCT_SEMANTIC_ASSURANCE_SUCCESS_RUNTIME_RUNNING",
+    "sourceManifest": "candidate-source-manifest.json"
   },
   "productionLease": "NONE_ACQUIRED",
   "effects": {
@@ -28,14 +37,43 @@
     "release": false
   },
   "next": [
-    "Finish exact-head CI on both draft branches; fix concrete failures, preserve gates",
-    "Finish fixed15 safety matrix and model/session integration faults",
-    "Retain granular31 fault map; complete remaining independent cases without repeating passed campaigns",
-    "Fresh supplier read capability, exact image permission and genuine qualified Pillow assessment remain unavailable; no invented substitute",
-    "Whole real-candidate lifecycle, multi-day endurance and full rollback/migration qualification remain open",
-    "Issue legitimate closure only when mandatory evidence passes; Work9 remains preparation only"
+    "Finish durable per-parent enrichment/deferral, exact candidate-bound investigation context and read-only completed assessment linkage without paid calls. Existing unbound assessments must remain unlinked.",
+    "Finish durable explicitly SIMULATION-only financial lifecycle in commerce sidecar, bounded timer/readback/Assurance integration; no actual Work5 ledger writes. Existing exam-only finance is insufficient operational implementation.",
+    "Finish independently reviewed read-only financial risk and response correlation Assurance collectors; prior runtime could falsely report HEALTHY. No financial repair authority.",
+    "Finish and independently examine bounded acquisition planner plus append-only same-day discovery; this is an implementation gap, separate from external access. Code changes after the recorded checkpoint require their own review and CI.",
+    "Read required CI on exactbackend27b1e23c/frontend3496eb83; repair concrete failures only",
+    "Persist final CI evidence and update fixed45 register, full exam ledger and scoped independentreview",
+    "Continue remaining coupled fault/endurance examinations in fixed31 map without replaying passing suites",
+    "Obtain approved source-refresh/actual Pillow-assessment capability with enforceable cost controls and exact imageusage evidence; current connector is readonly retained-data only",
+    "Obtain exact accountingrow-to-request/original224subset readback for later227count;3 productionPillowrequests retained as supporting not conclusive lineage",
+    "Complete genuine-candidate full owner-assessed simulatedlifecycle, independent closure and conditional Work9 handoff; do not release/activate"
   ],
   "register": "register.json",
   "faultMap": "assurance-fault-coverage.json",
-  "closureReceipt": null
+  "closureReceipt": null,
+  "evidenceBranch": "work8/examination-evidence-20261011",
+  "verifiedExaminations": {
+    "priorExactCi": {
+      "sha": "d054cc57",
+      "tests": 105,
+      "pass": 105
+    },
+    "finalAtomicAuthorityTargeted": {
+      "tests": 7,
+      "pass": 7
+    },
+    "resourceSoak": {
+      "elapsedMs": 600006.986277,
+      "samples": 120,
+      "status": "PASS_SCOPED"
+    },
+    "ownerBrowser": {
+      "backendLocal": "be2cdfb5",
+      "totalCanonicalMissions": 202,
+      "manifestFiles": 5445,
+      "manifestSha256": "1ebde842507e6d2bbaf757f08a62bc89c7efdb91cd12a69eeb7a9659973d5404",
+      "scope": "Before final atomic read-only consistency delta; delta independently two-connection verified"
+    }
+  },
+  "productionFollowup": "production-preservation-followup.json"
 }

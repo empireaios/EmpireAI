@@ -1,0 +1,4 @@
+PASS — exit 0; compiler emitted no diagnostics.
+Node 22.23.2; TypeScript strict, noUncheckedIndexedAccess, skipLibCheck; ES2022, ESNext, bundler resolution.
+Entry points: backend/src/intelligence/work8-acquisition.ts; backend/src/validation/tests/work8-acquisition.test.ts; backend/src/validation/tests/work8-acquisition-independent.test.ts.
+Transitive imports checked. This is a focused compiler check, not the complete repository release gate.
