@@ -1,0 +1,261 @@
+- alert
+- link "Skip to content":
+  - /url: "#owner-main"
+- complementary:
+  - link "EmpireAI A Bigger Tomorrow, Together":
+    - /url: /cockpit
+    - strong: EmpireAI
+    - generic: A Bigger Tomorrow, Together
+  - navigation "Owner navigation":
+    - link "Home":
+      - /url: /cockpit
+      - text: Home
+    - link "Intelligence":
+      - /url: /cockpit/eyes
+      - text: Intelligence
+    - link "Pillow (CEO)":
+      - /url: /cockpit/ceo
+      - text: Pillow (CEO)
+    - link "Products & Approvals":
+      - /url: /cockpit/products
+      - text: Products & Approvals
+    - link "Listings":
+      - /url: /cockpit/listings
+      - text: Listings
+    - link "Orders & Fulfilment":
+      - /url: /cockpit/orders
+      - text: Orders & Fulfilment
+    - link "Operational Finance":
+      - /url: /cockpit/finance
+      - text: Operational Finance
+    - link "Live Cost Centre":
+      - /url: /cockpit/cost-centre
+      - text: Live Cost Centre
+    - link "Assurance":
+      - /url: /cockpit/assurance
+      - text: Assurance
+    - link "Calendar":
+      - /url: /cockpit/calendar
+      - text: Calendar
+    - link "System":
+      - /url: /cockpit/system
+      - text: System
+  - button "Sign out"
+- banner:
+  - textbox "Find an owner page":
+    - /placeholder: Find a page…
+  - link "King’s Advisor communications":
+    - /url: /cockpit/advisor
+  - time:
+    - generic: Sun, 11 Oct 2026
+    - strong: 01:26:54 am SGT
+- main:
+  - navigation "Breadcrumb":
+    - link "Home":
+      - /url: /cockpit
+    - generic: /
+    - link "Products & Approvals":
+      - /url: /cockpit/products
+    - generic: /
+    - generic: Details
+  - paragraph: Department
+  - heading "Commerce" [level=1]
+  - generic: Demo
+  - paragraph: Manufacture, launch, market, and operate portfolio companies.
+  - navigation "Department tabs":
+    - link "Store":
+      - /url: /cockpit/commerce/store
+    - link "Launch":
+      - /url: /cockpit/commerce/launch
+    - link "Marketplace":
+      - /url: /cockpit/commerce/marketplace
+    - link "Marketing":
+      - /url: /cockpit/commerce/marketing
+    - link "Ad Intel":
+      - /url: /cockpit/commerce/ad-intelligence
+    - link "Ads":
+      - /url: /cockpit/commerce/ads
+    - link "Workspace":
+      - /url: /cockpit/commerce/workspace
+  - paragraph: Commerce · P8-01
+  - heading "Business Factory" [level=1]
+  - paragraph: Factory That Manufactures Companies — vision through launch · operation · growth
+  - generic: P8-01 Business Factory
+  - generic: Live
+  - generic: Updated 10:26:54 AM · 5s refresh
+  - paragraph: "--- Commerce Intelligence Executive (PILLOW-CI-001) --- Quality threshold: 72/100 Recommended products: 4 ### Winning Products 1. Resistance Bands Set (5-pack) — score 84 · margin 64% · Margin 64% · Competition low · Demand 86/100 · Growth rising 2. Pet Grooming Glove — score 80 · margin 68% · Margin 68% · Competition medium · Demand 88/100 · Growth rising 3. Portable Neck Massager — score 79 · margin 58% · Margin 58% · Competition medium · Demand 82/100 · Growth rising 4. Eco Bamboo Cutlery Set — score 79 · margin 62% · Margin 62% · Competition low · Demand 76/100 · Growth rising ### Supplier Rankings 1. CJ Dropshipping — Fitness Tier — 94/100 ★ preferred 2. CJ Dropshipping — Eco Tier — 92/100 ★ preferred 3. CJ Dropshipping — Wellness Tier — 91/100 ★ preferred ### Market Opportunities - Singapore / SEA hub: opportunity 81 — Priority launch market — strong demand and feasible logistics - United States: opportunity 62 — Monitor — lower priority until primary markets prove - United Kingdom: opportunity 60 — Monitor — lower priority until primary markets prove ### Competitor Threats - Amazon Basics (medium): Differentiate through niche positioning and faster shipping - Anker (high): Compete on value with comparable quality at lower price - Generic Dropship Storefronts (medium): Superior customer experience and review management ### Launch Plans - FitForge — home fitness accessories — readiness: ready - PetJoy — curated pet wellness essentials — readiness: ready ### Risk Assessment 1 high-threat competitor(s) — differentiate on brand and reviews ### Recommended Actions - Launch top product: Resistance Bands Set (5-pack) (score 84) - Preferred supplier: CJ Dropshipping — Fitness Tier - Priority market: Singapore / SEA hub - Run CRIR certification before live storefront"
+  - paragraph: Factory Stage
+  - paragraph: Business Launch Ready
+  - paragraph: Pipeline Progress
+  - paragraph: 50%
+  - paragraph: Revenue
+  - paragraph: Portfolio revenue — see Commerce workspace
+  - paragraph: Growth
+  - paragraph: Pipeline growth — pre-launch
+  - heading "Businesses" [level=2]
+  - paragraph: 3 in factory · 0 live
+  - table:
+    - rowgroup:
+      - row "Business Stage Progress Launch Health Revenue Growth":
+        - columnheader "Business"
+        - columnheader "Stage"
+        - columnheader "Progress"
+        - columnheader "Launch"
+        - columnheader "Health"
+        - columnheader "Revenue"
+        - columnheader "Growth"
+    - rowgroup:
+      - row "FitForge — home fitness accessories Business Launch Ready 50% ready healthy Pre-launch Pipeline":
+        - cell "FitForge — home fitness accessories"
+        - cell "Business Launch Ready"
+        - cell "50%"
+        - cell "ready"
+        - cell "healthy":
+          - generic: healthy
+        - cell "Pre-launch"
+        - cell "Pipeline"
+      - row "PetJoy — curated pet wellness essentials Business Launch Ready 50% ready healthy Pre-launch Pipeline":
+        - cell "PetJoy — curated pet wellness essentials"
+        - cell "Business Launch Ready"
+        - cell "50%"
+        - cell "ready"
+        - cell "healthy":
+          - generic: healthy
+        - cell "Pre-launch"
+        - cell "Pipeline"
+      - row "Health & Wellness Essentials — premium direct-to-consumer Business Preparing 40% conditional attention Pre-launch Pipeline":
+        - cell "Health & Wellness Essentials — premium direct-to-consumer"
+        - cell "Business Preparing"
+        - cell "40%"
+        - cell "conditional"
+        - cell "attention":
+          - generic: attention
+        - cell "Pre-launch"
+        - cell "Pipeline"
+  - heading "Factory Pipeline" [level=2]
+  - paragraph: Vision → Opportunity → Launch → Operation → Growth
+  - generic "Vision": "1"
+  - generic "Business Opportunity": "2"
+  - generic "Business Validation": "3"
+  - generic "Business Blueprint": "4"
+  - generic "Brand Creation": "5"
+  - generic "Store Creation": "6"
+  - generic "Product Selection": "7"
+  - generic "Commerce Configuration": "8"
+  - generic "Marketing Preparation": "9"
+  - generic "Production Readiness": "10"
+  - generic "Business Launch": "11"
+  - generic "Business Operation": "12"
+  - generic "Business Growth": "13"
+  - generic "Continuous Improvement": "14"
+  - generic: "1."
+  - text: Vision
+  - generic: "2."
+  - text: Business Opportunity
+  - generic: "3."
+  - text: Business Validation
+  - generic: "4."
+  - text: Business Blueprint
+  - generic: "5."
+  - text: Brand Creation
+  - generic: "6."
+  - text: Store Creation
+  - generic: "7."
+  - text: Product Selection
+  - generic: "8."
+  - text: Commerce Configuration
+  - generic: "9."
+  - text: Marketing Preparation
+  - generic: "10."
+  - text: Production Readiness
+  - generic: "11."
+  - text: Business Launch
+  - generic: "12."
+  - text: Business Operation
+  - generic: "13."
+  - text: Business Growth
+  - generic: "14."
+  - text: Continuous Improvement
+  - heading "Current Opportunities" [level=2]
+  - list:
+    - listitem: ◆ Priority launch market — strong demand and feasible logistics
+    - listitem: ◆ Monitor — lower priority until primary markets prove
+    - listitem: ◆ Monitor — lower priority until primary markets prove
+    - listitem: ◆ Resistance Bands Set (5-pack)
+    - listitem: ◆ Pet Grooming Glove
+    - listitem: "◆ Launch top product: Resistance Bands Set (5-pack) (score 84)"
+  - heading "Current Risks" [level=2]
+  - list:
+    - listitem: ⚠ 1 high-threat competitor(s) — differentiate on brand and reviews
+    - listitem: "⚠ GM-PILLOW: Pillow host not running"
+    - listitem: "⚠ GM-MEMORY: Heap 93% utilized (261/282 MB)"
+  - heading "Pillow Factory Intelligence" [level=2]
+  - paragraph: Commercial Recommendations
+  - list:
+    - listitem: "◆ Launch top product: Resistance Bands Set (5-pack) (score 84)"
+    - listitem: "◆ Preferred supplier: CJ Dropshipping — Fitness Tier"
+    - listitem: "◆ Priority market: Singapore / SEA hub"
+    - listitem: ◆ Run CRIR certification before live storefront
+  - paragraph: Improvements
+  - list:
+    - listitem: ◆ Align business blueprint with Vision and Soul
+    - listitem: ◆ Validate commerce readiness before launch gate
+    - listitem: "◆ Launch top product: Resistance Bands Set (5-pack) (score 84)"
+    - listitem: "◆ Preferred supplier: CJ Dropshipping — Fitness Tier"
+  - heading "System Coordination" [level=2]
+  - paragraph: Pillow · ECC · Supervisor · Guardian · Journey · Production
+  - generic: Pillow
+  - generic: active
+  - paragraph: "Founder Shell active — one unified executive workspace. 12 navigation items · 13 workspaces integrated. Journey: PILLOW-019 — · Mission: none. Grand King enters via Executive Home — Pillow, Builder, Journey, Production, Commerce accessible without switching interfaces."
+  - list:
+    - listitem: "· Launch top product: Resistance Bands Set (5-pack) (score 84)"
+    - listitem: "· Preferred supplier: CJ Dropshipping — Fitness Tier"
+  - generic: Brain
+  - generic: integrated
+  - paragraph: Brain coordinated via Business Factory architecture
+  - generic: Builder
+  - generic: integrated
+  - paragraph: Builder coordinated via Business Factory architecture
+  - generic: ECC
+  - generic: ready
+  - paragraph: "ECC: coordinated (90/100) · Queue: 0 · Active: Repository Synchronization · Authority: coordinates · does not replace Builder/Supervisor/Pillow · Ready: P6-02 Vision Integrity Engine"
+  - list:
+    - listitem: · Pillow governs priority — ECC coordinates handoff to Builder
+    - listitem: · Supervisor events feed ECC execution timeline
+  - generic: VIE
+  - generic: integrated
+  - paragraph: VIE coordinated via Business Factory architecture
+  - generic: Supervisor
+  - generic: healthy
+  - paragraph: "Supervisor: no active mission — ready for next engineering execution"
+  - list:
+    - listitem: · 0%
+    - listitem: · —
+  - generic: Guardian
+  - generic: degraded
+  - paragraph: Commerce healthy · Production monitored
+  - list:
+    - listitem: · Require Redis in production for auth and queue durability
+    - listitem: · Run worker.ts as separate process in production
+  - generic: Journey
+  - generic: 0%
+  - paragraph: Journey None · PILLOW-019 —
+  - generic: Commerce
+  - generic: integrated
+  - paragraph: Commerce coordinated via Business Factory architecture
+  - generic: Production
+  - generic: validated
+  - paragraph: "Running: Brain Executor, Executive Cockpit, Guardian, Journey System, Critical API Routes, Brain Runtime Governance, V1 Split Stack, Feature Flag Registry · Limited: Pillow COI, Builder (Cursor Bridge), Cursor Supervisor, Commerce Intelligence, Task Queue (BullMQ) · Disabled: Extension API Routes, BullMQ Workers · Deferred: Business Engines (REAL modules), REAL Extension Modules · Requires config: EMPIRE_V1_OPERATIONAL_READY, LIVE_COMMERCE_INTEGRATION_MODE, EMPIRE_ENABLE_EXTENSION_ROUTES"
+  - list:
+    - listitem: · Pending validation
+  - generic: Business Intelligence
+  - generic: integrated
+  - paragraph: Business Intelligence coordinated via Business Factory architecture
+- contentinfo:
+  - text: Private owner workspace · NOT_BORN · Commerce LOCKED
+  - link "Inspect authority and evidence →":
+    - /url: /cockpit/assurance
+- link "Open Pillow Centre conversation":
+  - /url: /cockpit/development/pillow?tab=conversation
+  - generic: Talk with Pillow
+  - generic: Available

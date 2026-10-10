@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "scope": "ISOLATED_ACTUAL_FRONTEND_BFF_PR111_HTTP_BACKEND_NOT_HOSTED",
+  "frontend": "bbb77bcac46a9e7a28cd7abe52f571970febe17a",
+  "backend": "e6d98fb57537c893c85afc552626235a38ba874c",
+  "at": "2026-10-10T19:16:19.372Z",
+  "checks": [
+    "BFF actual backend synthetic journal baseline",
+    "Authenticated UI -> BFF -> actual backend create",
+    "UI vendor mapping and rename retain category identity",
+    "Killed backend process / new process: exact journal and directory persistence",
+    "UI archive survives reload and retains vendor mapping",
+    "Actual auth: anonymous401; foreign workspace/admin/wrong email403; wrong-origin403; stale revision409",
+    "Failed writes add no entries; original entry content/financial totals/KPIs/costs preserved",
+    "Seven actual locked-runtime effect routes423; NOT_BORN/LOCKED",
+    "Final authenticated browser reload verifies archived persisted category"
+  ],
+  "productionAccess": false,
+  "providerCalls": false,
+  "billableInfrastructure": false,
+  "baselineJournalCount": 1,
+  "finalJournalCount": 5
+}

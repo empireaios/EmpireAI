@@ -1,0 +1,192 @@
+[
+  {
+    "id": "UX-01",
+    "route": "/cockpit/development/pillow",
+    "before": "Outer page and conversation compete for scrolling",
+    "after": "Bound existing workspace and independently scroll saved history",
+    "owner_category": "F",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/021_desktop/top.png",
+    "preservation": "Same chat provider, backend, turn IDs and composer",
+    "verification": "Desktop accepted; corrected mobile isolated browser PASS; corrected mobile live observation outstanding."
+  },
+  {
+    "id": "UX-02",
+    "route": "/cockpit/development/pillow",
+    "before": "Saved exchanges have no selector",
+    "after": "Select an existing saved exchange and scroll to its original turn",
+    "owner_category": "F",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/021_desktop/top.png",
+    "preservation": "No new session or copied history",
+    "verification": "Accepted desktop saved exchange selection recording preserved; local mobile selector PASS."
+  },
+  {
+    "id": "UX-03",
+    "route": "/cockpit/development/pillow",
+    "before": "Reuse existing chat",
+    "after": "Existing workspace only; no backend changes",
+    "owner_category": "F",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/021_desktop/top.png",
+    "preservation": "No new authority or inference path",
+    "verification": "Existing backend/provider/history paths unchanged. Source preservation PASS."
+  },
+  {
+    "id": "UX-04",
+    "route": "/cockpit",
+    "before": "Pillow Love Forever artwork card is not a link",
+    "after": "Accessible link over the existing card, no separate button",
+    "owner_category": "D",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/008_desktop/top.png",
+    "preservation": "/cockpit/development/pillow",
+    "verification": "Existing Home artwork link implemented; source/fixture PASS; complete live acceptance outstanding."
+  },
+  {
+    "id": "UX-05",
+    "route": "/cockpit/ceo",
+    "before": "CEO chat access is buried in proposal links",
+    "after": "Chat with Pillow link above existing operations",
+    "owner_category": "F/G",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/009_desktop/top.png",
+    "preservation": "/cockpit/development/pillow",
+    "verification": "Accepted owner recording verifies CEO Chat entry; reuse."
+  },
+  {
+    "id": "UX-06",
+    "route": "/cockpit",
+    "before": "Pancake 8+ kg caption",
+    "after": "Cover only the explicitly retired caption",
+    "owner_category": "D",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/008_desktop/top.png",
+    "preservation": "Original approved artwork asset is byte-identical",
+    "verification": "Original artwork byte-preserved; authorised caption correction accepted."
+  },
+  {
+    "id": "UX-07",
+    "route": "/cockpit/development/pillow",
+    "before": "Desktop/mobile composer and scroll geometry",
+    "after": "Bound the chat shell at both widths",
+    "owner_category": "F",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/021_mobile/top.png",
+    "preservation": "Existing mobile navigation and controls retained",
+    "verification": "a8d58187 corrects mobile readability, no autofocus and visual-viewport keyboard layout; isolated360/390/1440 and keyboard420 PASS; current live mobile pending."
+  },
+  {
+    "id": "UX-08",
+    "route": "/cockpit/ceo",
+    "before": "NOT SET / No certified profit / Not measured / Not calculated",
+    "after": "Em dash in metric; exact state under Value details",
+    "owner_category": "A/B",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/009_desktop/top.png",
+    "preservation": "No unknown-to-zero conversion",
+    "verification": "Metric source states preserved in details; unit/fixture PASS; complete live acceptance pending."
+  },
+  {
+    "id": "HOME-01",
+    "route": "/cockpit",
+    "before": "Greeting repeats NOT_BORN and commerce diagnostics",
+    "after": "Current owner attention count or neutral greeting",
+    "owner_category": "D",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/008_desktop/top.png",
+    "preservation": "Authoritative locks remain in shell and Assurance",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "HOME-02",
+    "route": "/cockpit",
+    "before": "Historical recommendations dominate headline",
+    "after": "Show pending unhandled nonsynthetic recommendations",
+    "owner_category": "D",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/008_desktop/top.png",
+    "preservation": "All records remain in decision centre; actionable risk never suppressed by ID",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "FIN-01",
+    "route": "/cockpit/finance",
+    "before": "Known financial position / repetitive partial coverage cards",
+    "after": "Financial position; named recorded Sales, Costs, Profit; reporting-basis disclosure",
+    "owner_category": "A/E",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/013_desktop/top.png",
+    "preservation": "Exact numeric values, financial functions, periods and controls",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "COST-01",
+    "route": "/cockpit/cost-centre",
+    "before": "Commercial P&L / long primary qualification",
+    "after": "Operations tab and Sales/Costs/Profit with visible coverage alert",
+    "owner_category": "E",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/014_desktop/top.png",
+    "preservation": "Existing invoice, accrual, ledger and category detail",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "NAV-01",
+    "route": "/cockpit/ceo",
+    "before": "Operations and Assurance guard links lack grouping",
+    "after": "Pillow operations and Assurance / Governance groups",
+    "owner_category": "G",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/009_desktop/top.png",
+    "preservation": "All destinations and safety hash anchors",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "NAV-02",
+    "route": "/cockpit/assurance",
+    "before": "Guard destination lacks parent context",
+    "after": "Home / Assurance / Governance breadcrumb and active sidebar",
+    "owner_category": "G",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/016_desktop/top.png",
+    "preservation": "All 15 guard controls and enforcement",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "DEC-01",
+    "route": "/cockpit/approvals",
+    "before": "Primary record identity and notification diagnostics",
+    "after": "Audit identity and classification in accessible disclosures",
+    "owner_category": "A/H",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/017_desktop/top.png",
+    "preservation": "Decision rationale, exposure, exact-version approval handlers and history",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "CAL-01",
+    "route": "/cockpit/calendar",
+    "before": "Repeated paragraph on unestablished opportunity",
+    "after": "Planning evidence disclosure",
+    "owner_category": "A/H",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/018_desktop/top.png",
+    "preservation": "All calendar dates, milestones and preparation links",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "SYS-01",
+    "route": "/cockpit/system",
+    "before": "Long King Advisor permissions paragraph",
+    "after": "Concise bridge description; exact scope in disclosure",
+    "owner_category": "A/H",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/019_desktop/top.png",
+    "preservation": "Original bridge, capability and recovery destinations",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "SHARED-01",
+    "route": "primary journeys",
+    "before": "Repeated explanatory page headers and source qualification",
+    "after": "Concise titles plus About this view / Source and reporting basis disclosures",
+    "owner_category": "A/H",
+    "screenshot_before": "EmpireAI_Targeted_Evidence/010_desktop/top.png",
+    "preservation": "Products, listings, orders, CEO, cost centre, approvals, calendar and system controls",
+    "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "NAV-03",
+    "route": "/cockpit/command; /cockpit/missions; /cockpit/relationship; /cockpit/development; /cockpit/operations",
+    "before": "No active owner section; nested breadcrumb omitted screen identity",
+    "after": "Executive Command source pages have CEO context; redirect roots match destination ownership; registered screen labels shown in breadcrumb",
+    "preservation": "Exact routes, redirects, handlers, auth and authority unchanged",
+    "source_basis": "CommandCentrePage, MissionCentrePage, ExecutiveRelationshipGraphPage label Executive Command; root redirect source; canonical cockpitScreenRoutes labels",
+    "verification": "Production build/typecheck/lint PASS; focused desktop/mobile navigation verification recorded in continuation report; live acceptance pending",
+    "authorization": "Low-risk presentation/context correction under clause I; no workflow migration"
+  }
+]

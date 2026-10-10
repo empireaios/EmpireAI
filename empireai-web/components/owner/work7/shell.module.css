@@ -6,14 +6,14 @@
 /* Home-only alignment to the approved reference; legacy pages keep their shell. */
 @media(min-width:1101px){
  .homeShell{--u:calc(100vw / 1536);font-family:var(--font-inter),Arial,sans-serif}
- .homeShell .sidebar{width:calc(207 * var(--u));background:#f5fbff url('/work7/approved-home-art.png') left top / 100vw auto no-repeat;border:0}
+ .homeShell .sidebar{width:calc(207 * var(--u));background:#f5fbff;border:0}
  .homeShell .workspace{margin-left:calc(207 * var(--u))}
- .homeShell .brand{height:calc(149 * var(--u));padding:0;color:transparent}
+ .homeShell .brand{height:calc(149 * var(--u));padding:0;color:transparent;background:url('/work7/approved-home-art.png') left top / 100vw auto no-repeat}
  .homeShell .brand svg{opacity:0}.homeShell .brand strong,.homeShell .brand span{opacity:0}
  .homeShell .sidebar nav{padding:0 calc(10 * var(--u));gap:calc(3 * var(--u));background:linear-gradient(#f6fafe,#faf9f5 70%,#f1f8fe)}
  .homeShell .sidebar nav a{min-height:calc(44 * var(--u));padding:calc(8 * var(--u)) calc(12 * var(--u));gap:calc(17 * var(--u));font-size:calc(15 * var(--u));line-height:1.2;border-radius:calc(10 * var(--u))}
  .homeShell .sidebar nav svg{width:calc(22 * var(--u));height:calc(22 * var(--u));stroke-width:1.9;flex-shrink:0}
- .homeShell .sidebarArt{height:calc(310 * var(--u));margin:0;background:none}
+ .homeShell .sidebarArt{height:calc(310 * var(--u));margin:0;background:url('/work7/approved-home-art.png') left calc(-705 * var(--u)) / 100vw auto no-repeat}
  .homeShell .signout{background:#eef7ffcc;min-height:36px}
  .homeShell .homeTopbar{top:calc(14 * var(--u));right:calc(12 * var(--u));padding:0;min-height:0;min-width:0;background:transparent;border-radius:0;gap:calc(15 * var(--u))}
  .homeShell .search{width:calc(215 * var(--u));padding:calc(6 * var(--u)) calc(12 * var(--u));box-shadow:0 2px 4px #718cbc30;font-size:calc(12 * var(--u))}
@@ -32,3 +32,56 @@
  .homeShell .attention svg{fill:#092660;stroke:#092660}
 }
 @media(min-width:1101px){.homeShell .attention:before{display:none}}
+
+.breadcrumb{font-size:12px;color:#315984;margin:0 0 12px;display:flex;flex-wrap:wrap;gap:7px}.breadcrumb a:focus-visible{outline:2px solid #0868d8;outline-offset:3px}
+
+.chatShell{height:100dvh;min-height:0;overflow:hidden}
+.chatShell .workspace{height:100%;display:flex;flex-direction:column;min-height:0}
+.chatShell .topbar,.chatShell .footer{flex-shrink:0}
+.chatShell .main{flex:1;min-height:0;width:100%;display:flex;flex-direction:column;padding-bottom:10px}
+.chatShell .main>[data-legacy-workspace]{flex:1;min-height:0;display:flex;flex-direction:column}
+.chatShell [data-legacy-workspace]>div{width:100%;flex:1;min-height:0;display:flex;flex-direction:column}
+.chatShell .breadcrumb{flex-shrink:0;margin-bottom:6px}
+.chatShell .footer{padding-block:6px}
+@media(max-width:700px){.chatShell .workspace{padding-bottom:calc(60px + env(safe-area-inset-bottom))}.chatShell .main{padding-top:5px}.chatShell .footer{padding-bottom:6px}}
+
+/* Phone conversation uses the available viewport, without the legacy inset frame. */
+@media(max-width:700px){
+ .chatShell{position:fixed;inset-inline:0;top:var(--chat-visible-top,0px);height:var(--chat-visible-height,100dvh)}
+ .chatShell .topbar{min-height:48px;padding:2px 8px}
+ .chatShell .main{padding:0 4px 4px;max-width:none}
+ .chatShell .breadcrumb{padding:2px 8px;margin:0;font-size:12px}
+ .chatShell .main [data-legacy-workspace]{padding:0;background:transparent;border-radius:0}
+ .chatShell .footer{display:none}
+ .chatShell .mobileMenu{position:absolute;top:48px;inset-inline:0;z-index:60;max-height:70%;overflow-y:auto}
+ .chatShell [data-pillow-conversation-mode="true"]>details{padding:0 8px}
+ .chatShell [data-pillow-conversation-mode="true"]>details>summary{padding:4px 0}
+ .chatShell[data-chat-keyboard="true"] .topbar,.chatShell[data-chat-keyboard="true"] .breadcrumb,.chatShell[data-chat-keyboard="true"] .bottomNav{display:none}
+ .chatShell[data-chat-keyboard="true"] .workspace{padding-bottom:0}
+ .chatShell[data-chat-keyboard="true"] [data-pillow-conversation-mode="true"]>details{display:none}
+}
+@media(max-width:700px){
+ .chatShell [data-legacy-workspace]>div{gap:0}
+ .chatShell [data-legacy-workspace]>div>details{color:#294363}
+}
+
+/* Short visible viewports prioritise reading; the owner menu retains all destinations. */
+@media(max-width:700px){
+ .chatShell[data-chat-compact="true"] .bottomNav,
+ .chatShell[data-chat-compact="true"] .breadcrumb{display:none}
+ .chatShell[data-chat-compact="true"] .workspace{padding-bottom:env(safe-area-inset-bottom)}
+ .chatShell[data-chat-compact="true"] .clock{display:none}
+ .chatShell[data-chat-compact="true"] .topbar{min-height:44px}
+ .chatShell[data-chat-compact="true"] .menuButton{padding:8px}
+}
+
+@media(max-width:700px){
+ .chatShell[data-chat-tight="true"] .topbar,
+ .chatShell[data-chat-tight="true"] [data-pillow-conversation-mode="true"]>details{display:none}
+}
+@media(max-width:700px){
+ /* Reserve a real row: keyboard resize must never float this over Jump to latest. */
+ .chatShell[data-chat-compact="true"]:not([data-chat-tight="true"]) [data-legacy-workspace]>div>details{position:relative;inset:auto;align-self:stretch;z-index:40;padding:0 8px}
+ .chatShell[data-chat-compact="true"]:not([data-chat-tight="true"]) [data-legacy-workspace]>div>details>summary{min-height:36px;display:flex;align-items:center}
+ .chatShell [data-legacy-workspace]>div>details>div{position:static;width:100%;max-height:min(180px,35dvh);background:#f1f7ff;color:#294363}
+}

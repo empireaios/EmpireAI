@@ -1,0 +1,343 @@
+# EMPIREAI — WORK 7 FULL CONSOLIDATED CONTINUATION & CLOSURE
+
+**GRAND KING — OWNER-AUTHORISED CONTINUATION | 11 OCTOBER 2026**
+
+**RESUME THE EXISTING WORK 7. DO NOT RESTART. DO NOT REDUCE THE ORIGINAL SCOPE.**
+
+## 1. AUTHORITATIVE MANDATE
+
+The existing document titled **“EMPIREAI — WORK 7 SINGLE CONSOLIDATED CONTINUATION AND CLOSURE DIRECTIVE”**, including its complete earlier audited master directive and mandatory Annex A1–A13, remains the governing specification.
+
+Recover and apply every requirement in that document, including:
+
+- Original 100-item requirement tracker.
+- All 20 original Work 7 modules.
+- All 15 commerce safety protections.
+- Eight Pillow follow-ups and owner journeys J1–J6.
+- Approved V5 Home artwork and layout.
+- UX amendments UX-01 through UX-15.
+- Complete 168-route navigation and control mapping.
+- Four Eyes, Products & Approvals, Listings, Orders & Fulfilment, Operational Finance, Live Cost Centre and Pillow Chat requirements.
+- Independent PR #110 backend lineage.
+- Financial, authority, release and independent closure requirements.
+
+The latest independently verified engineering evidence and the owner's subsequent Android screenshots supplement the original mandate. Later explicit owner acceptance supersedes older unaccepted UX targets, but never weakens safety or release controls.
+
+## 2. LATEST REPORTED WORK CHECKPOINT
+
+Repository:
+https://github.com/empireaios/EmpireAI
+
+Frontend PR #109:
+https://github.com/empireaios/EmpireAI/pull/109
+
+Latest reported commit: `5d986d78`.
+
+Candidate preview:
+https://empireai-git-work7-owner-ux-correction-live-843da8-empireai-os.vercel.app/cockpit
+
+The previous Work session reported:
+
+- Preview READY and authenticated.
+- Four required CI workflows PASS.
+- One canonical sidebar verified.
+- False duplicate navigation removed.
+- Home artwork preserved.
+- Historical transaction contrast and return navigation repaired.
+- Intelligence period summaries and grouped findings improved.
+- Cost stages separated and duplicate MTD column removed.
+- Desktop saved-chat history selection verified.
+- Product-number formatting corrected.
+- Financial preservation independently checked.
+- Production unchanged.
+
+Tracker reported:
+
+**16 PASS / 75 PENDING / 9 BLOCKED.**
+
+These counts are a checkpoint, not an instruction to freeze progress. Independently verify current GitHub, CI, preview and tracker evidence before updating classifications.
+
+Preservation baseline:
+
+- 224 accounting records.
+- 3 financial journal entries.
+- 7 historical records.
+- Authoritative digests unchanged.
+
+Do not repeat completed engineering or passing acceptance merely because the Work session changed.
+
+## 3. NEW OWNER ANDROID EVIDENCE — IMPORTANT
+
+The owner tested the PR #109 candidate preview on an actual Android phone on 11 October 2026 at approximately 01:50 SGT.
+
+Two screenshots were provided.
+
+### Screenshot 1 — DEFECT CONFIRMED
+
+Pillow Chat successfully displays an older saved conversation, but the mobile toolbar is not correctly arranged.
+
+Observed:
+
+- The historical conversation selector is visible.
+- Status & evidence is visible.
+- Jump to latest is visible.
+- Other pages overlaps Jump to latest.
+- The top controls compete for space and are not consistently arranged.
+
+**THIS MUST BE FIXED.**
+
+Required outcome:
+
+1. No overlapping labels, menus or buttons.
+2. Other pages must not cover Jump to latest.
+3. History selector must remain usable.
+4. Status & evidence must remain accessible.
+5. Controls must reflow correctly at narrow mobile widths.
+6. Toolbar must remain correct during scroll, browser viewport changes and native keyboard activation.
+7. Do not introduce a second sidebar or redundant navigation.
+8. Preserve desktop layout, accessible focus order and all historical navigation.
+
+Use a compact responsive toolbar, deliberate wrapping or appropriately positioned secondary controls. Avoid excessive header height and wasted reading space.
+
+### Screenshot 2 — OWNER ACCEPTED
+
+The owner successfully:
+
+- Selected and displayed an older saved exchange.
+- Opened the real Android keyboard.
+- Entered an unsent draft.
+- Kept the composer visible above the keyboard.
+- Retained readable conversation history.
+- Kept the Send control accessible.
+
+**THE OWNER EXPLICITLY ACCEPTS SCREENSHOT 2.**
+
+The reduced reading space while the keyboard is open is acceptable.
+
+Do not redesign the keyboard/composer behaviour simply to pursue the earlier approximate 95% reading-space target.
+
+Credit the genuinely observed mobile behaviours as accepted. Any distinct untested multiline, scroll or keyboard-resize case must remain accurately classified rather than being silently passed.
+
+Do not send the draft, trigger inference or request the owner to repeat accepted testing.
+
+## 4. AUTHENTICATED ACCESS — VERIFY FIRST
+
+The previous Work session independently authenticated to both production and the PR #109 preview.
+
+At the start of this session:
+
+1. Attempt to reuse the existing authenticated preview session.
+2. Independently check whether https://empire-ai.co can be opened and authenticated.
+3. Verify the actual Owner Console, not merely a public landing page.
+4. Check whether the preview and production sessions support normal read-only navigation.
+5. Confirm the exact preview commit and backend binding.
+6. Reuse approved authentication and branch-scoped Vercel configuration.
+
+Do not request another password reset, credentials, environment-variable change or repeated sign-in when the existing method works.
+
+If authentication is genuinely blocked, identify the exact failure and request only the indispensable owner action. Continue all other available engineering work.
+
+Production must remain unchanged.
+
+## 5. IMMEDIATE ENGINEERING PRIORITY
+
+Repair the Android top-toolbar overlap shown in Screenshot 1.
+
+Verify:
+
+- Narrow Android viewport.
+- Historical exchange selection.
+- Jump to latest.
+- Other pages expansion/collapse.
+- Status & evidence.
+- Scroll positioning.
+- Native keyboard reduced viewport where supported.
+- Unsent short and multiline drafts.
+- No hidden, clipped or overlapping controls.
+- No accidental message submission.
+- Desktop regression.
+
+Use real device evidence where available. Browser emulation does not prove native keyboard acceptance.
+
+Once corrected, continue the outstanding Work 7 programme without stopping unnecessarily.
+
+## 6. COMPLETE THE EXISTING UX PROGRAMME
+
+Preserve and finish all original and amended requirements.
+
+### Intelligence
+
+Deliver a compact executive intelligence system, not a technical evidence log.
+
+Period summaries, meaningful changes, opportunities, risks, verified sources, missing evidence, Pillow's actual saved assessments and next actions must be clear.
+
+Group repetitive findings and scheduler receipts without deleting underlying records.
+
+Never transform unlinked discoveries into Pillow recommendations.
+
+### Products & Approvals
+
+One coherent product-decision centre with compact product evidence, economics, risk, Pillow rationale, owner decisions and traceable approval history.
+
+Preserve genuine absence of research candidates and segregation of synthetic fixtures.
+
+Do not allow unrelated product evidence or fallback selection to grant approval.
+
+### Listings
+
+Keep Prepared, Approved, Published and Test examples distinct.
+
+Verify search, filters, pagination, product media and detail navigation.
+
+Never claim a published marketplace listing without independent evidence.
+
+### Orders & Fulfilment
+
+Preserve separate actual orders, historical provider observations and test history.
+
+Verify order details, payment, supplier acceptance, partial shipments, tracking, delivery, refunds and return navigation.
+
+Maintain repaired transaction readability.
+
+### Operational Finance
+
+Keep revenue, direct product/fulfilment costs and operational profit separate from infrastructure expenditure.
+
+Preserve all six financial exceptions, unknown amounts, mixed-currency qualifications and audit evidence.
+
+### Live Cost Centre
+
+Complete the comprehensive infrastructure and resource cost taxonomy required by UX-09 and UX-10.
+
+Retain coverage for AI providers, subscriptions, cloud infrastructure, hosting, databases, storage, security, monitoring, commerce platforms, supplier APIs, market research, automation, media/design tools, payment services, professional fees, equipment and miscellaneous expenses.
+
+These are potential categories, not claims of active spending.
+
+Finish **durable standalone owner-controlled category management**, including:
+
+- Add category.
+- Edit category.
+- Archive category.
+- Assign and change vendor mappings.
+- Preserve existing financial journal records.
+- Distinguish actual, payable, accrued unbilled, estimate, commitment and unknown.
+- Maintain correct currency and source evidence.
+- No purchases or new subscriptions.
+
+Do not treat an existing vendor-mapping journal as proof that standalone category management is complete unless its full persistence and owner-control requirements are verified.
+
+### Site-wide
+
+Preserve the approved Home design, canonical sidebar, ordered navigation, accessible contrast, responsive layout, coherent breadcrumbs and truthful empty states.
+
+Avoid repeated raw JSON, excessive accordions and long technical displays in default owner views.
+
+Keep technical audit records accessible in details.
+
+## 7. ORIGINAL WORK 7 ACCEPTANCE — DO NOT OMIT
+
+Reconcile all original 100 items and the separate UX amendment register.
+
+Specifically complete or truthfully classify:
+
+- Remaining 14 legacy commerce/automation navigation contexts.
+- Actual returned workspace-detail route.
+- Unavailable legacy backend reads.
+- Nested-control interaction coverage.
+- Mobile history, composer and navigation behaviour.
+- Financial displays and reconciliation.
+- Pillow CEO Performance, timetable and Decision Centre.
+- Recommendation filters and decision controls.
+- Safety disclosures and blocked live-effect routes.
+- Standalone cost-category management.
+- Exact-head CI and authenticated preview verification.
+
+The 168-route source mapping and 536 static references are not substitutes for actual interaction testing.
+
+Preserve all previously accepted evidence and do not invent successful live checks.
+
+## 8. BACKEND PR #110 AND INCIDENT INDEPENDENCE
+
+Recover PR #110 separately.
+
+Verify its actual head, CI, stale scheduled-evidence cache repair, deployment status and incident evidence.
+
+Do not merge its lineage into PR #109 or falsely close the historical incident.
+
+Do not treat full Work 8 autonomous recovery certification as a Work 7 UX requirement.
+
+Apply real release-control decisions and preserve independent backend governance.
+
+## 9. NON-NEGOTIABLE SAFEGUARDS
+
+- Pillow remains NOT_BORN.
+- Commerce remains LOCKED.
+- Seven live-effect routes remain protected.
+- All 15 commerce safety protections remain intact.
+- No supplier writes, listings publication or orders.
+- No financial transfers.
+- No authority bypass.
+- No unauthorised paid inference.
+- No changes to credentials or secrets without separate authority.
+- No alteration or deletion of preserved financial records.
+- No invented provider invoices, subscription charges, FX rates or revenue.
+- No production merge or deployment without separate release authority.
+- No early release lease.
+- No reuse of finished release fence 17.
+
+Maintain the OpenAI, Anthropic and Gemini routing and accounting requirements.
+
+## 10. EXECUTION SEQUENCE
+
+1. Recover the current exact repository, preview, CI and tracker state.
+2. Confirm authenticated production and preview access.
+3. Repair the Android overlapping-toolbar defect.
+4. Run focused mobile/desktop regression tests.
+5. Complete remaining UX engineering, including durable cost-category management.
+6. Resolve or classify legacy reads and workspace-detail routing.
+7. Test outstanding nested controls and navigation.
+8. Reconcile original tracker and UX amendment register.
+9. Run required exact-head CI.
+10. Independently verify the authenticated candidate preview.
+11. Consolidate genuinely outstanding owner acceptance into one concise request, only if indispensable.
+12. Maintain WORK 7 BLOCKED while mandatory acceptance or engineering gates remain unresolved.
+13. Request separate production release authority only after mandatory pre-release gates pass.
+14. Follow the existing new-lease, coordinated deployment and post-release preservation protocol if separately authorised.
+15. Obtain legitimate Mission Ledger and independent King's Advisor closure evidence before declaring COMPLETE.
+
+## 11. REQUIRED PROGRESS REPORT
+
+Provide one consolidated progress table showing:
+
+- Original tracker item or UX amendment.
+- Requirement.
+- Engineering state.
+- CI verification.
+- Authenticated live verification.
+- Owner acceptance.
+- Outstanding dependency.
+- Exact next action.
+
+Retain original tracker IDs and evidence.
+
+Report updated PASS / PENDING / BLOCKED counts without resetting prior accepted results.
+
+Distinguish engineering implementation, passing automated tests, live acceptance, deployment and independent closure.
+
+Do not inflate progress or convert blocked requirements into passing items because a page loads.
+
+## 12. OWNER COMMUNICATION
+
+Keep owner-facing updates concise and actionable.
+
+Explain:
+
+**WHAT CHANGED — WHAT PASSED — WHAT REMAINS BLOCKED — WHAT THE OWNER MUST DO.**
+
+If no owner action is required, continue independently.
+
+Do not ask for another screenshot, login, password reset or acceptance already supplied.
+
+**OBJECTIVE: Complete the existing Work 7 mandate, repair the newly confirmed Android overlap, preserve the owner's accepted keyboard behaviour, finish all outstanding engineering and acceptance requirements, and reach legitimate governed closure.**
+
+**BEGIN BY VERIFYING PR #109 AT `5d986d78` OR ITS CURRENT SUCCESSOR AND REUSING THE AUTHENTICATED PREVIEW SESSION.**

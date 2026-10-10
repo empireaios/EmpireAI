@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "scope": "ISOLATED_PR111_JOURNAL_READ_WITH_PRODUCTION_REVISION_51830_FINANCE_READER",
+  "entryCount": 5,
+  "checks": [
+    "Old reader preserves all five synthetic/category/mapping journal entries",
+    "Old/new numeric totals, KPIs, costs, cash, position and provider records identical",
+    "Reopening PR111 reader recovers archived category and mapping without migration"
+  ],
+  "limitation": "Finance reader compatibility only; not a deployed backend rollback certification",
+  "at": "2026-10-10T19:30:52.521Z"
+}

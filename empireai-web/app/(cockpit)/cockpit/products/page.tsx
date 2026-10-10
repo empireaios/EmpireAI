@@ -1,2 +1,2 @@
-import {Portfolio} from '@/components/owner/work7/OwnerJourneys';
-export default function Page(){return <Portfolio/>;}
+import {ProductDecisionCentre} from '@/components/owner/work7/ProductDecisionCentre';
+export default function Page(){return <ProductDecisionCentre/>;}

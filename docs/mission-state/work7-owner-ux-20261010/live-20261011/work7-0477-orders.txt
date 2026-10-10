@@ -1,0 +1,71 @@
+- alert
+- link "Skip to content":
+  - /url: "#owner-main"
+- complementary:
+  - link "EmpireAI A Bigger Tomorrow, Together":
+    - /url: /cockpit
+    - strong: EmpireAI
+    - generic: A Bigger Tomorrow, Together
+  - navigation "Owner navigation":
+    - link "Home":
+      - /url: /cockpit
+      - text: Home
+    - link "Intelligence":
+      - /url: /cockpit/eyes
+      - text: Intelligence
+    - link "Pillow (CEO)":
+      - /url: /cockpit/ceo
+      - text: Pillow (CEO)
+    - link "Products & Approvals":
+      - /url: /cockpit/products
+      - text: Products & Approvals
+    - link "Listings":
+      - /url: /cockpit/listings
+      - text: Listings
+    - link "Orders & Fulfilment" [active]:
+      - /url: /cockpit/orders
+      - text: Orders & Fulfilment
+    - link "Operational Finance":
+      - /url: /cockpit/finance
+      - text: Operational Finance
+    - link "Live Cost Centre":
+      - /url: /cockpit/cost-centre
+      - text: Live Cost Centre
+    - link "Assurance":
+      - /url: /cockpit/assurance
+      - text: Assurance
+    - link "Calendar":
+      - /url: /cockpit/calendar
+      - text: Calendar
+    - link "System":
+      - /url: /cockpit/system
+      - text: System
+  - button "Sign out"
+- banner:
+  - textbox "Find an owner page":
+    - /placeholder: Find a page…
+  - link "King’s Advisor communications":
+    - /url: /cockpit/advisor
+  - time:
+    - generic: Sun, 11 Oct 2026
+    - strong: 01:22:10 am SGT
+- main:
+  - navigation "Breadcrumb":
+    - link "Home":
+      - /url: /cockpit
+    - generic: /
+    - link "Orders & Fulfilment":
+      - /url: /cockpit/orders
+  - paragraph: EMPIREAI
+  - heading "Orders & Fulfilment" [level=1]
+  - paragraph: Customer purchases, supplier acceptance and delivery are separate facts.
+  - button "Actual orders" [pressed]
+  - button "Test order history"
+  - link "Full historical lifecycle":
+    - /url: /cockpit/commerce/transactions
+  - heading "No verified live order feed" [level=2]
+  - paragraph: Commerce is locked. Test order history is retained separately and does not establish real purchases or revenue.
+- contentinfo:
+  - text: Private owner workspace · NOT_BORN · Commerce LOCKED
+  - link "Inspect authority and evidence →":
+    - /url: /cockpit/assurance

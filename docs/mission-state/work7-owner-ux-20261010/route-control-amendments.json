@@ -1,0 +1,55 @@
+{
+  "source": "master-directive-20261010.txt",
+  "live_denominator": null,
+  "static_routes": 168,
+  "changes": [
+    {
+      "route": "/cockpit/eyes",
+      "before": "Four Eyes technical overview",
+      "after": "Intelligence executive findings; separate controls/diagnostics",
+      "enforcement": "IntelligenceTrace + OwnerEyes; exact evidence join unchanged"
+    },
+    {
+      "route": "/cockpit/products",
+      "before": "Portfolio",
+      "after": "Products & Approvals; existing candidate and decision tabs",
+      "enforcement": "Portfolio + ProductDecisionCentre; independent decisions unchanged"
+    },
+    {
+      "route": "/cockpit/approvals",
+      "before": "Standalone sidebar entry",
+      "after": "Retained route; Owner decisions under Products & Approvals",
+      "enforcement": "Same approval handlers and original records"
+    },
+    {
+      "route": "/cockpit/listings",
+      "before": "Single prepared-content selector",
+      "after": "Published / Prepared / Test examples,10-row catalogue and media gallery",
+      "enforcement": "Publication disabled; source binding retained"
+    },
+    {
+      "route": "/cockpit/orders",
+      "before": "Metric cards and lifecycle narrative",
+      "after": "Paginated transaction register; local package inspection",
+      "enforcement": "No real order feed inferred from test lifecycle"
+    },
+    {
+      "route": "/cockpit/finance",
+      "before": "Broad accounting primary view",
+      "after": "Direct-cost Operational Finance; full ledger/controls secondary",
+      "enforcement": "Existing imports, approvals, FX and calculations retained"
+    },
+    {
+      "route": "/cockpit/cost-centre",
+      "before": "Mixed infrastructure and operations tabs",
+      "after": "Provider-by-provider infrastructure expenses only",
+      "enforcement": "Confirmed, estimated, accrued and committed stages remain distinct"
+    },
+    {
+      "route": "/cockpit/development/pillow",
+      "before": "Stacked header, history, optional footer tools",
+      "after": "One mobile toolbar, compact composer, tools in context",
+      "enforcement": "Stored exchanges, voice, table rendering, no automatic mobile focus"
+    }
+  ]
+}

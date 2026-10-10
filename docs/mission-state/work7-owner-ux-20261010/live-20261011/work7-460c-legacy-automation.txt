@@ -1,0 +1,174 @@
+- alert
+- link "Skip to content":
+  - /url: "#owner-main"
+- complementary:
+  - link "EmpireAI A Bigger Tomorrow, Together":
+    - /url: /cockpit
+    - strong: EmpireAI
+    - generic: A Bigger Tomorrow, Together
+  - navigation "Owner navigation":
+    - link "Home":
+      - /url: /cockpit
+      - text: Home
+    - link "Intelligence":
+      - /url: /cockpit/eyes
+      - text: Intelligence
+    - link "Pillow (CEO)":
+      - /url: /cockpit/ceo
+      - text: Pillow (CEO)
+    - link "Products & Approvals":
+      - /url: /cockpit/products
+      - text: Products & Approvals
+    - link "Listings":
+      - /url: /cockpit/listings
+      - text: Listings
+    - link "Orders & Fulfilment":
+      - /url: /cockpit/orders
+      - text: Orders & Fulfilment
+    - link "Operational Finance":
+      - /url: /cockpit/finance
+      - text: Operational Finance
+    - link "Live Cost Centre":
+      - /url: /cockpit/cost-centre
+      - text: Live Cost Centre
+    - link "Assurance":
+      - /url: /cockpit/assurance
+      - text: Assurance
+    - link "Calendar":
+      - /url: /cockpit/calendar
+      - text: Calendar
+    - link "System":
+      - /url: /cockpit/system
+      - text: System
+  - button "Sign out"
+- banner:
+  - textbox "Find an owner page":
+    - /placeholder: Find a page…
+  - link "King’s Advisor communications":
+    - /url: /cockpit/advisor
+  - time:
+    - generic: Sun, 11 Oct 2026
+    - strong: 01:28:50 am SGT
+- main:
+  - navigation "Breadcrumb":
+    - link "Home":
+      - /url: /cockpit
+    - generic: /
+    - link "System":
+      - /url: /cockpit/system
+    - generic: /
+    - generic: Details
+  - paragraph: Department
+  - heading "Commerce" [level=1]
+  - generic: Demo
+  - paragraph: Manufacture, launch, market, and operate portfolio companies.
+  - navigation "Department tabs":
+    - link "Store":
+      - /url: /cockpit/commerce/store
+    - link "Launch":
+      - /url: /cockpit/commerce/launch
+    - link "Marketplace":
+      - /url: /cockpit/commerce/marketplace
+    - link "Marketing":
+      - /url: /cockpit/commerce/marketing
+    - link "Ad Intel":
+      - /url: /cockpit/commerce/ad-intelligence
+    - link "Ads":
+      - /url: /cockpit/commerce/ads
+    - link "Workspace":
+      - /url: /cockpit/commerce/workspace
+  - paragraph: Commerce · P8-04
+  - heading "Business Automation" [level=1]
+  - paragraph: Automate businesses — observable · recoverable · constitutionally governed
+  - generic: P8-04 Business Automation
+  - generic: Live
+  - generic: healthy
+  - link "Commerce →":
+    - /url: /cockpit/commerce/operating
+  - generic: Updated 10:28:50 AM · 5s refresh
+  - paragraph: "Automation: supervised autonomous · healthy · standby · 61% pipeline · 92% success rate"
+  - paragraph: "Status: None — standby"
+  - paragraph: Automation Level
+  - paragraph: Supervised Automation
+  - paragraph: Target Level
+  - paragraph: Supervised Automation
+  - paragraph: Performance
+  - paragraph: 92%
+  - paragraph: Business Efficiency
+  - paragraph: 0 live · 0 active automations
+  - heading "Active Automations" [level=2]
+  - paragraph: No active automations — rules loaded, awaiting gates
+  - heading "Pending Automations" [level=2]
+  - table:
+    - rowgroup:
+      - row "Automation Status State":
+        - columnheader "Automation"
+        - columnheader "Status"
+        - columnheader "State"
+    - rowgroup:
+      - row "Product Publishing pending Awaiting gate":
+        - cell "Product Publishing"
+        - cell "pending"
+        - cell "Awaiting gate"
+      - row "Order Routing standby Awaiting gate":
+        - cell "Order Routing"
+        - cell "standby"
+        - cell "Awaiting gate"
+      - row "Marketing Activation pending Awaiting gate":
+        - cell "Marketing Activation"
+        - cell "pending"
+        - cell "Awaiting gate"
+  - heading "Automation Levels" [level=2]
+  - paragraph: Manual
+  - paragraph: Assisted
+  - paragraph: Semi Automated
+  - paragraph: Supervised Automation
+  - paragraph: Current
+  - paragraph: Constitutional Automation
+  - heading "Automation Pipeline" [level=2]
+  - generic: 1. Business Created
+  - generic: 2. Business Configured
+  - generic: 3. Automation Rules Loaded
+  - generic: 4. Marketplace Connected
+  - generic: 5. Products Published
+  - generic: 6. Marketing Activated
+  - generic: 7. Orders Processed
+  - generic: 8. Fulfilment Coordinated
+  - generic: 9. Performance Analysed
+  - generic: 10. Business Optimised
+  - generic: 11. Continuous Improvement
+  - heading "Automation Rules" [level=2]
+  - paragraph: Trigger · Conditions · Actions · Safety · Recovery · Audit
+  - generic: Product Publishing
+  - generic: pending
+  - paragraph: "Trigger: Business launch ready · catalogue approved"
+  - paragraph: "Rollback: Unpublish listing · revert to draft catalogue"
+  - paragraph: "Recovery: Autonomous Recovery Engine · Supervisor validation"
+  - paragraph: "Audit: Pillow host · business-automation audit"
+  - generic: Order Routing
+  - generic: standby
+  - paragraph: "Trigger: Customer order received"
+  - paragraph: "Rollback: Hold order · refund workflow"
+  - paragraph: "Recovery: Recovery doctrine · manual Grand King escalation"
+  - paragraph: "Audit: Order pipeline · Guardian monitoring"
+  - generic: Marketing Activation
+  - generic: pending
+  - paragraph: "Trigger: Store live · products published"
+  - paragraph: "Rollback: Pause campaigns · preserve audit trail"
+  - paragraph: "Recovery: ECC rescheduling · Pillow recommendations"
+  - paragraph: "Audit: Marketing automation registry"
+  - heading "Pillow Automation Intelligence" [level=2]
+  - list:
+    - listitem: ◆ Automation within policy
+    - listitem: ◆ Grand King retains ultimate authority — human override always available
+    - listitem: ◆ Replication path via Business Factory continuous improvement
+    - listitem: ◆ PILLOW-019 —
+    - listitem: ◆ Upgrade toward supervised automation with evidence-backed gates
+- contentinfo:
+  - text: Private owner workspace · NOT_BORN · Commerce LOCKED
+  - link "Inspect authority and evidence →":
+    - /url: /cockpit/assurance
+- link "Open Pillow Centre conversation":
+  - /url: /cockpit/development/pillow?tab=conversation
+  - generic: Talk with Pillow
+  - generic: Preparing Executive Intelligence…

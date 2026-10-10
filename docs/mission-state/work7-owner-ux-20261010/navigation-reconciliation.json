@@ -1,0 +1,1647 @@
+{
+  "sourceRoutes": 168,
+  "primarySidebarDestinations": 11,
+  "allRoutesAndDeepLinksPreserved": true,
+  "completeVisualCoverage": false,
+  "routes": [
+    {
+      "route": "/cockpit/advisor",
+      "source": "empireai-web/app/(cockpit)/cockpit/advisor/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "004_desktop/metadata.json",
+        "020_desktop/metadata.json",
+        "003_mobile/metadata.json",
+        "002_mobile/metadata.json",
+        "004_mobile/metadata.json",
+        "003_desktop/metadata.json",
+        "020_mobile/metadata.json",
+        "002_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/approvals",
+      "source": "empireai-web/app/(cockpit)/cockpit/approvals/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "001_desktop/metadata.json",
+        "017_desktop/metadata.json",
+        "017_mobile/metadata.json",
+        "001_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/assurance/mobile-acceptance",
+      "source": "empireai-web/app/(cockpit)/cockpit/assurance/mobile-acceptance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "027_mobile/metadata.json",
+        "027_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/assurance",
+      "source": "empireai-web/app/(cockpit)/cockpit/assurance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "016_mobile/metadata.json",
+        "016_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/calendar",
+      "source": "empireai-web/app/(cockpit)/cockpit/calendar/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/calendar",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "018_mobile/metadata.json",
+        "018_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/ceo",
+      "source": "empireai-web/app/(cockpit)/cockpit/ceo/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "009_mobile/metadata.json",
+        "009_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/command",
+      "source": "empireai-web/app/(cockpit)/cockpit/command/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "028_desktop/metadata.json",
+        "028_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/ad-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/ad-intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "044_mobile/metadata.json",
+        "044_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/ads",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/ads/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/listings",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "045_desktop/metadata.json",
+        "045_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/automation",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/automation/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/factory",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/factory/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/governed",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/governed/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "026_desktop/metadata.json",
+        "005_mobile/metadata.json",
+        "005_desktop/metadata.json",
+        "026_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/launch",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/launch/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/listings",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "041_mobile/metadata.json",
+        "041_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/marketing",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/marketing/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/listings",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "043_mobile/metadata.json",
+        "043_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/marketplace",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/marketplace/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/listings",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "042_desktop/metadata.json",
+        "042_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/operating",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/operating/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/store",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/store/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/listings",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "040_desktop/metadata.json",
+        "040_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/transactions",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/transactions/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/orders",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "025_desktop/metadata.json",
+        "025_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/workspace/[id]",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/workspace/[id]/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/commerce/workspace",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/workspace/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "046_desktop/metadata.json",
+        "046_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/cost-centre",
+      "source": "empireai-web/app/(cockpit)/cockpit/cost-centre/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/cost-centre",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "014_desktop/metadata.json",
+        "014_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/development/approvals",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/approvals/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/development/inspection",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/inspection/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/development/learning",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/learning/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/development",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/development/pillow",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/pillow/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "007_desktop/metadata.json",
+        "007_mobile/metadata.json",
+        "021_mobile/metadata.json",
+        "021_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/eyes",
+      "source": "empireai-web/app/(cockpit)/cockpit/eyes/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "015_mobile/metadata.json",
+        "015_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/finance/billing",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/billing/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/finance/costs",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/costs/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/finance/intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/finance/mobile-acceptance",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/mobile-acceptance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/finance",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "013_mobile/metadata.json",
+        "013_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/finance/pl",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/pl/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/finance/profit",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/profit/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/ai-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/ai-evolution/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/architecture",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/architecture/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/architecture-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/architecture-evolution/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/autonomous-decision-monitor",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/autonomous-decision-monitor/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/builder",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/builder/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/capital-allocation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/capital-allocation/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/capital-risk",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/capital-risk/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/cash-reserve",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/cash-reserve/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/competitor-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/competitor-intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/conflict-resolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/conflict-resolution/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/corporate-vision",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/corporate-vision/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/cost-optimization",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/cost-optimization/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/crisis-decisions",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/crisis-decisions/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/cross-business-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/cross-business-intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/customer-behaviour",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/customer-behaviour/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/decision-architecture",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/decision-architecture/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/decision-audit",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/decision-audit/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/decision-simulation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/decision-simulation/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/department-planning",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/department-planning/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/empire-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/empire-evolution/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-audit-engine",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-audit-engine/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-constitutional-guardian",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-constitutional-guardian/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-governance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-governance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-pattern",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-pattern/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-risk-governance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-risk-governance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-valuation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-valuation/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-accountability",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-accountability/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-advisory",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-advisory/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-approval",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-approval/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-benchmark",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-benchmark/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-budget",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-budget/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-calendar",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-calendar/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/calendar",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-capital-strategy",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-capital-strategy/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-compliance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-compliance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-confidence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-confidence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-consensus",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-consensus/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-constitutional-monitor",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-constitutional-monitor/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-decision-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-decision-certification/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-dependencies",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-dependencies/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-escalations",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-escalations/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-ethics",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-ethics/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-exception-manager",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-exception-manager/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-finance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-finance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-forecast",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-forecast/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-governance-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-governance-certification/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-insight",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-insight/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-intelligence-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-intelligence-certification/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-knowledge-graph",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-knowledge-graph/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-kpi",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-kpi/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-performance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-performance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "022_desktop/metadata.json",
+        "022_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-planning",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-planning/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-planning-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-planning-certification/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-policies",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-policies/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-policy-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-policy-evolution/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-prediction",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-prediction/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-recommendations",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-recommendations/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-resilience-engine",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-resilience-engine/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-review-board",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-review-board/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-roadmap",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-roadmap/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-scenarios",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-scenarios/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-transparency",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-transparency/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/executive-trust-engine",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-trust-engine/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/explainability",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/explainability/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/financial-executive-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/financial-executive-certification/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/financial-scenario",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/financial-scenario/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/finance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/grand-king",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/grand-king/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/grand-king-executive-cockpit",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/grand-king-executive-cockpit/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/guardian",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/guardian/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/industry-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/industry-intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/initiative-portfolio",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/initiative-portfolio/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/innovation-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/innovation-intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/investment-evaluation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/investment-evaluation/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/journey",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/journey/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/knowledge",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/knowledge/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/knowledge-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/knowledge-evolution/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/live-eta",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/live-eta/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/long-term-growth",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/long-term-growth/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/market-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/market-intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/opportunity-discovery",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/opportunity-discovery/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/opportunity-prioritization",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/opportunity-prioritization/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/priority-management",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/priority-management/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/production",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/production/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/profit-optimization",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/profit-optimization/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/repository-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/repository-evolution/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/resource-allocation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/resource-allocation/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/risk-assessment",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/risk-assessment/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/roi-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/roi-intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/shadow-ceo",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/shadow-ceo/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/strategic-alignment",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/strategic-alignment/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/strategic-objectives",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/strategic-objectives/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/supervisor",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/supervisor/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/threat-detection",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/threat-detection/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/founder/trade-off-analysis",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/trade-off-analysis/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/governance/council",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/council/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/governance/decisions",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/decisions/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/governance",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/governance/settings",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/settings/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/governance/soul",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/soul/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/governance/v1",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/v1/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/infrastructure/admin",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/admin/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/infrastructure/deployments",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/deployments/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/infrastructure/health",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/health/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/infrastructure/integrations",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/integrations/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/infrastructure",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/customers",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/customers/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "036_desktop/metadata.json",
+        "036_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/decisions",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/decisions/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "038_mobile/metadata.json",
+        "038_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/discovery",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/discovery/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "033_desktop/metadata.json",
+        "033_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/executive",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/executive/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "039_desktop/metadata.json",
+        "039_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/marketplace",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/marketplace/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "034_desktop/metadata.json",
+        "034_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/markets",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/markets/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "035_mobile/metadata.json",
+        "035_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/products",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/products/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "024_mobile/metadata.json",
+        "024_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/risk",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/risk/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "037_mobile/metadata.json",
+        "037_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/intelligence/suppliers",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/suppliers/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/eyes",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "032_desktop/metadata.json",
+        "032_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/listings",
+      "source": "empireai-web/app/(cockpit)/cockpit/listings/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/listings",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "006_desktop/metadata.json",
+        "011_desktop/metadata.json",
+        "006_mobile/metadata.json",
+        "011_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/missions",
+      "source": "empireai-web/app/(cockpit)/cockpit/missions/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/operations/authorizations",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/authorizations/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/operations/automation",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/automation/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/operations/fulfillment",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/fulfillment/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/orders",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/operations/orders",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/orders/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/orders",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/operations",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/orders",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/operations/support",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/support/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/orders",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/orders",
+      "source": "empireai-web/app/(cockpit)/cockpit/orders/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/orders",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "012_mobile/metadata.json",
+        "012_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit",
+      "source": "empireai-web/app/(cockpit)/cockpit/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "008_mobile/metadata.json",
+        "008_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/products/[id]",
+      "source": "empireai-web/app/(cockpit)/cockpit/products/[id]/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/products/history",
+      "source": "empireai-web/app/(cockpit)/cockpit/products/history/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [
+        "023_desktop/metadata.json",
+        "023_mobile/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/products",
+      "source": "empireai-web/app/(cockpit)/cockpit/products/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/products",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "010_mobile/metadata.json",
+        "010_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/relationship",
+      "source": "empireai-web/app/(cockpit)/cockpit/relationship/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/ceo",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/system",
+      "source": "empireai-web/app/(cockpit)/cockpit/system/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "active-primary",
+      "originalEvidence": [
+        "019_mobile/metadata.json",
+        "019_desktop/metadata.json"
+      ],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/workforce/activity",
+      "source": "empireai-web/app/(cockpit)/cockpit/workforce/activity/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/workforce/audit",
+      "source": "empireai-web/app/(cockpit)/cockpit/workforce/audit/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/assurance",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    },
+    {
+      "route": "/cockpit/workforce",
+      "source": "empireai-web/app/(cockpit)/cockpit/workforce/page.tsx",
+      "sourcePreserved": true,
+      "parentContext": "/cockpit/system",
+      "sourceClassification": "compatibility-retained; live status not fully verified",
+      "originalEvidence": [],
+      "review": "Source parent established; current live nested-state review pending"
+    }
+  ],
+  "reviewedHead": "commit containing this file",
+  "mappedSourceContexts": 168,
+  "unresolvedLiveContexts": 14,
+  "liveControlDenominator": null,
+  "mappingScope": "Source classification only; does not prove live destination, highlighting or nested control acceptance"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "UX-CLEANUP-20261010",
+  "scope": "Bounded owner-requested executive presentation cleanup; supplements and preserves the original 100 requirements, 45 amendments and 50 control groups.",
+  "basis": "Owner directive Pasted text(20261010-202137).txt",
+  "baselineFrontend": "8f52d7a95fcf06d411995b10d6c4d4eca457e241",
+  "backend": "e6d98fb57537c893c85afc552626235a38ba874c",
+  "acceptedBaseline": {
+    "originalRequirements": 95,
+    "originalPostRelease": 5,
+    "amendments": 43,
+    "amendmentsPostRelease": 2,
+    "controlGroups": 50,
+    "android": "ACCEPTED_UNCHANGED"
+  },
+  "changes": [
+    "Optional full-record technical evidence dialog with keyboard close/focus return",
+    "Readable Intelligence findings and owner decision summaries",
+    "Readable order items, shipments and remedies with unknown values preserved",
+    "Financial display formatting, readable exceptions and optional transaction evidence",
+    "Mobile stacked tables; existing Home artwork and Chat unchanged"
+  ],
+  "status": "IMPLEMENTED_PENDING_EXACT_HEAD_CI_REVIEW_AND_OWNER_VISUAL_ACCEPTANCE",
+  "verification": "See forthcoming UX-CLEANUP-VERIFICATION.md; no production acceptance claimed.",
+  "governance": {
+    "productionChanged": false,
+    "mergeAuthorised": false,
+    "releaseLeaseAuthorised": false,
+    "paidInfrastructureAuthorised": false,
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "PR110": "INDEPENDENT_EXCLUDED"
+  },
+  "preservedEvidenceBranch": "work7/completion-evidence-20261011 at 6ce6921a6fdb03a1198043de38c7f30cef5fb5f7"
+}
