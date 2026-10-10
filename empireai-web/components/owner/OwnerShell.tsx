@@ -26,6 +26,8 @@ export function OwnerShell({children}:{children:React.ReactNode}){
    shell.style.setProperty('--chat-visible-height',`${height}px`);
    shell.style.setProperty('--chat-visible-top',`${viewport?.offsetTop??0}px`);
    shell.dataset.chatKeyboard=String(mobile && window.innerHeight-height>150);
+   shell.dataset.chatCompact=String(mobile && height<=600);
+   shell.dataset.chatTight=String(mobile && height<=360);
   };
   update();
   viewport?.addEventListener('resize',update);

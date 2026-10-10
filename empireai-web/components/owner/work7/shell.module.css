@@ -64,3 +64,23 @@
  .chatShell [data-legacy-workspace]>div{gap:0}
  .chatShell [data-legacy-workspace]>div>details{color:#294363}
 }
+
+/* Short visible viewports prioritise reading; the owner menu retains all destinations. */
+@media(max-width:700px){
+ .chatShell[data-chat-compact="true"] .bottomNav,
+ .chatShell[data-chat-compact="true"] .breadcrumb{display:none}
+ .chatShell[data-chat-compact="true"] .workspace{padding-bottom:env(safe-area-inset-bottom)}
+ .chatShell[data-chat-compact="true"] .clock{display:none}
+ .chatShell[data-chat-compact="true"] .topbar{min-height:44px}
+ .chatShell[data-chat-compact="true"] .menuButton{padding:8px}
+}
+
+@media(max-width:700px){
+ .chatShell[data-chat-tight="true"] .topbar,
+ .chatShell[data-chat-tight="true"] [data-pillow-conversation-mode="true"]>details{display:none}
+}
+@media(max-width:700px){
+ .chatShell[data-chat-compact="true"]:not([data-chat-tight="true"]) [data-legacy-workspace]>div>details{position:absolute;top:4px;right:8px;z-index:40;padding:0}
+ .chatShell[data-chat-compact="true"]:not([data-chat-tight="true"]) [data-legacy-workspace]>div>details>summary{min-height:36px;display:flex;align-items:center}
+ .chatShell[data-chat-compact="true"] [data-legacy-workspace]>div>details>div{left:auto;right:0;width:min(360px,calc(100vw - 16px));background:#f1f7ff;color:#294363}
+}

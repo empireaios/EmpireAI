@@ -174,6 +174,7 @@ export function PillowConversationWorkspace({
       <details className={layout.context}>
         <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; evidence</summary>
         <div className={layout.contextBody}>
+          <p>NOT_BORN · Commerce locked</p>
           {executiveSnapshot ? (
             <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
           ) : (
