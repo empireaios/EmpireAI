@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-10T16:56:01.900948+00:00",
+  "status": "WORK 7 BLOCKED",
+  "baseline": "f8a292de23cb2f944771421923b7623deeb8e19f",
+  "productionObservation": {
+    "authenticated": true,
+    "method": "Supported Cloud Browser visible DOM and navigation",
+    "routes": [
+      "/cockpit",
+      "/cockpit/eyes",
+      "/cockpit/products",
+      "/cockpit/approvals",
+      "/cockpit/listings",
+      "/cockpit/orders",
+      "/cockpit/finance",
+      "/cockpit/cost-centre"
+    ],
+    "observed": [
+      "Home saved recommendations and NOT_BORN/LOCKED",
+      "Products: zero source-backed records",
+      "Listings: isolated synthetic organiser, submit disabled",
+      "Orders: no verified live order feed",
+      "Finance: old Financial Centre",
+      "Cost Centre: shared Vercel accrued usage; actual FX not established"
+    ],
+    "scope": "Production predecessor only; not candidate acceptance"
+  },
+  "preview": {
+    "deployment": "dpl_Hnxmmt9e8mDyNHbz6tg4TFq7E7LF",
+    "state": "READY",
+    "sha": "f8a292de23cb2f944771421923b7623deeb8e19f",
+    "browser": "Vercel login protection; GitHub method selected through browserAuth, then Google selected through browserAuth on GitHub. Auto-review rejected subsequent observation as unauthorized method change. Auth result unknown; stopped."
+  },
+  "ci": {
+    "38066767102": "success",
+    "38066767097": "success",
+    "38066767103": "success",
+    "38066767104": "success"
+  },
+  "pr110": {
+    "head": "ff2feffb2907959ef03014617ade2690ae888ab8",
+    "state": "OPEN/DRAFT",
+    "separate": true
+  },
+  "originalTrackerSHA256": "12b4fc0b18de1e82da1ebc5d981a0264decc1099b14c550db7cfff003f1184fd",
+  "nativeKeyboard": "NOT OBSERVED: Cloud Browser exposes no native phone keyboard or viewport-resizing API",
+  "historySelection": "NOT YET OBSERVED",
+  "nestedControls": "PENDING",
+  "financialDisplay": "Production readback available; candidate reconciliation PENDING",
+  "release": "No merge, lease, deployment or commerce action",
+  "nextAction": "Owner approval to continue observing the Google sign-in selected in secure GitHub authentication flow.",
+  "sourceVerification": {
+    "productionBuildAndTypecheck": "PASS",
+    "affectedFileLint": "PASS",
+    "diffWhitespace": "PASS",
+    "renderedCandidate": "PENDING",
+    "changes": [
+      "Remove full-sidebar raster carrying obsolete navigation; preserve original artwork bytes and cropped brand/footer",
+      "Dark readable transaction text on light surfaces; contextual Orders return; avoid nested main landmark"
+    ],
+    "remaining": "Intelligence redesign, product workflow refinements, comprehensive cost taxonomy/display, and all outstanding acceptance/release gates remain pending"
+  }
+}

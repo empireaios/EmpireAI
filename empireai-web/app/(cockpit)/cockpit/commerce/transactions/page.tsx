@@ -57,58 +57,58 @@ export default function CommerceTransactionsPage() {
     })();
     return ()=>{active=false;clearTimeout(timer);controller.abort();};
   },[refresh]);
-  return <main className="mx-auto w-full max-w-5xl space-y-5 p-4 sm:p-6">
+  return <section aria-label="Historical transaction evidence" className="mx-auto w-full max-w-5xl space-y-5 p-4 sm:p-6">
     <header className="flex flex-wrap items-center justify-between gap-3">
-      <div><Link href="/cockpit" className="text-sm text-amber-200 underline">Executive Home</Link>
-        <h1 className="mt-2 text-2xl font-semibold text-stone-100">Transaction lifecycle</h1></div>
+      <div><Link href="/cockpit/orders" className="text-sm text-blue-800 underline">Back to Orders &amp; Fulfilment</Link>
+        <h1 className="mt-2 text-2xl font-semibold text-slate-900">Transaction lifecycle</h1></div>
       <button type="button" disabled={loading} onClick={()=>{setLoading(true);setError(null);setTransactions(null);setRefresh(n=>n+1);}}
-        className="min-h-11 rounded-lg border border-amber-300/40 px-4 py-2 text-amber-100 disabled:opacity-50">
+        className="min-h-11 rounded-lg border border-amber-300/40 px-4 py-2 text-amber-900 disabled:opacity-50">
         {loading ? "Loading…" : "Refresh"}
       </button>
     </header>
-    <section className="rounded-xl border border-amber-400/40 bg-amber-950/20 p-4 text-sm text-amber-100">
+    <section className="rounded-xl border border-amber-400/40 bg-amber-50 p-4 text-sm text-amber-900">
       <strong>Nonproduction evidence</strong>
       <p className="mt-1">These transactions exercise the connected commerce flow. Receipt amounts below are simulated and do not establish real sales, payments or profit.</p>
     </section>
     <div aria-live="polite">
-      {loading && <p className="text-stone-300">Reading saved transaction evidence…</p>}
-      {error && <p role="alert" className="rounded-lg border border-red-400/40 p-4 text-red-200">{error}</p>}
-      {transactions?.length===0 && <p className="rounded-lg border border-white/15 p-4 text-stone-300">No saved transactions in this workspace.</p>}
+      {loading && <p className="text-slate-700">Reading saved transaction evidence…</p>}
+      {error && <p role="alert" className="rounded-lg border border-red-400/40 p-4 text-red-800">{error}</p>}
+      {transactions?.length===0 && <p className="rounded-lg border border-blue-200 p-4 text-slate-700">No saved transactions in this workspace.</p>}
     </div>
     {transactions !== null && <section aria-label="Historical provider observations" className="space-y-3 rounded-xl border border-sky-400/30 p-4">
-      <h2 className="text-lg font-semibold text-stone-100">Historical provider observations</h2>
-      <p className="text-sm text-stone-300">These dated authenticated reads are separate from the simulated orders below. They are not current stock, qualified products, order receipts or realised profit. Refresh reloads this page; it does not call either provider.</p>
-      {providerObservationHistory.map(observation=><article key={observation.provider + observation.observedAt} className="min-w-0 rounded-lg border border-white/10 p-3 text-sm">
-        <h3 className="font-medium text-sky-200">{observation.provider} · Observed, not qualified</h3>
-        <time className="text-xs text-stone-400" dateTime={observation.observedAt}>{observation.observedAt}</time>
-        <p className="mt-2 break-all text-stone-100">{observation.identity}</p>
-        <p className="text-stone-300">{observation.detail}</p>
-        <p className="text-amber-200">{observation.limit} Account ownership is not independently verified. Not linked to a transaction.</p>
-        <details className="mt-2 text-xs text-stone-400"><summary className="min-h-8 cursor-pointer">Provider observation source</summary>
+      <h2 className="text-lg font-semibold text-slate-900">Historical provider observations</h2>
+      <p className="text-sm text-slate-700">These dated authenticated reads are separate from the simulated orders below. They are not current stock, qualified products, order receipts or realised profit. Refresh reloads this page; it does not call either provider.</p>
+      {providerObservationHistory.map(observation=><article key={observation.provider + observation.observedAt} className="min-w-0 rounded-lg border border-blue-200 p-3 text-sm">
+        <h3 className="font-medium text-blue-800">{observation.provider} · Observed, not qualified</h3>
+        <time className="text-xs text-slate-600" dateTime={observation.observedAt}>{observation.observedAt}</time>
+        <p className="mt-2 break-all text-slate-900">{observation.identity}</p>
+        <p className="text-slate-700">{observation.detail}</p>
+        <p className="text-amber-900">{observation.limit} Account ownership is not independently verified. Not linked to a transaction.</p>
+        <details className="mt-2 text-xs text-slate-600"><summary className="min-h-8 cursor-pointer">Provider observation source</summary>
           <p className="break-all">Receipt: {observation.receiptPath}</p>
           <p className="break-all">Source: {observation.sourceHead}</p>
           <p className="break-all">Response SHA256: {observation.responseHash}</p>
-          <a className="underline text-sky-200" href={"https://github.com/empireaios/EmpireAI/actions/runs/"+observation.runId} target="_blank" rel="noreferrer">View verification run</a>
+          <a className="underline text-blue-800" href={"https://github.com/empireaios/EmpireAI/actions/runs/"+observation.runId} target="_blank" rel="noreferrer">View verification run</a>
         </details>
       </article>)}
     </section>}
     {transactions?.map(transaction=>{
       const lifecycle = transaction.simulated, actual = lifecycle.economics.actual;
-      return <article key={transaction.transactionKey} className="min-w-0 space-y-4 rounded-xl border border-white/15 bg-white/[0.03] p-4">
-        <header><h2 className="break-all text-lg font-semibold text-stone-100">Order {transaction.amazonOrderId}</h2>
-          <p className="break-all text-sm text-stone-300">{transaction.sku} · {transaction.asin} · Quantity {transaction.quantity}</p>
-          <p className="mt-1 text-xs text-amber-200">Simulated · {lifecycle.receiptCount} receipts · {lifecycle.reconciliation.replaceAll("_"," ")}</p>
+      return <article key={transaction.transactionKey} className="min-w-0 space-y-4 rounded-xl border border-blue-200 bg-white p-4">
+        <header><h2 className="break-all text-lg font-semibold text-slate-900">Order {transaction.amazonOrderId}</h2>
+          <p className="break-all text-sm text-slate-700">{transaction.sku} · {transaction.asin} · Quantity {transaction.quantity}</p>
+          <p className="mt-1 text-xs text-amber-900">Simulated · {lifecycle.receiptCount} receipts · {lifecycle.reconciliation.replaceAll("_"," ")}</p>
         </header>
         <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
-          <div><dt className="text-stone-400">CJ product / variant</dt><dd className="break-all text-stone-100">{transaction.cjPid} / {transaction.cjVid}</dd></div>
-          <div><dt className="text-stone-400">Supplier order</dt><dd className="break-all text-stone-100">{lifecycle.supplierOrderId ?? "Awaiting acknowledgement"}</dd></div>
-          <div><dt className="text-stone-400">Delivery</dt><dd className="text-stone-100">{lifecycle.tracking?.deliveryStatus ?? "Unknown"}</dd></div>
-          <div><dt className="text-stone-400">Tracking</dt><dd className="break-all text-stone-100">{lifecycle.tracking ? lifecycle.tracking.carrier+" · "+lifecycle.tracking.trackingNumber : "Not received"}</dd></div>
-          <div><dt className="text-stone-400">Seller listing price</dt><dd className="text-stone-100">{money(transaction.marketplaceEvidence ? transaction.marketplaceEvidence.sellerOfferPriceCents/100 : null)}</dd></div>
-          <div><dt className="text-stone-400">Seller availability</dt><dd className="text-stone-100">{transaction.marketplaceEvidence?.sellerFulfilledQuantity ?? "Unknown"} · supplier stock separate</dd></div>
+          <div><dt className="text-slate-600">CJ product / variant</dt><dd className="break-all text-slate-900">{transaction.cjPid} / {transaction.cjVid}</dd></div>
+          <div><dt className="text-slate-600">Supplier order</dt><dd className="break-all text-slate-900">{lifecycle.supplierOrderId ?? "Awaiting acknowledgement"}</dd></div>
+          <div><dt className="text-slate-600">Delivery</dt><dd className="text-slate-900">{lifecycle.tracking?.deliveryStatus ?? "Unknown"}</dd></div>
+          <div><dt className="text-slate-600">Tracking</dt><dd className="break-all text-slate-900">{lifecycle.tracking ? lifecycle.tracking.carrier+" · "+lifecycle.tracking.trackingNumber : "Not received"}</dd></div>
+          <div><dt className="text-slate-600">Seller listing price</dt><dd className="text-slate-900">{money(transaction.marketplaceEvidence ? transaction.marketplaceEvidence.sellerOfferPriceCents/100 : null)}</dd></div>
+          <div><dt className="text-slate-600">Seller availability</dt><dd className="text-slate-900">{transaction.marketplaceEvidence?.sellerFulfilledQuantity ?? "Unknown"} · supplier stock separate</dd></div>
         </dl>
-        <section className="rounded-lg border border-white/10 p-3 text-sm text-stone-300">
-          <h3 className="font-medium text-stone-100">Supplier reversals · simulated</h3>
+        <section className="rounded-lg border border-blue-200 p-3 text-sm text-slate-700">
+          <h3 className="font-medium text-slate-900">Supplier reversals · simulated</h3>
           <p>Cancellation: {lifecycle.cancellation?.outcome ?? "Not requested"}</p>
           <p>Return: {lifecycle.supplierReturn ? lifecycle.supplierReturn.rmaId+" · "+lifecycle.supplierReturn.quantity+" units · "+
             (lifecycle.supplierReturn.receivedReceiptId ? "Received by supplier" : "Awaiting supplier receipt") : "Not authorized"}</p>
@@ -117,20 +117,20 @@ export default function CommerceTransactionsPage() {
           <p>Outstanding supplier credit: {money(lifecycle.supplierCredits ? lifecycle.supplierCredits.outstandingCents/100 : null)}</p>
         </section>
         <div className="grid gap-3 sm:grid-cols-2">
-          <section className="rounded-lg bg-black/20 p-3"><h3 className="font-medium text-stone-100">Projected economics</h3>
-            <p className="mt-1 text-sm text-stone-300">Revenue {money(transaction.expected.sellingPriceUsd)}</p>
-            <p className="text-sm text-stone-300">Contribution {money(transaction.expected.profitUsd)}</p></section>
-          <section className="rounded-lg bg-black/20 p-3"><h3 className="font-medium text-amber-100">Simulated reconciled economics</h3>
-            <dl className="mt-1 space-y-1 text-sm text-stone-300">
+          <section className="rounded-lg bg-blue-50 p-3"><h3 className="font-medium text-slate-900">Projected economics</h3>
+            <p className="mt-1 text-sm text-slate-700">Revenue {money(transaction.expected.sellingPriceUsd)}</p>
+            <p className="text-sm text-slate-700">Contribution {money(transaction.expected.profitUsd)}</p></section>
+          <section className="rounded-lg bg-blue-50 p-3"><h3 className="font-medium text-amber-900">Simulated reconciled economics</h3>
+            <dl className="mt-1 space-y-1 text-sm text-slate-700">
               {([["Revenue after refunds",actual.customerRevenueUsd],["Amazon fees after credits",actual.amazonFeesUsd],
                 ["Supplier",actual.cjProductCostUsd],["Freight",actual.cjShippingUsd],["Other costs",actual.otherDirectCostsUsd],
                 ["Contribution",actual.realisedContributionUsd]] as const).map(([label,value])=>
                 <div key={label} className="flex justify-between gap-3"><dt>{label}</dt><dd>{money(value)}</dd></div>)}
             </dl>
-            <p className="mt-2 text-xs text-stone-400">Fixture payout: {lifecycle.economics.marketplacePayoutReceived}</p>
+            <p className="mt-2 text-xs text-slate-600">Fixture payout: {lifecycle.economics.marketplacePayoutReceived}</p>
           </section>
         </div>
-        <details className="text-sm text-stone-300"><summary className="cursor-pointer py-2 text-amber-100">Accounting and source evidence</summary>
+        <details className="text-sm text-slate-700"><summary className="cursor-pointer py-2 text-amber-900">Accounting and source evidence</summary>
           <div className="mt-2 overflow-x-auto"><table className="w-full text-left text-xs"><thead><tr><th className="p-2">Account</th><th className="p-2">Debit USD</th><th className="p-2">Credit USD</th></tr></thead>
             <tbody>{lifecycle.journal.map((row,index)=><tr key={row.receiptId+"-"+index}><td className="p-2">{row.account}</td><td className="p-2">{money(row.debitCents/100)}</td><td className="p-2">{money(row.creditCents/100)}</td></tr>)}</tbody>
           </table></div>
@@ -141,5 +141,5 @@ export default function CommerceTransactionsPage() {
         </details>
       </article>;
     })}
-  </main>;
+  </section>;
 }

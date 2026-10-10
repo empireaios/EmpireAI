@@ -178,8 +178,179 @@
   "release": "NOT_AUTHORISED_UNTIL_ACCEPTANCE",
   "missingSourceVerification": [
     "Original V5 PowerPoint and binding Home PNG not re-opened this continuation; Home artwork/layout remains unchanged.",
-    "10 October 15:14–15:15 screenshots not yet visually re-inspected; master directive establishes requested defects, not automatic acceptance."
+    "10 October 15:14\u201315:15 screenshots not yet visually re-inspected; master directive establishes requested defects, not automatic acceptance."
   ],
   "evidenceScope": "Local fixture proof is not authenticated preview or native physical-keyboard acceptance.",
-  "updatedAt": "2026-10-10T16:01:12.780669+00:00"
+  "updatedAt": "2026-10-10T16:56:01.900948+00:00",
+  "ownerAmendments20261011": [
+    {
+      "id": "UX-01",
+      "requirement": "SIDEBAR DUPLICATION / FALSE SECOND NAVIGATION. Owner screenshots show a correct upper sequence and a second legacy-looking list appearing beneath System (Listings, Orders, Finance, Live Cost Centre, Intelligence, Assurance, Calendar). Remove the redundant visible legacy navigation and any duplicate accessibility/focus items, retaining every valid route, deep link, role/permission check and historical URL redirect. One canonical sidebar, one entry per primary destination, stable scrolling and mobile drawer. Do not merely hide a second list with CSS if it remains keyboard-accessible. Regression-test desktop, narrow phone, route refresh, back/forward, nested legacy pages, logout and no accidental duplicate menus.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": [
+        "Source repair: restrict approved-art raster to brand and decorative footer; remove full-sidebar image carrying fake legacy labels. Rendered verification pending."
+      ]
+    },
+    {
+      "id": "UX-02",
+      "requirement": "PRIMARY ORDER EXACTLY: Home; Intelligence; Pillow (CEO); Products & Approvals; Listings; Orders & Fulfilment; Operational Finance; Live Cost Centre; Assurance; Calendar; System. Intelligence is first commercial function after Home; Pillow is the CEO coordinating decisions. No separate Approvals primary tab. Preserve all underlying decision handlers and records. Assurance, Calendar and System remain accessible, operational and protected, but defer discretionary owner UX redesign until after go-live. Do not remove mandatory safety or release gates.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-03",
+      "requirement": "INTELLIGENCE MUST BE A DECISION ENGINE, NOT A LONG TECHNICAL LOG. Owner permits creative redesign. Default compact executive view with Today / 7 days / 30 days / quarter / year (plus custom date only if practical), meaningful change summaries, highest-priority market/supplier/internet/Empire discoveries, ranked opportunities and risks, what changed since prior period, Pillow's actual recorded assessment, actionable next step and explicit blockers. A source finding is NOT a CEO recommendation unless linked to saved actual reasoning. Link discovery -> verified evidence -> investigation -> Pillow recommendation -> product candidate -> owner decision; show exact stage and missing evidence. Provide one-click drilldown for detailed receipts, sources, freshness, diagnostics and scheduled collectors, but no 20-scroll-page default, repeated rows, or developer JSON. Do not manufacture confidence, sales, demand, rankings, freshness or activity. Investigation controls remain bounded, authenticated and separately authorised; no unapproved paid calls.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-04",
+      "requirement": "INTELLIGENCE CURRENT SCREEN DEFECTS: Repetitive 'empire' and numeric findings with 'Commercial significance not assessed'; many repeated COMPLETED scheduler rows; giant source capability inventories and raw provenance/lineage blocks; poor value-to-scroll ratio. Deduplicate only the PRESENTATION of semantically equivalent findings, preserving each distinct source record and time. Group scheduled receipts by source/status/period with expandable history. Show unavailable/stale/verified capability summaries and only actionable exceptions in the primary view. Use readable human names for records; retain IDs on drilldown.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-05",
+      "requirement": "PRODUCTS & APPROVALS ONE COMPACT DECISION CENTRE. Owner decision attached to specific product/opportunity, not a separate long approval report. Show product image where licensed, exact title/variant/source, competitive evidence, landed cost and fee assumptions, projected margin with currency and uncertainty, risk/policy eligibility, Pillow's short rationale, decision status and next step. Approval / reject / request revision operate only under existing backend semantics. 'Defer' leaves pending; do not pretend a durable deferred state exists. Avoid long duplicated saved briefs, raw Markdown, raw hashes, deeply nested synthetic fixture displays, and disabled controls without explanation. Retain all immutable records, digests, synthetic segregation and authority enforcement in details. Product qualification must not infer demand or supplier match from unrelated evidence. Show real candidate absence truthfully.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-06",
+      "requirement": "LISTINGS. Distinguish Draft/Prepared, Approved, Published with independently verified marketplace receipt, and Test examples. Do not imply prepared/approved is live. Compact overview, clear marketplace/channel, price, product, publication age when verified, status, inventory/visibility and next action. Preserve publication locks and all evidence.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-07",
+      "requirement": "ORDERS & FULFILMENT. Actual orders separate from test fixtures and historical observations. Show purchase/payment, supplier acceptance, dispatch, partial shipment, tracking, delivery, refunds/exceptions and relevant cost with individually verified states. Historical provider observations are NOT orders. Repair unreadable low-contrast text on /cockpit/commerce/transactions shown in owner screenshots; ensure page heading and rows are legible and contextual navigation returns to Orders. No fake shipment or sales claims.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": [
+        "Source repair: historical transactions use dark text on light surfaces and return to Orders. Rendered verification pending."
+      ]
+    },
+    {
+      "id": "UX-08",
+      "requirement": "OPERATIONAL FINANCE. Show genuine revenue, direct product cost, marketplace/payment fees, fulfilment/freight, refunds/returns and directly attributable commerce costs with reconciled operational contribution/profit. Infrastructure costs excluded from this operating-profit calculation and never double-counted. Separate actuals, commitments, forecasts, unknowns and synthetic. Compact period selector, exceptions by severity, understandable drilldown; raw JSON audit data only in technical details. Screenshot shows no verified operating amounts and six exceptions; preserve their truth. Test pagination after changing date/filters and mixed currencies.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-09",
+      "requirement": "LIVE COST CENTRE \u2014 COMPREHENSIVE OWNER-ONLY RESOURCE ECONOMICS. Expand tracked potential cost taxonomy: ChatGPT development subscription; OpenAI/Pillow inference; Anthropic; Gemini; model training/fine-tuning, embeddings, reranking, image/video/audio generation; Railway compute/Redis/storage; Vercel hosting/builds/bandwidth; cloud servers, containers, workers, serverless, networking, CDN, databases, backups/restore, archival, disaster recovery; domains/DNS/email/SMS/notifications; GitHub/repositories/CI/CD/testing, coding assistants; security/authentication/secrets/monitoring/logging/scanning/incident response; Amazon SP-API/marketplace apps, CJ, Shopify/Shopee/other channels and connector fees; Keepa/market data/analytics/reviews/trends; TinyFish/browser automation/scraping/workflow tools; Canva/design/media licences/content production; payment gateways/FX/banking/accounting/reconciliation; company registration/legal/compliance/insurance/professional services; equipment, hardware, connectivity, one-off development, contingency and miscellaneous. These are CANDIDATE categories, not asserted active bills or incurred expenses. Allow add/edit/archive categories and vendor mapping with owner control, no provider purchases.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-10",
+      "requirement": "LIVE COST CENTRE PRESENTATION. Above fold: confirmed MTD, YTD, outstanding payable, accrued unbilled, estimates/commitments, projected annual run rate (qualified), known upcoming 7/30/90-day bills, budget versus actual, significant changes and cost-saving suggestions. One compact sortable/filterable provider table with expandable invoice/usage/renewal history, payment status, account/service ownership and source. Distinguish no recorded bill, confirmed zero, unknown, unverified, accrued, invoiced, settled and shared-team unallocated. Never invent subscriptions, dates, renewal prices or invoice totals. Vercel team-level USD 0.140117 is shared accrued unbilled usage in screenshots, not EmpireAI settled charge; currency conversion unavailable. Avoid two identical MTD columns; label any third metric correctly or remove it. Keep the six visible exceptions and owner review of expiring provider tariffs. Include expense forecasts and alerts only where evidence and authorisation exist. Currency conversions need verified FX and timestamps. Preserve financial journal and read-only audit trail.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-11",
+      "requirement": "SITE-WIDE PRESENTATION: Short, actionable, current, attractive, high-contrast, mobile-first; no redundant cards, huge blank spaces, repeated disclaimers, raw JSON or endless accordions on default views. Keep all underlying data available through deliberate drilldowns. Make status distinctions clear and screen-reader accessible. Compact pagination and meaningful empty states. Approved Home artwork, five family members, poodles, captions and composition remain binding; do not request reapproval. Fix only authorised implementation deviations.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-12",
+      "requirement": "PILLOW CHAT. Preserve response delivery, history picker, saved tables, jump-to-latest, no obscured response and compact composer. Local fixture result at 400x464: 313px reading area, nine full 16px lines; keyboard simulated only. Do not claim 95% achieved or live native keyboard accepted. Test authenticated real mobile/native keyboard, history selection, scrolling, nested navigation and input visibility without submitting unintended messages.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-13",
+      "requirement": "ACCEPTANCE: Reuse owner screenshots as read-only desktop observations, not automatic acceptance of untested functionality. Reconcile accepted versus unaccepted states precisely. Capture only missing mobile/native keyboard, 14 legacy navigation contexts, nested controls and financial display states. Single consolidated checklist, not serial screenshot requests. Where browser cannot access existing authenticated session, seek supported read-only observation or one concise owner action; do not retry password or ask for already accepted evidence.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-14",
+      "requirement": "ORIGINAL 100-ITEM TRACKER: do not reset, renumber or mark pass based only on screenshot or green CI. Separate engineering implemented, CI verified, live owner accepted, deployed and independently closed. For each blocked item identify exactly one responsible party and necessary evidence. Include amendment crosswalk and before/after route map for 168 routes; route-parent assignment alone is not live interaction proof.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "UX-15",
+      "requirement": "GOVERNANCE/RELEASE: No production change until all mandatory Work 7 gates and explicit release authority. PR #109 exact-head check, independent PR #110 lineage and incident status, approved Home fidelity, 15 commerce safety protections, no accidental commerce activation, financial digests, CI, live acceptance, new valid release lease/fence (not prior finished fence), coordinated deployment only if needed, post-deployment independent verification and Mission Ledger/King's Advisor receipts. Work 8 full autonomous certification and Work 9 birth/commerce activation are NOT Work 7 gates. If unresolved, retain BLOCKED and all completed work.",
+      "status": "PENDING",
+      "owner": "Work 7 engineering",
+      "dependencies": [
+        "Current candidate implementation and targeted CI",
+        "Authenticated candidate acceptance"
+      ],
+      "evidence": []
+    }
+  ]
 }
