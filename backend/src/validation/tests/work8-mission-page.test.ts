@@ -19,3 +19,13 @@ test('201 canonical missions paginate without hidden truncation or workspace lea
 test('empty scoped page explicitly complete and bounded lower limit advances lexical cursor',()=>{
  const store=new GovernedCommerceStore(':memory:');try{const empty=readWork8MissionPage(store,'synthetic:empty');assert.equal(empty.missionCoverage.total,0);assert.equal(empty.missionCoverage.complete,true);assert.equal(empty.missionCoverage.hasMore,false);}finally{store.close();}
 });
+test('mission heads and finance stay on one WAL read snapshot while second connection commits',async()=>{
+ const fs=await import('node:fs'),os=await import('node:os'),path=await import('node:path');const dir=fs.mkdtempSync(path.join(os.tmpdir(),'w8-page-snapshot-')),file=path.join(dir,'commerce.sqlite'),writer=new GovernedCommerceStore(file),now=1800000000000,w='synthetic:page-snapshot',scenario=acceptanceScenario(w,'owner',now),engine=new GovernedCommerceEngine(writer,()=>now);let writeDuringRead=false;
+ for(const [i,step] of scenario.steps.slice(0,5).entries())engine.execute(step.actor,{id:'seed-'+i,missionId:'mission',expectedVersion:i,command:step.command});
+ const original=writer.history(w,'mission').at(-1)!;
+ class InterleavedReader extends GovernedCommerceStore{override history(workspace:string,mission:string){const result=super.history(workspace,mission);if(!writeDuringRead){assert.equal(this.db.isTransaction,true,'first head read must hold page snapshot');writeDuringRead=true;const prepare=scenario.steps[5]!;engine.execute(prepare.actor,{id:'concurrent-prepare',missionId:'mission',expectedVersion:5,command:prepare.command});assert.equal(writer.history(w,'mission').at(-1)!.version,6,'separate SQLite writer really committed before finance read');}return result;}}
+ const reader=new InterleavedReader(file);try{
+  const page=readWork8MissionPage(reader,w);assert.equal(writeDuringRead,true);assert.equal(page.missions[0]!.digest,original.digest);assert.equal(page.simulatedFinancials[0]!.sourceReceiptDigest,original.digest);assert.equal(page.simulatedFinancials[0]!.orders[0]!.status,'RECEIVED');assert.equal(reader.db.isTransaction,false);
+  const fresh=readWork8MissionPage(reader,w);assert.equal(fresh.missions[0]!.version,6);assert.notEqual(fresh.missions[0]!.digest,original.digest);assert.equal(fresh.simulatedFinancials[0]!.sourceReceiptDigest,fresh.missions[0]!.digest);assert.equal(fresh.simulatedFinancials[0]!.orders[0]!.status,'PREPARED');assert.equal(writer.history(w,'mission').length,6);
+ }finally{reader.close();writer.close();fs.rmSync(dir,{recursive:true,force:true});}
+});
