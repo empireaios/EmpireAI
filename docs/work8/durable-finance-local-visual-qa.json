@@ -1,0 +1,26 @@
+{
+  "kind": "LOCAL_DURABLE_SIM_FINANCE_LAYOUT_FIXTURE",
+  "productionAcceptance": false,
+  "results": [
+    {
+      "name": "desktop",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "imageCount": 0,
+      "visibleDialogs": 0,
+      "rows": 1,
+      "attemptedRequests": 0,
+      "pass": true
+    },
+    {
+      "name": "mobile",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "imageCount": 0,
+      "visibleDialogs": 0,
+      "rows": 1,
+      "attemptedRequests": 0,
+      "pass": true
+    }
+  ]
+}

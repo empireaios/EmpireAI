@@ -1,0 +1,107 @@
+{
+  "receiptSha256": "06711eeeda4104fd7b54d01b94b1045007b3fee4e9a1e1814ab9240e9e4288c0",
+  "entries": [
+    {
+      "original": "source-manifest-before.json",
+      "originalSha256": "be73757617737d4fcce53ac49b98873e17583371e736705a847a18fb512c93bb",
+      "originalBytes": 1149804,
+      "gzip": "source-manifest-before.json.gz",
+      "gzipSha256": "20ad9b984ed6c0cfad2fe19be3c3c0bd32426776607a44a15b3db4d28e7a1962",
+      "gzipBytes": 297523,
+      "mtime": 0
+    },
+    {
+      "original": "source-manifest-after.json",
+      "originalSha256": "be73757617737d4fcce53ac49b98873e17583371e736705a847a18fb512c93bb",
+      "originalBytes": 1149804,
+      "gzip": "source-manifest-after.json.gz",
+      "gzipSha256": "20ad9b984ed6c0cfad2fe19be3c3c0bd32426776607a44a15b3db4d28e7a1962",
+      "gzipBytes": 297523,
+      "mtime": 0
+    },
+    {
+      "original": "backend-readback.json",
+      "originalSha256": "0955c6523811a96d17839cbd97df4fc3ea60b848b2c193051d0d33620fee2b7b",
+      "originalBytes": 654952,
+      "gzip": "backend-readback.json.gz",
+      "gzipSha256": "69e02e5e8c5576b52aecf93294bde16e2e9a3971e51585942093facf67789e2f",
+      "gzipBytes": 38827,
+      "mtime": 0
+    },
+    {
+      "original": "orders-1440.png",
+      "originalSha256": "57dd47d8736e8b5e673c4f82d37ba211113cf3c6649aff639b2895b856bba4e7",
+      "width": 1440,
+      "height": 9798,
+      "rgbaSha256": "f75494f3119db08801ace9d57a9d74bbd6481f1a6daf989676c08a44c1bef47e",
+      "encoding": "LOSSLESS_WEBP",
+      "tiles": [
+        {
+          "file": "orders-1440.webp",
+          "y": 0,
+          "width": 1440,
+          "height": 9798,
+          "sha256": "0df11d211d46966771cf1e9e4b12b34ac72fc34b10e7810cb13845e2fb2f5b66"
+        }
+      ]
+    },
+    {
+      "original": "orders-390.png",
+      "originalSha256": "8c8f49baebcb1685f26a23fec8115ca9cc177407a8d22b325dd261ce763b8ad9",
+      "width": 390,
+      "height": 21181,
+      "rgbaSha256": "6e49a32b16f2ca444189876a3050846cf612287f29de1b8cfbf3c37fb14b6f43",
+      "encoding": "LOSSLESS_WEBP_TILES",
+      "tiles": [
+        {
+          "file": "orders-390-part1.webp",
+          "y": 0,
+          "width": 390,
+          "height": 16000,
+          "sha256": "7cc16d7c4a337e26898abde6b9098a6e130fb6cfc618a5047bc217e45b0c5274"
+        },
+        {
+          "file": "orders-390-part2.webp",
+          "y": 16000,
+          "width": 390,
+          "height": 5181,
+          "sha256": "6bcf0f16b1440c9ec9a3bceba6794f2825b6e50b7874a32fc46b81461768cea7"
+        }
+      ]
+    },
+    {
+      "original": "portfolio-1440.png",
+      "originalSha256": "da96b6d640966872515b37dd8febfbfca0e8385a2434d8bc7b47aabf90918efc",
+      "width": 1440,
+      "height": 4252,
+      "rgbaSha256": "a26fcd1b9e509ad478ab59bfe281f7378e7d082764a501c452b71b024841ee48",
+      "encoding": "LOSSLESS_WEBP",
+      "tiles": [
+        {
+          "file": "portfolio-1440.webp",
+          "y": 0,
+          "width": 1440,
+          "height": 4252,
+          "sha256": "4982f7d53d9846fceed004ecf2cfa7d097f7cfc023bcd2202f907799efb1fbff"
+        }
+      ]
+    },
+    {
+      "original": "portfolio-390.png",
+      "originalSha256": "a56a11aeb9037f9b10530725d1d5ae098c0857b65c1d85a1a1101a9bcca0a71e",
+      "width": 390,
+      "height": 8789,
+      "rgbaSha256": "a6f79ee8109d4b9194846d6b68dac32da3b9b2e72d10324180c16f73a80bd956",
+      "encoding": "LOSSLESS_WEBP",
+      "tiles": [
+        {
+          "file": "portfolio-390.webp",
+          "y": 0,
+          "width": 390,
+          "height": 8789,
+          "sha256": "f521a6d832480b5a31c2e6a00a01399ef73f43a8a169a2613bf6f6049f1e2407"
+        }
+      ]
+    }
+  ]
+}

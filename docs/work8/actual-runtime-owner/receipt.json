@@ -1,0 +1,43 @@
+{
+  "candidateDigests": {
+    "harnessSha256": "e0b18c21e903c6a9eb230df370df28cc4b3416b1a84c13c831df90b230ccceff"
+  },
+  "status": "PASS",
+  "scope": "ISOLATED_AUTHENTICATED_BROWSER_NEXT_BFF_ACTUAL_CANDIDATE_FASTIFY",
+  "at": "2026-10-10T23:10:24.918Z",
+  "backendRevision": "0c5fad53c380774cd5b512b79b0f533e541b1f55",
+  "frontendRevision": "fdb66e6479617ab8d2b74e9aee99dbf8742e71f8",
+  "checks": [
+    "Actual BFF auth: anonymous401 and foreign/admin403",
+    "Actual middleware denies seven live effects; real authenticated BFF denies anonymous/foreign/admin;17 durable simulated lifecycles reconcile to2040minor each",
+    "1440px actual Portfolio acquisition/enrichment and Orders finance readbacks match backend; omitted17th simulation fetched through authenticated BFF",
+    "390px actual Portfolio acquisition/enrichment and Orders finance readbacks match backend; omitted17th simulation fetched through authenticated BFF",
+    "Backend process restart preserves canonical receipt and durable financial event/projection digests"
+  ],
+  "sourceMode": "AUTHENTIC_RETAINED_OBSERVATIONS_NOT_PROVIDER_REFRESH",
+  "providerCredentials": false,
+  "productionAccess": false,
+  "externalEffects": 0,
+  "paidInference": 0,
+  "backendConnect": "DENIED_BY_REQUIRED_SECCOMP_LAUNCHER",
+  "frontendIsolation": "Clean fixture environment and JavaScript localhost/fixed-port guards; not a kernel IP filter",
+  "blockedBrowserOrigins": [],
+  "portfolioDigest": "e5714e84575feeeecffea8ed2f284b537c66e868bd197b527e295a37b6d7cb3f",
+  "marketDigest": "a99ec367de6f4ca6d28b6937cd4c180aff79304d771d1becb351a285ab0f1203",
+  "missionDigest": "0c10abbdbe94713c456843b40a15a7cd33a0c406fde155a5a4a4bd5014220769",
+  "financialDigest": "e3e9f1acca201074fa972912fd57b100b381196daf4af02b7479366df618d966",
+  "clock": "EXPLICIT_ISOLATED_VIRTUAL_DATE_WITH_REAL_BOUNDED_SIM_HANDLER",
+  "screenshots": [
+    "portfolio-1440.png",
+    "orders-1440.png",
+    "portfolio-390.png",
+    "orders-390.png"
+  ],
+  "executedSourceManifest": {
+    "beforeSha256": "63bbcc38e20e98e1ebdfce9b2c1f356bd868e59e7b37430a1ef648be6b1bd525",
+    "afterSha256": "63bbcc38e20e98e1ebdfce9b2c1f356bd868e59e7b37430a1ef648be6b1bd525",
+    "unchanged": true,
+    "fileCount": 5464,
+    "dependencyCount": 11
+  }
+}
