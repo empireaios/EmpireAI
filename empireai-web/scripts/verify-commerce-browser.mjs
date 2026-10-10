@@ -75,7 +75,7 @@ try {
   assert.equal((await page.request.post('http://127.0.0.1:3100/api/owner/overview')).status(),405);
   assert.equal((await page.request.get('http://127.0.0.1:3100/api/owner/overview?workspaceId=other')).status(),400);
   await nav.getByRole('link',{name:'Orders',exact:true}).click();
-  await page.getByRole('heading',{name:'Orders · live order command',exact:true}).waitFor();
+  await page.getByRole('heading',{name:'Orders',exact:true}).waitFor();
   const response=page.waitForResponse(r=>r.url().includes('/api/commerce/transactions?') && r.status()===200,{timeout:60_000});
   await page.getByRole('link',{name:'Historical transaction evidence →',exact:true}).click();
   const payload=await (await response).json();
