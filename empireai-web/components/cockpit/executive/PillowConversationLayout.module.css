@@ -88,3 +88,28 @@
  .workspace .jump{grid-column:2;grid-row:2;align-self:center;white-space:nowrap}
  .workspace .jump button{padding-inline:8px}
 }
+
+.desktopHistory{display:contents}
+.mobileHistoryTrigger{display:none}
+.historyDialog{position:fixed;inset:auto 0 auto;top:var(--picker-top,12px);margin:0 auto;width:calc(100vw - 24px);max-width:34rem;max-height:calc(var(--picker-height,100dvh) - 24px);padding:0;border:1px solid #cadff3;border-radius:14px;background:#fcfeff;color:#294363;box-shadow:0 12px 40px #0005;overflow:hidden}
+.historyDialog[open]{display:flex;flex-direction:column}
+.historyDialog::backdrop{background:#10296666}
+.historyDialogHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;flex-shrink:0;border-bottom:1px solid #cadff3}
+.historyDialogHeader h2{font-size:16px;font-weight:600}
+.historyDialogHeader button{min-height:44px;padding:8px 12px;border:1px solid #cadff3;border-radius:8px}
+.historyOptions{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px 12px;font-size:16px}
+.historyOptions ul{list-style:none;margin:0;padding:0}
+.historyOptions li{min-width:0;border-bottom:1px solid #cadff3;padding:4px 0 8px}
+.historyOptions li>button{display:flex;flex-direction:column;width:100%;text-align:left;min-height:52px;padding:8px;gap:4px;overflow-wrap:anywhere;border-radius:8px}
+.historyOptions button[aria-current="true"]{background:#e2efff}
+.historyOptions small{font-size:12px}
+.historyOptions details{padding:0 8px;font-size:13px}
+.historyOptions summary{min-height:36px;display:list-item;align-content:center;cursor:pointer}
+.historyOptions details p{white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0}
+.historyDialog :is(button,summary):focus-visible,.mobileHistoryTrigger:focus-visible{outline:2px solid #3267b0;outline-offset:-2px}
+@media(max-width:700px){
+ .desktopHistory{display:none}
+ .mobileHistoryTrigger{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-width:0;min-height:44px;border:1px solid #cadff3;border-radius:8px;padding:6px;background:#f9fcff;color:#102966;font-size:16px}
+ .mobileHistoryTrigger>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ :global([data-chat-compact="true"]) .mobileHistoryTrigger{min-height:36px;height:36px;padding:4px}
+}

@@ -18,8 +18,8 @@
       "🔴": "Mandatory gate directly blocked; not necessarily an application defect"
     },
     "counts": {
-      "🟢": 17,
-      "🟠": 74,
+      "🟢": 16,
+      "🟠": 75,
       "🔴": 9
     },
     "reconfirmedAt": "2026-10-10T09:47:09Z",
@@ -29,13 +29,15 @@
     "continuation": "Owner-established 400x464 chat failure corrected in containing commit. Earlier accepted evidence retained within its demonstrated scope. Exact-head CI/preview and remaining live acceptance are separate gates.",
     "previous_head_metadata": "a8d58187804e19b168a98a6faba4bc379b2150f9",
     "head_role": "Verified predecessor. This file describes the short-height correction in its containing commit; resolve that candidate from PR109, not the predecessor field.",
-    "updatedAt": "2026-10-10T13:09:55.737098+00:00",
+    "updatedAt": "2026-10-10T14:03:59.740067+00:00",
     "current_source_navigation": {
       "mapped": 154,
       "total": 168,
       "unresolved": 14,
       "live_denominator": null
-    }
+    },
+    "responsibilityCorrection": "responsibility-and-release.md",
+    "currentCandidate": "Containing PR109 commit: mobile dialog and Home label corrections; exact CI and preview tracked in PR body."
   },
   "requirements": [
     {
@@ -62,7 +64,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 2,
@@ -88,7 +91,9 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified."
     },
     {
       "item": 3,
@@ -113,7 +118,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 4,
@@ -132,7 +138,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 5,
@@ -157,7 +164,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 6,
@@ -182,7 +190,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 7,
@@ -207,7 +216,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 8,
@@ -232,7 +242,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 9,
@@ -257,7 +268,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 10,
@@ -282,7 +294,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 11,
@@ -307,7 +320,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 12,
@@ -332,7 +346,9 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "responsibility_correction": "PR110 cache repair is a separate backend Assurance release. No automatic dependency on full Four Eyes recovery for frontend-only UX; retain real incident and mandatory safety controls. See responsibility-and-release.md."
     },
     {
       "item": 13,
@@ -358,7 +374,9 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "responsibility_correction": "PR110 cache repair is a separate backend Assurance release. No automatic dependency on full Four Eyes recovery for frontend-only UX; retain real incident and mandatory safety controls. See responsibility-and-release.md."
     },
     {
       "item": 14,
@@ -383,7 +401,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 15,
@@ -408,7 +427,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 16,
@@ -433,7 +453,9 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "responsibility_correction": "PR110 cache repair is a separate backend Assurance release. No automatic dependency on full Four Eyes recovery for frontend-only UX; retain real incident and mandatory safety controls. See responsibility-and-release.md."
     },
     {
       "item": 17,
@@ -458,7 +480,9 @@
           "revision": "e97840c6 and predecessors",
           "evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
         }
-      ]
+      ],
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "picker_correction": "Mobile native select replaced by bounded modal with internal scroll, concise labels/full originals, touch/keyboard selection and focus return; desktop select and original stored records retained. New candidate requires exact CI/preview."
     },
     {
       "item": 18,
@@ -477,7 +501,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 19,
@@ -496,7 +521,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 20,
@@ -522,7 +548,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 21,
@@ -549,7 +576,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 22,
@@ -576,7 +604,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 23,
@@ -603,7 +632,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 24,
@@ -630,7 +660,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 25,
@@ -657,7 +688,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 26,
@@ -684,7 +716,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 27,
@@ -711,7 +744,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 28,
@@ -738,7 +772,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 29,
@@ -765,7 +800,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 30,
@@ -792,7 +828,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 31,
@@ -819,7 +856,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 32,
@@ -846,7 +884,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 33,
@@ -873,7 +912,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 34,
@@ -900,7 +940,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 35,
@@ -927,7 +968,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 36,
@@ -952,7 +994,10 @@
           "revision": "e97840c6 and predecessors",
           "evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
         }
-      ]
+      ],
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified.",
+      "picker_correction": "Mobile native select replaced by bounded modal with internal scroll, concise labels/full originals, touch/keyboard selection and focus return; desktop select and original stored records retained. New candidate requires exact CI/preview."
     },
     {
       "item": 37,
@@ -961,7 +1006,7 @@
       "implementation_location": "/cockpit/development/pillow; element-register.json",
       "implementation_status": "COMPLETE — source preserved; desktop interaction independently observed",
       "test_evidence": "Historical19/19 retained; current20/20 PASS. 390/1440 Pillow screenshots.  SECOND OWNER VIDEO: desktop Chat rendered, independent scrolling and fixed composer; selector visible but not selected. Tables flattened and Jump to latest overlays text, corrected in df264379/a8f1f709. See owner-chat-video-20261010/review.json; 11/11 parser tests; hosted verification PASS: browser20/20, all four CI at a8f1f709; live corrected-preview acceptance pending. THIRD OWNER VIDEO19-06-23: desktop saved-exchange selection and scroll verified around15–40s; CEO Chat with Pillow entry verified48–50s, at unchanged prior0bdbe2fc preview. See owner-history-video-20261010/review.json. New chat fixes/mobile remain unverified live. FOURTH OWNER VIDEO19-17-33: current a8f1f709 preview, desktop saved-history selection and Jump to latest placement/action PASS; table not shown. See owner-corrected-chat-video-20261010/review.json. FIFTH OWNER VIDEO19-35-47: a8f1f709 saved table headings and all four rows render in columns; desktop table repair PASS. See owner-table-video-20261010/review.json.",
-      "outstanding_work": "None for this bounded history-selector/CEO-entry scope. Cross-cutting mobile and corrected-chat acceptance remains in Items42/75/91.",
+      "outstanding_work": "Verify new contained picker on current authenticated preview; earlier native desktop/saved-message evidence retained.",
       "acceptance_result": "PASS",
       "verification_breakdown": {
         "verified_pass": "Historical19/19 retained; current20/20 PASS. 390/1440 Pillow screenshots.  Owner-supplied Chat observation at0bdbe2fc: desktop internal scroll/composer/context only; source-only corrections and11 parser tests. Third owner recording verifies desktop history selection and CEO chat entry at prior0bdbe2fc. Current-preview desktop Jump to latest outside response text and return action verified. Current-preview desktop table repair verified by fifth owner recording.",
@@ -969,9 +1014,11 @@
         "externally_blocked": "None for this bounded desktop interaction scope.",
         "not_yet_tested": "Mobile and remaining site-wide nested states; both desktop chat fixes are verified."
       },
-      "owner_status": "🟢 PASS / COMPLETE",
+      "owner_status": "🟠 PENDING — new mobile picker correction; live acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "picker_correction": "Mobile native select replaced by bounded modal with internal scroll, concise labels/full originals, touch/keyboard selection and focus return; desktop select and original stored records retained. New candidate requires exact CI/preview."
     },
     {
       "item": 38,
@@ -990,7 +1037,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 39,
@@ -1009,7 +1057,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 40,
@@ -1028,7 +1077,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 41,
@@ -1053,7 +1103,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 42,
@@ -1078,7 +1129,10 @@
           "revision": "e97840c6 and predecessors",
           "evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
         }
-      ]
+      ],
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified.",
+      "picker_correction": "Mobile native select replaced by bounded modal with internal scroll, concise labels/full originals, touch/keyboard selection and focus return; desktop select and original stored records retained. New candidate requires exact CI/preview."
     },
     {
       "item": 43,
@@ -1097,7 +1151,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 44,
@@ -1122,7 +1177,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 45,
@@ -1141,7 +1197,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 46,
@@ -1160,7 +1217,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 47,
@@ -1185,7 +1243,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 48,
@@ -1204,7 +1263,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 49,
@@ -1223,7 +1283,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 50,
@@ -1242,7 +1303,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 51,
@@ -1267,7 +1329,8 @@
         ],
         "scope": "Observed desktop states only; not mobile or complete nested-state coverage"
       },
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 52,
@@ -1286,7 +1349,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 53,
@@ -1305,7 +1369,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 54,
@@ -1324,7 +1389,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 55,
@@ -1343,7 +1409,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 56,
@@ -1362,7 +1429,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 57,
@@ -1381,7 +1449,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 58,
@@ -1400,7 +1469,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 59,
@@ -1419,7 +1489,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 60,
@@ -1438,7 +1509,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 61,
@@ -1457,7 +1529,9 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified."
     },
     {
       "item": 62,
@@ -1476,7 +1550,8 @@
       },
       "owner_status": "🔴 BLOCKED",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 63,
@@ -1495,7 +1570,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 64,
@@ -1514,7 +1590,8 @@
       },
       "owner_status": "🔴 BLOCKED",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 65,
@@ -1533,7 +1610,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 66,
@@ -1552,7 +1630,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 67,
@@ -1571,7 +1650,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 68,
@@ -1590,7 +1670,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 69,
@@ -1609,7 +1690,8 @@
       },
       "owner_status": "🔴 BLOCKED",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 70,
@@ -1628,7 +1710,8 @@
       },
       "owner_status": "🔴 BLOCKED",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 71,
@@ -1647,7 +1730,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 72,
@@ -1666,7 +1750,9 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified."
     },
     {
       "item": 73,
@@ -1685,7 +1771,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 74,
@@ -1704,7 +1791,8 @@
       },
       "owner_status": "🔴 BLOCKED",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 75,
@@ -1729,7 +1817,9 @@
           "revision": "e97840c6 and predecessors",
           "evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
         }
-      ]
+      ],
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "picker_correction": "Mobile native select replaced by bounded modal with internal scroll, concise labels/full originals, touch/keyboard selection and focus return; desktop select and original stored records retained. New candidate requires exact CI/preview."
     },
     {
       "item": 76,
@@ -1748,7 +1838,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 77,
@@ -1767,7 +1858,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 78,
@@ -1786,7 +1878,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 79,
@@ -1805,7 +1898,9 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "responsibility_correction": "PR110 cache repair is a separate backend Assurance release. No automatic dependency on full Four Eyes recovery for frontend-only UX; retain real incident and mandatory safety controls. See responsibility-and-release.md."
     },
     {
       "item": 80,
@@ -1824,7 +1919,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 81,
@@ -1843,7 +1939,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 82,
@@ -1862,7 +1959,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 83,
@@ -1881,7 +1979,9 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "responsibility_correction": "PR110 cache repair is a separate backend Assurance release. No automatic dependency on full Four Eyes recovery for frontend-only UX; retain real incident and mandatory safety controls. See responsibility-and-release.md."
     },
     {
       "item": 84,
@@ -1900,7 +2000,8 @@
       },
       "owner_status": "🔴 BLOCKED",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 85,
@@ -1919,7 +2020,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 86,
@@ -1938,7 +2040,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 87,
@@ -1957,7 +2060,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 88,
@@ -1976,7 +2080,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 89,
@@ -1995,7 +2100,9 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified."
     },
     {
       "item": 90,
@@ -2014,7 +2121,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 91,
@@ -2039,7 +2147,10 @@
           "revision": "e97840c6 and predecessors",
           "evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
         }
-      ]
+      ],
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
+      "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified.",
+      "picker_correction": "Mobile native select replaced by bounded modal with internal scroll, concise labels/full originals, touch/keyboard selection and focus return; desktop select and original stored records retained. New candidate requires exact CI/preview."
     },
     {
       "item": 92,
@@ -2058,7 +2169,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 93,
@@ -2077,7 +2189,8 @@
       },
       "owner_status": "🟠 PENDING — implemented/scoped proof; full acceptance outstanding",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 94,
@@ -2096,7 +2209,8 @@
       },
       "owner_status": "🔴 BLOCKED",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 95,
@@ -2115,7 +2229,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 96,
@@ -2134,7 +2249,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 97,
@@ -2153,7 +2269,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 98,
@@ -2172,7 +2289,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred. Prior authenticated Home observed, subsequent browser observation blocked by credential_observation_restricted even after permitted recovery. No repeat credential entry or bypass performed.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 99,
@@ -2191,7 +2309,8 @@
       },
       "owner_status": "🟢 PASS / COMPLETE",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     },
     {
       "item": 100,
@@ -2210,7 +2329,8 @@
       },
       "owner_status": "🔴 BLOCKED",
       "current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
-      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding."
+      "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
+      "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase"
     }
   ]
 }

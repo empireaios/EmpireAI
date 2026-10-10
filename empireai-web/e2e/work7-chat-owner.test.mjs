@@ -9,8 +9,8 @@ assert.ok(['127.0.0.1','localhost'].includes(new URL(base).hostname));
 test('Pillow saved exchange selector, internal scroll, composer and parent context at desktop/mobile',async()=>{
  const browser=await chromium.launch();
  try{for(const [width,height] of [[400,464],[360,560],[360,740],[390,844],[1440,900]]){
-  const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce'});
-  const requests=await installGeometryFixture(context,base);const page=await context.newPage();
+  const context=await browser.newContext({viewport:{width,height},hasTouch:width<=700,reducedMotion:'reduce'});
+  const requests=await installGeometryFixture(context,base,Array.from({length:48},(_,i)=>({role:i%2?'assistant':'user',content:i===0?'curl /api/historical-command '+('original_argument_'.repeat(40)):`Saved fixture ${i}: ${'A long original title with preserved detail. '.repeat(6)}`,timestamp:new Date(Date.UTC(2026,0,1,0,i)).toISOString(),requestId:`picker-${i}`})));const page=await context.newPage();
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/cockpit/development/pillow');
   const history=page.getByTestId('pillow-message-history');
@@ -25,9 +25,29 @@ test('Pillow saved exchange selector, internal scroll, composer and parent conte
    assert.equal(await page.getByText('NOT_BORN · Commerce locked',{exact:true}).last().isVisible(),true);
    await status.click();
   }
-  const selector=page.getByLabel('Conversation history',{exact:true});
-  assert.equal(await selector.locator('option').count(),2);
-  await selector.selectOption({index:1});
+  if(width<=700){
+   const trigger=page.getByRole('button',{name:'Conversation history',exact:true});
+   const before=await history.boundingBox();await trigger.tap();
+   const picker=page.getByRole('dialog',{name:'Conversation history',exact:true});await picker.waitFor();assert.equal((await history.boundingBox()).height,before.height,'Modal must not consume layout space');
+   const box=await picker.boundingBox();assert.ok(box.x>=0&&box.x+box.width<=width&&box.y>=0&&box.y+box.height<=height,JSON.stringify(box));
+   const options=page.getByTestId('conversation-picker-options');assert.equal(await options.locator('li>button').count(),25);
+   await options.locator('summary').first().click();assert.match(await options.locator('details').first().innerText(),/original_argument_.*original_argument_/);
+   assert.equal(await options.evaluate(el=>el.scrollWidth<=el.clientWidth+1),true);await options.locator('summary').first().click();
+   if(process.env.WORK7_SCREENSHOTS){await mkdir(process.env.WORK7_SCREENSHOTS,{recursive:true});await page.screenshot({path:`${process.env.WORK7_SCREENSHOTS}/Pillow_picker_OPEN_${width}x${height}.png`});}
+   await options.evaluate(el=>{el.scrollTop=el.scrollHeight;});assert.ok(await options.evaluate(el=>el.scrollTop>0));
+   await picker.getByRole('button',{name:'Close',exact:true}).focus();await page.keyboard.press('Shift+Tab');assert.equal(await picker.evaluate(el=>el.contains(document.activeElement)),true);
+   await page.keyboard.press('Escape');await picker.waitFor({state:'hidden'});assert.equal(await trigger.evaluate(el=>el===document.activeElement),true);
+   await trigger.press('Enter');const oldest=options.locator('li>button').first();const oldestId=await oldest.getAttribute('data-exchange-id');
+   await oldest.press('Enter');await picker.waitFor({state:'hidden'});
+   const selected=history.locator(`[data-history-id="${oldestId}"]`);await selected.waitFor();assert.match(await selected.innerText(),/original_argument_/);
+   const selectedBox=await selected.boundingBox(),pane=await history.boundingBox();assert.ok(Math.abs(selectedBox.y-pane.y)<3,JSON.stringify({selectedBox,pane}));
+   assert.equal(await trigger.evaluate(el=>el===document.activeElement),true);
+   await trigger.tap();const original=options.locator('li>button').filter({hasText:'Local layout fixture: show the review steps.'});await original.scrollIntoViewIfNeeded();await original.tap();await picker.waitFor({state:'hidden'});
+   const pickedHeight=(await history.boundingBox()).height;await trigger.click();await picker.getByRole('button',{name:'Close',exact:true}).click();assert.equal((await history.boundingBox()).height,pickedHeight,'Opening and closing must not resize the conversation');
+
+  }else{
+   const selector=page.getByRole('combobox',{name:'Conversation history',exact:true});assert.equal(await selector.locator('option').count(),26);await selector.selectOption({index:25});
+  }
   await history.getByText('Local layout fixture: show the review steps.',{exact:true}).waitFor();
   const jump=page.getByRole('button',{name:'Jump to latest',exact:true});
   await jump.waitFor();
@@ -97,6 +117,8 @@ test('Pillow saved exchange selector, internal scroll, composer and parent conte
    assert.ok(keyboard.composer.bottom<=300,JSON.stringify(keyboard));
    assert.equal(keyboard.font,'16px');
    console.log('Keyboard reading space',width,height,await readableLines(3));
+   await page.getByRole('button',{name:'Conversation history',exact:true}).click();const keyboardPicker=page.getByRole('dialog',{name:'Conversation history',exact:true});const keyboardBox=await keyboardPicker.boundingBox();assert.ok(keyboardBox.y>=0&&keyboardBox.y+keyboardBox.height<=300,JSON.stringify(keyboardBox));await keyboardPicker.getByRole('button',{name:'Close',exact:true}).click();assert.equal(await page.getByTestId('pillow-composer').evaluate(el=>el===document.activeElement),false);
+
    if(process.env.WORK7_SCREENSHOTS)await page.screenshot({path:`${process.env.WORK7_SCREENSHOTS}/Pillow_keyboard_LOOPBACK_FIXTURE_${width}x${height}.png`});
    await page.evaluate(()=>{delete window.visualViewport.height;window.visualViewport.dispatchEvent(new Event('resize'));});
    await page.waitForFunction(()=>document.querySelector('[data-chat-keyboard="false"]'));

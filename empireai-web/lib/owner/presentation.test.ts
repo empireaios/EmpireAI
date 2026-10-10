@@ -10,6 +10,7 @@ test('Transcript-length titles remain bounded excerpts without inventing or chan
   assert.ok(headline.endsWith('…'));
   assert.equal(source.title.length > 4000, true);
   assert.equal(recommendationHeadline('Review supplier evidence'), 'Review supplier evidence');
+  assert.equal(recommendationHeadline('**Do not purchase**: evidence remains unverified.'), 'Do not purchase: evidence remains unverified.');
 });
 
 test('Missing metric displays do not invent zero or suppress financial exceptions', () => {

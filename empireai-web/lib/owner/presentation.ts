@@ -10,7 +10,7 @@ export function ownerMetric(value: string): string {
 
 /** A bounded excerpt, not generated advice. Full source text stays in the detail view. */
 export function recommendationHeadline(value: string): string {
-  const text = value.replace(/\s+/g, ' ').trim();
+  const text = value.replace(/\*\*|__|`/g, '').replace(/\s+/g, ' ').trim();
   if (text.length <= 160) return text;
   const excerpt = text.slice(0, 159);
   const boundary = excerpt.lastIndexOf(' ');

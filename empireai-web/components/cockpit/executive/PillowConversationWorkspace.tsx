@@ -13,6 +13,7 @@ import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPan
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
 import { scrubMachineLanguage } from "@/lib/cockpit/executive/executive-presentation";
+import { MobileConversationPicker } from "./MobileConversationPicker";
 import { PillowVerificationStatus } from "./PillowVerificationStatus";
 
 const PAGE_SIZE = 40;
@@ -58,6 +59,21 @@ export function PillowConversationWorkspace({
     executiveSnapshot,
   } = useGlobalAiAssistant();
 
+  const selectHistory = (id: string) => {
+    followLatest.current = false;
+    setWindowSize(conversation.length);
+    setHistorySelection(id);
+    // Selecting the same exchange again must also restore its scroll position.
+    requestAnimationFrame(() => {
+      const pane = historyRef.current;
+      const turn = pane?.querySelector(`[data-history-id="${CSS.escape(id)}"]`);
+      if (pane && turn instanceof HTMLElement) {
+        pane.scrollTop += turn.getBoundingClientRect().top - pane.getBoundingClientRect().top;
+        followLatest.current = false;
+        setShowLatest(true);
+      }
+    });
+  };
   const canSend = !loading && Boolean(queryDraft.trim());
   useLayoutEffect(() => {
     if (!historySelection) return;
@@ -189,18 +205,17 @@ export function PillowConversationWorkspace({
       </details>
 
       </header>
-      <label className={layout.historyPicker}><span>Conversation history</span>
-        <select aria-label="Conversation history" value={historySelection} onChange={event => {
-          followLatest.current = false;
-          setWindowSize(conversation.length);
-          setHistorySelection(event.target.value);
-        }}>
+      <div className={layout.historyPicker}><label className={layout.desktopHistory}><span>Conversation history</span>
+        <select aria-label="Conversation history" value={historySelection} onChange={event => selectHistory(event.target.value)}>
           <option value="">Choose a saved exchange</option>
           {conversation.filter(turn => turn.role === "grand-king").map(turn => <option key={turn.id} value={turn.id}>
             {new Date(turn.recordedAt).toLocaleDateString('en-SG')} · {turn.content.slice(0,100)}
           </option>)}
         </select>
       </label>
+        <MobileConversationPicker exchanges={conversation.filter(turn => turn.role === "grand-king")}
+          selected={historySelection} onSelect={selectHistory} />
+      </div>
       <div
         ref={historyRef}
         data-testid="pillow-message-history"
