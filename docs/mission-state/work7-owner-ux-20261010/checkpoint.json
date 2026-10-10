@@ -1,0 +1,27 @@
+{
+  "status": "IN_PROGRESS_NOT_RELEASED",
+  "base_frontend": "41c02e0f67702d857dede6412adf814bce3db8e8",
+  "backend_unchanged": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+  "branch": "work7/owner-ux-correction-live-20261010",
+  "verified": [
+    "frontend typecheck",
+    "frontend production build",
+    "targeted lint: 0 errors; existing image warning",
+    "presentation invariants: 3 passed"
+  ],
+  "pending": [
+    "full element/state review",
+    "desktop/mobile rendered visual verification",
+    "all mandatory CI and independent assurance",
+    "fenced release",
+    "production preservation receipts",
+    "actual mission closure"
+  ],
+  "prohibited": [
+    "paid inference",
+    "commerce",
+    "birth/unlock",
+    "Work8/9"
+  ],
+  "previous_completed_missions_unchanged": true
+}

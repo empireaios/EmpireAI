@@ -14,3 +14,7 @@
   .workspace footer > p { display: inline-block; margin-block: 6px 0; }
   .workspace footer > label { display: inline-flex; margin: 6px 0 0 16px; }
 }
+
+.historyPicker{display:flex;align-items:center;gap:10px;padding:8px 20px;flex-shrink:0;font-size:12px;flex-wrap:wrap}
+.historyPicker select{min-width:0;max-width:100%;flex:1;min-height:36px;border:1px solid #cadff3;border-radius:8px;padding:6px;background:#f9fcff;color:#102966}
+.workspace{height:100%;min-height:0}

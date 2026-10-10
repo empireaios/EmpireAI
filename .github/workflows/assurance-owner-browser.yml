@@ -26,6 +26,8 @@ jobs:
         working-directory: empireai-web
         run: npm run build
       - name: Verify mobile and desktop contracts on loopback fixtures
+        env:
+          WORK7_SCREENSHOTS: ${{ runner.temp }}/work7-owner-screenshots
         working-directory: empireai-web
         shell: bash
         run: |
@@ -37,10 +39,17 @@ jobs:
             if curl --silent --fail http://127.0.0.1:3123/login > /dev/null; then break; fi
             sleep 1
           done
-          node --test e2e/assurance-owner.test.mjs e2e/finance-owner.test.mjs e2e/governed-commerce-owner.test.mjs e2e/work7-owner.test.mjs
+          node --test e2e/assurance-owner.test.mjs e2e/finance-owner.test.mjs e2e/governed-commerce-owner.test.mjs e2e/work7-owner.test.mjs e2e/work7-chat-owner.test.mjs
       - name: Preserve browser server diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: assurance-owner-browser-server
           path: ${{ runner.temp }}/assurance-ui-server.log
+
+      - name: Preserve Work 7 rendered fixture evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work7-owner-rendered-fixtures
+          path: ${{ runner.temp }}/work7-owner-screenshots

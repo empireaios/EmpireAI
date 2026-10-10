@@ -42,6 +42,7 @@ export function PillowConversationWorkspace({
   const earlierAnchor = useRef<{ height: number; top: number } | null>(null);
   const [showLatest, setShowLatest] = useState(false);
   const [windowSize, setWindowSize] = useState(PAGE_SIZE);
+  const [historySelection, setHistorySelection] = useState("");
   const {
     loading,
     conversation,
@@ -58,6 +59,16 @@ export function PillowConversationWorkspace({
   } = useGlobalAiAssistant();
 
   const canSend = !loading && Boolean(queryDraft.trim());
+  useLayoutEffect(() => {
+    if (!historySelection) return;
+    const pane = historyRef.current;
+    const selected = pane?.querySelector(`[data-history-id="${CSS.escape(historySelection)}"]`);
+    if (pane && selected instanceof HTMLElement) {
+      pane.scrollTop += selected.getBoundingClientRect().top - pane.getBoundingClientRect().top;
+      followLatest.current = false;
+      setShowLatest(true);
+    }
+  }, [historySelection, windowSize]);
   const voice = usePillowVoice((transcript) => {
     void ask(transcript);
   });
@@ -177,8 +188,18 @@ export function PillowConversationWorkspace({
       </details>
 
       </header>
-
-
+      <label className={layout.historyPicker}>Conversation history
+        <select aria-label="Conversation history" value={historySelection} onChange={event => {
+          followLatest.current = false;
+          setWindowSize(conversation.length);
+          setHistorySelection(event.target.value);
+        }}>
+          <option value="">Choose a saved exchange</option>
+          {conversation.filter(turn => turn.role === "grand-king").map(turn => <option key={turn.id} value={turn.id}>
+            {new Date(turn.recordedAt).toLocaleDateString('en-SG')} · {turn.content.slice(0,100)}
+          </option>)}
+        </select>
+      </label>
       <div
         ref={historyRef}
         data-testid="pillow-message-history"
@@ -228,6 +249,7 @@ export function PillowConversationWorkspace({
             const mine = turn.role !== "pillow";
             return (
               <li
+                data-history-id={turn.id}
                 key={turn.id}
                 className={`flex ${mine ? "justify-end" : "justify-start"}`}
               >
