@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {createRequire} from 'node:module';
+import {build} from 'esbuild';
+import {createElement} from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+const require=createRequire(import.meta.url);
+const compiled=await build({entryPoints:[new URL('../../components/owner/work7/ObservedCandidates.tsx',import.meta.url).pathname],bundle:true,write:false,platform:'node',format:'cjs',jsx:'automatic',external:['react','react/jsx-runtime'],plugins:[{name:'css-for-ssr',setup(builder){builder.onLoad({filter:/\.css$/},()=>({contents:'export default {}',loader:'js'}));}}]});
+const module={exports:{}};
+new Function('require','module','exports',compiled.outputFiles[0].text)(require,module,module.exports);
+const {ObservedCandidates}=module.exports;
+const projection=JSON.parse(await fs.readFile(new URL('./retained-source-projection.json',import.meta.url),'utf8'));
+function render(value){return renderToStaticMarkup(createElement(ObservedCandidates,{value}));}
+test('authentic retained product cohort renders real names, source uncertainty and simulated dimension',()=>{const html=render({...projection,availability:'RETAINED_SOURCE_READ'});assert.match(html,/Accordion File Folder/);assert.match(html,/Lap Desk For Laptops/);assert.match(html,/currency unknown/);assert.match(html,/Deferred for evidence/);assert.match(html,/Downstream commerce: simulation only/);assert.match(html,/separate from the portfolio records and filters below/);assert.equal((html.match(/<tr>/g)??[]).length,11);});
+test('no observed image is rendered or preloaded without verified usage rights',()=>{const html=render(projection);assert.doesNotMatch(html,/<img\b|rel="preload"|<iframe\b/);assert.match(html,/Images withheld/);assert.match(html,/Image usage rights verified: 0 \/ 19/);});
+test('source IDs and raw data remain exclusively in closed evidence dialogs',()=>{const html=render(projection);const normal=html.replace(/<dialog\b[\s\S]*?<\/dialog>/g,'');assert.doesNotMatch(normal,/ev_73b424|1f47081865a103e9|CJ:261010/);assert.match(html,/Inspect original source details/);assert.match(html,/No completed Pillow assessment/);});
+test('unavailable or absent source remains truthful; untrusted source markup is escaped',()=>{assert.equal(render(undefined),'');assert.match(render({availability:'SOURCE_READ_UNAVAILABLE',products:[]}),/observations are unavailable/);const html=render({...projection,products:[{...projection.products[0],title:'<script>fake()</script>'}]});assert.doesNotMatch(html,/<script>/);assert.match(html,/&lt;script&gt;/);});
+test('actual matched variant prices have scoped documented currency without selecting a product variant',()=>{const html=render(projection);assert.match(html,/10 observed variant prices · USD/);assert.match(html,/2.48 USD/);assert.match(html,/No variant is selected or approved/);});
+test('retained discovery progress distinguishes shortfall from new supplier discovery',()=>{const html=renderToStaticMarkup(createElement(ObservedCandidates,{value:projection,discovery:{availability:'RETAINED_SCAN_ONLY',checkpoint:{day:'2026-10-11',newCandidates:10,target:100,shortfall:90,status:'SOURCE_EXHAUSTED'}}}));assert.match(html,/10 newly catalogued parent products \/ 100 daily target · shortfall 90/);assert.match(html,/retained observations, not new supplier requests/);assert.match(html,/saved snapshot is exhausted/);const missing=renderToStaticMarkup(createElement(ObservedCandidates,{value:projection,discovery:{availability:'CHECKPOINT_UNAVAILABLE',checkpoint:null}}));assert.match(missing,/no progress is inferred/);assert.doesNotMatch(missing,/shortfall 0/);});
