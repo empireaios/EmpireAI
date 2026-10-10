@@ -27,10 +27,10 @@ test('Pillow saved exchange selector, internal scroll, composer and parent conte
   assert.ok(geometry.documentWidth<=width+1,JSON.stringify(geometry));
   assert.ok(geometry.documentHeight<=geometry.height+2,JSON.stringify(geometry));
   assert.ok(geometry.history.height>=180,JSON.stringify(geometry));
-  assert.equal(geometry.historyOverflow,'auto');
+  assert.equal(geometry.historyOverflow,'auto');assert.ok(geometry.history.right<=width,JSON.stringify(geometry));
   assert.ok(geometry.composer.bottom<=geometry.height-(width===390?54:0),JSON.stringify(geometry));
   assert.match(await page.getByRole('navigation',{name:'Breadcrumb',exact:true}).innerText(),/Pillow[\s\S]*Chat/);
-  assert.equal(await page.getByRole('navigation',{name:'Owner navigation',exact:true}).getByRole('link',{name:'Pillow (CEO)',exact:true}).getAttribute('aria-current'),'page');
+  assert.equal(await page.getByRole('navigation',{name:width===390?'Mobile quick navigation':'Owner navigation',exact:true}).getByRole('link',{name:width===390?'CEO':'Pillow (CEO)',exact:true}).getAttribute('aria-current'),'page');
   await history.focus();await page.keyboard.press('End');
   await page.getByTestId('pillow-composer').fill('Unsent local draft');
   assert.equal(await page.getByTestId('pillow-composer').inputValue(),'Unsent local draft');

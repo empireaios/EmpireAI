@@ -60,6 +60,8 @@ test('Owner UX: operations and governance preserve destinations and active paren
  await p.getByRole('navigation',{name:'Assurance and governance',exact:true}).getByRole('link',{name:'Operational monitoring guard →',exact:true}).click();
  await p.waitForURL('**/cockpit/assurance#safety-12');await p.getByTestId('safety-guard').nth(14).waitFor();
  assert.match(await p.getByRole('navigation',{name:'Breadcrumb',exact:true}).innerText(),/Assurance[\s\S]*Governance/);
- assert.equal(await p.getByRole('navigation',{name:'Owner navigation',exact:true}).getByRole('link',{name:'Assurance',exact:true}).getAttribute('aria-current'),'page');
+ if(width===390)await p.getByRole('button',{name:'Open owner menu',exact:true}).click();
+ assert.equal(await p.getByRole('navigation',{name:width===390?'Cockpit mobile menu':'Owner navigation',exact:true}).getByRole('link',{name:'Assurance',exact:true}).getAttribute('aria-current'),'page');
+ if(width===390)await p.getByRole('button',{name:'Close owner menu',exact:true}).click();
  await capture(p,width,'owner-ux-governance-destination');
 }));

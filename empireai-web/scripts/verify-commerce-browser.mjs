@@ -48,7 +48,7 @@ try {
   await page.screenshot({path:resolve(output,'phone-home.png'),fullPage:true});
   await page.getByRole('button',{name:'Open owner menu',exact:true}).click();
   await page.getByRole('navigation',{name:'Cockpit mobile menu'}).getByRole('link',{name:'Products',exact:true}).click();
-  await page.getByRole('heading',{name:'Products · CJ → Amazon US',exact:true}).waitFor();
+  await page.getByRole('heading',{name:'Products',exact:true}).waitFor();
   const overview=page.waitForResponse(r=>r.url().includes('/api/owner/overview') && r.status()===200,{timeout:60_000});
   await page.getByRole('link',{name:'Historical provider reviews →',exact:true}).click();
   const saved=await (await overview).json();
