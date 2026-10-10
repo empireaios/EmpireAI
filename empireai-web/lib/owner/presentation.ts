@@ -8,6 +8,15 @@ export function ownerMetric(value: string): string {
   return absentLabels.has(value) ? '—' : value;
 }
 
+/** A bounded excerpt, not generated advice. Full source text stays in the detail view. */
+export function recommendationHeadline(value: string): string {
+  const text = value.replace(/\s+/g, ' ').trim();
+  if (text.length <= 160) return text;
+  const excerpt = text.slice(0, 159);
+  const boundary = excerpt.lastIndexOf(' ');
+  return excerpt.slice(0, boundary > 80 ? boundary : 159).trimEnd() + '…';
+}
+
 /** Home shows the current decision queue; originals remain in decision history.
  * Never suppress an actionable record by historical ID or title. */
 export function homeRecommendationVisible(record: Record<string, unknown>): boolean {

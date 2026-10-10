@@ -54,6 +54,22 @@ test('Home approved composition: proportional desktop bands, full family mobile 
 }));
 
 // Presentation-only navigation: authority paths and guard destinations remain unchanged.
+test('Long saved recommendation titles use readable excerpts and retain full original detail',()=>both(async({page:p,state,writes},width)=>{
+ const title='Do not purchase: supplier identity remains unverified. '+ 'Retained source evidence detail. '.repeat(150);
+ state.proactiveRecords=[{...executiveRecord,title}];
+ await p.goto(base+'/cockpit/ceo#recommendations');
+ const card=p.locator('#memory-fixture');
+ await card.getByRole('heading',{level:3}).waitFor();
+ const headline=await card.getByRole('heading',{level:3}).innerText();
+ assert.ok(headline.length<=160);
+ assert.ok(headline.startsWith('Do not purchase: supplier identity remains unverified.'));
+ assert.ok(headline.endsWith('…'));
+ await card.getByText('Record identity and history',{exact:true}).click();
+ assert.equal(await card.getByText(title,{exact:true}).isVisible(),true);
+ assert.equal(await card.getByRole('button',{name:'Approve recommendation',exact:true}).isDisabled(),true);
+ assert.equal(writes.length,0);
+ await capture(p,width,'owner-ux-long-recommendation-preserved');
+}));
 test('Owner UX: operations and governance preserve destinations and active parent',()=>both(async({page:p},width)=>{
  await p.goto(base+'/cockpit/ceo');await p.getByRole('heading',{name:'Pillow operations',exact:true}).waitFor();
  assert.equal(await p.getByRole('link',{name:'Chat with Pillow →',exact:true}).getAttribute('href'),'/cockpit/development/pillow');
@@ -64,4 +80,10 @@ test('Owner UX: operations and governance preserve destinations and active paren
  assert.equal(await p.getByRole('navigation',{name:width===390?'Cockpit mobile menu':'Owner navigation',exact:true}).getByRole('link',{name:'Assurance',exact:true}).getAttribute('aria-current'),'page');
  if(width===390)await p.getByRole('button',{name:'Close owner menu',exact:true}).click();
  await capture(p,width,'owner-ux-governance-destination');
+ await p.getByTestId('safety-guard').nth(0).locator('summary').first().click();
+ await p.getByTestId('safety-guard').nth(0).getByRole('link',{name:'Inspect governed evidence →',exact:true}).click();
+ await p.waitForURL('**/cockpit/commerce/governed');
+ assert.match(await p.getByRole('navigation',{name:'Breadcrumb',exact:true}).innerText(),/Products/);
+ assert.equal(await p.getByRole('navigation',{name:width===390?'Mobile quick navigation':'Owner navigation',exact:true}).getByRole('link',{name:'Products',exact:true}).getAttribute('aria-current'),'page');
+ await capture(p,width,'owner-ux-governed-product-context');
 }));

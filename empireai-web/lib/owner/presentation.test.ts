@@ -1,6 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {ownerMetric, homeRecommendationVisible, ownerNavigationParent} from './presentation';
+import {ownerMetric, homeRecommendationVisible, ownerNavigationParent, recommendationHeadline} from './presentation';
+
+test('Transcript-length titles remain bounded excerpts without inventing or changing source advice', () => {
+  const source = Object.freeze({title: 'Do not purchase: supplier identity remains unverified. ' + 'Retained evidence detail. '.repeat(200)});
+  const headline = recommendationHeadline(source.title);
+  assert.ok(headline.length <= 160);
+  assert.ok(headline.startsWith('Do not purchase: supplier identity remains unverified.'));
+  assert.ok(headline.endsWith('…'));
+  assert.equal(source.title.length > 4000, true);
+  assert.equal(recommendationHeadline('Review supplier evidence'), 'Review supplier evidence');
+});
 
 test('Missing metric displays do not invent zero or suppress financial exceptions', () => {
   assert.equal(ownerMetric('Not measured'), '—');
