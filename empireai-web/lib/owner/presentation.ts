@@ -16,6 +16,9 @@ export function homeRecommendationVisible(record: Record<string, unknown>): bool
 }
 
 export function ownerNavigationParent(path: string): string {
+  // The existing product evidence drill-down is shared with Approvals and System.
+  // Keep its canonical product context without changing any destination or authority.
+  if (path === '/cockpit/commerce/governed') return '/cockpit/products';
   if (path === '/cockpit/governance' || path.startsWith('/cockpit/governance/') || path === '/cockpit/workforce/audit') return '/cockpit/assurance';
   if (path === '/cockpit/operations/authorizations' || path === '/cockpit/development/approvals') return '/cockpit/approvals';
   if (path === '/cockpit/operations/orders' || path === '/cockpit/operations/fulfillment' || path === '/cockpit/operations/support' || path === '/cockpit/commerce/transactions') return '/cockpit/orders';
