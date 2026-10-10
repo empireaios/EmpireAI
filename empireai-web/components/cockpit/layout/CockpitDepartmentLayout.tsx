@@ -28,18 +28,19 @@ export function CockpitDepartmentLayout({
 
   if (pathname === "/cockpit/commerce/transactions") return <>{children}</>;
 
-  return (
-    <div className={`mx-auto flex max-w-7xl flex-col gap-6 ${pillowPage ? "lg:h-full lg:min-h-0 lg:gap-0" : ""}`}>
-      <div className={pathname === "/cockpit/development/pillow" ? "space-y-6 lg:hidden" : "space-y-6"}>
-      <CockpitPageHeader
-        eyebrow="Department"
-        title={department?.label ?? departmentNavId}
-        dataMode={dataMode}
-      />
+  const header = <>
+      <CockpitPageHeader eyebrow="Department" title={department?.label ?? departmentNavId} dataMode={dataMode}/>
       <p className="text-sm text-[#8a847a]">{description}</p>
-      <CockpitDepartmentTabs tabs={tabs} />
-      </div>
-      <div className={pillowPage ? "lg:min-h-0 lg:flex-1" : undefined}>{children}</div>
+      <CockpitDepartmentTabs tabs={tabs}/>
+    </>;
+
+  return (
+    <div className={`mx-auto flex max-w-7xl flex-col gap-6 ${pillowPage ? "h-full min-h-0 w-full gap-0" : ""}`}>
+      {pillowPage ? <details className="relative shrink-0 lg:hidden">
+        <summary className="cursor-pointer py-2 text-xs">Development navigation</summary>
+        <div className="absolute inset-x-0 top-full z-50 max-h-[50dvh] space-y-4 overflow-y-auto rounded-xl border border-gold/20 bg-[#09151c] p-4">{header}</div>
+      </details> : <div className="space-y-6">{header}</div>}
+      <div className={pillowPage ? "flex min-h-0 flex-1 flex-col" : undefined}>{children}</div>
     </div>
   );
 }

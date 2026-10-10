@@ -87,3 +87,5 @@
 .pillowCard:focus-visible{outline:3px solid #0868d8;outline-offset:3px}
 .pancakeCaptionCover{position:absolute;left:52.0%;top:90.3%;width:3.5%;height:4.8%;background:#f9fcff;border-radius:3px}
 @media(max-width:700px){.pillowCard{left:8.05%;width:13.77%}.pancakeCaptionCover{left:65.7%;width:6.75%}}
+
+@media(max-width:700px){.pillowCard{min-height:44px}}

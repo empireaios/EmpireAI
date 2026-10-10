@@ -40,7 +40,7 @@
 .chatShell .topbar,.chatShell .footer{flex-shrink:0}
 .chatShell .main{flex:1;min-height:0;width:100%;display:flex;flex-direction:column;padding-bottom:10px}
 .chatShell .main>[data-legacy-workspace]{flex:1;min-height:0;display:flex;flex-direction:column}
-.chatShell [data-legacy-workspace]>div{flex:1;min-height:0;display:flex;flex-direction:column}
+.chatShell [data-legacy-workspace]>div{width:100%;flex:1;min-height:0;display:flex;flex-direction:column}
 .chatShell .breadcrumb{flex-shrink:0;margin-bottom:6px}
 .chatShell .footer{padding-block:6px}
 @media(max-width:700px){.chatShell .workspace{padding-bottom:calc(60px + env(safe-area-inset-bottom))}.chatShell .main{padding-top:5px}.chatShell .footer{padding-bottom:6px}}

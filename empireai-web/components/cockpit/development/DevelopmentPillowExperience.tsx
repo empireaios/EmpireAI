@@ -154,8 +154,8 @@ export function DevelopmentPillowExperience() {
   const conversationMode = activeTab === "chat";
 
   return (
-    <div className="space-y-4 lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:space-y-0">
-      <div className="lg:hidden">
+    <div data-pillow-conversation-mode={conversationMode} className={conversationMode ? "flex h-full min-h-0 flex-col gap-2" : "h-full min-h-0 overflow-y-auto space-y-4"}>
+      <div className="hidden">
       <PlatformPageHeader
         eyebrow="Pillow Centre"
         title="Talk with Pillow"
@@ -168,9 +168,9 @@ export function DevelopmentPillowExperience() {
         <PillowConversationWorkspace title="Pillow" autoFocus />
       ) : null}
 
-      <details className={`rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3 ${conversationMode ? "lg:hidden" : ""}`}>
+      <details className={`relative shrink-0 rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3 ${conversationMode ? "max-h-[35dvh] overflow-y-auto lg:hidden" : ""}`}>
         <summary className="cursor-pointer text-xs text-[#8a847a]">
-          Engineering / development panels (not required for Grand King conversation)
+          Development panels
         </summary>
         <div className="mt-3 flex flex-wrap gap-2 border-b border-gold/10 pb-4">
           {TABS.filter((t) => t.id !== "conversation").map((tab) => (

@@ -23,5 +23,20 @@
     "birth/unlock",
     "Work8/9"
   ],
-  "previous_completed_missions_unchanged": true
+  "previous_completed_missions_unchanged": true,
+  "first_head": "17742d3509184f45ab9051f50cc6db4c5c5000c6",
+  "pr": 109,
+  "browser_gate": {
+    "run": 38034125310,
+    "passed": 17,
+    "failed": 2,
+    "failures": [
+      "mobile composer outside viewport: fixed parent flex containment and retained mobile department navigation in disclosure",
+      "breadcrumb newline-aware assertion correction"
+    ],
+    "artifact_id": 11662679600,
+    "artifact_sha256": "44b7f198bd2310b9adeb18d361e6ca36e390a37b5e28270f1f389ad4a2d68315"
+  },
+  "preview": "dpl_G6nB1RAD7uk99Y39j1WQ7dv36mST",
+  "preview_auth": "Separate preview hostname requires owner sign-in; production session remains authenticated"
 }
