@@ -37,6 +37,9 @@ test('Pillow saved exchange selector, internal scroll, composer and parent conte
   await page.getByTestId('pillow-composer').fill('');
   assert.equal(requests.filter(r=>r.method==='POST'&&!['/api/pillow/session','/api/brain/dispatch'].includes(r.path)).length,0,JSON.stringify(requests));
   assert.equal(requests.filter(r=>r.path==='/api/pillow/chat').length,0,'History selection and unsent draft must never request inference');
+  const readable=await history.locator('ol li').first().evaluate(el=>({color:getComputedStyle(el).color,marker:getComputedStyle(el,'::marker').color}));
+  assert.equal(readable.color,'rgb(41, 67, 99)','saved response text must remain readable on the light owner surface');
+  assert.equal(readable.marker,'rgb(41, 67, 99)','list numbering must remain readable');
   assert.deepEqual(errors,[]);
   if(process.env.WORK7_SCREENSHOTS){await mkdir(process.env.WORK7_SCREENSHOTS,{recursive:true});await page.screenshot({path:`${process.env.WORK7_SCREENSHOTS}/Pillow__AUTHENTICATED_TEST__${width}.png`});}
   await context.close();

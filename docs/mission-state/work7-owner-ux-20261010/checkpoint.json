@@ -1,5 +1,5 @@
 {
-  "status": "IN_PROGRESS_NOT_RELEASED",
+  "status": "IN_PROGRESS_NOT_RELEASED_AUTH_BLOCKED",
   "base_frontend": "41c02e0f67702d857dede6412adf814bce3db8e8",
   "backend_unchanged": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
   "branch": "work7/owner-ux-correction-live-20261010",
@@ -10,12 +10,12 @@
     "presentation invariants: 3 passed"
   ],
   "pending": [
-    "full element/state review",
-    "desktop/mobile rendered visual verification",
-    "all mandatory CI and independent assurance",
-    "fenced release",
-    "production preservation receipts",
-    "actual mission closure"
+    "Latest changed-source mandatory CI and screenshots",
+    "Authenticated preview verification and complete active nested-state review",
+    "Finance authoritative production reconciliation/readback",
+    "Independent assurance and current fenced release authority",
+    "Reviewed merge, frontend release and production preservation readback",
+    "Actual Mission Ledger and independent Advisor closure for new UX continuation"
   ],
   "prohibited": [
     "paid inference",
@@ -27,16 +27,32 @@
   "first_head": "17742d3509184f45ab9051f50cc6db4c5c5000c6",
   "pr": 109,
   "browser_gate": {
-    "run": 38034125310,
-    "passed": 17,
-    "failed": 2,
-    "failures": [
-      "mobile composer outside viewport: fixed parent flex containment and retained mobile department navigation in disclosure",
-      "breadcrumb newline-aware assertion correction"
-    ],
-    "artifact_id": 11662679600,
-    "artifact_sha256": "44b7f198bd2310b9adeb18d361e6ca36e390a37b5e28270f1f389ad4a2d68315"
+    "head": "148a5bd8a1b45c24a9ac6787ab031d142eeeba3d",
+    "run": 38034915448,
+    "passed": 19,
+    "failed": 0,
+    "artifact_id": 11664335261,
+    "artifact_sha256": "bc49fced92d73bff884810f9bdff5bf1004380b9b20e99ec49c049722053c805"
   },
-  "preview": "dpl_G6nB1RAD7uk99Y39j1WQ7dv36mST",
-  "preview_auth": "Separate preview hostname requires owner sign-in; production session remains authenticated"
+  "preview": "dpl_EJ6HVKujDq2GAaSFrdtCA63s2Gb5",
+  "preview_auth": "User-authorised retry submitted; rendered Authentication service unavailable. No further credentials submitted. Runtime logs/errors empty. Preview BRAIN_API_URL exists but sensitive value is withheld, so binding cannot be established from metadata. Browser now restricts observation after secure credential entry; canonical production navigation did not clear restriction.",
+  "resume_parent": "3807e9cc672ea80c4f461dc4bcf055f46f66c113",
+  "updated_at": "2026-10-10T08:12:50.476998+00:00",
+  "existing_ci": {
+    "head": "3807e9cc672ea80c4f461dc4bcf055f46f66c113",
+    "browser": 38036756031,
+    "semantic": 38036755941,
+    "product": 38036756023,
+    "runtime": 38036755907,
+    "latest_observation": "browser, semantic and product successful; runtime still running. Do not rerun successful runs."
+  },
+  "new_changes": [
+    "Verified pale chat text on light surface: scoped contrast repair and browser assertion",
+    "Product discovery/Pillow/owner/listing/portfolio doctrine, explicitly future policy rather than fabricated automation",
+    "Order lifecycle disclosure with synthetic and settlement boundaries",
+    "Long rationale retained in expandable disclosure",
+    "Legacy governance, order, finance, infrastructure and approvals context corrections"
+  ],
+  "release_lease": "None acquired; prior fence 17 finished; never reuse",
+  "owner_action": "Use supported manual browser handoff to finish or clear the failed sign-in. If the site still reports service unavailable, deployment owner must restore preview authentication/backend binding. No auth bypass."
 }

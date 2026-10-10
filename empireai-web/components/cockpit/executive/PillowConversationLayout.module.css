@@ -18,3 +18,14 @@
 .historyPicker{display:flex;align-items:center;gap:10px;padding:8px 20px;flex-shrink:0;font-size:12px;flex-wrap:wrap}
 .historyPicker select{min-width:0;max-width:100%;flex:1;min-height:36px;border:1px solid #cadff3;border-radius:8px;padding:6px;background:#f9fcff;color:#102966}
 .workspace{height:100%;min-height:0}
+
+/* The owner shell supplies a light surface: retain it and give chat text
+   explicit readable colours, independent of inherited legacy gold utilities. */
+:global([data-owner-theme="pastel"]) .workspace { color:#294363; background:#fcfeff; }
+:global([data-owner-theme="pastel"]) .workspace :is(header, label, summary, p, h2, button, a) { color:#294363; }
+:global([data-owner-theme="pastel"]) .workspace :global([data-testid="pillow-message-history"]) :is(div,p,strong,em,li,code,summary,span) { color:#294363; }
+:global([data-owner-theme="pastel"]) .workspace li::marker { color:#294363; }
+:global([data-owner-theme="pastel"]) .workspace footer,
+:global([data-owner-theme="pastel"]) .workspace .contextBody { background:#f1f7ff; color:#294363; }
+:global([data-owner-theme="pastel"]) .workspace .jump { background:#e2efff; }
+:global([data-owner-theme="pastel"]) .workspace textarea::placeholder { color:#526781; }
