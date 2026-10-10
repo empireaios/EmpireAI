@@ -6,9 +6,9 @@ import {ownerMetric} from '@/lib/owner/presentation';
 type Row = Record<string, unknown>;
 const row = (v: unknown): Row => v && typeof v === 'object' && !Array.isArray(v) ? v as Row : {};
 const rows = (v: unknown): Row[] => Array.isArray(v) ? v.map(row) : [];
-const txt = (v: unknown, fallback = 'Not observed'): string => v === null || v === undefined || v === '' ? fallback : typeof v === 'object' ? 'Evidence available' : String(v);
+const txt = (v: unknown, fallback = '—'): string => v === null || v === undefined || v === '' ? fallback : typeof v === 'object' ? 'Evidence available' : String(v);
 const label = (v: string) => v.replace(/([a-z])([A-Z])/g, '$1 $2').replaceAll('_', ' ');
-const money = (v: unknown) => typeof v === 'number' ? new Intl.NumberFormat('en-SG', { style: 'currency', currency: 'SGD', maximumFractionDigits: 4 }).format(v / 1e6) : 'Not measured';
+const money = (v: unknown) => typeof v === 'number' ? new Intl.NumberFormat('en-SG', { style: 'currency', currency: 'SGD', maximumFractionDigits: 4 }).format(v / 1e6) : '—';
 function useRead(path: string, pollMs=0, onData?: (data:Row)=>void) { const [result,setResult]=useState<{path:string;data:Row|null;error:string}>({path:'',data:null,error:''}),[attempt,setAttempt]=useState(0);useEffect(()=>{const c=new AbortController();let pending=false;const refresh=async()=>{if(pending)return;pending=true;try{const response=await fetch(path,{cache:'no-store',credentials:'include',signal:c.signal});const data=await response.json();if(!response.ok)throw Error(data.error||`Evidence unavailable (${response.status})`);if(!c.signal.aborted){setResult({path,data,error:''});onData?.(data);}}catch(e){if(!c.signal.aborted)setResult({path,data:null,error:e instanceof Error?e.message:'Evidence unavailable'});}finally{pending=false;}};void refresh();const timer=pollMs?setInterval(()=>{if(document.visibilityState==='visible')void refresh();},pollMs):undefined;return()=>{c.abort();if(timer)clearInterval(timer);};},[path,attempt,pollMs,onData]);return {data:result.path===path?result.data:null,error:result.path===path?result.error:'',retry:()=>setAttempt(v=>v+1)};}
 function Status({ data, error, retry }: {
     data: Row | null;
