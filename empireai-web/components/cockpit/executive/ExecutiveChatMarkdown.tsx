@@ -96,6 +96,29 @@ export function ExecutiveChatMarkdown({
       className={`max-w-[42rem] space-y-4 text-[15px] leading-[1.65] sm:text-base ${className}`.trim()}
     >
       {blocks.map((b, idx) => {
+        if (b.type === "table") {
+          return (
+            <div key={idx} role="region" aria-label="Pillow response table" tabIndex={0}
+              className="max-w-full overflow-x-auto rounded border border-current/20 focus-visible:outline-2 focus-visible:outline-offset-2">
+              <table className="w-full border-collapse text-left text-sm leading-relaxed">
+                <thead>
+                  <tr>{b.headers.map((header, j) => (
+                    <th key={j} scope="col" className="border-b border-current/20 px-3 py-2 align-top font-semibold break-words">
+                      {inlineFormat(header)}
+                    </th>
+                  ))}</tr>
+                </thead>
+                <tbody>{b.rows.map((row, r) => (
+                  <tr key={r}>{row.map((cell, j) => (
+                    <td key={j} className="border-b border-current/10 px-3 py-2 align-top break-words">
+                      {inlineFormat(cell)}
+                    </td>
+                  ))}</tr>
+                ))}</tbody>
+              </table>
+            </div>
+          );
+        }
         if (b.type === "h") {
           const sizes =
             b.level === 1

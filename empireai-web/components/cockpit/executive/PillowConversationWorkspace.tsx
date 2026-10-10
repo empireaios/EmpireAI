@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
@@ -13,6 +13,7 @@ import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPan
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
 import { scrubMachineLanguage } from "@/lib/cockpit/executive/executive-presentation";
+import { MobileConversationPicker } from "./MobileConversationPicker";
 import { PillowVerificationStatus } from "./PillowVerificationStatus";
 
 const PAGE_SIZE = 40;
@@ -30,9 +31,11 @@ function autosize(el: HTMLTextAreaElement | null) {
 export function PillowConversationWorkspace({
   title = "Pillow",
   autoFocus = false,
+  tools,
 }: {
   title?: string;
   autoFocus?: boolean;
+  tools?: ReactNode;
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -42,6 +45,7 @@ export function PillowConversationWorkspace({
   const earlierAnchor = useRef<{ height: number; top: number } | null>(null);
   const [showLatest, setShowLatest] = useState(false);
   const [windowSize, setWindowSize] = useState(PAGE_SIZE);
+  const [historySelection, setHistorySelection] = useState("");
   const {
     loading,
     conversation,
@@ -57,7 +61,32 @@ export function PillowConversationWorkspace({
     executiveSnapshot,
   } = useGlobalAiAssistant();
 
+  const selectHistory = (id: string) => {
+    followLatest.current = false;
+    setWindowSize(conversation.length);
+    setHistorySelection(id);
+    // Selecting the same exchange again must also restore its scroll position.
+    requestAnimationFrame(() => {
+      const pane = historyRef.current;
+      const turn = pane?.querySelector(`[data-history-id="${CSS.escape(id)}"]`);
+      if (pane && turn instanceof HTMLElement) {
+        pane.scrollTop += turn.getBoundingClientRect().top - pane.getBoundingClientRect().top;
+        followLatest.current = false;
+        setShowLatest(true);
+      }
+    });
+  };
   const canSend = !loading && Boolean(queryDraft.trim());
+  useLayoutEffect(() => {
+    if (!historySelection) return;
+    const pane = historyRef.current;
+    const selected = pane?.querySelector(`[data-history-id="${CSS.escape(historySelection)}"]`);
+    if (pane && selected instanceof HTMLElement) {
+      pane.scrollTop += selected.getBoundingClientRect().top - pane.getBoundingClientRect().top;
+      followLatest.current = false;
+      setShowLatest(true);
+    }
+  }, [historySelection, windowSize]);
   const voice = usePillowVoice((transcript) => {
     void ask(transcript);
   });
@@ -79,7 +108,7 @@ export function PillowConversationWorkspace({
   }, [searchParams, setQueryDraft, ask]);
 
   useEffect(() => {
-    if (!autoFocus) return;
+    if (!autoFocus || window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 700) return;
     window.requestAnimationFrame(() => composerRef.current?.focus({ preventScroll: true }));
   }, [autoFocus]);
 
@@ -131,14 +160,18 @@ export function PillowConversationWorkspace({
       id="pillow-conversation-workspace"
       data-testid="pillow-conversation-workspace"
       aria-label="Pillow conversation"
-      className={`relative flex h-[min(85vh,920px)] min-h-[560px] w-full flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a] lg:h-full lg:min-h-0 lg:flex-1 ${layout.workspace}`}
+      className={`relative flex min-h-0 w-full flex-1 flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a] lg:h-full lg:min-h-0 lg:flex-1 ${layout.workspace}`}
     >
       <header className={`flex shrink-0 items-center justify-between gap-3 border-b border-gold/10 px-5 py-3 ${layout.header}`}>
         <div>
           <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37] lg:hidden">Conversation</p>
           <div className="flex items-center gap-4"><a href="/cockpit" aria-label="Back to Executive Home" className="rounded-lg px-2 py-1 text-sm text-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold">← Back</a><h2 className="font-display text-xl text-[#f0d78c]">{title}</h2></div>
         </div>
-        <div className="flex items-center gap-2">
+      <details className={layout.context}>
+        <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; evidence</summary>
+        <div className={layout.contextBody}>
+          <Link href="/cockpit">Back to Home</Link>
+        <div className={`flex items-center gap-2 `}>
           <span
             className={`rounded-full px-2.5 py-1 text-[10px] ${
               executiveReady
@@ -160,9 +193,8 @@ export function PillowConversationWorkspace({
             New message
           </button>
         </div>
-      <details className={layout.context}>
-        <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; context · Reasoning evidence and owner acceptance ▸</summary>
-        <div className={layout.contextBody}>
+
+          <p>NOT_BORN · Commerce locked</p>
           {executiveSnapshot ? (
             <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
           ) : (
@@ -170,6 +202,15 @@ export function PillowConversationWorkspace({
               Current screen context is unavailable. This is not evidence of current business state.
             </p>
           )}
+        <label className="mx-auto mt-2 flex max-w-3xl lg:max-w-[56rem] items-center gap-2 text-[10px] text-[#6f6a60]">
+          <input
+            type="checkbox"
+            checked={voiceEnabled}
+            onChange={(e) => setVoiceEnabled(e.target.checked)}
+          />
+          Spoken summaries
+        </label>
+          {tools&&<details><summary>Additional Pillow tools</summary>{tools}</details>}
           <PillowVerificationStatus />
           <p className="mt-2 text-xs text-[#8a847a]">The legacy command dashboard uses a dispatch endpoint denied in this locked runtime; it is not Pillow’s authoritative reasoning-context source. Retrying cannot unlock it.</p>
           <Link href="/cockpit/command" className="mt-2 block text-xs text-[#d4af37]">Open command dashboard</Link>
@@ -177,8 +218,17 @@ export function PillowConversationWorkspace({
       </details>
 
       </header>
-
-
+      <div className={layout.historyPicker}><label className={layout.desktopHistory}><span>Conversation history</span>
+        <select aria-label="Conversation history" value={historySelection} onChange={event => selectHistory(event.target.value)}>
+          <option value="">Choose a saved exchange</option>
+          {conversation.filter(turn => turn.role === "grand-king").map(turn => <option key={turn.id} value={turn.id}>
+            {new Date(turn.recordedAt).toLocaleDateString('en-SG')} · {turn.content.slice(0,100)}
+          </option>)}
+        </select>
+      </label>
+        <MobileConversationPicker exchanges={conversation.filter(turn => turn.role === "grand-king")}
+          selected={historySelection} onSelect={selectHistory} />
+      </div>
       <div
         ref={historyRef}
         data-testid="pillow-message-history"
@@ -228,6 +278,7 @@ export function PillowConversationWorkspace({
             const mine = turn.role !== "pillow";
             return (
               <li
+                data-history-id={turn.id}
                 key={turn.id}
                 className={`flex ${mine ? "justify-end" : "justify-start"}`}
               >
@@ -322,15 +373,8 @@ export function PillowConversationWorkspace({
             Send
           </button>
         </form>
-        <p className="mx-auto mt-2 hidden max-w-[56rem] text-xs text-[#8a847a] lg:block">Enter to send · Shift+Enter for a new line</p>
-        <label className="mx-auto mt-2 flex max-w-3xl lg:max-w-[56rem] items-center gap-2 text-[10px] text-[#6f6a60]">
-          <input
-            type="checkbox"
-            checked={voiceEnabled}
-            onChange={(e) => setVoiceEnabled(e.target.checked)}
-          />
-          Spoken summaries
-        </label>
+
+
       </footer>
     </section>
   );

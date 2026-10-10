@@ -1,0 +1,1661 @@
+{
+  "primary_sidebar_count": 11,
+  "source_route_count": 168,
+  "route_count_is_not_state_coverage": true,
+  "routes": [
+    {
+      "route": "/cockpit/advisor",
+      "source": "empireai-web/app/(cockpit)/cockpit/advisor/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "004_desktop/metadata.json",
+        "020_desktop/metadata.json",
+        "003_mobile/metadata.json",
+        "002_mobile/metadata.json",
+        "004_mobile/metadata.json",
+        "003_desktop/metadata.json",
+        "020_mobile/metadata.json",
+        "002_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/approvals",
+      "source": "empireai-web/app/(cockpit)/cockpit/approvals/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "001_desktop/metadata.json",
+        "017_desktop/metadata.json",
+        "017_mobile/metadata.json",
+        "001_mobile/metadata.json"
+      ],
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Retained route; Owner decisions under Products & Approvals"
+    },
+    {
+      "route": "/cockpit/assurance/mobile-acceptance",
+      "source": "empireai-web/app/(cockpit)/cockpit/assurance/mobile-acceptance/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "027_mobile/metadata.json",
+        "027_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/assurance",
+      "source": "empireai-web/app/(cockpit)/cockpit/assurance/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "016_mobile/metadata.json",
+        "016_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/calendar",
+      "source": "empireai-web/app/(cockpit)/cockpit/calendar/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "018_mobile/metadata.json",
+        "018_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/ceo",
+      "source": "empireai-web/app/(cockpit)/cockpit/ceo/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "009_mobile/metadata.json",
+        "009_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/command",
+      "source": "empireai-web/app/(cockpit)/cockpit/command/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "028_desktop/metadata.json",
+        "028_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/ad-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/ad-intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "044_mobile/metadata.json",
+        "044_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/ads",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/ads/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "045_desktop/metadata.json",
+        "045_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/automation",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/automation/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/factory",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/factory/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/governed",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/governed/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "026_desktop/metadata.json",
+        "005_mobile/metadata.json",
+        "005_desktop/metadata.json",
+        "026_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/launch",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/launch/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "041_mobile/metadata.json",
+        "041_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/marketing",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/marketing/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "043_mobile/metadata.json",
+        "043_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/marketplace",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/marketplace/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "042_desktop/metadata.json",
+        "042_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/operating",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/operating/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [
+        "/cockpit/commerce/operating"
+      ],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/store",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/store/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "040_desktop/metadata.json",
+        "040_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/transactions",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/transactions/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "025_desktop/metadata.json",
+        "025_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/workspace/[id]",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/workspace/[id]/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/commerce/workspace",
+      "source": "empireai-web/app/(cockpit)/cockpit/commerce/workspace/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "046_desktop/metadata.json",
+        "046_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/cost-centre",
+      "source": "empireai-web/app/(cockpit)/cockpit/cost-centre/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "014_desktop/metadata.json",
+        "014_mobile/metadata.json"
+      ],
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Provider-by-provider infrastructure expenses only"
+    },
+    {
+      "route": "/cockpit/development/approvals",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/approvals/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/development/inspection",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/inspection/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/development/learning",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/learning/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/development",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/development/pillow",
+      "source": "empireai-web/app/(cockpit)/cockpit/development/pillow/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "007_desktop/metadata.json",
+        "007_mobile/metadata.json",
+        "021_mobile/metadata.json",
+        "021_desktop/metadata.json"
+      ],
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "One mobile toolbar, compact composer, tools in context"
+    },
+    {
+      "route": "/cockpit/eyes",
+      "source": "empireai-web/app/(cockpit)/cockpit/eyes/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "015_mobile/metadata.json",
+        "015_desktop/metadata.json"
+      ],
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Intelligence executive findings; separate controls/diagnostics"
+    },
+    {
+      "route": "/cockpit/finance/billing",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/billing/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [
+        "/cockpit/finance"
+      ],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/finance/costs",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/costs/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [
+        "/cockpit/finance"
+      ],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/finance/intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [
+        "/cockpit/finance"
+      ],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/finance/mobile-acceptance",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/mobile-acceptance/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/finance",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "013_mobile/metadata.json",
+        "013_desktop/metadata.json"
+      ],
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Direct-cost Operational Finance; full ledger/controls secondary"
+    },
+    {
+      "route": "/cockpit/finance/pl",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/pl/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [
+        "/cockpit/finance"
+      ],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/finance/profit",
+      "source": "empireai-web/app/(cockpit)/cockpit/finance/profit/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [
+        "/cockpit/finance"
+      ],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/ai-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/ai-evolution/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/architecture",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/architecture/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/architecture-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/architecture-evolution/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/autonomous-decision-monitor",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/autonomous-decision-monitor/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/builder",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/builder/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/capital-allocation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/capital-allocation/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/capital-risk",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/capital-risk/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/cash-reserve",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/cash-reserve/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/competitor-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/competitor-intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/conflict-resolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/conflict-resolution/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/corporate-vision",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/corporate-vision/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/cost-optimization",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/cost-optimization/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/crisis-decisions",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/crisis-decisions/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/cross-business-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/cross-business-intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/customer-behaviour",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/customer-behaviour/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/decision-architecture",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/decision-architecture/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/decision-audit",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/decision-audit/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/decision-simulation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/decision-simulation/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/department-planning",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/department-planning/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/empire-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/empire-evolution/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-audit-engine",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-audit-engine/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-constitutional-guardian",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-constitutional-guardian/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-governance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-governance/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-pattern",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-pattern/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-risk-governance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-risk-governance/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/enterprise-valuation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/enterprise-valuation/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-accountability",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-accountability/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-advisory",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-advisory/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-approval",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-approval/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-benchmark",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-benchmark/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-budget",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-budget/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-calendar",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-calendar/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-capital-strategy",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-capital-strategy/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-compliance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-compliance/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-confidence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-confidence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-consensus",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-consensus/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-constitutional-monitor",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-constitutional-monitor/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-decision-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-decision-certification/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-dependencies",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-dependencies/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-escalations",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-escalations/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-ethics",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-ethics/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-exception-manager",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-exception-manager/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-finance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-finance/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-forecast",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-forecast/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-governance-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-governance-certification/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-insight",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-insight/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-intelligence-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-intelligence-certification/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-knowledge-graph",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-knowledge-graph/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-kpi",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-kpi/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-performance",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-performance/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "022_desktop/metadata.json",
+        "022_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-planning",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-planning/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-planning-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-planning-certification/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-policies",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-policies/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-policy-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-policy-evolution/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-prediction",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-prediction/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-recommendations",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-recommendations/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-resilience-engine",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-resilience-engine/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-review-board",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-review-board/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-roadmap",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-roadmap/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-scenarios",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-scenarios/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-transparency",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-transparency/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/executive-trust-engine",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-trust-engine/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/explainability",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/explainability/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/financial-executive-certification",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/financial-executive-certification/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/financial-scenario",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/financial-scenario/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/grand-king",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/grand-king/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/grand-king-executive-cockpit",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/grand-king-executive-cockpit/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/guardian",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/guardian/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/industry-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/industry-intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/initiative-portfolio",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/initiative-portfolio/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/innovation-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/innovation-intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/investment-evaluation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/investment-evaluation/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/journey",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/journey/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/knowledge",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/knowledge/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/knowledge-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/knowledge-evolution/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/live-eta",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/live-eta/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/long-term-growth",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/long-term-growth/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/market-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/market-intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/opportunity-discovery",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/opportunity-discovery/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/opportunity-prioritization",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/opportunity-prioritization/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/priority-management",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/priority-management/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/production",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/production/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/profit-optimization",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/profit-optimization/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/repository-evolution",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/repository-evolution/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/resource-allocation",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/resource-allocation/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/risk-assessment",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/risk-assessment/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/roi-intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/roi-intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/shadow-ceo",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/shadow-ceo/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/strategic-alignment",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/strategic-alignment/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/strategic-objectives",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/strategic-objectives/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/supervisor",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/supervisor/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/threat-detection",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/threat-detection/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/founder/trade-off-analysis",
+      "source": "empireai-web/app/(cockpit)/cockpit/founder/trade-off-analysis/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/governance/council",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/council/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/governance/decisions",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/decisions/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/governance",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/governance/settings",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/settings/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/governance/soul",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/soul/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/governance/v1",
+      "source": "empireai-web/app/(cockpit)/cockpit/governance/v1/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/infrastructure/admin",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/admin/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/infrastructure/deployments",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/deployments/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/infrastructure/health",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/health/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/infrastructure/integrations",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/integrations/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/infrastructure",
+      "source": "empireai-web/app/(cockpit)/cockpit/infrastructure/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/customers",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/customers/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "036_desktop/metadata.json",
+        "036_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/decisions",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/decisions/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "038_mobile/metadata.json",
+        "038_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/discovery",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/discovery/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "033_desktop/metadata.json",
+        "033_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/executive",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/executive/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "039_desktop/metadata.json",
+        "039_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/marketplace",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/marketplace/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "034_desktop/metadata.json",
+        "034_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/markets",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/markets/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "035_mobile/metadata.json",
+        "035_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/products",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/products/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "024_mobile/metadata.json",
+        "024_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/risk",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/risk/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "037_mobile/metadata.json",
+        "037_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/intelligence/suppliers",
+      "source": "empireai-web/app/(cockpit)/cockpit/intelligence/suppliers/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "032_desktop/metadata.json",
+        "032_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/listings",
+      "source": "empireai-web/app/(cockpit)/cockpit/listings/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "006_desktop/metadata.json",
+        "011_desktop/metadata.json",
+        "006_mobile/metadata.json",
+        "011_mobile/metadata.json"
+      ],
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Published / Prepared / Test examples,10-row catalogue and media gallery"
+    },
+    {
+      "route": "/cockpit/missions",
+      "source": "empireai-web/app/(cockpit)/cockpit/missions/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/operations/authorizations",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/authorizations/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/operations/automation",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/automation/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/operations/fulfillment",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/fulfillment/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/operations/orders",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/orders/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/operations",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/operations/support",
+      "source": "empireai-web/app/(cockpit)/cockpit/operations/support/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/orders",
+      "source": "empireai-web/app/(cockpit)/cockpit/orders/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "012_mobile/metadata.json",
+        "012_desktop/metadata.json"
+      ],
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Paginated transaction register; local package inspection"
+    },
+    {
+      "route": "/cockpit",
+      "source": "empireai-web/app/(cockpit)/cockpit/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "008_mobile/metadata.json",
+        "008_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/products/[id]",
+      "source": "empireai-web/app/(cockpit)/cockpit/products/[id]/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/products/history",
+      "source": "empireai-web/app/(cockpit)/cockpit/products/history/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [
+        "023_desktop/metadata.json",
+        "023_mobile/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/products",
+      "source": "empireai-web/app/(cockpit)/cockpit/products/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "010_mobile/metadata.json",
+        "010_desktop/metadata.json"
+      ],
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Products & Approvals; existing candidate and decision tabs"
+    },
+    {
+      "route": "/cockpit/relationship",
+      "source": "empireai-web/app/(cockpit)/cockpit/relationship/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/system",
+      "source": "empireai-web/app/(cockpit)/cockpit/system/page.tsx",
+      "classification": "active-primary",
+      "redirects": [],
+      "before_evidence": [
+        "019_mobile/metadata.json",
+        "019_desktop/metadata.json"
+      ],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/workforce/activity",
+      "source": "empireai-web/app/(cockpit)/cockpit/workforce/activity/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/workforce/audit",
+      "source": "empireai-web/app/(cockpit)/cockpit/workforce/audit/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    },
+    {
+      "route": "/cockpit/workforce",
+      "source": "empireai-web/app/(cockpit)/cockpit/workforce/page.tsx",
+      "classification": "compatibility-retained; live status not fully verified",
+      "redirects": [],
+      "before_evidence": [],
+      "source_unchanged": true,
+      "verification": "PENDING visual and integration coverage"
+    }
+  ]
+}

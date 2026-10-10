@@ -1,2 +1,2 @@
-import {Orders} from '@/components/owner/work7/OwnerJourneys';
-export default function Page(){return <Orders/>;}
+import {OrderRegister} from '@/components/owner/work7/OrderRegister';
+export default function Page(){return <OrderRegister/>;}

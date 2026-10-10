@@ -1,0 +1,327 @@
+EMPIREAI — WORK 7 SINGLE CONSOLIDATED CONTINUATION AND CLOSURE DIRECTIVE
+OWNER-AUTHORISED | 11 OCTOBER 2026 | SINGLE NOTEPAD EDITION
+
+EXECUTE AS CONTINUATION, NOT A NEW WORK. This document combines the earlier audited master directive (reproduced below without deleting requirements) and the owner's later exact-commit checkpoint and screenshot review. Later explicit owner requirements override conflicting earlier UX wording; safety, authority, accounting, evidence and release gates are never weakened. Treat checkpoint claims as reported until independently verified against the repository, hosted CI and live environment.
+
+CURRENT REPORTED CHECKPOINT — VERIFY, DO NOT RESET:
+- Repository https://github.com/empireaios/EmpireAI ; PR #109 https://github.com/empireaios/EmpireAI/pull/109
+- Reported PR #109 head f8a292de23cb2f944771421923b7623deeb8e19f ; preview https://empireai-83g4cz48n-empireai-os.vercel.app/ READY at that head.
+- Required CI reported PASS: browser 38066767102 (24/24), semantic 38066767097, product 38066767103, runtime 38066767104. Preserve test assertions; avoid rerunning unchanged successful campaigns.
+- Original 100-item requirement tracker reported 16 PASS / 75 PENDING / 9 BLOCKED. This is NOT a completion count for all new UX amendments. Keep immutable original IDs and separately numbered owner amendment items, each with evidence, dependencies and status.
+- PR #110 remains independent. Production unchanged; no release lease started. Prior acceptance evidence credited, but current authenticated live phone/keyboard/navigation/nested-control/financial-display acceptance not fully observed. WORK 7 BLOCKED until genuine closure.
+- Preserved financial readback baseline: 224 accounting, 3 journal, 7 historical records; authoritative digests to compare before and after. Pillow NOT_BORN and commerce LOCKED; seven live-effect routes remain protected.
+- Owner supplied screenshots of Home/sidebar, Intelligence Discoveries, Investigations & Controls, Sources & Diagnostics, Products & Approvals, Listings, Orders & Fulfilment, Operational Finance, Live Cost Centre. Treat them as owner observation, not as proof of backend behaviour or mobile acceptance.
+
+MANDATORY OWNER-OBSERVED DEFECTS AND UX AMENDMENTS (ADD TO TRACKER):
+UX-01 SIDEBAR DUPLICATION / FALSE SECOND NAVIGATION. Owner screenshots show a correct upper sequence and a second legacy-looking list appearing beneath System (Listings, Orders, Finance, Live Cost Centre, Intelligence, Assurance, Calendar). Remove the redundant visible legacy navigation and any duplicate accessibility/focus items, retaining every valid route, deep link, role/permission check and historical URL redirect. One canonical sidebar, one entry per primary destination, stable scrolling and mobile drawer. Do not merely hide a second list with CSS if it remains keyboard-accessible. Regression-test desktop, narrow phone, route refresh, back/forward, nested legacy pages, logout and no accidental duplicate menus.
+UX-02 PRIMARY ORDER EXACTLY: Home; Intelligence; Pillow (CEO); Products & Approvals; Listings; Orders & Fulfilment; Operational Finance; Live Cost Centre; Assurance; Calendar; System. Intelligence is first commercial function after Home; Pillow is the CEO coordinating decisions. No separate Approvals primary tab. Preserve all underlying decision handlers and records. Assurance, Calendar and System remain accessible, operational and protected, but defer discretionary owner UX redesign until after go-live. Do not remove mandatory safety or release gates.
+UX-03 INTELLIGENCE MUST BE A DECISION ENGINE, NOT A LONG TECHNICAL LOG. Owner permits creative redesign. Default compact executive view with Today / 7 days / 30 days / quarter / year (plus custom date only if practical), meaningful change summaries, highest-priority market/supplier/internet/Empire discoveries, ranked opportunities and risks, what changed since prior period, Pillow's actual recorded assessment, actionable next step and explicit blockers. A source finding is NOT a CEO recommendation unless linked to saved actual reasoning. Link discovery -> verified evidence -> investigation -> Pillow recommendation -> product candidate -> owner decision; show exact stage and missing evidence. Provide one-click drilldown for detailed receipts, sources, freshness, diagnostics and scheduled collectors, but no 20-scroll-page default, repeated rows, or developer JSON. Do not manufacture confidence, sales, demand, rankings, freshness or activity. Investigation controls remain bounded, authenticated and separately authorised; no unapproved paid calls.
+UX-04 INTELLIGENCE CURRENT SCREEN DEFECTS: Repetitive 'empire' and numeric findings with 'Commercial significance not assessed'; many repeated COMPLETED scheduler rows; giant source capability inventories and raw provenance/lineage blocks; poor value-to-scroll ratio. Deduplicate only the PRESENTATION of semantically equivalent findings, preserving each distinct source record and time. Group scheduled receipts by source/status/period with expandable history. Show unavailable/stale/verified capability summaries and only actionable exceptions in the primary view. Use readable human names for records; retain IDs on drilldown.
+UX-05 PRODUCTS & APPROVALS ONE COMPACT DECISION CENTRE. Owner decision attached to specific product/opportunity, not a separate long approval report. Show product image where licensed, exact title/variant/source, competitive evidence, landed cost and fee assumptions, projected margin with currency and uncertainty, risk/policy eligibility, Pillow's short rationale, decision status and next step. Approval / reject / request revision operate only under existing backend semantics. 'Defer' leaves pending; do not pretend a durable deferred state exists. Avoid long duplicated saved briefs, raw Markdown, raw hashes, deeply nested synthetic fixture displays, and disabled controls without explanation. Retain all immutable records, digests, synthetic segregation and authority enforcement in details. Product qualification must not infer demand or supplier match from unrelated evidence. Show real candidate absence truthfully.
+UX-06 LISTINGS. Distinguish Draft/Prepared, Approved, Published with independently verified marketplace receipt, and Test examples. Do not imply prepared/approved is live. Compact overview, clear marketplace/channel, price, product, publication age when verified, status, inventory/visibility and next action. Preserve publication locks and all evidence.
+UX-07 ORDERS & FULFILMENT. Actual orders separate from test fixtures and historical observations. Show purchase/payment, supplier acceptance, dispatch, partial shipment, tracking, delivery, refunds/exceptions and relevant cost with individually verified states. Historical provider observations are NOT orders. Repair unreadable low-contrast text on /cockpit/commerce/transactions shown in owner screenshots; ensure page heading and rows are legible and contextual navigation returns to Orders. No fake shipment or sales claims.
+UX-08 OPERATIONAL FINANCE. Show genuine revenue, direct product cost, marketplace/payment fees, fulfilment/freight, refunds/returns and directly attributable commerce costs with reconciled operational contribution/profit. Infrastructure costs excluded from this operating-profit calculation and never double-counted. Separate actuals, commitments, forecasts, unknowns and synthetic. Compact period selector, exceptions by severity, understandable drilldown; raw JSON audit data only in technical details. Screenshot shows no verified operating amounts and six exceptions; preserve their truth. Test pagination after changing date/filters and mixed currencies.
+UX-09 LIVE COST CENTRE — COMPREHENSIVE OWNER-ONLY RESOURCE ECONOMICS. Expand tracked potential cost taxonomy: ChatGPT development subscription; OpenAI/Pillow inference; Anthropic; Gemini; model training/fine-tuning, embeddings, reranking, image/video/audio generation; Railway compute/Redis/storage; Vercel hosting/builds/bandwidth; cloud servers, containers, workers, serverless, networking, CDN, databases, backups/restore, archival, disaster recovery; domains/DNS/email/SMS/notifications; GitHub/repositories/CI/CD/testing, coding assistants; security/authentication/secrets/monitoring/logging/scanning/incident response; Amazon SP-API/marketplace apps, CJ, Shopify/Shopee/other channels and connector fees; Keepa/market data/analytics/reviews/trends; TinyFish/browser automation/scraping/workflow tools; Canva/design/media licences/content production; payment gateways/FX/banking/accounting/reconciliation; company registration/legal/compliance/insurance/professional services; equipment, hardware, connectivity, one-off development, contingency and miscellaneous. These are CANDIDATE categories, not asserted active bills or incurred expenses. Allow add/edit/archive categories and vendor mapping with owner control, no provider purchases.
+UX-10 LIVE COST CENTRE PRESENTATION. Above fold: confirmed MTD, YTD, outstanding payable, accrued unbilled, estimates/commitments, projected annual run rate (qualified), known upcoming 7/30/90-day bills, budget versus actual, significant changes and cost-saving suggestions. One compact sortable/filterable provider table with expandable invoice/usage/renewal history, payment status, account/service ownership and source. Distinguish no recorded bill, confirmed zero, unknown, unverified, accrued, invoiced, settled and shared-team unallocated. Never invent subscriptions, dates, renewal prices or invoice totals. Vercel team-level USD 0.140117 is shared accrued unbilled usage in screenshots, not EmpireAI settled charge; currency conversion unavailable. Avoid two identical MTD columns; label any third metric correctly or remove it. Keep the six visible exceptions and owner review of expiring provider tariffs. Include expense forecasts and alerts only where evidence and authorisation exist. Currency conversions need verified FX and timestamps. Preserve financial journal and read-only audit trail.
+UX-11 SITE-WIDE PRESENTATION: Short, actionable, current, attractive, high-contrast, mobile-first; no redundant cards, huge blank spaces, repeated disclaimers, raw JSON or endless accordions on default views. Keep all underlying data available through deliberate drilldowns. Make status distinctions clear and screen-reader accessible. Compact pagination and meaningful empty states. Approved Home artwork, five family members, poodles, captions and composition remain binding; do not request reapproval. Fix only authorised implementation deviations.
+UX-12 PILLOW CHAT. Preserve response delivery, history picker, saved tables, jump-to-latest, no obscured response and compact composer. Local fixture result at 400x464: 313px reading area, nine full 16px lines; keyboard simulated only. Do not claim 95% achieved or live native keyboard accepted. Test authenticated real mobile/native keyboard, history selection, scrolling, nested navigation and input visibility without submitting unintended messages.
+UX-13 ACCEPTANCE: Reuse owner screenshots as read-only desktop observations, not automatic acceptance of untested functionality. Reconcile accepted versus unaccepted states precisely. Capture only missing mobile/native keyboard, 14 legacy navigation contexts, nested controls and financial display states. Single consolidated checklist, not serial screenshot requests. Where browser cannot access existing authenticated session, seek supported read-only observation or one concise owner action; do not retry password or ask for already accepted evidence.
+UX-14 ORIGINAL 100-ITEM TRACKER: do not reset, renumber or mark pass based only on screenshot or green CI. Separate engineering implemented, CI verified, live owner accepted, deployed and independently closed. For each blocked item identify exactly one responsible party and necessary evidence. Include amendment crosswalk and before/after route map for 168 routes; route-parent assignment alone is not live interaction proof.
+UX-15 GOVERNANCE/RELEASE: No production change until all mandatory Work 7 gates and explicit release authority. PR #109 exact-head check, independent PR #110 lineage and incident status, approved Home fidelity, 15 commerce safety protections, no accidental commerce activation, financial digests, CI, live acceptance, new valid release lease/fence (not prior finished fence), coordinated deployment only if needed, post-deployment independent verification and Mission Ledger/King's Advisor receipts. Work 8 full autonomous certification and Work 9 birth/commerce activation are NOT Work 7 gates. If unresolved, retain BLOCKED and all completed work.
+
+EXECUTION ORDER: 1 recover exact state; 2 reconcile 100 tracker + amendment register; 3 fix duplicate sidebar/contrast and owner UX changes; 4 targeted regression and CI; 5 consolidate only outstanding live acceptance; 6 release authority/new lease only when eligible; 7 governed production deployment; 8 post-release preservation and independent closure. Never claim a step done without evidence. Deliver one precise progress tracker and one actionable next instruction, not long generic status narration.
+
+----------------- EARLIER AUDITED MASTER DIRECTIVE (PRESERVED) -----------------
+
+EMPIREAI — WORK 7 COMPLETE MASTER CONTINUATION DIRECTIVE
+GRAND KING — OWNER-AUTHORISED, 10 OCTOBER 2026
+
+MISSION: RESUME THE EXISTING WORK 7, IMPLEMENT THE OWNER-APPROVED OPERATIONAL UX OVERHAUL, RECOVER ALL PREVIOUSLY COMPLETED WORK, AND CLOSE ONLY AFTER VERIFIED ACCEPTANCE.
+
+Repository: https://github.com/empireaios/EmpireAI
+Known Work 7 branch: work7/owner-ux-correction-live-20261010
+Known verified preview commit: 5f2f8929c0fd43949a09831247a67591e66d3c14
+Known replacement preview: https://empireai-9sby4oynm-empireai-os.vercel.app/
+Known PR #109 checkpoint: a8f1f709
+
+THIS IS ONE CONTINUATION OF WORK 7, NOT A NEW MISSION. Read and reconcile the original Work 7 Complete Build Package, V5 PowerPoint, approved Home reference, Safety UX Addendum, all 15 safety protections, earlier directives, current GitHub branches/PRs, CI results, release checkpoints, Mission Ledger, and the owner's 10 October 2026 screenshot walkthrough. Where original attachments are unavailable, identify the exact missing source; do not invent specifications or discard completed work. The present directive adds requirements and supersedes earlier UX choices where expressly changed, but does not supersede existing safety, financial, or release controls.
+
+1. RECOVER BEFORE EDITING
+Inspect actual current GitHub state and deployments. The commit and preview above are checkpoints, not assertions of latest state. Recover PR #109 and its reported four passing CI workflows and 20/20 browser tests, earlier chat-table and Jump-to-Latest repairs, previous authenticated desktop/mobile walkthroughs, and remaining unaccepted picker/native keyboard, history selection, nested navigation, financial display and safety interfaces. Recover the prior Work 7 closure checklist and exact test evidence. Verify preview branch configuration including BRAIN_API_URL without exposing secrets. The owner observed /api/auth/me returning {"error":"Authentication required"} and authenticated Home and Pillow screens. Preserve this evidence but do not infer that all login and routing scenarios have passed. Do not rerun passed tests unless new changes invalidate them. Do not request repeated password attempts or previously accepted screenshots.
+
+2. OWNER-CONSOLE BUSINESS ARCHITECTURE
+The primary operational journey must be:
+INTELLIGENCE -> PRODUCTS & APPROVALS -> LISTINGS -> ORDERS & FULFILMENT -> OPERATIONAL FINANCE.
+Pillow (CEO) coordinates the process within existing authorisations. Live Cost Centre is separate and reports infrastructure/resource expenditure only.
+Proposed primary navigation: Home; Intelligence; Pillow (CEO); Products & Approvals; Listings; Orders & Fulfilment; Operational Finance; Live Cost Centre; Assurance; Calendar; System. Merge the former standalone Approvals navigation into Products & Approvals while preserving independent approval records and authorisation checks. Intelligence is the first business activity after Home. Each navigation destination must match its name and remain internally coherent. Do not send owners unexpectedly from Listings to Assurance or Approvals, or Orders to System or Finance, merely to inspect routine details. Provide contextual information in the current workflow, with optional clearly labelled deeper links. Maintain complete record linkage across stages, with no assumption that approval equals publication or that publication equals sale.
+
+3. SITE-WIDE UX RULES
+Design for the owner, not a developer. Put useful facts and decisions first; show concise explanatory footnotes only when helpful. Prefer compact rows/tables, short summaries, sensible pagination, clear statuses, restrained cards, high-contrast text and consistent visual identity. Remove redundant instructional paragraphs, repeated status warnings, meaningless empty cards, nested accordions and technical noise from primary screens. Terms such as synthetic, provider read evidence, source/reporting basis, provenance, SHA256, digest, raw request IDs, internal classification and raw JSON must not dominate owner-facing views. Explain necessary concepts in plain English; for example, 'Test example — not a real product'. Keep all technical evidence and auditability intact in suitable drilldowns. Never represent missing/unverified amounts as zero, test data as real, or an unverified capability as available. Distinguish unknown, zero, pending, verified and unavailable truthfully. Repair poor contrast (especially yellow on white), broken images, inconsistent themes, oversized spacing and excessive scrolling. Mobile and desktop must both be genuinely usable. Every button must have an obvious, tested destination/action.
+
+4. HOME — PRESERVE THE APPROVED REFERENCE
+The owner has already approved the exact Home artwork and layout. Do not request approval again, redesign, substitute or simplify it. Preserve the five family members (King, Mum, daughter, Pillow and Pancake), the approved family captions, brown poodles, overall proportions, typography, panels, sidebar and visual identity. Correct implementation deviations in cropping, spacing, typography and responsive layouts against the binding original reference. Only previously authorised adjustments and truthful business data replacement are permitted. Show meaningful operational summaries such as product recommendations awaiting decisions, published listings, active orders, revenue, operational profit, infrastructure cost, important exceptions and Pillow's recommendation when verified data exists. Do not invent business figures.
+
+5. PILLOW CHAT — SPACE AND READABILITY
+The current chat viewport is unacceptable. Target approximately 95% of the available chat panel for conversation reading and 5% for the compact idle message composer, subject to accessibility and usable minimum controls. Keep the composer anchored and compact; expand only when the owner writes a longer message. Minimise wasted header space. Preserve large readable conversation history, historical exchange picker, keyboard navigation, scroll behaviour, table rendering, Jump to Latest and non-obscured responses. Preserve all stored conversations and response-delivery functionality. Improve the modern design; do not merely revert to legacy.
+
+6. INTELLIGENCE — CREATIVE REDESIGN DELEGATED TO WORK 7
+The owner authorises Work 7 to independently formulate an excellent Intelligence design. The present Four Eyes page requires too much scrolling and reads like a technical evidence dump. Replace it with a compact, attractive, useful executive intelligence experience focused on WHAT WAS DISCOVERED, WHY IT MATTERS, WHAT PILLOW THINKS, and WHAT ACTION FOLLOWS. Offer sensible period views such as Today, 7 days, 30 days, quarter and year. Surface the most important opportunities, supplier/market signals, competitor changes, risks, current investigations, findings needing research and completed recommendations. Design useful executive summaries and selective drilldowns, not twenty screens of repetitive cards. Preserve Market Eye, Supplier Eye, Internet Eye and Empire Eye underlying collectors, freshness, provenance, exact identity binding and safeguards. Their raw diagnostics need not occupy the primary owner screen. Preserve scheduler and authorised bounded investigation controls. A finding must trace truthfully from source -> investigation -> Pillow assessment -> recommendation -> owner decision. If Pillow has not actually reasoned or recommended, say so rather than fabricating completion. Do not turn research receipts into recommendations. Make empty states meaningful and avoid paid calls without the existing authorisation.
+
+7. PRODUCTS & APPROVALS — ONE DECISION CENTRE
+Products is not a list of published marketplace listings. It is where Pillow's candidate recommendations and the owner's decisions belong. Merge Products and Approvals into one coherent interface. Display compact product cards or rows with photo, name, category, supplier, proposed selling price, supplier cost, fulfilment/marketplace fees, estimated per-unit profit, competitor pricing, evidence-backed demand, risks, Pillow rationale and decision status. All estimates must be marked as such; unknown data must remain unknown. Support review, approve, reject, defer and request more research through existing authorised workflows. Show truthful counts for discovered, screened, rejected, recommended, awaiting decision, approved and deferred. Preserve the stated ambition of up to 100 qualified candidates per day and hard ceiling of 1,000 active products as goals/constraints, not claims of active automation. Keep actual independent approvals and four-eyes controls; a product decision does not itself authorise marketplace publication. Allow easy traceability back to Intelligence and forward to the listing preparation stage.
+
+8. LISTINGS — PUBLISHED INVENTORY, NOT RAW TEST FIXTURES
+Listings should show what EmpireAI actually has listed, or clearly show that none are published. Build a compact paginated catalogue with product thumbnail, title, marketplace, selling price, competitor price, listing status, date first listed, age, verified stock and relevant performance. Support search, sorting, filters and 10-per-page pagination such as 1–10 of 1,000. Detail view should show customer-facing title, images, variations, price, supplier, verified stock, marketplace state and sales where available. Fix the broken source image. Provide a stable media gallery that gracefully handles one, four, five or more images, with thumbnails and enlarged viewing. Technical SHA hashes, internal actor IDs, provenance and digest values must be retained in audit data, not displayed as the main listing. The 'synthetic storage organiser' is only a test example; isolate and label it plainly, never as a real published item. Explain the purpose of prepared listing content in a short note. Remove irrelevant buttons that abruptly send the owner to Assurance or Approvals. Show a compact local explanation of safety/approval status and optional explicit drilldown; do not bypass checks. Preserve publication LOCKED and never submit to Amazon during this mission.
+
+9. ORDERS & FULFILMENT — TRANSACTION-FIRST
+Orders exists to show current and historical customer purchases and whether each was fulfilled. Replace the current giant metric cards and instructional order-lifecycle text with a dense, scalable paginated transaction table. Include order date/ID, product, quantity, amount paid or due, supplier cost, supplier order status, fulfilment stage, shipment/tracking, delivery status, exception and action required. Filter New, Supplier pending, Processing, Shipped, Delivered, Delayed, Cancelled, Returned/Refunded and All. Support hundreds/thousands of rows. Distinguish order received, customer payment, supplier acceptance, partial packages, shipment, delivery, refund and financial settlement using actual evidence. A partial shipment is not a delivered order. Link order records into Operational Finance without mixing in infrastructure spending. Separate simulated/test orders from actual orders; preserve both histories. Remove owner-facing 'provider read capabilities', repetitive synthetic jargon and unexplained links to System/Assurance/Finance. Keep a meaningful empty state if commerce is locked and there are no real orders.
+
+10. OPERATIONAL FINANCE — SALES ECONOMICS ONLY
+Rename Finance to Operational Finance. Grand King's priority is exactly: REVENUE minus PRODUCT AND FULFILMENT COSTS equals OPERATIONAL PROFIT. Put these three numbers prominently on the page with period filters and supporting compact breakdowns by order, product and marketplace. Include supplier purchase cost, shipping, fulfilment, marketplace/payment fees, returns/refunds and other direct order-related costs where relevant. Do not mix technology subscriptions, hosting, AI providers or domain costs into this view. The owner does not want a sprawling generic accounting application, tax forms, excessive capital forms, forecast assumptions, billing imports or engineering diagnostics in the primary interface. Remove these from primary operational presentation while preserving required ledger, financial reconciliation, audit and safety functions elsewhere. Do not falsely count receivables as cash received or unverified sales as revenue. If data is missing, mark it as unavailable instead of showing invented zeros. Keep SGD primary.
+
+11. LIVE COST CENTRE — INFRASTRUCTURE ONLY
+Keep the sidebar name Live Cost Centre, but its purpose is Infrastructure Cost Centre: resources and subscriptions maintaining EmpireAI. Completely redesign into an elegant compact provider-by-provider expense table with month-to-date, year-to-date and custom periods, totals and provider filters. Show direct names: ChatGPT, OpenAI, Anthropic, Gemini, Railway, Vercel, GoDaddy, Amazon Seller Central subscription, relevant cloud/storage, CJ technology/API costs and other actually connected services. Distinguish confirmed charges, estimates, unpaid invoices and missing information. Suggested columns: Provider, Service, MTD, YTD, Billing status, Next bill date (if known), Exception. Avoid vague category groupings such as 'digital and operations' that hide the real providers. No double counting of reservations, usage and invoices. Remove giant cards, repeated provenance language, unnecessary Assurance links and confusing technical billing text. Keep actual cost-accounting, FX, provider financial limits and approval controls intact. Do not invent provider spend.
+
+12. ASSURANCE, CALENDAR AND SYSTEM — DEFER BROAD UX REVIEW
+These three departments remain fundamentally important but Grand King is not commissioning their complete UX redesign in this round. Keep them functional, secure and accessible. Change only what is necessary for new navigation compatibility, site-wide clarity, contrast, safety visibility or regression repair. Preserve all fifteen commerce protections, owner authority, calendars, system monitoring, evidence and logs. Their wider visual/operational redesign will be considered after launch.
+
+13. SAFETY AND FINANCIAL INVARIANTS
+Pillow remains NOT_BORN and commerce remains LOCKED. All seven live-effect routes must continue to refuse unauthorised effects. No supplier writes, listings publication, order placement, financial transfer, authority bypass, policy weakening or commerce unlock. Preserve the exact independent owner/four-eyes approvals, financial journals, historical records, accounting and ledger integrity, provider reservation/settlement accounting, incomplete/failed inference cost capture, existing provider/account financial limits and the OpenAI/Anthropic/Gemini router requirements. Synthetic/hypothetical acceptance may exercise reasoning but must not create live commerce or fabricate business truth. Maintain real source/evidence identity; do not replace identity matching with timestamp-only correlation. No new paid inference beyond existing commissioning authority. Do not loosen controls to make UX tests pass. Preserve all previously accepted engineering and data.
+
+14. IMPLEMENTATION AND TESTING
+First produce a concise reconciliation of existing versus newly required work, then implement systematically in the existing Work 7 lineage. Reuse working components and routes where appropriate. Keep backend contracts and owner-visible screens consistent. Add targeted automated tests for each changed operational page, mobile/desktop layouts, accessibility/contrast, navigation semantics, empty states, pagination, image gallery, provenance retention, truthful data presentation, approval separation, transaction-to-finance links, infrastructure/operations segregation, Pillow chat geometry/history and all relevant safety regressions. Check real browser behaviour at desktop and phone widths. Inspect console/network errors, loading states and API errors. Correct failures rather than asking the owner to interpret raw developer output. Preserve completed tests; rerun only affected suites and required release gates.
+
+15. ACCEPTANCE — CLOSE THE ORIGINAL WORK 7 GAPS TOO
+Do not lose the pre-existing blockers in the UX overhaul. Reconcile the exact original checklist for mobile picker/native keyboard, unaccepted nested navigation, conversation-history selection, financial display and safety interfaces. Confirm the earlier PR #109 repairs remain intact. Accept earlier genuine owner recordings where sufficient. Record which scenarios were observed, which passed, which failed and which remain unverified. Do not substitute screenshots for interaction evidence when actual interaction is required. If supported authenticated browser access is unavailable, report the precise blocked check and smallest owner action; do not request generic walkthroughs or password retries. Distinguish functional implementation, automated-test passage and owner acceptance.
+
+16. RELEASE AND DEPLOYMENT CONTROL
+Use the approved branch configuration for previews, not a detached SHA ref that loses the BRAIN_API_URL override. Verify exact commit and backend binding without exposing secrets. Never edit secrets, environment variables, credentials, production or commerce authority merely to fix preview routing. Preserve current production until authorised release conditions are met. Respect the existing release lease/fence protocol and coordinated Railway/Vercel deployment procedure. Check the latest lease rather than inventing one. Obtain any required owner authorisation before production release. Do not claim deployment when only a preview exists. After authorised release, verify deployed revision identity, owner response delivery, data preservation, financial accounting, 423 enforcement and all applicable operational checks. Do not declare COMPLETE without real receipts.
+
+17. EXECUTION STYLE — MINIMISE OWNER EFFORT
+Continue engineering autonomously within existing authority; do not stop after writing a plan or draft. Do not repeatedly ask for approval of already-approved Home, repeat already supplied screenshots, or require Grand King to read technical checklists. Use concise owner-facing updates: WHAT CHANGED; WHAT PASSED; WHAT IS BLOCKED; EXACTLY WHAT THE OWNER MUST DO, if anything. Where no owner action is needed, continue working. Keep a persistent machine-readable checkpoint and a human-readable closure ledger so interrupted sessions resume without restarting. Never claim a task is done merely because a prompt says to do it.
+
+18. DEFINITION OF COMPLETE
+Work 7 may be marked COMPLETE only when:
+- Original Work 7 and Safety UX requirements are reconciled and implemented.
+- All newly authorised operational UX requirements above are implemented and verified.
+- The approved Home is preserved.
+- Intelligence is a useful, concise owner-facing decision system.
+- Products & Approvals, Listings, Orders & Fulfilment and Operational Finance form a coherent, truthful business workflow.
+- Live Cost Centre is a distinct infrastructure-expense system.
+- Pillow Chat reading area and history interactions pass acceptance.
+- Desktop/mobile navigation and interaction gaps are closed with evidence.
+- All 15 commerce safeguards, NOT_BORN, commerce LOCKED, financial integrity and auditability remain preserved.
+- Relevant CI, browser tests, deployment and production-preservation checks pass.
+- Required owner acceptance and release permissions are actually obtained.
+- Legitimate, auditable Work 7 COMPLETE and assurance receipts exist.
+
+If any requirement remains blocked, state WORK 7 BLOCKED, identify the exact outstanding gate, and preserve all completed work. Do not invent success, bypass approvals or silently reduce scope.
+
+BEGIN NOW: RECOVER THE CURRENT STATE, RECONCILE THE EXISTING WORK 7 CHECKPOINTS, IMPLEMENT THE COMPLETE OPERATIONAL UX OVERHAUL, VERIFY ALL SAFETY AND ACCEPTANCE GATES, AND CONTINUE TOWARD LEGITIMATE CLOSURE.
+
+
+======================================================================
+AUDITED MANDATORY ANNEX — GAPS FOUND IN THE 10 OCTOBER MASTER DIRECTIVE
+THIS ANNEX IS PART OF THE SAME WORK 7 MANDATE, NOT A SEPARATE MISSION.
+Where the original directive is less specific, this annex governs.
+======================================================================
+
+A1. EXACT RECOVERY OF TWO PR LINEAGES
+At the last verified checkpoint, frontend PR #109 was OPEN/DRAFT at
+5f2f8929c0fd43949a09831247a67591e66d3c14, targeting
+work2/frontend-release. Backend PR #110 was OPEN/DRAFT at
+ff2feffb2907959ef03014617ade2690ae888ab8, targeting
+work2/backend-release. Independently check current heads, merges, CI,
+production, and release lease before acting. The prior document's
+a8f1f709 is an older checkpoint, NOT the current PR #109 head.
+
+Use branch-scoped Vercel preview configuration. An earlier SHA-ref preview
+omitted the Work 7 BRAIN_API_URL override and returned "Application not
+found" even with a correct password. The replacement branch-scoped preview
+was confirmed to return the expected "Authentication required" response,
+and the owner successfully authenticated. Preserve these findings and
+avoid password resets, repeated sign-ins and secret changes.
+
+A2. ORIGINAL WORK 7 MUST CLOSE ALONGSIDE NEW UX
+Recover and retain the complete continuous Items 1–100 tracker, the
+20 original modules, 15 safety protections, eight Pillow follow-ups,
+J1–J6 owner journeys, approved V5 Home and all owner screenshot evidence.
+Retain each original requirement text and its source/test/acceptance
+evidence. Maintain a separate amendment register mapping each NEW UX
+requirement to affected routes, handlers and original tracker rows.
+Never replace the original 100 rows with an abbreviated summary.
+Earlier 17 PASS / 74 PENDING / 9 BLOCKED are classification counts, not
+a weighted completion percentage. Reconcile statuses with new evidence.
+
+A3. EXACT REMAINING LIVE ACCEPTANCE SCOPE
+At the earlier checkpoint, all 168 source routes remained; 154/168 had
+source-grounded parent context, leaving 14 commerce/automation contexts
+requiring live classification. 536 static references do NOT prove actual
+live navigation coverage. The 14 contexts include:
+  /cockpit/commerce/ad-intelligence
+  /cockpit/commerce/ads
+  /cockpit/commerce/automation
+  /cockpit/commerce/factory
+  /cockpit/commerce/intelligence
+  /cockpit/commerce/launch
+  /cockpit/commerce/marketing
+  /cockpit/commerce/marketplace
+  /cockpit/commerce/operating
+  /cockpit/commerce/store
+  /cockpit/commerce/workspace
+  /cockpit/commerce/workspace/[actual-returned-id]
+  /cockpit/commerce (redirect)
+  /cockpit/operations/automation
+Some share rendered components and are not separate applications.
+Inspect relevant nested controls, breadcrumbs, parent highlighting,
+return navigation and disabled states. Use actual returned IDs.
+For revised pages, check Product tabs, Orders/package timelines,
+Finance displays, Pillow CEO Performance/24-hour timetable/Decision
+Centre, recommendation filters, and the applicable safety disclosures.
+Establish a truthful live-control denominator, not a guessed one.
+Owner screenshots already accepted for Home, desktop chat, mobile chat
+reading area and the replacement mobile history picker retain credit
+for the states they actually show. Physical keyboard remains a separate
+check if mandatory. No accepted recording is to be requested again.
+
+A4. OWNER'S BUSINESS ARCHITECTURE IS BINDING
+Intelligence is first after Home and feeds research to Pillow, which
+evaluates and recommends candidates in Products & Approvals. Products
+are PRE-LAUNCH recommendations and owner decisions, NOT published
+listings. Listings show PREPARED versus PUBLISHED inventory distinctly.
+Customer purchases become Orders & Fulfilment, whose direct economics
+feed Operational Finance. Live Cost Centre is a separate infrastructure
+expense register. Do not unexpectedly jump between departments for
+routine inspection; preserve all underlying routes, approvals and
+governance actions. Removing a standalone Approvals sidebar entry does
+NOT remove independent finance, safety or other approval powers.
+
+A5. SOFTWARE-FIRST FUNNEL AND 1,000-PRODUCT CAP
+Software performs discovery, deduplication and preliminary screening
+FIRST; Pillow narrows, evaluates and recommends; owner decides.
+Retain screening stage counts and rejection reasons where evidence
+exists. Up to 100 qualified candidates per day is a planned
+discovery/qualification objective, NOT a promise to publish 100 live
+listings daily. At most 1,000 ACTIVE products; include assessment over
+time, observe/retain/improve/pause/retire/replace decisions, with
+history preserved. The initial up-to-100 qualified launch objective
+is post-authorisation, not a Work 7 commerce activation. Full throughput,
+operational dry runs and autonomous self-healing certification belong
+to Work 8, not a claim that Work 7 has implemented them.
+
+A6. OWNER CHAT SPACE AND SPECIFIC UX DEFECTS
+The owner's target is approximately 95% usable chat-reading space
+versus 5% compact idle composer, subject to accessible minimums and
+multiline expansion. Preserve mobile fixes and saved exchanges. Retain
+the specific fixes for Markdown tables, Jump to latest overlap,
+short-height viewport (400x464), bounded mobile history dialog,
+keyboard/focus and long titles. No new chat submission during
+read-only UX acceptance. The legacy chat is a reference for reading
+space, not a design to restore.
+
+A7. DEPARTMENT-SPECIFIC DEFINITIONS
+INTELLIGENCE: creative freedom to deliver a beautiful, compact,
+period-filtered executive research experience; focus on findings,
+their significance, source credibility, Pillow's actual conclusions
+and product recommendations. Preserve Four Eyes collectors, evidence
+freshness and safeguards without showing raw logs as the main UI.
+PRODUCTS & APPROVALS: image-led research, supplier/competitor costs,
+estimated direct margin, Pillow rationale and owner approve/reject/
+defer/request-research decisions; no publication implied.
+LISTINGS: compact paginated marketplace catalogue, photo gallery,
+listing date/age, selling price, competitor price, marketplace status
+and verified performance; distinguish prepared, published and test
+fixtures; no oversized broken-media panel.
+ORDERS: dense paginated current/historical order rows, supplier
+acceptance, payment, shipment, delivery, tracking, exceptions and
+refunds; no giant educational lifecycle cards.
+OPERATIONAL FINANCE: three prominent numbers: Revenue, Direct Product
+and Fulfilment Costs, and Profit on that direct-cost basis. Preserve
+ledger reconciliation, distinguish actual/unknown and do not claim
+full accounting net profit or mix in technology expenses.
+LIVE COST CENTRE: provider-by-provider infrastructure charges (e.g.
+ChatGPT, OpenAI, Gemini, Anthropic, Railway, Vercel, GoDaddy, Amazon
+Seller Central subscription, applicable CJ technology costs), MTD/YTD,
+billing basis, currency and no double counting.
+ASSURANCE, CALENDAR, SYSTEM: retain functionality, safety and mandatory
+acceptance; defer broad discretionary visual redesign.
+
+A8. SITE-WIDE LANGUAGE AND NAVIGATION
+Replace or move jargon such as synthetic, SHA256, source and reporting
+basis, provider read capabilities, raw classification and JSON.
+Do not erase the source data. Explain business purpose in one short
+footnote where useful. Prefer compact rows and relevant cards, not
+20-screen scrolling. Avoid meaningless empty states. Use em dashes for
+unavailable non-actionable values, never for genuine risk warnings or
+unknown financial obligations requiring attention. Repair unreadable
+yellow-on-white contrast. Preserve approved Home art and identity.
+Maintain a BEFORE -> AFTER route/control matrix with rationale,
+original function, new location, unchanged enforcement and tests.
+No major unapproved changes to design, theme or business authority.
+
+A9. FOUR EYES PR #110 IS A SEPARATE GOVERNED REPAIR
+The stale scheduled-evidence cache defect predates frontend PR #109.
+PR #110's previously reported affected tests and applicable CI passed,
+but production repair and actual fresh collector evidence were not
+verified at the checkpoint. HIGH incident must remain open until real
+recovery proof. Do not suppress it, rewrite timestamps or weaken
+freshness requirements. It is not a blanket prohibition on frontend
+UX release; assess actual release risk and obey any real release-control
+denial. Maintain separate backend lineage, review, lease, deployment,
+preservation and incident disposition. Do not require full Work 8
+autonomous recovery certification for a Work 7 visual release.
+
+A10. RELEASE LEASE, PRODUCTION AND INDEPENDENT CLOSURE
+The prior release fence 17 is FINISHED and cannot be reused. King's
+Advisor is read-only; Railway deployment access alone does not grant
+authority to issue a release lease. Once all mandatory PRE-RELEASE
+acceptance gates pass, obtain owner approval and a NEW valid lease/fence
+through the authorised production Assurance release-verification flow.
+Do not begin the one-hour lease early while acceptance is incomplete.
+Review and merge the approved exact-head PR(s), deploy using the
+established Vercel/Railway gates, verify exact production revision,
+preserve 224 accounting records, 3 journal entries and 7 historical
+finance records and their authoritative digests, preserve NOT_BORN and
+commerce LOCKED and blocked live-effect boundaries. Reconcile actual
+post-release UI, financial records, incidents, Mission Ledger and
+independent King's Advisor receipts. No post-release receipt can be
+claimed before release. No release if mandatory gate remains unsatisfied.
+
+A11. EXECUTION WITHOUT ENDLESS STOPPING
+Recover -> reconcile -> implement related UX modules -> targeted
+automated tests -> actual live owner acceptance -> release review ->
+fresh lease -> governed deployment -> production preservation ->
+independent closure. Work must automatically continue from each
+completed authorised step, without restarting passing campaigns.
+Keep a resumable checkpoint with exact commit/test/evidence/remaining
+tasks. Stop only at genuine external permission/security/tool limits
+or indispensable owner action; consolidate all such actions in one
+clear request. Never promise indefinite execution, bypass credential
+restrictions or fabricate acceptance. Keep a complete 1–100 tracker
+plus new amendments, with green/orange/red status and precise evidence.
+
+A12. WORK 8 / WORK 9 HANDOFF
+Work 8: full autonomous operating-system build and integration,
+software-first discovery funnel, simulated 100/day throughput with
+1,000 active-product cap, multi-day mock examinations, comprehensive
+operational dry runs, failure injection, Assurance detect -> diagnose
+-> contain -> authorised autonomous repair -> verify -> audit, order
+and financial simulation and independent GO/NO-GO assessment.
+Work 9: digital twin, safe live transition, production parity,
+controlled owner changes after launch, rollback and go-live authority.
+Neither Work 8 nor Work 9 begins or activates commerce under this
+Work 7 mandate. Pillow remains NOT_BORN; commerce remains LOCKED.
+
+A13. DEFINITION OF WORK 7 COMPLETE
+Original 100 requirements reconciled with evidence; all approved
+new owner UX changes implemented; prior accepted functions preserved;
+material navigation/functional mapping validated; exact-head CI green;
+mandatory authenticated live acceptance genuinely satisfied;
+owner approvals and fresh release lease legitimate; production
+deployed and exact identity verified; finance/records/safeguards
+preserved; independent Mission Ledger and King's Advisor closure
+receipts obtained. If a mandatory item remains blocked, report
+WORK 7 BLOCKED with one precise next action and retain all work.
+Do not silently waive acceptance to make the project look complete.
+
+END OF AUDITED MASTER DIRECTIVE

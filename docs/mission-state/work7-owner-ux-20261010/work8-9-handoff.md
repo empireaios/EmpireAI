@@ -1,0 +1,7 @@
+# Deferred requirements — not executed in Work 7
+
+Work 8 must prove in isolated scenarios: software-led discovery/deduplication and preliminary eligibility/economics screening; complete rejection reasons and stage totals; Pillow assessment with source evidence, accepted/rejected/deferred rationale and owner selection; enforcement of at most 1,000 active products, initial up-to-100 qualified launch objective and sustainable 100/day discovery/qualification throughput (not publication); retain/improve/observe/pause/retire/replace recommendations with retained history; simulated listing/order/fulfilment/payment/returns reconciliation; failure injection, recovery and independent assurance.
+
+The current Products presentation exposes saved product phases, rationale, decisions and evidence, but does not establish end-to-end discovery/rejection/Pillow-review aggregate totals or sustained throughput. Current Orders separates synthetic lifecycle evidence from actual orders; it does not establish a live order feed. Finance shows recorded amounts and missing coverage; it must not invent complete actual profit, cash or year-end forecasts. These are explicit capability-evidence gaps, not functions activated by this UX PR.
+
+Work 9 must establish the isolated digital twin, verified production parity, twin validation before changes, controlled owner-authorised activation, deployment monitoring/rollback and continuous assurance. Birth and commerce activation are out of scope for Work 7. Preserve NOT_BORN and commerce LOCKED.

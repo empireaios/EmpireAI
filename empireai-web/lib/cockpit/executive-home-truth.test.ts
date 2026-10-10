@@ -89,7 +89,7 @@ describe("executive home truth + nav reality", () => {
     assert.match(chat, /data-testid="pillow-composer"/);
     assert.match(chat, /Context ▸|Context/);
     assert.match(chat, /Show earlier messages|windowSize/i);
-    assert.ok(/min-h-\[560px\]|h-\[min\(85vh/.test(chat), "conversation uses majority height");
+    assert.match(chat, /min-h-0 w-full flex-1 flex-col/, "conversation fills bounded parent; desktop/mobile geometry is verified by work7-chat-owner.test.mjs");
     assert.ok(!/max-h-\[62vh\]/.test(chat), "62vh history prison removed");
     assert.ok(!/Load earlier messages \(\d+ hidden\)/.test(chat));
   });

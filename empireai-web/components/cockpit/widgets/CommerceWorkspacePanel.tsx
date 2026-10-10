@@ -1,4 +1,5 @@
 "use client";
+import {LegacyReadUnavailable} from "./LegacyReadUnavailable";
 
 import Link from "next/link";
 import {
@@ -37,20 +38,7 @@ export function CommerceWorkspacePanel() {
   }
 
   if ((store.error && !store.data) || (home.error && !home.data)) {
-    return (
-      <Panel title="Business Centre" subtitle="Brain dispatch unavailable">
-        <button
-          type="button"
-          className="text-sm text-[#d4af37]"
-          onClick={() => {
-            void store.reload();
-            void home.reload();
-          }}
-        >
-          Retry
-        </button>
-      </Panel>
-    );
+    return <LegacyReadUnavailable title="Business Centre" error={store.error??home.error} href="/cockpit/products" onRetry={()=>{store.reload();home.reload();}}/>;
   }
 
   const all = store.data?.companies ?? [];

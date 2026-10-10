@@ -1,0 +1,109 @@
+- alert
+- link "Skip to content":
+  - /url: "#owner-main"
+- complementary:
+  - link "EmpireAI A Bigger Tomorrow, Together":
+    - /url: /cockpit
+    - strong: EmpireAI
+    - generic: A Bigger Tomorrow, Together
+  - navigation "Owner navigation":
+    - link "Home":
+      - /url: /cockpit
+      - text: Home
+    - link "Intelligence":
+      - /url: /cockpit/eyes
+      - text: Intelligence
+    - link "Pillow (CEO)":
+      - /url: /cockpit/ceo
+      - text: Pillow (CEO)
+    - link "Products & Approvals":
+      - /url: /cockpit/products
+      - text: Products & Approvals
+    - link "Listings":
+      - /url: /cockpit/listings
+      - text: Listings
+    - link "Orders & Fulfilment":
+      - /url: /cockpit/orders
+      - text: Orders & Fulfilment
+    - link "Operational Finance":
+      - /url: /cockpit/finance
+      - text: Operational Finance
+    - link "Live Cost Centre":
+      - /url: /cockpit/cost-centre
+      - text: Live Cost Centre
+    - link "Assurance":
+      - /url: /cockpit/assurance
+      - text: Assurance
+    - link "Calendar":
+      - /url: /cockpit/calendar
+      - text: Calendar
+    - link "System":
+      - /url: /cockpit/system
+      - text: System
+  - button "Sign out"
+- banner:
+  - textbox "Find an owner page":
+    - /placeholder: Find a page…
+  - link "King’s Advisor communications":
+    - /url: /cockpit/advisor
+  - time:
+    - generic: Sun, 11 Oct 2026
+    - strong: 01:21:45 am SGT
+- main:
+  - navigation "Breadcrumb":
+    - link "Home":
+      - /url: /cockpit
+    - generic: /
+    - link "Listings":
+      - /url: /cockpit/listings
+  - paragraph: EMPIREAI
+  - heading "Listings" [level=1]
+  - paragraph: Prepared content and published marketplace inventory are separate stages.
+  - button "Published"
+  - button "Prepared"
+  - button "Test examples" [active] [pressed]
+  - text: Search listings
+  - textbox "Search listings"
+  - text: Sort listings
+  - combobox "Sort listings":
+    - option "Title" [selected]
+    - option "Last updated"
+    - option "Estimated contribution"
+  - paragraph: Test examples — not real products or published inventory.
+  - region "Listing catalogue":
+    - table:
+      - rowgroup:
+        - row "Product Selling / competitor price Marketplace status First listed / age Stock / sales Review":
+          - columnheader "Product"
+          - columnheader "Selling / competitor price"
+          - columnheader "Marketplace status"
+          - columnheader "First listed / age"
+          - columnheader "Stock / sales"
+          - columnheader "Review"
+      - rowgroup:
+        - 'row "Synthetic storage organiser cj-sku-fixture 40 SGD Competitors: —–— Test example Approved — No publication date verified — Marketplace stock and sales unverified Inspect listing"':
+          - rowheader "Synthetic storage organiser cj-sku-fixture":
+            - text: Synthetic storage organiser
+            - generic: cj-sku-fixture
+          - 'cell "40 SGD Competitors: —–—"':
+            - text: 40 SGD
+            - generic: "Competitors: —–—"
+          - cell "Test example Approved":
+            - text: Test example
+            - generic: Approved
+          - cell "— No publication date verified":
+            - text: —
+            - generic: No publication date verified
+          - cell "— Marketplace stock and sales unverified":
+            - text: —
+            - generic: Marketplace stock and sales unverified
+          - cell "Inspect listing":
+            - button "Inspect listing"
+  - navigation "Results pages":
+    - button "Previous" [disabled]
+    - status: 1–1 of 1
+    - button "Next" [disabled]
+- contentinfo:
+  - text: Private owner workspace · NOT_BORN · Commerce LOCKED
+  - link "Inspect authority and evidence →":
+    - /url: /cockpit/assurance

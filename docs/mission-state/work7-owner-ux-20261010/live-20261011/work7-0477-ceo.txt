@@ -1,0 +1,132 @@
+- alert
+- link "Skip to content":
+  - /url: "#owner-main"
+- complementary:
+  - link "EmpireAI A Bigger Tomorrow, Together":
+    - /url: /cockpit
+    - strong: EmpireAI
+    - generic: A Bigger Tomorrow, Together
+  - navigation "Owner navigation":
+    - link "Home":
+      - /url: /cockpit
+      - text: Home
+    - link "Intelligence":
+      - /url: /cockpit/eyes
+      - text: Intelligence
+    - link "Pillow (CEO)" [active]:
+      - /url: /cockpit/ceo
+      - text: Pillow (CEO)
+    - link "Products & Approvals":
+      - /url: /cockpit/products
+      - text: Products & Approvals
+    - link "Listings":
+      - /url: /cockpit/listings
+      - text: Listings
+    - link "Orders & Fulfilment":
+      - /url: /cockpit/orders
+      - text: Orders & Fulfilment
+    - link "Operational Finance":
+      - /url: /cockpit/finance
+      - text: Operational Finance
+    - link "Live Cost Centre":
+      - /url: /cockpit/cost-centre
+      - text: Live Cost Centre
+    - link "Assurance":
+      - /url: /cockpit/assurance
+      - text: Assurance
+    - link "Calendar":
+      - /url: /cockpit/calendar
+      - text: Calendar
+    - link "System":
+      - /url: /cockpit/system
+      - text: System
+  - button "Sign out"
+- banner:
+  - textbox "Find an owner page":
+    - /placeholder: Find a page…
+  - link "King’s Advisor communications":
+    - /url: /cockpit/advisor
+  - time:
+    - generic: Sun, 11 Oct 2026
+    - strong: 01:22:49 am SGT
+- main:
+  - navigation "Breadcrumb":
+    - link "Home":
+      - /url: /cockpit
+    - generic: /
+    - link "Pillow (CEO)":
+      - /url: /cockpit/ceo
+  - paragraph: EMPIREAI · A HAPPIER TOMORROW
+  - heading "Pillow CEO" [level=1]
+  - generic "About this view"
+  - link "Chat with Pillow →":
+    - /url: /cockpit/development/pillow
+  - heading "Pillow operations" [level=2]
+  - navigation "CEO views":
+    - button "Performance" [pressed]
+    - button "24-hour timetable"
+    - button "Decision centre"
+  - navigation "Assurance and governance":
+    - paragraph: Assurance / Governance
+    - generic "Related safety guards":
+      - link "Operational monitoring guard →":
+        - /url: /cockpit/assurance#safety-12
+      - link "Owner authority guard →":
+        - /url: /cockpit/assurance#safety-14
+  - article:
+    - paragraph: Annual commitment
+    - strong: —
+    - generic "Value details"
+  - article:
+    - paragraph: MTD realised
+    - strong: —
+    - generic "Value details"
+  - article:
+    - paragraph: MTD unsettled
+    - strong: —
+    - generic "Value details"
+  - article:
+    - paragraph: YTD realised
+    - strong: —
+    - generic "Value details"
+  - article:
+    - paragraph: YTD unsettled
+    - strong: —
+    - generic "Value details"
+  - article:
+    - paragraph: Commitment gap
+    - strong: —
+    - generic "Value details"
+  - article:
+    - paragraph: Year-end forecast
+    - strong: —
+    - generic "Value details"
+  - article:
+    - paragraph: Capital downside
+    - strong: —
+    - generic "Value details"
+  - generic "Strategy, dated milestones and proposal review"
+  - option "Choose saved reasoning" [selected]
+  - option
+  - option
+  - option "Observe this fixture only; no order"
+  - article:
+    - heading "Strategy and milestones" [level=2]
+    - paragraph: No annual plan recorded. Review a saved proposal or discuss one with Pillow.
+    - link "Open Pillow proposal / review →":
+      - /url: /cockpit/development/pillow
+    - link "Inspect existing strategy evidence →":
+      - /url: /cockpit/founder/executive-performance
+  - article:
+    - heading "Financial review" [level=2]
+    - paragraph: Financial coverage requires review.
+    - generic "Reporting limitations"
+    - link "Inspect financial reconciliation →":
+      - /url: /cockpit/finance
+    - link "Review decisions →":
+      - /url: /cockpit/approvals
+  - generic "Current financial evidence and qualification"
+- contentinfo:
+  - text: Private owner workspace · NOT_BORN · Commerce LOCKED
+  - link "Inspect authority and evidence →":
+    - /url: /cockpit/assurance

@@ -86,7 +86,7 @@ export async function login(email: string, password: string) {
       body: JSON.stringify({ email: email.trim(), password }),
     });
   } catch {
-    throw normalizeError(
+    throw authenticationError(
       new Error(
         "Authentication service unavailable. Empire Brain did not respond — retry shortly.",
       ),
@@ -115,10 +115,16 @@ export async function login(email: string, password: string) {
           "Authentication service unavailable. Please retry — this is not necessarily an invalid password.";
       }
     }
-    throw normalizeError(new Error(message), response.status);
+    throw authenticationError(new Error(message), response.status);
   }
 
   return response.json() as Promise<{ user: import("../auth/types").SessionUser }>;
+}
+
+function authenticationError(error: Error, status: number): Error & BrainError {
+  // The login form catches Error instances. A plain BrainError object hides the
+  // actual response behind its generic service-unavailable fallback.
+  return Object.assign(error, normalizeError(error, status));
 }
 
 export async function logout() {

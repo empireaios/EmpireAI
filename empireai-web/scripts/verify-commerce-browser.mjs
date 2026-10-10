@@ -47,8 +47,8 @@ try {
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   await page.screenshot({path:resolve(output,'phone-home.png'),fullPage:true});
   await page.getByRole('button',{name:'Open owner menu',exact:true}).click();
-  await page.getByRole('navigation',{name:'Cockpit mobile menu'}).getByRole('link',{name:'Products',exact:true}).click();
-  await page.getByRole('heading',{name:'Products · CJ → Amazon US',exact:true}).waitFor();
+  await page.getByRole('navigation',{name:'Cockpit mobile menu'}).getByRole('link',{name:'Products & Approvals',exact:true}).click();
+  await page.getByRole('heading',{name:'Products & Approvals',exact:true}).waitFor();
   const overview=page.waitForResponse(r=>r.url().includes('/api/owner/overview') && r.status()===200,{timeout:60_000});
   await page.getByRole('link',{name:'Historical provider reviews →',exact:true}).click();
   const saved=await (await overview).json();
@@ -74,10 +74,10 @@ try {
   await page.screenshot({path:resolve(output,'phone-product.png'),fullPage:true});
   assert.equal((await page.request.post('http://127.0.0.1:3100/api/owner/overview')).status(),405);
   assert.equal((await page.request.get('http://127.0.0.1:3100/api/owner/overview?workspaceId=other')).status(),400);
-  await nav.getByRole('link',{name:'Orders',exact:true}).click();
-  await page.getByRole('heading',{name:'Orders · live order command',exact:true}).waitFor();
+  await nav.getByRole('link',{name:'Orders & Fulfilment',exact:true}).click();
+  await page.getByRole('heading',{name:'Orders & Fulfilment',exact:true}).waitFor();
   const response=page.waitForResponse(r=>r.url().includes('/api/commerce/transactions?') && r.status()===200,{timeout:60_000});
-  await page.getByRole('link',{name:'Historical transaction evidence →',exact:true}).click();
+  await page.getByRole('link',{name:'Full historical lifecycle',exact:true}).click();
   const payload=await (await response).json();
   assert.equal(payload.evidenceMode,'OFFLINE_FIXTURE');
   assert.equal(payload.realCommerceVerified,false);
