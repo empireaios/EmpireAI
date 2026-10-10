@@ -38,3 +38,7 @@ Owner should inspect the corrected candidate once and approve the end-state UX o
 Planned release order remains PR111 backend then PR109 frontend, under all existing gates. Frontend rollback remains41c02e0f; backend rollback51830f9f retains the append-only journal. Detailed deployment/rollback procedure is in `PRODUCTION-RELEASE-PROPOSAL.md`.
 
 No merge, production deployment, release lease, Pillow activation, commerce unlock, paid inference, new billable resource or historical financial modification occurred. Mission closure remains post-release and requires independent production receipts.
+
+## Owner acceptance recorded
+
+Grand King formally approved f83370b43421321c1414b97077943108c1c2906f. This supersedes earlier owner-visual-acceptance-pending statements in this historical verification record. See owner-ux-approval.json and owner-ux-approval-ledger.json. Production authority remains withheld. Original acceptance, Android evidence and all scope records are unchanged.

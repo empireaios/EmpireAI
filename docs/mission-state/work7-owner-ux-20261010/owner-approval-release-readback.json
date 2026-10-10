@@ -1,0 +1,889 @@
+{
+  "checkedAt": "2026-10-10T20:59:00Z",
+  "pr109": {
+    "url": "https://github.com/empireaios/EmpireAI/pull/109",
+    "number": 109,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "base": "work2/frontend-release",
+    "base_sha": "41c02e0f67702d857dede6412adf814bce3db8e8",
+    "head": "work7/owner-ux-correction-live-20261010",
+    "head_sha": "f83370b43421321c1414b97077943108c1c2906f"
+  },
+  "pr111": {
+    "url": "https://github.com/empireaios/EmpireAI/pull/111",
+    "number": 111,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "base": "work2/backend-release",
+    "base_sha": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+    "head": "work7/durable-cost-categories-20261011",
+    "head_sha": "e6d98fb57537c893c85afc552626235a38ba874c"
+  },
+  "ci109": {
+    "workflow_runs": [
+      {
+        "id": 38084609174,
+        "name": "Assurance owner browser contract",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38084609147,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38084609139,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38084609137,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "ci111": {
+    "workflow_runs": [
+      {
+        "id": 38074592243,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38074592465,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38074592272,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "controlPlane": {
+    "status": "DEGRADED",
+    "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+    "observedAt": 1791665878209,
+    "summary": {
+      "activeIncidents": 0,
+      "automaticallyRecovered": 29,
+      "ownerActionRequired": 0
+    },
+    "monitor": {
+      "fresh": true,
+      "heartbeat": {
+        "component": "monitor",
+        "at": 1791665859700,
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7"
+      }
+    },
+    "paused": {
+      "paused": false,
+      "ownerId": "usr_a91d007ebcebe18d",
+      "at": 1791449129583,
+      "reason": "Owner decision"
+    },
+    "lease": {
+      "id": "lease_19c1b593-1605-4c55-8cf1-05859347c49d",
+      "ownerId": "usr_a91d007ebcebe18d",
+      "revision": "a07d0c4702cea0a2f435291ab3c63d909bf616cf",
+      "scope": [
+        "backend",
+        "frontend"
+      ],
+      "fence": 17,
+      "status": "FINISHED",
+      "createdAt": 1791569490766,
+      "heartbeatAt": 1791569490766,
+      "expiresAt": 1791573090766,
+      "finishedAt": 1791571391189
+    },
+    "activeAcceptance": null,
+    "components": [
+      {
+        "recordId": "probe:approval_quarantine",
+        "sha256": "2ec0b53088c13e9c5e0c09dcb41d4ab60f791ceba7ed22b3cc5fb36dcf4d42c6",
+        "id": "approval_quarantine",
+        "status": "HEALTHY",
+        "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+        "recoveryId": "rec_aba363af-456e-49b3-ade3-72f97ebb46b2",
+        "runbookId": "quarantine_reconciliation",
+        "verifiedAt": 1791448736750,
+        "summary": "Completed one-shot owner approval acceptance; retained recovery verified",
+        "capability": "approval_quarantine",
+        "observedAt": 1791448657814
+      },
+      {
+        "recordId": "probe:assurance-primary-monitor",
+        "sha256": "13f952ee165a1c4a3e5890229f2172c992f0752fe569996cdb84ef58fb5f9732",
+        "id": "assurance-primary-monitor",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Primary Assurance monitor is current",
+        "capability": "assurance-monitor",
+        "observedAt": 1791665872315
+      },
+      {
+        "recordId": "probe:durable_control",
+        "sha256": "ad17e2033f96dbf3ce9a1655a60c02b465bc95fdb364f5c0b505c0815aa25807",
+        "id": "durable_control",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Operational event store is readable",
+        "capability": "durable_control",
+        "observedAt": 1791665859612
+      },
+      {
+        "recordId": "probe:financial_evidence",
+        "sha256": "fa490fad7f06d7166d353223e198623be970d46af5ced800902e6690fd3e0512",
+        "id": "financial_evidence",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Financial journal readable; billing and cash verification remain record-specific",
+        "capability": "financial_evidence",
+        "observedAt": 1791665859592
+      },
+      {
+        "recordId": "probe:four_eyes_reads",
+        "sha256": "bf2e2307abc850e3991cfaf02332e7ed744085181f550ca4b1a01a6e595b5492",
+        "id": "four_eyes_reads",
+        "status": "DEGRADED",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Per-capability saved reads distinguish failed, stale, missing and external evidence; no monitoring API calls",
+        "capability": "four_eyes_reads",
+        "observedAt": 1791665859656
+      },
+      {
+        "recordId": "probe:four_eyes_scheduler",
+        "sha256": "64fbdf389560da0bdade249eda986a7cd07f322d17e422ca188f232935c61ae7",
+        "id": "four_eyes_scheduler",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Durable Four Eyes scheduler progress",
+        "capability": "four_eyes_scheduler",
+        "observedAt": 1791665859646
+      },
+      {
+        "recordId": "probe:governed_commerce",
+        "sha256": "6cf9541c785635612a4233f7984eca3c7853071a48dbc52f80e39d591d7ec0b8",
+        "id": "governed_commerce",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Immutable commerce evidence and bounded synthetic task progress",
+        "capability": "governed_commerce",
+        "observedAt": 1791665859586
+      },
+      {
+        "recordId": "probe:independent_inspector",
+        "sha256": "78179a0ac295edab977f228f3b35310bd118775c32c0e5b7c55bf2e0c3867baf",
+        "id": "independent_inspector",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "External inspector heartbeat",
+        "capability": "independent_inspector",
+        "observedAt": 1791665859637
+      },
+      {
+        "recordId": "probe:model_server_contract",
+        "sha256": "8fd89e31f6ea713c51c3028e05976c893f530ae4d71bb5382c6756dabcd3c77b",
+        "id": "model_server_contract",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Model/server scalar, enum, required-field and collection boundary compatibility",
+        "capability": "model_server_contract",
+        "observedAt": 1791665859596
+      },
+      {
+        "recordId": "probe:pricing_review",
+        "sha256": "97336c9a79def4b08b25fad8dfa4f852f0aa57ec7a2d1435c120b8ce01694c5d",
+        "id": "pricing_review",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Local inference price review expiry",
+        "capability": "pricing_review",
+        "observedAt": 1791665859619
+      },
+      {
+        "recordId": "probe:provider_configuration",
+        "sha256": "7e9be7608437884ecce6e97d6038c537a7d093e82598bbaccd467190d3fc1a55",
+        "id": "provider_configuration",
+        "status": "DEGRADED",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Passive provider response receipts; application delivery is checked independently",
+        "capability": "provider_configuration",
+        "observedAt": 1791665859628
+      },
+      {
+        "recordId": "probe:reconciliation_view",
+        "sha256": "2fe9329dedc984de20553938aa15fd4f0663baafc2a3ab4b94e4b71cbcee4c80",
+        "id": "reconciliation_view",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "runbookId": "rebuild_reconciliation",
+        "summary": "Derived operational evidence reconciliation",
+        "capability": "reconciliation_view",
+        "observedAt": 1791665859697
+      },
+      {
+        "recordId": "probe:response_evidence_linkage",
+        "sha256": "982703ada1a4f4f1db6899e4e5ef9df134381f3153da126d950ab7a951b7f0b6",
+        "id": "response_evidence_linkage",
+        "status": "HEALTHY",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "summary": "Cross-source request/assessment/evidence binding",
+        "capability": "response_evidence_linkage",
+        "observedAt": 1791665859679
+      }
+    ]
+  },
+  "accounting": {
+    "retrievedAt": "2026-10-10T20:56:12.681Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "accounting",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": "2026-10-10T20:56:12.681Z",
+    "source": "existing accounting snapshot; recorded estimates are not provider invoices",
+    "data": {
+      "schema": "owner-commissioning-accounting-v1",
+      "observedAt": "2026-10-10T20:56:12.682Z",
+      "readOnly": true,
+      "recordCount": 224,
+      "recordDigestSha256": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+      "ceilingMicroUsd": null,
+      "heldMicroUsd": 110852730,
+      "remainingMicroUsd": null,
+      "recordedEstimateMicroUsd": 20254371,
+      "estimateUnknownCount": 5,
+      "invoiceActualMicroUsd": null,
+      "invoiceUnknownCount": 224,
+      "reservationReleased": false,
+      "inferenceCalls": 0
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "financialCentre": {
+    "retrievedAt": "2026-10-10T20:56:12.794Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "financial_centre",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "Work5 append-only financial evidence and canonical sources; no payment or inference",
+    "data": {
+      "schema": "work5-finance-v1",
+      "observedAt": "2026-10-10T20:56:12.795Z",
+      "currency": "SGD",
+      "scope": {
+        "from": "0000",
+        "to": "9999",
+        "provider": ""
+      },
+      "source": "Append-only evidence journal linked to canonical legacy ledger and inference accounting",
+      "noExecutionAuthority": true,
+      "entries": [
+        {
+          "id": "work5-vercel-usage-20261008",
+          "type": "cost",
+          "data": {
+            "entityId": "vercel-team-usage-20260930-20261008",
+            "provider": "vercel",
+            "service": "Team-level FOCUS billed usage; allocation unverified",
+            "category": "TECHNOLOGY",
+            "classification": "VARIABLE",
+            "stage": "ACCRUED_UNBILLED",
+            "amountMicro": 140117,
+            "currency": "USD",
+            "taxMicro": 0,
+            "creditMicro": 0,
+            "periodStart": "2026-09-30T07:00:00.000Z",
+            "periodEnd": "2026-10-08T07:00:00.000Z",
+            "sourceIds": [
+              "vercel-team-focus-20260930-20261008"
+            ],
+            "authenticity": "REAL",
+            "evidence": [
+              {
+                "kind": "USAGE",
+                "reference": "Authenticated Vercel FOCUS summary; 5816 records; NOT invoice or payment",
+                "sha256": "db1105d6918ba61fd679bc8423a4a4e20e15b69bf2db7053405d40ef8b711919",
+                "observedAt": "2026-10-08T17:00:00.000Z"
+              }
+            ],
+            "attribution": {
+              "project": "TEAM_SHARED_UNALLOCATED",
+              "environment": "shared",
+              "workload": "Vercel team usage",
+              "purpose": "Actual usage accrual; unknown project allocation and subscription total. Original USD0.14011684372 rounded to nearest currency micro-unit; effective cost is not billed cost.",
+              "allocationBps": 10000,
+              "allocationReason": "Full TEAM amount only; EmpireAI project share not verified; excluded from SGD totals because FX unavailable"
+            }
+          },
+          "workspace": "ws_empire_1",
+          "actor": "usr_a91d007ebcebe18d",
+          "at": "2026-10-09T01:31:13.740Z",
+          "digest": "3d265cb66227438b98fd9bfae79c74f976e15200946b3af2ceb90418263ca23d"
+        },
+        {
+          "id": "951f84cc-81b4-498c-8593-e05503737cbd",
+          "type": "review",
+          "data": {
+            "target": "work5-vercel-usage-20261008",
+            "decision": "APPROVE",
+            "reason": "Reviewed retained authenticated Vercel FOCUS summary: usage accrual only, not invoice/payment; team allocation and FX remain unverified. No spending authorised.",
+            "evidenceConfirmed": true
+          },
+          "workspace": "ws_empire_1",
+          "actor": "usr_a91d007ebcebe18d",
+          "at": "2026-10-09T01:31:56.579Z",
+          "digest": "bc1e671e7fe2556931687e6abdc5b42d1a3a076bf57f8622bf9378a565e7e28a"
+        },
+        {
+          "id": "ed6b3f11-ef66-469d-a1c0-9fffbe96de28",
+          "type": "forecast",
+          "data": {
+            "monthlyFixed": 100,
+            "monthlyApi": 20,
+            "units": 30,
+            "economics": {
+              "productId": "acceptance-scenario-only",
+              "supplierId": "synthetic",
+              "channel": "scenario",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 10,
+              "freight": 2,
+              "fulfilment": 1,
+              "feePercent": 10,
+              "paymentPercent": 3,
+              "advertising": 4,
+              "refundRate": 0.05,
+              "refundLoss": 20,
+              "duties": 1,
+              "tax": 0.5,
+              "overhead": 1,
+              "complete": false,
+              "evidenceRefs": [],
+              "assumptions": "Synthetic deterministic acceptance only. No actual product, revenue, bank balance or spending authority."
+            },
+            "cash": null,
+            "liabilities": 10,
+            "receivables": 0,
+            "committed": 5,
+            "providerIncrease": 0.2,
+            "supplierIncrease": 0.1,
+            "fxIncrease": 0.1,
+            "advertisingIncrease": 0.2,
+            "refundIncrease": 0.05,
+            "assumptions": "Synthetic deterministic acceptance only. No actual product, revenue, bank balance or spending authority.",
+            "observedAt": "2026-10-09T01:32:47.231Z"
+          },
+          "workspace": "ws_empire_1",
+          "actor": "usr_a91d007ebcebe18d",
+          "at": "2026-10-09T01:32:47.377Z",
+          "digest": "25985fc355e44383b938747e23e09de2e30d04316c6be7342c6a108ea93e4400"
+        }
+      ],
+      "entryDigest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+      "costs": [
+        {
+          "id": "work5-vercel-usage-20261008",
+          "type": "cost",
+          "data": {
+            "entityId": "vercel-team-usage-20260930-20261008",
+            "provider": "vercel",
+            "service": "Team-level FOCUS billed usage; allocation unverified",
+            "category": "TECHNOLOGY",
+            "classification": "VARIABLE",
+            "stage": "ACCRUED_UNBILLED",
+            "amountMicro": 140117,
+            "currency": "USD",
+            "taxMicro": 0,
+            "creditMicro": 0,
+            "periodStart": "2026-09-30T07:00:00.000Z",
+            "periodEnd": "2026-10-08T07:00:00.000Z",
+            "sourceIds": [
+              "vercel-team-focus-20260930-20261008"
+            ],
+            "authenticity": "REAL",
+            "evidence": [
+              {
+                "kind": "USAGE",
+                "reference": "Authenticated Vercel FOCUS summary; 5816 records; NOT invoice or payment",
+                "sha256": "db1105d6918ba61fd679bc8423a4a4e20e15b69bf2db7053405d40ef8b711919",
+                "observedAt": "2026-10-08T17:00:00.000Z"
+              }
+            ],
+            "attribution": {
+              "project": "TEAM_SHARED_UNALLOCATED",
+              "environment": "shared",
+              "workload": "Vercel team usage",
+              "purpose": "Actual usage accrual; unknown project allocation and subscription total. Original USD0.14011684372 rounded to nearest currency micro-unit; effective cost is not billed cost.",
+              "allocationBps": 10000,
+              "allocationReason": "Full TEAM amount only; EmpireAI project share not verified; excluded from SGD totals because FX unavailable"
+            }
+          },
+          "workspace": "ws_empire_1",
+          "actor": "usr_a91d007ebcebe18d",
+          "at": "2026-10-09T01:31:13.740Z",
+          "digest": "3d265cb66227438b98fd9bfae79c74f976e15200946b3af2ceb90418263ca23d",
+          "originalMicro": 140117,
+          "sgdMicro": null,
+          "status": "ACCRUED_UNBILLED",
+          "verification": "OWNER_EVIDENCE_REVIEW",
+          "stale": false,
+          "fxStale": false
+        }
+      ],
+      "pending": [],
+      "providers": [
+        {
+          "id": "chatgpt",
+          "name": "ChatGPT development subscription",
+          "category": "AI/development",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "openai",
+          "name": "OpenAI / Pillow",
+          "category": "AI inference",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "anthropic",
+          "name": "Anthropic",
+          "category": "AI inference",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "gemini",
+          "name": "Gemini",
+          "category": "AI inference",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "railway",
+          "name": "Railway compute, Redis, storage",
+          "category": "Infrastructure",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "vercel",
+          "name": "Vercel hosting and builds",
+          "category": "Infrastructure",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "domains",
+          "name": "Domains / DNS / email",
+          "category": "Infrastructure",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "backups",
+          "name": "Backups and recovery",
+          "category": "Infrastructure",
+          "commissioned": "UNKNOWN",
+          "mandatory": false,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "monitoring",
+          "name": "Monitoring / security / logging",
+          "category": "Infrastructure",
+          "commissioned": "UNKNOWN",
+          "mandatory": false,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "amazon",
+          "name": "Amazon seller / platform technology",
+          "category": "Commerce technology",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "cj",
+          "name": "CJ API / service costs",
+          "category": "Commerce technology",
+          "commissioned": "YES",
+          "mandatory": true,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "keepa",
+          "name": "Keepa",
+          "category": "Research",
+          "commissioned": "NO",
+          "mandatory": false,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Not commissioned; not required for completion"
+        },
+        {
+          "id": "canva",
+          "name": "Canva",
+          "category": "Creative technology",
+          "commissioned": "UNKNOWN",
+          "mandatory": false,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "tinyfish",
+          "name": "TinyFish",
+          "category": "Automation",
+          "commissioned": "UNKNOWN",
+          "mandatory": false,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "browser",
+          "name": "Browser automation",
+          "category": "Automation",
+          "commissioned": "UNKNOWN",
+          "mandatory": false,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "plugins",
+          "name": "Plugins / connectors / workflow SaaS",
+          "category": "Automation",
+          "commissioned": "UNKNOWN",
+          "mandatory": false,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        },
+        {
+          "id": "development",
+          "name": "Other development / testing tools",
+          "category": "Development",
+          "commissioned": "UNKNOWN",
+          "mandatory": false,
+          "billingAccess": "UNAVAILABLE",
+          "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+        }
+      ],
+      "budgets": [],
+      "cash": [],
+      "knownCashSgdMicro": null,
+      "completeCashPosition": false,
+      "availableCashSgdMicro": null,
+      "runway": null,
+      "totals": {
+        "SETTLED": {
+          "sgdMicro": 0,
+          "unknownFx": 0
+        },
+        "INVOICED": {
+          "sgdMicro": 0,
+          "unknownFx": 0
+        },
+        "ACCRUED_UNBILLED": {
+          "sgdMicro": 0,
+          "unknownFx": 1
+        },
+        "ESTIMATED": {
+          "sgdMicro": 0,
+          "unknownFx": 0
+        },
+        "COMMITTED": {
+          "sgdMicro": 0,
+          "unknownFx": 0
+        }
+      },
+      "kpis": {
+        "verifiedRevenueSgdMicro": 0,
+        "knownTechnologySgdMicro": 0,
+        "knownCogsSgdMicro": 0,
+        "knownGrossProfitSgdMicro": 0,
+        "knownContributionSgdMicro": 0,
+        "knownNetSgdMicro": 0,
+        "complete": false,
+        "qualification": "PARTIAL_KNOWN_AMOUNTS_NOT_CERTIFIED_PROFIT"
+      },
+      "position": {
+        "capitalSgdMicro": 0,
+        "payableSgdMicro": 0,
+        "receivableSgdMicro": 0,
+        "commitmentsSgdMicro": 0
+      },
+      "alerts": [
+        {
+          "code": "FX_UNAVAILABLE",
+          "detail": "SGD total excludes an unconverted amount",
+          "refs": [
+            "work5-vercel-usage-20261008"
+          ]
+        },
+        {
+          "code": "MISSING_INVOICE",
+          "detail": "Closed usage period has no matched invoice",
+          "refs": [
+            "work5-vercel-usage-20261008"
+          ]
+        },
+        {
+          "code": "CASH_UNVERIFIED",
+          "detail": "Current complete bank/payment-account evidence is unavailable; runway is unknown",
+          "refs": []
+        },
+        {
+          "code": "PRICING_REVIEW_DUE",
+          "detail": "openai reviewed tariff expires 2026-10-15T00:00:00.000Z; renewal requires reviewed evidence, never automatic",
+          "refs": [
+            "reviewed-local-admission-policy"
+          ]
+        },
+        {
+          "code": "PRICING_REVIEW_DUE",
+          "detail": "anthropic reviewed tariff expires 2026-10-15T00:00:00.000Z; renewal requires reviewed evidence, never automatic",
+          "refs": [
+            "reviewed-local-admission-policy"
+          ]
+        },
+        {
+          "code": "PRICING_REVIEW_DUE",
+          "detail": "gemini reviewed tariff expires 2026-10-15T00:00:00.000Z; renewal requires reviewed evidence, never automatic",
+          "refs": [
+            "reviewed-local-admission-policy"
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "topic": "Capital allocation",
+          "text": "Preserve capital until complete cash, liabilities and unit economics are verified; no spending approval is implied."
+        },
+        {
+          "topic": "Cost efficiency",
+          "text": "Review renewals and compare equivalent service coverage before recommending cancellation; imported usage and invoice lineage remain distinct."
+        }
+      ],
+      "outcomes": [],
+      "learningStatus": "OUTCOME_LINKED_CAPABILITY; COMPOUNDED_IMPROVEMENT_UNPROVEN",
+      "legacy": {
+        "status": "AVAILABLE",
+        "records": [
+          {
+            "id": "0b150ffe-cd16-4897-b2fc-932be2ac6d66",
+            "company_id": null,
+            "event_type": "advertising",
+            "amount_cents": 64000000,
+            "currency": "USD",
+            "direction": "debit",
+            "correlation_id": "foundation:seed:1790855395696",
+            "source": "foundation-seed",
+            "description": "Ad spend baseline (demo ledger)",
+            "created_at": "2026-10-01T11:49:55.696Z",
+            "authenticity": "HISTORICAL_FIXTURE",
+            "includedInActuals": false
+          },
+          {
+            "id": "3e325129-7982-4686-923f-490425753103",
+            "company_id": null,
+            "event_type": "subscription",
+            "amount_cents": 49900,
+            "currency": "USD",
+            "direction": "debit",
+            "correlation_id": "foundation:seed:1790855395696",
+            "source": "foundation-seed",
+            "description": "EmpireAI Sovereign subscription",
+            "created_at": "2026-10-01T11:49:55.697Z",
+            "authenticity": "HISTORICAL_FIXTURE",
+            "includedInActuals": false
+          },
+          {
+            "id": "5a3a495a-f7ec-4aa8-8f2d-f39460ae1298",
+            "company_id": null,
+            "event_type": "sale",
+            "amount_cents": 284000000,
+            "currency": "USD",
+            "direction": "credit",
+            "correlation_id": "foundation:seed:1790855395696",
+            "source": "foundation-seed",
+            "description": "Portfolio revenue baseline (demo ledger)",
+            "created_at": "2026-10-01T11:49:55.696Z",
+            "authenticity": "HISTORICAL_FIXTURE",
+            "includedInActuals": false
+          },
+          {
+            "id": "9495a07d-2376-4be6-84e6-afd152c91b6a",
+            "company_id": null,
+            "event_type": "supplier_cost",
+            "amount_cents": 112000000,
+            "currency": "USD",
+            "direction": "debit",
+            "correlation_id": "foundation:seed:1790855395696",
+            "source": "foundation-seed",
+            "description": "COGS baseline (demo ledger)",
+            "created_at": "2026-10-01T11:49:55.696Z",
+            "authenticity": "HISTORICAL_FIXTURE",
+            "includedInActuals": false
+          },
+          {
+            "id": "a6b20ffc-9928-4113-9c9d-e2f38ccbcdd3",
+            "company_id": null,
+            "event_type": "royalty",
+            "amount_cents": 10795010,
+            "currency": "USD",
+            "direction": "debit",
+            "correlation_id": "royalty:ws_empire_1:mtd:1790855395697",
+            "source": "foundation-bootstrap",
+            "description": "EmpireAI 10% net profit royalty (mtd)",
+            "created_at": "2026-10-01T11:49:55.697Z",
+            "authenticity": "HISTORICAL_FIXTURE",
+            "includedInActuals": false
+          },
+          {
+            "id": "b021b2ad-e816-478f-9cde-fbed8dc87fa8",
+            "company_id": null,
+            "event_type": "royalty",
+            "amount_cents": 10795010,
+            "currency": "USD",
+            "direction": "debit",
+            "correlation_id": "royalty:ws_empire_1:mtd:1790855395728",
+            "source": "intelligence-foundation-seed",
+            "description": "EmpireAI 10% net profit royalty (mtd)",
+            "created_at": "2026-10-01T11:49:55.728Z",
+            "authenticity": "HISTORICAL_FIXTURE",
+            "includedInActuals": false
+          },
+          {
+            "id": "b0d952e0-15b8-47fd-a46a-12af12975b11",
+            "company_id": null,
+            "event_type": "reserved_cash",
+            "amount_cents": 10795010,
+            "currency": "USD",
+            "direction": "debit",
+            "correlation_id": "foundation:seed:1790855395696",
+            "source": "foundation-seed",
+            "description": "Reserved cash allocation (royalty + liabilities)",
+            "created_at": "2026-10-01T11:49:55.697Z",
+            "authenticity": "HISTORICAL_FIXTURE",
+            "includedInActuals": false
+          }
+        ],
+        "digest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf",
+        "duplicateRoyaltyGroups": [
+          {
+            "key": "royalty:USD:10795010",
+            "ids": [
+              "a6b20ffc-9928-4113-9c9d-e2f38ccbcdd3",
+              "b021b2ad-e816-478f-9cde-fbed8dc87fa8"
+            ],
+            "status": "PRESERVED_EXCLUDED_FROM_REAL_LIABILITIES"
+          }
+        ]
+      },
+      "accounting": {
+        "status": "AVAILABLE",
+        "schema": "owner-commissioning-accounting-v1",
+        "observedAt": "2026-10-10T20:56:12.796Z",
+        "readOnly": true,
+        "recordCount": 224,
+        "recordDigestSha256": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+        "ceilingMicroUsd": null,
+        "heldMicroUsd": 110852730,
+        "remainingMicroUsd": null,
+        "recordedEstimateMicroUsd": 20254371,
+        "estimateUnknownCount": 5,
+        "invoiceActualMicroUsd": null,
+        "invoiceUnknownCount": 224,
+        "reservationReleased": false,
+        "inferenceCalls": 0,
+        "classification": "INTERNAL_USAGE_ESTIMATE_NOT_INVOICE_OR_PAYMENT",
+        "includedInFinancialTotals": false
+      },
+      "pricing": [
+        {
+          "provider": "openai",
+          "expiresAt": "2026-10-15T00:00:00.000Z",
+          "status": "CURRENT",
+          "source": "reviewed-local-admission-policy",
+          "automaticRenewal": false
+        },
+        {
+          "provider": "anthropic",
+          "expiresAt": "2026-10-15T00:00:00.000Z",
+          "status": "CURRENT",
+          "source": "reviewed-local-admission-policy",
+          "automaticRenewal": false
+        },
+        {
+          "provider": "gemini",
+          "expiresAt": "2026-10-15T00:00:00.000Z",
+          "status": "CURRENT",
+          "source": "reviewed-local-admission-policy",
+          "automaticRenewal": false
+        }
+      ],
+      "backendRevision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7"
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  }
+}

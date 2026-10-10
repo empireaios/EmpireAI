@@ -19,8 +19,8 @@
     "Financial display formatting, readable exceptions and optional transaction evidence",
     "Mobile stacked tables; existing Home artwork and Chat unchanged"
   ],
-  "status": "ENGINEERING_AND_REVIEW_PASS_OWNER_VISUAL_ACCEPTANCE_REQUIRED",
-  "verification": "See forthcoming UX-CLEANUP-VERIFICATION.md; no production acceptance claimed.",
+  "status": "ENGINEERING_REVIEW_CI_AND_OWNER_ACCEPTANCE_PASS_RELEASE_AUTHORITY_REQUIRED",
+  "verification": "UX-CLEANUP-VERIFICATION.md; owner-ux-approval.json; no production acceptance claimed.",
   "governance": {
     "productionChanged": false,
     "mergeAuthorised": false,
@@ -49,5 +49,21 @@
     "exactHeadBrowserCI": "29/29 PASS",
     "exactHeadPersistedTransaction": "PASS actual isolated frontend BFF backend disk login/logout path"
   },
-  "exactHeadCI": "4/4 required workflows SUCCESS; ux-cleanup-exact-head-ci.json"
+  "exactHeadCI": "4/4 required workflows SUCCESS; ux-cleanup-exact-head-ci.json",
+  "ownerUXApproval": {
+    "status": "OWNER_UX_APPROVED",
+    "frontendRevision": "f83370b43421321c1414b97077943108c1c2906f",
+    "source": "Grand King formal owner directive: WORK 7 OWNER UX APPROVAL & PRODUCTION RELEASE PREPARATION",
+    "recordedAt": "2026-10-10T20:58:53.657Z",
+    "productionReleaseAuthorised": false,
+    "ledgerRecord": "WORK-7-PREMIUM-OWNER:UX-PR109",
+    "ledgerSha256": "410d0c7b4c8c17966683a5a53f839893f86d37ff217ffff6adf7c97d0389c8f5",
+    "acceptedOriginalRequirements": 95,
+    "originalPostRelease": 5,
+    "acceptedAmendments": 43,
+    "amendmentReleaseObligations": 2,
+    "completedControlGroups": 50,
+    "android": "ACCEPTED_PRESERVED",
+    "futureRefinements": "Owner may request routine UX improvements through lightweight governed changes and targeted checks without reopening Work 7 or repeating the 100-item campaign. Material financial calculations, architecture, security, permissions, autonomy or authority changes require separate review."
+  }
 }
