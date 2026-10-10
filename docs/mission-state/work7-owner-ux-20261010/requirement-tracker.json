@@ -17,8 +17,8 @@
       "\ud83d\udd34": "Mandatory gate directly blocked; not necessarily an application defect"
     },
     "counts": {
-      "\ud83d\udfe2": 16,
-      "\ud83d\udfe0": 75,
+      "\ud83d\udfe2": 17,
+      "\ud83d\udfe0": 74,
       "\ud83d\udd34": 9
     },
     "reconfirmedAt": "2026-10-10T09:47:09Z",
@@ -28,23 +28,23 @@
     "continuation": "Owner-established 400x464 chat failure corrected in containing commit. Earlier accepted evidence retained within its demonstrated scope. Exact-head CI/preview and remaining live acceptance are separate gates.",
     "previous_head_metadata": "a8d58187804e19b168a98a6faba4bc379b2150f9",
     "head_role": "Verified predecessor. This file describes the short-height correction in its containing commit; resolve that candidate from PR109, not the predecessor field.",
-    "updatedAt": "2026-10-10T17:38:21.387924+00:00",
+    "updatedAt": "2026-10-10T18:12:58.322361+00:00",
     "current_source_navigation": {
       "mapped": 168,
       "total": 168,
       "qualification": "Source context only. Fourteen legacy contexts mapped by retained route component responsibilities; live acceptance still pending. No static count proves control coverage."
     },
     "responsibilityCorrection": "responsibility-and-release.md",
-    "currentCandidate": "Containing PR109 commit: mobile dialog and Home label corrections; exact CI and preview tracked in PR body.",
+    "currentCandidate": "Containing PR109 commit; Android toolbar repair, standalone category UI and truthful locked legacy reads. Backend category contract PR111 e6d98fb5; PR110 remains separate.",
     "master_amendment_register": "amendment-register.json",
-    "current_preview_auth": "INDEPENDENTLY VERIFIED: production and stable PR109 branch preview authenticated; Home, Intelligence, CEO, Products, Listings, Orders, Finance, Cost Centre and saved chat observed. No auth action remains required.",
+    "current_preview_auth": "Authenticated production and PR109 preview independently reused 11 October; no login action needed.",
     "historicalHead": "e97840c692f7b2918a6c427b9b69e3655dda77cd",
     "engineeringBase": "5f2f8929c0fd43949a09831247a67591e66d3c14",
     "candidate": "Git commit containing this amended tracker; exact hosted CI and preview must match that commit",
     "authenticatedObservation20261011": "Agent independently accessed production and stable PR109 preview at 0477f0b7. Baseline CI four PASS. Follow-up source corrections need exact-head hosted CI and live acceptance. Native phone keyboard unsupported; release remains blocked.",
     "authenticated_candidate": "c1877d2be9e5ef19cd9b3575f61f90c064a077a2 independently observed; containing commit adds bounded Home headline translations and evidence updates.",
     "preservation20261011": "preservation-20261011.json: 224 accounting / 3 journal / 7 historical, all baseline digests match.",
-    "latestAcceptance": "authenticated-final-20261011.md; all original 100 requirement texts and accepted evidence retained; no status promoted on partial evidence."
+    "latestAcceptance": "owner-continuation-android-20261011.txt; android-toolbar-and-categories-20261011.md; progress-matrix-20261011.md"
   },
   "requirements": [
     {
@@ -81,6 +81,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "168 retained source routes; 13 of 14 legacy contexts observed. POST dispatch is intentionally 423 under LOCKED; marketplace read404 remains. No authentic workspace-detail ID returned.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Actual workspace detail identity/read contract; remaining live control inventory.",
+        "next_action": "Show truthful lock restrictions and current owner return links; do not enable dispatch or invent workspace IDs."
       }
     },
     {
@@ -115,6 +123,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -147,6 +163,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -173,6 +197,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -205,6 +237,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -240,6 +280,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -275,6 +323,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -310,6 +366,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -345,6 +409,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -380,6 +452,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -412,6 +492,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -448,6 +536,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -482,6 +578,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -514,6 +618,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -546,6 +658,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -582,6 +702,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -618,6 +746,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "SHORT-HEIGHT DEFECT CORRECTED; expanded isolated regression PASS; exact-head/live gates pending",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Desktop history independently observed. Owner Android: older exchange, native keyboard, unsent short draft, readable history, visible composer/Send accepted. Toolbar overlap corrected in source; distinct multiline/resize live cases unverified.",
+        "owner_acceptance": "Accepted Android keyboard/composer and saved selection; no repeat requested. Toolbar fix requires its own evidence.",
+        "dependency": "Corrected toolbar exact-head CI/preview; distinct native cases remain unverified.",
+        "next_action": "Verify corrected toolbar without resending draft or repeating accepted keyboard test."
       }
     },
     {
@@ -647,6 +783,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "168 retained source routes; 13 of 14 legacy contexts observed. POST dispatch is intentionally 423 under LOCKED; marketplace read404 remains. No authentic workspace-detail ID returned.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Actual workspace detail identity/read contract; remaining live control inventory.",
+        "next_action": "Show truthful lock restrictions and current owner return links; do not enable dispatch or invent workspace IDs."
       }
     },
     {
@@ -676,6 +820,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -712,6 +864,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; scoped proof retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -746,6 +906,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -780,6 +948,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -814,6 +990,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -848,6 +1032,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -882,6 +1074,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -916,6 +1116,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -950,6 +1158,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -984,6 +1200,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1018,6 +1242,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1052,6 +1284,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1086,6 +1326,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1120,6 +1368,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1154,6 +1410,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1188,6 +1452,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1222,6 +1494,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; isolated owner UX PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1259,6 +1539,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "SHORT-HEIGHT DEFECT CORRECTED; expanded isolated regression PASS; exact-head/live gates pending",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Desktop history independently observed. Owner Android: older exchange, native keyboard, unsent short draft, readable history, visible composer/Send accepted. Toolbar overlap corrected in source; distinct multiline/resize live cases unverified.",
+        "owner_acceptance": "Accepted Android keyboard/composer and saved selection; no repeat requested. Toolbar fix requires its own evidence.",
+        "dependency": "Corrected toolbar exact-head CI/preview; distinct native cases remain unverified.",
+        "next_action": "Verify corrected toolbar without resending draft or repeating accepted keyboard test."
       }
     },
     {
@@ -1268,16 +1556,16 @@
       "implementation_location": "/cockpit/development/pillow; element-register.json",
       "implementation_status": "COMPLETE \u2014 source preserved; desktop interaction independently observed",
       "test_evidence": "Historical19/19 retained; current20/20 PASS. 390/1440 Pillow screenshots.  SECOND OWNER VIDEO: desktop Chat rendered, independent scrolling and fixed composer; selector visible but not selected. Tables flattened and Jump to latest overlays text, corrected in df264379/a8f1f709. See owner-chat-video-20261010/review.json; 11/11 parser tests; hosted verification PASS: browser20/20, all four CI at a8f1f709; live corrected-preview acceptance pending. THIRD OWNER VIDEO19-06-23: desktop saved-exchange selection and scroll verified around15\u201340s; CEO Chat with Pillow entry verified48\u201350s, at unchanged prior0bdbe2fc preview. See owner-history-video-20261010/review.json. New chat fixes/mobile remain unverified live. FOURTH OWNER VIDEO19-17-33: current a8f1f709 preview, desktop saved-history selection and Jump to latest placement/action PASS; table not shown. See owner-corrected-chat-video-20261010/review.json. FIFTH OWNER VIDEO19-35-47: a8f1f709 saved table headings and all four rows render in columns; desktop table repair PASS. See owner-table-video-20261010/review.json.",
-      "outstanding_work": "Verify new contained picker on current authenticated preview; earlier native desktop/saved-message evidence retained.",
+      "outstanding_work": "No further selection acceptance required for this bounded item. Toolbar overlap and distinct multiline/resize cases remain separate obligations.",
       "acceptance_result": "PASS",
       "verification_breakdown": {
-        "verified_pass": "Historical19/19 retained; current20/20 PASS. 390/1440 Pillow screenshots.  Owner-supplied Chat observation at0bdbe2fc: desktop internal scroll/composer/context only; source-only corrections and11 parser tests. Third owner recording verifies desktop history selection and CEO chat entry at prior0bdbe2fc. Current-preview desktop Jump to latest outside response text and return action verified. Current-preview desktop table repair verified by fifth owner recording.",
+        "verified_pass": "Historical19/19 retained; current20/20 PASS. 390/1440 Pillow screenshots.  Owner-supplied Chat observation at0bdbe2fc: desktop internal scroll/composer/context only; source-only corrections and11 parser tests. Third owner recording verifies desktop history selection and CEO chat entry at prior0bdbe2fc. Current-preview desktop Jump to latest outside response text and return action verified. Current-preview desktop table repair verified by fifth owner recording.; Owner Android saved older exchange and keyboard/unsent draft/composer accepted 11 October 01:50 SGT.",
         "genuine_fail": "None remaining established in the bounded corrected source; historical fixture failure is preserved in defect-register.json and corrected.",
         "externally_blocked": "None for this bounded desktop interaction scope.",
-        "not_yet_tested": "Mobile and remaining site-wide nested states; both desktop chat fixes are verified."
+        "not_yet_tested": "Distinct toolbar correction/native multiline/resize cases remain separately tracked; not a denial of accepted saved-exchange selection."
       },
-      "owner_status": "\ud83d\udfe0 PENDING \u2014 new mobile picker correction; live acceptance outstanding",
-      "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
+      "owner_status": "\ud83d\udfe2 PASS \u2014 existing saved-exchange selection accepted on desktop and Android; original turns retained",
+      "current_evidence": "Owner Android screenshots 1000033507.jpg / 1000033508.jpg, 11 October ~01:50 SGT, and explicit acceptance in owner-continuation-android-20261011.txt; authenticated desktop selection previously verified at PR109. No message sent or new history generated.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS \u2014 browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
       "picker_correction": "Mobile native select replaced by bounded modal with internal scroll, concise labels/full originals, touch/keyboard selection and focus return; desktop select and original stored records retained. New candidate requires exact CI/preview.",
@@ -1289,6 +1577,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "COMPLETE \u2014 source preserved; desktop interaction independently observed",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Desktop history independently observed. Owner Android: older exchange, native keyboard, unsent short draft, readable history, visible composer/Send accepted. Toolbar overlap corrected in source; distinct multiline/resize live cases unverified.",
+        "owner_acceptance": "Accepted Android keyboard/composer and saved selection; no repeat requested. Toolbar fix requires its own evidence.",
+        "dependency": "None for bounded saved-selection requirement",
+        "next_action": "Retain PASS; track toolbar separately."
       }
     },
     {
@@ -1315,6 +1611,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "COMPLETE \u2014 existing workspace and backend retained",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1341,6 +1645,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; fixture PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1367,6 +1679,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "COMPLETE \u2014 source preserved; desktop interaction independently observed",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1399,6 +1719,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; current-preview desktop evidence and retained responsive fixture proof satisfy this bounded owner presentation requirement.",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1436,6 +1764,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "SHORT-HEIGHT DEFECT CORRECTED; expanded isolated regression PASS; exact-head/live gates pending",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Desktop history independently observed. Owner Android: older exchange, native keyboard, unsent short draft, readable history, visible composer/Send accepted. Toolbar overlap corrected in source; distinct multiline/resize live cases unverified.",
+        "owner_acceptance": "Accepted Android keyboard/composer and saved selection; no repeat requested. Toolbar fix requires its own evidence.",
+        "dependency": "Corrected toolbar exact-head CI/preview; distinct native cases remain unverified.",
+        "next_action": "Verify corrected toolbar without resending draft or repeating accepted keyboard test."
       }
     },
     {
@@ -1462,6 +1798,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; fixture PASS",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1494,6 +1838,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; current-preview desktop evidence and retained responsive fixture proof satisfy this bounded owner presentation requirement.",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1520,6 +1872,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED on primary surfaces; whole-site verification incomplete",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1549,6 +1909,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED on primary surfaces; whole-site verification incomplete",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -1581,6 +1949,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; current-preview desktop evidence and retained responsive fixture proof satisfy this bounded owner presentation requirement.",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1607,6 +1983,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED on primary surfaces; whole-site verification incomplete",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1637,6 +2021,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED on primary surfaces; whole-site verification incomplete",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -1666,6 +2058,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED on primary surfaces; whole-site verification incomplete",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -1698,6 +2098,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED; current-preview desktop evidence and retained responsive fixture proof satisfy this bounded owner presentation requirement.",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1724,6 +2132,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED on primary surfaces; whole-site verification incomplete",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1750,6 +2166,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED on primary surfaces; whole-site verification incomplete",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1776,6 +2200,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS in isolated desktop/mobile fixture",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1802,6 +2234,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS in isolated desktop/mobile fixture",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1832,6 +2272,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS in isolated desktop/mobile fixture",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1861,6 +2309,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS in isolated desktop/mobile fixture",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -1890,6 +2346,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS in isolated desktop/mobile fixture",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -1919,6 +2383,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS in isolated desktop/mobile fixture",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1945,6 +2417,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "COMPLETE requirement reconciliation",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -1972,6 +2452,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PENDING",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2003,6 +2491,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PENDING",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "168 retained source routes; 13 of 14 legacy contexts observed. POST dispatch is intentionally 423 under LOCKED; marketplace read404 remains. No authentic workspace-detail ID returned.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Actual workspace detail identity/read contract; remaining live control inventory.",
+        "next_action": "Show truthful lock restrictions and current owner return links; do not enable dispatch or invent workspace IDs."
       }
     },
     {
@@ -2029,6 +2525,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PENDING",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2058,6 +2562,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PENDING",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2087,6 +2599,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS current stored-record preservation",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2116,6 +2636,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS source preservation and retained enforcement evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2145,6 +2673,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PASS source preservation and retained enforcement evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2171,6 +2707,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "All four exact-head CI PASS; not released",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Mandatory pre-release acceptance, reviewed candidates, separate production release authority, then independent closure.",
+        "next_action": "Keep production unchanged; no lease/merge/deployment/COMPLETE while gates remain."
       }
     },
     {
@@ -2200,6 +2744,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PENDING",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Mandatory pre-release acceptance, reviewed candidates, separate production release authority, then independent closure.",
+        "next_action": "Keep production unchanged; no lease/merge/deployment/COMPLETE while gates remain."
       }
     },
     {
@@ -2229,6 +2781,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PENDING",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Mandatory pre-release acceptance, reviewed candidates, separate production release authority, then independent closure.",
+        "next_action": "Keep production unchanged; no lease/merge/deployment/COMPLETE while gates remain."
       }
     },
     {
@@ -2255,6 +2815,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "RECOVERED; auth backend repair complete",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2282,6 +2850,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED / retained scoped evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2308,6 +2884,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED / retained scoped evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2337,6 +2921,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED / retained scoped evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "168 retained source routes; 13 of 14 legacy contexts observed. POST dispatch is intentionally 423 under LOCKED; marketplace read404 remains. No authentic workspace-detail ID returned.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Actual workspace detail identity/read contract; remaining live control inventory.",
+        "next_action": "Show truthful lock restrictions and current owner return links; do not enable dispatch or invent workspace IDs."
       }
     },
     {
@@ -2373,6 +2965,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "SHORT-HEIGHT DEFECT CORRECTED; expanded isolated regression PASS; exact-head/live gates pending",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Desktop history independently observed. Owner Android: older exchange, native keyboard, unsent short draft, readable history, visible composer/Send accepted. Toolbar overlap corrected in source; distinct multiline/resize live cases unverified.",
+        "owner_acceptance": "Accepted Android keyboard/composer and saved selection; no repeat requested. Toolbar fix requires its own evidence.",
+        "dependency": "Corrected toolbar exact-head CI/preview; distinct native cases remain unverified.",
+        "next_action": "Verify corrected toolbar without resending draft or repeating accepted keyboard test."
       }
     },
     {
@@ -2403,6 +3003,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED / retained scoped evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -2433,6 +3041,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED / retained scoped evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2462,6 +3078,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED / retained scoped evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -2492,6 +3116,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED / retained scoped evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2518,6 +3150,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRESERVED / DOCUMENTED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2544,6 +3184,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRESERVED / DOCUMENTED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2570,6 +3218,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRESERVED / DOCUMENTED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2597,6 +3253,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "IMPLEMENTED / retained scoped evidence",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2626,6 +3290,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "NOT RELEASE READY",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Mandatory pre-release acceptance, reviewed candidates, separate production release authority, then independent closure.",
+        "next_action": "Keep production unchanged; no lease/merge/deployment/COMPLETE while gates remain."
       }
     },
     {
@@ -2652,6 +3324,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRESERVED / DOCUMENTED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2678,6 +3358,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2704,6 +3392,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2730,6 +3426,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2757,6 +3461,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2787,6 +3499,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Authenticated operational/infrastructure displays and six financial exceptions observed. Independent 224/3/7 digests unchanged. Category editing not live on deployed backend.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "PR111 candidate backend for standalone categories; remaining financial/detail controls.",
+        "next_action": "Verify PR111 CI and isolated persistence; obtain authorised candidate-backend acceptance before claiming live category completion."
       }
     },
     {
@@ -2824,6 +3544,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "SHORT-HEIGHT DEFECT CORRECTED; expanded isolated regression PASS; exact-head/live gates pending",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Desktop history independently observed. Owner Android: older exchange, native keyboard, unsent short draft, readable history, visible composer/Send accepted. Toolbar overlap corrected in source; distinct multiline/resize live cases unverified.",
+        "owner_acceptance": "Accepted Android keyboard/composer and saved selection; no repeat requested. Toolbar fix requires its own evidence.",
+        "dependency": "Corrected toolbar exact-head CI/preview; distinct native cases remain unverified.",
+        "next_action": "Verify corrected toolbar without resending draft or repeating accepted keyboard test."
       }
     },
     {
@@ -2854,6 +3582,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "168 retained source routes; 13 of 14 legacy contexts observed. POST dispatch is intentionally 423 under LOCKED; marketplace read404 remains. No authentic workspace-detail ID returned.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Actual workspace detail identity/read contract; remaining live control inventory.",
+        "next_action": "Show truthful lock restrictions and current owner return links; do not enable dispatch or invent workspace IDs."
       }
     },
     {
@@ -2883,6 +3619,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Exact candidate acceptance and required release gates"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2912,6 +3656,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "168 retained source routes; 13 of 14 legacy contexts observed. POST dispatch is intentionally 423 under LOCKED; marketplace read404 remains. No authentic workspace-detail ID returned.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Actual workspace detail identity/read contract; remaining live control inventory.",
+        "next_action": "Show truthful lock restrictions and current owner return links; do not enable dispatch or invent workspace IDs."
       }
     },
     {
@@ -2938,6 +3690,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "COMPLETE",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2964,6 +3724,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "COMPLETE",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -2990,6 +3758,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "COMPLETE",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -3016,6 +3792,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "Restriction isolated; supported owner-video observation alternative successfully used.",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -3042,6 +3826,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "COMPLETE",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Remaining requirement-specific live controls and evidence; see original outstanding scope.",
+        "next_action": "Complete unaccepted states only; preserve prior evidence and safeguards."
       }
     },
     {
@@ -3071,6 +3863,14 @@
         "status": "Prior acceptance status preserved; no inferred PASS",
         "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json; authenticated-final-20261011.md",
         "dependency": "Retain original bounded evidence and blockers"
+      },
+      "android_continuation_20261011": {
+        "engineering": "EXTERNALLY BLOCKED",
+        "ci": "Baseline5d986d78 all four PASS; containing frontend candidate and PR111 checks must be matched to exact heads. Automated results are not live acceptance.",
+        "authenticated_live": "Retained scoped evidence remains valid; full requirement not newly re-tested.",
+        "owner_acceptance": "Prior accepted recordings retained; no new blanket acceptance.",
+        "dependency": "Mandatory pre-release acceptance, reviewed candidates, separate production release authority, then independent closure.",
+        "next_action": "Keep production unchanged; no lease/merge/deployment/COMPLETE while gates remain."
       }
     }
   ]

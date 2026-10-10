@@ -742,7 +742,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
         // Mark panel expanded only. Do NOT auto-dispatch the Pillow focus event —
         // Executive Home mounts expand() and that was yanking page scroll into Pillow.
         // Explicit openers (Ask AI / Ask Pillow) dispatch the focus event themselves.
-        setState((s) => ({ ...s, expanded: true }));
+        setState((s) => s.expanded ? s : ({ ...s, expanded: true }));
       },
       collapse: () => setState((s) => ({ ...s, expanded: false })),
       toggle: () => setState((s) => ({ ...s, expanded: !s.expanded })),

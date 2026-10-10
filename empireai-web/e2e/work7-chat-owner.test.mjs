@@ -7,7 +7,7 @@ import {installGeometryFixture} from './pillow-geometry-fixture.mjs';
 const base=process.env.WORK7_TEST_URL??'http://127.0.0.1:3123';
 assert.ok(['127.0.0.1','localhost'].includes(new URL(base).hostname));
 test('Pillow saved exchange selector, internal scroll, composer and parent context at desktop/mobile',async()=>{
- const browser=await chromium.launch();
+ const browser=await chromium.launch({executablePath:process.env.WORK7_CHROMIUM_PATH||undefined});
  try{for(const [width,height] of [[400,464],[360,560],[360,740],[390,844],[1440,900]]){
   const context=await browser.newContext({viewport:{width,height},hasTouch:width<=700,reducedMotion:'reduce'});
   const requests=await installGeometryFixture(context,base,Array.from({length:48},(_,i)=>({role:i%2?'assistant':'user',content:i===0?'curl /api/historical-command '+('original_argument_'.repeat(40)):`Saved fixture ${i}: ${'A long original title with preserved detail. '.repeat(6)}`,timestamp:new Date(Date.UTC(2026,0,1,0,i)).toISOString(),requestId:`picker-${i}`})));const page=await context.newPage();

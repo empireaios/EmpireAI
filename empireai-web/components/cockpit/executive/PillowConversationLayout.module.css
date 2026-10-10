@@ -127,11 +127,12 @@
 
 /* One compact mobile toolbar; all secondary controls remain in its disclosure. */
 @media(max-width:700px){
- .workspace{grid-template-columns:minmax(0,1fr) 92px auto;grid-template-rows:auto minmax(0,1fr) auto}
+ .workspace{position:relative;grid-template-columns:minmax(0,1fr) 92px auto;grid-template-rows:auto minmax(0,1fr) auto}
  .workspace .header{grid-column:2;grid-row:1;border:0;padding:0 4px}
  .workspace .header>div:first-child{display:none}
  .workspace .context summary{font-size:12px;line-height:1.3;min-height:44px;padding:4px}
- .workspace .contextBody{top:88px}
+ .workspace .context{position:static}
+ .workspace .contextBody{position:absolute;top:48px;left:8px;right:8px;width:auto;max-height:calc(100% - 112px)}
  .workspace .historyPicker{grid-column:1;grid-row:1;padding-block:2px}
  .workspace .jump{grid-column:3;grid-row:1}
  .workspace :global([data-testid="pillow-message-history"]){grid-column:1/-1;grid-row:2}

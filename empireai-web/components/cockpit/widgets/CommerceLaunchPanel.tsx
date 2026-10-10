@@ -1,4 +1,5 @@
 "use client";
+import {LegacyReadUnavailable} from "./LegacyReadUnavailable";
 
 import {
   ActionButton,
@@ -106,13 +107,7 @@ export function CommerceLaunchPanel() {
   }
 
   if (error || !data) {
-    return (
-      <Panel title="Launch Centre" subtitle="Brain dispatch unavailable">
-        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-          Retry
-        </button>
-      </Panel>
-    );
+    return <LegacyReadUnavailable title="Launch Centre" error={error} href="/cockpit/listings" onRetry={()=>reload()}/>;
   }
 
   const readinessScore = data.readinessScore ?? null;

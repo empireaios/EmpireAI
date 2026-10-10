@@ -80,7 +80,8 @@
  .chatShell[data-chat-tight="true"] [data-pillow-conversation-mode="true"]>details{display:none}
 }
 @media(max-width:700px){
- .chatShell[data-chat-compact="true"]:not([data-chat-tight="true"]) [data-legacy-workspace]>div>details{position:absolute;top:4px;right:8px;z-index:40;padding:0}
+ /* Reserve a real row: keyboard resize must never float this over Jump to latest. */
+ .chatShell[data-chat-compact="true"]:not([data-chat-tight="true"]) [data-legacy-workspace]>div>details{position:relative;inset:auto;align-self:stretch;z-index:40;padding:0 8px}
  .chatShell[data-chat-compact="true"]:not([data-chat-tight="true"]) [data-legacy-workspace]>div>details>summary{min-height:36px;display:flex;align-items:center}
- .chatShell[data-chat-compact="true"] [data-legacy-workspace]>div>details>div{left:auto;right:0;width:min(360px,calc(100vw - 16px));background:#f1f7ff;color:#294363}
+ .chatShell [data-legacy-workspace]>div>details>div{position:static;width:100%;max-height:min(180px,35dvh);background:#f1f7ff;color:#294363}
 }
