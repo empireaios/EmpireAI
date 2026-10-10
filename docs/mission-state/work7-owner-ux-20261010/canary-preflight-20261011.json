@@ -1,0 +1,219 @@
+{
+  "observedAt": "2026-10-10T18:37:50.195Z",
+  "status": "WORK_7_BLOCKED",
+  "prs": [
+    {
+      "number": 109,
+      "head": "d24b7adc8fbbc6e67b739e94a74253e7cbe35c62",
+      "base": "work2/frontend-release",
+      "open": true,
+      "draft": true,
+      "ci": [
+        {
+          "id": 38075198913,
+          "name": "Pillow semantic repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 604,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38075198913/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38075198913/logs",
+          "workflow_id": 362674549
+        },
+        {
+          "id": 38075198898,
+          "name": "Assurance owner browser contract",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 59,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38075198898/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38075198898/logs",
+          "workflow_id": 378221685
+        },
+        {
+          "id": 38075198929,
+          "name": "Product path CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 603,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38075198929/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38075198929/logs",
+          "workflow_id": 362309382
+        },
+        {
+          "id": 38075198879,
+          "name": "Pillow runtime repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 605,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38075198879/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38075198879/logs",
+          "workflow_id": 362688325
+        }
+      ]
+    },
+    {
+      "number": 110,
+      "head": "ff2feffb2907959ef03014617ade2690ae888ab8",
+      "base": "work2/backend-release",
+      "open": true,
+      "draft": true,
+      "ci": [
+        {
+          "id": 38055654120,
+          "name": "Product path CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 592,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38055654120/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38055654120/logs",
+          "workflow_id": 362309382
+        },
+        {
+          "id": 38055654175,
+          "name": "Pillow semantic repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 593,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38055654175/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38055654175/logs",
+          "workflow_id": 362674549
+        },
+        {
+          "id": 38055654154,
+          "name": "Pillow runtime repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 594,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38055654154/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38055654154/logs",
+          "workflow_id": 362688325
+        }
+      ]
+    },
+    {
+      "number": 111,
+      "head": "e6d98fb57537c893c85afc552626235a38ba874c",
+      "base": "work2/backend-release",
+      "open": true,
+      "draft": true,
+      "ci": [
+        {
+          "id": 38074592243,
+          "name": "Product path CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 602,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38074592243/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38074592243/logs",
+          "workflow_id": 362309382
+        },
+        {
+          "id": 38074592465,
+          "name": "Pillow semantic repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 603,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38074592465/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38074592465/logs",
+          "workflow_id": 362674549
+        },
+        {
+          "id": 38074592272,
+          "name": "Pillow runtime repair CI",
+          "status": "completed",
+          "conclusion": "success",
+          "run_number": 604,
+          "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38074592272/jobs",
+          "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38074592272/logs",
+          "workflow_id": 362688325
+        }
+      ]
+    }
+  ],
+  "canary": {
+    "project": "feb90d26-c54b-4435-ac32-f666e3e25447",
+    "name": "empireai-canary-20260923",
+    "environment": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+    "environmentName": "production (inside canary project, not production project)",
+    "services": 0,
+    "volumes": 0,
+    "buckets": 0,
+    "stagedChanges": 0,
+    "provisioned": false,
+    "capVerified": false,
+    "reason": "Documented hard cap is shared-workspace and billing-cycle scoped; production shares the workspace. Stored bucket data remains billable after hard-limit suspension. No isolated cumulative all-charge USD10 guarantee established.",
+    "billableResourcesStarted": 0,
+    "measuredCharge": null,
+    "unbilledCharge": null,
+    "billingNote": "No canary resources created; no invoice/usage measurement obtained. Do not claim measured zero.",
+    "sources": [
+      "https://docs.railway.com/pricing/cost-control",
+      "https://docs.railway.com/storage-buckets/billing"
+    ]
+  },
+  "production": {
+    "backendSha": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+    "deploymentId": "37ae1731-7399-4861-b5af-0d413157303d",
+    "profile": "LOCKED_COMMISSIONING_V1",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "frontendIdentity": {
+      "status": "UNVERIFIED",
+      "reason": "Use direct Vercel evidence"
+    },
+    "domains": [
+      "governed_commerce",
+      "financial_centre",
+      "package_format",
+      "changes",
+      "state",
+      "capabilities",
+      "pillow",
+      "accounting",
+      "assurance",
+      "reconciliation",
+      "missions",
+      "communications",
+      "authority",
+      "commissioning",
+      "approvals",
+      "execution",
+      "products",
+      "orders",
+      "decisions",
+      "events",
+      "finance",
+      "integrations",
+      "memory",
+      "intelligence",
+      "arsenal",
+      "evidence",
+      "intelligence_jobs",
+      "opportunities",
+      "exceptions",
+      "resources",
+      "rank_growth",
+      "investigations"
+    ],
+    "accountingCount": 224,
+    "accountingDigest": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+    "journalCount": 3,
+    "journalDigest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+    "legacyCount": 7,
+    "legacyDigest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf",
+    "readOnly": true,
+    "inferenceCalls": 0
+  },
+  "preview": {
+    "deployment": "dpl_HZsZ6XmZMQVnEWNxCvFTN2JpR31N",
+    "head": "d24b7adc8fbbc6e67b739e94a74253e7cbe35c62",
+    "ready": true,
+    "authenticated": true
+  },
+  "tracker": {
+    "pass": 17,
+    "pending": 74,
+    "blocked": 9
+  },
+  "scope": "No production writes, merge, lease, deployment, provider calls or spending-cap changes."
+}

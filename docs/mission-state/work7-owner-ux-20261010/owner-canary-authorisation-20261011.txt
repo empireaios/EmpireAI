@@ -1,0 +1,380 @@
+# EMPIREAI — WORK 7 ISOLATED CANARY AUTHORISATION & COMPLETE CONTINUATION
+
+**GRAND KING — OWNER-AUTHORISED DIRECTIVE**
+
+**MISSION: RESUME WORK 7. DO NOT RESTART.**
+
+This directive supplements the existing Work 7 master mandate, original 100-item requirement tracker, UX amendment register and accepted evidence. All previously approved requirements and safety protections remain authoritative.
+
+## 1. CURRENT VERIFIED CHECKPOINT
+
+Repository: https://github.com/empireaios/EmpireAI
+
+Frontend PR #109:
+- Reported revision: `d24b7adc`
+- Preview READY
+- Four required CI workflows PASS
+- Browser suite: 26/26 PASS
+
+Backend PR #111:
+- Durable infrastructure cost-category management implemented
+- Semantic and product CI PASS
+- Runtime CI still running at the reported checkpoint
+
+Backend PR #110:
+- Separate Four Eyes cache-repair lineage
+- Must remain independently governed
+
+Original Work 7 tracker:
+- 17 PASS
+- 74 PENDING
+- 9 BLOCKED
+
+Production remains unchanged.
+
+Authenticated Owner Console access has been verified.
+
+The Android toolbar overlap has been corrected in isolated browser tests. Actual native-phone acceptance of the corrected state remains outstanding.
+
+Live category persistence, legacy backend reads, workspace details and remaining nested-control acceptance are not yet fully verified.
+
+**Independently verify the latest exact PR heads, CI results, deployment identities and tracker evidence before acting.**
+
+## 2. LIMITED OWNER AUTHORISATION — RAILWAY CANARY
+
+I authorise creation and use of a temporary, isolated backend within the existing empty Railway canary project, solely to complete the remaining Work 7 backend acceptance checks.
+
+**Maximum additional expenditure: US$10 total.**
+
+This is a cumulative ceiling for the entire authorised canary exercise, not US$10 per deployment, per service, per day or per test.
+
+The authorisation is conditional.
+
+**DO NOT CREATE OR START ANY BILLABLE RESOURCE UNLESS AN ENFORCEABLE COST LIMIT IS VERIFIED FIRST.**
+
+Before provisioning, establish:
+
+1. The exact Railway project and environment.
+2. The intended services and resources.
+3. Whether Railway supports a hard, enforceable spending ceiling applicable to the entire canary exercise.
+4. Whether usage is automatically stopped before additional expenditure exceeds US$10.
+5. Whether the ceiling covers compute, memory, storage, databases, networking, build charges and other billable resources.
+6. Whether any costs could continue after the test session ends.
+7. Whether any resources or commitments already exist in the canary project.
+8. Whether spending is denominated in USD and how charges are measured.
+
+Do not assume that a usage alert, budget notification, dashboard estimate or manual monitoring constitutes an enforceable cap.
+
+If Railway cannot guarantee the requested ceiling across all applicable charges, **DO NOT PROVISION THE CANARY**.
+
+Instead, report the exact limitation and continue all available no-cost verification.
+
+Do not reinterpret this approval as permission to exceed the ceiling or accept unbounded charges.
+
+## 3. STRICT ISOLATION
+
+The canary must remain completely separate from production.
+
+Requirements:
+
+- Use only the designated existing canary project.
+- No production database connection.
+- No production financial journal writes.
+- No production credentials or secret reuse.
+- No production provider billing keys.
+- No production authentication or authority changes.
+- No production environment-variable modifications.
+- No production release lease.
+- No production deployment.
+- No supplier, marketplace or payment transactions.
+- No paid AI inference.
+- No real product publication.
+- No external order placement.
+- No commerce unlock.
+- No Pillow birth.
+
+Use synthetic or specifically isolated test records only.
+
+Test identities and permissions must be isolated from production.
+
+No canary operation may alter the authoritative production Mission Ledger, financial records, accounting digests or approval history.
+
+If safe isolation cannot be established, stop the canary work before provisioning.
+
+## 4. CANARY ACCEPTANCE OBJECTIVES
+
+The canary exists to verify the missing backend functionality, not to start another engineering programme.
+
+### A. Durable cost-category management
+
+Verify the actual backend contract for:
+
+1. Creating a cost category.
+2. Persisting it across process restart.
+3. Editing its name and properties.
+4. Rejecting stale concurrent updates.
+5. Archiving without deleting historical records.
+6. Preserving vendor mappings.
+7. Preserving financial journal history.
+8. Preventing duplicate or corrupted records.
+9. Enforcing owner-only modification authority.
+10. Rejecting unauthorised identities.
+11. Preserving financial totals.
+12. Correctly representing unknown, accrued, invoiced, settled, estimated and committed amounts.
+13. Preserving source identities and currency information.
+14. Returning truthful results to the Owner Console.
+
+Do not treat isolated unit tests as sufficient evidence of actual persistence.
+
+### B. Legacy backend reads
+
+Investigate the previously unavailable read endpoints.
+
+Determine whether each failure is caused by:
+
+- Missing backend deployment.
+- Incorrect routing.
+- Unsupported legacy endpoint.
+- Authentication or permission restrictions.
+- Missing isolated data.
+- Genuine implementation defect.
+
+Repair only verified defects within the existing authorised Work 7 scope.
+
+Do not weaken authentication or bypass governance to make tests pass.
+
+### C. Workspace-detail navigation
+
+Verify the retained workspace-detail route using an actual returned canary record identifier.
+
+Confirm:
+
+- Correct destination.
+- Correct parent navigation.
+- Breadcrumb.
+- Read-only detail rendering.
+- Return navigation.
+- Appropriate disabled controls.
+- No access to another identity's workspace.
+
+Do not fabricate a live workspace record merely to mark acceptance complete.
+
+### D. Financial and safety preservation
+
+Verify:
+
+- No double counting.
+- No false settled invoices.
+- No invented currency conversion.
+- No shared-team cost misallocation.
+- No alteration to financial source evidence.
+- Owner authority enforcement.
+- All seven protected live-effect routes remain denied.
+- NOT_BORN and commerce LOCKED remain authoritative.
+
+## 5. ANDROID TOOLBAR CORRECTION
+
+Preserve the owner's previously accepted Android keyboard and composer behaviour.
+
+The owner explicitly accepted the reduced reading area while the native keyboard is open.
+
+The remaining defect was overlapping mobile controls, especially **Other pages** and **Jump to latest**.
+
+The isolated browser regression now passes at multiple mobile widths, but that does not constitute native-phone acceptance.
+
+Verify the corrected toolbar on the exact updated candidate preview.
+
+Do not reopen accepted mobile reading-space requirements.
+
+Request additional native-phone evidence only if genuinely indispensable and only for the corrected state not already observed.
+
+Do not send messages to Pillow during testing.
+
+## 6. CONTINUE ALL OTHER WORK 7 REQUIREMENTS
+
+The canary must not become the sole focus of Work 7.
+
+Continue independently with:
+
+- All original 100 requirement items.
+- Separate UX amendment register.
+- Remaining 14 legacy commerce/navigation contexts.
+- Nested controls and return navigation.
+- Authenticated preview verification.
+- Financial display reconciliation.
+- Products & Approvals.
+- Listings.
+- Orders & Fulfilment.
+- Intelligence.
+- Operational Finance.
+- Live Cost Centre.
+- Approved Home preservation.
+- Pillow Chat.
+- Assurance safety-interface preservation.
+
+Credit all previously accepted evidence.
+
+Do not restart engineering, repeat passing CI campaigns unnecessarily or request another broad manual walkthrough.
+
+## 7. BACKEND PR LINEAGES
+
+Preserve the distinct purposes and release branches:
+
+**PR #109 — Frontend Owner Console**
+
+Contains Work 7 UX corrections and navigation changes.
+
+**PR #110 — Four Eyes backend repair**
+
+Remains independently governed. The historical HIGH incident cannot be closed without genuine fresh collection evidence.
+
+**PR #111 — Durable cost-category backend**
+
+Contains the new owner-controlled category persistence contract.
+
+Do not combine these lineages merely for convenience.
+
+Do not merge or deploy them to production under this canary authorisation.
+
+A canary deployment is not production-release authorisation.
+
+## 8. CANARY COST AND LIFECYCLE CONTROL
+
+Before beginning, record the enforceable budget mechanism and estimated maximum exposure.
+
+During testing:
+
+- Track cumulative additional expenditure.
+- Avoid unnecessary resource duplication.
+- Avoid paid provider calls.
+- Use the minimum viable resources.
+- Stop immediately if cost control fails or cannot be verified.
+- Do not initiate recurring subscriptions or external commitments.
+
+After testing:
+
+1. Stop the canary services.
+2. Remove temporary billable resources where safe.
+3. Verify no continuing billable service remains.
+4. Preserve test evidence and logs without leaving paid resources running.
+5. Report actual measured additional cost.
+6. Report any unbilled usage separately.
+7. Confirm the US$10 ceiling was respected.
+
+If charges cannot yet be determined, report them as unknown. Do not invent a zero-cost result.
+
+## 9. CI AND ACCEPTANCE
+
+For each changed PR:
+
+- Verify exact commit identity.
+- Complete applicable CI.
+- Run targeted regression tests.
+- Verify backend and frontend contract compatibility.
+- Confirm preview readiness.
+- Preserve original acceptance evidence.
+- Separate fixture testing from authenticated live acceptance.
+- Preserve all financial and safety invariants.
+
+Do not mark a requirement PASS without the evidence required by its actual acceptance criterion.
+
+## 10. RELEASE CONTROL
+
+**THIS DIRECTIVE DOES NOT AUTHORISE PRODUCTION RELEASE.**
+
+Do not:
+
+- Merge PR #109, #110 or #111 into production release branches without separate authorisation.
+- Start a production release lease.
+- Reuse finished fence 17.
+- Change production environment variables.
+- Change production credentials.
+- Deploy to production.
+- Activate Pillow.
+- Unlock commerce.
+- Submit marketplace listings or orders.
+- Initiate unauthorised paid inference.
+
+Once mandatory Work 7 acceptance is complete, prepare the reviewed production release proposal for separate owner approval.
+
+The existing release lease, fencing, Mission Ledger and independent King's Advisor controls remain mandatory.
+
+## 11. CONTINUATION RULE
+
+Work must not stop merely because:
+
+- A canary was created.
+- A test passed.
+- A PR was updated.
+- CI passed.
+- A preview became READY.
+- A checkpoint was saved.
+
+Continue to the next independently executable authorised requirement.
+
+Stop only for a genuine security, permission, financial or external dependency.
+
+If a canary spending cap cannot be enforced, stop only the paid canary path and continue all no-cost Work 7 checks.
+
+Do not request repeated owner approvals for already authorised, completed work.
+
+## 12. REQUIRED REPORTING
+
+Maintain the original Items 1–100 tracker and separate amendment register.
+
+Report using:
+
+🟢 PASS
+
+🟠 PENDING
+
+🔴 BLOCKED
+
+For every remaining blocked item, identify:
+
+- Exact requirement.
+- Actual blocker.
+- Whether engineering or owner action is required.
+- Evidence already obtained.
+- Next authorised step.
+
+At each checkpoint, report:
+
+1. Current PR heads.
+2. Exact CI status.
+3. Candidate preview identity.
+4. Canary project identity.
+5. Spending-cap enforcement evidence.
+6. Actual canary expenditure.
+7. Category persistence test results.
+8. Remaining legacy and navigation acceptance.
+9. Native-phone acceptance position.
+10. Production preservation.
+11. Original tracker counts.
+12. Remaining steps to Work 7 completion.
+
+## 13. DEFINITION OF COMPLETION
+
+Work 7 may be declared COMPLETE only after:
+
+- All original mandatory Work 7 requirements are reconciled.
+- All authorised UX amendments are implemented.
+- Required frontend/backend tests pass.
+- Authenticated acceptance is genuinely complete.
+- All required safety and financial protections remain enforced.
+- Appropriate production release authority is obtained.
+- Reviewed release and deployment are completed.
+- Post-release production verification succeeds.
+- Legitimate independent Mission Ledger and King's Advisor closure evidence exists.
+
+Do not claim Work 7 COMPLETE while mandatory gates remain unresolved.
+
+**GRAND KING'S DIRECTIVE**
+
+I approve a temporary isolated Railway canary backend with a cumulative maximum additional expenditure of US$10, **only if that limit is genuinely enforceable before provisioning**.
+
+Preserve production, credentials, financial records, commerce restrictions and all existing governance.
+
+If the spending cap is not enforceable, do not create billable resources. Continue every remaining no-cost Work 7 task.
+
+**RESUME FROM THE EXISTING CHECKPOINT AND CONTINUE TOWARD VERIFIED WORK 7 CLOSURE.**

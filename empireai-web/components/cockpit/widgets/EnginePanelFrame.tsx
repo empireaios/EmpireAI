@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { LegacyReadUnavailable } from "./LegacyReadUnavailable";
+import { engineCenterHref } from "@/lib/cockpit/engine-centers";
+import { ownerNavigationParent } from "@/lib/owner/presentation";
 import { useMemo } from "react";
 import { Panel } from "@/components/platform/ui/PlatformPrimitives";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
 import {
-  CockpitErrorState,
   CockpitHealthBadge,
   CockpitLoadingState,
   DataModeBadge,
@@ -117,12 +119,7 @@ export function EngineCenterLayout({ engineId, children }: EngineCenterLayoutPro
 
   if (error || !data) {
     return (
-      <Panel title="Engine Center">
-        <CockpitErrorState
-          message="Could not load engine center from Brain."
-          onRetry={() => void reload()}
-        />
-      </Panel>
+      <LegacyReadUnavailable title="Engine Center" error={error} href={ownerNavigationParent(engineCenterHref(engineId))} onRetry={()=>void reload()} />
     );
   }
 

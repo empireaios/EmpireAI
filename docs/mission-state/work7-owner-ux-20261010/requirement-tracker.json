@@ -1,4 +1,11 @@
 {
+  "canaryContinuation": {
+    "observedAt": "2026-10-10T18:37:55.097Z",
+    "evidence": "canary-preflight-20261011.json; isolated-http-restart-20261011.json; canary-continuation-20261011.md",
+    "cap": "NOT_VERIFIED; no Railway resources provisioned",
+    "ci": "PR109 d24b7adc 4/4 PASS; PR111 e6d98fb5 3/3 PASS; PR110 ff2feffb 3/3 PASS, separate lineage",
+    "acceptance": "No original requirement promoted; local HTTP restart is not hosted/native acceptance"
+  },
   "meta": {
     "total": 100,
     "pr": 109,
