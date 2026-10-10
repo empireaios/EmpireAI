@@ -181,7 +181,7 @@
     "10 October 15:14\u201315:15 screenshots not yet visually re-inspected; master directive establishes requested defects, not automatic acceptance."
   ],
   "evidenceScope": "Local fixture proof is not authenticated preview or native physical-keyboard acceptance.",
-  "updatedAt": "2026-10-10T17:19:34.970530+00:00",
+  "updatedAt": "2026-10-10T17:38:21.387924+00:00",
   "ownerAmendments20261011": [
     {
       "id": "UX-01",
@@ -194,7 +194,8 @@
       ],
       "evidence": [
         "Source repair: restrict approved-art raster to brand and decorative footer; remove full-sidebar image carrying fake legacy labels. Rendered verification pending.",
-        "0477f0b7 authenticated preview: one ordered sidebar observed; raster duplicate removed. Mobile remains outstanding."
+        "0477f0b7 authenticated preview: one ordered sidebar observed; raster duplicate removed. Mobile remains outstanding.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -207,7 +208,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "0477f0b7 authenticated preview primary sequence observed, Products & Approvals is one navigation destination."
+        "0477f0b7 authenticated preview primary sequence observed, Products & Approvals is one navigation destination.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -220,7 +222,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Containing candidate: Singapore periods, bounded comparison, exact-fact grouping and linked assessment drill-down. Projection tests pass; candidate live verification pending."
+        "Containing candidate: Singapore periods, bounded comparison, exact-fact grouping and linked assessment drill-down. Projection tests pass; candidate live verification pending.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -233,7 +236,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Containing candidate: grouped findings and scheduler receipt history; preserves originals."
+        "Containing candidate: grouped findings and scheduler receipt history; preserves originals.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -246,7 +250,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Authenticated test product details opened. Candidate adds bounded rationale, product-scoped existing approval controls and readable estimated economics. Real candidates empty."
+        "Authenticated test product details opened. Candidate adds bounded rationale, product-scoped existing approval controls and readable estimated economics. Real candidates empty.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -258,7 +263,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
+      ]
     },
     {
       "id": "UX-07",
@@ -271,7 +278,8 @@
       ],
       "evidence": [
         "Source repair: historical transactions use dark text on light surfaces and return to Orders. Rendered verification pending.",
-        "0477f0b7 transaction page visually observed readable, retained 3 historical observations distinct from orders."
+        "0477f0b7 transaction page visually observed readable, retained 3 historical observations distinct from orders.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -284,7 +292,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Projection tests keep infrastructure and shared unallocated costs out of operational sums."
+        "Projection tests keep infrastructure and shared unallocated costs out of operational sums.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -297,7 +306,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Candidate taxonomy and existing provider metadata add/edit/archive mapping; standalone durable category lifecycle remains an API contract gap."
+        "Candidate taxonomy and existing provider metadata add/edit/archive mapping; standalone durable category lifecycle remains an API contract gap.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -310,7 +320,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Candidate segregates confirmed MTD/YTD, payable, accrued, estimate and commitment; unknown future and team allocation explicit."
+        "Candidate segregates confirmed MTD/YTD, payable, accrued, estimate and commitment; unknown future and team allocation explicit.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -322,7 +333,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
+      ]
     },
     {
       "id": "UX-12",
@@ -335,7 +348,8 @@
       ],
       "evidence": [
         "Authenticated desktop browser available. Native phone keyboard and mobile viewport unavailable in supported tool surface.",
-        "Desktop saved-history selection and Jump to latest observed; composer remained visible and Send disabled. Native phone keyboard not available."
+        "Desktop saved-history selection and Jump to latest observed; composer remained visible and Send disabled. Native phone keyboard not available.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -349,7 +363,8 @@
       ],
       "evidence": [
         "Authenticated production and stable branch preview independently observed. Retain prior accepted recordings; no blanket acceptance.",
-        "13 legacy contexts inspected on authenticated candidate. Workspace detail has no actual returned ID; Workspace/Store/Launch fail Brain dispatch; Ads/Marketing engine reads fail; Marketplace 404. Do not mark functional acceptance."
+        "13 legacy contexts inspected on authenticated candidate. Workspace detail has no actual returned ID; Workspace/Store/Launch fail Brain dispatch; Ads/Marketing engine reads fail; Marketplace 404. Do not mark functional acceptance.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -362,7 +377,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Original IDs/text and status counts retained; new evidence appended."
+        "Original IDs/text and status counts retained; new evidence appended.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     },
     {
@@ -376,8 +392,10 @@
       ],
       "evidence": [
         "No merge, release lease or production deployment initiated. PR110 remains independent.",
-        "King\u2019s Advisor independent readback: 224 accounting, 3 journal, 7 historical entries; all original digests match. Backend 51830f9f unchanged; PR110 ff2feffb separate."
+        "King\u2019s Advisor independent readback: 224 accounting, 3 journal, 7 historical entries; all original digests match. Backend 51830f9f unchanged; PR110 ff2feffb separate.",
+        "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release."
       ]
     }
-  ]
+  ],
+  "latestAcceptance": "authenticated-final-20261011.md"
 }

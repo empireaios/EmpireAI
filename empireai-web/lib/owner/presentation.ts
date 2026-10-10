@@ -8,9 +8,14 @@ export function ownerMetric(value: string): string {
   return absentLabels.has(value) ? '—' : value;
 }
 
-/** A bounded excerpt, not generated advice. Full source text stays in the detail view. */
+/** A bounded presentation label. Full source advice stays in the decision view. */
 export function recommendationHeadline(value: string): string {
-  const text = value.replace(/\*\*|__|`/g, '').replace(/\s+/g, ' ').trim();
+  const source = value.replace(/\*\*|__|`/g, '').replace(/\s+/g, ' ').trim();
+  // Translate the two retained research outcomes without implying product approval.
+  // Do not discard their decision identities, pending status or original rationale.
+  if (/^Grand King, my recommendation for EMPIREAI-CANDIDATE-\d+(?:-FOLLOWUP)? is EVIDENCE[-_ ]INSUFFICIENT\./i.test(source)) return 'Product evidence is insufficient. Review the findings and remaining gaps.';
+  if (/^Grand King, my recommendation is to advance Candidate #\d+ through evidence collection/i.test(source)) return 'Review further product research. No defensible winner has been established.';
+  const text = source;
   if (text.length <= 160) return text;
   const excerpt = text.slice(0, 159);
   const boundary = excerpt.lastIndexOf(' ');
