@@ -1,4 +1,5 @@
 import {activePortfolio, portfolioIdentity} from './work8-portfolio.js';
+import {committedSimulatedStock} from './work8-stock.js';
 import {projectEntities} from './entities.js';
 import {PIE_EVALUATION_WEIGHTS} from '../../../intelligence/product-intelligence-engine/types.js';
 import {computeMarginScore,computeShippingScore} from '../../../intelligence/product-intelligence-engine/score-computers.js';
@@ -125,6 +126,7 @@ export class GovernedCommerceEngine {
       if(o.currency!==s.candidate.offer.currency||o.items.some(x=>x.currency!==o.currency||x.unitCost!==s.candidate.offer.price))fail('ORDER_PRICE_OR_CURRENCY_DRIFT');
       if(o.items.some(x=>x.supplierSku!==s.candidate.offer.sku||x.supplierProductId!==s.candidate.offer.productId))fail('VARIANT_MAPPING_MISMATCH');
       const quantity=sumQuantity(o);if(quantity>s.candidate.offer.stock)fail('STOCKOUT');
+      if(quantity+committedSimulatedStock(this.store,actor.workspace,s)>s.candidate.offer.stock)fail('STOCK_COMMITMENT_EXCEEDED');
       const committed=Object.values(s.orders).filter(x=>x.outcome!=='CANCELLED'&&x.outcome!=='REJECTED').reduce((n,x)=>n+sumQuantity(x.order)*s.qualification.exposure,0);
       if(quantity*s.qualification.exposure+committed>Math.min(s.approval!.maxExposure,s.candidate.cash.budget,s.qualification.available??0))fail('CAPITAL_COMMITMENT_EXCEEDED');
       s.orders[o.orderId]={order:o,outcome:'RECEIVED',accepted:0,shipped:0,delivered:0,tracking:[],lastTrackingAt:null,shipments:{},remedies:[]};emit('Order',o.orderId);o.items.forEach((_,i)=>emit('OrderLine',o.orderId+':'+i));break;
@@ -161,7 +163,7 @@ export class GovernedCommerceEngine {
      }
      case 'cancel':{
       approval();const o=order(cmd.orderId);if(o.delivered>0||o.outcome==='CANCELLED')fail('RETURN_REQUIRED_OR_ALREADY_CANCELLED');
-      if(['UNKNOWN','ACCEPTED','PARTIAL','SHIPPED'].includes(o.outcome)&&!cmd.confirmed){o.outcome='RECONCILIATION_REQUIRED';emit('ExceptionCase',cmd.orderId+':cancel-race');break;}
+      if(['UNKNOWN','ACCEPTED','PARTIAL','SHIPPED','RECONCILIATION_REQUIRED'].includes(o.outcome)&&!cmd.confirmed){o.outcome='RECONCILIATION_REQUIRED';emit('ExceptionCase',cmd.orderId+':cancel-race');break;}
       o.outcome='CANCELLED';o.order.status='CANCELLED';o.order.fulfillmentStatus='CANCELLED';emit('SupplierReceipt',cmd.orderId+':cancel');break;
      }
      case 'remedy':{

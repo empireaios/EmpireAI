@@ -4,6 +4,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {randomUUID} from 'node:crypto';
 import {capabilities,digest,jobSchema,key,defaultStrategy,type Evidence,type JobInput} from './model.js';
 export type Row=Record<string,any>;
+export type IntelligenceSchedule={id:string;enabled:boolean;intervalMs:number;subject:JobInput['subject'];failures:number;timezone:string;lastQueuedAt?:string;lastJobId?:string;nextAt:string};
 const decode=(r:any):Row|null=>r?JSON.parse(r.body):null;
 /** Independent evidence store, not another CEO memory. Work3 remains decision/learning authority. */
 export class IntelligenceStore{
@@ -55,12 +56,16 @@ export class IntelligenceStore{
    AND julianday(json_extract(body,'$.observedAt'))<=julianday(?)
    ORDER BY updated DESC,id LIMIT 1`).get(workspace,capability,JSON.stringify(subject),new Date(this.now()).toISOString(),new Date(this.now()).toISOString())))??undefined;
  }
- enqueue(workspace:string,requester:string,input:unknown){const p=jobSchema.parse(input);key.parse(workspace);if(p.capabilities.some(id=>!capabilities.some(c=>c.id===id&&c.implemented)))throw Error('CAPABILITY_UNAVAILABLE');for(const id of p.evidenceRefs)if(!this.get(workspace,'evidence',id))throw Error('EVIDENCE_REFERENCE');
+ private enqueueWithin(db:DatabaseSync,workspace:string,requester:string,input:unknown){
+  const p=jobSchema.parse(input);key.parse(workspace);if(p.capabilities.some(id=>!capabilities.some(c=>c.id===id&&c.implemented)))throw Error('CAPABILITY_UNAVAILABLE');for(const id of p.evidenceRefs)if(!this.get(workspace,'evidence',id))throw Error('EVIDENCE_REFERENCE');
   const job={...p,workspace,requester,createdAt:new Date(this.now()).toISOString(),status:'QUEUED',attempts:0,requestsUsed:0,evidence:[],failures:[],inferenceCalls:0,commerceEffects:0,grantsAuthority:false};
-  return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{const old=decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,p.id));if(old){if(digest(jobSchema.parse(Object.fromEntries(Object.keys(p).map(k=>[k,old[k]]))))!==digest(p)||old.requester!==requester)throw Error('JOB_ID_CONFLICT');db.exec('COMMIT');return old;}
-   const count=Number(db.prepare("SELECT count(*) n FROM jobs WHERE workspace=? AND status IN ('QUEUED','RUNNING')").get(workspace)?.n);if(count>=20)throw Error('QUEUE_BOUND');
-   db.prepare('INSERT INTO jobs VALUES(?,?,?,NULL,0,?,?)').run(workspace,p.id,'QUEUED',this.now(),JSON.stringify(job));db.exec('COMMIT');return job;}catch(e){db.exec('ROLLBACK');throw e;}});
+  const old=decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,p.id));
+  if(old){if(digest(jobSchema.parse(Object.fromEntries(Object.keys(p).map(k=>[k,old[k]]))))!==digest(p)||old.requester!==requester)throw Error('JOB_ID_CONFLICT');return old;}
+  const count=Number(db.prepare("SELECT count(*) n FROM jobs WHERE workspace=? AND status IN ('QUEUED','RUNNING')").get(workspace)?.n);if(count>=20)throw Error('QUEUE_BOUND');
+  db.prepare('INSERT INTO jobs VALUES(?,?,?,NULL,0,?,?)').run(workspace,p.id,'QUEUED',this.now(),JSON.stringify(job));return job;
  }
+ enqueue(workspace:string,requester:string,input:unknown){return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{const job=this.enqueueWithin(db,workspace,requester,input);db.exec('COMMIT');return job;}catch(e){db.exec('ROLLBACK');throw e;}});}
+
  job(workspace:string,id:string){return this.use(db=>decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,id)));}
  recentJobs(workspace:string,limit=20){return this.use(db=>db.prepare('SELECT body FROM jobs WHERE workspace=? ORDER BY created DESC LIMIT ?').all(workspace,Math.min(50,limit)).map(decode) as Row[]);}
  jobs(workspace:string,after='',limit=20){return this.use(db=>db.prepare('SELECT body FROM jobs WHERE workspace=? AND id>? ORDER BY id LIMIT ?').all(workspace,after,Math.min(50,limit)).map(decode) as Row[]);}
@@ -72,9 +77,21 @@ export class IntelligenceStore{
  }catch(e){db.exec('ROLLBACK');throw e;}});}
  saveJob(workspace:string,j:Row){const n=this.use(db=>db.prepare('UPDATE jobs SET status=?,body=? WHERE workspace=? AND id=? AND lease=?').run(j.status,JSON.stringify(j),workspace,j.id,j.lease));if(!n.changes)throw Error('JOB_LEASE_LOST');}
  reserve(provider:string,units:number){const day=new Date(this.now()).toISOString().slice(0,10);const ceiling=provider==='CJ'?1000:provider==='Keepa'?100:100;return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{const n=Number(db.prepare('SELECT used FROM quotas WHERE provider=? AND day=?').get(provider,day)?.used??0);if(n+units>ceiling)throw Error('DAILY_PROVIDER_BOUND');db.prepare('INSERT INTO quotas VALUES(?,?,?) ON CONFLICT(provider,day) DO UPDATE SET used=excluded.used').run(provider,day,n+units);db.exec('COMMIT');return n+units;}catch(e){db.exec('ROLLBACK');throw e;}});}
- schedules(workspace:string){return this.use(db=>db.prepare('SELECT body,next_at FROM schedules WHERE workspace=? ORDER BY id').all(workspace).map(r=>({...decode(r),nextAt:new Date(Number(r.next_at)).toISOString()})));}
+ schedules(workspace:string):IntelligenceSchedule[]{return this.use(db=>db.prepare('SELECT body,next_at FROM schedules WHERE workspace=? ORDER BY id').all(workspace).map(r=>({...decode(r),nextAt:new Date(Number(r.next_at)).toISOString()} as IntelligenceSchedule)));}
  seed(workspace:string){const defaults=[['amazon.account','account',86400000],['amazon.catalog','organizer',21600000],['cj.catalog','organizer',21600000],['internet.safety','organizer',86400000],['empire.state','empire',900000]] as const;this.use(db=>{for(const [id,subject,intervalMs] of defaults)db.prepare('INSERT OR IGNORE INTO schedules VALUES(?,?,?,?)').run(workspace,id,this.now(),JSON.stringify({id,enabled:true,intervalMs,subject:{id:subject,marketplace:'US',...(id.endsWith('catalog')?{query:'desk organizer'}:{})},failures:0,timezone:'UTC'}));});if(!this.get(workspace,'strategy','active'))this.put(workspace,'strategy','active',defaultStrategy);}
- due(workspace:string){return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{const rows=db.prepare('SELECT id,body FROM schedules WHERE workspace=? AND next_at<=? LIMIT 8').all(workspace,this.now());const result:Row[]=[];for(const r of rows){const s=decode(r)!;if(!s.enabled)continue;const c=capabilities.find(c=>c.id===s.id)!;if(c.credentials.length&&!c.credentials.every(k=>process.env[k])){db.prepare('UPDATE schedules SET next_at=? WHERE workspace=? AND id=?').run(this.now()+s.intervalMs,workspace,String(r.id));continue;}s.lastQueuedAt=new Date(this.now()).toISOString();db.prepare('UPDATE schedules SET next_at=?,body=? WHERE workspace=? AND id=?').run(this.now()+s.intervalMs,JSON.stringify(s),workspace,String(r.id));result.push(s);}db.exec('COMMIT');return result;}catch(e){db.exec('ROLLBACK');throw e;}});}
+ /** Claim a due slot and enqueue its bounded read atomically. No provider call
+  * occurs in this transaction and there is no unbounded missed-slot catch-up. */
+ due(workspace:string){return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{
+  const now=this.now(),rows=db.prepare('SELECT id,body FROM schedules WHERE workspace=? AND next_at<=? LIMIT 8').all(workspace,now),result:Row[]=[];
+  for(const r of rows){const s=decode(r)!;if(!s.enabled)continue;const c=capabilities.find(c=>c.id===s.id)!;
+   if(c.credentials.length&&!c.credentials.every(k=>process.env[k])){db.prepare('UPDATE schedules SET next_at=? WHERE workspace=? AND id=?').run(now+s.intervalMs,workspace,String(r.id));continue;}
+   const job=this.enqueueWithin(db,workspace,'SCHEDULER',{id:'scheduled_'+s.id+'_'+Math.floor(now/60000),objective:'Scheduled bounded '+s.id+' observation',capabilities:[s.id],subject:s.subject,requestLimit:4});
+   s.lastQueuedAt=new Date(now).toISOString();s.lastJobId=job.id;
+   db.prepare('UPDATE schedules SET next_at=?,body=? WHERE workspace=? AND id=?').run(now+s.intervalMs,JSON.stringify(s),workspace,String(r.id));result.push(s);
+  }
+  db.exec('COMMIT');return result;
+ }catch(e){db.exec('ROLLBACK');throw e;}});}
+
  setSchedule(workspace:string,id:string,enabled:boolean){this.use(db=>{const r=decode(db.prepare('SELECT body FROM schedules WHERE workspace=? AND id=?').get(workspace,id));if(!r)throw Error('SCHEDULE_NOT_FOUND');r.enabled=enabled;db.prepare('UPDATE schedules SET body=? WHERE workspace=? AND id=?').run(JSON.stringify(r),workspace,id);});}
  prune(workspace:string){this.use(db=>{db.prepare("DELETE FROM objects WHERE workspace=? AND kind='evidence' AND updated<? AND NOT EXISTS (SELECT 1 FROM objects i WHERE i.workspace=objects.workspace AND i.kind='investigations') AND id NOT IN (SELECT id FROM objects WHERE workspace=? AND kind='evidence' ORDER BY updated DESC LIMIT 1000)").run(workspace,this.now()-30*86400000,workspace);db.prepare("DELETE FROM jobs WHERE workspace=? AND status IN ('COMPLETED','PARTIAL','FAILED','INTERRUPTED') AND created<? AND NOT EXISTS (SELECT 1 FROM objects i WHERE i.workspace=jobs.workspace AND i.kind='investigations')").run(workspace,this.now()-90*86400000);db.prepare('DELETE FROM quotas WHERE day<?').run(new Date(this.now()-90*86400000).toISOString().slice(0,10));});}
 }

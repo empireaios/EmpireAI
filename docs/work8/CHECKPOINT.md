@@ -21,3 +21,13 @@ Frontend draftPR112: d35cbd41d1a7ec74d0ac734c9e2c10ab1ee96955; tree matches loca
 Discovery review additionally found facts-only freshness and mutable dedup identity holes: full envelope snapshots and receipt-bound identities now reject expiry/auth/subject changes and deleted/edited identities. Independent affected2-test rerun passed. Corrupt COMPLETE and plan truncation now reject instead of being reported finished.
 
 Large canonical trace artifacts are stored as deterministic gzip JSON. Decompress for inspection; generation commands still produce ordinary JSON. No record contents or simulated classification changed by compression.
+
+## Follow-up integration (supersedes earlier pending actions)
+
+Draft PR113 backend exists at685186169ea8085ccd5af01f576d8c3d6c345e03; its first CI failed strict test indexing, now corrected in working candidate. Draft PR112 frontend d43c43061debbb1bb8988bfc32b8d2ec7a683966 includes the actual Orders route integration and authenticated browser evidence. Its prior2a4b6eb candidate passed all four existing workflows; revised exact-head status remains required.
+
+Latest additions: authentic Amazon broad market context (one priced observation, no CJ equivalence claimed); atomic scheduled-job admission with full-queue rollback/drain; transactionally aggregated stock reservation across missions; uncertainty-preserving repeated cancellation; canonical fulfilment escalation; chargeback/cutoff/negative-cash cases; explicit exact simulated FX; fifteen positive/negative safety guards; actual model-adapter429/503/malformed receipt incidents and session adapter outage recovery. No external provider calls occurred in these isolated examinations.
+
+The actual Next BFF and Fastify authenticated walkthrough passed at1440/390px, compared genuine retained product and simulated financial projections, and preserved canonical receipts after backend restart. It found and fixed the unused Orders component insertion. Its first receipt is dirty-worktree evidence only: git diff omitted untracked files, so a stronger before/after complete source manifest is being added before claiming exact-candidate reproducibility. Images remain withheld pending permission; the synthetic scenario is not a linked genuine-candidate assessment/order lifecycle.
+
+Independent review found the fulfilment collector's unbounded historic scan; bounded durable pagination is being implemented before final candidate verification. Do not treat the earlier collector test success as evidence that this readiness defect was absent. Frontend shell artwork404 is a local baseline fixture limitation.

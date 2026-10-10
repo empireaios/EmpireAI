@@ -1,7 +1,7 @@
 {
   "schema": "work8-fault-coverage-v1",
   "scope": "Fixed numbered mandatory fault map; levels indicate evidence granularity, not completion",
-  "verification": "Existing test evidence reused only for stated contracts; not rerun here. New storage recovery tests ran Node22.23.2 under kernel network isolation,3passed.",
+  "verification": "Existing exact-scope evidence retained; new scheduler/provider followup, stock race, and fulfilment tests executed on Node22.23.2 under kernel network isolation. Four fulfilment plus actual runtime-cycle tests passed; no production verification.",
   "verdict": "NO_GO_FULL_FAULT_PROGRAMME",
   "items": [
     {
@@ -14,9 +14,9 @@
     {
       "item": 2,
       "fault": "Scheduled job misfire",
-      "coverage": "UNCOVERED",
-      "evidence": "work6-scale.test.ts: notBefore/backpressure contract only",
-      "scopeAndGap": "Inject missed scheduled execution and prove bounded detection, reschedule and audit"
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-assurance-adversity-followup.test.ts: atomic scheduled admission, reopen before/after commit",
+      "scopeAndGap": "Real SQLite enqueue abort leaves due slot intact; durable admission reopens exactly once. Hosted scheduler clock misfire/Assurance detection remains outside this local atomicity proof."
     },
     {
       "item": 3,
@@ -36,8 +36,8 @@
       "item": 5,
       "fault": "Queue backlog",
       "coverage": "PARTIAL",
-      "evidence": "work6-scale.test.ts: 1000 candidate backpressure",
-      "scopeAndGap": "Actual durable queue cap/rate pacing; no independent backlog detector\u2192recovery escalation trace"
+      "evidence": "work6-scale.test.ts; work8-assurance-adversity-followup.test.ts: full queue drain/restart",
+      "scopeAndGap": "Actual 20-job queue bound preserves due slot and real scheduler drains four before resumed admission; independent backlog alert lifecycle remains absent."
     },
     {
       "item": 6,
@@ -49,23 +49,23 @@
     {
       "item": 7,
       "fault": "Redis/session interruption",
-      "coverage": "UNCOVERED",
-      "evidence": "assurance-internal-collectors.test.mjs: worker/Redis readiness reader",
-      "scopeAndGap": "Collector source contract does not prove actual Redis/session interruption recovery"
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-model-session-faults.test.ts: actual SessionStore/Fastify adapter failure and fresh-read recovery",
+      "scopeAndGap": "Injected Redis-compatible GET failure yields typed503 before protected handler; fresh successful GET drives independent Assurance recovery. No actual Redis daemon restart, persistence, network reconnect or host failover tested."
     },
     {
       "item": 8,
       "fault": "Model-provider 429/503",
-      "coverage": "PARTIAL",
-      "evidence": "work6-commerce.test.ts: supplier read 429/500; assurance-provider-storage.test.mjs",
-      "scopeAndGap": "Supplier adapter status injection and passive model receipt health are not model429/503 recovery"
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-model-session-faults.test.ts: actual completeLockedRouted injected429/503, passive provider health and Assurance",
+      "scopeAndGap": "Each explicit-provider refusal admits one injected transport and retains uncertain reservation; replay blocked before/after cooldown. Fresh separately identified success recovers incident via passive ledger read. No real provider request, paid inference or autonomous provider repair."
     },
     {
       "item": 9,
       "fault": "Malformed provider output",
-      "coverage": "PARTIAL",
-      "evidence": "work6-commerce.test.ts: schema mismatch",
-      "scopeAndGap": "Actual governed reader rejects malformed intercepted schema; no integrated model-output incident lifecycle"
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-model-session-faults.test.ts: negative usage protocol failure; work8-assurance-adversity-followup.test.ts: malformed research output",
+      "scopeAndGap": "Actual model router rejects malformed negative token usage, retains uncertain reservation and opens passive-health Assurance incident; new valid injected response permits recovery without rewriting failure. Semantic hallucination and arbitrary malformed Pillow assessment output remain outside this protocol test."
     },
     {
       "item": 10,
@@ -112,9 +112,9 @@
     {
       "item": 16,
       "fault": "Inventory race",
-      "coverage": "UNCOVERED",
-      "evidence": "work8-portfolio-concurrency.test.ts is portfolio capacity, not inventory",
-      "scopeAndGap": "Need concurrent stock allocation/reservation case; do not substitute active-cap proof"
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-stock-race.test.ts",
+      "scopeAndGap": "Two real SQLite connections race canonical stock3 against requests2+2; one wins. Same/cross-mission holds and repeated unconfirmed cancellation verified. No real supplier reservation or stock-refresh/replenishment proof."
     },
     {
       "item": 17,
@@ -133,16 +133,16 @@
     {
       "item": 19,
       "fault": "Delayed shipment",
-      "coverage": "PARTIAL",
-      "evidence": "work6-commerce.test.ts: partial/late callback",
-      "scopeAndGap": "Late event rejection is not overdue shipment detection against an SLA"
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-assurance-fulfilment.test.ts; work8-assurance-runtime-cycle.test.ts",
+      "scopeAndGap": "Canonical partial shipment plus DELAYED/LOST/DAMAGED events exceeds explicitly simulated createdAt+quoted leadDays deadline. Read-only detector escalates without repair; fresh delivery closes. Not a live carrier SLA or delayed provider transport test."
     },
     {
       "item": 20,
       "fault": "Missing tracking",
-      "coverage": "UNCOVERED",
-      "evidence": "work6-commerce.test.ts: schema/partial tracking only",
-      "scopeAndGap": "Need accepted order with overdue absent tracking, bounded detector and justified escalation"
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-assurance-fulfilment.test.ts; work8-assurance-runtime-cycle.test.ts",
+      "scopeAndGap": "Accepted canonical order without tracking crosses simulated deadline; actual registered Assurance cycle escalates with no runbook or new receipts. Fresh terminal observation closes; real external carrier data remains untested."
     },
     {
       "item": 21,

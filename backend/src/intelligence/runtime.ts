@@ -19,7 +19,9 @@ export function startIntelligence(store:IntelligenceStore,workspace='ws_empire_1
  store.seed(workspace);const acquirer=new ReadAcquirer(store);let stopped=false;
  const tick=async()=>{if(stopped||workerActive)return;workerActive=true;try{
   if(process.env.INTELLIGENCE_DISABLED==='true')return;
-  for(const s of store.due(workspace))store.enqueue(workspace,'SCHEDULER',{id:'scheduled_'+s.id+'_'+Math.floor(store.now()/60000),objective:'Scheduled bounded '+s.id+' observation',capabilities:[s.id],subject:s.subject,requestLimit:4});
+  // A full queue leaves due slots untouched, but must not prevent draining
+  // already admitted work. Other scheduling faults still fail visibly.
+  try{store.due(workspace);}catch(error){if(!(error instanceof Error)||error.message!=='QUEUE_BOUND')throw error;}
   for(let i=0;i<4;i++)if(!await runIntelligenceJob(store,workspace,acquirer))break;
   reconcileSignals(store,workspace);store.put(workspace,'scheduler','health',{id:'health',heartbeatAt:new Date(store.now()).toISOString(),status:'RUNNING',intervalMs:30000,inferenceCalls:0});store.prune(workspace);
  }catch{store.put(workspace,'scheduler','health',{id:'health',heartbeatAt:new Date(store.now()).toISOString(),status:'DEGRADED',failure:'SCHEDULER_TICK_FAILED'});}finally{workerActive=false;}};

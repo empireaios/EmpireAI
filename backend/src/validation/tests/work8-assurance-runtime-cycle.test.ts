@@ -1,3 +1,4 @@
+import {acceptanceScenario} from '../../runtime/commerce-runtime/governed/scenario.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -23,12 +24,16 @@ test('actual AssuranceRuntime cycle repairs registered bounded checkpoint gap wi
   const fixtureEngine=new GovernedCommerceEngine(commerce.store),fixtureWorker=new CommerceWorker(fixtureEngine),task=fixtureWorker.enqueue('ws_empire_1','synthetic-owner','cycle-gap');
   fixtureWorker.runBounded('ws_empire_1',task.id,4);const t=fixtureWorker.get('ws_empire_1',task.id)!,step=t.steps[t.cursor]!;
   fixtureEngine.execute(step.actor,{id:digest({task:task.id,step:t.cursor}),missionId:task.mission,expectedVersion:t.cursor,command:step.command});
+  const overdue=acceptanceScenario('ws_empire_1','synthetic-owner',Date.now());overdue.order.createdAt=new Date(Date.now()-9*86400000).toISOString();
+  for(const [i,part] of overdue.steps.slice(0,7).entries())fixtureEngine.execute(part.actor,{id:'overdue-'+i,missionId:'overdue-mission',expectedVersion:i,command:part.command});
+  const overdueBefore=digest(commerce.store.history('ws_empire_1','overdue-mission'));
   const before=digest(commerce.store.history('ws_empire_1',task.mission));
   await runtime.cycle();if(runtime.advisorWork)await runtime.advisorWork;
   const repair=runtime.control.list('ws_empire_1','recovery').find((r:any)=>r.runbookId==='work8_checkpoint_replay');
   assert.ok(repair,'registered runbook must actually execute via runtime cycle');assert.equal(repair.status,'VERIFIED');
   assert.equal(commerce.worker.get('ws_empire_1',task.id)!.cursor,5);assert.equal(digest(commerce.store.history('ws_empire_1',task.mission)),before);assert.equal(inferenceCalls,0);
   const discovery=runtime.control.get('ws_empire_1','probe','retained_product_discovery');assert.equal(discovery.status,'DEGRADED');assert.equal(discovery.evidence.shortfall,100);assert.equal(discovery.evidence.externalRefresh,false);
+  const fulfilmentId='work8-fulfilment:'+digest({workspace:'ws_empire_1',missionId:'overdue-mission',orderId:overdue.order.orderId});const fulfilment=runtime.control.get('ws_empire_1','probe',fulfilmentId);assert.equal(fulfilment.status,'FAILED');assert.equal(fulfilment.evidence.reason,'MISSING_TRACKING_OVERDUE');assert.equal(fulfilment.runbookId,null);assert.equal(digest(commerce.store.history('ws_empire_1','overdue-mission')),overdueBefore);const fulfilmentIncident=runtime.control.list('ws_empire_1','incident').find((i:any)=>i.probeId===fulfilmentId);assert.equal(fulfilmentIncident.status,'UNRESOLVED');
   const validCheckpoint=commerce.worker.get('ws_empire_1',task.id)!;
   commerce.store.db.prepare('UPDATE commerce_runtime_tasks SET record=? WHERE workspace=? AND id=?').run(JSON.stringify({...validCheckpoint,status:'COMPLETE'}),'ws_empire_1',task.id);
   await runtime.cycle();const integrity=runtime.control.list('ws_empire_1','incident').find((i:any)=>i.probeId==='work8_checkpoint_integrity');assert.ok(integrity);assert.notEqual(integrity.status,'RECOVERED');

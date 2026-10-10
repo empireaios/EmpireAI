@@ -2,6 +2,7 @@ import {productionMemory} from '../../../institutional-memory/store.js';
 import {safetyPaths} from '../../../institutional-memory/safety.js';
 import {enforceOwnerSafety} from './safety-admission.js';
 import {readOwnerPortfolio} from './owner-portfolio.js';
+import {projectWork8MarketContext} from './work8-market-context.js';
 import {RetainedDiscoveryWorker} from './work8-source-discovery.js';
 import {readOwnerSimulatedFinance} from './work8-owner-finance.js';
 import {projectWork8Sources} from './work8-source-projection.js';
@@ -51,7 +52,9 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
      observedCandidates={...projectWork8Sources((ws,sourceId)=>intelligence.get(ws,'evidence',sourceId) as Evidence|null,workspace,sourceIds,Date.now()),availability:'RETAINED_SOURCE_READ',coverage:'LATEST_100_EVIDENCE_RECORDS_ONLY'};
     }
    }catch{observedCandidates={...empty,availability:'SOURCE_READ_UNAVAILABLE',coverage:'LATEST_100_EVIDENCE_RECORDS_ONLY'};}
-   return {...portfolio,observedCandidates,retainedDiscovery:readRetainedDiscovery(workspace)};
+   let marketContext={...projectWork8MarketContext(()=>null,workspace,[],Date.now()),availability:'INTELLIGENCE_UNAVAILABLE'};
+   try{const intelligence=productionIntelligence();if(intelligence){const ids=intelligence.recent(workspace,'evidence',100).filter(e=>e.provider==='Amazon').map(e=>e.id);marketContext={...projectWork8MarketContext((ws,sourceId)=>intelligence.get(ws,'evidence',sourceId) as Evidence|null,workspace,ids,Date.now()),availability:'RETAINED_SOURCE_READ'};}}catch{marketContext={...projectWork8MarketContext(()=>null,workspace,[],Date.now()),availability:'SOURCE_READ_UNAVAILABLE'};}
+   return {...portfolio,observedCandidates,retainedDiscovery:readRetainedDiscovery(workspace),marketContext};
   }catch(e){return reply.code(e instanceof z.ZodError?400:503).send({error:e instanceof z.ZodError?'INVALID_PORTFOLIO_QUERY':'COMMERCE_EVIDENCE_UNAVAILABLE'});}
  });
  app.get('/api/owner/commerce',{preHandler:[authenticate,owner]},async(req,reply)=>{try{return readGovernedCommerce(req.user!.workspaceId,(req.query as {missionId?:string}).missionId);}catch{return reply.code(503).send({error:'COMMERCE_EVIDENCE_UNAVAILABLE'});}});

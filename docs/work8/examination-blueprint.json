@@ -1,18 +1,70 @@
 {
-  "schema":"work8-blueprint-v1",
-  "scope":"Risk-based programme; pilot defect reproductions already run are not retroactively called pre-registered exams",
-  "seed":8,
-  "invariants":["zero external effects","zero model charges","NOT_BORN and LOCKED","immutable receipt preservation","no fabricated Pillow assessment","no unknown cost treated as complete","1000 active cap","bounded recurrence","no cached closure"],
-  "levels":[
-    {"id":0,"requires":[],"pass":"Verified Work7 receipt and financial digests, kernel egress denial independently exercised, separate empty stores"},
-    {"id":1,"requires":[0],"pass":"All changed contracts pass positive and negative identity, authority, monetary and replay cases on supported Node22"},
-    {"id":2,"requires":[1],"pass":"Integrated canonical commerce and finance traces plus independent Assurance recovery; real-source display and assessment binding separately verified"},
-    {"id":3,"requires":[2],"pass":"100 initial candidates, ten virtual100/day cohorts, rejects and replacements, two-process999/1000/1001 race, zero cap breach"},
-    {"id":4,"requires":[2],"pass":"Every mandatory fault in mandate7 explicit injected trace, containment or recovery, independent oracle and retained incident"},
-    {"id":5,"requires":[3,4],"pass":"Crash/reopen and rollback/migration preserve digests; 120-second local wall-clock component soak, with hosted/multi-day endurance explicitly unproven"}
+  "schema": "work8-blueprint-v1",
+  "scope": "Risk-based programme; pilot defect reproductions already run are not retroactively called pre-registered exams",
+  "seed": 8,
+  "invariants": [
+    "zero external effects",
+    "zero model charges",
+    "NOT_BORN and LOCKED",
+    "immutable receipt preservation",
+    "no fabricated Pillow assessment",
+    "no unknown cost treated as complete",
+    "1000 active cap",
+    "bounded recurrence",
+    "no cached closure"
   ],
-  "localBudget":{"maxLifecycles":50,"soakSeconds":120,"maxConcurrency":2,"maxPaidCalls":0,"newInfrastructure":0},
-  "criticalFailuresBlockGo":true,
-  "grading":"No blanket certification from unit tests or synthetic fixtures; absent real source, rights or assessment is NO_GO for its gate",
-  "dependencies":"0 -> 1 -> 2 -> (3,4) -> 5 -> owner acceptance -> exact-head independent review -> legitimate closure; production release separate authority"
+  "levels": [
+    {
+      "id": 0,
+      "requires": [],
+      "pass": "Verified Work7 receipt and financial digests, kernel egress denial independently exercised, separate empty stores"
+    },
+    {
+      "id": 1,
+      "requires": [
+        0
+      ],
+      "pass": "All changed contracts pass positive and negative identity, authority, monetary and replay cases on supported Node22"
+    },
+    {
+      "id": 2,
+      "requires": [
+        1
+      ],
+      "pass": "Integrated canonical commerce and finance traces plus independent Assurance recovery; real-source display and assessment binding separately verified"
+    },
+    {
+      "id": 3,
+      "requires": [
+        2
+      ],
+      "pass": "Synthetic100 initial target, ten virtual100/day cohorts, rejects and replacements, two-process999/1000/1001 race, zero cap breach. Genuine targets conditional on source evidence/access; synthetic counts excluded."
+    },
+    {
+      "id": 4,
+      "requires": [
+        2
+      ],
+      "pass": "Every mandatory fault in mandate7 explicit injected trace, containment or recovery, independent oracle and retained incident"
+    },
+    {
+      "id": 5,
+      "requires": [
+        3,
+        4
+      ],
+      "pass": "Crash/reopen and rollback/migration preserve digests; 120-second local wall-clock component soak, with hosted/multi-day endurance explicitly unproven"
+    }
+  ],
+  "localBudget": {
+    "maxLifecycles": 50,
+    "soakSeconds": 120,
+    "maxConcurrency": 2,
+    "maxPaidCalls": 0,
+    "newInfrastructure": 0,
+    "scope": "Completed pilot campaign budget only, not a reduction of mandatory full programme"
+  },
+  "criticalFailuresBlockGo": true,
+  "grading": "No blanket certification from unit tests or synthetic fixtures; absent real source, rights or assessment is NO_GO for its gate",
+  "dependencies": "0 -> 1 -> 2 -> (3,4) -> 5 -> owner acceptance -> exact-head independent review -> legitimate closure; production release separate authority"
 }

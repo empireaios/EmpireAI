@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-10T21:59:01.166Z",
+  "externalRefresh": false,
+  "inferenceCalls": 0,
+  "sourceHashesVerified": 3,
+  "marketplace": "Amazon US",
+  "catalogueProductsObserved": 10,
+  "productsWithRetainedOfferEvidence": 1,
+  "observed": {
+    "asin": "B0GN1TZZ9W",
+    "name": "WALI Desk File Organizer, 4 Tier Desktop Paper Letter Tray Organizer with Drawer and 2 Pen Holders, Office Desk Accessories & Workspace Organizers for Office, Home Supplies(DO005DH-B), 1 Pack, Black",
+    "brand": "WALI",
+    "lowestNewLandedPrice": {
+      "CurrencyCode": "USD",
+      "Amount": 18.99
+    },
+    "offerCount": 1,
+    "observedAt": "2026-10-10T18:39:09.158Z",
+    "expiresAt": "2026-10-11T00:39:09.158Z"
+  },
+  "sourceIds": [
+    "ev_6b78ad4ee360cd4a38237a9b3f93508cc9ec33c1",
+    "ev_042a033c4d1739ea9e31f361bf4eb295b48ed39e",
+    "ev_05c8e6e14b75bc69c657f104fe462d19f5115ad8"
+  ],
+  "relationshipToCjCohort": "BROAD_DESK_ORGANIZER_MARKET_CONTEXT_ONLY",
+  "verifiedCjProductMatches": 0,
+  "competitorRange": null,
+  "unitSales": null,
+  "guaranteedDemand": false,
+  "gaps": [
+    "No CJ-to-ASIN identity or equivalence binding",
+    "Only one observed offer-bearing ASIN, not a competitor price range",
+    "Retained catalogue dimensions and identifiers contain DEPTH_BOUND placeholders",
+    "No completed assessment establishing functional competition across differing organizer designs"
+  ]
+}

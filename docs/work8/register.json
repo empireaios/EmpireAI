@@ -47,7 +47,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Approved Work7 evidence recovered; Work8 fifteen-control matrix remains required"
+      "nextAction": "Approved Work7 UX recovered; candidate fixed15 positive/negative safety matrix passes, distinct from deployed certification."
     },
     {
       "item": 4,
@@ -131,7 +131,7 @@
       "requirement": "Competitor and market evidence",
       "mandateSections": "4,R1",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PENDING",
+      "status": "PARTIAL",
       "evidence": [
         "source-visibility.md"
       ],
@@ -139,7 +139,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Acquire authorised authentic competitor/demand evidence; none established"
+      "nextAction": "Three authentic Amazon source records expose ten catalog ASIN identities and one USD18.99 offer; no verified CJ product match or demand inference."
     },
     {
       "item": 10,
@@ -154,7 +154,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Identity and digest projection verified; discovery scheduling still being integrated"
+      "nextAction": "Durable bounded discovery deduplicates receipt-bound parent identities across days; fresh provider discovery remains unproven."
     },
     {
       "item": 11,
@@ -320,7 +320,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Partial fulfilment/tracking inherited and locally exercised; mandatory fault map pending"
+      "nextAction": "Canonical missing-tracking and overdue partial shipment collectors integrated into Assurance; local escalation/fresh terminal closure pass, no provider repair authority."
     },
     {
       "item": 22,
@@ -335,7 +335,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Canonical remedies reconciled; broader chargeback/provider outage coverage pending"
+      "nextAction": "Chargeback loss, refund mismatch, repeated unconfirmed cancellation and unknown outcome covered locally; broader live-provider contract remains unavailable."
     },
     {
       "item": 23,
@@ -365,7 +365,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Verified canonical monetary lineage and independent tamper tests pass; full programme not certified"
+      "nextAction": "Canonical money, chargeback, cutoff, negative cash and exact rational simulated FX checked; full programme not certified."
     },
     {
       "item": 25,
@@ -381,7 +381,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Simulation output excluded from actuals and technology costs; full owner equality pending"
+      "nextAction": "Actual authenticated Orders route matches canonical simulated quotes; settlement/profit remain unknown and excluded from actual finance."
     },
     {
       "item": 26,
@@ -488,7 +488,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Focused generated money/identity/replay tests pass; full exact-head CI pending"
+      "nextAction": "Focused contract/identity/money/model/session/safety and compatibility exams pass; complete revised exact-head CI remains required."
     },
     {
       "item": 33,
@@ -503,7 +503,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Independent SQLite connections prove cap race; full concurrency fault matrix incomplete"
+      "nextAction": "Two actual SQLite contenders prove portfolio cap and aggregate stock admission; full transport/concurrency fault matrix remains open."
     },
     {
       "item": 34,
@@ -534,14 +534,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Unknown supplier contained without repeat; all mandatory provider failure categories pending"
+      "nextAction": "Actual locked router429/503/malformed usage injected under kernel denial; passive fresh receipt closure and no replay pass; real-provider outages and semantic hallucination remain unproven."
     },
     {
       "item": 36,
       "requirement": "All fifteen safety controls positive/negative exams",
       "mandateSections": "7,9,22",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PENDING",
+      "status": "PARTIAL",
       "evidence": [
         "baseline.json"
       ],
@@ -549,7 +549,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Execute explicit positive/negative fifteen-safety matrix on candidate; predecessor scope insufficient"
+      "nextAction": "All15 catalog guard positive/negative candidate regression pairs pass; per-guard residual gaps recorded in safety-matrix.json, no blanket live capability claim."
     },
     {
       "item": 37,
@@ -595,14 +595,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Actual corrupted checkpoint/backuprestore/rollbackfencing tests pass; full migration programme pending"
+      "nextAction": "Exact Work7 source readers/writers verify bidirectional additive sidecar compatibility and corrupt/version99 refusal; deployment/host rollback and full multi-day endurance remain open."
     },
     {
       "item": 40,
       "requirement": "Actual owner-view real-product walkthrough",
       "mandateSections": "10,R2,R5",
       "recoveredClassification": "MISSING",
-      "status": "BLOCKED",
+      "status": "PARTIAL",
       "evidence": [
         "source-visibility.md"
       ],
@@ -610,7 +610,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Local retained-data display only; authenticated owner visual and image-rights acceptance absent"
+      "nextAction": "Authenticated isolated desktop/mobile displays genuine retained CJ/Amazon records; no linked genuine Pillow assessment, image permission or coherent real-candidate downstream lifecycle."
     },
     {
       "item": 41,
@@ -625,7 +625,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Desktop/mobile component screenshots pass; authenticated source-to-finance equality pending"
+      "nextAction": "Actual Next BFF/backend equality verified at1440/390px plus backend restart digest preservation; owner/deployed acceptance remains open."
     },
     {
       "item": 42,
@@ -641,7 +641,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Frontend draftPR112 d35cbd41 exactCI running; backend candidate verification/persistence underway"
+      "nextAction": "Frontend draftPR112 d43c43061debbb1bb8988bfc32b8d2ec7a683966 includes actual Orders fix; prior2a4b6eb all4CI pass. Backend draftPR113 strict test fixes and followup exams being persisted."
     },
     {
       "item": 43,
@@ -678,7 +678,7 @@
       "requirement": "Work9 handoff without activation",
       "mandateSections": "13,14,25,R6",
       "recoveredClassification": "MISSING",
-      "status": "PENDING",
+      "status": "PARTIAL",
       "evidence": [
         "CHECKPOINT.md"
       ],
@@ -686,7 +686,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Preparation only: digital twin/live transition requires separate Work9 mandate"
+      "nextAction": "WORK9-HANDOFF.md preserves schemas, parity/rollback and owner-authority gates; incomplete until legitimate Work8 closure, no Work9 activation."
     }
   ]
 }

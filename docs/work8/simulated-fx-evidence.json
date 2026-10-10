@@ -1,0 +1,4806 @@
+{
+  "schema": "work8-simulated-fx-exam-v1",
+  "result": "PASS_SCOPED_SIMULATED_TRANSLATION",
+  "node": "v22.23.2",
+  "kernelEgress": "DENIED",
+  "receipts": [
+    {
+      "id": "2f86c8ba103e6ecf3b87385715bec7b5c59abbcd6c1bf843f5137d34102972ac",
+      "missionId": "acceptance:fx",
+      "workspace": "synthetic:fx-evidence",
+      "version": 1,
+      "at": "2026-10-11T00:00:00.000Z",
+      "actor": {
+        "id": "pillow-commerce-proposer",
+        "workspace": "synthetic:fx-evidence",
+        "role": "PROPOSER"
+      },
+      "command": {
+        "type": "research",
+        "candidate": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "category": "HOME_STORAGE",
+          "restricted": false,
+          "offer": {
+            "provider": "CJ",
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture",
+            "sku": "cj-sku-fixture",
+            "warehouseId": "warehouse-fixture",
+            "origin": "CN",
+            "destination": "SG",
+            "stock": 10,
+            "price": 8,
+            "freight": 3,
+            "currency": "SGD",
+            "leadDays": 8,
+            "quoteId": "quote-fixture",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          },
+          "evidence": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ],
+          "economics": {
+            "productId": "cj-product-fixture",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "cash": {
+            "available": 1000,
+            "liabilities": 20,
+            "committed": 0,
+            "budget": 500,
+            "fxVerified": true,
+            "financialDigest": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          }
+        }
+      },
+      "requestDigest": "dc8858c8bf3e5852dcc19ef5e3060baa8c2a442eca82a00d8b4e40a4f108fb6f",
+      "previous": "",
+      "state": {
+        "phase": "QUALIFIED",
+        "candidate": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "category": "HOME_STORAGE",
+          "restricted": false,
+          "offer": {
+            "provider": "CJ",
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture",
+            "sku": "cj-sku-fixture",
+            "warehouseId": "warehouse-fixture",
+            "origin": "CN",
+            "destination": "SG",
+            "stock": 10,
+            "price": 8,
+            "freight": 3,
+            "currency": "SGD",
+            "leadDays": 8,
+            "quoteId": "quote-fixture",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          },
+          "evidence": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ],
+          "economics": {
+            "productId": "cj-product-fixture",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "cash": {
+            "available": 1000,
+            "liabilities": 20,
+            "committed": 0,
+            "budget": 500,
+            "fxVerified": true,
+            "financialDigest": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          }
+        },
+        "candidateDigest": "be42e741777ba73700b261909e2fc62bb3b3c9889ac4c877e6f6f0dbde9e35a5",
+        "qualification": {
+          "qualified": true,
+          "reasons": [],
+          "score": 87,
+          "confidence": 1,
+          "economics": {
+            "input": {
+              "productId": "cj-product-fixture",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "gross": 27,
+            "contribution": 17.599999999999998,
+            "net": 16.599999999999998,
+            "breakEven": 20.000000000000004,
+            "minimumViablePrice": 20.000000000000004,
+            "marginPercent": 41.49999999999999,
+            "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+            "genuinelyProfitable": false
+          },
+          "exposure": 25,
+          "available": 980,
+          "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "proposer": "pillow-commerce-proposer",
+        "orders": {},
+        "outcomes": [],
+        "reversed": [],
+        "decisions": [],
+        "paidInference": 0,
+        "externalEffects": 0
+      },
+      "entities": [
+        {
+          "kind": "Opportunity",
+          "id": "acceptance:fx:Opportunity",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "productId": "cj-product-fixture",
+            "score": 87,
+            "qualified": true,
+            "reasons": []
+          }
+        },
+        {
+          "kind": "ProductCandidate",
+          "id": "acceptance:fx:ProductCandidate",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "productId": "cj-product-fixture",
+            "title": "Synthetic storage organiser",
+            "category": "HOME_STORAGE",
+            "restricted": false,
+            "offer": {
+              "provider": "CJ",
+              "productId": "cj-product-fixture",
+              "variantId": "cj-variant-fixture",
+              "sku": "cj-sku-fixture",
+              "warehouseId": "warehouse-fixture",
+              "origin": "CN",
+              "destination": "SG",
+              "stock": 10,
+              "price": 8,
+              "freight": 3,
+              "currency": "SGD",
+              "leadDays": 8,
+              "quoteId": "quote-fixture",
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            "evidence": [
+              {
+                "id": "evidence-DEMAND",
+                "kind": "DEMAND",
+                "value": 100,
+                "verified": true,
+                "provenance": {
+                  "source": "work6-deterministic-acceptance",
+                  "reference": "synthetic:work6-fixture-not-provider-evidence",
+                  "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                  "observedAt": "2026-10-11T00:00:00.000Z",
+                  "expiresAt": "2026-10-11T01:00:00.000Z",
+                  "classification": "SYNTHETIC"
+                }
+              },
+              {
+                "id": "evidence-COMPETITION",
+                "kind": "COMPETITION",
+                "value": 100,
+                "verified": true,
+                "provenance": {
+                  "source": "work6-deterministic-acceptance",
+                  "reference": "synthetic:work6-fixture-not-provider-evidence",
+                  "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                  "observedAt": "2026-10-11T00:00:00.000Z",
+                  "expiresAt": "2026-10-11T01:00:00.000Z",
+                  "classification": "SYNTHETIC"
+                }
+              },
+              {
+                "id": "evidence-DIFFERENTIATION",
+                "kind": "DIFFERENTIATION",
+                "value": 100,
+                "verified": true,
+                "provenance": {
+                  "source": "work6-deterministic-acceptance",
+                  "reference": "synthetic:work6-fixture-not-provider-evidence",
+                  "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                  "observedAt": "2026-10-11T00:00:00.000Z",
+                  "expiresAt": "2026-10-11T01:00:00.000Z",
+                  "classification": "SYNTHETIC"
+                }
+              },
+              {
+                "id": "evidence-QUALITY",
+                "kind": "QUALITY",
+                "value": 100,
+                "verified": true,
+                "provenance": {
+                  "source": "work6-deterministic-acceptance",
+                  "reference": "synthetic:work6-fixture-not-provider-evidence",
+                  "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                  "observedAt": "2026-10-11T00:00:00.000Z",
+                  "expiresAt": "2026-10-11T01:00:00.000Z",
+                  "classification": "SYNTHETIC"
+                }
+              },
+              {
+                "id": "evidence-COMPLIANCE",
+                "kind": "COMPLIANCE",
+                "value": 100,
+                "verified": true,
+                "provenance": {
+                  "source": "work6-deterministic-acceptance",
+                  "reference": "synthetic:work6-fixture-not-provider-evidence",
+                  "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                  "observedAt": "2026-10-11T00:00:00.000Z",
+                  "expiresAt": "2026-10-11T01:00:00.000Z",
+                  "classification": "SYNTHETIC"
+                }
+              },
+              {
+                "id": "evidence-RETURNS",
+                "kind": "RETURNS",
+                "value": 100,
+                "verified": true,
+                "provenance": {
+                  "source": "work6-deterministic-acceptance",
+                  "reference": "synthetic:work6-fixture-not-provider-evidence",
+                  "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                  "observedAt": "2026-10-11T00:00:00.000Z",
+                  "expiresAt": "2026-10-11T01:00:00.000Z",
+                  "classification": "SYNTHETIC"
+                }
+              },
+              {
+                "id": "evidence-MARKETPLACE",
+                "kind": "MARKETPLACE",
+                "value": 100,
+                "verified": true,
+                "provenance": {
+                  "source": "work6-deterministic-acceptance",
+                  "reference": "synthetic:work6-fixture-not-provider-evidence",
+                  "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                  "observedAt": "2026-10-11T00:00:00.000Z",
+                  "expiresAt": "2026-10-11T01:00:00.000Z",
+                  "classification": "SYNTHETIC"
+                }
+              },
+              {
+                "id": "evidence-PAYMENT",
+                "kind": "PAYMENT",
+                "value": 100,
+                "verified": true,
+                "provenance": {
+                  "source": "work6-deterministic-acceptance",
+                  "reference": "synthetic:work6-fixture-not-provider-evidence",
+                  "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                  "observedAt": "2026-10-11T00:00:00.000Z",
+                  "expiresAt": "2026-10-11T01:00:00.000Z",
+                  "classification": "SYNTHETIC"
+                }
+              }
+            ],
+            "economics": {
+              "productId": "cj-product-fixture",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "cash": {
+              "available": 1000,
+              "liabilities": 20,
+              "committed": 0,
+              "budget": 500,
+              "fxVerified": true,
+              "financialDigest": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+            }
+          }
+        },
+        {
+          "kind": "Product",
+          "id": "acceptance:fx:Product",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "productId": "cj-product-fixture",
+            "title": "Synthetic storage organiser",
+            "category": "HOME_STORAGE"
+          }
+        },
+        {
+          "kind": "SupplierOffer",
+          "id": "acceptance:fx:SupplierOffer",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "provider": "CJ",
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture",
+            "sku": "cj-sku-fixture",
+            "warehouseId": "warehouse-fixture",
+            "origin": "CN",
+            "destination": "SG",
+            "stock": 10,
+            "price": 8,
+            "freight": 3,
+            "currency": "SGD",
+            "leadDays": 8,
+            "quoteId": "quote-fixture",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          }
+        },
+        {
+          "kind": "SupplierSKU",
+          "id": "acceptance:fx:SupplierSKU",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "provider": "CJ",
+            "productId": "cj-product-fixture",
+            "sku": "cj-sku-fixture",
+            "variantId": "cj-variant-fixture"
+          }
+        },
+        {
+          "kind": "Variant",
+          "id": "acceptance:fx:Variant",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture",
+            "sku": "cj-sku-fixture"
+          }
+        },
+        {
+          "kind": "InventoryObservation",
+          "id": "acceptance:fx:InventoryObservation",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "variantId": "cj-variant-fixture",
+            "warehouseId": "warehouse-fixture",
+            "stock": 10,
+            "origin": "CN",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z"
+          }
+        },
+        {
+          "kind": "FreightQuote",
+          "id": "acceptance:fx:FreightQuote",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "id": "quote-fixture",
+            "origin": "CN",
+            "destination": "SG",
+            "variantId": "cj-variant-fixture",
+            "amount": 3,
+            "currency": "SGD",
+            "leadDays": 8,
+            "expiresAt": "2026-10-11T01:00:00.000Z"
+          }
+        },
+        {
+          "kind": "EconomicAssessment",
+          "id": "acceptance:fx:EconomicAssessment",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "input": {
+              "productId": "cj-product-fixture",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "gross": 27,
+            "contribution": 17.599999999999998,
+            "net": 16.599999999999998,
+            "breakEven": 20.000000000000004,
+            "minimumViablePrice": 20.000000000000004,
+            "marginPercent": 41.49999999999999,
+            "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+            "genuinelyProfitable": false
+          }
+        },
+        {
+          "kind": "RiskAssessment",
+          "id": "acceptance:fx:RiskAssessment",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "reasons": [],
+            "exposure": 25,
+            "review": null
+          }
+        },
+        {
+          "kind": "FinancialReference",
+          "id": "acceptance:fx:FinancialReference",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "classification": "SYNTHETIC_EXCLUDED_FROM_ACTUALS",
+            "source": "IMMUTABLE_COMMERCE_RECEIPT_PROJECTION",
+            "work5Reference": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9",
+            "entries": [],
+            "balanced": true,
+            "totalExposure": 0,
+            "actualCashMovement": 0,
+            "actualRevenue": null,
+            "actualProfit": null
+          }
+        },
+        {
+          "kind": "ResearchEvidence",
+          "id": "acceptance:fx:evidence-DEMAND",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "ResearchEvidence",
+          "id": "acceptance:fx:evidence-COMPETITION",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "ResearchEvidence",
+          "id": "acceptance:fx:evidence-DIFFERENTIATION",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "ResearchEvidence",
+          "id": "acceptance:fx:evidence-QUALITY",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "ResearchEvidence",
+          "id": "acceptance:fx:evidence-COMPLIANCE",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "ResearchEvidence",
+          "id": "acceptance:fx:evidence-RETURNS",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "ResearchEvidence",
+          "id": "acceptance:fx:evidence-MARKETPLACE",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "ResearchEvidence",
+          "id": "acceptance:fx:evidence-PAYMENT",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "ExecutionReceipt",
+          "id": "acceptance:fx:2f86c8ba103e6ecf3b87385715bec7b5c59abbcd6c1bf843f5137d34102972ac",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 1,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": null,
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "requestId": "2f86c8ba103e6ecf3b87385715bec7b5c59abbcd6c1bf843f5137d34102972ac",
+            "externalEffects": 0,
+            "paidInference": 0
+          }
+        }
+      ],
+      "classification": "SYNTHETIC",
+      "externalEffects": 0,
+      "digest": "f43454a39a78171a708fe2c738697f6aaf8df567457dc772cceb936363e1c881"
+    },
+    {
+      "id": "30cbeb0f725d97e1a38a8d64402447d509ca8f526c2219903dccd2909949b73f",
+      "missionId": "acceptance:fx",
+      "workspace": "synthetic:fx-evidence",
+      "version": 2,
+      "at": "2026-10-11T00:00:00.000Z",
+      "actor": {
+        "id": "pillow-commerce-proposer",
+        "workspace": "synthetic:fx-evidence",
+        "role": "PROPOSER"
+      },
+      "command": {
+        "type": "listing",
+        "listing": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "bullets": [
+            "Synthetic dimensions for acceptance only"
+          ],
+          "description": "Synthetic listing package, not intended for marketplace publication.",
+          "category": "HOME_STORAGE",
+          "attributes": {
+            "material": "fixture"
+          },
+          "variants": [
+            {
+              "sku": "cj-sku-fixture",
+              "variantId": "cj-variant-fixture",
+              "dimensions": "10x10x10 cm fixture"
+            }
+          ],
+          "images": [
+            {
+              "url": "https://example.invalid/fixture.png",
+              "license": "Synthetic acceptance image manifest; no actual media licensed",
+              "rightsEvidence": "evidence-QUALITY",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+            }
+          ],
+          "claims": [
+            {
+              "text": "Synthetic fixture",
+              "evidenceId": "evidence-QUALITY"
+            }
+          ],
+          "sourceEvidence": [
+            "evidence-DEMAND",
+            "evidence-COMPETITION",
+            "evidence-DIFFERENTIATION",
+            "evidence-QUALITY",
+            "evidence-COMPLIANCE",
+            "evidence-RETURNS",
+            "evidence-MARKETPLACE",
+            "evidence-PAYMENT"
+          ]
+        }
+      },
+      "requestDigest": "3ae9b00d660cdbc0b9c3d1e6c7a24b5e3e803fe45dd85cf853d38421fa183a2f",
+      "previous": "f43454a39a78171a708fe2c738697f6aaf8df567457dc772cceb936363e1c881",
+      "state": {
+        "phase": "QUALIFIED",
+        "candidate": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "category": "HOME_STORAGE",
+          "restricted": false,
+          "offer": {
+            "provider": "CJ",
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture",
+            "sku": "cj-sku-fixture",
+            "warehouseId": "warehouse-fixture",
+            "origin": "CN",
+            "destination": "SG",
+            "stock": 10,
+            "price": 8,
+            "freight": 3,
+            "currency": "SGD",
+            "leadDays": 8,
+            "quoteId": "quote-fixture",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          },
+          "evidence": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ],
+          "economics": {
+            "productId": "cj-product-fixture",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "cash": {
+            "available": 1000,
+            "liabilities": 20,
+            "committed": 0,
+            "budget": 500,
+            "fxVerified": true,
+            "financialDigest": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          }
+        },
+        "candidateDigest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+        "qualification": {
+          "qualified": true,
+          "reasons": [],
+          "score": 87,
+          "confidence": 1,
+          "economics": {
+            "input": {
+              "productId": "cj-product-fixture",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "gross": 27,
+            "contribution": 17.599999999999998,
+            "net": 16.599999999999998,
+            "breakEven": 20.000000000000004,
+            "minimumViablePrice": 20.000000000000004,
+            "marginPercent": 41.49999999999999,
+            "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+            "genuinelyProfitable": false
+          },
+          "exposure": 25,
+          "available": 980,
+          "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "proposer": "pillow-commerce-proposer",
+        "orders": {},
+        "outcomes": [],
+        "reversed": [],
+        "decisions": [],
+        "paidInference": 0,
+        "externalEffects": 0,
+        "listing": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "bullets": [
+            "Synthetic dimensions for acceptance only"
+          ],
+          "description": "Synthetic listing package, not intended for marketplace publication.",
+          "category": "HOME_STORAGE",
+          "attributes": {
+            "material": "fixture"
+          },
+          "variants": [
+            {
+              "sku": "cj-sku-fixture",
+              "variantId": "cj-variant-fixture",
+              "dimensions": "10x10x10 cm fixture"
+            }
+          ],
+          "images": [
+            {
+              "url": "https://example.invalid/fixture.png",
+              "license": "Synthetic acceptance image manifest; no actual media licensed",
+              "rightsEvidence": "evidence-QUALITY",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+            }
+          ],
+          "claims": [
+            {
+              "text": "Synthetic fixture",
+              "evidenceId": "evidence-QUALITY"
+            }
+          ],
+          "sourceEvidence": [
+            "evidence-DEMAND",
+            "evidence-COMPETITION",
+            "evidence-DIFFERENTIATION",
+            "evidence-QUALITY",
+            "evidence-COMPLIANCE",
+            "evidence-RETURNS",
+            "evidence-MARKETPLACE",
+            "evidence-PAYMENT"
+          ]
+        },
+        "listingDigest": "c430a69c5cc588e22aa30119cc5d4103272fbe325365c66f9caa7a040e7e5342"
+      },
+      "entities": [
+        {
+          "kind": "ListingPackage",
+          "id": "acceptance:fx:listing:2",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 2,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "2f86c8ba103e6ecf3b87385715bec7b5c59abbcd6c1bf843f5137d34102972ac",
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "productId": "cj-product-fixture",
+            "title": "Synthetic storage organiser",
+            "bullets": [
+              "Synthetic dimensions for acceptance only"
+            ],
+            "description": "Synthetic listing package, not intended for marketplace publication.",
+            "category": "HOME_STORAGE",
+            "attributes": {
+              "material": "fixture"
+            },
+            "variants": [
+              {
+                "sku": "cj-sku-fixture",
+                "variantId": "cj-variant-fixture",
+                "dimensions": "10x10x10 cm fixture"
+              }
+            ],
+            "images": [
+              {
+                "url": "https://example.invalid/fixture.png",
+                "license": "Synthetic acceptance image manifest; no actual media licensed",
+                "rightsEvidence": "evidence-QUALITY",
+                "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+              }
+            ],
+            "claims": [
+              {
+                "text": "Synthetic fixture",
+                "evidenceId": "evidence-QUALITY"
+              }
+            ],
+            "sourceEvidence": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ]
+          }
+        },
+        {
+          "kind": "MarketplaceIntent",
+          "id": "acceptance:fx:listing-validation",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 2,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "2f86c8ba103e6ecf3b87385715bec7b5c59abbcd6c1bf843f5137d34102972ac",
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "operation": "VALIDATE_LISTING",
+            "listing": {
+              "productId": "cj-product-fixture",
+              "title": "Synthetic storage organiser",
+              "bullets": [
+                "Synthetic dimensions for acceptance only"
+              ],
+              "description": "Synthetic listing package, not intended for marketplace publication.",
+              "category": "HOME_STORAGE",
+              "attributes": {
+                "material": "fixture"
+              },
+              "variants": [
+                {
+                  "sku": "cj-sku-fixture",
+                  "variantId": "cj-variant-fixture",
+                  "dimensions": "10x10x10 cm fixture"
+                }
+              ],
+              "images": [
+                {
+                  "url": "https://example.invalid/fixture.png",
+                  "license": "Synthetic acceptance image manifest; no actual media licensed",
+                  "rightsEvidence": "evidence-QUALITY",
+                  "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+                }
+              ],
+              "claims": [
+                {
+                  "text": "Synthetic fixture",
+                  "evidenceId": "evidence-QUALITY"
+                }
+              ],
+              "sourceEvidence": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ]
+            },
+            "digest": "c430a69c5cc588e22aa30119cc5d4103272fbe325365c66f9caa7a040e7e5342",
+            "state": "PREPARED",
+            "externalEffects": 0
+          }
+        },
+        {
+          "kind": "ExecutionReceipt",
+          "id": "acceptance:fx:30cbeb0f725d97e1a38a8d64402447d509ca8f526c2219903dccd2909949b73f",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 2,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "2f86c8ba103e6ecf3b87385715bec7b5c59abbcd6c1bf843f5137d34102972ac",
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "requestId": "30cbeb0f725d97e1a38a8d64402447d509ca8f526c2219903dccd2909949b73f",
+            "externalEffects": 0,
+            "paidInference": 0
+          }
+        }
+      ],
+      "classification": "SYNTHETIC",
+      "externalEffects": 0,
+      "digest": "684373e3a5266f292a4be4d497c4c263f80173a13300a755711596f987e7a761"
+    },
+    {
+      "id": "4cf13525d9bec642d01da282d91a1d3b2acbad55da808036d827a244ea1c3f79",
+      "missionId": "acceptance:fx",
+      "workspace": "synthetic:fx-evidence",
+      "version": 3,
+      "at": "2026-10-11T00:00:00.000Z",
+      "actor": {
+        "id": "commerce-independent-policy-reviewer",
+        "workspace": "synthetic:fx-evidence",
+        "role": "REVIEWER"
+      },
+      "command": {
+        "type": "review",
+        "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+        "decision": "APPROVE",
+        "reason": "Deterministic independent policy review of synthetic fixture; no live authority."
+      },
+      "requestDigest": "2f49b26027657fe2d69ade452c0660c71a048c448d9d6d6ba424d4564f50a9e4",
+      "previous": "684373e3a5266f292a4be4d497c4c263f80173a13300a755711596f987e7a761",
+      "state": {
+        "phase": "REVIEWED",
+        "candidate": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "category": "HOME_STORAGE",
+          "restricted": false,
+          "offer": {
+            "provider": "CJ",
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture",
+            "sku": "cj-sku-fixture",
+            "warehouseId": "warehouse-fixture",
+            "origin": "CN",
+            "destination": "SG",
+            "stock": 10,
+            "price": 8,
+            "freight": 3,
+            "currency": "SGD",
+            "leadDays": 8,
+            "quoteId": "quote-fixture",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          },
+          "evidence": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ],
+          "economics": {
+            "productId": "cj-product-fixture",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "cash": {
+            "available": 1000,
+            "liabilities": 20,
+            "committed": 0,
+            "budget": 500,
+            "fxVerified": true,
+            "financialDigest": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          }
+        },
+        "candidateDigest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+        "qualification": {
+          "qualified": true,
+          "reasons": [],
+          "score": 87,
+          "confidence": 1,
+          "economics": {
+            "input": {
+              "productId": "cj-product-fixture",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "gross": 27,
+            "contribution": 17.599999999999998,
+            "net": 16.599999999999998,
+            "breakEven": 20.000000000000004,
+            "minimumViablePrice": 20.000000000000004,
+            "marginPercent": 41.49999999999999,
+            "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+            "genuinelyProfitable": false
+          },
+          "exposure": 25,
+          "available": 980,
+          "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "proposer": "pillow-commerce-proposer",
+        "orders": {},
+        "outcomes": [],
+        "reversed": [],
+        "decisions": [],
+        "paidInference": 0,
+        "externalEffects": 0,
+        "listing": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "bullets": [
+            "Synthetic dimensions for acceptance only"
+          ],
+          "description": "Synthetic listing package, not intended for marketplace publication.",
+          "category": "HOME_STORAGE",
+          "attributes": {
+            "material": "fixture"
+          },
+          "variants": [
+            {
+              "sku": "cj-sku-fixture",
+              "variantId": "cj-variant-fixture",
+              "dimensions": "10x10x10 cm fixture"
+            }
+          ],
+          "images": [
+            {
+              "url": "https://example.invalid/fixture.png",
+              "license": "Synthetic acceptance image manifest; no actual media licensed",
+              "rightsEvidence": "evidence-QUALITY",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+            }
+          ],
+          "claims": [
+            {
+              "text": "Synthetic fixture",
+              "evidenceId": "evidence-QUALITY"
+            }
+          ],
+          "sourceEvidence": [
+            "evidence-DEMAND",
+            "evidence-COMPETITION",
+            "evidence-DIFFERENTIATION",
+            "evidence-QUALITY",
+            "evidence-COMPLIANCE",
+            "evidence-RETURNS",
+            "evidence-MARKETPLACE",
+            "evidence-PAYMENT"
+          ]
+        },
+        "listingDigest": "c430a69c5cc588e22aa30119cc5d4103272fbe325365c66f9caa7a040e7e5342",
+        "review": {
+          "actor": "commerce-independent-policy-reviewer",
+          "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+          "decision": "APPROVE"
+        }
+      },
+      "entities": [
+        {
+          "kind": "RiskAssessment",
+          "id": "acceptance:fx:review",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 3,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "30cbeb0f725d97e1a38a8d64402447d509ca8f526c2219903dccd2909949b73f",
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "reasons": [],
+            "exposure": 25,
+            "review": {
+              "actor": "commerce-independent-policy-reviewer",
+              "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+              "decision": "APPROVE"
+            }
+          }
+        },
+        {
+          "kind": "ExecutionReceipt",
+          "id": "acceptance:fx:4cf13525d9bec642d01da282d91a1d3b2acbad55da808036d827a244ea1c3f79",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 3,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "30cbeb0f725d97e1a38a8d64402447d509ca8f526c2219903dccd2909949b73f",
+          "approvalRefs": [],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "requestId": "4cf13525d9bec642d01da282d91a1d3b2acbad55da808036d827a244ea1c3f79",
+            "externalEffects": 0,
+            "paidInference": 0
+          }
+        }
+      ],
+      "classification": "SYNTHETIC",
+      "externalEffects": 0,
+      "digest": "de2d2590be6a152764c39b1a3daf8f305964ac04dc141ec5844055c0466c91ae"
+    },
+    {
+      "id": "d328be3f9bbd9e8d9a1442084166ef3ce762425078364e1cc6bba959b05d10e0",
+      "missionId": "acceptance:fx",
+      "workspace": "synthetic:fx-evidence",
+      "version": 4,
+      "at": "2026-10-11T00:00:00.000Z",
+      "actor": {
+        "id": "synthetic-owner",
+        "workspace": "synthetic:fx-evidence",
+        "role": "OWNER"
+      },
+      "command": {
+        "type": "approve",
+        "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+        "expiresAt": "2026-10-11T01:00:00.000Z",
+        "maxExposure": 100
+      },
+      "requestDigest": "03e029c2838219685b44c2b60e338d46f1328fc30c024d6428642a8b69b21074",
+      "previous": "de2d2590be6a152764c39b1a3daf8f305964ac04dc141ec5844055c0466c91ae",
+      "state": {
+        "phase": "APPROVED",
+        "candidate": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "category": "HOME_STORAGE",
+          "restricted": false,
+          "offer": {
+            "provider": "CJ",
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture",
+            "sku": "cj-sku-fixture",
+            "warehouseId": "warehouse-fixture",
+            "origin": "CN",
+            "destination": "SG",
+            "stock": 10,
+            "price": 8,
+            "freight": 3,
+            "currency": "SGD",
+            "leadDays": 8,
+            "quoteId": "quote-fixture",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          },
+          "evidence": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ],
+          "economics": {
+            "productId": "cj-product-fixture",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "cash": {
+            "available": 1000,
+            "liabilities": 20,
+            "committed": 0,
+            "budget": 500,
+            "fxVerified": true,
+            "financialDigest": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          }
+        },
+        "candidateDigest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+        "qualification": {
+          "qualified": true,
+          "reasons": [],
+          "score": 87,
+          "confidence": 1,
+          "economics": {
+            "input": {
+              "productId": "cj-product-fixture",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "gross": 27,
+            "contribution": 17.599999999999998,
+            "net": 16.599999999999998,
+            "breakEven": 20.000000000000004,
+            "minimumViablePrice": 20.000000000000004,
+            "marginPercent": 41.49999999999999,
+            "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+            "genuinelyProfitable": false
+          },
+          "exposure": 25,
+          "available": 980,
+          "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "proposer": "pillow-commerce-proposer",
+        "orders": {},
+        "outcomes": [],
+        "reversed": [],
+        "decisions": [],
+        "paidInference": 0,
+        "externalEffects": 0,
+        "listing": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "bullets": [
+            "Synthetic dimensions for acceptance only"
+          ],
+          "description": "Synthetic listing package, not intended for marketplace publication.",
+          "category": "HOME_STORAGE",
+          "attributes": {
+            "material": "fixture"
+          },
+          "variants": [
+            {
+              "sku": "cj-sku-fixture",
+              "variantId": "cj-variant-fixture",
+              "dimensions": "10x10x10 cm fixture"
+            }
+          ],
+          "images": [
+            {
+              "url": "https://example.invalid/fixture.png",
+              "license": "Synthetic acceptance image manifest; no actual media licensed",
+              "rightsEvidence": "evidence-QUALITY",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+            }
+          ],
+          "claims": [
+            {
+              "text": "Synthetic fixture",
+              "evidenceId": "evidence-QUALITY"
+            }
+          ],
+          "sourceEvidence": [
+            "evidence-DEMAND",
+            "evidence-COMPETITION",
+            "evidence-DIFFERENTIATION",
+            "evidence-QUALITY",
+            "evidence-COMPLIANCE",
+            "evidence-RETURNS",
+            "evidence-MARKETPLACE",
+            "evidence-PAYMENT"
+          ]
+        },
+        "listingDigest": "c430a69c5cc588e22aa30119cc5d4103272fbe325365c66f9caa7a040e7e5342",
+        "review": {
+          "actor": "commerce-independent-policy-reviewer",
+          "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+          "decision": "APPROVE"
+        },
+        "approval": {
+          "actor": "synthetic-owner",
+          "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+          "expiresAt": "2026-10-11T01:00:00.000Z",
+          "maxExposure": 100,
+          "revoked": false
+        }
+      },
+      "entities": [
+        {
+          "kind": "Approval",
+          "id": "acceptance:fx:approval",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 4,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "4cf13525d9bec642d01da282d91a1d3b2acbad55da808036d827a244ea1c3f79",
+          "approvalRefs": [
+            "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820"
+          ],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "actor": "synthetic-owner",
+            "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "maxExposure": 100,
+            "revoked": false
+          }
+        },
+        {
+          "kind": "ExecutionReceipt",
+          "id": "acceptance:fx:d328be3f9bbd9e8d9a1442084166ef3ce762425078364e1cc6bba959b05d10e0",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 4,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "4cf13525d9bec642d01da282d91a1d3b2acbad55da808036d827a244ea1c3f79",
+          "approvalRefs": [
+            "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820"
+          ],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "requestId": "d328be3f9bbd9e8d9a1442084166ef3ce762425078364e1cc6bba959b05d10e0",
+            "externalEffects": 0,
+            "paidInference": 0
+          }
+        }
+      ],
+      "classification": "SYNTHETIC",
+      "externalEffects": 0,
+      "digest": "8a44b00ae0af1d311ba4506c0d808c941330b948a0b97aa44a71a79b435c6028"
+    },
+    {
+      "id": "5a02191512546cba16fce17dfde4307a7919dad2ab184adeb39fb62d0717d4a8",
+      "missionId": "acceptance:fx",
+      "workspace": "synthetic:fx-evidence",
+      "version": 5,
+      "at": "2026-10-11T00:00:00.000Z",
+      "actor": {
+        "id": "brain-commerce-interceptor",
+        "workspace": "synthetic:fx-evidence",
+        "role": "EXECUTOR"
+      },
+      "command": {
+        "type": "intake",
+        "order": {
+          "orderId": "order-fixture",
+          "workspaceId": "synthetic:fx-evidence",
+          "storeId": "isolated",
+          "brandId": "fixture",
+          "supplierPlatform": "CJ_DROPSHIPPING",
+          "connectorId": "cj-interceptor",
+          "status": "DRAFT",
+          "fulfillmentStatus": "PENDING",
+          "items": [
+            {
+              "itemId": "line-1",
+              "supplierSku": "cj-sku-fixture",
+              "supplierProductId": "cj-product-fixture",
+              "title": "Synthetic storage organiser",
+              "quantity": 2,
+              "unitCost": 8,
+              "currency": "SGD"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Synthetic Recipient",
+            "addressLine1": "Fixture address",
+            "city": "Singapore",
+            "state": "Singapore",
+            "postalCode": "000000",
+            "countryCode": "SG",
+            "phone": "00000000"
+          },
+          "estimatedCost": 16,
+          "estimatedDeliveryDaysMin": 7,
+          "estimatedDeliveryDaysMax": 10,
+          "currency": "SGD",
+          "approval": null,
+          "supplierOrderId": null,
+          "trackingNumber": null,
+          "carrier": null,
+          "trackingEvents": [],
+          "integrationMode": "SANDBOX",
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z"
+        },
+        "paymentEvidence": "evidence-PAYMENT"
+      },
+      "requestDigest": "8e5900c8eb6fe619cc23876af48824b01f135d0b38b3e4e17b4a1669b5d95158",
+      "previous": "8a44b00ae0af1d311ba4506c0d808c941330b948a0b97aa44a71a79b435c6028",
+      "state": {
+        "phase": "APPROVED",
+        "candidate": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "category": "HOME_STORAGE",
+          "restricted": false,
+          "offer": {
+            "provider": "CJ",
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture",
+            "sku": "cj-sku-fixture",
+            "warehouseId": "warehouse-fixture",
+            "origin": "CN",
+            "destination": "SG",
+            "stock": 10,
+            "price": 8,
+            "freight": 3,
+            "currency": "SGD",
+            "leadDays": 8,
+            "quoteId": "quote-fixture",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          },
+          "evidence": [
+            {
+              "id": "evidence-DEMAND",
+              "kind": "DEMAND",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPETITION",
+              "kind": "COMPETITION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-DIFFERENTIATION",
+              "kind": "DIFFERENTIATION",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-QUALITY",
+              "kind": "QUALITY",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-COMPLIANCE",
+              "kind": "COMPLIANCE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-RETURNS",
+              "kind": "RETURNS",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-MARKETPLACE",
+              "kind": "MARKETPLACE",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            },
+            {
+              "id": "evidence-PAYMENT",
+              "kind": "PAYMENT",
+              "value": 100,
+              "verified": true,
+              "provenance": {
+                "source": "work6-deterministic-acceptance",
+                "reference": "synthetic:work6-fixture-not-provider-evidence",
+                "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+                "observedAt": "2026-10-11T00:00:00.000Z",
+                "expiresAt": "2026-10-11T01:00:00.000Z",
+                "classification": "SYNTHETIC"
+              }
+            }
+          ],
+          "economics": {
+            "productId": "cj-product-fixture",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "cash": {
+            "available": 1000,
+            "liabilities": 20,
+            "committed": 0,
+            "budget": 500,
+            "fxVerified": true,
+            "financialDigest": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          }
+        },
+        "candidateDigest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+        "qualification": {
+          "qualified": true,
+          "reasons": [],
+          "score": 87,
+          "confidence": 1,
+          "economics": {
+            "input": {
+              "productId": "cj-product-fixture",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "gross": 27,
+            "contribution": 17.599999999999998,
+            "net": 16.599999999999998,
+            "breakEven": 20.000000000000004,
+            "minimumViablePrice": 20.000000000000004,
+            "marginPercent": 41.49999999999999,
+            "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+            "genuinelyProfitable": false
+          },
+          "exposure": 25,
+          "available": 980,
+          "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "proposer": "pillow-commerce-proposer",
+        "orders": {
+          "order-fixture": {
+            "order": {
+              "orderId": "order-fixture",
+              "workspaceId": "synthetic:fx-evidence",
+              "storeId": "isolated",
+              "brandId": "fixture",
+              "supplierPlatform": "CJ_DROPSHIPPING",
+              "connectorId": "cj-interceptor",
+              "status": "DRAFT",
+              "fulfillmentStatus": "PENDING",
+              "items": [
+                {
+                  "itemId": "line-1",
+                  "supplierSku": "cj-sku-fixture",
+                  "supplierProductId": "cj-product-fixture",
+                  "title": "Synthetic storage organiser",
+                  "quantity": 2,
+                  "unitCost": 8,
+                  "currency": "SGD"
+                }
+              ],
+              "shippingAddress": {
+                "fullName": "Synthetic Recipient",
+                "addressLine1": "Fixture address",
+                "city": "Singapore",
+                "state": "Singapore",
+                "postalCode": "000000",
+                "countryCode": "SG",
+                "phone": "00000000"
+              },
+              "estimatedCost": 16,
+              "estimatedDeliveryDaysMin": 7,
+              "estimatedDeliveryDaysMax": 10,
+              "currency": "SGD",
+              "approval": null,
+              "supplierOrderId": null,
+              "trackingNumber": null,
+              "carrier": null,
+              "trackingEvents": [],
+              "integrationMode": "SANDBOX",
+              "createdAt": "2026-10-11T00:00:00.000Z",
+              "updatedAt": "2026-10-11T00:00:00.000Z"
+            },
+            "outcome": "RECEIVED",
+            "accepted": 0,
+            "shipped": 0,
+            "delivered": 0,
+            "tracking": [],
+            "lastTrackingAt": null,
+            "shipments": {},
+            "remedies": []
+          }
+        },
+        "outcomes": [],
+        "reversed": [],
+        "decisions": [],
+        "paidInference": 0,
+        "externalEffects": 0,
+        "listing": {
+          "productId": "cj-product-fixture",
+          "title": "Synthetic storage organiser",
+          "bullets": [
+            "Synthetic dimensions for acceptance only"
+          ],
+          "description": "Synthetic listing package, not intended for marketplace publication.",
+          "category": "HOME_STORAGE",
+          "attributes": {
+            "material": "fixture"
+          },
+          "variants": [
+            {
+              "sku": "cj-sku-fixture",
+              "variantId": "cj-variant-fixture",
+              "dimensions": "10x10x10 cm fixture"
+            }
+          ],
+          "images": [
+            {
+              "url": "https://example.invalid/fixture.png",
+              "license": "Synthetic acceptance image manifest; no actual media licensed",
+              "rightsEvidence": "evidence-QUALITY",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+            }
+          ],
+          "claims": [
+            {
+              "text": "Synthetic fixture",
+              "evidenceId": "evidence-QUALITY"
+            }
+          ],
+          "sourceEvidence": [
+            "evidence-DEMAND",
+            "evidence-COMPETITION",
+            "evidence-DIFFERENTIATION",
+            "evidence-QUALITY",
+            "evidence-COMPLIANCE",
+            "evidence-RETURNS",
+            "evidence-MARKETPLACE",
+            "evidence-PAYMENT"
+          ]
+        },
+        "listingDigest": "c430a69c5cc588e22aa30119cc5d4103272fbe325365c66f9caa7a040e7e5342",
+        "review": {
+          "actor": "commerce-independent-policy-reviewer",
+          "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+          "decision": "APPROVE"
+        },
+        "approval": {
+          "actor": "synthetic-owner",
+          "digest": "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820",
+          "expiresAt": "2026-10-11T01:00:00.000Z",
+          "maxExposure": 100,
+          "revoked": false
+        }
+      },
+      "entities": [
+        {
+          "kind": "Order",
+          "id": "acceptance:fx:order-fixture",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 5,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "d328be3f9bbd9e8d9a1442084166ef3ce762425078364e1cc6bba959b05d10e0",
+          "approvalRefs": [
+            "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820"
+          ],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "orderId": "order-fixture",
+              "workspaceId": "synthetic:fx-evidence",
+              "storeId": "isolated",
+              "brandId": "fixture",
+              "supplierPlatform": "CJ_DROPSHIPPING",
+              "connectorId": "cj-interceptor",
+              "status": "DRAFT",
+              "fulfillmentStatus": "PENDING",
+              "items": [
+                {
+                  "itemId": "line-1",
+                  "supplierSku": "cj-sku-fixture",
+                  "supplierProductId": "cj-product-fixture",
+                  "title": "Synthetic storage organiser",
+                  "quantity": 2,
+                  "unitCost": 8,
+                  "currency": "SGD"
+                }
+              ],
+              "shippingAddress": {
+                "fullName": "Synthetic Recipient",
+                "addressLine1": "Fixture address",
+                "city": "Singapore",
+                "state": "Singapore",
+                "postalCode": "000000",
+                "countryCode": "SG",
+                "phone": "00000000"
+              },
+              "estimatedCost": 16,
+              "estimatedDeliveryDaysMin": 7,
+              "estimatedDeliveryDaysMax": 10,
+              "currency": "SGD",
+              "approval": null,
+              "supplierOrderId": null,
+              "trackingNumber": null,
+              "carrier": null,
+              "trackingEvents": [],
+              "integrationMode": "SANDBOX",
+              "createdAt": "2026-10-11T00:00:00.000Z",
+              "updatedAt": "2026-10-11T00:00:00.000Z"
+            }
+          ]
+        },
+        {
+          "kind": "OrderLine",
+          "id": "acceptance:fx:order-fixture:0",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 5,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "d328be3f9bbd9e8d9a1442084166ef3ce762425078364e1cc6bba959b05d10e0",
+          "approvalRefs": [
+            "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820"
+          ],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": [
+            {
+              "itemId": "line-1",
+              "supplierSku": "cj-sku-fixture",
+              "supplierProductId": "cj-product-fixture",
+              "title": "Synthetic storage organiser",
+              "quantity": 2,
+              "unitCost": 8,
+              "currency": "SGD"
+            }
+          ]
+        },
+        {
+          "kind": "ExecutionReceipt",
+          "id": "acceptance:fx:5a02191512546cba16fce17dfde4307a7919dad2ab184adeb39fb62d0717d4a8",
+          "workspace": "synthetic:fx-evidence",
+          "revision": 5,
+          "createdAt": "2026-10-11T00:00:00.000Z",
+          "updatedAt": "2026-10-11T00:00:00.000Z",
+          "correlationId": "acceptance:fx",
+          "causationId": "d328be3f9bbd9e8d9a1442084166ef3ce762425078364e1cc6bba959b05d10e0",
+          "approvalRefs": [
+            "64fb6d325b3f775c9f83d7254bf6f3554a113941e63cf94f9bec07fbafdb5820"
+          ],
+          "financialRefs": [
+            "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9"
+          ],
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "evidenceAgeMs": 0,
+          "data": {
+            "requestId": "5a02191512546cba16fce17dfde4307a7919dad2ab184adeb39fb62d0717d4a8",
+            "externalEffects": 0,
+            "paidInference": 0
+          }
+        }
+      ],
+      "classification": "SYNTHETIC",
+      "externalEffects": 0,
+      "digest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+    }
+  ],
+  "events": [
+    {
+      "id": "fx-event-0",
+      "orderId": "order-fixture",
+      "kind": "SALE",
+      "minor": 8000,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:00.000Z"
+    },
+    {
+      "id": "fx-event-1",
+      "orderId": "order-fixture",
+      "kind": "COGS",
+      "minor": 1600,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:01.000Z"
+    },
+    {
+      "id": "fx-event-2",
+      "orderId": "order-fixture",
+      "kind": "FREIGHT",
+      "minor": 600,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:02.000Z"
+    },
+    {
+      "id": "fx-event-3",
+      "orderId": "order-fixture",
+      "kind": "FEE",
+      "minor": 400,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:03.000Z"
+    },
+    {
+      "id": "fx-event-4",
+      "orderId": "order-fixture",
+      "kind": "DUTY",
+      "minor": 0,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:04.000Z"
+    },
+    {
+      "id": "fx-event-5",
+      "orderId": "order-fixture",
+      "kind": "DISCOUNT",
+      "minor": 0,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:05.000Z"
+    },
+    {
+      "id": "fx-event-6",
+      "orderId": "order-fixture",
+      "kind": "SETTLEMENT",
+      "minor": 7600,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:06.000Z"
+    },
+    {
+      "id": "fx-event-7",
+      "orderId": "order-fixture",
+      "kind": "BANK_RECEIPT",
+      "minor": 7600,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:07.000Z"
+    },
+    {
+      "id": "fx-event-8",
+      "orderId": "order-fixture",
+      "kind": "SUPPLIER_PAYMENT",
+      "minor": 2200,
+      "currency": "SGD",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "classification": "SIMULATION",
+      "assumptionRef": "synthetic:preregistered-fx-exam",
+      "at": "2026-10-11T00:00:08.000Z"
+    }
+  ],
+  "quote": {
+    "body": {
+      "id": "fx-3-over-4",
+      "from": "SGD",
+      "to": "USD",
+      "numerator": 3,
+      "denominator": 4,
+      "rounding": "EXACT",
+      "observedAt": "2026-10-11T00:00:00.000Z",
+      "expiresAt": "2026-10-12T00:00:00.000Z",
+      "classification": "SIMULATION_ASSUMPTION",
+      "reference": "synthetic:preregistered-three-quarters"
+    },
+    "digest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+  },
+  "cutoffAt": "2026-10-11T01:00:00.000Z",
+  "projection": {
+    "classification": "SIMULATED_FX_TRANSLATION_NOT_BANK_CONVERSION",
+    "source": {
+      "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+      "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+      "work5Reference": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9",
+      "eventDigest": "af9e9da0e744bcdbedb20eaa5ece1badba3ef2645c724ee35a7503b49985c166",
+      "cutoffAt": "2026-10-11T01:00:00.000Z",
+      "events": [
+        {
+          "id": "fx-event-0",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "SALE",
+          "currency": "SGD",
+          "minor": 8000,
+          "at": "2026-10-11T00:00:00.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        },
+        {
+          "id": "fx-event-1",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "COGS",
+          "currency": "SGD",
+          "minor": 1600,
+          "at": "2026-10-11T00:00:01.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        },
+        {
+          "id": "fx-event-2",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "FREIGHT",
+          "currency": "SGD",
+          "minor": 600,
+          "at": "2026-10-11T00:00:02.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        },
+        {
+          "id": "fx-event-3",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "FEE",
+          "currency": "SGD",
+          "minor": 400,
+          "at": "2026-10-11T00:00:03.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        },
+        {
+          "id": "fx-event-4",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "DUTY",
+          "currency": "SGD",
+          "minor": 0,
+          "at": "2026-10-11T00:00:04.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        },
+        {
+          "id": "fx-event-5",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "DISCOUNT",
+          "currency": "SGD",
+          "minor": 0,
+          "at": "2026-10-11T00:00:05.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        },
+        {
+          "id": "fx-event-6",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "SETTLEMENT",
+          "currency": "SGD",
+          "minor": 7600,
+          "at": "2026-10-11T00:00:06.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        },
+        {
+          "id": "fx-event-7",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "BANK_RECEIPT",
+          "currency": "SGD",
+          "minor": 7600,
+          "at": "2026-10-11T00:00:07.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        },
+        {
+          "id": "fx-event-8",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "SUPPLIER_PAYMENT",
+          "currency": "SGD",
+          "minor": 2200,
+          "at": "2026-10-11T00:00:08.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam"
+        }
+      ],
+      "lines": [
+        {
+          "eventId": "fx-event-0",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "receivable",
+          "debitMinor": 8000,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-0",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "revenue",
+          "debitMinor": 0,
+          "creditMinor": 8000
+        },
+        {
+          "eventId": "fx-event-1",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "cogs",
+          "debitMinor": 1600,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-1",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "supplierPayable",
+          "debitMinor": 0,
+          "creditMinor": 1600
+        },
+        {
+          "eventId": "fx-event-2",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "freight",
+          "debitMinor": 600,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-2",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "supplierPayable",
+          "debitMinor": 0,
+          "creditMinor": 600
+        },
+        {
+          "eventId": "fx-event-3",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "fee",
+          "debitMinor": 400,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-3",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "receivable",
+          "debitMinor": 0,
+          "creditMinor": 400
+        },
+        {
+          "eventId": "fx-event-4",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "duty",
+          "debitMinor": 0,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-4",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "supplierPayable",
+          "debitMinor": 0,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-5",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "discount",
+          "debitMinor": 0,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-5",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "receivable",
+          "debitMinor": 0,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-6",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "settlement",
+          "debitMinor": 7600,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-6",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "receivable",
+          "debitMinor": 0,
+          "creditMinor": 7600
+        },
+        {
+          "eventId": "fx-event-7",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "bank",
+          "debitMinor": 7600,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-7",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "settlement",
+          "debitMinor": 0,
+          "creditMinor": 7600
+        },
+        {
+          "eventId": "fx-event-8",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "supplierPayable",
+          "debitMinor": 2200,
+          "creditMinor": 0
+        },
+        {
+          "eventId": "fx-event-8",
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "account": "bank",
+          "debitMinor": 0,
+          "creditMinor": 2200
+        }
+      ],
+      "orders": [
+        {
+          "orderId": "order-fixture",
+          "currency": "SGD",
+          "missing": [],
+          "unknownIds": [],
+          "contributionMinor": 5400,
+          "realisedContributionMinor": 5400,
+          "receivableMinor": 0,
+          "settlementMinor": 0,
+          "payoutHeldMinor": 0,
+          "bankMinor": 5400,
+          "liabilityMinor": 0,
+          "cashNeedMinor": 0,
+          "conserved": true,
+          "complete": true
+        }
+      ],
+      "duplicates": 0,
+      "pending": [],
+      "unknown": [],
+      "balanced": true,
+      "conserved": true,
+      "complete": true,
+      "actualCashMovement": 0,
+      "actualRevenue": null,
+      "actualProfit": null,
+      "technologyCosts": "EXCLUDED_SEPARATE_COST_CENTRE",
+      "fx": "NO_IMPLICIT_CONVERSION",
+      "sourceVerification": "CANONICAL_IMMUTABLE_HISTORY_READ",
+      "noncanonicalAmounts": "EXPLICIT_SIMULATION_ASSUMPTIONS_NOT_SOURCE_FACTS"
+    },
+    "translated": {
+      "currency": "USD",
+      "lines": [
+        {
+          "eventId": "fx-event-0",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "receivable",
+          "debitMinor": 6000,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 8000,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-0",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "revenue",
+          "debitMinor": 0,
+          "creditMinor": 6000,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 8000,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-1",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "cogs",
+          "debitMinor": 1200,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 1600,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-1",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "supplierPayable",
+          "debitMinor": 0,
+          "creditMinor": 1200,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 1600,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-2",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "freight",
+          "debitMinor": 450,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 600,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-2",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "supplierPayable",
+          "debitMinor": 0,
+          "creditMinor": 450,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 600,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-3",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "fee",
+          "debitMinor": 300,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 400,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-3",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "receivable",
+          "debitMinor": 0,
+          "creditMinor": 300,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 400,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-4",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "duty",
+          "debitMinor": 0,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-4",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "supplierPayable",
+          "debitMinor": 0,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-5",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "discount",
+          "debitMinor": 0,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-5",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "receivable",
+          "debitMinor": 0,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-6",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "settlement",
+          "debitMinor": 5700,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 7600,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-6",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "receivable",
+          "debitMinor": 0,
+          "creditMinor": 5700,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 7600,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-7",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "bank",
+          "debitMinor": 5700,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 7600,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-7",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "settlement",
+          "debitMinor": 0,
+          "creditMinor": 5700,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 7600,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-8",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "supplierPayable",
+          "debitMinor": 1650,
+          "creditMinor": 0,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 2200,
+          "sourceCreditMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        },
+        {
+          "eventId": "fx-event-8",
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "account": "bank",
+          "debitMinor": 0,
+          "creditMinor": 1650,
+          "sourceCurrency": "SGD",
+          "sourceDebitMinor": 0,
+          "sourceCreditMinor": 2200,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482"
+        }
+      ],
+      "events": [
+        {
+          "id": "fx-event-0",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "SALE",
+          "currency": "USD",
+          "minor": 6000,
+          "at": "2026-10-11T00:00:00.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 8000,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        },
+        {
+          "id": "fx-event-1",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "COGS",
+          "currency": "USD",
+          "minor": 1200,
+          "at": "2026-10-11T00:00:01.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 1600,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        },
+        {
+          "id": "fx-event-2",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "FREIGHT",
+          "currency": "USD",
+          "minor": 450,
+          "at": "2026-10-11T00:00:02.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 600,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        },
+        {
+          "id": "fx-event-3",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "FEE",
+          "currency": "USD",
+          "minor": 300,
+          "at": "2026-10-11T00:00:03.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 400,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        },
+        {
+          "id": "fx-event-4",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "DUTY",
+          "currency": "USD",
+          "minor": 0,
+          "at": "2026-10-11T00:00:04.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        },
+        {
+          "id": "fx-event-5",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "DISCOUNT",
+          "currency": "USD",
+          "minor": 0,
+          "at": "2026-10-11T00:00:05.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 0,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        },
+        {
+          "id": "fx-event-6",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "SETTLEMENT",
+          "currency": "USD",
+          "minor": 5700,
+          "at": "2026-10-11T00:00:06.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 7600,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        },
+        {
+          "id": "fx-event-7",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "BANK_RECEIPT",
+          "currency": "USD",
+          "minor": 5700,
+          "at": "2026-10-11T00:00:07.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 7600,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        },
+        {
+          "id": "fx-event-8",
+          "orderId": "order-fixture",
+          "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+          "kind": "SUPPLIER_PAYMENT",
+          "currency": "USD",
+          "minor": 1650,
+          "at": "2026-10-11T00:00:08.000Z",
+          "classification": "SIMULATION",
+          "assumptionRef": "synthetic:preregistered-fx-exam",
+          "sourceCurrency": "SGD",
+          "sourceMinor": 2200,
+          "fxQuoteDigest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+        }
+      ],
+      "orders": [
+        {
+          "orderId": "order-fixture",
+          "currency": "USD",
+          "missing": [],
+          "unknownIds": [],
+          "contributionMinor": 4050,
+          "realisedContributionMinor": 4050,
+          "receivableMinor": 0,
+          "settlementMinor": 0,
+          "payoutHeldMinor": 0,
+          "bankMinor": 4050,
+          "liabilityMinor": 0,
+          "cashNeedMinor": 0,
+          "conserved": true,
+          "complete": true,
+          "sourceCurrency": "SGD"
+        }
+      ],
+      "balanced": true,
+      "conserved": true
+    },
+    "quote": {
+      "body": {
+        "id": "fx-3-over-4",
+        "from": "SGD",
+        "to": "USD",
+        "numerator": 3,
+        "denominator": 4,
+        "rounding": "EXACT",
+        "observedAt": "2026-10-11T00:00:00.000Z",
+        "expiresAt": "2026-10-12T00:00:00.000Z",
+        "classification": "SIMULATION_ASSUMPTION",
+        "reference": "synthetic:preregistered-three-quarters"
+      },
+      "digest": "b7d6f492692b664e5a21a141c5553ed43eacc9a642c6880e13c83d8539e35851"
+    },
+    "quoteBasis": "EXPLICIT_SIMULATION_ASSUMPTION_NOT_MARKET_RATE",
+    "sourceReceiptDigest": "3f49b9a4489da14365c603be79e0fba68ca8b91e512ef24256084ca62bef2482",
+    "canonicalCurrencyUnchanged": true,
+    "grantsAuthority": false,
+    "actualCashMovement": 0,
+    "actualRevenue": null,
+    "actualProfit": null,
+    "rounding": "EXACT_NO_SILENT_ROUNDING",
+    "digest": "5d2ebf7193502fcba7c6e8913f59260c6f764700372bbe70903ee3f32e723ede"
+  },
+  "independentExpected": {
+    "sourceContributionMinor": 5400,
+    "targetContributionMinor": 4050
+  },
+  "sourceHistoryDigest": "931c4783bbc3707be1ef866aef317355daf9e45c16ecaaa792e74020a81abc6a",
+  "supersedesScopeOnly": {
+    "report": "finance-boundary-exam-evidence.json",
+    "priorTrace": "8e36f73ae56b6c178f11af33beeb56eba30c47cec8faf0f53d7c6cde56e6855d",
+    "scope": "Adds explicit rational simulated translation; prior SGD-only canonical qualification finding remains true"
+  },
+  "limitations": [
+    "No independent USD business qualification",
+    "No real market FX quote or bank conversion",
+    "EXACT minor-unit conversion only; no implicit fallback rounding"
+  ],
+  "paidInference": 0,
+  "externalEffects": 0
+}

@@ -3,18 +3,22 @@
   "status": "IN_PROGRESS_NO_GO",
   "frontend": {
     "pr": 112,
-    "sha": "d35cbd41d1a7ec74d0ac734c9e2c10ab1ee96955",
-    "ciRunIds": [
-      38089501483,
-      38089501435,
-      38089501492,
-      38089501479
+    "sha": "d43c43061debbb1bb8988bfc32b8d2ec7a683966",
+    "previousAllGreenSha": "2a4b6eb3b90342c7b431e774cbad462b61669d41",
+    "previousCiRunIds": [
+      38090163491,
+      38090163409,
+      38090163405,
+      38090163430
     ]
   },
   "backend": {
     "base": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
     "branch": "work8/autonomous-examination-20261011",
-    "sourceManifest": "candidate-source-manifest.json"
+    "sourceManifest": "candidate-source-manifest.json",
+    "pr": 113,
+    "previousSha": "685186169ea8085ccd5af01f576d8c3d6c345e03",
+    "nextCandidate": "FOLLOWUP_SOURCE_IN_THIS_COMMIT"
   },
   "productionLease": "NONE_ACQUIRED",
   "effects": {
@@ -24,12 +28,12 @@
     "release": false
   },
   "next": [
-    "Persist backend candidate and open draft PR against work2/backend-release",
-    "Read exact-head CI; fix concretefailures only",
-    "Complete remaining fault and safety map cases",
-    "Resolve source rights/competitor evidence and authorised actual Pillow assessment",
-    "Authenticated owner isolated walkthrough and complete examination programme",
-    "Prepare legitimate independent closure only when mandatory criteria pass; no Work9 activation"
+    "Finish exact-head CI on both draft branches; fix concrete failures, preserve gates",
+    "Finish fixed15 safety matrix and model/session integration faults",
+    "Retain granular31 fault map; complete remaining independent cases without repeating passed campaigns",
+    "Fresh supplier read capability, exact image permission and genuine qualified Pillow assessment remain unavailable; no invented substitute",
+    "Whole real-candidate lifecycle, multi-day endurance and full rollback/migration qualification remain open",
+    "Issue legitimate closure only when mandatory evidence passes; Work9 remains preparation only"
   ],
   "register": "register.json",
   "faultMap": "assurance-fault-coverage.json",
