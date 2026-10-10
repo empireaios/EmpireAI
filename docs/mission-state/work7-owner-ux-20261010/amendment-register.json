@@ -181,7 +181,7 @@
     "10 October 15:14\u201315:15 screenshots not yet visually re-inspected; master directive establishes requested defects, not automatic acceptance."
   ],
   "evidenceScope": "Local fixture proof is not authenticated preview or native physical-keyboard acceptance.",
-  "updatedAt": "2026-10-10T16:56:01.900948+00:00",
+  "updatedAt": "2026-10-10T17:19:34.970530+00:00",
   "ownerAmendments20261011": [
     {
       "id": "UX-01",
@@ -193,7 +193,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Source repair: restrict approved-art raster to brand and decorative footer; remove full-sidebar image carrying fake legacy labels. Rendered verification pending."
+        "Source repair: restrict approved-art raster to brand and decorative footer; remove full-sidebar image carrying fake legacy labels. Rendered verification pending.",
+        "0477f0b7 authenticated preview: one ordered sidebar observed; raster duplicate removed. Mobile remains outstanding."
       ]
     },
     {
@@ -205,7 +206,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "0477f0b7 authenticated preview primary sequence observed, Products & Approvals is one navigation destination."
+      ]
     },
     {
       "id": "UX-03",
@@ -216,7 +219,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Containing candidate: Singapore periods, bounded comparison, exact-fact grouping and linked assessment drill-down. Projection tests pass; candidate live verification pending."
+      ]
     },
     {
       "id": "UX-04",
@@ -227,7 +232,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Containing candidate: grouped findings and scheduler receipt history; preserves originals."
+      ]
     },
     {
       "id": "UX-05",
@@ -238,7 +245,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Authenticated test product details opened. Candidate adds bounded rationale, product-scoped existing approval controls and readable estimated economics. Real candidates empty."
+      ]
     },
     {
       "id": "UX-06",
@@ -261,7 +270,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Source repair: historical transactions use dark text on light surfaces and return to Orders. Rendered verification pending."
+        "Source repair: historical transactions use dark text on light surfaces and return to Orders. Rendered verification pending.",
+        "0477f0b7 transaction page visually observed readable, retained 3 historical observations distinct from orders."
       ]
     },
     {
@@ -273,7 +283,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Projection tests keep infrastructure and shared unallocated costs out of operational sums."
+      ]
     },
     {
       "id": "UX-09",
@@ -284,7 +296,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Candidate taxonomy and existing provider metadata add/edit/archive mapping; standalone durable category lifecycle remains an API contract gap."
+      ]
     },
     {
       "id": "UX-10",
@@ -295,7 +309,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Candidate segregates confirmed MTD/YTD, payable, accrued, estimate and commitment; unknown future and team allocation explicit."
+      ]
     },
     {
       "id": "UX-11",
@@ -317,7 +333,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Authenticated desktop browser available. Native phone keyboard and mobile viewport unavailable in supported tool surface."
+      ]
     },
     {
       "id": "UX-13",
@@ -328,7 +346,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Authenticated production and stable branch preview independently observed. Retain prior accepted recordings; no blanket acceptance."
+      ]
     },
     {
       "id": "UX-14",
@@ -339,7 +359,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "Original IDs/text and status counts retained; new evidence appended."
+      ]
     },
     {
       "id": "UX-15",
@@ -350,7 +372,9 @@
         "Current candidate implementation and targeted CI",
         "Authenticated candidate acceptance"
       ],
-      "evidence": []
+      "evidence": [
+        "No merge, release lease or production deployment initiated. PR110 remains independent."
+      ]
     }
   ]
 }

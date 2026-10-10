@@ -3,3 +3,5 @@
 .tableScroll table{min-width:850px}.page button[aria-pressed=true]{background:#dce9ff;border-color:#416fa8}.page th{word-break:normal}.page td{min-width:120px}
 
 .thumb{display:block}.thumb img{width:56px;height:56px;object-fit:contain}
+
+.categoryList{columns:2;list-style:disc;padding-left:20px;font-size:13px}.page input[type=checkbox]{min-height:20px;width:20px}.page form{display:grid;gap:12px}@media(max-width:700px){.categoryList{columns:1}}

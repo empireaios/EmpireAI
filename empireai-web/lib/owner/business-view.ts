@@ -7,7 +7,7 @@ export const sgd = (v: unknown): string => typeof v === 'number' && Number.isFin
 export const sourceMoney = (amount: unknown, currency: unknown): string => typeof amount === 'number' && Number.isFinite(amount) && typeof currency === 'string' && /^[A-Z]{3}$/.test(currency) ? currency+' '+(amount/1e6).toLocaleString('en-SG',{maximumFractionDigits:6}) : '—';
 export const plainStatus = (v: unknown): string => text(v).replaceAll('_',' ').toLowerCase().replace(/^./, c=>c.toUpperCase());
 export function sumKnown(items: BusinessRow[]): number | null {
-  if (!items.length || items.some(c=>typeof c.sgdMicro !== 'number' || !Number.isFinite(c.sgdMicro))) return null;
+  if (!items.length || items.some(c=>typeof c.sgdMicro !== 'number' || !Number.isFinite(c.sgdMicro) || object(object(c.data).attribution).project === 'TEAM_SHARED_UNALLOCATED')) return null;
   return items.reduce((n,c)=>n + Number(c.sgdMicro),0);
 }
 export function actualCosts(value: unknown): BusinessRow[] {

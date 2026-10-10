@@ -1,8 +1,9 @@
 'use client';
 import {useEffect,useState,type ReactNode} from 'react';
 import Link from 'next/link';
+import {InfrastructureCosts} from './InfrastructureCosts';
 import {FinancialCentre} from '../FinancialCentre';
-import {actualCosts,object,records,text,sgd,sourceMoney,plainStatus,operationalAmounts,periodBounds,inBillingPeriod,providerAmounts,sumKnown,type BusinessRow} from '@/lib/owner/business-view';
+import {actualCosts,object,records,text,sgd,plainStatus,operationalAmounts,periodBounds,inBillingPeriod,type BusinessRow} from '@/lib/owner/business-view';
 import s from './business.module.css';
 
 export function useBusinessRead(url:string) {
@@ -20,23 +21,17 @@ function Period({period,setPeriod,from,setFrom,to,setTo}:{period:string;setPerio
 
 export function FinanceView({infrastructure=false,initialOrder=''}:{infrastructure?:boolean;initialOrder?:string}) {
  const state=useBusinessRead('/api/owner/finance');
- const [period,setPeriod]=useState('MTD'),[from,setFrom]=useState(''),[to,setTo]=useState(''),[provider,setProvider]=useState(''),[controls,setControls]=useState(false),[page,setPage]=useState(1),[order,setOrder]=useState(initialOrder);
+ const [period,setPeriod]=useState('MTD'),[from,setFrom]=useState(''),[to,setTo]=useState(''),[controls,setControls]=useState(false),[page,setPage]=useState(1),[order,setOrder]=useState(initialOrder);
  const [now]=useState(()=>new Date());
  const bounds=periodBounds(period,now,from,to),valid=period!=='Custom'||Boolean(from&&to&&from<=to);
  const all=actualCosts(state.data?.costs),filtered=valid?all.filter(c=>inBillingPeriod(c,bounds)):[],amounts=operationalAmounts(order?filtered.filter(c=>object(object(c.data).attribution).orderId===order):filtered);
- const providers=records(state.data?.providers).filter(p=>!provider||p.id===provider);
- const mtd=periodBounds('MTD',now),ytd=periodBounds('YTD',now);
  const entries=amounts.entries,currentPage=Math.min(page,Math.max(1,Math.ceil(entries.length/10))),visible=entries.slice((currentPage-1)*10,currentPage*10);
  return <BusinessPage title={infrastructure?'Live Cost Centre':'Operational Finance'} note={infrastructure?'Infrastructure and subscriptions that maintain EmpireAI.':'Revenue − direct product and fulfilment costs = operational profit.'}>
  <Period {...{period,from,to,setFrom,setTo}} setPeriod={p=>{setPeriod(p);setPage(1);}}/>
  {!valid&&<p role="status">Choose a valid start and end date.</p>}
  {!infrastructure&&<label>Order reference<input value={order} onChange={e=>{setOrder(e.target.value);setPage(1);}} placeholder="All orders"/></label>}<BusinessStatus {...state}/>
  {state.data&&valid&&<>
- {infrastructure?<>
- <label>Provider<select aria-label="Provider" value={provider} onChange={e=>setProvider(e.target.value)}><option value="">All providers</option>{records(state.data.providers).map(p=><option key={text(p.id)} value={text(p.id)}>{text(p.name)}</option>)}</select></label>
- <div className={s.tableScroll} tabIndex={0} role="region" aria-label="Infrastructure expenses"><table><thead><tr>{['Provider / service','MTD · SGD','YTD · SGD',period+' · SGD','Billing status','Next bill / exception'].map(h=><th key={h}>{h}</th>)}</tr></thead><tbody>{providers.map(p=>{const id=text(p.id),v=providerAmounts(all,id,bounds),monthly=providerAmounts(all,id,mtd),yearly=providerAmounts(all,id,ytd);const dates=v.entries.map(c=>text(object(c.data).renewalDate,'')).filter(d=>d>=now.toISOString()).sort();return <tr key={id}><th scope="row">{text(p.name)}<small>{[...new Set(v.entries.map(c=>text(object(c.data).service)))].join(', ')||'No bills recorded'}</small></th><td>{sgd(monthly.amount)}</td><td>{sgd(yearly.amount)}</td><td>{sgd(v.amount)}</td><td>{v.stages}{v.entries.filter(c=>!['INVOICED','SETTLED'].includes(text(object(c.data).stage))).map(c=><small key={text(c.id)}>{plainStatus(object(c.data).stage)}: {sourceMoney(c.originalMicro??object(c.data).amountMicro,object(c.data).currency)}{object(object(c.data).attribution).project==='TEAM_SHARED_UNALLOCATED'?' · Shared team usage; EmpireAI share unknown':''}</small>)}<small>{p.commissioned==='NO'?'Not commissioned':p.commissioned==='UNKNOWN'?'Connection not confirmed':''}</small></td><td>{dates[0]||'Next bill unknown'}{v.entries.some(c=>c.sgdMicro===null)&&<p role="alert">Currency conversion missing</p>}{v.entries.some(c=>c.stale||c.fxStale)&&<p role="alert">Billing evidence needs review</p>}<Audit value={v.entries} label={'Bills and usage · '+text(p.name)}/></td></tr>;})}</tbody></table></div>
- <p><strong>Confirmed infrastructure charges · {period}: {sgd(sumKnown(filtered.filter(c=>object(c.data).category==='TECHNOLOGY'&&(!provider||object(c.data).provider===provider)&&['INVOICED','SETTLED'].includes(text(object(c.data).stage)))))}</strong></p><p className={s.note}>Confirmed columns include reviewed invoices and settled charges only. Estimates, unpaid commitments and unbilled usage remain separate in each provider’s details. Missing bills are not zero spend.</p>
- </>:<>
+ {infrastructure?<InfrastructureCosts data={state.data} now={now} bounds={bounds} period={period} refresh={state.retry}/>:<>
  <div className={s.metrics}>{[['Revenue',amounts.revenue],['Direct product & fulfilment costs',amounts.costs],['Operational profit',amounts.profit]].map(([label,v])=><article key={String(label)}><h2>{label}</h2><strong>{sgd(v)}</strong></article>)}</div>
  <p className={s.note}>SGD · recorded invoices and settled entries, not necessarily cash received. Profit covers only direct costs shown here; infrastructure is excluded. Coverage is incomplete until all related costs are reconciled.</p>
  {!entries.length?<p className={s.empty}>No verified operational amounts in this period. Commerce remains locked.</p>:<><div className={s.tableScroll} tabIndex={0} role="region" aria-label="Order and product economics"><table><thead><tr>{['Order / product','Marketplace','Category','Amount · SGD','Status','Details'].map(h=><th key={h}>{h}</th>)}</tr></thead><tbody>{visible.map(c=>{const d=object(c.data),a=object(d.attribution);return <tr key={text(c.id)}><td>{text(a.orderId)}<small>{text(a.productId)}</small></td><td>{text(a.channel)}</td><td>{plainStatus(d.category)}</td><td>{sgd(c.sgdMicro)}</td><td>{plainStatus(d.stage)}{c.stale||c.fxStale?<p role="alert">Evidence needs review</p>:null}</td><td><Audit value={c}/>{a.orderId?<Link href={'/cockpit/orders?order='+encodeURIComponent(text(a.orderId))}>Inspect order</Link>:null}</td></tr>;})}</tbody></table></div><Pager page={currentPage} total={entries.length} setPage={setPage}/></>}

@@ -40,7 +40,8 @@
     "current_preview_auth": "Owner confirmed replacement branch preview /api/auth/me Authentication required and successful Home/Pillow login. Routing repair accepted; not all scenarios inferred.",
     "historicalHead": "e97840c692f7b2918a6c427b9b69e3655dda77cd",
     "engineeringBase": "5f2f8929c0fd43949a09831247a67591e66d3c14",
-    "candidate": "Git commit containing this amended tracker; exact hosted CI and preview must match that commit"
+    "candidate": "Git commit containing this amended tracker; exact hosted CI and preview must match that commit",
+    "authenticatedObservation20261011": "Agent independently accessed production and stable PR109 preview at 0477f0b7. Baseline CI four PASS. Follow-up source corrections need exact-head hosted CI and live acceptance. Native phone keyboard unsupported; release remains blocked."
   },
   "requirements": [
     {
@@ -72,7 +73,12 @@
       "master_amendments": [
         "A01"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 2,
@@ -101,7 +107,12 @@
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
       "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified.",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 3,
@@ -128,7 +139,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 4,
@@ -149,7 +165,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 5,
@@ -176,7 +197,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 6,
@@ -206,7 +232,12 @@
       "master_amendments": [
         "A04"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 7,
@@ -236,7 +267,12 @@
       "master_amendments": [
         "A05"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 8,
@@ -266,7 +302,12 @@
       "master_amendments": [
         "A06"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 9,
@@ -296,7 +337,12 @@
       "master_amendments": [
         "A07"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 10,
@@ -326,7 +372,12 @@
       "master_amendments": [
         "A08"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 11,
@@ -353,7 +404,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 12,
@@ -384,7 +440,12 @@
       "master_amendments": [
         "A03"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 13,
@@ -413,7 +474,12 @@
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
       "responsibility_correction": "PR110 cache repair is a separate backend Assurance release. No automatic dependency on full Four Eyes recovery for frontend-only UX; retain real incident and mandatory safety controls. See responsibility-and-release.md.",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 14,
@@ -440,7 +506,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 15,
@@ -467,7 +538,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 16,
@@ -498,7 +574,12 @@
       "master_amendments": [
         "A03"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 17,
@@ -529,7 +610,12 @@
       "master_amendments": [
         "A02"
       ],
-      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance."
+      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 18,
@@ -553,7 +639,12 @@
       "master_amendments": [
         "A01"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 19,
@@ -577,7 +668,12 @@
       "master_amendments": [
         "A04"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 20,
@@ -608,7 +704,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 21,
@@ -637,7 +738,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 22,
@@ -666,7 +772,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 23,
@@ -695,7 +806,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 24,
@@ -724,7 +840,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 25,
@@ -753,7 +874,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 26,
@@ -782,7 +908,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 27,
@@ -811,7 +942,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 28,
@@ -840,7 +976,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 29,
@@ -869,7 +1010,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 30,
@@ -898,7 +1044,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 31,
@@ -927,7 +1078,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 32,
@@ -956,7 +1112,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 33,
@@ -985,7 +1146,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 34,
@@ -1014,7 +1180,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 35,
@@ -1043,7 +1214,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 36,
@@ -1075,7 +1251,12 @@
       "master_amendments": [
         "A02"
       ],
-      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance."
+      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 37,
@@ -1100,7 +1281,12 @@
       "master_amendments": [
         "A02"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 38,
@@ -1121,7 +1307,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 39,
@@ -1142,7 +1333,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 40,
@@ -1163,7 +1359,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 41,
@@ -1190,7 +1391,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 42,
@@ -1222,7 +1428,12 @@
       "master_amendments": [
         "A02"
       ],
-      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance."
+      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 43,
@@ -1243,7 +1454,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 44,
@@ -1270,7 +1486,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 45,
@@ -1291,7 +1512,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 46,
@@ -1315,7 +1541,12 @@
       "master_amendments": [
         "A07"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 47,
@@ -1342,7 +1573,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 48,
@@ -1363,7 +1599,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 49,
@@ -1388,7 +1629,12 @@
         "A07",
         "A08"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 50,
@@ -1412,7 +1658,12 @@
       "master_amendments": [
         "A08"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 51,
@@ -1439,7 +1690,12 @@
       },
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 52,
@@ -1460,7 +1716,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 53,
@@ -1481,7 +1742,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 54,
@@ -1502,7 +1768,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 55,
@@ -1523,7 +1794,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 56,
@@ -1548,7 +1824,12 @@
         "A04",
         "A05"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 57,
@@ -1572,7 +1853,12 @@
       "master_amendments": [
         "A06"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 58,
@@ -1596,7 +1882,12 @@
       "master_amendments": [
         "A07"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 59,
@@ -1620,7 +1911,12 @@
       "master_amendments": [
         "A03"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 60,
@@ -1641,7 +1937,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 61,
@@ -1663,7 +1964,12 @@
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
       "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified.",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 62,
@@ -1689,7 +1995,12 @@
         "A05",
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 63,
@@ -1710,7 +2021,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 64,
@@ -1734,7 +2050,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 65,
@@ -1758,7 +2079,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 66,
@@ -1782,7 +2108,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 67,
@@ -1806,7 +2137,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 68,
@@ -1827,7 +2163,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 69,
@@ -1851,7 +2192,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 70,
@@ -1875,7 +2221,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 71,
@@ -1896,7 +2247,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 72,
@@ -1918,7 +2274,12 @@
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
       "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified.",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 73,
@@ -1939,7 +2300,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 74,
@@ -1963,7 +2329,12 @@
       "master_amendments": [
         "A01"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 75,
@@ -1994,7 +2365,12 @@
       "master_amendments": [
         "A02"
       ],
-      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance."
+      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 76,
@@ -2019,7 +2395,12 @@
         "A07",
         "A08"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 77,
@@ -2044,7 +2425,12 @@
         "A04",
         "A05"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 78,
@@ -2068,7 +2454,12 @@
       "master_amendments": [
         "A06"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 79,
@@ -2093,7 +2484,12 @@
       "master_amendments": [
         "A03"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 80,
@@ -2114,7 +2510,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 81,
@@ -2135,7 +2536,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 82,
@@ -2156,7 +2562,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 83,
@@ -2178,7 +2589,12 @@
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
       "responsibility_correction": "PR110 cache repair is a separate backend Assurance release. No automatic dependency on full Four Eyes recovery for frontend-only UX; retain real incident and mandatory safety controls. See responsibility-and-release.md.",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 84,
@@ -2202,7 +2618,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 85,
@@ -2223,7 +2644,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 86,
@@ -2244,7 +2670,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 87,
@@ -2265,7 +2696,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 88,
@@ -2286,7 +2722,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 89,
@@ -2308,7 +2749,12 @@
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
       "additional_owner_evidence": "10 October screenshots134815/134642: current c00c914c mobile400x464 reading improvement and retained approved Home. Scope only; no unshown states certified.",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 90,
@@ -2333,7 +2779,12 @@
         "A07",
         "A08"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 91,
@@ -2365,7 +2816,12 @@
       "master_amendments": [
         "A02"
       ],
-      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance."
+      "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 92,
@@ -2390,7 +2846,12 @@
         "A01",
         "A04"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 93,
@@ -2414,7 +2875,12 @@
       "master_amendments": [
         "A03"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Exact candidate acceptance and required release gates"
+      }
     },
     {
       "item": 94,
@@ -2438,7 +2904,12 @@
       "master_amendments": [
         "A01"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 95,
@@ -2459,7 +2930,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 96,
@@ -2480,7 +2956,12 @@
       "current_evidence": "Owner master directive and annex A1 confirm branch-scoped replacement dpl_9DCmHW9qdiMyNXvFtUvGFDmmxoFk at5f2f8929 returns expected Authentication required; Home/Pillow login succeeded. No credential/configuration changes.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "Owner master directive and annex A1 confirm branch-scoped replacement dpl_9DCmHW9qdiMyNXvFtUvGFDmmxoFk at5f2f8929 returns expected Authentication required; Home/Pillow login succeeded. No credential/configuration changes."
+      "historical_current_evidence": "Owner master directive and annex A1 confirm branch-scoped replacement dpl_9DCmHW9qdiMyNXvFtUvGFDmmxoFk at5f2f8929 returns expected Authentication required; Home/Pillow login succeeded. No credential/configuration changes.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 97,
@@ -2501,7 +2982,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 98,
@@ -2522,7 +3008,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred. Prior authenticated Home observed, subsequent browser observation blocked by credential_observation_restricted even after permitted recovery. No repeat credential entry or bypass performed."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred. Prior authenticated Home observed, subsequent browser observation blocked by credential_observation_restricted even after permitted recovery. No repeat credential entry or bypass performed.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 99,
@@ -2543,7 +3034,12 @@
       "current_evidence": "Master continuation: baseline5f2f8929 retained four hosted PASS workflows; new amended UX has scoped local tests, with exact candidate hosted CI and live acceptance pending. See amendment-register.json and MASTER-CONTINUATION.md. Prior evidence retained below, not represented as current live proof.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     },
     {
       "item": 100,
@@ -2567,7 +3063,12 @@
       "master_amendments": [
         "A09"
       ],
-      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred."
+      "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
+      "continuation_20261011": {
+        "status": "Prior acceptance status preserved; no inferred PASS",
+        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "dependency": "Retain original bounded evidence and blockers"
+      }
     }
   ]
 }
