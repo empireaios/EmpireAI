@@ -1,0 +1,26 @@
+{
+  "frontendApplicationRevision": "f760cabd9bedea54efe82dddd40ff5e413cea28b",
+  "testOnlySuccessor": "f83370b43421321c1414b97077943108c1c2906f",
+  "previewAlias": "https://empireai-git-work7-owner-ux-correction-live-843da8-empireai-os.vercel.app",
+  "authentication": "Existing authenticated owner browser session reused; no credentials requested",
+  "observations": {
+    "intelligence": "All three tabs loaded; finding business details and full original evidence dialog opened and closed",
+    "orders": "Existing synthetic storage organiser displayed separately from actuals; quantities, unit cost, package tracking, return and refund readable; original records optional",
+    "finance": "Unknown operational totals remain unknown; all six financial exceptions visible",
+    "costs": "USD20.25 internal estimate, USD110.85 held reservations,224 accounting records and five unknown estimates; category add disabled with connected-backend capability explanation",
+    "products": "No matching genuine product record; owner decision queue available",
+    "listings": "No published inventory verified; publication remains locked",
+    "transactions": "Authenticated read returns no saved transactions in this workspace; provider observations optional. Populated lifecycle covered separately by isolated CI integration, not represented as hosted production evidence",
+    "ceo": "Performance view and navigation retained",
+    "chat": "Saved history and composer available; no message sent; native Android acceptance preserved, not repeated"
+  },
+  "mutations": "No forms submitted, inference requested, provider jobs commissioned, category/financial records changed, commerce actions or production changes",
+  "ownerVisualAcceptance": "PENDING_NEW_CLEANUP_ONLY",
+  "finalDeployment": {
+    "id": "dpl_5xMRD434FWdaDgzJpAqrN6JNean6",
+    "revision": "f83370b43421321c1414b97077943108c1c2906f",
+    "state": "READY",
+    "authenticatedReadback": "Home reload and Intelligence verified after final deployment; application identical to detailed tour revision"
+  },
+  "isolatedTransactionIntegration": "Exact-head Product path CI PASS, job114308506686: real login/session, frontendBFF, persisted backend transaction, full record equality, foreign-workspace refusal and logout; no production data"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "UX-CLEANUP-20261010",
+  "scope": "Bounded owner-requested executive presentation cleanup; supplements and preserves the original 100 requirements, 45 amendments and 50 control groups.",
+  "basis": "Owner directive Pasted text(20261010-202137).txt",
+  "baselineFrontend": "8f52d7a95fcf06d411995b10d6c4d4eca457e241",
+  "backend": "e6d98fb57537c893c85afc552626235a38ba874c",
+  "acceptedBaseline": {
+    "originalRequirements": 95,
+    "originalPostRelease": 5,
+    "amendments": 43,
+    "amendmentsPostRelease": 2,
+    "controlGroups": 50,
+    "android": "ACCEPTED_UNCHANGED"
+  },
+  "changes": [
+    "Optional full-record technical evidence dialog with keyboard close/focus return",
+    "Readable Intelligence findings and owner decision summaries",
+    "Readable order items, shipments and remedies with unknown values preserved",
+    "Financial display formatting, readable exceptions and optional transaction evidence",
+    "Mobile stacked tables; existing Home artwork and Chat unchanged"
+  ],
+  "status": "ENGINEERING_AND_REVIEW_PASS_OWNER_VISUAL_ACCEPTANCE_REQUIRED",
+  "verification": "See forthcoming UX-CLEANUP-VERIFICATION.md; no production acceptance claimed.",
+  "governance": {
+    "productionChanged": false,
+    "mergeAuthorised": false,
+    "releaseLeaseAuthorised": false,
+    "paidInfrastructureAuthorised": false,
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "PR110": "INDEPENDENT_EXCLUDED"
+  },
+  "preservedEvidenceBranch": "work7/completion-evidence-20261011 at 6ce6921a6fdb03a1198043de38c7f30cef5fb5f7",
+  "frontendRevision": "f83370b43421321c1414b97077943108c1c2906f",
+  "independentReview": {
+    "reviewer": "/root/independent_review",
+    "decision": "APPROVE",
+    "exactTree": "06b370ef4c6284b588a3eb7954af8529128cb098",
+    "resolvedFinding": "Format listing selling and competitor prices without inventing competitor currency",
+    "limitations": "Code review does not substitute CI, authenticated preview verification or owner visual acceptance",
+    "successorReview": "APPROVE: test-only successor; no application changes from f760cabd",
+    "reviewedRevision": "f83370b43421321c1414b97077943108c1c2906f"
+  },
+  "localVerification": {
+    "productionBuild": "PASS",
+    "targetedUnitTests": "6/6 PASS",
+    "affectedBrowserScenarios": "9/9 PASS at390 and1440; authenticated isolated fixtures only",
+    "eslint": "0 errors; existing img optimisation advisory only",
+    "exactHeadBrowserCI": "29/29 PASS",
+    "exactHeadPersistedTransaction": "PASS actual isolated frontend BFF backend disk login/logout path"
+  },
+  "exactHeadCI": "4/4 required workflows SUCCESS; ux-cleanup-exact-head-ci.json"
+}

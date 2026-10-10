@@ -1892,5 +1892,12 @@
       }
     ],
     "independentReview": "INDEPENDENT-REVIEW.md"
+  },
+  "boundedUXCleanup": {
+    "amendment": "UX-CLEANUP-20261010",
+    "evidence": "ux-cleanup-amendment.json",
+    "baselineAcceptedRowsUnchanged": true,
+    "ownerVisualAcceptance": "REQUIRED_FOR_NEW_CLEANUP_ONLY",
+    "frontendRevision": "f83370b43421321c1414b97077943108c1c2906f"
   }
 }

@@ -1,3 +1,11 @@
+## Owner-requested presentation amendment — superseding candidate
+
+PR #109 candidate is now `f83370b43421321c1414b97077943108c1c2906f` (application from `f760cabd`; final change strengthens transaction evidence tests). Independent agent review APPROVE. The owner must inspect and accept this new bounded UX cleanup before production authority is requested. Prior accepted requirements and Android evidence are preserved. No merge, lease or production deployment authorised.
+
+PR #111 remains `e6d98fb57537c893c85afc552626235a38ba874c`; deploy it before dependent category functionality in PR #109 only after separate consolidated production authority. PR #110 remains independent and excluded. The existing rollback targets and recovery sequence below are unchanged. See `ux-cleanup-amendment.json` and `ux-cleanup-authenticated-preview.json` for current evidence.
+
+---
+
 # Work 7 consolidated production release proposal
 
 Prepared 11 October 2026 SGT. This proposal grants no authority by itself.
@@ -7,7 +15,7 @@ Prepared 11 October 2026 SGT. This proposal grants no authority by itself.
 | PR | Reviewed source revision | Purpose | Existing CI |
 |---|---|---|---|
 | #111 | e6d98fb57537c893c85afc552626235a38ba874c | Durable owner-managed category directory and mappings | Three required workflows SUCCESS |
-| #109 | 8f52d7a95fcf06d411995b10d6c4d4eca457e241 | Complete Owner Console UX including category management, locked legacy explanations and authenticated workspace detail | Four required workflows SUCCESS; 28/28 browser tests |
+| #109 | f83370b43421321c1414b97077943108c1c2906f | Complete Owner Console plus bounded executive presentation cleanup | Four required workflows SUCCESS;29/29 owner-browser tests; independent code review APPROVE; new owner visual acceptance pending |
 
 PR #110 ff2feffb2907959ef03014617ade2690ae888ab8 is excluded from this proposal and remains independently governed. No Four Eyes recovery claim is made.
 
@@ -19,9 +27,9 @@ All 95 accepted original requirements, 43 accepted amendments, 50 named control 
 
 Actual isolated frontend → BFF → PR111 integration verifies create/edit/archive/mapping, restart persistence, stale-update rejection, same-origin and owner-only authority. The production baseline lacks category-directory capability; complete deployed category functionality therefore requires PR111 before PR109. No paid hosted canary is required or authorised.
 
-## Requested authority and ordered execution
+## Draft authority scope and ordered execution — await new owner visual acceptance
 
-One owner approval is requested for the coordinated release of #111 and #109, including normal governed merges, fresh release lease/fence, deployment, preservation checks and independent production closure. The approval must explicitly exclude #110, paid inference, new billable resources, Pillow birth and commerce activation.
+After the owner accepts the bounded cleanup, request one owner approval for the coordinated release of #111 and #109, including normal governed merges, fresh release lease/fence, deployment, preservation checks and independent production closure. The approval must explicitly exclude #110, paid inference, new billable resources, Pillow birth and commerce activation.
 
 1. Confirm approved source heads and release targets still match, required checks remain successful and no enforced review/merge rule is unmet. If branch integration creates a new deployment SHA, bind that actual SHA to the reviewed tree and satisfy required checks before deployment. Stop for unexpected source/configuration differences.
 2. Obtain a new valid release lease/fence through the authenticated owner release controls. Do not reuse a finished lease or override a denial. Preserve the existing release target configuration, credentials and journal volume.

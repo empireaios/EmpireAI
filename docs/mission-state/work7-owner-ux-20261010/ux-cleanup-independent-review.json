@@ -1,0 +1,23 @@
+{
+  "kind": "INDEPENDENT_AGENT_CODE_REVIEW",
+  "reviewer": "/root/independent_review",
+  "revision": "f83370b43421321c1414b97077943108c1c2906f",
+  "decision": "APPROVE",
+  "applicationReviewedAt": "f760cabd9bedea54efe82dddd40ff5e413cea28b",
+  "findings": [
+    {
+      "issue": "Listing prices rendered raw decimal numbers",
+      "resolution": "Currency-aware displayAmount; competitor currency remains explicitly unrecorded; original precision retained",
+      "status": "RESOLVED"
+    }
+  ],
+  "scope": [
+    "correctness",
+    "security and owner authority",
+    "financial preservation",
+    "frontend/backend compatibility",
+    "bounded Work7 UX presentation changes",
+    "release order and existing rollback preservation"
+  ],
+  "limits": "Independent agent approval, not a human GitHub review or bypass of enforced gates. CI and owner visual acceptance separately required. Original Android and PR111 approval preserved."
+}

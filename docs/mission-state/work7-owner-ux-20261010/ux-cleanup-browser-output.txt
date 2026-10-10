@@ -1,0 +1,17 @@
+✔ J3: isolated1000-row portfolio pagination, inline economics/listing and authority (4886.783279ms)
+✔ J4: actual ledger excludes synthetic orders; partial package and settlement truth (2852.328098ms)
+✔ J2: truthful unset target, dated synthetic receipts and recommendation evidence navigation (4354.495007ms)
+✔ J5: infrastructure separates test costs, unknown bills and operational profit (4184.042856ms)
+✔ J6: exact intelligence evidence joins specific Pillow decision and preserves unverified execution truth (3720.307673ms)
+✔ Independent readback: isolated execution reference corroborated by exact source record (2673.544985ms)
+✔ Recorded direct profit excludes infrastructure; missing FX and invalid periods stay explicit (2598.687277ms)
+✔ Financial pagination keeps remaining rows visible when a custom period narrows (2205.379941ms)
+✔ Executive cleanup: readable order details, complete modal evidence, focus and mobile fit (3904.030196ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31738.851715
