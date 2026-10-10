@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {infrastructureSummary,providerCommand,archivedNote} from './cost-centre';
-import {findingGroups,linkedOpportunities,intelligencePeriod} from './intelligence-view';
+import {findingGroups,linkedOpportunities,intelligencePeriod,findingName,findingFacts} from './intelligence-view';
 const now=new Date('2026-10-10T17:00:00Z');
 const charge=(id:string,stage:string,amount:number,extra={})=>({id,sgdMicro:amount,data:{category:'TECHNOLOGY',authenticity:'REAL',stage,provider:'test',periodStart:'2026-10-01',periodEnd:'2026-11-01',...extra}});
 test('Infrastructure separates stages and excludes unallocated team amounts',()=>{
@@ -25,4 +25,9 @@ test('Grouping preserves distinct facts and all original evidence identities',()
  assert.equal(linkedOpportunities(groups[0],[{evidenceRefs:['a']}]).length,1);assert.equal(linkedOpportunities(groups[1],[{evidenceRefs:['a']}]).length,0);
  assert.equal(new Date(intelligencePeriod('1',now.getTime()).start).toISOString(),'2026-10-10T16:00:00.000Z');
  assert.equal(new Date(intelligencePeriod('90',now.getTime()).start).toISOString(),'2026-09-30T16:00:00.000Z');
+});
+
+test('Owner discovery summaries keep technical identities in the source drill-down',()=>{
+ const e={eye:'SUPPLIER',capabilityId:'cj.detail',subject:{id:'2610100523081617500'},facts:{detail:'Fetch evidence:ev_abc for bounded full record',backend:'51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7'}};
+ assert.equal(findingName(e),'Supplier product details');assert.doesNotMatch(findingFacts(e),/Fetch evidence|51830f|261010/);assert.equal(e.subject.id,'2610100523081617500');
 });

@@ -17,14 +17,17 @@ export function findingGroups(evidence:BusinessRow[]) {
  return [...groups.values()].map(rows=>[...rows].sort((a,b)=>(Date.parse(text(b.observedAt))||0)-(Date.parse(text(a.observedAt))||0)));
 }
 export function findingName(e:BusinessRow) {
- const subject=object(e.subject),name=subject.title??subject.name??subject.query??subject.id;
- if(name==='empire'||e.capabilityId==='empire.state')return 'Empire operating status';
- return text(name,text(e.summary,text(e.capabilityId,'Research finding')));
+ const subject=object(e.subject),name=subject.title??subject.name??subject.query;
+ if(subject.id==='empire'||e.capabilityId==='empire.state')return 'Empire operating status';
+ if(typeof name==='string'&&name.trim())return name;
+ const capability=text(e.capabilityId,'').toLowerCase();
+ const kind=capability.includes('stock')?'stock observation':capability.includes('freight')?'freight observation':capability.includes('offer')?'offer observation':capability.includes('detail')?'product details':'product observation';
+ return `${e.eye==='SUPPLIER'?'Supplier':e.eye==='MARKET'?'Market':'Source'} ${kind}`;
 }
 export function findingFacts(e:BusinessRow) {
- if(typeof e.summary==='string'&&e.summary.trim())return e.summary;
+ if(typeof e.summary==='string'&&e.summary.trim()&&!/Fetch evidence:|[a-f0-9]{40}/i.test(e.summary))return e.summary;
  const facts=object(e.facts);
- return Object.entries(facts).filter(([,v])=>typeof v==='string'||typeof v==='number'||typeof v==='boolean').slice(0,3).map(([k,v])=>`${k.replace(/([a-z])([A-Z])/g,'$1 $2')}: ${String(v)}`).join(' · ')||'Source receipt available; commercial conclusion not recorded.';
+ return Object.entries(facts).filter(([k,v])=>!/(?:id$|hash|digest|backend|detail|reference|receipt|source)/i.test(k)&&(typeof v==='string'||typeof v==='number'||typeof v==='boolean')&&!/Fetch evidence:|[a-f0-9]{40}/i.test(String(v))).slice(0,3).map(([k,v])=>`${k.replace(/([a-z])([A-Z])/g,'$1 $2')}: ${String(v)}`).join(' · ')||'Detailed source facts are available for inspection; no commercial conclusion is recorded.';
 }
 export function jobGroups(jobs:BusinessRow[]) {
  const groups=new Map<string,BusinessRow[]>();
