@@ -1,0 +1,66 @@
+{
+  "observedAt": "2026-10-10T19:30:57.690Z",
+  "source": "Independent King's Advisor read-only; inferenceCalls0; externalRefreshfalse",
+  "state": {
+    "backendSha": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+    "deploymentId": "37ae1731-7399-4861-b5af-0d413157303d",
+    "profile": "LOCKED_COMMISSIONING_V1",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "frontendIdentity": {
+      "status": "UNVERIFIED",
+      "reason": "Use direct Vercel evidence"
+    },
+    "domains": [
+      "governed_commerce",
+      "financial_centre",
+      "package_format",
+      "changes",
+      "state",
+      "capabilities",
+      "pillow",
+      "accounting",
+      "assurance",
+      "reconciliation",
+      "missions",
+      "communications",
+      "authority",
+      "commissioning",
+      "approvals",
+      "execution",
+      "products",
+      "orders",
+      "decisions",
+      "events",
+      "finance",
+      "integrations",
+      "memory",
+      "intelligence",
+      "arsenal",
+      "evidence",
+      "intelligence_jobs",
+      "opportunities",
+      "exceptions",
+      "resources",
+      "rank_growth",
+      "investigations"
+    ]
+  },
+  "accounting": {
+    "count": 224,
+    "digest": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b"
+  },
+  "journal": {
+    "count": 3,
+    "digest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc"
+  },
+  "legacy": {
+    "count": 7,
+    "digest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf"
+  },
+  "inspector": {
+    "status": "DEGRADED",
+    "scope": "Partial internal coverage; external commerce is unverified"
+  },
+  "productionMutations": false
+}

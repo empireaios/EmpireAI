@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "ISOLATED_READ_ONLY_COLLECTION_FIXTURE_WITH_ACTUAL_SESSION_MIDDLEWARE_AND_FRONTEND_BFF",
+  "frontend": "bbb77bcac46a9e7a28cd7abe52f571970febe17a",
+  "backendMiddleware": "e6d98fb57537c893c85afc552626235a38ba874c",
+  "checks": [
+    "Server-generated ID returned in authenticated collection",
+    "Click returned ID resolves exact record via real BFF",
+    "Breadcrumb and return preserve parent",
+    "Actual foreign session403; no record rendered",
+    "Actual anonymous401",
+    "Mobile menu exactly11 destinations; selected navigation closes drawer",
+    "Authenticated refresh/back/forward preserve returned detail and Products parent",
+    "Mobile logout clears cookie and revokes actual fixture session; protected deep link returns to login",
+    "Missing-record and demo-fallback absence covered by workspace browser regression"
+  ],
+  "productionCollectionAccess": false,
+  "productionDispatcherModified": false,
+  "at": "2026-10-10T19:29:15.399Z"
+}
