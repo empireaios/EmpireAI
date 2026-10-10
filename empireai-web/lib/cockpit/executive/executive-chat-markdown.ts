@@ -2,7 +2,8 @@
 
 /** True when content likely contains Markdown worth structured rendering. */
 export function looksLikeMarkdown(text: string): boolean {
-  return /(\*\*[^*]+\*\*|^#{1,3}\s+\S|^\s*[-*]\s+\S|^\s*(?:\d+|[A-E])[.)]\s+\S)/m.test(
+  const lines = text.replace(/\r\n/g, "\n").split("\n");
+  return lines.some((_, i) => tableHeader(lines, i) !== null) || /(\*\*[^*]+\*\*|^#{1,3}\s+\S|^\s*[-*]\s+\S|^\s*(?:\d+|[A-E])[.)]\s+\S)/m.test(
     text,
   );
 }
@@ -11,7 +12,35 @@ export type ExecutiveChatBlock =
   | { type: "p"; text: string }
   | { type: "h"; level: 1 | 2 | 3; text: string }
   | { type: "ul"; items: string[] }
-  | { type: "ol"; items: string[] };
+  | { type: "ol"; items: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+/** Small, text-only table subset. Escaped pipes stay inside their cell. */
+function tableRow(line: string): string[] | null {
+  const cells: string[] = [];
+  let cell = "";
+  for (let i = 0; i < line.length; i += 1) {
+    const char = line[i]!;
+    if (char === "\\" && (line[i + 1] === "|" || line[i + 1] === "\\")) {
+      cell += line[++i];
+    } else if (char === "|") {
+      cells.push(cell.trim());
+      cell = "";
+    } else cell += char;
+  }
+  if (!cells.length) return null;
+  cells.push(cell.trim());
+  if (cells[0] === "") cells.shift();
+  if (cells[cells.length - 1] === "") cells.pop();
+  return cells.length >= 2 ? cells : null;
+}
+
+function tableHeader(lines: string[], index: number): string[] | null {
+  const headers = tableRow(lines[index] ?? "");
+  const separator = tableRow(lines[index + 1] ?? "");
+  return headers && separator && headers.length === separator.length &&
+    separator.every((cell) => /^:?-{3,}:?$/.test(cell)) ? headers : null;
+}
 
 const OL_MARKER = /^\s*((?:\d+)|[A-E])[.)]\s+(.*)$/;
 /** Mid-paragraph next section: "…. 3. Heading" (not "are 0. Focus") */
@@ -66,8 +95,9 @@ export function parseExecutiveChatBlocks(source: string): ExecutiveChatBlock[] {
   // Only after sentence punctuation into 1-99. / 1-99) + capital/bold heading.
   const normalized = String(source || "")
     .replace(/\r\n/g, "\n")
+    .split("\n").map((line) => tableRow(line) ? line : line
     .replace(/([.!?…])[ \t]+([1-9]\d?[.)]\s+(?:\*\*[A-Za-z]|[A-Z]))/g, "$1\n\n$2")
-    .replace(/([.!?…])[ \t]+([A-E][.)]\s+(?:\*\*[A-Za-z]|[A-Z]))/g, "$1\n\n$2");
+    .replace(/([.!?…])[ \t]+([A-E][.)]\s+(?:\*\*[A-Za-z]|[A-Z]))/g, "$1\n\n$2")).join("\n");
   const lines = normalized.split("\n");
   const blocks: ExecutiveChatBlock[] = [];
   let i = 0;
@@ -75,6 +105,19 @@ export function parseExecutiveChatBlocks(source: string): ExecutiveChatBlock[] {
     const line = lines[i] ?? "";
     if (!line.trim()) {
       i += 1;
+      continue;
+    }
+    const headers = tableHeader(lines, i);
+    if (headers) {
+      i += 2;
+      const rows: string[][] = [];
+      while (i < lines.length) {
+        const cells = tableRow(lines[i] ?? "");
+        if (!cells || cells.length !== headers.length) break;
+        rows.push(cells);
+        i += 1;
+      }
+      blocks.push({ type: "table", headers, rows });
       continue;
     }
     const heading = /^(#{1,3})\s+(.+)$/.exec(line);
@@ -113,12 +156,12 @@ export function parseExecutiveChatBlocks(source: string): ExecutiveChatBlock[] {
             let j = i + 1;
             while (j < lines.length && !(lines[j] ?? "").trim()) j += 1;
             const peek = lines[j] ?? "";
-            if (OL_MARKER.test(peek) || /^(#{1,3})\s+/.test(peek)) break;
+            if (OL_MARKER.test(peek) || /^(#{1,3})\s+/.test(peek) || tableHeader(lines, j)) break;
             bodyParts.push("");
             i += 1;
             continue;
           }
-          if (OL_MARKER.test(nxt) || /^(#{1,3})\s+/.test(nxt)) break;
+          if (OL_MARKER.test(nxt) || /^(#{1,3})\s+/.test(nxt) || tableHeader(lines, i)) break;
           // If a continuation line itself embeds a later section marker, split it out.
           const split = splitInlineOrderedMarkers(nxt);
           if (split.length > 1 && OL_MARKER.test(split[1] ?? "")) {
@@ -144,7 +187,8 @@ export function parseExecutiveChatBlocks(source: string): ExecutiveChatBlock[] {
       (lines[i] ?? "").trim() &&
       !/^(#{1,3})\s+/.test(lines[i] ?? "") &&
       !/^\s*[-*]\s+/.test(lines[i] ?? "") &&
-      !OL_MARKER.test(lines[i] ?? "")
+      !OL_MARKER.test(lines[i] ?? "") &&
+      !tableHeader(lines, i)
     ) {
       parts.push(lines[i] ?? "");
       i += 1;

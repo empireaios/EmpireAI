@@ -40,6 +40,16 @@ test('Pillow saved exchange selector, internal scroll, composer and parent conte
   const readable=await history.locator('ol li').first().evaluate(el=>({color:getComputedStyle(el).color,marker:getComputedStyle(el,'::marker').color}));
   assert.equal(readable.color,'rgb(41, 67, 99)','saved response text must remain readable on the light owner surface');
   assert.equal(readable.marker,'rgb(41, 67, 99)','list numbering must remain readable');
+  const table=history.getByRole('region',{name:'Pillow response table',exact:true});
+  await table.scrollIntoViewIfNeeded();
+  assert.equal(await table.getByRole('columnheader').count(),2);
+  assert.equal(await table.getByRole('cell',{name:'Customer value',exact:true}).count(),1);
+  assert.equal(await table.getByRole('cell',{name:'<script>fixtureOnly()</script>',exact:true}).count(),1);
+  assert.equal(await table.locator('script').count(),0,'Saved HTML must remain inert text');
+  const tableGeometry=await table.evaluate(el=>({right:el.getBoundingClientRect().right,documentWidth:document.documentElement.scrollWidth,color:getComputedStyle(el.querySelector('td')).color}));
+  assert.ok(tableGeometry.right<=width+1&&tableGeometry.documentWidth<=width+1,JSON.stringify(tableGeometry));
+  assert.equal(tableGeometry.color,'rgb(41, 67, 99)');
+  await table.focus();assert.equal(await table.evaluate(el=>el===document.activeElement),true);
   assert.deepEqual(errors,[]);
   if(process.env.WORK7_SCREENSHOTS){await mkdir(process.env.WORK7_SCREENSHOTS,{recursive:true});await page.screenshot({path:`${process.env.WORK7_SCREENSHOTS}/Pillow__AUTHENTICATED_TEST__${width}.png`});}
   await context.close();

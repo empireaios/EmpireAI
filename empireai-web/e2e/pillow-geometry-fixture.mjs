@@ -6,7 +6,7 @@ export async function installGeometryFixture(context, baseUrl) {
   assert.ok(['127.0.0.1', 'localhost', '[::1]'].includes(base.hostname), 'Geometry fixtures are loopback-only');
   const history = [
     {role:'user',content:'Local layout fixture: show the review steps.',timestamp:'2026-01-02T00:00:00.000Z',requestId:'geometry-user'},
-    {role:'assistant',content:'### Historical layout fixture\n\n'+Array.from({length:15},(_,i)=>`${i+1}. Review item ${i+1}: verify the source and distinguish known information from unknowns.`).join('\n')+'\n\nThis is synthetic browser-test content, not production evidence.',timestamp:'2026-01-02T00:00:01.000Z',requestId:'geometry-answer'},
+    {role:'assistant',content:'### Historical layout fixture\n\n'+Array.from({length:15},(_,i)=>`${i+1}. Review item ${i+1}: verify the source and distinguish known information from unknowns.`).join('\n')+'\n\n| Test | Required support |\n|---|---|\n| **Customer value** | Saved evidence, not a new inference |\n| Served economics | <script>fixtureOnly()</script> |\n\nThis is synthetic browser-test content, not production evidence.',timestamp:'2026-01-02T00:00:01.000Z',requestId:'geometry-answer'},
   ];
   await context.addCookies([{name:'empireai_session',value:'offline-geometry-fixture-only',url:base.origin}]);
   const requests = [];
