@@ -1,0 +1,36 @@
+{
+  "candidateDigests": {
+    "backendDiffSha256": "f2f2d3ed0e11dbe2e298885dc57fee8c8183f32806e6c2e423e6680334abcba7",
+    "frontendDiffSha256": "b5793aaf507a69e5a47c0698078d9e87770f444af79543976294c785001ef66a",
+    "harnessSha256": "b8328b75ac7328211ab54e4fd600289bb38f0b5e1b9eb5515131e5bfb47ef0d2"
+  },
+  "status": "PASS",
+  "scope": "ISOLATED_AUTHENTICATED_BROWSER_NEXT_BFF_ACTUAL_CANDIDATE_FASTIFY",
+  "at": "2026-10-10T22:14:03.040Z",
+  "backendRevision": "e8cf5ff7181b4e26341fb2a045e5a05f1f55c823",
+  "frontendRevision": "3e654b544cca35a5411d830623d5af1fc5b7ce33",
+  "checks": [
+    "Actual BFF auth: anonymous401 and foreign/admin403",
+    "Canonical isolated scenario completed through authenticated BFF commands",
+    "1440px Portfolio/Orders actual BFF data equals verified backend projections, no overflow",
+    "390px Portfolio/Orders actual BFF data equals verified backend projections, no overflow",
+    "Backend process restart preserves canonical receipts exactly"
+  ],
+  "sourceMode": "AUTHENTIC_RETAINED_OBSERVATIONS_NOT_PROVIDER_REFRESH",
+  "providerCredentials": false,
+  "productionAccess": false,
+  "externalEffects": 0,
+  "paidInference": 0,
+  "backendConnect": "DENIED_BY_REQUIRED_SECCOMP_LAUNCHER",
+  "frontendIsolation": "Clean fixture environment and JavaScript localhost/fixed-port guards; not a kernel IP filter",
+  "blockedBrowserOrigins": [],
+  "portfolioDigest": "7c4db907fc8ac80bb94201494ad7a6fc3897e34ff3dee52bae68563f67b8e5d2",
+  "marketDigest": "688056191de5eef7aea39fe456742e02d20f856e41227a04cbcc93a05ced6736",
+  "missionDigest": "9b2ac86599d525ced1ff789fe5a1bfc62d3a858e0c56076577c85be491faaaad",
+  "screenshots": [
+    "portfolio-1440.png",
+    "orders-1440.png",
+    "portfolio-390.png",
+    "orders-390.png"
+  ]
+}
