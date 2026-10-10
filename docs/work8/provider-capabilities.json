@@ -1,0 +1,12 @@
+{
+ "schema":"work8-provider-capabilities-v1",
+ "scope":"Four separate capability levels; historical read verification never grants write/inference authority",
+ "integrations":[
+  {"name":"CJ","mocked":"PASS_SCOPED_ADAPTER_EXAMS","contractTested":"PASS_SCOPED_READ_AND_SYNTHETIC_COMMERCE","authenticatedReadVerified":"RETAINED_PROVENANCE_VERIFIED_10_PARENT_IDENTITIES","authorisedLiveEffectVerified":"PROHIBITED_NOT_EXERCISED","currentRestriction":"Advisor cannot invoke fresh reads; exact19 image URLs have0 verified display permissions; parent currency/landed cost incomplete"},
+  {"name":"Amazon US","mocked":"PASS_SCOPED_ADAPTER_EXAMS","contractTested":"PASS_SCOPED_SCHEMA_RATE_LIMIT_READS","authenticatedReadVerified":"THREE_RETAINED_ENVELOPES_10_ASINS_ONE_PRICED_OFFER","authorisedLiveEffectVerified":"PROHIBITED_NOT_EXERCISED","currentRestriction":"No current refresh capability; no verified CJ equivalence or demand proof"},
+  {"name":"Model providers / Pillow","mocked":"PASS_OPENAI_ROUTER429_503_MALFORMED_USAGE_AND_RECOVERY","contractTested":"EXISTING_LOCKED_ROUTING_AND_RESERVATION_CONTRACTS_PLUS_WORK8_FAULT_EXAM","authenticatedReadVerified":"NO_NEW_REAL_INFERENCE_PERFORMED","authorisedLiveEffectVerified":"NO_NEW_BILLABLE_CALL_AUTHORITY","currentRestriction":"Available Advisor connector has no inference action; actual saved qualified Pillow assessments0; no unpaid fake result may satisfy this gate"},
+  {"name":"Browser and owner app","mocked":"NO_BUSINESS_API_MOCK_IN_ACCEPTED_WALKTHROUGH","contractTested":"ACTUAL_NEXT_BFF_FASTIFY_AUTH_AND_SOURCE_FINANCE_EQUALITY","authenticatedReadVerified":"LOCAL_ISOLATED_SESSION_DESKTOP_MOBILE_PASS_NOT_PRODUCTION_WORK8","authorisedLiveEffectVerified":"PROHIBITED_NOT_EXERCISED","currentRestriction":"No Work8 deployment/owner acceptance; source images withheld, actual linked assessment absent"},
+  {"name":"Financial integrations","mocked":"SYNTHETIC_ORDER_SETTLEMENT_CHARGEBACK_FX","contractTested":"CANONICAL_SOURCE_JOURNAL_CONSERVATION_AND_OWNER_QUOTES","authenticatedReadVerified":"WORK7_ACCOUNTING_JOURNAL_HISTORY_BASELINE_RETAINED","authorisedLiveEffectVerified":"PROHIBITED_NOT_EXERCISED","currentRestriction":"No real bank/payment/refund/transfer tests; unknown invoices, fees and settlements remain unknown"}
+ ],
+ "effects":{"realCommerce":0,"paidInference":0,"newInfrastructure":0,"productionRelease":false}
+}

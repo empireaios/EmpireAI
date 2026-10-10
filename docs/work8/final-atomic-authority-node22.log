@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+ok 1 - seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+  ---
+  duration_ms: 50.044117
+  type: 'test'
+  ...
+# Subtest: actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+ok 2 - actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+  ---
+  duration_ms: 152.69782
+  type: 'test'
+  ...
+# Subtest: 201 canonical missions paginate without hidden truncation or workspace leakage
+ok 3 - 201 canonical missions paginate without hidden truncation or workspace leakage
+  ---
+  duration_ms: 414.458658
+  type: 'test'
+  ...
+# Subtest: empty scoped page explicitly complete and bounded lower limit advances lexical cursor
+ok 4 - empty scoped page explicitly complete and bounded lower limit advances lexical cursor
+  ---
+  duration_ms: 0.556919
+  type: 'test'
+  ...
+# Subtest: mission heads and finance stay on one WAL read snapshot while second connection commits
+ok 5 - mission heads and finance stay on one WAL read snapshot while second connection commits
+  ---
+  duration_ms: 18.374127
+  type: 'test'
+  ...
+# Subtest: owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+ok 6 - owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+  ---
+  duration_ms: 83.933471
+  type: 'test'
+  ...
+# Subtest: mission with research but no orders never fabricates zero revenue or complete finance
+ok 7 - mission with research but no orders never fabricates zero revenue or complete finance
+  ---
+  duration_ms: 3.441776
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1747.029195

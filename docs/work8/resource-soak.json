@@ -1,0 +1,5557 @@
+{
+  "schema": "work8-resource-soak-v1",
+  "status": "PASS_SCOPED_LOCAL_RESOURCE_SOAK",
+  "started": "2026-10-10T22:26:49.206Z",
+  "node": "v22.23.2",
+  "elapsedMs": 600006.986277,
+  "cpuMicroseconds": {
+    "user": 7006288,
+    "system": 669864
+  },
+  "thresholds": {
+    "samples": 120,
+    "intervalMs": 5000,
+    "minimumElapsedMs": 600000,
+    "p99SampleMs": 2000,
+    "peakRssBytes": 536870912,
+    "rssGrowthBytes": 134217728,
+    "externalEffects": 0,
+    "paidCalls": 0
+  },
+  "sourceBefore": {
+    "backend/src/runtime/commerce-runtime/governed/work8-joint-exams.ts": "194f6c545a67998853e5dd6dee8adbec844979f9141fc4bc6d6693c130e1e517",
+    "backend/src/runtime/commerce-runtime/governed/engine.ts": "ae366555553d088d0b2aac691b29ac75414c04d58a1202b338e346a8f61ee041",
+    "backend/src/runtime/commerce-runtime/governed/worker.ts": "36b4056e28b860c92b765b9e35ebc40d4977a2e45c1368e971ba9964b6f37fd7",
+    "backend/src/assurance/control-plane.mjs": "a6bd6b57966ab08447716e06958fb71008d1878cd39f3284bafcbf72c2828e1d",
+    "backend/src/assurance/work8-fulfilment-probes.ts": "d1545c786178fb1b7ac04a9530a8a1d907cac1f18dbc81eb5c4b189ec0e128a9",
+    "scripts/work8/resource-soak.mjs": "c2a4ca7d0901718834e462baeefe0095cab528221e5121d1d7254bc07e73593b"
+  },
+  "runs": [
+    {
+      "seed": 1800,
+      "durationMs": 93.41494700000001,
+      "rss": 103182336,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b570b04914204b149e6b2f883d67e1f8ca4bd589f2c2a0f06fd52ef102bf4e9f",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1801,
+      "durationMs": 109.72242099999949,
+      "rss": 112041984,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "6524fcf3f5784cca7a8ebbc58ec9b2091ecec9dd214ecf3095dd1f461fbb5b64",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1802,
+      "durationMs": 65.72774600000048,
+      "rss": 106418176,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "a9d9832160e8b9dfbc5efff4064f1a2c2a97c5b1082761065dacdb597de78e8c",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1803,
+      "durationMs": 69.35501300000033,
+      "rss": 106414080,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "609e6845d76a8c1a78d9b2e5dcf60a1755253bb58cf8e7e815d92f51004e3d0f",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1804,
+      "durationMs": 63.36750699999902,
+      "rss": 106852352,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "38a4487af97329ced730eee7f452f7ef00f0d0cd218e5f408c9e620d43b1727f",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1805,
+      "durationMs": 57.144718000003195,
+      "rss": 106958848,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b25b98bd7259ecc1511f5da88adf3fb0f2e52e8c78ce7aa1b5af0324dc402f8c",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1806,
+      "durationMs": 55.86994499999855,
+      "rss": 107339776,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "c131e1c83e358b529e793f66982a411117f76f0e7076dd23e12ff441a2f32c21",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1807,
+      "durationMs": 77.37357699999848,
+      "rss": 107503616,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "d1f9ed3184b9383cb887731922483b1e0dc8e0b144ceb58b9acb3d0a0fed7dde",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1808,
+      "durationMs": 67.7617590000009,
+      "rss": 107745280,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "a32a53c13a06928632b8aab8684461ed14112c754c8a654c127e675606e4e295",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1809,
+      "durationMs": 47.175530000000435,
+      "rss": 107999232,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "82a94cd4179653c37931164401ec55bff96f62bfebabe7049c214b72a6561bf8",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1810,
+      "durationMs": 47.87447300000349,
+      "rss": 108236800,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "cc0d1ef2bea1d4488c0dbe6e6a658d9deb1e208014640b3776f78c0e59b27490",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1811,
+      "durationMs": 46.956859999998414,
+      "rss": 108744704,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "0e4221e3032b82e0cb752e8d13fd722f65a079c10f719c9a13456fe57349b1b4",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1812,
+      "durationMs": 46.2251780000006,
+      "rss": 108990464,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "f304a8329ffbb8d1a8d2d0f2e94f23db8d85fb2efbc2e2848062bf31850f009b",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1813,
+      "durationMs": 47.00478299999668,
+      "rss": 109121536,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "71c62da2c64a112bab9214047d97e9a7cb99eae4914c6ff7421385ae3fde5796",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1814,
+      "durationMs": 46.04751099999703,
+      "rss": 109334528,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "ac5625db704daa897b13a9cbdb4c60afd5f35a448ba6ad74923a5e98dcc1df8e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1815,
+      "durationMs": 48.84306499999366,
+      "rss": 109572096,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "e19430b154400ad057eabb2d9d72314bffc67c228165d00827c4cae2ab514da0",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1816,
+      "durationMs": 45.6515619999991,
+      "rss": 109817856,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "da4793705e383fd1576be59bdd30089f80630ff339e7e6c97830fd625da110a4",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1817,
+      "durationMs": 55.80166099999042,
+      "rss": 110641152,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "0544d6200445b8cea970b7bdb8f1c68f1d51b019863123d8ebec4963f37f6668",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1818,
+      "durationMs": 52.158311000006506,
+      "rss": 125386752,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "0e7efa467f1d6e722473f538085c052780cc713b8e2084750c56893c2bdeafaa",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1819,
+      "durationMs": 90.71106299999519,
+      "rss": 126230528,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "db1659101e5ca01b55e736a4a7564c381aa041ec9668dc76dbd985f1f94207ee",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1820,
+      "durationMs": 60.12357599999814,
+      "rss": 127774720,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "e80dc17f7e8fbaeb347f212191809f84bb084dc6e8dd892c9d3757545cc18d91",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1821,
+      "durationMs": 61.02529599999252,
+      "rss": 127959040,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "8cd67719d86c17c0928ff7a33a10712beb33f81864bc922214ba0c777a99e1c5",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1822,
+      "durationMs": 88.50393500000064,
+      "rss": 94842880,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "ab39ab0c0cc66aa018f03efc4e3417f4e74dfc98d037b927dee9f322b6211135",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1823,
+      "durationMs": 64.77336400000786,
+      "rss": 99692544,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "37b996a046a60354eb50aa481222a180eec2af714188fdceb9c84c441b9a36ac",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1824,
+      "durationMs": 54.91461599999457,
+      "rss": 99766272,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "491310692b0141f356d63d7c5395765de5d81c489b375a3f8e0497bc3e9e4e3b",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1825,
+      "durationMs": 56.90641900000628,
+      "rss": 99254272,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "496bc72dc3a9fa605faf2660f576d9f20bb42d550213d85910b9fde5361ca54f",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1826,
+      "durationMs": 65.41513499998837,
+      "rss": 103555072,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "6443475f7e6282b1de2b37b3ad858212ed61d170b5a6c6603dd4c276836a1d7b",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1827,
+      "durationMs": 56.79647099997965,
+      "rss": 107880448,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "0afd28989046950b713c704862ad1e6bd29f1b96acf39545cf8a5ea94339cad3",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1828,
+      "durationMs": 70.59256900000037,
+      "rss": 108048384,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "6ab6889e3e286d035e31ed4f23979ac712dd7d290e55a3b7e0b3e60872c56671",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1829,
+      "durationMs": 69.36446800001431,
+      "rss": 108249088,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "364355d7a82d6f364e1c9c5af53250ed143da06c03b646afecd9e27d4a070871",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1830,
+      "durationMs": 50.939443999988725,
+      "rss": 108314624,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "05fdc6aa9b0a9b6b65bc049aa08129889926c39a65078ab8bb2e6b7b959f528e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1831,
+      "durationMs": 58.320275999984005,
+      "rss": 108314624,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "bb753458a2136802bc130e9ae1b31ef5e19d822ab83f3ce3bb295ea8b44efa03",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1832,
+      "durationMs": 50.09158499998739,
+      "rss": 108363776,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "5b622f1885bedc71d95a67a2484f8462d5ed4540c3e82080b866d29792da9e99",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1833,
+      "durationMs": 50.92832899998757,
+      "rss": 108597248,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b4896fc369ebdf3c8a0f1cc2a56ab8adb5447c9c4d84b78e4c4ecf47a9eeeb6a",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1834,
+      "durationMs": 47.727565000008326,
+      "rss": 108953600,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "47f68b63b6996c86001d6f032fa6235c4a2b0588fac7317fbcded6b53fd0f1ae",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1835,
+      "durationMs": 50.380583000020124,
+      "rss": 109113344,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "020bfb03567d77306ef10b44e79401bda476be626e666771d9b8ff240b986967",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1836,
+      "durationMs": 49.21377400000347,
+      "rss": 109436928,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "3a82c04fad9dfa73fada2f61226f6a06df9491dd2091fd0a5b40dbfd63c70371",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1837,
+      "durationMs": 53.151531000010436,
+      "rss": 109588480,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "1384ab724e05063af15df4e17db47ea8df81255d45725e0418e0be89b247b463",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1838,
+      "durationMs": 58.317906000011135,
+      "rss": 109764608,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "f0366544b5fe90c2f79906fa58af90862f76110928ef661db104f82cf61da203",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1839,
+      "durationMs": 50.07878599999822,
+      "rss": 109989888,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "fe62674ff35ed523508126d3c82599692c554fba10b3452d6f5e7afc650d8237",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1840,
+      "durationMs": 58.270641999988584,
+      "rss": 110153728,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "7088ddfa0915e52533465dd27c93c82a9c30317444aaf7f6c00982346ffda16e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1841,
+      "durationMs": 56.13659700000426,
+      "rss": 110342144,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "637fcb6314bad72156b958bca4e581069af6fee896f2722607f12aa7452b48ed",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1842,
+      "durationMs": 74.66619799999171,
+      "rss": 110538752,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "98afae6f0f6c7ba92e2da59c8a9becdd47eeb6158d5d3aa8442bbd9715e40a26",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1843,
+      "durationMs": 59.435310000000754,
+      "rss": 110768128,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "d1d895b3822b0b00f592ae93a41404db1807ab809c2f9a8c3887e0bc0500a9a5",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1844,
+      "durationMs": 53.92809799997485,
+      "rss": 111505408,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "ff10374add3ee472714f6ebbbd78f396f5593b64c251a7ed1279dfeeb928730b",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1845,
+      "durationMs": 52.413105000014184,
+      "rss": 119517184,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "9c01fe6b44f2e060885c01b291a635955e9e84b9483e7d24a70c0d8cf4820a2c",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1846,
+      "durationMs": 55.01763000001665,
+      "rss": 127631360,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "63a6e0807cfe9014166aaee848566aae8f315ff63e74e3ca5c92d341df570c86",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1847,
+      "durationMs": 55.651189000025624,
+      "rss": 127688704,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b5824fca2232470a9dadd528f648d1f9fd4813c31f2f34cb690a71e40f95fd96",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1848,
+      "durationMs": 59.67187799999374,
+      "rss": 128122880,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "4d2eb4c3e03569f5c9905a68c7afb35fd4f15ce6e5df9695179f7eb480b4454f",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1849,
+      "durationMs": 56.282176000007894,
+      "rss": 128024576,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "35ce5cefb89af4dc660188cc130bd0cc641ccb50042935ad0db36d2d6818c5af",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1850,
+      "durationMs": 87.13560300000245,
+      "rss": 128155648,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "586bec31f583c0a383abe55e20ac166393e4fb0a9957b81392df99d391b0730c",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1851,
+      "durationMs": 52.749852000008104,
+      "rss": 128073728,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "5c23e1f7893e00f8dd60a5e6ef5c78c432afe380b0774c47ed1d45f4226097fe",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1852,
+      "durationMs": 57.24344600000768,
+      "rss": 128237568,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "81c34a3edf982f88cea95ffd690c94bc6e06a2b5fd1e274881fe0abd64404d3e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1853,
+      "durationMs": 58.94234700000379,
+      "rss": 128106496,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b0fc33d84f8caff53e5cdd3822d29e9c91a05f0b9bd83c46e98b7b5a57f41d8e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1854,
+      "durationMs": 50.946032999956515,
+      "rss": 128294912,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "67ae476cc10aa77450f1305bb8b9a2e4b20b34281eeb2c07390d551b2438a0cf",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1855,
+      "durationMs": 52.88685000000987,
+      "rss": 128163840,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "f0643a8cb5dfb4c1fa63f1aa270caac2db425e707ef5b434647f6e13cc09625f",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1856,
+      "durationMs": 57.34438899997622,
+      "rss": 128339968,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "af1dc319982c348dfca929103503cb5daa849de4585102810f0b39709e7438ae",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1857,
+      "durationMs": 51.118350000004284,
+      "rss": 128225280,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "2ef54154fbf6bf427ee6f882945534c99dcb51bf3276da754896222d36192bff",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1858,
+      "durationMs": 49.60729499999434,
+      "rss": 128364544,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "2ed0c1ee81f329266846af0ab41e3fed5d49792f92b9dfe596b3957259d64af1",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1859,
+      "durationMs": 46.61791499995161,
+      "rss": 128233472,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "4102aabe0ba2a4df22f24a045ca3bf54599490d3d1420b5ec5037dba1964e1f0",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1860,
+      "durationMs": 47.41930000000866,
+      "rss": 128376832,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "815ac8187f1d053223218635b657bb99a3833d13271e8312ce560c347c4da9dc",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1861,
+      "durationMs": 48.69817799999146,
+      "rss": 128245760,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "a3d74030412beb75fab9cf35639d62964df3e78a293dce7ff61fe5c4d8345c66",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1862,
+      "durationMs": 48.34775899996748,
+      "rss": 128376832,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "c7d3b29040c93d61517caa1040b07e52633016202c0abefc9c9ec7399a26757e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1863,
+      "durationMs": 47.55871599999955,
+      "rss": 128249856,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "d7e24c643d7153d9c9d8e2ed83d88456bd78dda4dd4c8bbdb3a1e236c0106565",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1864,
+      "durationMs": 46.61311299999943,
+      "rss": 128380928,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "00eb1c85f46237406220916da953964fc6269b4bd23cb007b93467cd82985afc",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1865,
+      "durationMs": 55.30992299999343,
+      "rss": 94691328,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "7fc03a48c2d7a0e21def4d49d2c19b5df032f0259878990da0909034b684be06",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1866,
+      "durationMs": 55.283960000029765,
+      "rss": 99401728,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "5cbecc67cf72129384cf61dbfde00fdab3005854d739b059f966c19f1c6f6d80",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1867,
+      "durationMs": 52.10816000000341,
+      "rss": 98914304,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "a443e3022820d5867488be7d39667c996b02e77de8d66546cc27a02dd67c5ce5",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1868,
+      "durationMs": 61.57283900002949,
+      "rss": 99389440,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b7268b9d05eef82e77292ce94376eeb411506c3a36634d0a7baaf600935c4ad4",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1869,
+      "durationMs": 57.61433900002157,
+      "rss": 100478976,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "82b7d1dfc6c31ec630572007fd1f091e47ecbb3d152ff442472f308430396e75",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1870,
+      "durationMs": 52.155128000013065,
+      "rss": 100536320,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "48e47f5058840760a6d9282c25b5e23e26a6996446f2c6d3c4961f80e2f5afff",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1871,
+      "durationMs": 50.41156600002432,
+      "rss": 100724736,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "51cc44307f64579c596676a259a12a0547a7210ec25ab74969457090c8158c50",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1872,
+      "durationMs": 58.488271999987774,
+      "rss": 109375488,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "1fa0915cd6025c07555717a23207e9593a8605d54b8449ea73de8a9b5c2bba40",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1873,
+      "durationMs": 51.94664899999043,
+      "rss": 109780992,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "337a78c949846a7da61a9b46c1fba77bd308f811525262c940a127392f73ad36",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1874,
+      "durationMs": 52.997303000011016,
+      "rss": 109867008,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "c1feb0975674cd4694b423cf3688c420df02eee90a2fe1df937cf64789ecb8a9",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1875,
+      "durationMs": 52.598360999953,
+      "rss": 109891584,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "3dc8aa0db435fedce68887fa0679a4b2b4126273327ed5a7ad59e1f788880dc1",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1876,
+      "durationMs": 57.492588000022806,
+      "rss": 109891584,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "d05fcc4b26a099b538845f6be33f92438440bd8a284048725d8c305c95614c5c",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1877,
+      "durationMs": 53.66776799998479,
+      "rss": 109895680,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b9a02177e8119adf5bf832933d631e36b5b8315cd37501adc4a5a87a5f82e216",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1878,
+      "durationMs": 47.880300000018906,
+      "rss": 109895680,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "1f122ecaf65704f72b8d9e87f22c887c8c9c3c19e52616d25a896b38dd15fd92",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1879,
+      "durationMs": 56.742247999995016,
+      "rss": 109895680,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "2991baba651b95aa07547a340ab7404fc0cd6be78d404f09e5f55d9c770e33dd",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1880,
+      "durationMs": 48.97413000004599,
+      "rss": 109895680,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "c1980ffa8e3816d73f6c62bd0ff68cfa17454b9e891e3791a931317fb2f9f4cf",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1881,
+      "durationMs": 55.93974000000162,
+      "rss": 109895680,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "f1140c286163cc6541e6077b75d896b268d7a7e4a61316cde4b87933790d3ce0",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1882,
+      "durationMs": 56.353089999989606,
+      "rss": 110026752,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "bbd92a42950bd2a49c74b908b91a86c1956069696921a27a76e8614698738973",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1883,
+      "durationMs": 53.28354199999012,
+      "rss": 110129152,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "783345e8906e1e7384b9227d00e58098a7d9259c4e0aceab38c2b4a9eef42262",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1884,
+      "durationMs": 66.19958299997961,
+      "rss": 110292992,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b3fb27d12841216038ffd1f4c796b372746bd60d6f8af80f9688837eee872a6d",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1885,
+      "durationMs": 56.220214000029955,
+      "rss": 110272512,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "d6793ede18403b1bc0f2b0252e3bb98a20560f2a96e672748dfb14924475f04a",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1886,
+      "durationMs": 55.579122000024654,
+      "rss": 110403584,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "c91e0d6330ca6e76adbf5822f8695966737efdb9a9bb3f66669db2c431a243c2",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1887,
+      "durationMs": 54.878487000009045,
+      "rss": 111161344,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "0fb8fd7cf3506fbeee54aa3fe1eb90b46806fe8da153c46253567b5b86213a44",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1888,
+      "durationMs": 49.226519000018016,
+      "rss": 118964224,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b4d51f9f6c811a03a6cbe58284df7be58afd325dc2df9d1ed06ec9b3e19cbab6",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1889,
+      "durationMs": 53.2229970000335,
+      "rss": 127016960,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "aa2e7f37ece10c311d0b14e1d5e8abe9b4d4cdf062d1d44916b2e34f3648dd7e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1890,
+      "durationMs": 59.447799999965355,
+      "rss": 127332352,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "3055af594eeffb89595b0cb20ec5791ff890e15c09b38abc108f0f395f55748c",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1891,
+      "durationMs": 71.77977999998257,
+      "rss": 127111168,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "1184ecba8ad0464d0e080bac1e23b5483d1d1a39684932bf0be152c8cbba6f2d",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1892,
+      "durationMs": 54.1810290000285,
+      "rss": 127254528,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b64eb05a22954b3ecbf8ba09dcd3bca91b9d539cb6568544ba024253e160c072",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1893,
+      "durationMs": 47.45274099998642,
+      "rss": 127127552,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "b24ba21e8726247cd7a5a7303c7396dc0dcc728d88f6fd0435c0e36153a5f93e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1894,
+      "durationMs": 66.08989299996756,
+      "rss": 127127552,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "138bc1bc714b2d78613c9182fc1fdf14f05fc705b9faeb56b3d12f3ab456a9a7",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1895,
+      "durationMs": 54.357087999989744,
+      "rss": 127287296,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "2f6cd28afdc16e9e9b28b1fe5f7d98815ef35913a9a4ba6de4a1e8f886efebb1",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1896,
+      "durationMs": 48.991600000008475,
+      "rss": 127299584,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "fa3b90b50fee82a8d6a2739bc1d7e8594ddb09add47347d0597c0543a9b653bb",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1897,
+      "durationMs": 52.90664200001629,
+      "rss": 127168512,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "159867829e3de0cc7491a20fabadd490f95a0bc0fbfc1d5cc1b26b49953a6b51",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1898,
+      "durationMs": 50.05519300000742,
+      "rss": 127168512,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "c1f456f782e35c8ade72c8ba5cb7523fe93fbbe48beac1c6fd6cb7813d1d3047",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1899,
+      "durationMs": 50.07843100000173,
+      "rss": 127311872,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "967c6b58c5317972c0144f0394461f2b6c6c2e72c1a168a81f66c8ce062e332e",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1900,
+      "durationMs": 53.24319099995773,
+      "rss": 127225856,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "ccad3f29be72e5e042b5857de3e227273ed0e15a9ade485e02c135834d9372c9",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1901,
+      "durationMs": 59.17457500001183,
+      "rss": 127225856,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "00f8cb0bb50ed10b5a448030a97a16eb61e21d7d302e3f740731b5ce4c64ab2f",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1902,
+      "durationMs": 57.145725000009406,
+      "rss": 127356928,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "548b5730963bc0863317e536900131f7732dffad35ff31a609f9a3ccb5bc6aaa",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1903,
+      "durationMs": 57.45192900003167,
+      "rss": 127488000,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "e3f05a3f3e658c94befb9e54d21b309ecbc6de43120037223b98528b0a32f188",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1904,
+      "durationMs": 49.83322400000179,
+      "rss": 127488000,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "54fa1e9428bdea952b9906b43d264c38c8e576c9c65b91f42a18311d9c8913e7",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1905,
+      "durationMs": 64.10054199991282,
+      "rss": 127488000,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "7f6d039cce7d7fdae0fd6c8264506ae7f9fd1586e0b6cca8c7ab9a0a17f41421",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1906,
+      "durationMs": 47.62555200001225,
+      "rss": 127488000,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "1ba1980a5b681aeec029df8a3a7f02346b0d9290cb944e5371017f1847291d28",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1907,
+      "durationMs": 50.63369300006889,
+      "rss": 127488000,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "4d7c870516e71b2465e807c9a5a5440ba43d7e573e90c362ee95c4fe08db1023",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1908,
+      "durationMs": 64.63876099989284,
+      "rss": 127545344,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "1878b9fe4f4144ddb85c87869ad333d0a2431662d0c5e18bdbef1b4bacfe4d25",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1909,
+      "durationMs": 57.15082700003404,
+      "rss": 127545344,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "9da40be7d90cb944386732c758a3933711e704b73f8b02549ad1979184b05707",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1910,
+      "durationMs": 52.55959700001404,
+      "rss": 127545344,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "e0a35311ac6f08eb54681791b140e3ad24e891d1d608c2962f6af63b67f8fc22",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1911,
+      "durationMs": 53.84716500004288,
+      "rss": 127545344,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "fcb586163e9217ceffe677df51a17918781e3c9655e53d320e2da170b8505427",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1912,
+      "durationMs": 53.63685700006317,
+      "rss": 127545344,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "3063b9cedfc11020dc2ba06ad7753c6a954405526c626f31d6761706aeb3e1e7",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1913,
+      "durationMs": 47.74762499995995,
+      "rss": 127545344,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "3e72c6d1135bbd911046ab549479e76818499d37e3bdc015e4a129dc132c87b9",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1914,
+      "durationMs": 47.685501000029035,
+      "rss": 127549440,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "ffcc403c1b4b811d338854cddd6c06cf15700484174e5c0b913eb72168626ddf",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1915,
+      "durationMs": 49.92798799998127,
+      "rss": 127549440,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "5ed6f3b6b7f7df835b4123c680e7e623329a9f5a25a0a408f9637fc5cb25644f",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1916,
+      "durationMs": 50.1290840000147,
+      "rss": 127549440,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "9fde5b598351c4c6d1bb0885bb9e965ddabfa72424310c0735cdf4dbb0a73aa7",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1917,
+      "durationMs": 46.29289100004826,
+      "rss": 127549440,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "a9bf43eef3919837c28f8c34e3f4d7f97af68be813b75c1bdda16e9905a99b20",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1918,
+      "durationMs": 63.60996300005354,
+      "rss": 127549440,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "c196598447438ee4b71d7906d49182b6c44e3f5ed1c317a8d26c70b96de0cf3d",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    },
+    {
+      "seed": 1919,
+      "durationMs": 49.657966000027955,
+      "rss": 127553536,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "receiptDigest": "c0815fcf1e63741ef7373edc906f356f9a2d43430223da240846d9e9acd13372",
+      "fulfilmentStatus": "BLOCKED",
+      "repairs": 1
+    }
+  ],
+  "p99SampleMs": 93.41494700000001,
+  "peakRssBytes": 128380928,
+  "rssGrowthBytes": 34103296,
+  "externalEffects": 0,
+  "paidCalls": 0,
+  "scope": "Measured local joint recovery, finance containment and canonical fulfilment sampling; each scenario uses a fresh store. Not hosted, sustained shared-volume or whole-system certification."
+}

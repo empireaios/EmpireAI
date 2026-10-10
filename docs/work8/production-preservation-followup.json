@@ -1,0 +1,61 @@
+{
+  "schema": "work8-production-preservation-followup-v1",
+  "observedAt": "2026-10-10T22:33:46.201Z",
+  "backendRevision": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+  "journal": {
+    "count": 3,
+    "digest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+    "baselineMatch": true
+  },
+  "historical": {
+    "count": 7,
+    "digest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf",
+    "baselineMatch": true
+  },
+  "accounting": {
+    "baselineCount": 224,
+    "currentCount": 227,
+    "currentDigest": "9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92",
+    "countDelta": 3,
+    "exactOriginalRowsReverified": false,
+    "restriction": "Available Advisor accounting reader exposes aggregate only; ignores per-record pagination/since. No raw row-to-request binding or original224 subset digest exposed."
+  },
+  "concurrentProductionRequests": [
+    {
+      "requestId": "pcr_d9c4b797ac1a431a",
+      "status": "COMPLETED",
+      "createdAt": "2026-10-10T21:37:30.026Z",
+      "updatedAt": "2026-10-10T21:37:42.691Z",
+      "provider": "openai",
+      "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949"
+    },
+    {
+      "requestId": "pcr_f4316f954345430a",
+      "status": "COMPLETED",
+      "createdAt": "2026-10-10T21:43:10.681Z",
+      "updatedAt": "2026-10-10T21:43:21.925Z",
+      "provider": "openai",
+      "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949"
+    },
+    {
+      "requestId": "pcr_ea7be3e4e9974a3f",
+      "status": "COMPLETED",
+      "createdAt": "2026-10-10T21:45:06.964Z",
+      "updatedAt": "2026-10-10T21:45:14.840Z",
+      "provider": "openai",
+      "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949"
+    }
+  ],
+  "interpretation": "Three durable completed production Pillow requests coincide with the count increase. This is supporting lineage, not proof of exact accounting-row correspondence or original-row preservation. No raw personal transcript reproduced.",
+  "reconciliation": {
+    "indexStatus": "VERIFIED",
+    "conflictCount": 0,
+    "sourceDigest": "34f195c4ef0f8846718e842a9f62242b722e9d77583f4fe984a87883d3fac7bc"
+  },
+  "work8Actions": {
+    "paidInference": 0,
+    "productionWrites": 0,
+    "realCommerce": 0
+  },
+  "verdict": "JOURNAL_HISTORY_PRESERVED_ACCOUNTING_ADDITIONS_REQUIRE_EXACT_ROW_BINDING_FOR_FINAL_CLOSURE"
+}

@@ -1,0 +1,1 @@
+{"status":"PASS_SCOPED_LOCAL_RESOURCE_SOAK","samples":120,"elapsedMs":600006.986277,"p99SampleMs":93.41494700000001,"peakRssBytes":128380928,"rssGrowthBytes":34103296}

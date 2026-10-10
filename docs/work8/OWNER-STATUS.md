@@ -40,3 +40,11 @@ Supplier image policies found during read-only research are conditional. Exact a
 NO-GO for Work8 COMPLETE, release and Work9 readiness. Continue independent engineering/examinations against the fixed45 register and fixed31 fault map. The fifteen safety regression pairs are scoped candidate evidence, not a blanket certification of live integrations. Completion still requires the genuine linked assessment/owner demonstration, remaining whole-system fault and endurance evidence, independent final verification and legitimate closure receipts. Production release and Work9 activation need separate applicable authority.
 
 The exact next external dependency is an approved callable read-only supplier/marketplace acquisition and assessment capability with its existing enforceable inference budget, plus evidence of image usage permission. No real commerce capability is requested by this dependency.
+
+## Final candidate examination updates
+
+The 600.007second resource soak passed120 samples, with p99 sample latency93.415ms, peak RSS122.43MiB and RSS growth32.52MiB. This measures actual elapsed local execution; each scenario still uses a fresh store. Existing CI compute has not been priced or attributed as an invoice, so no total-dollar cost is claimed.
+
+The corrected owner browser examination covers202 canonical scenarios through next/previous record groups at both widths, with5,445-file before/after manifests matching. It now exposes partial read coverage. A subsequent narrow consistency repair computes order heads and financial projections in one read snapshot; actual two-connection verification passes. All seven forbidden live routes remain423 during admitted simulated repair attempts, and forbidden repair callbacks never execute.
+
+Follow-up production read: the same Work7 revision remains active; journal3 and historical7 digests are unchanged. Accounting is now227 records. Three concurrent completed production Pillow conversations provide supporting lineage for the increase, but the aggregate-only connector does not expose exact accounting-row correspondence or original224 subset preservation. That final closure check remains open. These conversations were not initiated by this Work8 tool session.
