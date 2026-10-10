@@ -1,0 +1,45 @@
+{
+  "retrievedAt": "2026-10-10T19:59:21.196Z",
+  "readOnly": true,
+  "inferenceCalls": 0,
+  "externalRefresh": false,
+  "workspace": "ws_empire_1",
+  "domain": "assurance",
+  "grantsAuthority": false,
+  "status": "AVAILABLE",
+  "observedAt": null,
+  "source": "Bounded operational summaries; exact immutable records and lossless chunk pagination; no inference",
+  "data": {
+    "recordId": "checkpoint:WORK-7-PREMIUM-OWNER:UX-PR109",
+    "sha256": "df6c3ae952e8a2b30b247ed025cc396e5a8da8f1bc55a5a9dcb71986a5e688e8",
+    "record": {
+      "id": "WORK-7-PREMIUM-OWNER:UX-PR109",
+      "state": "ACCEPTANCE_PENDING",
+      "evidence": [
+        "RELEASE READY: all mandatory pre-release gates passed; separate production authority pending.",
+        "Independent reviewer /root/independent_review APPROVE; no blocking defect; explicitly authorised by Grand King 11 October 2026 SGT.",
+        "Exact reviewed PR109 8f52d7a95fcf06d411995b10d6c4d4eca457e241; four required workflows PASS; browser28/28.",
+        "Exact reviewed PR111 e6d98fb57537c893c85afc552626235a38ba874c; required CI and actual isolated browser/BFF/backend category lifecycle PASS.",
+        "95 original requirements PASS; five retain release-stage obligations. 43 amendments PASS; two retain release governance obligations. Zero pre-release acceptance gaps.",
+        "50/50 named controls PASS; Android acceptance closed; existing accepted evidence preserved.",
+        "Review receipt: docs/mission-state/work7-owner-ux-20261010/INDEPENDENT-REVIEW.md; consolidated proposal: PRODUCTION-RELEASE-PROPOSAL.md on work7/completion-evidence-20261011.",
+        "Sequence after separate authority: PR111 backend verification, PR109 frontend verification, independent production closure. PR110 excluded and independently governed.",
+        "Rollback frontend41c02e0f first; backend51830f9f separately governed; preserve current append-only journal and original records.",
+        "224 accounting /3 journal /7 historical baseline records and digests preserved. NOT_BORN; LOCKED;15 protections and7 denied effects retained.",
+        "No merge, deployment, release lease, paid infrastructure/inference or commerce action authorised or performed. Original historical WORK-7-PREMIUM-OWNER record untouched."
+      ],
+      "at": 1791662340755,
+      "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7"
+    },
+    "complete": true
+  },
+  "coverage": {
+    "limit": 20,
+    "after": "",
+    "since": null,
+    "complete": false,
+    "providerAccessVerified": false,
+    "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+    "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+  }
+}

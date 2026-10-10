@@ -9,7 +9,7 @@
   "meta": {
     "total": 100,
     "pr": 109,
-    "status": "ACCEPTANCE_PENDING_INDEPENDENT_REVIEW",
+    "status": "RELEASE_READY_AWAITING_OWNER_PRODUCTION_AUTHORITY",
     "generatedAt": "2026-10-10T16:01:12.780669+00:00",
     "warning": "Rows are traceability obligations, not equally weighted completion units. PASS is only the explicitly described scope. No completion percentage claimed.",
     "statuses": {
@@ -25,8 +25,7 @@
     },
     "counts": {
       "PASS": 95,
-      "ACCEPTANCE REQUIRED": 1,
-      "POST-RELEASE": 4
+      "POST-RELEASE": 5
     },
     "reconfirmedAt": "2026-10-10T09:47:09Z",
     "ownerVideoReview": "owner-video-20261010/review.json",
@@ -98,7 +97,8 @@
       "authenticated_candidate": "c1877d2be9e5ef19cd9b3575f61f90c064a077a2 independently observed; containing commit adds bounded Home headline translations and evidence updates.",
       "preservation20261011": "preservation-20261011.json: 224 accounting / 3 journal / 7 historical, all baseline digests match.",
       "latestAcceptance": "owner-continuation-android-20261011.txt; android-toolbar-and-categories-20261011.md; progress-matrix-20261011.md"
-    }
+    },
+    "independentReview": "INDEPENDENT-REVIEW.md"
   },
   "requirements": [
     {
@@ -3682,8 +3682,8 @@
       "implementation_location": "docs/work7; work7-review; Mission Ledger / release controls",
       "implementation_status": "All four exact-head CI PASS; not released",
       "test_evidence": "abeb0021 four PASS preserved; 0bdbe2fc four mandatory workflows PASS, browser20/20 at390/1440, targeted4/4 PASS; latest-ci-runs.json. No production merge/deploy.",
-      "outstanding_work": "G6; G7",
-      "acceptance_result": "ACCEPTANCE REQUIRED",
+      "outstanding_work": "G7: separately authorised merge, release and independent closure",
+      "acceptance_result": "POST-RELEASE",
       "verification_breakdown": {
         "engineering": "Implemented/preserved in bounded Work7 Owner Console scope; two demonstrated source defects corrected at bbb77bca.  docs/work7; work7-review; Mission Ledger / release controls",
         "automated": "bbb77bca exact-head4/4 workflows PASS, owner browser28/28; prior scoped tests retained. Actual PR111 integration and workspace BFF/session receipts PASS where applicable. No unique test per tracker row is implied.",
@@ -3692,8 +3692,8 @@
         "production_deployed": "Baseline frontend41c02/backend51830 only. PR109/110/111 candidate changes NOT deployed.",
         "post_release_verified": "NOT YET for current candidate; obligations68/69/70/84/100 retained."
       },
-      "owner_status": "ACCEPTANCE REQUIRED",
-      "current_evidence": "Latest completion directive section 5 mandates independent affected-change review. No independent review receipt exists for PR109/111 exact heads. CI and implementation verification are PASS; merge/deployment remain separately authorised release-stage obligations.",
+      "owner_status": "POST-RELEASE",
+      "current_evidence": "Independent exact-head review APPROVE; CI and rollback preparation PASS. Remaining merge/release obligations require separate production authority.",
       "prior_current_evidence": "PR109 a8f1f709: four CI PASS — browser38046396544 (20/20;390/1440), semantic38046396545, product38046396551, runtime38046396548. New parser tests11/11. Two supplied videos attest prior0bdbe2fc; unchanged-scope evidence retained. Fresh preserved record digests and seven scoped internal monitoring domains PASS. Scope limits remain binding.",
       "work_phase": "WORK_7_OWNER_CONSOLE; operational scenario certification belongs to WORK_8; live transition WORK_9; permanent Assurance remains cross-phase",
       "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",

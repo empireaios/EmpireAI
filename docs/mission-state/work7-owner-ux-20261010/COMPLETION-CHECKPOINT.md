@@ -1,3 +1,5 @@
+> Superseded by INDEPENDENT-REVIEW.md and PRODUCTION-RELEASE-PROPOSAL.md: independent review APPROVE, zero pre-release gaps, RELEASE READY. The text below preserves the earlier checkpoint history.
+
 # Work 7 targeted completion checkpoint
 
 10 October 2026 UTC / 11 October SGT. This acceptance addendum supersedes the native-observation request in RELEASE-CANDIDATE.md. Existing implementation and evidence remain preserved.

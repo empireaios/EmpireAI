@@ -406,7 +406,7 @@
       "historical_status_before_completion": {
         "live": "PENDING_CURRENT_REVISION_ACCEPTANCE"
       },
-      "status": "ACCEPTANCE REQUIRED",
+      "status": "POST-RELEASE",
       "current_completion_evidence": {
         "register": "Master amendments",
         "id": "A09",
@@ -423,7 +423,7 @@
           84,
           100
         ],
-        "disposition": "ACCEPTANCE REQUIRED",
+        "disposition": "POST-RELEASE",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
         "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
         "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
@@ -431,7 +431,6 @@
         "production_deployed": "Baseline only; candidate changes not deployed",
         "post_release_verified": "Not yet for current candidates",
         "gates": [
-          "G6",
           "G7"
         ],
         "historical_disposition": "ACCEPTANCE REQUIRED",
@@ -441,7 +440,7 @@
           "G6",
           "G7"
         ],
-        "remaining": "Independent review receipt required before production authority; release-stage obligations retained."
+        "remaining": "Independent review APPROVE; only separately authorised release and closure obligations remain."
       }
     }
   ],
@@ -973,7 +972,7 @@
     {
       "id": "UX-15",
       "requirement": "GOVERNANCE/RELEASE: No production change until all mandatory Work 7 gates and explicit release authority. PR #109 exact-head check, independent PR #110 lineage and incident status, approved Home fidelity, 15 commerce safety protections, no accidental commerce activation, financial digests, CI, live acceptance, new valid release lease/fence (not prior finished fence), coordinated deployment only if needed, post-deployment independent verification and Mission Ledger/King's Advisor receipts. Work 8 full autonomous certification and Work 9 birth/commerce activation are NOT Work 7 gates. If unresolved, retain BLOCKED and all completed work.",
-      "status": "ACCEPTANCE REQUIRED",
+      "status": "POST-RELEASE",
       "owner": "Work 7 engineering",
       "dependencies": [
         "Current candidate implementation and targeted CI",
@@ -993,7 +992,7 @@
         "id": "UX-15",
         "description": "GOVERNANCE/RELEASE: No production change until all mandatory Work 7 gates and explicit release authority. PR #109 exact-head check, independent PR #110 lineage and incident status, approved Home fidelity, 15 commerce safety protections, no accidental commerce activation, financial digests, CI, live acceptance, new valid release lease/fence (not prior finished fence), coordinated deployment only if needed, post-deployment independent verification and Mission Ledger/King's Advisor receipts. Work 8 full autonomous certification and Work 9 birth/commerce activation are NOT Work 7 gates. If unresolved, retain BLOCKED and all completed work.",
         "original_items": [],
-        "disposition": "ACCEPTANCE REQUIRED",
+        "disposition": "POST-RELEASE",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
         "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
         "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
@@ -1001,7 +1000,6 @@
         "production_deployed": "Baseline only; candidate changes not deployed",
         "post_release_verified": "Not yet for current candidates",
         "gates": [
-          "G6",
           "G7"
         ],
         "historical_disposition": "POST-RELEASE",
@@ -1009,7 +1007,7 @@
           "G6",
           "G7"
         ],
-        "remaining": "Independent review receipt required before production authority; release-stage obligations retained."
+        "remaining": "Independent review APPROVE; only separately authorised release and closure obligations remain."
       }
     }
   ],
@@ -1024,7 +1022,7 @@
     "candidate": "8f52d7a95fcf06d411995b10d6c4d4eca457e241",
     "counts": {
       "PASS": 43,
-      "ACCEPTANCE REQUIRED": 2
+      "POST-RELEASE": 2
     },
     "all45Records": [
       {
@@ -1238,7 +1236,7 @@
           84,
           100
         ],
-        "disposition": "ACCEPTANCE REQUIRED",
+        "disposition": "POST-RELEASE",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
         "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
         "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
@@ -1246,7 +1244,6 @@
         "production_deployed": "Baseline only; candidate changes not deployed",
         "post_release_verified": "Not yet for current candidates",
         "gates": [
-          "G6",
           "G7"
         ],
         "historical_disposition": "ACCEPTANCE REQUIRED",
@@ -1256,7 +1253,7 @@
           "G6",
           "G7"
         ],
-        "remaining": "Independent review receipt required before production authority; release-stage obligations retained."
+        "remaining": "Independent review APPROVE; only separately authorised release and closure obligations remain."
       },
       {
         "register": "Owner UX amendments",
@@ -1515,7 +1512,7 @@
         "id": "UX-15",
         "description": "GOVERNANCE/RELEASE: No production change until all mandatory Work 7 gates and explicit release authority. PR #109 exact-head check, independent PR #110 lineage and incident status, approved Home fidelity, 15 commerce safety protections, no accidental commerce activation, financial digests, CI, live acceptance, new valid release lease/fence (not prior finished fence), coordinated deployment only if needed, post-deployment independent verification and Mission Ledger/King's Advisor receipts. Work 8 full autonomous certification and Work 9 birth/commerce activation are NOT Work 7 gates. If unresolved, retain BLOCKED and all completed work.",
         "original_items": [],
-        "disposition": "ACCEPTANCE REQUIRED",
+        "disposition": "POST-RELEASE",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
         "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
         "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
@@ -1523,7 +1520,6 @@
         "production_deployed": "Baseline only; candidate changes not deployed",
         "post_release_verified": "Not yet for current candidates",
         "gates": [
-          "G6",
           "G7"
         ],
         "historical_disposition": "POST-RELEASE",
@@ -1531,7 +1527,7 @@
           "G6",
           "G7"
         ],
-        "remaining": "Independent review receipt required before production authority; release-stage obligations retained."
+        "remaining": "Independent review APPROVE; only separately authorised release and closure obligations remain."
       },
       {
         "register": "Original element amendments",
@@ -1889,18 +1885,12 @@
     "nativeAcceptance": "Owner accepted corrected native Android keyboard-open toolbar in 1000033519.jpg; saved history, composer, draft and reduced reading area remain accepted. Retained automated multiline, scrolling, viewport resize and control regressions complete UX-12. No claim that a still image demonstrates dynamic native interaction.",
     "remaining": [
       {
-        "id": "G6",
-        "governing_requirement": "Original 68; Owner UX-15; latest completion directive section 5",
-        "owner": "Independent reviewer",
-        "missing": "Independent findings/approval tied to exact PR109 8f52d7a9 and PR111 e6d98fb5; no unresolved release-blocking finding",
-        "decision": "ACCEPTANCE REQUIRED"
-      },
-      {
         "id": "G7",
         "owner": "Owner and authorised release verifier",
         "missing": "Separate consolidated production authority, valid release controls, deployment and independent production closure receipts",
         "decision": "POST-RELEASE"
       }
-    ]
+    ],
+    "independentReview": "INDEPENDENT-REVIEW.md"
   }
 }

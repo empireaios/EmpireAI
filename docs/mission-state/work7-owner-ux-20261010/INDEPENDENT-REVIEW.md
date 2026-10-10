@@ -1,0 +1,43 @@
+# Work 7 independent exact-revision review
+
+Decision: **APPROVE — no blocking defect identified.**
+
+Reviewer: independent reviewer agent `/root/independent_review`, explicitly authorised by Grand King on 11 October 2026 SGT. The reviewer did not implement or modify either candidate. This is independent agent code/evidence review, not an assertion of a submitted human GitHub approval or production authority.
+
+## Exact reviewed revisions
+
+- PR #109: `8f52d7a95fcf06d411995b10d6c4d4eca457e241`, compared with frontend baseline `41c02e0f67702d857dede6412adf814bce3db8e8`.
+- PR #111: `e6d98fb57537c893c85afc552626235a38ba874c`, compared with backend baseline `51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7`.
+- Reconciliation/evidence addendum: `44cc40aba88dc0f807a2303cc3e40d59c55b1c9f`.
+
+Local repository heads were independently verified. The coordinator separately reconfirmed matching remote heads and exact-head CI. No tests were rerun and no production, financial, lease, commerce, provider or infrastructure action was performed.
+
+## Review findings
+
+| Scope | Independent finding |
+|---|---|
+| Legacy denial and workspace repairs | `LegacyReadUnavailable.tsx:4-11` distinguishes HTTP 423, explains the lock, disables futile Retry and retains a canonical return. `CommerceWorkspaceDetailPanel.tsx:13-39` uses the authenticated store collection, renders denial before a cached record, resolves the returned ID and treats a missing record truthfully. The demonstration lookup and invented milestone state are absent. Retained workspace/browser receipts cover actual authentication and explicitly labelled fixture collection data. |
+| Category correctness and persistence | `backend/src/finance/financial-centre.ts:15-16,34-39,54-75` adds bounded strict metadata schemas and materialises directory state from append-only events. `BEGIN IMMEDIATE` encloses revision checks and insertion. Idempotent same-command retries return the original receipt; conflicting command identities and stale category/mapping revisions fail. Category identity survives rename/archive; archived categories cannot receive new mappings; existing mappings/history remain. No numeric cost classification or provider commissioning change is introduced by these commands. |
+| Security and owner authority | `backend/src/finance/runtime.ts:13-17` retains authenticated founder role, exact owner email and workspace checks and origin refusal. `empireai-web/lib/owner/finance-control.ts:2` enforces same-origin JSON and body bounds before the existing BFF proxy. PR109 does not modify API route or backend authority enforcement. The actual integration receipt establishes anonymous, foreign workspace, admin, wrong-email, wrong-origin and stale-write refusals. `CostCategoryManager.tsx:14-23` binds success to the expected receipt and preserves identity on uncertain retry. |
+| Financial preservation | PR111 changes only metadata schemas, category validation/projection, its tests and CI inclusion. Financial cost, review, reversal, replacement, FX and numeric aggregation semantics remain unchanged. Frontend projections keep REAL reviewed amounts separate from synthetic/history; unknown FX/allocation is not zero; infrastructure and direct operational amounts remain separate, with invoices, unbilled, estimates and commitments labelled. Retained actual integration and old-reader receipts preserve original entry content and numeric results. |
+| Approved UX scope | Reviewed all 45 amendment descriptions in the current reconciliation: 9 master, 15 owner UX, 19 original element and 2 Android continuation records. Inspected their affected navigation/Home/chat, business journey, intelligence, product/approval, listing/order, operational finance and infrastructure/category implementations and retained scoped evidence. The exact primary workflow in `OwnerShell.tsx:12` is preserved; no duplicate primary Approvals entry. Public assets and authority handlers are unchanged. Approved artwork/captions, original records and deliberate audit drilldowns remain. No accepted row was reopened and no mandatory functionality was silently deferred. |
+| Android and response presentation | Saved exchange selection retains original turn IDs, uses escaped DOM selectors and does not create a conversation. Mobile history dialog handles viewport bounds and focus restoration. Markdown tables render text/React nodes, not raw executable HTML. Retained toolbar regression covers narrow/desktop sizes, multiline drafts, scroll and visualViewport changes without chat submission. Accepted native screenshot closes the corrected keyboard-open state; it is not treated as proof of dynamic native interaction. No additional native observation is required. |
+| Frontend/backend compatibility | PR109 gates category editing on both backend directory capabilities, so the deployed baseline truthfully disables unavailable category editing. Actual no-cost frontend/BFF/PR111 lifecycle evidence covers create/edit/archive/mapping/restart and security. Application source and workflows are byte-identical between the tested application commit `bbb77bca` and the reviewed containing commit `8f52d7a9`; exact-head CI additionally passes at the latter. |
+| Safety and PR110 separation | Neither reviewed candidate changes the seven locked effect routes, birth/commerce enforcement, release lease machinery or the existing 15 protections. Retained tests and preservation receipts support NOT_BORN/LOCKED. PR110 is not bundled; its incident or scheduled-evidence recovery is not claimed. The retained Annex/release-source assessment identifies no blanket frontend veto arising solely from that incident. Any actual enforced gate rejection remains binding. |
+| Release and rollback | Approve sequence: after separate owner authority and valid controls, release PR111, verify actual deployed revision/health/capability/preservation, then PR109, verify changed production journeys and obtain independent closure. Any merge-created combined revision must be verified before deployment. Frontend rollback target is `41c02e0f67702d857dede6412adf814bce3db8e8` / `dpl_GDYLwu1ExHdPiK1qECSMua5wnJXo`. Retain the backend category journal. Backend fallback `51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7` / Railway `37ae1731-7399-4861-b5af-0d413157303d` requires governed runtime/health/preservation checks; local old-reader compatibility is sufficient preparation, not a deployed rollback certification. Never overwrite the journal with an earlier snapshot. |
+
+## Evidence relied on, without repeating passing campaigns
+
+Exact-head CI: PR109 Product `38080333348`, browser `38080333358` (28/28), Semantic `38080333371`, Runtime `38080333346`; PR111 Product `38074592243`, Semantic `38074592465`, Runtime `38074592272`, all reported SUCCESS in the coordinator's fresh remote read.
+
+Retained receipts inspected: `actual-category-integration-20261011.json`, `workspace-http-20261011.json`, `rollback-reader-20261011.json`, `execution-preservation-20261011.json`, `android-acceptance-final-20261011.json`, `execution-reconciliation-20261011.json`, `COMPLETION-CHECKPOINT.md` and `RELEASE-CANDIDATE.md` with its superseding acceptance addendum. Relevant regression source was inspected rather than rerun.
+
+Preservation baseline: 224 accounting records (`1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b`), 3 journal entries (`e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc`) and 7 legacy records (`2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf`). Production readback after release must preserve these original records; legitimate later additive metadata changes must be accounted for rather than requiring an unchanged whole-journal digest after authorised use.
+
+## Approval boundary
+
+The independent-review pre-release requirement is satisfied for these exact two revisions. There are no repair requests or new acceptance campaigns. Preserve 95 accepted original requirements, 43 accepted amendments, all 50 completed named control groups and Android acceptance. Remaining merge/deployment/lease/production readback and Mission Ledger/King's Advisor closure obligations are release-stage work, not code defects.
+
+No evidence reviewed establishes a separately enforced requirement for a human GitHub review in addition to this owner-authorised independent review. This receipt does not bypass any repository protection or release-control rule that is actually enforced. It approves the candidates for the consolidated production-release proposal, while withholding production execution until Grand King's separate authority.
+
+**Independent recommendation: RELEASE READY for separate owner production authorisation. Work 7 is not production COMPLETE.**

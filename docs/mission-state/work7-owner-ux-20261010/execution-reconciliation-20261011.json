@@ -1,7 +1,7 @@
 {
   "kind": "EXECUTION_RECONCILIATION_NOT_NEW_AUDIT",
   "application_revision": "8f52d7a95fcf06d411995b10d6c4d4eca457e241",
-  "decision": "ACCEPTANCE_COMPLETE_EXCEPT_INDEPENDENT_EXACT_HEAD_REVIEW; PRODUCTION_NOT_AUTHORISED",
+  "decision": "RELEASE READY; SEPARATE OWNER PRODUCTION AUTHORITY REQUIRED",
   "historical_original_counts": {
     "PASS": 17,
     "PENDING": 74,
@@ -9,16 +9,15 @@
   },
   "current_requirement_counts": {
     "PASS": 95,
-    "ACCEPTANCE REQUIRED": 1,
-    "POST-RELEASE": 4
+    "POST-RELEASE": 5
   },
   "amendment_counts": {
     "PASS": 43,
-    "ACCEPTANCE REQUIRED": 2
+    "POST-RELEASE": 2
   },
   "owner_ux_15_counts": {
     "PASS": 14,
-    "ACCEPTANCE REQUIRED": 1
+    "POST-RELEASE": 1
   },
   "control_counts": {
     "PASS": 50,
@@ -1295,7 +1294,7 @@
       "requirement": "Normal reviewed GitHub PR/CI/merge, separate Railway/Vercel release gates where needed, exact source revision identity, health checks and rollback readiness. Do not repeat green tests or redeploy unnecessarily.",
       "source": "Original gate I",
       "historical_status": "BLOCKED",
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "POST-RELEASE",
       "engineering": "Implemented/preserved in bounded Work7 Owner Console scope; two demonstrated source defects corrected at bbb77bca.  docs/work7; work7-review; Mission Ledger / release controls",
       "automated": "bbb77bca exact-head4/4 workflows PASS, owner browser28/28; prior scoped tests retained. Actual PR111 integration and workspace BFF/session receipts PASS where applicable. No unique test per tracker row is implied.",
       "authenticated_browser": "Retained accepted observations plus named control evidence in this file; hosted and isolated scopes remain explicit. No additional unbounded page-load campaign inferred.",
@@ -1303,10 +1302,9 @@
       "production_deployed": "Baseline frontend41c02/backend51830 only. PR109/110/111 candidate changes NOT deployed.",
       "post_release_verified": "NOT YET for current candidate; obligations68/69/70/84/100 retained.",
       "gates": [
-        "G6",
         "G7"
       ],
-      "reason": "Latest completion directive section 5 mandates independent affected-change review. No independent review receipt exists for PR109/111 exact heads. CI and implementation verification are PASS; merge/deployment remain separately authorised release-stage obligations.",
+      "reason": "Independent exact-head review APPROVE; CI and rollback preparation PASS. Remaining merge/release obligations require separate production authority.",
       "retained_evidence": "abeb0021 four PASS preserved; 0bdbe2fc four mandatory workflows PASS, browser20/20 at390/1440, targeted4/4 PASS; latest-ci-runs.json. No production merge/deploy.",
       "prior_audit_disposition": "ACCEPTANCE REQUIRED",
       "historical_gates": [
@@ -2155,7 +2153,7 @@
         84,
         100
       ],
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "POST-RELEASE",
       "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
       "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
       "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
@@ -2163,7 +2161,6 @@
       "production_deployed": "Baseline only; candidate changes not deployed",
       "post_release_verified": "Not yet for current candidates",
       "gates": [
-        "G6",
         "G7"
       ],
       "historical_disposition": "ACCEPTANCE REQUIRED",
@@ -2173,7 +2170,7 @@
         "G6",
         "G7"
       ],
-      "remaining": "Independent review receipt required before production authority; release-stage obligations retained."
+      "remaining": "Independent review APPROVE; only separately authorised release and closure obligations remain."
     },
     {
       "register": "Owner UX amendments",
@@ -2432,7 +2429,7 @@
       "id": "UX-15",
       "description": "GOVERNANCE/RELEASE: No production change until all mandatory Work 7 gates and explicit release authority. PR #109 exact-head check, independent PR #110 lineage and incident status, approved Home fidelity, 15 commerce safety protections, no accidental commerce activation, financial digests, CI, live acceptance, new valid release lease/fence (not prior finished fence), coordinated deployment only if needed, post-deployment independent verification and Mission Ledger/King's Advisor receipts. Work 8 full autonomous certification and Work 9 birth/commerce activation are NOT Work 7 gates. If unresolved, retain BLOCKED and all completed work.",
       "original_items": [],
-      "disposition": "ACCEPTANCE REQUIRED",
+      "disposition": "POST-RELEASE",
       "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
       "automated": "bbb77bca exact-head4/4 and28/28 browser; scoped prior proof retained.",
       "authenticated_browser": "Named controls below distinguish hosted preview from actual local BFF/backend and fixtures.",
@@ -2440,7 +2437,6 @@
       "production_deployed": "Baseline only; candidate changes not deployed",
       "post_release_verified": "Not yet for current candidates",
       "gates": [
-        "G6",
         "G7"
       ],
       "historical_disposition": "POST-RELEASE",
@@ -2448,7 +2444,7 @@
         "G6",
         "G7"
       ],
-      "remaining": "Independent review receipt required before production authority; release-stage obligations retained."
+      "remaining": "Independent review APPROVE; only separately authorised release and closure obligations remain."
     },
     {
       "register": "Original element amendments",
@@ -3433,7 +3429,7 @@
     }
   ],
   "scope_boundary": "Original81/82 and consolidated AnnexA9: operational certification Work8; digital twin/live transition Work9. No original requirement deleted or silently deferred.",
-  "release_proposal": "RELEASE-CANDIDATE.md",
+  "release_proposal": "PRODUCTION-RELEASE-PROPOSAL.md",
   "receipts": [
     "actual-category-integration-20261011.json",
     "workspace-http-20261011.json",
@@ -3441,13 +3437,6 @@
     "execution-preservation-20261011.json"
   ],
   "remaining_gates": [
-    {
-      "id": "G6",
-      "governing_requirement": "Original 68; Owner UX-15; latest completion directive section 5",
-      "owner": "Independent reviewer",
-      "missing": "Independent findings/approval tied to exact PR109 8f52d7a9 and PR111 e6d98fb5; no unresolved release-blocking finding",
-      "decision": "ACCEPTANCE REQUIRED"
-    },
     {
       "id": "G7",
       "owner": "Owner and authorised release verifier",
@@ -3479,5 +3468,7 @@
     }
   },
   "android_acceptance_receipt": "android-acceptance-final-20261011.json",
-  "mission_ledger_receipt": "completion-ledger-receipt-20261011.json"
+  "mission_ledger_receipt": "release-ready-ledger-receipt.json",
+  "independent_review": "INDEPENDENT-REVIEW.md",
+  "mandatory_pre_release_gates": "ALL PASS"
 }
