@@ -25,6 +25,10 @@ export function homeRecommendationVisible(record: Record<string, unknown>): bool
 }
 
 export function ownerNavigationParent(path: string): string {
+  // Retained Executive Command screens share the CEO's execution context.
+  if (['/cockpit/command', '/cockpit/missions', '/cockpit/relationship', '/cockpit/development'].includes(path)) return '/cockpit/ceo';
+  // The department root already redirects to its order queue.
+  if (path === '/cockpit/operations') return '/cockpit/orders';
   // The existing product evidence drill-down is shared with Approvals and System.
   // Keep its canonical product context without changing any destination or authority.
   if (path === '/cockpit/commerce/governed') return '/cockpit/products';

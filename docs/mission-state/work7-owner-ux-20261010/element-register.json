@@ -7,7 +7,7 @@
     "owner_category": "F",
     "screenshot_before": "EmpireAI_Targeted_Evidence/021_desktop/top.png",
     "preservation": "Same chat provider, backend, turn IDs and composer",
-    "verification": "PENDING visual/CI; no production claim"
+    "verification": "Desktop accepted; corrected mobile isolated browser PASS; corrected mobile live observation outstanding."
   },
   {
     "id": "UX-02",
@@ -17,7 +17,7 @@
     "owner_category": "F",
     "screenshot_before": "EmpireAI_Targeted_Evidence/021_desktop/top.png",
     "preservation": "No new session or copied history",
-    "verification": "PENDING visual/CI; no production claim"
+    "verification": "Accepted desktop saved exchange selection recording preserved; local mobile selector PASS."
   },
   {
     "id": "UX-03",
@@ -27,7 +27,7 @@
     "owner_category": "F",
     "screenshot_before": "EmpireAI_Targeted_Evidence/021_desktop/top.png",
     "preservation": "No new authority or inference path",
-    "verification": "PENDING visual/CI; no production claim"
+    "verification": "Existing backend/provider/history paths unchanged. Source preservation PASS."
   },
   {
     "id": "UX-04",
@@ -37,7 +37,7 @@
     "owner_category": "D",
     "screenshot_before": "EmpireAI_Targeted_Evidence/008_desktop/top.png",
     "preservation": "/cockpit/development/pillow",
-    "verification": "PENDING visual/CI; no production claim"
+    "verification": "Existing Home artwork link implemented; source/fixture PASS; complete live acceptance outstanding."
   },
   {
     "id": "UX-05",
@@ -47,7 +47,7 @@
     "owner_category": "F/G",
     "screenshot_before": "EmpireAI_Targeted_Evidence/009_desktop/top.png",
     "preservation": "/cockpit/development/pillow",
-    "verification": "PENDING visual/CI; no production claim"
+    "verification": "Accepted owner recording verifies CEO Chat entry; reuse."
   },
   {
     "id": "UX-06",
@@ -57,7 +57,7 @@
     "owner_category": "D",
     "screenshot_before": "EmpireAI_Targeted_Evidence/008_desktop/top.png",
     "preservation": "Original approved artwork asset is byte-identical",
-    "verification": "PENDING visual/CI; no production claim"
+    "verification": "Original artwork byte-preserved; authorised caption correction accepted."
   },
   {
     "id": "UX-07",
@@ -67,7 +67,7 @@
     "owner_category": "F",
     "screenshot_before": "EmpireAI_Targeted_Evidence/021_mobile/top.png",
     "preservation": "Existing mobile navigation and controls retained",
-    "verification": "PENDING visual/CI; no production claim"
+    "verification": "a8d58187 corrects mobile readability, no autofocus and visual-viewport keyboard layout; isolated360/390/1440 and keyboard420 PASS; current live mobile pending."
   },
   {
     "id": "UX-08",
@@ -77,7 +77,7 @@
     "owner_category": "A/B",
     "screenshot_before": "EmpireAI_Targeted_Evidence/009_desktop/top.png",
     "preservation": "No unknown-to-zero conversion",
-    "verification": "PENDING visual/CI; no production claim"
+    "verification": "Metric source states preserved in details; unit/fixture PASS; complete live acceptance pending."
   },
   {
     "id": "HOME-01",
@@ -178,5 +178,15 @@
     "screenshot_before": "EmpireAI_Targeted_Evidence/010_desktop/top.png",
     "preservation": "Products, listings, orders, CEO, cost centre, approvals, calendar and system controls",
     "verification": "PENDING visual/CI; no production claim"
+  },
+  {
+    "id": "NAV-03",
+    "route": "/cockpit/command; /cockpit/missions; /cockpit/relationship; /cockpit/development; /cockpit/operations",
+    "before": "No active owner section; nested breadcrumb omitted screen identity",
+    "after": "Executive Command source pages have CEO context; redirect roots match destination ownership; registered screen labels shown in breadcrumb",
+    "preservation": "Exact routes, redirects, handlers, auth and authority unchanged",
+    "source_basis": "CommandCentrePage, MissionCentrePage, ExecutiveRelationshipGraphPage label Executive Command; root redirect source; canonical cockpitScreenRoutes labels",
+    "verification": "Production build/typecheck/lint PASS; focused desktop/mobile navigation verification recorded in continuation report; live acceptance pending",
+    "authorization": "Low-risk presentation/context correction under clause I; no workflow migration"
   }
 ]

@@ -38,4 +38,8 @@ test('Chat and historic performance retain CEO context; assurance retains govern
   assert.equal(ownerNavigationParent('/cockpit/products/history'), '/cockpit/products/history');
   assert.equal(ownerNavigationParent('/cockpit/intelligence/products'), '/cockpit/eyes');
   assert.equal(ownerNavigationParent('/cockpit/commerce/governed'), '/cockpit/products');
+  for (const path of ['/cockpit/command', '/cockpit/missions', '/cockpit/relationship', '/cockpit/development']) {
+    assert.equal(ownerNavigationParent(path), '/cockpit/ceo');
+  }
+  assert.equal(ownerNavigationParent('/cockpit/operations'), '/cockpit/orders');
 });

@@ -1,0 +1,138 @@
+{
+  "state": {
+    "retrievedAt": "2026-10-10T12:12:01.583Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "state",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": "2026-10-10T12:12:01.583Z",
+    "source": "current process identity and locked runtime profile",
+    "data": {
+      "backendSha": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+      "deploymentId": "37ae1731-7399-4861-b5af-0d413157303d",
+      "profile": "LOCKED_COMMISSIONING_V1",
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "frontendIdentity": {
+        "status": "UNVERIFIED",
+        "reason": "Use direct Vercel evidence"
+      },
+      "domains": [
+        "governed_commerce",
+        "financial_centre",
+        "package_format",
+        "changes",
+        "state",
+        "capabilities",
+        "pillow",
+        "accounting",
+        "assurance",
+        "reconciliation",
+        "missions",
+        "communications",
+        "authority",
+        "commissioning",
+        "approvals",
+        "execution",
+        "products",
+        "orders",
+        "decisions",
+        "events",
+        "finance",
+        "integrations",
+        "memory",
+        "intelligence",
+        "arsenal",
+        "evidence",
+        "intelligence_jobs",
+        "opportunities",
+        "exceptions",
+        "resources",
+        "rank_growth",
+        "investigations"
+      ]
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "accounting": {
+    "retrievedAt": "2026-10-10T12:12:02.829Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "accounting",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": "2026-10-10T12:12:02.829Z",
+    "source": "existing accounting snapshot; recorded estimates are not provider invoices",
+    "data": {
+      "schema": "owner-commissioning-accounting-v1",
+      "observedAt": "2026-10-10T12:12:02.829Z",
+      "readOnly": true,
+      "recordCount": 224,
+      "recordDigestSha256": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+      "ceilingMicroUsd": null,
+      "heldMicroUsd": 110852730,
+      "remainingMicroUsd": null,
+      "recordedEstimateMicroUsd": 20254371,
+      "estimateUnknownCount": 5,
+      "invoiceActualMicroUsd": null,
+      "invoiceUnknownCount": 224,
+      "reservationReleased": false,
+      "inferenceCalls": 0
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "financial_centre": {
+    "retrievedAt": "2026-10-10T12:12:04.010Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "data": {
+      "entryDigest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+      "backendRevision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+      "kpis": {
+        "verifiedRevenueSgdMicro": 0,
+        "knownTechnologySgdMicro": 0,
+        "knownCogsSgdMicro": 0,
+        "knownGrossProfitSgdMicro": 0,
+        "knownContributionSgdMicro": 0,
+        "knownNetSgdMicro": 0,
+        "complete": false,
+        "qualification": "PARTIAL_KNOWN_AMOUNTS_NOT_CERTIFIED_PROFIT"
+      }
+    },
+    "journalCount": 3,
+    "legacyCount": 7,
+    "legacyDigest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf"
+  },
+  "assurance": {
+    "retrievedAt": "2026-10-10T12:12:05.288Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "status": null,
+    "controlPlaneSummary": {
+      "activeIncidents": 0,
+      "automaticallyRecovered": 25,
+      "ownerActionRequired": 0
+    }
+  }
+}

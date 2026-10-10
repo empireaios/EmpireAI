@@ -1,21 +1,24 @@
 {
-  "status": "IN_PROGRESS_NOT_RELEASED_AUTH_BLOCKED",
+  "status": "IN_PROGRESS_NOT_RELEASED_LIVE_OBSERVATION_BLOCKED",
   "base_frontend": "41c02e0f67702d857dede6412adf814bce3db8e8",
   "backend_unchanged": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
   "branch": "work7/owner-ux-correction-live-20261010",
   "verified": [
-    "frontend typecheck",
-    "frontend production build",
-    "targeted lint: 0 errors; existing image warning",
-    "presentation invariants: 3 passed"
+    "a8d58187 all four hosted CI workflows PASS",
+    "Production build/typecheck/targeted lint PASS for navigation correction",
+    "Four presentation invariants PASS",
+    "Focused governance/products navigation PASS at390/1440",
+    "Retained executive breadcrumb/sidebar/return navigation PASS at390/1440",
+    "Pillow chat360/390/1440 and simulated keyboard420 PASS after shell edit",
+    "12:12Z accounting224, Work5 journal3 and historical7 digests preserved; NOT_BORN and commerce LOCKED"
   ],
   "pending": [
-    "Latest changed-source mandatory CI and screenshots",
-    "Authenticated preview verification and complete active nested-state review",
-    "Finance authoritative production reconciliation/readback",
-    "Independent assurance and current fenced release authority",
-    "Reviewed merge, frontend release and production preservation readback",
-    "Actual Mission Ledger and independent Advisor closure for new UX continuation"
+    "New commit exact-head CI and preview",
+    "Current mobile and unopened live nested controls; complete live control-edge denominator",
+    "Display-to-authoritative-record reconciliation",
+    "Reviewed PR109 and current governed release lease",
+    "Exact production frontend deployment and post-release readback",
+    "Actual Mission Ledger and independent Advisor closure"
   ],
   "prohibited": [
     "paid inference",
@@ -34,23 +37,26 @@
     "artifact_id": 11664335261,
     "artifact_sha256": "bc49fced92d73bff884810f9bdff5bf1004380b9b20e99ec49c049722053c805"
   },
-  "preview": "dpl_941VHo2BnUu6aSf1yWxmdUAK6EZ8",
-  "preview_auth": "Owner completed manual attempt and received generic service-unavailable error. Do not request repeated sign-in. Underlying preview response remains unverified.",
-  "resume_parent": "08dc65bf6ffbc3e04a7ca0eedead9e1630806b64",
-  "updated_at": "2026-10-10T08:34:18.282297+00:00",
+  "preview": "dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS",
+  "preview_auth": "Prior owner login succeeded; subsequent credential_observation_restricted persisted after permitted recovery. Current candidate redirects unauthenticated browser tab to Vercel sign-in. No new credential retry or protection bypass attempted.",
+  "resume_parent": "a8d58187804e19b168a98a6faba4bc379b2150f9",
+  "updated_at": "2026-10-10T12:20:00.545945+00:00",
   "existing_ci": {
-    "head": "08dc65bf6ffbc3e04a7ca0eedead9e1630806b64",
-    "browser": 38037633949,
-    "semantic": 38037633882,
-    "runtime": 38037633958,
-    "product": 38037633995,
-    "latest_observation": "All four completed successfully; none rerun."
+    "head": "a8d58187804e19b168a98a6faba4bc379b2150f9",
+    "browser": 38050808306,
+    "semantic": 38050808309,
+    "runtime": 38050808310,
+    "product": 38050808324,
+    "latest_observation": "All four SUCCESS; no unchanged workflow rerun"
   },
   "new_changes": [
-    "Preserve actual authentication error message and status for existing login form; three offline regression tests."
+    "Five source-grounded owner parent-context corrections",
+    "Registered nested breadcrumb labels",
+    "Focused desktop/mobile return-link and active-section regression",
+    "Full fixed100-item tracker and retained accepted-recording evidence"
   ],
   "release_lease": "None acquired; prior fence 17 finished; never reuse",
-  "owner_action": "No password retry requested. Further protected-preview endpoint inspection requires explicit scoped authorization for the Vercel connector temporary deployment-protection access mechanism, or equivalent response diagnostics from the deployment owner. EmpireAI authentication must remain enforced.",
+  "owner_action": "Restore supported observation of the already authenticated Cloud Browser session. No repeat sign-in or accepted recordings requested.",
   "authentication_diagnostics": {
     "production": "2026-10-10T08:30:43Z GET /api/auth/me returned expected 401 Authentication required; matching Railway /auth/me response 4ms. Backend /health returned 200 online, Redis connected at 08:31:12Z. Historical authenticated /auth/me returned 200 through 08:12:05Z. No production auth outage established.",
     "railway_login_logs": "No /auth/login requests in 07:45\u201308:30 UTC window. Available HTTP logs show no login arriving at locked backend. Does not prove the failed request destination.",

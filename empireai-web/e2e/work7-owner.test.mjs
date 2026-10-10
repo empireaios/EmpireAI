@@ -87,3 +87,26 @@ test('Owner UX: operations and governance preserve destinations and active paren
  assert.equal(await p.getByRole('navigation',{name:width===390?'Mobile quick navigation':'Owner navigation',exact:true}).getByRole('link',{name:'Products',exact:true}).getAttribute('aria-current'),'page');
  await capture(p,width,'owner-ux-governed-product-context');
 }));
+
+test('Retained executive routes show a named breadcrumb and working CEO return path',()=>both(async({page:p,context,writes},width)=>{
+ // Legacy read transport is POST. Permit only known read actions in this test;
+ // return unavailable without contacting any backend or changing shared fixture guards.
+ await context.route('**/api/brain/dispatch',async route=>{
+  const r=route.request().postDataJSON();
+  assert.ok((r.action==='load'&&['dashboard','cockpit-command','ai-ceo','executive-home','cockpit-missions','executive-relationship-graph'].includes(r.module))||(r.action==='context'&&['cockpit-global-assistant','cockpit-interaction'].includes(r.module)),JSON.stringify(r));
+  return route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Legacy source unavailable in navigation-only fixture'})});
+ });
+ await context.route('**/api/pillow/session',route=>route.fulfill({status:403,contentType:'application/json',body:JSON.stringify({error:'Session creation forbidden in navigation-only fixture'})}));
+ for(const [route,label] of [['/cockpit/command','Command Centre'],['/cockpit/missions','Mission Centre'],['/cockpit/relationship','Executive Relationship Graph']]){
+  await p.goto(base+route);
+  const crumb=p.getByRole('navigation',{name:'Breadcrumb',exact:true});
+  await crumb.getByText(label,{exact:true}).waitFor();
+  assert.equal(await crumb.getByRole('link',{name:'Pillow (CEO)',exact:true}).getAttribute('href'),'/cockpit/ceo');
+  if(width===390)await p.getByRole('button',{name:'Open owner menu',exact:true}).click();
+  assert.equal(await p.getByRole('navigation',{name:width===390?'Cockpit mobile menu':'Owner navigation',exact:true}).getByRole('link',{name:'Pillow (CEO)',exact:true}).getAttribute('aria-current'),'page');
+  if(width===390)await p.getByRole('button',{name:'Close owner menu',exact:true}).click();
+  await crumb.getByRole('link',{name:'Pillow (CEO)',exact:true}).click();
+  await p.waitForURL('**/cockpit/ceo');
+ }
+ assert.equal(writes.length,0);
+}));

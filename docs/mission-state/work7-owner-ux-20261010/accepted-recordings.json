@@ -1,0 +1,317 @@
+[
+  {
+    "source": "owner-video-20261010/review.json",
+    "review": {
+      "sourceLibraryFile": "libfile_8e8b5da45ef8819198b430ed8235ec4c",
+      "sourceName": "EmpireAI \u2014 Grand King Operating Environment - Google Chrome 2026-10-10 18-08-55.zip",
+      "videoSha256": "bdef4d6f3c80d390a5639cec85272c69b2c9baf0568a20a592daa3d052f71f34",
+      "videoBytes": 295147360,
+      "durationSeconds": 251.550633,
+      "resolution": [
+        1920,
+        1008
+      ],
+      "reviewMethod": "Extracted251 one-second frames and inspected contact sheets across website navigation; native-resolution selected frames inspected for exact text. Not every original60fps frame individually inspected. No audio-content claim.",
+      "previewHostname": "empireai-90ktm1oli-empireai-os.vercel.app",
+      "deployment": "dpl_FjN4rtY3y9v118hSxiXvNuiP1qWP",
+      "boundRevision": "0bdbe2fc9d793403b088c9d13dd9572cceae4e0c",
+      "bindingEvidence": "Visible hostname matches retained authoritative Vercel exact deployment metadata, continuation-preview.json.",
+      "desktopPrimaryViews": {
+        "verified": 12,
+        "denominator": 12,
+        "scope": "Primary sidebar destinations rendered; not every control or nested state.",
+        "views": [
+          "Home",
+          "Pillow CEO",
+          "Products",
+          "Listings",
+          "Orders",
+          "Finance",
+          "Live Cost Centre",
+          "Intelligence/Four Eyes",
+          "Assurance",
+          "Approvals",
+          "Calendar",
+          "System"
+        ]
+      },
+      "newPass": [
+        "Authenticated current-preview desktop observation",
+        "All12 primary sections rendered",
+        "Home artwork/family labels and removed Pancake weight caption",
+        "Plain greeting without commissioning boilerplate",
+        "Home metric placeholders and truthful empty timeline",
+        "Finance recorded All-history Sales/Costs/Profit display",
+        "All15 safety headings visible; no claim that guards are operationally certified"
+      ],
+      "stillUnverified": [
+        "Pillow Chat opening, saved conversation selector/history, internal scrolling and composer",
+        "CEO24-hour timetable and decision-centre interactions",
+        "Expanded15 safety guard evidence and safe drill-downs",
+        "Finance tabs, commitments/actuals/settlements/forecasts and source disclosures",
+        "Product filters/pagination/qualification and listing media provenance; Orders synthetic lifecycle detail",
+        "Home card/View-all destinations and nested sidebar/deep-link return paths",
+        "Current authenticated mobile states",
+        "Complete live control-edge denominator and all required interactions"
+      ],
+      "observations": [
+        {
+          "state": "Listings",
+          "atSeconds": 64,
+          "finding": "Broken/unavailable source thumbnail for clearly labelled synthetic listing; no provider/network cause established from video; provenance disclosure not opened.",
+          "classification": "Observed unavailable media; root cause not verified, no invented replacement image."
+        }
+      ],
+      "release": "BLOCKED: video closes primary desktop observation gap, not full mandatory nested/mobile acceptance. No merge/deployment or completion receipt issued.",
+      "frames": [
+        {
+          "secondsApprox": 0,
+          "file": "000s-Home.jpg",
+          "view": "Home",
+          "observedScope": "Artwork, family captions, greeting and primary dashboard",
+          "sha256": "5a80399b1da1d7cf585fba8cfae0ad6a3e5a5f80aace31899693fb2400a01a1f"
+        },
+        {
+          "secondsApprox": 38,
+          "file": "038s-Home-scroll.jpg",
+          "view": "Home-scroll",
+          "observedScope": "Lower dashboard and footer",
+          "sha256": "4b38c15fba2f0aad096c52c3908578a6e5a09dafc851cff06c4fca0656389762"
+        },
+        {
+          "secondsApprox": 44,
+          "file": "044s-Pillow-CEO.jpg",
+          "view": "Pillow-CEO",
+          "observedScope": "Performance metrics and navigation controls",
+          "sha256": "e2f24a11b18f5b6a09e3b4c58960713dae420f25238db46aac6b6acbfa79c70f"
+        },
+        {
+          "secondsApprox": 56,
+          "file": "056s-Products.jpg",
+          "view": "Products",
+          "observedScope": "Discovery and filters overview",
+          "sha256": "a2e5c09f9f5aaa7660c100f489744b417f53616990ed9bf035c2f1091903767d"
+        },
+        {
+          "secondsApprox": 64,
+          "file": "064s-Listings.jpg",
+          "view": "Listings",
+          "observedScope": "Synthetic listing overview; source thumbnail unavailable",
+          "sha256": "10ba140616ac45a2c948830cf0f2ce2a15f329b3150286c22fefc514c8a4ca54"
+        },
+        {
+          "secondsApprox": 75,
+          "file": "075s-Orders.jpg",
+          "view": "Orders",
+          "observedScope": "Actual-order empty state and locked commerce explanation",
+          "sha256": "b331c08a588a9e89212b3c14b9c6d63e7109edb95082a6a09d311abd321569e5"
+        },
+        {
+          "secondsApprox": 82,
+          "file": "082s-Finance.jpg",
+          "view": "Finance",
+          "observedScope": "Recorded Sales, Goods costs and Profit; All history; coverage warning",
+          "sha256": "e8a718e7201adfba10339e0f79dcca97770cc809b562bfdf4a0940303da60311"
+        },
+        {
+          "secondsApprox": 88,
+          "file": "088s-Live-Cost-Centre.jpg",
+          "view": "Live-Cost-Centre",
+          "observedScope": "Infrastructure overview and cost source",
+          "sha256": "1a97c4fcdbb633ca988ed4830c6bb83e5e6be933fec48f1b423e61685d4e5fbf"
+        },
+        {
+          "secondsApprox": 110,
+          "file": "110s-Intelligence.jpg",
+          "view": "Intelligence",
+          "observedScope": "Four Eyes findings and provider counts",
+          "sha256": "6dd5f832ffbf5f16ae262aece40489f3472459530821660395085f962146dced"
+        },
+        {
+          "secondsApprox": 154,
+          "file": "154s-Assurance.jpg",
+          "view": "Assurance",
+          "observedScope": "Safety overview:0 verified,0 at risk,1 tripped,14 unknown",
+          "sha256": "e9f19a33a97c5a306dc16a9507dbd4713f2dd5b48bd18b6cf29d15bac28c3f6f"
+        },
+        {
+          "secondsApprox": 158,
+          "file": "158s-Safety-controls-1.jpg",
+          "view": "Safety-controls-1",
+          "observedScope": "Collapsed guard list1\u20138",
+          "sha256": "678ca25beb1cc7e1611e64054daf3c34792f1508e1ad06d84407699e7a109079"
+        },
+        {
+          "secondsApprox": 162,
+          "file": "162s-Safety-controls-2.jpg",
+          "view": "Safety-controls-2",
+          "observedScope": "Collapsed guard list9\u201315",
+          "sha256": "2e948061573f17ac9873ed5e339f902a80cafd27e7f3c8c420e0cd1f9f82216f"
+        },
+        {
+          "secondsApprox": 173,
+          "file": "173s-Monitoring.jpg",
+          "view": "Monitoring",
+          "observedScope": "0 active incidents;25 recoveries;0 owner decisions;Fresh",
+          "sha256": "eece4900ed04a0a88fcd0981fe8b6a28cdb5312b56cc866e187d702108050d49"
+        },
+        {
+          "secondsApprox": 189,
+          "file": "189s-Approvals.jpg",
+          "view": "Approvals",
+          "observedScope": "Saved brief and recommendation queue",
+          "sha256": "deb2d51bf6f8105cc21fda8c4785808aa53fb3c770b869ab675b5458a0265df8"
+        },
+        {
+          "secondsApprox": 210,
+          "file": "210s-Calendar.jpg",
+          "view": "Calendar",
+          "observedScope": "Seasonal planning cards",
+          "sha256": "d89b5c38f07b8b19758a070dadc5d103a24d35311d89e23cee180f4e171d4ab0"
+        },
+        {
+          "secondsApprox": 229,
+          "file": "229s-System.jpg",
+          "view": "System",
+          "observedScope": "GPT evidence bridge and existing workspace links",
+          "sha256": "b946a17ff47a7ce53aef25b68ae254331c1718e69abf375327c64aeef9c55a73"
+        }
+      ]
+    }
+  },
+  {
+    "source": "owner-chat-video-20261010/review.json",
+    "review": {
+      "sourceLibraryFileId": "libfile_8070951820a08191b7459b621c49b65e",
+      "sourceFile": "Inspect ZIP Screenshots - Google Chrome 2026-10-10 18-38-40.mp4",
+      "sha256": "18fbcde41284cd84abf673fe70c6acdacf333cded3ee55dedac6b0421f088872",
+      "durationSeconds": 15.766667,
+      "resolution": [
+        1920,
+        1008
+      ],
+      "observedRevision": "0bdbe2fc9d793403b088c9d13dd9572cceae4e0c",
+      "observedUrl": "https://empireai-90ktm1oli-empireai-os.vercel.app/cockpit/development/pillow",
+      "reviewScope": "One-second frames reviewed; final approximately eight seconds show EmpireAI. Earlier unrelated ChatGPT content is not task authority. No every-frame completeness claim.",
+      "verifiedPass": [
+        "Pillow Chat rendered with saved response",
+        "CEO sidebar active and Home / Pillow CEO / Chat breadcrumb",
+        "Internal conversation panel scrolls while empty composer remains visible",
+        "Conversation history selector visible",
+        "NOT_BORN and Commerce locked visible; no message submission observed"
+      ],
+      "notDemonstrated": [
+        "Conversation selector opened or exchange selected",
+        "Jump to latest clicked",
+        "CEO-to-chat navigation",
+        "Mobile",
+        "Complete conversation from first to last turn",
+        "Current corrected revision live appearance"
+      ],
+      "verifiedDefects": [
+        {
+          "id": "D5",
+          "finding": "Markdown table displayed as flattened pipe prose",
+          "sourceCause": "Parser lacks table blocks and paragraph fallback joins lines with spaces",
+          "correction": "df2643797ef6a6917355271f09a6cd18b73c55c8",
+          "liveConfirmation": "PENDING"
+        },
+        {
+          "id": "D6",
+          "finding": "Jump to latest overlays and obscures response text",
+          "sourceCause": "Absolute .jump position inside conversation workspace",
+          "correction": "a8f1f709dcf5f3b055050ddd1123c7c7ae70717a",
+          "liveConfirmation": "PENDING"
+        }
+      ],
+      "evidenceType": "Owner-provided authenticated preview observation, not fixture and not production",
+      "safety": "No credentials copied or browser guard bypassed. Original uploaded video retained independently."
+    }
+  },
+  {
+    "source": "owner-history-video-20261010/review.json",
+    "review": {
+      "sourceLibraryFileId": "libfile_30cb82903e3c81918d90f833eecedbda",
+      "sourceFile": "EmpireAI \u2014 Grand King Operating Environment - Google Chrome 2026-10-10 19-06-23.mp4",
+      "sha256": "c461a4e87a2f200a14dd18feb4ded56f49a8d83e16df38201148b113ad5306d0",
+      "durationSeconds": 69.183467,
+      "resolution": [
+        1920,
+        1008
+      ],
+      "review": "All69 one-second sampled frames reviewed; selected full-resolution frames inspected. No every-frame or audio-review claim.",
+      "observedPreview": "https://empireai-90ktm1oli-empireai-os.vercel.app",
+      "observedRevision": "0bdbe2fc9d793403b088c9d13dd9572cceae4e0c",
+      "verifiedPass": [
+        "Saved exchange selection changes selected label and scrolls to retained messages; at least01/10/2026 and04/10/2026 records visible",
+        "Conversation scrolls independently; empty composer stays visible",
+        "CEO Chat with Pillow navigation reaches rendered existing chat around48\u201350s",
+        "Home and CEO return navigation observed"
+      ],
+      "limits": [
+        "Older preview does not include a8f1f709 table and Jump to latest fixes",
+        "Desktop only; no mobile acceptance",
+        "No full nested-site control coverage",
+        "Home artwork-to-chat click not demonstrated",
+        "Jump to latest activation not demonstrated"
+      ],
+      "safety": "No message submission or owner approval observed. Unverified browser archive label retained; this is not proof of server-verified transcript provenance."
+    }
+  },
+  {
+    "source": "owner-corrected-chat-video-20261010/review.json",
+    "review": {
+      "sourceLibraryFileId": "libfile_9f8a35630a3c819183be858039e5a173",
+      "sourceFile": "EmpireAI \u2014 Grand King Operating Environment - Google Chrome 2026-10-10 19-17-33.mp4",
+      "sha256": "21ae3c46edffc59906129f1af166a5c91b70137b9862eced60bd8382af89f4c5",
+      "durationSeconds": 20.750033,
+      "resolution": [
+        1920,
+        1008
+      ],
+      "review": "All21 one-second frames visually reviewed, selected full-resolution frames inspected; no audio/every-frame claim",
+      "observedPreview": "https://empireai-wk9qnjwrq-empireai-os.vercel.app",
+      "observedRevision": "a8f1f709dcf5f3b055050ddd1123c7c7ae70717a",
+      "verifiedPass": [
+        "Current preview Chat rendered",
+        "Saved history selection changes to01/10/2026 exchange",
+        "Jump to latest appears below message area without covering response text",
+        "Jump to latest activation returns to final saved response and control disappears around14\u201316s",
+        "Empty composer remains visible; NOT_BORN and Commerce LOCKED visible"
+      ],
+      "notDemonstrated": [
+        "Saved Markdown table",
+        "Mobile",
+        "Remaining site-wide nested states"
+      ],
+      "actions": "Read-only recording review only; no code edits, CI reruns, inference or deployments"
+    }
+  },
+  {
+    "source": "owner-table-video-20261010/review.json",
+    "review": {
+      "sourceLibraryFileId": "libfile_e9ee5781980881919bda36f1a137f217",
+      "sourceFile": "EmpireAI \u2014 Grand King Operating Environment - Google Chrome 2026-10-10 19-35-47.mp4",
+      "sha256": "f37f4d952e7b7d4e09dc8a89181b1dea7d1c95f186f191eb3a61e7957d985a0a",
+      "durationSeconds": 29.8334,
+      "resolution": [
+        1920,
+        1008
+      ],
+      "review": "All29 extracted one-second frames reviewed; selected native-resolution frames inspected. No audio or every-frame review claim.",
+      "observedPreview": "https://empireai-wk9qnjwrq-empireai-os.vercel.app",
+      "observedRevision": "a8f1f709dcf5f3b055050ddd1123c7c7ae70717a",
+      "verifiedPass": [
+        "Saved table renders in two columns with Test and Required support headings",
+        "All four rows visible across scroll positions: Customer value, Served economics, Operational feasibility, Capital and downside",
+        "No raw pipe/delimiter paragraph remains in observed table",
+        "Jump to latest remains outside message text; composer visible during internal scrolling"
+      ],
+      "remaining": [
+        "Mobile live acceptance",
+        "Remaining site-wide nested controls and live edge inventory"
+      ],
+      "safety": "No message sent or mutation observed. No code changes, CI reruns or deployments performed."
+    }
+  }
+]
