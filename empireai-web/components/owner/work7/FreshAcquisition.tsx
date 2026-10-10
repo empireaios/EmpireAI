@@ -1,0 +1,11 @@
+import {TechnicalEvidence} from './TechnicalEvidence';
+import s from './journeys.module.css';
+const count=(value:unknown)=>typeof value==='number'&&Number.isSafeInteger(value)&&value>=0?String(value):'Unknown';
+const messages:Record<string,string>={READY:'Ready for the next bounded supplier read.',TARGET_REACHED:'The daily unique-discovery target is recorded; qualification remains separate.',PAGE_PENDING:'A supplier page is queued or running.',PAGE_QUEUED:'A supplier page is queued.',WAITING_FOR_SCHEDULED_READ:'Waiting for the scheduled supplier read.',SCHEDULE_DISABLED_OR_MISSING:'Fresh reads are unavailable because the supplier schedule is disabled or missing.',PAGE_FAILED_REQUIRES_REVIEW:'A failed or interrupted supplier page needs review.',DAILY_PAGE_BOUND:'The daily additional-page limit has been reached.',SOURCE_EXHAUSTED:'The supplier page returned fewer products than the page limit.',PROVIDER_BACKOFF:'Supplier reads are paused until the recorded retry window.',SCHEDULED_READ_NOT_COMPLETE:'The scheduled supplier read has not completed.'};
+/** Readback only: no new requests or inferred qualification totals. */
+export function FreshAcquisition({value}:{value:unknown}){
+ if(!value)return null;
+ const data=typeof value==='object'&&!Array.isArray(value)?value as Record<string,unknown>:{};
+ const status=typeof data.status==='string'?data.status:'';
+ return <section className={s.details} aria-label="Fresh supplier read progress"><h3 className={s.rowTitle}>Fresh supplier reads</h3><p role="status">{messages[status]??'Fresh-read progress is unavailable or blocked; no successful discovery is inferred.'}</p><p>New unique observed products: {count(data.newCandidates)} / {count(data.target)} daily target · shortfall {count(data.shortfall)}.</p><p>Limit: {count(data.additionalPageLimit)} additional supplier pages per day · {count(data.pageSize)} products per page.</p><p className={s.note}>Page requests and returned rows are not unique-product or qualified-product counts. These discovery counts do not establish qualification, a completed Pillow assessment or an owner recommendation. This view does not request supplier pages.</p><TechnicalEvidence label="Inspect bounded fresh-read evidence" value={data}/></section>;
+}

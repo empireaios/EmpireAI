@@ -1,3 +1,4 @@
+import {FreshAcquisition} from './FreshAcquisition';
 import {TechnicalEvidence} from './TechnicalEvidence';
 import s from './journeys.module.css';
 
@@ -16,13 +17,14 @@ const reasons: Record<string, string> = {
 };
 
 /** Retained provider observations are separate from qualified missions and never imply approval. */
-export function ObservedCandidates({value,discovery,marketContext}: {value: unknown;discovery?:unknown;marketContext?:unknown}) {
+export function ObservedCandidates({value,discovery,marketContext,freshAcquisition}: {value: unknown;discovery?:unknown;marketContext?:unknown;freshAcquisition?:unknown}) {
  const data=row(value), products=list(data.products), counts=row(data.counts), scan=row(discovery), checkpoint=row(scan.checkpoint), marketData=row(marketContext), marketObservations=list(marketData.observations);
  if(!value)return null;
  return <section aria-label="Observed supplier products" className={s.details}>
   <h2 className={s.rowTitle}>Observed supplier products</h2>
   <p className={s.note}>Genuine saved source observations · {products.length} products in this sample. These are separate from the portfolio records and filters below.</p>
   <p><span className={s.badge}>Real observed identities</span><span className={s.badge}>Downstream commerce: simulation only</span></p>
+  <FreshAcquisition value={freshAcquisition}/>
   {discovery?<div className={s.details} aria-label="Retained source scan progress">{scan.availability==='RETAINED_SCAN_ONLY'&&scan.checkpoint?<><strong>Saved-evidence scan · {text(checkpoint.day)} SGT</strong><p>{typeof checkpoint.newCandidates==='number'?checkpoint.newCandidates:'Unknown'} newly catalogued parent products / {typeof checkpoint.target==='number'?checkpoint.target:'unknown'} daily target · shortfall {typeof checkpoint.shortfall==='number'?checkpoint.shortfall:'unknown'}.</p><p className={s.note}>This scans retained observations, not new supplier requests. {checkpoint.status==='SOURCE_EXHAUSTED'?'The saved snapshot is exhausted.':checkpoint.status==='TARGET_REACHED'?'The daily scan target has been reached.':'The bounded scan is pending or in progress.'} Qualification and Pillow assessment remain separate.</p></>:<p role="status">{scan.availability==='NOT_STARTED'?'Today’s saved-evidence scan has not started.':'Saved-evidence scan progress is unavailable; no progress is inferred.'}</p>}</div>:null}
   {data.availability!== 'RETAINED_SOURCE_READ' && data.availability!==undefined ? <p role="status">Saved supplier observations are unavailable. Existing portfolio records remain below.</p> : !products.length ? <p>No authentic supplier products are available in this saved sample.</p> : <table className={s.table} aria-label="Source screening; qualification and owner approval pending">
    <thead><tr><th scope="col">Product</th><th scope="col">Supplier / observed price</th><th scope="col">Screening / next action</th></tr></thead>
