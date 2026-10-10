@@ -1,0 +1,37 @@
+{
+  "schema": "work8-resume-v1",
+  "status": "IN_PROGRESS_NO_GO",
+  "frontend": {
+    "pr": 112,
+    "sha": "d35cbd41d1a7ec74d0ac734c9e2c10ab1ee96955",
+    "ciRunIds": [
+      38089501483,
+      38089501435,
+      38089501492,
+      38089501479
+    ]
+  },
+  "backend": {
+    "base": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+    "branch": "work8/autonomous-examination-20261011",
+    "sourceManifest": "candidate-source-manifest.json"
+  },
+  "productionLease": "NONE_ACQUIRED",
+  "effects": {
+    "commerce": 0,
+    "paidInference": 0,
+    "newInfrastructure": 0,
+    "release": false
+  },
+  "next": [
+    "Persist backend candidate and open draft PR against work2/backend-release",
+    "Read exact-head CI; fix concretefailures only",
+    "Complete remaining fault and safety map cases",
+    "Resolve source rights/competitor evidence and authorised actual Pillow assessment",
+    "Authenticated owner isolated walkthrough and complete examination programme",
+    "Prepare legitimate independent closure only when mandatory criteria pass; no Work9 activation"
+  ],
+  "register": "register.json",
+  "faultMap": "assurance-fault-coverage.json",
+  "closureReceipt": null
+}

@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {id,capacitySchema} from './contracts.js';
+import {id,capacitySchema,actorSchema,envelopeSchema} from './contracts.js';
 import {qualify,type CommerceState} from './engine.js';
 import {GovernedCommerceEngine} from './engine.js';
 import {digest} from './store.js';
@@ -8,7 +8,20 @@ export const preparationBatchSchema=z.object({id,missions:z.array(id).min(1).max
 export type Task={scopeKey?:string;listingKey?:string;batchId?:string;baseVersion?:number;requestDigest?:string;notBefore?:number;id:string;mission:string;workspace:string;owner:string;createdAt:number;cursor:number;fence:number;status:'PENDING'|'RUNNING'|'COMPLETE'|'BLOCKED';error:string|null;steps:ReturnType<typeof acceptanceScenario>['steps'];attempts:number;maxSteps:number;maxAttempts:number;paidInference:0};
 /** Uses the runtime's single durable task table. No external writes, inference, polling loop or in-memory completion state. */
 export class CommerceWorker {
- constructor(readonly engine:GovernedCommerceEngine){}
+ constructor(readonly engine:GovernedCommerceEngine){
+  // Freeze execution intent after its first committed receipt, including the
+  // receipt-before-cursor crash window. Pre-execution fixture configuration is
+  // still permitted; status/cursor remain mutable only through verified reads.
+  engine.store.db.exec(`CREATE TRIGGER IF NOT EXISTS immutable_commerce_task_plan BEFORE UPDATE ON commerce_runtime_tasks
+   WHEN EXISTS(SELECT 1 FROM commerce_runtime_receipts WHERE workspace=OLD.workspace AND mission=OLD.mission)
+   AND (NEW.workspace IS NOT OLD.workspace OR NEW.id IS NOT OLD.id OR NEW.mission IS NOT OLD.mission
+    OR json_extract(NEW.record,'$.steps') IS NOT json_extract(OLD.record,'$.steps')
+    OR json_extract(NEW.record,'$.baseVersion') IS NOT json_extract(OLD.record,'$.baseVersion')
+    OR json_extract(NEW.record,'$.owner') IS NOT json_extract(OLD.record,'$.owner')
+    OR json_extract(NEW.record,'$.maxSteps') IS NOT json_extract(OLD.record,'$.maxSteps')
+    OR json_extract(NEW.record,'$.maxAttempts') IS NOT json_extract(OLD.record,'$.maxAttempts'))
+   BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TASK_PLAN'); END;`);
+ }
  /** Deterministic local reduction, before any model review; uses canonical qualification and Work5 economics. */
  screen(workspace:string,missions:string[],limit:number){
   return [...new Set(missions)].map(mission=>{const r=this.engine.store.history(workspace,mission).at(-1);if(!r)return {mission,version:0,qualified:false,priority:0,reasons:['MISSION_NOT_FOUND'],identity:null};
@@ -43,7 +56,7 @@ export class CommerceWorker {
    return created;
   });
  }
- batchTasks(workspace:string,id:string):Task[]{return this.engine.store.db.prepare("SELECT record FROM commerce_runtime_tasks WHERE workspace=? AND json_extract(record,'$.batchId')=? ORDER BY id").all(workspace,id).map(r=>JSON.parse(String(r.record)) as Task);}
+ batchTasks(workspace:string,id:string):Task[]{return this.engine.store.db.prepare("SELECT record FROM commerce_runtime_tasks WHERE workspace=? AND json_extract(record,'$.batchId')=? ORDER BY id").all(workspace,id).map(r=>this.get(workspace,(JSON.parse(String(r.record)) as Task).id)!);}
  batchProgress(workspace:string,id:string){const tasks=this.batchTasks(workspace,id);return {id,total:tasks.length,intercepted:tasks.filter(t=>t.status==='COMPLETE').length,blocked:tasks.filter(t=>t.status==='BLOCKED').length,pending:tasks.filter(t=>['PENDING','RUNNING'].includes(t.status)).length,items:tasks.map(t=>({id:t.id,mission:t.mission,status:t.status,error:t.error})),externalEffects:0,classification:'SYNTHETIC_PREPARATION_ONLY'};}
 
  enqueue(workspace:string,owner:string,id:string):Task{
@@ -51,9 +64,29 @@ export class CommerceWorker {
    const now=this.engine.clock();const t:Task={id,mission:'acceptance:'+id,workspace,owner,createdAt:now,cursor:0,fence:0,status:'PENDING',error:null,steps:acceptanceScenario(workspace,owner,now).steps,attempts:0,maxSteps:32,maxAttempts:3,paidInference:0};
    this.engine.store.db.prepare('INSERT INTO commerce_runtime_tasks VALUES(?,?,?,?,?)').run(workspace,id,t.mission,JSON.stringify(t),0);return t;});
  }
- get(workspace:string,id:string):Task|null{const row=this.engine.store.db.prepare('SELECT record FROM commerce_runtime_tasks WHERE workspace=? AND id=?').get(workspace,id);return row?JSON.parse(String(row.record)) as Task:null;}
- list(workspace:string):Task[]{return this.engine.store.db.prepare('SELECT record FROM commerce_runtime_tasks WHERE workspace=? ORDER BY rowid DESC LIMIT 2000').all(workspace).map(x=>JSON.parse(String(x.record)) as Task);}
- nextReady(workspace:string):Task|null{const row=this.engine.store.db.prepare("SELECT record FROM commerce_runtime_tasks WHERE workspace=? AND json_extract(record,'$.status') IN ('PENDING','RUNNING') AND coalesce(json_extract(record,'$.notBefore'),0)<=? ORDER BY rowid LIMIT 1").get(workspace,this.engine.clock());return row?JSON.parse(String(row.record)) as Task:null;}
+ get(workspace:string,id:string):Task|null{
+  const row=this.engine.store.db.prepare('SELECT record,mission,version FROM commerce_runtime_tasks WHERE workspace=? AND id=?').get(workspace,id);if(!row)return null;
+  let task:Task;try{task=JSON.parse(String(row.record)) as Task;}catch{throw Error('TASK_CORRUPT');}
+  const invalid=()=>{throw Error('TASK_CORRUPT');};
+  if(task.id!==id||task.workspace!==workspace||task.mission!==row.mission||task.fence!==row.version||!Array.isArray(task.steps)||!task.steps.length||!Number.isSafeInteger(task.cursor)||task.cursor<0||task.cursor>task.steps.length||!Number.isSafeInteger(task.attempts)||task.attempts<0||task.fence!==task.cursor+task.attempts||!Number.isSafeInteger(task.maxSteps)||task.steps.length>task.maxSteps||!Number.isSafeInteger(task.baseVersion??0)||(task.baseVersion??0)<0||!['PENDING','RUNNING','COMPLETE','BLOCKED'].includes(task.status)||task.paidInference!==0)invalid();
+  const history=this.engine.store.history(workspace,task.mission),base=task.baseVersion??0;
+  if(history.length<base+task.cursor)invalid();
+  if(task.status==='COMPLETE'&&task.cursor!==task.steps.length)invalid();
+  if(!['COMPLETE','BLOCKED'].includes(task.status)&&history.length>base+task.cursor+1)invalid();
+  // One extra committed receipt is valid only when it is exactly the next
+  // idempotent step whose checkpoint update was interrupted.
+  const committed=task.status==='BLOCKED'?task.cursor:Math.min(task.steps.length,history.length-base);
+  for(let index=0;index<committed;index++){
+   const step=task.steps[index]!,receipt=history[base+index]!;
+   try{
+    const actor=actorSchema.parse(step.actor),input=envelopeSchema.parse({id:digest({task:id,step:index}),missionId:task.mission,expectedVersion:base+index,command:step.command});
+    if(actor.workspace!==workspace||receipt.id!==input.id||receipt.requestDigest!==digest({actor,input}))invalid();
+   }catch{invalid();}
+  }
+  return task;
+ }
+ list(workspace:string):Task[]{return this.engine.store.db.prepare('SELECT record FROM commerce_runtime_tasks WHERE workspace=? ORDER BY rowid DESC LIMIT 2000').all(workspace).map(x=>this.get(workspace,(JSON.parse(String(x.record)) as Task).id)!);}
+ nextReady(workspace:string):Task|null{const row=this.engine.store.db.prepare("SELECT record FROM commerce_runtime_tasks WHERE workspace=? AND json_extract(record,'$.status') IN ('PENDING','RUNNING') AND coalesce(json_extract(record,'$.notBefore'),0)<=? ORDER BY rowid LIMIT 1").get(workspace,this.engine.clock());return row?this.get(workspace,(JSON.parse(String(row.record)) as Task).id):null;}
  tick(workspace:string,id:string,expectedFence:number):Task{
   const task=this.get(workspace,id);if(!task)throw Error('TASK_NOT_FOUND');if(task.fence!==expectedFence)throw Error('TASK_FENCE_CONFLICT');if(task.status==='COMPLETE')return task;if(task.status==='BLOCKED')throw Error('TASK_BLOCKED_REVIEW_REQUIRED');if((task.notBefore??0)>this.engine.clock())return task;
   if(task.cursor>=task.maxSteps||task.attempts>=task.maxAttempts)throw Error('TASK_BOUND_EXCEEDED');

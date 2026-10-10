@@ -1,0 +1,2331 @@
+{
+  "scope": "local component exams; not Work8 completion",
+  "results": [
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "cache-expiry",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 0,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "detected before repair",
+          "passed": true
+        },
+        {
+          "name": "resource actually recovered",
+          "passed": true
+        },
+        {
+          "name": "completed repair not replayed",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "fault-injected",
+          "detail": {
+            "cache": false,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "recovery-result",
+          "detail": {
+            "status": "VERIFIED",
+            "resource": {
+              "cache": true,
+              "worker": true,
+              "executions": 1
+            }
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "detected before repair",
+              "passed": true
+            },
+            {
+              "name": "resource actually recovered",
+              "passed": true
+            },
+            {
+              "name": "completed repair not replayed",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_ca5d25a3-a09c-4043-bf03-d563c880e238",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "cache-expiry",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000812000,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_34b506c3-b29c-4aa1-8e31-2e41a55d4412",
+            "incidentId": "inc_ca5d25a3-a09c-4043-bf03-d563c880e238",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "fb313fad88565339310a4bad9adf66497aaa4fe34de199d5596f4581e2e0b58f",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 3,
+          "at": 1800000812000,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_34b506c3-b29c-4aa1-8e31-2e41a55d4412",
+            "incidentId": "inc_ca5d25a3-a09c-4043-bf03-d563c880e238",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "VERIFIED",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "fb313fad88565339310a4bad9adf66497aaa4fe34de199d5596f4581e2e0b58f",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "reportedHealthy": true
+            },
+            "verification": {
+              "healthy": true,
+              "observedAt": 1800000812000,
+              "source": "independent-resource-read"
+            },
+            "completedAt": 1800000812000
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "duplicate-delivery",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 0,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "detected before repair",
+          "passed": true
+        },
+        {
+          "name": "duplicate coalesced",
+          "passed": true
+        },
+        {
+          "name": "resource actually recovered",
+          "passed": true
+        },
+        {
+          "name": "completed repair not replayed",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "fault-injected",
+          "detail": {
+            "cache": false,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "recovery-result",
+          "detail": {
+            "status": "VERIFIED",
+            "resource": {
+              "cache": true,
+              "worker": true,
+              "executions": 1
+            }
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "detected before repair",
+              "passed": true
+            },
+            {
+              "name": "duplicate coalesced",
+              "passed": true
+            },
+            {
+              "name": "resource actually recovered",
+              "passed": true
+            },
+            {
+              "name": "completed repair not replayed",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_d1e1240b-b5b9-4567-9f2a-e63e57883c6f",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "duplicate-delivery",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000812000,
+          "type": "INCIDENT_OBSERVED",
+          "body": {
+            "incidentId": "inc_d1e1240b-b5b9-4567-9f2a-e63e57883c6f",
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "duplicate-delivery",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 3,
+          "at": 1800000812000,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_bb0df6ee-bef7-4a69-a88b-998f2f0486a7",
+            "incidentId": "inc_d1e1240b-b5b9-4567-9f2a-e63e57883c6f",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "be6786a2a743a8f95cf3305b2fc9564b5a58bf17372febdeab41e4fa6b05afb7",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 4,
+          "at": 1800000812000,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_bb0df6ee-bef7-4a69-a88b-998f2f0486a7",
+            "incidentId": "inc_d1e1240b-b5b9-4567-9f2a-e63e57883c6f",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "VERIFIED",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "be6786a2a743a8f95cf3305b2fc9564b5a58bf17372febdeab41e4fa6b05afb7",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "reportedHealthy": true
+            },
+            "verification": {
+              "healthy": true,
+              "observedAt": 1800000812000,
+              "source": "independent-resource-read"
+            },
+            "completedAt": 1800000812000
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "failed-repair",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 202,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "detected before repair",
+          "passed": true
+        },
+        {
+          "name": "executor success cannot forge independent recovery",
+          "passed": true
+        },
+        {
+          "name": "attempt budget opens circuit",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "fault-injected",
+          "detail": {
+            "cache": false,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "recovery-result",
+          "detail": {
+            "status": "FAILED",
+            "resource": {
+              "cache": false,
+              "worker": true,
+              "executions": 1
+            }
+          }
+        },
+        {
+          "at": 1800000812101,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812202,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "detected before repair",
+              "passed": true
+            },
+            {
+              "name": "executor success cannot forge independent recovery",
+              "passed": true
+            },
+            {
+              "name": "attempt budget opens circuit",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_8e19ce50-6739-4208-a98d-248ab6cea0e5",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "failed-repair",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000812000,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_949c8514-fba3-44da-bf2e-0e67989fc8b0",
+            "incidentId": "inc_8e19ce50-6739-4208-a98d-248ab6cea0e5",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "5067bc6c0456e85b63e5f4a9bac175dbd7954771cc09c3070ca392c5e88ddcae",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 3,
+          "at": 1800000812000,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_949c8514-fba3-44da-bf2e-0e67989fc8b0",
+            "incidentId": "inc_8e19ce50-6739-4208-a98d-248ab6cea0e5",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "FAILED",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "5067bc6c0456e85b63e5f4a9bac175dbd7954771cc09c3070ca392c5e88ddcae",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "reportedHealthy": true
+            },
+            "verification": {
+              "healthy": false,
+              "observedAt": 1800000812000,
+              "source": "independent-resource-read"
+            },
+            "completedAt": 1800000812000
+          }
+        },
+        {
+          "seq": 4,
+          "at": 1800000812101,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_23f9c56c-7561-40cc-b929-b2d6b4a40b33",
+            "incidentId": "inc_8e19ce50-6739-4208-a98d-248ab6cea0e5",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812101,
+            "deadlineAt": 1800000812201,
+            "idempotencyKey": "5cc6964bfcee3399f930ab5196ae1b40335df6e2591e909b28a80b1b3ce6afa2",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 5,
+          "at": 1800000812101,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_23f9c56c-7561-40cc-b929-b2d6b4a40b33",
+            "incidentId": "inc_8e19ce50-6739-4208-a98d-248ab6cea0e5",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "FAILED",
+            "startedAt": 1800000812101,
+            "deadlineAt": 1800000812201,
+            "idempotencyKey": "5cc6964bfcee3399f930ab5196ae1b40335df6e2591e909b28a80b1b3ce6afa2",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "reportedHealthy": true
+            },
+            "verification": {
+              "healthy": false,
+              "observedAt": 1800000812101,
+              "source": "independent-resource-read"
+            },
+            "completedAt": 1800000812101
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "unknown-outcome",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 0,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "detected before repair",
+          "passed": true
+        },
+        {
+          "name": "unknown outcome prevents replay",
+          "passed": true
+        },
+        {
+          "name": "unknown is never closed",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "fault-injected",
+          "detail": {
+            "cache": false,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "recovery-result",
+          "detail": {
+            "status": "UNKNOWN",
+            "resource": {
+              "cache": false,
+              "worker": true,
+              "executions": 1
+            }
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "detected before repair",
+              "passed": true
+            },
+            {
+              "name": "unknown outcome prevents replay",
+              "passed": true
+            },
+            {
+              "name": "unknown is never closed",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_69f0a03e-08e7-4598-98b5-976b6327516c",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "unknown-outcome",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000812000,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_ad002ffe-8c72-41bb-8642-e4f4a364eab5",
+            "incidentId": "inc_69f0a03e-08e7-4598-98b5-976b6327516c",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "cd9a1bb165974b222a1f5a7b9fab9df6d5941700554876d1f16bc595176a5f49",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 3,
+          "at": 1800000812000,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_ad002ffe-8c72-41bb-8642-e4f4a364eab5",
+            "incidentId": "inc_69f0a03e-08e7-4598-98b5-976b6327516c",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "UNKNOWN",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "cd9a1bb165974b222a1f5a7b9fab9df6d5941700554876d1f16bc595176a5f49",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "error": "RUNBOOK_ERROR_OUTCOME_UNKNOWN",
+            "completedAt": 1800000812000
+          }
+        },
+        {
+          "seq": 4,
+          "at": 1800000812000,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_ad002ffe-8c72-41bb-8642-e4f4a364eab5",
+            "incidentId": "inc_69f0a03e-08e7-4598-98b5-976b6327516c",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "UNKNOWN",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "cd9a1bb165974b222a1f5a7b9fab9df6d5941700554876d1f16bc595176a5f49",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "error": "OUTCOME_UNKNOWN",
+            "completedAt": 1800000812000
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "expired-approval",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 3600001,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "stale owner approval denied",
+          "passed": true
+        },
+        {
+          "name": "owner-controlled repair never ran",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800004412001,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "stale owner approval denied",
+              "passed": true
+            },
+            {
+              "name": "owner-controlled repair never ran",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_74e65f44-546d-4b2a-b554-eb7fb6aa4cfd",
+              "fingerprint": "4ce6ee87eabaec365d66062ff3784443611834fd0fef8274d70400b4abae1d68",
+              "probeId": "worker",
+              "capability": "worker",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated worker fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "owner",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "worker",
+              "capability": "worker",
+              "runbookId": "owner",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated worker fault",
+              "evidence": {
+                "scenarioId": "expired-approval",
+                "seed": 812,
+                "resource": {
+                  "cache": true,
+                  "worker": false,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000812000,
+          "type": "APPROVAL_REQUESTED",
+          "body": {
+            "id": "apr_a705eb20-e603-4f63-a457-e335147ed2e3",
+            "incidentId": "inc_74e65f44-546d-4b2a-b554-eb7fb6aa4cfd",
+            "runbookId": "owner",
+            "runbookVersion": "work8-v1",
+            "revision": "work8-local-exam",
+            "decision": "PENDING",
+            "createdAt": 1800000812000,
+            "expiresAt": 1800004412000,
+            "consumed": false,
+            "title": "Isolated worker fault",
+            "proposedAction": "Execute reviewed runbook owner version work8-v1",
+            "approvalReason": "This operational recovery requires a specific owner decision.",
+            "impact": "Isolated worker fault",
+            "alreadyDone": "Fault detected and original evidence retained; no owner-controlled recovery has executed.",
+            "consequences": {
+              "approve": "Execute this scoped recovery once, then independently verify the affected capability.",
+              "reject": "Do not execute this recovery; preserve the incident and safe containment.",
+              "defer": "Keep the incident open and defer this recovery.",
+              "inaction": "No owner-controlled recovery executes; the affected capability may remain degraded."
+            }
+          }
+        },
+        {
+          "seq": 3,
+          "at": 1800004412001,
+          "type": "OWNER_COMMAND",
+          "body": {
+            "id": "expired-approve",
+            "digest": "59f1dccb317d83429e7f3a3c190f4d9a79a182bb68f6d6b57dc9efe477d64bb1",
+            "type": "approve",
+            "ownerId": "exam-owner",
+            "at": 1800004412001,
+            "revision": "work8-local-exam",
+            "status": "ACTION_DENIED",
+            "reason": "APPROVAL_STALE_OR_INVALID"
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "forbidden-financial-repair",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 0,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "financial repair denied",
+          "passed": true
+        },
+        {
+          "name": "incident remains visible",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "financial repair denied",
+              "passed": true
+            },
+            {
+              "name": "incident remains visible",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_1632cc0e-7e22-4b79-aec6-80d22466526c",
+              "fingerprint": "8de2b962e5d11a78b29baa291270e1f3206bc6f96daf02cbd591cfb70a54ab01",
+              "probeId": "journal",
+              "capability": "finance",
+              "classification": "FINANCIAL_DISCREPANCY",
+              "severity": "HIGH",
+              "summary": "Isolated finance fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "forbidden",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "journal",
+              "capability": "finance",
+              "runbookId": "forbidden",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "FINANCIAL_DISCREPANCY",
+              "severity": "HIGH",
+              "summary": "Isolated finance fault",
+              "evidence": {
+                "scenarioId": "forbidden-financial-repair",
+                "seed": 812,
+                "resource": {
+                  "cache": true,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "watchdog-loss",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 90001,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "independent watchdog detects lost primary heartbeat",
+          "passed": true
+        },
+        {
+          "name": "watchdog does not impersonate primary monitor",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000902001,
+          "stage": "watchdog-inspection",
+          "detail": {
+            "fresh": false
+          }
+        },
+        {
+          "at": 1800000902001,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "independent watchdog detects lost primary heartbeat",
+              "passed": true
+            },
+            {
+              "name": "watchdog does not impersonate primary monitor",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000902001,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_7b47c2b4-0928-4204-b855-b4c6960926e8",
+              "fingerprint": "ee129657625ebb719330bde48641eba3d3d93e1d3185e157770374b046774e0c",
+              "probeId": "assurance-primary-monitor",
+              "capability": "assurance-monitor",
+              "classification": "MONITORING_COVERAGE_LOST",
+              "severity": "CRITICAL",
+              "summary": "Primary Assurance monitor heartbeat is missing or stale",
+              "status": "DETECTED",
+              "firstAt": 1800000902001,
+              "lastAt": 1800000902001,
+              "revision": "work8-local-exam",
+              "runbookId": null,
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "assurance-primary-monitor",
+              "capability": "assurance-monitor",
+              "status": "STALE",
+              "severity": "CRITICAL",
+              "classification": "MONITORING_COVERAGE_LOST",
+              "summary": "Primary Assurance monitor heartbeat is missing or stale",
+              "evidence": {
+                "heartbeat": {
+                  "component": "monitor",
+                  "at": 1800000812000,
+                  "revision": "work8-local-exam"
+                }
+              },
+              "observedAt": 1800000902001,
+              "revision": "work8-local-exam"
+            }
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "compounded-cache-worker",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 0,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "detected before repair",
+          "passed": true
+        },
+        {
+          "name": "resource actually recovered",
+          "passed": true
+        },
+        {
+          "name": "completed repair not replayed",
+          "passed": true
+        },
+        {
+          "name": "unrelated fault not hidden by cache recovery",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "fault-injected",
+          "detail": {
+            "cache": false,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "recovery-result",
+          "detail": {
+            "status": "VERIFIED",
+            "resource": {
+              "cache": true,
+              "worker": false,
+              "executions": 1
+            }
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "detected before repair",
+              "passed": true
+            },
+            {
+              "name": "resource actually recovered",
+              "passed": true
+            },
+            {
+              "name": "completed repair not replayed",
+              "passed": true
+            },
+            {
+              "name": "unrelated fault not hidden by cache recovery",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_ec1214bc-1e13-4fb6-8ba5-56ba27e58a6d",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "compounded-cache-worker",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_da5489e1-c1d6-449f-af98-d54ee2d2bae4",
+              "fingerprint": "4ce6ee87eabaec365d66062ff3784443611834fd0fef8274d70400b4abae1d68",
+              "probeId": "worker",
+              "capability": "worker",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated worker fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "owner",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "worker",
+              "capability": "worker",
+              "runbookId": "owner",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated worker fault",
+              "evidence": {
+                "scenarioId": "compounded-cache-worker",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": false,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 3,
+          "at": 1800000812000,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_908fca82-473b-451b-8585-0aee58e9d98a",
+            "incidentId": "inc_ec1214bc-1e13-4fb6-8ba5-56ba27e58a6d",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "7f4222af95ad2dd7666c1e26be9ca526d97c8568681b41e100d1ef80a3cbc097",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 4,
+          "at": 1800000812000,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_908fca82-473b-451b-8585-0aee58e9d98a",
+            "incidentId": "inc_ec1214bc-1e13-4fb6-8ba5-56ba27e58a6d",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "VERIFIED",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "7f4222af95ad2dd7666c1e26be9ca526d97c8568681b41e100d1ef80a3cbc097",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "reportedHealthy": true
+            },
+            "verification": {
+              "healthy": true,
+              "observedAt": 1800000812000,
+              "source": "independent-resource-read"
+            },
+            "completedAt": 1800000812000
+          }
+        },
+        {
+          "seq": 5,
+          "at": 1800000812000,
+          "type": "APPROVAL_REQUESTED",
+          "body": {
+            "id": "apr_2e3cf17b-d180-4a0f-aec0-fdf62c52dc0b",
+            "incidentId": "inc_da5489e1-c1d6-449f-af98-d54ee2d2bae4",
+            "runbookId": "owner",
+            "runbookVersion": "work8-v1",
+            "revision": "work8-local-exam",
+            "decision": "PENDING",
+            "createdAt": 1800000812000,
+            "expiresAt": 1800004412000,
+            "consumed": false,
+            "title": "Isolated worker fault",
+            "proposedAction": "Execute reviewed runbook owner version work8-v1",
+            "approvalReason": "This operational recovery requires a specific owner decision.",
+            "impact": "Isolated worker fault",
+            "alreadyDone": "Fault detected and original evidence retained; no owner-controlled recovery has executed.",
+            "consequences": {
+              "approve": "Execute this scoped recovery once, then independently verify the affected capability.",
+              "reject": "Do not execute this recovery; preserve the incident and safe containment.",
+              "defer": "Keep the incident open and defer this recovery.",
+              "inaction": "No owner-controlled recovery executes; the affected capability may remain degraded."
+            }
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "restart-preservation",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 0,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "detected before repair",
+          "passed": true
+        },
+        {
+          "name": "resource actually recovered",
+          "passed": true
+        },
+        {
+          "name": "completed repair not replayed",
+          "passed": true
+        },
+        {
+          "name": "restart preserves immutable audit and recovery",
+          "passed": true
+        },
+        {
+          "name": "restart cannot repeat completed repair",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "fault-injected",
+          "detail": {
+            "cache": false,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "recovery-result",
+          "detail": {
+            "status": "VERIFIED",
+            "resource": {
+              "cache": true,
+              "worker": true,
+              "executions": 1
+            }
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "detected before repair",
+              "passed": true
+            },
+            {
+              "name": "resource actually recovered",
+              "passed": true
+            },
+            {
+              "name": "completed repair not replayed",
+              "passed": true
+            },
+            {
+              "name": "restart preserves immutable audit and recovery",
+              "passed": true
+            },
+            {
+              "name": "restart cannot repeat completed repair",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_3e5b40d5-a723-405b-977f-0c0956740640",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "restart-preservation",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000812000,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_844c2cc9-89ca-495b-be1c-467eff744f8d",
+            "incidentId": "inc_3e5b40d5-a723-405b-977f-0c0956740640",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "7cea8219b2e0170accd0ea02b5720e562b87cccc433286fdf88ca1e9ba192624",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 3,
+          "at": 1800000812000,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_844c2cc9-89ca-495b-be1c-467eff744f8d",
+            "incidentId": "inc_3e5b40d5-a723-405b-977f-0c0956740640",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "VERIFIED",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "7cea8219b2e0170accd0ea02b5720e562b87cccc433286fdf88ca1e9ba192624",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "reportedHealthy": true
+            },
+            "verification": {
+              "healthy": true,
+              "observedAt": 1800000812000,
+              "source": "independent-resource-read"
+            },
+            "completedAt": 1800000812000
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "recurring-failure",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 202,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "detected before repair",
+          "passed": true
+        },
+        {
+          "name": "resource actually recovered",
+          "passed": true
+        },
+        {
+          "name": "completed repair not replayed",
+          "passed": true
+        },
+        {
+          "name": "recurrence retained as a new unresolved incident",
+          "passed": true
+        },
+        {
+          "name": "cross-incident oscillation bounded",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "fault-injected",
+          "detail": {
+            "cache": false,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812000,
+          "stage": "recovery-result",
+          "detail": {
+            "status": "VERIFIED",
+            "resource": {
+              "cache": true,
+              "worker": true,
+              "executions": 1
+            }
+          }
+        },
+        {
+          "at": 1800000812101,
+          "stage": "repair-attempt",
+          "detail": {
+            "cache": false
+          }
+        },
+        {
+          "at": 1800000812202,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "detected before repair",
+              "passed": true
+            },
+            {
+              "name": "resource actually recovered",
+              "passed": true
+            },
+            {
+              "name": "completed repair not replayed",
+              "passed": true
+            },
+            {
+              "name": "recurrence retained as a new unresolved incident",
+              "passed": true
+            },
+            {
+              "name": "cross-incident oscillation bounded",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_7e60f127-e552-4e94-b9e1-20395aac0ced",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "recurring-failure",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000812000,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_58242f1b-d8ca-44e0-918e-5fea54d858c4",
+            "incidentId": "inc_7e60f127-e552-4e94-b9e1-20395aac0ced",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "f92d6432663c26620dd2e2dfa16bd2f46f9db63e198a1a0cbd20a60e043b2c9a",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 3,
+          "at": 1800000812000,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_58242f1b-d8ca-44e0-918e-5fea54d858c4",
+            "incidentId": "inc_7e60f127-e552-4e94-b9e1-20395aac0ced",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "VERIFIED",
+            "startedAt": 1800000812000,
+            "deadlineAt": 1800000812100,
+            "idempotencyKey": "f92d6432663c26620dd2e2dfa16bd2f46f9db63e198a1a0cbd20a60e043b2c9a",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "reportedHealthy": true
+            },
+            "verification": {
+              "healthy": true,
+              "observedAt": 1800000812000,
+              "source": "independent-resource-read"
+            },
+            "completedAt": 1800000812000
+          }
+        },
+        {
+          "seq": 4,
+          "at": 1800000812101,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_9b790e72-7f6d-420d-83c1-b3a930862a11",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812101,
+              "lastAt": 1800000812101,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "recurring-failure",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 1
+                }
+              },
+              "observedAt": 1800000812101,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 5,
+          "at": 1800000812101,
+          "type": "RECOVERY_ADMITTED",
+          "body": {
+            "id": "rec_fa101b12-82e3-436a-8b44-b0656830d445",
+            "incidentId": "inc_9b790e72-7f6d-420d-83c1-b3a930862a11",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "RUNNING",
+            "startedAt": 1800000812101,
+            "deadlineAt": 1800000812201,
+            "idempotencyKey": "3e4f7b58932945f1e860df7b347600ebebb4f6f65a3a8432ce75f9c86e1b29fb",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null
+          }
+        },
+        {
+          "seq": 6,
+          "at": 1800000812101,
+          "type": "RECOVERY_RESULT",
+          "body": {
+            "id": "rec_fa101b12-82e3-436a-8b44-b0656830d445",
+            "incidentId": "inc_9b790e72-7f6d-420d-83c1-b3a930862a11",
+            "runbookId": "refresh",
+            "runbookVersion": "work8-v1",
+            "authority": "A",
+            "revision": "work8-local-exam",
+            "status": "VERIFIED",
+            "startedAt": 1800000812101,
+            "deadlineAt": 1800000812201,
+            "idempotencyKey": "3e4f7b58932945f1e860df7b347600ebebb4f6f65a3a8432ce75f9c86e1b29fb",
+            "actor": "assurance",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "reportedHealthy": true
+            },
+            "verification": {
+              "healthy": true,
+              "observedAt": 1800000812101,
+              "source": "independent-resource-read"
+            },
+            "completedAt": 1800000812101
+          }
+        },
+        {
+          "seq": 7,
+          "at": 1800000812202,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_e694fc2b-ebb9-4951-a324-5f1d1e13433b",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812202,
+              "lastAt": 1800000812202,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "recurring-failure",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 2
+                }
+              },
+              "observedAt": 1800000812202,
+              "revision": "work8-local-exam"
+            }
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    },
+    {
+      "schema": "work8-assurance-exam-v1",
+      "scenarioId": "stale-closure",
+      "seed": 812,
+      "environment": "isolated-local-control-plane",
+      "permittedEffects": [
+        "temporary SQLite database",
+        "process-local injected resource"
+      ],
+      "costCap": 0,
+      "timeMode": "virtual except control-plane timeout bound",
+      "elapsedVirtualMs": 180001,
+      "result": "PASS",
+      "checks": [
+        {
+          "name": "stale source claim cannot close unresolved incident",
+          "passed": true
+        },
+        {
+          "name": "financial and authority baseline preserved",
+          "passed": true
+        },
+        {
+          "name": "durable audit has incident evidence",
+          "passed": true
+        }
+      ],
+      "trace": [
+        {
+          "at": 1800000812000,
+          "stage": "healthy-baseline",
+          "detail": {
+            "cache": true,
+            "worker": true,
+            "executions": 0
+          }
+        },
+        {
+          "at": 1800000992001,
+          "stage": "stale-evidence-injected",
+          "detail": {
+            "resourceHealthy": false,
+            "claimedSourceAt": 1800000812000
+          }
+        },
+        {
+          "at": 1800000992001,
+          "stage": "independent-oracle",
+          "detail": [
+            {
+              "name": "stale source claim cannot close unresolved incident",
+              "passed": true
+            },
+            {
+              "name": "financial and authority baseline preserved",
+              "passed": true
+            },
+            {
+              "name": "durable audit has incident evidence",
+              "passed": true
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "at": 1800000812000,
+          "type": "INCIDENT_DETECTED",
+          "body": {
+            "incident": {
+              "id": "inc_b00ed92c-acaf-47a7-9b92-5501a716df30",
+              "fingerprint": "1c92643d3acca3054655132b6d31c7b9c6cb364468e33a711cd7d69c27867a02",
+              "probeId": "cache",
+              "capability": "cache",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "status": "DETECTED",
+              "firstAt": 1800000812000,
+              "lastAt": 1800000812000,
+              "revision": "work8-local-exam",
+              "runbookId": "refresh",
+              "recurrence": 1,
+              "attempts": 0,
+              "synthetic": true
+            },
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "runbookId": "refresh",
+              "synthetic": true,
+              "status": "FAILED",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "severity": "HIGH",
+              "summary": "Isolated cache fault",
+              "evidence": {
+                "scenarioId": "stale-closure",
+                "seed": 812,
+                "resource": {
+                  "cache": false,
+                  "worker": true,
+                  "executions": 0
+                }
+              },
+              "observedAt": 1800000812000,
+              "revision": "work8-local-exam"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "at": 1800000992001,
+          "type": "INCIDENT_OBSERVED",
+          "body": {
+            "incidentId": "inc_b00ed92c-acaf-47a7-9b92-5501a716df30",
+            "probe": {
+              "id": "cache",
+              "capability": "cache",
+              "synthetic": true,
+              "status": "STALE",
+              "classification": "INJECTED_RESOURCE_FAULT",
+              "summary": "Affirmative source evidence is stale or has an invalid observation time",
+              "evidence": {
+                "observedAt": 1800000812000,
+                "healthy": true
+              },
+              "observedAt": 1800000992001,
+              "revision": "work8-local-exam"
+            }
+          }
+        }
+      ],
+      "baselineDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "finalDigest": "4b17b35e292f3ca77b9a6de7e3375a483dd0b4cf23615ed684994b706796e5db",
+      "independentOracle": "resource reads + SQLite event readback; no executor success claims",
+      "limitations": [
+        "Component-level intercepted recovery; not whole-system or real-provider proof"
+      ]
+    }
+  ]
+}

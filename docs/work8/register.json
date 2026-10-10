@@ -1,0 +1,692 @@
+{
+  "schema": "work8-fixed-register-v1",
+  "denominator": 45,
+  "percentage": null,
+  "classification": "Fixed45 obligations. PARTIAL means scoped local evidence only; no completion percentage or Work8 closure.",
+  "requirements": [
+    {
+      "item": 1,
+      "requirement": "Work7 exact production/closure",
+      "mandateSections": "0,16,R6",
+      "recoveredClassification": "VERIFIED IMPLEMENTED",
+      "status": "PASS",
+      "evidence": [
+        "baseline.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Retain baseline; recheck after any authorised release"
+    },
+    {
+      "item": 2,
+      "requirement": "Financial and historical preservation",
+      "mandateSections": "2,6,16,22",
+      "recoveredClassification": "VERIFIED IMPLEMENTED",
+      "status": "PASS",
+      "evidence": [
+        "baseline.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Retain baseline; recheck after any authorised release"
+    },
+    {
+      "item": 3,
+      "requirement": "Approved UX and fifteen safety controls",
+      "mandateSections": "2,10,16,17,22",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "../mission-state/work7-owner-ux-20261010/PRODUCTION-COMPLETE.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Approved Work7 evidence recovered; Work8 fifteen-control matrix remains required"
+    },
+    {
+      "item": 4,
+      "requirement": "Sandbox isolation and denied egress",
+      "mandateSections": "0,8,19,23",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "examination-blueprint.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Kernel network denial passes; filesystem confinement and hosted isolation remain unverified"
+    },
+    {
+      "item": 5,
+      "requirement": "Real-source connectivity and entitlements",
+      "mandateSections": "4,21,R3",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "source-authentic-readback.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Retained authenticated CJ reads verified; fresh daily provider acquisition not exercised"
+    },
+    {
+      "item": 6,
+      "requirement": "Authentic source product records",
+      "mandateSections": "4,R1,R4",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "source-visibility.md",
+        "source-authentic-projection.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "10 genuine parent identities and10 variants retained; no qualified real products"
+    },
+    {
+      "item": 7,
+      "requirement": "Product images and usage rights",
+      "mandateSections": "4,R1,R5",
+      "recoveredClassification": "EXTERNAL DEPENDENCY",
+      "status": "BLOCKED",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE NOW; prerequisite evidence/access or separate authority may be needed after technical preparation",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "0/19 image URLs have verified display rights; obtain supplier capability/rights evidence"
+    },
+    {
+      "item": 8,
+      "requirement": "Observed supplier prices/currencies",
+      "mandateSections": "4,R1,R4",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "source-visibility.md",
+        "source-currency-contract.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Exact variant prices USD verified; parent currency and landed economics incomplete"
+    },
+    {
+      "item": 9,
+      "requirement": "Competitor and market evidence",
+      "mandateSections": "4,R1",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PENDING",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Acquire authorised authentic competitor/demand evidence; none established"
+    },
+    {
+      "item": 10,
+      "requirement": "Normalization identity and deduplication",
+      "mandateSections": "4,19,R2",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Identity and digest projection verified; discovery scheduling still being integrated"
+    },
+    {
+      "item": 11,
+      "requirement": "Freshness and quarantine",
+      "mandateSections": "4,7,R3",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Expiry and contradiction quarantine tested; ongoing real refresh not proven"
+    },
+    {
+      "item": 12,
+      "requirement": "Software screening and economics",
+      "mandateSections": "4,6",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Completeness screening defers10/10; full independent product qualification absent"
+    },
+    {
+      "item": 13,
+      "requirement": "Actual Pillow assessment binding",
+      "mandateSections": "4,R1,R2,R5",
+      "recoveredClassification": "EXTERNAL DEPENDENCY",
+      "status": "BLOCKED",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE NOW; prerequisite evidence/access or separate authority may be needed after technical preparation",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "No genuine linked Pillow assessment; requires sufficient evidence and authorised inference budget"
+    },
+    {
+      "item": 14,
+      "requirement": "Owner recommendations and decisions",
+      "mandateSections": "4,10,R2",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PENDING",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Recommendations correctly absent until completed qualified assessments"
+    },
+    {
+      "item": 15,
+      "requirement": "Initial up-to-100 qualification",
+      "mandateSections": "4,8,19",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PENDING",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "10 real observations do not establish100 initial qualified products"
+    },
+    {
+      "item": 16,
+      "requirement": "Daily discovery and low-supply outcomes",
+      "mandateSections": "4,8,19",
+      "recoveredClassification": "MISSING",
+      "status": "PARTIAL",
+      "evidence": [
+        "examination-blueprint.json",
+        "source-discovery-worker.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Bounded durable retained discovery integrated;10 genuineparents/shortfall90; fresh100/day provider acquisition still unproven"
+    },
+    {
+      "item": 17,
+      "requirement": "Transactional active portfolio cap",
+      "mandateSections": "4,8,19",
+      "recoveredClassification": "DEFECTIVE",
+      "status": "PARTIAL",
+      "evidence": [
+        "portfolio-node22.log"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Local1000 cap and999/1000/1001 concurrent database race passed; deployed acceptance pending"
+    },
+    {
+      "item": 18,
+      "requirement": "Portfolio review retirement/replacement",
+      "mandateSections": "4,19",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "portfolio-node22.log"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Owner retirement and safe replacement preserve immutable history; wider market retirement pending"
+    },
+    {
+      "item": 19,
+      "requirement": "Simulated listing schema/media",
+      "mandateSections": "5,R2",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "finance-operating-exam-evidence.json.gz"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Canonical intercepted listing lifecycle exercised; real qualified assessment lineage absent"
+    },
+    {
+      "item": 20,
+      "requirement": "Simulated orders and supplier intents",
+      "mandateSections": "5,8",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "finance-operating-exam-evidence.json.gz"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Eight orders across four virtual mission scenarios; complete programme still pending"
+    },
+    {
+      "item": 21,
+      "requirement": "Partial shipments tracking/delivery",
+      "mandateSections": "5,8",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "finance-operating-exam-evidence.json.gz"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Partial fulfilment/tracking inherited and locally exercised; mandatory fault map pending"
+    },
+    {
+      "item": 22,
+      "requirement": "Refund returns and supplier credits",
+      "mandateSections": "5,6",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "finance-examination.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Canonical remedies reconciled; broader chargeback/provider outage coverage pending"
+    },
+    {
+      "item": 23,
+      "requirement": "Settlement payout holds/bank receipts",
+      "mandateSections": "5,6",
+      "recoveredClassification": "MISSING",
+      "status": "PARTIAL",
+      "evidence": [
+        "finance-examination.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Simulated hold/release/bank receipts tested; actual values remain unknown"
+    },
+    {
+      "item": 24,
+      "requirement": "Financial reconciliation and money conservation",
+      "mandateSections": "6,22",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "assurance-draft-review.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Verified canonical monetary lineage and independent tamper tests pass; full programme not certified"
+    },
+    {
+      "item": 25,
+      "requirement": "Live Cost Centre separate accounting",
+      "mandateSections": "6,22",
+      "recoveredClassification": "VERIFIED IMPLEMENTED",
+      "status": "PARTIAL",
+      "evidence": [
+        "baseline.json",
+        "finance-examination.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Simulation output excluded from actuals and technology costs; full owner equality pending"
+    },
+    {
+      "item": 26,
+      "requirement": "Assurance detection/correlation",
+      "mandateSections": "7,18,20",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "joint-exam-evidence.json.gz"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Joint actual receipt/cursor detection and incident recording pass locally"
+    },
+    {
+      "item": 27,
+      "requirement": "Bounded repair authority catalogue",
+      "mandateSections": "7,18,20",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "assurance-examinations.md",
+        "assurance-examinations.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Allowlisted receipt-cursor repair registered in candidate Assurance; no production deployment"
+    },
+    {
+      "item": 28,
+      "requirement": "Fresh independent recovery verification",
+      "mandateSections": "7,20",
+      "recoveredClassification": "DEFECTIVE",
+      "status": "PARTIAL",
+      "evidence": [
+        "assurance-examinations.md",
+        "assurance-draft-review.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Fresh recovery and stale/future evidence denial pass; legacy collectors lack freshness guarantee"
+    },
+    {
+      "item": 29,
+      "requirement": "Recurrence budget and circuit breaker",
+      "mandateSections": "7,20",
+      "recoveredClassification": "DEFECTIVE",
+      "status": "PARTIAL",
+      "evidence": [
+        "assurance-examinations.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Fault-family retry budget across incidents tested; operational recurrence prevention incomplete"
+    },
+    {
+      "item": 30,
+      "requirement": "Assurance watchdog/degraded operation",
+      "mandateSections": "7,19",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "assurance-examinations.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Existing supervisor tests retained; deployed Work8 watchdog acceptance pending"
+    },
+    {
+      "item": 31,
+      "requirement": "Scenario blueprint seeds and independent oracles",
+      "mandateSections": "8,9,19,20",
+      "recoveredClassification": "MISSING",
+      "status": "PARTIAL",
+      "evidence": [
+        "examination-blueprint.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Fixed45 register and prerequisite blueprint established; fault map expansion underway"
+    },
+    {
+      "item": 32,
+      "requirement": "Unit integration/contract and property exams",
+      "mandateSections": "8,19",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "component-node22.log"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Focused generated money/identity/replay tests pass; full exact-head CI pending"
+    },
+    {
+      "item": 33,
+      "requirement": "Concurrency races and replay",
+      "mandateSections": "5,8,19",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "portfolio-node22.log"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Independent SQLite connections prove cap race; full concurrency fault matrix incomplete"
+    },
+    {
+      "item": 34,
+      "requirement": "Fault injection and compounded failures",
+      "mandateSections": "7,8,19",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "joint-exam-evidence.json.gz",
+        "assurance-fault-coverage.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Joint and compound checkpoint+watchdog fault traces retained;31category gaps remain explicit"
+    },
+    {
+      "item": 35,
+      "requirement": "Provider outage malformed output and correlation",
+      "mandateSections": "7,21",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "joint-exam-evidence.json.gz"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Unknown supplier contained without repeat; all mandatory provider failure categories pending"
+    },
+    {
+      "item": 36,
+      "requirement": "All fifteen safety controls positive/negative exams",
+      "mandateSections": "7,9,22",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PENDING",
+      "evidence": [
+        "baseline.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Execute explicit positive/negative fifteen-safety matrix on candidate; predecessor scope insufficient"
+    },
+    {
+      "item": 37,
+      "requirement": "Multi-day virtual-time operations",
+      "mandateSections": "8,19",
+      "recoveredClassification": "MISSING",
+      "status": "PARTIAL",
+      "evidence": [
+        "portfolio-node22.log"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Ten virtual100/day capacity cohorts and four finance missions; not real multi-day operations"
+    },
+    {
+      "item": 38,
+      "requirement": "Measured elapsed endurance",
+      "mandateSections": "8,19,20",
+      "recoveredClassification": "MISSING",
+      "status": "PARTIAL",
+      "evidence": [
+        "elapsed-soak.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "120-second local wall-clock joint soak; no hosted or multi-day endurance proof"
+    },
+    {
+      "item": 39,
+      "requirement": "Cold restart rollback/migration/restore",
+      "mandateSections": "8,19,22",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "finance-operating-exam-evidence.json.gz",
+        "assurance-fault-coverage.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Actual corrupted checkpoint/backuprestore/rollbackfencing tests pass; full migration programme pending"
+    },
+    {
+      "item": 40,
+      "requirement": "Actual owner-view real-product walkthrough",
+      "mandateSections": "10,R2,R5",
+      "recoveredClassification": "MISSING",
+      "status": "BLOCKED",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE NOW; prerequisite evidence/access or separate authority may be needed after technical preparation",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Local retained-data display only; authenticated owner visual and image-rights acceptance absent"
+    },
+    {
+      "item": 41,
+      "requirement": "Mobile desktop source-to-finance equality",
+      "mandateSections": "6,10,R5",
+      "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
+      "status": "PARTIAL",
+      "evidence": [
+        "source-visibility.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Desktop/mobile component screenshots pass; authenticated source-to-finance equality pending"
+    },
+    {
+      "item": 42,
+      "requirement": "Review exact-head CI and release authority",
+      "mandateSections": "12,25",
+      "recoveredClassification": "EXTERNAL DEPENDENCY",
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "assurance-draft-review.md",
+        "CHECKPOINT.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Frontend draftPR112 d35cbd41 exactCI running; backend candidate verification/persistence underway"
+    },
+    {
+      "item": 43,
+      "requirement": "Independent Mission Ledger closure",
+      "mandateSections": "14,25",
+      "recoveredClassification": "MISSING",
+      "status": "PENDING",
+      "evidence": [
+        "register.json"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Do not issue COMPLETE receipt with critical gates incomplete"
+    },
+    {
+      "item": 44,
+      "requirement": "GO/NO-GO residual risks",
+      "mandateSections": "9,14,25",
+      "recoveredClassification": "MISSING",
+      "status": "NO_GO",
+      "evidence": [
+        "CHECKPOINT.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Critical source/assessment/visual/exam/operational gates incomplete; engineering continues"
+    },
+    {
+      "item": 45,
+      "requirement": "Work9 handoff without activation",
+      "mandateSections": "13,14,25,R6",
+      "recoveredClassification": "MISSING",
+      "status": "PENDING",
+      "evidence": [
+        "CHECKPOINT.md"
+      ],
+      "ownerAction": "NONE",
+      "code": [],
+      "tests": [],
+      "release": "NOT_RELEASED",
+      "nextAction": "Preparation only: digital twin/live transition requires separate Work9 mandate"
+    }
+  ]
+}

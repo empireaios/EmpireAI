@@ -27,6 +27,7 @@ export const commandSchema=z.discriminatedUnion('type',[
  z.object({type:z.literal('review'),digest:z.string().length(64),decision:z.enum(['APPROVE','REJECT']),reason:z.string().min(3).max(1000)}).strict(),
  z.object({type:z.literal('approve'),digest:z.string().length(64),expiresAt:date,maxExposure:amount}).strict(),
  z.object({type:z.literal('revoke'),reason:z.string().min(3).max(1000)}).strict(),
+ z.object({type:z.literal('retire'),reason:z.string().min(3).max(1000)}).strict(),
  z.object({type:z.literal('listing'),listing:listingSchema}).strict(),
  z.object({type:z.literal('publication_intent'),capacity:capacitySchema}).strict(),
  z.object({type:z.literal('intake'),order:orderSchema,paymentEvidence:id}).strict(),

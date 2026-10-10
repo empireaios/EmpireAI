@@ -1,3 +1,4 @@
+import {activePortfolio, portfolioIdentity} from './work8-portfolio.js';
 import {projectEntities} from './entities.js';
 import {PIE_EVALUATION_WEIGHTS} from '../../../intelligence/product-intelligence-engine/types.js';
 import {computeMarginScore,computeShippingScore} from '../../../intelligence/product-intelligence-engine/score-computers.js';
@@ -7,7 +8,7 @@ import {actorSchema,envelopeSchema,type Actor,type Candidate,type Listing,type C
 import {digest,GovernedCommerceStore,type Receipt} from './store.js';
 
 type ManagedOrder={order:CanonicalOrder;intentId?:string;providerId?:string;outcome:'RECEIVED'|'PREPARED'|'ACCEPTED'|'UNKNOWN'|'REJECTED'|'PARTIAL'|'SHIPPED'|'DELIVERED'|'CANCELLED'|'RECONCILIATION_REQUIRED';accepted:number;shipped:number;delivered:number;tracking:string[];lastTrackingAt:string|null;shipments:Record<string,{quantity:number;delivered:boolean;carrier:string;tracking:string}>;remedies:Array<{id:string;kind:string;amount:number;quantity:number;financialClass:'SYNTHETIC_EXCLUDED_FROM_ACTUALS'}>};
-export type CommerceState={publicationIntent?:{capacity:unknown;status:'INTERCEPTED';receiptId:string;canonicalPublisher:string};phase:'RESEARCHED'|'QUALIFIED'|'REJECTED'|'REVIEWED'|'APPROVED'|'PREPARED';candidate:Candidate;candidateDigest:string;qualification:ReturnType<typeof qualify>;proposer:string;review?:{actor:string;digest:string;decision:string};approval?:{actor:string;digest:string;expiresAt:string;maxExposure:number;revoked:boolean};listing?:Listing;listingDigest?:string;orders:Record<string,ManagedOrder>;outcomes:Outcome[];reversed:string[];decisions:Array<{id:string;evidenceIds:string[];actions:string[];days:number[]}>;paidInference:0;externalEffects:0};
+export type CommerceState={retirement?:{actor:string;at:string;reason:string};publicationIntent?:{capacity:unknown;status:'INTERCEPTED';receiptId:string;canonicalPublisher:string};phase:'RESEARCHED'|'QUALIFIED'|'REJECTED'|'REVIEWED'|'APPROVED'|'PREPARED';candidate:Candidate;candidateDigest:string;qualification:ReturnType<typeof qualify>;proposer:string;review?:{actor:string;digest:string;decision:string};approval?:{actor:string;digest:string;expiresAt:string;maxExposure:number;revoked:boolean};listing?:Listing;listingDigest?:string;orders:Record<string,ManagedOrder>;outcomes:Outcome[];reversed:string[];decisions:Array<{id:string;evidenceIds:string[];actions:string[];days:number[]}>;paidInference:0;externalEffects:0};
 const fail=(code:string):never=>{throw Error(code);};
 const sumQuantity=(o:CanonicalOrder)=>o.items.reduce((n,item)=>n+item.quantity,0);
 function fresh(p:{observedAt:string;expiresAt:string},now:number){return Date.parse(p.observedAt)<=now&&Date.parse(p.expiresAt)>now&&Date.parse(p.expiresAt)>Date.parse(p.observedAt);}
@@ -61,6 +62,7 @@ export class GovernedCommerceEngine {
     const s=state!;
     const order=(id:string):ManagedOrder=>s.orders[id]??fail('ORDER_NOT_FOUND');
     const approval=()=>{
+     if(s.retirement)fail('PRODUCT_RETIRED');
      const a=s.approval;
      if(!a||a.revoked||a.digest!==s.candidateDigest||Date.parse(a.expiresAt)<=now)fail('APPROVAL_INVALID_OR_EXPIRED');
      if(!s.review||s.review.decision!=='APPROVE'||s.review.digest!==s.candidateDigest||s.review.actor===s.proposer||a!.actor===s.proposer||a!.actor===s.review.actor)fail('FOUR_EYES_REQUIRED');
@@ -82,6 +84,12 @@ export class GovernedCommerceEngine {
       s.approval={actor:actor.id,digest:cmd.digest,expiresAt:cmd.expiresAt,maxExposure:cmd.maxExposure,revoked:false};s.phase='APPROVED';emit('Approval','approval');break;
      case 'revoke':
       if(actor.role!=='OWNER')fail('OWNER_REQUIRED');if(!s.approval)fail('APPROVAL_NOT_FOUND');s.approval!.revoked=true;emit('Approval','revocation');break;
+     case 'retire':{
+      if(actor.role!=='OWNER'||s.approval?.actor!==actor.id)fail('PORTFOLIO_OWNER_REQUIRED');
+      if(!s.publicationIntent||s.retirement)fail('ACTIVE_PRODUCT_REQUIRED');
+      if(Object.values(s.orders).some(o=>!['DELIVERED','CANCELLED','REJECTED'].includes(o.outcome)))fail('OPEN_ORDERS_REQUIRE_RESOLUTION');
+      s.retirement={actor:actor.id,at,reason:cmd.reason};emit('StrategyDecision','retirement');break;
+     }
      case 'listing':{
       if(actor.role!=='PROPOSER'||actor.id!==s.proposer||Object.keys(s.orders).length)fail('LISTING_PROPOSER_OR_STATE_INVALID');const l=cmd.listing;
       if(l.productId!==s.candidate.productId||l.category!==s.candidate.category||!l.variants.some(v=>v.sku===s.candidate.offer.sku&&v.variantId===s.candidate.offer.variantId))fail('LISTING_IDENTITY_MISMATCH');
@@ -101,6 +109,9 @@ export class GovernedCommerceEngine {
       if(capacity.mode==='NEW_ASIN'&&(capacity.asin||capacity.newAsinRemaining===null||capacity.newAsinRemaining<1))fail('NEW_ASIN_CAPACITY_UNKNOWN_OR_EXHAUSTED');
       if(capacity.unsoldRemaining===null||capacity.unsoldRemaining<1)fail('UNSOLD_CAPACITY_UNKNOWN_OR_EXHAUSTED');
       if(capacity.requestsPerSecond===null)fail('API_QUOTA_UNKNOWN');
+      const portfolio=activePortfolio(this.store,actor.workspace);
+      if(portfolio.identities.includes(portfolioIdentity(s)))fail('DUPLICATE_ACTIVE_PRODUCT');
+      if(portfolio.activeCount>=1000)fail('ACTIVE_PORTFOLIO_CAP');
       const receipt=interceptWrite({id:e.id,provider:'AMAZON',operation:'PUBLISH',approvalDigest:s.candidateDigest,payloadDigest:digest({listing:s.listing,offer:s.candidate.offer,capacity})});
       s.publicationIntent={capacity,status:'INTERCEPTED',receiptId:receipt.receiptId,canonicalPublisher:'marketplace-publishing/services/amazon-listings-publish-executor'};
       emit('MarketplaceIntent','publication-intent');break;

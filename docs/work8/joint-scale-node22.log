@@ -1,0 +1,13 @@
+✔ 1000 candidate batch reuses queue; ranking, backpressure and restart deduplicate intents (74866.099076ms)
+✔ capacity exhaustion preserves per-item partial success and replay (29.749012ms)
+✔ unknown capacity, missing ASIN mapping, stale and actual capacity assertions fail closed (19.960277ms)
+✔ existing ASIN offer mapping does not consume new-ASIN capacity (4.844842ms)
+✔ Commerce task, Assurance recovery and finance share real canonical identities and state (41.745071ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 75143.322436

@@ -35,6 +35,13 @@ export class AssuranceControlPlane {
  observe(w,p){
   this.scope(w);if(!key(p.id)||!key(p.capability)||!statuses.has(p.status)||typeof p.summary!=='string'||p.summary.length>1000||JSON.stringify(p.evidence??null).length>12000)throw Error('PROBE_CONTRACT');
   if(p.synthetic===true&&!w.startsWith('synthetic:'))throw Error('SYNTHETIC_ISOLATION');
+  // A cached affirmative result must retain its source time. Receiving it now
+  // cannot make that evidence fresh or close an unresolved incident.
+  if(p.status==='HEALTHY'&&p.evidence&&Object.hasOwn(p.evidence,'observedAt')){
+   const sourceAt=p.evidence.observedAt;
+   if(!Number.isSafeInteger(sourceAt)||sourceAt>this.now()||this.now()-sourceAt>180000)p={...p,status:'STALE',summary:'Affirmative source evidence is stale or has an invalid observation time'};
+  }
+
   return this.tx(()=>{const probe={...safe(p),observedAt:this.now(),revision:this.revision};this.put(w,'probe',p.id,probe);
    const fingerprint=hash([p.capability,p.classification??'UNKNOWN',p.id,this.revision]);
    let incident=this.list(w,'incident').find(i=>i.fingerprint===fingerprint&&!terminal.has(i.status));
@@ -115,6 +122,12 @@ export class AssuranceControlPlane {
    if(this.get(w,'setting','pause')?.paused)return 'PAUSED';
    const lease=this.get(w,'lease','production');if(lease&&lease.status==='ACTIVE'){if(incident.deferredLeaseId!==lease.id){incident.deploymentDeferredAt=this.now();incident.deferredLeaseId=lease.id;this.event(w,'DEPLOYMENT_RECOVERY_DEFERRED',{incidentId:id,leaseId:lease.id,fence:lease.fence,revision:this.revision});}incident.status='DEFERRED';this.put(w,'incident',id,incident);return lease.expiresAt<=this.now()?'LEASE_RECONCILIATION_REQUIRED':'DEPLOYMENT_CONFLICT';}
    if(incident.attempts>=runbook.maxAttempts){incident.status='UNRESOLVED';incident.limitation='Recovery attempt budget exhausted';this.put(w,'incident',id,incident);return 'CIRCUIT_OPEN';}
+   // Budget the same fault family across recovered/recreated incidents too.
+   // Otherwise each oscillation obtains a fresh per-incident repair allowance.
+   const familyIds=new Set(this.list(w,'incident').filter(i=>i.fingerprint===incident.fingerprint).map(i=>i.id));
+   const recentFamilyAttempts=this.list(w,'recovery').filter(r=>familyIds.has(r.incidentId)&&r.runbookVersion===runbook.version&&r.startedAt>this.now()-3600000&&r.startedAt<=this.now()).length;
+   if(recentFamilyAttempts>=runbook.maxAttempts){incident.status='UNRESOLVED';incident.limitation='Recurring recovery circuit open for this fault family (one-hour window)';this.put(w,'incident',id,incident);return 'CIRCUIT_OPEN';}
+
    if(incident.lastAttemptAt&&this.now()-incident.lastAttemptAt<runbook.cooldownMs)return 'COOLDOWN';
    let approval=null;
    if(runbook.authority==='B'){
