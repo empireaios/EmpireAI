@@ -34,25 +34,30 @@
     "artifact_id": 11664335261,
     "artifact_sha256": "bc49fced92d73bff884810f9bdff5bf1004380b9b20e99ec49c049722053c805"
   },
-  "preview": "dpl_EJ6HVKujDq2GAaSFrdtCA63s2Gb5",
-  "preview_auth": "User-authorised retry submitted; rendered Authentication service unavailable. No further credentials submitted. Runtime logs/errors empty. Preview BRAIN_API_URL exists but sensitive value is withheld, so binding cannot be established from metadata. Browser now restricts observation after secure credential entry; canonical production navigation did not clear restriction.",
-  "resume_parent": "3807e9cc672ea80c4f461dc4bcf055f46f66c113",
-  "updated_at": "2026-10-10T08:12:50.476998+00:00",
+  "preview": "dpl_941VHo2BnUu6aSf1yWxmdUAK6EZ8",
+  "preview_auth": "Owner completed manual attempt and received generic service-unavailable error. Do not request repeated sign-in. Underlying preview response remains unverified.",
+  "resume_parent": "08dc65bf6ffbc3e04a7ca0eedead9e1630806b64",
+  "updated_at": "2026-10-10T08:34:18.282297+00:00",
   "existing_ci": {
-    "head": "3807e9cc672ea80c4f461dc4bcf055f46f66c113",
-    "browser": 38036756031,
-    "semantic": 38036755941,
-    "product": 38036756023,
-    "runtime": 38036755907,
-    "latest_observation": "browser, semantic and product successful; runtime still running. Do not rerun successful runs."
+    "head": "08dc65bf6ffbc3e04a7ca0eedead9e1630806b64",
+    "browser": 38037633949,
+    "semantic": 38037633882,
+    "runtime": 38037633958,
+    "product": 38037633995,
+    "latest_observation": "All four completed successfully; none rerun."
   },
   "new_changes": [
-    "Verified pale chat text on light surface: scoped contrast repair and browser assertion",
-    "Product discovery/Pillow/owner/listing/portfolio doctrine, explicitly future policy rather than fabricated automation",
-    "Order lifecycle disclosure with synthetic and settlement boundaries",
-    "Long rationale retained in expandable disclosure",
-    "Legacy governance, order, finance, infrastructure and approvals context corrections"
+    "Preserve actual authentication error message and status for existing login form; three offline regression tests."
   ],
   "release_lease": "None acquired; prior fence 17 finished; never reuse",
-  "owner_action": "Use supported manual browser handoff to finish or clear the failed sign-in. If the site still reports service unavailable, deployment owner must restore preview authentication/backend binding. No auth bypass."
+  "owner_action": "No password retry requested. Further protected-preview endpoint inspection requires explicit scoped authorization for the Vercel connector temporary deployment-protection access mechanism, or equivalent response diagnostics from the deployment owner. EmpireAI authentication must remain enforced.",
+  "authentication_diagnostics": {
+    "production": "2026-10-10T08:30:43Z GET /api/auth/me returned expected 401 Authentication required; matching Railway /auth/me response 4ms. Backend /health returned 200 online, Redis connected at 08:31:12Z. Historical authenticated /auth/me returned 200 through 08:12:05Z. No production auth outage established.",
+    "railway_login_logs": "No /auth/login requests in 07:45\u201308:30 UTC window. Available HTTP logs show no login arriving at locked backend. Does not prove the failed request destination.",
+    "preview": "READY at exact 08dc65bf. Unauthenticated /api/auth/me redirects to Vercel SSO. BRAIN_API_URL preview entry exists but sensitive value is withheld. Vercel auth runtime logs empty.",
+    "verified_defect": "login throws plain BrainError objects; login form accepts only Error instances and replaces all failures with generic service-unavailable message. Corrected only login throws to Error instances retaining status/retryable/message. Authentication, credentials and session transport unchanged.",
+    "tests": "Three targeted authentication tests pass (HTTP 401/503/504, transport rejection, successful response and same-origin credentials); typecheck and targeted lint passed.",
+    "restrictions": "Automatic review rejected Vercel protected fetch because it creates/reuses temporary deployment-protection bypass. No workaround used. Browser retained data remains restricted after native credential delivery.",
+    "root_cause_status": "Error masking confirmed; underlying preview authentication rejection cause NOT established."
+  }
 }
