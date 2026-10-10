@@ -3,30 +3,34 @@
   "status": "IN_PROGRESS_NO_GO",
   "frontend": {
     "pr": 112,
-    "sha": "3496eb83ee454726eb327883cbf64277a22c2efc",
-    "tree": "d51b2da7ece43f9e00cc1d5f61e93c6cb691f000",
-    "localCommit": "09e46079",
+    "sha": "915e7c59f6abaf35c99fea7ce6a88cb4e55bc63a",
+    "tree": "cbfdbfeeb54c80ff27a845951f01b07de2ea372f",
+    "localCommit": "fdb66e64",
     "ciRunIds": [
-      38092093397,
-      38092093384,
-      38092093378,
-      38092093422
+      38093167756,
+      38093167685,
+      38093167695,
+      38093167656
     ],
-    "ciStatus": "RUNNING_EXACT_HEAD"
+    "ciStatus": "NEW_FRESH_STATUS_HEAD_PENDING",
+    "previousAllFourSuccess": "3496eb83ee454726eb327883cbf64277a22c2efc"
   },
   "backend": {
     "pr": 113,
-    "sha": "27b1e23c827eecf82db6ab9b81495a7b6353cbf5",
-    "tree": "b1a0037946b34b035062d491844ad8e721476f56",
-    "localCommit": "0d375540",
+    "sha": "a09bd0e365d7740ce55455ad4d768f6df11d4a63",
+    "tree": "31e80a1549577f771a9cce11970ddaa1f7dba57f",
+    "localCommit": "d608ca2b",
     "ciRunIds": [
-      38092253500,
-      38092253465,
-      38092253438,
-      38092253456
+      38094488052
     ],
-    "ciStatus": "RUNNING_EXACT_HEAD",
-    "sourceManifest": "candidate-source-manifest.json"
+    "ciStatus": "A09_PRODUCT139_ASSURANCE_SEMANTIC_SUCCESS_RUNTIME_PENDING; LATER_QUEUE_EXCERPT_DELTA_REQUIRES_NEW_CI",
+    "sourceManifest": "candidate-source-manifest.json",
+    "priorRuntimeFailure": {
+      "sha": "27b1e23c",
+      "status": "FAILED",
+      "observation": "HTTP503 precutover/restore path",
+      "cause": "UNRESOLVED"
+    }
   },
   "productionLease": "NONE_ACQUIRED",
   "effects": {
@@ -36,7 +40,9 @@
     "release": false
   },
   "next": [
-    "Read required CI on exactbackend27b1e23c/frontend3496eb83; repair concrete failures only",
+    "Sustained shared-runtime PASS bound to a09bd0e3 bytes; preserve compressed exact report/checksum. Verify later assessment-readback delta separately; do not relabel endurance as latest code.",
+    "Resolve exact new backend/frontend upload SHA and required CI. Prior backend runtime503 cause remains unresolved; do not infer new-head pass.",
+    "Preserve source/assessment/financial sidecar integration evidence and rerun only concrete changed failures.",
     "Persist final CI evidence and update fixed45 register, full exam ledger and scoped independentreview",
     "Continue remaining coupled fault/endurance examinations in fixed31 map without replaying passing suites",
     "Obtain approved source-refresh/actual Pillow-assessment capability with enforceable cost controls and exact imageusage evidence; current connector is readonly retained-data only",
@@ -68,6 +74,42 @@
       "manifestFiles": 5445,
       "manifestSha256": "1ebde842507e6d2bbaf757f08a62bc89c7efdb91cd12a69eeb7a9659973d5404",
       "scope": "Before final atomic read-only consistency delta; delta independently two-connection verified"
+    },
+    "sharedRuntime": {
+      "schema": "work8-shared-runtime-soak-v1",
+      "status": "PASS_SCOPED_SHARED_RUNTIME",
+      "started": "2026-10-10T23:10:57.138Z",
+      "elapsedMs": 600004.997997,
+      "cpuMicroseconds": 6755920,
+      "p99SliceMs": 97.42391200000003,
+      "maxSliceMs": 109.07983200001763,
+      "peakRssBytes": 160694272,
+      "rssGrowthBytes": 32686080,
+      "thresholds": {
+        "samples": 120,
+        "intervalMs": 5000,
+        "minimumElapsedMs": 600000,
+        "p99SliceMs": 2000,
+        "maxSliceMs": 5000,
+        "peakRssBytes": 536870912,
+        "rssGrowthBytes": 134217728,
+        "cpuMicroseconds": 120000000
+      },
+      "scope": "One persistent isolated runtime/store set with injected provider responses. Source products are synthetic protocol fixtures, not real-product visibility evidence. Manual cadence orchestration uses actual planners/workers/collectors, not deployed timers or hosted endurance. Virtual business day advances explicitly for simulated settlement; wall time is measured independently.",
+      "samples": 120,
+      "sourceFiles": 3926,
+      "sourceManifestMatches": true,
+      "rawSha256": "9e9e455a1642d89ff21e3b4b4fe0efd0a964d9c9c9d9b593e3787031e65ccf51",
+      "rawBytes": 1286042,
+      "gzipSha256": "b91766a0b77ffd4b35bcf33a0892b9bd48316f2b209d09d8fed122efd163d24b",
+      "gzipBytes": 397195,
+      "backendCandidate": "a09bd0e365d7740ce55455ad4d768f6df11d4a63",
+      "laterDeltasIncluded": false,
+      "report": "shared-runtime-soak.json.gz",
+      "discoveryTarget": 100,
+      "providerFailures": 1,
+      "deferred": 3,
+      "financeStatus": "COMPLETE_SIMULATION"
     }
   },
   "productionFollowup": "production-preservation-followup.json"

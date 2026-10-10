@@ -1,0 +1,863 @@
+78370Z 
+2026-10-10T23:20:08.9793013Z ##[group]Run python3 ../scripts/work8/isolated-exec.py node --import tsx --test --test-concurrency=1 src/validation/tests/work8-*.test.ts src/validation/tests/work8-*.test.mjs src/validation/tests/work6-commerce-routes.test.ts ../scripts/work8/autonomous-locks.test.ts ../scripts/work8/shared-store-days.test.ts
+2026-10-10T23:20:08.9795270Z [36;1mpython3 ../scripts/work8/isolated-exec.py node --import tsx --test --test-concurrency=1 src/validation/tests/work8-*.test.ts src/validation/tests/work8-*.test.mjs src/validation/tests/work6-commerce-routes.test.ts ../scripts/work8/autonomous-locks.test.ts ../scripts/work8/shared-store-days.test.ts[0m
+2026-10-10T23:20:08.9859805Z shell: /usr/bin/bash -e {0}
+2026-10-10T23:20:08.9860074Z env:
+2026-10-10T23:20:08.9860263Z   CI: true
+2026-10-10T23:20:08.9860482Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-10T23:20:08.9860719Z   NODE_ENV: test
+2026-10-10T23:20:08.9860927Z ##[endgroup]
+2026-10-10T23:20:09.0860115Z TAP version 13
+2026-10-10T23:20:09.6192660Z # Subtest: seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+2026-10-10T23:20:09.6199478Z ok 1 - seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+2026-10-10T23:20:09.6201361Z   ---
+2026-10-10T23:20:09.6201913Z   duration_ms: 112.645476
+2026-10-10T23:20:09.6202518Z   type: 'test'
+2026-10-10T23:20:09.6203056Z   ...
+2026-10-10T23:20:12.0118665Z # Subtest: ten accelerated days preserve one shared canonical store through cold restarts, Assurance repairs and cumulative finance replay
+2026-10-10T23:20:12.0123926Z ok 2 - ten accelerated days preserve one shared canonical store through cold restarts, Assurance repairs and cumulative finance replay
+2026-10-10T23:20:12.0125354Z   ---
+2026-10-10T23:20:12.0125746Z   duration_ms: 2016.739389
+2026-10-10T23:20:12.0126199Z   type: 'test'
+2026-10-10T23:20:12.0126553Z   ...
+2026-10-10T23:20:12.9138551Z # Subtest: authenticated owner API, origin protection, workspace isolation, durable scenario and all seven live effects denied
+2026-10-10T23:20:12.9141785Z ok 3 - authenticated owner API, origin protection, workspace isolation, durable scenario and all seven live effects denied
+2026-10-10T23:20:12.9142932Z   ---
+2026-10-10T23:20:12.9143338Z   duration_ms: 290.807197
+2026-10-10T23:20:12.9143799Z   type: 'test'
+2026-10-10T23:20:12.9144185Z   ...
+2026-10-10T23:20:14.1377212Z # Subtest: independent real SQLite admission race creates one page and one append-only admission
+2026-10-10T23:20:14.1378729Z ok 4 - independent real SQLite admission race creates one page and one append-only admission
+2026-10-10T23:20:14.1379932Z   ---
+2026-10-10T23:20:14.1380449Z   duration_ms: 436.735526
+2026-10-10T23:20:14.1380830Z   type: 'test'
+2026-10-10T23:20:14.1381181Z   ...
+2026-10-10T23:20:14.1398927Z # Subtest: direct admission independently rejects wrong-query evidence and old-day scheduler seed
+2026-10-10T23:20:14.1401156Z ok 5 - direct admission independently rejects wrong-query evidence and old-day scheduler seed
+2026-10-10T23:20:14.1402103Z   ---
+2026-10-10T23:20:14.1411371Z   duration_ms: 131.005022
+2026-10-10T23:20:14.1412053Z   type: 'test'
+2026-10-10T23:20:14.1412736Z   ...
+2026-10-10T23:20:14.1414134Z # Subtest: corrupted derived discovery checkpoint does not starve existing internal jobs and remains explicitly degraded
+2026-10-10T23:20:14.1416094Z ok 6 - corrupted derived discovery checkpoint does not starve existing internal jobs and remains explicitly degraded
+2026-10-10T23:20:14.1417343Z   ---
+2026-10-10T23:20:14.1417920Z   duration_ms: 171.94828
+2026-10-10T23:20:14.1418556Z   type: 'test'
+2026-10-10T23:20:14.1419215Z   ...
+2026-10-10T23:20:14.1420882Z # Subtest: append-only admission binds retained job request bytes before a later page can be admitted
+2026-10-10T23:20:14.1422715Z ok 7 - append-only admission binds retained job request bytes before a later page can be admitted
+2026-10-10T23:20:14.1423404Z   ---
+2026-10-10T23:20:14.1424120Z   duration_ms: 194.176329
+2026-10-10T23:20:14.1424591Z   type: 'test'
+2026-10-10T23:20:14.1424956Z   ...
+2026-10-10T23:20:16.7228103Z # Subtest: existing scheduled job -> actual CJ read adapter -> append-only discovery reaches100 distinct identities with no real transport
+2026-10-10T23:20:16.7230409Z ok 8 - existing scheduled job -> actual CJ read adapter -> append-only discovery reaches100 distinct identities with no real transport
+2026-10-10T23:20:16.7250602Z   ---
+2026-10-10T23:20:16.7261018Z   duration_ms: 706.087138
+2026-10-10T23:20:16.7261593Z   type: 'test'
+2026-10-10T23:20:16.7262035Z   ...
+2026-10-10T23:20:16.7263254Z # Subtest: repeated/empty pages, denied/429 and incorrect page echo report shortfall without automatic failed-page retry
+2026-10-10T23:20:16.7265081Z ok 9 - repeated/empty pages, denied/429 and incorrect page echo report shortfall without automatic failed-page retry
+2026-10-10T23:20:16.7266251Z   ---
+2026-10-10T23:20:16.7266745Z   duration_ms: 1184.910387
+2026-10-10T23:20:16.7267352Z   type: 'test'
+2026-10-10T23:20:16.7267841Z   ...
+2026-10-10T23:20:16.7268345Z # Subtest: quota exhaustion is explicit and no unreserved provider request occurs
+2026-10-10T23:20:16.7269073Z ok 10 - quota exhaustion is explicit and no unreserved provider request occurs
+2026-10-10T23:20:16.7269868Z   ---
+2026-10-10T23:20:16.7270247Z   duration_ms: 123.696822
+2026-10-10T23:20:16.7270674Z   type: 'test'
+2026-10-10T23:20:16.7271017Z   ...
+2026-10-10T23:20:16.7271916Z # Subtest: atomic planner admission survives enqueue crash/reopen and simultaneous duplicate ticks
+2026-10-10T23:20:16.7273238Z ok 11 - atomic planner admission survives enqueue crash/reopen and simultaneous duplicate ticks
+2026-10-10T23:20:16.7273966Z   ---
+2026-10-10T23:20:16.7274274Z   duration_ms: 88.809928
+2026-10-10T23:20:16.7274639Z   type: 'test'
+2026-10-10T23:20:16.7275283Z   ...
+2026-10-10T23:20:16.7276311Z # Subtest: same-day late arrivals append after exhaustion and expired sources quarantine; next day preserves acquisition cursor
+2026-10-10T23:20:16.7277950Z ok 12 - same-day late arrivals append after exhaustion and expired sources quarantine; next day preserves acquisition cursor
+2026-10-10T23:20:16.7278834Z   ---
+2026-10-10T23:20:16.7279133Z   duration_ms: 184.724158
+2026-10-10T23:20:16.7279495Z   type: 'test'
+2026-10-10T23:20:16.7280010Z   ...
+2026-10-10T23:20:17.9351199Z # Subtest: actual read adapter persists 429/503/schema failure, restart backoff and fresh recovery evidence
+2026-10-10T23:20:17.9353370Z ok 13 - actual read adapter persists 429/503/schema failure, restart backoff and fresh recovery evidence
+2026-10-10T23:20:17.9354315Z   ---
+2026-10-10T23:20:17.9354739Z   duration_ms: 381.522565
+2026-10-10T23:20:17.9355144Z   type: 'test'
+2026-10-10T23:20:17.9355470Z   ...
+2026-10-10T23:20:17.9370814Z # Subtest: actual expired provider read lease becomes INTERRUPTED on reopen and cannot silently replay
+2026-10-10T23:20:17.9438339Z ok 14 - actual expired provider read lease becomes INTERRUPTED on reopen and cannot silently replay
+2026-10-10T23:20:17.9439122Z   ---
+2026-10-10T23:20:17.9439347Z   duration_ms: 12.006867
+2026-10-10T23:20:17.9439917Z   type: 'test'
+2026-10-10T23:20:17.9440142Z   ...
+2026-10-10T23:20:17.9440668Z # Subtest: scheduled observation and due advancement commit atomically across failure and reopening
+2026-10-10T23:20:17.9441477Z ok 15 - scheduled observation and due advancement commit atomically across failure and reopening
+2026-10-10T23:20:17.9441937Z   ---
+2026-10-10T23:20:17.9442143Z   duration_ms: 23.124005
+2026-10-10T23:20:17.9442384Z   type: 'test'
+2026-10-10T23:20:17.9442578Z   ...
+2026-10-10T23:20:17.9443013Z # Subtest: full read queue cannot consume a due slot or create unbounded catch-up
+2026-10-10T23:20:17.9443658Z ok 16 - full read queue cannot consume a due slot or create unbounded catch-up
+2026-10-10T23:20:17.9444067Z   ---
+2026-10-10T23:20:17.9444322Z   duration_ms: 46.25945
+2026-10-10T23:20:17.9444705Z   type: 'test'
+2026-10-10T23:20:17.9445035Z   ...
+2026-10-10T23:20:17.9446163Z # Subtest: real scheduler drains a full queue before retrying atomic due admission
+2026-10-10T23:20:17.9447034Z ok 17 - real scheduler drains a full queue before retrying atomic due admission
+2026-10-10T23:20:17.9447552Z   ---
+2026-10-10T23:20:17.9447872Z   duration_ms: 455.679089
+2026-10-10T23:20:17.9448112Z   type: 'test'
+2026-10-10T23:20:17.9448317Z   ...
+2026-10-10T23:20:18.4000334Z # Subtest: candidate runbook repairs only real committed receipt checkpoint gap and independently preserves history
+2026-10-10T23:20:18.4001947Z ok 18 - candidate runbook repairs only real committed receipt checkpoint gap and independently preserves history
+2026-10-10T23:20:18.4002964Z   ---
+2026-10-10T23:20:18.4003347Z   duration_ms: 66.342234
+2026-10-10T23:20:18.4003773Z   type: 'test'
+2026-10-10T23:20:18.4004129Z   ...
+2026-10-10T23:20:18.4008728Z # Subtest: normal task with no committed gap cannot execute a fresh step through recovery
+2026-10-10T23:20:18.4011973Z ok 19 - normal task with no committed gap cannot execute a fresh step through recovery
+2026-10-10T23:20:18.4012911Z   ---
+2026-10-10T23:20:18.4013353Z   duration_ms: 7.395633
+2026-10-10T23:20:18.4013840Z   type: 'test'
+2026-10-10T23:20:18.4014247Z   ...
+2026-10-10T23:20:18.4016155Z # Subtest: altered committed step payload cannot be used as replay authority
+2026-10-10T23:20:18.4018283Z ok 20 - altered committed step payload cannot be used as replay authority
+2026-10-10T23:20:18.4019179Z   ---
+2026-10-10T23:20:18.4019852Z   duration_ms: 26.643925
+2026-10-10T23:20:18.4020324Z   type: 'test'
+2026-10-10T23:20:18.4020697Z   ...
+2026-10-10T23:20:18.4022347Z # Subtest: unknown supplier outcome cannot be relabelled as safe checkpoint recovery
+2026-10-10T23:20:18.4023666Z ok 21 - unknown supplier outcome cannot be relabelled as safe checkpoint recovery
+2026-10-10T23:20:18.4024459Z   ---
+2026-10-10T23:20:18.4025206Z   duration_ms: 41.625245
+2026-10-10T23:20:18.4025652Z   type: 'test'
+2026-10-10T23:20:18.4026019Z   ...
+2026-10-10T23:20:18.4028549Z # Subtest: fresh aligned observation closes a gap when normal worker wins race without extra recovery effect
+2026-10-10T23:20:18.4030347Z ok 22 - fresh aligned observation closes a gap when normal worker wins race without extra recovery effect
+2026-10-10T23:20:18.4031342Z   ---
+2026-10-10T23:20:18.4031721Z   duration_ms: 38.667861
+2026-10-10T23:20:18.4032184Z   type: 'test'
+2026-10-10T23:20:18.4032563Z   ...
+2026-10-10T23:20:18.7381269Z # Subtest: finance reads every historical digest, not only the final source receipt
+2026-10-10T23:20:18.7382611Z ok 23 - finance reads every historical digest, not only the final source receipt
+2026-10-10T23:20:18.7383393Z   ---
+2026-10-10T23:20:18.7383782Z   duration_ms: 55.303281
+2026-10-10T23:20:18.7384239Z   type: 'test'
+2026-10-10T23:20:18.7384626Z   ...
+2026-10-10T23:20:18.7388608Z # Subtest: finance rejects recomputed prior receipt digest when next receipt still links original history
+2026-10-10T23:20:18.7390882Z ok 24 - finance rejects recomputed prior receipt digest when next receipt still links original history
+2026-10-10T23:20:18.7392226Z   ---
+2026-10-10T23:20:18.7393025Z   duration_ms: 7.42054
+2026-10-10T23:20:18.7393517Z   type: 'test'
+2026-10-10T23:20:18.7393895Z   ...
+2026-10-10T23:20:18.7395424Z # Subtest: finance cannot select a receipt from a different workspace or mission
+2026-10-10T23:20:18.7398216Z ok 25 - finance cannot select a receipt from a different workspace or mission
+2026-10-10T23:20:18.7398673Z   ---
+2026-10-10T23:20:18.7398889Z   duration_ms: 10.326718
+2026-10-10T23:20:18.7399137Z   type: 'test'
+2026-10-10T23:20:18.7399831Z   ...
+2026-10-10T23:21:13.6218979Z # {"exam":"fulfilment1000","seedMs":51377.351724,"sliceMs":[549.9208480000016,697.4277990000046,857.1392720000003,952.389909000005],"cpuMs":2968.044,"rssBefore":222687232,"peakRss":225177600,"virtualSweepMs":90000,"receipts":7000,"externalEffects":0}
+2026-10-10T23:21:13.6515228Z # Subtest: 1000 canonical accepted orders receive bounded fresh coverage at actual30second cadence
+2026-10-10T23:21:13.6517518Z ok 26 - 1000 canonical accepted orders receive bounded fresh coverage at actual30second cadence
+2026-10-10T23:21:13.6518310Z   ---
+2026-10-10T23:21:13.6518643Z   duration_ms: 54646.607641
+2026-10-10T23:21:13.6519037Z   type: 'test'
+2026-10-10T23:21:13.6519352Z   ...
+2026-10-10T23:21:14.3569937Z # Subtest: actual overdue missing tracking escalates without writes; fresh delivered observation closes
+2026-10-10T23:21:14.3571788Z ok 27 - actual overdue missing tracking escalates without writes; fresh delivered observation closes
+2026-10-10T23:21:14.3572731Z   ---
+2026-10-10T23:21:14.3573106Z   duration_ms: 65.121925
+2026-10-10T23:21:14.3573553Z   type: 'test'
+2026-10-10T23:21:14.3573934Z   ...
+2026-10-10T23:21:14.3593251Z # Subtest: partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment
+2026-10-10T23:21:14.3610864Z ok 28 - partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment
+2026-10-10T23:21:14.3611975Z   ---
+2026-10-10T23:21:14.3612486Z   duration_ms: 33.821232
+2026-10-10T23:21:14.3613038Z   type: 'test'
+2026-10-10T23:21:14.3613510Z   ...
+2026-10-10T23:21:14.3614581Z # Subtest: unknown supplier remains blocked and verified history corruption never produces healthy evidence
+2026-10-10T23:21:14.3616147Z ok 29 - unknown supplier remains blocked and verified history corruption never produces healthy evidence
+2026-10-10T23:21:14.3617104Z   ---
+2026-10-10T23:21:14.3617556Z   duration_ms: 25.547075
+2026-10-10T23:21:14.3618071Z   type: 'test'
+2026-10-10T23:21:14.3618528Z   ...
+2026-10-10T23:21:14.3619795Z # Subtest: bounded mission scan resumes from durable cursor and never clears skipped order incidents
+2026-10-10T23:21:14.3629831Z ok 30 - bounded mission scan resumes from durable cursor and never clears skipped order incidents
+2026-10-10T23:21:14.3630817Z   ---
+2026-10-10T23:21:14.3631647Z   duration_ms: 68.069599
+2026-10-10T23:21:14.3632178Z   type: 'test'
+2026-10-10T23:21:14.3632642Z   ...
+2026-10-10T23:21:14.3633677Z # Subtest: history bound fails closed without healthy order probes and stale sweep cannot claim coverage
+2026-10-10T23:21:14.3635184Z ok 31 - history bound fails closed without healthy order probes and stale sweep cannot claim coverage
+2026-10-10T23:21:14.3636091Z   ---
+2026-10-10T23:21:14.3636546Z   duration_ms: 33.489826
+2026-10-10T23:21:14.3637062Z   type: 'test'
+2026-10-10T23:21:14.3637498Z   ...
+2026-10-10T23:21:14.3638400Z # Subtest: new mission inserted behind durable cursor prevents false complete coverage
+2026-10-10T23:21:14.3639872Z ok 32 - new mission inserted behind durable cursor prevents false complete coverage
+2026-10-10T23:21:14.3640693Z   ---
+2026-10-10T23:21:14.3641150Z   duration_ms: 50.489593
+2026-10-10T23:21:14.3641671Z   type: 'test'
+2026-10-10T23:21:14.3642126Z   ...
+2026-10-10T23:21:14.3643271Z # Subtest: pre-deadline adverse tracking escalates immediately and fresh delivery closes; uncertainty takes precedence
+2026-10-10T23:21:14.3645021Z ok 33 - pre-deadline adverse tracking escalates immediately and fresh delivery closes; uncertainty takes precedence
+2026-10-10T23:21:14.3646153Z   ---
+2026-10-10T23:21:14.3646526Z   duration_ms: 137.190056
+2026-10-10T23:21:14.3646927Z   type: 'test'
+2026-10-10T23:21:14.3647257Z   ...
+2026-10-10T23:21:14.7145560Z # Subtest: late supplier acceptance after timeout reconciles exact identity without replay or stock release and closes only from fresh delivery
+2026-10-10T23:21:14.7147604Z ok 34 - late supplier acceptance after timeout reconciles exact identity without replay or stock release and closes only from fresh delivery
+2026-10-10T23:21:14.7148704Z   ---
+2026-10-10T23:21:14.7149806Z   duration_ms: 82.176992
+2026-10-10T23:21:14.7150523Z   type: 'test'
+2026-10-10T23:21:14.7151279Z   ...
+2026-10-10T23:21:15.0055851Z # Subtest: Work8 real control-plane exam: cache-expiry
+2026-10-10T23:21:15.0056767Z ok 35 - Work8 real control-plane exam: cache-expiry
+2026-10-10T23:21:15.0057422Z   ---
+2026-10-10T23:21:15.0057853Z   duration_ms: 12.933228
+2026-10-10T23:21:15.0058289Z   type: 'test'
+2026-10-10T23:21:15.0058652Z   ...
+2026-10-10T23:21:15.0060892Z # Subtest: Work8 real control-plane exam: duplicate-delivery
+2026-10-10T23:21:15.0061881Z ok 36 - Work8 real control-plane exam: duplicate-delivery
+2026-10-10T23:21:15.0062493Z   ---
+2026-10-10T23:21:15.0062871Z   duration_ms: 7.745565
+2026-10-10T23:21:15.0063284Z   type: 'test'
+2026-10-10T23:21:15.0063643Z   ...
+2026-10-10T23:21:15.0064296Z # Subtest: Work8 real control-plane exam: failed-repair
+2026-10-10T23:21:15.0071256Z ok 37 - Work8 real control-plane exam: failed-repair
+2026-10-10T23:21:15.0071873Z   ---
+2026-10-10T23:21:15.0072257Z   duration_ms: 9.404323
+2026-10-10T23:21:15.0072694Z   type: 'test'
+2026-10-10T23:21:15.0073061Z   ...
+2026-10-10T23:21:15.0073679Z # Subtest: Work8 real control-plane exam: unknown-outcome
+2026-10-10T23:21:15.0074547Z ok 38 - Work8 real control-plane exam: unknown-outcome
+2026-10-10T23:21:15.0075143Z   ---
+2026-10-10T23:21:15.0075600Z   duration_ms: 8.913527
+2026-10-10T23:21:15.0076032Z   type: 'test'
+2026-10-10T23:21:15.0076447Z   ...
+2026-10-10T23:21:15.0077087Z # Subtest: Work8 real control-plane exam: expired-approval
+2026-10-10T23:21:15.0077963Z ok 39 - Work8 real control-plane exam: expired-approval
+2026-10-10T23:21:15.0078552Z   ---
+2026-10-10T23:21:15.0078914Z   duration_ms: 11.678241
+2026-10-10T23:21:15.0079337Z   type: 'test'
+2026-10-10T23:21:15.0080010Z   ...
+2026-10-10T23:21:15.0080745Z # Subtest: Work8 real control-plane exam: forbidden-financial-repair
+2026-10-10T23:21:15.0081861Z ok 40 - Work8 real control-plane exam: forbidden-financial-repair
+2026-10-10T23:21:15.0082546Z   ---
+2026-10-10T23:21:15.0082889Z   duration_ms: 6.519187
+2026-10-10T23:21:15.0083277Z   type: 'test'
+2026-10-10T23:21:15.0083655Z   ...
+2026-10-10T23:21:15.0088851Z # Subtest: Work8 real control-plane exam: watchdog-loss
+2026-10-10T23:21:15.0090286Z ok 41 - Work8 real control-plane exam: watchdog-loss
+2026-10-10T23:21:15.0091425Z   ---
+2026-10-10T23:21:15.0091952Z   duration_ms: 7.906863
+2026-10-10T23:21:15.0092531Z   type: 'test'
+2026-10-10T23:21:15.0093056Z   ...
+2026-10-10T23:21:15.0093926Z # Subtest: Work8 real control-plane exam: compounded-cache-worker
+2026-10-10T23:21:15.0095109Z ok 42 - Work8 real control-plane exam: compounded-cache-worker
+2026-10-10T23:21:15.0095938Z   ---
+2026-10-10T23:21:15.0096465Z   duration_ms: 12.618012
+2026-10-10T23:21:15.0097048Z   type: 'test'
+2026-10-10T23:21:15.0097576Z   ...
+2026-10-10T23:21:15.0098400Z # Subtest: Work8 real control-plane exam: restart-preservation
+2026-10-10T23:21:15.0104730Z ok 43 - Work8 real control-plane exam: restart-preservation
+2026-10-10T23:21:15.0105385Z   ---
+2026-10-10T23:21:15.0105760Z   duration_ms: 7.648544
+2026-10-10T23:21:15.0106186Z   type: 'test'
+2026-10-10T23:21:15.0106627Z   ...
+2026-10-10T23:21:15.0107269Z # Subtest: Work8 real control-plane exam: recurring-failure
+2026-10-10T23:21:15.0108142Z ok 44 - Work8 real control-plane exam: recurring-failure
+2026-10-10T23:21:15.0108732Z   ---
+2026-10-10T23:21:15.0109091Z   duration_ms: 9.883362
+2026-10-10T23:21:15.0109491Z   type: 'test'
+2026-10-10T23:21:15.0110095Z   ...
+2026-10-10T23:21:15.0110647Z # Subtest: Work8 real control-plane exam: stale-closure
+2026-10-10T23:21:15.0124556Z ok 45 - Work8 real control-plane exam: stale-closure
+2026-10-10T23:21:15.0124939Z   ---
+2026-10-10T23:21:15.0125158Z   duration_ms: 6.408577
+2026-10-10T23:21:15.0125402Z   type: 'test'
+2026-10-10T23:21:15.0125864Z   ...
+2026-10-10T23:21:15.0155431Z # Subtest: unregistered scenarios and non-reproducible seeds rejected
+2026-10-10T23:21:15.0156766Z ok 46 - unregistered scenarios and non-reproducible seeds rejected
+2026-10-10T23:21:15.0157400Z   ---
+2026-10-10T23:21:15.0157746Z   duration_ms: 0.561716
+2026-10-10T23:21:15.0158155Z   type: 'test'
+2026-10-10T23:21:15.0158462Z   ...
+2026-10-10T23:21:15.6511067Z # Subtest: actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+2026-10-10T23:21:15.6515170Z ok 47 - actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+2026-10-10T23:21:15.6516720Z   ---
+2026-10-10T23:21:15.6517009Z   duration_ms: 299.304106
+2026-10-10T23:21:15.6517306Z   type: 'test'
+2026-10-10T23:21:15.6517713Z   ...
+2026-10-10T23:21:16.0548762Z # Subtest: real truncated journal is contained; explicitly approved isolated backup restoration preserves exact history
+2026-10-10T23:21:16.0555936Z ok 48 - real truncated journal is contained; explicitly approved isolated backup restoration preserves exact history
+2026-10-10T23:21:16.0556959Z   ---
+2026-10-10T23:21:16.0557349Z   duration_ms: 58.76279
+2026-10-10T23:21:16.0557797Z   type: 'test'
+2026-10-10T23:21:16.0558168Z   ...
+2026-10-10T23:21:16.0580347Z # Subtest: corrupt task checkpoint plus lost Assurance heartbeat require two distinct retained incidents
+2026-10-10T23:21:16.0582021Z ok 49 - corrupt task checkpoint plus lost Assurance heartbeat require two distinct retained incidents
+2026-10-10T23:21:16.0583170Z   ---
+2026-10-10T23:21:16.0583563Z   duration_ms: 28.985463
+2026-10-10T23:21:16.0583989Z   type: 'test'
+2026-10-10T23:21:16.0584363Z   ...
+2026-10-10T23:21:16.0585273Z # Subtest: revision rollback keeps new-revision approval fenced and preserves immutable history
+2026-10-10T23:21:16.0586631Z ok 50 - revision rollback keeps new-revision approval fenced and preserves immutable history
+2026-10-10T23:21:16.0587468Z   ---
+2026-10-10T23:21:16.0587840Z   duration_ms: 7.288745
+2026-10-10T23:21:16.0588271Z   type: 'test'
+2026-10-10T23:21:16.0588636Z   ...
+2026-10-10T23:21:16.0589302Z # Subtest: forged COMPLETE checkpoint with no receipts is rejected by execution and owner read projections
+2026-10-10T23:21:16.0590528Z ok 51 - forged COMPLETE checkpoint with no receipts is rejected by execution and owner read projections
+2026-10-10T23:21:16.0591018Z   ---
+2026-10-10T23:21:16.0591228Z   duration_ms: 6.731077
+2026-10-10T23:21:16.0591818Z   type: 'test'
+2026-10-10T23:21:16.0592019Z   ...
+2026-10-10T23:21:16.0592583Z # Subtest: task plan cannot be truncated after execution; altered committed payload is independently rejected
+2026-10-10T23:21:16.0593459Z ok 52 - task plan cannot be truncated after execution; altered committed payload is independently rejected
+2026-10-10T23:21:16.0593945Z   ---
+2026-10-10T23:21:16.0594147Z   duration_ms: 24.477025
+2026-10-10T23:21:16.0594381Z   type: 'test'
+2026-10-10T23:21:16.0594575Z   ...
+2026-10-10T23:21:39.3538921Z # Subtest: actual five-second runtime timer persists simulated financial events and authenticated owner GET returns them
+2026-10-10T23:21:39.3541184Z ok 53 - actual five-second runtime timer persists simulated financial events and authenticated owner GET returns them
+2026-10-10T23:21:39.3542369Z   ---
+2026-10-10T23:21:39.3542941Z   duration_ms: 22860.528587
+2026-10-10T23:21:39.3553613Z   type: 'test'
+2026-10-10T23:21:39.3553965Z   ...
+2026-10-10T23:21:42.8734006Z # Subtest: durable simulated finance resumes partial events, holds payout and independently reconciles after cold restart
+2026-10-10T23:21:42.8738526Z ok 54 - durable simulated finance resumes partial events, holds payout and independently reconciles after cold restart
+2026-10-10T23:21:42.8739503Z   ---
+2026-10-10T23:21:42.8780196Z   duration_ms: 761.155206
+2026-10-10T23:21:42.8780637Z   type: 'test'
+2026-10-10T23:21:42.8785264Z   ...
+2026-10-10T23:21:42.8786185Z # Subtest: source advance and corrupt refund event block Assurance without automatic repair
+2026-10-10T23:21:42.8787213Z ok 55 - source advance and corrupt refund event block Assurance without automatic repair
+2026-10-10T23:21:42.8787813Z   ---
+2026-10-10T23:21:42.8788285Z   duration_ms: 454.788966
+2026-10-10T23:21:42.8788778Z   type: 'test'
+2026-10-10T23:21:42.8789267Z   ...
+2026-10-10T23:21:42.8790599Z # Subtest: bounded Assurance rotation visits omitted plans without claiming whole-workspace health
+2026-10-10T23:21:42.8794674Z ok 56 - bounded Assurance rotation visits omitted plans without claiming whole-workspace health
+2026-10-10T23:21:42.8795531Z   ---
+2026-10-10T23:21:42.8795872Z   duration_ms: 1801.152721
+2026-10-10T23:21:42.8796275Z   type: 'test'
+2026-10-10T23:21:42.8797009Z   ...
+2026-10-10T23:21:42.8797700Z # Subtest: historical plan count above1000 does not cap new admission or existing progress; failed admission is durable and bounded
+2026-10-10T23:21:42.8799194Z ok 57 - historical plan count above1000 does not cap new admission or existing progress; failed admission is durable and bounded
+2026-10-10T23:21:42.8800515Z   ---
+2026-10-10T23:21:42.8800841Z   duration_ms: 212.924384
+2026-10-10T23:21:42.8801217Z   type: 'test'
+2026-10-10T23:21:42.8801542Z   ...
+2026-10-10T23:21:45.1017147Z # Subtest: actual adapter detail stock freight pinned deferral survives restart without recursive followups
+2026-10-10T23:21:45.1050502Z ok 58 - actual adapter detail stock freight pinned deferral survives restart without recursive followups
+2026-10-10T23:21:45.1060631Z   ---
+2026-10-10T23:21:45.1061661Z   duration_ms: 225.774646
+2026-10-10T23:21:45.1062128Z   type: 'test'
+2026-10-10T23:21:45.1062453Z   ...
+2026-10-10T23:21:45.1063405Z # Subtest: ambiguous variant missing destination wrong identity and denied provider defer without retry
+2026-10-10T23:21:45.1064851Z ok 59 - ambiguous variant missing destination wrong identity and denied provider defer without retry
+2026-10-10T23:21:45.1065647Z   ---
+2026-10-10T23:21:45.1065977Z   duration_ms: 441.966254
+2026-10-10T23:21:45.1066365Z   type: 'test'
+2026-10-10T23:21:45.1066682Z   ...
+2026-10-10T23:21:45.1067397Z # Subtest: quota interrupted lease expired source and state corruption fail closed
+2026-10-10T23:21:45.1068516Z ok 60 - quota interrupted lease expired source and state corruption fail closed
+2026-10-10T23:21:45.1069187Z   ---
+2026-10-10T23:21:45.1069507Z   duration_ms: 287.047418
+2026-10-10T23:21:45.1070123Z   type: 'test'
+2026-10-10T23:21:45.1070440Z   ...
+2026-10-10T23:21:45.1071197Z # Subtest: queue and receipt rollback together; restart duplicate tick creates no second job
+2026-10-10T23:21:45.1072794Z ok 61 - queue and receipt rollback together; restart duplicate tick creates no second job
+2026-10-10T23:21:45.1073478Z   ---
+2026-10-10T23:21:45.1073811Z   duration_ms: 66.510928
+2026-10-10T23:21:45.1074186Z   type: 'test'
+2026-10-10T23:21:45.1074514Z   ...
+2026-10-10T23:21:45.1075526Z # Subtest: owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+2026-10-10T23:21:45.1077201Z ok 62 - owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+2026-10-10T23:21:45.1078152Z   ---
+2026-10-10T23:21:45.1078493Z   duration_ms: 205.451724
+2026-10-10T23:21:45.1078883Z   type: 'test'
+2026-10-10T23:21:45.1079217Z   ...
+2026-10-10T23:21:45.1082083Z # Subtest: later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+2026-10-10T23:21:45.1083521Z ok 63 - later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+2026-10-10T23:21:45.1084370Z   ---
+2026-10-10T23:21:45.1084708Z   duration_ms: 209.363279
+2026-10-10T23:21:45.1085106Z   type: 'test'
+2026-10-10T23:21:45.1085451Z   ...
+2026-10-10T23:21:45.1086514Z # Subtest: 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+2026-10-10T23:21:45.1088134Z ok 64 - 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+2026-10-10T23:21:45.1089035Z   ---
+2026-10-10T23:21:45.1089376Z   duration_ms: 181.614744
+2026-10-10T23:21:45.1094983Z   type: 'test'
+2026-10-10T23:21:45.1095333Z   ...
+2026-10-10T23:21:45.1096062Z # Subtest: refresh selection resumes beyond its 32-parent page across restart
+2026-10-10T23:21:45.1097117Z ok 65 - refresh selection resumes beyond its 32-parent page across restart
+2026-10-10T23:21:45.1097759Z   ---
+2026-10-10T23:21:45.1098101Z   duration_ms: 118.404194
+2026-10-10T23:21:45.1098489Z   type: 'test'
+2026-10-10T23:21:45.1098850Z   ...
+2026-10-10T23:21:45.4246905Z # Subtest: two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+2026-10-10T23:21:45.4254250Z ok 66 - two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+2026-10-10T23:21:45.4256829Z   ---
+2026-10-10T23:21:45.4262189Z   duration_ms: 502.06294
+2026-10-10T23:21:45.4264483Z   type: 'test'
+2026-10-10T23:21:45.4265164Z   ...
+2026-10-10T23:21:45.7315991Z # Subtest: canonical chargeback, unknown fees, cutoff and cash traces pass; unsupported currency remains a gap
+2026-10-10T23:21:45.7318682Z ok 67 - canonical chargeback, unknown fees, cutoff and cash traces pass; unsupported currency remains a gap
+2026-10-10T23:21:45.7319883Z   ---
+2026-10-10T23:21:45.7320162Z   duration_ms: 32.208958
+2026-10-10T23:21:45.7320421Z   type: 'test'
+2026-10-10T23:21:45.7320635Z   ...
+2026-10-10T23:21:46.7348466Z # Subtest: canonical amounts and full settlement conserve source money
+2026-10-10T23:21:46.7350108Z ok 68 - canonical amounts and full settlement conserve source money
+2026-10-10T23:21:46.7351047Z   ---
+2026-10-10T23:21:46.7351578Z   duration_ms: 29.111694
+2026-10-10T23:21:46.7352186Z   type: 'test'
+2026-10-10T23:21:46.7352716Z   ...
+2026-10-10T23:21:46.7354014Z # Subtest: unknown costs and period cutoff remain explicit
+2026-10-10T23:21:46.7356784Z ok 69 - unknown costs and period cutoff remain explicit
+2026-10-10T23:21:46.7357382Z   ---
+2026-10-10T23:21:46.7358618Z   duration_ms: 10.292894
+2026-10-10T23:21:46.7359054Z   type: 'test'
+2026-10-10T23:21:46.7359413Z   ...
+2026-10-10T23:21:46.7363640Z # Subtest: forged amounts, state/receipt pairs, duplicate liabilities and unsourced assumptions rejected
+2026-10-10T23:21:46.7365507Z ok 70 - forged amounts, state/receipt pairs, duplicate liabilities and unsourced assumptions rejected
+2026-10-10T23:21:46.7366465Z   ---
+2026-10-10T23:21:46.7366878Z   duration_ms: 20.801149
+2026-10-10T23:21:46.7367140Z   type: 'test'
+2026-10-10T23:21:46.7368396Z   ...
+2026-10-10T23:21:46.7369230Z # Subtest: losses, negative cash and delayed payouts remain visible
+2026-10-10T23:21:46.7376826Z ok 71 - losses, negative cash and delayed payouts remain visible
+2026-10-10T23:21:46.7377455Z   ---
+2026-10-10T23:21:46.7377862Z   duration_ms: 7.768807
+2026-10-10T23:21:46.7378137Z   type: 'test'
+2026-10-10T23:21:46.7378521Z   ...
+2026-10-10T23:21:46.7379180Z # Subtest: 100 canonical integer scenarios satisfy independent conservation
+2026-10-10T23:21:46.7380337Z ok 72 - 100 canonical integer scenarios satisfy independent conservation
+2026-10-10T23:21:46.7380922Z   ---
+2026-10-10T23:21:46.7381230Z   duration_ms: 680.48603
+2026-10-10T23:21:46.7381593Z   type: 'test'
+2026-10-10T23:21:46.7381890Z   ...
+2026-10-10T23:21:47.0117284Z # Subtest: actual financial risk escalates without repair; fresh retained-source reversal closes
+2026-10-10T23:21:47.0118796Z ok 73 - actual financial risk escalates without repair; fresh retained-source reversal closes
+2026-10-10T23:21:47.0120058Z   ---
+2026-10-10T23:21:47.0120413Z   duration_ms: 21.649548
+2026-10-10T23:21:47.0120687Z   type: 'test'
+2026-10-10T23:21:47.0120893Z   ...
+2026-10-10T23:21:47.0124133Z # Subtest: partial negative contribution and budget alert degrade; absent coverage stays blocked
+2026-10-10T23:21:47.0125630Z ok 74 - partial negative contribution and budget alert degrade; absent coverage stays blocked
+2026-10-10T23:21:47.0126573Z   ---
+2026-10-10T23:21:47.0127030Z   duration_ms: 5.279705
+2026-10-10T23:21:47.0127385Z   type: 'test'
+2026-10-10T23:21:47.0127788Z   ...
+2026-10-10T23:21:47.0130262Z # Subtest: corrupt and over-bound financial sources fail closed
+2026-10-10T23:21:47.0131513Z ok 75 - corrupt and over-bound financial sources fail closed
+2026-10-10T23:21:47.0132153Z   ---
+2026-10-10T23:21:47.0132511Z   duration_ms: 4.816173
+2026-10-10T23:21:47.0132964Z   type: 'test'
+2026-10-10T23:21:47.0133295Z   ...
+2026-10-10T23:21:47.3845913Z # Subtest: Commerce task, Assurance recovery and finance share real canonical identities and state
+2026-10-10T23:21:47.3849319Z ok 76 - Commerce task, Assurance recovery and finance share real canonical identities and state
+2026-10-10T23:21:47.3850188Z   ---
+2026-10-10T23:21:47.3850682Z   duration_ms: 105.250206
+2026-10-10T23:21:47.3850959Z   type: 'test'
+2026-10-10T23:21:47.3851163Z   ...
+2026-10-10T23:21:47.6379899Z # Subtest: actual Amazon evidence yields broad market context and no inferred supplier match
+2026-10-10T23:21:47.6388258Z ok 77 - actual Amazon evidence yields broad market context and no inferred supplier match
+2026-10-10T23:21:47.6389341Z   ---
+2026-10-10T23:21:47.6390218Z   duration_ms: 10.722174
+2026-10-10T23:21:47.6390927Z   type: 'test'
+2026-10-10T23:21:47.6391547Z   ...
+2026-10-10T23:21:47.6392375Z # Subtest: expired observation remains historical without refreshed source claim
+2026-10-10T23:21:47.6430395Z ok 78 - expired observation remains historical without refreshed source claim
+2026-10-10T23:21:47.6439867Z   ---
+2026-10-10T23:21:47.6457964Z   duration_ms: 1.539625
+2026-10-10T23:21:47.6475384Z   type: 'test'
+2026-10-10T23:21:47.6475890Z   ...
+2026-10-10T23:21:47.6476776Z # Subtest: malformed or contradictory prices cannot produce a market quote
+2026-10-10T23:21:47.6477928Z ok 79 - malformed or contradictory prices cannot produce a market quote
+2026-10-10T23:21:47.6478562Z   ---
+2026-10-10T23:21:47.6479072Z   duration_ms: 2.534196
+2026-10-10T23:21:47.6479793Z   type: 'test'
+2026-10-10T23:21:47.6480327Z   ...
+2026-10-10T23:21:47.6481207Z # Subtest: wrong ASIN, market identity, missing catalogue, or tampered facts refuses quote
+2026-10-10T23:21:47.6482286Z ok 80 - wrong ASIN, market identity, missing catalogue, or tampered facts refuses quote
+2026-10-10T23:21:47.6482994Z   ---
+2026-10-10T23:21:47.6483513Z   duration_ms: 1.922618
+2026-10-10T23:21:47.6484031Z   type: 'test'
+2026-10-10T23:21:47.6484511Z   ...
+2026-10-10T23:21:48.3359409Z # Subtest: 201 canonical missions paginate without hidden truncation or workspace leakage
+2026-10-10T23:21:48.3365533Z ok 81 - 201 canonical missions paginate without hidden truncation or workspace leakage
+2026-10-10T23:21:48.3367317Z   ---
+2026-10-10T23:21:48.3368045Z   duration_ms: 429.812824
+2026-10-10T23:21:48.3368513Z   type: 'test'
+2026-10-10T23:21:48.3368869Z   ...
+2026-10-10T23:21:48.3370040Z # Subtest: empty scoped page explicitly complete and bounded lower limit advances lexical cursor
+2026-10-10T23:21:48.3371379Z ok 82 - empty scoped page explicitly complete and bounded lower limit advances lexical cursor
+2026-10-10T23:21:48.3372100Z   ---
+2026-10-10T23:21:48.3372446Z   duration_ms: 0.58051
+2026-10-10T23:21:48.3372785Z   type: 'test'
+2026-10-10T23:21:48.3373098Z   ...
+2026-10-10T23:21:48.3666352Z # Subtest: mission heads and finance stay on one WAL read snapshot while second connection commits
+2026-10-10T23:21:48.3668031Z ok 83 - mission heads and finance stay on one WAL read snapshot while second connection commits
+2026-10-10T23:21:48.3668903Z   ---
+2026-10-10T23:21:48.3669279Z   duration_ms: 32.765895
+2026-10-10T23:21:48.3670017Z   type: 'test'
+2026-10-10T23:21:48.3670416Z   ...
+2026-10-10T23:21:48.7569321Z # {"event":"locked_inference_route","requestKey":"f195d6baa647d8c134535cc9c18bb9a0150ac5055d658fbef23def17db4cc086","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"temporary_refusal","httpStatus":429}],"fallbackUsed":false}
+2026-10-10T23:21:48.7722231Z # {"event":"locked_inference_route","requestKey":"5292f8bc2b508a48ba2da5f8b4cef968e5f3ac57e728a2930f925fc657113530","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+2026-10-10T23:21:48.7814688Z # {"event":"locked_inference_route","requestKey":"a08fed32fcc6e7bef3d94de0a9e9a25abb76fa77e157819330063f821234c1d9","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"temporary_refusal","httpStatus":503}],"fallbackUsed":false}
+2026-10-10T23:21:48.7940062Z # {"event":"locked_inference_route","requestKey":"9bc30b853f23a963f0d0ac4311d35750295a8b3b4ccc62506c8dc965cce01392","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+2026-10-10T23:21:48.8027154Z # {"event":"locked_inference_route","requestKey":"8695edc1a2f18a2dea729e425ae4f50e3a419418fe7548b2f24fcd29c2c44402","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"failed_closed"}],"fallbackUsed":false}
+2026-10-10T23:21:48.8135610Z # {"event":"locked_inference_route","requestKey":"e033d49ec2584460fab35069f57cd85ee5e2cd142a90440ca321ddcee81dc59a","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+2026-10-10T23:21:48.9037744Z # Subtest: actual locked router failures feed passive Assurance and require a new successful receipt to recover
+2026-10-10T23:21:48.9043716Z ok 84 - actual locked router failures feed passive Assurance and require a new successful receipt to recover
+2026-10-10T23:21:48.9044699Z   ---
+2026-10-10T23:21:48.9045111Z   duration_ms: 96.827574
+2026-10-10T23:21:48.9045566Z   type: 'test'
+2026-10-10T23:21:48.9045918Z   ...
+2026-10-10T23:21:48.9153403Z # {"level":50,"time":1791674508910,"pid":3790,"hostname":"runnervmmprz5","err":{"type":"SessionStoreUnavailableError","message":"Shared session store temporarily unavailable: INJECTED_REDIS_ADAPTER_UNAVAILABLE","stack":"SessionStoreUnavailableError: Shared session store temporarily unavailable\\n    at SessionStore.get (/home/runner/work/EmpireAI/EmpireAI/backend/src/auth/session-store.ts:76:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\\n    at async Object.authenticate (/home/runner/work/EmpireAI/EmpireAI/backend/src/auth/middleware.ts:31:17)\\ncaused by: Error: INJECTED_REDIS_ADAPTER_UNAVAILABLE\\n    at Object.get (/home/runner/work/EmpireAI/EmpireAI/backend/src/validation/tests/work8-model-session-faults.test.ts:48:139)\\n    at SessionStore.get (/home/runner/work/EmpireAI/EmpireAI/backend/src/auth/session-store.ts:69:36)\\n    at Object.authenticate (/home/runner/work/EmpireAI/EmpireAI/backend/src/auth/middleware.ts:31:36)\\n    at hookIterator (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/hooks.js:408:10)\\n    at next (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/hooks.js:242:18)\\n    at hookRunner (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/hooks.js:264:5)\\n    at validationCompleted (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/handle-request.js:117:5)\\n    at preValidationCallback (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/handle-request.js:101:5)\\n    at handler (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/handle-request.js:78:7)\\n    at Object.handleRequest (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/handle-request.js:30:5)","name":"SessionStoreUnavailableError"},"msg":"Session lookup failed"}
+2026-10-10T23:21:48.9202048Z # Subtest: actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers
+2026-10-10T23:21:48.9203565Z ok 85 - actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers
+2026-10-10T23:21:48.9204390Z   ---
+2026-10-10T23:21:48.9204720Z   duration_ms: 96.659345
+2026-10-10T23:21:48.9205119Z   type: 'test'
+2026-10-10T23:21:48.9205444Z   ...
+2026-10-10T23:21:48.9223537Z # {"level":50,"time":1791674508915,"pid":3790,"hostname":"runnervmmprz5","err":{"type":"SessionStoreUnavailableError","message":"Shared session store temporarily unavailable: INJECTED_REDIS_ADAPTER_UNAVAILABLE","stack":"SessionStoreUnavailableError: Shared session store temporarily unavailable\\n    at SessionStore.get (/home/runner/work/EmpireAI/EmpireAI/backend/src/auth/session-store.ts:76:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\\n    at async Object.authenticate (/home/runner/work/EmpireAI/EmpireAI/backend/src/auth/middleware.ts:31:17)\\ncaused by: Error: INJECTED_REDIS_ADAPTER_UNAVAILABLE\\n    at Object.get (/home/runner/work/EmpireAI/EmpireAI/backend/src/validation/tests/work8-model-session-faults.test.ts:48:139)\\n    at SessionStore.get (/home/runner/work/EmpireAI/EmpireAI/backend/src/auth/session-store.ts:69:36)\\n    at Object.authenticate (/home/runner/work/EmpireAI/EmpireAI/backend/src/auth/middleware.ts:31:36)\\n    at hookIterator (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/hooks.js:408:10)\\n    at next (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/hooks.js:242:18)\\n    at hookRunner (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/hooks.js:264:5)\\n    at validationCompleted (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/handle-request.js:117:5)\\n    at preValidationCallback (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/handle-request.js:101:5)\\n    at handler (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/handle-request.js:78:7)\\n    at Object.handleRequest (/home/runner/work/EmpireAI/EmpireAI/backend/node_modules/fastify/lib/handle-request.js:30:5)","name":"SessionStoreUnavailableError"},"msg":"Session lookup failed"}
+2026-10-10T23:21:49.8324243Z # Subtest: seeded canonical commerce, cold crash replay and finance produce reproducible multi-order traces
+2026-10-10T23:21:49.8326123Z ok 86 - seeded canonical commerce, cold crash replay and finance produce reproducible multi-order traces
+2026-10-10T23:21:49.8327056Z   ---
+2026-10-10T23:21:49.8327526Z   duration_ms: 637.291293
+2026-10-10T23:21:49.8327945Z   type: 'test'
+2026-10-10T23:21:49.8328282Z   ...
+2026-10-10T23:21:49.8331044Z # Subtest: examination bounds prevent unbounded scenario or malformed seed requests
+2026-10-10T23:21:49.8334374Z ok 87 - examination bounds prevent unbounded scenario or malformed seed requests
+2026-10-10T23:21:49.8335153Z   ---
+2026-10-10T23:21:49.8335520Z   duration_ms: 0.476618
+2026-10-10T23:21:49.8335911Z   type: 'test'
+2026-10-10T23:21:49.8336584Z   ...
+2026-10-10T23:21:50.2075290Z # Subtest: owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+2026-10-10T23:21:50.2077214Z ok 88 - owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+2026-10-10T23:21:50.2078134Z   ---
+2026-10-10T23:21:50.2078715Z   duration_ms: 112.16567
+2026-10-10T23:21:50.2079308Z   type: 'test'
+2026-10-10T23:21:50.2080267Z   ...
+2026-10-10T23:21:50.2110681Z # Subtest: mission with research but no orders never fabricates zero revenue or complete finance
+2026-10-10T23:21:50.2112303Z ok 89 - mission with research but no orders never fabricates zero revenue or complete finance
+2026-10-10T23:21:50.2121676Z   ---
+2026-10-10T23:21:50.2122049Z   duration_ms: 3.604397
+2026-10-10T23:21:50.2122441Z   type: 'test'
+2026-10-10T23:21:50.2122737Z   ...
+2026-10-10T23:22:41.2241403Z # Subtest: independent SQLite worker connections race for 1000th slot; 1001st denied
+2026-10-10T23:22:41.2245184Z ok 90 - independent SQLite worker connections race for 1000th slot; 1001st denied
+2026-10-10T23:22:41.2245881Z   ---
+2026-10-10T23:22:41.2246203Z   duration_ms: 50750.597743
+2026-10-10T23:22:41.2246620Z   type: 'test'
+2026-10-10T23:22:41.2246937Z   ...
+2026-10-10T23:23:31.6888969Z # Subtest: daily virtual cohorts reach 1000 active products; 1001 blocked after reopen, retirement permits one replacement
+2026-10-10T23:23:31.6891010Z ok 91 - daily virtual cohorts reach 1000 active products; 1001 blocked after reopen, retirement permits one replacement
+2026-10-10T23:23:31.6891949Z   ---
+2026-10-10T23:23:31.6892306Z   duration_ms: 50176.967432
+2026-10-10T23:23:31.6892654Z   type: 'test'
+2026-10-10T23:23:31.6892860Z   ...
+2026-10-10T23:23:31.6896025Z # Subtest: duplicate product variants cannot consume multiple active slots; owner retirement cannot be forged; replay is unchanged
+2026-10-10T23:23:31.6904396Z ok 92 - duplicate product variants cannot consume multiple active slots; owner retirement cannot be forged; replay is unchanged
+2026-10-10T23:23:31.6905171Z   ---
+2026-10-10T23:23:31.6905385Z   duration_ms: 12.274969
+2026-10-10T23:23:31.6905631Z   type: 'test'
+2026-10-10T23:23:31.6905837Z   ...
+2026-10-10T23:23:32.3750359Z # Subtest: actual pending investigation is never healthy; fresh canonical request completion independently closes binding incident
+2026-10-10T23:23:32.3752819Z ok 93 - actual pending investigation is never healthy; fresh canonical request completion independently closes binding incident
+2026-10-10T23:23:32.3754038Z   ---
+2026-10-10T23:23:32.3754379Z   duration_ms: 89.237149
+2026-10-10T23:23:32.3754778Z   type: 'test'
+2026-10-10T23:23:32.3755114Z   ...
+2026-10-10T23:23:32.3756657Z # Subtest: wrong request, altered assessment, empty answer, foreign delivered evidence and corrupt source fail closed
+2026-10-10T23:23:32.3758440Z ok 94 - wrong request, altered assessment, empty answer, foreign delivered evidence and corrupt source fail closed
+2026-10-10T23:23:32.3759299Z   ---
+2026-10-10T23:23:32.3760042Z   duration_ms: 127.396571
+2026-10-10T23:23:32.3760671Z   type: 'test'
+2026-10-10T23:23:32.3761202Z   ...
+2026-10-10T23:23:32.3764729Z # Subtest: oversized response source is refused by byte preflight before payload SELECT or JSON parsing
+2026-10-10T23:23:32.3766543Z ok 95 - oversized response source is refused by byte preflight before payload SELECT or JSON parsing
+2026-10-10T23:23:32.3767611Z   ---
+2026-10-10T23:23:32.3768025Z   duration_ms: 82.296466
+2026-10-10T23:23:32.3768637Z   type: 'test'
+2026-10-10T23:23:32.3769092Z   ...
+2026-10-10T23:23:32.3770312Z # Subtest: unbound technical responses cannot acquire a fabricated candidate assessment binding
+2026-10-10T23:23:32.3771646Z ok 96 - unbound technical responses cannot acquire a fabricated candidate assessment binding
+2026-10-10T23:23:32.3772227Z   ---
+2026-10-10T23:23:32.3772584Z   duration_ms: 80.715446
+2026-10-10T23:23:32.3772975Z   type: 'test'
+2026-10-10T23:23:32.3773306Z   ...
+2026-10-10T23:23:32.8320157Z # Subtest: guard duplicate-orders positive and negative boundaries
+2026-10-10T23:23:32.8321869Z ok 97 - guard duplicate-orders positive and negative boundaries
+2026-10-10T23:23:32.8322857Z   ---
+2026-10-10T23:23:32.8323676Z   duration_ms: 35.028408
+2026-10-10T23:23:32.8324330Z   type: 'test'
+2026-10-10T23:23:32.8324895Z   ...
+2026-10-10T23:23:32.8325824Z # Subtest: guard order-reconciliation positive and negative boundaries
+2026-10-10T23:23:32.8327047Z ok 98 - guard order-reconciliation positive and negative boundaries
+2026-10-10T23:23:32.8327896Z   ---
+2026-10-10T23:23:32.8328442Z   duration_ms: 27.576402
+2026-10-10T23:23:32.8329062Z   type: 'test'
+2026-10-10T23:23:32.8329855Z   ...
+2026-10-10T23:23:32.8341825Z # Subtest: guard stock positive and negative boundaries
+2026-10-10T23:23:32.8344217Z ok 99 - guard stock positive and negative boundaries
+2026-10-10T23:23:32.8344999Z   ---
+2026-10-10T23:23:32.8345653Z   duration_ms: 0.491444
+2026-10-10T23:23:32.8346444Z   type: 'test'
+2026-10-10T23:23:32.8347078Z   ...
+2026-10-10T23:23:32.8348051Z # Subtest: guard profitability positive and negative boundaries
+2026-10-10T23:23:32.8349307Z ok 100 - guard profitability positive and negative boundaries
+2026-10-10T23:23:32.8350480Z   ---
+2026-10-10T23:23:32.8351140Z   duration_ms: 0.425893
+2026-10-10T23:23:32.8351836Z   type: 'test'
+2026-10-10T23:23:32.8352446Z   ...
+2026-10-10T23:23:32.8353299Z # Subtest: guard capital positive and negative boundaries
+2026-10-10T23:23:32.8354484Z ok 101 - guard capital positive and negative boundaries
+2026-10-10T23:23:32.8355339Z   ---
+2026-10-10T23:23:32.8355999Z   duration_ms: 0.399974
+2026-10-10T23:23:32.8356706Z   type: 'test'
+2026-10-10T23:23:32.8357316Z   ...
+2026-10-10T23:23:32.8358214Z # Subtest: guard delivery positive and negative boundaries
+2026-10-10T23:23:32.8359389Z ok 102 - guard delivery positive and negative boundaries
+2026-10-10T23:23:32.8360672Z   ---
+2026-10-10T23:23:32.8361265Z   duration_ms: 24.379592
+2026-10-10T23:23:32.8361920Z   type: 'test'
+2026-10-10T23:23:32.8362506Z   ...
+2026-10-10T23:23:32.8363369Z # Subtest: guard compliance positive and negative boundaries
+2026-10-10T23:23:32.8364479Z ok 103 - guard compliance positive and negative boundaries
+2026-10-10T23:23:32.8365278Z   ---
+2026-10-10T23:23:32.8366137Z   duration_ms: 0.52126
+2026-10-10T23:23:32.8366799Z   type: 'test'
+2026-10-10T23:23:32.8367331Z   ...
+2026-10-10T23:23:32.8368220Z # Subtest: guard supplier-reliability positive and negative boundaries
+2026-10-10T23:23:32.8369413Z ok 104 - guard supplier-reliability positive and negative boundaries
+2026-10-10T23:23:32.8370550Z   ---
+2026-10-10T23:23:32.8371080Z   duration_ms: 0.431102
+2026-10-10T23:23:32.8371662Z   type: 'test'
+2026-10-10T23:23:32.8372199Z   ...
+2026-10-10T23:23:32.8372978Z # Subtest: guard durability positive and negative boundaries
+2026-10-10T23:23:32.8373986Z ok 105 - guard durability positive and negative boundaries
+2026-10-10T23:23:32.8374773Z   ---
+2026-10-10T23:23:32.8375312Z   duration_ms: 12.536647
+2026-10-10T23:23:32.8375902Z   type: 'test'
+2026-10-10T23:23:32.8376433Z   ...
+2026-10-10T23:23:32.8397204Z # Subtest: guard safe-retry positive and negative boundaries
+2026-10-10T23:23:32.8398543Z ok 106 - guard safe-retry positive and negative boundaries
+2026-10-10T23:23:32.8399399Z   ---
+2026-10-10T23:23:32.8400062Z   duration_ms: 22.262453
+2026-10-10T23:23:32.8400542Z   type: 'test'
+2026-10-10T23:23:32.8400914Z   ...
+2026-10-10T23:23:32.8401682Z # Subtest: guard financial-reconciliation positive and negative boundaries
+2026-10-10T23:23:32.8402831Z ok 107 - guard financial-reconciliation positive and negative boundaries
+2026-10-10T23:23:32.8403560Z   ---
+2026-10-10T23:23:32.8403929Z   duration_ms: 16.325035
+2026-10-10T23:23:32.8404370Z   type: 'test'
+2026-10-10T23:23:32.8404728Z   ...
+2026-10-10T23:23:32.8405361Z # Subtest: guard monitoring positive and negative boundaries
+2026-10-10T23:23:32.8406259Z ok 108 - guard monitoring positive and negative boundaries
+2026-10-10T23:23:32.8406856Z   ---
+2026-10-10T23:23:32.8407219Z   duration_ms: 8.414386
+2026-10-10T23:23:32.8407972Z   type: 'test'
+2026-10-10T23:23:32.8408354Z   ...
+2026-10-10T23:23:32.8409032Z # Subtest: guard circuit-breakers positive and negative boundaries
+2026-10-10T23:23:32.8410336Z ok 109 - guard circuit-breakers positive and negative boundaries
+2026-10-10T23:23:32.8411011Z   ---
+2026-10-10T23:23:32.8411376Z   duration_ms: 7.143792
+2026-10-10T23:23:32.8411796Z   type: 'test'
+2026-10-10T23:23:32.8412185Z   ...
+2026-10-10T23:23:32.8412893Z # Subtest: guard owner-authority positive and negative boundaries
+2026-10-10T23:23:32.8413898Z ok 110 - guard owner-authority positive and negative boundaries
+2026-10-10T23:23:32.8414560Z   ---
+2026-10-10T23:23:32.8414931Z   duration_ms: 13.446679
+2026-10-10T23:23:32.8415367Z   type: 'test'
+2026-10-10T23:23:32.8415729Z   ...
+2026-10-10T23:23:32.8416423Z # Subtest: guard disaster-recovery positive and negative boundaries
+2026-10-10T23:23:32.8417437Z ok 111 - guard disaster-recovery positive and negative boundaries
+2026-10-10T23:23:32.8418105Z   ---
+2026-10-10T23:23:32.8418508Z   duration_ms: 15.026369
+2026-10-10T23:23:32.8418946Z   type: 'test'
+2026-10-10T23:23:32.8419307Z   ...
+2026-10-10T23:23:34.3661366Z # Subtest: exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact
+2026-10-10T23:23:34.3676615Z ok 112 - exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact
+2026-10-10T23:23:34.3677451Z   ---
+2026-10-10T23:23:34.3677823Z   duration_ms: 499.166496
+2026-10-10T23:23:34.3678240Z   type: 'test'
+2026-10-10T23:23:34.3678577Z   ...
+2026-10-10T23:23:34.5778916Z # Subtest: exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data
+2026-10-10T23:23:34.5781452Z ok 113 - exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data
+2026-10-10T23:23:34.5782900Z   ---
+2026-10-10T23:23:34.5783622Z   duration_ms: 267.055621
+2026-10-10T23:23:34.5784345Z   type: 'test'
+2026-10-10T23:23:34.5784911Z   ...
+2026-10-10T23:23:34.6199175Z # Subtest: both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation
+2026-10-10T23:23:34.6201444Z ok 114 - both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation
+2026-10-10T23:23:34.6202124Z   ---
+2026-10-10T23:23:34.6202350Z   duration_ms: 170.553783
+2026-10-10T23:23:34.6202606Z   type: 'test'
+2026-10-10T23:23:34.6202813Z   ...
+2026-10-10T23:23:34.9660952Z # Subtest: explicit rational quote preserves separate canonical SGD and translated USD journals
+2026-10-10T23:23:34.9662603Z ok 115 - explicit rational quote preserves separate canonical SGD and translated USD journals
+2026-10-10T23:23:34.9663254Z   ---
+2026-10-10T23:23:34.9663751Z   duration_ms: 35.429252
+2026-10-10T23:23:34.9664269Z   type: 'test'
+2026-10-10T23:23:34.9664737Z   ...
+2026-10-10T23:23:34.9669323Z # Subtest: missing, forged, expired, wrong-currency and unsupported rounding/precision quotes fail closed
+2026-10-10T23:23:34.9672877Z ok 116 - missing, forged, expired, wrong-currency and unsupported rounding/precision quotes fail closed
+2026-10-10T23:23:34.9673777Z   ---
+2026-10-10T23:23:34.9674119Z   duration_ms: 17.360041
+2026-10-10T23:23:34.9674522Z   type: 'test'
+2026-10-10T23:23:34.9674858Z   ...
+2026-10-10T23:23:34.9676791Z # Subtest: unknown fee stays unknown after translation
+2026-10-10T23:23:34.9679333Z ok 117 - unknown fee stays unknown after translation
+2026-10-10T23:23:34.9680247Z   ---
+2026-10-10T23:23:34.9680608Z   duration_ms: 14.456148
+2026-10-10T23:23:34.9680991Z   type: 'test'
+2026-10-10T23:23:34.9681217Z   ...
+2026-10-10T23:23:35.9222125Z # Subtest: bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities
+2026-10-10T23:23:35.9224011Z ok 118 - bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities
+2026-10-10T23:23:35.9224972Z   ---
+2026-10-10T23:23:35.9225355Z   duration_ms: 516.886108
+2026-10-10T23:23:35.9225805Z   type: 'test'
+2026-10-10T23:23:35.9226586Z   ...
+2026-10-10T23:23:35.9228810Z # Subtest: authentic retained cohort has truthful under-supply and zero provider discovery
+2026-10-10T23:23:35.9236093Z ok 119 - authentic retained cohort has truthful under-supply and zero provider discovery
+2026-10-10T23:23:35.9237265Z   ---
+2026-10-10T23:23:35.9237862Z   duration_ms: 24.252563
+2026-10-10T23:23:35.9238329Z   type: 'test'
+2026-10-10T23:23:35.9238704Z   ...
+2026-10-10T23:23:35.9240100Z # Subtest: source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent
+2026-10-10T23:23:35.9241756Z ok 120 - source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent
+2026-10-10T23:23:35.9242651Z   ---
+2026-10-10T23:23:35.9243220Z   duration_ms: 16.610225
+2026-10-10T23:23:35.9243719Z   type: 'test'
+2026-10-10T23:23:35.9244051Z   ...
+2026-10-10T23:23:35.9244827Z # Subtest: source expiry and snapshot mutation cannot become fresh qualified candidates
+2026-10-10T23:23:35.9245956Z ok 121 - source expiry and snapshot mutation cannot become fresh qualified candidates
+2026-10-10T23:23:35.9246597Z   ---
+2026-10-10T23:23:35.9246947Z   duration_ms: 10.298074
+2026-10-10T23:23:35.9247319Z   type: 'test'
+2026-10-10T23:23:35.9247625Z   ...
+2026-10-10T23:23:35.9248319Z # Subtest: daily target is bounded at 100 and durable receipt tampering fails closed
+2026-10-10T23:23:35.9249380Z ok 122 - daily target is bounded at 100 and durable receipt tampering fails closed
+2026-10-10T23:23:35.9250339Z   ---
+2026-10-10T23:23:35.9250669Z   duration_ms: 50.512304
+2026-10-10T23:23:35.9251070Z   type: 'test'
+2026-10-10T23:23:35.9251405Z   ...
+2026-10-10T23:23:35.9252452Z # Subtest: changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor
+2026-10-10T23:23:35.9255659Z ok 123 - changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor
+2026-10-10T23:23:35.9256661Z   ---
+2026-10-10T23:23:35.9257041Z   duration_ms: 16.007464
+2026-10-10T23:23:35.9257508Z   type: 'test'
+2026-10-10T23:23:35.9257861Z   ...
+2026-10-10T23:23:35.9259252Z # Subtest: facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot
+2026-10-10T23:23:35.9261312Z ok 124 - facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot
+2026-10-10T23:23:35.9266527Z   ---
+2026-10-10T23:23:35.9267274Z   duration_ms: 48.618302
+2026-10-10T23:23:35.9267739Z   type: 'test'
+2026-10-10T23:23:35.9268113Z   ...
+2026-10-10T23:23:35.9269226Z # Subtest: deleted or mutated parent identity blocks read/retry/new day rather than recounting
+2026-10-10T23:23:35.9270234Z ok 125 - deleted or mutated parent identity blocks read/retry/new day rather than recounting
+2026-10-10T23:23:35.9270693Z   ---
+2026-10-10T23:23:35.9270901Z   duration_ms: 31.844822
+2026-10-10T23:23:35.9271143Z   type: 'test'
+2026-10-10T23:23:35.9271338Z   ...
+2026-10-10T23:23:36.1832053Z # Subtest: retained source projection preserves unknown currency and withholds unlicensed image
+2026-10-10T23:23:36.1848880Z ok 126 - retained source projection preserves unknown currency and withholds unlicensed image
+2026-10-10T23:23:36.1850015Z   ---
+2026-10-10T23:23:36.1850494Z   duration_ms: 2.339773
+2026-10-10T23:23:36.1850872Z   type: 'test'
+2026-10-10T23:23:36.1851186Z   ...
+2026-10-10T23:23:36.1852128Z # Subtest: reject forged authenticity, digest, identity, invalid dates and future observations
+2026-10-10T23:23:36.1853465Z ok 127 - reject forged authenticity, digest, identity, invalid dates and future observations
+2026-10-10T23:23:36.1854251Z   ---
+2026-10-10T23:23:36.1854692Z   duration_ms: 1.056456
+2026-10-10T23:23:36.1855097Z   type: 'test'
+2026-10-10T23:23:36.1855432Z   ...
+2026-10-10T23:23:36.1856160Z # Subtest: expired authentic source remains explicitly historical and deferred
+2026-10-10T23:23:36.1857274Z ok 128 - expired authentic source remains explicitly historical and deferred
+2026-10-10T23:23:36.1857980Z   ---
+2026-10-10T23:23:36.1858877Z   duration_ms: 0.479823
+2026-10-10T23:23:36.1859256Z   type: 'test'
+2026-10-10T23:23:36.1859808Z   ...
+2026-10-10T23:23:36.1860486Z # Subtest: variant is matched exactly and cannot inherit product price
+2026-10-10T23:23:36.1861393Z ok 129 - variant is matched exactly and cannot inherit product price
+2026-10-10T23:23:36.1862065Z   ---
+2026-10-10T23:23:36.1862826Z   duration_ms: 0.618711
+2026-10-10T23:23:36.1864408Z   type: 'test'
+2026-10-10T23:23:36.1864724Z   ...
+2026-10-10T23:23:36.1865575Z # Subtest: catalogue query is not confused with returned product identity, duplicates deduplicated
+2026-10-10T23:23:36.1866976Z ok 130 - catalogue query is not confused with returned product identity, duplicates deduplicated
+2026-10-10T23:23:36.1867792Z   ---
+2026-10-10T23:23:36.1868122Z   duration_ms: 0.3169
+2026-10-10T23:23:36.1868471Z   type: 'test'
+2026-10-10T23:23:36.1868775Z   ...
+2026-10-10T23:23:36.1869742Z # Subtest: workspace reader and absent provider shape cannot substitute fixtures
+2026-10-10T23:23:36.1870920Z ok 131 - workspace reader and absent provider shape cannot substitute fixtures
+2026-10-10T23:23:36.1871673Z   ---
+2026-10-10T23:23:36.1872004Z   duration_ms: 0.250296
+2026-10-10T23:23:36.1872434Z   type: 'test'
+2026-10-10T23:23:36.1872765Z   ...
+2026-10-10T23:23:36.1916231Z # Subtest: retained authenticated readback reproduces ten products without inventing rights or currency
+2026-10-10T23:23:36.1918204Z ok 132 - retained authenticated readback reproduces ten products without inventing rights or currency
+2026-10-10T23:23:36.1919401Z   ---
+2026-10-10T23:23:36.1920292Z   duration_ms: 10.891375
+2026-10-10T23:23:36.1920976Z   type: 'test'
+2026-10-10T23:23:36.1921533Z   ...
+2026-10-10T23:23:36.1922797Z # Subtest: only exact detail variant price receives documented USD unit; contradictory currency quarantined
+2026-10-10T23:23:36.1924703Z ok 133 - only exact detail variant price receives documented USD unit; contradictory currency quarantined
+2026-10-10T23:23:36.1925866Z   ---
+2026-10-10T23:23:36.1926484Z   duration_ms: 0.409903
+2026-10-10T23:23:36.1927126Z   type: 'test'
+2026-10-10T23:23:36.1927724Z   ...
+2026-10-10T23:23:36.1929248Z # Subtest: unselected observed variants reject contradictory parent and variant currencies
+2026-10-10T23:23:36.1931147Z ok 134 - unselected observed variants reject contradictory parent and variant currencies
+2026-10-10T23:23:36.1932222Z   ---
+2026-10-10T23:23:36.1932789Z   duration_ms: 0.529125
+2026-10-10T23:23:36.1933416Z   type: 'test'
+2026-10-10T23:23:36.1933958Z   ...
+2026-10-10T23:23:37.5631610Z # Subtest: real second-connection SQLite lock times out with no partial receipt; release and exact safe retry close incident from fresh readback
+2026-10-10T23:23:37.5633881Z ok 135 - real second-connection SQLite lock times out with no partial receipt; release and exact safe retry close incident from fresh readback
+2026-10-10T23:23:37.5634963Z   ---
+2026-10-10T23:23:37.5635326Z   duration_ms: 1032.970527
+2026-10-10T23:23:37.5635721Z   type: 'test'
+2026-10-10T23:23:37.5635981Z   ...
+2026-10-10T23:23:37.5644615Z # Subtest: duplicate delivery of actual durable task is fenced without second receipt; fresh state closes retained incident
+2026-10-10T23:23:37.5646459Z ok 136 - duplicate delivery of actual durable task is fenced without second receipt; fresh state closes retained incident
+2026-10-10T23:23:37.5647210Z   ---
+2026-10-10T23:23:37.5647433Z   duration_ms: 16.217706
+2026-10-10T23:23:37.5647675Z   type: 'test'
+2026-10-10T23:23:37.5647872Z   ...
+2026-10-10T23:23:37.5648499Z # Subtest: duplicate concurrent recovery deliveries reconcile a committed cursor gap once without another business step
+2026-10-10T23:23:37.5649787Z ok 137 - duplicate concurrent recovery deliveries reconcile a committed cursor gap once without another business step
+2026-10-10T23:23:37.5650452Z   ---
+2026-10-10T23:23:37.5650664Z   duration_ms: 61.348667
+2026-10-10T23:23:37.5650897Z   type: 'test'
+2026-10-10T23:23:37.5651192Z   ...
+2026-10-10T23:23:37.8908920Z # Subtest: same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases
+2026-10-10T23:23:37.8912068Z ok 138 - same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases
+2026-10-10T23:23:37.8913419Z   ---
+2026-10-10T23:23:37.8914041Z   duration_ms: 52.787711
+2026-10-10T23:23:37.8914627Z   type: 'test'
+2026-10-10T23:23:37.8914967Z   ...
+2026-10-10T23:23:38.0891302Z # Subtest: two real SQLite connections competing for3 units admit exactly one2-unit order
+2026-10-10T23:23:38.0895561Z ok 139 - two real SQLite connections competing for3 units admit exactly one2-unit order
+2026-10-10T23:23:38.0896410Z   ---
+2026-10-10T23:23:38.0896809Z   duration_ms: 217.301229
+2026-10-10T23:23:38.0897257Z   type: 'test'
+2026-10-10T23:23:38.0897631Z   ...
+2026-10-10T23:23:38.1013783Z 1..139
+2026-10-10T23:23:38.1014142Z # tests 139
+2026-10-10T23:23:38.1014467Z # suites 0
+2026-10-10T23:23:38.1014880Z # pass 139
+2026-10-10T23:23:38.1015255Z # fail 0
+2026-10-10T23:23:38.1015605Z # cancelled 0
+2026-10-10T23:23:38.1015943Z # skipped 0
+2026-10-10T23:23:38.1016258Z # todo 0
+2026-10-10T23:23:38.1016691Z # duration_ms 209037.80712
+

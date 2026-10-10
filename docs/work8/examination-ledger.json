@@ -5,7 +5,7 @@
   "canonicalRegister": "register.json",
   "faultMap": "assurance-fault-coverage.json",
   "safetyMap": "safety-matrix.json",
-  "preconditions": "Independent Work7 production gate, NOT_BORN/LOCKED, fresh isolated stores, Node22, kernel network denial",
+  "preconditions": "Independent Work7 production gate, NOT_BORN/LOCKED, isolated stores (retained across slices in shared-runtime exam), Node22, kernel network denial",
   "permittedEffects": "Synthetic local receipts only;0 paid inference,0 realcommerce,0 productionwrites",
   "runs": [
     {
@@ -770,6 +770,52 @@
         "skipped": 0,
         "todo": 0
       }
+    },
+    {
+      "id": "shared-store-days",
+      "scope": "One shared database over10 accelerated days,20orders,190receipts,10 independent verified checkpoint recoveries; fixed56500minorunit oracle",
+      "summary": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      "test": "scripts/work8/shared-store-days.test.ts",
+      "evidence": "shared-store-days.json.gz",
+      "sha256": "a539b9394e7093ebc984c65d8c98399ba4832d33aa1e534f6ace6692470606c7",
+      "limits": "Accelerated virtual time, not elapsed multi-day endurance, source discovery or genuine assessment"
+    },
+    {
+      "id": "shared-runtime-soak.json.gz",
+      "scope": "One persistent isolated runtime/store set with injected provider responses. Source products are synthetic protocol fixtures, not real-product visibility evidence. Manual cadence orchestration uses actual planners/workers/collectors, not deployed timers or hosted endurance. Virtual business day advances explicitly for simulated settlement; wall time is measured independently.",
+      "status": "PASS_SCOPED_SHARED_RUNTIME",
+      "receipt": "shared-runtime-soak-receipt.json",
+      "backendCandidate": "a09bd0e365d7740ce55455ad4d768f6df11d4a63",
+      "rawSha256": "9e9e455a1642d89ff21e3b4b4fe0efd0a964d9c9c9d9b593e3787031e65ccf51",
+      "elapsedMs": 600004.997997,
+      "samples": 120,
+      "laterDeltasIncluded": false
+    },
+    {
+      "id": "ci-work8-a09bd0e3.log",
+      "scope": "Exact a09bd0e3 candidate kernel section; excludes later queue/excerpt deltas",
+      "status": "PASS",
+      "tests": 139,
+      "pass": 139,
+      "fail": 0,
+      "ciRunId": 38094488052,
+      "jobId": 114337542093
+    },
+    {
+      "id": "queue-and-finance-escalation-delta",
+      "scope": "Later targeted local delta, not part of a09 endurance or139-test CI",
+      "status": "PASS_SCOPED",
+      "tests": 5,
+      "files": [
+        "work8-queue-probe.test.ts",
+        "work8-assurance-runtime-cycle.test.ts",
+        "work8-finance-escalation.test.ts"
+      ],
+      "proof": "Real queue pressure/drain and same-snapshot corruption preflight; actual durable SIM missing-order/refund mismatch escalation; zero repair authority."
     }
   ],
   "failureLineage": [
@@ -808,7 +854,8 @@
     "simulated-fx-evidence.json",
     "assurance-exam-receipts.json",
     "sqlite-queue-exam.json",
-    "sidecar-compatibility.json"
+    "sidecar-compatibility.json",
+    "shared-store-days.json.gz"
   ],
   "endurance": {
     "pilot": "elapsed-soak.json",
@@ -832,6 +879,16 @@
     "passed": 105,
     "failed": 0,
     "log": "ci-work8-d054cc57.log",
-    "finalExactHead": "PENDING"
+    "finalExactHead": "PENDING",
+    "atomicBackend": {
+      "sha": "27b1e23c827eecf82db6ab9b81495a7b6353cbf5",
+      "run": 38092253456,
+      "job": 114330988740,
+      "work8Tests": 106,
+      "passed": 106,
+      "failed": 0,
+      "log": "ci-work8-27b1e23c.log",
+      "scope": "Checkpoint before acquisition bridge and late-effect additions"
+    }
   }
 }

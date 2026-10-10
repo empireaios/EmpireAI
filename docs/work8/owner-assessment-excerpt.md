@@ -1,0 +1,9 @@
+# Verified owner assessment excerpt
+
+The authenticated Portfolio read can expose at most 2,000 plain-text characters of an assessment only after the existing candidate-linked completion verifier succeeds and both the investigation owner and archived request owner equal the authenticated owner. It retains exact response-hash, context-delivery, source-snapshot and closure checks. The excerpt is explicitly model assessment, not commercial approval. No archive URL is exposed.
+
+The request receipt projection now preserves the canonical optional owner ID going forward. Historical archives without owner identity remain unavailable for excerpt disclosure; no owner is inferred or backfilled. Altered responses, unbound candidates, missing owners and other owners do not disclose an excerpt. Existing workspace archive routes are outside this narrow change.
+
+Validation: isolated Node 22 linked-assessment regression passed, including altered response, unbound candidate, missing/foreign owner and bounded long response; actual archived Pillow readback passed with known owner preserved and unknown owner null. Strict noUncheckedIndexedAccess targeted backend compilation passed. Frontend SSR tests passed (10 cases), including escaped plain text and classification gating; changed-component lint and frontend TypeScript passed. This is synthetic contract evidence, not a claim that an authentic product has completed a Pillow assessment or that Work 8 is complete.
+
+Final independent race review also binds the returned excerpt to the second validated grant owner, answer digest, request and candidate pins. Injected between-read content replacement and owner replacement both fail closed. The internal validated owner is omitted from the public excerpt. Final module SHA256: 5149fb232c344adf56a17b2156ecc0ef1b59277ad8a85c5ab4c162f59de69e35.

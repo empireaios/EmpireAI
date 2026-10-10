@@ -17,7 +17,7 @@ export function archivePillowRequest(r:DurableChatRequest): void {
   if(!fs.existsSync(filename))fs.closeSync(fs.openSync(filename,'wx',0o600));
   if(!fs.lstatSync(filename).isFile() || fs.realpathSync(filename)!==filename)throw Error('RECEIPT_PATH');
   // Explicit projection excludes session tokens, queue inputs and credentials.
-  const body=JSON.stringify({requestId:r.requestId,sessionId:r.sessionId,workspaceId:r.workspaceId,
+  const body=JSON.stringify({requestId:r.requestId,sessionId:r.sessionId,workspaceId:r.workspaceId,ownerId:r.ownerId??null,
     createdAt:r.createdAt,updatedAt:r.updatedAt,status:r.status,failureClass:r.failureClass,
     deliveryState:r.deliveryState,observability:r.observability,attemptCount:r.attemptCount,
     messagePreview:r.messagePreview,lastError:r.lastError,upstreamStatus:r.upstreamStatus,finalResult:r.finalResult});

@@ -47,7 +47,9 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-safety-matrix.test.ts"
+      ],
       "release": "WORK7_BASELINE_ONLY",
       "nextAction": "Approved Work7 UX recovered; candidate fixed15 positive/negative safety matrix passes, distinct from deployed certification.",
       "responsibleComponent": "Production handoff and owner authority"
@@ -62,7 +64,10 @@
         "examination-blueprint.json"
       ],
       "ownerAction": "NONE",
-      "code": [],
+      "code": [
+        "scripts/work8/isolated-exec.py",
+        "scripts/work8/incoming-only-exec.py"
+      ],
       "tests": [],
       "release": "NOT_RELEASED",
       "nextAction": "Kernel network denial passes; filesystem confinement and hosted isolation remain unverified",
@@ -95,8 +100,12 @@
         "source-authentic-projection.json"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "10 genuine parent identities and10 variants retained; no qualified real products",
       "responsibleComponent": "Intelligence and product assessment"
@@ -111,8 +120,12 @@
         "source-visibility.md"
       ],
       "ownerAction": "NONE NOW; prerequisite evidence/access or separate authority may be needed after technical preparation",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "0/19 image URLs have verified display rights; obtain supplier capability/rights evidence",
       "responsibleComponent": "Intelligence and product assessment"
@@ -128,8 +141,12 @@
         "source-currency-contract.json"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Exact variant prices USD verified; parent currency and landed economics incomplete",
       "responsibleComponent": "Intelligence and product assessment"
@@ -144,8 +161,12 @@
         "source-visibility.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-market-context.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-market-context.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Three authentic Amazon source records expose ten catalog ASIN identities and one USD18.99 offer; no verified CJ product match or demand inference.",
       "responsibleComponent": "Intelligence and product assessment"
@@ -160,8 +181,12 @@
         "source-visibility.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-source-discovery.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Durable bounded discovery deduplicates receipt-bound parent identities across days; fresh provider discovery remains unproven.",
       "responsibleComponent": "Intelligence and product assessment"
@@ -176,8 +201,14 @@
         "source-visibility.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-source-discovery.test.ts",
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Expiry and contradiction quarantine tested; ongoing real refresh not proven",
       "responsibleComponent": "Intelligence and product assessment"
@@ -192,18 +223,23 @@
         "source-visibility.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-source-projection.test.ts",
+        "backend/src/validation/tests/work8-enrichment.test.ts"
+      ],
       "release": "NOT_RELEASED",
-      "nextAction": "Completeness screening defers10/10; full independent product qualification absent",
+      "nextAction": "Durable per-parent detail/logistics enrichment and explicit deferrals implemented under existing queue/quota bounds. Genuine complete qualification remains0; missing economic/market evidence is not inferred.",
       "responsibleComponent": "Intelligence and product assessment"
     },
     {
       "item": 13,
       "requirement": "Actual Pillow assessment binding",
       "mandateSections": "4,R1,R2,R5",
-      "recoveredClassification": "EXTERNAL DEPENDENCY",
-      "status": "BLOCKED",
+      "recoveredClassification": "MISSING SOFTWARE LINK AND EXTERNAL DEPENDENCY",
+      "status": "IN_PROGRESS",
       "evidence": [
         "source-visibility.md"
       ],
@@ -211,7 +247,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "No genuine linked Pillow assessment; requires sufficient evidence and authorised inference budget",
+      "nextAction": "Candidate-bound grants now pin exact evidence snapshots and durable context delivery; answer/request/owner/timestamp binding and two-process grant race examined. Genuine completed assessments remain0; authorized actual inference and sufficient evidence remain unavailable.",
       "responsibleComponent": "Intelligence and product assessment"
     },
     {
@@ -257,10 +293,14 @@
         "source-discovery-worker.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-source-discovery.test.ts"
+      ],
       "release": "NOT_RELEASED",
-      "nextAction": "Bounded durable retained discovery integrated;10 genuineparents/shortfall90; fresh100/day provider acquisition still unproven",
+      "nextAction": "Bounded page planner, atomic queue/cursor admission and append-only same-day discovery implemented and injected-adapter examined through100 distinct identities. Existing quotas unchanged; real daily source-refresh access remains unverified.",
       "responsibleComponent": "Intelligence and product assessment"
     },
     {
@@ -273,8 +313,13 @@
         "portfolio-node22.log"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-portfolio.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+        "backend/src/validation/tests/work8-portfolio.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "1000 cap, reopen, retirement and concurrent999/1000/1001 boundaries pass locally; full genuine-candidate operating loop remains blocked.",
       "responsibleComponent": "Governed commerce worker"
@@ -289,8 +334,13 @@
         "portfolio-node22.log"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-portfolio.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+        "backend/src/validation/tests/work8-portfolio.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Owner retirement and safe replacement preserve immutable history; wider market retirement pending",
       "responsibleComponent": "Governed commerce worker"
@@ -305,8 +355,12 @@
         "finance-operating-exam-evidence.json.gz"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-operating-exams.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Canonical intercepted listing lifecycle exercised; real qualified assessment lineage absent",
       "responsibleComponent": "Governed commerce worker"
@@ -321,8 +375,12 @@
         "finance-operating-exam-evidence.json.gz"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-operating-exams.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Eight orders across four virtual mission scenarios; complete programme still pending",
       "responsibleComponent": "Governed commerce worker"
@@ -337,8 +395,14 @@
         "finance-operating-exam-evidence.json.gz"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/assurance/work8-fulfilment-probes.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-fulfilment-scale.test.ts",
+        "backend/src/validation/tests/work8-assurance-fulfilment.test.ts",
+        "backend/src/validation/tests/work8-assurance-runtime-cycle.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Canonical missing-tracking and overdue partial shipment collectors integrated into Assurance; local escalation/fresh terminal closure pass, no provider repair authority.",
       "responsibleComponent": "Governed commerce worker"
@@ -354,7 +418,10 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-finance-additional.test.ts",
+        "backend/src/validation/tests/work8-stock-race.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Chargeback loss, refund mismatch, repeated unconfirmed cancellation and unknown outcome covered locally; broader live-provider contract remains unavailable.",
       "responsibleComponent": "Governed commerce worker"
@@ -369,10 +436,21 @@
         "finance-examination.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-finance-boundary-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-finance.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-finance-boundary.test.ts",
+        "backend/src/validation/tests/work8-finance-additional.test.ts",
+        "backend/src/validation/tests/work8-finance.test.ts",
+        "backend/src/validation/tests/work8-owner-finance.test.ts",
+        "backend/src/validation/tests/work8-durable-finance.test.ts",
+        "backend/src/validation/tests/work8-durable-finance-runtime.test.ts"
+      ],
       "release": "NOT_RELEASED",
-      "nextAction": "Simulated hold/release/bank receipts tested; actual values remain unknown",
+      "nextAction": "Durable SIMULATION-only sidecar lifecycle now progresses through existing5-second commerce runtime and authenticated readback, with explicit one-day simulated payout hold and null-runbook Assurance probes. Actual Work5 finance is untouched; genuine product lineage remains absent.",
       "responsibleComponent": "Governed commerce worker"
     },
     {
@@ -385,8 +463,19 @@
         "assurance-draft-review.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-finance-boundary-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-finance.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-simulated-fx.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-finance-boundary.test.ts",
+        "backend/src/validation/tests/work8-finance-additional.test.ts",
+        "backend/src/validation/tests/work8-finance.test.ts",
+        "backend/src/validation/tests/work8-owner-finance.test.ts",
+        "backend/src/validation/tests/work8-simulated-fx.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Canonical money, chargeback, cutoff, negative cash and exact rational simulated FX checked; full programme not certified.",
       "responsibleComponent": "Financial reconciliation and owner readback"
@@ -402,8 +491,14 @@
         "finance-examination.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-mission-page.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-mission-page.test.ts",
+        "backend/src/validation/tests/work8-owner-finance.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Paged owner readback prevents silent200-record truncation; mission heads and simulation finance share one snapshot. Real fees/settlement/profit remain unknown.",
       "responsibleComponent": "Financial reconciliation and owner readback"
@@ -418,10 +513,18 @@
         "joint-exam-evidence.json.gz"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/assurance/work8-commerce-recovery.ts",
+        "backend/src/assurance/work8-fulfilment-probes.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-commerce-recovery.test.ts",
+        "backend/src/validation/tests/work8-assurance-runtime-cycle.test.ts",
+        "backend/src/validation/tests/work8-financial-probe.test.ts",
+        "backend/src/validation/tests/work8-response-binding.test.ts"
+      ],
       "release": "NOT_RELEASED",
-      "nextAction": "Joint actual receipt/cursor detection and incident recording pass locally",
+      "nextAction": "Read-only financial risk and response-correlation collectors now reject negative/unknown/conflicting evidence and missing candidate context proof, with fresh independent closure. No financial or model replay repair authority.",
       "responsibleComponent": "Assurance control plane"
     },
     {
@@ -435,8 +538,12 @@
         "assurance-examinations.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/assurance/work8-commerce-recovery.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-commerce-recovery.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Allowlisted receipt-cursor repair registered in candidate Assurance; no production deployment",
       "responsibleComponent": "Assurance control plane"
@@ -453,7 +560,9 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Fresh recovery and stale/future evidence denial pass; legacy collectors lack freshness guarantee",
       "responsibleComponent": "Assurance control plane"
@@ -469,7 +578,9 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Fault-family retry budget across incidents tested; operational recurrence prevention incomplete",
       "responsibleComponent": "Assurance control plane"
@@ -485,7 +596,9 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-storage-recovery.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Existing supervisor tests retained; deployed Work8 watchdog acceptance pending",
       "responsibleComponent": "Assurance control plane"
@@ -500,8 +613,14 @@
         "examination-blueprint.json"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-joint-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-joint-exams.test.ts",
+        "backend/src/validation/tests/work8-operating-exams.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Fixed45 register and prerequisite blueprint established; fault map expansion underway",
       "responsibleComponent": "Integrated examination programme"
@@ -517,7 +636,10 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-model-session-faults.test.ts",
+        "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Focused contract/identity/money/model/session/safety and compatibility exams pass; complete revised exact-head CI remains required.",
       "responsibleComponent": "Integrated examination programme"
@@ -532,8 +654,15 @@
         "portfolio-node22.log"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-portfolio.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-stock.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+        "backend/src/validation/tests/work8-portfolio.test.ts",
+        "backend/src/validation/tests/work8-stock-race.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Two actual SQLite contenders prove portfolio cap and aggregate stock admission; full transport/concurrency fault matrix remains open.",
       "responsibleComponent": "Integrated examination programme"
@@ -549,8 +678,13 @@
         "assurance-fault-coverage.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-joint-exams.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-joint-exams.test.ts",
+        "backend/src/validation/tests/work8-sqlite-queue-containment.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Joint and compound checkpoint+watchdog fault traces retained;31category gaps remain explicit",
       "responsibleComponent": "Integrated examination programme"
@@ -566,7 +700,10 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-adversity-followup.test.ts",
+        "backend/src/validation/tests/work8-model-session-faults.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Actual locked router429/503/malformed usage injected under kernel denial; passive fresh receipt closure and no replay pass; real-provider outages and semantic hallucination remain unproven.",
       "responsibleComponent": "Integrated examination programme"
@@ -582,7 +719,9 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-safety-matrix.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "15 catalog guards have positive/negative regression pairs; all7 live routes deny423 ordinarily and during autonomous repair, zerohandlers. Scope limits retained.",
       "responsibleComponent": "Integrated examination programme"
@@ -594,13 +733,22 @@
       "recoveredClassification": "MISSING",
       "status": "PARTIAL",
       "evidence": [
-        "portfolio-node22.log"
+        "portfolio-node22.log",
+        "shared-store-days.json.gz"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-portfolio.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-operating-exams.test.ts",
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+        "backend/src/validation/tests/work8-portfolio.test.ts",
+        "scripts/work8/shared-store-days.test.ts"
+      ],
       "release": "NOT_RELEASED",
-      "nextAction": "Ten virtual100/day capacity cohorts and four finance missions; not real multi-day operations",
+      "nextAction": "One sharedstore10accelerated days/20orders/190receipts/10 verified recoveries and fixed56500minorunit oracle pass; genuine assessed source pipeline and elapsed business endurance remain open.",
       "responsibleComponent": "Integrated examination programme"
     },
     {
@@ -610,13 +758,17 @@
       "recoveredClassification": "MISSING",
       "status": "PARTIAL",
       "evidence": [
-        "elapsed-soak.json"
+        "elapsed-soak.json",
+        "shared-runtime-soak-receipt.json",
+        "shared-runtime-soak.json.gz"
       ],
       "ownerAction": "NONE",
-      "code": [],
+      "code": [
+        "scripts/work8/resource-soak.mjs"
+      ],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Measured600.007second local resource soak:120samples, p99 93.415ms, peak122.43MiB, growth32.52MiB; all predeclared limits pass. Fresh-store sampling is not sustained full-business evidence; no paid/hosted canary required.",
+      "nextAction": "Sustained shared-runtime examination PASS: 600004.998ms elapsed,120 slices, p99 core 97.424ms, maximum 109.080ms, peak RSS 153.25MiB, growth 31.17MiB, CPU 6.756s. All declared bounds and 3926-file source manifests match. One persistent store set records100 injected discovery identities, one429, three deferrals, verified checkpoint recovery and complete simulated settlement; explicit virtual payout-day advance is not elapsed business time. Later source deltas require separate verification; no hosted multi-day/full-programme pass.",
       "responsibleComponent": "Integrated examination programme"
     },
     {
@@ -631,7 +783,10 @@
       ],
       "ownerAction": "NONE",
       "code": [],
-      "tests": [],
+      "tests": [
+        "backend/src/validation/tests/work8-assurance-storage-recovery.test.ts",
+        "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Actual Work7 source reader/writer compatibility, corrupt/version99 refusal and stale-authority fencing pass. Full deployment rollback/combined migration remains separately scoped, not inferred.",
       "responsibleComponent": "Integrated examination programme"
@@ -646,8 +801,14 @@
         "source-visibility.md"
       ],
       "ownerAction": "NONE NOW; prerequisite evidence/access or separate authority may be needed after technical preparation",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-market-context.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-market-context.test.ts",
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
       "release": "NOT_RELEASED",
       "nextAction": "Authenticated isolated desktop/mobile displays genuine retained CJ/Amazon records; no linked genuine Pillow assessment, image permission or coherent real-candidate downstream lifecycle.",
       "responsibleComponent": "Owner Console"
@@ -662,10 +823,16 @@
         "source-visibility.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/runtime/commerce-runtime/governed/work8-mission-page.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-mission-page.test.ts",
+        "backend/src/validation/tests/work8-owner-finance.test.ts"
+      ],
       "release": "NOT_RELEASED",
-      "nextAction": "Actual browser202mission navigation and genuine-source/finance equality pass at1440/390px;5445-file manifests match. Final atomic-finance delta separately tested with twoSQLiteconnections.",
+      "nextAction": "Existing202-mission paginated desktop/mobile browser exam retained. Latest authenticated17-mission durable-SIM walkthrough passes per root report; its precise receipt/source bindings remain in frontend evidence, not inferred from old manifests.",
       "responsibleComponent": "Owner Console"
     },
     {
@@ -682,7 +849,7 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Draftbackend27b1e23c and frontend3496eb83 have mandatory exact-head CI running; no merge/release authority.",
+      "nextAction": "Backend PR113 a09bd0e365d7740ce55455ad4d768f6df11d4a63 matches locald608ca2b tree31e80a1549577f771a9cce11970ddaa1f7dba57f. New exact-head CI pending; old27b1e23c runtime503 cause unresolved. No release authority.",
       "responsibleComponent": "Governed review and closure"
     },
     {

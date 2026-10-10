@@ -23,8 +23,8 @@ export class ReadAcquirer{
   const c=capabilities.find(c=>c.id===capabilityId);if(!c?.implemented)throw new ReadFailure('CAPABILITY_GAP');
   if(c.credentials.some(k=>!process.env[k]))throw new ReadFailure('CREDENTIAL_UNAVAILABLE',86400000);
   const health=this.store.get(workspace,'health',c.id);if(health?.retryAt&&Date.parse(health.retryAt)>this.store.now())throw new ReadFailure('BACKOFF_ACTIVE');
-  const subject=job.subject as JobInput['subject'];let endpoint='',facts:Row={},authenticity:Evidence['authenticity']='LIVE_PROVIDER';
-  const request=async(url:string,init:RequestInit={},units=1)=>{if(job.requestsUsed>=job.requestLimit)throw new ReadFailure('JOB_REQUEST_BOUND');this.store.reserve(c.provider,units);job.requestsUsed++;this.store.saveJob(workspace,job);return boundedFetch(url,init,this.transport);};
+  const subject=job.subject as JobInput['subject'];if(subject.cataloguePage!==undefined&&c.id!=='cj.catalog')throw new ReadFailure('PAGINATION_SCOPE_INVALID');let endpoint='',facts:Row={},authenticity:Evidence['authenticity']='LIVE_PROVIDER';
+  const request=async(url:string,init:RequestInit={},units=1)=>{if(job.requestsUsed>=job.requestLimit)throw new ReadFailure('JOB_REQUEST_BOUND');try{this.store.reserve(c.provider,units);}catch(error){if(error instanceof Error&&error.message==='DAILY_PROVIDER_BOUND')throw new ReadFailure('DAILY_PROVIDER_BOUND',86400000-(this.store.now()%86400000));throw error;}job.requestsUsed++;this.store.saveJob(workspace,job);return boundedFetch(url,init,this.transport);};
   if(c.provider==='Amazon'){
    const market=markets[subject.marketplace];if(!market)throw new ReadFailure('MARKETPLACE_REQUIRED');
    if(!this.amazonToken||this.amazonToken.expires<this.store.now()){
@@ -63,7 +63,7 @@ export class ReadAcquirer{
    const authFetch:typeof fetch=async(url,init)=>{const u=String(url);if(!['/authentication/getAccessToken','/authentication/refreshAccessToken'].some(p=>u===config.apiBaseUrl+p))throw new ReadFailure('AUTH_DESTINATION_DENIED');const r=await request(u,init,0);return new Response(r.text,{status:r.status,headers:r.headers});};
    let token:string;try{token=await getCjAccessToken(config,authFetch);}catch(e){if(e instanceof ReadFailure)throw e;throw new ReadFailure('CJ_AUTH_FAILED',86400000);}
    const p=new URLSearchParams();let body:unknown;
-   if(c.id==='cj.catalog'){endpoint='/product/list';p.set('pageNum','1');p.set('pageSize','10');p.set('productNameEn',subject.query??subject.id);}
+   if(c.id==='cj.catalog'){endpoint='/product/list';p.set('pageNum',String(subject.cataloguePage??1));p.set('pageSize','10');p.set('productNameEn',subject.query??subject.id);}
    else if(c.id==='cj.detail'){endpoint='/product/query';p.set('pid',subject.id);}
    else if(c.id==='cj.stock'){if(!subject.variant)throw new ReadFailure('VARIANT_REQUIRED');endpoint='/product/stock/queryByVid';p.set('vid',subject.variant);}
    else if(c.id==='cj.freight'){
@@ -74,6 +74,7 @@ export class ReadAcquirer{
    const r=await request(config.apiBaseUrl+endpoint+(p.size?'?'+p:''),{method:body?'POST':'GET',headers:{'CJ-Access-Token':token,'content-type':'application/json'},...(body?{body:JSON.stringify(body)}:{})},c.cost.units);
    const data=obj(JSON.parse(r.text));if(data.result!==true||data.code!==200||data.data===undefined)throw new ReadFailure('CJ_PROVIDER_'+String(data.code??'INVALID').replace(/[^0-9]/g,'').slice(0,12),86400000);
    if(data.data===null||typeof data.data!=='object')throw new ReadFailure('INVALID_PROVIDER_SHAPE');
+   if(c.id==='cj.catalog'&&subject.cataloguePage!==undefined&&(data.data.pageNum!==subject.cataloguePage||data.data.pageSize!==10||!Array.isArray(data.data.list)||data.data.list.length>10||!Number.isSafeInteger(data.data.total)||data.data.total<0))throw new ReadFailure('CATALOGUE_PAGE_IDENTITY_INVALID');
    facts={response:safe(data.data),pointsInfo:safe(data.pointsInfo??null),request:body??Object.fromEntries(p),interpretation:c.id==='cj.freight'?'Freight and delivery estimates, not guarantees; quantity 1; duties/returns not established.':'Supplier evidence only; does not establish independent customer demand.'};
   }else if(c.provider==='Keepa'){
    const market=markets[subject.marketplace];if(!market?.keepa||!/^[A-Z0-9]{10}$/.test(subject.id))throw new ReadFailure('KEEPA_ASIN_MARKET_REQUIRED');

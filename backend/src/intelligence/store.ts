@@ -6,6 +6,16 @@ import {capabilities,digest,jobSchema,key,defaultStrategy,type Evidence,type Job
 export type Row=Record<string,any>;
 export type IntelligenceSchedule={id:string;enabled:boolean;intervalMs:number;subject:JobInput['subject'];failures:number;timezone:string;lastQueuedAt?:string;lastJobId?:string;nextAt:string};
 const decode=(r:any):Row|null=>r?JSON.parse(r.body):null;
+function acquisitionLedger(db:DatabaseSync,workspace:string):Row[]{
+ const rows=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='work8_acquisition_admission' ORDER BY CAST(json_extract(body,'$.sequence') AS INTEGER) LIMIT 10001").all(workspace);if(rows.length>10000)throw Error('ACQUISITION_HISTORY_BOUND');
+ let previous:string|null=null,sequence=0;const result:Row[]=[];
+ for(const row of rows){const admission=JSON.parse(String(row.body)),{digest:actual,...body}=admission;if(actual!==digest(body)||admission.previous!==previous||admission.sequence!==++sequence)throw Error('ACQUISITION_ADMISSION_CORRUPT');
+  const job=decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,admission.jobId));
+  if(job){const request=jobSchema.parse({id:job.id,objective:job.objective,capabilities:job.capabilities,subject:job.subject,requestLimit:job.requestLimit,evidenceRefs:job.evidenceRefs,...(job.strategyRef?{strategyRef:job.strategyRef}:{})});if(job.id!==admission.jobId||job.requester!=='WORK8_DISCOVERY:'+admission.day||job.subject.cataloguePage!==admission.page||digest({query:job.subject.query??job.subject.id,marketplace:job.subject.marketplace})!==admission.queryDigest||digest(request)!==admission.requestDigest)throw Error('ACQUISITION_JOB_BINDING_CORRUPT');}
+  previous=actual;result.push(admission);
+ }
+ const head=decode(db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='work8_acquisition_head' AND id='head'").get(workspace));if((rows.length&&!head)||head&&(head.sequence!==sequence||head.digest!==previous))throw Error('ACQUISITION_HEAD_CORRUPT');return result;
+}
 /** Independent evidence store, not another CEO memory. Work3 remains decision/learning authority. */
 export class IntelligenceStore{
  constructor(readonly filename:string,readonly now=()=>Date.now()){}
@@ -56,7 +66,8 @@ export class IntelligenceStore{
    AND julianday(json_extract(body,'$.observedAt'))<=julianday(?)
    ORDER BY updated DESC,id LIMIT 1`).get(workspace,capability,JSON.stringify(subject),new Date(this.now()).toISOString(),new Date(this.now()).toISOString())))??undefined;
  }
- private enqueueWithin(db:DatabaseSync,workspace:string,requester:string,input:unknown){
+ /** Internal transaction participant; callers must hold BEGIN IMMEDIATE. */
+ enqueueWithin(db:DatabaseSync,workspace:string,requester:string,input:unknown){
   const p=jobSchema.parse(input);key.parse(workspace);if(p.capabilities.some(id=>!capabilities.some(c=>c.id===id&&c.implemented)))throw Error('CAPABILITY_UNAVAILABLE');for(const id of p.evidenceRefs)if(!this.get(workspace,'evidence',id))throw Error('EVIDENCE_REFERENCE');
   const job={...p,workspace,requester,createdAt:new Date(this.now()).toISOString(),status:'QUEUED',attempts:0,requestsUsed:0,evidence:[],failures:[],inferenceCalls:0,commerceEffects:0,grantsAuthority:false};
   const old=decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,p.id));
@@ -66,6 +77,34 @@ export class IntelligenceStore{
  }
  enqueue(workspace:string,requester:string,input:unknown){return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{const job=this.enqueueWithin(db,workspace,requester,input);db.exec('COMMIT');return job;}catch(e){db.exec('ROLLBACK');throw e;}});}
 
+ /** Atomic bounded continuation of an existing enabled CJ catalogue schedule.
+  * The admission chain retains the page cursor even when old queue rows prune. */
+ enqueueWork8Catalogue(workspace:string,day:string,seedId:string){
+  key.parse(workspace);if(day!==new Date(this.now()+8*3600000).toISOString().slice(0,10))throw Error('ACQUISITION_DAY_INVALID');
+  return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{
+   const schedule=decode(db.prepare("SELECT body FROM schedules WHERE workspace=? AND id='cj.catalog'").get(workspace));
+   const seed=decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,seedId));
+   if(!schedule?.enabled||!seed||seed.requester!=='SCHEDULER'||seed.status!=='COMPLETED'||seed.capabilities.length!==1||seed.capabilities[0]!=='cj.catalog'||digest(seed.subject)!==digest(schedule.subject))throw Error('ACQUISITION_SCHEDULE_BINDING');
+   const start=Date.parse(day+'T00:00:00+08:00'),seedAt=Date.parse(seed.createdAt);if(!Number.isFinite(seedAt)||seedAt<start||seedAt>=start+86400000)throw Error('ACQUISITION_SEED_DAY');
+   const validateSource=(read:Row)=>{const seedEvidence=decode(db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='evidence' AND id=?").get(workspace,read.evidence.at(-1)??''));
+   if(!seedEvidence||seedEvidence.authenticity!=='LIVE_PROVIDER'||seedEvidence.grantsAuthority!==false||seedEvidence.digest!==digest(seedEvidence.facts)||seedEvidence.provider!=='CJ'||seedEvidence.capabilityId!=='cj.catalog'||seedEvidence.endpoint!=='/product/list'||digest(seedEvidence.subject)!==digest(read.subject)||seedEvidence.facts.request?.productNameEn!==(read.subject.query??read.subject.id)||String(seedEvidence.facts.request?.pageNum)!==String(read.subject.cataloguePage??1)||seedEvidence.facts.response?.pageNum!==(read.subject.cataloguePage??1)||seedEvidence.facts.response?.pageSize!==10)throw Error('ACQUISITION_SEED_EVIDENCE');
+   const observed=Date.parse(seedEvidence.observedAt),retrieved=Date.parse(seedEvidence.retrievedAt),expires=Date.parse(seedEvidence.staleAfter);if(![observed,retrieved,expires].every(Number.isFinite)||observed>retrieved||retrieved>this.now()||expires<=this.now())throw Error('ACQUISITION_SEED_STALE');if(!Array.isArray(seedEvidence.facts.response.list)||seedEvidence.facts.response.list.length!==10)throw Error('ACQUISITION_SOURCE_EXHAUSTED');};validateSource(seed);
+   const health=decode(db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='health' AND id='cj.catalog'").get(workspace));if(health?.retryAt&&Date.parse(health.retryAt)>this.now())throw Error('ACQUISITION_PROVIDER_BACKOFF');
+   const scan=decode(db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='work8_discovery_checkpoint' AND id=?").get(workspace,'discovery:'+day));if(!scan||scan.newCandidates>=100||scan.snapshotTruncated)throw Error('ACQUISITION_SCAN_NOT_ADMISSIBLE');
+   const query=String(schedule.subject.query??schedule.subject.id),queryDigest=digest({query,marketplace:schedule.subject.marketplace});
+   const records=acquisitionLedger(db,workspace);
+   if(records.length>10000)throw Error('ACQUISITION_HISTORY_BOUND');let previous:string|null=null,sequence=0,page=1;let latest:Row|null=null,count=0;
+   for(const admission of records){const {digest:actual,...body}=admission;if(actual!==digest(body)||admission.previous!==previous||admission.sequence!==++sequence)throw Error('ACQUISITION_ADMISSION_CORRUPT');previous=actual;if(admission.queryDigest===queryDigest)page=Math.max(page,admission.page);if(admission.day===day){count++;const previousJob=decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,admission.jobId));if(!previousJob||['FAILED','PARTIAL','INTERRUPTED'].includes(previousJob.status))throw Error('ACQUISITION_PAGE_REVIEW_REQUIRED');}latest=admission;}
+   if(count>=10)throw Error('ACQUISITION_DAILY_PAGE_BOUND');if(page>=10000)throw Error('ACQUISITION_CATALOGUE_CURSOR_BOUND');
+   if(latest){const prior=decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,latest.jobId));if(latest.day===day&&prior?.status==='COMPLETED')validateSource(prior);if(prior&&['QUEUED','RUNNING'].includes(prior.status))throw Error('ACQUISITION_JOB_PENDING');if(this.now()<latest.at+30000)throw Error('ACQUISITION_CADENCE_BOUND');}
+   const jobId='work8_catalogue_'+digest({workspace,day,queryDigest,page:page+1}).slice(0,40);
+   const input={id:jobId,objective:'Bounded fresh supplier discovery; no qualification or commerce authority',capabilities:['cj.catalog'],subject:{...schedule.subject,cataloguePage:page+1},requestLimit:4,evidenceRefs:seed.evidence.slice(0,1)};
+   const job=this.enqueueWithin(db,workspace,'WORK8_DISCOVERY:'+day,input);
+   const body={id:jobId,jobId,day,queryDigest,page:page+1,seedId,sequence:sequence+1,previous,at:this.now(),requestDigest:digest(jobSchema.parse(input))},admission={...body,digest:digest(body)};
+   db.prepare('INSERT INTO objects VALUES(?,?,?,?,?)').run(workspace,'work8_acquisition_admission',jobId,this.now(),JSON.stringify(admission));db.prepare("INSERT INTO objects VALUES(?,?,?,?,?) ON CONFLICT(workspace,kind,id) DO UPDATE SET updated=excluded.updated,body=excluded.body").run(workspace,'work8_acquisition_head','head',this.now(),JSON.stringify({sequence:admission.sequence,digest:admission.digest}));db.exec('COMMIT');return job;
+  }catch(error){if(db.isTransaction)db.exec('ROLLBACK');throw error;}});
+ }
+ acquisitionAdmissions(workspace:string){return this.use(db=>acquisitionLedger(db,workspace));}
  job(workspace:string,id:string){return this.use(db=>decode(db.prepare('SELECT body FROM jobs WHERE workspace=? AND id=?').get(workspace,id)));}
  recentJobs(workspace:string,limit=20){return this.use(db=>db.prepare('SELECT body FROM jobs WHERE workspace=? ORDER BY created DESC LIMIT ?').all(workspace,Math.min(50,limit)).map(decode) as Row[]);}
  jobs(workspace:string,after='',limit=20){return this.use(db=>db.prepare('SELECT body FROM jobs WHERE workspace=? AND id>? ORDER BY id LIMIT ?').all(workspace,after,Math.min(50,limit)).map(decode) as Row[]);}

@@ -58,7 +58,7 @@ export async function readPillow(root:string,w:string,id?:string,after='',limit=
     if(!requestId){try{const current=await getChatRequest(rid);if(current?.workspaceId===w)r=current;}catch{liveAvailable=false;}r??=saved.find(p=>p.requestId===rid);}
     const rt=turns.filter(t=>t.requestId===rid),answer=rt.filter(t=>t.role==='assistant').at(-1);
     const result=r?.finalResult??null;
-    requests.push({requestId:rid,fetchId:'pillow:request:'+rid,sessionId:session?.session??r?.sessionId??null,status:r?.status??'UNKNOWN_REQUEST_STATE',failureClass:r?.failureClass??null,
+    requests.push({requestId:rid,ownerId:typeof r?.ownerId==='string'?r.ownerId:null,fetchId:'pillow:request:'+rid,sessionId:session?.session??r?.sessionId??null,status:r?.status??'UNKNOWN_REQUEST_STATE',failureClass:r?.failureClass??null,
       completionState:r?.status==='COMPLETED'&&result?'COMPLETED':r?.status==='FAILED_FATAL'||r?.status==='FAILED'?'INCOMPLETE_FAILED':r?'INCOMPLETE_PENDING':answer?'TRANSCRIPT_ONLY_COMPLETION_UNVERIFIED':'MISSING',
       createdAt:r?.createdAt??rt[0]?.timestamp??null,updatedAt:r?.updatedAt??rt.at(-1)?.timestamp??null,deliveryState:r?.deliveryState??'UNKNOWN',observability:r?.observability??null,
       requestText:rt.find(t=>t.role==='user')?.content??null,requestTextState:rt.some(t=>t.role==='user')?'COMPLETE_STORED_TURN':'NOT_RETAINED',

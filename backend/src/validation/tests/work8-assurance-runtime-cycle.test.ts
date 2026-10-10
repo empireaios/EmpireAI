@@ -1,3 +1,5 @@
+import {ReadAcquirer} from '../../intelligence/acquisition.js';
+import {runIntelligenceJob} from '../../intelligence/runtime.js';
 import {acceptanceScenario} from '../../runtime/commerce-runtime/governed/scenario.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -21,6 +23,7 @@ test('actual AssuranceRuntime cycle repairs registered bounded checkpoint gap wi
  const runtime=await createAssuranceRuntime(root,'work8-runtime-isolated');const commerce=productionCommerce();let inferenceCalls=0;
  runtime.advisor.ports.infer=async()=>{inferenceCalls++;throw Error('NO_INFERENCE_AUTHORITY');};
  try{
+  const queueStore=new IntelligenceStore(path.join(root,'commissioning','intelligence.sqlite'));for(let n=0;n<20;n++)queueStore.enqueue('ws_empire_1','OWNER_TEST',{id:'pressure-'+n,objective:'Read isolated state for real queue pressure',capabilities:['empire.state'],subject:{id:'empire',marketplace:'US'},requestLimit:1});
   const fixtureEngine=new GovernedCommerceEngine(commerce.store),fixtureWorker=new CommerceWorker(fixtureEngine),task=fixtureWorker.enqueue('ws_empire_1','synthetic-owner','cycle-gap');
   fixtureWorker.runBounded('ws_empire_1',task.id,4);const t=fixtureWorker.get('ws_empire_1',task.id)!,step=t.steps[t.cursor]!;
   fixtureEngine.execute(step.actor,{id:digest({task:task.id,step:t.cursor}),missionId:task.mission,expectedVersion:t.cursor,command:step.command});
@@ -29,6 +32,7 @@ test('actual AssuranceRuntime cycle repairs registered bounded checkpoint gap wi
   const overdueBefore=digest(commerce.store.history('ws_empire_1','overdue-mission'));
   const before=digest(commerce.store.history('ws_empire_1',task.mission));
   await runtime.cycle();if(runtime.advisorWork)await runtime.advisorWork;
+  const pressure=runtime.control.get('ws_empire_1','probe','intelligence_queue_pressure');assert.equal(pressure.status,'DEGRADED');const pressureIncident=runtime.control.list('ws_empire_1','incident').find((i:any)=>i.probeId==='intelligence_queue_pressure');assert.equal(pressureIncident.status,'UNRESOLVED');for(let n=0;n<4;n++)await runIntelligenceJob(queueStore,'ws_empire_1',new ReadAcquirer(queueStore,async()=>{throw Error('NO_TRANSPORT');}),undefined,false);
   const repair=runtime.control.list('ws_empire_1','recovery').find((r:any)=>r.runbookId==='work8_checkpoint_replay');
   assert.ok(repair,'registered runbook must actually execute via runtime cycle');assert.equal(repair.status,'VERIFIED');
   assert.equal(commerce.worker.get('ws_empire_1',task.id)!.cursor,5);assert.equal(digest(commerce.store.history('ws_empire_1',task.mission)),before);assert.equal(inferenceCalls,0);
@@ -36,7 +40,7 @@ test('actual AssuranceRuntime cycle repairs registered bounded checkpoint gap wi
   const fulfilmentId='work8-fulfilment:'+digest({workspace:'ws_empire_1',missionId:'overdue-mission',orderId:overdue.order.orderId});const fulfilment=runtime.control.get('ws_empire_1','probe',fulfilmentId);assert.equal(fulfilment.status,'FAILED');assert.equal(fulfilment.evidence.reason,'MISSING_TRACKING_OVERDUE');assert.equal(fulfilment.runbookId,null);assert.equal(digest(commerce.store.history('ws_empire_1','overdue-mission')),overdueBefore);const fulfilmentIncident=runtime.control.list('ws_empire_1','incident').find((i:any)=>i.probeId===fulfilmentId);assert.equal(fulfilmentIncident.status,'UNRESOLVED');
   const validCheckpoint=commerce.worker.get('ws_empire_1',task.id)!;
   commerce.store.db.prepare('UPDATE commerce_runtime_tasks SET record=? WHERE workspace=? AND id=?').run(JSON.stringify({...validCheckpoint,status:'COMPLETE'}),'ws_empire_1',task.id);
-  await runtime.cycle();const integrity=runtime.control.list('ws_empire_1','incident').find((i:any)=>i.probeId==='work8_checkpoint_integrity');assert.ok(integrity);assert.notEqual(integrity.status,'RECOVERED');
+  await runtime.cycle();assert.equal(runtime.control.get('ws_empire_1','probe','intelligence_queue_pressure').status,'HEALTHY');assert.equal(runtime.control.get('ws_empire_1','incident',pressureIncident.id).status,'RECOVERED');const integrity=runtime.control.list('ws_empire_1','incident').find((i:any)=>i.probeId==='work8_checkpoint_integrity');assert.ok(integrity);assert.notEqual(integrity.status,'RECOVERED');
   // Restore retained original checkpoint solely as an isolated owner repair fixture.
   commerce.store.db.prepare('UPDATE commerce_runtime_tasks SET record=? WHERE workspace=? AND id=?').run(JSON.stringify(validCheckpoint),'ws_empire_1',task.id);
   await runtime.cycle();if(runtime.advisorWork)await runtime.advisorWork;
