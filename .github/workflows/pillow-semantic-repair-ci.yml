@@ -55,7 +55,7 @@ jobs:
         run: node --import tsx --test src/validation/tests/work7-owner-portfolio.test.ts src/validation/tests/work7-executive.test.ts src/validation/tests/work7-safety.test.ts
         working-directory: backend
       - name: Work5 financial integrity regressions
-        run: node --import tsx --test src/validation/tests/work5-finance.test.ts src/validation/tests/work5-finance-routes.test.ts
+        run: node --import tsx --test src/validation/tests/work5-finance.test.ts src/validation/tests/work5-finance-routes.test.ts src/validation/tests/work7-cost-categories.test.ts
         working-directory: backend
       - name: Create network-denial preload for offline child processes
         shell: bash
