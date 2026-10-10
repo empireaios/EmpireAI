@@ -1,19 +1,17 @@
 {
   "candidateDigests": {
-    "backendDiffSha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
-    "frontendDiffSha256": "f680c701dfc64a5d48baae8a547103e25dfcbab3e8427d3b8a1a25d99c9a46e2",
-    "harnessSha256": "f768a15dccc41ee2c0a9f24a598c8054292e69ec326037e556e81270d7b7f808"
+    "harnessSha256": "b5ac706431ba668afd8abe2a25aa6304eebe81325003668634c2f6f7c333d89b"
   },
   "status": "PASS",
   "scope": "ISOLATED_AUTHENTICATED_BROWSER_NEXT_BFF_ACTUAL_CANDIDATE_FASTIFY",
-  "at": "2026-10-10T22:27:00.149Z",
-  "backendRevision": "a53875afc8107324db3c4b9302411facbb0e78de",
-  "frontendRevision": "97f2d223b274d89fbdb18516db22a5a5b8df4ee0",
+  "at": "2026-10-10T22:34:26.089Z",
+  "backendRevision": "be2cdfb55f125ab6aff0edd3557ba3d65df543c0",
+  "frontendRevision": "bb8e9e239d5ad2ce8cdcfb440a40fc2904e79ead",
   "checks": [
     "Actual BFF auth: anonymous401 and foreign/admin403",
     "Canonical isolated scenario completed through authenticated BFF commands",
-    "1440px Portfolio/Orders actual BFF data equals verified backend projections, no overflow",
-    "390px Portfolio/Orders actual BFF data equals verified backend projections, no overflow",
+    "1440px Portfolio/Orders actual BFF data equals verified backend projections; next/previous record groups cover202 unique missions, no overflow",
+    "390px Portfolio/Orders actual BFF data equals verified backend projections; next/previous record groups cover202 unique missions, no overflow",
     "Backend process restart preserves canonical receipts exactly"
   ],
   "sourceMode": "AUTHENTIC_RETAINED_OBSERVATIONS_NOT_PROVIDER_REFRESH",
@@ -24,9 +22,9 @@
   "backendConnect": "DENIED_BY_REQUIRED_SECCOMP_LAUNCHER",
   "frontendIsolation": "Clean fixture environment and JavaScript localhost/fixed-port guards; not a kernel IP filter",
   "blockedBrowserOrigins": [],
-  "portfolioDigest": "7c4db907fc8ac80bb94201494ad7a6fc3897e34ff3dee52bae68563f67b8e5d2",
-  "marketDigest": "688056191de5eef7aea39fe456742e02d20f856e41227a04cbcc93a05ced6736",
-  "missionDigest": "0d2068234cc3607ece4c3e70b1c100fb1da9b1a4d889569b184a1a06c1fbe1d0",
+  "portfolioDigest": "be04ca1d907a10d22a410c0acc92741a1b4898b0ecbcd60284e7a48d3806ef00",
+  "marketDigest": "5a1872402c87ec8fdcb34f19ad29a6e89355bb9f377eb3a26078338cf5b0f20f",
+  "missionDigest": "2be2a951790bf4c611ad19110a5d17d53a1632dd9a94417d2f5d3c9fe3daaf57",
   "screenshots": [
     "portfolio-1440.png",
     "orders-1440.png",
@@ -34,10 +32,10 @@
     "orders-390.png"
   ],
   "executedSourceManifest": {
-    "beforeSha256": "42a229b66586a7678ceb81396e413b1e89c5aed7c199035445b2d634bcac727a",
-    "afterSha256": "42a229b66586a7678ceb81396e413b1e89c5aed7c199035445b2d634bcac727a",
+    "beforeSha256": "1ebde842507e6d2bbaf757f08a62bc89c7efdb91cd12a69eeb7a9659973d5404",
+    "afterSha256": "1ebde842507e6d2bbaf757f08a62bc89c7efdb91cd12a69eeb7a9659973d5404",
     "unchanged": true,
-    "fileCount": 5443,
+    "fileCount": 5445,
     "dependencyCount": 11
   }
 }
