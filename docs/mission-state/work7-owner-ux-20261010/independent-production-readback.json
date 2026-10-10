@@ -1,0 +1,45 @@
+{
+  "reviewer": "/root/independent_review",
+  "source": "Independent direct Kings Advisor state/financial_centre and Vercel deployment/production alias connector reads",
+  "observedAt": "2026-10-10T21:20:35.908Z",
+  "backend": {
+    "sha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+    "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949",
+    "profile": "LOCKED_COMMISSIONING_V1",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "accounting": {
+    "count": 224,
+    "digest": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b"
+  },
+  "journal": {
+    "count": 3,
+    "digest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc"
+  },
+  "legacy": {
+    "count": 7,
+    "digest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf"
+  },
+  "directoryCapabilities": {
+    "standaloneCategories": true,
+    "providerCategoryMapping": true
+  },
+  "preservation": "PASS",
+  "readOnly": true,
+  "inferenceCalls": 0,
+  "externalRefresh": false,
+  "frontend": {
+    "deploymentId": "dpl_FH2y8VBSN1QwLRq9smUzy3JNgHog",
+    "sha": "71f9414d6c534b4c35dbd22696b82a77fcf7c597",
+    "target": "production",
+    "status": "READY",
+    "verification": "PASS_DIRECT_PRODUCTION_ALIAS",
+    "aliases": [
+      "empire-ai.co",
+      "www.empire-ai.co"
+    ],
+    "aliasLookup": "empire-ai.co resolves to dpl_FH2y8VBSN1QwLRq9smUzy3JNgHog"
+  },
+  "closure": "PENDING_LEASE_FINISH_PASSIVE_RECONCILIATION_AND_MISSION_RECEIPT"
+}

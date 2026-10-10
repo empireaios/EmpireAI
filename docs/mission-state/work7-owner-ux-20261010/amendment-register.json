@@ -451,7 +451,7 @@
   "release": "NOT_AUTHORISED_UNTIL_ACCEPTANCE",
   "missingSourceVerification": [
     "Original V5 PowerPoint and binding Home PNG not re-opened this continuation; Home artwork/layout remains unchanged.",
-    "10 October 15:14–15:15 screenshots not yet visually re-inspected; master directive establishes requested defects, not automatic acceptance."
+    "10 October 15:14\u201315:15 screenshots not yet visually re-inspected; master directive establishes requested defects, not automatic acceptance."
   ],
   "evidenceScope": "Local fixture proof is not authenticated preview or native physical-keyboard acceptance.",
   "updatedAt": "2026-10-10T18:12:58.322361+00:00",
@@ -747,7 +747,7 @@
     },
     {
       "id": "UX-09",
-      "requirement": "LIVE COST CENTRE — COMPREHENSIVE OWNER-ONLY RESOURCE ECONOMICS. Expand tracked potential cost taxonomy: ChatGPT development subscription; OpenAI/Pillow inference; Anthropic; Gemini; model training/fine-tuning, embeddings, reranking, image/video/audio generation; Railway compute/Redis/storage; Vercel hosting/builds/bandwidth; cloud servers, containers, workers, serverless, networking, CDN, databases, backups/restore, archival, disaster recovery; domains/DNS/email/SMS/notifications; GitHub/repositories/CI/CD/testing, coding assistants; security/authentication/secrets/monitoring/logging/scanning/incident response; Amazon SP-API/marketplace apps, CJ, Shopify/Shopee/other channels and connector fees; Keepa/market data/analytics/reviews/trends; TinyFish/browser automation/scraping/workflow tools; Canva/design/media licences/content production; payment gateways/FX/banking/accounting/reconciliation; company registration/legal/compliance/insurance/professional services; equipment, hardware, connectivity, one-off development, contingency and miscellaneous. These are CANDIDATE categories, not asserted active bills or incurred expenses. Allow add/edit/archive categories and vendor mapping with owner control, no provider purchases.",
+      "requirement": "LIVE COST CENTRE \u2014 COMPREHENSIVE OWNER-ONLY RESOURCE ECONOMICS. Expand tracked potential cost taxonomy: ChatGPT development subscription; OpenAI/Pillow inference; Anthropic; Gemini; model training/fine-tuning, embeddings, reranking, image/video/audio generation; Railway compute/Redis/storage; Vercel hosting/builds/bandwidth; cloud servers, containers, workers, serverless, networking, CDN, databases, backups/restore, archival, disaster recovery; domains/DNS/email/SMS/notifications; GitHub/repositories/CI/CD/testing, coding assistants; security/authentication/secrets/monitoring/logging/scanning/incident response; Amazon SP-API/marketplace apps, CJ, Shopify/Shopee/other channels and connector fees; Keepa/market data/analytics/reviews/trends; TinyFish/browser automation/scraping/workflow tools; Canva/design/media licences/content production; payment gateways/FX/banking/accounting/reconciliation; company registration/legal/compliance/insurance/professional services; equipment, hardware, connectivity, one-off development, contingency and miscellaneous. These are CANDIDATE categories, not asserted active bills or incurred expenses. Allow add/edit/archive categories and vendor mapping with owner control, no provider purchases.",
       "status": "PASS",
       "owner": "Work 7 engineering",
       "dependencies": [
@@ -766,7 +766,7 @@
       "current_completion_evidence": {
         "register": "Owner UX amendments",
         "id": "UX-09",
-        "description": "LIVE COST CENTRE — COMPREHENSIVE OWNER-ONLY RESOURCE ECONOMICS. Expand tracked potential cost taxonomy: ChatGPT development subscription; OpenAI/Pillow inference; Anthropic; Gemini; model training/fine-tuning, embeddings, reranking, image/video/audio generation; Railway compute/Redis/storage; Vercel hosting/builds/bandwidth; cloud servers, containers, workers, serverless, networking, CDN, databases, backups/restore, archival, disaster recovery; domains/DNS/email/SMS/notifications; GitHub/repositories/CI/CD/testing, coding assistants; security/authentication/secrets/monitoring/logging/scanning/incident response; Amazon SP-API/marketplace apps, CJ, Shopify/Shopee/other channels and connector fees; Keepa/market data/analytics/reviews/trends; TinyFish/browser automation/scraping/workflow tools; Canva/design/media licences/content production; payment gateways/FX/banking/accounting/reconciliation; company registration/legal/compliance/insurance/professional services; equipment, hardware, connectivity, one-off development, contingency and miscellaneous. These are CANDIDATE categories, not asserted active bills or incurred expenses. Allow add/edit/archive categories and vendor mapping with owner control, no provider purchases.",
+        "description": "LIVE COST CENTRE \u2014 COMPREHENSIVE OWNER-ONLY RESOURCE ECONOMICS. Expand tracked potential cost taxonomy: ChatGPT development subscription; OpenAI/Pillow inference; Anthropic; Gemini; model training/fine-tuning, embeddings, reranking, image/video/audio generation; Railway compute/Redis/storage; Vercel hosting/builds/bandwidth; cloud servers, containers, workers, serverless, networking, CDN, databases, backups/restore, archival, disaster recovery; domains/DNS/email/SMS/notifications; GitHub/repositories/CI/CD/testing, coding assistants; security/authentication/secrets/monitoring/logging/scanning/incident response; Amazon SP-API/marketplace apps, CJ, Shopify/Shopee/other channels and connector fees; Keepa/market data/analytics/reviews/trends; TinyFish/browser automation/scraping/workflow tools; Canva/design/media licences/content production; payment gateways/FX/banking/accounting/reconciliation; company registration/legal/compliance/insurance/professional services; equipment, hardware, connectivity, one-off development, contingency and miscellaneous. These are CANDIDATE categories, not asserted active bills or incurred expenses. Allow add/edit/archive categories and vendor mapping with owner control, no provider purchases.",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -876,7 +876,7 @@
         "source": "owner-continuation-android-20261011.txt"
       },
       "historical_status_before_completion": {
-        "status": "PENDING — Android selection/keyboard/composer accepted; toolbar repair verification and distinct untested cases remain"
+        "status": "PENDING \u2014 Android selection/keyboard/composer accepted; toolbar repair verification and distinct untested cases remain"
       },
       "current_completion_evidence": {
         "register": "Owner UX amendments",
@@ -980,7 +980,7 @@
       ],
       "evidence": [
         "No merge, release lease or production deployment initiated. PR110 remains independent.",
-        "King’s Advisor independent readback: 224 accounting, 3 journal, 7 historical entries; all original digests match. Backend 51830f9f unchanged; PR110 ff2feffb separate.",
+        "King\u2019s Advisor independent readback: 224 accounting, 3 journal, 7 historical entries; all original digests match. Backend 51830f9f unchanged; PR110 ff2feffb separate.",
         "Final authenticated source/candidate observations and remaining gates: authenticated-final-20261011.md. No blanket acceptance or production release.",
         "Android continuation: owner-continuation-android-20261011.txt and android-toolbar-and-categories-20261011.md; original accepted evidence retained."
       ],
@@ -1402,7 +1402,7 @@
       {
         "register": "Owner UX amendments",
         "id": "UX-09",
-        "description": "LIVE COST CENTRE — COMPREHENSIVE OWNER-ONLY RESOURCE ECONOMICS. Expand tracked potential cost taxonomy: ChatGPT development subscription; OpenAI/Pillow inference; Anthropic; Gemini; model training/fine-tuning, embeddings, reranking, image/video/audio generation; Railway compute/Redis/storage; Vercel hosting/builds/bandwidth; cloud servers, containers, workers, serverless, networking, CDN, databases, backups/restore, archival, disaster recovery; domains/DNS/email/SMS/notifications; GitHub/repositories/CI/CD/testing, coding assistants; security/authentication/secrets/monitoring/logging/scanning/incident response; Amazon SP-API/marketplace apps, CJ, Shopify/Shopee/other channels and connector fees; Keepa/market data/analytics/reviews/trends; TinyFish/browser automation/scraping/workflow tools; Canva/design/media licences/content production; payment gateways/FX/banking/accounting/reconciliation; company registration/legal/compliance/insurance/professional services; equipment, hardware, connectivity, one-off development, contingency and miscellaneous. These are CANDIDATE categories, not asserted active bills or incurred expenses. Allow add/edit/archive categories and vendor mapping with owner control, no provider purchases.",
+        "description": "LIVE COST CENTRE \u2014 COMPREHENSIVE OWNER-ONLY RESOURCE ECONOMICS. Expand tracked potential cost taxonomy: ChatGPT development subscription; OpenAI/Pillow inference; Anthropic; Gemini; model training/fine-tuning, embeddings, reranking, image/video/audio generation; Railway compute/Redis/storage; Vercel hosting/builds/bandwidth; cloud servers, containers, workers, serverless, networking, CDN, databases, backups/restore, archival, disaster recovery; domains/DNS/email/SMS/notifications; GitHub/repositories/CI/CD/testing, coding assistants; security/authentication/secrets/monitoring/logging/scanning/incident response; Amazon SP-API/marketplace apps, CJ, Shopify/Shopee/other channels and connector fees; Keepa/market data/analytics/reviews/trends; TinyFish/browser automation/scraping/workflow tools; Canva/design/media licences/content production; payment gateways/FX/banking/accounting/reconciliation; company registration/legal/compliance/insurance/professional services; equipment, hardware, connectivity, one-off development, contingency and miscellaneous. These are CANDIDATE categories, not asserted active bills or incurred expenses. Allow add/edit/archive categories and vendor mapping with owner control, no provider purchases.",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1532,7 +1532,7 @@
       {
         "register": "Original element amendments",
         "id": "UX-01",
-        "description": "Outer page and conversation compete for scrolling → Bound existing workspace and independently scroll saved history; preserve Same chat provider, backend, turn IDs and composer",
+        "description": "Outer page and conversation compete for scrolling \u2192 Bound existing workspace and independently scroll saved history; preserve Same chat provider, backend, turn IDs and composer",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1550,7 +1550,7 @@
       {
         "register": "Original element amendments",
         "id": "UX-02",
-        "description": "Saved exchanges have no selector → Select an existing saved exchange and scroll to its original turn; preserve No new session or copied history",
+        "description": "Saved exchanges have no selector \u2192 Select an existing saved exchange and scroll to its original turn; preserve No new session or copied history",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1566,7 +1566,7 @@
       {
         "register": "Original element amendments",
         "id": "UX-03",
-        "description": "Reuse existing chat → Existing workspace only; no backend changes; preserve No new authority or inference path",
+        "description": "Reuse existing chat \u2192 Existing workspace only; no backend changes; preserve No new authority or inference path",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1582,7 +1582,7 @@
       {
         "register": "Original element amendments",
         "id": "UX-04",
-        "description": "Pillow Love Forever artwork card is not a link → Accessible link over the existing card, no separate button; preserve /cockpit/development/pillow",
+        "description": "Pillow Love Forever artwork card is not a link \u2192 Accessible link over the existing card, no separate button; preserve /cockpit/development/pillow",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1598,7 +1598,7 @@
       {
         "register": "Original element amendments",
         "id": "UX-05",
-        "description": "CEO chat access is buried in proposal links → Chat with Pillow link above existing operations; preserve /cockpit/development/pillow",
+        "description": "CEO chat access is buried in proposal links \u2192 Chat with Pillow link above existing operations; preserve /cockpit/development/pillow",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1614,7 +1614,7 @@
       {
         "register": "Original element amendments",
         "id": "UX-06",
-        "description": "Pancake 8+ kg caption → Cover only the explicitly retired caption; preserve Original approved artwork asset is byte-identical",
+        "description": "Pancake 8+ kg caption \u2192 Cover only the explicitly retired caption; preserve Original approved artwork asset is byte-identical",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1630,7 +1630,7 @@
       {
         "register": "Original element amendments",
         "id": "UX-07",
-        "description": "Desktop/mobile composer and scroll geometry → Bound the chat shell at both widths; preserve Existing mobile navigation and controls retained",
+        "description": "Desktop/mobile composer and scroll geometry \u2192 Bound the chat shell at both widths; preserve Existing mobile navigation and controls retained",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1648,7 +1648,7 @@
       {
         "register": "Original element amendments",
         "id": "UX-08",
-        "description": "NOT SET / No certified profit / Not measured / Not calculated → Em dash in metric; exact state under Value details; preserve No unknown-to-zero conversion",
+        "description": "NOT SET / No certified profit / Not measured / Not calculated \u2192 Em dash in metric; exact state under Value details; preserve No unknown-to-zero conversion",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1664,7 +1664,7 @@
       {
         "register": "Original element amendments",
         "id": "HOME-01",
-        "description": "Greeting repeats NOT_BORN and commerce diagnostics → Current owner attention count or neutral greeting; preserve Authoritative locks remain in shell and Assurance",
+        "description": "Greeting repeats NOT_BORN and commerce diagnostics \u2192 Current owner attention count or neutral greeting; preserve Authoritative locks remain in shell and Assurance",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1680,7 +1680,7 @@
       {
         "register": "Original element amendments",
         "id": "HOME-02",
-        "description": "Historical recommendations dominate headline → Show pending unhandled nonsynthetic recommendations; preserve All records remain in decision centre; actionable risk never suppressed by ID",
+        "description": "Historical recommendations dominate headline \u2192 Show pending unhandled nonsynthetic recommendations; preserve All records remain in decision centre; actionable risk never suppressed by ID",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1696,7 +1696,7 @@
       {
         "register": "Original element amendments",
         "id": "FIN-01",
-        "description": "Known financial position / repetitive partial coverage cards → Financial position; named recorded Sales, Costs, Profit; reporting-basis disclosure; preserve Exact numeric values, financial functions, periods and controls",
+        "description": "Known financial position / repetitive partial coverage cards \u2192 Financial position; named recorded Sales, Costs, Profit; reporting-basis disclosure; preserve Exact numeric values, financial functions, periods and controls",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1712,7 +1712,7 @@
       {
         "register": "Original element amendments",
         "id": "COST-01",
-        "description": "Commercial P&L / long primary qualification → Operations tab and Sales/Costs/Profit with visible coverage alert; preserve Existing invoice, accrual, ledger and category detail",
+        "description": "Commercial P&L / long primary qualification \u2192 Operations tab and Sales/Costs/Profit with visible coverage alert; preserve Existing invoice, accrual, ledger and category detail",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1728,7 +1728,7 @@
       {
         "register": "Original element amendments",
         "id": "NAV-01",
-        "description": "Operations and Assurance guard links lack grouping → Pillow operations and Assurance / Governance groups; preserve All destinations and safety hash anchors",
+        "description": "Operations and Assurance guard links lack grouping \u2192 Pillow operations and Assurance / Governance groups; preserve All destinations and safety hash anchors",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1746,7 +1746,7 @@
       {
         "register": "Original element amendments",
         "id": "NAV-02",
-        "description": "Guard destination lacks parent context → Home / Assurance / Governance breadcrumb and active sidebar; preserve All 15 guard controls and enforcement",
+        "description": "Guard destination lacks parent context \u2192 Home / Assurance / Governance breadcrumb and active sidebar; preserve All 15 guard controls and enforcement",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1764,7 +1764,7 @@
       {
         "register": "Original element amendments",
         "id": "DEC-01",
-        "description": "Primary record identity and notification diagnostics → Audit identity and classification in accessible disclosures; preserve Decision rationale, exposure, exact-version approval handlers and history",
+        "description": "Primary record identity and notification diagnostics \u2192 Audit identity and classification in accessible disclosures; preserve Decision rationale, exposure, exact-version approval handlers and history",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1782,7 +1782,7 @@
       {
         "register": "Original element amendments",
         "id": "CAL-01",
-        "description": "Repeated paragraph on unestablished opportunity → Planning evidence disclosure; preserve All calendar dates, milestones and preparation links",
+        "description": "Repeated paragraph on unestablished opportunity \u2192 Planning evidence disclosure; preserve All calendar dates, milestones and preparation links",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1798,7 +1798,7 @@
       {
         "register": "Original element amendments",
         "id": "SYS-01",
-        "description": "Long King Advisor permissions paragraph → Concise bridge description; exact scope in disclosure; preserve Original bridge, capability and recovery destinations",
+        "description": "Long King Advisor permissions paragraph \u2192 Concise bridge description; exact scope in disclosure; preserve Original bridge, capability and recovery destinations",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1814,7 +1814,7 @@
       {
         "register": "Original element amendments",
         "id": "SHARED-01",
-        "description": "Repeated explanatory page headers and source qualification → Concise titles plus About this view / Source and reporting basis disclosures; preserve Products, listings, orders, CEO, cost centre, approvals, calendar and system controls",
+        "description": "Repeated explanatory page headers and source qualification \u2192 Concise titles plus About this view / Source and reporting basis disclosures; preserve Products, listings, orders, CEO, cost centre, approvals, calendar and system controls",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1832,7 +1832,7 @@
       {
         "register": "Original element amendments",
         "id": "NAV-03",
-        "description": "No active owner section; nested breadcrumb omitted screen identity → Executive Command source pages have CEO context; redirect roots match destination ownership; registered screen labels shown in breadcrumb; preserve Exact routes, redirects, handlers, auth and authority unchanged",
+        "description": "No active owner section; nested breadcrumb omitted screen identity \u2192 Executive Command source pages have CEO context; redirect roots match destination ownership; registered screen labels shown in breadcrumb; preserve Exact routes, redirects, handlers, auth and authority unchanged",
         "original_items": [],
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1849,7 +1849,7 @@
       },
       {
         "register": "Android continuation",
-        "id": "§3/§5",
+        "id": "\u00a73/\u00a75",
         "description": "Correct toolbar collision under narrow/native keyboard, scroll, viewport resize, menus and unsent multiline input; preserve accepted native baseline.",
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1866,7 +1866,7 @@
       },
       {
         "register": "Android continuation",
-        "id": "§6",
+        "id": "\u00a76",
         "description": "Durable standalone owner-controlled cost categories; immutable financial history and category/vendor mappings.",
         "disposition": "PASS",
         "engineering": "Implemented/preserved; PR109 bbb77bca repairs and actual PR111 integration where mapped.",
@@ -1915,5 +1915,19 @@
     "completedControlGroups": 50,
     "android": "ACCEPTED_PRESERVED",
     "futureRefinements": "Owner may request routine UX improvements through lightweight governed changes and targeted checks without reopening Work 7 or repeating the 100-item campaign. Material financial calculations, architecture, security, permissions, autonomy or authority changes require separate review."
+  },
+  "productionClosure": {
+    "status": "COMPLETE",
+    "originalRequirements": {
+      "PASS": 100
+    },
+    "amendments": {
+      "PASS": 45
+    },
+    "namedControls": {
+      "PASS": 50
+    },
+    "evidence": "execution-reconciliation-20261011.json; production-mission-closure.json; independent-final-closure.json",
+    "preservation": "Original row IDs, descriptions and historical statuses retained; current dispositions are in execution reconciliation."
   }
 }

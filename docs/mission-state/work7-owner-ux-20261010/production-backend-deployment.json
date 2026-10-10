@@ -1,0 +1,39 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Found 1 deployment(s):\n\n- **4303f5e9-afef-4f70-9388-996a0e923949** [SUCCESS]\n  service: 7a25cfc6-7298-480f-91db-1b37871f8cac, env: da94aed2-956b-4903-a886-68a5e9a557c8\n  created: 2026-10-10T21:09:07.045Z by empireaiengine@gmail.com\n  branch work2/backend-release · commit 608f3f5 · Merge PR #111: governed Work 7 durable cost categories\n\nWork 7: durable owner cost categories and vendor assignments\n  regions: sfo\n  can redeploy · can roll back"
+    }
+  ],
+  "structuredContent": {
+    "deployments": [
+      {
+        "id": "4303f5e9-afef-4f70-9388-996a0e923949",
+        "status": "SUCCESS",
+        "createdAt": "2026-10-10T21:09:07.045Z",
+        "updatedAt": "2026-10-10T21:14:50.311Z",
+        "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+        "environmentId": "da94aed2-956b-4903-a886-68a5e9a557c8",
+        "url": null,
+        "snapshotId": "ab2aecb8-dcd4-4d51-b26a-0210c58ae31c",
+        "creator": {
+          "id": "83c5fc23-92e4-43da-acac-3eb02ead2712",
+          "name": null,
+          "email": "empireaiengine@gmail.com"
+        },
+        "canRollback": true,
+        "canRedeploy": true,
+        "regions": [
+          "sfo"
+        ],
+        "meta": {
+          "reason": "deploy",
+          "commitMessage": "Merge PR #111: governed Work 7 durable cost categories\n\nWork 7: durable owner cost categories and vendor assignments",
+          "commitHash": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+          "branch": "work2/backend-release"
+        }
+      }
+    ]
+  },
+  "isError": false
+}

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"result\": {\n    \"deployment\": {\n      \"id\": \"dpl_FH2y8VBSN1QwLRq9smUzy3JNgHog\",\n      \"name\": \"empireai\",\n      \"url\": \"empireai-fioyznbgs-empireai-os.vercel.app\",\n      \"type\": \"LAMBDAS\",\n      \"state\": \"READY\",\n      \"createdAt\": 1791666991129,\n      \"creator\": {\n        \"uid\": \"OAKeaRWFPyDpeF3FGafAkliz\",\n        \"username\": \"empireaiengine-2061\"\n      },\n      \"project\": {\n        \"id\": \"prj_F4UZtqA8mIpIrRaIu2V6LOM664Kr\",\n        \"name\": \"empireai\",\n        \"framework\": null\n      },\n      \"meta\": {\n        \"githubCommitRef\": \"work2/frontend-release\",\n        \"githubCommitSha\": \"71f9414d6c534b4c35dbd22696b82a77fcf7c597\",\n        \"githubCommitMessage\": \"Merge PR #109: owner-approved Work 7 Owner Console\\n\\nWork 7: owner presentation and navigation preservation\",\n        \"githubRepo\": \"EmpireAI\",\n        \"githubOrg\": \"empireaios\"\n      },\n      \"alias\": [\n        \"empire-ai.co\",\n        \"www.empire-ai.co\",\n        \"empireai-five.vercel.app\",\n        \"empireai-empireai-os.vercel.app\",\n        \"empireai-git-work2-frontend-release-empireai-os.vercel.app\"\n      ],\n      \"target\": \"production\",\n      \"regions\": [\n        \"iad1\"\n      ],\n      \"buildingAt\": 1791667057562,\n      \"ready\": 1791667178808,\n      \"readyState\": \"READY\",\n      \"source\": \"redeploy\",\n      \"aliasError\": null\n    }\n  }\n}"
+    }
+  ],
+  "isError": false
+}

@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-10T21:16:56.851506+00:00",
+  "backend": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+  "method": "Unauthenticated empty JSON denial probes; no valid effect payload",
+  "routes": [
+    {
+      "path": "/amazon/publish",
+      "status": 423,
+      "body": {
+        "code": "LOCKED_COMMISSIONING",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      }
+    },
+    {
+      "path": "/amazon/inventory",
+      "status": 423,
+      "body": {
+        "code": "LOCKED_COMMISSIONING",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      }
+    },
+    {
+      "path": "/amazon/price",
+      "status": 423,
+      "body": {
+        "code": "LOCKED_COMMISSIONING",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      }
+    },
+    {
+      "path": "/cj/orders",
+      "status": 423,
+      "body": {
+        "code": "LOCKED_COMMISSIONING",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      }
+    },
+    {
+      "path": "/fulfilment",
+      "status": 423,
+      "body": {
+        "code": "LOCKED_COMMISSIONING",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      }
+    },
+    {
+      "path": "/pillow-commissioning/birth",
+      "status": 423,
+      "body": {
+        "code": "LOCKED_COMMISSIONING",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      }
+    },
+    {
+      "path": "/api/pillow/mission-runtime/execute",
+      "status": 423,
+      "body": {
+        "code": "LOCKED_COMMISSIONING",
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED",
+        "operational": false
+      }
+    }
+  ],
+  "pass": true
+}
