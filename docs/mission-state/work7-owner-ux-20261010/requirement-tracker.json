@@ -37,11 +37,13 @@
     "responsibilityCorrection": "responsibility-and-release.md",
     "currentCandidate": "Containing PR109 commit: mobile dialog and Home label corrections; exact CI and preview tracked in PR body.",
     "master_amendment_register": "amendment-register.json",
-    "current_preview_auth": "Owner confirmed replacement branch preview /api/auth/me Authentication required and successful Home/Pillow login. Routing repair accepted; not all scenarios inferred.",
+    "current_preview_auth": "INDEPENDENTLY VERIFIED: production and stable PR109 branch preview authenticated; Home, Intelligence, CEO, Products, Listings, Orders, Finance, Cost Centre and saved chat observed. No auth action remains required.",
     "historicalHead": "e97840c692f7b2918a6c427b9b69e3655dda77cd",
     "engineeringBase": "5f2f8929c0fd43949a09831247a67591e66d3c14",
     "candidate": "Git commit containing this amended tracker; exact hosted CI and preview must match that commit",
-    "authenticatedObservation20261011": "Agent independently accessed production and stable PR109 preview at 0477f0b7. Baseline CI four PASS. Follow-up source corrections need exact-head hosted CI and live acceptance. Native phone keyboard unsupported; release remains blocked."
+    "authenticatedObservation20261011": "Agent independently accessed production and stable PR109 preview at 0477f0b7. Baseline CI four PASS. Follow-up source corrections need exact-head hosted CI and live acceptance. Native phone keyboard unsupported; release remains blocked.",
+    "authenticated_candidate": "460c1c628199265f647d0ee2f79bcf0332ae7764; subsequent disclosure/legacy-context corrections require exact-head CI.",
+    "preservation20261011": "preservation-20261011.json: 224 accounting / 3 journal / 7 historical, all baseline digests match."
   },
   "requirements": [
     {
@@ -76,7 +78,7 @@
       "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Exact candidate acceptance and required release gates"
       }
     },
@@ -613,7 +615,7 @@
       "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Exact candidate acceptance and required release gates"
       }
     },
@@ -682,7 +684,7 @@
       "implementation_location": "Approved PNG / deck / rendered screenshots",
       "implementation_status": "IMPLEMENTED; scoped proof retained",
       "test_evidence": "Screenshotmanifest+Home comparison artifact;ownervisualacceptance separate; docs/work7/ui-acceptance-evidence.md; exact abeb0021 CI all four PASS. OWNER VIDEO current preview0bdbe2fc: timestamps 0s,38s; owner-video-20261010/review.json. Primary desktop visual evidence only; unopened controls remain pending.",
-      "outstanding_work": "Current corrected mobile and unopened nested live controls; reviewed merge, current release lease, exact production deployment/readback and actual Mission Ledger/Advisor closure. Reuse accepted desktop evidence. Do not repeat sign-in while browser credential observation remains restricted.",
+      "outstanding_work": "Authenticated access recovered. Mandatory mobile/native keyboard evidence and legacy Brain/marketplace functional gaps remain. No release lease, merge, deployment or closure until all gates and separate production authority. Backend preserved at 51830f9f; PR110 remains independent.",
       "acceptance_result": "BLOCKED",
       "verification_breakdown": {
         "verified_pass": "Screenshotmanifest+Home comparison artifact;ownervisualacceptance separate; docs/work7/ui-acceptance-evidence.md; exact abeb0021 CI all four PASS.",
@@ -1254,7 +1256,7 @@
       "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Exact candidate acceptance and required release gates"
       }
     },
@@ -1284,7 +1286,7 @@
       "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Exact candidate acceptance and required release gates"
       }
     },
@@ -1431,7 +1433,7 @@
       "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Exact candidate acceptance and required release gates"
       }
     },
@@ -1998,7 +2000,7 @@
       "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Retain original bounded evidence and blockers"
       }
     },
@@ -2035,7 +2037,7 @@
       "implementation_location": "docs/work7; work7-review; Mission Ledger / release controls",
       "implementation_status": "PENDING",
       "test_evidence": "See current tracker and checkpoint",
-      "outstanding_work": "Current corrected mobile and unopened nested live controls; reviewed merge, current release lease, exact production deployment/readback and actual Mission Ledger/Advisor closure. Reuse accepted desktop evidence. Do not repeat sign-in while browser credential observation remains restricted.",
+      "outstanding_work": "Authenticated access recovered. Mandatory mobile/native keyboard evidence and legacy Brain/marketplace functional gaps remain. No release lease, merge, deployment or closure until all gates and separate production authority. Backend preserved at 51830f9f; PR110 remains independent.",
       "acceptance_result": "BLOCKED",
       "verification_breakdown": {
         "verified_pass": "See current tracker and checkpoint",
@@ -2195,7 +2197,7 @@
       "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Retain original bounded evidence and blockers"
       }
     },
@@ -2224,7 +2226,7 @@
       "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Retain original bounded evidence and blockers"
       }
     },
@@ -2332,7 +2334,7 @@
       "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Retain original bounded evidence and blockers"
       }
     },
@@ -2368,7 +2370,7 @@
       "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Exact candidate acceptance and required release gates"
       }
     },
@@ -2603,7 +2605,7 @@
       "implementation_location": "Existing lease/release controls",
       "implementation_status": "NOT RELEASE READY",
       "test_evidence": "Existing exact-head CI, source preservation, screenshot index, independent readback and work8-9-handoff.md as applicable.",
-      "outstanding_work": "Current corrected mobile and unopened nested live controls; reviewed merge, current release lease, exact production deployment/readback and actual Mission Ledger/Advisor closure. Reuse accepted desktop evidence. Do not repeat sign-in while browser credential observation remains restricted.",
+      "outstanding_work": "Authenticated access recovered. Mandatory mobile/native keyboard evidence and legacy Brain/marketplace functional gaps remain. No release lease, merge, deployment or closure until all gates and separate production authority. Backend preserved at 51830f9f; PR110 remains independent.",
       "acceptance_result": "BLOCKED",
       "verification_breakdown": {
         "verified_pass": "Existing exact-head CI, source preservation, screenshot index, independent readback and work8-9-handoff.md as applicable.",
@@ -2819,7 +2821,7 @@
       "historical_current_evidence": "Owner demonstrated 400x464 failure; reproduced 53px reading pane before correction. Short-height correction: 228px and 6 full text lines at 400x464; normal 360x740 and390x844 passed; simulated visual and resized-layout keyboard300 retain >=3 full lines including multiline draft. 16px text, history, tables, navigation, no autofocus/no inference assertions pass. See mobile-short-height-repair.md. Isolated tests are not authenticated preview acceptance.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Exact candidate acceptance and required release gates"
       }
     },
@@ -2889,7 +2891,7 @@
       "implementation_location": "Primary owner components; owner route map; element-register.json; navigation-reconciliation-current.json",
       "implementation_status": "PRIMARY CORRECTIONS IMPLEMENTED; complete live audit BLOCKED",
       "test_evidence": "Historical before/after evidence; current source preservation; one verified governed-evidence parent defect fixed 0bdbe2fc.",
-      "outstanding_work": "168 source route definitions retained. Five additional source-grounded contexts corrected (executive command, missions, relationship; development and operations redirects), leaving14 commerce/automation source contexts requiring authenticated functional classification. Source coverage is154/168; the complete live control-edge denominator remains unestablished.",
+      "outstanding_work": "168/168 source contexts mapped. Authenticated desktop contexts inspected for 13 of 14 requested legacy routes; workspace/[id] cannot be exercised because Workspace returns Brain dispatch unavailable and no actual ID. Several retained routes have failed upstream reads; context observation is not full functional acceptance.",
       "acceptance_result": "BLOCKED",
       "verification_breakdown": {
         "verified_pass": "Historical before/after evidence; current source preservation; one verified governed-evidence parent defect fixed 0bdbe2fc.",
@@ -2907,7 +2909,7 @@
       "historical_current_evidence": "a8d58187: all four CI workflows PASS (38050808306, 38050808309, 38050808324, 38050808310); exact Vercel preview READY dpl_CZo5ihLYJrdtEcDQuGR5VgSpRgZS. Mobile chat corrected and isolated 360/390/1440 browser test PASS, including simulated keyboard. Accepted desktop recordings retained; no new live acceptance inferred.",
       "continuation_20261011": {
         "status": "Prior acceptance status preserved; no inferred PASS",
-        "evidence": "amendment-register.json; live-20261011/; authenticated-recovery-20261011.json",
+        "evidence": "Authenticated desktop history selection and jump-to-latest observed; composer visible, Send disabled. Thirteen legacy route contexts observed; workspace detail blocked because no actual company ID is returned. See live-20261011/. No mobile/native keyboard acceptance.",
         "dependency": "Retain original bounded evidence and blockers"
       }
     },
@@ -3048,7 +3050,7 @@
       "implementation_location": "checkpoint.json; Mission Ledger / King’s Advisor",
       "implementation_status": "EXTERNALLY BLOCKED",
       "test_evidence": "Source and records preserved; no paid inference or commerce action; historical completion receipts retained only.",
-      "outstanding_work": "Current corrected mobile and unopened nested live controls; reviewed merge, current release lease, exact production deployment/readback and actual Mission Ledger/Advisor closure. Reuse accepted desktop evidence. Do not repeat sign-in while browser credential observation remains restricted.",
+      "outstanding_work": "Authenticated access recovered. Mandatory mobile/native keyboard evidence and legacy Brain/marketplace functional gaps remain. No release lease, merge, deployment or closure until all gates and separate production authority. Backend preserved at 51830f9f; PR110 remains independent.",
       "acceptance_result": "BLOCKED",
       "verification_breakdown": {
         "verified_pass": "Source and records preserved; no paid inference or commerce action; historical completion receipts retained only.",

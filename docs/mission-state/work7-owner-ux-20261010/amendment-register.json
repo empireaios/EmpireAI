@@ -172,7 +172,7 @@
     }
   ],
   "ownerEvidence": {
-    "previewAuth": "Owner reports expected Authentication required and successful Home/Pillow login on replacement branch preview",
+    "previewAuth": "Agent independently observed authenticated production and stable candidate preview after owner-assisted authentication.",
     "picker": "Owner accepts screenshots for shown states; interaction/native keyboard remain separate"
   },
   "release": "NOT_AUTHORISED_UNTIL_ACCEPTANCE",
@@ -334,7 +334,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Authenticated desktop browser available. Native phone keyboard and mobile viewport unavailable in supported tool surface."
+        "Authenticated desktop browser available. Native phone keyboard and mobile viewport unavailable in supported tool surface.",
+        "Desktop saved-history selection and Jump to latest observed; composer remained visible and Send disabled. Native phone keyboard not available."
       ]
     },
     {
@@ -347,7 +348,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "Authenticated production and stable branch preview independently observed. Retain prior accepted recordings; no blanket acceptance."
+        "Authenticated production and stable branch preview independently observed. Retain prior accepted recordings; no blanket acceptance.",
+        "13 legacy contexts inspected on authenticated candidate. Workspace detail has no actual returned ID; Workspace/Store/Launch fail Brain dispatch; Ads/Marketing engine reads fail; Marketplace 404. Do not mark functional acceptance."
       ]
     },
     {
@@ -373,7 +375,8 @@
         "Authenticated candidate acceptance"
       ],
       "evidence": [
-        "No merge, release lease or production deployment initiated. PR110 remains independent."
+        "No merge, release lease or production deployment initiated. PR110 remains independent.",
+        "King\u2019s Advisor independent readback: 224 accounting, 3 journal, 7 historical entries; all original digests match. Backend 51830f9f unchanged; PR110 ff2feffb separate."
       ]
     }
   ]

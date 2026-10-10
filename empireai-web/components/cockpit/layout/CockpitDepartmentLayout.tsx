@@ -23,6 +23,7 @@ export function CockpitDepartmentLayout({
 }: CockpitDepartmentLayoutProps) {
   const pathname = usePathname();
   const pillowPage = pathname === "/cockpit/development/pillow";
+  const legacyCommerce = pathname === "/cockpit/operations/automation" || (departmentNavId === "commerce" && pathname !== "/cockpit/commerce/governed" && pathname !== "/cockpit/commerce/transactions");
   const department = getCockpitNavItemById(departmentNavId);
   const tabs = getCockpitNavTabs(departmentNavId);
 
@@ -40,7 +41,8 @@ export function CockpitDepartmentLayout({
         <summary className="cursor-pointer py-2 text-xs">Other pages</summary>
         <div className="absolute inset-x-0 top-full z-50 max-h-[50dvh] space-y-4 overflow-y-auto rounded-xl border border-gold/20 bg-[#09151c] p-4">{header}</div>
       </details> : <div className="space-y-6">{header}</div>}
-      <div className={pillowPage ? "flex min-h-0 flex-1 flex-col" : undefined}>{children}</div>
+      {legacyCommerce && <aside className="rounded-xl border border-blue-200 bg-white p-4 text-slate-800" aria-label="Legacy evidence limitation"><strong>Retained legacy workspace · not verified live commerce</strong><p>These older views contain demo or unverified stored records. A “Live” refresh label does not verify sales, supplier capacity, product qualification or execution. Use the owner Products, Listings, Orders and Finance views for current evidence and governed decisions. NOT_BORN · Commerce LOCKED.</p></aside>}
+      <div className={pillowPage ? "flex min-h-0 flex-1 flex-col" : legacyCommerce ? "min-w-0 rounded-xl bg-slate-950 p-4 text-slate-100" : undefined}>{children}</div>
     </div>
   );
 }

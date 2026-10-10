@@ -1,0 +1,27 @@
+{
+  "retrievedAt": "2026-10-10T17:24:14.666Z",
+  "readOnly": true,
+  "inferenceCalls": 0,
+  "backendRevision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+  "accounting": {
+    "count": 224,
+    "digest": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b"
+  },
+  "journal": {
+    "count": 3,
+    "digest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc"
+  },
+  "historical": {
+    "count": 7,
+    "digest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf"
+  },
+  "alerts": [
+    "FX_UNAVAILABLE",
+    "MISSING_INVOICE",
+    "CASH_UNVERIFIED",
+    "PRICING_REVIEW_DUE",
+    "PRICING_REVIEW_DUE",
+    "PRICING_REVIEW_DUE"
+  ],
+  "preservationMatchesBaseline": true
+}

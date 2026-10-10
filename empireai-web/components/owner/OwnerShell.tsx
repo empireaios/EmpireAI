@@ -8,10 +8,11 @@ import {CockpitAuthGuard} from '@/components/cockpit/shell/CockpitAuthGuard';
 import s from './work7/shell.module.css';
 import {ownerNavigationParent} from '@/lib/owner/presentation';
 import {getCockpitScreenByHref} from '@/lib/cockpit/navigation';
+const legacyLabels:Record<string,string>={'/cockpit/commerce/marketplace':'Marketplace integration','/cockpit/commerce/ad-intelligence':'Advertising intelligence','/cockpit/commerce/automation':'Business automation','/cockpit/commerce/factory':'Business factory','/cockpit/commerce/intelligence':'Commerce intelligence','/cockpit/commerce/operating':'Business operating system','/cockpit/operations/automation':'Operations automation','/cockpit/commerce/transactions':'Historical transactions'};
 const destinations=[['Home','/cockpit',Home],['Intelligence','/cockpit/eyes',ScanEye],['Pillow (CEO)','/cockpit/ceo',Dog],['Products & Approvals','/cockpit/products',Package],['Listings','/cockpit/listings',PanelsTopLeft],['Orders & Fulfilment','/cockpit/orders',ShoppingBag],['Operational Finance','/cockpit/finance',Landmark],['Live Cost Centre','/cockpit/cost-centre',ChartNoAxesCombined],['Assurance','/cockpit/assurance',ShieldCheck],['Calendar','/cockpit/calendar',CalendarDays],['System','/cockpit/system',Settings]] as const;
 export function OwnerShell({children}:{children:React.ReactNode}){
  const path=usePathname(),{logout}=useAuth();const [open,setOpen]=useState(false),[search,setSearch]=useState('');const home=path==='/cockpit';const chat=path==='/cockpit/development/pillow';const parent=ownerNavigationParent(path);const section=destinations.find(([,href])=>parent===href||(href!=='/cockpit'&&parent.startsWith(href+'/')));
- const leafLabel=chat?'Chat':path==='/cockpit/assurance'?'Governance & monitoring':getCockpitScreenByHref(path)?.label??(path==='/cockpit/products/history'?'Product history':path.startsWith('/cockpit/products/')?'Product details':path==='/cockpit/assurance/mobile-acceptance'?'Mobile acceptance':'Details');
+ const leafLabel=chat?'Chat':path==='/cockpit/assurance'?'Governance & monitoring':legacyLabels[path]??getCockpitScreenByHref(path)?.label??(path==='/cockpit/products/history'?'Product history':path.startsWith('/cockpit/products/')?'Product details':path==='/cockpit/assurance/mobile-acceptance'?'Mobile acceptance':'Details');
  const showLeaf=!section||path!==section[1]||path==='/cockpit/assurance';
  const shellRef=useRef<HTMLDivElement>(null);
  useEffect(()=>{

@@ -1,0 +1,93 @@
+- alert
+- link "Skip to content":
+  - /url: "#owner-main"
+- complementary:
+  - link "EmpireAI A Bigger Tomorrow, Together":
+    - /url: /cockpit
+    - strong: EmpireAI
+    - generic: A Bigger Tomorrow, Together
+  - navigation "Owner navigation":
+    - link "Home":
+      - /url: /cockpit
+      - text: Home
+    - link "Intelligence":
+      - /url: /cockpit/eyes
+      - text: Intelligence
+    - link "Pillow (CEO)":
+      - /url: /cockpit/ceo
+      - text: Pillow (CEO)
+    - link "Products & Approvals":
+      - /url: /cockpit/products
+      - text: Products & Approvals
+    - link "Listings":
+      - /url: /cockpit/listings
+      - text: Listings
+    - link "Orders & Fulfilment":
+      - /url: /cockpit/orders
+      - text: Orders & Fulfilment
+    - link "Operational Finance":
+      - /url: /cockpit/finance
+      - text: Operational Finance
+    - link "Live Cost Centre":
+      - /url: /cockpit/cost-centre
+      - text: Live Cost Centre
+    - link "Assurance":
+      - /url: /cockpit/assurance
+      - text: Assurance
+    - link "Calendar":
+      - /url: /cockpit/calendar
+      - text: Calendar
+    - link "System":
+      - /url: /cockpit/system
+      - text: System
+  - button "Sign out"
+- banner:
+  - textbox "Find an owner page":
+    - /placeholder: Find a page…
+  - link "King’s Advisor communications":
+    - /url: /cockpit/advisor
+  - time:
+    - generic: Sun, 11 Oct 2026
+    - strong: 01:28:49 am SGT
+- main:
+  - navigation "Breadcrumb":
+    - link "Home":
+      - /url: /cockpit
+    - generic: /
+    - link "Listings":
+      - /url: /cockpit/listings
+    - generic: /
+    - generic: Ads
+  - paragraph: Department
+  - heading "Commerce" [level=1]
+  - generic: Demo
+  - paragraph: Manufacture, launch, market, and operate portfolio companies.
+  - navigation "Department tabs":
+    - link "Store":
+      - /url: /cockpit/commerce/store
+    - link "Launch":
+      - /url: /cockpit/commerce/launch
+    - link "Marketplace":
+      - /url: /cockpit/commerce/marketplace
+    - link "Marketing":
+      - /url: /cockpit/commerce/marketing
+    - link "Ad Intel":
+      - /url: /cockpit/commerce/ad-intelligence
+    - link "Ads":
+      - /url: /cockpit/commerce/ads
+    - link "Workspace":
+      - /url: /cockpit/commerce/workspace
+  - heading "Engine Center" [level=2]
+  - alert:
+    - paragraph: Could not load engine center from Brain.
+    - button "Retry"
+  - heading "Ad Channels" [level=2]
+  - button "Retry"
+- contentinfo:
+  - text: Private owner workspace · NOT_BORN · Commerce LOCKED
+  - link "Inspect authority and evidence →":
+    - /url: /cockpit/assurance
+- link "Open Pillow Centre conversation":
+  - /url: /cockpit/development/pillow?tab=conversation
+  - generic: Talk with Pillow
+  - generic: Preparing Executive Intelligence…
