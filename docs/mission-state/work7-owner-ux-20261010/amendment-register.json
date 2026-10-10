@@ -1,0 +1,185 @@
+{
+  "source": "master-directive-20261010.txt",
+  "base": "5f2f8929c0fd43949a09831247a67591e66d3c14",
+  "originalTrackerPreserved": true,
+  "amendments": [
+    {
+      "id": "A01",
+      "requirement": "Business navigation",
+      "originalItems": [
+        1,
+        18,
+        62,
+        74,
+        92,
+        94
+      ],
+      "components": [
+        "OwnerShell",
+        "presentation"
+      ],
+      "implementation": "IMPLEMENTED",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE"
+    },
+    {
+      "id": "A02",
+      "requirement": "Chat reading space",
+      "originalItems": [
+        17,
+        36,
+        37,
+        42,
+        75,
+        91
+      ],
+      "components": [
+        "PillowConversationWorkspace",
+        "PillowConversationLayout"
+      ],
+      "implementation": "IMPLEMENTED",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE"
+    },
+    {
+      "id": "A03",
+      "requirement": "Intelligence executive research",
+      "originalItems": [
+        12,
+        16,
+        59,
+        79,
+        93
+      ],
+      "components": [
+        "OwnerEyes",
+        "IntelligenceTrace"
+      ],
+      "implementation": "IMPLEMENTED",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE"
+    },
+    {
+      "id": "A04",
+      "requirement": "Products and independent approvals",
+      "originalItems": [
+        6,
+        19,
+        56,
+        77,
+        92
+      ],
+      "components": [
+        "Portfolio",
+        "Approvals",
+        "GovernedCommerce"
+      ],
+      "implementation": "IMPLEMENTED_WITH_SOURCE_CONTRACT_LIMITS",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE",
+      "limitation": "Defer keeps the existing pending decision unchanged; no durable deferred status is invented. Existing backend supports approve/reject/revise only."
+    },
+    {
+      "id": "A05",
+      "requirement": "Prepared versus published listings and media",
+      "originalItems": [
+        7,
+        56,
+        62,
+        77
+      ],
+      "components": [
+        "Listings",
+        "Media"
+      ],
+      "implementation": "IMPLEMENTED_WITH_SOURCE_CONTRACT_LIMITS",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE",
+      "limitation": "No verified publication receipt in current portfolio contract. Prepared entries are not called published."
+    },
+    {
+      "id": "A06",
+      "requirement": "Transaction-first orders",
+      "originalItems": [
+        8,
+        57,
+        78
+      ],
+      "components": [
+        "Orders"
+      ],
+      "implementation": "IMPLEMENTED_WITH_SOURCE_CONTRACT_LIMITS",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE",
+      "limitation": "Current source exposes isolated lifecycle examples, not a verified live transaction feed. Actual view truthfully empty."
+    },
+    {
+      "id": "A07",
+      "requirement": "Direct-cost operational finance",
+      "originalItems": [
+        9,
+        46,
+        49,
+        58,
+        76,
+        90
+      ],
+      "components": [
+        "OperationalFinance"
+      ],
+      "implementation": "IMPLEMENTED",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE"
+    },
+    {
+      "id": "A08",
+      "requirement": "Infrastructure-only cost centre",
+      "originalItems": [
+        10,
+        49,
+        50,
+        76,
+        90
+      ],
+      "components": [
+        "CostCentre"
+      ],
+      "implementation": "IMPLEMENTED",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE"
+    },
+    {
+      "id": "A09",
+      "requirement": "Preservation and remaining live acceptance",
+      "originalItems": [
+        20,
+        62,
+        64,
+        65,
+        66,
+        67,
+        69,
+        70,
+        84,
+        100
+      ],
+      "components": [
+        "existing acceptance and release gates"
+      ],
+      "implementation": "PRESERVED; RELEASE_PENDING",
+      "automated": "Scoped loopback coverage PASS: 22 combined browser tests, 2 final targeted checks and 9 financial/navigation unit invariants; not live acceptance",
+      "live": "PENDING_CURRENT_REVISION_ACCEPTANCE"
+    }
+  ],
+  "ownerEvidence": {
+    "previewAuth": "Owner reports expected Authentication required and successful Home/Pillow login on replacement branch preview",
+    "picker": "Owner accepts screenshots for shown states; interaction/native keyboard remain separate"
+  },
+  "release": "NOT_AUTHORISED_UNTIL_ACCEPTANCE",
+  "missingSourceVerification": [
+    "Original V5 PowerPoint and binding Home PNG not re-opened this continuation; Home artwork/layout remains unchanged.",
+    "10 October 15:14–15:15 screenshots not yet visually re-inspected; master directive establishes requested defects, not automatic acceptance."
+  ],
+  "evidenceScope": "Local fixture proof is not authenticated preview or native physical-keyboard acceptance.",
+  "updatedAt": "2026-10-10T16:01:12.780669+00:00"
+}

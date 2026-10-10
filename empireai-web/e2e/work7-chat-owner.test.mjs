@@ -18,7 +18,7 @@ test('Pillow saved exchange selector, internal scroll, composer and parent conte
   if(width<=700) assert.equal(await page.getByTestId('pillow-composer').evaluate(el=>el===document.activeElement),false,'Mobile must open for reading without summoning the keyboard');
   if(width<=700&&height<=600){
    await page.getByRole('button',{name:'Open owner menu',exact:true}).click();
-   assert.equal(await page.getByRole('navigation',{name:'Cockpit mobile menu',exact:true}).getByRole('link').count(),12);
+   assert.equal(await page.getByRole('navigation',{name:'Cockpit mobile menu',exact:true}).getByRole('link').count(),11);
    await page.getByRole('button',{name:'Close owner menu',exact:true}).click();
    const status=page.getByText('Status & evidence',{exact:true});
    await status.click();

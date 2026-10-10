@@ -32,7 +32,7 @@ test('Chat and historic performance retain CEO context; assurance retains govern
   assert.equal(ownerNavigationParent('/cockpit/founder/executive-performance'), '/cockpit/ceo');
   assert.equal(ownerNavigationParent('/cockpit/assurance'), '/cockpit/assurance');
   assert.equal(ownerNavigationParent('/cockpit/governance/settings'), '/cockpit/assurance');
-  assert.equal(ownerNavigationParent('/cockpit/operations/authorizations'), '/cockpit/approvals');
+  assert.equal(ownerNavigationParent('/cockpit/operations/authorizations'), '/cockpit/products');
   assert.equal(ownerNavigationParent('/cockpit/operations/fulfillment'), '/cockpit/orders');
   assert.equal(ownerNavigationParent('/cockpit/founder/executive-finance'), '/cockpit/finance');
   assert.equal(ownerNavigationParent('/cockpit/infrastructure/health'), '/cockpit/system');
@@ -43,4 +43,17 @@ test('Chat and historic performance retain CEO context; assurance retains govern
     assert.equal(ownerNavigationParent(path), '/cockpit/ceo');
   }
   assert.equal(ownerNavigationParent('/cockpit/operations'), '/cockpit/orders');
+});
+
+test('Legacy commerce contexts map to functional parents without changing routes',()=>{
+ const expected={
+ '/cockpit/commerce/ad-intelligence':'/cockpit/eyes', '/cockpit/commerce/ads':'/cockpit/listings',
+ '/cockpit/commerce/automation':'/cockpit/system', '/cockpit/commerce/factory':'/cockpit/products',
+ '/cockpit/commerce/intelligence':'/cockpit/eyes', '/cockpit/commerce/launch':'/cockpit/listings',
+ '/cockpit/commerce/marketing':'/cockpit/listings', '/cockpit/commerce/marketplace':'/cockpit/listings',
+ '/cockpit/commerce/operating':'/cockpit/ceo', '/cockpit/commerce/store':'/cockpit/listings',
+ '/cockpit/commerce/workspace':'/cockpit/products', '/cockpit/commerce/workspace/actual-id':'/cockpit/products',
+ '/cockpit/commerce':'/cockpit/ceo', '/cockpit/operations/automation':'/cockpit/system',
+ '/cockpit/approvals':'/cockpit/products'};
+ for(const [path,parent] of Object.entries(expected))assert.equal(ownerNavigationParent(path),parent);
 });

@@ -1,5 +1,5 @@
 {
-  "primary_sidebar_count": 12,
+  "primary_sidebar_count": 11,
   "source_route_count": 168,
   "route_count_is_not_state_coverage": true,
   "routes": [
@@ -32,8 +32,9 @@
         "017_mobile/metadata.json",
         "001_mobile/metadata.json"
       ],
-      "source_unchanged": true,
-      "verification": "PENDING visual and integration coverage"
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Retained route; Owner decisions under Products & Approvals"
     },
     {
       "route": "/cockpit/assurance/mobile-acceptance",
@@ -270,8 +271,9 @@
         "014_desktop/metadata.json",
         "014_mobile/metadata.json"
       ],
-      "source_unchanged": true,
-      "verification": "PENDING visual and integration coverage"
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Provider-by-provider infrastructure expenses only"
     },
     {
       "route": "/cockpit/development/approvals",
@@ -320,8 +322,9 @@
         "021_mobile/metadata.json",
         "021_desktop/metadata.json"
       ],
-      "source_unchanged": true,
-      "verification": "PENDING visual and integration coverage"
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "One mobile toolbar, compact composer, tools in context"
     },
     {
       "route": "/cockpit/eyes",
@@ -332,8 +335,9 @@
         "015_mobile/metadata.json",
         "015_desktop/metadata.json"
       ],
-      "source_unchanged": true,
-      "verification": "PENDING visual and integration coverage"
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Intelligence executive findings; separate controls/diagnostics"
     },
     {
       "route": "/cockpit/finance/billing",
@@ -386,8 +390,9 @@
         "013_mobile/metadata.json",
         "013_desktop/metadata.json"
       ],
-      "source_unchanged": true,
-      "verification": "PENDING visual and integration coverage"
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Direct-cost Operational Finance; full ledger/controls secondary"
     },
     {
       "route": "/cockpit/finance/pl",
@@ -1478,8 +1483,9 @@
         "006_mobile/metadata.json",
         "011_mobile/metadata.json"
       ],
-      "source_unchanged": true,
-      "verification": "PENDING visual and integration coverage"
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Published / Prepared / Test examples,10-row catalogue and media gallery"
     },
     {
       "route": "/cockpit/missions",
@@ -1553,8 +1559,9 @@
         "012_mobile/metadata.json",
         "012_desktop/metadata.json"
       ],
-      "source_unchanged": true,
-      "verification": "PENDING visual and integration coverage"
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Paginated transaction register; local package inspection"
     },
     {
       "route": "/cockpit",
@@ -1598,8 +1605,9 @@
         "010_mobile/metadata.json",
         "010_desktop/metadata.json"
       ],
-      "source_unchanged": true,
-      "verification": "PENDING visual and integration coverage"
+      "source_unchanged": false,
+      "verification": "Affected automated coverage recorded separately; revised live acceptance PENDING",
+      "master_amendment": "Products & Approvals; existing candidate and decision tabs"
     },
     {
       "route": "/cockpit/relationship",

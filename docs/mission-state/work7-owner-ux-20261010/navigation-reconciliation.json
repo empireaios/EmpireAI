@@ -1,6 +1,6 @@
 {
   "sourceRoutes": 168,
-  "primarySidebarDestinations": 12,
+  "primarySidebarDestinations": 11,
   "allRoutesAndDeepLinksPreserved": true,
   "completeVisualCoverage": false,
   "routes": [
@@ -20,13 +20,13 @@
         "020_mobile/metadata.json",
         "002_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/approvals",
       "source": "empireai-web/app/(cockpit)/cockpit/approvals/page.tsx",
       "sourcePreserved": true,
-      "parentContext": "/cockpit/approvals",
+      "parentContext": "/cockpit/products",
       "sourceClassification": "active-primary",
       "originalEvidence": [
         "001_desktop/metadata.json",
@@ -34,7 +34,7 @@
         "017_mobile/metadata.json",
         "001_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/assurance/mobile-acceptance",
@@ -46,7 +46,7 @@
         "027_mobile/metadata.json",
         "027_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/assurance",
@@ -58,7 +58,7 @@
         "016_mobile/metadata.json",
         "016_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/calendar",
@@ -70,7 +70,7 @@
         "018_mobile/metadata.json",
         "018_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/ceo",
@@ -82,7 +82,7 @@
         "009_mobile/metadata.json",
         "009_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/command",
@@ -94,49 +94,49 @@
         "028_desktop/metadata.json",
         "028_mobile/metadata.json"
       ],
-      "review": "Source-grounded context correction; authenticated live edge acceptance pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/ad-intelligence",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/ad-intelligence/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/eyes",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [
         "044_mobile/metadata.json",
         "044_desktop/metadata.json"
       ],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/ads",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/ads/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/listings",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [
         "045_desktop/metadata.json",
         "045_mobile/metadata.json"
       ],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/automation",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/automation/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/factory",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/factory/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/products",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/governed",
@@ -150,82 +150,82 @@
         "005_desktop/metadata.json",
         "026_mobile/metadata.json"
       ],
-      "review": "Source defect corrected at b0c74b28; targeted unit PASS; live visual pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/intelligence",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/intelligence/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/eyes",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/launch",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/launch/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/listings",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [
         "041_mobile/metadata.json",
         "041_desktop/metadata.json"
       ],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/marketing",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/marketing/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/listings",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [
         "043_mobile/metadata.json",
         "043_desktop/metadata.json"
       ],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/marketplace",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/marketplace/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/listings",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [
         "042_desktop/metadata.json",
         "042_mobile/metadata.json"
       ],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/operating",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/operating/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/store",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/store/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/listings",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [
         "040_desktop/metadata.json",
         "040_mobile/metadata.json"
       ],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/transactions",
@@ -237,28 +237,28 @@
         "025_desktop/metadata.json",
         "025_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/workspace/[id]",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/workspace/[id]/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/products",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/commerce/workspace",
       "source": "empireai-web/app/(cockpit)/cockpit/commerce/workspace/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/products",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [
         "046_desktop/metadata.json",
         "046_mobile/metadata.json"
       ],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/cost-centre",
@@ -270,16 +270,16 @@
         "014_desktop/metadata.json",
         "014_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/development/approvals",
       "source": "empireai-web/app/(cockpit)/cockpit/development/approvals/page.tsx",
       "sourcePreserved": true,
-      "parentContext": "/cockpit/approvals",
+      "parentContext": "/cockpit/products",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/development/inspection",
@@ -288,7 +288,7 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/development/learning",
@@ -297,7 +297,7 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/development",
@@ -306,7 +306,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source-grounded context correction; authenticated live edge acceptance pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/development/pillow",
@@ -320,7 +320,7 @@
         "021_mobile/metadata.json",
         "021_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/eyes",
@@ -332,7 +332,7 @@
         "015_mobile/metadata.json",
         "015_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/finance/billing",
@@ -341,7 +341,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/finance/costs",
@@ -350,7 +350,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/finance/intelligence",
@@ -359,7 +359,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/finance/mobile-acceptance",
@@ -368,7 +368,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/finance",
@@ -380,7 +380,7 @@
         "013_mobile/metadata.json",
         "013_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/finance/pl",
@@ -389,7 +389,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/finance/profit",
@@ -398,7 +398,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/ai-evolution",
@@ -407,7 +407,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/architecture",
@@ -416,7 +416,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/architecture-evolution",
@@ -425,7 +425,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/autonomous-decision-monitor",
@@ -434,7 +434,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/builder",
@@ -443,7 +443,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/capital-allocation",
@@ -452,7 +452,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/capital-risk",
@@ -461,7 +461,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/cash-reserve",
@@ -470,7 +470,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/competitor-intelligence",
@@ -479,7 +479,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/conflict-resolution",
@@ -488,7 +488,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/corporate-vision",
@@ -497,7 +497,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/cost-optimization",
@@ -506,7 +506,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/crisis-decisions",
@@ -515,7 +515,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/cross-business-intelligence",
@@ -524,7 +524,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/customer-behaviour",
@@ -533,7 +533,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/decision-architecture",
@@ -542,7 +542,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/decision-audit",
@@ -551,7 +551,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/decision-simulation",
@@ -560,7 +560,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/department-planning",
@@ -569,7 +569,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/empire-evolution",
@@ -578,7 +578,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/enterprise-audit-engine",
@@ -587,7 +587,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/enterprise-constitutional-guardian",
@@ -596,7 +596,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/enterprise-governance",
@@ -605,7 +605,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/enterprise-pattern",
@@ -614,7 +614,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/enterprise-risk-governance",
@@ -623,7 +623,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/enterprise-valuation",
@@ -632,7 +632,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-accountability",
@@ -641,7 +641,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-advisory",
@@ -650,16 +650,16 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-approval",
       "source": "empireai-web/app/(cockpit)/cockpit/founder/executive-approval/page.tsx",
       "sourcePreserved": true,
-      "parentContext": "/cockpit/approvals",
+      "parentContext": "/cockpit/products",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-benchmark",
@@ -668,7 +668,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-budget",
@@ -677,7 +677,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-calendar",
@@ -686,7 +686,7 @@
       "parentContext": "/cockpit/calendar",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-capital-strategy",
@@ -695,7 +695,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-compliance",
@@ -704,7 +704,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-confidence",
@@ -713,7 +713,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-consensus",
@@ -722,7 +722,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-constitutional-monitor",
@@ -731,7 +731,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-decision-certification",
@@ -740,7 +740,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-dependencies",
@@ -749,7 +749,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-escalations",
@@ -758,7 +758,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-ethics",
@@ -767,7 +767,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-exception-manager",
@@ -776,7 +776,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-finance",
@@ -785,7 +785,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-forecast",
@@ -794,7 +794,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-governance-certification",
@@ -803,7 +803,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-insight",
@@ -812,7 +812,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-intelligence-certification",
@@ -821,7 +821,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-knowledge-graph",
@@ -830,7 +830,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-kpi",
@@ -839,7 +839,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-performance",
@@ -851,7 +851,7 @@
         "022_desktop/metadata.json",
         "022_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-planning",
@@ -860,7 +860,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-planning-certification",
@@ -869,7 +869,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-policies",
@@ -878,7 +878,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-policy-evolution",
@@ -887,7 +887,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-prediction",
@@ -896,7 +896,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-recommendations",
@@ -905,7 +905,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-resilience-engine",
@@ -914,7 +914,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-review-board",
@@ -923,7 +923,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-roadmap",
@@ -932,7 +932,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-scenarios",
@@ -941,7 +941,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-transparency",
@@ -950,7 +950,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/executive-trust-engine",
@@ -959,7 +959,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/explainability",
@@ -968,7 +968,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/financial-executive-certification",
@@ -977,7 +977,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/financial-scenario",
@@ -986,7 +986,7 @@
       "parentContext": "/cockpit/finance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/grand-king",
@@ -995,7 +995,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/grand-king-executive-cockpit",
@@ -1004,7 +1004,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/guardian",
@@ -1013,7 +1013,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/industry-intelligence",
@@ -1022,7 +1022,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/initiative-portfolio",
@@ -1031,7 +1031,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/innovation-intelligence",
@@ -1040,7 +1040,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/investment-evaluation",
@@ -1049,7 +1049,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/journey",
@@ -1058,7 +1058,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/knowledge",
@@ -1067,7 +1067,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/knowledge-evolution",
@@ -1076,7 +1076,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/live-eta",
@@ -1085,7 +1085,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/long-term-growth",
@@ -1094,7 +1094,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/market-intelligence",
@@ -1103,7 +1103,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/opportunity-discovery",
@@ -1112,7 +1112,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/opportunity-prioritization",
@@ -1121,7 +1121,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/priority-management",
@@ -1130,7 +1130,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/production",
@@ -1139,7 +1139,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/profit-optimization",
@@ -1148,7 +1148,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/repository-evolution",
@@ -1157,7 +1157,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/resource-allocation",
@@ -1166,7 +1166,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/risk-assessment",
@@ -1175,7 +1175,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/roi-intelligence",
@@ -1184,7 +1184,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/shadow-ceo",
@@ -1193,7 +1193,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/strategic-alignment",
@@ -1202,7 +1202,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/strategic-objectives",
@@ -1211,7 +1211,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/supervisor",
@@ -1220,7 +1220,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/threat-detection",
@@ -1229,7 +1229,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/founder/trade-off-analysis",
@@ -1238,7 +1238,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/governance/council",
@@ -1247,7 +1247,7 @@
       "parentContext": "/cockpit/assurance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/governance/decisions",
@@ -1256,7 +1256,7 @@
       "parentContext": "/cockpit/assurance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/governance",
@@ -1265,7 +1265,7 @@
       "parentContext": "/cockpit/assurance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/governance/settings",
@@ -1274,7 +1274,7 @@
       "parentContext": "/cockpit/assurance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/governance/soul",
@@ -1283,7 +1283,7 @@
       "parentContext": "/cockpit/assurance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/governance/v1",
@@ -1292,7 +1292,7 @@
       "parentContext": "/cockpit/assurance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/infrastructure/admin",
@@ -1301,7 +1301,7 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/infrastructure/deployments",
@@ -1310,7 +1310,7 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/infrastructure/health",
@@ -1319,7 +1319,7 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/infrastructure/integrations",
@@ -1328,7 +1328,7 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/infrastructure",
@@ -1337,7 +1337,7 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/customers",
@@ -1349,7 +1349,7 @@
         "036_desktop/metadata.json",
         "036_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/decisions",
@@ -1361,7 +1361,7 @@
         "038_mobile/metadata.json",
         "038_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/discovery",
@@ -1373,7 +1373,7 @@
         "033_desktop/metadata.json",
         "033_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/executive",
@@ -1385,7 +1385,7 @@
         "039_desktop/metadata.json",
         "039_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/marketplace",
@@ -1397,7 +1397,7 @@
         "034_desktop/metadata.json",
         "034_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/markets",
@@ -1409,7 +1409,7 @@
         "035_mobile/metadata.json",
         "035_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence",
@@ -1418,7 +1418,7 @@
       "parentContext": "/cockpit/eyes",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/products",
@@ -1430,7 +1430,7 @@
         "024_mobile/metadata.json",
         "024_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/risk",
@@ -1442,7 +1442,7 @@
         "037_mobile/metadata.json",
         "037_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/intelligence/suppliers",
@@ -1454,7 +1454,7 @@
         "032_desktop/metadata.json",
         "032_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/listings",
@@ -1468,7 +1468,7 @@
         "006_mobile/metadata.json",
         "011_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/missions",
@@ -1477,25 +1477,25 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source-grounded context correction; authenticated live edge acceptance pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/operations/authorizations",
       "source": "empireai-web/app/(cockpit)/cockpit/operations/authorizations/page.tsx",
       "sourcePreserved": true,
-      "parentContext": "/cockpit/approvals",
+      "parentContext": "/cockpit/products",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/operations/automation",
       "source": "empireai-web/app/(cockpit)/cockpit/operations/automation/page.tsx",
       "sourcePreserved": true,
-      "parentContext": null,
+      "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Legacy route retained; active status and functional context require authenticated review"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/operations/fulfillment",
@@ -1504,7 +1504,7 @@
       "parentContext": "/cockpit/orders",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/operations/orders",
@@ -1513,7 +1513,7 @@
       "parentContext": "/cockpit/orders",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/operations",
@@ -1522,7 +1522,7 @@
       "parentContext": "/cockpit/orders",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source-grounded context correction; authenticated live edge acceptance pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/operations/support",
@@ -1531,7 +1531,7 @@
       "parentContext": "/cockpit/orders",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/orders",
@@ -1543,7 +1543,7 @@
         "012_mobile/metadata.json",
         "012_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit",
@@ -1555,7 +1555,7 @@
         "008_mobile/metadata.json",
         "008_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/products/[id]",
@@ -1564,7 +1564,7 @@
       "parentContext": "/cockpit/products",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/products/history",
@@ -1576,7 +1576,7 @@
         "023_desktop/metadata.json",
         "023_mobile/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/products",
@@ -1588,7 +1588,7 @@
         "010_mobile/metadata.json",
         "010_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/relationship",
@@ -1597,7 +1597,7 @@
       "parentContext": "/cockpit/ceo",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source-grounded context correction; authenticated live edge acceptance pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/system",
@@ -1609,7 +1609,7 @@
         "019_mobile/metadata.json",
         "019_desktop/metadata.json"
       ],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/workforce/activity",
@@ -1618,7 +1618,7 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/workforce/audit",
@@ -1627,7 +1627,7 @@
       "parentContext": "/cockpit/assurance",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     },
     {
       "route": "/cockpit/workforce",
@@ -1636,10 +1636,12 @@
       "parentContext": "/cockpit/system",
       "sourceClassification": "compatibility-retained; live status not fully verified",
       "originalEvidence": [],
-      "review": "Source parent established; complete live nested-state review pending"
+      "review": "Source parent established; current live nested-state review pending"
     }
   ],
   "reviewedHead": "commit containing this file",
-  "mappedSourceContexts": 154,
-  "unresolvedLiveContexts": 14
+  "mappedSourceContexts": 168,
+  "unresolvedLiveContexts": 14,
+  "liveControlDenominator": null,
+  "mappingScope": "Source classification only; does not prove live destination, highlighting or nested control acceptance"
 }

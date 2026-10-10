@@ -1,0 +1,55 @@
+{
+  "readOnly": true,
+  "inferenceCalls": 0,
+  "observedAt": "2026-10-10T15:56:24.509Z",
+  "accounting": {
+    "schema": "owner-commissioning-accounting-v1",
+    "observedAt": "2026-10-10T15:56:24.510Z",
+    "readOnly": true,
+    "recordCount": 224,
+    "recordDigestSha256": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+    "ceilingMicroUsd": null,
+    "heldMicroUsd": 110852730,
+    "remainingMicroUsd": null,
+    "recordedEstimateMicroUsd": 20254371,
+    "estimateUnknownCount": 5,
+    "invoiceActualMicroUsd": null,
+    "invoiceUnknownCount": 224,
+    "reservationReleased": false,
+    "inferenceCalls": 0
+  },
+  "financial": {
+    "observedAt": "2026-10-10T15:56:24.594Z",
+    "backendRevision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+    "journalCount": 3,
+    "entryDigest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+    "historicalCount": 7,
+    "historicalDigest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf",
+    "qualification": "PARTIAL_KNOWN_AMOUNTS_NOT_CERTIFIED_PROFIT"
+  },
+  "assurance": {
+    "observedAt": "2026-10-10T15:48:48.899Z",
+    "status": "DEGRADED",
+    "summary": {
+      "activeIncidents": 1,
+      "automaticallyRecovered": 26,
+      "ownerActionRequired": 0
+    },
+    "lease": {
+      "id": "lease_19c1b593-1605-4c55-8cf1-05859347c49d",
+      "ownerId": "usr_a91d007ebcebe18d",
+      "revision": "a07d0c4702cea0a2f435291ab3c63d909bf616cf",
+      "scope": [
+        "backend",
+        "frontend"
+      ],
+      "fence": 17,
+      "status": "FINISHED",
+      "createdAt": 1791569490766,
+      "heartbeatAt": 1791569490766,
+      "expiresAt": 1791573090766,
+      "finishedAt": 1791571391189
+    }
+  },
+  "scope": "Read-only source preservation; not authenticated preview display acceptance or post-deployment verification."
+}

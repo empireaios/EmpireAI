@@ -1,2 +1,2 @@
-import {Approvals} from '@/components/owner/work7/OwnerJourneys';
-export default async function Page({searchParams}:{searchParams:Promise<{mission?:string}>}){const {mission}=await searchParams;return <Approvals initialMission={mission}/>;}
+import {ProductDecisionCentre} from '@/components/owner/work7/ProductDecisionCentre';
+export default async function Page({searchParams}:{searchParams:Promise<{mission?:string}>}){const {mission}=await searchParams;return <ProductDecisionCentre initialMission={mission} initialDecisions/>;}

@@ -59,11 +59,28 @@
   "owner_action": "Restore supported observation of the already authenticated Cloud Browser session. No repeat sign-in or accepted recordings requested.",
   "authentication_diagnostics": {
     "production": "2026-10-10T08:30:43Z GET /api/auth/me returned expected 401 Authentication required; matching Railway /auth/me response 4ms. Backend /health returned 200 online, Redis connected at 08:31:12Z. Historical authenticated /auth/me returned 200 through 08:12:05Z. No production auth outage established.",
-    "railway_login_logs": "No /auth/login requests in 07:45\u201308:30 UTC window. Available HTTP logs show no login arriving at locked backend. Does not prove the failed request destination.",
+    "railway_login_logs": "No /auth/login requests in 07:45–08:30 UTC window. Available HTTP logs show no login arriving at locked backend. Does not prove the failed request destination.",
     "preview": "READY at exact 08dc65bf. Unauthenticated /api/auth/me redirects to Vercel SSO. BRAIN_API_URL preview entry exists but sensitive value is withheld. Vercel auth runtime logs empty.",
     "verified_defect": "login throws plain BrainError objects; login form accepts only Error instances and replaces all failures with generic service-unavailable message. Corrected only login throws to Error instances retaining status/retryable/message. Authentication, credentials and session transport unchanged.",
     "tests": "Three targeted authentication tests pass (HTTP 401/503/504, transport rejection, successful response and same-origin credentials); typecheck and targeted lint passed.",
     "restrictions": "Automatic review rejected Vercel protected fetch because it creates/reuses temporary deployment-protection bypass. No workaround used. Browser retained data remains restricted after native credential delivery.",
     "root_cause_status": "Error masking confirmed; underlying preview authentication rejection cause NOT established."
+  },
+  "masterContinuation": {
+    "updatedAt": "2026-10-10T16:01:12.780669+00:00",
+    "engineeringBase": "5f2f8929c0fd43949a09831247a67591e66d3c14",
+    "candidate": "Git commit containing this checkpoint",
+    "status": "IN_PROGRESS_NOT_RELEASED",
+    "ownerAuthConfirmed": true,
+    "acceptedPreview": "https://empireai-9sby4oynm-empireai-os.vercel.app/",
+    "previewDeployment": "dpl_9DCmHW9qdiMyNXvFtUvGFDmmxoFk",
+    "sourceParentCoverage": "168/168 source only; live denominator unknown",
+    "ci": "Four PASS at baseline5f2; new candidate CI pending",
+    "browser": "22/22 combined isolated browser tests PASS; final targeted intelligence/finance checks 2/2 PASS; unit invariants 9/9 PASS",
+    "report": "MASTER-CONTINUATION.md",
+    "lease": "NONE; do not reuse FINISHED fence17",
+    "productionChanged": false,
+    "backendPr110Unchanged": true,
+    "historicalFieldsAbove": "Historical checkpoints retained; this object supersedes their current-state claims"
   }
 }
