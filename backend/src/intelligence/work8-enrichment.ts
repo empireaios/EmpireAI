@@ -1,3 +1,4 @@
+import {qualificationDossier} from './work8-dossier.js';
 import {projectWork8ModelDraft} from './work8-model-draft.js';
 import type {DatabaseSync} from 'node:sqlite';
 import {digest,jobSchema,type Evidence} from './model.js';
@@ -114,6 +115,7 @@ export async function readWork8EnrichmentOwner(store:IntelligenceStore,w:string,
  const candidates=[];for(const state of report.candidates){let assessment:Row={status:'NO_VERIFIED_COMPLETED_ASSESSMENT'};
  const matches=investigations.filter(i=>i.status==='COMPLETE'&&i.candidateBinding?.candidateId===state.id);
  for(const row of matches){if(requestReads>=5){assessment={status:'ASSESSMENT_READ_BOUND'};break;}requestReads++;try{const request=await readRequest(row.requestId);assessment=linkedCompletedAssessment(store,w,state.id,row.id,()=>request);if(assessment.status==='COMPLETED_ASSESSMENT_LINKED')break;}catch{assessment={status:'ASSESSMENT_PROOF_UNAVAILABLE'};}}
- candidates.push({candidateId:state.id,productId:state.productId,status:state.status,qualification:state.qualification,stage:state.stage,generation:state.generation??0,reasons:state.reasons,evidenceCount:state.sources.length,completeness:state.completeness??null,assessment:assessment.status==='COMPLETED_ASSESSMENT_LINKED'?{status:assessment.status,investigationId:assessment.investigationId,requestId:assessment.requestId,assessmentHash:assessment.assessmentHash,modelProposal:assessment.modelProposal}:assessment});}
+ let dossier:Row;try{dossier=qualificationDossier((workspace,id)=>store.get(workspace,'evidence',id) as Evidence|null,w,enrichmentBinding(store,w,state.id),store.now());}catch{dossier={status:'UNAVAILABLE',reason:'SOURCE_BINDING_NOT_READY_OR_INVALID',grantsAuthority:false};}
+ candidates.push({dossier,candidateId:state.id,productId:state.productId,status:state.status,qualification:state.qualification,stage:state.stage,generation:state.generation??0,reasons:state.reasons,evidenceCount:state.sources.length,completeness:state.completeness??null,assessment:assessment.status==='COMPLETED_ASSESSMENT_LINKED'?{status:assessment.status,investigationId:assessment.investigationId,requestId:assessment.requestId,assessmentHash:assessment.assessmentHash,modelProposal:assessment.modelProposal}:assessment});}
  return {...report,candidates,assessmentReadCoverage:'LATEST_100_INVESTIGATIONS_MAX_5_REQUEST_PROOFS; NOT_ALL_HISTORY',assessmentsLinkedInDisplayedSample:candidates.filter(c=>c.assessment.status==='COMPLETED_ASSESSMENT_LINKED').length};
 }
