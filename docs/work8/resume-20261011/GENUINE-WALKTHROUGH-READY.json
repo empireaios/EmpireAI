@@ -1,0 +1,146 @@
+{
+  "schema": "WORK8_GENUINE_WALKTHROUGH_PREPARATION_V1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "source": "76206d799412a57bea17df1bc476fba33aa04637",
+  "frontend": "679f901d4f422eb9292273046f4424e982087236",
+  "workspace": "ws_empire_1",
+  "candidateId": "CJ:2610110805301627100:2610110805301628000",
+  "sourceBinding": {
+    "candidateId": "CJ:2610110805301627100:2610110805301628000",
+    "productId": "2610110805301627100",
+    "subject": {
+      "id": "2610110805301627100",
+      "variant": "2610110805301628000",
+      "marketplace": "US",
+      "destination": "US"
+    },
+    "evidence": [
+      {
+        "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+        "envelopeDigest": "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7"
+      },
+      {
+        "id": "ev_6ef90e9b746cdf1e441b5a843d8c38c229b6a608",
+        "envelopeDigest": "a13a4f8046d581eeb4e1524068d948be05bbbe63a917e80627802fcd325418bf"
+      },
+      {
+        "id": "ev_119511e70455436bd854aff8f35a9b0149089b1a",
+        "envelopeDigest": "be871ac5fa2d1180ea49d3379451637da667e09d92efa55e682d36ef4f797092"
+      }
+    ],
+    "snapshotDigest": "d19230ee9391659687d58f6a3a8a0c79ec06c86dda2bb1e40f28db5a41c0d4ae"
+  },
+  "retainedSourceEvidence": [
+    {
+      "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+      "envelopeDigest": "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7",
+      "factsDigest": "38919003068b86281d6bd5a1263b0ea919f4457f480b9ddbca76b7dec67f69d8",
+      "provider": "CJ",
+      "capability": "cj.detail",
+      "endpoint": "/product/query",
+      "observedAt": "2026-10-11T12:39:18.147Z",
+      "expiresAt": "2026-10-11T18:39:18.147Z",
+      "freshness": "FRESH",
+      "classification": "RETAINED_PROVIDER_OBSERVATION"
+    },
+    {
+      "id": "ev_6ef90e9b746cdf1e441b5a843d8c38c229b6a608",
+      "envelopeDigest": "a13a4f8046d581eeb4e1524068d948be05bbbe63a917e80627802fcd325418bf",
+      "factsDigest": "635d1237b1174d40975da1f391afcf3f56e4383d0263ad7bb745300c917c2192",
+      "provider": "CJ",
+      "capability": "cj.stock",
+      "endpoint": "/product/stock/queryByVid",
+      "observedAt": "2026-10-11T12:39:45.665Z",
+      "expiresAt": "2026-10-11T18:39:45.665Z",
+      "freshness": "FRESH",
+      "classification": "RETAINED_PROVIDER_OBSERVATION"
+    },
+    {
+      "id": "ev_119511e70455436bd854aff8f35a9b0149089b1a",
+      "envelopeDigest": "be871ac5fa2d1180ea49d3379451637da667e09d92efa55e682d36ef4f797092",
+      "factsDigest": "43157962e11bc4242f7ca56f7d2fee7d76a04bb3cc191c00462d1a7d660077be",
+      "provider": "CJ",
+      "capability": "cj.freight",
+      "endpoint": "/logistic/freightCalculate",
+      "observedAt": "2026-10-11T12:39:46.162Z",
+      "expiresAt": "2026-10-11T18:39:46.162Z",
+      "freshness": "FRESH",
+      "classification": "RETAINED_PROVIDER_OBSERVATION"
+    }
+  ],
+  "freshnessNote": "Retained observation times, not new provider reads; reevaluate expiry before execution",
+  "candidateStatus": "DEFERRED",
+  "selectedFreight": null,
+  "assessmentId": null,
+  "ownerDecisionId": null,
+  "preparationId": null,
+  "missionId": null,
+  "listingId": null,
+  "orderId": null,
+  "financialDigest": null,
+  "recoveryReceiptId": null,
+  "stages": [
+    {
+      "sequence": 1,
+      "stage": "Genuine evidence",
+      "existingView": "Intelligence",
+      "gate": "Fresh exact variant/destination, selected freight, market match, eligibility and canonical reviewed economics",
+      "executed": false
+    },
+    {
+      "sequence": 2,
+      "stage": "Pillow assessment",
+      "existingView": "Product-linked Pillow Chat",
+      "gate": "Valid source-bound commissioning authority and retained completed response",
+      "executed": false
+    },
+    {
+      "sequence": 3,
+      "stage": "Owner decision",
+      "existingView": "Products & Approvals",
+      "gate": "Authenticated approve/reject/defer; separate explicit simulation authority",
+      "executed": false
+    },
+    {
+      "sequence": 4,
+      "stage": "Simulated listing",
+      "existingView": "Listings",
+      "gate": "Reviewed schema and exact permitted media versions; separate internal/external simulated approval",
+      "executed": false
+    },
+    {
+      "sequence": 5,
+      "stage": "Simulated order",
+      "existingView": "Orders & Fulfilment",
+      "gate": "Existing prepared mission enrollment, intercepted supplier intent, no purchase",
+      "executed": false
+    },
+    {
+      "sequence": 6,
+      "stage": "Fulfilment",
+      "existingView": "Orders & Fulfilment",
+      "gate": "Canonical shipment/tracking/delivery or exception/refund path",
+      "executed": false
+    },
+    {
+      "sequence": 7,
+      "stage": "Finance",
+      "existingView": "Finance",
+      "gate": "Same order/settlement identities; conservation, liabilities, refunds and costs reconciled",
+      "executed": false
+    },
+    {
+      "sequence": 8,
+      "stage": "Assurance recovery",
+      "existingView": "Assurance and Systems",
+      "gate": "Bounded authorised fault; independent fresh recovery proof; same business state preserved",
+      "executed": false
+    }
+  ],
+  "identityRule": "Populate IDs only from canonical persisted receipts; identical identities must appear in Home, Intelligence, Products & Approvals, Listings, Orders & Fulfilment, Finance, Assurance and Systems on authenticated desktop/mobile. No second engine.",
+  "acceptanceMinimum": "One fully evidenced genuine product for first walkthrough; no 100-product prerequisite",
+  "externalInputs": "OWNER-DECISION-CURRENT.md",
+  "liveEffects": "DENIED",
+  "inferenceAuthority": "No new paid call authorised",
+  "hostAuthority": "No provision or deployment authorised"
+}

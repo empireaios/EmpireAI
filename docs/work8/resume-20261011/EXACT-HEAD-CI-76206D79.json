@@ -1,0 +1,86 @@
+{
+  "source": "76206d799412a57bea17df1bc476fba33aa04637",
+  "sourceTree": "df63e2b9f3b68b70d0f832f471d428d358d35d93",
+  "evidence": "8ae8edb7fa882f62b34e0e6d1222d42400c01aa6",
+  "runs": [
+    {
+      "id": 38148890816,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 677,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890816/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890816/logs",
+      "workflow_id": 362674549
+    },
+    {
+      "id": 38148890773,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 678,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890773/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890773/logs",
+      "workflow_id": 362688325
+    },
+    {
+      "id": 38148890772,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 676,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890772/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890772/logs",
+      "workflow_id": 362309382
+    },
+    {
+      "id": 38148890763,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 118,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890763/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890763/logs",
+      "workflow_id": 373040927
+    }
+  ],
+  "frontend": {
+    "job": 114497959716,
+    "conclusion": "success",
+    "bundleBlob": "3ea1170bad5dacc70ff53b1c2377f919017da858",
+    "checkout": "679f901d4f422eb9292273046f4424e982087236",
+    "tree": "0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8",
+    "typecheck": "PASS",
+    "webTests": 215,
+    "financialTests": 2,
+    "failures": 0,
+    "build": "PASS",
+    "log": "FRONTEND-76206D79-CI.log"
+  },
+  "priorEvidence": "EXACT-HEAD-CI-4E5C97E4.json",
+  "restarts": 0,
+  "backendNewHostedCount": 226,
+  "genuineOwnerAcceptance": false,
+  "deployment": false,
+  "product": {
+    "job": 114498041286,
+    "tests": 226,
+    "passed": 226,
+    "failed": 0,
+    "checkoutCommit": "2d2a33b4f7ef5c02980b96b4fc23953a3dea0e17",
+    "checkoutTree": "df63e2b9f3b68b70d0f832f471d428d358d35d93",
+    "publishedTreeDiff": "empty",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "log": "PRODUCT-76206D79-TESTS.log"
+  },
+  "runtime": {
+    "job": 114497959788,
+    "checkoutCommit": "76206d799412a57bea17df1bc476fba33aa04637",
+    "tests": 391,
+    "passed": 391,
+    "failed": 0,
+    "wholeStoreRestore": "PASS",
+    "log": "RUNTIME-76206D79-CI.log"
+  }
+}

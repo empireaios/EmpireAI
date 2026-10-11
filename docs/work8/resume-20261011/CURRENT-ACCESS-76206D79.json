@@ -1,0 +1,112 @@
+{
+  "retrievedAt": "2026-10-11T14:52:47.636Z",
+  "readOnly": true,
+  "externalRefresh": false,
+  "inferenceCalls": 0,
+  "cj": {
+    "status": "AVAILABLE",
+    "scope": "Named read endpoints only; not full provider eligibility or commerce authority",
+    "capabilities": [
+      {
+        "id": "cj.catalog",
+        "status": "AVAILABLE",
+        "readState": "READ_VERIFIED",
+        "lastVerifiedRead": "2026-10-11T12:39:16.745Z",
+        "endpoint": "/product/list"
+      },
+      {
+        "id": "cj.detail",
+        "status": "AVAILABLE",
+        "readState": "READ_VERIFIED",
+        "lastVerifiedRead": "2026-10-11T12:39:18.147Z",
+        "endpoint": "/product/query"
+      },
+      {
+        "id": "cj.stock",
+        "status": "AVAILABLE",
+        "readState": "READ_VERIFIED",
+        "lastVerifiedRead": "2026-10-11T12:39:45.665Z",
+        "endpoint": "/product/stock/queryByVid"
+      },
+      {
+        "id": "cj.freight",
+        "status": "AVAILABLE",
+        "readState": "READ_VERIFIED",
+        "lastVerifiedRead": "2026-10-11T12:39:46.162Z",
+        "endpoint": "/logistic/freightCalculate"
+      }
+    ],
+    "lockedRuntimeAccess": "See per-capability verified endpoint and timestamp"
+  },
+  "amazon": {
+    "status": "AVAILABLE",
+    "scope": "Named read endpoints only; not full provider eligibility or commerce authority",
+    "capabilities": [
+      {
+        "id": "amazon.account",
+        "status": "STALE",
+        "readState": "STALE",
+        "lastVerifiedRead": "2026-10-11T00:37:15.300Z",
+        "endpoint": "/sellers/v1/marketplaceParticipations"
+      },
+      {
+        "id": "amazon.catalog",
+        "status": "AVAILABLE",
+        "readState": "READ_VERIFIED",
+        "lastVerifiedRead": "2026-10-11T12:39:16.028Z",
+        "endpoint": "/catalog/2022-04-01/items"
+      },
+      {
+        "id": "amazon.offers",
+        "status": "AVAILABLE",
+        "readState": "READ_VERIFIED",
+        "lastVerifiedRead": "2026-10-11T12:39:17.562Z",
+        "endpoint": "/products/pricing/v0/items/B0GN1TZZ9W/offers"
+      },
+      {
+        "id": "amazon.fees",
+        "status": "STALE",
+        "readState": "STALE",
+        "lastVerifiedRead": "2026-10-09T08:48:36.740Z",
+        "endpoint": "/products/fees/v0/items/B0GN1TZZ9W/feesEstimate"
+      },
+      {
+        "id": "amazon.analytics",
+        "status": "DEGRADED",
+        "readState": "UNVERIFIED",
+        "lastVerifiedRead": null,
+        "endpoint": null
+      },
+      {
+        "id": "amazon.restrictions",
+        "status": "STALE",
+        "readState": "STALE",
+        "lastVerifiedRead": "2026-10-09T08:49:40.152Z",
+        "endpoint": "/listings/2021-08-01/restrictions"
+      },
+      {
+        "id": "amazon.requirements",
+        "status": "UNVERIFIED",
+        "readState": "UNVERIFIED",
+        "lastVerifiedRead": null,
+        "endpoint": null
+      },
+      {
+        "id": "amazon.orders",
+        "status": "UNVERIFIED",
+        "readState": "UNVERIFIED",
+        "lastVerifiedRead": null,
+        "endpoint": null
+      },
+      {
+        "id": "amazon.opportunity",
+        "status": "UNAVAILABLE",
+        "readState": "UNVERIFIED",
+        "lastVerifiedRead": null,
+        "endpoint": null
+      }
+    ],
+    "lockedRuntimeAccess": "See per-capability verified endpoint and timestamp"
+  },
+  "limitation": "Advisor stored-state readback only; no acquisition execution or row-level SQL export operation exposed."
+}

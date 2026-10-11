@@ -81,9 +81,13 @@
   "commerce": "LOCKED",
   "work9": "NOT_ACTIVATED",
   "latestPublication": {
-    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-D459C08B.json",
-    "source": "4e5c97e42b62767793496b21ec37b0e74c78ff69",
-    "evidence": "57c033ace26747eafa1156faaf45c5fb1e6de497",
+    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-03719D31.json",
+    "source": "76206d799412a57bea17df1bc476fba33aa04637",
+    "evidence": "8ae8edb7fa882f62b34e0e6d1222d42400c01aa6",
+    "order": [
+      "evidence",
+      "source"
+    ],
     "exactTreeEquality": true,
     "noDeployment": true
   },
@@ -106,18 +110,20 @@
     "verdict": "SCOPED_PASS_TEST_ONLY_CONTINUATION",
     "receipt": "resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json"
   },
-  "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-4E5C97E4.json",
+  "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-76206D79.json",
   "latestLocalContinuation": {
-    "publication": "resume-20261011/CONNECTOR-PUBLICATION-D459C08B.json",
-    "publishedSource": "4e5c97e42b62767793496b21ec37b0e74c78ff69",
-    "publishedEvidence": "57c033ace26747eafa1156faaf45c5fb1e6de497",
+    "publication": "resume-20261011/CONNECTOR-PUBLICATION-03719D31.json",
+    "publishedSource": "76206d799412a57bea17df1bc476fba33aa04637",
+    "publishedEvidence": "8ae8edb7fa882f62b34e0e6d1222d42400c01aa6",
     "localSource": "03719d315db2a96c0a9c7e0a5bea75cdb381aa63",
     "localSourceTree": "df63e2b9f3b68b70d0f832f471d428d358d35d93",
     "localFrontend": "679f901d4f422eb9292273046f4424e982087236",
     "localFrontendTree": "0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8",
     "review": "resume-20261011/FREIGHT-QUALIFICATION-REVIEW.json",
     "decision": "resume-20261011/OWNER-DECISION-CURRENT.md",
-    "newClosures": []
+    "newClosures": [],
+    "localSourcePublished": true,
+    "localFrontendHostedChecks": "PASS; no deployment or genuine native acceptance"
   },
   "ownerAmendments": {
     "register": "resume-20261011/OWNER-AMENDMENTS-19.json",
@@ -127,5 +133,10 @@
       "BLOCKED": 0
     },
     "legacyIdsPreserved": true
+  },
+  "latestScopedClosureCheck": {
+    "reviewer": "/root/review_retirement_finance",
+    "newClosures": [],
+    "reason": "Genuine sources/review/assessment, exact media rights, canonical accounting and hosted native acceptance remain mandatory. Only existing current-head CI collection independently executable."
   }
 }

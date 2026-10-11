@@ -1,0 +1,44 @@
+{
+  "observedAt": "2026-10-11T16:10:20.352715+00:00",
+  "kind": "SUPPLEMENTAL_AUTHENTICATED_BROWSER_SCREENING_NOT_CANONICAL_QUALIFICATION",
+  "productId": "1660579557290168320",
+  "sku": "CJCF1763008-Gray-With 50Pcs Filter Mesh",
+  "supplier": "Fan Nan / Popmarket",
+  "variant": "Gray / With 50Pcs Filter Mesh",
+  "priceUsd": 9.18,
+  "shippingUsd": 3,
+  "displayedTotalUsd": 12.18,
+  "shipping": "Yunexpress CN to US",
+  "processing": "1\u20133 days for 90% of orders",
+  "delivery": "6\u201312 days",
+  "stock": {
+    "factory": 2608,
+    "CJ": 0
+  },
+  "quoteContext": "Shopify; quantity 1; China to US",
+  "comparisons": [
+    {
+      "asin": "B0HH4GLX3D",
+      "description": "Triangle drain holder with 50 mesh bags",
+      "lowestPriceUsd": 8.89
+    },
+    {
+      "asin": "B0F8MP1SD4",
+      "description": "Sink strainer with 100 mesh bags",
+      "lowestPriceUsd": 11.89,
+      "salesRank": 10890
+    },
+    {
+      "asin": "B0FJ1SVZQB",
+      "description": "Kanggoulu green folding rack with 100 mesh bags",
+      "lowestPriceUsd": 10.97,
+      "salesRank": 506217
+    }
+  ],
+  "exactMarketplaceMatch": false,
+  "outcome": "DEFERRED",
+  "screeningDecision": "Do not advance: displayed delivered cost exceeds observed comparable offers before fees; no verified differentiation premium, exact identity match, eligibility or usable media permission. Comparisons are not identical products and ranks are not exact demand.",
+  "canonicalQualificationExecuted": false,
+  "pillowAssessmentExecuted": false,
+  "newExternalMessagesSent": false
+}

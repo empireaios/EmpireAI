@@ -1,0 +1,4412 @@
+{
+  "records": [
+    {
+      "retrievedAt": "2026-10-11T16:11:35.886Z",
+      "readOnly": true,
+      "inferenceCalls": 0,
+      "externalRefresh": false,
+      "workspace": "ws_empire_1",
+      "domain": "evidence",
+      "grantsAuthority": false,
+      "status": "AVAILABLE",
+      "observedAt": null,
+      "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+      "data": {
+        "id": "ev_1f0823a57a2db704b8ebd1b0eb87ebf9c17589f2",
+        "capabilityId": "cj.catalog",
+        "eye": "SUPPLIER",
+        "provider": "CJ",
+        "endpoint": "/product/list",
+        "subject": {
+          "id": "research",
+          "marketplace": "US",
+          "query": "Bathroom Corner Shelf Organizer With Hooks"
+        },
+        "observedAt": "2026-10-11T16:09:45.625Z",
+        "retrievedAt": "2026-10-11T16:09:45.625Z",
+        "staleAfter": "2026-10-11T22:09:45.625Z",
+        "authenticity": "LIVE_PROVIDER",
+        "digest": "25304b08f6041dd96618793fb806b1e5af67e94cca589318c08698e0baa7d22a",
+        "facts": {
+          "response": {
+            "pageNum": 1,
+            "pageSize": 10,
+            "total": 130178,
+            "list": [
+              {
+                "pid": "2610110734491616400",
+                "productName": "[\"真皮女包2024鳄鱼纹牛皮手提包单肩斜挎小方包龙鳞片复古风通勤\",\"真皮女包2024鳄鱼纹\",\"牛皮手提包单肩斜挎\"]",
+                "productNameEn": "Small Square Bag With Dragon Scale Pattern Vintage-style For Commuting",
+                "productSku": "CJNS3244181",
+                "productImage": "https://cf.cjdropshipping.com/quick/product/84140a37-1c6e-4fd7-b336-33f14c122792.jpg",
+                "productWeight": "400.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Totes",
+                "listingCount": 1,
+                "sellPrice": "17.88",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/72bfc628-5d90-4091-8b29-c0680cbcba6b.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791704089000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 1,
+                "supplierName": null,
+                "supplierId": "9999",
+                "categoryId": "8F3ADC01-68FE-4CBE-BB1D-0DE42A730749",
+                "sourceFrom": "0",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": null,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110718351610300",
+                "productName": "[\"女士休闲短袖T恤 - 鲜艳红色金心印花，圆领中弹力，可\",\"跨境速卖通女士休闲短袖\",\"t恤-鲜艳红色\"]",
+                "productNameEn": "Women's Casual Short-Sleeve T-Shirt With Golden Heart Print",
+                "productSku": "CJCS3244121",
+                "productImage": "https://cf.cjdropshipping.com/quick/product/a3f813d5-d980-494b-b62e-7d655dcdda79.jpg",
+                "productWeight": "150.00-210.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Blazers",
+                "listingCount": 0,
+                "sellPrice": "3.49",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/a25e4bbd-7347-44ae-bf30-851372d2ef42.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791703115000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 0,
+                "supplierName": null,
+                "supplierId": "6666",
+                "categoryId": "07398ADB-FC5E-4CC4-AD00-EB230E779E88",
+                "sourceFrom": "0",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": 0,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110709291612500",
+                "productName": "[\"实木条状胡桃木桌面免打孔壁挂磁铁挂勾榉木无痕钥匙挂钩摆件道具\",\"实木条状胡桃木桌面免\",\"打孔壁挂磁铁挂勾榉木\"]",
+                "productNameEn": "Solid Walnut Wood Key Hook With No-Drill Installation",
+                "productSku": "CJJT3239553",
+                "productImage": "https://cf.cjdropshipping.com/quick/product/18a7e4d3-afa0-48e0-8abd-3e1d50acdd4c.jpg",
+                "productWeight": "60.00-100.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Home Office Storage",
+                "listingCount": 0,
+                "sellPrice": "2.94 -- 4.43",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/80b5b79c-f3e3-4178-8280-7e77d375fe2e.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791702569000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 0,
+                "supplierName": null,
+                "supplierId": "9999",
+                "categoryId": "87CF251F-8D11-4DE0-A154-9694D9858EB3",
+                "sourceFrom": "19",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": 0,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110703531604600",
+                "productName": "[\"跨境24秋冬加棉新款男士连帽棉服轻薄保暖棉衣拼接脱帽休闲外套男\",\"跨境24秋冬加棉新款男士\",\"连帽棉服轻薄保暖\"]",
+                "productNameEn": "Mens Warm Cotton-Padded Patchwork Casual Coat With Hood",
+                "productSku": "CJPK3244036",
+                "productImage": "https://cf.cjdropshipping.com/quick/product/af7bc592-3690-4c4f-aa11-df10b0dbcd1e.jpg",
+                "productWeight": "800.00-900.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Suits & Blazer",
+                "listingCount": 1,
+                "sellPrice": "19.97",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/2e800127-ec03-427e-a129-1b18b61c0228.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791702233000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 1,
+                "supplierName": null,
+                "supplierId": "6666",
+                "categoryId": "007F26BA-B50A-4ADA-BD36-2CD341411230",
+                "sourceFrom": "0",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": 0,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110656581623800",
+                "productName": "[\"刮水器卫生间魔术扫把浴室两用扫水地刮家用地板刮水器除毛拖把\",\"刮水器卫生间魔术扫把\",\"浴室两用扫水地刮家用\"]",
+                "productNameEn": "Magic Broom Bathroom Sweeping Floor Scraping Strip",
+                "productSku": "CJYD3244013",
+                "productImage": "https://oss-cf.cjdropshipping.com/product/2026/10/11/06/f12b43a6-e6e5-4c89-bf04-6ad06712ce29_trans.jpeg",
+                "productWeight": "260.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Home Office Storage",
+                "listingCount": 0,
+                "sellPrice": "1.02",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/06/f19c4484-8367-4fa4-8570-448d87ca5096.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791701818000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 0,
+                "supplierName": null,
+                "supplierId": "9999",
+                "categoryId": "87CF251F-8D11-4DE0-A154-9694D9858EB3",
+                "sourceFrom": "0",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": null,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110652391631100",
+                "productName": "[\"秋冬男士棋盘格提花长袖POLO衫半拉链翻领休闲上衣现货\",\"跨境亚马逊秋冬男士\",\"棋盘格提花长袖polo\"]",
+                "productNameEn": "Men's Long-sleeve POLO Shirt With A Half-zip And A Turn-down Collar Casual Top",
+                "productSku": "CJWY3243984",
+                "productImage": "https://cf.cjdropshipping.com/quick/product/ac4b5a38-6048-4aa1-8961-00e5cd538d0b.jpg",
+                "productWeight": "395.00-460.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Men's Long-Sleeved",
+                "listingCount": 1,
+                "sellPrice": "5.51",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/06/0d6caffb-e904-47e2-9b84-12fb8af78ff5.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791701559000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 1,
+                "supplierName": null,
+                "supplierId": "6666",
+                "categoryId": "2502140308291606200",
+                "sourceFrom": "1",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": 0,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110631061622000",
+                "productName": "[\"欧美小众气质盒子包贝壳串珠不规则提手手提包链条宴会包晚宴包\",\"欧美小众气质盒子\",\"包贝壳串珠不规则提手\"]",
+                "productNameEn": "European And American Niche Chic Box Bag With Shell And Bead Detailing",
+                "productSku": "CJYD3243882",
+                "productImage": "https://cf.cjdropshipping.com/quick/product/8f83a3b3-33f3-40b9-a3f2-a2c4590d72fe.jpg",
+                "productWeight": "200.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Fashion Backpacks",
+                "listingCount": 0,
+                "sellPrice": "22.22",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/06/8fef4a96-e414-409e-b8d7-98d6cbb19d1f.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791700266000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 0,
+                "supplierName": null,
+                "supplierId": "9999",
+                "categoryId": "78BCE010-8E22-416F-82E2-6E5C6AE0CECE",
+                "sourceFrom": "1",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": null,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110617271618300",
+                "productName": "[\"2026男士春秋新款中长款英伦风衣翻领休闲外套韩版宽松商务男大衣\",\"2026男士春秋新款中长\",\"款英伦风衣翻领休闲外套\"]",
+                "productNameEn": "Mid-length Trench Coat With A Lapel Casual Outerwear",
+                "productSku": "CJXZ3243793",
+                "productImage": "https://cf.cjdropshipping.com/quick/product/320fb828-a284-4ac5-b609-22c609766a64.jpg",
+                "productWeight": "600.00-660.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Man Trench",
+                "listingCount": 0,
+                "sellPrice": "8.66",
+                "remark": null,
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791699447000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 0,
+                "supplierName": null,
+                "supplierId": "6666",
+                "categoryId": "222439DF-4ED5-4DCF-BB22-8FB41607C7D2",
+                "sourceFrom": "1",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": null,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110533231623000",
+                "productName": "[\"2026秋冬新品跨境女装独立站V领拼接荷叶边下摆长袖连衣裙\",\"2026秋冬新品跨境女装\",\"独立站v领拼接\"]",
+                "productNameEn": "V-neck Spliced Long-sleeve Dress With A Ruffled Hem",
+                "productSku": "CJLY3243633",
+                "productImage": "https://cf.cjdropshipping.com/quick/product/7ee18c79-331a-44f8-88cd-c62eba993420.jpg",
+                "productWeight": "300.00-340.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Lady Dresses",
+                "listingCount": 3,
+                "sellPrice": "8.33",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/05/ef1952ad-6217-4769-8522-5eb2aee61a48.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791696803000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 3,
+                "supplierName": null,
+                "supplierId": "6666",
+                "categoryId": "D2432903-0D4E-4787-886F-D3D9DA7890D9",
+                "sourceFrom": "0",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": null,
+                "isTestProduct": false
+              },
+              {
+                "pid": "2610110525491634400",
+                "productName": "[\"越野摩托车ATV四轮沙滩车卡丁车50-140CC三孔上置电机电启动马达\",\"越野摩托车atv四轮沙滩车卡丁\",\"车50-140cc三\"]",
+                "productNameEn": "Four-stroke Three-port Engine With Electric Start Suitable For Off-road Motorcycles",
+                "productSku": "CJYD3238752",
+                "productImage": "https://oss-cf.cjdropshipping.com/product/2026/10/11/05/945842d6-cd19-47f0-83d3-b538d5c5a06f_fine.jpeg",
+                "productWeight": "1200.00",
+                "productType": "ORDINARY_PRODUCT",
+                "productUnit": null,
+                "categoryName": "Motor Brake System",
+                "listingCount": 0,
+                "sellPrice": "5.90",
+                "remark": "<p><img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/05/30a4966e-fd63-4de1-ac0f-f9d10b82efa7.jpg\" style=\"max-width:100%;\" contenteditable=\"false\"/></p>",
+                "addMarkStatus": "0",
+                "isFreeShipping": false,
+                "createTime": 1791696349000,
+                "isVideo": null,
+                "saleStatus": 3,
+                "listedNum": 0,
+                "supplierName": null,
+                "supplierId": "8888",
+                "categoryId": "482DBC73-CA1B-4FF5-A943-D282D7FBC18F",
+                "sourceFrom": "18",
+                "shippingCountryCodes": [
+                  "CN",
+                  "CN_US"
+                ],
+                "threeCategoryName": null,
+                "twoCategoryId": null,
+                "twoCategoryName": null,
+                "oneCategoryId": null,
+                "oneCategoryName": null,
+                "customizationVersion": null,
+                "isTestProduct": false
+              }
+            ]
+          },
+          "pointsInfo": {
+            "total": 50000,
+            "usedToday": 260,
+            "remaining": 50000
+          },
+          "request": {
+            "pageNum": "1",
+            "pageSize": "10",
+            "productNameEn": "Bathroom Corner Shelf Organizer With Hooks"
+          },
+          "interpretation": "Supplier evidence only; does not establish independent customer demand."
+        },
+        "jobId": "owner_aab825e0-c381-427a-acc8-da3d7f187006",
+        "quality": [
+          "SOURCE_SPECIFIC",
+          "BOUNDED_SAMPLE",
+          "NO_EXECUTION_AUTHORITY"
+        ],
+        "lineage": [
+          "CJ:/product/list"
+        ],
+        "grantsAuthority": false
+      },
+      "coverage": {
+        "limit": 20,
+        "after": "",
+        "since": null,
+        "complete": false,
+        "providerAccessVerified": false,
+        "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+        "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+      }
+    },
+    {
+      "retrievedAt": "2026-10-11T16:11:36.070Z",
+      "readOnly": true,
+      "inferenceCalls": 0,
+      "externalRefresh": false,
+      "workspace": "ws_empire_1",
+      "domain": "evidence",
+      "grantsAuthority": false,
+      "status": "AVAILABLE",
+      "observedAt": null,
+      "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+      "data": {
+        "id": "ev_575966d1715eb4659a949f0dff97e49a5917a02b",
+        "capabilityId": "cj.stock",
+        "eye": "SUPPLIER",
+        "provider": "CJ",
+        "endpoint": "/product/stock/queryByVid",
+        "subject": {
+          "id": "2610110734491616400",
+          "variant": "2610110734491617500",
+          "marketplace": "US",
+          "destination": "US"
+        },
+        "observedAt": "2026-10-11T16:09:46.863Z",
+        "retrievedAt": "2026-10-11T16:09:46.863Z",
+        "staleAfter": "2026-10-11T22:09:46.863Z",
+        "authenticity": "LIVE_PROVIDER",
+        "digest": "921b72640505c64a2188af00664e3edca30149ec0f141ac1cfb13bdb36f5acd7",
+        "facts": {
+          "response": [
+            {
+              "vid": "2610110734491617500",
+              "areaId": "1",
+              "areaEn": "China Warehouse",
+              "countryCode": "CN",
+              "storageNum": 7076,
+              "totalInventoryNum": 7076,
+              "cjInventoryNum": 0,
+              "factoryInventoryNum": 7076,
+              "stock": [
+                {
+                  "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                  "inventory": 0,
+                  "factoryInventory": 7076
+                }
+              ]
+            }
+          ],
+          "pointsInfo": {
+            "total": 50000,
+            "usedToday": 280,
+            "remaining": 50000
+          },
+          "request": {
+            "vid": "2610110734491617500"
+          },
+          "interpretation": "Supplier evidence only; does not establish independent customer demand."
+        },
+        "jobId": "follow_36f35b2ec29655eec11ad99604e81d697d5b",
+        "quality": [
+          "SOURCE_SPECIFIC",
+          "BOUNDED_SAMPLE",
+          "NO_EXECUTION_AUTHORITY"
+        ],
+        "lineage": [
+          "CJ:/product/stock/queryByVid"
+        ],
+        "grantsAuthority": false
+      },
+      "coverage": {
+        "limit": 20,
+        "after": "",
+        "since": null,
+        "complete": false,
+        "providerAccessVerified": false,
+        "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+        "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+      }
+    },
+    {
+      "retrievedAt": "2026-10-11T16:11:35.972Z",
+      "readOnly": true,
+      "inferenceCalls": 0,
+      "externalRefresh": false,
+      "workspace": "ws_empire_1",
+      "domain": "evidence",
+      "grantsAuthority": false,
+      "status": "AVAILABLE",
+      "observedAt": null,
+      "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+      "data": {
+        "id": "ev_211f3f1ac3bd0b8b1f67c40513e2fecb656f1299",
+        "capabilityId": "cj.freight",
+        "eye": "SUPPLIER",
+        "provider": "CJ",
+        "endpoint": "/logistic/freightCalculate",
+        "subject": {
+          "id": "2610110734491616400",
+          "variant": "2610110734491617500",
+          "marketplace": "US",
+          "destination": "US"
+        },
+        "observedAt": "2026-10-11T16:09:47.166Z",
+        "retrievedAt": "2026-10-11T16:09:47.166Z",
+        "staleAfter": "2026-10-11T22:09:47.167Z",
+        "authenticity": "LIVE_PROVIDER",
+        "digest": "11bfae8cb306877d08e53594d1f96839de70392aa0d8a4de2cd9310190a19683",
+        "facts": {
+          "response": [
+            {
+              "logisticAging": "4-7",
+              "logisticPrice": 9.74,
+              "logisticPriceCn": 60.3,
+              "logisticName": "YunExpress Ordinary",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [
+                0,
+                2
+              ],
+              "timePrioritySort": 0,
+              "pricePrioritySort": null,
+              "compositeRecommendSort": 0,
+              "totalPostageFee": 9.74
+            },
+            {
+              "logisticAging": "5-11",
+              "logisticPrice": 9.17,
+              "logisticPriceCn": 56.81,
+              "logisticName": "LuWei Ordinary US",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [
+                1
+              ],
+              "timePrioritySort": null,
+              "pricePrioritySort": 0,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 9.17
+            },
+            {
+              "logisticAging": "4-7",
+              "logisticPrice": 11.33,
+              "logisticPriceCn": 70.15,
+              "logisticName": "YunExpress Sensitive",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [],
+              "timePrioritySort": null,
+              "pricePrioritySort": null,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 11.33
+            },
+            {
+              "logisticAging": "4-9",
+              "logisticPrice": 10.73,
+              "logisticPriceCn": 66.47,
+              "logisticName": "CJPacket Ordinary",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [
+                1
+              ],
+              "timePrioritySort": null,
+              "pricePrioritySort": 1,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 10.73
+            },
+            {
+              "logisticAging": "5-11",
+              "logisticPrice": 11,
+              "logisticPriceCn": 68.11,
+              "logisticName": "CJPacket Super Pure Electricity",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [],
+              "timePrioritySort": null,
+              "pricePrioritySort": null,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 11
+            },
+            {
+              "logisticAging": "7-14",
+              "logisticPrice": 11,
+              "logisticPriceCn": 68.11,
+              "logisticName": "CJPacket Pure Electricity",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [],
+              "timePrioritySort": null,
+              "pricePrioritySort": null,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 11
+            },
+            {
+              "logisticAging": "4-9",
+              "logisticPrice": 12.14,
+              "logisticPriceCn": 75.17,
+              "logisticName": "CJPacket Sensitive",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [],
+              "timePrioritySort": null,
+              "pricePrioritySort": null,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 12.14
+            },
+            {
+              "logisticAging": "5-11",
+              "logisticPrice": 13.94,
+              "logisticPriceCn": 86.4,
+              "logisticName": "CJPacket Sensitive Pro",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [],
+              "timePrioritySort": null,
+              "pricePrioritySort": null,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 13.94
+            },
+            {
+              "logisticAging": "4-6",
+              "logisticPrice": 13.34,
+              "logisticPriceCn": 82.69,
+              "logisticName": "CJPacket Fast Ordinary",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0,
+              "recommendLogisticsTypeList": [],
+              "timePrioritySort": null,
+              "pricePrioritySort": null,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 13.34
+            },
+            {
+              "logisticAging": "12-50",
+              "logisticPrice": 13.21,
+              "logisticPriceCn": 81.82,
+              "logisticName": "CJPacket Eub",
+              "channelId": null,
+              "error": null,
+              "errorEn": null,
+              "optionId": null,
+              "postage": null,
+              "postageCNY": null,
+              "priceIncreases": null,
+              "reSort": null,
+              "remoteFee": null,
+              "remoteFeeCNY": null,
+              "tip": null,
+              "orderId": null,
+              "unWeightChargeTarget": null,
+              "volumeWeight": null,
+              "floatMaxPrice": null,
+              "floatMinPrice": null,
+              "logisticsParamRespDTO": null,
+              "message": null,
+              "wrapPostage": null,
+              "wrapPostageCNY": null,
+              "wrapWeight": null,
+              "ruleTipTypes": null,
+              "stopWords": null,
+              "channel": null,
+              "cjRespDTO": null,
+              "destArea": null,
+              "srcArea": null,
+              "option": null,
+              "zonePrice": [],
+              "allRuleTips": null,
+              "ruleTips": null,
+              "taxesFee": 0,
+              "clearanceOperationFee": 0.2,
+              "recommendLogisticsTypeList": [],
+              "timePrioritySort": null,
+              "pricePrioritySort": null,
+              "compositeRecommendSort": null,
+              "totalPostageFee": 13.41
+            }
+          ],
+          "pointsInfo": {
+            "total": 50000,
+            "usedToday": 290,
+            "remaining": 50000
+          },
+          "request": {
+            "startCountryCode": "CN",
+            "endCountryCode": "US",
+            "products": [
+              {
+                "quantity": 1,
+                "vid": "2610110734491617500"
+              }
+            ]
+          },
+          "interpretation": "Freight and delivery estimates, not guarantees; quantity 1; duties/returns not established."
+        },
+        "jobId": "follow_36f35b2ec29655eec11ad99604e81d697d5b",
+        "quality": [
+          "SOURCE_SPECIFIC",
+          "BOUNDED_SAMPLE",
+          "NO_EXECUTION_AUTHORITY"
+        ],
+        "lineage": [
+          "CJ:/logistic/freightCalculate"
+        ],
+        "grantsAuthority": false
+      },
+      "coverage": {
+        "limit": 20,
+        "after": "",
+        "since": null,
+        "complete": false,
+        "providerAccessVerified": false,
+        "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+        "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+      }
+    },
+    {
+      "retrievedAt": "2026-10-11T16:11:35.794Z",
+      "readOnly": true,
+      "inferenceCalls": 0,
+      "externalRefresh": false,
+      "workspace": "ws_empire_1",
+      "domain": "evidence",
+      "grantsAuthority": false,
+      "status": "AVAILABLE",
+      "observedAt": null,
+      "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+      "data": {
+        "id": "ev_09c5a9f0bef52a5dd18094a78c1aa0f40c5faee3",
+        "capabilityId": "cj.catalog",
+        "eye": "SUPPLIER",
+        "provider": "CJ",
+        "endpoint": "/product/list",
+        "subject": {
+          "id": "research",
+          "marketplace": "US",
+          "query": "CJYS225866201AZ"
+        },
+        "observedAt": "2026-10-11T16:08:45.695Z",
+        "retrievedAt": "2026-10-11T16:08:45.695Z",
+        "staleAfter": "2026-10-11T22:08:45.695Z",
+        "authenticity": "LIVE_PROVIDER",
+        "digest": "7ffb518b2dcba0807b187a771d73795778f3c8ce63d4469288efafb8ee97b765",
+        "facts": {
+          "response": {
+            "pageNum": 1,
+            "pageSize": 10,
+            "total": 0,
+            "list": []
+          },
+          "pointsInfo": {
+            "total": 50000,
+            "usedToday": 210,
+            "remaining": 50000
+          },
+          "request": {
+            "pageNum": "1",
+            "pageSize": "10",
+            "productNameEn": "CJYS225866201AZ"
+          },
+          "interpretation": "Supplier evidence only; does not establish independent customer demand."
+        },
+        "jobId": "owner_e14eeac6-65f4-4560-9fca-eb4042207e1f",
+        "quality": [
+          "SOURCE_SPECIFIC",
+          "BOUNDED_SAMPLE",
+          "NO_EXECUTION_AUTHORITY"
+        ],
+        "lineage": [
+          "CJ:/product/list"
+        ],
+        "grantsAuthority": false
+      },
+      "coverage": {
+        "limit": 20,
+        "after": "",
+        "since": null,
+        "complete": false,
+        "providerAccessVerified": false,
+        "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+        "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+      }
+    },
+    {
+      "retrievedAt": "2026-10-11T16:11:18.994Z",
+      "readOnly": true,
+      "inferenceCalls": 0,
+      "externalRefresh": false,
+      "workspace": "ws_empire_1",
+      "domain": "evidence",
+      "grantsAuthority": false,
+      "status": "AVAILABLE",
+      "observedAt": null,
+      "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+      "data": {
+        "id": "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67",
+        "capabilityId": "cj.detail",
+        "eye": "SUPPLIER",
+        "provider": "CJ",
+        "endpoint": "/product/query",
+        "subject": {
+          "id": "2610110734491616400",
+          "marketplace": "US"
+        },
+        "observedAt": "2026-10-11T16:09:46.193Z",
+        "retrievedAt": "2026-10-11T16:09:46.193Z",
+        "staleAfter": "2026-10-11T22:09:46.193Z",
+        "authenticity": "LIVE_PROVIDER",
+        "digest": "fe60c78c6c0202b6bfd680dc5bd1702612efcc04dffafd94f321d296db920035",
+        "facts": {
+          "response": {
+            "pid": "2610110734491616400",
+            "productName": "[\"真皮女包2024鳄鱼纹牛皮手提包单肩斜挎小方包龙鳞片复古风通勤\",\"真皮女包2024鳄鱼纹\",\"牛皮手提包单肩斜挎\"]",
+            "productNameSet": [
+              "真皮女包2024鳄鱼纹牛皮手提包单肩斜挎小方包龙鳞片复古风通勤",
+              "真皮女包2024鳄鱼纹",
+              "牛皮手提包单肩斜挎"
+            ],
+            "productNameEn": "Small Square Bag With Dragon Scale Pattern Vintage-style For Commuting",
+            "productSku": "CJNS3244181",
+            "bigImage": "https://cf.cjdropshipping.com/quick/product/84140a37-1c6e-4fd7-b336-33f14c122792.jpg",
+            "productImage": "[\"https://cf.cjdropshipping.com/quick/product/84140a37-1c6e-4fd7-b336-33f14c122792.jpg\",\"https://cf.cjdropshipping.com/quick/product/842ebdef-5cf6-4ba5-9f49-598f3fe7dd2b.jpg\",\"https://cf.cjdropshipping.com/quick/product/83171a19-ea47-46a4-b97c-807b3403d635.jpg\",\"https://cf.cjdropshipping.com/quick/product/320c9a98-71c9-40b2-9e92-696496d2194b.jpg\",\"https://cf.cjdropshipping.com/quick/product/d091bbfb-aa50-40cf-95d8-8f6aa6867cde.jpg\",\"https://cf.cjdropshipping.com/quick/product/cda48cf4-77d1-4d14-9cd2-b870d596186c.jpg\",\"https://cf.cjdropshipping.com/quick/product/0fa49fd8-b937-40a7-8e4b-8262f6bb43bd.jpg\"]",
+            "productImageSet": [
+              "https://cf.cjdropshipping.com/quick/product/0fa49fd8-b937-40a7-8e4b-8262f6bb43bd.jpg",
+              "https://cf.cjdropshipping.com/quick/product/d091bbfb-aa50-40cf-95d8-8f6aa6867cde.jpg",
+              "https://cf.cjdropshipping.com/quick/product/cda48cf4-77d1-4d14-9cd2-b870d596186c.jpg",
+              "https://cf.cjdropshipping.com/quick/product/83171a19-ea47-46a4-b97c-807b3403d635.jpg",
+              "https://cf.cjdropshipping.com/quick/product/84140a37-1c6e-4fd7-b336-33f14c122792.jpg",
+              "https://cf.cjdropshipping.com/quick/product/320c9a98-71c9-40b2-9e92-696496d2194b.jpg",
+              "https://cf.cjdropshipping.com/quick/product/842ebdef-5cf6-4ba5-9f49-598f3fe7dd2b.jpg"
+            ],
+            "productWeight": "400.00",
+            "productUnit": null,
+            "productType": "ORDINARY_PRODUCT",
+            "categoryId": "8F3ADC01-68FE-4CBE-BB1D-0DE42A730749",
+            "categoryName": "Bags & Shoes > Women's Luggage & Bags > Totes",
+            "entryCode": "4202210090",
+            "entryName": "皮手提包",
+            "entryNameEn": "Leather Handbag",
+            "materialName": "[\"皮\"]",
+            "materialNameSet": [
+              "皮"
+            ],
+            "materialNameEn": "[\"Leather\"]",
+            "materialNameEnSet": [
+              "Leather"
+            ],
+            "materialKey": "[\"LEATHER\"]",
+            "materialKeySet": [
+              "LEATHER"
+            ],
+            "packingWeight": "420.00",
+            "packingName": "[\"塑料袋\"]",
+            "packingNameSet": [
+              "塑料袋"
+            ],
+            "packingNameEn": "[\"Plastic bags\"]",
+            "packingNameEnSet": [
+              "Plastic bags"
+            ],
+            "packingKey": "[\"PLASTIC_BAG\"]",
+            "packingKeySet": [
+              "PLASTIC_BAG"
+            ],
+            "productKey": "[\"颜色\",\"尺寸\"]",
+            "productKeySet": [
+              "颜色",
+              "尺寸"
+            ],
+            "productKeyEn": "Color-Size",
+            "productKeyEnSet": [
+              "Color",
+              "Size"
+            ],
+            "productPro": "[\"普货\"]",
+            "productProSet": [
+              "普货"
+            ],
+            "productProEn": "[\"COMMON\"]",
+            "productProEnSet": [
+              "COMMON"
+            ],
+            "sellPrice": "17.88",
+            "sourceFrom": 0,
+            "description": "<p><b>Product information:</b><br>Lining material: Cowhide<br> Color: Gold, green<br> Leather texture: Crocodile-pattern cowhide<br> Hardness: Medium hardness<br> Material: Genuine leather<br> Bag shape: Vertical rectangle</p> \n<br> \n<b>Packing list: </b> \n<br>Bag*1 \n<br> \n<p></p> \n<b>Product Image:</b> \n<br> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/74c124ca-e401-4821-b263-294aee180fd9_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/7923efc9-1ebf-4efa-bf30-efd3271e21f6_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/03ecbe31-ee79-4072-98d4-af4884457202_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/8605eade-b980-427a-8e5e-d13be4cb4798_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/1999f0f2-9b02-483c-a6f2-984211b29cab_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/24e004b0-870a-4992-95e3-0de42cc4d38b_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/64e47e71-b92b-4cec-8e83-9293cd271ab2_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/671a0e5b-1201-400e-8870-4d4df78fe3c1_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/7d056cdf-b704-4f72-a1be-60dd5b30abd2_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/07/14c8d942-2a7b-4bce-9e1d-67e69f22c6eb_trans.jpeg\"> \n<img src=\"https://",
+            "variants": [
+              {
+                "vid": "2610110734491617500",
+                "pid": "2610110734491616400",
+                "variantName": null,
+                "variantNameEn": "Small Square Bag With Dragon Scale Pattern Vintage-style For Commuting Gold 24X10X18",
+                "variantImage": "https://cf.cjdropshipping.com/quick/product/cda48cf4-77d1-4d14-9cd2-b870d596186c.jpg",
+                "variantSku": "CJNS324418101AZ",
+                "barcode": "1600017114551",
+                "variantUnit": "个",
+                "variantProperty": null,
+                "variantKey": "Gold-24X10X18",
+                "variantLength": 260,
+                "variantWidth": 120,
+                "variantHeight": 200,
+                "variantVolume": 6240000,
+                "variantWeight": 420,
+                "variantSellPrice": 17.88,
+                "createTime": 1791704089000,
+                "variantStandard": "long=260,width=120,height=200",
+                "variantSugSellPrice": 142.33,
+                "combineNum": null,
+                "inventoryNum": null,
+                "combineVariants": null,
+                "inventories": null
+              },
+              {
+                "vid": "2610110734491617501",
+                "pid": "2610110734491616400",
+                "variantName": null,
+                "variantNameEn": "Small Square Bag With Dragon Scale Pattern Vintage-style For Commuting Green 24X10X18",
+                "variantImage": "https://cf.cjdropshipping.com/quick/product/0fa49fd8-b937-40a7-8e4b-8262f6bb43bd.jpg",
+                "variantSku": "CJNS324418102BY",
+                "barcode": "1600017114552",
+                "variantUnit": "个",
+                "variantProperty": null,
+                "variantKey": "Green-24X10X18",
+                "variantLength": 260,
+                "variantWidth": 120,
+                "variantHeight": 200,
+                "variantVolume": 6240000,
+                "variantWeight": 420,
+                "variantSellPrice": 17.88,
+                "createTime": 1791704089000,
+                "variantStandard": "long=260,width=120,height=200",
+                "variantSugSellPrice": 142.33,
+                "combineNum": null,
+                "inventoryNum": null,
+                "combineVariants": null,
+                "inventories": null
+              }
+            ],
+            "addMarkStatus": 0,
+            "createrTime": "2026-10-11T07:34:49+08:00",
+            "productVideo": null,
+            "status": "3",
+            "suggestSellPrice": "142.33",
+            "listedNum": 1,
+            "supplierName": null,
+            "supplierId": null,
+            "customizationVersion": null,
+            "customizationJson1": null,
+            "customizationJson2": null,
+            "customizationJson3": null,
+            "customizationJson4": null,
+            "isTestProduct": false
+          },
+          "pointsInfo": {
+            "total": 50000,
+            "usedToday": 270,
+            "remaining": 50000
+          },
+          "request": {
+            "pid": "2610110734491616400"
+          },
+          "interpretation": "Supplier evidence only; does not establish independent customer demand."
+        },
+        "jobId": "follow_093561c88d102c122b12b44110bb41884d24",
+        "quality": [
+          "SOURCE_SPECIFIC",
+          "BOUNDED_SAMPLE",
+          "NO_EXECUTION_AUTHORITY"
+        ],
+        "lineage": [
+          "CJ:/product/query"
+        ],
+        "grantsAuthority": false
+      },
+      "coverage": {
+        "limit": 20,
+        "after": "",
+        "since": null,
+        "complete": false,
+        "providerAccessVerified": false,
+        "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+        "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+      }
+    }
+  ],
+  "intelligence": {
+    "retrievedAt": "2026-10-11T16:11:27.132Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "intelligence",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+    "data": {
+      "at": "2026-10-11T16:11:27.133Z",
+      "locks": {
+        "birth": "NOT_BORN",
+        "commerce": "LOCKED"
+      },
+      "scheduler": {
+        "id": "health",
+        "heartbeatAt": "2026-10-11T16:11:15.793Z",
+        "status": "RUNNING",
+        "intervalMs": 30000,
+        "inferenceCalls": 0,
+        "fresh": true,
+        "disabled": false
+      },
+      "eyes": [
+        {
+          "eye": "MARKET",
+          "available": 2,
+          "total": 11,
+          "lastGoodAt": "2026-10-11T12:39:17.562Z",
+          "coverage": [
+            {
+              "id": "amazon.account",
+              "status": "STALE"
+            },
+            {
+              "id": "amazon.catalog",
+              "status": "AVAILABLE"
+            },
+            {
+              "id": "amazon.offers",
+              "status": "AVAILABLE"
+            },
+            {
+              "id": "amazon.fees",
+              "status": "STALE"
+            },
+            {
+              "id": "amazon.analytics",
+              "status": "DEGRADED"
+            },
+            {
+              "id": "amazon.restrictions",
+              "status": "STALE"
+            },
+            {
+              "id": "amazon.requirements",
+              "status": "UNVERIFIED"
+            },
+            {
+              "id": "amazon.orders",
+              "status": "UNVERIFIED"
+            },
+            {
+              "id": "amazon.advertising",
+              "status": "UNAVAILABLE"
+            },
+            {
+              "id": "amazon.opportunity",
+              "status": "UNAVAILABLE"
+            },
+            {
+              "id": "keepa.history",
+              "status": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "eye": "SUPPLIER",
+          "available": 4,
+          "total": 4,
+          "lastGoodAt": "2026-10-11T16:09:47.166Z",
+          "coverage": [
+            {
+              "id": "cj.catalog",
+              "status": "AVAILABLE"
+            },
+            {
+              "id": "cj.detail",
+              "status": "AVAILABLE"
+            },
+            {
+              "id": "cj.stock",
+              "status": "AVAILABLE"
+            },
+            {
+              "id": "cj.freight",
+              "status": "AVAILABLE"
+            }
+          ]
+        },
+        {
+          "eye": "INTERNET",
+          "available": 0,
+          "total": 4,
+          "lastGoodAt": "2026-10-11T00:37:15.988Z",
+          "coverage": [
+            {
+              "id": "internet.research",
+              "status": "STALE"
+            },
+            {
+              "id": "internet.safety",
+              "status": "STALE"
+            },
+            {
+              "id": "internet.trends",
+              "status": "UNAVAILABLE"
+            },
+            {
+              "id": "internet.reviews",
+              "status": "UNAVAILABLE"
+            }
+          ]
+        },
+        {
+          "eye": "EMPIRE",
+          "available": 1,
+          "total": 1,
+          "lastGoodAt": "2026-10-11T12:52:45.346Z",
+          "coverage": [
+            {
+              "id": "empire.state",
+              "status": "AVAILABLE"
+            }
+          ]
+        }
+      ],
+      "arsenal": [
+        {
+          "id": "amazon.account",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Seller marketplace participation",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Seller marketplace participation"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "STALE",
+          "availability": "STALE",
+          "lastVerifiedRead": "2026-10-11T00:37:15.300Z",
+          "verifiedEndpoint": "/sellers/v1/marketplaceParticipations",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T00:37:15.300Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.catalog",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Product discovery, identifiers, dimensions and sales rank proxy",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Product discovery, identifiers, dimensions and sales rank proxy"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "AUTHENTICATION_VERIFIED",
+          "readState": "READ_VERIFIED",
+          "availability": "AVAILABLE",
+          "lastVerifiedRead": "2026-10-11T12:39:16.028Z",
+          "verifiedEndpoint": "/catalog/2022-04-01/items",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T12:39:16.028Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.offers",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Competitive offers and price evidence for one ASIN",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Competitive offers and price evidence for one ASIN"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "AUTHENTICATION_VERIFIED",
+          "readState": "READ_VERIFIED",
+          "availability": "AVAILABLE",
+          "lastVerifiedRead": "2026-10-11T12:39:17.562Z",
+          "verifiedEndpoint": "/products/pricing/v0/items/B0GN1TZZ9W/offers",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T12:39:17.562Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.fees",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Read-only fee estimate; requires actual price operands",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Read-only fee estimate; requires actual price operands"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "HIGH_VALUE_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "STALE",
+          "availability": "STALE",
+          "lastVerifiedRead": "2026-10-09T08:48:36.740Z",
+          "verifiedEndpoint": "/products/fees/v0/items/B0GN1TZZ9W/feesEstimate",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-09T08:48:36.740Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.analytics",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Existing Brand Analytics reports; eligibility must be proved",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Existing Brand Analytics reports; eligibility must be proved"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "UNVERIFIED",
+          "availability": "DEGRADED",
+          "lastVerifiedRead": null,
+          "verifiedEndpoint": null,
+          "currentFailure": "HTTP_403",
+          "lastAttemptAt": "2026-10-08T00:39:57.194Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.restrictions",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Listing eligibility requires seller identifier and category context",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Listing eligibility requires seller identifier and category context"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "STALE",
+          "availability": "STALE",
+          "lastVerifiedRead": "2026-10-09T08:49:40.152Z",
+          "verifiedEndpoint": "/listings/2021-08-01/restrictions",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-09T08:49:40.152Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.requirements",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Product type schema requirements; no listing writes",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Product type schema requirements; no listing writes"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "UNVERIFIED",
+          "availability": "UNVERIFIED",
+          "lastVerifiedRead": null,
+          "verifiedEndpoint": null,
+          "currentFailure": null,
+          "lastAttemptAt": null,
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.orders",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Bounded existing order metadata; no acknowledgement or restricted buyer data",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Bounded existing order metadata; no acknowledgement or restricted buyer data"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "AMAZON_SP_API_CLIENT_ID",
+            "AMAZON_SP_API_CLIENT_SECRET",
+            "AMAZON_SP_API_REFRESH_TOKEN"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "UNVERIFIED",
+          "availability": "UNVERIFIED",
+          "lastVerifiedRead": null,
+          "verifiedEndpoint": null,
+          "currentFailure": null,
+          "lastAttemptAt": null,
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.advertising",
+          "eye": "MARKET",
+          "provider": "Amazon Ads",
+          "purpose": "Read-only advertising performance; separate Ads access needed",
+          "implemented": false,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing infrastructure; marginal hosting unallocated",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Read-only advertising performance; separate Ads access needed"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [],
+          "technicalWriteCapability": "NONE",
+          "authority": "READ_ONLY",
+          "priority": "USEFUL_LATER",
+          "strategyRef": null,
+          "credentialNames": [],
+          "credentialPresent": null,
+          "configurationState": "CAPABILITY_GAP",
+          "authenticationState": "UNVERIFIED",
+          "readState": "UNVERIFIED",
+          "availability": "UNAVAILABLE",
+          "lastVerifiedRead": null,
+          "verifiedEndpoint": null,
+          "currentFailure": null,
+          "lastAttemptAt": null,
+          "grantsAuthority": false
+        },
+        {
+          "id": "amazon.opportunity",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "purpose": "Product Opportunity Explorer; human dashboard eligibility not API verification",
+          "implemented": false,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing SP-API account; account/API charges unverified",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Product Opportunity Explorer; human dashboard eligibility not API verification"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [],
+          "technicalWriteCapability": "NONE",
+          "authority": "READ_ONLY",
+          "priority": "HIGH_VALUE_NOW",
+          "strategyRef": null,
+          "credentialNames": [],
+          "credentialPresent": null,
+          "configurationState": "CAPABILITY_GAP",
+          "authenticationState": "UNVERIFIED",
+          "readState": "UNVERIFIED",
+          "availability": "UNAVAILABLE",
+          "lastVerifiedRead": null,
+          "verifiedEndpoint": null,
+          "currentFailure": null,
+          "lastAttemptAt": null,
+          "grantsAuthority": false
+        },
+        {
+          "id": "cj.catalog",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "purpose": "Independent sourcing discovery; supplier popularity is not demand",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "CJ points; no automatic purchase",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 50
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Independent sourcing discovery; supplier popularity is not demand"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "CJ_API_KEY"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "CJ_API_KEY"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "AUTHENTICATION_VERIFIED",
+          "readState": "READ_VERIFIED",
+          "availability": "AVAILABLE",
+          "lastVerifiedRead": "2026-10-11T16:09:45.625Z",
+          "verifiedEndpoint": "/product/list",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T16:09:45.625Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "cj.detail",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "purpose": "Product variants, sourcing price and metadata",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "CJ points; no automatic purchase",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 10
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Product variants, sourcing price and metadata"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "CJ_API_KEY"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "CJ_API_KEY"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "AUTHENTICATION_VERIFIED",
+          "readState": "READ_VERIFIED",
+          "availability": "AVAILABLE",
+          "lastVerifiedRead": "2026-10-11T16:09:46.193Z",
+          "verifiedEndpoint": "/product/query",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T16:09:46.193Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "cj.stock",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "purpose": "Variant warehouse stock and origin geography",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "CJ points; no automatic purchase",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 10
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Variant warehouse stock and origin geography"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "CJ_API_KEY"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "CJ_API_KEY"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "AUTHENTICATION_VERIFIED",
+          "readState": "READ_VERIFIED",
+          "availability": "AVAILABLE",
+          "lastVerifiedRead": "2026-10-11T16:09:46.863Z",
+          "verifiedEndpoint": "/product/stock/queryByVid",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T16:09:46.863Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "cj.freight",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "purpose": "Variant freight and delivery estimate to named destination",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "CJ points; no automatic purchase",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 10
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Variant freight and delivery estimate to named destination"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "CJ_API_KEY"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "CJ_API_KEY"
+          ],
+          "credentialPresent": true,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "AUTHENTICATION_VERIFIED",
+          "readState": "READ_VERIFIED",
+          "availability": "AVAILABLE",
+          "lastVerifiedRead": "2026-10-11T16:09:47.166Z",
+          "verifiedEndpoint": "/logistic/freightCalculate",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T16:09:47.166Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "keepa.history",
+          "eye": "MARKET",
+          "provider": "Keepa",
+          "purpose": "Historical prices, ranks, seasonality and offer changes",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Monthly API token subscription",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 1
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Historical prices, ranks, seasonality and offer changes"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [
+            "KEEPA_API_KEY"
+          ],
+          "technicalWriteCapability": "UNKNOWN; credentials may permit more than this adapter",
+          "authority": "READ_ONLY",
+          "priority": "HIGH_VALUE_NOW",
+          "strategyRef": null,
+          "credentialNames": [
+            "KEEPA_API_KEY"
+          ],
+          "credentialPresent": false,
+          "configurationState": "NOT_CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "UNVERIFIED",
+          "availability": "UNAVAILABLE",
+          "lastVerifiedRead": null,
+          "verifiedEndpoint": null,
+          "currentFailure": null,
+          "lastAttemptAt": null,
+          "grantsAuthority": false
+        },
+        {
+          "id": "internet.research",
+          "eye": "INTERNET",
+          "provider": "Public sources",
+          "purpose": "Bounded official public research; source text is untrusted evidence",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing infrastructure; marginal hosting unallocated",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Bounded official public research; source text is untrusted evidence"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [],
+          "technicalWriteCapability": "NONE",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [],
+          "credentialPresent": null,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "STALE",
+          "availability": "STALE",
+          "lastVerifiedRead": "2026-10-08T13:06:16.134Z",
+          "verifiedEndpoint": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-08T13:06:16.134Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "internet.safety",
+          "eye": "INTERNET",
+          "provider": "CPSC",
+          "purpose": "Product recall and hazard research; absence is not a safety clearance",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing infrastructure; marginal hosting unallocated",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Product recall and hazard research; absence is not a safety clearance"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [],
+          "technicalWriteCapability": "NONE",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [],
+          "credentialPresent": null,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "STALE",
+          "availability": "STALE",
+          "lastVerifiedRead": "2026-10-11T00:37:15.988Z",
+          "verifiedEndpoint": "https://www.saferproducts.gov/RestWebServices/Recall",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T00:37:15.988Z",
+          "grantsAuthority": false
+        },
+        {
+          "id": "internet.trends",
+          "eye": "INTERNET",
+          "provider": "Google Trends",
+          "purpose": "Search-interest proxy; API alpha access required",
+          "implemented": false,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing infrastructure; marginal hosting unallocated",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Search-interest proxy; API alpha access required"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [],
+          "technicalWriteCapability": "NONE",
+          "authority": "READ_ONLY",
+          "priority": "HIGH_VALUE_NOW",
+          "strategyRef": null,
+          "credentialNames": [],
+          "credentialPresent": null,
+          "configurationState": "CAPABILITY_GAP",
+          "authenticationState": "UNVERIFIED",
+          "readState": "UNVERIFIED",
+          "availability": "UNAVAILABLE",
+          "lastVerifiedRead": null,
+          "verifiedEndpoint": null,
+          "currentFailure": null,
+          "lastAttemptAt": null,
+          "grantsAuthority": false
+        },
+        {
+          "id": "internet.reviews",
+          "eye": "INTERNET",
+          "provider": "Public sources",
+          "purpose": "Customer pain and review evidence; approved API or owner export needed",
+          "implemented": false,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing infrastructure; marginal hosting unallocated",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Customer pain and review evidence; approved API or owner export needed"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [],
+          "technicalWriteCapability": "NONE",
+          "authority": "READ_ONLY",
+          "priority": "HIGH_VALUE_NOW",
+          "strategyRef": null,
+          "credentialNames": [],
+          "credentialPresent": null,
+          "configurationState": "CAPABILITY_GAP",
+          "authenticationState": "UNVERIFIED",
+          "readState": "UNVERIFIED",
+          "availability": "UNAVAILABLE",
+          "lastVerifiedRead": null,
+          "verifiedEndpoint": null,
+          "currentFailure": null,
+          "lastAttemptAt": null,
+          "grantsAuthority": false
+        },
+        {
+          "id": "empire.state",
+          "eye": "EMPIRE",
+          "provider": "EmpireAI",
+          "purpose": "Current locked runtime, stored accounting and evidence without commerce claims",
+          "implemented": true,
+          "ttlMs": 21600000,
+          "cadenceMs": 21600000,
+          "cost": {
+            "model": "Existing infrastructure; marginal hosting unallocated",
+            "recurringUsd": null,
+            "perRequestUsd": null,
+            "units": 0
+          },
+          "limits": "One page, <=10 items, <=2 MiB, 15s/request, no inline retries; daily provider quota enforced",
+          "strengths": [
+            "Current locked runtime, stored accounting and evidence without commerce claims"
+          ],
+          "limitations": [
+            "Endpoint verification establishes only the named read scope",
+            "No inference of write authority or guaranteed demand/profit"
+          ],
+          "dependencies": [],
+          "technicalWriteCapability": "NONE",
+          "authority": "READ_ONLY",
+          "priority": "ESSENTIAL_NOW",
+          "strategyRef": null,
+          "credentialNames": [],
+          "credentialPresent": null,
+          "configurationState": "CONFIGURED",
+          "authenticationState": "UNVERIFIED",
+          "readState": "READ_VERIFIED",
+          "availability": "AVAILABLE",
+          "lastVerifiedRead": "2026-10-11T12:52:45.346Z",
+          "verifiedEndpoint": "durable-internal-read",
+          "currentFailure": null,
+          "lastAttemptAt": "2026-10-11T12:52:45.346Z",
+          "grantsAuthority": false
+        }
+      ],
+      "schedules": [
+        {
+          "id": "amazon.account",
+          "enabled": true,
+          "intervalMs": 86400000,
+          "subject": {
+            "id": "account",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "lastQueuedAt": "2026-10-11T00:37:14.678Z",
+          "nextAt": "2026-10-12T00:37:14.678Z"
+        },
+        {
+          "id": "amazon.catalog",
+          "enabled": true,
+          "intervalMs": 21600000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US",
+            "query": "desk organizer"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "lastQueuedAt": "2026-10-11T12:39:15.288Z",
+          "nextAt": "2026-10-11T18:39:15.288Z"
+        },
+        {
+          "id": "cj.catalog",
+          "enabled": true,
+          "intervalMs": 21600000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US",
+            "query": "desk organizer"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "lastQueuedAt": "2026-10-11T12:39:15.288Z",
+          "nextAt": "2026-10-11T18:39:15.288Z"
+        },
+        {
+          "id": "empire.state",
+          "enabled": true,
+          "intervalMs": 900000,
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "lastQueuedAt": "2026-10-11T16:07:45.440Z",
+          "nextAt": "2026-10-11T16:22:45.440Z"
+        },
+        {
+          "id": "internet.safety",
+          "enabled": true,
+          "intervalMs": 86400000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "lastQueuedAt": "2026-10-11T00:37:14.678Z",
+          "nextAt": "2026-10-12T00:37:14.678Z"
+        }
+      ],
+      "opportunities": [
+        {
+          "id": "op_45857e44818865fe9834aaa14b2a8eafad34",
+          "subject": {
+            "id": "2610090500531604200",
+            "marketplace": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 0,
+          "evidenceCompleteness": "0/8",
+          "missing": [
+            "demand",
+            "competition",
+            "supply",
+            "shipping",
+            "customer_problem",
+            "rank_growth",
+            "restriction_risk",
+            "economics_inputs"
+          ],
+          "reasons": [
+            "STALE_OR_SYNTHETIC_EXCLUDED",
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_SUPPLY",
+            "MISSING_SHIPPING",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RANK_GROWTH",
+            "MISSING_RESTRICTION_RISK",
+            "MISSING_ECONOMICS_INPUTS"
+          ],
+          "evidenceRefs": [],
+          "independentSources": [],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.450Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_ba9d681643259c41a39dc375bcbd1b48ac4b",
+          "subject": {
+            "id": "2610090500531604200",
+            "variant": "2610090500531605100",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 0,
+          "evidenceCompleteness": "0/8",
+          "missing": [
+            "demand",
+            "competition",
+            "supply",
+            "shipping",
+            "customer_problem",
+            "rank_growth",
+            "restriction_risk",
+            "economics_inputs"
+          ],
+          "reasons": [
+            "STALE_OR_SYNTHETIC_EXCLUDED",
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_SUPPLY",
+            "MISSING_SHIPPING",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RANK_GROWTH",
+            "MISSING_RESTRICTION_RISK",
+            "MISSING_ECONOMICS_INPUTS"
+          ],
+          "evidenceRefs": [],
+          "independentSources": [],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.450Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_ccb9654229150d62227616cb98c2305ff5ea",
+          "subject": {
+            "id": "2610100523081617500",
+            "marketplace": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 0,
+          "evidenceCompleteness": "0/8",
+          "missing": [
+            "demand",
+            "competition",
+            "supply",
+            "shipping",
+            "customer_problem",
+            "rank_growth",
+            "restriction_risk",
+            "economics_inputs"
+          ],
+          "reasons": [
+            "STALE_OR_SYNTHETIC_EXCLUDED",
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_SUPPLY",
+            "MISSING_SHIPPING",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RANK_GROWTH",
+            "MISSING_RESTRICTION_RISK",
+            "MISSING_ECONOMICS_INPUTS"
+          ],
+          "evidenceRefs": [],
+          "independentSources": [],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.450Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_20bfbd8b69123c9f0825d0c3016d3e6400b3",
+          "subject": {
+            "id": "2610100523081617500",
+            "variant": "2610100523081618500",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 0,
+          "evidenceCompleteness": "0/8",
+          "missing": [
+            "demand",
+            "competition",
+            "supply",
+            "shipping",
+            "customer_problem",
+            "rank_growth",
+            "restriction_risk",
+            "economics_inputs"
+          ],
+          "reasons": [
+            "STALE_OR_SYNTHETIC_EXCLUDED",
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_SUPPLY",
+            "MISSING_SHIPPING",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RANK_GROWTH",
+            "MISSING_RESTRICTION_RISK",
+            "MISSING_ECONOMICS_INPUTS"
+          ],
+          "evidenceRefs": [],
+          "independentSources": [],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.449Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_cdc77afa44550837745888b0be9dff493284",
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US",
+            "query": "desk organizer"
+          },
+          "status": "INCOMPLETE",
+          "score": 13,
+          "evidenceCompleteness": "1/8",
+          "missing": [
+            "demand",
+            "competition",
+            "supply",
+            "shipping",
+            "customer_problem",
+            "restriction_risk",
+            "economics_inputs"
+          ],
+          "reasons": [
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_SUPPLY",
+            "MISSING_SHIPPING",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RESTRICTION_RISK",
+            "MISSING_ECONOMICS_INPUTS"
+          ],
+          "evidenceRefs": [
+            "ev_9bb2b81725b6965246c96d22e0771b7383a1c598"
+          ],
+          "independentSources": [
+            "Amazon"
+          ],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.449Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_1998e79e28784f267f2e4f1ddef07a86606b",
+          "subject": {
+            "id": "2610110805301627100",
+            "marketplace": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 13,
+          "evidenceCompleteness": "1/8",
+          "missing": [
+            "demand",
+            "competition",
+            "shipping",
+            "customer_problem",
+            "rank_growth",
+            "restriction_risk",
+            "economics_inputs"
+          ],
+          "reasons": [
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_SHIPPING",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RANK_GROWTH",
+            "MISSING_RESTRICTION_RISK",
+            "MISSING_ECONOMICS_INPUTS"
+          ],
+          "evidenceRefs": [
+            "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4"
+          ],
+          "independentSources": [
+            "CJ"
+          ],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.449Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_a279b1fab19976d4c126871c015169f1afae",
+          "subject": {
+            "id": "2610110734491616400",
+            "marketplace": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 13,
+          "evidenceCompleteness": "1/8",
+          "missing": [
+            "demand",
+            "competition",
+            "shipping",
+            "customer_problem",
+            "rank_growth",
+            "restriction_risk",
+            "economics_inputs"
+          ],
+          "reasons": [
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_SHIPPING",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RANK_GROWTH",
+            "MISSING_RESTRICTION_RISK",
+            "MISSING_ECONOMICS_INPUTS"
+          ],
+          "evidenceRefs": [
+            "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67"
+          ],
+          "independentSources": [
+            "CJ"
+          ],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.448Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_d5f70655bcb0d2e5c360e8d7625c11bf89c7",
+          "subject": {
+            "id": "B0GN1TZZ9W",
+            "marketplace": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 25,
+          "evidenceCompleteness": "2/8",
+          "missing": [
+            "demand",
+            "supply",
+            "shipping",
+            "customer_problem",
+            "restriction_risk",
+            "economics_inputs"
+          ],
+          "reasons": [
+            "STALE_OR_SYNTHETIC_EXCLUDED",
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_SUPPLY",
+            "MISSING_SHIPPING",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RESTRICTION_RISK",
+            "MISSING_ECONOMICS_INPUTS"
+          ],
+          "evidenceRefs": [
+            "ev_39b7a36c67dd54104408f746dca8c49aa1863930",
+            "ev_d6133849368f4450b0e0bd0990e52f31349935cf"
+          ],
+          "independentSources": [
+            "Amazon"
+          ],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.449Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_cc0adfa4c16657fd165e091394b0a3df0e6a",
+          "subject": {
+            "id": "2610110805301627100",
+            "variant": "2610110805301628000",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 38,
+          "evidenceCompleteness": "3/8",
+          "missing": [
+            "demand",
+            "competition",
+            "customer_problem",
+            "rank_growth",
+            "restriction_risk"
+          ],
+          "reasons": [
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RANK_GROWTH",
+            "MISSING_RESTRICTION_RISK"
+          ],
+          "evidenceRefs": [
+            "ev_119511e70455436bd854aff8f35a9b0149089b1a",
+            "ev_6ef90e9b746cdf1e441b5a843d8c38c229b6a608"
+          ],
+          "independentSources": [
+            "CJ"
+          ],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.449Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        },
+        {
+          "id": "op_0d7c617e964c53beae488a8b333749897e4a",
+          "subject": {
+            "id": "2610110734491616400",
+            "variant": "2610110734491617500",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "status": "INCOMPLETE",
+          "score": 38,
+          "evidenceCompleteness": "3/8",
+          "missing": [
+            "demand",
+            "competition",
+            "customer_problem",
+            "rank_growth",
+            "restriction_risk"
+          ],
+          "reasons": [
+            "SINGLE_SOURCE",
+            "MISSING_DEMAND",
+            "MISSING_COMPETITION",
+            "MISSING_CUSTOMER_PROBLEM",
+            "MISSING_RANK_GROWTH",
+            "MISSING_RESTRICTION_RISK"
+          ],
+          "evidenceRefs": [
+            "ev_211f3f1ac3bd0b8b1f67c40513e2fecb656f1299",
+            "ev_575966d1715eb4659a949f0dff97e49a5917a02b"
+          ],
+          "independentSources": [
+            "CJ"
+          ],
+          "strategy": {
+            "id": "balanced-discovery",
+            "version": 1
+          },
+          "winningProduct": false,
+          "executionApproved": false,
+          "matching": {
+            "confidence": "UNMATCHED",
+            "reason": "Stable IDs retained; name similarity is insufficient"
+          },
+          "updatedAt": "2026-10-11T16:11:15.448Z",
+          "decisionRequired": "PILLOW_JUDGMENT",
+          "authenticity": "EVIDENCE_DERIVED"
+        }
+      ],
+      "exceptions": [
+        {
+          "id": "ex_internet.reviews",
+          "capabilityId": "internet.reviews",
+          "status": "OPEN",
+          "severity": "GAP",
+          "reason": "UNAVAILABLE",
+          "firstSeen": "2026-10-08T00:36:57.872Z",
+          "lastSeen": "2026-10-11T16:11:15.763Z",
+          "lastGoodAt": null,
+          "count": 1,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_internet.trends",
+          "capabilityId": "internet.trends",
+          "status": "OPEN",
+          "severity": "GAP",
+          "reason": "UNAVAILABLE",
+          "firstSeen": "2026-10-08T00:36:57.864Z",
+          "lastSeen": "2026-10-11T16:11:15.744Z",
+          "lastGoodAt": null,
+          "count": 1,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_internet.safety",
+          "capabilityId": "internet.safety",
+          "status": "OPEN",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.855Z",
+          "lastSeen": "2026-10-11T16:11:15.729Z",
+          "lastGoodAt": "2026-10-11T00:37:15.988Z",
+          "count": 2,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_internet.research",
+          "capabilityId": "internet.research",
+          "status": "OPEN",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.845Z",
+          "lastSeen": "2026-10-11T16:11:15.720Z",
+          "lastGoodAt": "2026-10-08T13:06:16.134Z",
+          "count": 3,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_keepa.history",
+          "capabilityId": "keepa.history",
+          "status": "OPEN",
+          "severity": "GAP",
+          "reason": "UNAVAILABLE",
+          "firstSeen": "2026-10-08T00:36:57.830Z",
+          "lastSeen": "2026-10-11T16:11:15.713Z",
+          "lastGoodAt": null,
+          "count": 1,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_amazon.opportunity",
+          "capabilityId": "amazon.opportunity",
+          "status": "OPEN",
+          "severity": "GAP",
+          "reason": "UNAVAILABLE",
+          "firstSeen": "2026-10-08T00:36:57.789Z",
+          "lastSeen": "2026-10-11T16:11:15.706Z",
+          "lastGoodAt": null,
+          "count": 1,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_amazon.advertising",
+          "capabilityId": "amazon.advertising",
+          "status": "OPEN",
+          "severity": "GAP",
+          "reason": "UNAVAILABLE",
+          "firstSeen": "2026-10-08T00:36:57.784Z",
+          "lastSeen": "2026-10-11T16:11:15.691Z",
+          "lastGoodAt": null,
+          "count": 1,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_amazon.orders",
+          "capabilityId": "amazon.orders",
+          "status": "OPEN",
+          "severity": "MATERIAL",
+          "reason": "UNVERIFIED",
+          "firstSeen": "2026-10-09T08:46:08.719Z",
+          "lastSeen": "2026-10-11T16:11:15.676Z",
+          "lastGoodAt": null,
+          "count": 1,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_amazon.requirements",
+          "capabilityId": "amazon.requirements",
+          "status": "OPEN",
+          "severity": "MATERIAL",
+          "reason": "UNVERIFIED",
+          "firstSeen": "2026-10-09T08:46:08.711Z",
+          "lastSeen": "2026-10-11T16:11:15.656Z",
+          "lastGoodAt": null,
+          "count": 1,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_amazon.restrictions",
+          "capabilityId": "amazon.restrictions",
+          "status": "OPEN",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.776Z",
+          "lastSeen": "2026-10-11T16:11:15.634Z",
+          "lastGoodAt": "2026-10-09T08:49:40.152Z",
+          "count": 3,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_amazon.analytics",
+          "capabilityId": "amazon.analytics",
+          "status": "OPEN",
+          "severity": "MATERIAL",
+          "reason": "HTTP_403",
+          "firstSeen": "2026-10-08T00:36:57.769Z",
+          "lastSeen": "2026-10-11T16:11:15.606Z",
+          "lastGoodAt": null,
+          "count": 2,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_amazon.fees",
+          "capabilityId": "amazon.fees",
+          "status": "OPEN",
+          "severity": "GAP",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.761Z",
+          "lastSeen": "2026-10-11T16:11:15.598Z",
+          "lastGoodAt": "2026-10-09T08:48:36.740Z",
+          "count": 3,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_amazon.account",
+          "capabilityId": "amazon.account",
+          "status": "OPEN",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T06:37:27.467Z",
+          "lastSeen": "2026-10-11T16:11:15.579Z",
+          "lastGoodAt": "2026-10-11T00:37:15.300Z",
+          "count": 1,
+          "materialChange": false,
+          "resolvedAt": null
+        },
+        {
+          "id": "ex_cj.stock",
+          "capabilityId": "cj.stock",
+          "status": "RESOLVED",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.816Z",
+          "lastSeen": "2026-10-11T12:39:18.671Z",
+          "lastGoodAt": "2026-10-11T00:39:44.870Z",
+          "count": 2,
+          "materialChange": false,
+          "resolvedAt": "2026-10-11T12:39:46.493Z"
+        },
+        {
+          "id": "ex_cj.freight",
+          "capabilityId": "cj.freight",
+          "status": "RESOLVED",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.823Z",
+          "lastSeen": "2026-10-11T12:39:18.680Z",
+          "lastGoodAt": "2026-10-11T00:39:45.117Z",
+          "count": 2,
+          "materialChange": false,
+          "resolvedAt": "2026-10-11T12:39:46.487Z"
+        },
+        {
+          "id": "ex_cj.detail",
+          "capabilityId": "cj.detail",
+          "status": "RESOLVED",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.808Z",
+          "lastSeen": "2026-10-11T12:39:17.816Z",
+          "lastGoodAt": "2026-10-11T00:39:18.048Z",
+          "count": 3,
+          "materialChange": false,
+          "resolvedAt": "2026-10-11T12:39:18.479Z"
+        },
+        {
+          "id": "ex_amazon.offers",
+          "capabilityId": "amazon.offers",
+          "status": "RESOLVED",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.755Z",
+          "lastSeen": "2026-10-11T12:39:16.917Z",
+          "lastGoodAt": "2026-10-11T00:39:17.449Z",
+          "count": 2,
+          "materialChange": false,
+          "resolvedAt": "2026-10-11T12:39:17.904Z"
+        },
+        {
+          "id": "ex_cj.catalog",
+          "capabilityId": "cj.catalog",
+          "status": "RESOLVED",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.796Z",
+          "lastSeen": "2026-10-11T12:39:16.322Z",
+          "lastGoodAt": "2026-10-11T00:39:16.964Z",
+          "count": 2,
+          "materialChange": false,
+          "resolvedAt": "2026-10-11T12:39:17.076Z"
+        },
+        {
+          "id": "ex_amazon.catalog",
+          "capabilityId": "amazon.catalog",
+          "status": "RESOLVED",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.736Z",
+          "lastSeen": "2026-10-11T12:38:45.444Z",
+          "lastGoodAt": "2026-10-11T00:39:15.667Z",
+          "count": 2,
+          "materialChange": false,
+          "resolvedAt": "2026-10-11T12:39:16.414Z"
+        },
+        {
+          "id": "ex_empire.state",
+          "capabilityId": "empire.state",
+          "status": "RESOLVED",
+          "severity": "MATERIAL",
+          "reason": "STALE",
+          "firstSeen": "2026-10-08T00:36:57.882Z",
+          "lastSeen": "2026-10-09T18:52:05.785Z",
+          "lastGoodAt": "2026-10-09T12:51:38.889Z",
+          "count": 2,
+          "materialChange": false,
+          "resolvedAt": "2026-10-09T18:52:35.870Z"
+        }
+      ],
+      "resources": [
+        {
+          "id": "historical-market-data",
+          "gap": "Historical prices/ranks and seasonality missing",
+          "existingConsidered": [
+            "amazon.catalog",
+            "amazon.offers"
+          ],
+          "insufficiency": "Current first-party snapshots do not establish historical competitor behavior",
+          "proposal": "Keepa API evaluation; adapter prepared, no subscription acquired",
+          "alternatives": [
+            "Accumulate dated first-party snapshots",
+            "Defer historical-dependent conclusions"
+          ],
+          "estimatedMonthlyUsd": null,
+          "priceStatus": "PUBLIC_PRICE_VERIFIED_ACCOUNT_TAX_FX_UNKNOWN",
+          "priceQuote": {
+            "provider": "Keepa",
+            "plan": "Starter API",
+            "eurMonthly": 49,
+            "tokensPerMinute": 20,
+            "source": "https://keepa.com/#!api/3",
+            "observedAt": "2026-10-07",
+            "tax": null,
+            "fx": null
+          },
+          "recommendation": "DEFER_PURCHASE_UNTIL_SPECIFIC_HISTORY_INVESTIGATION",
+          "expectedValue": "Distinguish transient spikes from durable opportunities",
+          "decision": "PROPOSED",
+          "blocksCoreClosure": false,
+          "ownerApprovalRequired": true
+        }
+      ],
+      "jobs": [
+        {
+          "id": "follow_36f35b2ec29655eec11ad99604e81d697d5b",
+          "objective": "Verify variant stock and freight operands without creating any order",
+          "capabilities": [
+            "cj.stock",
+            "cj.freight"
+          ],
+          "subject": {
+            "id": "2610110734491616400",
+            "variant": "2610110734491617500",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [
+            "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67"
+          ],
+          "workspace": "ws_empire_1",
+          "requester": "DISCOVERY:follow_093561c88d102c122b12b44110bb41884d24",
+          "createdAt": "2026-10-11T16:09:46.213Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 2,
+          "evidence": [
+            "ev_575966d1715eb4659a949f0dff97e49a5917a02b",
+            "ev_211f3f1ac3bd0b8b1f67c40513e2fecb656f1299"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T16:09:46.531Z",
+          "lease": "e4cfebcb-a863-479d-bbb1-b7646a91d0c5",
+          "completedAt": "2026-10-11T16:09:47.214Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "follow_093561c88d102c122b12b44110bb41884d24",
+          "objective": "Inspect one sourcing candidate independently of market demand",
+          "capabilities": [
+            "cj.detail"
+          ],
+          "subject": {
+            "id": "2610110734491616400",
+            "marketplace": "US"
+          },
+          "requestLimit": 3,
+          "evidenceRefs": [
+            "ev_1f0823a57a2db704b8ebd1b0eb87ebf9c17589f2"
+          ],
+          "workspace": "ws_empire_1",
+          "requester": "DISCOVERY:owner_aab825e0-c381-427a-acc8-da3d7f187006",
+          "createdAt": "2026-10-11T16:09:45.649Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 1,
+          "evidence": [
+            "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T16:09:45.988Z",
+          "lease": "d46c2707-4acd-4299-8d7a-d73ccc9bca4b",
+          "completedAt": "2026-10-11T16:09:46.268Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "owner_aab825e0-c381-427a-acc8-da3d7f187006",
+          "objective": "Investigate Bathroom Corner Shelf Organizer With Hooks",
+          "capabilities": [
+            "cj.catalog"
+          ],
+          "subject": {
+            "id": "research",
+            "marketplace": "US",
+            "query": "Bathroom Corner Shelf Organizer With Hooks"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "ws_empire_1",
+          "requester": "GRAND_KING:usr_a91d007ebcebe18d",
+          "createdAt": "2026-10-11T16:09:34.467Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 1,
+          "evidence": [
+            "ev_1f0823a57a2db704b8ebd1b0eb87ebf9c17589f2"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T16:09:45.443Z",
+          "lease": "445fd7f9-1d25-47c4-92f2-9c0448597beb",
+          "completedAt": "2026-10-11T16:09:45.689Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "owner_e14eeac6-65f4-4560-9fca-eb4042207e1f",
+          "objective": "Investigate CJYS225866201AZ",
+          "capabilities": [
+            "cj.catalog"
+          ],
+          "subject": {
+            "id": "research",
+            "marketplace": "US",
+            "query": "CJYS225866201AZ"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "ws_empire_1",
+          "requester": "GRAND_KING:usr_a91d007ebcebe18d",
+          "createdAt": "2026-10-11T16:08:33.274Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 1,
+          "evidence": [
+            "ev_09c5a9f0bef52a5dd18094a78c1aa0f40c5faee3"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T16:08:45.440Z",
+          "lease": "8f4d96a0-eeb6-4954-b42b-0f990ad2d379",
+          "completedAt": "2026-10-11T16:08:45.725Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "scheduled_empire.state_29862247",
+          "objective": "Scheduled bounded empire.state observation",
+          "capabilities": [
+            "empire.state"
+          ],
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "ws_empire_1",
+          "requester": "SCHEDULER",
+          "createdAt": "2026-10-11T16:07:45.470Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 0,
+          "evidence": [
+            "ev_9645f045fcba4b2a429aea6cf5073b857183ed6f"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T16:07:45.485Z",
+          "lease": "7057839e-a15b-4adc-b95b-50d69b7ae70a",
+          "cacheHits": 1,
+          "completedAt": "2026-10-11T16:07:45.495Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "scheduled_empire.state_29862232",
+          "objective": "Scheduled bounded empire.state observation",
+          "capabilities": [
+            "empire.state"
+          ],
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "ws_empire_1",
+          "requester": "SCHEDULER",
+          "createdAt": "2026-10-11T15:52:45.446Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 0,
+          "evidence": [
+            "ev_9645f045fcba4b2a429aea6cf5073b857183ed6f"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T15:52:45.469Z",
+          "lease": "361811a6-2cb9-43b5-9804-436890e7c125",
+          "cacheHits": 1,
+          "completedAt": "2026-10-11T15:52:45.479Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "scheduled_empire.state_29862217",
+          "objective": "Scheduled bounded empire.state observation",
+          "capabilities": [
+            "empire.state"
+          ],
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "ws_empire_1",
+          "requester": "SCHEDULER",
+          "createdAt": "2026-10-11T15:37:45.433Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 0,
+          "evidence": [
+            "ev_9645f045fcba4b2a429aea6cf5073b857183ed6f"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T15:37:45.447Z",
+          "lease": "aa12f327-3c1d-4648-8b4f-0f4aed5ee6a8",
+          "cacheHits": 1,
+          "completedAt": "2026-10-11T15:37:45.464Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "scheduled_empire.state_29862202",
+          "objective": "Scheduled bounded empire.state observation",
+          "capabilities": [
+            "empire.state"
+          ],
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "ws_empire_1",
+          "requester": "SCHEDULER",
+          "createdAt": "2026-10-11T15:22:45.421Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 0,
+          "evidence": [
+            "ev_9645f045fcba4b2a429aea6cf5073b857183ed6f"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T15:22:45.430Z",
+          "lease": "59420ee8-c319-41e5-a83c-9aa9b64dffb9",
+          "cacheHits": 1,
+          "completedAt": "2026-10-11T15:22:45.438Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "scheduled_empire.state_29862187",
+          "objective": "Scheduled bounded empire.state observation",
+          "capabilities": [
+            "empire.state"
+          ],
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "ws_empire_1",
+          "requester": "SCHEDULER",
+          "createdAt": "2026-10-11T15:07:45.407Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 0,
+          "evidence": [
+            "ev_9645f045fcba4b2a429aea6cf5073b857183ed6f"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T15:07:45.414Z",
+          "lease": "75caf693-2b10-4d1b-9b74-e3a2323eed9c",
+          "cacheHits": 1,
+          "completedAt": "2026-10-11T15:07:45.419Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        },
+        {
+          "id": "scheduled_empire.state_29862172",
+          "objective": "Scheduled bounded empire.state observation",
+          "capabilities": [
+            "empire.state"
+          ],
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "ws_empire_1",
+          "requester": "SCHEDULER",
+          "createdAt": "2026-10-11T14:52:45.409Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 0,
+          "evidence": [
+            "ev_9645f045fcba4b2a429aea6cf5073b857183ed6f"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-11T14:52:45.420Z",
+          "lease": "9b953f8b-ad7b-467b-bde4-907a8ed60f66",
+          "cacheHits": 1,
+          "completedAt": "2026-10-11T14:52:45.434Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ev_211f3f1ac3bd0b8b1f67c40513e2fecb656f1299",
+          "capabilityId": "cj.freight",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "endpoint": "/logistic/freightCalculate",
+          "subject": {
+            "id": "2610110734491616400",
+            "variant": "2610110734491617500",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "observedAt": "2026-10-11T16:09:47.166Z",
+          "retrievedAt": "2026-10-11T16:09:47.166Z",
+          "staleAfter": "2026-10-11T22:09:47.167Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "11bfae8cb306877d08e53594d1f96839de70392aa0d8a4de2cd9310190a19683",
+          "facts": {
+            "detail": "Fetch evidence:ev_211f3f1ac3bd0b8b1f67c40513e2fecb656f1299 for bounded full record"
+          },
+          "jobId": "follow_36f35b2ec29655eec11ad99604e81d697d5b",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "CJ:/logistic/freightCalculate"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_575966d1715eb4659a949f0dff97e49a5917a02b",
+          "capabilityId": "cj.stock",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "endpoint": "/product/stock/queryByVid",
+          "subject": {
+            "id": "2610110734491616400",
+            "variant": "2610110734491617500",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "observedAt": "2026-10-11T16:09:46.863Z",
+          "retrievedAt": "2026-10-11T16:09:46.863Z",
+          "staleAfter": "2026-10-11T22:09:46.863Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "921b72640505c64a2188af00664e3edca30149ec0f141ac1cfb13bdb36f5acd7",
+          "facts": {
+            "response": [
+              {
+                "vid": "2610110734491617500",
+                "areaId": "1",
+                "areaEn": "China Warehouse",
+                "countryCode": "CN",
+                "storageNum": 7076,
+                "totalInventoryNum": 7076,
+                "cjInventoryNum": 0,
+                "factoryInventoryNum": 7076,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 7076
+                  }
+                ]
+              }
+            ],
+            "pointsInfo": {
+              "total": 50000,
+              "usedToday": 280,
+              "remaining": 50000
+            },
+            "request": {
+              "vid": "2610110734491617500"
+            },
+            "interpretation": "Supplier evidence only; does not establish independent customer demand."
+          },
+          "jobId": "follow_36f35b2ec29655eec11ad99604e81d697d5b",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "CJ:/product/stock/queryByVid"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67",
+          "capabilityId": "cj.detail",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "endpoint": "/product/query",
+          "subject": {
+            "id": "2610110734491616400",
+            "marketplace": "US"
+          },
+          "observedAt": "2026-10-11T16:09:46.193Z",
+          "retrievedAt": "2026-10-11T16:09:46.193Z",
+          "staleAfter": "2026-10-11T22:09:46.193Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "fe60c78c6c0202b6bfd680dc5bd1702612efcc04dffafd94f321d296db920035",
+          "facts": {
+            "detail": "Fetch evidence:ev_339af10291b856ddcbe9d5e9437cd2637cea1c67 for bounded full record"
+          },
+          "jobId": "follow_093561c88d102c122b12b44110bb41884d24",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "CJ:/product/query"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_1f0823a57a2db704b8ebd1b0eb87ebf9c17589f2",
+          "capabilityId": "cj.catalog",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "endpoint": "/product/list",
+          "subject": {
+            "id": "research",
+            "marketplace": "US",
+            "query": "Bathroom Corner Shelf Organizer With Hooks"
+          },
+          "observedAt": "2026-10-11T16:09:45.625Z",
+          "retrievedAt": "2026-10-11T16:09:45.625Z",
+          "staleAfter": "2026-10-11T22:09:45.625Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "25304b08f6041dd96618793fb806b1e5af67e94cca589318c08698e0baa7d22a",
+          "facts": {
+            "detail": "Fetch evidence:ev_1f0823a57a2db704b8ebd1b0eb87ebf9c17589f2 for bounded full record"
+          },
+          "jobId": "owner_aab825e0-c381-427a-acc8-da3d7f187006",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "CJ:/product/list"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_09c5a9f0bef52a5dd18094a78c1aa0f40c5faee3",
+          "capabilityId": "cj.catalog",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "endpoint": "/product/list",
+          "subject": {
+            "id": "research",
+            "marketplace": "US",
+            "query": "CJYS225866201AZ"
+          },
+          "observedAt": "2026-10-11T16:08:45.695Z",
+          "retrievedAt": "2026-10-11T16:08:45.695Z",
+          "staleAfter": "2026-10-11T22:08:45.695Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "7ffb518b2dcba0807b187a771d73795778f3c8ce63d4469288efafb8ee97b765",
+          "facts": {
+            "response": {
+              "pageNum": 1,
+              "pageSize": 10,
+              "total": 0,
+              "list": []
+            },
+            "pointsInfo": {
+              "total": 50000,
+              "usedToday": 210,
+              "remaining": 50000
+            },
+            "request": {
+              "pageNum": "1",
+              "pageSize": "10",
+              "productNameEn": "CJYS225866201AZ"
+            },
+            "interpretation": "Supplier evidence only; does not establish independent customer demand."
+          },
+          "jobId": "owner_e14eeac6-65f4-4560-9fca-eb4042207e1f",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "CJ:/product/list"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_9645f045fcba4b2a429aea6cf5073b857183ed6f",
+          "capabilityId": "empire.state",
+          "eye": "EMPIRE",
+          "provider": "EmpireAI",
+          "endpoint": "durable-internal-read",
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "observedAt": "2026-10-11T12:52:45.346Z",
+          "retrievedAt": "2026-10-11T12:52:45.346Z",
+          "staleAfter": "2026-10-11T18:52:45.346Z",
+          "authenticity": "INTERNAL_UNVERIFIED",
+          "digest": "64296ebfa54f9ff7f2574b0f2b2accd2fa0e22d6a96a0c67fa7cab5589469601",
+          "facts": {
+            "backend": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+            "birth": "NOT_BORN",
+            "commerce": "LOCKED",
+            "storedCounts": {
+              "products": 3,
+              "orders": 2,
+              "decisions": 3
+            },
+            "businessAuthenticity": "UNVERIFIED_HISTORICAL_NOT_REAL_SALES",
+            "interpretation": "Stored rows may be demo or fixtures. No sales, conversion or profit claimed."
+          },
+          "jobId": "scheduled_empire.state_29862052",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "EmpireAI:durable-internal-read"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_119511e70455436bd854aff8f35a9b0149089b1a",
+          "capabilityId": "cj.freight",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "endpoint": "/logistic/freightCalculate",
+          "subject": {
+            "id": "2610110805301627100",
+            "variant": "2610110805301628000",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "observedAt": "2026-10-11T12:39:46.162Z",
+          "retrievedAt": "2026-10-11T12:39:46.162Z",
+          "staleAfter": "2026-10-11T18:39:46.162Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "43157962e11bc4242f7ca56f7d2fee7d76a04bb3cc191c00462d1a7d660077be",
+          "facts": {
+            "detail": "Fetch evidence:ev_119511e70455436bd854aff8f35a9b0149089b1a for bounded full record"
+          },
+          "jobId": "follow_6c0ea022bf988ffa83eedf13ad0812b48802",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "CJ:/logistic/freightCalculate"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_6ef90e9b746cdf1e441b5a843d8c38c229b6a608",
+          "capabilityId": "cj.stock",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "endpoint": "/product/stock/queryByVid",
+          "subject": {
+            "id": "2610110805301627100",
+            "variant": "2610110805301628000",
+            "marketplace": "US",
+            "destination": "US"
+          },
+          "observedAt": "2026-10-11T12:39:45.665Z",
+          "retrievedAt": "2026-10-11T12:39:45.665Z",
+          "staleAfter": "2026-10-11T18:39:45.665Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "635d1237b1174d40975da1f391afcf3f56e4383d0263ad7bb745300c917c2192",
+          "facts": {
+            "response": [
+              {
+                "vid": "2610110805301628000",
+                "areaId": "1",
+                "areaEn": "China Warehouse",
+                "countryCode": "CN",
+                "storageNum": 9669,
+                "totalInventoryNum": 9669,
+                "cjInventoryNum": 0,
+                "factoryInventoryNum": 9669,
+                "stock": [
+                  {
+                    "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+                    "inventory": 0,
+                    "factoryInventory": 9669
+                  }
+                ]
+              }
+            ],
+            "pointsInfo": {
+              "total": 50000,
+              "usedToday": 150,
+              "remaining": 50000
+            },
+            "request": {
+              "vid": "2610110805301628000"
+            },
+            "interpretation": "Supplier evidence only; does not establish independent customer demand."
+          },
+          "jobId": "follow_6c0ea022bf988ffa83eedf13ad0812b48802",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "CJ:/product/stock/queryByVid"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+          "capabilityId": "cj.detail",
+          "eye": "SUPPLIER",
+          "provider": "CJ",
+          "endpoint": "/product/query",
+          "subject": {
+            "id": "2610110805301627100",
+            "marketplace": "US"
+          },
+          "observedAt": "2026-10-11T12:39:18.147Z",
+          "retrievedAt": "2026-10-11T12:39:18.147Z",
+          "staleAfter": "2026-10-11T18:39:18.147Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "38919003068b86281d6bd5a1263b0ea919f4457f480b9ddbca76b7dec67f69d8",
+          "facts": {
+            "detail": "Fetch evidence:ev_3bf0abef750e435660ab844f737ea3af33a7f9a4 for bounded full record"
+          },
+          "jobId": "follow_6d32384f3cc96c251e2fb5aa678bc2676bfb",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "CJ:/product/query"
+          ],
+          "grantsAuthority": false
+        },
+        {
+          "id": "ev_39b7a36c67dd54104408f746dca8c49aa1863930",
+          "capabilityId": "amazon.offers",
+          "eye": "MARKET",
+          "provider": "Amazon",
+          "endpoint": "/products/pricing/v0/items/B0GN1TZZ9W/offers",
+          "subject": {
+            "id": "B0GN1TZZ9W",
+            "marketplace": "US"
+          },
+          "observedAt": "2026-10-11T12:39:17.562Z",
+          "retrievedAt": "2026-10-11T12:39:17.562Z",
+          "staleAfter": "2026-10-11T18:39:17.562Z",
+          "authenticity": "LIVE_PROVIDER",
+          "digest": "e80d7e8e62fca7eb3013b53c3d95bada2bd869f94e99ebdd9ca3851549f97cc2",
+          "facts": {
+            "response": {
+              "payload": {
+                "ASIN": "B0GN1TZZ9W",
+                "status": "Success",
+                "ItemCondition": "New",
+                "Identifier": {
+                  "MarketplaceId": "ATVPDKIKX0DER",
+                  "ItemCondition": "New",
+                  "ASIN": "B0GN1TZZ9W"
+                },
+                "Summary": {
+                  "LowestPrices": [
+                    {
+                      "condition": "new",
+                      "fulfillmentChannel": "Amazon",
+                      "LandedPrice": {
+                        "CurrencyCode": "USD",
+                        "Amount": 18.99
+                      },
+                      "ListingPrice": {
+                        "CurrencyCode": "USD",
+                        "Amount": 18.99
+                      },
+                      "Shipping": {
+                        "CurrencyCode": "USD",
+                        "Amount": 0
+                      }
+                    }
+                  ],
+                  "BuyBoxPrices": [
+                    {
+                      "condition": "New",
+                      "LandedPrice": {
+                        "CurrencyCode": "USD",
+                        "Amount": 18.99
+                      },
+                      "ListingPrice": {
+                        "CurrencyCode": "USD",
+                        "Amount": 18.99
+                      },
+                      "Shipping": {
+                        "CurrencyCode": "USD",
+                        "Amount": 0
+                      }
+                    }
+                  ],
+                  "NumberOfOffers": [
+                    {
+                      "condition": "new",
+                      "fulfillmentChannel": "Amazon",
+                      "OfferCount": 1
+                    }
+                  ],
+                  "BuyBoxEligibleOffers": [
+                    {
+                      "condition": "new",
+                      "fulfillmentChannel": "Amazon",
+                      "OfferCount": 1
+                    }
+                  ],
+                  "SalesRankings": [
+                    {
+                      "ProductCategoryId": "office_product_display_on_website",
+                      "Rank": 284
+                    },
+                    {
+                      "ProductCategoryId": "1069544",
+                      "Rank": 1
+                    }
+                  ],
+                  "ListPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 19.99
+                  },
+                  "TotalOfferCount": 1
+                },
+                "Offers": [
+                  {
+                    "Shipping": {
+                      "CurrencyCode": "USD",
+                      "Amount": 0
+                    },
+                    "ListingPrice": {
+                      "CurrencyCode": "USD",
+                      "Amount": 18.99
+                    },
+                    "ShippingTime": {
+                      "maximumHours": 0,
+                      "minimumHours": 0,
+                      "availabilityType": "NOW"
+                    },
+                    "SellerFeedbackRating": {
+                      "FeedbackCount": 66521,
+                      "SellerPositiveFeedbackRating": 99
+                    },
+                    "PrimeInformation": {
+                      "IsPrime": true,
+                      "IsNationalPrime": true
+                    },
+                    "SubCondition": "new",
+                    "SellerId": "A2K3WARBVMJ9U9",
+                    "IsFeaturedMerchant": true,
+                    "IsBuyBoxWinner": true,
+                    "IsFulfilledByAmazon": true
+                  }
+                ],
+                "marketplaceId": "ATVPDKIKX0DER"
+              }
+            },
+            "price": 18.99,
+            "currency": "USD",
+            "marketplaceId": "ATVPDKIKX0DER",
+            "interpretation": "Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim."
+          },
+          "jobId": "follow_53f6d4b23a4aa7c300a7391716a009dabc9d",
+          "quality": [
+            "SOURCE_SPECIFIC",
+            "BOUNDED_SAMPLE",
+            "NO_EXECUTION_AUTHORITY"
+          ],
+          "lineage": [
+            "Amazon:/products/pricing/v0/items/B0GN1TZZ9W/offers"
+          ],
+          "grantsAuthority": false
+        }
+      ],
+      "rankGrowth": [
+        {
+          "id": "work4-production-synthetic-funnel-v1",
+          "authenticity": "SYNTHETIC",
+          "createdAt": "2026-10-08T00:39:16.221Z",
+          "originalMetrics": {
+            "impressions": 10000,
+            "clicks": 50,
+            "carts": 2,
+            "purchases": 0,
+            "traffic": "ORGANIC",
+            "sourceType": "SYNTHETIC"
+          },
+          "metrics": {
+            "ctr": 0.005,
+            "cartRate": 0.04,
+            "conversion": 0
+          },
+          "hypotheses": [
+            {
+              "stage": "CLICK_THROUGH",
+              "hypothesis": "Test main image/title/offer relevance with controlled measurement",
+              "expectedEffect": "Higher qualified click-through",
+              "measure": "clicks/impressions",
+              "causality": "UNPROVEN"
+            },
+            {
+              "stage": "CONVERSION",
+              "hypothesis": "Investigate delivered price, delivery promise, trust and listing clarity",
+              "expectedEffect": "Higher qualified purchase conversion",
+              "measure": "purchases/clicks",
+              "causality": "UNPROVEN"
+            }
+          ],
+          "sourceType": "SYNTHETIC",
+          "traffic": "ORGANIC",
+          "exactKeywordPosition": null,
+          "organicVsPaid": "Must not combine without source-specific attribution",
+          "economics": "Profitability not established; Work5",
+          "status": "HYPOTHESES_ONLY",
+          "prohibited": [
+            "Review manipulation",
+            "False scarcity",
+            "Rank guarantees",
+            "Advertising spend"
+          ],
+          "grantsAuthority": false
+        }
+      ],
+      "strategy": {
+        "id": "balanced-discovery",
+        "version": 1,
+        "minDimensions": 5,
+        "priceChangePct": 15,
+        "maxShortlist": 10,
+        "explorationShare": 0.2
+      },
+      "costs": {
+        "addedSubscriptionUsd": 0,
+        "recurringTotalUsd": null,
+        "reason": "Existing hosting/account charges not imported; unknown is not zero",
+        "expectedScheduledDaily": {
+          "amazon": 9,
+          "cjCatalog": 4,
+          "cjPoints": 320,
+          "internet": 1,
+          "internal": 96
+        },
+        "inference": "Zero for collection, filtering and stored reads; judgment uses existing per-call reservation/settlement",
+        "storage": "128MiB ceiling; raw bodies discarded; evidence 30 days with latest1000 retained; jobs90 days",
+        "disable": "INTELLIGENCE_DISABLED=true or individual schedule control"
+      },
+      "investigations": [
+        {
+          "id": "EMPIREAI-CANDIDATE-001",
+          "instruction": "Complete the remaining commercial evidence investigation for EMPIREAI-CANDIDATE-001 using the repaired, owner-authorised Four Eyes workflow.\n\nThis is a new bounded acceptance instruction. Preserve original failed request pcr_9a70c5d827a746b3 and completed reasoning response pcr_a9ce9198cde34896 as separate historical records; do not replay either.\n\nUse existing opportunity packages and their genuine evidence first. Commission actual bounded Market, Supplier, Internet and Empire Eye jobs through the available investigation tool. Select product IDs, supplier variants and destinations from evidence, not guesses. Reuse fresh receipts and request missing current reads where justified. Investigate Amazon product identity, offers and demand proxies; CJ exact sourcing matches, stock, freight and delivery where available; official safety or policy evidence; and Empire's current evidence and operating constraints.\n\nThe authorised limit is two investigation rounds, at most four jobs and twelve provider HTTP requests per round, and at most three accounted model calls for planning, evidence review and assessment. Use existing services only. No subscriptions, listings, supplier orders, advertising, payments, external commerce effects or authority changes.\n\nConsume the returned evidence and deliver a completed CEO commercial assessment: the strongest defensible candidate if one exists, comparison and strategy, advantages, risks, indicative economics only where supported, and an explicit qualify, reject or evidence-insufficient recommendation. Cite actual job and evidence IDs, source dates, provenance, exact unresolved gaps and the next focused investigation. Never invent demand, supplier matches, delivery reliability, fees or profitability. A proposal to investigate without commissioning jobs is insufficient.\n\nRecord this investigation through its durable workflow. Preserve NOT_BORN, commerce LOCKED, prior records, accounting, institutional memory and private doctrine. Do not start Work 5.",
+          "predecessors": [
+            "pcr_9a70c5d827a746b3",
+            "pcr_a9ce9198cde34896"
+          ],
+          "owner": "usr_a91d007ebcebe18d",
+          "instructionHash": "5b5175bbd8ec02b41baef938dd77e965dc02dde382a9c8208f280f0d665f297c",
+          "status": "FAILED",
+          "createdAt": "2026-10-08T04:09:10.343Z",
+          "maxModelCalls": 3,
+          "maxRounds": 2,
+          "maxJobs": 8,
+          "maxRequests": 24,
+          "requestId": "pcr_5fcf9b139bb54343",
+          "rounds": [],
+          "commerceEffects": 0,
+          "predecessorProof": [
+            {
+              "id": "pcr_9a70c5d827a746b3",
+              "hash": "a874123cb473eb6aaf27c5ec74212f72699557cb9de1c2a373233501601d6bca"
+            },
+            {
+              "id": "pcr_a9ce9198cde34896",
+              "hash": "6b2a2d518fc74ad43ca0dd79cdf413a6439cac7b04ad8f9b02440447f1c8e804"
+            }
+          ],
+          "startedAt": "2026-10-08T04:09:51.295Z",
+          "failure": {
+            "code": "DURABLE_REQUEST_FAILED",
+            "requestId": "pcr_5fcf9b139bb54343",
+            "source": "AUTHENTICATED_PREDECESSOR_READBACK"
+          },
+          "resolution": {
+            "status": "RESOLVED_BY_SUCCESSOR",
+            "missionId": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+            "requestId": "pcr_27fb1ed5ddb24f5a",
+            "at": "2026-10-08T05:16:16.610Z"
+          },
+          "modelStepCount": 0,
+          "assessment": null
+        },
+        {
+          "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+          "instruction": "Complete EMPIREAI-CANDIDATE-001-FOLLOWUP as the distinct bounded acceptance of the repaired Pillow–Four Eyes investigation workflow. Preserve predecessor requests pcr_9a70c5d827a746b3, pcr_a9ce9198cde34896 and pcr_5fcf9b139bb54343, their failures, responses and accounting; do not replay them.\n\nUse existing opportunity packages and genuine fresh evidence first. Commission actual bounded Market, Supplier, Internet and Empire Eye jobs through the investigation tool where needed. Choose exact product identifiers, supplier variants and destinations from evidence, never guesses. Investigate Amazon identity, offers and demand proxies; CJ sourcing match, stock, freight and delivery where available; official safety or policy evidence; and current Empire constraints.\n\nMaximum three accounted model calls, two rounds, four jobs and twelve HTTP requests per round, eight jobs and twenty-four HTTP requests total, and three HTTP requests per job including authentication. Use existing services only. No automatic retries, new subscriptions, listings, orders, advertising, payments, external commerce effects or authority changes.\n\nConsume returned evidence and deliver a completed CEO commercial assessment: strongest defensible candidate if supported, comparison, strategy, advantages, risks, indicative economics only where supported, and explicit qualify, reject or evidence-insufficient recommendation. Cite actual job/evidence IDs, provenance, source dates, exact gaps and next focused investigation. Never invent demand, supplier matches, delivery reliability, fees or profit. Merely proposing jobs is insufficient. Record the investigation durably for independent King's Advisor readback. Preserve NOT_BORN, commerce LOCKED, historical records, institutional memory and private doctrine. Do not start Work 5 or another canonical Work.",
+          "predecessors": [
+            "pcr_9a70c5d827a746b3",
+            "pcr_a9ce9198cde34896",
+            "pcr_5fcf9b139bb54343"
+          ],
+          "owner": "usr_a91d007ebcebe18d",
+          "instructionHash": "29aa7346f4d5b32b2d144d7cf2bec762b73e48248f94818f8004c2faaa80bab8",
+          "status": "COMPLETE",
+          "createdAt": "2026-10-08T05:13:01.877Z",
+          "maxModelCalls": 3,
+          "maxRounds": 2,
+          "maxJobs": 8,
+          "maxRequests": 24,
+          "requestId": "pcr_27fb1ed5ddb24f5a",
+          "rounds": [
+            {
+              "round": 1,
+              "status": "RECORDED",
+              "plans": [
+                {
+                  "id": "inv_8aaf4538c27e170e1f1dae4c8b2d2e1d",
+                  "objective": "Compare OPNICE ASIN B0BYDGF8DT against the existing fresh WALI B0GN1TZZ9W catalogue and offers receipts. Retrieve exact OPNICE identity, specifications, available identifiers, current offers and sales-rank proxies. Preserve ASIN/title binding; distinguish rank snapshots from unit demand and historical trends. Count authentication within three requests; no retries.",
+                  "capabilities": [
+                    "amazon.catalog",
+                    "amazon.offers"
+                  ],
+                  "subject": {
+                    "id": "B0BYDGF8DT",
+                    "marketplace": "US"
+                  },
+                  "requestLimit": 3,
+                  "evidenceRefs": [
+                    "ev_fe33646a8d2a8d3c76ebdcbd591498d65f17aafc",
+                    "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c",
+                    "ev_8bc214cb32327f0464e05ae965f40efd91cd394b"
+                  ]
+                },
+                {
+                  "id": "inv_de9ab1d1b082655a58d1c4fcefe25588",
+                  "objective": "Search existing CJ sourcing for the evidenced WALI DO005DH-B four-tier black letter-tray organiser with drawer and two pen holders. Return actual product identifiers and specifications for plausible sourcing candidates; retrieve detail only for an identifier genuinely returned within this job if the request budget permits. Do not equate name or photographic similarity with an exact branded sourcing match. The existing CJ decorative metal tray is a separate unmatched product, not a WALI substitute. Count authentication within three requests; no retries.",
+                  "capabilities": [
+                    "cj.catalog",
+                    "cj.detail"
+                  ],
+                  "subject": {
+                    "id": "B0GN1TZZ9W",
+                    "marketplace": "US",
+                    "query": "4 tier desk file organizer drawer pen holders"
+                  },
+                  "requestLimit": 3,
+                  "evidenceRefs": [
+                    "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c",
+                    "ev_48fbe4065f6c9c0c037916b8b05b682be09d0b0c"
+                  ]
+                },
+                {
+                  "id": "inv_0a448a782c1dbcae6527b1ecb7bab5bb",
+                  "objective": "Retrieve official Amazon US dropshipping policy evidence, including seller-of-record, packaging and returns requirements, and official safety/recall evidence relevant to the evidenced WALI DO005DH-B metal desk organiser. Report source URLs, source publication/update dates where available, retrieval dates and coverage limitations. General policy is not seller-specific listing eligibility; absence of a recall is not safety clearance. Use existing bounded public-source services only, at most three requests including any authentication; no retries.",
+                  "capabilities": [
+                    "internet.research",
+                    "internet.safety"
+                  ],
+                  "subject": {
+                    "id": "B0GN1TZZ9W",
+                    "marketplace": "US",
+                    "query": "Amazon dropshipping policy WALI DO005DH-B desk organizer recall"
+                  },
+                  "requestLimit": 3,
+                  "evidenceRefs": [
+                    "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c"
+                  ]
+                },
+                {
+                  "id": "inv_24b0139d5fb1e34df863def65c37feb6",
+                  "objective": "Read current operating constraints, existing opportunity packages, and durable investigation/accounting records for EMPIREAI-CANDIDATE-001-FOLLOWUP. Inspect predecessor pcr_9a70c5d827a746b3, pcr_a9ce9198cde34896 and pcr_5fcf9b139bb54343 without replaying or modifying them. Establish available financial limits, model-call and HTTP accounting, evidence freshness, and whether the existing host workflow durably captures jobs, receipts and final assessment for independent King's Advisor readback. Return actual record IDs and precise persistence gaps; this read grants no write or authority change. At most three requests including authentication; no retries.",
+                  "capabilities": [
+                    "empire.state"
+                  ],
+                  "subject": {
+                    "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                    "marketplace": "GLOBAL"
+                  },
+                  "requestLimit": 3,
+                  "evidenceRefs": [
+                    "ev_8bc214cb32327f0464e05ae965f40efd91cd394b",
+                    "ev_48fbe4065f6c9c0c037916b8b05b682be09d0b0c",
+                    "ev_3c44fb38edf8927bdd74850782ec34d71fdeb584",
+                    "ev_c35d68d14349549adc81b09393b06c17e8cd7f77"
+                  ]
+                }
+              ],
+              "jobIds": [
+                "inv_8aaf4538c27e170e1f1dae4c8b2d2e1d",
+                "inv_de9ab1d1b082655a58d1c4fcefe25588",
+                "inv_0a448a782c1dbcae6527b1ecb7bab5bb",
+                "inv_24b0139d5fb1e34df863def65c37feb6"
+              ],
+              "startedAt": "2026-10-08T05:13:52.426Z",
+              "completedAt": "2026-10-08T05:13:53.906Z",
+              "jobs": [
+                {
+                  "id": "inv_8aaf4538c27e170e1f1dae4c8b2d2e1d",
+                  "objective": "Compare OPNICE ASIN B0BYDGF8DT against the existing fresh WALI B0GN1TZZ9W catalogue and offers receipts. Retrieve exact OPNICE identity, specifications, available identifiers, current offers and sales-rank proxies. Preserve ASIN/title binding; distinguish rank snapshots from unit demand and historical trends. Count authentication within three requests; no retries.",
+                  "capabilities": [
+                    "amazon.catalog",
+                    "amazon.offers"
+                  ],
+                  "subject": {
+                    "id": "B0BYDGF8DT",
+                    "marketplace": "US"
+                  },
+                  "requestLimit": 3,
+                  "evidenceRefs": [
+                    "ev_fe33646a8d2a8d3c76ebdcbd591498d65f17aafc",
+                    "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c",
+                    "ev_8bc214cb32327f0464e05ae965f40efd91cd394b"
+                  ],
+                  "workspace": "ws_empire_1",
+                  "requester": "PILLOW:pcr_27fb1ed5ddb24f5a",
+                  "createdAt": "2026-10-08T05:13:52.437Z",
+                  "status": "COMPLETED",
+                  "attempts": 1,
+                  "requestsUsed": 3,
+                  "evidence": [
+                    "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                    "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761"
+                  ],
+                  "failures": [],
+                  "inferenceCalls": 0,
+                  "commerceEffects": 0,
+                  "grantsAuthority": false,
+                  "startedAt": "2026-10-08T05:13:52.486Z",
+                  "lease": "aca23fdd-eb55-4260-9c40-e9743ed46c5f",
+                  "completedAt": "2026-10-08T05:13:53.781Z",
+                  "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+                },
+                {
+                  "id": "inv_de9ab1d1b082655a58d1c4fcefe25588",
+                  "objective": "Search existing CJ sourcing for the evidenced WALI DO005DH-B four-tier black letter-tray organiser with drawer and two pen holders. Return actual product identifiers and specifications for plausible sourcing candidates; retrieve detail only for an identifier genuinely returned within this job if the request budget permits. Do not equate name or photographic similarity with an exact branded sourcing match. The existing CJ decorative metal tray is a separate unmatched product, not a WALI substitute. Count authentication within three requests; no retries.",
+                  "capabilities": [
+                    "cj.catalog",
+                    "cj.detail"
+                  ],
+                  "subject": {
+                    "id": "B0GN1TZZ9W",
+                    "marketplace": "US",
+                    "query": "4 tier desk file organizer drawer pen holders"
+                  },
+                  "requestLimit": 3,
+                  "evidenceRefs": [
+                    "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c",
+                    "ev_48fbe4065f6c9c0c037916b8b05b682be09d0b0c"
+                  ],
+                  "workspace": "ws_empire_1",
+                  "requester": "PILLOW:pcr_27fb1ed5ddb24f5a",
+                  "createdAt": "2026-10-08T05:13:52.448Z",
+                  "status": "PARTIAL",
+                  "attempts": 1,
+                  "requestsUsed": 3,
+                  "evidence": [
+                    "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb"
+                  ],
+                  "failures": [
+                    {
+                      "capability": "cj.detail",
+                      "code": "CJ_PROVIDER_1602001"
+                    }
+                  ],
+                  "inferenceCalls": 0,
+                  "commerceEffects": 0,
+                  "grantsAuthority": false,
+                  "startedAt": "2026-10-08T05:13:52.518Z",
+                  "lease": "2a43b404-d1ff-47ee-be01-33094094d79c",
+                  "completedAt": "2026-10-08T05:13:53.632Z",
+                  "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+                },
+                {
+                  "id": "inv_0a448a782c1dbcae6527b1ecb7bab5bb",
+                  "objective": "Retrieve official Amazon US dropshipping policy evidence, including seller-of-record, packaging and returns requirements, and official safety/recall evidence relevant to the evidenced WALI DO005DH-B metal desk organiser. Report source URLs, source publication/update dates where available, retrieval dates and coverage limitations. General policy is not seller-specific listing eligibility; absence of a recall is not safety clearance. Use existing bounded public-source services only, at most three requests including any authentication; no retries.",
+                  "capabilities": [
+                    "internet.research",
+                    "internet.safety"
+                  ],
+                  "subject": {
+                    "id": "B0GN1TZZ9W",
+                    "marketplace": "US",
+                    "query": "Amazon dropshipping policy WALI DO005DH-B desk organizer recall"
+                  },
+                  "requestLimit": 3,
+                  "evidenceRefs": [
+                    "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c"
+                  ],
+                  "workspace": "ws_empire_1",
+                  "requester": "PILLOW:pcr_27fb1ed5ddb24f5a",
+                  "createdAt": "2026-10-08T05:13:52.464Z",
+                  "status": "PARTIAL",
+                  "attempts": 1,
+                  "requestsUsed": 1,
+                  "evidence": [
+                    "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b"
+                  ],
+                  "failures": [
+                    {
+                      "capability": "internet.research",
+                      "code": "PUBLIC_SOURCE_NOT_APPROVED"
+                    }
+                  ],
+                  "inferenceCalls": 0,
+                  "commerceEffects": 0,
+                  "grantsAuthority": false,
+                  "startedAt": "2026-10-08T05:13:52.542Z",
+                  "lease": "0765911c-cad6-44e3-b3dc-861f593112bd",
+                  "completedAt": "2026-10-08T05:13:52.949Z",
+                  "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+                },
+                {
+                  "id": "inv_24b0139d5fb1e34df863def65c37feb6",
+                  "objective": "Read current operating constraints, existing opportunity packages, and durable investigation/accounting records for EMPIREAI-CANDIDATE-001-FOLLOWUP. Inspect predecessor pcr_9a70c5d827a746b3, pcr_a9ce9198cde34896 and pcr_5fcf9b139bb54343 without replaying or modifying them. Establish available financial limits, model-call and HTTP accounting, evidence freshness, and whether the existing host workflow durably captures jobs, receipts and final assessment for independent King's Advisor readback. Return actual record IDs and precise persistence gaps; this read grants no write or authority change. At most three requests including authentication; no retries.",
+                  "capabilities": [
+                    "empire.state"
+                  ],
+                  "subject": {
+                    "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                    "marketplace": "GLOBAL"
+                  },
+                  "requestLimit": 3,
+                  "evidenceRefs": [
+                    "ev_8bc214cb32327f0464e05ae965f40efd91cd394b",
+                    "ev_48fbe4065f6c9c0c037916b8b05b682be09d0b0c",
+                    "ev_3c44fb38edf8927bdd74850782ec34d71fdeb584",
+                    "ev_c35d68d14349549adc81b09393b06c17e8cd7f77"
+                  ],
+                  "workspace": "ws_empire_1",
+                  "requester": "PILLOW:pcr_27fb1ed5ddb24f5a",
+                  "createdAt": "2026-10-08T05:13:52.475Z",
+                  "status": "COMPLETED",
+                  "attempts": 1,
+                  "requestsUsed": 0,
+                  "evidence": [
+                    "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+                  ],
+                  "failures": [],
+                  "inferenceCalls": 0,
+                  "commerceEffects": 0,
+                  "grantsAuthority": false,
+                  "startedAt": "2026-10-08T05:13:52.554Z",
+                  "lease": "00a93992-d375-4a91-8a2e-326b0a2e58f2",
+                  "completedAt": "2026-10-08T05:13:52.630Z",
+                  "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+                }
+              ],
+              "evidenceIds": [
+                "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+                "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+                "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+                "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+              ],
+              "deliveredEvidenceIds": [
+                "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+                "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+                "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+                "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+              ]
+            }
+          ],
+          "commerceEffects": 0,
+          "predecessorProof": [
+            {
+              "id": "pcr_9a70c5d827a746b3",
+              "hash": "a874123cb473eb6aaf27c5ec74212f72699557cb9de1c2a373233501601d6bca"
+            },
+            {
+              "id": "pcr_a9ce9198cde34896",
+              "hash": "6b2a2d518fc74ad43ca0dd79cdf413a6439cac7b04ad8f9b02440447f1c8e804"
+            },
+            {
+              "id": "pcr_5fcf9b139bb54343",
+              "hash": "a874123cb473eb6aaf27c5ec74212f72699557cb9de1c2a373233501601d6bca"
+            }
+          ],
+          "recoveredMissionIds": [
+            "EMPIREAI-CANDIDATE-001"
+          ],
+          "startedAt": "2026-10-08T05:13:30.881Z",
+          "closure": {
+            "at": "2026-10-08T05:16:16.610Z",
+            "owner": "usr_a91d007ebcebe18d",
+            "advisorReadback": {
+              "requestId": "pcr_27fb1ed5ddb24f5a",
+              "assessmentHash": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab",
+              "attestedBy": "AUTHENTICATED_OWNER"
+            },
+            "scope": "Investigation workflow acceptance; commercial qualification remains assessment-specific",
+            "birth": "NOT_BORN",
+            "commerce": "LOCKED",
+            "predecessorsPreserved": true
+          },
+          "modelStepCount": 2,
+          "assessment": {
+            "sha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab",
+            "requestId": "pcr_27fb1ed5ddb24f5a",
+            "at": "2026-10-08T05:14:34.374Z",
+            "evidenceIds": [
+              "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+              "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+              "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+              "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+              "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+            ]
+          }
+        }
+      ],
+      "pillow": {
+        "status": "EVIDENCE_READY_FOR_JUDGMENT",
+        "latestRequests": [
+          {
+            "id": "pillow_fdac93f00d52c46fc628d7ff22737870",
+            "requestId": "pcr_27fb1ed5ddb24f5a",
+            "missionId": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+            "jobIds": [
+              "inv_8aaf4538c27e170e1f1dae4c8b2d2e1d",
+              "inv_de9ab1d1b082655a58d1c4fcefe25588",
+              "inv_0a448a782c1dbcae6527b1ecb7bab5bb",
+              "inv_24b0139d5fb1e34df863def65c37feb6"
+            ],
+            "status": "EVIDENCE_RETURNED",
+            "judgmentClaimed": false
+          }
+        ],
+        "authority": "READ_ONLY",
+        "inferenceCallsFromCollectors": 0
+      },
+      "businessClaims": "No real sales, profitability or conversion claimed pre-Birth",
+      "grantsAuthority": false
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  }
+}

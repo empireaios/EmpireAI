@@ -1,0 +1,29 @@
+{
+  "authorised": "2026-10-11 targeted read-only directive plus explicit QKsource approval",
+  "cj": "CJ sign-in confirmed; exact product redirects to QKsource",
+  "qksource": {
+    "product": "2610110805301627100",
+    "displayedSku": "QSMR323885705EV",
+    "retainedCjSku": "CJMR323885705EV",
+    "variant": "Golden Brown / Overseas Version",
+    "priceUsd": "24.13",
+    "factoryStock": 9669,
+    "platformStock": 0,
+    "shipping": "Authenticated destination selector contained no United States option; targeted United States search returned no results. US quote not obtained. GB quote excluded.",
+    "rights": "Inspected https://qksource.com/user-agreement sections II.4, VIII.2 and X. No applicable grant established; VIII.2 requires written permission for commercial reuse and external display.",
+    "next": "Obtain supplier confirmation of US fulfilment for exact variant and written permission for exact demonstration images. Do not qualify or substitute GB freight.",
+    "authentication": "Confirmed signed in after owner personal sign-in 2026-10-11"
+  },
+  "amazon": "Authenticated LuminousYou US; genuine catalogue evidence preserved in AMAZON-AUTHENTICATED-CATALOGUE.json; exact match not established",
+  "accounting": {
+    "observedAt": "2026-10-11T15:11:39.719Z",
+    "recordCount": 227,
+    "digest": "9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92",
+    "scope": "Authenticated provenance aggregate only; calls and call_providers rows not exposed in inspected modal; original224 export still needed"
+  },
+  "runtimeRun": 38148890773,
+  "runtimeState": "success",
+  "productionChanges": false,
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED"
+}

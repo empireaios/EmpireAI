@@ -57,7 +57,9 @@
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
       "status": "PENDING",
       "evidence": [
-        "../mission-state/work7-owner-ux-20261010/PRODUCTION-COMPLETE.md"
+        "../mission-state/work7-owner-ux-20261010/PRODUCTION-COMPLETE.md",
+        "resume-20261011/AUTONOMY-LIVE-1618.json",
+        "resume-20261011/AUTONOMY-GENUINE-REPLAY.json"
       ],
       "ownerAction": "NONE",
       "code": [],
@@ -108,7 +110,12 @@
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
       "status": "BLOCKED",
       "evidence": [
-        "source-authentic-readback.json"
+        "source-authentic-readback.json",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json",
+        "resume-20261011/DRAIN-RACK-SCREENING.json",
+        "resume-20261011/CANONICAL-ACQUISITION-1612.json",
+        "resume-20261011/AUTONOMY-LIVE-1618.json",
+        "resume-20261011/AUTONOMY-GENUINE-REPLAY.json"
       ],
       "ownerAction": "NONE",
       "code": [],
@@ -116,14 +123,14 @@
         "work8-keepa-history.test.ts:4 PASS; focused TypeScript PASS; labelled fixtures, no paid calls"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Use existing authorized acquisition route or targeted provider receipts; current Advisor surface cannot execute reads/assessment.",
+      "nextAction": "Exercise the exact Work8 candidate on an authorised isolated runtime; preserve genuine autonomous deferrals and close only complete entitlement criteria.",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Retained readers and bounded acquisition implemented; existing Keepa history adapter now rejects mismatched ASIN/domain, ambiguous products and malformed histories",
-      "examinationResult": "BLOCKED \u2014 fresh acquisition not exercised; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred",
+      "examinationResult": "Authorised live CJ/Amazon catalogue and follow-up acquisition completed with zero inference and commerce effects; attributable identities and truthful INCOMPLETE/UNMATCHED outcomes retained. Connectivity milestone proven; full entitlement and qualification acceptance not complete.",
       "independentVerification": "Genuine retained envelopes recovered",
-      "continuationEvidence": "source-authentic-readback.json; resume-20261011/RESOURCE-READINESS.md; resume-20261011/CURRENT-CANDIDATE-READBACK.json; CURRENT-CANDIDATE-DOSSIER.json",
-      "remainingDependency": "Supported bounded fresh-read execution, exact market-match and remaining provider entitlements; current stored fresh CJ receipts recovered, not a new tool-triggered refresh.",
+      "continuationEvidence": "source-authentic-readback.json; resume-20261011/RESOURCE-READINESS.md; resume-20261011/CURRENT-CANDIDATE-READBACK.json; CURRENT-CANDIDATE-DOSSIER.json; resume-20261011/AUTONOMY-LIVE-1618.json; resume-20261011/AUTONOMY-GENUINE-REPLAY.json; resume-20261011/CONTINUATION-1635.json",
+      "remainingDependency": "Complete exact variant, destination freight, market identity, fees and marketplace eligibility through the existing autonomous pipeline. No qualified product or Pillow assessment evidenced.",
       "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
@@ -134,7 +141,12 @@
       "status": "PENDING",
       "evidence": [
         "source-visibility.md",
-        "source-authentic-projection.json"
+        "source-authentic-projection.json",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json",
+        "resume-20261011/DRAIN-RACK-SCREENING.json",
+        "resume-20261011/CANONICAL-ACQUISITION-1612.json",
+        "resume-20261011/AUTONOMY-LIVE-1618.json",
+        "resume-20261011/AUTONOMY-GENUINE-REPLAY.json"
       ],
       "ownerAction": "NONE",
       "code": [
@@ -161,7 +173,8 @@
       "recoveredClassification": "EXTERNAL DEPENDENCY",
       "status": "BLOCKED",
       "evidence": [
-        "source-visibility.md"
+        "source-visibility.md",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json"
       ],
       "ownerAction": "NONE NOW; prerequisite evidence/access or separate authority may be needed after technical preparation",
       "code": [
@@ -171,7 +184,7 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Attach permission covering exact URLs/use/validity; then render those assets",
+      "nextAction": "Use existing applicable platform/supplier permissions for selected assets; retain genuine exceptions without routine correspondence or new registry.",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "BLOCKED",
       "engineeringState": "Unverified imagery withheld",
@@ -189,7 +202,9 @@
       "status": "PENDING",
       "evidence": [
         "source-visibility.md",
-        "source-currency-contract.json"
+        "source-currency-contract.json",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json",
+        "resume-20261011/DRAIN-RACK-SCREENING.json"
       ],
       "ownerAction": "NONE",
       "code": [
@@ -199,10 +214,10 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Publish reviewed freight/form continuation after bounded approval; complete genuine cited findings, chosen quote, canonical finance and source-bound assessment.",
+      "nextAction": "Use authorised acquisition access to complete genuine cited findings, exact freight, canonical economics/FX/cash and source-bound assessment; then authenticated owner decision.",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Text-only QUALIFIED/DEFERRED/REJECTED evaluator implemented; immutable owner evidence review, canonical forecast/source-FX/cash binding; media permissions remain separate downstream gate; local exact retained freight-option selection and existing Console evidence-review form now implemented",
+      "engineeringState": "Text-only QUALIFIED/DEFERRED/REJECTED evaluator implemented; immutable owner evidence review, canonical forecast/source-FX/cash binding; media permissions remain separate downstream gate; published exact retained freight-option selection and existing Console evidence-review form now implemented",
       "examinationResult": "24 scoped tests PASS; complete injected fixture qualifies; ten retained genuine CJ observations individually defer for missing mandatory evidence; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred;13 affected dossier/qualification tests and backend/frontend typechecks/lint PASS; scoped independent review clear",
       "independentVerification": "Recorded contract and contradiction tests",
       "continuationEvidence": "resume-20261011/qualification-unit-1.json; resume-20261011/qualification-tests.tap; resume-20261011/CURRENT-CANDIDATE-READBACK.json; CURRENT-CANDIDATE-DOSSIER.json",
@@ -216,7 +231,9 @@
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
       "status": "PENDING",
       "evidence": [
-        "source-visibility.md"
+        "source-visibility.md",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json",
+        "resume-20261011/DRAIN-RACK-SCREENING.json"
       ],
       "ownerAction": "NONE",
       "code": [
@@ -272,7 +289,11 @@
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
       "status": "PENDING",
       "evidence": [
-        "source-visibility.md"
+        "source-visibility.md",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json",
+        "resume-20261011/CANONICAL-ACQUISITION-1612.json",
+        "resume-20261011/AUTONOMY-LIVE-1618.json",
+        "resume-20261011/AUTONOMY-GENUINE-REPLAY.json"
       ],
       "ownerAction": "NONE",
       "code": [
@@ -302,7 +323,11 @@
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
       "status": "PENDING",
       "evidence": [
-        "source-visibility.md"
+        "source-visibility.md",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json",
+        "resume-20261011/DRAIN-RACK-SCREENING.json",
+        "resume-20261011/AUTONOMY-LIVE-1618.json",
+        "resume-20261011/AUTONOMY-GENUINE-REPLAY.json"
       ],
       "ownerAction": "NONE",
       "code": [
@@ -319,10 +344,10 @@
         "backend/src/validation/tests/work8-dossier-decisions.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Publish reviewed freight/form continuation after bounded approval; complete genuine cited findings, chosen quote, canonical finance and source-bound assessment.",
+      "nextAction": "Use authorised acquisition access to complete genuine cited findings, exact freight, canonical economics/FX/cash and source-bound assessment; then authenticated owner decision.",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Text-only QUALIFIED/DEFERRED/REJECTED evaluator implemented; immutable owner evidence review, canonical forecast/source-FX/cash binding; media permissions remain separate downstream gate; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; local exact retained freight-option selection and existing Console evidence-review form now implemented",
+      "engineeringState": "Text-only QUALIFIED/DEFERRED/REJECTED evaluator implemented; immutable owner evidence review, canonical forecast/source-FX/cash binding; media permissions remain separate downstream gate; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; published exact retained freight-option selection and existing Console evidence-review form now implemented",
       "examinationResult": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred;13 affected dossier/qualification tests and backend/frontend typechecks/lint PASS; scoped independent review clear",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification",
       "continuationEvidence": "resume-20261011/qualification-unit-1.json; resume-20261011/qualification-tests.tap; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/CURRENT-CANDIDATE-READBACK.json; CURRENT-CANDIDATE-DOSSIER.json",
@@ -336,7 +361,8 @@
       "recoveredClassification": "MISSING SOFTWARE LINK AND EXTERNAL DEPENDENCY",
       "status": "BLOCKED",
       "evidence": [
-        "source-visibility.md"
+        "source-visibility.md",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json"
       ],
       "ownerAction": "NONE NOW; prerequisite evidence/access or separate authority may be needed after technical preparation",
       "code": [],
@@ -359,7 +385,8 @@
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
       "status": "PENDING",
       "evidence": [
-        "source-visibility.md"
+        "source-visibility.md",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json"
       ],
       "ownerAction": "NONE",
       "code": [
@@ -373,10 +400,10 @@
         "backend/src/validation/tests/work8-dossier-decisions.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Publish reviewed freight/form continuation after bounded approval; complete genuine cited findings, chosen quote, canonical finance and source-bound assessment.",
+      "nextAction": "Use authorised acquisition access to complete genuine cited findings, exact freight, canonical economics/FX/cash and source-bound assessment; then authenticated owner decision.",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PENDING",
-      "engineeringState": "Dossier delivered in candidate-bound Pillow context; owner proposal/recommendation display and immutable authenticated review decisions implemented; immutable reviewed dossier pinned in investigation grant; delivery, request and owner bound; current dossier rechecked by owner projection and enrollment; Owner Console displays evaluated text qualification/rejection, qualified net estimate, cash and missing financial evidence; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; repaired host-schema omission of verified product context; added bounded2\u20134 product comparison and prompt-compaction regression; local exact retained freight-option selection and existing Console evidence-review form now implemented",
+      "engineeringState": "Dossier delivered in candidate-bound Pillow context; owner proposal/recommendation display and immutable authenticated review decisions implemented; immutable reviewed dossier pinned in investigation grant; delivery, request and owner bound; current dossier rechecked by owner projection and enrollment; Owner Console displays evaluated text qualification/rejection, qualified net estimate, cash and missing financial evidence; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; repaired host-schema omission of verified product context; added bounded2\u20134 product comparison and prompt-compaction regression; published exact retained freight-option selection and existing Console evidence-review form now implemented",
       "examinationResult": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted;13 affected dossier/qualification tests and backend/frontend typechecks/lint PASS; scoped independent review clear",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; HOLISTIC-product-context-tests.tap",
@@ -414,7 +441,10 @@
       "status": "PENDING",
       "evidence": [
         "examination-blueprint.json",
-        "source-discovery-worker.md"
+        "source-discovery-worker.md",
+        "resume-20261011/CANONICAL-ACQUISITION-1612.json",
+        "resume-20261011/AUTONOMY-LIVE-1618.json",
+        "resume-20261011/AUTONOMY-GENUINE-REPLAY.json"
       ],
       "ownerAction": "NONE",
       "code": [
@@ -424,14 +454,14 @@
         "backend/src/validation/tests/work8-source-discovery.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Verify daily bounds and genuine low-supply outcomes; do not inflate throughput",
+      "nextAction": "Run existing Work8 scheduler on separately authorised isolated exact candidate; verify persisted outcomes and daily bounds.",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Bounded daily jobs/generations and truthful deferrals",
-      "examinationResult": "PENDING \u2014 local admission cases passed",
+      "examinationResult": "Live rule-selected CJ/Amazon acquisition completed; existing Work8 engine advanced two retained genuine parents to variant-ambiguous DEFERRED and NO_NEW_PARENT in scoped local replay.",
       "independentVerification": "Retained atomicity and source tests",
       "continuationEvidence": "source-discovery-worker.md; examination-ledger.json",
-      "remainingDependency": "Fresh daily source cohorts",
+      "remainingDependency": "Exact-candidate hosted daily/capacity/continuation and owner-visible acceptance; two-record replay does not certify full daily throughput.",
       "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
@@ -1100,7 +1130,10 @@
       "recoveredClassification": "MISSING",
       "status": "BLOCKED",
       "evidence": [
-        "source-visibility.md"
+        "source-visibility.md",
+        "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json",
+        "resume-20261011/AUTONOMY-LIVE-1618.json",
+        "resume-20261011/AUTONOMY-GENUINE-REPLAY.json"
       ],
       "ownerAction": "NONE NOW; prerequisite evidence/access or separate authority may be needed after technical preparation",
       "code": [
@@ -1112,14 +1145,14 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority.",
+      "nextAction": "Review consolidated frontend batch7dff79a6; obtain isolated host authority; verify same canonical identities across journey.",
       "responsibleComponent": "Owner Console",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Seven Console projections wired to durable session; product-context links and Systems authority implemented; Approved five mobile tabs; versioned media and communications integrated into existing twin views.",
-      "examinationResult": "Frontend typecheck/lint passed; no native browser claim.",
+      "examinationResult": "Local frontend7dff79a6 typecheck/lint retained; 17 affected Home/navigation/projection tests passed. Native rendering and independent scoped review remain unverified; no hosted or genuine end-to-end acceptance claimed.",
       "independentVerification": "Same canonical records via authenticated isolated HTTP and seven actual component SSR checks; not native browser acceptance",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority.",
+      "remainingDependency": "Live Intelligence exposes findings, but Home omitted collection jobs and Products showed zero records. Local frontend fixes staged; exact Work8 hosted candidate and genuine assessment/acceptance remain.",
       "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
@@ -1129,7 +1162,9 @@
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
       "status": "PENDING",
       "evidence": [
-        "source-visibility.md"
+        "source-visibility.md",
+        "resume-20261011/AUTONOMY-LIVE-1618.json",
+        "resume-20261011/AUTONOMY-GENUINE-REPLAY.json"
       ],
       "ownerAction": "NONE",
       "code": [
@@ -1145,7 +1180,7 @@
       "responsibleComponent": "Owner Console",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Financial rehearsal tab renders actual backend period and cost projection; existing mobile navigation and owner UX retained. Qualified Railway account cards added to existing financial view.",
-      "examinationResult": "Two backend-service-generated SSR tests PASS; changed component lint PASS; exact frontend review CI newly pinned in backend workflow. Current Product phone browser OFFLINE_FIXTURE PASS; actual tested merge tree equals published tree; no genuine native owner walkthrough inferred.",
+      "examinationResult": "Two backend-service-generated SSR tests PASS; changed component lint PASS; exact frontend review CI newly pinned in backend workflow. Current Product phone browser OFFLINE_FIXTURE PASS; actual tested merge tree equals published tree; no genuine native owner walkthrough inferred. Pinned frontend679f901d restored and verified in hosted CI; typecheck,215+2 tests and build PASS; no native genuine acceptance inferred.",
       "independentVerification": "Same canonical records via authenticated isolated HTTP and seven actual component SSR checks; not native browser acceptance",
       "continuationEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/browser-a3cd82a1/attribution.json",
       "remainingDependency": "Native desktop/mobile authenticated journey and source-to-finance equality.",
@@ -1159,20 +1194,21 @@
       "status": "PENDING",
       "evidence": [
         "assurance-draft-review.md",
-        "CHECKPOINT.md"
+        "CHECKPOINT.md",
+        "resume-20261011/CONTINUATION-HEADS-CI.json"
       ],
       "ownerAction": "NONE",
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Approve consolidated source/evidence batch; preserve prior four workflows, run only required new-head checks after publication.",
+      "nextAction": "Preserve completed runs; certify only after remaining integrated and hosted acceptance.",
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
-      "engineeringState": "Approved d459c08b/8facd724 published as4e5c97e4/57c033ac with exact complete trees; deployment-linked frontend held.",
-      "examinationResult": "Published4e5c97e4 new CI recorded in EXACT-HEAD-CI-4E5C97E4.json; prior four passes preserved. Local successor03719d31: component5b8db109 has13 passing affected tests; final change only independently reviewed pinned-bundle CI handoff, hosted verification pending.",
+      "engineeringState": "Evidence8ae8edb7 published before source76206d79; complete approved trees equal; frontend deployment branch held.",
+      "examinationResult": "Re-read existing exact-source CI: Assurance38148890763, Semantic38148890816, Product38148890772 and Runtime38148890773 all completed SUCCESS. No reruns. These do not certify local frontend7dff79a6.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json",
-      "remainingDependency": "Local successor publication/affected exact-head verification plus genuine hosted owner acceptance and final review.",
+      "remainingDependency": "All four exact-source CI workflows passed. Genuine hosted owner acceptance and final independent certification remain.",
       "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
@@ -1254,15 +1290,20 @@
   "wholeProgrammeCertified": false,
   "reconciliation": "resume-20261011/CLOSURE-RECONCILIATION.json",
   "latestBusinessContinuation": {
-    "publication": "resume-20261011/CONNECTOR-PUBLICATION-D459C08B.json",
-    "publishedSource": "4e5c97e42b62767793496b21ec37b0e74c78ff69",
-    "publishedEvidence": "57c033ace26747eafa1156faaf45c5fb1e6de497",
+    "publication": "resume-20261011/CONNECTOR-PUBLICATION-03719D31.json",
+    "publishedSource": "76206d799412a57bea17df1bc476fba33aa04637",
+    "publishedEvidence": "8ae8edb7fa882f62b34e0e6d1222d42400c01aa6",
     "localSource": "03719d315db2a96c0a9c7e0a5bea75cdb381aa63",
     "localSourceTree": "df63e2b9f3b68b70d0f832f471d428d358d35d93",
     "localFrontend": "679f901d4f422eb9292273046f4424e982087236",
     "localFrontendTree": "0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8",
     "review": "resume-20261011/FREIGHT-QUALIFICATION-REVIEW.json",
     "decision": "resume-20261011/OWNER-DECISION-CURRENT.md",
-    "newClosures": []
-  }
+    "newClosures": [],
+    "localSourcePublished": true,
+    "localFrontendHostedChecks": "PASS; no deployment or genuine native acceptance"
+  },
+  "latestProductSearchEvidence": "resume-20261011/ALTERNATIVE-PRODUCT-SEARCH.json",
+  "latestProductSearchConclusion": "Two alternative genuine supplier candidates DEFERRED; no new PASS. Authenticated CJ/Amazon access confirmed; shipping observations do not prove full qualification.",
+  "latestAutonomyVerification": "resume-20261011/CONTINUATION-1635.json"
 }

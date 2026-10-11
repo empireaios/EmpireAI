@@ -1,0 +1,53 @@
+{
+  "product": "1874633667228389377",
+  "sku": "CJYS225866201AZ",
+  "status": "DEFERRED",
+  "sourceRevision": "76206d799412a57bea17df1bc476fba33aa04637",
+  "quoteContext": "Authenticated CJ, one white shelf, US warehouse to US, Selling on Shopify; Amazon absent from selector. API present but not selected or authorised as integration.",
+  "quoteUsd": "15.28",
+  "quoteIsCompleteLandedCost": false,
+  "feeSource": "https://sell.amazon.com/pricing",
+  "feeObservedDate": "2026-10-11",
+  "feeScenario": {
+    "categoryAssumption": "Home and Kitchen, not exact ASIN fee determination",
+    "referralRate": 0.15,
+    "minimumUsd": 0.3,
+    "fulfilmentAssumption": "Merchant fulfilled via supplier; no FBA stock, fees or inbound shipment assumed",
+    "breakEvenBeforeOtherCostsUsd": "17.98",
+    "rows": [
+      {
+        "hypotheticalSaleUsd": "19.99",
+        "referralUsd": "3.00",
+        "remainingBeforeOtherCostsUsd": "1.71"
+      },
+      {
+        "hypotheticalSaleUsd": "24.99",
+        "referralUsd": "3.75",
+        "remainingBeforeOtherCostsUsd": "5.96"
+      }
+    ],
+    "excludedUnknowns": [
+      "Selling-plan allocation",
+      "Returns and unrecovered supplier losses",
+      "Tax/duties or surcharges",
+      "Advertising",
+      "Payment/FX costs",
+      "Software and overhead allocation"
+    ],
+    "profitClaim": false,
+    "demandSupportsPrices": false
+  },
+  "canonicalWorkflowGaps": [
+    "Missing canonical CJ detail/stock/freight envelopes and exact variant ID for new candidate",
+    "No authenticated seven-finding review or reviewed financial journal snapshot",
+    "Existing work8-dossier.ts and work8-qualification.ts explicitly require CN freight origin; US-origin quote cannot be relabelled CN",
+    "Browser receipts are supplemental, not canonical acquisition envelopes"
+  ],
+  "pillow": {
+    "assessmentExecuted": false,
+    "reason": "Incomplete dossier; no new paid-inference authority",
+    "preparedScope": "Demand, competition, differentiation, source costs, fee basis, loss exposure, shipping/returns, image permissions and listing eligibility",
+    "expectedCurrentOutcome": "DEFERRED; not a Pillow-produced decision"
+  },
+  "next": "Owner approval for consolidated enquiry in SHELF-SUPPLIER-ENQUIRY-DRAFT.txt; recover actual canonical variant/source evidence through existing authorised execution surface before assessing source-origin support. No invented schema records or new discovery engine."
+}

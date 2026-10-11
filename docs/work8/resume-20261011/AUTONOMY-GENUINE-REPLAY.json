@@ -1,0 +1,411 @@
+{
+  "classification": "SCOPED_RETAINED_GENUINE_EVIDENCE_REPLAY_NOT_HOSTED_ACCEPTANCE",
+  "at": "2026-10-11T16:19:30.891Z",
+  "sourceHead": "76206d799412a57bea17df1bc476fba33aa04637",
+  "sourceIds": [
+    {
+      "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+      "digest": "38919003068b86281d6bd5a1263b0ea919f4457f480b9ddbca76b7dec67f69d8",
+      "envelopeDigest": "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7"
+    },
+    {
+      "id": "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67",
+      "digest": "fe60c78c6c0202b6bfd680dc5bd1702612efcc04dffafd94f321d296db920035",
+      "envelopeDigest": "b140a2758ff9761dbc3cdec8a68cb3db07d2d1fb24ee93d880e34052661a46fc"
+    }
+  ],
+  "discovery": {
+    "id": "discovery:2026-10-12",
+    "workspace": "ws_empire_1",
+    "day": "2026-10-12",
+    "timezone": "Asia/Singapore",
+    "classification": "RETAINED_AUTHENTIC_EVIDENCE_SCAN",
+    "target": 100,
+    "sourceIds": [
+      "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67",
+      "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4"
+    ],
+    "sourceDigests": [
+      "fe60c78c6c0202b6bfd680dc5bd1702612efcc04dffafd94f321d296db920035",
+      "38919003068b86281d6bd5a1263b0ea919f4457f480b9ddbca76b7dec67f69d8"
+    ],
+    "sourceEnvelopeDigests": [
+      "b140a2758ff9761dbc3cdec8a68cb3db07d2d1fb24ee93d880e34052661a46fc",
+      "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7"
+    ],
+    "snapshotTruncated": false,
+    "cursor": 2,
+    "fence": 1,
+    "newCandidates": 2,
+    "duplicateObservations": 0,
+    "quarantinedObservations": 0,
+    "status": "SOURCE_EXHAUSTED",
+    "shortfall": 98,
+    "qualified": 0,
+    "pillowAssessments": 0,
+    "ownerRecommendations": 0,
+    "externalRefresh": false,
+    "paidInference": 0,
+    "externalEffects": 0,
+    "lastReceipt": "5654d155de55107f66bb95c1ebd1edce514419ac6d64c295e04c033d23d3094e",
+    "updatedAt": "2026-10-11T16:19:30.891Z"
+  },
+  "transitions": [
+    {
+      "id": "cj:2610110734491616400",
+      "productId": "2610110734491616400",
+      "day": "2026-10-12",
+      "generation": 0,
+      "generations": [
+        {
+          "day": "2026-10-12"
+        }
+      ],
+      "status": "PENDING",
+      "stage": "DETAIL",
+      "subject": {
+        "id": "2610110734491616400",
+        "marketplace": "US"
+      },
+      "sources": [
+        {
+          "id": "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67",
+          "envelopeDigest": "b140a2758ff9761dbc3cdec8a68cb3db07d2d1fb24ee93d880e34052661a46fc"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "work8_enrich_1dd6ef704005560cf1f104dd95edda63cd61d415",
+          "day": "2026-10-12",
+          "generation": 0,
+          "requestDigest": "4d62dfb4881791ae563a601a542d1ee81137035d117472c7d4b9b63e4b640a59"
+        }
+      ],
+      "reasons": [
+        "COMMERCIAL_EVIDENCE_AND_FINANCIAL_INPUTS_UNESTABLISHED"
+      ],
+      "qualification": null,
+      "assessment": null,
+      "paidInference": 0,
+      "externalWrites": 0,
+      "createdAt": "2026-10-11T16:19:30.891Z"
+    },
+    {
+      "id": "cj:2610110734491616400",
+      "productId": "2610110734491616400",
+      "day": "2026-10-12",
+      "generation": 0,
+      "generations": [
+        {
+          "day": "2026-10-12"
+        }
+      ],
+      "status": "DEFERRED",
+      "stage": "DETAIL",
+      "subject": {
+        "id": "2610110734491616400",
+        "marketplace": "US"
+      },
+      "sources": [
+        {
+          "id": "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67",
+          "envelopeDigest": "b140a2758ff9761dbc3cdec8a68cb3db07d2d1fb24ee93d880e34052661a46fc"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "work8_enrich_1dd6ef704005560cf1f104dd95edda63cd61d415",
+          "day": "2026-10-12",
+          "generation": 0,
+          "requestDigest": "4d62dfb4881791ae563a601a542d1ee81137035d117472c7d4b9b63e4b640a59"
+        }
+      ],
+      "reasons": [
+        "VARIANT_SELECTION_REQUIRED",
+        "COMMERCIAL_EVIDENCE_AND_FINANCIAL_INPUTS_UNESTABLISHED"
+      ],
+      "qualification": {
+        "status": "CANONICAL_INPUT_DEFERRED",
+        "qualified": false,
+        "canonicalEngineInvoked": false,
+        "missing": [
+          "title",
+          "category",
+          "restricted",
+          "offer",
+          "evidence",
+          "economics",
+          "cash"
+        ],
+        "reviewedEvidenceVerified": false,
+        "financialInputsVerified": false
+      },
+      "assessment": null,
+      "paidInference": 0,
+      "externalWrites": 0,
+      "createdAt": "2026-10-11T16:19:30.891Z",
+      "processedJobs": [
+        "work8_enrich_1dd6ef704005560cf1f104dd95edda63cd61d415"
+      ],
+      "updatedAt": "2026-10-11T16:19:30.891Z"
+    },
+    {
+      "id": "cj:2610110805301627100",
+      "productId": "2610110805301627100",
+      "day": "2026-10-12",
+      "generation": 0,
+      "generations": [
+        {
+          "day": "2026-10-12"
+        }
+      ],
+      "status": "PENDING",
+      "stage": "DETAIL",
+      "subject": {
+        "id": "2610110805301627100",
+        "marketplace": "US"
+      },
+      "sources": [
+        {
+          "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+          "envelopeDigest": "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "work8_enrich_b131749a4f10fbf0739e6d193cb88be1901c0d9f",
+          "day": "2026-10-12",
+          "generation": 0,
+          "requestDigest": "dde35a4236080b7c6f80f9f3c592de9793fe9d6c45057958db2e2cfdc7e9a180"
+        }
+      ],
+      "reasons": [
+        "COMMERCIAL_EVIDENCE_AND_FINANCIAL_INPUTS_UNESTABLISHED"
+      ],
+      "qualification": null,
+      "assessment": null,
+      "paidInference": 0,
+      "externalWrites": 0,
+      "createdAt": "2026-10-11T16:19:30.891Z"
+    },
+    {
+      "id": "cj:2610110805301627100",
+      "productId": "2610110805301627100",
+      "day": "2026-10-12",
+      "generation": 0,
+      "generations": [
+        {
+          "day": "2026-10-12"
+        }
+      ],
+      "status": "DEFERRED",
+      "stage": "DETAIL",
+      "subject": {
+        "id": "2610110805301627100",
+        "marketplace": "US"
+      },
+      "sources": [
+        {
+          "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+          "envelopeDigest": "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "work8_enrich_b131749a4f10fbf0739e6d193cb88be1901c0d9f",
+          "day": "2026-10-12",
+          "generation": 0,
+          "requestDigest": "dde35a4236080b7c6f80f9f3c592de9793fe9d6c45057958db2e2cfdc7e9a180"
+        }
+      ],
+      "reasons": [
+        "VARIANT_SELECTION_REQUIRED",
+        "COMMERCIAL_EVIDENCE_AND_FINANCIAL_INPUTS_UNESTABLISHED"
+      ],
+      "qualification": {
+        "status": "CANONICAL_INPUT_DEFERRED",
+        "qualified": false,
+        "canonicalEngineInvoked": false,
+        "missing": [
+          "title",
+          "category",
+          "restricted",
+          "offer",
+          "evidence",
+          "economics",
+          "cash"
+        ],
+        "reviewedEvidenceVerified": false,
+        "financialInputsVerified": false
+      },
+      "assessment": null,
+      "paidInference": 0,
+      "externalWrites": 0,
+      "createdAt": "2026-10-11T16:19:30.891Z",
+      "processedJobs": [
+        "work8_enrich_b131749a4f10fbf0739e6d193cb88be1901c0d9f"
+      ],
+      "updatedAt": "2026-10-11T16:19:30.891Z"
+    },
+    {
+      "status": "NO_NEW_PARENT"
+    }
+  ],
+  "result": {
+    "classification": "SOURCE_ENRICHMENT_NOT_COMMERCIAL_APPROVAL",
+    "day": "2026-10-12",
+    "parentHistoryBound": 10000,
+    "activeCommerceLimitUnchanged": 1000,
+    "capacityStatus": "WITHIN_HISTORY_BOUND",
+    "generationBoundReached": 0,
+    "dailyParentLimit": 10,
+    "dailyJobLimit": 20,
+    "parents": 2,
+    "pending": 0,
+    "deferred": 2,
+    "generationsPerParentLimit": 3,
+    "parentsAdmittedToday": 2,
+    "jobsAdmittedToday": 2,
+    "qualified": 0,
+    "paidInference": 0,
+    "externalWrites": 0,
+    "candidates": [
+      {
+        "id": "cj:2610110734491616400",
+        "productId": "2610110734491616400",
+        "day": "2026-10-12",
+        "generation": 0,
+        "generations": [
+          {
+            "day": "2026-10-12"
+          }
+        ],
+        "status": "DEFERRED",
+        "stage": "DETAIL",
+        "subject": {
+          "id": "2610110734491616400",
+          "marketplace": "US"
+        },
+        "sources": [
+          {
+            "id": "ev_339af10291b856ddcbe9d5e9437cd2637cea1c67",
+            "envelopeDigest": "b140a2758ff9761dbc3cdec8a68cb3db07d2d1fb24ee93d880e34052661a46fc"
+          }
+        ],
+        "jobs": [
+          {
+            "id": "work8_enrich_1dd6ef704005560cf1f104dd95edda63cd61d415",
+            "day": "2026-10-12",
+            "generation": 0,
+            "requestDigest": "4d62dfb4881791ae563a601a542d1ee81137035d117472c7d4b9b63e4b640a59"
+          }
+        ],
+        "reasons": [
+          "VARIANT_SELECTION_REQUIRED",
+          "COMMERCIAL_EVIDENCE_AND_FINANCIAL_INPUTS_UNESTABLISHED"
+        ],
+        "qualification": {
+          "status": "CANONICAL_INPUT_DEFERRED",
+          "qualified": false,
+          "canonicalEngineInvoked": false,
+          "missing": [
+            "title",
+            "category",
+            "restricted",
+            "offer",
+            "evidence",
+            "economics",
+            "cash"
+          ],
+          "reviewedEvidenceVerified": false,
+          "financialInputsVerified": false
+        },
+        "assessment": null,
+        "paidInference": 0,
+        "externalWrites": 0,
+        "createdAt": "2026-10-11T16:19:30.891Z",
+        "processedJobs": [
+          "work8_enrich_1dd6ef704005560cf1f104dd95edda63cd61d415"
+        ],
+        "updatedAt": "2026-10-11T16:19:30.891Z"
+      },
+      {
+        "id": "cj:2610110805301627100",
+        "productId": "2610110805301627100",
+        "day": "2026-10-12",
+        "generation": 0,
+        "generations": [
+          {
+            "day": "2026-10-12"
+          }
+        ],
+        "status": "DEFERRED",
+        "stage": "DETAIL",
+        "subject": {
+          "id": "2610110805301627100",
+          "marketplace": "US"
+        },
+        "sources": [
+          {
+            "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+            "envelopeDigest": "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7"
+          }
+        ],
+        "jobs": [
+          {
+            "id": "work8_enrich_b131749a4f10fbf0739e6d193cb88be1901c0d9f",
+            "day": "2026-10-12",
+            "generation": 0,
+            "requestDigest": "dde35a4236080b7c6f80f9f3c592de9793fe9d6c45057958db2e2cfdc7e9a180"
+          }
+        ],
+        "reasons": [
+          "VARIANT_SELECTION_REQUIRED",
+          "COMMERCIAL_EVIDENCE_AND_FINANCIAL_INPUTS_UNESTABLISHED"
+        ],
+        "qualification": {
+          "status": "CANONICAL_INPUT_DEFERRED",
+          "qualified": false,
+          "canonicalEngineInvoked": false,
+          "missing": [
+            "title",
+            "category",
+            "restricted",
+            "offer",
+            "evidence",
+            "economics",
+            "cash"
+          ],
+          "reviewedEvidenceVerified": false,
+          "financialInputsVerified": false
+        },
+        "assessment": null,
+        "paidInference": 0,
+        "externalWrites": 0,
+        "createdAt": "2026-10-11T16:19:30.891Z",
+        "processedJobs": [
+          "work8_enrich_b131749a4f10fbf0739e6d193cb88be1901c0d9f"
+        ],
+        "updatedAt": "2026-10-11T16:19:30.891Z"
+      }
+    ],
+    "coverage": "LATEST_20_ENRICHMENT_RECORDS; COUNTS_INCLUDE_ALL_BOUNDED_RECORDS"
+  },
+  "store": "/workspace/scratch/425cef48de17/evidence/docs/work8/resume-20261011/genuine-replay-a56yWL/intelligence.sqlite",
+  "providerRequests": 0,
+  "inferenceCalls": 0,
+  "commerceEffects": 0,
+  "checks": [
+    "Original source envelopes unchanged",
+    "Two identities normalized by existing discovery worker",
+    "Existing enrichment selected parents and deferred ambiguous variants",
+    "Worker proceeded to next parent and exhausted scoped input",
+    "State reopened between transitions",
+    "No provider, inference or commerce execution"
+  ],
+  "limitations": [
+    "Only two retained detail sources; not the complete live catalog",
+    "No genuine commercial qualification or Pillow assessment",
+    "No live Console deployment of Work8 candidate"
+  ]
+}

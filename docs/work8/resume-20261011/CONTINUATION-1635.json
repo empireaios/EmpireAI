@@ -1,0 +1,82 @@
+{
+  "schema": "work8-continuation-verification-v1",
+  "observedAt": "2026-10-11T16:35:07.244Z",
+  "source": {
+    "original": "03719d315db2a96c0a9c7e0a5bea75cdb381aa63",
+    "published": "76206d799412a57bea17df1bc476fba33aa04637",
+    "tree": "df63e2b9f3b68b70d0f832f471d428d358d35d93"
+  },
+  "evidencePublished": "8ae8edb7fa882f62b34e0e6d1222d42400c01aa6",
+  "deploymentBranchHead": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "frontend": {
+    "commit": "7dff79a6b712972b08add445d19e30cb664f69e0",
+    "tree": "03e55a6cea520a6cb1d1a752b51d3c9781290c65",
+    "published": false,
+    "affectedTests": {
+      "passed": 17,
+      "failed": 0,
+      "command": "node --import tsx --test lib/cockpit/executive-home-truth.test.ts lib/owner/work7-projections.test.ts"
+    },
+    "nativeRendering": "UNVERIFIED: no installed Chromium; installation returned invalid ZIP; retries stopped",
+    "independentReview": "OUTSTANDING"
+  },
+  "workflows": [
+    {
+      "id": 38148890816,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 677,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890816/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890816/logs",
+      "workflow_id": 362674549
+    },
+    {
+      "id": 38148890763,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 118,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890763/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890763/logs",
+      "workflow_id": 373040927
+    },
+    {
+      "id": 38148890772,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 676,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890772/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890772/logs",
+      "workflow_id": 362309382
+    },
+    {
+      "id": 38148890773,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 678,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890773/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38148890773/logs",
+      "workflow_id": 362688325
+    }
+  ],
+  "live": {
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "scheduler": {
+      "id": "health",
+      "heartbeatAt": "2026-10-11T16:34:45.845Z",
+      "status": "RUNNING",
+      "intervalMs": 30000,
+      "inferenceCalls": 0,
+      "fresh": true,
+      "disabled": false
+    },
+    "hasEnrichment": false,
+    "limits": "Read-only live projection does not attest deployed Git revision or qualify a product"
+  },
+  "statusChanges": [],
+  "productionChanges": 0
+}

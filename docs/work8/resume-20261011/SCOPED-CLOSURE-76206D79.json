@@ -1,0 +1,20 @@
+{
+  "publishedSource": "76206d799412a57bea17df1bc476fba33aa04637",
+  "publishedEvidence": "8ae8edb7fa882f62b34e0e6d1222d42400c01aa6",
+  "reviewer": "/root/review_retirement_finance",
+  "scope": "Short acceptance check of approved freight/form and pinned frontend handoff; no broad audit or examination rerun",
+  "newRequirementClosures": [],
+  "newAmendmentClosures": [],
+  "requirements": {"PASS": 10, "PENDING": 30, "BLOCKED": 5, "total": 45},
+  "amendments": {"PASS": 0, "PENDING": 19, "BLOCKED": 0, "total": 19},
+  "remaining": [
+    "Genuine chosen freight, seven evidence-supported findings, canonical economics/FX/cash and source-bound assessment",
+    "Exact media permissions and separately authorised Canva workflow",
+    "Canonical original/current accounting row snapshots",
+    "Authenticated integrated desktop/mobile acceptance on separately approved isolated capacity; hosted containment, retention and final endurance"
+  ],
+  "independentNextAction": "Collect current CI conclusions and verify exact frontend restored before checks; no new source defect identified",
+  "frontendFollowup": "Job114497959716 subsequently PASS: blob, commit679f901d and complete tree0e7551d7 verified before typecheck,215 web+2 finance tests and build",
+  "certification": "NO_GO",
+  "deployment": false
+}

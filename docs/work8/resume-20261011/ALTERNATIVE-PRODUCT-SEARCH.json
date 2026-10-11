@@ -1,0 +1,85 @@
+{
+  "observedDate": "2026-10-11",
+  "mode": "AUTHORISED_READ_ONLY_BROWSER",
+  "qualification": "DEFERRED",
+  "candidates": [
+    {
+      "productId": "1874633667228389377",
+      "name": "Bathroom Corner Shelf Organizer With Hooks, Easy To Install",
+      "sku": "CJYS225866201AZ",
+      "variant": "White, one shelf",
+      "supplier": "jiujiu2 / CJ001205",
+      "priceUsd": "15.28",
+      "shipFrom": "US",
+      "shipTo": "US",
+      "service": "UPS US to US",
+      "shippingUsd": "0.00",
+      "quotedSubtotalUsd": "15.28",
+      "processing": "1-3 days for 80% orders",
+      "delivery": "3-7 days",
+      "inventory": 1038,
+      "status": "DEFERRED",
+      "gaps": [
+        "Exact Amazon identity and account eligibility unverified",
+        "Image-use permission unverified",
+        "30-day refund banner conflicts with seven-day supplier claim limit",
+        "Supplier says carrier randomly assigned, conflicting with named UPS quote",
+        "Marketplace fees, returns provision and profit not verified"
+      ],
+      "marketComparison": {
+        "asin": "B0H9QJ5YLL",
+        "brand": "Volminex",
+        "variant": "White 1pc",
+        "priceUsd": "9.99",
+        "brandApprovalRequired": true,
+        "exactMatch": false
+      }
+    },
+    {
+      "productId": "1703055389602238464",
+      "name": "Electronics Organizer Travel Cable Organizer Bag",
+      "sku": "CJSM1849178-Black",
+      "variant": "Black",
+      "supplier": "Fan Nan / Popmarket",
+      "priceUsd": "11.98",
+      "shipFrom": "China",
+      "shipTo": "US",
+      "service": "Yunexpress CN to US",
+      "shippingUsd": "3.00",
+      "quotedSubtotalUsd": "14.98",
+      "processing": "1-3 days for 90% orders",
+      "delivery": "6-12 days",
+      "factoryStock": 1819,
+      "cjStock": 0,
+      "status": "DEFERRED",
+      "marketComparison": {
+        "asins": [
+          "B07T1QXP1V",
+          "B0BHNRKMG5"
+        ],
+        "brand": "OrgaWise",
+        "priceUsd": "16.99",
+        "exactMatch": false,
+        "eligibility": "NOT_VERIFIED",
+        "comparisonSpreadBeforeFeesUsd": "2.01"
+      },
+      "gaps": [
+        "Exact marketplace identity and account eligibility unverified",
+        "Image-use permission unverified",
+        "Fees, returns and profit not verified; comparison spread thin"
+      ]
+    }
+  ],
+  "plushDisposition": "DEFERRED unchanged; enquiry preserved, Mia Peng assigned, no substantive response at last read",
+  "fullyQualifiedCandidate": null,
+  "canonicalQualificationMutation": false,
+  "integrationLimitation": "Browser observations preserved as supplemental evidence; not represented as canonical acquisition envelopes or completed Pillow assessment. Existing execution surface not available through current read-only connector.",
+  "governance": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "orders": false,
+    "listings": false,
+    "paidInference": false,
+    "deployments": false
+  }
+}

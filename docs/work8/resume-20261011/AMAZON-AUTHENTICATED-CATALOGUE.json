@@ -1,0 +1,33 @@
+{
+  "observedDate": "2026-10-11",
+  "account": "LuminousYou",
+  "marketplace": "United States",
+  "authenticated": true,
+  "accountHealthDisplayed": "Healthy",
+  "surface": "Seller Central product-search catalogue read only",
+  "query": "AI Bionic Plush Pet",
+  "resultCountDisplayed": 18,
+  "inspectedCandidate": {
+    "asin": "B0HDSZ3RYX",
+    "title": "Hillmod Kids Talking Plush Toys, AI-Powered Interactive Stuffed Animal",
+    "lowestPriceUsd": "59.99",
+    "salesRankDisplayed": 110813,
+    "variant": "White-brown With Ai Core",
+    "otherVariant": {
+      "asin": "B0GFNBHLPJ",
+      "name": "White-brown"
+    },
+    "exactSupplierVariantMatch": false,
+    "restrictions": [
+      "Approval required to list in this brand",
+      "Approval required to list products in Toys category",
+      "Other listing limitations",
+      "Used, Collectible, Refurbished conditions prohibited"
+    ]
+  },
+  "conclusion": "Authentic comparable evidence only. Does not establish Golden Brown overseas variant match, permission, fees or profitability. Supplier product stays DEFERRED.",
+  "listingCreated": false,
+  "offersCreated": false,
+  "paidInference": false,
+  "next": "Obtain exact manufacturer/model or GTIN and supplier evidence; do not borrow comparable brand identity or apply for approval without authority."
+}

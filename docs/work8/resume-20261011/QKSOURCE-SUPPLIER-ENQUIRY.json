@@ -1,0 +1,24 @@
+{
+  "product": "2610110805301627100",
+  "variant": "Golden Brown / Overseas Version",
+  "sku": "QSMR323885705EV",
+  "supplierLabel": "ledi",
+  "channel": "QKsource product Contact -> Consultation chat queue",
+  "recipientIdentity": "System identifies QS customer service Mia Peng as helping",
+  "sentVerified": true,
+  "displayedTimestamp": "Oct. 11, 2026 08:28:58 (site timezone unspecified)",
+  "observedDateSG": "2026-10-11",
+  "message": "Hello, this is an enquiry for EmpireAI / LuminousYou, not an order. Product 2610110805301627100: Desk Buddy Gives A Classmate An AI Plush Toy As A Gift, Golden Brown / Overseas Version, SKU QSMR323885705EV. Please confirm in writing: (1) Can this exact variant be shipped to the United States? (2) For one unit shipped from China, which shipping services are available, what are their costs in USD, and what are the processing and estimated delivery times? Please identify any destination/postcode information needed and any additional charges. (3) Do you or the authorised rights holder permit EmpireAI/LuminousYou to display, edit and use the exact images on this product listing for a private pre-birth demonstration and potential future marketplace listings? Please identify the covered images, permitted uses, restrictions and the party granting permission. We are not placing an order or publishing a listing. Thank you.",
+  "response": {
+    "agent": "Angel Li (Customer Service)",
+    "previousAssignment": "Mia Peng",
+    "siteTime": "08:40 AM, date context Oct 11 2026; timezone unspecified",
+    "shipping": "Hi, Dear customer, I am Angel from the customer service team. sorry but products on our website currently only support to mainly EU counties. US is not available, if you'd like can kindly try with c-j website instead that they can ship to worldwide please.",
+    "images": "and yes you can kindly feel free to use our product images please.",
+    "interpretation": "QKsource US fulfilment unavailable. General image-use permission response preserved; exact asset scope, editing rights and rights-holder authority not independently established. Not transferable to shelf or other suppliers."
+  },
+  "authority": "Owner enquiry-only approval 2026-10-11 23:28 SGT",
+  "productionChanges": false,
+  "orders": false,
+  "next": "Read response when available; continue Amazon authenticated evidence acquisition; retain DEFERRED until full criteria satisfied"
+}

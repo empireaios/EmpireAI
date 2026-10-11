@@ -1,0 +1,1991 @@
+﻿2026-10-11T14:51:43.2020124Z Current runner version: '2.337.0'
+2026-10-11T14:51:43.2035221Z ##[group]Runner Image Provisioner
+2026-10-11T14:51:43.2035763Z Hosted Compute Agent
+2026-10-11T14:51:43.2036172Z Version: 20261002.596
+2026-10-11T14:51:43.2036535Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-11T14:51:43.2036964Z Build Date: 2026-10-02T22:28:27Z
+2026-10-11T14:51:43.2037412Z Worker ID: {0a79a710-c8fb-4d8e-9f0d-e55101fa0910}
+2026-10-11T14:51:43.2037838Z Region: westus3
+2026-10-11T14:51:43.2038182Z Cloud: Azure
+2026-10-11T14:51:43.2038513Z ##[endgroup]
+2026-10-11T14:51:43.2039215Z ##[group]Operating System
+2026-10-11T14:51:43.2039628Z Ubuntu
+2026-10-11T14:51:43.2039963Z 24.04.5
+2026-10-11T14:51:43.2040283Z LTS
+2026-10-11T14:51:43.2040597Z ##[endgroup]
+2026-10-11T14:51:43.2040944Z ##[group]Runner Image
+2026-10-11T14:51:43.2041331Z Image: ubuntu-24.04
+2026-10-11T14:51:43.2041691Z Version: 20261004.327.1
+2026-10-11T14:51:43.2042687Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-11T14:51:43.2043524Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-11T14:51:43.2044094Z ##[endgroup]
+2026-10-11T14:51:43.2044758Z ##[group]GITHUB_TOKEN Permissions
+2026-10-11T14:51:43.2045934Z Contents: read
+2026-10-11T14:51:43.2046271Z Metadata: read
+2026-10-11T14:51:43.2046586Z ##[endgroup]
+2026-10-11T14:51:43.2047921Z Secret source: Actions
+2026-10-11T14:51:43.2048409Z Cache mode: write
+2026-10-11T14:51:43.2048890Z Prepare workflow directory
+2026-10-11T14:51:43.2280950Z Prepare all required actions
+2026-10-11T14:51:43.2311553Z Getting action download info
+2026-10-11T14:51:43.5155575Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+2026-10-11T14:51:43.8566193Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-11T14:51:44.5084757Z Complete job name: Work8 exact frontend review candidate (no deployment)
+2026-10-11T14:51:44.5697628Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-11T14:51:44.5698626Z with:
+2026-10-11T14:51:44.5699180Z   ref: 720764722e6178d4126dcf376383096e204ec5ba
+2026-10-11T14:51:44.5699900Z   persist-credentials: false
+2026-10-11T14:51:44.5700552Z   repository: empireaios/EmpireAI
+2026-10-11T14:51:44.5706182Z   token: ***
+2026-10-11T14:51:44.5706708Z   ssh-strict: true
+2026-10-11T14:51:44.5707239Z   ssh-user: git
+2026-10-11T14:51:44.5707750Z   clean: true
+2026-10-11T14:51:44.5708294Z   sparse-checkout-cone-mode: true
+2026-10-11T14:51:44.5708931Z   fetch-depth: 1
+2026-10-11T14:51:44.5709453Z   fetch-tags: false
+2026-10-11T14:51:44.5710004Z   show-progress: true
+2026-10-11T14:51:44.5710551Z   lfs: false
+2026-10-11T14:51:44.5711062Z   submodules: false
+2026-10-11T14:51:44.5711617Z   set-safe-directory: true
+2026-10-11T14:51:44.5712377Z env:
+2026-10-11T14:51:44.5712850Z   CI: true
+2026-10-11T14:51:44.5713373Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-11T14:51:44.5713961Z ##[endgroup]
+2026-10-11T14:51:44.6347040Z Syncing repository: empireaios/EmpireAI
+2026-10-11T14:51:44.6348665Z ##[group]Getting Git version info
+2026-10-11T14:51:44.6349468Z Working directory is '/home/runner/work/EmpireAI/EmpireAI'
+2026-10-11T14:51:44.6350679Z [command]/usr/bin/git version
+2026-10-11T14:51:44.6412965Z git version 2.55.0
+2026-10-11T14:51:44.6426526Z ##[endgroup]
+2026-10-11T14:51:44.6440252Z Temporarily overriding HOME='/home/runner/work/_temp/8b3453cb-94f5-480f-b6a6-8f15d3e478b1' before making global git config changes
+2026-10-11T14:51:44.6443167Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T14:51:44.6445393Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EmpireAI/EmpireAI
+2026-10-11T14:51:44.6619360Z Deleting the contents of '/home/runner/work/EmpireAI/EmpireAI'
+2026-10-11T14:51:44.6621417Z ##[group]Initializing the repository
+2026-10-11T14:51:44.6623085Z [command]/usr/bin/git init /home/runner/work/EmpireAI/EmpireAI
+2026-10-11T14:51:44.7425150Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-11T14:51:44.7428978Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-11T14:51:44.7430739Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-11T14:51:44.7432251Z hint: call:
+2026-10-11T14:51:44.7432975Z hint:
+2026-10-11T14:51:44.7433943Z hint: 	git config --global init.defaultBranch <name>
+2026-10-11T14:51:44.7435062Z hint:
+2026-10-11T14:51:44.7436094Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-11T14:51:44.7437871Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-11T14:51:44.7439228Z hint:
+2026-10-11T14:51:44.7439972Z hint: 	git branch -m <name>
+2026-10-11T14:51:44.7440798Z hint:
+2026-10-11T14:51:44.7442064Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-11T14:51:44.7443959Z Initialized empty Git repository in /home/runner/work/EmpireAI/EmpireAI/.git/
+2026-10-11T14:51:44.7446949Z [command]/usr/bin/git remote add origin https://github.com/empireaios/EmpireAI
+2026-10-11T14:51:44.7957469Z ##[endgroup]
+2026-10-11T14:51:44.7958436Z ##[group]Disabling automatic garbage collection
+2026-10-11T14:51:44.7960312Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-11T14:51:44.8046263Z ##[endgroup]
+2026-10-11T14:51:44.8047161Z ##[group]Setting up auth
+2026-10-11T14:51:44.8050575Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T14:51:44.8077734Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T14:51:44.8462063Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T14:51:44.8491722Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T14:51:44.8666865Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-11T14:51:44.8889528Z ##[endgroup]
+2026-10-11T14:51:44.8890427Z ##[group]Fetching the repository
+2026-10-11T14:51:44.8897139Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 720764722e6178d4126dcf376383096e204ec5ba
+2026-10-11T14:51:47.1557945Z From https://github.com/empireaios/EmpireAI
+2026-10-11T14:51:47.1558599Z  * branch              720764722e6178d4126dcf376383096e204ec5ba -> FETCH_HEAD
+2026-10-11T14:51:47.1562410Z ##[endgroup]
+2026-10-11T14:51:47.1562842Z ##[group]Determining the checkout info
+2026-10-11T14:51:47.1564058Z ##[endgroup]
+2026-10-11T14:51:47.1568520Z [command]/usr/bin/git sparse-checkout disable
+2026-10-11T14:51:47.2402968Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-11T14:51:47.2702355Z ##[group]Checking out the ref
+2026-10-11T14:51:47.2706397Z [command]/usr/bin/git checkout --progress --force 720764722e6178d4126dcf376383096e204ec5ba
+2026-10-11T14:51:47.9934478Z Note: switching to '720764722e6178d4126dcf376383096e204ec5ba'.
+2026-10-11T14:51:47.9934772Z 
+2026-10-11T14:51:47.9934918Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-11T14:51:47.9935204Z changes and commit them, and you can discard any commits you make in this
+2026-10-11T14:51:47.9935510Z state without impacting any branches by switching back to a branch.
+2026-10-11T14:51:47.9935683Z 
+2026-10-11T14:51:47.9935826Z If you want to create a new branch to retain commits you create, you may
+2026-10-11T14:51:47.9936078Z do so (now or later) by using -c with the switch command. Example:
+2026-10-11T14:51:47.9936222Z 
+2026-10-11T14:51:47.9936297Z   git switch -c <new-branch-name>
+2026-10-11T14:51:47.9936720Z 
+2026-10-11T14:51:47.9936820Z Or undo this operation with:
+2026-10-11T14:51:47.9936913Z 
+2026-10-11T14:51:47.9936967Z   git switch -
+2026-10-11T14:51:47.9937042Z 
+2026-10-11T14:51:47.9937201Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-11T14:51:47.9937374Z 
+2026-10-11T14:51:47.9937521Z HEAD is now at 72076472 work8: show qualified Railway account readback in financial rehearsal
+2026-10-11T14:51:47.9965977Z ##[endgroup]
+2026-10-11T14:51:48.0010699Z [command]/usr/bin/git log -1 --format=%H
+2026-10-11T14:51:48.0034407Z 720764722e6178d4126dcf376383096e204ec5ba
+2026-10-11T14:51:48.0041451Z ##[group]Removing auth
+2026-10-11T14:51:48.0044159Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T14:51:48.0069984Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T14:51:48.0258185Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T14:51:48.0281197Z http.https://github.com/.extraheader
+2026-10-11T14:51:48.0286261Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-11T14:51:48.0314715Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T14:51:48.0494212Z ##[endgroup]
+2026-10-11T14:51:48.0736494Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-11T14:51:48.0736707Z with:
+2026-10-11T14:51:48.0736846Z   ref: work8/examination-evidence-20261011
+2026-10-11T14:51:48.0737007Z   path: _work8_evidence
+2026-10-11T14:51:48.0737141Z   persist-credentials: false
+2026-10-11T14:51:48.0737285Z   repository: empireaios/EmpireAI
+2026-10-11T14:51:48.0738786Z   token: ***
+2026-10-11T14:51:48.0738908Z   ssh-strict: true
+2026-10-11T14:51:48.0739023Z   ssh-user: git
+2026-10-11T14:51:48.0739135Z   clean: true
+2026-10-11T14:51:48.0739258Z   sparse-checkout-cone-mode: true
+2026-10-11T14:51:48.0739400Z   fetch-depth: 1
+2026-10-11T14:51:48.0739515Z   fetch-tags: false
+2026-10-11T14:51:48.0739634Z   show-progress: true
+2026-10-11T14:51:48.0739752Z   lfs: false
+2026-10-11T14:51:48.0739862Z   submodules: false
+2026-10-11T14:51:48.0739984Z   set-safe-directory: true
+2026-10-11T14:51:48.0740117Z env:
+2026-10-11T14:51:48.0740225Z   CI: true
+2026-10-11T14:51:48.0740362Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-11T14:51:48.0740488Z ##[endgroup]
+2026-10-11T14:51:48.1262975Z Syncing repository: empireaios/EmpireAI
+2026-10-11T14:51:48.1269599Z ##[group]Getting Git version info
+2026-10-11T14:51:48.1273029Z Working directory is '/home/runner/work/EmpireAI/EmpireAI/_work8_evidence'
+2026-10-11T14:51:48.1288189Z [command]/usr/bin/git version
+2026-10-11T14:51:48.1322524Z git version 2.55.0
+2026-10-11T14:51:48.1334166Z ##[endgroup]
+2026-10-11T14:51:48.1342853Z Temporarily overriding HOME='/home/runner/work/_temp/20cffd83-adfc-4ef2-a6ae-b7302e505b48' before making global git config changes
+2026-10-11T14:51:48.1343525Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T14:51:48.1346067Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EmpireAI/EmpireAI/_work8_evidence
+2026-10-11T14:51:48.1373977Z ##[group]Initializing the repository
+2026-10-11T14:51:48.1377025Z [command]/usr/bin/git init /home/runner/work/EmpireAI/EmpireAI/_work8_evidence
+2026-10-11T14:51:48.1450837Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-11T14:51:48.1451411Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-11T14:51:48.1452085Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-11T14:51:48.1452554Z hint: call:
+2026-10-11T14:51:48.1452850Z hint:
+2026-10-11T14:51:48.1453439Z hint: 	git config --global init.defaultBranch <name>
+2026-10-11T14:51:48.1453829Z hint:
+2026-10-11T14:51:48.1454211Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-11T14:51:48.1454757Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-11T14:51:48.1455223Z hint:
+2026-10-11T14:51:48.1455533Z hint: 	git branch -m <name>
+2026-10-11T14:51:48.1455900Z hint:
+2026-10-11T14:51:48.1456409Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-11T14:51:48.1457095Z Initialized empty Git repository in /home/runner/work/EmpireAI/EmpireAI/_work8_evidence/.git/
+2026-10-11T14:51:48.1459747Z [command]/usr/bin/git remote add origin https://github.com/empireaios/EmpireAI
+2026-10-11T14:51:48.1487691Z ##[endgroup]
+2026-10-11T14:51:48.1488112Z ##[group]Disabling automatic garbage collection
+2026-10-11T14:51:48.1490658Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-11T14:51:48.1515048Z ##[endgroup]
+2026-10-11T14:51:48.1515383Z ##[group]Setting up auth
+2026-10-11T14:51:48.1519243Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T14:51:48.1543445Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T14:51:48.1737087Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T14:51:48.1766080Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T14:51:48.1953401Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-11T14:51:48.1987663Z ##[endgroup]
+2026-10-11T14:51:48.1987986Z ##[group]Fetching the repository
+2026-10-11T14:51:48.1994230Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/work8/examination-evidence-20261011*:refs/remotes/origin/work8/examination-evidence-20261011* +refs/tags/work8/examination-evidence-20261011*:refs/tags/work8/examination-evidence-20261011*
+2026-10-11T14:51:50.8973992Z From https://github.com/empireaios/EmpireAI
+2026-10-11T14:51:50.8974529Z  * [new branch]        work8/examination-evidence-20261011 -> origin/work8/examination-evidence-20261011
+2026-10-11T14:51:50.8985892Z ##[endgroup]
+2026-10-11T14:51:50.8986145Z ##[group]Determining the checkout info
+2026-10-11T14:51:50.8986404Z [command]/usr/bin/git branch --list --remote origin/work8/examination-evidence-20261011
+2026-10-11T14:51:50.9010791Z   origin/work8/examination-evidence-20261011
+2026-10-11T14:51:50.9014039Z ##[endgroup]
+2026-10-11T14:51:50.9017310Z [command]/usr/bin/git sparse-checkout disable
+2026-10-11T14:51:51.0158863Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-11T14:51:51.0186305Z ##[group]Checking out the ref
+2026-10-11T14:51:51.0186848Z [command]/usr/bin/git checkout --progress --force -B work8/examination-evidence-20261011 refs/remotes/origin/work8/examination-evidence-20261011
+2026-10-11T14:51:51.7915286Z Switched to a new branch 'work8/examination-evidence-20261011'
+2026-10-11T14:51:51.7916294Z branch 'work8/examination-evidence-20261011' set up to track 'origin/work8/examination-evidence-20261011'.
+2026-10-11T14:51:51.7939901Z ##[endgroup]
+2026-10-11T14:51:51.7978533Z [command]/usr/bin/git log -1 --format=%H
+2026-10-11T14:51:51.8001419Z 8ae8edb7fa882f62b34e0e6d1222d42400c01aa6
+2026-10-11T14:51:51.8008762Z ##[group]Removing auth
+2026-10-11T14:51:51.8011043Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T14:51:51.8036976Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T14:51:51.8224412Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T14:51:51.8244952Z http.https://github.com/.extraheader
+2026-10-11T14:51:51.8249393Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-11T14:51:51.8276669Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T14:51:51.8452932Z ##[endgroup]
+2026-10-11T14:51:51.8569436Z ##[group]Run bundle=_work8_evidence/docs/work8/resume-20261011/FRONTEND-QUALIFICATION-CANDIDATE.bundle
+2026-10-11T14:51:51.8569897Z [36;1mbundle=_work8_evidence/docs/work8/resume-20261011/FRONTEND-QUALIFICATION-CANDIDATE.bundle[0m
+2026-10-11T14:51:51.8570237Z [36;1mtest "$(git hash-object "$bundle")" = 3ea1170bad5dacc70ff53b1c2377f919017da858[0m
+2026-10-11T14:51:51.8570468Z [36;1mgit bundle verify "$bundle"[0m
+2026-10-11T14:51:51.8570632Z [36;1mgit fetch "$bundle" HEAD[0m
+2026-10-11T14:51:51.8570828Z [36;1mgit checkout --detach 679f901d4f422eb9292273046f4424e982087236[0m
+2026-10-11T14:51:51.8571090Z [36;1mtest "$(git rev-parse HEAD)" = 679f901d4f422eb9292273046f4424e982087236[0m
+2026-10-11T14:51:51.8571367Z [36;1mtest "$(git rev-parse HEAD^{tree})" = 0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8[0m
+2026-10-11T14:51:51.8571590Z [36;1mrm -rf -- _work8_evidence[0m
+2026-10-11T14:51:51.8798146Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-11T14:51:51.8798363Z env:
+2026-10-11T14:51:51.8798472Z   CI: true
+2026-10-11T14:51:51.8798582Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-11T14:51:51.8798706Z ##[endgroup]
+2026-10-11T14:51:51.8958550Z _work8_evidence/docs/work8/resume-20261011/FRONTEND-QUALIFICATION-CANDIDATE.bundle is okay
+2026-10-11T14:51:51.8958956Z The bundle contains this ref:
+2026-10-11T14:51:51.8959191Z 679f901d4f422eb9292273046f4424e982087236 HEAD
+2026-10-11T14:51:51.8959375Z The bundle requires this ref:
+2026-10-11T14:51:51.8959516Z 720764722e6178d4126dcf376383096e204ec5ba 
+2026-10-11T14:51:51.8959674Z The bundle uses this hash algorithm: sha1
+2026-10-11T14:51:52.2302353Z From _work8_evidence/docs/work8/resume-20261011/FRONTEND-QUALIFICATION-CANDIDATE.bundle
+2026-10-11T14:51:52.2302797Z  * branch              HEAD       -> FETCH_HEAD
+2026-10-11T14:51:52.5484404Z Previous HEAD position was 72076472 work8: show qualified Railway account readback in financial rehearsal
+2026-10-11T14:51:52.5488773Z HEAD is now at 679f901d work8: expose exact freight and evidence review in existing dossier
+2026-10-11T14:51:52.8961672Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-10-11T14:51:52.8962069Z with:
+2026-10-11T14:51:52.8962193Z   node-version-file: .node-version
+2026-10-11T14:51:52.8962342Z   always-auth: false
+2026-10-11T14:51:52.8962465Z   check-latest: false
+2026-10-11T14:51:52.8963892Z   token: ***
+2026-10-11T14:51:52.8963999Z env:
+2026-10-11T14:51:52.8964115Z   CI: true
+2026-10-11T14:51:52.8964224Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-11T14:51:52.8964351Z ##[endgroup]
+2026-10-11T14:51:52.9849495Z Node version file is not JSON file
+2026-10-11T14:51:52.9849837Z Resolved .node-version as 22.23.2
+2026-10-11T14:51:52.9858475Z Attempting to download 22.23.2...
+2026-10-11T14:51:52.9926182Z (node:2309) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T14:51:52.9926698Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T14:51:53.9486530Z Acquiring 22.23.2 - x64 from https://github.com/actions/node-versions/releases/download/22.23.2-30508424155/node-22.23.2-linux-x64.tar.gz
+2026-10-11T14:51:54.4511068Z Extracting ...
+2026-10-11T14:51:54.4596458Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/7ec10d0a-ceab-43a1-9255-3fae7ea6226e -f /home/runner/work/_temp/2c7f485e-0d6c-4776-a586-e6162c64d991
+2026-10-11T14:51:55.3649729Z Adding to the cache ...
+2026-10-11T14:51:58.0296191Z ##[group]Environment details
+2026-10-11T14:51:58.1874154Z node: v22.23.2
+2026-10-11T14:51:58.1874534Z npm: 10.9.8
+2026-10-11T14:51:58.1874741Z yarn: 1.22.22
+2026-10-11T14:51:58.1875178Z ##[endgroup]
+2026-10-11T14:51:58.2968658Z ##[group]Run npm ci --prefix empireai-web
+2026-10-11T14:51:58.2968887Z [36;1mnpm ci --prefix empireai-web[0m
+2026-10-11T14:51:58.3026217Z shell: /usr/bin/bash -e {0}
+2026-10-11T14:51:58.3026367Z env:
+2026-10-11T14:51:58.3026480Z   CI: true
+2026-10-11T14:51:58.3026594Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-11T14:51:58.3026726Z ##[endgroup]
+2026-10-11T14:52:08.6025888Z 
+2026-10-11T14:52:08.6031192Z added 368 packages, and audited 369 packages in 10s
+2026-10-11T14:52:08.6031401Z 
+2026-10-11T14:52:08.6031533Z 146 packages are looking for funding
+2026-10-11T14:52:08.6031721Z   run `npm fund` for details
+2026-10-11T14:52:08.7129802Z 
+2026-10-11T14:52:08.7130612Z 15 vulnerabilities (2 moderate, 12 high, 1 critical)
+2026-10-11T14:52:08.7130925Z 
+2026-10-11T14:52:08.7131134Z To address issues that do not require attention, run:
+2026-10-11T14:52:08.7131424Z   npm audit fix
+2026-10-11T14:52:08.7131543Z 
+2026-10-11T14:52:08.7131922Z To address all issues (including breaking changes), run:
+2026-10-11T14:52:08.7132290Z   npm audit fix --force
+2026-10-11T14:52:08.7132421Z 
+2026-10-11T14:52:08.7132535Z Run `npm audit` for details.
+2026-10-11T14:52:08.7960227Z ##[group]Run npm run typecheck --prefix empireai-web
+2026-10-11T14:52:08.7960541Z [36;1mnpm run typecheck --prefix empireai-web[0m
+2026-10-11T14:52:08.8012183Z shell: /usr/bin/bash -e {0}
+2026-10-11T14:52:08.8012326Z env:
+2026-10-11T14:52:08.8012432Z   CI: true
+2026-10-11T14:52:08.8012544Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-11T14:52:08.8012671Z ##[endgroup]
+2026-10-11T14:52:08.8685369Z 
+2026-10-11T14:52:08.8685990Z > empireai-web@0.1.0 typecheck
+2026-10-11T14:52:08.8686264Z > next typegen && tsc --noEmit
+2026-10-11T14:52:08.8686362Z 
+2026-10-11T14:52:09.0497467Z Generating route types...
+2026-10-11T14:52:09.0838940Z ✓ Types generated successfully
+2026-10-11T14:52:18.4371400Z ##[group]Run npm test
+2026-10-11T14:52:18.4371575Z [36;1mnpm test[0m
+2026-10-11T14:52:18.4371880Z [36;1mnode --test tests/work8/financial-rehearsal.test.mjs[0m
+2026-10-11T14:52:18.4423292Z shell: /usr/bin/bash -e {0}
+2026-10-11T14:52:18.4423429Z env:
+2026-10-11T14:52:18.4423534Z   CI: true
+2026-10-11T14:52:18.4423644Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-11T14:52:18.4423770Z ##[endgroup]
+2026-10-11T14:52:18.5047522Z 
+2026-10-11T14:52:18.5048178Z > empireai-web@0.1.0 test
+2026-10-11T14:52:18.5048592Z > node --import tsx --test 'lib/**/*.test.ts'
+2026-10-11T14:52:18.5048786Z 
+2026-10-11T14:52:18.5423995Z TAP version 13
+2026-10-11T14:52:18.7062447Z # Subtest: login preserves failure messages and status for the form's Error catch
+2026-10-11T14:52:18.7063459Z ok 1 - login preserves failure messages and status for the form's Error catch
+2026-10-11T14:52:18.7064068Z   ---
+2026-10-11T14:52:18.7064628Z   duration_ms: 18.559238
+2026-10-11T14:52:18.7065168Z   type: 'test'
+2026-10-11T14:52:18.7065570Z   ...
+2026-10-11T14:52:18.7066139Z # Subtest: login transport failure remains a service error, with no implicit retry
+2026-10-11T14:52:18.7066858Z ok 2 - login transport failure remains a service error, with no implicit retry
+2026-10-11T14:52:18.7067369Z   ---
+2026-10-11T14:52:18.7067773Z   duration_ms: 0.347981
+2026-10-11T14:52:18.7068142Z   type: 'test'
+2026-10-11T14:52:18.7068504Z   ...
+2026-10-11T14:52:18.7069140Z # Subtest: successful login retains its original response and same-origin session request
+2026-10-11T14:52:18.7069938Z ok 3 - successful login retains its original response and same-origin session request
+2026-10-11T14:52:18.7070480Z   ---
+2026-10-11T14:52:18.7070818Z   duration_ms: 0.907617
+2026-10-11T14:52:18.7071202Z   type: 'test'
+2026-10-11T14:52:18.7071538Z   ...
+2026-10-11T14:52:18.7315946Z # Subtest: rewriteSetCookieForBff
+2026-10-11T14:52:18.7332383Z     # Subtest: strips Domain and keeps host-only Path for Vercel BFF
+2026-10-11T14:52:18.7333609Z     ok 1 - strips Domain and keeps host-only Path for Vercel BFF
+2026-10-11T14:52:18.7334039Z       ---
+2026-10-11T14:52:18.7334555Z       duration_ms: 0.908598
+2026-10-11T14:52:18.7334932Z       type: 'test'
+2026-10-11T14:52:18.7335242Z       ...
+2026-10-11T14:52:18.7335653Z     # Subtest: adds Secure on production for session cookies missing it
+2026-10-11T14:52:18.7336158Z     ok 2 - adds Secure on production for session cookies missing it
+2026-10-11T14:52:18.7340498Z       ---
+2026-10-11T14:52:18.7340836Z       duration_ms: 0.214701
+2026-10-11T14:52:18.7342706Z       type: 'test'
+2026-10-11T14:52:18.7343301Z       ...
+2026-10-11T14:52:18.7343609Z     1..2
+2026-10-11T14:52:18.7343943Z ok 4 - rewriteSetCookieForBff
+2026-10-11T14:52:18.7344284Z   ---
+2026-10-11T14:52:18.7344729Z   duration_ms: 1.822925
+2026-10-11T14:52:18.7345054Z   type: 'suite'
+2026-10-11T14:52:18.7345353Z   ...
+2026-10-11T14:52:18.7345824Z # Subtest: production binding fails closed and never silently selects legacy
+2026-10-11T14:52:18.7346573Z ok 5 - production binding fails closed and never silently selects legacy
+2026-10-11T14:52:18.7347021Z   ---
+2026-10-11T14:52:18.7347432Z   duration_ms: 1.41143
+2026-10-11T14:52:18.7347913Z   type: 'test'
+2026-10-11T14:52:18.7348212Z   ...
+2026-10-11T14:52:18.9168760Z # Subtest: executive home truth + nav reality
+2026-10-11T14:52:18.9182678Z     # Subtest: LIVE KPIs never surface placeholder demo values
+2026-10-11T14:52:18.9183470Z     ok 1 - LIVE KPIs never surface placeholder demo values
+2026-10-11T14:52:18.9184019Z       ---
+2026-10-11T14:52:18.9184510Z       duration_ms: 0.638755
+2026-10-11T14:52:18.9184936Z       type: 'test'
+2026-10-11T14:52:18.9186695Z       ...
+2026-10-11T14:52:18.9187173Z     # Subtest: active navigation has no prohibited placeholder labels
+2026-10-11T14:52:18.9187771Z     ok 2 - active navigation has no prohibited placeholder labels
+2026-10-11T14:52:18.9188237Z       ---
+2026-10-11T14:52:18.9188573Z       duration_ms: 0.414309
+2026-10-11T14:52:18.9189025Z       type: 'test'
+2026-10-11T14:52:18.9189821Z       ...
+2026-10-11T14:52:18.9190292Z     # Subtest: department IA centres are not in active Grand King nav
+2026-10-11T14:52:18.9190919Z     ok 3 - department IA centres are not in active Grand King nav
+2026-10-11T14:52:18.9211667Z       ---
+2026-10-11T14:52:18.9212218Z       duration_ms: 0.118297
+2026-10-11T14:52:18.9212590Z       type: 'test'
+2026-10-11T14:52:18.9212915Z       ...
+2026-10-11T14:52:18.9213358Z     # Subtest: Pillow workspace layout uses bounded chat shell (Mission 007)
+2026-10-11T14:52:18.9213982Z     ok 4 - Pillow workspace layout uses bounded chat shell (Mission 007)
+2026-10-11T14:52:18.9214448Z       ---
+2026-10-11T14:52:18.9214783Z       duration_ms: 0.096264
+2026-10-11T14:52:18.9215149Z       type: 'test'
+2026-10-11T14:52:18.9215478Z       ...
+2026-10-11T14:52:18.9215951Z     # Subtest: Executive Home places owner hierarchy before secondary centres
+2026-10-11T14:52:18.9216581Z     ok 5 - Executive Home places owner hierarchy before secondary centres
+2026-10-11T14:52:18.9217077Z       ---
+2026-10-11T14:52:18.9217420Z       duration_ms: 0.199848
+2026-10-11T14:52:18.9217853Z       type: 'test'
+2026-10-11T14:52:18.9218187Z       ...
+2026-10-11T14:52:18.9218748Z     # Subtest: Pillow conversation workspace is a full chat surface (not tiny history strip)
+2026-10-11T14:52:18.9219485Z     ok 6 - Pillow conversation workspace is a full chat surface (not tiny history strip)
+2026-10-11T14:52:18.9220011Z       ---
+2026-10-11T14:52:18.9220337Z       duration_ms: 0.267349
+2026-10-11T14:52:18.9220699Z       type: 'test'
+2026-10-11T14:52:18.9221027Z       ...
+2026-10-11T14:52:18.9221487Z     # Subtest: navigation marks unavailable centres honestly (Mission 007)
+2026-10-11T14:52:18.9222232Z     ok 7 - navigation marks unavailable centres honestly (Mission 007)
+2026-10-11T14:52:18.9222698Z       ---
+2026-10-11T14:52:18.9223020Z       duration_ms: 0.116454
+2026-10-11T14:52:18.9223382Z       type: 'test'
+2026-10-11T14:52:18.9223713Z       ...
+2026-10-11T14:52:18.9224512Z     # Subtest: Commerce decision workspace is natural-language first with technical disclosure
+2026-10-11T14:52:18.9225256Z     ok 8 - Commerce decision workspace is natural-language first with technical disclosure
+2026-10-11T14:52:18.9225793Z       ---
+2026-10-11T14:52:18.9226120Z       duration_ms: 0.251205
+2026-10-11T14:52:18.9226483Z       type: 'test'
+2026-10-11T14:52:18.9226830Z       ...
+2026-10-11T14:52:18.9227282Z     # Subtest: executive language hides raw CJ/SKU from default headline
+2026-10-11T14:52:18.9227898Z     ok 9 - executive language hides raw CJ/SKU from default headline
+2026-10-11T14:52:18.9228325Z       ---
+2026-10-11T14:52:18.9228635Z       duration_ms: 0.382842
+2026-10-11T14:52:18.9228973Z       type: 'test'
+2026-10-11T14:52:18.9229286Z       ...
+2026-10-11T14:52:18.9229780Z     # Subtest: expand() must not auto-focus Pillow (mount expand must not trap page scroll)
+2026-10-11T14:52:18.9230438Z     ok 10 - expand() must not auto-focus Pillow (mount expand must not trap page scroll)
+2026-10-11T14:52:18.9230940Z       ---
+2026-10-11T14:52:18.9231270Z       duration_ms: 0.386639
+2026-10-11T14:52:18.9231618Z       type: 'test'
+2026-10-11T14:52:18.9232116Z       ...
+2026-10-11T14:52:18.9232610Z     # Subtest: background context refresh must not share chat loading (Send must stay usable)
+2026-10-11T14:52:18.9233311Z     ok 11 - background context refresh must not share chat loading (Send must stay usable)
+2026-10-11T14:52:18.9233885Z       ---
+2026-10-11T14:52:18.9234197Z       duration_ms: 0.226609
+2026-10-11T14:52:18.9234541Z       type: 'test'
+2026-10-11T14:52:18.9234858Z       ...
+2026-10-11T14:52:18.9235430Z     # Subtest: sidebar stays sticky so nav remains clickable after scroll
+2026-10-11T14:52:18.9236033Z     ok 12 - sidebar stays sticky so nav remains clickable after scroll
+2026-10-11T14:52:18.9236476Z       ---
+2026-10-11T14:52:18.9236798Z       duration_ms: 0.268952
+2026-10-11T14:52:18.9237148Z       type: 'test'
+2026-10-11T14:52:18.9237475Z       ...
+2026-10-11T14:52:18.9238104Z     # Subtest: secondary polls use fetch budget and do not stack
+2026-10-11T14:52:18.9238635Z     ok 13 - secondary polls use fetch budget and do not stack
+2026-10-11T14:52:18.9239052Z       ---
+2026-10-11T14:52:18.9239362Z       duration_ms: 0.118206
+2026-10-11T14:52:18.9239708Z       type: 'test'
+2026-10-11T14:52:18.9240024Z       ...
+2026-10-11T14:52:18.9240326Z     1..13
+2026-10-11T14:52:18.9240704Z ok 6 - executive home truth + nav reality
+2026-10-11T14:52:18.9241087Z   ---
+2026-10-11T14:52:18.9241415Z   duration_ms: 4.573298
+2026-10-11T14:52:18.9241901Z   type: 'suite'
+2026-10-11T14:52:18.9242225Z   ...
+2026-10-11T14:52:18.9663197Z # Subtest: ExecutiveChatMarkdown helpers
+2026-10-11T14:52:18.9663798Z     # Subtest: renders saved pipe tables as cells without collapsing or changing the source
+2026-10-11T14:52:18.9664737Z     ok 1 - renders saved pipe tables as cells without collapsing or changing the source
+2026-10-11T14:52:18.9665081Z       ---
+2026-10-11T14:52:18.9665257Z       duration_ms: 2.345577
+2026-10-11T14:52:18.9665489Z       type: 'test'
+2026-10-11T14:52:18.9665708Z       ...
+2026-10-11T14:52:18.9666047Z     # Subtest: supports optional outer pipes, alignment delimiters, escaped pipes and text-only HTML
+2026-10-11T14:52:18.9666423Z     ok 2 - supports optional outer pipes, alignment delimiters, escaped pipes and text-only HTML
+2026-10-11T14:52:18.9666662Z       ---
+2026-10-11T14:52:18.9666776Z       duration_ms: 0.20745
+2026-10-11T14:52:18.9666909Z       type: 'test'
+2026-10-11T14:52:18.9667021Z       ...
+2026-10-11T14:52:18.9667241Z     # Subtest: does not swallow tables after prose or list bodies, or the following paragraph
+2026-10-11T14:52:18.9667570Z     ok 3 - does not swallow tables after prose or list bodies, or the following paragraph
+2026-10-11T14:52:18.9667787Z       ---
+2026-10-11T14:52:18.9667895Z       duration_ms: 0.74967
+2026-10-11T14:52:18.9668026Z       type: 'test'
+2026-10-11T14:52:18.9668136Z       ...
+2026-10-11T14:52:18.9668351Z     # Subtest: leaves ordinary pipes and malformed tables as text, retaining mismatched rows
+2026-10-11T14:52:18.9668996Z     ok 4 - leaves ordinary pipes and malformed tables as text, retaining mismatched rows
+2026-10-11T14:52:18.9669210Z       ---
+2026-10-11T14:52:18.9669320Z       duration_ms: 0.404325
+2026-10-11T14:52:18.9669448Z       type: 'test'
+2026-10-11T14:52:18.9669559Z       ...
+2026-10-11T14:52:18.9669704Z     # Subtest: detects bold/lists/headings as markdown
+2026-10-11T14:52:18.9669903Z     ok 5 - detects bold/lists/headings as markdown
+2026-10-11T14:52:18.9670061Z       ---
+2026-10-11T14:52:18.9670170Z       duration_ms: 0.121151
+2026-10-11T14:52:18.9670297Z       type: 'test'
+2026-10-11T14:52:18.9670406Z       ...
+2026-10-11T14:52:18.9670608Z     # Subtest: plain conversational text is not forced through markdown structure
+2026-10-11T14:52:18.9670911Z     ok 6 - plain conversational text is not forced through markdown structure
+2026-10-11T14:52:18.9671110Z       ---
+2026-10-11T14:52:18.9671223Z       duration_ms: 0.123595
+2026-10-11T14:52:18.9671354Z       type: 'test'
+2026-10-11T14:52:18.9671481Z       ...
+2026-10-11T14:52:18.9671666Z     # Subtest: 3 requested numbered sections parse as one ol with 3 items
+2026-10-11T14:52:18.9672202Z     ok 7 - 3 requested numbered sections parse as one ol with 3 items
+2026-10-11T14:52:18.9672496Z       ---
+2026-10-11T14:52:18.9672672Z       duration_ms: 0.202002
+2026-10-11T14:52:18.9672911Z       type: 'test'
+2026-10-11T14:52:18.9673088Z       ...
+2026-10-11T14:52:18.9673368Z     # Subtest: 7 numbered sections with body stay one sequential ol
+2026-10-11T14:52:18.9673829Z     ok 8 - 7 numbered sections with body stay one sequential ol
+2026-10-11T14:52:18.9674126Z       ---
+2026-10-11T14:52:18.9674410Z       duration_ms: 0.427449
+2026-10-11T14:52:18.9674616Z       type: 'test'
+2026-10-11T14:52:18.9674792Z       ...
+2026-10-11T14:52:18.9675075Z     # Subtest: nested bullets under numbered items do not split the ol
+2026-10-11T14:52:18.9675486Z     ok 9 - nested bullets under numbered items do not split the ol
+2026-10-11T14:52:18.9675784Z       ---
+2026-10-11T14:52:18.9676123Z       duration_ms: 0.370834
+2026-10-11T14:52:18.9676329Z       type: 'test'
+2026-10-11T14:52:18.9676509Z       ...
+2026-10-11T14:52:18.9676840Z     # Subtest: heading between sections ends the prior ol (new list may start after)
+2026-10-11T14:52:18.9677344Z     ok 10 - heading between sections ends the prior ol (new list may start after)
+2026-10-11T14:52:18.9677683Z       ---
+2026-10-11T14:52:18.9677855Z       duration_ms: 0.411505
+2026-10-11T14:52:18.9678060Z       type: 'test'
+2026-10-11T14:52:18.9678236Z       ...
+2026-10-11T14:52:18.9678891Z     # Subtest: inline next-section marker is split — no text. 3. Heading continuity
+2026-10-11T14:52:18.9679451Z     ok 11 - inline next-section marker is split — no text. 3. Heading continuity
+2026-10-11T14:52:18.9679776Z       ---
+2026-10-11T14:52:18.9679951Z       duration_ms: 0.344074
+2026-10-11T14:52:18.9680154Z       type: 'test'
+2026-10-11T14:52:18.9680331Z       ...
+2026-10-11T14:52:18.9680500Z     1..11
+2026-10-11T14:52:18.9680737Z ok 7 - ExecutiveChatMarkdown helpers
+2026-10-11T14:52:18.9680974Z   ---
+2026-10-11T14:52:18.9681150Z   duration_ms: 6.879676
+2026-10-11T14:52:18.9681349Z   type: 'suite'
+2026-10-11T14:52:18.9681524Z   ...
+2026-10-11T14:52:18.9815894Z # Subtest: executive presentation (Mission 007)
+2026-10-11T14:52:18.9821097Z     # Subtest: formats human-readable times without raw ISO default
+2026-10-11T14:52:18.9821674Z     ok 1 - formats human-readable times without raw ISO default
+2026-10-11T14:52:18.9822148Z       ---
+2026-10-11T14:52:18.9822366Z       duration_ms: 14.199559
+2026-10-11T14:52:18.9822585Z       type: 'test'
+2026-10-11T14:52:18.9822759Z       ...
+2026-10-11T14:52:18.9822993Z     # Subtest: scrubs machine language from default copy
+2026-10-11T14:52:18.9823340Z     ok 2 - scrubs machine language from default copy
+2026-10-11T14:52:18.9823595Z       ---
+2026-10-11T14:52:18.9823755Z       duration_ms: 0.739866
+2026-10-11T14:52:18.9823941Z       type: 'test'
+2026-10-11T14:52:18.9824596Z       ...
+2026-10-11T14:52:18.9824849Z     # Subtest: humanizes commissioning terminology
+2026-10-11T14:52:18.9825142Z     ok 3 - humanizes commissioning terminology
+2026-10-11T14:52:18.9825370Z       ---
+2026-10-11T14:52:18.9825532Z       duration_ms: 0.260599
+2026-10-11T14:52:18.9825731Z       type: 'test'
+2026-10-11T14:52:18.9825892Z       ...
+2026-10-11T14:52:18.9826120Z     # Subtest: labels attention priorities for Grand King
+2026-10-11T14:52:18.9826451Z     ok 4 - labels attention priorities for Grand King
+2026-10-11T14:52:18.9826686Z       ---
+2026-10-11T14:52:18.9826849Z       duration_ms: 0.126329
+2026-10-11T14:52:18.9827038Z       type: 'test'
+2026-10-11T14:52:18.9827200Z       ...
+2026-10-11T14:52:18.9827416Z     # Subtest: explains existing-ASIN listing route
+2026-10-11T14:52:18.9827721Z     ok 5 - explains existing-ASIN listing route
+2026-10-11T14:52:18.9827956Z       ---
+2026-10-11T14:52:18.9828122Z       duration_ms: 0.172317
+2026-10-11T14:52:18.9828312Z       type: 'test'
+2026-10-11T14:52:18.9828482Z       ...
+2026-10-11T14:52:18.9828750Z     # Subtest: labels financial truth statuses
+2026-10-11T14:52:18.9829025Z     ok 6 - labels financial truth statuses
+2026-10-11T14:52:18.9842352Z       ---
+2026-10-11T14:52:18.9842778Z       duration_ms: 2.774187
+2026-10-11T14:52:18.9843117Z       type: 'test'
+2026-10-11T14:52:18.9843408Z       ...
+2026-10-11T14:52:18.9843685Z     1..6
+2026-10-11T14:52:18.9844044Z ok 8 - executive presentation (Mission 007)
+2026-10-11T14:52:18.9844617Z   ---
+2026-10-11T14:52:18.9844915Z   duration_ms: 19.084893
+2026-10-11T14:52:18.9845229Z   type: 'suite'
+2026-10-11T14:52:18.9845515Z   ...
+2026-10-11T14:52:19.1292095Z # Subtest: Pillow chat scale (Mission 007)
+2026-10-11T14:52:19.1293776Z     # Subtest: bounds rendered turns for large synthetic histories
+2026-10-11T14:52:19.1308996Z     ok 1 - bounds rendered turns for large synthetic histories
+2026-10-11T14:52:19.1309490Z       ---
+2026-10-11T14:52:19.1309803Z       duration_ms: 4.582677
+2026-10-11T14:52:19.1310175Z       type: 'test'
+2026-10-11T14:52:19.1310802Z       ...
+2026-10-11T14:52:19.1311258Z     # Subtest: load-earlier expands window without rendering entire history at once
+2026-10-11T14:52:19.1312068Z     ok 2 - load-earlier expands window without rendering entire history at once
+2026-10-11T14:52:19.1312529Z       ---
+2026-10-11T14:52:19.1312826Z       duration_ms: 0.123775
+2026-10-11T14:52:19.1313149Z       type: 'test'
+2026-10-11T14:52:19.1313440Z       ...
+2026-10-11T14:52:19.1313772Z     1..2
+2026-10-11T14:52:19.1314121Z ok 9 - Pillow chat scale (Mission 007)
+2026-10-11T14:52:19.1314469Z   ---
+2026-10-11T14:52:19.1314762Z   duration_ms: 5.417015
+2026-10-11T14:52:19.1315072Z   type: 'suite'
+2026-10-11T14:52:19.1315359Z   ...
+2026-10-11T14:52:19.1493889Z # Subtest: resolveKpiDisplayValue
+2026-10-11T14:52:19.1512364Z     # Subtest: never returns placeholder values for LIVE KPIs
+2026-10-11T14:52:19.1519843Z     ok 1 - never returns placeholder values for LIVE KPIs
+2026-10-11T14:52:19.1520260Z       ---
+2026-10-11T14:52:19.1520645Z       duration_ms: 0.571374
+2026-10-11T14:52:19.1520989Z       type: 'test'
+2026-10-11T14:52:19.1521293Z       ...
+2026-10-11T14:52:19.1521585Z     1..1
+2026-10-11T14:52:19.1522122Z ok 10 - resolveKpiDisplayValue
+2026-10-11T14:52:19.1522640Z   ---
+2026-10-11T14:52:19.1524307Z   duration_ms: 1.225132
+2026-10-11T14:52:19.1524642Z   type: 'suite'
+2026-10-11T14:52:19.1524951Z   ...
+2026-10-11T14:52:19.1525625Z # (node:2603) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+2026-10-11T14:52:19.1526351Z # (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-11T14:52:19.1526967Z # Subtest: Strict Mode setup/cleanup/setup starts only the surviving read
+2026-10-11T14:52:19.1527565Z ok 11 - Strict Mode setup/cleanup/setup starts only the surviving read
+2026-10-11T14:52:19.1527987Z   ---
+2026-10-11T14:52:19.1528313Z   duration_ms: 1.098252
+2026-10-11T14:52:19.1528717Z   type: 'test'
+2026-10-11T14:52:19.1529036Z   ...
+2026-10-11T14:52:19.1530070Z # Subtest: one-shot read and manual refresh do not acquire a polling loop
+2026-10-11T14:52:19.1530795Z ok 12 - one-shot read and manual refresh do not acquire a polling loop
+2026-10-11T14:52:19.1531341Z   ---
+2026-10-11T14:52:19.1531727Z   duration_ms: 0.162753
+2026-10-11T14:52:19.1532250Z   type: 'test'
+2026-10-11T14:52:19.1532622Z   ...
+2026-10-11T14:52:19.2929701Z # Subtest: Mission 006 Grand King UX defect classes (web)
+2026-10-11T14:52:19.2937177Z     # Subtest: classifies blockers vs polish
+2026-10-11T14:52:19.2938282Z     ok 1 - classifies blockers vs polish
+2026-10-11T14:52:19.2938712Z       ---
+2026-10-11T14:52:19.2939045Z       duration_ms: 0.533023
+2026-10-11T14:52:19.2939416Z       type: 'test'
+2026-10-11T14:52:19.2939748Z       ...
+2026-10-11T14:52:19.2940176Z     # Subtest: commissioning strip surfaces winning purpose fields
+2026-10-11T14:52:19.2940977Z     ok 2 - commissioning strip surfaces winning purpose fields
+2026-10-11T14:52:19.2941427Z       ---
+2026-10-11T14:52:19.2941961Z       duration_ms: 0.234761
+2026-10-11T14:52:19.2942344Z       type: 'test'
+2026-10-11T14:52:19.2942675Z       ...
+2026-10-11T14:52:19.2942996Z     1..2
+2026-10-11T14:52:19.2943420Z ok 13 - Mission 006 Grand King UX defect classes (web)
+2026-10-11T14:52:19.2943843Z   ---
+2026-10-11T14:52:19.2944176Z   duration_ms: 1.529858
+2026-10-11T14:52:19.2944528Z   type: 'suite'
+2026-10-11T14:52:19.2944861Z   ...
+2026-10-11T14:52:19.3208609Z # Subtest: owner transaction BFF forwards session once, preserves denial and prevents cached or foreign-workspace reads
+2026-10-11T14:52:19.3215538Z ok 14 - owner transaction BFF forwards session once, preserves denial and prevents cached or foreign-workspace reads
+2026-10-11T14:52:19.3216309Z   ---
+2026-10-11T14:52:19.3216676Z   duration_ms: 21.325954
+2026-10-11T14:52:19.3217021Z   type: 'test'
+2026-10-11T14:52:19.3217338Z   ...
+2026-10-11T14:52:19.3711397Z # Subtest: Advisor BFF bounds routes, denies anonymous and cross-origin writes, preserves owner session and structured result
+2026-10-11T14:52:19.3715677Z ok 15 - Advisor BFF bounds routes, denies anonymous and cross-origin writes, preserves owner session and structured result
+2026-10-11T14:52:19.3718715Z   ---
+2026-10-11T14:52:19.3719081Z   duration_ms: 22.630385
+2026-10-11T14:52:19.3719439Z   type: 'test'
+2026-10-11T14:52:19.3719745Z   ...
+2026-10-11T14:52:19.3732617Z # Subtest: Memory writes retain owner authentication and same-origin protection
+2026-10-11T14:52:19.3736626Z ok 16 - Memory writes retain owner authentication and same-origin protection
+2026-10-11T14:52:19.3738427Z   ---
+2026-10-11T14:52:19.3738756Z   duration_ms: 0.58225
+2026-10-11T14:52:19.3739095Z   type: 'test'
+2026-10-11T14:52:19.3739402Z   ...
+2026-10-11T14:52:19.3740002Z # Subtest: Intelligence commands retain same-origin authentication; arbitrary effect routes stay denied
+2026-10-11T14:52:19.3740822Z ok 17 - Intelligence commands retain same-origin authentication; arbitrary effect routes stay denied
+2026-10-11T14:52:19.3741356Z   ---
+2026-10-11T14:52:19.3741675Z   duration_ms: 0.922808
+2026-10-11T14:52:19.3742175Z   type: 'test'
+2026-10-11T14:52:19.3742481Z   ...
+2026-10-11T14:52:19.5308771Z # Subtest: forged, unauthenticated and expanded authority never reach upstream
+2026-10-11T14:52:19.5364071Z ok 18 - forged, unauthenticated and expanded authority never reach upstream
+2026-10-11T14:52:19.5370471Z   ---
+2026-10-11T14:52:19.5370731Z   duration_ms: 20.448717
+2026-10-11T14:52:19.5370971Z   type: 'test'
+2026-10-11T14:52:19.5371151Z   ...
+2026-10-11T14:52:19.5371553Z # Subtest: one authenticated command preserves exact id and upstream denial; no retry
+2026-10-11T14:52:19.5372506Z ok 19 - one authenticated command preserves exact id and upstream denial; no retry
+2026-10-11T14:52:19.5372907Z   ---
+2026-10-11T14:52:19.5402482Z   duration_ms: 2.122965
+2026-10-11T14:52:19.5432296Z   type: 'test'
+2026-10-11T14:52:19.5448532Z   ...
+2026-10-11T14:52:19.5453258Z # Subtest: engineering BFF is bounded and cannot manufacture closure
+2026-10-11T14:52:19.5454594Z ok 20 - engineering BFF is bounded and cannot manufacture closure
+2026-10-11T14:52:19.5455340Z   ---
+2026-10-11T14:52:19.5455679Z   duration_ms: 0.212516
+2026-10-11T14:52:19.5456034Z   type: 'test'
+2026-10-11T14:52:19.5456356Z   ...
+2026-10-11T14:52:19.5456994Z # Subtest: stale, future, missing monitor and malformed evidence cannot look healthy
+2026-10-11T14:52:19.5457891Z ok 21 - stale, future, missing monitor and malformed evidence cannot look healthy
+2026-10-11T14:52:19.5458513Z   ---
+2026-10-11T14:52:19.5458936Z   duration_ms: 0.560937
+2026-10-11T14:52:19.5459386Z   type: 'test'
+2026-10-11T14:52:19.5459813Z   ...
+2026-10-11T14:52:19.5460545Z # Subtest: release verification requires exact bounded source identities and complete attestation
+2026-10-11T14:52:19.5461621Z ok 22 - release verification requires exact bounded source identities and complete attestation
+2026-10-11T14:52:19.5462473Z   ---
+2026-10-11T14:52:19.5462798Z   duration_ms: 0.441087
+2026-10-11T14:52:19.5463131Z   type: 'test'
+2026-10-11T14:52:19.5463456Z   ...
+2026-10-11T14:52:19.5463954Z # Subtest: handover command has no arbitrary payload or authority expansion
+2026-10-11T14:52:19.5464607Z ok 23 - handover command has no arbitrary payload or authority expansion
+2026-10-11T14:52:19.5465073Z   ---
+2026-10-11T14:52:19.5465400Z   duration_ms: 0.125198
+2026-10-11T14:52:19.5465746Z   type: 'test'
+2026-10-11T14:52:19.5466063Z   ...
+2026-10-11T14:52:19.5673756Z # Subtest: partial independent coverage never becomes full coverage or Birth readiness
+2026-10-11T14:52:19.5702967Z ok 24 - partial independent coverage never becomes full coverage or Birth readiness
+2026-10-11T14:52:19.5732534Z   ---
+2026-10-11T14:52:19.5733076Z   duration_ms: 0.806485
+2026-10-11T14:52:19.5768489Z   type: 'test'
+2026-10-11T14:52:19.5792135Z   ...
+2026-10-11T14:52:19.5812667Z # Subtest: stale, duplicate, missing, unknown domains and unknown verdicts cannot publish counts
+2026-10-11T14:52:19.5813826Z ok 25 - stale, duplicate, missing, unknown domains and unknown verdicts cannot publish counts
+2026-10-11T14:52:19.5814439Z   ---
+2026-10-11T14:52:19.5815159Z   duration_ms: 0.209582
+2026-10-11T14:52:19.5815532Z   type: 'test'
+2026-10-11T14:52:19.5815878Z   ...
+2026-10-11T14:52:19.6089093Z # Subtest: Operational profit excludes infrastructure, receivables, forecasts and test history
+2026-10-11T14:52:19.6122859Z ok 26 - Operational profit excludes infrastructure, receivables, forecasts and test history
+2026-10-11T14:52:19.6144640Z   ---
+2026-10-11T14:52:19.6198924Z   duration_ms: 1.380401
+2026-10-11T14:52:19.6222467Z   type: 'test'
+2026-10-11T14:52:19.6252283Z   ...
+2026-10-11T14:52:19.6262578Z # Subtest: Absent records and unknown FX do not become zero or a profit
+2026-10-11T14:52:19.6283300Z ok 27 - Absent records and unknown FX do not become zero or a profit
+2026-10-11T14:52:19.6283989Z   ---
+2026-10-11T14:52:19.6284310Z   duration_ms: 0.190942
+2026-10-11T14:52:19.6284636Z   type: 'test'
+2026-10-11T14:52:19.6284926Z   ...
+2026-10-11T14:52:19.6285562Z # Subtest: Provider totals include confirmed infrastructure only, retaining other stages separately
+2026-10-11T14:52:19.6286955Z ok 28 - Provider totals include confirmed infrastructure only, retaining other stages separately
+2026-10-11T14:52:19.6287586Z   ---
+2026-10-11T14:52:19.6288158Z   duration_ms: 0.388865
+2026-10-11T14:52:19.6288588Z   type: 'test'
+2026-10-11T14:52:19.6288978Z   ...
+2026-10-11T14:52:19.6289627Z # Subtest: Singapore periods and exact evidence identity are preserved
+2026-10-11T14:52:19.6290434Z ok 29 - Singapore periods and exact evidence identity are preserved
+2026-10-11T14:52:19.6291108Z   ---
+2026-10-11T14:52:19.6291546Z   duration_ms: 14.034821
+2026-10-11T14:52:19.6384214Z   type: 'test'
+2026-10-11T14:52:19.6384694Z   ...
+2026-10-11T14:52:19.7269482Z # Subtest: Executive amounts retain unknown currency and nonzero sub-cent usage
+2026-10-11T14:52:19.7294641Z ok 30 - Executive amounts retain unknown currency and nonzero sub-cent usage
+2026-10-11T14:52:19.7320834Z   ---
+2026-10-11T14:52:19.7321194Z   duration_ms: 10.695287
+2026-10-11T14:52:19.7321989Z   type: 'test'
+2026-10-11T14:52:19.7322266Z   ...
+2026-10-11T14:52:19.7322762Z # Subtest: Owner dates and pricing warnings preserve meaning without internal timestamps
+2026-10-11T14:52:19.7323437Z ok 31 - Owner dates and pricing warnings preserve meaning without internal timestamps
+2026-10-11T14:52:19.7323871Z   ---
+2026-10-11T14:52:19.7324131Z   duration_ms: 2.855052
+2026-10-11T14:52:19.7324415Z   type: 'test'
+2026-10-11T14:52:19.7324669Z   ...
+2026-10-11T14:52:19.7555465Z # Subtest: Transcript-length titles remain bounded excerpts without inventing or changing source advice
+2026-10-11T14:52:19.7588315Z ok 32 - Transcript-length titles remain bounded excerpts without inventing or changing source advice
+2026-10-11T14:52:19.7589120Z   ---
+2026-10-11T14:52:19.7589437Z   duration_ms: 1.099278
+2026-10-11T14:52:19.7589720Z   type: 'test'
+2026-10-11T14:52:19.7589975Z   ...
+2026-10-11T14:52:19.7590449Z # Subtest: Missing metric displays do not invent zero or suppress financial exceptions
+2026-10-11T14:52:19.7591124Z ok 33 - Missing metric displays do not invent zero or suppress financial exceptions
+2026-10-11T14:52:19.7591543Z   ---
+2026-10-11T14:52:19.7591919Z   duration_ms: 0.142865
+2026-10-11T14:52:19.7592187Z   type: 'test'
+2026-10-11T14:52:19.7592443Z   ...
+2026-10-11T14:52:19.7592944Z # Subtest: Home keeps actionable risk regardless of historical identity; source remains unchanged
+2026-10-11T14:52:19.7593658Z ok 34 - Home keeps actionable risk regardless of historical identity; source remains unchanged
+2026-10-11T14:52:19.7594101Z   ---
+2026-10-11T14:52:19.7594348Z   duration_ms: 0.139921
+2026-10-11T14:52:19.7594615Z   type: 'test'
+2026-10-11T14:52:19.7594860Z   ...
+2026-10-11T14:52:19.7595357Z # Subtest: Chat and historic performance retain CEO context; assurance retains governance context
+2026-10-11T14:52:19.7596045Z ok 35 - Chat and historic performance retain CEO context; assurance retains governance context
+2026-10-11T14:52:19.7596485Z   ---
+2026-10-11T14:52:19.7596754Z   duration_ms: 0.262565
+2026-10-11T14:52:19.7597532Z   type: 'test'
+2026-10-11T14:52:19.7597899Z   ...
+2026-10-11T14:52:19.7598401Z # Subtest: Legacy commerce contexts map to functional parents without changing routes
+2026-10-11T14:52:19.7599017Z ok 36 - Legacy commerce contexts map to functional parents without changing routes
+2026-10-11T14:52:19.7599419Z   ---
+2026-10-11T14:52:19.7599664Z   duration_ms: 0.15182
+2026-10-11T14:52:19.7599933Z   type: 'test'
+2026-10-11T14:52:19.7600177Z   ...
+2026-10-11T14:52:19.8397808Z # Subtest: saved owner evidence requires founder session in the owner workspace; no provider access
+2026-10-11T14:52:19.8404422Z ok 37 - saved owner evidence requires founder session in the owner workspace; no provider access
+2026-10-11T14:52:19.8405025Z   ---
+2026-10-11T14:52:19.8405366Z   duration_ms: 22.249894
+2026-10-11T14:52:19.8405719Z   type: 'test'
+2026-10-11T14:52:19.8406022Z   ...
+2026-10-11T14:52:19.8982938Z # Subtest: owner verification requires the exact release and every locked readiness invariant
+2026-10-11T14:52:19.8995832Z ok 38 - owner verification requires the exact release and every locked readiness invariant
+2026-10-11T14:52:19.8996814Z   ---
+2026-10-11T14:52:19.9004604Z   duration_ms: 0.579286
+2026-10-11T14:52:19.9015754Z   type: 'test'
+2026-10-11T14:52:19.9016164Z   ...
+2026-10-11T14:52:19.9655783Z # Subtest: Infrastructure separates stages and excludes unallocated team amounts
+2026-10-11T14:52:19.9696419Z ok 39 - Infrastructure separates stages and excludes unallocated team amounts
+2026-10-11T14:52:19.9699124Z   ---
+2026-10-11T14:52:19.9699267Z   duration_ms: 16.846003
+2026-10-11T14:52:19.9699411Z   type: 'test'
+2026-10-11T14:52:19.9699526Z   ...
+2026-10-11T14:52:19.9699797Z # Subtest: Renewals require recorded dates; directory changes preserve connection authority
+2026-10-11T14:52:19.9700182Z ok 40 - Renewals require recorded dates; directory changes preserve connection authority
+2026-10-11T14:52:19.9700409Z   ---
+2026-10-11T14:52:19.9700522Z   duration_ms: 0.430781
+2026-10-11T14:52:19.9700908Z   type: 'test'
+2026-10-11T14:52:19.9701027Z   ...
+2026-10-11T14:52:19.9701249Z # Subtest: Grouping preserves distinct facts and all original evidence identities
+2026-10-11T14:52:19.9701577Z ok 41 - Grouping preserves distinct facts and all original evidence identities
+2026-10-11T14:52:19.9701970Z   ---
+2026-10-11T14:52:19.9702136Z   duration_ms: 0.408536
+2026-10-11T14:52:19.9702328Z   type: 'test'
+2026-10-11T14:52:19.9702495Z   ...
+2026-10-11T14:52:19.9702854Z # Subtest: Owner discovery summaries keep technical identities in the source drill-down
+2026-10-11T14:52:19.9703218Z ok 42 - Owner discovery summaries keep technical identities in the source drill-down
+2026-10-11T14:52:19.9703429Z   ---
+2026-10-11T14:52:19.9703538Z   duration_ms: 0.362633
+2026-10-11T14:52:19.9703660Z   type: 'test'
+2026-10-11T14:52:19.9703766Z   ...
+2026-10-11T14:52:20.0730376Z # Subtest: P7-03 Pillow UX
+2026-10-11T14:52:20.0772826Z     # Subtest: resolves cockpit screen context for executive home
+2026-10-11T14:52:20.0782580Z     ok 1 - resolves cockpit screen context for executive home
+2026-10-11T14:52:20.0783034Z       ---
+2026-10-11T14:52:20.0783317Z       duration_ms: 0.744216
+2026-10-11T14:52:20.0783618Z       type: 'test'
+2026-10-11T14:52:20.0783881Z       ...
+2026-10-11T14:52:20.0784284Z     # Subtest: builds workspace context with constitutional executive fields
+2026-10-11T14:52:20.0784857Z     ok 2 - builds workspace context with constitutional executive fields
+2026-10-11T14:52:20.0785262Z       ---
+2026-10-11T14:52:20.0785526Z       duration_ms: 0.247902
+2026-10-11T14:52:20.0785818Z       type: 'test'
+2026-10-11T14:52:20.0786077Z       ...
+2026-10-11T14:52:20.0786447Z     # Subtest: builds executive snapshot from founder shell payload
+2026-10-11T14:52:20.0786933Z     ok 3 - builds executive snapshot from founder shell payload
+2026-10-11T14:52:20.0787313Z       ---
+2026-10-11T14:52:20.0787596Z       duration_ms: 0.236243
+2026-10-11T14:52:20.0787909Z       type: 'test'
+2026-10-11T14:52:20.0788169Z       ...
+2026-10-11T14:52:20.0788810Z     # Subtest: proactive guidance includes explainability fields
+2026-10-11T14:52:20.0789306Z     ok 4 - proactive guidance includes explainability fields
+2026-10-11T14:52:20.0789669Z       ---
+2026-10-11T14:52:20.0789929Z       duration_ms: 0.163339
+2026-10-11T14:52:20.0790224Z       type: 'test'
+2026-10-11T14:52:20.0790480Z       ...
+2026-10-11T14:52:20.0790866Z     # Subtest: executive action prompts require explainability structure
+2026-10-11T14:52:20.0791384Z     ok 5 - executive action prompts require explainability structure
+2026-10-11T14:52:20.0791922Z       ---
+2026-10-11T14:52:20.0792185Z       duration_ms: 0.143537
+2026-10-11T14:52:20.0792474Z       type: 'test'
+2026-10-11T14:52:20.0792733Z       ...
+2026-10-11T14:52:20.0792968Z     1..5
+2026-10-11T14:52:20.0793251Z ok 43 - P7-03 Pillow UX
+2026-10-11T14:52:20.0793533Z   ---
+2026-10-11T14:52:20.0793795Z   duration_ms: 2.254714
+2026-10-11T14:52:20.0794072Z   type: 'suite'
+2026-10-11T14:52:20.0794325Z   ...
+2026-10-11T14:52:20.1243365Z # Subtest: BFF chat sanitize path-parity + valid-answer invariant
+2026-10-11T14:52:20.1263162Z     # Subtest: does not degrade substantive NovaCart answer that includes product-focus footer
+2026-10-11T14:52:20.1291008Z     ok 1 - does not degrade substantive NovaCart answer that includes product-focus footer
+2026-10-11T14:52:20.1322482Z       ---
+2026-10-11T14:52:20.1345848Z       duration_ms: 2.719208
+2026-10-11T14:52:20.1346366Z       type: 'test'
+2026-10-11T14:52:20.1390328Z       ...
+2026-10-11T14:52:20.1412468Z     # Subtest: LumaHome-style single paragraph with product focus MUST NOT become terminal
+2026-10-11T14:52:20.1442477Z     ok 2 - LumaHome-style single paragraph with product focus MUST NOT become terminal
+2026-10-11T14:52:20.1443033Z       ---
+2026-10-11T14:52:20.1445765Z       duration_ms: 0.42434
+2026-10-11T14:52:20.1446129Z       type: 'test'
+2026-10-11T14:52:20.1446434Z       ...
+2026-10-11T14:52:20.1446797Z     # Subtest: still degrades truly empty upstream
+2026-10-11T14:52:20.1447699Z     ok 3 - still degrades truly empty upstream
+2026-10-11T14:52:20.1448195Z       ---
+2026-10-11T14:52:20.1448548Z       duration_ms: 0.122723
+2026-10-11T14:52:20.1448869Z       type: 'test'
+2026-10-11T14:52:20.1449162Z       ...
+2026-10-11T14:52:20.1449531Z     # Subtest: still degrades short worker proxy timeout text
+2026-10-11T14:52:20.1450002Z     ok 4 - still degrades short worker proxy timeout text
+2026-10-11T14:52:20.1450377Z       ---
+2026-10-11T14:52:20.1450667Z       duration_ms: 0.08862
+2026-10-11T14:52:20.1450988Z       type: 'test'
+2026-10-11T14:52:20.1451283Z       ...
+2026-10-11T14:52:20.1451638Z     # Subtest: strip helper removes pure footer lines only
+2026-10-11T14:52:20.1452386Z     ok 5 - strip helper removes pure footer lines only
+2026-10-11T14:52:20.1452758Z       ---
+2026-10-11T14:52:20.1453048Z       duration_ms: 0.174575
+2026-10-11T14:52:20.1453366Z       type: 'test'
+2026-10-11T14:52:20.1453652Z       ...
+2026-10-11T14:52:20.1454069Z     # Subtest: terminal copy points to durable retrieval, not false ownership
+2026-10-11T14:52:20.1454646Z     ok 6 - terminal copy points to durable retrieval, not false ownership
+2026-10-11T14:52:20.1455059Z       ---
+2026-10-11T14:52:20.1455346Z       duration_ms: 0.128874
+2026-10-11T14:52:20.1455656Z       type: 'test'
+2026-10-11T14:52:20.1455943Z       ...
+2026-10-11T14:52:20.1456362Z     # Subtest: VALID_BRAIN_ANSWER_REPLACED invariant: nonempty never degrades
+2026-10-11T14:52:20.1456910Z     ok 7 - VALID_BRAIN_ANSWER_REPLACED invariant: nonempty never degrades
+2026-10-11T14:52:20.1457404Z       ---
+2026-10-11T14:52:20.1457696Z       duration_ms: 0.329271
+2026-10-11T14:52:20.1458015Z       type: 'test'
+2026-10-11T14:52:20.1458310Z       ...
+2026-10-11T14:52:20.1458708Z     # Subtest: Tier-0 terminal_infrastructure is NOT brain success
+2026-10-11T14:52:20.1459221Z     ok 8 - Tier-0 terminal_infrastructure is NOT brain success
+2026-10-11T14:52:20.1482269Z       ---
+2026-10-11T14:52:20.1490530Z       duration_ms: 0.154995
+2026-10-11T14:52:20.1490919Z       type: 'test'
+2026-10-11T14:52:20.1491540Z       ...
+2026-10-11T14:52:20.1492096Z     # Subtest: durable_pending is not a BFF degrade terminal
+2026-10-11T14:52:20.1492594Z     ok 9 - durable_pending is not a BFF degrade terminal
+2026-10-11T14:52:20.1492992Z       ---
+2026-10-11T14:52:20.1493291Z       duration_ms: 0.220058
+2026-10-11T14:52:20.1493617Z       type: 'test'
+2026-10-11T14:52:20.1493912Z       ...
+2026-10-11T14:52:20.1494355Z     # Subtest: preserves explicit Tier-0 durability failures as non-200 responses
+2026-10-11T14:52:20.1494965Z     ok 10 - preserves explicit Tier-0 durability failures as non-200 responses
+2026-10-11T14:52:20.1495410Z       ---
+2026-10-11T14:52:20.1495745Z       duration_ms: 0.24075
+2026-10-11T14:52:20.1496061Z       type: 'test'
+2026-10-11T14:52:20.1496351Z       ...
+2026-10-11T14:52:20.1496629Z     1..10
+2026-10-11T14:52:20.1497037Z ok 44 - BFF chat sanitize path-parity + valid-answer invariant
+2026-10-11T14:52:20.1497439Z   ---
+2026-10-11T14:52:20.1497730Z   duration_ms: 5.641956
+2026-10-11T14:52:20.1498061Z   type: 'suite'
+2026-10-11T14:52:20.1498343Z   ...
+2026-10-11T14:52:20.1498844Z # Subtest: preserves auth, authority and availability failures without false admission
+2026-10-11T14:52:20.1502718Z ok 45 - preserves auth, authority and availability failures without false admission
+2026-10-11T14:52:20.1503223Z   ---
+2026-10-11T14:52:20.1503511Z   duration_ms: 0.209391
+2026-10-11T14:52:20.1503821Z   type: 'test'
+2026-10-11T14:52:20.1504108Z   ...
+2026-10-11T14:52:20.2425405Z # Subtest: actual BFF forwards authenticated synthetic answers and repeated durable retrieval
+2026-10-11T14:52:20.2451551Z ok 46 - actual BFF forwards authenticated synthetic answers and repeated durable retrieval
+2026-10-11T14:52:20.2452085Z   ---
+2026-10-11T14:52:20.2452281Z   duration_ms: 30.124049
+2026-10-11T14:52:20.2452470Z   type: 'test'
+2026-10-11T14:52:20.2452628Z   ...
+2026-10-11T14:52:20.2887387Z # Subtest: typed answer survives quoted transport language unchanged
+2026-10-11T14:52:20.2900694Z ok 47 - typed answer survives quoted transport language unchanged
+2026-10-11T14:52:20.2932575Z   ---
+2026-10-11T14:52:20.2933265Z   duration_ms: 0.961208
+2026-10-11T14:52:20.2933623Z   type: 'test'
+2026-10-11T14:52:20.2933939Z   ...
+2026-10-11T14:52:20.2934468Z # Subtest: failure metadata remains authoritative: {"kind":"degraded_useful"}
+2026-10-11T14:52:20.2935111Z ok 48 - failure metadata remains authoritative: {"kind":"degraded_useful"}
+2026-10-11T14:52:20.2935558Z   ---
+2026-10-11T14:52:20.2935860Z   duration_ms: 0.088342
+2026-10-11T14:52:20.2936178Z   type: 'test'
+2026-10-11T14:52:20.2936482Z   ...
+2026-10-11T14:52:20.2936961Z # Subtest: failure metadata remains authoritative: {"brainCompleted":false}
+2026-10-11T14:52:20.2937633Z ok 49 - failure metadata remains authoritative: {"brainCompleted":false}
+2026-10-11T14:52:20.2938105Z   ---
+2026-10-11T14:52:20.2938404Z   duration_ms: 0.047882
+2026-10-11T14:52:20.2938720Z   type: 'test'
+2026-10-11T14:52:20.2939013Z   ...
+2026-10-11T14:52:20.2939503Z # Subtest: failure metadata remains authoritative: {"semanticSuccess":false}
+2026-10-11T14:52:20.2940147Z ok 50 - failure metadata remains authoritative: {"semanticSuccess":false}
+2026-10-11T14:52:20.2940588Z   ---
+2026-10-11T14:52:20.2940880Z   duration_ms: 0.038267
+2026-10-11T14:52:20.2941198Z   type: 'test'
+2026-10-11T14:52:20.2941493Z   ...
+2026-10-11T14:52:20.2942330Z # Subtest: failure metadata remains authoritative: {"transportContractPassed":false}
+2026-10-11T14:52:20.2943033Z ok 51 - failure metadata remains authoritative: {"transportContractPassed":false}
+2026-10-11T14:52:20.2943502Z   ---
+2026-10-11T14:52:20.2943794Z   duration_ms: 0.087812
+2026-10-11T14:52:20.2944114Z   type: 'test'
+2026-10-11T14:52:20.2944401Z   ...
+2026-10-11T14:52:20.2944853Z # Subtest: failure metadata remains authoritative: {"degradedUsed":true}
+2026-10-11T14:52:20.2945438Z ok 52 - failure metadata remains authoritative: {"degradedUsed":true}
+2026-10-11T14:52:20.2945858Z   ---
+2026-10-11T14:52:20.2946152Z   duration_ms: 1.177181
+2026-10-11T14:52:20.2946479Z   type: 'test'
+2026-10-11T14:52:20.2947048Z   ...
+2026-10-11T14:52:20.2947545Z # Subtest: failure metadata remains authoritative: {"requestRemainsRunning":true}
+2026-10-11T14:52:20.2948201Z ok 53 - failure metadata remains authoritative: {"requestRemainsRunning":true}
+2026-10-11T14:52:20.2948661Z   ---
+2026-10-11T14:52:20.2948954Z   duration_ms: 0.075503
+2026-10-11T14:52:20.2949276Z   type: 'test'
+2026-10-11T14:52:20.2949567Z   ...
+2026-10-11T14:52:20.2950034Z # Subtest: failure metadata remains authoritative: {"recoveryExhausted":true}
+2026-10-11T14:52:20.2950661Z ok 54 - failure metadata remains authoritative: {"recoveryExhausted":true}
+2026-10-11T14:52:20.2951091Z   ---
+2026-10-11T14:52:20.2951385Z   duration_ms: 0.04032
+2026-10-11T14:52:20.2951702Z   type: 'test'
+2026-10-11T14:52:20.2952191Z   ...
+2026-10-11T14:52:20.2952753Z # Subtest: failure metadata remains authoritative: {"reasoningFailure":{"code":"INFERENCE_FAILED"}}
+2026-10-11T14:52:20.2953540Z ok 55 - failure metadata remains authoritative: {"reasoningFailure":{"code":"INFERENCE_FAILED"}}
+2026-10-11T14:52:20.2954048Z   ---
+2026-10-11T14:52:20.2954341Z   duration_ms: 0.211236
+2026-10-11T14:52:20.2954659Z   type: 'test'
+2026-10-11T14:52:20.2954947Z   ...
+2026-10-11T14:52:20.2955472Z # Subtest: failure metadata remains authoritative: {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.2956198Z ok 56 - failure metadata remains authoritative: {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.2956670Z   ---
+2026-10-11T14:52:20.2956962Z   duration_ms: 0.212138
+2026-10-11T14:52:20.2957270Z   type: 'test'
+2026-10-11T14:52:20.2957556Z   ...
+2026-10-11T14:52:20.2958062Z # Subtest: failure metadata remains authoritative: {"responseContract":{"code":"blocked"}}
+2026-10-11T14:52:20.2958769Z ok 57 - failure metadata remains authoritative: {"responseContract":{"code":"blocked"}}
+2026-10-11T14:52:20.2959244Z   ---
+2026-10-11T14:52:20.2959534Z   duration_ms: 0.052328
+2026-10-11T14:52:20.2959849Z   type: 'test'
+2026-10-11T14:52:20.2960401Z   ...
+2026-10-11T14:52:20.2960833Z # Subtest: failure metadata remains authoritative: {"message":""}
+2026-10-11T14:52:20.2961371Z ok 58 - failure metadata remains authoritative: {"message":""}
+2026-10-11T14:52:20.2961905Z   ---
+2026-10-11T14:52:20.2962226Z   duration_ms: 0.029123
+2026-10-11T14:52:20.2962542Z   type: 'test'
+2026-10-11T14:52:20.2962811Z   ...
+2026-10-11T14:52:20.5458094Z # Subtest: Pillow durable browser delivery — never repeat accepted execution
+2026-10-11T14:52:20.5498771Z     # Subtest: 202 persists receipt before GET and delivers RUNNING/RETRYABLE/COMPLETED using one POST
+2026-10-11T14:52:20.5499631Z     ok 1 - 202 persists receipt before GET and delivers RUNNING/RETRYABLE/COMPLETED using one POST
+2026-10-11T14:52:20.5500144Z       ---
+2026-10-11T14:52:20.5500455Z       duration_ms: 19.831813
+2026-10-11T14:52:20.5500796Z       type: 'test'
+2026-10-11T14:52:20.5501095Z       ...
+2026-10-11T14:52:20.5501566Z     # Subtest: 202 header-only receipt is sufficient to retrieve, never treated as answer
+2026-10-11T14:52:20.5502385Z     ok 2 - 202 header-only receipt is sufficient to retrieve, never treated as answer
+2026-10-11T14:52:20.5502840Z       ---
+2026-10-11T14:52:20.5503141Z       duration_ms: 1.212054
+2026-10-11T14:52:20.5503463Z       type: 'test'
+2026-10-11T14:52:20.5503755Z       ...
+2026-10-11T14:52:20.5504154Z     # Subtest: legacy 200 durable_pending still switches to retrieval
+2026-10-11T14:52:20.5509666Z     ok 3 - legacy 200 durable_pending still switches to retrieval
+2026-10-11T14:52:20.5510120Z       ---
+2026-10-11T14:52:20.5510422Z       duration_ms: 0.795221
+2026-10-11T14:52:20.5510750Z       type: 'test'
+2026-10-11T14:52:20.5511036Z       ...
+2026-10-11T14:52:20.5511479Z     # Subtest: failed transport with a durable receipt retrieves the original job
+2026-10-11T14:52:20.5512221Z     ok 4 - failed transport with a durable receipt retrieves the original job
+2026-10-11T14:52:20.5512663Z       ---
+2026-10-11T14:52:20.5512955Z       duration_ms: 1.3761
+2026-10-11T14:52:20.5513290Z       type: 'test'
+2026-10-11T14:52:20.5513977Z       ...
+2026-10-11T14:52:20.5514439Z     # Subtest: FAILED_FATAL stops polling and never becomes still-running or successful
+2026-10-11T14:52:20.5515060Z     ok 5 - FAILED_FATAL stops polling and never becomes still-running or successful
+2026-10-11T14:52:20.5515506Z       ---
+2026-10-11T14:52:20.5515794Z       duration_ms: 0.662953
+2026-10-11T14:52:20.5516119Z       type: 'test'
+2026-10-11T14:52:20.5516408Z       ...
+2026-10-11T14:52:20.5516832Z     # Subtest: FAILED stops polling and never becomes still-running or successful
+2026-10-11T14:52:20.5517406Z     ok 6 - FAILED stops polling and never becomes still-running or successful
+2026-10-11T14:52:20.5517838Z       ---
+2026-10-11T14:52:20.5518132Z       duration_ms: 0.472066
+2026-10-11T14:52:20.5518454Z       type: 'test'
+2026-10-11T14:52:20.5518739Z       ...
+2026-10-11T14:52:20.5525939Z     # Subtest: network loss after admission remains UNKNOWN and never repeats POST
+2026-10-11T14:52:20.5526600Z     ok 7 - network loss after admission remains UNKNOWN and never repeats POST
+2026-10-11T14:52:20.5527164Z       ---
+2026-10-11T14:52:20.5527463Z       duration_ms: 0.739457
+2026-10-11T14:52:20.5527790Z       type: 'test'
+2026-10-11T14:52:20.5528083Z       ...
+2026-10-11T14:52:20.5528519Z     # Subtest: RETRYABLE stays an honest recoverable interruption at poll deadline
+2026-10-11T14:52:20.5529136Z     ok 8 - RETRYABLE stays an honest recoverable interruption at poll deadline
+2026-10-11T14:52:20.5529577Z       ---
+2026-10-11T14:52:20.5529867Z       duration_ms: 0.769331
+2026-10-11T14:52:20.5530186Z       type: 'test'
+2026-10-11T14:52:20.5530475Z       ...
+2026-10-11T14:52:20.5530875Z     # Subtest: RUNNING at deadline is a receipt, not an executive answer
+2026-10-11T14:52:20.5531399Z     ok 9 - RUNNING at deadline is a receipt, not an executive answer
+2026-10-11T14:52:20.5531953Z       ---
+2026-10-11T14:52:20.5532245Z       duration_ms: 0.833888
+2026-10-11T14:52:20.5532570Z       type: 'test'
+2026-10-11T14:52:20.5533120Z       ...
+2026-10-11T14:52:20.5533501Z     # Subtest: GET 401 never fabricates completion or rePOSTs
+2026-10-11T14:52:20.5533970Z     ok 10 - GET 401 never fabricates completion or rePOSTs
+2026-10-11T14:52:20.5534350Z       ---
+2026-10-11T14:52:20.5534642Z       duration_ms: 1.878261
+2026-10-11T14:52:20.5534962Z       type: 'test'
+2026-10-11T14:52:20.5535254Z       ...
+2026-10-11T14:52:20.5535621Z     # Subtest: GET 403 never fabricates completion or rePOSTs
+2026-10-11T14:52:20.5536089Z     ok 11 - GET 403 never fabricates completion or rePOSTs
+2026-10-11T14:52:20.5536474Z       ---
+2026-10-11T14:52:20.5536765Z       duration_ms: 0.602161
+2026-10-11T14:52:20.5537084Z       type: 'test'
+2026-10-11T14:52:20.5537375Z       ...
+2026-10-11T14:52:20.5537739Z     # Subtest: GET 404 never fabricates completion or rePOSTs
+2026-10-11T14:52:20.5538207Z     ok 12 - GET 404 never fabricates completion or rePOSTs
+2026-10-11T14:52:20.5538587Z       ---
+2026-10-11T14:52:20.5538880Z       duration_ms: 0.560579
+2026-10-11T14:52:20.5539202Z       type: 'test'
+2026-10-11T14:52:20.5539496Z       ...
+2026-10-11T14:52:20.5539874Z     # Subtest: GET 503 never fabricates completion or rePOSTs
+2026-10-11T14:52:20.5540339Z     ok 13 - GET 503 never fabricates completion or rePOSTs
+2026-10-11T14:52:20.5540716Z       ---
+2026-10-11T14:52:20.5541001Z       duration_ms: 0.594449
+2026-10-11T14:52:20.5541321Z       type: 'test'
+2026-10-11T14:52:20.5541612Z       ...
+2026-10-11T14:52:20.5542132Z     # Subtest: POST 202 without a receipt is not automatically repeated
+2026-10-11T14:52:20.5542672Z     ok 14 - POST 202 without a receipt is not automatically repeated
+2026-10-11T14:52:20.5543077Z       ---
+2026-10-11T14:52:20.5543372Z       duration_ms: 0.579097
+2026-10-11T14:52:20.5543691Z       type: 'test'
+2026-10-11T14:52:20.5543981Z       ...
+2026-10-11T14:52:20.5544379Z     # Subtest: POST 401 without a receipt is not automatically repeated
+2026-10-11T14:52:20.5544901Z     ok 15 - POST 401 without a receipt is not automatically repeated
+2026-10-11T14:52:20.5545307Z       ---
+2026-10-11T14:52:20.5545768Z       duration_ms: 0.236754
+2026-10-11T14:52:20.5546089Z       type: 'test'
+2026-10-11T14:52:20.5546378Z       ...
+2026-10-11T14:52:20.5546772Z     # Subtest: POST 404 without a receipt is not automatically repeated
+2026-10-11T14:52:20.5547294Z     ok 16 - POST 404 without a receipt is not automatically repeated
+2026-10-11T14:52:20.5547698Z       ---
+2026-10-11T14:52:20.5547989Z       duration_ms: 0.24036
+2026-10-11T14:52:20.5548307Z       type: 'test'
+2026-10-11T14:52:20.5548596Z       ...
+2026-10-11T14:52:20.5548995Z     # Subtest: POST 503 without a receipt is not automatically repeated
+2026-10-11T14:52:20.5549513Z     ok 17 - POST 503 without a receipt is not automatically repeated
+2026-10-11T14:52:20.5549911Z       ---
+2026-10-11T14:52:20.5550199Z       duration_ms: 2.21154
+2026-10-11T14:52:20.5550515Z       type: 'test'
+2026-10-11T14:52:20.5550805Z       ...
+2026-10-11T14:52:20.5551186Z     # Subtest: lost POST response cannot trigger a second submission
+2026-10-11T14:52:20.5551698Z     ok 18 - lost POST response cannot trigger a second submission
+2026-10-11T14:52:20.5582406Z       ---
+2026-10-11T14:52:20.5582704Z       duration_ms: 0.255462
+2026-10-11T14:52:20.5582996Z       type: 'test'
+2026-10-11T14:52:20.5583251Z       ...
+2026-10-11T14:52:20.5583565Z     # Subtest: browser reopen resumes via GET only
+2026-10-11T14:52:20.5583971Z     ok 19 - browser reopen resumes via GET only
+2026-10-11T14:52:20.5584299Z       ---
+2026-10-11T14:52:20.5584554Z       duration_ms: 0.371816
+2026-10-11T14:52:20.5584841Z       type: 'test'
+2026-10-11T14:52:20.5585088Z       ...
+2026-10-11T14:52:20.5585603Z     # Subtest: completed GET preserves a later rebound session instead of an older POST envelope
+2026-10-11T14:52:20.5586260Z     ok 20 - completed GET preserves a later rebound session instead of an older POST envelope
+2026-10-11T14:52:20.5586688Z       ---
+2026-10-11T14:52:20.5586936Z       duration_ms: 0.677574
+2026-10-11T14:52:20.5587204Z       type: 'test'
+2026-10-11T14:52:20.5587828Z       ...
+2026-10-11T14:52:20.5588188Z     # Subtest: refresh retrieval preserves the saved rebound session
+2026-10-11T14:52:20.5588677Z     ok 21 - refresh retrieval preserves the saved rebound session
+2026-10-11T14:52:20.5589040Z       ---
+2026-10-11T14:52:20.5589287Z       duration_ms: 3.182914
+2026-10-11T14:52:20.5589570Z       type: 'test'
+2026-10-11T14:52:20.5589816Z       ...
+2026-10-11T14:52:20.5590172Z     # Subtest: cancelling restore does not poll or execute work
+2026-10-11T14:52:20.5590678Z     ok 22 - cancelling restore does not poll or execute work
+2026-10-11T14:52:20.5591049Z       ---
+2026-10-11T14:52:20.5591295Z       duration_ms: 0.386789
+2026-10-11T14:52:20.5591571Z       type: 'test'
+2026-10-11T14:52:20.5592029Z       ...
+2026-10-11T14:52:20.5592431Z     # Subtest: session creation coalesces only inside the same owner and workspace
+2026-10-11T14:52:20.5592998Z     ok 23 - session creation coalesces only inside the same owner and workspace
+2026-10-11T14:52:20.5593403Z       ---
+2026-10-11T14:52:20.5593648Z       duration_ms: 3.151817
+2026-10-11T14:52:20.5593926Z       type: 'test'
+2026-10-11T14:52:20.5594171Z       ...
+2026-10-11T14:52:20.5594400Z     1..23
+2026-10-11T14:52:20.5595096Z ok 59 - Pillow durable browser delivery — never repeat accepted execution
+2026-10-11T14:52:20.5595499Z   ---
+2026-10-11T14:52:20.5595751Z   duration_ms: 42.985958
+2026-10-11T14:52:20.5596016Z   type: 'suite'
+2026-10-11T14:52:20.5596256Z   ...
+2026-10-11T14:52:20.5596603Z # Subtest: Honest delivery state and receipt persistence
+2026-10-11T14:52:20.5597088Z     # Subtest: accepts completed llm without mislabeling it as unavailable
+2026-10-11T14:52:20.5597617Z     ok 1 - accepts completed llm without mislabeling it as unavailable
+2026-10-11T14:52:20.5598003Z       ---
+2026-10-11T14:52:20.5598252Z       duration_ms: 0.342112
+2026-10-11T14:52:20.5598535Z       type: 'test'
+2026-10-11T14:52:20.5598782Z       ...
+2026-10-11T14:52:20.5599168Z     # Subtest: llm fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.5599851Z     ok 2 - llm fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.5600227Z       ---
+2026-10-11T14:52:20.5600472Z       duration_ms: 0.105979
+2026-10-11T14:52:20.5600752Z       type: 'test'
+2026-10-11T14:52:20.5600993Z       ...
+2026-10-11T14:52:20.5601414Z     # Subtest: llm fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T14:52:20.5602176Z     ok 3 - llm fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T14:52:20.5602599Z       ---
+2026-10-11T14:52:20.5602844Z       duration_ms: 0.051617
+2026-10-11T14:52:20.5603110Z       type: 'test'
+2026-10-11T14:52:20.5603353Z       ...
+2026-10-11T14:52:20.5603667Z     # Subtest: llm fails closed when {"degradedUsed":true}
+2026-10-11T14:52:20.5604071Z     ok 4 - llm fails closed when {"degradedUsed":true}
+2026-10-11T14:52:20.5604403Z       ---
+2026-10-11T14:52:20.5604645Z       duration_ms: 0.051267
+2026-10-11T14:52:20.5604923Z       type: 'test'
+2026-10-11T14:52:20.5605172Z       ...
+2026-10-11T14:52:20.5650355Z     # Subtest: llm fails closed when {"transportContractPassed":false}
+2026-10-11T14:52:20.5672343Z     ok 5 - llm fails closed when {"transportContractPassed":false}
+2026-10-11T14:52:20.5702210Z       ---
+2026-10-11T14:52:20.5717490Z       duration_ms: 0.037245
+2026-10-11T14:52:20.5717851Z       type: 'test'
+2026-10-11T14:52:20.5718111Z       ...
+2026-10-11T14:52:20.5723448Z     # Subtest: llm fails closed when {"semanticSuccess":false}
+2026-10-11T14:52:20.5723949Z     ok 6 - llm fails closed when {"semanticSuccess":false}
+2026-10-11T14:52:20.5724308Z       ---
+2026-10-11T14:52:20.5728630Z       duration_ms: 0.037236
+2026-10-11T14:52:20.5728932Z       type: 'test'
+2026-10-11T14:52:20.5729182Z       ...
+2026-10-11T14:52:20.5729520Z     # Subtest: llm fails closed when {"brainCompleted":false}
+2026-10-11T14:52:20.5729953Z     ok 7 - llm fails closed when {"brainCompleted":false}
+2026-10-11T14:52:20.5730645Z       ---
+2026-10-11T14:52:20.5730903Z       duration_ms: 0.031637
+2026-10-11T14:52:20.5731177Z       type: 'test'
+2026-10-11T14:52:20.5731423Z       ...
+2026-10-11T14:52:20.5731915Z     # Subtest: llm fails closed when {"requestRemainsRunning":true}
+2026-10-11T14:52:20.5732396Z     ok 8 - llm fails closed when {"requestRemainsRunning":true}
+2026-10-11T14:52:20.5732740Z       ---
+2026-10-11T14:52:20.5732977Z       duration_ms: 0.037767
+2026-10-11T14:52:20.5733238Z       type: 'test'
+2026-10-11T14:52:20.5733471Z       ...
+2026-10-11T14:52:20.5733865Z     # Subtest: llm fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T14:52:20.5734422Z     ok 9 - llm fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T14:52:20.5734812Z       ---
+2026-10-11T14:52:20.5735080Z       duration_ms: 0.032388
+2026-10-11T14:52:20.5735336Z       type: 'test'
+2026-10-11T14:52:20.5735577Z       ...
+2026-10-11T14:52:20.5735990Z     # Subtest: accepts completed authority_refusal without mislabeling it as unavailable
+2026-10-11T14:52:20.5736595Z     ok 10 - accepts completed authority_refusal without mislabeling it as unavailable
+2026-10-11T14:52:20.5737004Z       ---
+2026-10-11T14:52:20.5737242Z       duration_ms: 0.035934
+2026-10-11T14:52:20.5737513Z       type: 'test'
+2026-10-11T14:52:20.5737752Z       ...
+2026-10-11T14:52:20.5738228Z     # Subtest: authority_refusal fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.5738827Z     ok 11 - authority_refusal fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.5739240Z       ---
+2026-10-11T14:52:20.5739482Z       duration_ms: 0.105698
+2026-10-11T14:52:20.5739748Z       type: 'test'
+2026-10-11T14:52:20.5739988Z       ...
+2026-10-11T14:52:20.5740454Z     # Subtest: authority_refusal fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T14:52:20.5741160Z     ok 12 - authority_refusal fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T14:52:20.5741624Z       ---
+2026-10-11T14:52:20.5742115Z       duration_ms: 0.075933
+2026-10-11T14:52:20.5742386Z       type: 'test'
+2026-10-11T14:52:20.5742624Z       ...
+2026-10-11T14:52:20.5742979Z     # Subtest: authority_refusal fails closed when {"degradedUsed":true}
+2026-10-11T14:52:20.5743468Z     ok 13 - authority_refusal fails closed when {"degradedUsed":true}
+2026-10-11T14:52:20.5743826Z       ---
+2026-10-11T14:52:20.5744063Z       duration_ms: 0.032638
+2026-10-11T14:52:20.5744330Z       type: 'test'
+2026-10-11T14:52:20.5744573Z       ...
+2026-10-11T14:52:20.5744962Z     # Subtest: authority_refusal fails closed when {"transportContractPassed":false}
+2026-10-11T14:52:20.5745522Z     ok 14 - authority_refusal fails closed when {"transportContractPassed":false}
+2026-10-11T14:52:20.5745914Z       ---
+2026-10-11T14:52:20.5746155Z       duration_ms: 0.027691
+2026-10-11T14:52:20.5746423Z       type: 'test'
+2026-10-11T14:52:20.5746662Z       ...
+2026-10-11T14:52:20.5747027Z     # Subtest: authority_refusal fails closed when {"semanticSuccess":false}
+2026-10-11T14:52:20.5747526Z     ok 15 - authority_refusal fails closed when {"semanticSuccess":false}
+2026-10-11T14:52:20.5747895Z       ---
+2026-10-11T14:52:20.5748133Z       duration_ms: 0.025898
+2026-10-11T14:52:20.5748399Z       type: 'test'
+2026-10-11T14:52:20.5748639Z       ...
+2026-10-11T14:52:20.5748996Z     # Subtest: authority_refusal fails closed when {"brainCompleted":false}
+2026-10-11T14:52:20.5749500Z     ok 16 - authority_refusal fails closed when {"brainCompleted":false}
+2026-10-11T14:52:20.5749865Z       ---
+2026-10-11T14:52:20.5750102Z       duration_ms: 0.024867
+2026-10-11T14:52:20.5750370Z       type: 'test'
+2026-10-11T14:52:20.5750607Z       ...
+2026-10-11T14:52:20.5750989Z     # Subtest: authority_refusal fails closed when {"requestRemainsRunning":true}
+2026-10-11T14:52:20.5751533Z     ok 17 - authority_refusal fails closed when {"requestRemainsRunning":true}
+2026-10-11T14:52:20.5752026Z       ---
+2026-10-11T14:52:20.5752392Z       duration_ms: 0.028152
+2026-10-11T14:52:20.5752662Z       type: 'test'
+2026-10-11T14:52:20.5752905Z       ...
+2026-10-11T14:52:20.5753339Z     # Subtest: authority_refusal fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T14:52:20.5753978Z     ok 18 - authority_refusal fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T14:52:20.5754416Z       ---
+2026-10-11T14:52:20.5754657Z       duration_ms: 0.031056
+2026-10-11T14:52:20.5754923Z       type: 'test'
+2026-10-11T14:52:20.5755162Z       ...
+2026-10-11T14:52:20.5755555Z     # Subtest: accepts completed authority_facts without mislabeling it as unavailable
+2026-10-11T14:52:20.5756125Z     ok 19 - accepts completed authority_facts without mislabeling it as unavailable
+2026-10-11T14:52:20.5756526Z       ---
+2026-10-11T14:52:20.5756834Z       duration_ms: 0.041542
+2026-10-11T14:52:20.5757105Z       type: 'test'
+2026-10-11T14:52:20.5757346Z       ...
+2026-10-11T14:52:20.5757750Z     # Subtest: authority_facts fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.5758328Z     ok 20 - authority_facts fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.5758732Z       ---
+2026-10-11T14:52:20.5758970Z       duration_ms: 0.028412
+2026-10-11T14:52:20.5759234Z       type: 'test'
+2026-10-11T14:52:20.5759478Z       ...
+2026-10-11T14:52:20.5759933Z     # Subtest: authority_facts fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T14:52:20.5760623Z     ok 21 - authority_facts fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T14:52:20.5761075Z       ---
+2026-10-11T14:52:20.5761318Z       duration_ms: 0.028603
+2026-10-11T14:52:20.5761584Z       type: 'test'
+2026-10-11T14:52:20.5761913Z       ...
+2026-10-11T14:52:20.5762246Z     # Subtest: authority_facts fails closed when {"degradedUsed":true}
+2026-10-11T14:52:20.5762720Z     ok 22 - authority_facts fails closed when {"degradedUsed":true}
+2026-10-11T14:52:20.5763081Z       ---
+2026-10-11T14:52:20.5763489Z       duration_ms: 2.269457
+2026-10-11T14:52:20.5763766Z       type: 'test'
+2026-10-11T14:52:20.5764008Z       ...
+2026-10-11T14:52:20.5764417Z     # Subtest: authority_facts fails closed when {"transportContractPassed":false}
+2026-10-11T14:52:20.5764979Z     ok 23 - authority_facts fails closed when {"transportContractPassed":false}
+2026-10-11T14:52:20.5765373Z       ---
+2026-10-11T14:52:20.5765610Z       duration_ms: 0.06022
+2026-10-11T14:52:20.5765879Z       type: 'test'
+2026-10-11T14:52:20.5766121Z       ...
+2026-10-11T14:52:20.5766483Z     # Subtest: authority_facts fails closed when {"semanticSuccess":false}
+2026-10-11T14:52:20.5766986Z     ok 24 - authority_facts fails closed when {"semanticSuccess":false}
+2026-10-11T14:52:20.5767355Z       ---
+2026-10-11T14:52:20.5767596Z       duration_ms: 0.037866
+2026-10-11T14:52:20.5767866Z       type: 'test'
+2026-10-11T14:52:20.5768112Z       ...
+2026-10-11T14:52:20.5768467Z     # Subtest: authority_facts fails closed when {"brainCompleted":false}
+2026-10-11T14:52:20.5768967Z     ok 25 - authority_facts fails closed when {"brainCompleted":false}
+2026-10-11T14:52:20.5769334Z       ---
+2026-10-11T14:52:20.5769580Z       duration_ms: 0.029715
+2026-10-11T14:52:20.5769852Z       type: 'test'
+2026-10-11T14:52:20.5770092Z       ...
+2026-10-11T14:52:20.5770471Z     # Subtest: authority_facts fails closed when {"requestRemainsRunning":true}
+2026-10-11T14:52:20.5771042Z     ok 26 - authority_facts fails closed when {"requestRemainsRunning":true}
+2026-10-11T14:52:20.5771429Z       ---
+2026-10-11T14:52:20.5771665Z       duration_ms: 0.029975
+2026-10-11T14:52:20.5790927Z       type: 'test'
+2026-10-11T14:52:20.5791217Z       ...
+2026-10-11T14:52:20.5791666Z     # Subtest: authority_facts fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T14:52:20.5792456Z     ok 27 - authority_facts fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T14:52:20.5792881Z       ---
+2026-10-11T14:52:20.5793345Z       duration_ms: 0.028733
+2026-10-11T14:52:20.5793616Z       type: 'test'
+2026-10-11T14:52:20.5793860Z       ...
+2026-10-11T14:52:20.5794374Z     # Subtest: accepts completed response_contract without mislabeling it as unavailable
+2026-10-11T14:52:20.5795024Z     ok 28 - accepts completed response_contract without mislabeling it as unavailable
+2026-10-11T14:52:20.5795442Z       ---
+2026-10-11T14:52:20.5795708Z       duration_ms: 0.04005
+2026-10-11T14:52:20.5795991Z       type: 'test'
+2026-10-11T14:52:20.5796255Z       ...
+2026-10-11T14:52:20.5796698Z     # Subtest: response_contract fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.5797355Z     ok 29 - response_contract fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.5797809Z       ---
+2026-10-11T14:52:20.5798082Z       duration_ms: 0.028703
+2026-10-11T14:52:20.5798383Z       type: 'test'
+2026-10-11T14:52:20.5798650Z       ...
+2026-10-11T14:52:20.5799141Z     # Subtest: response_contract fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T14:52:20.5799919Z     ok 30 - response_contract fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T14:52:20.5800413Z       ---
+2026-10-11T14:52:20.5800786Z       duration_ms: 0.031257
+2026-10-11T14:52:20.5801081Z       type: 'test'
+2026-10-11T14:52:20.5801351Z       ...
+2026-10-11T14:52:20.5801731Z     # Subtest: response_contract fails closed when {"degradedUsed":true}
+2026-10-11T14:52:20.5802481Z     ok 31 - response_contract fails closed when {"degradedUsed":true}
+2026-10-11T14:52:20.5802890Z       ---
+2026-10-11T14:52:20.5803151Z       duration_ms: 0.030506
+2026-10-11T14:52:20.5803446Z       type: 'test'
+2026-10-11T14:52:20.5803700Z       ...
+2026-10-11T14:52:20.5804122Z     # Subtest: response_contract fails closed when {"transportContractPassed":false}
+2026-10-11T14:52:20.5804737Z     ok 32 - response_contract fails closed when {"transportContractPassed":false}
+2026-10-11T14:52:20.5805189Z       ---
+2026-10-11T14:52:20.5805628Z       duration_ms: 0.079159
+2026-10-11T14:52:20.5805930Z       type: 'test'
+2026-10-11T14:52:20.5806203Z       ...
+2026-10-11T14:52:20.5806606Z     # Subtest: response_contract fails closed when {"semanticSuccess":false}
+2026-10-11T14:52:20.5807164Z     ok 33 - response_contract fails closed when {"semanticSuccess":false}
+2026-10-11T14:52:20.5807584Z       ---
+2026-10-11T14:52:20.5807861Z       duration_ms: 0.034181
+2026-10-11T14:52:20.5808159Z       type: 'test'
+2026-10-11T14:52:20.5808425Z       ...
+2026-10-11T14:52:20.5808829Z     # Subtest: response_contract fails closed when {"brainCompleted":false}
+2026-10-11T14:52:20.5809357Z     ok 34 - response_contract fails closed when {"brainCompleted":false}
+2026-10-11T14:52:20.5809751Z       ---
+2026-10-11T14:52:20.5810019Z       duration_ms: 0.029094
+2026-10-11T14:52:20.5810313Z       type: 'test'
+2026-10-11T14:52:20.5810583Z       ...
+2026-10-11T14:52:20.5810990Z     # Subtest: response_contract fails closed when {"requestRemainsRunning":true}
+2026-10-11T14:52:20.5811583Z     ok 35 - response_contract fails closed when {"requestRemainsRunning":true}
+2026-10-11T14:52:20.5812409Z       ---
+2026-10-11T14:52:20.5812674Z       duration_ms: 0.027761
+2026-10-11T14:52:20.5812966Z       type: 'test'
+2026-10-11T14:52:20.5825746Z       ...
+2026-10-11T14:52:20.5826259Z     # Subtest: response_contract fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T14:52:20.5826921Z     ok 36 - response_contract fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T14:52:20.5827366Z       ---
+2026-10-11T14:52:20.5827614Z       duration_ms: 0.030085
+2026-10-11T14:52:20.5827891Z       type: 'test'
+2026-10-11T14:52:20.5828142Z       ...
+2026-10-11T14:52:20.5828490Z     # Subtest: COMPLETED with invalid payload is not success: null
+2026-10-11T14:52:20.5828948Z     ok 37 - COMPLETED with invalid payload is not success: null
+2026-10-11T14:52:20.5829296Z       ---
+2026-10-11T14:52:20.5829701Z       duration_ms: 0.096504
+2026-10-11T14:52:20.5829980Z       type: 'test'
+2026-10-11T14:52:20.5830228Z       ...
+2026-10-11T14:52:20.5830559Z     # Subtest: COMPLETED with invalid payload is not success: {}
+2026-10-11T14:52:20.5830999Z     ok 38 - COMPLETED with invalid payload is not success: {}
+2026-10-11T14:52:20.5831340Z       ---
+2026-10-11T14:52:20.5831583Z       duration_ms: 0.040791
+2026-10-11T14:52:20.5831960Z       type: 'test'
+2026-10-11T14:52:20.5832202Z       ...
+2026-10-11T14:52:20.5832559Z     # Subtest: COMPLETED with invalid payload is not success: {"message":""}
+2026-10-11T14:52:20.5833045Z     ok 39 - COMPLETED with invalid payload is not success: {"message":""}
+2026-10-11T14:52:20.5833403Z       ---
+2026-10-11T14:52:20.5833641Z       duration_ms: 0.035793
+2026-10-11T14:52:20.5833900Z       type: 'test'
+2026-10-11T14:52:20.5834128Z       ...
+2026-10-11T14:52:20.5834522Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"llm","message":" "}
+2026-10-11T14:52:20.5835103Z     ok 40 - COMPLETED with invalid payload is not success: {"kind":"llm","message":" "}
+2026-10-11T14:52:20.5835492Z       ---
+2026-10-11T14:52:20.5835722Z       duration_ms: 0.062703
+2026-10-11T14:52:20.5835981Z       type: 'test'
+2026-10-11T14:52:20.5836211Z       ...
+2026-10-11T14:52:20.5836620Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"error","message":"error"}
+2026-10-11T14:52:20.5837185Z     ok 41 - COMPLETED with invalid payload is not success: {"kind":"error","message":"error"}
+2026-10-11T14:52:20.5837573Z       ---
+2026-10-11T14:52:20.5837800Z       duration_ms: 0.029635
+2026-10-11T14:52:20.5838056Z       type: 'test'
+2026-10-11T14:52:20.5838284Z       ...
+2026-10-11T14:52:20.5838709Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"durable_pending","message":"pending"}
+2026-10-11T14:52:20.5839334Z     ok 42 - COMPLETED with invalid payload is not success: {"kind":"durable_pending","message":"pending"}
+2026-10-11T14:52:20.5839746Z       ---
+2026-10-11T14:52:20.5840100Z       duration_ms: 0.030956
+2026-10-11T14:52:20.5840354Z       type: 'test'
+2026-10-11T14:52:20.5840582Z       ...
+2026-10-11T14:52:20.5841242Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"command_fallback","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1"}
+2026-10-11T14:52:20.5843588Z     ok 43 - COMPLETED with invalid payload is not success: {"kind":"command_fallback","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1"}
+2026-10-11T14:52:20.5844289Z       ---
+2026-10-11T14:52:20.5844681Z       duration_ms: 0.027351
+2026-10-11T14:52:20.5844934Z       type: 'test'
+2026-10-11T14:52:20.5845163Z       ...
+2026-10-11T14:52:20.5845806Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"unrecognised","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1"}
+2026-10-11T14:52:20.5846915Z     ok 44 - COMPLETED with invalid payload is not success: {"kind":"unrecognised","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1"}
+2026-10-11T14:52:20.5847537Z       ---
+2026-10-11T14:52:20.5847778Z       duration_ms: 0.02712
+2026-10-11T14:52:20.5848042Z       type: 'test'
+2026-10-11T14:52:20.5848282Z       ...
+2026-10-11T14:52:20.5848984Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","semanticSuccess":false}
+2026-10-11T14:52:20.5850271Z     ok 45 - COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","semanticSuccess":false}
+2026-10-11T14:52:20.5851025Z       ---
+2026-10-11T14:52:20.5851290Z       duration_ms: 0.030355
+2026-10-11T14:52:20.5851548Z       type: 'test'
+2026-10-11T14:52:20.5851892Z       ...
+2026-10-11T14:52:20.5852580Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","brainCompleted":false}
+2026-10-11T14:52:20.5854147Z     ok 46 - COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","brainCompleted":false}
+2026-10-11T14:52:20.5854833Z       ---
+2026-10-11T14:52:20.5855068Z       duration_ms: 0.038788
+2026-10-11T14:52:20.5855337Z       type: 'test'
+2026-10-11T14:52:20.5855584Z       ...
+2026-10-11T14:52:20.5856291Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","requestRemainsRunning":true}
+2026-10-11T14:52:20.5933130Z     ok 47 - COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","requestRemainsRunning":true}
+2026-10-11T14:52:20.5933891Z       ---
+2026-10-11T14:52:20.5934075Z       duration_ms: 0.032548
+2026-10-11T14:52:20.5934273Z       type: 'test'
+2026-10-11T14:52:20.5934439Z       ...
+2026-10-11T14:52:20.5934660Z     # Subtest: retrieval ID mismatch fails closed
+2026-10-11T14:52:20.5934957Z     ok 48 - retrieval ID mismatch fails closed
+2026-10-11T14:52:20.5935197Z       ---
+2026-10-11T14:52:20.5935365Z       duration_ms: 0.0733
+2026-10-11T14:52:20.5935562Z       type: 'test'
+2026-10-11T14:52:20.5935735Z       ...
+2026-10-11T14:52:20.5936046Z     # Subtest: pending text remains a status through UI mapping and sanitization
+2026-10-11T14:52:20.5936487Z     ok 49 - pending text remains a status through UI mapping and sanitization
+2026-10-11T14:52:20.5936788Z       ---
+2026-10-11T14:52:20.5936958Z       duration_ms: 9.238097
+2026-10-11T14:52:20.5937159Z       type: 'test'
+2026-10-11T14:52:20.5937333Z       ...
+2026-10-11T14:52:20.5937673Z     # Subtest: owner namespaces isolate receipts, deduplicate IDs, and retain other requests
+2026-10-11T14:52:20.5938510Z     ok 50 - owner namespaces isolate receipts, deduplicate IDs, and retain other requests
+2026-10-11T14:52:20.5938864Z       ---
+2026-10-11T14:52:20.5939032Z       duration_ms: 0.998785
+2026-10-11T14:52:20.5939228Z       type: 'test'
+2026-10-11T14:52:20.5939396Z       ...
+2026-10-11T14:52:20.5939765Z     # Subtest: the completed answer replaces its receipt instead of appending another assistant turn
+2026-10-11T14:52:20.5940335Z     ok 51 - the completed answer replaces its receipt instead of appending another assistant turn
+2026-10-11T14:52:20.5940695Z       ---
+2026-10-11T14:52:20.5940866Z       duration_ms: 0.200751
+2026-10-11T14:52:20.5941061Z       type: 'test'
+2026-10-11T14:52:20.5941231Z       ...
+2026-10-11T14:52:20.5941580Z     # Subtest: conversation and host sessions cannot cross owners or import the legacy unscoped key
+2026-10-11T14:52:20.5942302Z     ok 52 - conversation and host sessions cannot cross owners or import the legacy unscoped key
+2026-10-11T14:52:20.5942659Z       ---
+2026-10-11T14:52:20.5942830Z       duration_ms: 3.294902
+2026-10-11T14:52:20.5943023Z       type: 'test'
+2026-10-11T14:52:20.5943190Z       ...
+2026-10-11T14:52:20.5943555Z     # Subtest: provider has exactly one attempt and BFF does not hold back the accepted ID
+2026-10-11T14:52:20.5944050Z     ok 53 - provider has exactly one attempt and BFF does not hold back the accepted ID
+2026-10-11T14:52:20.5944381Z       ---
+2026-10-11T14:52:20.5944551Z       duration_ms: 0.288282
+2026-10-11T14:52:20.5944743Z       type: 'test'
+2026-10-11T14:52:20.5944915Z       ...
+2026-10-11T14:52:20.5945072Z     1..53
+2026-10-11T14:52:20.5945318Z ok 60 - Honest delivery state and receipt persistence
+2026-10-11T14:52:20.5945571Z   ---
+2026-10-11T14:52:20.5945738Z   duration_ms: 19.325865
+2026-10-11T14:52:20.5945916Z   type: 'suite'
+2026-10-11T14:52:20.5946077Z   ...
+2026-10-11T14:52:20.5946469Z # Subtest: server history response hydrates the client contract without inventing an empty success
+2026-10-11T14:52:20.5947248Z ok 61 - server history response hydrates the client contract without inventing an empty success
+2026-10-11T14:52:20.5947618Z   ---
+2026-10-11T14:52:20.5947784Z   duration_ms: 14.57256
+2026-10-11T14:52:20.5947963Z   type: 'test'
+2026-10-11T14:52:20.5948122Z   ...
+2026-10-11T14:52:20.5948532Z # Subtest: historical browser transfer requires server acknowledgement and never masks an old runtime
+2026-10-11T14:52:20.5949166Z ok 62 - historical browser transfer requires server acknowledgement and never masks an old runtime
+2026-10-11T14:52:20.5949548Z   ---
+2026-10-11T14:52:20.5949713Z   duration_ms: 0.544264
+2026-10-11T14:52:20.5949900Z   type: 'test'
+2026-10-11T14:52:20.5950064Z   ...
+2026-10-11T14:52:20.6204123Z # Subtest: executive surface language
+2026-10-11T14:52:20.6204516Z     # Subtest: detects infrastructure leaks
+2026-10-11T14:52:20.6204808Z     ok 1 - detects infrastructure leaks
+2026-10-11T14:52:20.6205042Z       ---
+2026-10-11T14:52:20.6205226Z       duration_ms: 1.377852
+2026-10-11T14:52:20.6205469Z       type: 'test'
+2026-10-11T14:52:20.6205658Z       ...
+2026-10-11T14:52:20.6205916Z     # Subtest: rewrites leaks to executive recovering language
+2026-10-11T14:52:20.6206277Z     ok 2 - rewrites leaks to executive recovering language
+2026-10-11T14:52:20.6206543Z       ---
+2026-10-11T14:52:20.6206721Z       duration_ms: 0.637824
+2026-10-11T14:52:20.6206922Z       type: 'test'
+2026-10-11T14:52:20.6207091Z       ...
+2026-10-11T14:52:20.6207727Z     # Subtest: chat sanitizer maps architecture leaks to terminal — never soft success
+2026-10-11T14:52:20.6208283Z     ok 3 - chat sanitizer maps architecture leaks to terminal — never soft success
+2026-10-11T14:52:20.6208606Z       ---
+2026-10-11T14:52:20.6208783Z       duration_ms: 1.416821
+2026-10-11T14:52:20.6208985Z       type: 'test'
+2026-10-11T14:52:20.6209157Z       ...
+2026-10-11T14:52:20.6209505Z     # Subtest: legacy soft reply symbol is terminal infrastructure, not success boilerplate
+2026-10-11T14:52:20.6210404Z     ok 4 - legacy soft reply symbol is terminal infrastructure, not success boilerplate
+2026-10-11T14:52:20.6210752Z       ---
+2026-10-11T14:52:20.6210919Z       duration_ms: 0.286128
+2026-10-11T14:52:20.6211117Z       type: 'test'
+2026-10-11T14:52:20.6211287Z       ...
+2026-10-11T14:52:20.6211580Z     # Subtest: ask-again / resubmit bodies become terminal, not soft success
+2026-10-11T14:52:20.6212102Z     ok 5 - ask-again / resubmit bodies become terminal, not soft success
+2026-10-11T14:52:20.6212397Z       ---
+2026-10-11T14:52:20.6212566Z       duration_ms: 0.543073
+2026-10-11T14:52:20.6212767Z       type: 'test'
+2026-10-11T14:52:20.6212938Z       ...
+2026-10-11T14:52:20.6213266Z     # Subtest: substantial answers keep content when only a leak sentence is present
+2026-10-11T14:52:20.6213762Z     ok 6 - substantial answers keep content when only a leak sentence is present
+2026-10-11T14:52:20.6214093Z       ---
+2026-10-11T14:52:20.6214257Z       duration_ms: 0.496483
+2026-10-11T14:52:20.6214454Z       type: 'test'
+2026-10-11T14:52:20.6214631Z       ...
+2026-10-11T14:52:20.6214854Z     # Subtest: detects forbidden lifecycle residue
+2026-10-11T14:52:20.6215158Z     ok 7 - detects forbidden lifecycle residue
+2026-10-11T14:52:20.6215402Z       ---
+2026-10-11T14:52:20.6215572Z       duration_ms: 0.122243
+2026-10-11T14:52:20.6215767Z       type: 'test'
+2026-10-11T14:52:20.6215935Z       ...
+2026-10-11T14:52:20.6216090Z     1..7
+2026-10-11T14:52:20.6216300Z ok 63 - executive surface language
+2026-10-11T14:52:20.6216516Z   ---
+2026-10-11T14:52:20.6216688Z   duration_ms: 5.626071
+2026-10-11T14:52:20.6216880Z   type: 'suite'
+2026-10-11T14:52:20.6217047Z   ...
+2026-10-11T14:52:20.6217386Z # Subtest: visible response oracle — certification integrity
+2026-10-11T14:52:20.6217715Z     # Subtest: every negative control fails
+2026-10-11T14:52:20.6217985Z     ok 1 - every negative control fails
+2026-10-11T14:52:20.6218209Z       ---
+2026-10-11T14:52:20.6218375Z       duration_ms: 1.515108
+2026-10-11T14:52:20.6218572Z       type: 'test'
+2026-10-11T14:52:20.6218886Z       ...
+2026-10-11T14:52:20.6219092Z     # Subtest: HTTP 200 useless prose fails
+2026-10-11T14:52:20.6219358Z     ok 2 - HTTP 200 useless prose fails
+2026-10-11T14:52:20.6219579Z       ---
+2026-10-11T14:52:20.6219744Z       duration_ms: 0.544956
+2026-10-11T14:52:20.6219938Z       type: 'test'
+2026-10-11T14:52:20.6220107Z       ...
+2026-10-11T14:52:20.6220327Z     # Subtest: second turn cannot rescue first turn
+2026-10-11T14:52:20.6220631Z     ok 3 - second turn cannot rescue first turn
+2026-10-11T14:52:20.6220875Z       ---
+2026-10-11T14:52:20.6221042Z       duration_ms: 0.263885
+2026-10-11T14:52:20.6221240Z       type: 'test'
+2026-10-11T14:52:20.6221411Z       ...
+2026-10-11T14:52:20.6221609Z     # Subtest: good visible answer passes
+2026-10-11T14:52:20.6223109Z     ok 4 - good visible answer passes
+2026-10-11T14:52:20.6242443Z       ---
+2026-10-11T14:52:20.6259855Z       duration_ms: 0.156524
+2026-10-11T14:52:20.6260232Z       type: 'test'
+2026-10-11T14:52:20.6260537Z       ...
+2026-10-11T14:52:20.6261065Z     # Subtest: API degraded ask-again sanitizes to terminal and fails semantic cert
+2026-10-11T14:52:20.6261667Z     ok 5 - API degraded ask-again sanitizes to terminal and fails semantic cert
+2026-10-11T14:52:20.6262938Z       ---
+2026-10-11T14:52:20.6263282Z       duration_ms: 0.104146
+2026-10-11T14:52:20.6263660Z       type: 'test'
+2026-10-11T14:52:20.6263926Z       ...
+2026-10-11T14:52:20.6264183Z     1..5
+2026-10-11T14:52:20.6264721Z ok 64 - visible response oracle — certification integrity
+2026-10-11T14:52:20.6265106Z   ---
+2026-10-11T14:52:20.6265391Z   duration_ms: 2.848643
+2026-10-11T14:52:20.6265693Z   type: 'suite'
+2026-10-11T14:52:20.6265977Z   ...
+2026-10-11T14:52:20.6266481Z # Subtest: durable BFF mapping and reconciled transcript preserve Short synthetic reasoning.
+2026-10-11T14:52:20.6267185Z ok 65 - durable BFF mapping and reconciled transcript preserve Short synthetic reasoning.
+2026-10-11T14:52:20.6267646Z   ---
+2026-10-11T14:52:20.6267929Z   duration_ms: 2.309907
+2026-10-11T14:52:20.6268238Z   type: 'test'
+2026-10-11T14:52:20.6268763Z   ...
+2026-10-11T14:52:20.6269366Z # Subtest: durable BFF mapping and reconciled transcript preserve The quoted message "worker proxy timed out" describes a
+2026-10-11T14:52:20.6270220Z ok 66 - durable BFF mapping and reconciled transcript preserve The quoted message "worker proxy timed out" describes a
+2026-10-11T14:52:20.6270755Z   ---
+2026-10-11T14:52:20.6271030Z   duration_ms: 0.282193
+2026-10-11T14:52:20.6271267Z   type: 'test'
+2026-10-11T14:52:20.6271533Z   ...
+2026-10-11T14:52:20.6272276Z # Subtest: durable BFF mapping and reconciled transcript preserve "constitutional gate", "digital soul unavailable", "fal
+2026-10-11T14:52:20.6273186Z ok 67 - durable BFF mapping and reconciled transcript preserve "constitutional gate", "digital soul unavailable", "fal
+2026-10-11T14:52:20.6273728Z   ---
+2026-10-11T14:52:20.6274008Z   duration_ms: 0.257235
+2026-10-11T14:52:20.6274307Z   type: 'test'
+2026-10-11T14:52:20.6274591Z   ...
+2026-10-11T14:52:20.6275196Z # Subtest: durable BFF mapping and reconciled transcript preserve PILLOW_RESULT_PENDING: is literal prose. "completed exe
+2026-10-11T14:52:20.6276075Z ok 68 - durable BFF mapping and reconciled transcript preserve PILLOW_RESULT_PENDING: is literal prose. "completed exe
+2026-10-11T14:52:20.6276624Z   ---
+2026-10-11T14:52:20.6276906Z   duration_ms: 0.129514
+2026-10-11T14:52:20.6277236Z   type: 'test'
+2026-10-11T14:52:20.6277564Z   ...
+2026-10-11T14:52:20.6278299Z # Subtest: durable BFF mapping and reconciled transcript preserve The literal readOnlyCalls field is data. ```json\\n{"acti
+2026-10-11T14:52:20.6279368Z ok 69 - durable BFF mapping and reconciled transcript preserve The literal readOnlyCalls field is data. ```json\\n{"acti
+2026-10-11T14:52:20.6280005Z   ---
+2026-10-11T14:52:20.6280287Z   duration_ms: 0.215072
+2026-10-11T14:52:20.6280581Z   type: 'test'
+2026-10-11T14:52:20.6280861Z   ...
+2026-10-11T14:52:20.6281481Z # Subtest: durable BFF mapping and reconciled transcript preserve Long answer start\\nPreserve this synthetic paragraph, in
+2026-10-11T14:52:20.6282723Z ok 70 - durable BFF mapping and reconciled transcript preserve Long answer start\\nPreserve this synthetic paragraph, in
+2026-10-11T14:52:20.6283450Z   ---
+2026-10-11T14:52:20.6283740Z   duration_ms: 0.422112
+2026-10-11T14:52:20.6284049Z   type: 'test'
+2026-10-11T14:52:20.6284338Z   ...
+2026-10-11T14:52:20.6284851Z # Subtest: contradictory completion remains failure {"status":"FAILED"}
+2026-10-11T14:52:20.6285424Z ok 71 - contradictory completion remains failure {"status":"FAILED"}
+2026-10-11T14:52:20.6285818Z   ---
+2026-10-11T14:52:20.6286101Z   duration_ms: 1.212034
+2026-10-11T14:52:20.6286395Z   type: 'test'
+2026-10-11T14:52:20.6286668Z   ...
+2026-10-11T14:52:20.6287108Z # Subtest: contradictory completion remains failure {"status":"FAILED_FATAL"}
+2026-10-11T14:52:20.6287692Z ok 72 - contradictory completion remains failure {"status":"FAILED_FATAL"}
+2026-10-11T14:52:20.6288105Z   ---
+2026-10-11T14:52:20.6288377Z   duration_ms: 0.179729
+2026-10-11T14:52:20.6288677Z   type: 'test'
+2026-10-11T14:52:20.6288953Z   ...
+2026-10-11T14:52:20.6289445Z # Subtest: contradictory completion remains failure {"status":"INCOMPLETE"}
+2026-10-11T14:52:20.6290207Z ok 73 - contradictory completion remains failure {"status":"INCOMPLETE"}
+2026-10-11T14:52:20.6290822Z   ---
+2026-10-11T14:52:20.6291155Z   duration_ms: 0.285107
+2026-10-11T14:52:20.6291467Z   type: 'test'
+2026-10-11T14:52:20.6291837Z   ...
+2026-10-11T14:52:20.6292294Z # Subtest: contradictory completion remains failure {"status":"RESULT_UNAVAILABLE"}
+2026-10-11T14:52:20.6292931Z ok 74 - contradictory completion remains failure {"status":"RESULT_UNAVAILABLE"}
+2026-10-11T14:52:20.6293306Z   ---
+2026-10-11T14:52:20.6293571Z   duration_ms: 0.344456
+2026-10-11T14:52:20.6293867Z   type: 'test'
+2026-10-11T14:52:20.6294142Z   ...
+2026-10-11T14:52:20.6294672Z # Subtest: contradictory completion remains failure {"semanticSuccess":false}
+2026-10-11T14:52:20.6295262Z ok 75 - contradictory completion remains failure {"semanticSuccess":false}
+2026-10-11T14:52:20.6295828Z   ---
+2026-10-11T14:52:20.6296100Z   duration_ms: 0.148262
+2026-10-11T14:52:20.6296394Z   type: 'test'
+2026-10-11T14:52:20.6296662Z   ...
+2026-10-11T14:52:20.6297093Z # Subtest: contradictory completion remains failure {"brainCompleted":false}
+2026-10-11T14:52:20.6297674Z ok 76 - contradictory completion remains failure {"brainCompleted":false}
+2026-10-11T14:52:20.6298096Z   ---
+2026-10-11T14:52:20.6298364Z   duration_ms: 0.095934
+2026-10-11T14:52:20.6298654Z   type: 'test'
+2026-10-11T14:52:20.6298925Z   ...
+2026-10-11T14:52:20.6299390Z # Subtest: contradictory completion remains failure {"transportContractPassed":false}
+2026-10-11T14:52:20.6300036Z ok 77 - contradictory completion remains failure {"transportContractPassed":false}
+2026-10-11T14:52:20.6300470Z   ---
+2026-10-11T14:52:20.6300737Z   duration_ms: 0.086039
+2026-10-11T14:52:20.6301026Z   type: 'test'
+2026-10-11T14:52:20.6301293Z   ...
+2026-10-11T14:52:20.6301710Z # Subtest: contradictory completion remains failure {"degradedUsed":true}
+2026-10-11T14:52:20.6302381Z ok 78 - contradictory completion remains failure {"degradedUsed":true}
+2026-10-11T14:52:20.6302780Z   ---
+2026-10-11T14:52:20.6303047Z   duration_ms: 0.120841
+2026-10-11T14:52:20.6303336Z   type: 'test'
+2026-10-11T14:52:20.6303604Z   ...
+2026-10-11T14:52:20.6304054Z # Subtest: contradictory completion remains failure {"recoveryExhausted":true}
+2026-10-11T14:52:20.6304645Z ok 79 - contradictory completion remains failure {"recoveryExhausted":true}
+2026-10-11T14:52:20.6305057Z   ---
+2026-10-11T14:52:20.6305324Z   duration_ms: 0.188782
+2026-10-11T14:52:20.6305618Z   type: 'test'
+2026-10-11T14:52:20.6305886Z   ...
+2026-10-11T14:52:20.6306515Z # Subtest: contradictory completion remains failure {"reasoningFailure":{"code":"PROVIDER_INCOMPLETE","reason":"max_output_tokens"}}
+2026-10-11T14:52:20.6307427Z ok 80 - contradictory completion remains failure {"reasoningFailure":{"code":"PROVIDER_INCOMPLETE","reason":"max_output_tokens"}}
+2026-10-11T14:52:20.6308107Z   ---
+2026-10-11T14:52:20.6308379Z   duration_ms: 0.13387
+2026-10-11T14:52:20.6308670Z   type: 'test'
+2026-10-11T14:52:20.6308937Z   ...
+2026-10-11T14:52:20.6309428Z # Subtest: contradictory completion remains failure {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.6310103Z ok 81 - contradictory completion remains failure {"constitutionalGate":{"allowed":false}}
+2026-10-11T14:52:20.6310560Z   ---
+2026-10-11T14:52:20.6310831Z   duration_ms: 0.118037
+2026-10-11T14:52:20.6311121Z   type: 'test'
+2026-10-11T14:52:20.6311391Z   ...
+2026-10-11T14:52:20.6311986Z # Subtest: contradictory completion remains failure {"responseContract":{"code":"blocked"}}
+2026-10-11T14:52:20.6312687Z ok 82 - contradictory completion remains failure {"responseContract":{"code":"blocked"}}
+2026-10-11T14:52:20.6313138Z   ---
+2026-10-11T14:52:20.6313406Z   duration_ms: 0.805395
+2026-10-11T14:52:20.6313695Z   type: 'test'
+2026-10-11T14:52:20.6313965Z   ...
+2026-10-11T14:52:20.6314352Z # Subtest: HTTP failure cannot be certified by completion flags
+2026-10-11T14:52:20.6314852Z ok 83 - HTTP failure cannot be certified by completion flags
+2026-10-11T14:52:20.6315218Z   ---
+2026-10-11T14:52:20.6315485Z   duration_ms: 0.146529
+2026-10-11T14:52:20.6315774Z   type: 'test'
+2026-10-11T14:52:20.6316046Z   ...
+2026-10-11T14:52:20.6316503Z # Subtest: production hydration and provenance retain PR41 implementation contracts
+2026-10-11T14:52:20.6317130Z ok 84 - production hydration and provenance retain PR41 implementation contracts
+2026-10-11T14:52:20.6317556Z   ---
+2026-10-11T14:52:20.6317825Z   duration_ms: 0.289043
+2026-10-11T14:52:20.6318123Z   type: 'test'
+2026-10-11T14:52:20.6318392Z   ...
+2026-10-11T14:52:20.6597084Z # Subtest: one identity renders the authoritative answer even with different archived content
+2026-10-11T14:52:20.6597678Z ok 85 - one identity renders the authoritative answer even with different archived content
+2026-10-11T14:52:20.6597910Z   ---
+2026-10-11T14:52:20.6598030Z   duration_ms: 1.042711
+2026-10-11T14:52:20.6598182Z   type: 'test'
+2026-10-11T14:52:20.6598526Z   ...
+2026-10-11T14:52:20.6599768Z # Subtest: legacy host/transport IDs reconcile through unique matching owner interaction
+2026-10-11T14:52:20.6600461Z ok 86 - legacy host/transport IDs reconcile through unique matching owner interaction
+2026-10-11T14:52:20.6600787Z   ---
+2026-10-11T14:52:20.6600955Z   duration_ms: 4.712724
+2026-10-11T14:52:20.6601093Z   type: 'test'
+2026-10-11T14:52:20.6601199Z   ...
+2026-10-11T14:52:20.6603631Z # Subtest: same text in distinct interactions remains distinct
+2026-10-11T14:52:20.6604244Z ok 87 - same text in distinct interactions remains distinct
+2026-10-11T14:52:20.6604528Z   ---
+2026-10-11T14:52:20.6604698Z   duration_ms: 0.149303
+2026-10-11T14:52:20.6604916Z   type: 'test'
+2026-10-11T14:52:20.6605079Z   ...
+2026-10-11T14:52:20.6606321Z # Subtest: ambiguous legacy anchors and orphan archives are preserved
+2026-10-11T14:52:20.6606752Z ok 88 - ambiguous legacy anchors and orphan archives are preserved
+2026-10-11T14:52:20.6606962Z   ---
+2026-10-11T14:52:20.6607069Z   duration_ms: 0.096385
+2026-10-11T14:52:20.6607187Z   type: 'test'
+2026-10-11T14:52:20.6607294Z   ...
+2026-10-11T14:52:20.6737246Z 1..88
+2026-10-11T14:52:20.6737590Z # tests 215
+2026-10-11T14:52:20.6737783Z # suites 13
+2026-10-11T14:52:20.6737961Z # pass 215
+2026-10-11T14:52:20.6738179Z # fail 0
+2026-10-11T14:52:20.6738357Z # cancelled 0
+2026-10-11T14:52:20.6738539Z # skipped 0
+2026-10-11T14:52:20.6738707Z # todo 0
+2026-10-11T14:52:20.6738957Z # duration_ms 2148.508825
+2026-10-11T14:52:20.7099305Z TAP version 13
+2026-10-11T14:52:20.7721059Z # Subtest: actual financial service projection renders period identity, aggregate stages, unknown fee and no live activation
+2026-10-11T14:52:20.7724506Z ok 1 - actual financial service projection renders period identity, aggregate stages, unknown fee and no live activation
+2026-10-11T14:52:20.7725092Z   ---
+2026-10-11T14:52:20.7725280Z   duration_ms: 6.283385
+2026-10-11T14:52:20.7725568Z   type: 'test'
+2026-10-11T14:52:20.7726142Z   ...
+2026-10-11T14:52:20.7727106Z # Subtest: authorised Railway account readback renders separately from actual charges
+2026-10-11T14:52:20.7728297Z ok 2 - authorised Railway account readback renders separately from actual charges
+2026-10-11T14:52:20.7728699Z   ---
+2026-10-11T14:52:20.7728889Z   duration_ms: 1.548047
+2026-10-11T14:52:20.7729079Z   type: 'test'
+2026-10-11T14:52:20.7729240Z   ...
+2026-10-11T14:52:20.7779307Z 1..2
+2026-10-11T14:52:20.7779501Z # tests 2
+2026-10-11T14:52:20.7779957Z # suites 0
+2026-10-11T14:52:20.7780181Z # pass 2
+2026-10-11T14:52:20.7780404Z # fail 0
+2026-10-11T14:52:20.7780654Z # cancelled 0
+2026-10-11T14:52:20.7780897Z # skipped 0
+2026-10-11T14:52:20.7781133Z # todo 0
+2026-10-11T14:52:20.7781421Z # duration_ms 74.905282
+2026-10-11T14:52:20.7838088Z ##[group]Run npm run build --prefix empireai-web
+2026-10-11T14:52:20.7838340Z [36;1mnpm run build --prefix empireai-web[0m
+2026-10-11T14:52:20.7889364Z shell: /usr/bin/bash -e {0}
+2026-10-11T14:52:20.7889512Z env:
+2026-10-11T14:52:20.7889615Z   CI: true
+2026-10-11T14:52:20.7889724Z   SOAK_ALLOW_LIVE_RUN: 0
+2026-10-11T14:52:20.7889847Z ##[endgroup]
+2026-10-11T14:52:20.8500307Z 
+2026-10-11T14:52:20.8500728Z > empireai-web@0.1.0 build
+2026-10-11T14:52:20.8501041Z > next build --webpack
+2026-10-11T14:52:20.8501168Z 
+2026-10-11T14:52:21.0651722Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-10-11T14:52:21.0899737Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-10-11T14:52:21.0900357Z This information is used to shape Next.js' roadmap and prioritize features.
+2026-10-11T14:52:21.0909752Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2026-10-11T14:52:21.0910245Z https://nextjs.org/telemetry
+2026-10-11T14:52:21.0910404Z 
+2026-10-11T14:52:21.1136460Z ▲ Next.js 16.2.9 (webpack)
+2026-10-11T14:52:21.1137031Z 
+2026-10-11T14:52:21.1274214Z ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+2026-10-11T14:52:21.1584832Z   Creating an optimized production build ...
+2026-10-11T14:52:44.7099013Z ✓ Compiled successfully in 21.7s
+2026-10-11T14:52:44.7216183Z   Running TypeScript ...
+2026-10-11T14:52:55.7173671Z   Finished TypeScript in 11.0s ...
+2026-10-11T14:52:55.7207559Z   Collecting page data using 3 workers ...
+2026-10-11T14:52:58.5203277Z   Generating static pages using 3 workers (0/184) ...
+2026-10-11T14:52:59.0583041Z   Generating static pages using 3 workers (46/184) 
+2026-10-11T14:52:59.7255022Z   Generating static pages using 3 workers (92/184) 
+2026-10-11T14:52:59.7257070Z   Generating static pages using 3 workers (138/184) 
+2026-10-11T14:52:59.9075364Z ✓ Generating static pages using 3 workers (184/184) in 1387ms
+2026-10-11T14:53:01.2881130Z   Finalizing page optimization ...
+2026-10-11T14:53:01.2881470Z   Collecting build traces ...
+2026-10-11T14:53:11.5289760Z 
+2026-10-11T14:53:11.5329082Z Route (app)
+2026-10-11T14:53:11.5329680Z ┌ ○ /
+2026-10-11T14:53:11.5330221Z ├ ○ /_not-found
+2026-10-11T14:53:11.5330494Z ├ ƒ /api/auth/login
+2026-10-11T14:53:11.5330722Z ├ ƒ /api/auth/logout
+2026-10-11T14:53:11.5330943Z ├ ƒ /api/auth/me
+2026-10-11T14:53:11.5331166Z ├ ƒ /api/brain/dispatch
+2026-10-11T14:53:11.5331389Z ├ ƒ /api/brain/events
+2026-10-11T14:53:11.5331679Z ├ ƒ /api/commerce/marketplace-integration
+2026-10-11T14:53:11.5332202Z ├ ƒ /api/commerce/transactions
+2026-10-11T14:53:11.5332456Z ├ ƒ /api/eos-bundle-stamp
+2026-10-11T14:53:11.5332738Z ├ ƒ /api/integrations/canva/callback
+2026-10-11T14:53:11.5333034Z ├ ƒ /api/owner/advisor/[...path]
+2026-10-11T14:53:11.5333289Z ├ ƒ /api/owner/assurance
+2026-10-11T14:53:11.5333615Z ├ ƒ /api/owner/assurance-demo/[action]
+2026-10-11T14:53:11.5333913Z ├ ƒ /api/owner/assurance/control
+2026-10-11T14:53:11.5334113Z ├ ƒ /api/owner/commerce
+2026-10-11T14:53:11.5334389Z ├ ƒ /api/owner/commerce/portfolio
+2026-10-11T14:53:11.5334967Z ├ ƒ /api/owner/commerce/twin
+2026-10-11T14:53:11.5335263Z ├ ƒ /api/owner/commerce/twin/context
+2026-10-11T14:53:11.5335523Z ├ ƒ /api/owner/finance
+2026-10-11T14:53:11.5335937Z ├ ƒ /api/owner/finance/calculate/[kind]
+2026-10-11T14:53:11.5336204Z ├ ƒ /api/owner/overview
+2026-10-11T14:53:11.5336429Z ├ ƒ /api/owner/runtime
+2026-10-11T14:53:11.5336713Z ├ ƒ /api/pillow-commissioning/[...path]
+2026-10-11T14:53:11.5336993Z ├ ƒ /api/pillow/[...path]
+2026-10-11T14:53:11.5337234Z ├ ƒ /api/shadow-ceo/[...path]
+2026-10-11T14:53:11.5337444Z ├ ○ /cockpit
+2026-10-11T14:53:11.5337643Z ├ ƒ /cockpit/advisor
+2026-10-11T14:53:11.5337865Z ├ ƒ /cockpit/approvals
+2026-10-11T14:53:11.5338080Z ├ ○ /cockpit/assurance
+2026-10-11T14:53:11.5338593Z ├ ○ /cockpit/assurance/mobile-acceptance
+2026-10-11T14:53:11.5338858Z ├ ○ /cockpit/calendar
+2026-10-11T14:53:11.5339059Z ├ ○ /cockpit/ceo
+2026-10-11T14:53:11.5339268Z ├ ○ /cockpit/command
+2026-10-11T14:53:11.5339509Z ├ ○ /cockpit/commerce
+2026-10-11T14:53:11.5339864Z ├ ○ /cockpit/commerce/ad-intelligence
+2026-10-11T14:53:11.5340217Z ├ ○ /cockpit/commerce/ads
+2026-10-11T14:53:11.5340534Z ├ ○ /cockpit/commerce/automation
+2026-10-11T14:53:11.5340790Z ├ ○ /cockpit/commerce/factory
+2026-10-11T14:53:11.5341058Z ├ ƒ /cockpit/commerce/governed
+2026-10-11T14:53:11.5341278Z ├ ○ /cockpit/commerce/intelligence
+2026-10-11T14:53:11.5341520Z ├ ○ /cockpit/commerce/launch
+2026-10-11T14:53:11.5341962Z ├ ○ /cockpit/commerce/marketing
+2026-10-11T14:53:11.5342234Z ├ ○ /cockpit/commerce/marketplace
+2026-10-11T14:53:11.5342548Z ├ ○ /cockpit/commerce/operating
+2026-10-11T14:53:11.5342799Z ├ ○ /cockpit/commerce/store
+2026-10-11T14:53:11.5343096Z ├ ○ /cockpit/commerce/transactions
+2026-10-11T14:53:11.5343402Z ├ ○ /cockpit/commerce/workspace
+2026-10-11T14:53:11.5343721Z ├ ƒ /cockpit/commerce/workspace/[id]
+2026-10-11T14:53:11.5343984Z ├ ○ /cockpit/cost-centre
+2026-10-11T14:53:11.5344137Z ├ ○ /cockpit/development
+2026-10-11T14:53:11.5344352Z ├ ○ /cockpit/development/approvals
+2026-10-11T14:53:11.5344722Z ├ ○ /cockpit/development/inspection
+2026-10-11T14:53:11.5345062Z ├ ○ /cockpit/development/learning
+2026-10-11T14:53:11.5345357Z ├ ○ /cockpit/development/pillow
+2026-10-11T14:53:11.5345633Z ├ ○ /cockpit/eyes
+2026-10-11T14:53:11.5345832Z ├ ƒ /cockpit/finance
+2026-10-11T14:53:11.5346057Z ├ ○ /cockpit/finance/billing
+2026-10-11T14:53:11.5346295Z ├ ○ /cockpit/finance/costs
+2026-10-11T14:53:11.5346554Z ├ ○ /cockpit/finance/intelligence
+2026-10-11T14:53:11.5346842Z ├ ○ /cockpit/finance/mobile-acceptance
+2026-10-11T14:53:11.5347123Z ├ ○ /cockpit/finance/pl
+2026-10-11T14:53:11.5347352Z ├ ○ /cockpit/finance/profit
+2026-10-11T14:53:11.5347612Z ├ ○ /cockpit/founder/ai-evolution
+2026-10-11T14:53:11.5347884Z ├ ○ /cockpit/founder/architecture
+2026-10-11T14:53:11.5348197Z ├ ○ /cockpit/founder/architecture-evolution
+2026-10-11T14:53:11.5348548Z ├ ○ /cockpit/founder/autonomous-decision-monitor
+2026-10-11T14:53:11.5348846Z ├ ○ /cockpit/founder/builder
+2026-10-11T14:53:11.5349133Z ├ ○ /cockpit/founder/capital-allocation
+2026-10-11T14:53:11.5349439Z ├ ○ /cockpit/founder/capital-risk
+2026-10-11T14:53:11.5349716Z ├ ○ /cockpit/founder/cash-reserve
+2026-10-11T14:53:11.5350022Z ├ ○ /cockpit/founder/competitor-intelligence
+2026-10-11T14:53:11.5350337Z ├ ○ /cockpit/founder/conflict-resolution
+2026-10-11T14:53:11.5350648Z ├ ○ /cockpit/founder/corporate-vision
+2026-10-11T14:53:11.5350953Z ├ ○ /cockpit/founder/cost-optimization
+2026-10-11T14:53:11.5351251Z ├ ○ /cockpit/founder/crisis-decisions
+2026-10-11T14:53:11.5351575Z ├ ○ /cockpit/founder/cross-business-intelligence
+2026-10-11T14:53:11.5352034Z ├ ○ /cockpit/founder/customer-behaviour
+2026-10-11T14:53:11.5352345Z ├ ○ /cockpit/founder/decision-architecture
+2026-10-11T14:53:11.5352650Z ├ ○ /cockpit/founder/decision-audit
+2026-10-11T14:53:11.5353000Z ├ ○ /cockpit/founder/decision-simulation
+2026-10-11T14:53:11.5353305Z ├ ○ /cockpit/founder/department-planning
+2026-10-11T14:53:11.5353605Z ├ ○ /cockpit/founder/empire-evolution
+2026-10-11T14:53:11.5353922Z ├ ○ /cockpit/founder/enterprise-audit-engine
+2026-10-11T14:53:11.5354480Z ├ ○ /cockpit/founder/enterprise-constitutional-guardian
+2026-10-11T14:53:11.5354826Z ├ ○ /cockpit/founder/enterprise-governance
+2026-10-11T14:53:11.5355138Z ├ ○ /cockpit/founder/enterprise-pattern
+2026-10-11T14:53:11.5355467Z ├ ○ /cockpit/founder/enterprise-risk-governance
+2026-10-11T14:53:11.5355803Z ├ ○ /cockpit/founder/enterprise-valuation
+2026-10-11T14:53:11.5356125Z ├ ○ /cockpit/founder/executive-accountability
+2026-10-11T14:53:11.5356438Z ├ ○ /cockpit/founder/executive-advisory
+2026-10-11T14:53:11.5356735Z ├ ○ /cockpit/founder/executive-approval
+2026-10-11T14:53:11.5357033Z ├ ○ /cockpit/founder/executive-benchmark
+2026-10-11T14:53:11.5357373Z ├ ○ /cockpit/founder/executive-budget
+2026-10-11T14:53:11.5358167Z ├ ○ /cockpit/founder/executive-calendar
+2026-10-11T14:53:11.5367568Z ├ ○ /cockpit/founder/executive-capital-strategy
+2026-10-11T14:53:11.5367924Z ├ ○ /cockpit/founder/executive-compliance
+2026-10-11T14:53:11.5368234Z ├ ○ /cockpit/founder/executive-confidence
+2026-10-11T14:53:11.5368548Z ├ ○ /cockpit/founder/executive-consensus
+2026-10-11T14:53:11.5368894Z ├ ○ /cockpit/founder/executive-constitutional-monitor
+2026-10-11T14:53:11.5369267Z ├ ○ /cockpit/founder/executive-decision-certification
+2026-10-11T14:53:11.5369604Z ├ ○ /cockpit/founder/executive-dependencies
+2026-10-11T14:53:11.5369976Z ├ ○ /cockpit/founder/executive-escalations
+2026-10-11T14:53:11.5370277Z ├ ○ /cockpit/founder/executive-ethics
+2026-10-11T14:53:11.5370601Z ├ ○ /cockpit/founder/executive-exception-manager
+2026-10-11T14:53:11.5370932Z ├ ○ /cockpit/founder/executive-finance
+2026-10-11T14:53:11.5371236Z ├ ○ /cockpit/founder/executive-forecast
+2026-10-11T14:53:11.5371607Z ├ ○ /cockpit/founder/executive-governance-certification
+2026-10-11T14:53:11.5372062Z ├ ○ /cockpit/founder/executive-insight
+2026-10-11T14:53:11.5372435Z ├ ○ /cockpit/founder/executive-intelligence-certification
+2026-10-11T14:53:11.5372813Z ├ ○ /cockpit/founder/executive-knowledge-graph
+2026-10-11T14:53:11.5373132Z ├ ○ /cockpit/founder/executive-kpi
+2026-10-11T14:53:11.5373448Z ├ ○ /cockpit/founder/executive-performance
+2026-10-11T14:53:11.5373758Z ├ ○ /cockpit/founder/executive-planning
+2026-10-11T14:53:11.5374114Z ├ ○ /cockpit/founder/executive-planning-certification
+2026-10-11T14:53:11.5374457Z ├ ○ /cockpit/founder/executive-policies
+2026-10-11T14:53:11.5374789Z ├ ○ /cockpit/founder/executive-policy-evolution
+2026-10-11T14:53:11.5375121Z ├ ○ /cockpit/founder/executive-prediction
+2026-10-11T14:53:11.5375451Z ├ ○ /cockpit/founder/executive-recommendations
+2026-10-11T14:53:11.5375802Z ├ ○ /cockpit/founder/executive-resilience-engine
+2026-10-11T14:53:11.5376135Z ├ ○ /cockpit/founder/executive-review-board
+2026-10-11T14:53:11.5376448Z ├ ○ /cockpit/founder/executive-roadmap
+2026-10-11T14:53:11.5376759Z ├ ○ /cockpit/founder/executive-scenarios
+2026-10-11T14:53:11.5377076Z ├ ○ /cockpit/founder/executive-transparency
+2026-10-11T14:53:11.5377397Z ├ ○ /cockpit/founder/executive-trust-engine
+2026-10-11T14:53:11.5377699Z ├ ○ /cockpit/founder/explainability
+2026-10-11T14:53:11.5378060Z ├ ○ /cockpit/founder/financial-executive-certification
+2026-10-11T14:53:11.5378405Z ├ ○ /cockpit/founder/financial-scenario
+2026-10-11T14:53:11.5378692Z ├ ○ /cockpit/founder/grand-king
+2026-10-11T14:53:11.5379060Z ├ ○ /cockpit/founder/grand-king-executive-cockpit
+2026-10-11T14:53:11.5379358Z ├ ○ /cockpit/founder/guardian
+2026-10-11T14:53:11.5379652Z ├ ○ /cockpit/founder/industry-intelligence
+2026-10-11T14:53:11.5379961Z ├ ○ /cockpit/founder/initiative-portfolio
+2026-10-11T14:53:11.5380287Z ├ ○ /cockpit/founder/innovation-intelligence
+2026-10-11T14:53:11.5380605Z ├ ○ /cockpit/founder/investment-evaluation
+2026-10-11T14:53:11.5380878Z ├ ○ /cockpit/founder/journey
+2026-10-11T14:53:11.5381140Z ├ ○ /cockpit/founder/knowledge
+2026-10-11T14:53:11.5381437Z ├ ○ /cockpit/founder/knowledge-evolution
+2026-10-11T14:53:11.5381717Z ├ ○ /cockpit/founder/live-eta
+2026-10-11T14:53:11.5382123Z ├ ○ /cockpit/founder/long-term-growth
+2026-10-11T14:53:11.5382431Z ├ ○ /cockpit/founder/market-intelligence
+2026-10-11T14:53:11.5382925Z ├ ○ /cockpit/founder/opportunity-discovery
+2026-10-11T14:53:11.5383259Z ├ ○ /cockpit/founder/opportunity-prioritization
+2026-10-11T14:53:11.5383589Z ├ ○ /cockpit/founder/priority-management
+2026-10-11T14:53:11.5383877Z ├ ○ /cockpit/founder/production
+2026-10-11T14:53:11.5384176Z ├ ○ /cockpit/founder/profit-optimization
+2026-10-11T14:53:11.5384485Z ├ ○ /cockpit/founder/repository-evolution
+2026-10-11T14:53:11.5384858Z ├ ○ /cockpit/founder/resource-allocation
+2026-10-11T14:53:11.5385195Z ├ ○ /cockpit/founder/risk-assessment
+2026-10-11T14:53:11.5385564Z ├ ○ /cockpit/founder/roi-intelligence
+2026-10-11T14:53:11.5385904Z ├ ○ /cockpit/founder/shadow-ceo
+2026-10-11T14:53:11.5386225Z ├ ○ /cockpit/founder/strategic-alignment
+2026-10-11T14:53:11.5386707Z ├ ○ /cockpit/founder/strategic-objectives
+2026-10-11T14:53:11.5387028Z ├ ○ /cockpit/founder/supervisor
+2026-10-11T14:53:11.5387313Z ├ ○ /cockpit/founder/threat-detection
+2026-10-11T14:53:11.5387612Z ├ ○ /cockpit/founder/trade-off-analysis
+2026-10-11T14:53:11.5387884Z ├ ○ /cockpit/governance
+2026-10-11T14:53:11.5388144Z ├ ○ /cockpit/governance/council
+2026-10-11T14:53:11.5388419Z ├ ○ /cockpit/governance/decisions
+2026-10-11T14:53:11.5388701Z ├ ○ /cockpit/governance/settings
+2026-10-11T14:53:11.5388956Z ├ ○ /cockpit/governance/soul
+2026-10-11T14:53:11.5389207Z ├ ○ /cockpit/governance/v1
+2026-10-11T14:53:11.5389449Z ├ ○ /cockpit/infrastructure
+2026-10-11T14:53:11.5389723Z ├ ○ /cockpit/infrastructure/admin
+2026-10-11T14:53:11.5390021Z ├ ○ /cockpit/infrastructure/deployments
+2026-10-11T14:53:11.5390324Z ├ ○ /cockpit/infrastructure/health
+2026-10-11T14:53:11.5390644Z ├ ○ /cockpit/infrastructure/integrations
+2026-10-11T14:53:11.5390945Z ├ ○ /cockpit/intelligence
+2026-10-11T14:53:11.5391274Z ├ ○ /cockpit/intelligence/customers
+2026-10-11T14:53:11.5391582Z ├ ○ /cockpit/intelligence/decisions
+2026-10-11T14:53:11.5392092Z ├ ○ /cockpit/intelligence/discovery
+2026-10-11T14:53:11.5392417Z ├ ○ /cockpit/intelligence/executive
+2026-10-11T14:53:11.5392767Z ├ ○ /cockpit/intelligence/marketplace
+2026-10-11T14:53:11.5393080Z ├ ○ /cockpit/intelligence/markets
+2026-10-11T14:53:11.5393360Z ├ ○ /cockpit/intelligence/products
+2026-10-11T14:53:11.5393634Z ├ ○ /cockpit/intelligence/risk
+2026-10-11T14:53:11.5393918Z ├ ○ /cockpit/intelligence/suppliers
+2026-10-11T14:53:11.5394167Z ├ ƒ /cockpit/listings
+2026-10-11T14:53:11.5394385Z ├ ○ /cockpit/missions
+2026-10-11T14:53:11.5394608Z ├ ○ /cockpit/operations
+2026-10-11T14:53:11.5394879Z ├ ○ /cockpit/operations/authorizations
+2026-10-11T14:53:11.5395173Z ├ ○ /cockpit/operations/automation
+2026-10-11T14:53:11.5395460Z ├ ○ /cockpit/operations/fulfillment
+2026-10-11T14:53:11.5395735Z ├ ○ /cockpit/operations/orders
+2026-10-11T14:53:11.5396005Z ├ ○ /cockpit/operations/support
+2026-10-11T14:53:11.5396252Z ├ ○ /cockpit/orders
+2026-10-11T14:53:11.5396467Z ├ ○ /cockpit/products
+2026-10-11T14:53:11.5396699Z ├ ƒ /cockpit/products/[id]
+2026-10-11T14:53:11.5396984Z ├ ○ /cockpit/products/history
+2026-10-11T14:53:11.5397255Z ├ ○ /cockpit/relationship
+2026-10-11T14:53:11.5397506Z ├ ○ /cockpit/system
+2026-10-11T14:53:11.5397752Z ├ ○ /cockpit/workforce
+2026-10-11T14:53:11.5398046Z ├ ○ /cockpit/workforce/activity
+2026-10-11T14:53:11.5398320Z ├ ○ /cockpit/workforce/audit
+2026-10-11T14:53:11.5398554Z ├ ○ /login
+2026-10-11T14:53:11.5398754Z ├ ○ /platform
+2026-10-11T14:53:11.5398954Z ├ ○ /platform/admin
+2026-10-11T14:53:11.5399161Z ├ ○ /platform/ads
+2026-10-11T14:53:11.5399371Z ├ ○ /platform/ai-ceo
+2026-10-11T14:53:11.5399590Z ├ ○ /platform/dashboard
+2026-10-11T14:53:11.5399810Z ├ ○ /platform/finance
+2026-10-11T14:53:11.5400035Z ├ ○ /platform/intelligence
+2026-10-11T14:53:11.5400267Z ├ ○ /platform/marketing
+2026-10-11T14:53:11.5400486Z ├ ○ /platform/orders
+2026-10-11T14:53:11.5400700Z ├ ○ /platform/settings
+2026-10-11T14:53:11.5400928Z ├ ○ /platform/store
+2026-10-11T14:53:11.5401141Z ├ ○ /platform/suppliers
+2026-10-11T14:53:11.5401360Z └ ○ /platform/support
+2026-10-11T14:53:11.5401482Z 
+2026-10-11T14:53:11.5401488Z 
+2026-10-11T14:53:11.5401829Z ƒ Proxy (Middleware)
+2026-10-11T14:53:11.5401942Z 
+2026-10-11T14:53:11.5402113Z ○  (Static)   prerendered as static content
+2026-10-11T14:53:11.5402427Z ƒ  (Dynamic)  server-rendered on demand
+2026-10-11T14:53:11.5402581Z 
+2026-10-11T14:53:11.6018051Z Post job cleanup.
+2026-10-11T14:53:11.6831105Z (node:3186) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-11T14:53:11.6831583Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-11T14:53:11.6959576Z Post job cleanup.
+2026-10-11T14:53:11.7586258Z Post job cleanup.
+2026-10-11T14:53:11.8156531Z [command]/usr/bin/git version
+2026-10-11T14:53:11.8189505Z git version 2.55.0
+2026-10-11T14:53:11.8214433Z Temporarily overriding HOME='/home/runner/work/_temp/8cfa5d80-847d-4640-9fc0-7c6511fa58ca' before making global git config changes
+2026-10-11T14:53:11.8215230Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-11T14:53:11.8218264Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EmpireAI/EmpireAI
+2026-10-11T14:53:11.8253670Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-11T14:53:11.8283672Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-11T14:53:11.8506531Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-11T14:53:11.8595069Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-11T14:53:11.8961900Z Cleaning up orphan processes
+2026-10-11T14:53:11.9184822Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
