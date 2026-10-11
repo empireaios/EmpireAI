@@ -342,13 +342,13 @@ jobs:
       - name: Verify and restore exact frontend review candidate
         shell: bash
         run: |
-          bundle=_work8_evidence/docs/work8/resume-20261011/FRONTEND-QUALIFICATION-CANDIDATE.bundle
-          test "$(git hash-object "$bundle")" = 3ea1170bad5dacc70ff53b1c2377f919017da858
+          bundle=_work8_evidence/docs/work8/resume-20261011/FRONTEND-AUTONOMY-CANDIDATE.bundle
+          test "$(git hash-object "$bundle")" = f559557f06a1e493e52fe5fe7f9c3c04b7773cda
           git bundle verify "$bundle"
           git fetch "$bundle" HEAD
-          git checkout --detach 679f901d4f422eb9292273046f4424e982087236
-          test "$(git rev-parse HEAD)" = 679f901d4f422eb9292273046f4424e982087236
-          test "$(git rev-parse HEAD^{tree})" = 0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8
+          git checkout --detach 7dff79a6b712972b08add445d19e30cb664f69e0
+          test "$(git rev-parse HEAD)" = 7dff79a6b712972b08add445d19e30cb664f69e0
+          test "$(git rev-parse HEAD^{tree})" = 03e55a6cea520a6cb1d1a752b51d3c9781290c65
           rm -rf -- _work8_evidence
       - name: Use pinned Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
