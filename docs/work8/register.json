@@ -831,7 +831,7 @@
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "New contracts and probe covered; broader gates retained",
-      "examinationResult": "PENDING \u2014 13 targeted plus1 context case passed",
+      "examinationResult": "PENDING \u2014 146 CI tests plus focused local cases passed",
       "independentVerification": "Remote exact-head CI tracked separately",
       "continuationEvidence": "resume-20261011/targeted-tests.tap; recovery-receipt.json",
       "remainingDependency": "Independent code review and remaining implementation"
@@ -1099,7 +1099,7 @@
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
       "engineeringState": "Backend continuation published; frontend unchanged; no release",
-      "examinationResult": "PENDING \u2014 recovered candidates4/4 each; new CI tracked",
+      "examinationResult": "PENDING \u2014 recovered candidates4/4 each; new backend4/4 passed",
       "independentVerification": "GitHub exact-head status read; new independent code review missing",
       "continuationEvidence": "recovery-receipt.json; resume-20261011/CHANGES.md",
       "remainingDependency": "Independent delta review; separate release authority"

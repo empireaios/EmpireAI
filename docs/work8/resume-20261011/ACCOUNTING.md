@@ -1,6 +1,6 @@
 # Production accounting reconciliation — unresolved
 
-Read-only Advisor readback at 2026-10-11T02:16:10Z still reports 227 accounting records, SHA256 `9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92`. The original 224-record digest was `1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b`. Those aggregates do not identify the three additions or prove preservation of the original subset.
+Read-only Advisor readbacks at 2026-10-11T02:16:10Z and 2026-10-11T02:39:51.492Z both report 227 accounting records, SHA256 `9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92`. The original 224-record digest was `1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b`. Those aggregates do not identify the three additions or prove preservation of the original subset.
 
 Journal: 3, digest `e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc`. Legacy history: 7, digest `2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf`. Both remain unchanged. Reserved/held amounts total 112427447 micro-USD; recorded estimates total 20507705 micro-USD; invoice actuals remain unknown for all 227 calls. Reservations are not payments or verified actual charges.
 

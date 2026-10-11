@@ -965,5 +965,7 @@
       "verified": "focused strict compile and targeted13/13"
     }
   ],
-  "continuationCiEvidence": "recovery-receipt.json"
+  "continuationCiEvidence": "recovery-receipt.json",
+  "continuationCiStatus": "ALL_FOUR_SUCCESS",
+  "continuationCiSourceBinding": "resume-20261011/ci-source-binding.json"
 }

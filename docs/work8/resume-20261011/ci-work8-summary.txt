@@ -1,5 +1,6 @@
 Source: GitHub Actions run 38104772057 / job 114367893740
-Commit: e931668dca5e87df8f0d26213791de8501cf2d35
+Candidate: e931668dca5e87df8f0d26213791de8501cf2d35
+Actual checkout: 24830e9db1688db0697b3776aa75fee28cad4a21 (zero changed files versus candidate; see ci-source-binding.json)
 Scope: Work8 bounded integrated exams with kernel network denial
 This is a bounded excerpt of retrieved job logs, not a new local run.
 

@@ -1,6 +1,6 @@
 {
   "schema": "work8-recovered-continuation-v1",
-  "observedAt": "2026-10-11T02:28:35.595Z",
+  "observedAt": "2026-10-11T02:44:50.435Z",
   "status": "IN_PROGRESS_NO_GO",
   "wholeProgrammeCertified": false,
   "originalEvidenceHead": "f5524cd44e1a77895a2a905a02edc557d08e7bdd",
@@ -55,16 +55,6 @@
     "localEquivalentCommit": "01f80167acdd5376da1a6d0489bb61ef677ba9d5",
     "workflows": [
       {
-        "id": 38104771940,
-        "name": "Pillow runtime repair CI",
-        "status": "in_progress",
-        "conclusion": null,
-        "run_number": 624,
-        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771940/jobs",
-        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771940/logs",
-        "workflow_id": 362688325
-      },
-      {
         "id": 38104771996,
         "name": "Independent Assurance Core",
         "status": "completed",
@@ -93,6 +83,16 @@
         "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772057/jobs",
         "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772057/logs",
         "workflow_id": 362309382
+      },
+      {
+        "id": 38104771940,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 624,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771940/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771940/logs",
+        "workflow_id": 362688325
       }
     ],
     "coreTests": {
@@ -101,8 +101,13 @@
       "fail": 0,
       "runId": 38104772057,
       "jobId": 114367893740,
-      "receipt": "resume-20261011/ci-work8-summary.txt"
-    }
+      "receipt": "resume-20261011/ci-work8-summary.txt",
+      "checkout": "24830e9db1688db0697b3776aa75fee28cad4a21",
+      "candidateSourceParity": "GitHub compare: candidate merge base; zero changed files"
+    },
+    "ciStatus": "ALL_FOUR_SUCCESS",
+    "sourceBinding": "resume-20261011/ci-source-binding.json",
+    "runtimeSummary": "resume-20261011/runtime-summary.txt"
   },
   "frontend": {
     "pr": 112,
@@ -155,17 +160,18 @@
     "campaignRepeated": false
   },
   "production": {
-    "observedAt": "2026-10-11T02:16:09.387Z",
+    "observedAt": "2026-10-11T02:39:51.604Z",
     "backend": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
     "frontend": "71f9414d6c534b4c35dbd22696b82a77fcf7c597",
     "backendDeployment": "4303f5e9-afef-4f70-9388-996a0e923949",
     "volume": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
-    "stagedChanges": false
+    "stagedChanges": false,
+    "frontendEvidenceScope": "Recovered Work7 approved revision; latest Advisor state cannot independently attest current frontend identity"
   },
   "accounting": {
-    "observedAt": "2026-10-11T02:16:10Z",
+    "observedAt": "2026-10-11T02:39:51.492Z",
     "count": 227,
     "digest": "9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92",
     "originalCount": 224,
@@ -173,7 +179,12 @@
     "addedRowIdentitiesVerified": false,
     "originalSubsetVerified": false,
     "requestAttributionVerified": false,
-    "details": "resume-20261011/ACCOUNTING.md"
+    "details": "resume-20261011/ACCOUNTING.md",
+    "journalCount": 3,
+    "journalDigest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+    "legacyCount": 7,
+    "legacyDigest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf",
+    "stableSinceEarlierContinuationRead": true
   },
   "retainedEvidenceVerification": {
     "safetySourceHashes": {
@@ -226,5 +237,10 @@
     "merge": false,
     "deployment": false
   },
-  "next": "resume-20261011/NEXT.md"
+  "next": "resume-20261011/NEXT.md",
+  "contextRecovery": {
+    "searched": true,
+    "result": "No exact lost-module source, artifact location or row-level accounting evidence recovered; unrelated old context was not used as proof."
+  },
+  "previousPublishedEvidence": "c5d2341d41c6593adef054622fa781a66b10990c"
 }

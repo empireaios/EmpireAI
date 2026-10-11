@@ -1,0 +1,27 @@
+{
+  "candidate": "e931668dca5e87df8f0d26213791de8501cf2d35",
+  "candidateTree": "f9324fbd4f966ac12ea4acb3292e342a622694e1",
+  "productWorkflowCheckout": "24830e9db1688db0697b3776aa75fee28cad4a21",
+  "comparison": {
+    "repository_full_name": "empireaios/EmpireAI",
+    "base": "e931668dca5e87df8f0d26213791de8501cf2d35",
+    "head": "24830e9db1688db0697b3776aa75fee28cad4a21",
+    "status": "ahead",
+    "ahead_by": 1,
+    "behind_by": 0,
+    "total_commits": 1,
+    "too_large": null,
+    "base_commit": {
+      "sha": "e931668dca5e87df8f0d26213791de8501cf2d35",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/commits/e931668dca5e87df8f0d26213791de8501cf2d35",
+      "html_url": "https://github.com/empireaios/EmpireAI/commit/e931668dca5e87df8f0d26213791de8501cf2d35"
+    },
+    "merge_base_commit": {
+      "sha": "e931668dca5e87df8f0d26213791de8501cf2d35",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/commits/e931668dca5e87df8f0d26213791de8501cf2d35",
+      "html_url": "https://github.com/empireaios/EmpireAI/commit/e931668dca5e87df8f0d26213791de8501cf2d35"
+    },
+    "files": []
+  },
+  "conclusion": "Product CI used the PR merge commit. GitHub comparison confirms candidate is merge base, one merge commit ahead, zero changed files. Source contents therefore match candidate; commit IDs differ. Runtime workflow directly checked out candidate SHA, confirmed in retrieved log."
+}
