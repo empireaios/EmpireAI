@@ -70,3 +70,34 @@ test('cached successful read cannot clear a newer outage; fresh read clears it a
   assert.ok(current().projection().historicalExceptions.some(a=>a.provider==='vercel'&&a.code==='PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY'));
  }finally{centre.close();fs.rmSync(dir,{recursive:true,force:true});}
 });
+
+test('reversed discovery charges stay excluded through replacement and restart',async()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'cost-reversal-')),file=path.join(dir,'finance.sqlite');let centre=new FinancialCentre(file);
+ const intel=()=>new Work8CostIntelligence(centre,workspace,'owner',()=>Date.parse('2026-01-10T00:00:00Z'));
+ try{
+  await intel().examine('original',[port({resource,costs:[charge('first')],complete:true,exceptions:[]})]);
+  centre.append(workspace,'owner',{id:'reverse-first',type:'reversal',data:{target:'first',reason:'Incorrect usage evidence'}});
+  assert.deepEqual(intel().projection().totalsByCurrencyStageAuthenticity,{});
+  assert.ok(!intel().projection().alerts.some(a=>['FX_UNAVAILABLE','DELAYED_INVOICE'].includes(a.code)));
+  await intel().examine('replacement',[port({resource,costs:[charge('second',{replaces:'first',amountMicro:300})],complete:true,exceptions:[]})]);
+  assert.equal(intel().projection().totalsByCurrencyStageAuthenticity['USD:ACCRUED_UNBILLED:SYNTHETIC'],300);
+  centre.append(workspace,'owner',{id:'reverse-second',type:'reversal',data:{target:'second',reason:'Replacement also voided'}});
+  centre.close();centre=new FinancialCentre(file);
+  assert.deepEqual(intel().projection().totalsByCurrencyStageAuthenticity,{});
+  assert.equal(centre.entries(workspace).length,4,'historical charges and reversals retained');
+ }finally{centre.close();fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+test('a rejected multi-charge observation cannot partially commit its journal or observation',async()=>{
+ const centre=new FinancialCentre(':memory:');try{
+  const intel=new Work8CostIntelligence(centre,workspace,'owner');
+  const result=await intel.examine('bad-batch',[port({resource,costs:[charge('valid-first'),charge('invalid-second',{entityId:'second',provider:'railway',sourceIds:['second-source']})],complete:true,exceptions:[]})]);
+  assert.ok(result.exceptions.some(e=>e.code==='INVALID_OR_CONFLICTING_BILLING_EVIDENCE'));
+  assert.deepEqual(centre.entries(workspace),[]);
+  assert.equal(intel.projection().resources.length,0);
+  assert.deepEqual(intel.projection().totalsByCurrencyStageAuthenticity,{});
+  const good=await intel.examine('good-batch',[port({resource,costs:[charge('valid-first'),charge('valid-second',{entityId:'second',sourceIds:['second-source']})],complete:true,exceptions:[]})]);
+  assert.equal(good.observations.length,1);assert.equal(centre.entries(workspace).length,2);
+  assert.equal(intel.projection().totalsByCurrencyStageAuthenticity['USD:ACCRUED_UNBILLED:SYNTHETIC'],200);
+ }finally{centre.close();}
+});

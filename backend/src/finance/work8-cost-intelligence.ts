@@ -47,10 +47,13 @@ export class Work8CostIntelligence {
       const preceding=this.history().filter(r=>r.id.startsWith('observation:')).map(r=>observationSchema.parse(r.payload)).filter(x=>x.resource.id===o.resource.id&&x.resource.provider===port.provider).at(-1);
       if(preceding&&Date.parse(preceding.resource.observedAt)>Date.parse(o.resource.observedAt))throw Error('STALE_BILLING_EVIDENCE');
       if(observations.some(x=>x.resource.id===o.resource.id&&x.resource.provider===port.provider))throw Error('DUPLICATE_RESOURCE');
-      for(const c of o.costs){if(c.data.provider!==port.provider)throw Error('COST_PROVIDER_BINDING');
-       // Existing journal enforces invoice/payment evidence, source dedupe and replacement lineage.
-       this.centre.append(this.workspace,this.owner,{id:c.id,type:'cost',data:c.data});}
-      this.persist('observation:'+hash(o),o);observations.push(o);
+      this.centre.transaction(()=>{
+       for(const c of o.costs){if(c.data.provider!==port.provider)throw Error('COST_PROVIDER_BINDING');
+        // Preserve journal validation while committing the complete observation as one unit.
+        this.centre.append(this.workspace,this.owner,{id:c.id,type:'cost',data:c.data});}
+       this.persist('observation:'+hash(o),o);
+      });
+      observations.push(o);
      }catch{exceptions.push({provider:port.provider,code:'INVALID_OR_CONFLICTING_BILLING_EVIDENCE'});}
     }
    }catch{exceptions.push({provider:port.provider,code:'PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY'});}
@@ -83,7 +86,11 @@ export class Work8CostIntelligence {
    }}
   alerts.push(...[...latestExceptions.values()].flat());
   const active=new Map<string,{id:string;data:z.infer<typeof costSchema>}>();
-  for(const e of this.centre.entries(this.workspace))if(e.type==='cost')active.set(e.data.entityId,{id:e.id,data:e.data});
+  const journal=this.centre.entries(this.workspace);
+  const reversed=new Set(journal.filter(e=>e.type==='reversal').map(e=>e.data.target));
+  for(const e of journal)if(e.type==='cost'){
+   if(reversed.has(e.id))active.delete(e.data.entityId);else active.set(e.data.entityId,{id:e.id,data:e.data});
+  }
   const totals:Record<string,number>={};
   for(const c of active.values()){
    const d=c.data,key=d.currency+':'+d.stage+':'+d.authenticity;const next=(totals[key]??0)+d.amountMicro+d.taxMicro-d.creditMicro;if(!Number.isSafeInteger(next))throw Error('FINANCIAL_OVERFLOW');totals[key]=next;
