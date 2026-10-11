@@ -481,14 +481,14 @@
         "backend/src/validation/tests/work8-portfolio.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Publish local a5a7adf after explicit export approval; preserve exact pending genuine-source gates.",
+      "nextAction": "Bind genuine outcome evidence to retirement/replacement; preserve accepted synthetic pipeline.",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Retirement preserves historical financial source and plan; new composed three-day fixture examination added.",
-      "examinationResult": "11 isolated tests pass; independent scoped review found no blocker.",
+      "engineeringState": "Retirement preserves historical financial source and plan; new composed three-day fixture examination added.; retirement preserves historical settled finance pins",
+      "examinationResult": "11 isolated tests pass; independent scoped review found no blocker.; ten-day synthetic pipeline and nine replacements PASS",
       "independentVerification": "Retained receipt and stock checks",
       "continuationEvidence": "backend/src/validation/tests/work8-portfolio.test.ts",
-      "remainingDependency": "Genuine outcome review; complete persisted daily pipeline acceptance.",
+      "remainingDependency": "Genuine outcome review; synthetic daily pipeline accepted under requirement37.",
       "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
@@ -1012,7 +1012,7 @@
       "requirement": "Multi-day virtual-time operations",
       "mandateSections": "8,19",
       "recoveredClassification": "MISSING",
-      "status": "PENDING",
+      "status": "PASS",
       "evidence": [
         "portfolio-node22.log",
         "shared-store-days.json.gz"
@@ -1029,15 +1029,15 @@
         "scripts/work8/shared-store-days.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Publish exact tested tree9ab2db2994c173e57ca671d5239f8620d9ccb884 under additional authority, retain source mapping, then formally close synthetic requirement37.",
+      "nextAction": "Preserve scoped acceptance; genuine-source and elapsed-endurance obligations remain separate",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Local6c74f862: initial100 plus ten100/day cohorts share persistent IntelligenceStore;1100 identities,10 qualified,10 compliance rejections,1080 deferrals,10 settled orders,9 replacements.",
-      "examinationResult": "Seven kernel-isolated tests and focused strict TypeScript PASS. Source/plan/order money pins and journal prefixes retained across restart;210 evidence records and20 reviews persist.",
-      "independentVerification": "Independent final delta review found no blocker; synthetic scope supports PASS with retained exact cap-race evidence after publication and final-revision attribution.",
-      "continuationEvidence": "shared-store-days.md; shared-store-days.json.gz; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Publish reviewed6c74f862 and final evidence attribution before formal requirement37 closure. Genuine acquisition and elapsed endurance remain separately gated.",
-      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
+      "engineeringState": "Shared persistent Intelligence and commerce stores; initial100 and ten daily100 cohorts; settlement and retirement finance preserved",
+      "examinationResult": "7 focused tests PASS;1100 identities,10 settlements,9 replacements,qualification outcomes and cold reopen;retained cap1000 concurrent race PASS",
+      "independentVerification": "Read-only review of governing mandate, published source, retained ledger and evidence supports scoped PASS. No additional integrated condition identified. Reviewer did not rerun tests.",
+      "continuationEvidence": "resume-20261011/REQUIREMENT-37-ACCEPTANCE.json; resume-20261011/FULL-COHORT-EXAM.tap; examination-ledger.json",
+      "remainingDependency": "None for synthetic virtual-time scope",
+      "acceptanceClass": "FULLY_SATISFIED"
     },
     {
       "item": 38,
@@ -1172,7 +1172,7 @@
       "examinationResult": "Original b68e42b four workflows PASS preserved. Replacement0bf69ac8 Independent Assurance and semantic PASS; product and runtime running. Local follow-up7 tests PASS.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Replacement current-head CI conclusions; additional local examination and record need publication authority.",
+      "remainingDependency": "Current published-head CI conclusions; bounded new supervisor source and closure records await publication authority; hosted acceptance remains separate.",
       "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
@@ -1247,9 +1247,9 @@
   ],
   "continuation": "OWNER-CLOSURE-DIRECTIVE.txt; resume-20261011/CLOSURE-CHECKPOINT.json",
   "counts": {
-    "PASS": 2,
+    "PASS": 3,
     "BLOCKED": 5,
-    "PENDING": 38
+    "PENDING": 37
   },
   "wholeProgrammeCertified": false,
   "reconciliation": "resume-20261011/CLOSURE-RECONCILIATION.json"

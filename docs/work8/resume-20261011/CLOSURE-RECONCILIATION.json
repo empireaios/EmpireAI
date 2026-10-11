@@ -7,11 +7,13 @@
     "resume-20261011/OWNER-CLOSURE-DIRECTIVE.txt"
   ],
   "scope": "One bounded reconciliation, followed directly by implementation. Existing scoped passes retained. Original IDs and descriptions unchanged.",
-  "closedNow": [],
+  "closedNow": [
+    37
+  ],
   "counts": {
-    "PASS": 2,
+    "PASS": 3,
     "BLOCKED": 5,
-    "PENDING": 38
+    "PENDING": 37
   },
   "sharedExternalDependencies": {
     "SOURCE": [
@@ -346,8 +348,8 @@
         "backend/src/validation/tests/work8-portfolio.test.ts"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Genuine outcome review",
-      "nextAction": "Bind fresh outcome evidence to retirement/replacement without changing cap"
+      "acceptanceGap": "Genuine outcome review; synthetic daily pipeline accepted under requirement37.",
+      "nextAction": "Bind genuine outcome evidence to retirement/replacement; preserve accepted synthetic pipeline."
     },
     {
       "item": 19,
@@ -364,8 +366,8 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Native gallery acceptance, genuine rights and authorised Canva integration; import engineering complete.",
-      "nextAction": "Native gallery acceptance, genuine rights evidence, Canva runtime and import completion."
+      "acceptanceGap": "Verified rights, authorised Canva runtime editing and native owner observation.",
+      "nextAction": "Connect supported provider editing under existing authorisation; observe native import/approval workflow."
     },
     {
       "item": 20,
@@ -382,8 +384,8 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Authorised AI response preparation, broader normal/adverse scenario coverage and native acceptance.",
-      "nextAction": "Authorised AI response preparation, broader normal/adverse scenario coverage and native acceptance."
+      "acceptanceGap": "Genuine qualification, authorised inference and native owner acceptance.",
+      "nextAction": "Bind fresh genuine sources and approved assessment to the existing prepared enrollment path."
     },
     {
       "item": 21,
@@ -466,8 +468,8 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+      "acceptanceGap": "Genuine linked lifecycle and actual financial lineage remain.",
+      "nextAction": "Publish reviewed repair; verify changed-head CI and genuine-source prerequisites."
     },
     {
       "item": 25,
@@ -485,8 +487,8 @@
         "owner-financial-readback.md; resume-20261011/ACCOUNTING.md"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Actual accounting row lineage, autonomous billing discovery and reconciliation, isolated financial Birth cutover.",
-      "nextAction": "Reconcile real calls separately; keep real profit and unknown invoices unknown"
+      "acceptanceGap": "Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance.",
+      "nextAction": "Reconcile actual invoice/payment/usage rows when accessible; certify opening balances and authenticated view against exact candidate."
     },
     {
       "item": 26,
@@ -623,7 +625,7 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Wider transport/concurrency matrix",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+      "nextAction": "Exercise only remaining cross-store/concurrent-writer combinations; preserve passed Redis evidence."
     },
     {
       "item": 34,
@@ -689,11 +691,12 @@
       "retainedEvidence": [
         "portfolio-node22.log",
         "shared-store-days.json.gz",
-        "shared-store-days.md; shared-store-days.json.gz; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+        "shared-store-days.md; shared-store-days.json.gz; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
+        "resume-20261011/REQUIREMENT-37-ACCEPTANCE.json; resume-20261011/FULL-COHORT-EXAM.tap; examination-ledger.json"
       ],
-      "decision": "PENDING",
-      "acceptanceGap": "Genuine multi-day candidate pipeline",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+      "decision": "PASS",
+      "acceptanceGap": "None for synthetic virtual-time scope",
+      "nextAction": "Preserve scoped acceptance; genuine-source and elapsed-endurance obligations remain separate"
     },
     {
       "item": 38,
@@ -726,8 +729,8 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Whole-system adapters, protected off-host retention, hosted migration acceptance; V3 prepared-enrollment/PIT and measured local replay retained.",
-      "nextAction": "Protected off-host vault, whole-system adapters, genuine-enrollment recovery, restore RTO and hosted migration acceptance."
+      "acceptanceGap": "Global arbitrary-writer coordination, protected off-host retention and authenticated restore acceptance remain.",
+      "nextAction": "Retain passed CI; complete bounded writer coordination and separately authorised off-host retention."
     },
     {
       "item": 40,
@@ -762,8 +765,8 @@
         "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Native mobile/desktop journey, five-tab geometry and media/communication interaction checks.",
-      "nextAction": "Native mobile/desktop journey, five-tab geometry and media/communication interaction checks."
+      "acceptanceGap": "Native desktop/mobile authenticated journey and source-to-finance equality.",
+      "nextAction": "Use existing browser harness once an authorised browser environment is available."
     },
     {
       "item": 42,
@@ -776,8 +779,8 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Independent exact candidate review and separately authorised hosted acceptance; all four existing backend CI workflows passed.",
-      "nextAction": "Latest backend CI conclusions; independent review; separately governed preview acceptance."
+      "acceptanceGap": "Current published-head CI conclusions; bounded new supervisor source and closure records await publication authority; hosted acceptance remains separate.",
+      "nextAction": "Read existing runs38132087994/38132088053/38132087949; no rerun. Preserve mapping and request only concrete further publication scope."
     },
     {
       "item": 43,
@@ -824,6 +827,7 @@
     "Requirement37 does not require genuine sources for virtual-time proof; integrated daily qualification/discovery, rejects and replacement through the complete twin remain uncovered. Genuine source demonstration is separately governed by R1\u2013R5.",
     "No Work8 COMPLETE or Work9 activation receipt issued.",
     "2026-10-11 closure reconciliation: retained all 45 IDs and exact decisions. New financial amendments add acceptance; they do not invalidate retained scoped evidence. All four be4936d workflows completed successfully; no reruns requested. Latest exact candidate independent review remains missing.",
-    "Corrected stale gaps: V3 now restores preparation/enrollment lineage and measured point-in-time replay, import UI exists, historic authority is inert. Remaining whole-system/off-host/native/genuine-source gates are distinct."
+    "Corrected stale gaps: V3 now restores preparation/enrollment lineage and measured point-in-time replay, import UI exists, historic authority is inert. Remaining whole-system/off-host/native/genuine-source gates are distinct.",
+    "Requirement37 previously uncovered synthetic daily pipeline is now examined and independently accepted at published 3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6. Historical notes retained; no genuine-source scope inferred."
   ]
 }

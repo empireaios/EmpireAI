@@ -1,0 +1,26 @@
+{
+  "scope": "Repository Work8 acceptance ledger; not a production control-plane mission_complete receipt",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "counts": {
+    "PASS": 3,
+    "BLOCKED": 5,
+    "PENDING": 37
+  },
+  "requirementDecisions": [
+    {
+      "item": 37,
+      "status": "PASS",
+      "receipt": "resume-20261011/REQUIREMENT-37-ACCEPTANCE.json",
+      "source": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
+      "independentVerifier": "/root/review_retirement_finance"
+    }
+  ],
+  "preservedPasses": [
+    1,
+    17
+  ],
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "NOT_ACTIVATED"
+}

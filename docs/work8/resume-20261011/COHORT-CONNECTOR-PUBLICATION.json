@@ -1,0 +1,18 @@
+{
+  "records": [
+    {
+      "original": "6c74f8622a5f5f293e3b5047aaf52af176fb71e8",
+      "replacement": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
+      "tree": "9ab2db2994c173e57ca671d5239f8620d9ccb884",
+      "branch": "work8/autonomous-examination-20261011"
+    },
+    {
+      "original": "6a8f8358a64ea0b4f581ab895366b75c125a9fea",
+      "replacement": "4cec32c0dc548eff4cb09f6f37ea2ca60832fe79",
+      "tree": "117ccc0d57d8619b7d974717e63fc546415b0d30",
+      "branch": "work8/examination-evidence-20261011"
+    }
+  ],
+  "verification": "Fetched remote commits; exact full Git tree equality and empty git diff. Zero missing, modified or additional entries. Commit identities differ.",
+  "priorPublication": "CONNECTOR-PUBLICATION.json preserved unchanged"
+}

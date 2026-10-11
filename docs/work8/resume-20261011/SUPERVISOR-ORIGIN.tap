@@ -1,0 +1,16 @@
+✔ collector and inspector restart independently and cannot receive provider or founder secrets (42.389404ms)
+✔ actual inspector restarts, reports missing durable cycles and stops promptly (166.419942ms)
+✔ repeated child failures exhaust bounded restart budget (20.987901ms)
+✔ isolated service Assurance targets its own HTTPS origin and rejects ambiguous overrides before spawning (1.96836ms)
+✔ permanent profile is explicit, isolated, allows only bounded inference and named intelligence credentials and has no canary expiry (26.319144ms)
+✔ permanent supervisor has no expiry and still forwards controlled shutdown (241.596809ms)
+✔ Work4 launcher forwards only named sensing credentials and explicit switches; commerce remains locked (1.022165ms)
+✔ whole-volume stopped bundle retains finance and commerce and restores legacy layout (14.864916ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 558.446516

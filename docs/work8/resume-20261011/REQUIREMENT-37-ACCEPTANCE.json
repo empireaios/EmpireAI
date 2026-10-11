@@ -1,0 +1,35 @@
+{
+  "requirement": 37,
+  "status": "PASS",
+  "scope": "Synthetic multi-day virtual-time operations only",
+  "source": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
+  "sourceTree": "9ab2db2994c173e57ca671d5239f8620d9ccb884",
+  "publishedEvidence": "4cec32c0dc548eff4cb09f6f37ea2ca60832fe79",
+  "governingCriteria": "MANDATE.txt sections 8,19 permit synthetic examination; conditional qualification, daily cohorts, rejection/replacement and concurrent cap",
+  "receipts": {
+    "FULL-COHORT-EXAM.tap": "840d0ecd82d9759f55193d347fc4ede3eb2336a0f7d47703ff2e9634a2f49e10",
+    "FULL-COHORT-REVIEW.md": "5a15aca2149785dd459081bf034a5315720ac8274d6cc72971329da235feec41"
+  },
+  "results": {
+    "focusedTestsPassed": 7,
+    "initialCandidates": 100,
+    "dailyCohorts": 10,
+    "candidatesPerDay": 100,
+    "uniqueIdentities": 1100,
+    "simulatedSettlements": 10,
+    "replacements": 9,
+    "coldReopenPreserved": true
+  },
+  "capEvidence": "examination-ledger.json retains cap1000/overflow/replacement and corrected concurrent race; earlier failure retained",
+  "precision": "Concurrent race uses worker_threads with independent SQLite connections, not two OS processes as blueprint wording suggested. Governing concurrent-work criterion satisfied.",
+  "independentVerifier": "/root/review_retirement_finance",
+  "independentDecision": "Read-only review of governing mandate, published source, retained ledger and evidence supports scoped PASS. No additional integrated condition identified. Reviewer did not rerun tests.",
+  "excludedClaims": [
+    "genuine-source qualification",
+    "native owner acceptance",
+    "elapsed endurance",
+    "production acceptance",
+    "overall Work8 completion"
+  ],
+  "finalRecordVerification": "Independent reviewer verified all45 IDs, counts3/37/5, exact TAP and review hashes, exclusive published source attribution, scope limitations and NO_GO ledger. No other clearly evidence-complete requirement identified."
+}
