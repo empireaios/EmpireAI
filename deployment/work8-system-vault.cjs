@@ -59,14 +59,14 @@ function verifySystem({ directory, digest }) {
   return m;
 }
 // Whole checkpoints only: never prune ancestors, replace business state or boot recovered grants.
-function selectSystemPoint({ checkpoints, trustedHead, at }) {
+function selectSystemPoint({ checkpoints, trustedHead, at }, verify = verifySystem) {
   assert.ok(checkpoints.length > 0 && checkpoints.length <= 1000);
   const byDigest = new Map(checkpoints.map(c => [c.digest, c])); assert.equal(byDigest.size, checkpoints.length);
   const seen = new Set(); let current = trustedHead, newer = Infinity, selected;
   const target = Date.parse(at); assert.ok(Number.isFinite(target));
   while (current !== null) {
     assert.ok(!seen.has(current), 'RECOVERY_CYCLE'); seen.add(current);
-    const c = byDigest.get(current); assert.ok(c, 'MISSING_ANCESTOR'); const m = verifySystem(c);
+    const c = byDigest.get(current); assert.ok(c, 'MISSING_ANCESTOR'); const m = verify(c);
     const when = Date.parse(m.capturedAt); assert.ok(Number.isFinite(when) && when <= newer, 'RECOVERY_TIME_ORDER');
     if (!selected && when <= target) selected = { ...c, recoveryPointGapMs: target - when };
     newer = when; current = m.parentDigest;

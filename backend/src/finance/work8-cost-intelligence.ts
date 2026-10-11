@@ -37,6 +37,7 @@ export class Work8CostIntelligence {
    id.parse(port.provider);
    try{
     const resources=await bounded(s=>port.discover(s));if(!Array.isArray(resources)||resources.length>100)throw Error('RESOURCE_BOUND');
+    if(resources.length===0)exceptions.push({provider:port.provider,code:'NO_DISCOVERED_RESOURCES_COST_UNKNOWN'});
     for(const resource of resources){
      try{
       if(observations.length>=100||JSON.stringify(observations).length>4*1024*1024)throw Error('RUN_OBSERVATION_BOUND');
@@ -58,12 +59,18 @@ export class Work8CostIntelligence {
  }
  projection(){
   const history=this.history(),resources=new Map<string,Observation>(),alerts:Array<{provider:string;code:string;resource?:string}>=[];
+  const latestExceptions=new Map<string,Array<{provider:string;code:string}>>(),historicalExceptions:Array<{runId:string;provider:string;code:string}>=[];
   for(const r of history){if(r.id.startsWith('observation:')){const o=observationSchema.parse(r.payload),key=o.resource.provider+':'+o.resource.id,old=resources.get(key);
     if(old&&old.resource.renewalAt!==o.resource.renewalAt)alerts.push({provider:o.resource.provider,resource:o.resource.id,code:'RENEWAL_CHANGED'});
     if(old?.resource.fixedAmountMicro!==null&&old?.resource.fixedAmountMicro!==undefined&&o.resource.fixedAmountMicro!==null&&o.resource.fixedAmountMicro>old.resource.fixedAmountMicro)alerts.push({provider:o.resource.provider,resource:o.resource.id,code:'FIXED_COST_INCREASE'});
     if(old){for(const c of o.costs){const previous=old.costs.find(p=>p.data.entityId===c.data.entityId&&p.data.currency===c.data.currency&&p.data.classification==='VARIABLE');if(previous&&c.data.amountMicro>previous.data.amountMicro*1.2)alerts.push({provider:o.resource.provider,resource:o.resource.id,code:'VARIABLE_COST_SPIKE_REVIEW'});}}
     resources.set(key,o);
-   }else if(r.payload.exceptions)alerts.push(...r.payload.exceptions);}
+   }else if(r.id.startsWith('run:')&&r.payload.exceptions){
+    const exceptions=r.payload.exceptions as Array<{provider:string;code:string}>;
+    for(const provider of new Set<string>([...(r.payload.providers??[]),...exceptions.map(e=>e.provider)]))if((r.payload.providers??[]).includes(provider)||!latestExceptions.has(provider))latestExceptions.set(provider,exceptions.filter(e=>e.provider===provider));
+    historicalExceptions.push(...exceptions.map(e=>({runId:r.id,...e})));
+   }}
+  alerts.push(...[...latestExceptions.values()].flat());
   const active=new Map<string,{id:string;data:z.infer<typeof costSchema>}>();
   for(const e of this.centre.entries(this.workspace))if(e.type==='cost')active.set(e.data.entityId,{id:e.id,data:e.data});
   const totals:Record<string,number>={};
@@ -74,12 +81,13 @@ export class Work8CostIntelligence {
   }
   for(const {resource:r,complete,exceptions} of resources.values()){
    if(r.state==='ACTIVE'&&(r.fixedAmountMicro===null||!r.billingOwner||!complete))alerts.push({provider:r.provider,resource:r.id,code:'UNKNOWN_ACTIVE_COST_OR_OWNER'});
+   if(r.state==='ACTIVE'&&this.clock()-Date.parse(r.observedAt)>86400000)alerts.push({provider:r.provider,resource:r.id,code:'BILLING_OBSERVATION_STALE'});
    if(r.sharedAllocationBps===null)alerts.push({provider:r.provider,resource:r.id,code:'SHARED_ALLOCATION_UNKNOWN'});
    if(r.renewalAt&&Date.parse(r.renewalAt)<=this.clock()+7*86400000&&r.state==='ACTIVE')alerts.push({provider:r.provider,resource:r.id,code:'RENEWAL_DUE'});
    for(const code of exceptions)alerts.push({provider:r.provider,resource:r.id,code});
   }
   return {schema:'WORK8_COST_INTELLIGENCE_V1',resources:[...resources.values()].map(o=>o.resource),providerSummaries:[...resources.values()].filter(o=>o.providerSummary).map(o=>({provider:o.resource.provider,...o.providerSummary})),totalsByCurrencyStageAuthenticity:totals,
-   alerts,observationsDigest:hash(history),canonicalEntriesDigest:hash(this.centre.entries(this.workspace)),
+   alerts,historicalExceptions,observationsDigest:hash(history),canonicalEntriesDigest:hash(this.centre.entries(this.workspace)),
    totalsQualification:'UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS',operationalProfitIncluded:false,continuousLiveActivation:false};
  }
 }

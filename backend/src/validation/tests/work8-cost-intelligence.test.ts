@@ -44,5 +44,9 @@ test('outage, inactive provider, unknown subscription, cross-provider data and o
   assert.ok(intel.projection().alerts.some(a=>a.code==='INVALID_OR_CONFLICTING_BILLING_EVIDENCE'));
   assert.throws(()=>new Work8CostIntelligence(centre,'ws_empire_1','owner'));
   assert.throws(()=>new Work8CostIntelligence(centre,workspace,'other').projection(),/INTEGRITY/);
+  await intel.examine('restored-provider',[{provider:'railway',discover:async()=>['railway-service'],read:async()=>({resource:{...resource,id:'railway-service',provider:'railway',observedAt:'2026-01-10T00:00:00Z'},costs:[],complete:true,exceptions:[]})}]);
+  const recovered=intel.projection();assert.ok(!recovered.alerts.some(a=>a.provider==='railway'&&a.code==='PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY'));
+  assert.ok(recovered.historicalExceptions.some(a=>a.provider==='railway'&&a.code==='PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY'));
+  await intel.examine('empty-provider',[{provider:'railway',discover:async()=>[],read:async()=>null}]);assert.ok(intel.projection().alerts.some(a=>a.provider==='railway'&&a.code==='NO_DISCOVERED_RESOURCES_COST_UNKNOWN'));
  }finally{centre.close();}
 });
