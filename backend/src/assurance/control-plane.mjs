@@ -149,8 +149,11 @@ export class AssuranceControlPlane {
     const result=await this.bounded(runbook.reconcile,context,runbook.timeoutMs);
     if(result?.completed!==true)throw Error('OUTCOME_UNKNOWN');operation.result=safe(result);
    }else operation.result=safe(await this.bounded(runbook.execute,context,runbook.timeoutMs));
+   const verificationStartedAt=this.now();
    const verified=await this.bounded(runbook.verify,{...context,result:operation.result},runbook.timeoutMs);
-   if(verified?.healthy!==true){operation.status='FAILED';operation.verification=safe(verified);incident.status='DEGRADED';}
+   const verificationCompletedAt=this.now();
+   const fresh=Number.isSafeInteger(verified?.observedAt)&&verified.observedAt>=verificationStartedAt&&verified.observedAt<=verificationCompletedAt;
+   if(verified?.healthy!==true||!fresh){operation.status='FAILED';operation.verification=safe(verified);operation.verificationFailure=verified?.healthy===true?'FRESH_OBSERVATION_REQUIRED':'RESOURCE_UNHEALTHY';incident.status='DEGRADED';}
    else{operation.status='VERIFIED';operation.verification=safe(verified);incident.status='RECOVERED';incident.closedAt=this.now();incident.verifiedAt=this.now();}
   }catch(e){operation.status='UNKNOWN';operation.error=e?.message==='OUTCOME_UNKNOWN'?'OUTCOME_UNKNOWN':'RUNBOOK_ERROR_OUTCOME_UNKNOWN';incident.status='UNRESOLVED';}
   operation.completedAt=this.now();this.tx(()=>{this.put(w,'recovery',operation.id,operation);this.put(w,'incident',id,incident);this.event(w,'RECOVERY_RESULT',operation);});return operation;

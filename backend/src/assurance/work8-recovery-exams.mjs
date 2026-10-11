@@ -28,7 +28,7 @@ export async function runWork8RecoveryExam({scenarioId, seed = 8} = {}) {
       // An affirmative executor claim is deliberately ignored by this reader.
       verify: () => ({healthy: resource.cache, observedAt: time, source: 'independent-resource-read'})},
     owner: {version: 'work8-v1', authority: 'B', capability: 'worker', maxAttempts: 1, cooldownMs: 100, timeoutMs: 50,
-      execute: () => {resource.executions++; resource.worker = true;}, verify: () => ({healthy: resource.worker})},
+      execute: () => {resource.executions++; resource.worker = true;}, verify: () => ({healthy: resource.worker, observedAt: time})},
     forbidden: {version: 'work8-v1', authority: 'C', capability: 'finance', maxAttempts: 1, cooldownMs: 100, timeoutMs: 50,
       execute: () => {throw Error('FORBIDDEN_EXECUTION');}, verify: () => ({healthy: false})},
   };
