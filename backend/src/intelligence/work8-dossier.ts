@@ -1,3 +1,4 @@
+import {reviewedDossierFinance} from './work8-dossier-finance.js';
 import {digest, type Evidence} from './model.js';
 import {verifiedSavedSource, cjVariantCurrencyContract, type SavedSourceReader} from '../runtime/commerce-runtime/governed/work8-source-projection.js';
 import type {Row} from './store.js';
@@ -11,7 +12,7 @@ const findingKinds=['DEMAND','COMPETITION','DIFFERENTIATION','QUALITY','COMPLIAN
  * The digest excludes read time, but includes freshness so expiry invalidates a decision.
  * Facts, model proposals, reviewed inputs and authority deliberately occupy separate fields.
  */
-export function qualificationDossier(reader:SavedSourceReader,workspace:string,binding:DossierBinding,now:number){
+export function qualificationDossier(reader:SavedSourceReader,workspace:string,binding:DossierBinding,now:number,financialSnapshot:Row|null=null){
  if(!workspace||!Number.isFinite(now)||binding.evidence.length>20||binding.evidence.length===0||new Set(binding.evidence.map(e=>e.id)).size!==binding.evidence.length||digest(binding.evidence)!==binding.snapshotDigest)throw Error('DOSSIER_BINDING_INVALID');
  const missing=new Set<string>();
  const sources=binding.evidence.map(pin=>{const {source,freshness}=verifiedSavedSource(reader,workspace,pin.id,now);if(digest(source)!==pin.envelopeDigest)throw Error('DOSSIER_SOURCE_CHANGED');if(freshness!=='FRESH')missing.add('SOURCE_EXPIRED');return {source,freshness};});
@@ -46,7 +47,7 @@ export function qualificationDossier(reader:SavedSourceReader,workspace:string,b
  const body={schema:'WORK8_QUALIFICATION_DOSSIER_V1',workspace,candidateId:binding.candidateId,sourceBinding:binding,
   sourceEvidence:sources.map(({source:s,freshness})=>({id:s.id,envelopeDigest:digest(s),factsDigest:s.digest,provider:s.provider,capability:s.capabilityId,endpoint:s.endpoint,observedAt:s.observedAt,expiresAt:s.staleAfter,freshness,classification:'RETAINED_PROVIDER_OBSERVATION'})),
   supplier:{productId:binding.productId,variantId:identity?binding.subject.variant:null,destination:binding.subject.destination??null,identityVerified:identity,title:identity?text(response.productNameEn):null,price:contradiction?null:price,currency:price!==null&&!contradiction?'USD':null,currencyBasis:price!==null&&!contradiction?cjVariantCurrencyContract:null,stock,freight:{amount:freightAmount,currency:freightCurrency,service:text(freight.logisticName),leadTime:text(freight.logisticAging)},images},
-  financialInputs:{status:'MISSING_REVIEWED_CANONICAL_INPUTS',economics:null,cash:null,fx:null,financialDigest:null},
+  financialInputs:reviewedDossierFinance(workspace,binding.productId,binding.subject.destination,financialSnapshot,now),
   findings:findingKinds.map(kind=>({kind,status:'MISSING_REVIEWED_EVIDENCE',value:null,sourceIds:[],verified:false})),
   eligibility:{status:'DEFERRED',qualified:false,missing:[...missing].sort()},
   modelProposal:null,ownerApproval:null,simulationEnrollment:null,grantsAuthority:false,externalEffects:0,paidInference:0};
