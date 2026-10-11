@@ -1,3 +1,4 @@
+import {assertDossierDecisionAllowsSimulation} from '../../../intelligence/work8-dossier-decisions.js';
 import {prepareReviewedMission,approvePreparedMission,bindPreparedMission,missionPreparationSchema,preparedApprovalSchema} from './work8-mission-preparation.js';
 import {latestQualificationReview} from '../../../intelligence/work8-qualification.js';
 import {enrollQualifiedSimulation,simulationEnrollmentSchema} from './work8-enrollment.js';
@@ -91,6 +92,7 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
     const reader=(ws:string,eid:string)=>intel.get(ws,'evidence',eid) as Evidence|null;
     const resolve=(candidateId:string)=>{
      const dossier=qualificationDossier(reader,u.workspaceId,enrichmentBinding(intel,u.workspaceId,candidateId),intel.now(),productionFinance().snapshot(u.workspaceId),latestQualificationReview(intel,u.workspaceId,candidateId));
+     assertDossierDecisionAllowsSimulation(intel,u.workspaceId,candidateId,dossier.digest);
      const assessment=linkedCompletedAssessment(intel,u.workspaceId,candidateId,a.investigationId,()=>request?{...request,workspaceId:u.workspaceId}:null,dossier);
      return {dossier,assessment};
     };

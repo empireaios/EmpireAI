@@ -29,3 +29,11 @@ export function recordDossierDecision(store:IntelligenceStore,workspace:string,a
  }catch(e){if(db.isTransaction)db.exec('ROLLBACK');throw e;}});
 }
 export function readDossierDecisions(store:IntelligenceStore,workspace:string,candidateId:string,currentDigest:string){return records(store,workspace).filter(r=>r.candidateId===candidateId).slice(-20).map(r=>({...r,current:r.dossierDigest===currentDigest}));}
+
+/** A review refusal is not an execution grant and must not be bypassed by a
+ * previously prepared mission. Only decisions for this exact dossier apply. */
+export function assertDossierDecisionAllowsSimulation(store:IntelligenceStore,workspace:string,candidateId:string,currentDigest:string){
+ const latest=records(store,workspace).filter(r=>r.candidateId===candidateId&&r.dossierDigest===currentDigest).at(-1);
+ if(latest&&['DEFER','REJECT'].includes(latest.command.decision))throw Error('OWNER_REVIEW_WITHHOLDS_SIMULATION');
+ return latest?.digest??null;
+}
