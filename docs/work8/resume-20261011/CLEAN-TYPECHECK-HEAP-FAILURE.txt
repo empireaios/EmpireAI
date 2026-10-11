@@ -1,0 +1,27 @@
+(node:26) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> @empireai/backend@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+<--- Last few GCs --->
+
+[39:0x1295b000]    85518 ms: Scavenge (interleaved) 2039.3 (2082.9) -> 2037.5 (2086.9) MB, pooled: 0 MB, 4.00 / 0.00 ms  (average mu = 0.289, current mu = 0.280) allocation failure; 
+[39:0x1295b000]    89059 ms: Mark-Compact 2041.4 (2086.9) -> 2034.3 (2083.9) MB, pooled: 3 MB, 3521.20 / 0.00 ms  (average mu = 0.125, current mu = 0.054) allocation failure; scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0xe46bbe node::OOMErrorHandler(char const*, v8::OOMDetails const&) [node]
+ 2: 0x1244310 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [node]
+ 3: 0x12445e7 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [node]
+ 4: 0x14734f5  [node]
+ 5: 0x1473523  [node]
+ 6: 0x148c5fa  [node]
+ 7: 0x148f7c8  [node]
+ 8: 0x1cf8351  [node]
+Aborted

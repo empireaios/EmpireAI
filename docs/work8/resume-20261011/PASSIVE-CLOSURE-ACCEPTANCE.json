@@ -1,0 +1,79 @@
+{
+  "schema": "WORK8_SCOPED_SUCCESSOR_ACCEPTANCE_V1",
+  "source": "4ebbc57db3bb939d36fd12dfb52303375b3deb64",
+  "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+  "published": false,
+  "scope": [
+    "fresh passive recovery closure",
+    "actual observer SIGTERM IPC cleanup",
+    "independent protected-route verification fixture"
+  ],
+  "original49Tests": "Preserved unchanged in approved evidence tree 3d737324032d41a07a87fbb8a94931b76706b766",
+  "tests": {
+    "PASSIVE-CLOSURE-CORE.tap": 25,
+    "PASSIVE-CLOSURE-INTEGRATION.tap": 15,
+    "OBSERVER-TERM-AFTER.tap": 4,
+    "LOCKED-OBSERVER-SHUTDOWN.tap": 1,
+    "AUTONOMOUS-LOCKS-FRESH.tap": 1
+  },
+  "totalScopedPass": 46,
+  "negativeReproduction": "OBSERVER-TERM-BEFORE.tap: both actual observer SIGTERM cases failed before IPC cleanup",
+  "build": {
+    "node": "22.23.2",
+    "npm": "10.9.8",
+    "heapMB": 4096,
+    "fullBackendBuild": "PASS exit0",
+    "backendTypecheck": "PASS exit0",
+    "pillowTypecheckAndBuild": "PASS",
+    "revisionReceipt": "EXACT-SUCCESSOR-BUILD-REVISION.json",
+    "diagnosis": "Old dependency symlink had BullMQ6 instead of locked5.79.1 and missing package declarations. Clean locked installs resolved declarations. Default heap typecheck failed by OOM; explicit4GB completed. Lockfiles unchanged."
+  },
+  "independentReview": {
+    "reviewer": "/root/review_retirement_finance",
+    "verdict": "SCOPED_PASS",
+    "limitations": "Reviewer inspected code and receipts; did not independently rerun tests. No broader Work8 certification."
+  },
+  "requirement28": {
+    "officialStatus": "PENDING",
+    "assessment": "Implementation and scoped examinations supported; no additional engineering gap identified by independent scoped review",
+    "remaining": [
+      "Publish exact reviewed source and evidence trees",
+      "Required exact-head CI including repaired integrated lock fixture and runtime shutdown",
+      "Bind successful CI and independent closure to published revision"
+    ]
+  },
+  "runtimeFailure": {
+    "run": 38135512670,
+    "conclusion": "failure",
+    "job": 114458442460,
+    "cause": "Precutover launcher Unclean stop after observers emitted exit receipts; IPC disconnect listener kept children alive",
+    "wholeVolumeRestore": "Four locked-runtime cases including complete enabled-store restoration passed before subsequent shutdown failure",
+    "localRepair": "Both actual observers disconnect IPC after graceful cleanup; natural supervised launcher exit0 verified"
+  },
+  "currentCI": {
+    "source": "6f0bdc6431df9716a42fa7fb74a0ebdf94af5905",
+    "38136583716": "success",
+    "38136583686": "success",
+    "38136583720": "failure: independent verifier fixture lacked fresh observedAt; repaired by re-reading all7 routes",
+    "38136583689": "in_progress at last read"
+  },
+  "governance": {
+    "productionChanged": false,
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "deployment": false,
+    "paidInference": false
+  },
+  "nextExecutableAction": "Obtain one bounded publication approval for this reviewed successor pair, verify exact trees, then read required CI. Do not rerun passing prior workflows.",
+  "receiptSha256": {
+    "PASSIVE-CLOSURE-CORE.tap": "2fe660ed6a49f246b6131a8783b7297bbb990b3dbe815a7a7bb220a13c371fd5",
+    "PASSIVE-CLOSURE-INTEGRATION.tap": "fdf8dc0cf11a1cf1b5a92d7263803bcdd71ec3764ea851266de16b18117a3973",
+    "CLEAN-TYPECHECK-PASS.txt": "0c63e290629855688d6a5236dfa72fa881541241fcfff071ca96e9103c2672dc",
+    "AUTONOMOUS-LOCKS-FRESH.tap": "4e3716bad7a957382f7006bf269948ba5a9e963d2227a120c8a904e0cad7b58a",
+    "LOCKED-OBSERVER-SHUTDOWN.tap": "a496327b8d62ad14ab11772b40ff5e540f6d7297b6faf3bf73bb26a772eb177c",
+    "OBSERVER-TERM-AFTER.tap": "8844658dbf4ee75cffb600eacca47fe94dc26f4e7012c6d7a5d77a26541e7886",
+    "OBSERVER-TERM-BEFORE.tap": "bcee0396d0ef2535d97751747bb970ebda299095c4e8ab84145d1a621a31d352",
+    "EXACT-SUCCESSOR-BUILD-REVISION.json": "788b059c387bd5c18584b528b641a84bc40373a90eca1ad728ffe2fd6222903c",
+    "EXACT-SUCCESSOR-BUILD-PASS.txt": "1d07b330aa70791b36a695bb1578bc6890ecd18faab3010ca2c5a4b1b0c12fe3"
+  }
+}

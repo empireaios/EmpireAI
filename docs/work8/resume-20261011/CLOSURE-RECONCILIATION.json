@@ -541,13 +541,14 @@
       "retainedEvidence": [
         "assurance-examinations.md",
         "assurance-draft-review.md",
-        "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md"
+        "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
+        "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Other collectors' freshness guarantees",
-      "nextAction": "Reconcile remaining fixed31 detector, semantic correlation, fresh independent read and recurrence conditions; retain scoped passes. Publish reviewed freshness batch only with approval.",
+      "acceptanceGap": "Exact reviewed successor publication and required exact-head CI; implementation/scoped acceptance supported.",
+      "nextAction": "Publish reviewed batch once approved; attach successful exact-head CI and independent closure, then mark PASS.",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 unauthenticated closure defect reproduced and fixed; collector5 and actual runtime-cycle1 regression passed;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected"
+      "latestEvidence": "49 original passes preserved;46 successor scoped passes and independent scoped review; exact successor build/typecheck PASS."
     },
     {
       "item": 29,
@@ -575,11 +576,13 @@
       ],
       "retainedEvidence": [
         "assurance-examinations.md",
-        "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md"
+        "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
+        "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Actual platform/cgroup containment, simultaneous guard/launcher loss, broader coupled watchdog and final-candidate endurance acceptance.",
-      "nextAction": "Verify protected process-tree termination in separately authorised isolated host; local namespace probe is blocked."
+      "acceptanceGap": "Hosted platform containment, coupled loss and final-candidate endurance; runtime CI repair validation.",
+      "nextAction": "Validate successor runtime CI; execute protected process-tree acceptance only in separately authorised host.",
+      "latestEvidence": "2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass."
     },
     {
       "item": 31,
@@ -610,11 +613,13 @@
       ],
       "retainedEvidence": [
         "component-node22.log",
-        "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json"
+        "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json",
+        "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Independent delta review and current-head hosted CI; native browser checks.",
-      "nextAction": "Independent delta review and current-head hosted CI; native browser checks."
+      "acceptanceGap": "Exact successor CI and required native acceptance.",
+      "nextAction": "Publish reviewed batch; read required CI without restarting prior passes.",
+      "latestEvidence": "Exact source4ebbc full build PASS;46 scoped passes; independent review."
     },
     {
       "item": 33,
@@ -786,13 +791,14 @@
       "retainedEvidence": [
         "assurance-draft-review.md",
         "CHECKPOINT.md",
-        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json"
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json",
+        "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Current70a9 exact-head CI conclusions; local reviewed freshness successor publication and later exact-head verification; hosted acceptance",
-      "nextAction": "Read38135512670,38135512687,38135512689 without restarting or moving source ref during runtime",
+      "acceptanceGap": "Successor publication/CI and hosted owner acceptance.",
+      "nextAction": "Read runtime38136583689 to conclusion; publish one approved reviewed successor batch.",
       "status": "PENDING",
-      "latestEvidence": "Previous06a217 all4CI SUCCESS including runtime38134138144; published70a9 Assurance38135512726 and semantic38135512687 SUCCESS; product38135512689/runtime38135512670 running"
+      "latestEvidence": "Assurance38136583716 and semantic38136583686 PASS; Product38136583720 FAIL with local reviewed repair; runtime38136583689 running."
     },
     {
       "item": 43,

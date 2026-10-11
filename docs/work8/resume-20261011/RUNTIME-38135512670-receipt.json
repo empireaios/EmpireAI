@@ -1,0 +1,19 @@
+{
+  "schema": "precutover-closure-v1",
+  "buildSha": "70a9d709399fa8f50d62951fda7ea02ba9101d4b",
+  "productionTouched": false,
+  "commerce": "LOCKED",
+  "birth": "NOT_BORN",
+  "passed": false,
+  "error": "Error: Unclean stop",
+  "errorStack": "Error: Unclean stop\n    at Timeout._onTimeout (/home/runner/work/EmpireAI/EmpireAI/deployment/precutover-closure.cjs:22:52)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)",
+  "lastHttpObservation": {
+    "sequence": 117,
+    "at": "2026-10-11T11:41:38.128Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/history",
+    "status": 200,
+    "elapsedMs": 6,
+    "response": {}
+  }
+}

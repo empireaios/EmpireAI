@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+ok 1 - seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+  ---
+  duration_ms: 134.447367
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 871.642786

@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: normal observation autonomously detects and verifies recovery, dedup and immutable evidence
+ok 1 - normal observation autonomously detects and verifies recovery, dedup and immutable evidence
+  ---
+  duration_ms: 69.829093
+  type: 'test'
+  ...
+# Subtest: B requires exact durable approval and follows through once; replay conflict denied
+ok 2 - B requires exact durable approval and follows through once; replay conflict denied
+  ---
+  duration_ms: 34.749438
+  type: 'test'
+  ...
+# Subtest: expired and rejected approval cannot execute
+ok 3 - expired and rejected approval cannot execute
+  ---
+  duration_ms: 29.389351
+  type: 'test'
+  ...
+# Subtest: deployment lease defers repair; fenced finish triggers safe recovery
+ok 4 - deployment lease defers repair; fenced finish triggers safe recovery
+  ---
+  duration_ms: 9.188724
+  type: 'test'
+  ...
+# Subtest: unknown outcome preserved across process replacement and never blindly replayed
+ok 5 - unknown outcome preserved across process replacement and never blindly replayed
+  ---
+  duration_ms: 9.883379
+  type: 'test'
+  ...
+# Subtest: partial recovery verification failure respects cooldown and attempt breaker
+ok 6 - partial recovery verification failure respects cooldown and attempt breaker
+  ---
+  duration_ms: 23.172597
+  type: 'test'
+  ...
+# Subtest: pause retains observation; monitoring freshness, isolation and prohibited recovery
+ok 7 - pause retains observation; monitoring freshness, isolation and prohibited recovery
+  ---
+  duration_ms: 8.089938
+  type: 'test'
+  ...
+# Subtest: concurrent recovery ticks execute only once
+ok 8 - concurrent recovery ticks execute only once
+  ---
+  duration_ms: 9.605639
+  type: 'test'
+  ...
+# Subtest: rejected decision remains denied without approval spam
+ok 9 - rejected decision remains denied without approval spam
+  ---
+  duration_ms: 13.837212
+  type: 'test'
+  ...
+# Subtest: expired lease remains blocking until trusted live deployment reconciliation
+ok 10 - expired lease remains blocking until trusted live deployment reconciliation
+  ---
+  duration_ms: 6.417146
+  type: 'test'
+  ...
+# Subtest: unknown recovery reconciles completed state without repeat execution
+ok 11 - unknown recovery reconciles completed state without repeat execution
+  ---
+  duration_ms: 2.772922
+  type: 'test'
+  ...
+# Subtest: owner approval bound to revision cannot authorize a new release
+ok 12 - owner approval bound to revision cannot authorize a new release
+  ---
+  duration_ms: 2.922693
+  type: 'test'
+  ...
+# Subtest: deferred approvals can be revisited without losing exact scope
+ok 13 - deferred approvals can be revisited without losing exact scope
+  ---
+  duration_ms: 3.125174
+  type: 'test'
+  ...
+# Subtest: expired approval creates a new scoped request while original decision evidence survives
+ok 14 - expired approval creates a new scoped request while original decision evidence survives
+  ---
+  duration_ms: 4.305096
+  type: 'test'
+  ...
+# Subtest: independent inspector detects lost primary heartbeat without hiding failure and records restoration
+ok 15 - independent inspector detects lost primary heartbeat without hiding failure and records restoration
+  ---
+  duration_ms: 2.480164
+  type: 'test'
+  ...
+# Subtest: passive closure requires post-fault evidence: missing
+ok 16 - passive closure requires post-fault evidence: missing
+  ---
+  duration_ms: 14.358888
+  type: 'test'
+  ...
+# Subtest: passive closure requires post-fault evidence: future
+ok 17 - passive closure requires post-fault evidence: future
+  ---
+  duration_ms: 5.962859
+  type: 'test'
+  ...
+# Subtest: passive closure requires post-fault evidence: pre-fault
+ok 18 - passive closure requires post-fault evidence: pre-fault
+  ---
+  duration_ms: 3.42171
+  type: 'test'
+  ...
+# Subtest: passive closure requires post-fault evidence: pre-latest-fault
+ok 19 - passive closure requires post-fault evidence: pre-latest-fault
+  ---
+  duration_ms: 2.057761
+  type: 'test'
+  ...
+# Subtest: passive closure requires post-fault evidence: fresh
+ok 20 - passive closure requires post-fault evidence: fresh
+  ---
+  duration_ms: 3.205622
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: missing
+ok 21 - recovery requires an observation from the current verification: missing
+  ---
+  duration_ms: 64.394832
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: stale
+ok 22 - recovery requires an observation from the current verification: stale
+  ---
+  duration_ms: 19.270842
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: future
+ok 23 - recovery requires an observation from the current verification: future
+  ---
+  duration_ms: 17.049085
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: before-verification
+ok 24 - recovery requires an observation from the current verification: before-verification
+  ---
+  duration_ms: 7.456294
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: fresh
+ok 25 - recovery requires an observation from the current verification: fresh
+  ---
+  duration_ms: 17.33387
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 687.283993

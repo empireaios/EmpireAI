@@ -1,0 +1,108 @@
+TAP version 13
+# Subtest: owner command parser rejects effect expansion and incomplete acceptance authority
+ok 1 - owner command parser rejects effect expansion and incomplete acceptance authority
+  ---
+  duration_ms: 1.327851
+  type: 'test'
+  ...
+# Subtest: independent cycle repairs derived operational view, preserves sources and survives restart without repeated repair
+ok 2 - independent cycle repairs derived operational view, preserves sources and survives restart without repeated repair
+  ---
+  duration_ms: 94.344148
+  type: 'test'
+  ...
+# Subtest: B approval performs no interruption before exact owner decision and records governed verified recovery
+ok 3 - B approval performs no interruption before exact owner decision and records governed verified recovery
+  ---
+  duration_ms: 17.961313
+  type: 'test'
+  ...
+# Subtest: deployment lease rejects interruption acceptance before source/view mutation
+ok 4 - deployment lease rejects interruption acceptance before source/view mutation
+  ---
+  duration_ms: 10.659502
+  type: 'test'
+  ...
+# Subtest: designated Advisor recovery automatically admits exactly one bounded task and leaves deterministic executor excluded
+ok 5 - designated Advisor recovery automatically admits exactly one bounded task and leaves deterministic executor excluded
+  ---
+  duration_ms: 58.650216
+  type: 'test'
+  ...
+# Subtest: closure cannot be asserted from owner text before exact server-held acceptance receipts
+ok 6 - closure cannot be asserted from owner text before exact server-held acceptance receipts
+  ---
+  duration_ms: 8.182269
+  type: 'test'
+  ...
+# Subtest: controlled deployment collision records real deferral and only recovers after fenced owner release
+ok 7 - controlled deployment collision records real deferral and only recovers after fenced owner release
+  ---
+  duration_ms: 33.397638
+  type: 'test'
+  ...
+# Subtest: monitor pause auto expires and requires independently observed stale then restored heartbeat
+ok 8 - monitor pause auto expires and requires independently observed stale then restored heartbeat
+  ---
+  duration_ms: 32.798864
+  type: 'test'
+  ...
+# Subtest: preservation accepts additive evidence but rejects any existing record mutation or deletion
+ok 9 - preservation accepts additive evidence but rejects any existing record mutation or deletion
+  ---
+  duration_ms: 29.567225
+  type: 'test'
+  ...
+# Subtest: completed one-shot approval is reconciled from canonical receipts without changing the original probe
+ok 10 - completed one-shot approval is reconciled from canonical receipts without changing the original probe
+  ---
+  duration_ms: 29.66073
+  type: 'test'
+  ...
+# Subtest: full owner handover is immutable, idempotent, durable, and does not start a Work
+ok 11 - full owner handover is immutable, idempotent, durable, and does not start a Work
+  ---
+  duration_ms: 10.176529
+  type: 'test'
+  ...
+# Subtest: actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+ok 12 - actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+  ---
+  duration_ms: 464.13498
+  type: 'test'
+  ...
+# Subtest: Commerce task, Assurance recovery and finance share real canonical identities and state
+ok 13 - Commerce task, Assurance recovery and finance share real canonical identities and state
+  ---
+  duration_ms: 217.444593
+  type: 'test'
+  ...
+# {"event":"locked_inference_route","requestKey":"f195d6baa647d8c134535cc9c18bb9a0150ac5055d658fbef23def17db4cc086","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"temporary_refusal","httpStatus":429}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"5292f8bc2b508a48ba2da5f8b4cef968e5f3ac57e728a2930f925fc657113530","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"a08fed32fcc6e7bef3d94de0a9e9a25abb76fa77e157819330063f821234c1d9","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"temporary_refusal","httpStatus":503}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"9bc30b853f23a963f0d0ac4311d35750295a8b3b4ccc62506c8dc965cce01392","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"8695edc1a2f18a2dea729e425ae4f50e3a419418fe7548b2f24fcd29c2c44402","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"failed_closed"}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"e033d49ec2584460fab35069f57cd85ee5e2cd142a90440ca321ddcee81dc59a","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+# Subtest: actual locked router failures feed passive Assurance and require a new successful receipt to recover
+ok 14 - actual locked router failures feed passive Assurance and require a new successful receipt to recover
+  ---
+  duration_ms: 87.944542
+  type: 'test'
+  ...
+# {"level":50,"time":1791718953347,"pid":55,"hostname":"e1e465f1fa5c","err":{"type":"SessionStoreUnavailableError","message":"Shared session store temporarily unavailable: INJECTED_REDIS_ADAPTER_UNAVAILABLE","stack":"SessionStoreUnavailableError: Shared session store temporarily unavailable\\n    at SessionStore.get (/workspace/scratch/425cef48de17/backend/backend/src/auth/session-store.ts:76:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\\n    at async Object.authenticate (/workspace/scratch/425cef48de17/backend/backend/src/auth/middleware.ts:31:17)\\ncaused by: Error: INJECTED_REDIS_ADAPTER_UNAVAILABLE\\n    at Object.get (/workspace/scratch/425cef48de17/backend/backend/src/validation/tests/work8-model-session-faults.test.ts:48:139)\\n    at SessionStore.get (/workspace/scratch/425cef48de17/backend/backend/src/auth/session-store.ts:69:36)\\n    at Object.authenticate (/workspace/scratch/425cef48de17/backend/backend/src/auth/middleware.ts:31:36)\\n    at hookIterator (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/hooks.js:408:10)\\n    at next (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/hooks.js:242:18)\\n    at hookRunner (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/hooks.js:264:5)\\n    at validationCompleted (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/handle-request.js:117:5)\\n    at preValidationCallback (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/handle-request.js:101:5)\\n    at handler (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/handle-request.js:78:7)\\n    at Object.handleRequest (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/handle-request.js:30:5)","name":"SessionStoreUnavailableError"},"msg":"Session lookup failed"}
+# Subtest: actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers
+ok 15 - actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers
+  ---
+  duration_ms: 135.249721
+  type: 'test'
+  ...
+# {"level":50,"time":1791718953352,"pid":55,"hostname":"e1e465f1fa5c","err":{"type":"SessionStoreUnavailableError","message":"Shared session store temporarily unavailable: INJECTED_REDIS_ADAPTER_UNAVAILABLE","stack":"SessionStoreUnavailableError: Shared session store temporarily unavailable\\n    at SessionStore.get (/workspace/scratch/425cef48de17/backend/backend/src/auth/session-store.ts:76:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\\n    at async Object.authenticate (/workspace/scratch/425cef48de17/backend/backend/src/auth/middleware.ts:31:17)\\ncaused by: Error: INJECTED_REDIS_ADAPTER_UNAVAILABLE\\n    at Object.get (/workspace/scratch/425cef48de17/backend/backend/src/validation/tests/work8-model-session-faults.test.ts:48:139)\\n    at SessionStore.get (/workspace/scratch/425cef48de17/backend/backend/src/auth/session-store.ts:69:36)\\n    at Object.authenticate (/workspace/scratch/425cef48de17/backend/backend/src/auth/middleware.ts:31:36)\\n    at hookIterator (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/hooks.js:408:10)\\n    at next (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/hooks.js:242:18)\\n    at hookRunner (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/hooks.js:264:5)\\n    at validationCompleted (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/handle-request.js:117:5)\\n    at preValidationCallback (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/handle-request.js:101:5)\\n    at handler (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/handle-request.js:78:7)\\n    at Object.handleRequest (/workspace/scratch/425cef48de17/build-verification/backend/node_modules/fastify/lib/handle-request.js:30:5)","name":"SessionStoreUnavailableError"},"msg":"Session lookup failed"}
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4665.434868

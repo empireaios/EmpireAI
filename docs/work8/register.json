@@ -666,7 +666,7 @@
         "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Publish reviewed repair; verify changed-head CI and genuine-source prerequisites.",
+      "nextAction": "Preserve published retirement/finance repair; bind genuine lifecycle and actual financial lineage when accessible.",
       "responsibleComponent": "Financial reconciliation and owner readback",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Settled simulated finance remains pinned across verified owner retirement; other source advances still blocked.",
@@ -727,7 +727,7 @@
         "backend/src/validation/tests/work8-response-binding.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Reconcile remaining fixed31 detector, semantic correlation, fresh independent read and recurrence conditions; retain scoped passes. Publish reviewed freshness batch only with approval.",
+      "nextAction": "Retain published freshness evidence; address only remaining requirement-specific fault/correlation/recurrence criteria. Successor review does not close this requirement.",
       "responsibleComponent": "Assurance control plane",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "New passive queue/schedule probe registered; owner closure repaired; collector now fails closed for missing evidenceId; runtime exception invalidates prior four-eyes health and scheduler; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance; local dual-observer loss containment added; observer progress deadlines, independent launcher-loss guard and failed Redis cleanup repair implemented locally; recovery completion now requires an observation from the current verification invocation (local fcafa3e1)",
@@ -781,15 +781,15 @@
         "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Reconcile remaining fixed31 detector, semantic correlation, fresh independent read and recurrence conditions; retain scoped passes. Publish reviewed freshness batch only with approval.",
+      "nextAction": "Publish reviewed batch once approved; attach successful exact-head CI and independent closure, then mark PASS.",
       "responsibleComponent": "Assurance control plane",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Fresh queue closure and owner/request linkage enforced; collector now fails closed for missing evidenceId; runtime exception invalidates prior four-eyes health and scheduler; observer progress deadlines, independent launcher-loss guard and failed Redis cleanup repair implemented locally; recovery completion now requires an observation from the current verification invocation (local fcafa3e1)",
-      "examinationResult": "PENDING \u2014 unauthenticated closure defect reproduced and fixed; collector5 and actual runtime-cycle1 regression passed;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected",
+      "engineeringState": "Fresh recovery.verify and passive closure require genuine post-fault source observations; cached provider/heartbeat receipts retain original timestamps.",
+      "examinationResult": "49 original passes preserved;46 successor scoped passes and independent scoped review; exact successor build/typecheck PASS.",
       "independentVerification": "Separate source reread after real bounded drain",
-      "continuationEvidence": "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json",
-      "remainingDependency": "Other collectors' freshness guarantees",
-      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
+      "continuationEvidence": "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json",
+      "remainingDependency": "Exact reviewed successor publication and required exact-head CI; implementation/scoped acceptance supported.",
+      "acceptanceClass": "ACCEPTANCE_SUPPORTED_PUBLICATION_VALIDATION_PENDING"
     },
     {
       "item": 29,
@@ -806,7 +806,7 @@
         "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Reconcile remaining fixed31 detector, semantic correlation, fresh independent read and recurrence conditions; retain scoped passes. Publish reviewed freshness batch only with approval.",
+      "nextAction": "Retain published freshness evidence; address only remaining requirement-specific fault/correlation/recurrence criteria. Successor review does not close this requirement.",
       "responsibleComponent": "Assurance control plane",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Fault-family retry/circuit limits retained; observer progress deadlines, independent launcher-loss guard and failed Redis cleanup repair implemented locally; recovery completion now requires an observation from the current verification invocation (local fcafa3e1)",
@@ -831,14 +831,14 @@
         "backend/src/validation/tests/work8-assurance-storage-recovery.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Verify protected process-tree termination in separately authorised isolated host; local namespace probe is blocked.",
+      "nextAction": "Validate successor runtime CI; execute protected process-tree acceptance only in separately authorised host.",
       "responsibleComponent": "Assurance control plane",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Supervisor/storage recovery retained; collector now fails closed for missing evidenceId; runtime exception invalidates prior four-eyes health and scheduler; local dual-observer loss containment added; observer progress deadlines, independent launcher-loss guard and failed Redis cleanup repair implemented locally",
-      "examinationResult": "PENDING \u2014 local watchdog cases passed; collector5 and actual runtime-cycle1 regression passed;29 targeted tests PASS, actual fixture observer deaths and audit-failure containment;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations",
+      "engineeringState": "Actual observer IPC shutdown repaired after reproduced SIGTERM hang; launcher exits naturally after cleanup.",
+      "examinationResult": "2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass.",
       "independentVerification": "Retained scoped tests",
-      "continuationEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json",
-      "remainingDependency": "Actual platform/cgroup containment, simultaneous guard/launcher loss, broader coupled watchdog and final-candidate endurance acceptance.",
+      "continuationEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json",
+      "remainingDependency": "Hosted platform containment, coupled loss and final-candidate endurance; runtime CI repair validation.",
       "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
@@ -887,14 +887,14 @@
         "work8-keepa-history.test.ts:4 PASS; focused TypeScript PASS; labelled fixtures, no paid calls"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Independent delta review and current-head hosted CI; native browser checks.",
+      "nextAction": "Publish reviewed batch; read required CI without restarting prior passes.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "New contracts and probe covered; broader gates retained; existing Keepa history adapter now rejects mismatched ASIN/domain, ambiguous products and malformed histories; Five scoped tests plus drift-replay regression and strict changed-backend TypeScript passed.",
-      "examinationResult": "Frontend typecheck after Next route generation; changed-file ESLint zero errors.",
+      "engineeringState": "Clean locked dependencies restore broader declarations; full backend/Pillow typecheck and build verified; fresh-route CI fixture repaired.",
+      "examinationResult": "Exact source4ebbc full build PASS;46 scoped passes; independent review.",
       "independentVerification": "Remote exact-head CI tracked separately",
-      "continuationEvidence": "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Independent delta review and current-head hosted CI; native browser checks.",
+      "continuationEvidence": "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json",
+      "remainingDependency": "Exact successor CI and required native acceptance.",
       "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
@@ -946,7 +946,7 @@
         "backend/src/validation/tests/work8-sqlite-queue-containment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Reconcile remaining fixed31 detector, semantic correlation, fresh independent read and recurrence conditions; retain scoped passes. Publish reviewed freshness batch only with approval.",
+      "nextAction": "Retain published freshness evidence; address only remaining requirement-specific fault/correlation/recurrence criteria. Successor review does not close this requirement.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Queue+schedule compound examination added; local dual-observer loss containment added; observer progress deadlines, independent launcher-loss guard and failed Redis cleanup repair implemented locally; recovery completion now requires an observation from the current verification invocation (local fcafa3e1)",
@@ -1165,14 +1165,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Read38135512670,38135512687,38135512689 without restarting or moving source ref during runtime",
+      "nextAction": "Read runtime38136583689 to conclusion; publish one approved reviewed successor batch.",
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
-      "engineeringState": "Approved b7fe source published as70a9d709; approved2cae evidence published as5f75d7d4; full trees equal, zero file differences; deployment-linked frontend held",
-      "examinationResult": "Previous06a217 all4CI SUCCESS including runtime38134138144; published70a9 Assurance38135512726 and semantic38135512687 SUCCESS; product38135512689/runtime38135512670 running",
+      "engineeringState": "Approved fcafa source published as6f0bdc;07f573 evidence ascdbe46; complete trees equal and frontend branch held.",
+      "examinationResult": "Assurance38136583716 and semantic38136583686 PASS; Product38136583720 FAIL with local reviewed repair; runtime38136583689 running.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Current70a9 exact-head CI conclusions; local reviewed freshness successor publication and later exact-head verification; hosted acceptance",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json",
+      "remainingDependency": "Successor publication/CI and hosted owner acceptance.",
       "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {

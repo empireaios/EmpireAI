@@ -1,0 +1,37 @@
+{
+  "schema": "WORK8_HISTORICAL_JOIN_PREPARATION_V1",
+  "source": "Retained stored Pillow request readback; no new inference",
+  "requests": [
+    {
+      "pillowRequestId": "pcr_d9c4b797ac1a431a",
+      "requestKey": "f8deb9058521916cb70cb9cd59ab05aea5041a8bf0cd95d887cb07834ff8a6f2",
+      "historicalTokenUsage": {
+        "promptTokens": 30687,
+        "completionTokens": 367,
+        "totalTokens": 31054
+      },
+      "canonicalAccountingRowIdentity": null
+    },
+    {
+      "pillowRequestId": "pcr_f4316f954345430a",
+      "requestKey": "6c76dd5f4dcd84dd4e4f8772f93ba2fb5710f09fd0321c5c1b280b9d26fcb45c",
+      "historicalTokenUsage": {
+        "promptTokens": 31374,
+        "completionTokens": 249,
+        "totalTokens": 31623
+      },
+      "canonicalAccountingRowIdentity": null
+    },
+    {
+      "pillowRequestId": "pcr_ea7be3e4e9974a3f",
+      "requestKey": "98ae751cae47d20b22745b5c4ab709d2c57754c3ebb7eda50483f0f669a528f4",
+      "historicalTokenUsage": {
+        "promptTokens": 27084,
+        "completionTokens": 128,
+        "totalTokens": 27212
+      },
+      "canonicalAccountingRowIdentity": null
+    }
+  ],
+  "acceptance": "Join keys and token counts only; no evidence these are the three added rows, no actual invoice amounts inferred. Compare against original224 and canonical227 with prepared read-only extractor once rows accessible."
+}

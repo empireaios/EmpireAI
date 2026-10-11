@@ -1,0 +1,21 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: '@empireai/backend@0.1.0',
+npm warn EBADENGINE   required: { node: '22.23.2', npm: '10.9.8' },
+npm warn EBADENGINE   current: { node: 'v22.23.2', npm: '11.9.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: '@empireai/pillow@0.1.0',
+npm warn EBADENGINE   required: { node: '22.23.2', npm: '10.9.8' },
+npm warn EBADENGINE   current: { node: 'v22.23.2', npm: '11.9.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: '@empireai/pillow@0.1.0',
+npm warn EBADENGINE   required: { node: '22.23.2', npm: '10.9.8' },
+npm warn EBADENGINE   current: { node: 'v22.23.2', npm: '11.9.0' }
+npm warn EBADENGINE }
+npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+
+added 140 packages in 14s

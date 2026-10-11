@@ -24,13 +24,14 @@
   "commerce": "LOCKED",
   "work9": "NOT_ACTIVATED",
   "latestPublication": {
-    "source": "70a9d709399fa8f50d62951fda7ea02ba9101d4b",
-    "evidence": "5f75d7d4e2de5873a3796368faeeac9dbda63d0f",
-    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-B7FE.json"
+    "source": "6f0bdc6431df9716a42fa7fb74a0ebdf94af5905",
+    "evidence": "cdbe46feb63eb49b17982b1cb6d190190dee88e9",
+    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-FCAFA.json"
   },
   "latestScopedReview": {
-    "source": "fcafa3e1995a207a8ede310fdccaf2838ee31dd5",
-    "verdict": "SCOPED_PASS_NOT_REQUIREMENT_CLOSURE",
-    "receipt": "resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json"
+    "source": "4ebbc57db3bb939d36fd12dfb52303375b3deb64",
+    "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+    "verdict": "SCOPED_PASS_REQUIREMENT28_PUBLICATION_CI_PENDING",
+    "receipt": "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
   }
 }
