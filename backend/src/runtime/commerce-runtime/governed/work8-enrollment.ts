@@ -1,10 +1,10 @@
 import {z} from 'zod';
-import {id,type Command,type Actor,type CanonicalOrder} from './contracts.js';
+import {id,envelopeSchema,type Command,type Actor,type CanonicalOrder} from './contracts.js';
 import {qualify,type CommerceState} from './engine.js';
 import {digest,type GovernedCommerceStore} from './store.js';
 import type {CommerceWorker,Task} from './worker.js';
 import type {Row} from '../../../intelligence/store.js';
-export const simulationEnrollmentSchema=z.object({id,missionId:id,candidateId:id,expectedVersion:z.number().int().positive(),dossierDigest:z.string().regex(/^[a-f0-9]{64}$/),simulationOnly:z.literal(true),acknowledgeNoActualPayment:z.literal(true)}).strict();
+export const simulationEnrollmentSchema=z.object({id:id.max(96),missionId:id,candidateId:id,expectedVersion:z.number().int().positive(),dossierDigest:z.string().regex(/^[a-f0-9]{64}$/),simulationOnly:z.literal(true),acknowledgeNoActualPayment:z.literal(true)}).strict();
 export function initializeSimulationEnrollments(store:GovernedCommerceStore){store.db.exec(`CREATE TABLE IF NOT EXISTS work8_simulation_enrollments(workspace TEXT NOT NULL,id TEXT NOT NULL,mission TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,id),UNIQUE(workspace,mission));
  CREATE TRIGGER IF NOT EXISTS immutable_work8_enrollment_update BEFORE UPDATE ON work8_simulation_enrollments BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SIMULATION_ENROLLMENT');END;
  CREATE TRIGGER IF NOT EXISTS immutable_work8_enrollment_delete BEFORE DELETE ON work8_simulation_enrollments BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SIMULATION_ENROLLMENT');END;`);}
@@ -27,7 +27,7 @@ export function enrollQualifiedSimulation(worker:CommerceWorker,workspace:string
   const d=resolve(command.candidateId),now=worker.engine.clock();
   if(d.workspace!==workspace||d.candidateId!==command.candidateId||d.digest!==command.dossierDigest||d.grantsAuthority!==false)throw Error('SIMULATION_DOSSIER_STALE');
   if(d.eligibility?.qualified!==true||!Array.isArray(d.eligibility.missing)||d.eligibility.missing.length)throw Error('SIMULATION_QUALIFICATION_REQUIRED');
-  if(d.assessment?.status!=='COMPLETED_ASSESSMENT_LINKED'||!d.assessment.assessmentHash||d.assessment.candidateBinding?.snapshotDigest!==d.sourceBinding?.snapshotDigest)throw Error('SIMULATION_ASSESSMENT_REQUIRED');
+  if(d.assessment?.status!=='COMPLETED_ASSESSMENT_LINKED'||typeof d.assessment.assessmentHash!=='string'||!(/^[a-f0-9]{64}$/).test(d.assessment.assessmentHash)||d.assessment.candidateBinding?.snapshotDigest!==d.sourceBinding?.snapshotDigest)throw Error('SIMULATION_ASSESSMENT_REQUIRED');
   const history=store.history(workspace,command.missionId),receipt=history.at(-1);if(!receipt||receipt.version!==command.expectedVersion)throw Error('SIMULATION_MISSION_VERSION');
   const state=receipt.state as unknown as CommerceState;
   if(state.externalEffects!==0||state.paidInference!==0||Object.keys(state.orders).length||!state.listing||!qualify(state.candidate,now).qualified||d.canonicalCandidateDigest!==digest({candidate:state.candidate,listing:state.listing}))throw Error('SIMULATION_CANDIDATE_BINDING');
@@ -41,6 +41,7 @@ export function enrollQualifiedSimulation(worker:CommerceWorker,workspace:string
   const actor:Actor={id:'brain-commerce-interceptor',workspace,role:'EXECUTOR'},p=payment[0]!.provenance;
   const tracking={orderId,shipmentId:'sim-shipment:'+command.id,providerId:'sim-provider:'+command.id,carrier:'simulation-carrier',tracking:'sim-tracking:'+command.id,quantity:1,occurredAt:at};
   const commands:Command[]=[{type:'publication_intent',capacity:{account:'isolated',marketplace:candidate.economics.channel,mode:'NEW_ASIN',asin:null,newAsinRemaining:1,unsoldRemaining:1,requestsPerSecond:1,eligibility:'ELIGIBLE',provenance:p}},{type:'intake',order,paymentEvidence:payment[0]!.id},{type:'prepare',orderId,offer:candidate.offer},{type:'intercept',orderId,result:'ACCEPTED',acceptedQuantity:1,providerId:tracking.providerId},{type:'tracking',event:{...tracking,eventId:'sim-shipped:'+command.id,status:'SHIPPED'}},{type:'tracking',event:{...tracking,eventId:'sim-delivered:'+command.id,status:'DELIVERED',proof:'SIMULATED_DELIVERY_NOT_SUPPLIER_EVIDENCE'}}];
+  for(const [index,step]of commands.entries())envelopeSchema.parse({id:digest({task:command.id,index}),missionId:command.missionId,expectedVersion:receipt.version+index,command:step});
   const task:Task={id:command.id,mission:command.missionId,workspace,owner,baseVersion:receipt.version,createdAt:now,cursor:0,fence:0,status:'PENDING',error:null,steps:commands.map(command=>({actor,command})),attempts:0,maxSteps:6,maxAttempts:1,paidInference:0};
   const body={id:command.id,workspace,mission:task.mission,owner,attestedBy:'AUTHENTICATED_OWNER',requestDigest:digest(command),dossierDigest:d.digest,sourceSnapshotDigest:d.sourceBinding.snapshotDigest,assessmentHash:d.assessment.assessmentHash,baseVersion:receipt.version,sourceReceiptDigest:receipt.digest,taskPlanDigest:planDigest(task),classification:'SIMULATION_EXCLUDED_FROM_ACTUALS',payment:'EXPLICIT_SYNTHETIC_ASSUMPTION_NOT_ACTUAL_RECEIPT',capacity:'ISOLATED_ONE_LISTING_ASSUMPTION_NOT_MARKETPLACE_PERMISSION',at,externalEffects:0,paidInference:0,birth:'NOT_BORN',commerce:'LOCKED'};
   const enrollment={...body,digest:digest(body)};
