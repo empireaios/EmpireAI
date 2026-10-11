@@ -1,3 +1,5 @@
+import {acceptanceScenario} from '../../runtime/commerce-runtime/governed/scenario.js';
+import {enrollQualifiedSimulation,verifySimulationEnrollment} from '../../runtime/commerce-runtime/governed/work8-enrollment.js';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';
 import {GovernedCommerceStore,digest} from '../../runtime/commerce-runtime/governed/store.js';
 import {GovernedCommerceEngine} from '../../runtime/commerce-runtime/governed/engine.js';
@@ -57,6 +59,12 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  source.store.db.exec("CREATE TABLE protected_live_record(value TEXT);INSERT INTO protected_live_record VALUES('NEVER_COPY_PRODUCTION_SECRET')");
  const first=captureTwinCheckpoint(source,p,'exam',version);
  assert.equal(JSON.stringify(first).includes('NEVER_COPY_PRODUCTION_SECRET'),false);
+ // Retained V1 snapshots remain readable and can precede a V2 checkpoint.
+ const {work8_simulation_enrollments: omitted,...legacyTables}=first.tables;
+ const {digest: ignored,...legacyBody}=first;
+ const v1body={...legacyBody,schema:'WORK8_TWIN_RECOVERY_V1' as const,tables:legacyTables};
+ const legacy={...v1body,digest:digest(v1body)},legacyTarget=open('legacy.sqlite');
+ try{initializeTwinRecoveryTarget(legacyTarget.store);replayTwinCheckpoint(legacyTarget,legacy,legacy.digest);const upgraded=captureTwinCheckpoint(source,p,'exam',version,legacy);replayTwinCheckpoint(legacyTarget,upgraded,upgraded.digest);assert.deepEqual(legacyTarget.projection(p,'exam').records,source.projection(p,'exam').records);}finally{legacyTarget.store.close();}
  assert.throws(()=>initializeTwinRecoveryTarget(source.store),/NOT_EMPTY/);
  initializeTwinRecoveryTarget(target.store);
  const vault=path.join(root,'vault');fs.mkdirSync(vault);saveTwinCheckpoint(vault,first);assert.throws(()=>saveTwinCheckpoint(vault,first),/EEXIST/);
@@ -89,5 +97,36 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  assert.throws(()=>replayTwinCheckpoint(target,fourth,fourth.digest),/TARGET_DIVERGED/);
  assert.equal(source.store.db.prepare('SELECT value FROM protected_live_record').get()?.value,'NEVER_COPY_PRODUCTION_SECRET');
  console.log(JSON.stringify({scope:'Canonical isolated snapshot and replay; application references only, no deployed upgrade claimed',orders:2,financialEvents:22,authorityRestored:false}));
+ }finally{source.store.close();target.store.close();fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('V2 restores enrolled simulation lineage, evolves derived errors, and validates duplicate replay',()=>{
+ assert.equal(process.env.WORK8_KERNEL_EGRESS,'DENIED');
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'twin-enrolled-recovery-')),p={workspace:'ws',owner:'owner'};let now=1791676800000;
+ const open=(file:string)=>{const store=new GovernedCommerceStore(path.join(root,file)),sessions=new Work8TwinSessions(store,()=>now),worker=new CommerceWorker(new GovernedCommerceEngine(store,()=>now));return new Work8TwinRuntime(sessions,worker,new DurableSimulatedFinance(store,worker,()=>now));};
+ const source=open('source.sqlite'),target=open('target.sqlite');
+ try{
+ source.sessions.transition(p,{id:'create',sessionId:'exam',expectedVersion:0,action:'CREATE'});
+ const w=source.sessions.read(p,'exam').twinWorkspace,scenario=acceptanceScenario(w,p.owner,now),mission='fixture:enrolled';
+ for(const [i,step]of scenario.steps.slice(0,4).entries())source.worker.engine.execute(step.actor,{id:'setup-'+i,missionId:mission,expectedVersion:i,command:step.command});
+ const binding={snapshotDigest:'a'.repeat(64)},dossier={workspace:w,candidateId:'cj:fixture',digest:'b'.repeat(64),grantsAuthority:false,sourceBinding:binding,eligibility:{qualified:true,missing:[]},assessment:{status:'COMPLETED_ASSESSMENT_LINKED',assessmentHash:'c'.repeat(64),candidateBinding:binding},canonicalCandidateDigest:digest({candidate:scenario.candidate,listing:scenario.listing}),classification:'INJECTED_PROTOCOL_FIXTURE_NOT_REAL_QUALIFICATION'};
+ enrollQualifiedSimulation(source.worker,w,p.owner,{id:'enrolled',missionId:mission,candidateId:dossier.candidateId,expectedVersion:4,dossierDigest:dossier.digest,simulationOnly:true,acknowledgeNoActualPayment:true},()=>dossier);
+ const version={applicationRevision:'a'.repeat(40),configurationDigest:digest({isolated:true})};
+ source.store.db.prepare('INSERT INTO work8_sim_finance_admission VALUES(?,?,?,?,?,?)').run(w,mission,'enrolled','SIM_FINANCE_TASK_INELIGIBLE','d'.repeat(64),now);
+ const first=captureTwinCheckpoint(source,p,'exam',version);assert.equal(first.schema,'WORK8_TWIN_RECOVERY_V2');assert.equal(first.tables.work8_simulation_enrollments!.length,1);
+ initializeTwinRecoveryTarget(target.store);replayTwinCheckpoint(target,first,first.digest);
+ assert.equal(verifySimulationEnrollment(target.store,target.worker.get(w,'enrolled')!).dossierDigest,dossier.digest);
+ for(let i=0;i<6;i++){const task=source.worker.get(w,'enrolled')!;source.worker.tick(w,task.id,task.fence);}
+ source.finance.tick(w);now+=86460000;for(let i=0;i<20;i++)source.finance.tick(w);
+ assert.equal(source.finance.read(w,mission).status,'COMPLETE_SIMULATION');
+ const second=captureTwinCheckpoint(source,p,'exam',version,first);assert.equal(second.tables.work8_sim_finance_admission!.length,0);
+ replayTwinCheckpoint(target,second,second.digest);
+ assert.equal(target.finance.read(w,mission).status,'COMPLETE_SIMULATION');assert.equal(target.store.history(w,mission).length,10);
+ assert.equal(target.authority.read(p,'exam').status,'NOT_GRANTED');
+ assert.equal(replayTwinCheckpoint(target,second,second.digest).status,'ALREADY_APPLIED');
+ target.store.db.prepare('INSERT INTO work8_sim_finance_admission VALUES(?,?,?,?,?,?)').run(w,mission,'enrolled','EXPERIMENT','e'.repeat(64),now);
+ assert.throws(()=>replayTwinCheckpoint(target,second,second.digest),/TARGET_DIVERGED/);
+ assert.equal(target.store.db.prepare('SELECT reason FROM work8_sim_finance_admission').get()?.reason,'EXPERIMENT');
+ console.log(JSON.stringify({scope:'Injected qualification fixture; no genuine assessment',enrollments:1,orders:1,events:11,restoredAuthority:false}));
  }finally{source.store.close();target.store.close();fs.rmSync(root,{recursive:true,force:true});}
 });
