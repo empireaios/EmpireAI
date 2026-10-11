@@ -1,0 +1,23 @@
+TAP version 13
+# Subtest: workspace product chat binds current canonical evidence, rejects foreign and stale references, and never grants authority
+ok 1 - workspace product chat binds current canonical evidence, rejects foreign and stale references, and never grants authority
+  ---
+  duration_ms: 18.553442
+  type: 'test'
+  ...
+# ◇ injected env (0) from .env
+# Subtest: persistent vertical twin: multiple products, actual scheduler, checkpoint fault recovery, shipments, settlement and restart equality
+ok 2 - persistent vertical twin: multiple products, actual scheduler, checkpoint fault recovery, shipments, settlement and restart equality
+  ---
+  duration_ms: 2203.015818
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2749.444015

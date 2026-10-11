@@ -1,7 +1,7 @@
 {
   "schema": "WORK8_VERTICAL_INTEGRATION_V1",
-  "backend": "b7003144b7056f31cd55221613fa55e895c42545",
-  "frontendPublishedCommit": "a295ce085214cc4be1f2687391aad3b907e3d7e0",
+  "backend": "84eb7963dcedba0f231f6c01c9d4b2e3fe41033d",
+  "frontendPublishedCommit": "79ddcd9b0fe69d2e96bef12b115d50de43f2f830",
   "frontendBranchHeadUnchanged": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
   "deploymentPerformed": false,
   "classification": "ISOLATED_LABELLED_FIXTURE_EXAMINATION_NOT_GENUINE_QUALIFICATION",
@@ -19,16 +19,23 @@
     "server-resolved receipt-bound twin product chat context; no inference submitted",
     "100 labelled candidates executed on actual timer: 1000 canonical receipts in 13307ms",
     "1000 retained-task cap across 10 virtual admission days",
-    "Helium10 disabled compatibility contract rejects acquisition without entitlement"
+    "Helium10 disabled compatibility contract rejects acquisition without entitlement",
+    "three virtual days: six delivered orders,60 commerce receipts,66 finance events,three recoveries in4569ms",
+    "compounded checkpoint fault/revocation/pause/cold restart and expiry preserve canonical records",
+    "existing portfolio/listing chat links resolve current workspace canonical receipt; forged/stale/foreign references rejected",
+    "frontend publication repaired and full tree hash equals locally tested tree"
   ],
   "remaining": [
-    "native authenticated browser acceptance",
-    "separately approved isolated runtime/preview deployment",
-    "genuine supplier qualification and authorised assessment",
-    "product context coverage for genuine/live reference records",
-    "multi-day settlement and compounded-failure endurance"
+    "native authenticated desktop/mobile browser acceptance",
+    "separately authorised isolated hosting and preview rebuild",
+    "genuine supplier qualification, image-rights evidence and authorised assessment",
+    "wall-clock full-business endurance and wider fault families",
+    "current-head hosted CI conclusions"
   ],
   "register": "1 PASS / 39 PENDING / 5 BLOCKED",
   "scaleLimitations": "10ms test cadence; virtual admission clock; not 1000 executed products or genuine qualification",
-  "performanceRepair": "Initial 120-second bound failed; replaced per-turn whole-queue Assurance scan with exact selected-task probe; full projection probes retained"
+  "performanceRepair": "Initial 120-second bound failed; replaced per-turn whole-queue Assurance scan with exact selected-task probe; full projection probes retained",
+  "frontendTree": "4685092bfc4edad339b676f79c2f41b167e185ff",
+  "backendTree": "d6f301b5fbf2d923c52baa60fc06a718cea6067b",
+  "publicationNote": "Intermediate a295ce frontend commit did not match tested local tree; superseded by exact-tree 79ddcd9b. Neither deployed."
 }

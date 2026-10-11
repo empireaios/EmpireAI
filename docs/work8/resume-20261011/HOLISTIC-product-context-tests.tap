@@ -1,0 +1,23 @@
+TAP version 13
+# Subtest: exact server-bound product context survives schema parsing and long conversation compaction
+ok 1 - exact server-bound product context survives schema parsing and long conversation compaction
+  ---
+  duration_ms: 9.273724
+  type: 'test'
+  ...
+# {"scope":"Canonical isolated snapshot and replay; application references only, no deployed upgrade claimed","orders":2,"financialEvents":22,"authorityRestored":false}
+# Subtest: versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+ok 2 - versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+  ---
+  duration_ms: 1893.323796
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2224.660551

@@ -1,0 +1,1081 @@
+{
+  "schema": "WORK8_WALLCLOCK_TWIN_EXAMINATION",
+  "classification": "LABELLED_FIXTURES",
+  "elapsedMs": 600342,
+  "schedulerCadenceMs": 5000,
+  "virtualSettlementAdvanceMs": 86460000,
+  "products": 2,
+  "deliveredOrders": 2,
+  "financialEvents": 22,
+  "coldRestartEquality": true,
+  "actualCashMovement": 0,
+  "liveEffects": 0,
+  "limits": "Ten-minute bounded run, not full multi-day wall-clock endurance; virtual settlement clock; not genuine qualification",
+  "view": {
+    "schema": "WORK8_TWIN_PROJECTION_V1",
+    "label": "DIGITAL TWIN — SIMULATED OPERATIONS",
+    "session": {
+      "schema": "WORK8_TWIN_V1",
+      "workspace": "wallclock_fixture",
+      "owner": "fixture_owner",
+      "sessionId": "elapsed",
+      "twinWorkspace": "twin_1c4ee785ab31cfc0fca45e3e4ed747f458f7ed1d32490052",
+      "id": "resume-again",
+      "version": 4,
+      "action": "RESUME",
+      "status": "ACTIVE",
+      "at": 1791763260000,
+      "previous": "ba91b7a3a6c2442220f673650ada36540a2b403271c6ff4c9d42e6f23d0d7d8e",
+      "requestDigest": "0455b5de76ea0c7854c0d73dc7ffe62d66fc656917c802b81f2f2b768f959922",
+      "classification": "SIMULATED_OPERATIONS",
+      "externalEffects": 0,
+      "digest": "3dd97c2d0053a9955624b93ba70cf4a3a8b0b950e40f2921f3292a821452a3df"
+    },
+    "records": [
+      {
+        "missionId": "acceptance:twin-exam:aa081ae2c1e9a762a570",
+        "receiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+        "version": 10,
+        "productId": "fixture-product-aa081ae2c1e9a762a570",
+        "variantId": "fixture-variant-aa081ae2c1e9a762a570",
+        "listing": {
+          "productId": "fixture-product-aa081ae2c1e9a762a570",
+          "title": "Synthetic organiser 2",
+          "bullets": [
+            "Synthetic dimensions for acceptance only"
+          ],
+          "description": "Synthetic listing package, not intended for marketplace publication.",
+          "category": "HOME_STORAGE",
+          "attributes": {
+            "material": "fixture"
+          },
+          "variants": [
+            {
+              "sku": "FIXTURE-aa081ae2c1e9a762a570",
+              "variantId": "fixture-variant-aa081ae2c1e9a762a570",
+              "dimensions": "10x10x10 cm fixture"
+            }
+          ],
+          "images": [
+            {
+              "url": "https://example.invalid/fixture.png",
+              "license": "Synthetic acceptance image manifest; no actual media licensed",
+              "rightsEvidence": "evidence-QUALITY",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+            }
+          ],
+          "claims": [
+            {
+              "text": "Synthetic fixture",
+              "evidenceId": "evidence-QUALITY"
+            }
+          ],
+          "sourceEvidence": [
+            "evidence-DEMAND",
+            "evidence-COMPETITION",
+            "evidence-DIFFERENTIATION",
+            "evidence-QUALITY",
+            "evidence-COMPLIANCE",
+            "evidence-RETURNS",
+            "evidence-MARKETPLACE",
+            "evidence-PAYMENT"
+          ]
+        },
+        "publication": {
+          "capacity": {
+            "account": "isolated-fixture",
+            "marketplace": "SG",
+            "mode": "NEW_ASIN",
+            "asin": null,
+            "newAsinRemaining": 1000,
+            "unsoldRemaining": 1000,
+            "requestsPerSecond": 1,
+            "eligibility": "ELIGIBLE",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          },
+          "status": "INTERCEPTED",
+          "receiptId": "d0dc1e29bc06492970681eb0fc0f00af9f653e78e74e8dbc16de70bfebc31542",
+          "canonicalPublisher": "marketplace-publishing/services/amazon-listings-publish-executor"
+        },
+        "orders": {
+          "fixture-order-aa081ae2c1e9a762a570": {
+            "order": {
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "workspaceId": "twin_1c4ee785ab31cfc0fca45e3e4ed747f458f7ed1d32490052",
+              "storeId": "isolated",
+              "brandId": "fixture",
+              "supplierPlatform": "CJ_DROPSHIPPING",
+              "connectorId": "cj-interceptor",
+              "status": "DELIVERED",
+              "fulfillmentStatus": "DELIVERED",
+              "items": [
+                {
+                  "itemId": "line-1",
+                  "supplierSku": "FIXTURE-aa081ae2c1e9a762a570",
+                  "supplierProductId": "fixture-product-aa081ae2c1e9a762a570",
+                  "title": "Synthetic organiser 2",
+                  "quantity": 2,
+                  "unitCost": 8,
+                  "currency": "SGD"
+                }
+              ],
+              "shippingAddress": {
+                "fullName": "Synthetic Recipient",
+                "addressLine1": "Fixture address",
+                "city": "Singapore",
+                "state": "Singapore",
+                "postalCode": "000000",
+                "countryCode": "SG",
+                "phone": "00000000"
+              },
+              "estimatedCost": 16,
+              "estimatedDeliveryDaysMin": 7,
+              "estimatedDeliveryDaysMax": 10,
+              "currency": "SGD",
+              "approval": null,
+              "supplierOrderId": null,
+              "trackingNumber": null,
+              "carrier": null,
+              "trackingEvents": [],
+              "integrationMode": "SANDBOX",
+              "createdAt": "2026-10-11T00:00:00.000Z",
+              "updatedAt": "2026-10-11T00:00:00.000Z"
+            },
+            "outcome": "DELIVERED",
+            "accepted": 2,
+            "shipped": 2,
+            "delivered": 2,
+            "tracking": [
+              "tracking-shipped",
+              "tracking-delivered"
+            ],
+            "lastTrackingAt": "2026-10-11T00:00:00.000Z",
+            "shipments": {
+              "fixture-shipment-aa081ae2c1e9a762a570": {
+                "quantity": 2,
+                "delivered": true,
+                "carrier": "fixture-carrier",
+                "tracking": "fixture-tracking"
+              }
+            },
+            "remedies": [],
+            "intentId": "5f506ddb3ab14413236e634261d4c4f510a6c4c2262808d804eaa35db917e913",
+            "providerId": "cj-intercepted-receipt"
+          }
+        },
+        "financeReference": {
+          "workspace": "twin_1c4ee785ab31cfc0fca45e3e4ed747f458f7ed1d32490052",
+          "missionId": "acceptance:twin-exam:aa081ae2c1e9a762a570",
+          "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c"
+        },
+        "sourceClassification": "SYNTHETIC",
+        "media": {
+          "version": 0,
+          "original": [
+            {
+              "id": "original-0",
+              "url": "https://example.invalid/fixture.png",
+              "kind": "IMAGE",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f",
+              "sourceIdentity": "fixture-product-aa081ae2c1e9a762a570",
+              "rightsEvidence": "evidence-QUALITY",
+              "rightsStatus": "UNVERIFIED",
+              "provenance": "Synthetic acceptance image manifest; no actual media licensed"
+            }
+          ],
+          "proposal": null,
+          "current": null,
+          "history": [],
+          "status": "ORIGINAL_ONLY",
+          "reminder": null,
+          "sourceBindingCurrent": false,
+          "externalStatus": "NOT_SUBMITTED",
+          "editingCapability": "CANVA_RUNTIME_NOT_CONFIGURED",
+          "classification": "SIMULATED_MEDIA_WORKFLOW",
+          "externalEffects": 0
+        },
+        "title": "Synthetic organiser 2",
+        "sku": "FIXTURE-aa081ae2c1e9a762a570",
+        "phase": "APPROVED",
+        "qualification": {
+          "qualified": true,
+          "reasons": [],
+          "score": 87,
+          "confidence": 1,
+          "economics": {
+            "input": {
+              "productId": "fixture-product-aa081ae2c1e9a762a570",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "gross": 27,
+            "contribution": 17.599999999999998,
+            "net": 16.599999999999998,
+            "breakEven": 20.000000000000004,
+            "minimumViablePrice": 20.000000000000004,
+            "marginPercent": 41.49999999999999,
+            "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+            "genuinelyProfitable": false
+          },
+          "exposure": 25,
+          "available": 980,
+          "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "decisions": [],
+        "finance": {
+          "missionId": "acceptance:twin-exam:aa081ae2c1e9a762a570",
+          "lifecycleComplete": true,
+          "status": "COMPLETE_SIMULATION",
+          "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+          "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+          "planDigest": "4e761752fb95df220e382ae3f00a47c0772e2293e371116c42258d6bdf057da1",
+          "assumptions": {
+            "classification": "SIMULATION_ASSUMPTIONS_NOT_ACTUAL_CHARGES",
+            "version": "SIM_FINANCE_V1",
+            "feeBasis": "CANDIDATE_FEE_PLUS_PAYMENT_PERCENT",
+            "dutyBasis": "CANDIDATE_DUTY_PLUS_TAX_PER_UNIT",
+            "payout": "SIMULATED_HOLD_ONE_DAY_THEN_BANK",
+            "supplierPayment": "SIMULATED_QUOTED_COST_FREIGHT_DUTY",
+            "actualCashMovement": 0
+          },
+          "recordedEvents": 11,
+          "totalEvents": 11,
+          "financial": {
+            "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+            "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+            "work5Reference": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9",
+            "eventDigest": "55562717152c01752f7df7323609a36e3c6b360141c8c4fd7ecbbfb9a80d866a",
+            "cutoffAt": "2026-10-12T00:01:00.000Z",
+            "orders": [
+              {
+                "orderId": "fixture-order-aa081ae2c1e9a762a570",
+                "currency": "SGD",
+                "missing": [],
+                "unknownIds": [],
+                "contributionMinor": 4040,
+                "realisedContributionMinor": 4040,
+                "receivableMinor": 0,
+                "settlementMinor": 0,
+                "payoutHeldMinor": 0,
+                "bankMinor": 4040,
+                "liabilityMinor": 0,
+                "cashNeedMinor": 0,
+                "conserved": true,
+                "complete": true
+              }
+            ],
+            "duplicates": 0,
+            "pending": [],
+            "unknown": [],
+            "balanced": true,
+            "conserved": true,
+            "complete": true,
+            "actualCashMovement": 0,
+            "actualRevenue": null,
+            "actualProfit": null,
+            "technologyCosts": "EXCLUDED_SEPARATE_COST_CENTRE",
+            "fx": "NO_IMPLICIT_CONVERSION",
+            "sourceVerification": "CANONICAL_IMMUTABLE_HISTORY_READ",
+            "noncanonicalAmounts": "EXPLICIT_SIMULATION_ASSUMPTIONS_NOT_SOURCE_FACTS"
+          },
+          "actualCashMovement": 0,
+          "simulatedCharges": [
+            {
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "currency": "SGD",
+              "feeMinor": 1360,
+              "dutyAndTaxMinor": 400,
+              "refundMinor": null
+            }
+          ],
+          "events": [
+            {
+              "id": "sim:8c6af9a6c2d8ec18dc7a40853efbdfa2473fa17bc74c4a037db29aee2fdb082f",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "SALE",
+              "currency": "SGD",
+              "minor": 8000,
+              "at": "2026-10-11T00:00:00.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:ab34c398dd5b6e85431ab0a104d963cad785a4446ed4eeb4f199c8821da4676f",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "COGS",
+              "currency": "SGD",
+              "minor": 1600,
+              "at": "2026-10-11T00:00:01.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:5d4c7f1b0a01d5a8907579260cb32189c26a8867e59b8f282bb4bff54f9fc12b",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "FREIGHT",
+              "currency": "SGD",
+              "minor": 600,
+              "at": "2026-10-11T00:00:02.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:4d9a0a5cd4c3c612c03c1d8dddee1891281ece59b8e4e26dc0d105b8de87c0df",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "FEE",
+              "currency": "SGD",
+              "minor": 1360,
+              "at": "2026-10-11T00:00:03.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:8db07c4408e2701c96b30af665521e1c25c9358a78a11e0f3f9c33bbbeaa821c",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "DUTY",
+              "currency": "SGD",
+              "minor": 400,
+              "at": "2026-10-11T00:00:04.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:b60062e243954e5543f8112edcc7562392d9448ff8fbf36d19a9d1ead6198c8b",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "DISCOUNT",
+              "currency": "SGD",
+              "minor": 0,
+              "at": "2026-10-11T00:00:05.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:d9379c0648908bbcc1761741d0764f76bb9812a6588c013ce8b7cc73cbdea9eb",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "SETTLEMENT",
+              "currency": "SGD",
+              "minor": 6640,
+              "at": "2026-10-11T00:00:06.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:b2a7e0dc81d19c94164a5795ed148be8f9e1ee3c1c7fede8610e73b6754754ef",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "PAYOUT_HOLD",
+              "currency": "SGD",
+              "minor": 6640,
+              "at": "2026-10-11T00:00:07.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:0a458a53309d570fe66998ef8652a49832b2280924697782b9697da32d77b376",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "SUPPLIER_PAYMENT",
+              "currency": "SGD",
+              "minor": 2600,
+              "at": "2026-10-11T00:00:08.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:875f9a413882c9fd60ac106e52db391f1ee6c000d0139146c331bf574654baf3",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "PAYOUT_RELEASE",
+              "currency": "SGD",
+              "minor": 6640,
+              "at": "2026-10-12T00:00:09.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:73ef72c6449a480aa5a4f11792431ad32492970e3282ebe0eaff27a14b92c13d",
+              "orderId": "fixture-order-aa081ae2c1e9a762a570",
+              "sourceReceiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+              "kind": "BANK_RECEIPT",
+              "currency": "SGD",
+              "minor": 6640,
+              "at": "2026-10-12T00:00:10.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            }
+          ]
+        }
+      },
+      {
+        "missionId": "acceptance:twin-exam:d703f099c7899936616a",
+        "receiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+        "version": 10,
+        "productId": "fixture-product-d703f099c7899936616a",
+        "variantId": "fixture-variant-d703f099c7899936616a",
+        "listing": {
+          "productId": "fixture-product-d703f099c7899936616a",
+          "title": "Synthetic organiser 1",
+          "bullets": [
+            "Synthetic dimensions for acceptance only"
+          ],
+          "description": "Synthetic listing package, not intended for marketplace publication.",
+          "category": "HOME_STORAGE",
+          "attributes": {
+            "material": "fixture"
+          },
+          "variants": [
+            {
+              "sku": "FIXTURE-d703f099c7899936616a",
+              "variantId": "fixture-variant-d703f099c7899936616a",
+              "dimensions": "10x10x10 cm fixture"
+            }
+          ],
+          "images": [
+            {
+              "url": "https://example.invalid/fixture.png",
+              "license": "Synthetic acceptance image manifest; no actual media licensed",
+              "rightsEvidence": "evidence-QUALITY",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+            }
+          ],
+          "claims": [
+            {
+              "text": "Synthetic fixture",
+              "evidenceId": "evidence-QUALITY"
+            }
+          ],
+          "sourceEvidence": [
+            "evidence-DEMAND",
+            "evidence-COMPETITION",
+            "evidence-DIFFERENTIATION",
+            "evidence-QUALITY",
+            "evidence-COMPLIANCE",
+            "evidence-RETURNS",
+            "evidence-MARKETPLACE",
+            "evidence-PAYMENT"
+          ]
+        },
+        "publication": {
+          "capacity": {
+            "account": "isolated-fixture",
+            "marketplace": "SG",
+            "mode": "NEW_ASIN",
+            "asin": null,
+            "newAsinRemaining": 1000,
+            "unsoldRemaining": 1000,
+            "requestsPerSecond": 1,
+            "eligibility": "ELIGIBLE",
+            "provenance": {
+              "source": "work6-deterministic-acceptance",
+              "reference": "synthetic:work6-fixture-not-provider-evidence",
+              "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+              "observedAt": "2026-10-11T00:00:00.000Z",
+              "expiresAt": "2026-10-11T01:00:00.000Z",
+              "classification": "SYNTHETIC"
+            }
+          },
+          "status": "INTERCEPTED",
+          "receiptId": "9ee5d7c44846436d8bcd3488fe14a5638ee74f079057fdecee6e76c9c187bca9",
+          "canonicalPublisher": "marketplace-publishing/services/amazon-listings-publish-executor"
+        },
+        "orders": {
+          "fixture-order-d703f099c7899936616a": {
+            "order": {
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "workspaceId": "twin_1c4ee785ab31cfc0fca45e3e4ed747f458f7ed1d32490052",
+              "storeId": "isolated",
+              "brandId": "fixture",
+              "supplierPlatform": "CJ_DROPSHIPPING",
+              "connectorId": "cj-interceptor",
+              "status": "DELIVERED",
+              "fulfillmentStatus": "DELIVERED",
+              "items": [
+                {
+                  "itemId": "line-1",
+                  "supplierSku": "FIXTURE-d703f099c7899936616a",
+                  "supplierProductId": "fixture-product-d703f099c7899936616a",
+                  "title": "Synthetic organiser 1",
+                  "quantity": 2,
+                  "unitCost": 8,
+                  "currency": "SGD"
+                }
+              ],
+              "shippingAddress": {
+                "fullName": "Synthetic Recipient",
+                "addressLine1": "Fixture address",
+                "city": "Singapore",
+                "state": "Singapore",
+                "postalCode": "000000",
+                "countryCode": "SG",
+                "phone": "00000000"
+              },
+              "estimatedCost": 16,
+              "estimatedDeliveryDaysMin": 7,
+              "estimatedDeliveryDaysMax": 10,
+              "currency": "SGD",
+              "approval": null,
+              "supplierOrderId": null,
+              "trackingNumber": null,
+              "carrier": null,
+              "trackingEvents": [],
+              "integrationMode": "SANDBOX",
+              "createdAt": "2026-10-11T00:00:00.000Z",
+              "updatedAt": "2026-10-11T00:00:00.000Z"
+            },
+            "outcome": "DELIVERED",
+            "accepted": 2,
+            "shipped": 2,
+            "delivered": 2,
+            "tracking": [
+              "tracking-shipped",
+              "tracking-delivered"
+            ],
+            "lastTrackingAt": "2026-10-11T00:00:00.000Z",
+            "shipments": {
+              "fixture-shipment-d703f099c7899936616a": {
+                "quantity": 2,
+                "delivered": true,
+                "carrier": "fixture-carrier",
+                "tracking": "fixture-tracking"
+              }
+            },
+            "remedies": [],
+            "intentId": "23af420136bc639c10d4dd3e1867724782cf91c54c7b985420584e2ca4a89c16",
+            "providerId": "cj-intercepted-receipt"
+          }
+        },
+        "financeReference": {
+          "workspace": "twin_1c4ee785ab31cfc0fca45e3e4ed747f458f7ed1d32490052",
+          "missionId": "acceptance:twin-exam:d703f099c7899936616a",
+          "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc"
+        },
+        "sourceClassification": "SYNTHETIC",
+        "media": {
+          "version": 0,
+          "original": [
+            {
+              "id": "original-0",
+              "url": "https://example.invalid/fixture.png",
+              "kind": "IMAGE",
+              "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f",
+              "sourceIdentity": "fixture-product-d703f099c7899936616a",
+              "rightsEvidence": "evidence-QUALITY",
+              "rightsStatus": "UNVERIFIED",
+              "provenance": "Synthetic acceptance image manifest; no actual media licensed"
+            }
+          ],
+          "proposal": null,
+          "current": null,
+          "history": [],
+          "status": "ORIGINAL_ONLY",
+          "reminder": null,
+          "sourceBindingCurrent": false,
+          "externalStatus": "NOT_SUBMITTED",
+          "editingCapability": "CANVA_RUNTIME_NOT_CONFIGURED",
+          "classification": "SIMULATED_MEDIA_WORKFLOW",
+          "externalEffects": 0
+        },
+        "title": "Synthetic organiser 1",
+        "sku": "FIXTURE-d703f099c7899936616a",
+        "phase": "APPROVED",
+        "qualification": {
+          "qualified": true,
+          "reasons": [],
+          "score": 87,
+          "confidence": 1,
+          "economics": {
+            "input": {
+              "productId": "fixture-product-d703f099c7899936616a",
+              "supplierId": "CJ",
+              "channel": "AMAZON",
+              "country": "SG",
+              "currency": "SGD",
+              "sellingPrice": 40,
+              "productCost": 8,
+              "freight": 3,
+              "fulfilment": 1,
+              "feePercent": 15,
+              "paymentPercent": 2,
+              "advertising": 1,
+              "refundRate": 0.05,
+              "refundLoss": 12,
+              "duties": 1,
+              "tax": 1,
+              "overhead": 1,
+              "complete": true,
+              "evidenceRefs": [
+                "evidence-DEMAND",
+                "evidence-COMPETITION",
+                "evidence-DIFFERENTIATION",
+                "evidence-QUALITY",
+                "evidence-COMPLIANCE",
+                "evidence-RETURNS",
+                "evidence-MARKETPLACE",
+                "evidence-PAYMENT"
+              ],
+              "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+            },
+            "gross": 27,
+            "contribution": 17.599999999999998,
+            "net": 16.599999999999998,
+            "breakEven": 20.000000000000004,
+            "minimumViablePrice": 20.000000000000004,
+            "marginPercent": 41.49999999999999,
+            "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+            "genuinelyProfitable": false
+          },
+          "exposure": 25,
+          "available": 980,
+          "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "decisions": [],
+        "finance": {
+          "missionId": "acceptance:twin-exam:d703f099c7899936616a",
+          "lifecycleComplete": true,
+          "status": "COMPLETE_SIMULATION",
+          "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+          "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+          "planDigest": "4113749d567c5e9c4c3ac3e963df9281c08dafcb7c4d2f1704ba9c9faf800970",
+          "assumptions": {
+            "classification": "SIMULATION_ASSUMPTIONS_NOT_ACTUAL_CHARGES",
+            "version": "SIM_FINANCE_V1",
+            "feeBasis": "CANDIDATE_FEE_PLUS_PAYMENT_PERCENT",
+            "dutyBasis": "CANDIDATE_DUTY_PLUS_TAX_PER_UNIT",
+            "payout": "SIMULATED_HOLD_ONE_DAY_THEN_BANK",
+            "supplierPayment": "SIMULATED_QUOTED_COST_FREIGHT_DUTY",
+            "actualCashMovement": 0
+          },
+          "recordedEvents": 11,
+          "totalEvents": 11,
+          "financial": {
+            "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+            "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+            "work5Reference": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9",
+            "eventDigest": "2c61745d22b0b92fae5d23e23e4a786fd9db204fe27093b42ebc5745bf546408",
+            "cutoffAt": "2026-10-12T00:01:00.000Z",
+            "orders": [
+              {
+                "orderId": "fixture-order-d703f099c7899936616a",
+                "currency": "SGD",
+                "missing": [],
+                "unknownIds": [],
+                "contributionMinor": 4040,
+                "realisedContributionMinor": 4040,
+                "receivableMinor": 0,
+                "settlementMinor": 0,
+                "payoutHeldMinor": 0,
+                "bankMinor": 4040,
+                "liabilityMinor": 0,
+                "cashNeedMinor": 0,
+                "conserved": true,
+                "complete": true
+              }
+            ],
+            "duplicates": 0,
+            "pending": [],
+            "unknown": [],
+            "balanced": true,
+            "conserved": true,
+            "complete": true,
+            "actualCashMovement": 0,
+            "actualRevenue": null,
+            "actualProfit": null,
+            "technologyCosts": "EXCLUDED_SEPARATE_COST_CENTRE",
+            "fx": "NO_IMPLICIT_CONVERSION",
+            "sourceVerification": "CANONICAL_IMMUTABLE_HISTORY_READ",
+            "noncanonicalAmounts": "EXPLICIT_SIMULATION_ASSUMPTIONS_NOT_SOURCE_FACTS"
+          },
+          "actualCashMovement": 0,
+          "simulatedCharges": [
+            {
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "currency": "SGD",
+              "feeMinor": 1360,
+              "dutyAndTaxMinor": 400,
+              "refundMinor": null
+            }
+          ],
+          "events": [
+            {
+              "id": "sim:39cbef69861bcd9236571c85cb1e63e07daea7848c026b190ae41b007f2259c6",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "SALE",
+              "currency": "SGD",
+              "minor": 8000,
+              "at": "2026-10-11T00:00:00.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:3d8a1053205db8f5962eb0b8f4ea34adc0ef107655bfd08961365c20cda2f470",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "COGS",
+              "currency": "SGD",
+              "minor": 1600,
+              "at": "2026-10-11T00:00:01.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:048785bc64f00322be51e129146a8781f859fa5e6a1b5fd85e625f594e202b1d",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "FREIGHT",
+              "currency": "SGD",
+              "minor": 600,
+              "at": "2026-10-11T00:00:02.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:fc7808fbbfa38b21e373a6fc2d32e50958dd3f4b04718515f30355feae4782be",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "FEE",
+              "currency": "SGD",
+              "minor": 1360,
+              "at": "2026-10-11T00:00:03.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:a3fe28914981438f133b7334d4dbff2b77c4f99e6d4935364aa29505726cf729",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "DUTY",
+              "currency": "SGD",
+              "minor": 400,
+              "at": "2026-10-11T00:00:04.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:afc4e8e85571ef67cd3ad80a194b3ea21d25046cdf7007bc216f9af7b8851677",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "DISCOUNT",
+              "currency": "SGD",
+              "minor": 0,
+              "at": "2026-10-11T00:00:05.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:f977c4305d546f4b0d785dd00c01cedd833a055ff062fb35af5f367f7e6f7e29",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "SETTLEMENT",
+              "currency": "SGD",
+              "minor": 6640,
+              "at": "2026-10-11T00:00:06.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:256f43e31fc1f83b74d1121ea1e9256bceff8a3939211148fdfb8033329ec091",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "PAYOUT_HOLD",
+              "currency": "SGD",
+              "minor": 6640,
+              "at": "2026-10-11T00:00:07.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:18594153c7fe7d7fdcc7c1420e9146e577142c72af4a384573bf519519ddc521",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "SUPPLIER_PAYMENT",
+              "currency": "SGD",
+              "minor": 2600,
+              "at": "2026-10-11T00:00:08.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:7996fde0940439e6f56e22e4f9c24f79f4f0205d6d2239655f009b87c33d987a",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "PAYOUT_RELEASE",
+              "currency": "SGD",
+              "minor": 6640,
+              "at": "2026-10-12T00:00:09.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            },
+            {
+              "id": "sim:633b9f21d7cb56ec867034010982137d7b5b4039504ea36d7781595e05e598da",
+              "orderId": "fixture-order-d703f099c7899936616a",
+              "sourceReceiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+              "kind": "BANK_RECEIPT",
+              "currency": "SGD",
+              "minor": 6640,
+              "at": "2026-10-12T00:00:10.000Z",
+              "classification": "SIMULATION",
+              "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+            }
+          ]
+        }
+      }
+    ],
+    "next": null,
+    "coverage": "BOUNDED_PAGE",
+    "actualCashMovement": 0,
+    "liveCommerce": "LOCKED",
+    "birth": "NOT_BORN",
+    "communications": [],
+    "authority": {
+      "grant": {
+        "workspace": "wallclock_fixture",
+        "owner": "fixture_owner",
+        "id": "settlement-window",
+        "sessionId": "elapsed",
+        "version": 2,
+        "action": "GRANT",
+        "mode": "ONE_HOUR",
+        "at": 1791763260000,
+        "expiresAt": 1791766860000,
+        "requestDigest": "17df9bb9419e0de4a20ab4338efc393fa55dc3178915d59e71e2bdf6fa50d5d3",
+        "previous": "6144bc8f9915efee3fe4329f60c7cb44083f7616869ac1c5b3ae2afa3b6db65e",
+        "scope": "TWIN_SCHEDULER_ONLY",
+        "digest": "2196d8c6f4dbadb3e53d3cb04b0c051fcc671e42d55d61ed7f29b044a3c84ed0"
+      },
+      "version": 2,
+      "status": "ACTIVE",
+      "scope": "TWIN_SCHEDULER_ONLY",
+      "externalEffects": 0
+    },
+    "tasks": [
+      {
+        "id": "twin-exam:aa081ae2c1e9a762a570",
+        "mission": "acceptance:twin-exam:aa081ae2c1e9a762a570",
+        "workspace": "twin_1c4ee785ab31cfc0fca45e3e4ed747f458f7ed1d32490052",
+        "owner": "fixture_owner",
+        "createdAt": 1791676800000,
+        "cursor": 10,
+        "fence": 10,
+        "status": "COMPLETE",
+        "error": null,
+        "attempts": 0,
+        "maxSteps": 32,
+        "maxAttempts": 3,
+        "paidInference": 0,
+        "stepCount": 10
+      },
+      {
+        "id": "twin-exam:d703f099c7899936616a",
+        "mission": "acceptance:twin-exam:d703f099c7899936616a",
+        "workspace": "twin_1c4ee785ab31cfc0fca45e3e4ed747f458f7ed1d32490052",
+        "owner": "fixture_owner",
+        "createdAt": 1791676800000,
+        "cursor": 10,
+        "fence": 10,
+        "status": "COMPLETE",
+        "error": null,
+        "attempts": 0,
+        "maxSteps": 32,
+        "maxAttempts": 3,
+        "paidInference": 0,
+        "stepCount": 10
+      }
+    ],
+    "assurance": {
+      "probes": [
+        {
+          "id": "work8-checkpoint:b26af215e12c079ee67ca16f5c47012c80963ea2fe164750b8b7aba5b193e2d4",
+          "capability": "commerce-checkpoint",
+          "classification": "COMMITTED_RECEIPT_CURSOR_GAP",
+          "severity": "HIGH",
+          "status": "HEALTHY",
+          "summary": "Saved task progress matches independently verified commerce receipts.",
+          "evidence": {
+            "taskId": "twin-exam:aa081ae2c1e9a762a570",
+            "missionId": "acceptance:twin-exam:aa081ae2c1e9a762a570",
+            "cursor": 10,
+            "fence": 10,
+            "prefixDigest": "42a2a24457af2983267b1a754b2cb16d0c9919a45895015acd4c2dfd8930c608",
+            "receiptDigest": "30595c5247e16c906fe8af8bcd01cd7d48e99ac7baaa91b18911930c8e82fd0c",
+            "observedAt": 1791763260000,
+            "externalEffects": 0
+          },
+          "runbookId": null
+        },
+        {
+          "id": "work8-checkpoint:2910d2461d6b463e69bfdcf4c91920383dc16e403ddf9852205aac6d9f00af91",
+          "capability": "commerce-checkpoint",
+          "classification": "COMMITTED_RECEIPT_CURSOR_GAP",
+          "severity": "HIGH",
+          "status": "HEALTHY",
+          "summary": "Saved task progress matches independently verified commerce receipts.",
+          "evidence": {
+            "taskId": "twin-exam:d703f099c7899936616a",
+            "missionId": "acceptance:twin-exam:d703f099c7899936616a",
+            "cursor": 10,
+            "fence": 10,
+            "prefixDigest": "c7c662ca487d171d96e47b83b60042a5eea23a896e58e570f3844d240a7f4368",
+            "receiptDigest": "2d966d237a6ce3519b887edf71298b5741559111630b7f7453ec364e22e3fbcc",
+            "observedAt": 1791763260000,
+            "externalEffects": 0
+          },
+          "runbookId": null
+        }
+      ],
+      "observations": [
+        {
+          "id": "412bad7970cdfac9b7c7fa5cfcbc8d5cd21eee6afac7c156e3bdc8e66f16f878",
+          "kind": "SCHEDULER_PROGRESS",
+          "taskId": "twin-exam:aa081ae2c1e9a762a570",
+          "missionId": "acceptance:twin-exam:aa081ae2c1e9a762a570",
+          "cursor": 10,
+          "status": "COMPLETE",
+          "error": null,
+          "observedAt": 1791676800000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
+        {
+          "id": "19d1466837d832233c56f1ed3016c468e7e6ce0410031f1ccde52d4c9e871fa9",
+          "kind": "SCHEDULER_PROGRESS",
+          "taskId": "twin-exam:aa081ae2c1e9a762a570",
+          "missionId": "acceptance:twin-exam:aa081ae2c1e9a762a570",
+          "cursor": 8,
+          "status": "RUNNING",
+          "error": null,
+          "observedAt": 1791676800000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
+        {
+          "id": "de485747ac6c90564ea112950649146f16426884a6ee94eb07d74ed1990bdbf6",
+          "kind": "SCHEDULER_PROGRESS",
+          "taskId": "twin-exam:aa081ae2c1e9a762a570",
+          "missionId": "acceptance:twin-exam:aa081ae2c1e9a762a570",
+          "cursor": 4,
+          "status": "RUNNING",
+          "error": null,
+          "observedAt": 1791676800000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
+        {
+          "id": "b92276ec3797de41e24f9dde7592b8d0509dbb405063300b5a008dd3786975b6",
+          "kind": "SCHEDULER_PROGRESS",
+          "taskId": "twin-exam:d703f099c7899936616a",
+          "missionId": "acceptance:twin-exam:d703f099c7899936616a",
+          "cursor": 10,
+          "status": "COMPLETE",
+          "error": null,
+          "observedAt": 1791676800000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
+        {
+          "id": "75d2f667c09df079cb0ae1bfe92c911b229c301044076b392bc2dc183468ab00",
+          "kind": "SCHEDULER_PROGRESS",
+          "taskId": "twin-exam:d703f099c7899936616a",
+          "missionId": "acceptance:twin-exam:d703f099c7899936616a",
+          "cursor": 9,
+          "status": "RUNNING",
+          "error": null,
+          "observedAt": 1791676800000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
+        {
+          "id": "8c51e527743bae6345c49d47f69f52472b3b2f2d0069434df6c06810798085c3",
+          "kind": "SCHEDULER_PROGRESS",
+          "taskId": "twin-exam:d703f099c7899936616a",
+          "missionId": "acceptance:twin-exam:d703f099c7899936616a",
+          "cursor": 5,
+          "status": "RUNNING",
+          "error": null,
+          "observedAt": 1791676800000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
+        {
+          "id": "e792ed526955dedd773831218d6a9ad21fbe2129c5cbb6a67f2ced2bbd0a1b54",
+          "kind": "ASSURANCE_RECOVERED",
+          "probeId": "work8-checkpoint:2910d2461d6b463e69bfdcf4c91920383dc16e403ddf9852205aac6d9f00af91",
+          "taskId": "twin-exam:d703f099c7899936616a",
+          "receiptDigest": "3365ef376f07886b5ed71b16b0b4f921c92583991837c1e74e6fdc9f7bda65f6",
+          "historyDigest": "9635f2c4f138a7fc447e1e1a0f7ed0f401649ce8c56f0814accbbf569129b14d",
+          "observedAt": 1791676800000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
+        {
+          "id": "316815ef136f3d1b404324a3b5ab054d4d90b5ad508b20f415d969fc6582706d",
+          "kind": "ASSURANCE_DETECTED",
+          "probeId": "work8-checkpoint:2910d2461d6b463e69bfdcf4c91920383dc16e403ddf9852205aac6d9f00af91",
+          "status": "FAILED",
+          "taskId": "twin-exam:d703f099c7899936616a",
+          "receiptDigest": "3365ef376f07886b5ed71b16b0b4f921c92583991837c1e74e6fdc9f7bda65f6",
+          "observedAt": 1791676800000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
+        {
+          "id": "fault:gap",
+          "requestDigest": "8fe04fdeb01a3b957f2819b993382e94d2f63f991bae75874124e4750727ffba",
+          "kind": "COMMITTED_RECEIPT_CURSOR_GAP",
+          "taskId": "twin-exam:d703f099c7899936616a",
+          "missionId": "acceptance:twin-exam:d703f099c7899936616a",
+          "classification": "CONTROLLED_SIMULATED_FAULT",
+          "externalEffects": 0
+        }
+      ],
+      "coverage": "LATEST_100_OBSERVATIONS"
+    },
+    "scheduler": {
+      "mode": "BOUNDED_CANONICAL_WORKER",
+      "intervalMs": 5000
+    },
+    "sourceNotice": "Labelled test fixtures are not genuine supplier qualification. No actual money or goods move."
+  }
+}

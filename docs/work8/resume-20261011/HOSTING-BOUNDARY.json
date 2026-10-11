@@ -1,0 +1,28 @@
+{
+  "readOnly": true,
+  "project": "empireai-canary-20260923",
+  "projectId": "feb90d26-c54b-4435-ac32-f666e3e25447",
+  "environments": [
+    "production"
+  ],
+  "services": [],
+  "existingEmpireaiEnvironment": "production",
+  "existingEmpireaiServices": [
+    "EmpireAI (historical failed deployment, historical mounted volume)",
+    "empireai-locked-runtime (active production)",
+    "empireai-locked-redis (active production)"
+  ],
+  "noIsolatedRuntimeAvailable": true,
+  "deploymentPerformed": false,
+  "boundary": "No authority to provision new billable infrastructure, reuse production stores, or rebuild preview again. Separate hosting approval required.",
+  "proposedSource": {
+    "backend": "84eb7963dcedba0f231f6c01c9d4b2e3fe41033d",
+    "frontend": "79ddcd9b0fe69d2e96bef12b115d50de43f2f830"
+  },
+  "preserved": [
+    "Existing authenticated preview session",
+    "Production authentication",
+    "Pillow NOT_BORN",
+    "Commerce LOCKED"
+  ]
+}

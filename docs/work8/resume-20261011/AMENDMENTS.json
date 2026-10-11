@@ -26,11 +26,11 @@
       ],
       "scope": "Persistent isolated digital twin moves into Work8; reuse canonical commerce/finance/Assurance and existing Owner Console; Work9 is shadow/live commissioning",
       "status": "VERTICAL_INTEGRATION_IMPLEMENTED_ISOLATED_EXAM_PASSED_NOT_OWNER_ACCEPTED",
-      "next": "Complete integrated multi-day examination and genuine context coverage; separately approved isolated hosting and native owner acceptance remain",
-      "engineeringHead": "b7003144b7056f31cd55221613fa55e895c42545",
+      "next": "Authorise an isolated hosted target and preview rebuild; complete native owner acceptance and wider endurance gates",
+      "engineeringHead": "84eb7963dcedba0f231f6c01c9d4b2e3fe41033d",
       "focusedTests": 7,
       "regressionTests": 2,
-      "frontendPublishedCommit": "a295ce085214cc4be1f2687391aad3b907e3d7e0"
+      "frontendPublishedCommit": "79ddcd9b0fe69d2e96bef12b115d50de43f2f830"
     },
     {
       "id": "CONTEXT_CHAT",
@@ -43,8 +43,8 @@
         41
       ],
       "scope": "Compact per-product/listing/order chat icon, exact server-validated workspace/variant/evidence context, removable persistent tag",
-      "status": "TWIN_PRODUCT_LISTING_CONTEXT_IMPLEMENTED_NOT_FULLY_ACCEPTED",
-      "next": "Complete genuine reference-record coverage and native interaction; no model inference submitted"
+      "status": "CANONICAL_TWIN_AND_PORTFOLIO_LINKS_IMPLEMENTED_CONTEXT_GUARDS_VERIFIED",
+      "next": "Native interaction acceptance and authorised inference remain; no model invocation or genuine product proof claimed"
     },
     {
       "id": "TEMP_AUTHORITY",

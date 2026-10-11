@@ -1,0 +1,934 @@
+# EMPIREAI — WORK 8 HOLISTIC COMPLETION & DIGITAL TWIN CERTIFICATION
+
+**GRAND KING — SUPERSEDING OWNER EXECUTION DIRECTIVE**
+
+**PRIORITY: RESUME INTERRUPTED ENGINEERING, COMPLETE THE OPERATING SYSTEM, AND CLOSE WORK 8.**
+
+This directive supersedes previous Work 8 instructions wherever they conflict. All approved requirements, completed engineering, examination evidence, owner UX decisions, financial protections and safety restrictions remain binding.
+
+**DO NOT RESTART WORK 8. DO NOT REBUILD COMPLETED COMPONENTS. DO NOT SUBSTITUTE ANOTHER AUDIT OR PLANNING CYCLE FOR IMPLEMENTATION.**
+
+Work 8 shall deliver EmpireAI's complete, persistent, owner-visible autonomous digital-twin operating system, including the foundation for protected backups, future-state development and safe upgrades.
+
+Work 9 shall inherit this proven infrastructure and concentrate on pre-live commissioning, controlled Pillow Birth, live synchronisation and governed commerce activation.
+
+---
+
+## 1. IMMEDIATE RECOVERY — INTERRUPTED WORK SESSION
+
+Repository: `empireaios/EmpireAI`
+
+The previous Work session was interrupted after approximately 43 minutes while correcting a mismatch between the saved frontend GitHub commit and the tested local source tree.
+
+**THIS IS THE FIRST EXECUTABLE TASK.**
+
+1. Recover the latest backend, frontend and evidence branch heads.
+2. Recover the actual tested frontend source and its complete Git tree.
+3. Compare the published frontend commit against the tested source tree.
+4. Identify missing, mismatched or unpublished changes.
+5. Correct only those differences.
+6. Publish the complete frontend candidate.
+7. Verify exact Git tree equality between tested and published source.
+8. Run affected TypeScript, ESLint and browser tests.
+9. Preserve the corrected candidate and evidence.
+10. Continue engineering immediately.
+
+Do not deploy the frontend without separate deployment authority.
+
+Do not repeat already passing test campaigns unless affected code or evidence requires it.
+
+If the original local tree is unrecoverable, reconstruct only the missing changes from published commits and retained evidence. Do not claim unrecovered code was preserved.
+
+## 2. RECOVER THE AUTHORITATIVE WORK 8 BASELINE
+
+Recover:
+
+- Original Work 8 Master Execution Mandate and all binding addenda.
+- Work 7 production COMPLETE receipt.
+- Approved Work 7 Owner Console UX.
+- `docs/work8/register.json`
+- `docs/work8/resume-20261011/PROGRESS.md`
+- `docs/work8/resume-20261011/NEXT.md`
+- Existing examination ledger.
+- Current Mission Ledger.
+- Latest source revisions, CI and review evidence.
+- All previously approved owner amendments.
+
+The latest reported official register was:
+
+**1 PASS / 39 PENDING / 5 BLOCKED — 45 original requirements.**
+
+Use a newer independently verified register if available.
+
+Preserve all original requirement IDs and descriptions.
+
+### Completed engineering to preserve
+
+- Genuine source-bound qualification dossiers.
+- Reviewed cost, FX, cash and eligibility checks.
+- QUALIFIED / DEFERRED / REJECTED outcomes.
+- Exact Pillow assessment/dossier binding.
+- Immutable owner decisions.
+- Canonical dossier-to-mission preparation.
+- Separate product approval and simulation authorisation.
+- Simulated listing, order, shipment, refund and settlement engines.
+- Transactional 1,000-active-product limit.
+- Autonomous Assurance recovery.
+- Persistent digital-twin session lifecycle.
+- Authenticated twin routes and owner isolation.
+- Inherited owner safety controls.
+- Timer-driven twin scheduler.
+- Shared canonical projections across seven Console destinations.
+- Temporary one-task and timed authority.
+- Product-linked Pillow Chat.
+- Keepa identity validation.
+
+Preserve accepted Work 7 safety and UX evidence.
+
+## 3. PRESERVE THE LATEST INTEGRATED EXAMINATIONS
+
+The previous session reported:
+
+- 100 labelled candidates processed in **13.3 seconds** after scheduler optimisation.
+- 1,000 canonical receipts.
+- 1,000-task retention ceiling verified.
+- Three-day virtual-clock examination passed.
+- Six delivered simulated orders.
+- 60 commerce receipts.
+- 66 financial events.
+- Three verified Assurance recoveries.
+- No duplicated financial entries after pause/restart.
+- Shared session and mission identities across seven Console destinations.
+- Independently reconciled simulated sales, costs, fees and settlement.
+- Authenticated HTTP readback.
+- Temporary authority expiry and revocation.
+- Stale and cross-owner product-chat rejection.
+
+Retain these results within their actual examination scopes.
+
+Do not misrepresent synthetic workload evidence as genuine product qualification.
+
+Do not describe three virtual days as three days of wall-clock endurance.
+
+The original 120-second workload failure and subsequent optimisation must remain traceable.
+
+## 4. WORK 8 DIGITAL TWIN — COMPLETE THE OPERATING SYSTEM
+
+**OWNER-APPROVED ARCHITECTURAL DECISION**
+
+Work 8 shall build and activate the persistent digital twin in isolation.
+
+The twin must be a durable, production-compatible operating environment—not a disposable demonstration interface.
+
+Reuse existing:
+
+- Commerce engine.
+- Autonomous scheduler.
+- Pillow assessment interfaces.
+- Financial journals and calculations.
+- Assurance runbooks.
+- Owner authority mechanisms.
+- Owner Console.
+- Mission Ledger.
+
+Do not build duplicate engines.
+
+### Required operating lifecycle
+
+**Owner starts twin → scheduler discovers/admits candidates → qualification → Pillow assessment where authorised → owner decisions → simulated listings → simulated orders → fulfilment → financial settlement → Assurance → Home activity.**
+
+All records must share authenticated session, workspace, product, mission and evidence identities.
+
+Twin sessions must support creation, pause, resume, recovery and inspection of previous sessions.
+
+Records must survive browser refresh and application restart.
+
+Live external effects remain intercepted.
+
+## 5. WHOLE-SYSTEM DIGITAL TWIN, BACKUP AND RECOVERY
+
+The owner has approved extending the digital-twin architecture beyond commerce.
+
+It shall eventually cover:
+
+- Pillow.
+- Intelligence.
+- Products and Approvals.
+- Listings.
+- Orders and Fulfilment.
+- Finance and Cost Centre.
+- Assurance.
+- Systems authority.
+- Owner Console configuration.
+- Mission Ledger and release evidence.
+
+**Work 8 must implement and examine the reusable foundation. Work 9 will activate live operational synchronisation.**
+
+### Establish four distinct components
+
+**A. Authoritative live state**
+
+The genuine production business remains the source of truth.
+
+**B. Protected backup vault**
+
+Versioned, recoverable backups and point-in-time restoration. Backups must not be overwritten merely because a bad change propagates through the system.
+
+**C. Continuously updateable digital twin**
+
+An isolated operational representation using durable event replication, checkpoints, replay and drift detection.
+
+**D. Future-state workspace**
+
+A separate isolated environment for testing new code, UX, infrastructure, Pillow capabilities and business strategies against controlled snapshots.
+
+Do not allow experiments to modify canonical twin history or production financial records.
+
+### Mandatory recovery and upgrade examinations
+
+**Test 1 — Snapshot and restore**
+
+Capture a versioned snapshot, introduce additional committed simulated business events, restore a controlled environment and replay subsequent events.
+
+Verify no loss, duplication or financial divergence.
+
+**Test 2 — Upgrade during active orders**
+
+Prepare a new application/UX version while additional simulated orders arrive.
+
+Deploy the new compatible version in isolation and prove all committed orders remain visible.
+
+**Test 3 — Application rollback**
+
+Restore the earlier compatible application version while preserving newer business records and financial events.
+
+Do not roll back business data merely because application code is reverted.
+
+**Test 4 — Twin isolation**
+
+Prove twin experiments cannot alter live records, owner authority, financial history, credentials or protected evidence.
+
+### Engineering requirements
+
+- Durable event identity and ordering.
+- Idempotent replay.
+- Snapshot lineage and retention.
+- Recovery-point and recovery-time objectives.
+- Backup integrity verification.
+- Independent restoration tests.
+- Backward-compatible schema migrations.
+- Expand/migrate/contract where necessary.
+- Versioned code and configuration.
+- Safe deployment and rollback.
+- Replication lag and drift reporting.
+- Protected secrets and customer-data minimisation.
+
+Do not promise zero downtime or zero data loss without supporting evidence.
+
+Do not create new billable infrastructure without owner approval.
+
+## 6. ONE OWNER CONSOLE — COMPLETE VISIBLE DRY RUN
+
+Reuse the approved Work 7 interface.
+
+Do not create another competing dashboard.
+
+Provide persistent, clear environment identification:
+
+**DIGITAL TWIN — SIMULATED OPERATIONS**
+
+**LIVE — ACTUAL OPERATIONS**
+
+During Work 8, live commerce remains locked.
+
+### Home
+
+Preserve the approved family-and-dogs artwork and existing design.
+
+Populate operational summaries from the actual twin session:
+
+- Autonomous discoveries.
+- Product screening.
+- Pillow recommendations.
+- Pending approvals.
+- Simulated listings.
+- Simulated orders.
+- Fulfilment.
+- Financial outcomes.
+- Assurance incidents and recoveries.
+
+Home must not display invented decorative business metrics.
+
+### Intelligence
+
+Display genuine research evidence, market observations, opportunities, rejection reasons, risks and completed assessments.
+
+### Products & Approvals
+
+Display product names, supplier details, permitted images, prices, shipping estimates, market comparisons, profitability, Pillow recommendations and owner decisions.
+
+### Listings
+
+Display realistic prepared and simulated Amazon listings, variants, media, descriptions, prices and accurate publication-interception status.
+
+### Orders & Fulfilment
+
+Display multiple simulated customer orders, supplier intents, shipments, tracking, delays, refunds and exceptions.
+
+### Operational Finance
+
+Display revenue, supplier costs, freight, Amazon fees, refunds, liabilities, payout timing, cash exposure and contribution profit.
+
+Keep actual infrastructure costs separate from simulated commercial finance.
+
+### Assurance
+
+Display incidents, detection, diagnosis, authorised recovery, independent verification and escalation.
+
+Every destination must read from the same durable twin records.
+
+The owner must be able to follow the complete business journey visually.
+
+## 7. MOBILE NAVIGATION — APPROVED FIVE SHORTCUTS
+
+Update the mobile bottom navigation to:
+
+1. CEO.
+2. Intelligence.
+3. Products.
+4. Orders.
+5. Finance.
+
+CEO opens Pillow Chat.
+
+Products opens Products & Approvals.
+
+Orders opens Orders & Fulfilment.
+
+Finance opens Operational Finance.
+
+**Home remains the default landing page**, accessible through the existing main navigation or logo.
+
+Preserve the family-and-dogs artwork.
+
+Do not remove Home from EmpireAI.
+
+Test five-tab usability, readability, safe areas, touch targets and narrow phone widths.
+
+Do not disturb previously accepted Android Chat behaviour.
+
+## 8. COMPACT PRODUCT-LINKED PILLOW CHAT
+
+Use a small chat icon beside each relevant product, listing and order-product reference.
+
+Do not add large discussion buttons.
+
+Clicking the icon opens existing Pillow Chat with the exact record attached.
+
+Show a small removable context chip:
+
+`Computer Stand · SKU 0001`
+
+Pillow must receive:
+
+- Exact authenticated product identity.
+- Variant/SKU.
+- Source record and evidence version.
+- Applicable listing/mission context.
+- Owner/workspace identity.
+
+Preserve context through relevant follow-up messages.
+
+Support removal, switching and appropriate multi-product comparisons.
+
+Reject stale, missing, forged or cross-owner references.
+
+Ensure context truncation cannot silently discard the product binding.
+
+No unauthorised inference.
+
+## 9. PRODUCT MEDIA — COMPLETE VERSIONED EDITING WORKFLOW
+
+The owner requires full media management inside Products & Approvals.
+
+Each product must show the complete relevant image/video gallery intended for the marketplace listing.
+
+### Pillow-assisted editing
+
+Provide a compact chat/action icon through which the owner can request changes, for example:
+
+“Pillow, these product photos are not good. Please improve them.”
+
+Pillow must understand the exact product and selected media batch.
+
+Use Canva as the preferred supported editing integration where available and permitted.
+
+Inspect existing Canva capabilities before building additional adapters.
+
+If Canva cannot perform a required operation, identify the exact capability gap and use an approved alternative where authorised.
+
+Do not fabricate image-editing results.
+
+### Original versus revised media
+
+Display:
+
+- Original media batch.
+- Proposed revised batch.
+- Side-by-side comparison.
+- Individual image/video changes.
+- Version and source identity.
+- Editing instructions and provenance.
+- Image/video usage-rights evidence.
+
+Preserve original supplier assets without destructive modification.
+
+### Two-stage approval
+
+**Stage 1 — Internal media approval**
+
+The owner approves an individual asset or complete revised batch inside EmpireAI.
+
+The approved version becomes the selected internal media version.
+
+**Stage 2 — External publication approval**
+
+Provide a separate action authorising submission of that exact approved media version to the seller account.
+
+Internal approval must never automatically update an existing Amazon listing.
+
+If internal approval is complete but external approval remains outstanding, show a concise reminder.
+
+External approval must bind to the exact media version. Later edits invalidate any applicable pending approval.
+
+During Work 8, external publication must be intercepted and simulated.
+
+For Work 9, actual marketplace submission requires separately governed live authority.
+
+Distinguish:
+
+- Approved internally.
+- Awaiting external approval.
+- Submitted.
+- Processing.
+- Published.
+- Rejected/failed.
+
+Never label a simulated publication as actually published.
+
+### Archive
+
+Provide a small **Archive** dropdown.
+
+It must be collapsed by default.
+
+When expanded, show previous, replaced and rejected images/videos.
+
+Allow the owner to inspect individual archived assets and their versions.
+
+The dropdown must collapse without changing the selected current media.
+
+Do not create a large separate archive interface unless technically indispensable.
+
+## 10. SYSTEMS — TEMPORARY OWNER AUTHORITY
+
+Use the existing Systems authority area.
+
+Implement and test separate permissions for:
+
+- Autonomous research and reasoning.
+- Commercial preparation and recommendations.
+- Read-only backend inspection.
+- UX/system change preparation.
+- Separately governed external commercial actions.
+
+Support:
+
+- One-task grants.
+- Bounded timed grants.
+- Automatic expiry.
+- Immediate revocation.
+- Owner identity and scope binding.
+- Durable authority receipts.
+- Clear current state and expiry display.
+
+Pillow may ask the owner to enable a permission through Chat but cannot grant it to himself.
+
+### Conversational UX changes
+
+For instructions such as:
+
+“Pillow, make this screen green.”
+
+Pillow may, under appropriate temporary authority:
+
+1. Inspect authorised UI/code information.
+2. Prepare a proposed change.
+3. Produce a safe preview.
+4. Present it for owner approval.
+
+Production deployment remains separately governed.
+
+A temporary switch must not grant unrestricted backend modification or override commerce locks.
+
+## 11. HUMAN INTERACTION RISK MANAGEMENT
+
+Add the owner-approved communication-risk workflow.
+
+Treat every incoming human communication as an event requiring assessment, not automatically as a dispute.
+
+Cover:
+
+- Product inquiries.
+- Customer shipping questions.
+- Complaints and dissatisfaction.
+- Returns and refunds.
+- Repeated hostile exchanges.
+- Chargebacks and disputes.
+- Amazon seller-performance notifications.
+- Unanswerable questions.
+- Escalation and response deadlines.
+
+Pillow must prioritise potentially harmful or escalating interactions.
+
+Use verified product/order evidence for responses.
+
+Do not invent delivery promises, compensation, refunds or policy exceptions.
+
+Implement AI-first response preparation with risk-based human escalation.
+
+Preserve communication history and authority.
+
+Work 8 must simulate normal, adverse and escalated interactions.
+
+Work 9 shall connect actual marketplace communications only after appropriate authorisation and policy verification.
+
+## 12. RESEARCH TOOLS — OWNER DECISIONS ARE SETTLED
+
+Retain:
+
+- CJdropshipping API.
+- Amazon SP-API.
+- OpenAI, Anthropic and Gemini.
+- Railway, Redis, Vercel and GitHub.
+
+**Keepa:** Preferred paid research addition. Existing adapter and ASIN/marketplace validation must be preserved. Verify licensing, data provenance and readiness. No purchase without approval.
+
+**Helium 10:** Prepare/reuse a disabled future-ready adapter. Subscription deferred until EmpireAI is profitable.
+
+**Jungle Scout:** Excluded. Do not revisit.
+
+Do not reopen provider comparisons.
+
+Do not purchase subscriptions or initiate unauthorised paid calls.
+
+## 13. GENUINE PRODUCT AND PILLOW ASSESSMENT ACCEPTANCE
+
+Complete:
+
+- Fresh authorised CJ/Amazon reads.
+- Genuine product/variant identity.
+- Stock, freight, price and currency evidence.
+- Marketplace fees and eligibility.
+- Image usage rights.
+- Reviewed financial assumptions.
+- Genuine authorised Pillow assessment.
+- Owner recommendation and decision.
+- Canonical simulated mission.
+- Complete simulated commercial lifecycle.
+
+Synthetic candidates are permitted for engineering examinations but cannot substitute for genuine-product acceptance.
+
+If a required external entitlement is unavailable, identify it precisely and preserve the blocker.
+
+Do not weaken qualification or financial gates to manufacture a passing result.
+
+## 14. HOSTED DIGITAL-TWIN INFRASTRUCTURE
+
+Railway inspection found no existing isolated Work 8 service.
+
+The existing canary project is empty.
+
+Do not assume a new paid service is automatically required.
+
+Determine the minimum isolated runtime architecture using existing resources where technically sufficient.
+
+Prepare one consolidated proposal containing:
+
+- Required runtime and storage.
+- Isolation and security.
+- Expected recurring cost.
+- Exact deployment revisions.
+- Network and external-effect restrictions.
+- Data preservation.
+- Rollback and teardown.
+- Verification procedure.
+
+No provisioning, deployment or billable infrastructure without separate owner approval.
+
+Continue all independent engineering while preparing this decision.
+
+## 15. COMPLETE WORK 8 EXAMINATIONS
+
+Continue the existing programme.
+
+Preserve previously passing evidence.
+
+Complete:
+
+- Genuine-source discovery and qualification.
+- Approximately 100 daily candidate discoveries as a target.
+- 1,000 active-product ceiling.
+- Multi-day virtual-time operation.
+- Measured wall-clock endurance.
+- Concurrent order and financial activity.
+- Fault injection and compounded failures.
+- Provider outages.
+- Assurance recovery and escalation.
+- Permission expiry and revocation.
+- Financial conservation.
+- Cold restart and recovery.
+- Backup snapshot and replay.
+- Compatible upgrade during ongoing orders.
+- Code rollback without losing new transactions.
+- Twin/live isolation.
+- Owner-visible desktop and mobile acceptance.
+- Independent safety verification.
+
+Do not declare COMPLETE based solely on isolated unit tests.
+
+## 16. WORK 9 — FORMAL HANDOFF BOUNDARY
+
+Work 8 shall deliver the tested foundation.
+
+Work 9 shall operationalise:
+
+- Continuous authorised live-to-twin event synchronisation.
+- Operational backup schedules and retention.
+- Production recovery and rollback controls.
+- Future-state preview-to-live promotion.
+- Digital-twin/live drift monitoring.
+- Pre-live autonomous shadow operation.
+- Controlled Pillow Birth.
+- Governed marketplace publication.
+- Real supplier orders and fulfilment.
+- Live customer communications.
+- Real financial reconciliation.
+- Progressive product activation.
+
+Capacity target: approximately 100 new qualified products per day, progressing toward 1,000 active products where commercially justified.
+
+Do not force unsuitable products to meet a quota.
+
+Do not activate Work 9 under this directive.
+
+## 17. FIXED PROGRESS REPORTING
+
+Maintain the original 45 Work 8 requirement IDs and descriptions.
+
+Previously reported status:
+
+**1 PASS / 39 PENDING / 5 BLOCKED.**
+
+Update only when full acceptance evidence supports a change.
+
+Maintain a separate owner-amendment register for the newly approved UX, digital-twin, media, communication and recovery requirements.
+
+Do not alter the original denominator.
+
+Every owner progress report must include one continuous numbered table of all 45 requirements, showing:
+
+- Original requirement.
+- Engineering completed.
+## 17. FIXED PROGRESS REPORTING — CONTINUED
+
+Maintain a separate owner-amendment register for newly approved UX, digital-twin, backup, authority, media-management and communication requirements.
+
+Cross-reference each amendment to the original 45 requirements wherever applicable.
+
+Do not renumber, rename, remove or silently redefine the original requirements.
+
+### Mandatory reporting format
+
+Every progress report must contain **one complete, continuous table numbered 1–45**, with the following columns:
+
+| Column | Required content |
+|---|---|
+| # | Original requirement ID, 1–45 |
+| Requirement | Original requirement description |
+| Engineering completed | Actual implemented and published functionality |
+| Examination evidence | Verified tests, CI, hosted checks and receipts |
+| Remaining work | Exact outstanding acceptance requirements |
+| Official status | PASS / PENDING / BLOCKED |
+| Next action | Specific executable step toward closure |
+
+The official totals must reconcile exactly to 45.
+
+**PASS means the entire requirement has satisfied its acceptance criteria.**
+
+A passing unit test, CI workflow, isolated fixture or local demonstration does not automatically make the whole requirement PASS.
+
+Do not create competing summary trackers with different denominators.
+
+### Owner amendment register
+
+Maintain the approved amendments separately, covering:
+
+1. Persistent whole-system digital twin.
+2. Protected versioned backups and point-in-time recovery.
+3. Future-state development workspace.
+4. Seamless application upgrades and safe rollback.
+5. Owner-visible autonomous dry-run operations.
+6. Five-tab mobile navigation.
+7. Compact product-linked Pillow Chat.
+8. Versioned product image/video management.
+9. Pillow-assisted Canva media editing.
+10. Separate internal and external media approvals.
+11. Collapsible media archive.
+12. Temporary Systems authority.
+13. Pillow-assisted UX change preparation.
+14. Human-interaction risk management.
+15. Keepa readiness and Helium 10 future compatibility.
+
+Preserve the detailed specifications in Sections 4–12. This list is an index, not a replacement for those requirements.
+
+Show amendment engineering and acceptance status without adding them to the original 45-item denominator.
+
+## 18. EXECUTION CONTROL — PREVENT ANOTHER INTERRUPTION LOOP
+
+The previous session was interrupted after approximately 43 minutes during frontend publication reconciliation.
+
+The owner does not accept repeated cycles of:
+
+Recovery → Small engineering task → Tests → Documentation → Session stops → New recovery.
+
+Use the following execution discipline.
+
+### A. Recover once
+
+Recover the latest durable state and exact branch heads.
+
+Do not repeatedly inspect historical material already reconciled.
+
+Use previously accepted evidence unless affected source changes invalidate it.
+
+### B. Execute complete engineering units
+
+Prioritise vertical integration over disconnected improvements.
+
+Each unit must have:
+
+- Defined implementation scope.
+- Explicit acceptance conditions.
+- Focused verification.
+- Published source.
+- Durable evidence.
+- Deterministic next action.
+
+Do not stop merely because a small test suite passes.
+
+### C. Publish frequently
+
+After each meaningful working unit:
+
+1. Commit the implementation.
+2. Verify the complete Git tree.
+3. Publish to the appropriate existing branch.
+4. Preserve focused test results.
+5. Update the examination evidence.
+6. Update the fixed 45-item register and owner amendments.
+7. Continue to the next executable task.
+
+Do not leave substantial engineering exclusively in a temporary local workspace.
+
+### D. Use CI efficiently
+
+Check existing workflows before starting new ones.
+
+Do not restart passing campaigns without a demonstrated reason.
+
+While CI runs, continue independent engineering.
+
+Do not represent a pending workflow as PASS.
+
+### E. Handle genuine blockers
+
+If one requirement depends on external credentials, licensing, owner authentication or infrastructure approval:
+
+- Identify the exact dependency.
+- Preserve the evidence.
+- Continue every independent authorised task.
+- Consolidate owner decisions where possible.
+- Avoid repeatedly asking for the same permission.
+
+Do not weaken safety or financial requirements to manufacture completion.
+
+### F. Handle interruptions
+
+If the execution environment interrupts Work, preserve:
+
+- Exact backend, frontend and evidence revisions.
+- Published source-tree identities.
+- Completed engineering.
+- Passing and failing tests.
+- CI workflow identifiers and results.
+- Remaining engineering tasks.
+- Genuine external blockers.
+- The next executable action.
+
+If the platform imposes an execution limit, report it truthfully. Do not invent a technical blocker.
+
+The next session must be able to resume without repeating completed work.
+
+## 19. EXECUTION PRIORITY — COMPLETE WORK 8 SYSTEMATICALLY
+
+Proceed in this order, subject to genuine technical dependencies.
+
+**Priority 1 — Recover the interrupted frontend publication**
+
+Resolve the mismatch between the tested local frontend tree and the published GitHub commit.
+
+Verify exact source identity.
+
+Preserve all completed twin, authority and product-chat changes.
+
+**Priority 2 — Complete local digital-twin integration**
+
+Finish the scheduler, shared Owner Console projections, financial lineage, Assurance and owner-authority integration.
+
+Verify all seven operational views use the same durable records.
+
+**Priority 3 — Complete backup and safe-upgrade infrastructure**
+
+Implement and test the protected snapshot, replay, future-state workspace, compatible upgrade and rollback mechanisms.
+
+Preserve newer transactions during software changes.
+
+**Priority 4 — Complete owner-approved UX**
+
+Implement the five-tab mobile navigation, product-linked Chat, product media versioning, Canva-assisted editing where supported, two-stage approvals, collapsed archive and temporary Systems authority.
+
+**Priority 5 — Complete human-interaction management**
+
+Implement the simulated communication-risk, response, escalation and evidence workflow.
+
+**Priority 6 — Complete genuine-product integration**
+
+Verify authorised CJ/Amazon data, supplier economics, image permissions, Pillow assessments and canonical qualification.
+
+**Priority 7 — Complete integrated examinations**
+
+Verify the complete autonomous twin, financial integrity, Assurance recovery, capacity, endurance, isolation and rollback.
+
+**Priority 8 — Independent review and CI**
+
+Review the exact published application revisions.
+
+Repair demonstrated findings without reopening unrelated completed work.
+
+**Priority 9 — Hosted twin acceptance**
+
+Prepare the minimum isolated runtime and deployment proposal.
+
+Obtain separate owner authority where required.
+
+Then verify the actual authenticated Owner Console on desktop and mobile.
+
+**Priority 10 — Certification and handoff**
+
+Complete the 45 original requirements and approved amendments according to their legitimate acceptance criteria.
+
+Obtain independent Mission Ledger and Assurance closure evidence.
+
+Prepare the complete Work 9 operational handoff.
+
+Do not activate Work 9 or live commerce.
+
+## 20. NON-NEGOTIABLE PRODUCTION AND FINANCIAL GOVERNANCE
+
+Throughout Work 8:
+
+- Pillow remains **NOT_BORN**.
+- Commerce remains **LOCKED**.
+- All 15 safety protections remain enforced.
+- All seven protected live-effect routes remain denied.
+- No real marketplace publication.
+- No real supplier purchases.
+- No real customer orders, refunds, payments or financial transfers.
+- No unauthorised paid inference.
+- No unapproved subscriptions or billable infrastructure.
+- No unauthorised production configuration changes.
+- No production release lease, merge or deployment without separate owner authority.
+- No alteration of historical financial records to satisfy an examination.
+- No fabricated product evidence, assessments, transactions or acceptance receipts.
+- No weakening of identity, owner authority, Assurance or financial integrity.
+- No digital-twin experiment may overwrite authoritative live records.
+- No software rollback may silently discard newer committed business transactions.
+
+Use existing infrastructure where safe and sufficient.
+
+Request separate approval for any genuinely necessary billable resources or production actions.
+
+## 21. REQUIRED WORK 8 END STATE
+
+Work 8 must deliver the following integrated result:
+
+1. A functioning, persistent, isolated whole-system digital twin.
+2. A complete autonomous simulated commercial operating lifecycle.
+3. Genuine, traceable product discovery where authorised evidence is available.
+4. Source-bound Pillow assessments and recommendations where authorised.
+5. Durable owner approvals and temporary authority controls.
+6. A complete owner-visible Home-to-Finance-to-Assurance operating experience.
+7. Compact product-linked Pillow Chat.
+8. Five-tab mobile navigation with Home preserved.
+9. Versioned image/video management and two-stage publication approval.
+10. Human-interaction risk assessment and escalation.
+11. Protected backup and point-in-time recovery foundation.
+12. An isolated future-state testing environment.
+13. Compatible upgrades and rollback preserving newer transactions.
+14. Verified financial conservation and separation.
+15. Autonomous Assurance detection, repair and independent verification.
+16. Capacity, concurrency, multi-day and endurance examinations.
+17. Exact-head CI and independent review.
+18. Authenticated owner acceptance.
+19. A truthful GO/NO-GO determination and legitimate Work 8 closure receipts.
+20. A complete Work 9 operational commissioning and live-transition handoff.
+
+### Completion criteria
+
+Do not declare Work 8 COMPLETE solely because:
+
+- Source code was committed.
+- CI passed.
+- Unit tests passed.
+- A synthetic business scenario completed.
+- A preview deployment became READY.
+- An examination report was generated.
+
+Completion requires the integrated system and mandatory acceptance evidence.
+
+Where an indispensable external dependency prevents certification, preserve the precise blocker, complete all remaining independently executable work and report NO-GO truthfully.
+
+Do not silently transfer unfinished mandatory Work 8 engineering into Work 9.
+
+## GRAND KING'S EXECUTION ORDER
+
+**COMPLETE THE EXISTING WORK 8 PROGRAMME.**
+
+The owner expects a working, recoverable, upgradeable and visually inspectable autonomous business system—not a succession of partial engineering reports.
+
+The persistent digital twin must become the permanent foundation for safe future EmpireAI development.
+
+The protected backup architecture must safeguard business records.
+
+The future-state workspace must permit safe UX, software and infrastructure improvements.
+
+The release architecture must preserve ongoing orders, financial transactions and historical records during upgrades and rollback.
+
+Work 9 must inherit this tested foundation and concentrate on controlled operational commissioning, live synchronisation, Pillow Birth and safe commercial activation.
+
+**RESUME FROM THE INTERRUPTED FRONTEND PUBLICATION CHECK. PRESERVE EVERYTHING ALREADY COMPLETED. IMPLEMENT, INTEGRATE, EXAMINE, VERIFY AND ADVANCE TOWARD LEGITIMATE WORK 8 CLOSURE.**
+
+Do not stop voluntarily at another documentation checkpoint or passing test campaign.
+
+Request owner intervention only when a genuinely indispensable external dependency requires it.

@@ -1,0 +1,17 @@
+TAP version 13
+# {"kind":"TWIN_COMPOUNDED_MULTIDAY","virtualDays":3,"products":6,"orders":6,"commerceReceipts":60,"financialEvents":66,"verifiedRecoveries":3,"elapsedMs":4569,"timerCadenceMs":10,"actualCashMovement":0,"limits":"Virtual clock; not multi-day wall-clock endurance or genuine supplier qualification"}
+# Subtest: three virtual days: compounded checkpoint gap, revocation, pause and cold restart preserve six settled orders
+ok 1 - three virtual days: compounded checkpoint gap, revocation, pause and cold restart preserve six settled orders
+  ---
+  duration_ms: 4571.606695
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4873.497288
