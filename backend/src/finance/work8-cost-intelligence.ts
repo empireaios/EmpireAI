@@ -23,10 +23,11 @@ export class Work8CostIntelligence {
  private persist(key:string,payload:unknown){const record={owner:this.owner,payload},digest=hash(record);const old=this.centre.db.prepare('SELECT digest FROM work8_cost_observations WHERE workspace=? AND id=?').get(this.workspace,key);
   if(old){if(old.digest!==digest)throw Error('OBSERVATION_IDENTITY_CONFLICT');return;}
   this.centre.db.prepare('INSERT INTO work8_cost_observations VALUES(?,?,?,?)').run(this.workspace,key,digest,JSON.stringify(record));}
- private history(){return this.centre.db.prepare('SELECT id,digest,record FROM work8_cost_observations WHERE workspace=? ORDER BY rowid').all(this.workspace).map(r=>{const value=JSON.parse(String(r.record));if(hash(value)!==r.digest||value.owner!==this.owner)throw Error('COST_EVIDENCE_INTEGRITY');return {id:String(r.id),payload:value.payload};});}
+ private history(){const records=this.centre.db.prepare('SELECT id,digest,record FROM work8_cost_observations WHERE workspace=? ORDER BY rowid LIMIT 10001').all(this.workspace);if(records.length>10000)throw Error('COST_HISTORY_REVIEW_REQUIRED');return records.map(r=>{if(String(r.record).length>8*1024*1024)throw Error('COST_EVIDENCE_BOUND');const value=JSON.parse(String(r.record));if(hash(value)!==r.digest||value.owner!==this.owner)throw Error('COST_EVIDENCE_INTEGRITY');return {id:String(r.id),payload:value.payload};});}
  async examine(runId:string,ports:ReadOnlyBillingPort[]){
   id.parse(runId);if(ports.length>20||new Set(ports.map(p=>p.provider)).size!==ports.length)throw Error('INVALID_PROVIDER_SET');
-  const prior=this.history().find(r=>r.id==='run:'+runId);if(prior)return prior.payload;
+  const requestDigest=hash(ports.map(p=>p.provider));
+  const prior=this.history().find(r=>r.id==='run:'+runId);if(prior){if(prior.payload.requestDigest!==requestDigest)throw Error('DISCOVERY_RUN_IDENTITY_CONFLICT');return prior.payload;}
   const started=this.clock(),exceptions:Array<{provider:string;code:string}>=[],observations:Observation[]=[];
   const attempt=this.history().filter(r=>r.id.startsWith(runId+':attempt:')).length;
   if(attempt>=3)throw Error('COST_DISCOVERY_RETRY_BUDGET');
@@ -38,7 +39,9 @@ export class Work8CostIntelligence {
     const resources=await bounded(s=>port.discover(s));if(!Array.isArray(resources)||resources.length>100)throw Error('RESOURCE_BOUND');
     for(const resource of resources){
      try{
-      const o=observationSchema.parse(await bounded(s=>port.read(resource,s)));if(o.resource.provider!==port.provider)throw Error('PROVIDER_BINDING');
+      if(observations.length>=100||JSON.stringify(observations).length>4*1024*1024)throw Error('RUN_OBSERVATION_BOUND');
+      const raw=await bounded(s=>port.read(resource,s));if(JSON.stringify(raw).length>1024*1024)throw Error('OBSERVATION_BOUND');
+      const o=observationSchema.parse(raw);if(o.resource.provider!==port.provider)throw Error('PROVIDER_BINDING');
       if(Date.parse(o.resource.observedAt)>this.clock())throw Error('FUTURE_BILLING_EVIDENCE');
       const preceding=this.history().filter(r=>r.id.startsWith('observation:')).map(r=>observationSchema.parse(r.payload)).filter(x=>x.resource.id===o.resource.id&&x.resource.provider===port.provider).at(-1);
       if(preceding&&Date.parse(preceding.resource.observedAt)>Date.parse(o.resource.observedAt))throw Error('STALE_BILLING_EVIDENCE');
@@ -51,7 +54,7 @@ export class Work8CostIntelligence {
     }
    }catch{exceptions.push({provider:port.provider,code:'PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY'});}
   }
-  const result={runId,started,completed:this.clock(),observations,exceptions,noPaidInference:true,noExecutionAuthority:true};this.persist('run:'+runId,result);return result;
+  const result={runId,requestDigest,providers:ports.map(p=>p.provider),started,completed:this.clock(),observations,exceptions,noPaidInference:true,noExecutionAuthority:true};this.persist('run:'+runId,result);return result;
  }
  projection(){
   const history=this.history(),resources=new Map<string,Observation>(),alerts:Array<{provider:string;code:string;resource?:string}>=[];
