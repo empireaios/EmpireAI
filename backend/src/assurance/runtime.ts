@@ -1,3 +1,4 @@
+import {readWork8QueueProbe} from './work8-queue-probe.js';
 import {readWork8ResponseBinding} from './work8-response-binding.js';
 import {readWork8FinancialProbe} from './work8-financial-probe.js';
 import {makeWork8FulfilmentProbes} from './work8-fulfilment-probes.js';
@@ -80,6 +81,7 @@ export class AssuranceRuntime {
    try{const discovery=readGovernedCommerce(workspace).retainedDiscovery;const checkpoint=discovery.checkpoint;observe('retained_product_discovery',discovery.availability==='CHECKPOINT_UNAVAILABLE'?'UNAVAILABLE':!checkpoint?'NOT_CHECKED':checkpoint.shortfall>0?'DEGRADED':'HEALTHY','Retained product evidence scan; no new supplier read is implied',{observedAt:Date.now(),availability:discovery.availability,day:checkpoint?.day??null,newCandidates:checkpoint?.newCandidates??null,shortfall:checkpoint?.shortfall??null,externalRefresh:false});}catch{observe('retained_product_discovery','UNAVAILABLE','Retained product discovery evidence unavailable',{observedAt:Date.now()});}
    try{for(const probe of productionCommerce().simulatedFinance.probes(workspace))this.control.observe(workspace,probe);}catch{observe('simulated_financial_integrity','UNAVAILABLE','Durable simulated financial reconciliation unavailable; no actual finance repair authorised',{observedAt:Date.now()});}
    try{this.control.observe(workspace,readWork8FinancialProbe(productionFinance(),workspace));}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
+   this.control.observe(workspace,readWork8QueueProbe(this.root,workspace));
    const contract=checkToolContract();observe('model_server_contract',contract.status,contract.summary,contract.evidence);
    observe('durable_control', 'HEALTHY','Operational event store is readable',{events:this.control.snapshot(workspace).events.length});
    const configured=configuredLockedProviders();const pricing=readLockedPricingPolicy().map(p=>({...p,active:configured.includes(p.provider as any)}));observe('pricing_review',pricing.some(p=>p.active&&p.status==='EXPIRED')?'BLOCKED':pricing.some(p=>p.active&&p.status==='EXPIRING')?'DEGRADED':'HEALTHY','Local inference price review expiry',pricing);

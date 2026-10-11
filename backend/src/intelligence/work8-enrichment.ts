@@ -1,3 +1,4 @@
+import {projectWork8ModelDraft} from './work8-model-draft.js';
 import type {DatabaseSync} from 'node:sqlite';
 import {digest,jobSchema,type Evidence} from './model.js';
 import type {IntelligenceStore,Row} from './store.js';
@@ -105,7 +106,7 @@ export function linkedCompletedAssessment(store:IntelligenceStore,w:string,candi
  for(const id of assessment.evidenceIds){const source=store.get(w,'evidence',id);if(source?.authenticity==='INTERNAL_UNVERIFIED'&&source.eye==='EMPIRE'&&source.provider==='EmpireAI'&&source.capabilityId==='empire.state'){if(![source.observedAt,source.retrievedAt,source.staleAfter].every(t=>typeof t==='string'&&Number.isFinite(Date.parse(t)))||Date.parse(source.observedAt)>Date.parse(source.retrievedAt)||Date.parse(source.retrievedAt)>store.now()||source.digest!==digest(source.facts)||source.grantsAuthority!==false||Date.parse(source.staleAfter)<=store.now()||Date.parse(source.observedAt)>store.now())throw Error('ASSESSMENT_INTERNAL_EVIDENCE_UNVERIFIED');}else{const {freshness}=verifiedSavedSource((workspace,eid)=>store.get(workspace,'evidence',eid) as Evidence|null,w,id,store.now());if(freshness!=='FRESH')throw Error('ASSESSMENT_EVIDENCE_EXPIRED');}}
 
  if(!request||request.status!=='COMPLETED'||request.requestId!==row.requestId||request.workspaceId!==w||assessment.requestId!==row.requestId||typeof assessment.answer!=='string'||!assessment.answer.trim()||digest(assessment.answer)!==assessment.sha256||digest(request.responseText)!==assessment.sha256||row.closure?.advisorReadback?.requestId!==row.requestId||row.closure?.advisorReadback?.assessmentHash!==assessment.sha256||row.closure?.advisorReadback?.attestedBy!=='AUTHENTICATED_OWNER'||!row.owner||row.closure?.owner!==row.owner)throw Error('ASSESSMENT_COMPLETION_UNVERIFIED');
- return {status:'COMPLETED_ASSESSMENT_LINKED',candidateId,investigationId,requestId:row.requestId,assessmentHash:assessment.sha256,candidateBinding:binding,commercialApproval:false,ownerRecommendation:null};
+ return {status:'COMPLETED_ASSESSMENT_LINKED',candidateId,investigationId,requestId:row.requestId,assessmentHash:assessment.sha256,candidateBinding:binding,commercialApproval:false,ownerRecommendation:null,modelProposal:projectWork8ModelDraft(assessment,binding)};
 }
 
 export async function readWork8EnrichmentOwner(store:IntelligenceStore,w:string,readRequest:(id:string)=>Promise<Row|null>){
@@ -113,6 +114,6 @@ export async function readWork8EnrichmentOwner(store:IntelligenceStore,w:string,
  const candidates=[];for(const state of report.candidates){let assessment:Row={status:'NO_VERIFIED_COMPLETED_ASSESSMENT'};
  const matches=investigations.filter(i=>i.status==='COMPLETE'&&i.candidateBinding?.candidateId===state.id);
  for(const row of matches){if(requestReads>=5){assessment={status:'ASSESSMENT_READ_BOUND'};break;}requestReads++;try{const request=await readRequest(row.requestId);assessment=linkedCompletedAssessment(store,w,state.id,row.id,()=>request);if(assessment.status==='COMPLETED_ASSESSMENT_LINKED')break;}catch{assessment={status:'ASSESSMENT_PROOF_UNAVAILABLE'};}}
- candidates.push({candidateId:state.id,productId:state.productId,status:state.status,qualification:state.qualification,stage:state.stage,generation:state.generation??0,reasons:state.reasons,evidenceCount:state.sources.length,completeness:state.completeness??null,assessment:assessment.status==='COMPLETED_ASSESSMENT_LINKED'?{status:assessment.status,investigationId:assessment.investigationId,requestId:assessment.requestId,assessmentHash:assessment.assessmentHash}:assessment});}
+ candidates.push({candidateId:state.id,productId:state.productId,status:state.status,qualification:state.qualification,stage:state.stage,generation:state.generation??0,reasons:state.reasons,evidenceCount:state.sources.length,completeness:state.completeness??null,assessment:assessment.status==='COMPLETED_ASSESSMENT_LINKED'?{status:assessment.status,investigationId:assessment.investigationId,requestId:assessment.requestId,assessmentHash:assessment.assessmentHash,modelProposal:assessment.modelProposal}:assessment});}
  return {...report,candidates,assessmentReadCoverage:'LATEST_100_INVESTIGATIONS_MAX_5_REQUEST_PROOFS; NOT_ALL_HISTORY',assessmentsLinkedInDisplayedSample:candidates.filter(c=>c.assessment.status==='COMPLETED_ASSESSMENT_LINKED').length};
 }

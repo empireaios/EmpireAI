@@ -39,7 +39,7 @@ export function readWork8ResponseBinding(root:string,workspace:string,now=Date.n
     if(m.status==='COMPLETE'&&(m.closure?.owner!==m.owner||Date.parse(m.closure?.at)>now))fail('CANDIDATE_OWNER_OR_CHRONOLOGY_MISMATCH');
     if(Array.isArray(pin?.evidence))for(const ref of pin.evidence){const source=byEvidence.get(ref.id);if(!source||source.id!==ref.id||digest(source)!==ref.envelopeDigest||source.grantsAuthority!==false||source.authenticity!=='LIVE_PROVIDER'||digest(source.facts)!==source.digest)fail('CANDIDATE_SOURCE_PIN_MISMATCH');}
    }
-   if(m.status==='COMPLETE'){const c=m.closure;if(!c||c.advisorReadback?.requestId!==m.requestId||c.advisorReadback?.assessmentHash!==a.sha256||!Number.isFinite(Date.parse(c.at))||!Number.isFinite(Date.parse(a.at))||Date.parse(c.at)<Date.parse(a.at))fail('CLOSURE_BINDING_UNVERIFIED');}
+   if(m.status==='COMPLETE'){const c=m.closure;if(!c||typeof m.owner!=='string'||!m.owner||c.owner!==m.owner||c.advisorReadback?.attestedBy!=='AUTHENTICATED_OWNER'||Date.parse(c.at)>now||c.advisorReadback?.requestId!==m.requestId||c.advisorReadback?.assessmentHash!==a.sha256||!Number.isFinite(Date.parse(c.at))||!Number.isFinite(Date.parse(a.at))||Date.parse(c.at)<Date.parse(a.at))fail('CLOSURE_BINDING_UNVERIFIED');}
    if(faults.length===initialFaults&&pending.length===initialPending)verified.push(missionId);
   }
   const status=faults.length?'FAILED':pending.length||!verified.length?'UNVERIFIED':'HEALTHY';
