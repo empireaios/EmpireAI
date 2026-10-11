@@ -2,9 +2,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const { superviseAssurance, assuranceRuntimeOrigin } = require('./assurance-supervisor.cjs');
+const { assuranceRuntimeOrigin } = require('./assurance-supervisor.cjs');
+const { runSupervisedRuntime } = require('./locked-supervision.cjs');
 const { resolveRuntimeRevision } = require('./runtime-revision.cjs');
-const { runBounded, canaryExitCode, assertRuntimeVersion } = require('./canary-launcher.cjs');
+const { canaryExitCode, assertRuntimeVersion } = require('./canary-launcher.cjs');
 const PROFILE = 'LOCKED_COMMISSIONING_V1';
 function configuration(input) {
   if (input.EMPIRE_RUNTIME_PROFILE !== PROFILE) throw Error('Explicit locked profile required');
@@ -48,12 +49,10 @@ async function main(){
   }
   // Separate deterministic processes. Neither receives provider/owner secrets.
   // Inspector continues reporting missed cycles when the collector dies.
-  const stopAssurance=superviseAssurance({cwd,env});
-  process.once('SIGTERM',stopAssurance);process.once('SIGINT',stopAssurance);
-  const result=await runBounded({command:process.execPath,args:['backend/dist/index.js'],env,cwd,expiresAt:null,onSpawn:child=>{
+  const result=await runSupervisedRuntime({command:process.execPath,args:['backend/dist/index.js'],env,cwd,expiresAt:null,onSpawn:child=>{
     console.log(JSON.stringify({event:'locked_runtime_start',profile:PROFILE,launchId:crypto.randomUUID(),childPid:child.pid,source:env.RAILWAY_GIT_COMMIT_SHA,birth:'NOT_BORN',commerce:'LOCKED',operational:false}));
   }});
-  stopAssurance();console.log(JSON.stringify({event:'locked_runtime_stop',...result}));process.exitCode=canaryExitCode(result);
+  console.log(JSON.stringify({event:'locked_runtime_stop',...result}));process.exitCode=result.coverageLost?1:canaryExitCode(result);
 }
 module.exports={PROFILE,configuration};
 if(require.main===module)main().catch(()=>{console.error('Locked commissioning runtime refused startup or clean shutdown');process.exitCode=1;});

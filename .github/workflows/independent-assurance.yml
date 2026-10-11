@@ -5,6 +5,8 @@ on:
       - 'backend/src/assurance/**'
       - 'deployment/locked-runtime.cjs'
       - 'deployment/assurance-supervisor.cjs'
+      - 'deployment/locked-supervision*'
+      - 'deployment/canary-launcher*'
       - 'deployment/runtime-revision*'
       - 'backend/scripts/record-runtime-revision.cjs'
       - 'backend/src/runtime/tier0-isolated-primary.ts'
@@ -25,6 +27,7 @@ jobs:
           node-version-file: '.node-version'
       - run: |
           node --test deployment/runtime-revision.test.cjs
+          node --test --test-concurrency=1 deployment/locked-supervision.test.cjs
           node --test backend/src/validation/tests/assurance-deployment-verifier.test.mjs backend/src/validation/tests/assurance-control-plane.test.mjs
           node backend/src/validation/tests/commissioning-operator.test.mjs
           node backend/src/validation/tests/assurance-owner-evidence.test.mjs

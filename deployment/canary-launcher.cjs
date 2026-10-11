@@ -110,8 +110,9 @@ function prepareFilesystem(cwd, databasePath) {
   fs.mkdirSync(path.dirname(databasePath), { recursive: true, mode: 0o700 });
 }
 
-function runBounded({ command, args, env, cwd, expiresAt, graceMs = GRACE_MS, stdio = 'inherit', onSpawn }) {
+function runBounded({ command, args, env, cwd, expiresAt, graceMs = GRACE_MS, stdio = 'inherit', onSpawn, signal }) {
   if (process.platform === 'win32') return Promise.reject(new Error('Canary process-group supervision requires POSIX'));
+  if (signal?.aborted) return Promise.reject(new Error('Runtime containment requested before spawn'));
   if (expiresAt !== null && expiresAt <= Date.now()) return Promise.reject(new Error('Canary expiry has elapsed before spawn'));
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { env, cwd, stdio, detached: true });
@@ -130,6 +131,7 @@ function runBounded({ command, args, env, cwd, expiresAt, graceMs = GRACE_MS, st
     const cleanup = () => {
       clearTimeout(deadlineTimer); clearTimeout(graceTimer);
       process.removeListener('SIGTERM', term); process.removeListener('SIGINT', term);
+      signal?.removeEventListener('abort', abort);
     };
     const finish = () => {
       if (finished) return;
@@ -157,6 +159,8 @@ function runBounded({ command, args, env, cwd, expiresAt, graceMs = GRACE_MS, st
       graceTimer = setTimeout(finish, remainingGrace);
     };
     const term = () => stop('signal');
+    const abort = () => stop('containment');
+    signal?.addEventListener('abort', abort, { once: true });
     process.on('SIGTERM', term); process.on('SIGINT', term);
     // Reserve grace inside the absolute time bound, not after it.
     const deadlineTimer = expiresAt === null ? undefined : setTimeout(() => stop('expired'), Math.max(0, expiresAt - Date.now() - graceMs));
