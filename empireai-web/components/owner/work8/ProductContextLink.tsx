@@ -1,0 +1,3 @@
+'use client';
+import Link from 'next/link';import {MessageCircle} from 'lucide-react';import {useAuth} from '@/lib/auth/context';import {setTwinChatContext} from '@/lib/owner/twin-chat-context';
+export function ProductContextLink({missionId,receiptDigest,title,sku}:{missionId:string;receiptDigest:string;title:string;sku:string}){const {user}=useAuth();if(!user||!missionId||!/^[a-f0-9]{64}$/.test(receiptDigest))return null;return <Link href="/cockpit/development/pillow" aria-label={'Chat about '+title+' · '+sku} onClick={()=>setTwinChatContext(user.id,{missionId,receiptDigest})}><MessageCircle size={18} aria-hidden="true"/></Link>;}

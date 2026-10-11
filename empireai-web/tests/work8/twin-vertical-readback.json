@@ -1198,6 +1198,27 @@
     "actualCashMovement": 0,
     "liveCommerce": "LOCKED",
     "birth": "NOT_BORN",
+    "authority": {
+      "grant": {
+        "workspace": "ws",
+        "owner": "owner",
+        "id": "renew",
+        "sessionId": "exam",
+        "version": 2,
+        "action": "GRANT",
+        "mode": "ONE_HOUR",
+        "at": 1791763260000,
+        "expiresAt": 1791766860000,
+        "requestDigest": "dcfb678976cb3afcc1098b6200da70aeee53a166645ec996d8b8a6cac619c78e",
+        "previous": "08e9883843332c7f3b08754b73b8c30d68eace7f86a6cbca4ae8d509c42b09db",
+        "scope": "TWIN_SCHEDULER_ONLY",
+        "digest": "bef5ce23c3754ba023995ca422fcbfb603444c93ed52a5f3885e32536fbca98e"
+      },
+      "version": 2,
+      "status": "ACTIVE",
+      "scope": "TWIN_SCHEDULER_ONLY",
+      "externalEffects": 0
+    },
     "tasks": [
       {
         "id": "twin-exam:ba08c179c73a06746c33",
@@ -1309,6 +1330,14 @@
         }
       ],
       "observations": [
+        {
+          "id": "e15e51e190ac2c6e7f859694553b63252c8c59fcde846a38765d003ee4bcdb98",
+          "kind": "ASSURANCE_ESCALATION",
+          "reason": "TWIN_AUTHORITY_EXPIRED",
+          "observedAt": 1791763260000,
+          "classification": "SIMULATED_OPERATIONS",
+          "externalEffects": 0
+        },
         {
           "id": "8045ceda2280c6a47cd0cafeb62564417345bae15105d3c89d1b5bb426f8e1f3",
           "kind": "SCHEDULER_PROGRESS",
