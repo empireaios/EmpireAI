@@ -6,8 +6,15 @@ const resourceSchema=z.object({id,provider:id,service:z.string().min(1).max(200)
   fixedAmountMicro:z.number().int().nonnegative().max(1e12).nullable(),currency:z.string().regex(/^[A-Z]{3}$/).nullable(),
   renewalAt:timestamp.nullable(),cancellationTerms:z.string().max(1000).nullable(),sharedAllocationBps:z.number().int().min(0).max(10000).nullable(),
   evidenceRef:z.string().min(1).max(500),observedAt:timestamp}).strict();
+const accountReadbackSchema=z.object({currency:z.string().regex(/^[A-Z]{3}$/),plan:z.string().min(1).max(100),
+ planFeeMicro:z.number().int().nonnegative().max(1e12),includedUsageMicro:z.number().int().nonnegative().max(1e12),
+ periodLabel:z.string().min(1).max(100),usageMicro:z.number().int().nonnegative().max(1e12),
+ historicalBills:z.array(z.object({date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/),amountMicro:z.number().int().nonnegative().max(1e12)}).strict()).max(24),
+ computeHardLimitVerified:z.boolean(),limitScope:z.literal('ENTIRE_WORKSPACE'),
+ qualification:z.literal('ACCOUNT_UI_READBACK_NOT_INVOICE_OR_PAYMENT')}).strict();
 const observationSchema=z.object({resource:resourceSchema,costs:z.array(z.object({id,data:costSchema}).strict()).max(500),
   providerSummary:z.object({currency:z.string().regex(/^[A-Z]{3}$/),billed:z.string().regex(/^\d+(\.\d+)?$/),effective:z.string().regex(/^\d+(\.\d+)?$/),recordCount:z.number().int().nonnegative(),periodStart:timestamp,periodEnd:timestamp,qualification:z.literal('AGGREGATED_PROVIDER_READBACK_NOT_PAYMENT')}).strict().optional(),
+  accountReadback:accountReadbackSchema.optional(),
   complete:z.boolean(),exceptions:z.array(z.string().min(1).max(500)).max(50)}).strict();
 type Observation=z.infer<typeof observationSchema>;
 export interface ReadOnlyBillingPort {provider:string;discover(signal:AbortSignal):Promise<unknown[]>;read(resource:unknown,signal:AbortSignal):Promise<unknown>}
@@ -104,7 +111,7 @@ export class Work8CostIntelligence {
    if(r.renewalAt&&Date.parse(r.renewalAt)<=this.clock()+7*86400000&&r.state==='ACTIVE')alerts.push({provider:r.provider,resource:r.id,code:'RENEWAL_DUE'});
    for(const code of exceptions)alerts.push({provider:r.provider,resource:r.id,code});
   }
-  return {schema:'WORK8_COST_INTELLIGENCE_V1',resources:[...resources.values()].map(o=>o.resource),providerSummaries:[...resources.values()].filter(o=>o.providerSummary).map(o=>({provider:o.resource.provider,...o.providerSummary})),totalsByCurrencyStageAuthenticity:totals,
+  return {schema:'WORK8_COST_INTELLIGENCE_V1',resources:[...resources.values()].map(o=>o.resource),providerSummaries:[...resources.values()].filter(o=>o.providerSummary).map(o=>({provider:o.resource.provider,...o.providerSummary})),accountReadbacks:[...resources.values()].filter(o=>o.accountReadback).map(o=>({provider:o.resource.provider,observedAt:o.resource.observedAt,...o.accountReadback})),totalsByCurrencyStageAuthenticity:totals,
    alerts,historicalExceptions,observationsDigest:hash(history),canonicalEntriesDigest:hash(this.centre.entries(this.workspace)),
    totalsQualification:'UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS',operationalProfitIncluded:false,continuousLiveActivation:false};
  }
@@ -116,4 +123,14 @@ export function vercelAggregateObservation(input:unknown,teamId:string,observedA
  return observationSchema.parse({resource:{id:teamId,provider:'vercel',service:'Team billing aggregate',state:'ACTIVE',billingOwner:teamId,fixedAmountMicro:null,currency:parsed.summary.currency,renewalAt:null,cancellationTerms:null,sharedAllocationBps:null,evidenceRef:'vercel:billing-charges:'+hash(input),observedAt},costs:[],complete:false,
   providerSummary:{currency:parsed.summary.currency,billed:String(parsed.summary.totalBilledCost),effective:String(parsed.summary.totalEffectiveCost),recordCount:parsed.summary.recordCount,periodStart:parsed.summary.periodStart,periodEnd:parsed.summary.periodEnd,qualification:'AGGREGATED_PROVIDER_READBACK_NOT_PAYMENT'},
   exceptions:['SUBSCRIPTION_INVOICE_AND_PAYMENT_UNKNOWN','EXACT_REQUESTED_PERIOD_ALIGNMENT_UNVERIFIED',...(parsed.context.sampleTruncated?['CHARGE_ROW_SAMPLE_INCOMPLETE']:[]),...(parsed.context.serviceGroupsTruncated?['SERVICE_GROUPS_INCOMPLETE']:[]),...(!parsed.context.summaryIncludesAllRecords?['SUMMARY_INCOMPLETE']:[])]});
+}
+
+/** Normalises authorised Railway account observations without inventing invoice,
+ * payment, exact period boundaries or a trial-only spending cap. */
+export function railwayAccountObservation(input:unknown,workspaceId:string,observedAt:string){
+ const accountReadback=accountReadbackSchema.parse(input);
+ return observationSchema.parse({resource:{id:workspaceId,provider:'railway',service:accountReadback.plan+' workspace',state:'ACTIVE',billingOwner:workspaceId,
+ fixedAmountMicro:accountReadback.planFeeMicro,currency:accountReadback.currency,renewalAt:null,cancellationTerms:null,sharedAllocationBps:null,
+ evidenceRef:'railway:account-readback:'+hash({accountReadback,workspaceId,observedAt}),observedAt},accountReadback,costs:[],complete:false,
+ exceptions:['INVOICE_AND_PAYMENT_UNVERIFIED','PROJECT_ALLOCATION_UNKNOWN','INCLUDED_USAGE_IS_NOT_A_SECOND_CREDIT_ENTRY','WORKSPACE_LIMIT_MAY_STOP_PRODUCTION',...(accountReadback.computeHardLimitVerified?[]:['COMPUTE_HARD_LIMIT_UNVERIFIED'])]});
 }

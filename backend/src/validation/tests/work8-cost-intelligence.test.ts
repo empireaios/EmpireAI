@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {FinancialCentre} from '../../finance/financial-centre.js';
-import {Work8CostIntelligence, type ReadOnlyBillingPort} from '../../finance/work8-cost-intelligence.js';
+import {Work8CostIntelligence, railwayAccountObservation, type ReadOnlyBillingPort} from '../../finance/work8-cost-intelligence.js';
 const observedAt='2026-01-01T00:00:00Z',workspace='work8-twin:cost-exam';
 const evidence=(kind:string)=>({kind,reference:'injected billing fixture',sha256:'a'.repeat(64),observedAt});
 const resource={id:'service1',provider:'vercel',service:'fixture hosting',state:'ACTIVE',billingOwner:'team-fixture',fixedAmountMicro:20000000,currency:'USD',renewalAt:'2026-02-01T00:00:00Z',cancellationTerms:'Fixture monthly cancellation',sharedAllocationBps:null,evidenceRef:'fixture://service',observedAt};
@@ -92,12 +92,28 @@ test('a rejected multi-charge observation cannot partially commit its journal or
  const centre=new FinancialCentre(':memory:');try{
   const intel=new Work8CostIntelligence(centre,workspace,'owner');
   const result=await intel.examine('bad-batch',[port({resource,costs:[charge('valid-first'),charge('invalid-second',{entityId:'second',provider:'railway',sourceIds:['second-source']})],complete:true,exceptions:[]})]);
-  assert.ok(result.exceptions.some(e=>e.code==='INVALID_OR_CONFLICTING_BILLING_EVIDENCE'));
+  assert.ok(result.exceptions.some((e:{code:string})=>e.code==='INVALID_OR_CONFLICTING_BILLING_EVIDENCE'));
   assert.deepEqual(centre.entries(workspace),[]);
   assert.equal(intel.projection().resources.length,0);
   assert.deepEqual(intel.projection().totalsByCurrencyStageAuthenticity,{});
   const good=await intel.examine('good-batch',[port({resource,costs:[charge('valid-first'),charge('valid-second',{entityId:'second',sourceIds:['second-source']})],complete:true,exceptions:[]})]);
   assert.equal(good.observations.length,1);assert.equal(centre.entries(workspace).length,2);
   assert.equal(intel.projection().totalsByCurrencyStageAuthenticity['USD:ACCRUED_UNBILLED:SYNTHETIC'],200);
+ }finally{centre.close();}
+});
+
+
+test('Railway account readback preserves unknown actuals and never double counts plan allowance',async()=>{
+ const centre=new FinancialCentre(':memory:');try{
+ const input={currency:'USD',plan:'Pro',planFeeMicro:20000000,includedUsageMicro:20000000,periodLabel:'Oct 5–Nov 5',usageMicro:3630000,historicalBills:[{date:'2026-10-05',amountMicro:43780000}],computeHardLimitVerified:false,limitScope:'ENTIRE_WORKSPACE',qualification:'ACCOUNT_UI_READBACK_NOT_INVOICE_OR_PAYMENT'};
+ const observation=railwayAccountObservation(input,'workspace',observedAt);
+ const intel=new Work8CostIntelligence(centre,workspace,'owner');
+ await intel.examine('railway-account',[{provider:'railway',discover:async()=>['workspace'],read:async()=>observation}]);
+ const result=intel.projection();assert.equal(result.accountReadbacks[0]!.planFeeMicro,20000000);
+ assert.deepEqual(result.totalsByCurrencyStageAuthenticity,{});assert.deepEqual(centre.entries(workspace),[]);
+ assert.ok(result.alerts.some(a=>a.code==='COMPUTE_HARD_LIMIT_UNVERIFIED'));
+ assert.ok(result.alerts.some(a=>a.code==='INVOICE_AND_PAYMENT_UNVERIFIED'));
+ assert.throws(()=>railwayAccountObservation({...input,usageMicro:null},'workspace',observedAt));
+ assert.throws(()=>railwayAccountObservation({...input,planFeeMicro:-1},'workspace',observedAt));
  }finally{centre.close();}
 });
