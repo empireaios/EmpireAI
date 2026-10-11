@@ -27,7 +27,13 @@ export function createEvidenceFreshnessCollector(directory,clock=Date.now) {
    const rows=db.prepare("SELECT id,body FROM objects WHERE workspace=? AND kind='health' LIMIT 101").all('ws_empire_1');
    if(rows.length>100)throw Error('Evidence inventory bound');
    for(const row of rows){
-    const h=JSON.parse(row.body);if(!h.evidenceId)continue;
+    const h=JSON.parse(row.body);
+    if(!h.evidenceId){
+     // A recorded last-good claim still requires its exact source. Omitting
+     // that source must not remove the claim from a mixed inventory.
+     if(h.lastGoodAt!=null){authoritative.push({id:row.id,value:true});internal.push({id:row.id,value:false});}
+     continue;
+    }
     const raw=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='evidence' AND id=?").get('ws_empire_1',h.evidenceId);
     const e=raw?JSON.parse(raw.body):null;
     // Check that saved health's last-good claim has an exact coherent source.

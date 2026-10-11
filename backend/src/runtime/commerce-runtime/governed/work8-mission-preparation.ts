@@ -1,0 +1,65 @@
+import {z} from 'zod';
+import {id,candidateSchema,listingSchema} from './contracts.js';
+import {digest,type GovernedCommerceStore} from './store.js';
+import {qualify,type GovernedCommerceEngine,type CommerceState} from './engine.js';
+import {verifiedSavedSource,type SavedSourceReader} from './work8-source-projection.js';
+import type {Row} from '../../../intelligence/store.js';
+const hash=z.string().regex(/^[a-f0-9]{64}$/);
+export const missionPreparationSchema=z.object({id:id.max(96),candidateId:id,dossierDigest:hash,simulationOnly:z.literal(true)}).strict();
+export const preparedApprovalSchema=z.object({id:id.max(96),missionId:id,candidateId:id,dossierDigest:hash,expectedVersion:z.number().int().positive(),simulationOnly:z.literal(true),acknowledgeProductApprovalOnly:z.literal(true)}).strict();
+function initialize(store:GovernedCommerceStore){store.db.exec(`CREATE TABLE IF NOT EXISTS work8_mission_preparations(workspace TEXT NOT NULL,mission TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,mission));
+ CREATE TRIGGER IF NOT EXISTS immutable_work8_preparation_update BEFORE UPDATE ON work8_mission_preparations BEGIN SELECT RAISE(ABORT,'IMMUTABLE_MISSION_PREPARATION');END;
+ CREATE TRIGGER IF NOT EXISTS immutable_work8_preparation_delete BEFORE DELETE ON work8_mission_preparations BEGIN SELECT RAISE(ABORT,'IMMUTABLE_MISSION_PREPARATION');END;`);}
+/** Builds only from the current server dossier and immutable owner-reviewed copy.
+ * Reviewed interpretations remain ESTIMATED; payment and capacity remain SYNTHETIC.
+ * This does not establish real marketplace approval or a genuine model assessment. */
+export function canonicalMissionPackage(d:Row,reader:SavedSourceReader,now:number){
+ const {digest:actual,...body}=d;
+ if(actual!==digest(body)||d.grantsAuthority!==false||d.eligibility?.qualified!==true||d.eligibility.missing?.length||!d.review||d.financialQualification?.status!=='REVIEWED_SCENARIO_NOT_ACTUAL')throw Error('PREPARATION_QUALIFICATION_REQUIRED');
+ const p=d.review.listingPreparation;if(!p)throw Error('REVIEWED_LISTING_REQUIRED');
+ const read=(sourceId:string)=>{const {source,freshness}=verifiedSavedSource(reader,d.workspace,sourceId,now);const pin=[...d.sourceBinding.evidence,...d.reviewEvidencePins].find((e:Row)=>e.id===sourceId);if(freshness!=='FRESH'||!pin||pin.envelopeDigest!==digest(source)||source.subject.id!==d.sourceBinding.productId||source.subject.marketplace!==d.sourceBinding.subject.marketplace)throw Error('PREPARATION_SOURCE_CHANGED');return source;};
+ const detail=read(p.detailSourceId),stock=read(p.stockSourceId),freight=read(p.freightSourceId);
+ if(detail.capabilityId!=='cj.detail'||stock.capabilityId!=='cj.stock'||freight.capabilityId!=='cj.freight'||[detail,stock,freight].some(s=>s.provider!=='CJ')||!d.sourceEvidence.some((e:Row)=>e.id===detail.id)||!d.sourceEvidence.some((e:Row)=>e.id===stock.id)||!d.sourceEvidence.some((e:Row)=>e.id===freight.id))throw Error('PREPARATION_SOURCE_CAPABILITY');
+ const response=detail.facts.response as Row,variant=(response.variants as Row[]).find(v=>v.vid===d.supplier.variantId&&v.pid===d.supplier.productId);
+ const rows=stock.facts.response as Row[],matches=rows.filter(r=>r.vid===d.supplier.variantId&&r.countryCode==='CN');
+ if(!variant||matches.length!==1||typeof variant.variantSku!=='string'||typeof matches[0]?.warehouseId!=='string')throw Error('EXACT_SKU_WAREHOUSE_REQUIRED');
+ const listing=listingSchema.parse(p.listing);
+ if(listing.productId!==d.supplier.productId||listing.category!==response.categoryId||listing.variants.length!==1||listing.variants[0]!.variantId!==d.supplier.variantId||listing.variants[0]!.sku!==variant.variantSku||listing.variants[0]!.dimensions!==variant.variantKey)throw Error('REVIEWED_LISTING_IDENTITY');
+ // No guessing of ambiguous provider delivery strings. The owner cites the exact
+ // freight envelope, and the reviewed upper bound must cover the supplier range.
+ const range=/^(\d+)(?:-(\d+))?$/.exec(String(d.supplier.freight.leadTime));
+ if(!range||p.deliveryDays!==Number(range[2]??range[1])+d.review.processingDays)throw Error('REVIEWED_DELIVERY_BOUND_REQUIRED');
+ const rights=p.rightsSourceIds.map(read),sources=[detail,stock,freight,...rights,...d.review.findings.map((f:Row)=>read(f.sourceId)),...listing.sourceEvidence.map(read)];
+ for(const img of listing.images){const source=rights.find((s:Row)=>s.id===img.rightsEvidence);const permissions=source?.facts.response?.imagePermissions;
+  const allowed=Array.isArray(permissions)&&permissions.some((r:Row)=>r.productId===d.supplier.productId&&r.url===img.url&&r.sha256===img.sha256&&r.license===img.license&&r.allowedUses?.includes('INTERNAL_SIMULATION')&&Date.parse(r.validUntil)>now);
+  if(!source||source.eye!=='SUPPLIER'||source.provider!=='CJ'||!allowed||!d.supplier.images.some((i:Row)=>i.observedUrl===img.url))throw Error('EXACT_IMAGE_PERMISSION_REQUIRED');
+ }
+ const expiresAt=new Date(Math.min(...sources.map(s=>Date.parse(s.staleAfter)),...rights.flatMap((s:Row)=>s.facts.response.imagePermissions.filter((r:Row)=>listing.images.some(i=>i.url===r.url&&i.rightsEvidence===s.id)).map((r:Row)=>Date.parse(r.validUntil))))).toISOString();
+ const observedAt=new Date(Math.max(...sources.map(s=>Date.parse(s.observedAt)))).toISOString();
+ const provenance={source:'reviewed-source-package',reference:d.digest,sha256:digest({sources:sources.map(s=>({id:s.id,digest:digest(s)})),review:d.review.digest,conversions:d.financialQualification.conversions}),observedAt,expiresAt,classification:'ESTIMATED' as const};
+ const evidence=d.review.findings.map((f:Row)=>({id:f.sourceId+':'+f.kind,kind:f.kind,value:f.value,verified:true,provenance:{...provenance,source:f.sourceId,reference:f.sourceId,sha256:digest(read(f.sourceId))}}));
+ // Additional source references carry no score or commercial factual endorsement.
+ for(const sourceId of [...new Set([...listing.sourceEvidence,...listing.images.map(i=>i.rightsEvidence)])])evidence.push({id:sourceId,kind:'QUALITY',value:null,verified:false,provenance:{...provenance,source:sourceId,reference:sourceId,sha256:digest(read(sourceId))}});
+ evidence.push({id:'sim-payment:'+d.digest.slice(0,32),kind:'PAYMENT',value:100,verified:true,provenance:{...provenance,source:'isolated-payment-assumption',reference:'EXPLICIT_SIMULATION_NOT_ACTUAL_PAYMENT',classification:'SYNTHETIC'}});
+ const candidate=candidateSchema.parse({productId:d.supplier.productId,title:listing.title,category:listing.category,restricted:false,offer:{provider:'CJ',productId:d.supplier.productId,variantId:d.supplier.variantId,sku:variant.variantSku,warehouseId:matches[0]!.warehouseId,origin:'CN',destination:d.supplier.destination,stock:d.supplier.stock,price:d.financialInputs.economics.input.productCost,freight:d.financialInputs.economics.input.freight,currency:'SGD',leadDays:p.deliveryDays,quoteId:freight.id,provenance},evidence,economics:d.financialInputs.economics.input,cash:{...Object.fromEntries(['available','liabilities','committed','budget','financialDigest'].map(k=>[k,d.financialQualification.cash[k]])),fxVerified:true}});
+ if(!qualify(candidate,now).qualified)throw Error('CANONICAL_QUALIFICATION_FAILED');
+ return {candidate,listing,canonicalCandidateDigest:digest({candidate,listing}),expiresAt,sourceLineage:{dossierDigest:d.digest,sourceSnapshotDigest:d.sourceBinding.snapshotDigest,reviewDigest:d.review.digest,productId:d.supplier.productId,variantId:d.supplier.variantId,originalPrice:d.supplier.price,originalCurrency:d.supplier.currency,originalFreight:d.supplier.freight,conversions:d.financialQualification.conversions,financialDigest:d.financialInputs.financialDigest},classification:'REVIEWED_SOURCE_DERIVED_SIMULATION_NOT_ACTUAL'};
+}
+export function readMissionPreparation(store:GovernedCommerceStore,workspace:string,mission:string){initialize(store);const raw=store.db.prepare('SELECT record FROM work8_mission_preparations WHERE workspace=? AND mission=?').get(workspace,mission);if(!raw)return null;const r=JSON.parse(String(raw.record)),{digest:actual,...body}=r;if(actual!==digest(body)||r.workspace!==workspace||r.missionId!==mission)throw Error('MISSION_PREPARATION_CORRUPT');return r as Row;}
+function assessmentCheck(d:Row,a:Row,owner:string){if(a.status!=='COMPLETED_ASSESSMENT_LINKED'||a.dossierDigest!==d.digest||a.owner!==owner||a.candidateId!==d.candidateId||a.candidateBinding?.snapshotDigest!==d.sourceBinding.snapshotDigest||!hash.safeParse(a.assessmentHash).success||!id.safeParse(a.requestId).success||!id.safeParse(a.investigationId).success)throw Error('PREPARATION_ASSESSMENT_REQUIRED');}
+export type MissionResolver=(candidateId:string)=>{dossier:Row;assessment:Row};
+export function prepareReviewedMission(engine:GovernedCommerceEngine,workspace:string,owner:string,raw:unknown,resolve:MissionResolver,reader:SavedSourceReader){
+ id.parse(workspace);id.parse(owner);const command=missionPreparationSchema.parse(raw);initialize(engine.store);
+ return engine.store.transaction(()=>{const {dossier:d,assessment:a}=resolve(command.candidateId);if(d.workspace!==workspace||d.candidateId!==command.candidateId||d.digest!==command.dossierDigest)throw Error('PREPARATION_DOSSIER_STALE');assessmentCheck(d,a,owner);const pack=canonicalMissionPackage(d,reader,engine.clock());
+ const missionId='work8:'+digest({workspace,candidateId:d.candidateId,dossier:d.digest,assessment:a.assessmentHash,owner}).slice(0,48),previous=readMissionPreparation(engine.store,workspace,missionId);
+ if(previous){if(previous.owner!==owner||previous.canonicalCandidateDigest!==pack.canonicalCandidateDigest)throw Error('PREPARATION_CONFLICT');return previous;}
+ if(engine.store.history(workspace,missionId).length)throw Error('PREPARATION_MISSION_EXISTS');
+ const proposer={id:'work8-reviewed-source-proposer',workspace,role:'PROPOSER' as const},reviewer={id:'work8-canonical-policy-reviewer',workspace,role:'REVIEWER' as const};
+ const commands=[{actor:proposer,command:{type:'research',candidate:pack.candidate}},{actor:proposer,command:{type:'listing',listing:pack.listing}},{actor:reviewer,command:{type:'review',digest:pack.canonicalCandidateDigest,decision:'APPROVE',reason:'Deterministic source and schema policy review; not independent programme certification'}}];
+ for(const [i,step]of commands.entries())engine.execute(step.actor,{id:missionId+':prepare:'+i,missionId,expectedVersion:i,command:step.command});
+ const body={missionId,workspace,owner,candidateId:d.candidateId,dossierDigest:d.digest,assessmentHash:a.assessmentHash,requestId:a.requestId,investigationId:a.investigationId,canonicalCandidateDigest:pack.canonicalCandidateDigest,sourceLineage:pack.sourceLineage,expiresAt:new Date(Math.min(Date.parse(pack.expiresAt),engine.clock()+86400000)).toISOString(),preparedVersion:3,sourceReceiptDigest:engine.store.history(workspace,missionId).at(-1)!.digest,classification:pack.classification,liveAuthority:false,simulationAuthorized:false,at:new Date(engine.clock()).toISOString()};
+ const receipt={...body,digest:digest(body)};engine.store.db.prepare('INSERT INTO work8_mission_preparations VALUES(?,?,?)').run(workspace,missionId,JSON.stringify(receipt));return receipt;
+ });
+}
+export function bindPreparedMission(store:GovernedCommerceStore,workspace:string,owner:string,mission:string,d:Row,a:Row,reader:SavedSourceReader,now:number){const record=readMissionPreparation(store,workspace,mission);if(!record||record.owner!==owner||record.dossierDigest!==d.digest||record.candidateId!==d.candidateId||record.assessmentHash!==a.assessmentHash||record.requestId!==a.requestId||record.investigationId!==a.investigationId||Date.parse(record.expiresAt)<=now)throw Error('MISSION_PREPARATION_STALE');assessmentCheck(d,a,owner);const pack=canonicalMissionPackage(d,reader,now);if(record.canonicalCandidateDigest!==pack.canonicalCandidateDigest||store.history(workspace,mission)[2]?.digest!==record.sourceReceiptDigest)throw Error('MISSION_PREPARATION_CHANGED');return {...d,assessment:a,canonicalCandidateDigest:pack.canonicalCandidateDigest,preparationDigest:record.digest};}
+export function approvePreparedMission(engine:GovernedCommerceEngine,workspace:string,owner:string,raw:unknown,resolve:MissionResolver,reader:SavedSourceReader){const cmd=preparedApprovalSchema.parse(raw);return engine.store.transaction(()=>{const {dossier,assessment}=resolve(cmd.candidateId);if(dossier.digest!==cmd.dossierDigest||dossier.workspace!==workspace||dossier.candidateId!==cmd.candidateId)throw Error('PREPARATION_DOSSIER_STALE');const d=bindPreparedMission(engine.store,workspace,owner,cmd.missionId,dossier,assessment,reader,engine.clock());const state=engine.store.history(workspace,cmd.missionId).at(-1)?.state as CommerceState|undefined;if(!state)throw Error('MISSION_NOT_FOUND');return engine.execute({id:owner,workspace,role:'OWNER'},{id:cmd.id,missionId:cmd.missionId,expectedVersion:cmd.expectedVersion,command:{type:'approve',digest:d.canonicalCandidateDigest,expiresAt:readMissionPreparation(engine.store,workspace,cmd.missionId)!.expiresAt,maxExposure:qualify(state.candidate,engine.clock()).exposure}});});}

@@ -34,6 +34,19 @@ test('actual AssuranceRuntime cycle repairs registered bounded checkpoint gap wi
   assert.equal(runtime.control.get('ws_empire_1','probe','work8_read_queue_progress').status,'HEALTHY');assert.equal(runtime.control.get('ws_empire_1','probe','work8_read_queue_progress').runbookId,null);assert.equal(commerce.worker.get('ws_empire_1',task.id)!.cursor,5);assert.equal(digest(commerce.store.history('ws_empire_1',task.mission)),before);assert.equal(inferenceCalls,0);
   const discovery=runtime.control.get('ws_empire_1','probe','retained_product_discovery');assert.equal(discovery.status,'DEGRADED');assert.equal(discovery.evidence.shortfall,100);assert.equal(discovery.evidence.externalRefresh,false);
   const fulfilmentId='work8-fulfilment:'+digest({workspace:'ws_empire_1',missionId:'overdue-mission',orderId:overdue.order.orderId});const fulfilment=runtime.control.get('ws_empire_1','probe',fulfilmentId);assert.equal(fulfilment.status,'FAILED');assert.equal(fulfilment.evidence.reason,'MISSING_TRACKING_OVERDUE');assert.equal(fulfilment.runbookId,null);assert.equal(digest(commerce.store.history('ws_empire_1','overdue-mission')),overdueBefore);const fulfilmentIncident=runtime.control.list('ws_empire_1','incident').find((i:any)=>i.probeId===fulfilmentId);assert.equal(fulfilmentIncident.status,'UNRESOLVED');
+  // Remove a required column from the real collector source after a successful observation. The next
+  // cycle must replace the previous read status, even when scheduler read fails first.
+  const priorReads=runtime.control.get('ws_empire_1','probe','four_eyes_reads');
+  assert.ok(priorReads);assert.notEqual(priorReads.status,'UNAVAILABLE');
+  const source=new DatabaseSync(path.join(root,'commissioning','intelligence.sqlite'));
+  source.exec('ALTER TABLE objects RENAME COLUMN body TO isolated_unavailable_body');
+  await runtime.cycle();
+  assert.equal(runtime.control.get('ws_empire_1','probe','four_eyes_reads').status,'UNAVAILABLE');
+  assert.equal(runtime.control.get('ws_empire_1','probe','four_eyes_scheduler').status,'UNAVAILABLE');
+  source.exec('ALTER TABLE objects RENAME COLUMN isolated_unavailable_body TO body');source.close();
+  await runtime.cycle();
+  assert.equal(runtime.control.get('ws_empire_1','probe','four_eyes_reads').status,priorReads.status);
+  assert.equal(inferenceCalls,0);
   const validCheckpoint=commerce.worker.get('ws_empire_1',task.id)!;
   commerce.store.db.prepare('UPDATE commerce_runtime_tasks SET record=? WHERE workspace=? AND id=?').run(JSON.stringify({...validCheckpoint,status:'COMPLETE'}),'ws_empire_1',task.id);
   await runtime.cycle();const integrity=runtime.control.list('ws_empire_1','incident').find((i:any)=>i.probeId==='work8_checkpoint_integrity');assert.ok(integrity);assert.notEqual(integrity.status,'RECOVERED');

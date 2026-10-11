@@ -106,7 +106,10 @@ export class AssuranceRuntime {
      const reads=capabilities.map(c=>{const h=health.find(h=>h.id===c.id);return {id:c.id,...classifyCapability({implemented:c.implemented,configured:c.credentials.every(k=>Boolean(process.env[k])),health:h,now:Date.now(),maxAgeMs:c.ttlMs}),lastGoodAt:h?.lastGoodAt??null,evidenceId:h?.evidenceId??null,failure:h?.failure??null};});
      observe('four_eyes_reads',aggregateCapabilityHealth(reads),'Per-capability saved reads distinguish failed, stale, missing and external evidence; no monitoring API calls',reads);
     } finally {db.close();}
-   } catch {observe('four_eyes_scheduler','UNAVAILABLE','Four Eyes durable scheduler source unavailable');}
+   } catch {
+    observe('four_eyes_scheduler','UNAVAILABLE','Four Eyes durable scheduler source unavailable');
+    observe('four_eyes_reads','UNAVAILABLE','Four Eyes capability source unavailable; prior observations cannot establish current read health',{observedAt:Date.now(),inferenceCalls:0});
+   }
    this.control.observe(workspace,readWork8ResponseBinding(this.root,workspace));
    const view=verifyReconciliation(this.root,workspace);
    const admission=this.control.get(workspace,'acceptance','active');

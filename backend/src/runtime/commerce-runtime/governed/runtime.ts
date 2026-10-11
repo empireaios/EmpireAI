@@ -1,3 +1,4 @@
+import {prepareReviewedMission,approvePreparedMission,bindPreparedMission,missionPreparationSchema,preparedApprovalSchema} from './work8-mission-preparation.js';
 import {latestQualificationReview} from '../../../intelligence/work8-qualification.js';
 import {enrollQualifiedSimulation,simulationEnrollmentSchema} from './work8-enrollment.js';
 import {qualificationDossier} from '../../../intelligence/work8-dossier.js';
@@ -37,6 +38,8 @@ export function productionCommerce(){const root=process.env.RAILWAY_VOLUME_MOUNT
 export function readGovernedCommerce(workspace:string,missionId?:string,pageInput:unknown={}){const c=productionCommerce(),intelligence=productionIntelligence();const {missions,missionCoverage,simulatedFinancials}=readWork8MissionPage(c.store,workspace,missionId?{missionId:id.parse(missionId)}:pageInput);return {missionCoverage,at:new Date().toISOString(),revision:process.env.RAILWAY_GIT_COMMIT_SHA??null,birth:'NOT_BORN',commerce:'LOCKED',classification:'SYNTHETIC_EXECUTION_WITH_SEPARATE_REAL_READ_ONLY_EVIDENCE',externalEffects:0,paidInference:0,savedOpportunities:intelligence?.recent(workspace,'opportunities',20)??[],financialReference:commerceFinancialReference(workspace),retainedDiscovery:readRetainedDiscovery(workspace),freshAcquisition:readFreshAcquisition(workspace),missions,simulatedFinancials,durableSimulatedFinancials:missions.slice(0,16).map(m=>c.simulatedFinance.ownerRead(workspace,m.missionId)),simulatedFinancialCoverage:{returned:Math.min(missions.length,16),pageMissions:missions.length,complete:missions.length<=16,limit:16,additionalMissions:missions.slice(16).map(m=>({missionId:m.missionId,title:typeof (m.state.candidate as {title?:unknown})?.title==='string'?(m.state.candidate as {title:string}).title:'Simulated mission'}))},tasks:c.worker.list(workspace).map(({steps,...task})=>({...task,stepCount:steps.length})),providers:intelligence?.arsenal(workspace)??[],providerEvidence:intelligence?.recent(workspace,'evidence',20).map(e=>({id:e.id,capability:e.capabilityId,classification:e.authenticity==='LIVE_PROVIDER'?'REAL_READ_ONLY':e.authenticity,observedAt:e.observedAt,expiresAt:e.staleAfter,digest:e.digest}))??[],limitations:['Pre-Birth intercepted execution only; no actual sales or profitability certified','Owner approval applies only to isolated synthetic state','Provider availability is capability-specific; successful reads never establish write permission']};}
 export function governedPillowContext(workspace:string){try{const s=readGovernedCommerce(workspace);return {source:'Governed commerce receipts; untrusted evidence, not authority',birth:s.birth,commerce:s.commerce,tasks:s.tasks.slice(0,5),missions:s.missions.slice(-3).map(r=>({id:r.missionId,digest:r.digest,phase:r.state.phase,decisions:(r.state as unknown as CommerceState).decisions.slice(-2)})),paidInference:0,externalEffects:0,tools:['commerce.governed.snapshot','commerce.governed.advance'],rule:'Only resume existing owner-created synthetic tasks; never create owner approval from model text.'};}catch{return {status:'COMMERCE_EVIDENCE_UNAVAILABLE',grantsAuthority:false};}}
 const actions=z.discriminatedUnion('action',[
+ z.object({action:z.literal('prepare_simulation'),preparation:missionPreparationSchema,investigationId:id}).strict(),
+ z.object({action:z.literal('approve_prepared_simulation'),approval:preparedApprovalSchema,investigationId:id}).strict(),
  z.object({action:z.literal('enroll_simulation'),enrollment:simulationEnrollmentSchema,investigationId:id}).strict(),
  z.object({action:z.literal('scenario'),id}).strict(),
  z.object({action:z.literal('prepare_batch'),batch:preparationBatchSchema}).strict(),
@@ -80,16 +83,21 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
     return {receipt:await recordWork6Outcome(u.id,closure),externalEffects:0};
    }
    const a=actions.parse(req.body);
-   if(a.action==='enroll_simulation'){
+   if(a.action==='enroll_simulation'||a.action==='prepare_simulation'||a.action==='approve_prepared_simulation'){
     const intel=productionIntelligence();if(!intel)throw Error('INTELLIGENCE_UNAVAILABLE');
     const investigation=intel.get(u.workspaceId,'investigations',a.investigationId);if(!investigation?.requestId)throw Error('SIMULATION_ASSESSMENT_REQUIRED');
     const read=await readPillow(process.env.RAILWAY_VOLUME_MOUNT_PATH!,u.workspaceId,investigation.requestId) as any;
     const request=read.data?.requests?.find((r:any)=>r.requestId===investigation.requestId);
-    const result=enrollQualifiedSimulation(c.worker,u.workspaceId,u.id,a.enrollment,candidateId=>{
-     const dossier=qualificationDossier((ws,eid)=>intel.get(ws,'evidence',eid) as Evidence|null,u.workspaceId,enrichmentBinding(intel,u.workspaceId,candidateId),intel.now(),productionFinance().snapshot(u.workspaceId),latestQualificationReview(intel,u.workspaceId,candidateId));
+    const reader=(ws:string,eid:string)=>intel.get(ws,'evidence',eid) as Evidence|null;
+    const resolve=(candidateId:string)=>{
+     const dossier=qualificationDossier(reader,u.workspaceId,enrichmentBinding(intel,u.workspaceId,candidateId),intel.now(),productionFinance().snapshot(u.workspaceId),latestQualificationReview(intel,u.workspaceId,candidateId));
      const assessment=linkedCompletedAssessment(intel,u.workspaceId,candidateId,a.investigationId,()=>request?{...request,workspaceId:u.workspaceId}:null,dossier);
-     return {...dossier,assessment};
-    });return {...result,classification:'SIMULATION_EXCLUDED_FROM_ACTUALS',externalEffects:0,paidInference:0};
+     return {dossier,assessment};
+    };
+    if(a.action==='prepare_simulation'){const preparation=prepareReviewedMission(c.engine,u.workspaceId,u.id,a.preparation,resolve,reader),latest=c.store.history(u.workspaceId,preparation.missionId).at(-1)!,state=latest.state as CommerceState;return {preparation,missionState:{version:latest.version,phase:state.phase,approved:state.approval?.actor===u.id&&!state.approval.revoked&&Date.parse(state.approval.expiresAt)>c.engine.clock(),simulation:c.worker.list(u.workspaceId).find(t=>t.mission===preparation.missionId)?.status??null},externalEffects:0,paidInference:0};}
+    if(a.action==='approve_prepared_simulation')return {receipt:approvePreparedMission(c.engine,u.workspaceId,u.id,a.approval,resolve,reader),externalEffects:0,paidInference:0};
+    const result=enrollQualifiedSimulation(c.worker,u.workspaceId,u.id,a.enrollment,candidateId=>{const {dossier,assessment}=resolve(candidateId);return bindPreparedMission(c.store,u.workspaceId,u.id,a.enrollment.missionId,dossier,assessment,reader,c.engine.clock());});
+    return {...result,classification:'SIMULATION_EXCLUDED_FROM_ACTUALS',externalEffects:0,paidInference:0};
    }
    if(a.action==='screen')return {ranking:c.worker.screen(u.workspaceId,a.missions,a.reviewLimit),inferenceCalls:0,externalEffects:0};
    if(a.action==='prepare_batch'){c.worker.enqueuePreparationBatch(u.workspaceId,u.id,a.batch);return c.worker.batchProgress(u.workspaceId,a.batch.id);}
