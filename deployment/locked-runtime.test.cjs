@@ -2,6 +2,42 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const {configuration,PROFILE}=require('./locked-runtime.cjs');
 const {runBounded}=require('./canary-launcher.cjs');
+test('whole-volume capture refuses a second-store writer during later Redis copy',async()=>{
+ const {ACK,backup,restore}=require('./locked-state-bundle.cjs');
+ const {DatabaseSync}=require('node:sqlite'),{spawn}=require('node:child_process');
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'cross-store-capture-'));
+ const application=path.join(root,'application'),redis=path.join(root,'redis'),signal=path.join(root,'write'),done=path.join(root,'done');
+ fs.mkdirSync(application);fs.mkdirSync(redis);fs.mkdirSync(path.join(application,'finance'));
+ const finance=path.join(application,'finance','evidence.sqlite');
+ const db=new DatabaseSync(finance);db.exec('CREATE TABLE generation(value INTEGER); INSERT INTO generation VALUES(1)');db.close();
+ fs.writeFileSync(path.join(application,'empireai-brain.db'),'unchanged primary fixture');
+ const aof=path.join(redis,'appendonly.aof');fs.writeFileSync(aof,'retained Redis fixture');
+ const child=spawn(process.execPath,['-e',`const fs=require('node:fs'),{DatabaseSync}=require('node:sqlite');const [signal,done,filename]=process.argv.slice(1);const timer=setInterval(()=>{if(!fs.existsSync(signal))return;clearInterval(timer);const db=new DatabaseSync(filename);db.exec('UPDATE generation SET value=2');db.close();fs.writeFileSync(done,'committed');},5);setTimeout(()=>process.exit(2),10000).unref();`,signal,done,finance],{stdio:['ignore','ignore','pipe']});
+ let spawnError;
+ const exited=new Promise(resolve=>{child.once('error',error=>{spawnError=error;resolve({error:String(error)});});child.once('exit',(code,signal)=>resolve({code,signal}));});
+ child.stderr.resume();
+ const read=fs.readFileSync;let reads=0,injected=false;
+ const options={acknowledgement:ACK,buildSha:'a'.repeat(40),applicationRoot:application,redisRoot:redis,destination:path.join(root,'refused'),shutdownReceiptSha256:'b'.repeat(64)};
+ try{
+  fs.readFileSync=function(file,...args){
+   if(file===aof&&++reads===2){
+    injected=true;fs.writeFileSync(signal,'commit finance after application verification');
+    const deadline=Date.now()+8000;
+    while(!fs.existsSync(done)){if(Date.now()>deadline)throw Error('WRITER_BARRIER_TIMEOUT');Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,5);}
+   }
+   return read.call(fs,file,...args);
+  };
+  assert.throws(()=>backup(options),/Source changed during backup/);
+  assert.equal(injected,true);
+  assert.equal(fs.existsSync(path.join(options.destination,'manifest.json')),false);
+  fs.readFileSync=read;
+  assert.deepEqual(await exited,{code:0,signal:null});
+  const next={...options,destination:path.join(root,'stable')};const captured=backup(next);
+  const restored=restore({acknowledgement:ACK,buildSha:options.buildSha,bundle:next.destination,destination:path.join(root,'restored'),manifestSha256:captured.manifestSha256});
+  const check=new DatabaseSync(path.join(restored.applicationRoot,'finance','evidence.sqlite'),{readOnly:true});
+  try{assert.equal(check.prepare('SELECT value FROM generation').get().value,2);}finally{check.close();}
+ }finally{fs.readFileSync=read;if(!spawnError&&child.pid&&child.exitCode===null&&child.signalCode===null)child.kill('SIGKILL');await exited;fs.rmSync(root,{recursive:true,force:true});}
+});
 test('permanent profile is explicit, isolated, allows only bounded inference and named intelligence credentials and has no canary expiry',()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'locked-profile-'));
  const env={EMPIRE_RUNTIME_PROFILE:PROFILE,RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'commissioning','empireai-brain.db'),FOUNDER_EMAIL:'a@example.invalid',ADMIN_EMAIL:'b@example.invalid',FOUNDER_PASSWORD:'a'.repeat(32),ADMIN_PASSWORD:'b'.repeat(32),SESSION_SECRET:'c'.repeat(40),EMPIRE_LOCKED_REDIS_HOST:'redis.railway.internal',REDIS_URL:'redis://default:isolated@redis.railway.internal:6379/0'};

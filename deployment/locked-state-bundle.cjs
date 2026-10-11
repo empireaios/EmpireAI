@@ -33,6 +33,10 @@ function backup(o){
  for(const root of Object.values(roots))assert.ok(!o.destination.startsWith(root+'/'),'Backup must be outside source roots');
  fs.mkdirSync(o.destination,{mode:0o700});
  for(const [role,root]of Object.entries(roots)){copy(root,path.join(o.destination,role),inventory[role]);assert.deepEqual(files(root),inventory[role],'Source changed during backup');}
+ // A writer in an earlier root may commit while a later root is copied.
+ // Recheck every root before sealing; per-root checks alone miss that window.
+ // This detects mutation, but does not replace caller-enforced global shutdown.
+ for(const [role,root]of Object.entries(roots))assert.deepEqual(files(root),inventory[role],'Source changed during backup');
  const manifest={schema:'locked-state-bundle-v1',primaryRelativePath,buildSha:o.buildSha,shutdownReceiptSha256:o.shutdownReceiptSha256,inventory,externalRequirements:['same owner/session secrets','matching runtime profile and code','isolated Redis credentials'],quiescenceVerifiedByCaller:true};
  const bytes=JSON.stringify(manifest,null,2)+'\n';fs.writeFileSync(path.join(o.destination,'manifest.json'),bytes,{flag:'wx',mode:0o600});sync(o.destination);return{manifestSha256:sha(bytes),inventory};
 }
