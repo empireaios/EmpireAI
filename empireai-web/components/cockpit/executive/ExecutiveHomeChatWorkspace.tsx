@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {TwinChatContext} from '@/components/owner/work8/TwinChatContext';
 import { usePathname } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
@@ -147,6 +148,7 @@ export function ExecutiveHomeChatWorkspace() {
       data-history-scroll="workspace-windowed"
       data-chat-shell="bounded"
     >
+      <TwinChatContext/>
       <header className="shrink-0 border-b border-gold/10 px-5 py-3">
         <div className="flex flex-wrap items-start justify-between gap-2">
           <div>
