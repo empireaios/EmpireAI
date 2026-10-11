@@ -26,17 +26,21 @@ function backup(o){
  validate(o);assert.match(o.shutdownReceiptSha256,/^[a-f0-9]{64}$/);
  const roots={application:o.applicationRoot,redis:o.redisRoot};
  const inventory=Object.fromEntries(Object.entries(roots).map(([k,v])=>[k,files(v)]));
- assert.ok(inventory.application.some(f=>f.path==='empireai-brain.db'),'Primary required');
+ const primaryRelativePath=o.primaryRelativePath??'empireai-brain.db';
+ assert.ok(['empireai-brain.db','commissioning/empireai-brain.db'].includes(primaryRelativePath),'Unsupported application layout');
+ assert.ok(inventory.application.some(f=>f.path===primaryRelativePath),'Primary required');
  assert.ok(inventory.redis.some(f=>/\.aof|\.rdb/.test(f.path)),'Redis persistence required');
  for(const root of Object.values(roots))assert.ok(!o.destination.startsWith(root+'/'),'Backup must be outside source roots');
  fs.mkdirSync(o.destination,{mode:0o700});
  for(const [role,root]of Object.entries(roots)){copy(root,path.join(o.destination,role),inventory[role]);assert.deepEqual(files(root),inventory[role],'Source changed during backup');}
- const manifest={schema:'locked-state-bundle-v1',buildSha:o.buildSha,shutdownReceiptSha256:o.shutdownReceiptSha256,inventory,externalRequirements:['same owner/session secrets','matching runtime profile and code','isolated Redis credentials'],quiescenceVerifiedByCaller:true};
+ const manifest={schema:'locked-state-bundle-v1',primaryRelativePath,buildSha:o.buildSha,shutdownReceiptSha256:o.shutdownReceiptSha256,inventory,externalRequirements:['same owner/session secrets','matching runtime profile and code','isolated Redis credentials'],quiescenceVerifiedByCaller:true};
  const bytes=JSON.stringify(manifest,null,2)+'\n';fs.writeFileSync(path.join(o.destination,'manifest.json'),bytes,{flag:'wx',mode:0o600});sync(o.destination);return{manifestSha256:sha(bytes),inventory};
 }
 function restore(o){
  validate(o);const bytes=fs.readFileSync(path.join(o.bundle,'manifest.json'));assert.equal(sha(bytes),o.manifestSha256,'Independent manifest hash required');const m=JSON.parse(bytes);
  assert.equal(m.schema,'locked-state-bundle-v1');assert.equal(m.buildSha,o.buildSha);
+ const primary=m.primaryRelativePath??'empireai-brain.db';assert.ok(['empireai-brain.db','commissioning/empireai-brain.db'].includes(primary));
+ assert.ok(m.inventory.application.some(f=>f.path===primary),'Primary required');
  assert.deepEqual(Object.keys(m.inventory).sort(),['application','redis']);
  for(const role of ['application','redis'])assert.deepEqual(files(path.join(o.bundle,role)),m.inventory[role]);
  fs.mkdirSync(o.destination,{mode:0o700});for(const role of ['application','redis'])copy(path.join(o.bundle,role),path.join(o.destination,role),m.inventory[role]);sync(o.destination);

@@ -1,3 +1,4 @@
+import {retainProductionFinance} from './finance/financial-centre.js';
 import { withDrainedWork8Background } from './runtime/work8-background-capture.js';
 import { runLegacyBusinessBootstrap } from "./runtime/startup-bootstrap-policy.js";
 import { installLockedCommissioning } from "./runtime/locked-commissioning.js";
@@ -720,6 +721,7 @@ function createEmpireShutdown(deps: {
   eventStream: EventStreamHub;
   stopBackgroundWork: () => Promise<void>;
 }) {
+  const releaseFinance = retainProductionFinance();
   let shutdown: Promise<void> | undefined;
   return () => shutdown ??= (async () => {
     deps.eventStream.stop();
@@ -729,6 +731,7 @@ function createEmpireShutdown(deps: {
       await shutdownPillowHost();
     }
     await deps.brain.shutdown();
+    releaseFinance();
   })();
 }
 

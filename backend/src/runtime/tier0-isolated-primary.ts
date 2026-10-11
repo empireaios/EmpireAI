@@ -1,3 +1,4 @@
+import {retainProductionFinance} from '../finance/financial-centre.js';
 import {registerGovernedCommerce,productionCommerce} from './commerce-runtime/governed/runtime.js';
 import {registerFinancialCentre} from '../finance/runtime.js';
 import { installAssuranceRuntime, readAdvancedAssurance } from '../assurance/runtime.js';
@@ -516,11 +517,13 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
   });
   installLockedCommissioning(app);
   let stopSweeper: () => Promise<void> = async () => {};
+  const releaseFinance = retainProductionFinance();
   const lifecycle = installPrimaryShutdown({
     getChild: () => workerState.child,
     stopBackground: () => stopSweeper(),
     closeServer: async () => { await app.close(); },
     disconnect: () => redisClient.disconnect(),
+    closeStores: releaseFinance,
     report: (event, error) => {
       if (error || event !== "primary_shutdown_complete") {
         logger.error({ error: error instanceof Error ? error.message : error }, event);

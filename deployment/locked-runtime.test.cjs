@@ -17,3 +17,20 @@ test('Work4 launcher forwards only named sensing credentials and explicit switch
  const env={EMPIRE_RUNTIME_PROFILE:PROFILE,RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'commissioning','empireai-brain.db'),FOUNDER_EMAIL:'a@example.invalid',ADMIN_EMAIL:'b@example.invalid',FOUNDER_PASSWORD:'a'.repeat(32),ADMIN_PASSWORD:'b'.repeat(32),SESSION_SECRET:'c'.repeat(40),EMPIRE_LOCKED_REDIS_HOST:'redis.railway.internal',REDIS_URL:'redis://default:isolated@redis.railway.internal:6379/0',INTELLIGENCE_ENABLED:'true',INTELLIGENCE_DISABLED:'false',AMAZON_SP_API_CLIENT_ID:'test-client',AMAZON_SP_API_CLIENT_SECRET:'test-secret',AMAZON_SP_API_REFRESH_TOKEN:'test-refresh',AMAZON_SP_API_REGION:'NA',CJ_API_KEY:'test-cj',LIVE_CJ_FULFILLMENT_ENABLED:'true',LIVE_PAYMENT_ENABLED:'true',META_ADS_LAUNCH_ENABLED:'true'};
  try{const actual=configuration(env);for(const key of ['INTELLIGENCE_ENABLED','INTELLIGENCE_DISABLED','AMAZON_SP_API_CLIENT_ID','AMAZON_SP_API_CLIENT_SECRET','AMAZON_SP_API_REFRESH_TOKEN','AMAZON_SP_API_REGION','CJ_API_KEY'])assert.equal(actual[key],env[key]);for(const key of ['LIVE_CJ_FULFILLMENT_ENABLED','LIVE_PAYMENT_ENABLED','META_ADS_LAUNCH_ENABLED','PRODUCTION_DEPLOYMENT_ENABLED'])assert.equal(actual[key],'false');assert.equal(actual.COMMERCE_READINESS_BLOCKED,'true');assert.equal(actual.EMPIRE_TIER0_ISOLATION,'true');assert.equal(actual.EMPIRE_ENABLE_EXTENSION_ROUTES,'false');assert.throws(()=>configuration({...env,STRIPE_SECRET_KEY:'unapproved'}));assert.throws(()=>configuration({...env,INTELLIGENCE_ENABLED:'yes'}));}finally{fs.rmSync(root,{recursive:true});}
 });
+
+test('whole-volume stopped bundle retains finance and commerce and restores legacy layout',()=>{
+ const {ACK,backup,restore}=require('./locked-state-bundle.cjs');
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'whole-volume-'));
+ try{for(const nested of [false,true]){
+  const source=path.join(root,nested?'volume':'legacy'),redis=path.join(root,nested?'redis-volume':'redis-legacy');fs.mkdirSync(source);fs.mkdirSync(redis);
+  const primary=nested?'commissioning/empireai-brain.db':'empireai-brain.db';
+  for(const file of [primary,...(nested?['finance/evidence.sqlite','commerce/runtime.sqlite']:[])]){fs.mkdirSync(path.dirname(path.join(source,file)),{recursive:true});fs.writeFileSync(path.join(source,file),'isolated opaque fixture '+file);}
+  fs.writeFileSync(path.join(redis,'appendonly.aof'),'isolated Redis inventory fixture');
+  const destination=source+'-backup',buildSha='a'.repeat(40);
+  const result=backup({acknowledgement:ACK,buildSha,applicationRoot:source,redisRoot:redis,destination,shutdownReceiptSha256:'b'.repeat(64),...(nested?{primaryRelativePath:primary}:{})});
+  const recovered=restore({acknowledgement:ACK,buildSha,bundle:destination,destination:source+'-restore',manifestSha256:result.manifestSha256});
+  for(const entry of result.inventory.application)assert.equal(fs.readFileSync(path.join(recovered.applicationRoot,entry.path),'utf8'),fs.readFileSync(path.join(source,entry.path),'utf8'));
+  if(nested)assert.equal(result.inventory.application.length,3);
+  assert.throws(()=>backup({acknowledgement:ACK,buildSha,applicationRoot:source,redisRoot:redis,destination:source+'-bad',shutdownReceiptSha256:'b'.repeat(64),primaryRelativePath:'../escape'}),/Unsupported/);
+ }}finally{fs.rmSync(root,{recursive:true,force:true});}
+});

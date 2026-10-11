@@ -321,6 +321,34 @@ jobs:
         run: |
           echo 'Lint is diagnostic and non-gating in this first product-path slice. Baseline observed on origin/main: 164 errors and 11 warnings. This is unresolved debt, not a lint PASS.' >> "$GITHUB_STEP_SUMMARY"
 
+  work8-frontend-review:
+    name: Work8 exact frontend review candidate (no deployment)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout pinned review source without moving deployment branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 720764722e6178d4126dcf376383096e204ec5ba
+          persist-credentials: false
+      - name: Verify reviewed source identity
+        run: test "$(git rev-parse HEAD)" = 720764722e6178d4126dcf376383096e204ec5ba
+      - name: Use pinned Node runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Clean install reviewed web
+        run: npm ci --prefix empireai-web
+      - name: Typecheck reviewed web
+        run: npm run typecheck --prefix empireai-web
+      - name: Test reviewed web and financial readbacks
+        working-directory: empireai-web
+        run: |
+          npm test
+          node --test tests/work8/financial-rehearsal.test.mjs
+      - name: Build reviewed web without deployment
+        run: npm run build --prefix empireai-web
+
   bounded-redis-image:
     name: Real Redis image expiry, AOF and signal proof
     runs-on: ubuntu-latest
@@ -441,6 +469,7 @@ jobs:
       - backend
       - legacy-frontend
       - empireai-web
+      - work8-frontend-review
       - bounded-redis-image
       - commerce-browser
       - legacy-capture-proof
@@ -453,6 +482,7 @@ jobs:
           PILLOW_RESULT: ${{ needs.pillow.result }}
           BACKEND_RESULT: ${{ needs.backend.result }}
           LEGACY_WEB_RESULT: ${{ needs.legacy-frontend.result }}
+          WORK8_WEB_RESULT: ${{ needs.work8-frontend-review.result }}
           NEXT_WEB_RESULT: ${{ needs.empireai-web.result }}
           REDIS_IMAGE_RESULT: ${{ needs.bounded-redis-image.result }}
           LEGACY_CAPTURE_RESULT: ${{ needs.legacy-capture-proof.result }}
@@ -473,6 +503,7 @@ jobs:
             "$BACKEND_RESULT" \
             "$LEGACY_WEB_RESULT" \
             "$NEXT_WEB_RESULT" \
+            "$WORK8_WEB_RESULT" \
             "$REDIS_IMAGE_RESULT" \
             "$COMMERCE_BROWSER_RESULT" \
             "$LEGACY_CAPTURE_RESULT"; do
