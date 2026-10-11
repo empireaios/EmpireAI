@@ -1,3 +1,4 @@
+import {latestQualificationReview} from '../../../intelligence/work8-qualification.js';
 import {enrollQualifiedSimulation,simulationEnrollmentSchema} from './work8-enrollment.js';
 import {qualificationDossier} from '../../../intelligence/work8-dossier.js';
 import {enrichmentBinding,linkedCompletedAssessment} from '../../../intelligence/work8-enrichment.js';
@@ -85,8 +86,8 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
     const read=await readPillow(process.env.RAILWAY_VOLUME_MOUNT_PATH!,u.workspaceId,investigation.requestId) as any;
     const request=read.data?.requests?.find((r:any)=>r.requestId===investigation.requestId);
     const result=enrollQualifiedSimulation(c.worker,u.workspaceId,u.id,a.enrollment,candidateId=>{
-     const dossier=qualificationDossier((ws,eid)=>intel.get(ws,'evidence',eid) as Evidence|null,u.workspaceId,enrichmentBinding(intel,u.workspaceId,candidateId),intel.now(),productionFinance().snapshot(u.workspaceId));
-     const assessment=linkedCompletedAssessment(intel,u.workspaceId,candidateId,a.investigationId,()=>request?{...request,workspaceId:u.workspaceId}:null);
+     const dossier=qualificationDossier((ws,eid)=>intel.get(ws,'evidence',eid) as Evidence|null,u.workspaceId,enrichmentBinding(intel,u.workspaceId,candidateId),intel.now(),productionFinance().snapshot(u.workspaceId),latestQualificationReview(intel,u.workspaceId,candidateId));
+     const assessment=linkedCompletedAssessment(intel,u.workspaceId,candidateId,a.investigationId,()=>request?{...request,workspaceId:u.workspaceId}:null,dossier);
      return {...dossier,assessment};
     });return {...result,classification:'SIMULATION_EXCLUDED_FROM_ACTUALS',externalEffects:0,paidInference:0};
    }

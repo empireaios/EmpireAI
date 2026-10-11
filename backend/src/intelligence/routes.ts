@@ -36,7 +36,7 @@ export function registerIntelligence(app:FastifyInstance,owner:(r:FastifyRequest
    const predecessors=[];
    const failedRequests:string[]=[];
    for(const id of c.grant.predecessors){const read=await readPillow(process.env.RAILWAY_VOLUME_MOUNT_PATH!,w,id) as any;const prior=read.data?.requests?.find((x:any)=>x.requestId===id);if(!prior)throw Error('PREDECESSOR_UNAVAILABLE');if(prior.status==='FAILED_FATAL')failedRequests.push(id);predecessors.push({id,hash:digest({status:prior.status,failureClass:prior.failureClass,finalResult:prior.finalResult,responseText:prior.responseText})});}
-   result=authorizeInvestigation(s,w,r.user!.id,c.grant);s.put(w,'investigations',c.grant.id,{...result as object,predecessorProof:predecessors});
+   result=authorizeInvestigation(s,w,r.user!.id,c.grant,productionFinance().snapshot(w));s.put(w,'investigations',c.grant.id,{...result as object,predecessorProof:predecessors});
    // Reconcile a previously interrupted status only from its durable terminal request.
    // Never reset that request, grant, plan or accounting; the successor has its own ID.
    const recoveredMissionIds:string[]=[];
