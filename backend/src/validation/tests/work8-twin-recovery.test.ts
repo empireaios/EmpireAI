@@ -17,6 +17,27 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  source.admit(p,{id:'cohort',sessionId:'exam',expectedVersion:2,count:2,authorizeLabelledFixtures:true});source.authority.command(p,{action:'GRANT',id:'grant',sessionId:'exam',expectedVersion:0,mode:'ONE_HOUR'});
  for(let i=0;i<5;i++)source.cycle();
  const version={applicationRevision:'a'.repeat(40),configurationDigest:digest({isolated:true})};
+
+ const reference={sessionId:'exam',missionId:source.projection(p,'exam').records[0]!.missionId,receiptDigest:source.projection(p,'exam').records[0]!.receiptDigest};
+ const intake={id:'inquiry',reference,threadId:'normal',expectedVersion:0,action:'RECEIVE',category:'PRODUCT_INQUIRY',message:'What size is it?',deadlineAt:now+1000};
+ assert.equal(source.communications.command(p,intake).risk,'NORMAL');assert.equal(source.communications.command(p,intake).version,1);
+ source.communications.command(p,{id:'draft',reference,threadId:'normal',expectedVersion:1,action:'PREPARE'});
+ const high=source.communications.command(p,{...intake,id:'adverse',threadId:'adverse',category:'CHARGEBACK_DISPUTE'});assert.equal(high.status,'OWNER_ESCALATION');
+ assert.throws(()=>source.communications.command(p,{...intake,id:'forged',reference:{...reference,receiptDigest:'0'.repeat(64)}}),/STALE/);
+ assert.throws(()=>source.communications.command({...p,owner:'foreign'},intake),/OWNER_SCOPE/);
+ assert.equal(source.communications.read(p,'exam')[0]!.risk,'HIGH');
+
+ const asset={id:'fixture-image',url:'https://example.invalid/revised.png',kind:'IMAGE',sha256:digest('labelled-fixture'),sourceIdentity:'fixture-source',rightsEvidence:'Synthetic examination only; no licensed media claimed',rightsStatus:'UNVERIFIED',provenance:'Test metadata, no image editing performed'};
+ const proposal=source.media.command(p,{action:'PROPOSE',id:'media-one',reference,expectedVersion:0,instructions:'Labelled editing fixture',assets:[asset],editingReceipt:'fixture-not-provider-receipt'});
+ assert.throws(()=>source.media.command(p,{action:'APPROVE_INTERNAL',id:'bad-rights',reference,expectedVersion:1,batchDigest:proposal.batchDigest}),/RIGHTS/);
+ const revised=source.media.command(p,{action:'PROPOSE',id:'media-two',reference,expectedVersion:1,instructions:'Reviewed fixture rights boundary',assets:[{...asset,rightsStatus:'OWNER_REVIEWED'}],editingReceipt:'fixture-not-provider-receipt'});
+ assert.throws(()=>source.media.command(p,{action:'APPROVE_EXTERNAL',id:'no-internal',reference,expectedVersion:2,batchDigest:revised.batchDigest}),/INTERNAL_APPROVAL/);
+ source.media.command(p,{action:'APPROVE_INTERNAL',id:'internal',reference,expectedVersion:2,batchDigest:revised.batchDigest});
+ source.media.command(p,{action:'APPROVE_EXTERNAL',id:'external',reference,expectedVersion:3,batchDigest:revised.batchDigest});
+ assert.equal(source.media.read(p,reference).externalStatus,'SIMULATED_SUBMISSION_INTERCEPTED');
+ source.media.command(p,{action:'PROPOSE',id:'media-three',reference,expectedVersion:4,instructions:'Later fixture edit invalidates submission',assets:[{...asset,rightsStatus:'OWNER_REVIEWED'}],editingReceipt:'fixture-not-provider-receipt'});
+ assert.equal(source.media.read(p,reference).externalStatus,'NOT_SUBMITTED');
+ assert.throws(()=>source.media.command(p,{action:'APPROVE_EXTERNAL',id:'stale-media',reference,expectedVersion:5,batchDigest:revised.batchDigest}),/PROPOSAL_STALE/);
  const first=captureTwinCheckpoint(source,p,'exam',version);
  assert.throws(()=>initializeTwinRecoveryTarget(source.store),/NOT_EMPTY/);
  initializeTwinRecoveryTarget(target.store);
@@ -25,6 +46,7 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  assert.equal(replayTwinCheckpoint(target,first,first.digest).status,'APPLIED');
  assert.equal(replayTwinCheckpoint(target,first,first.digest).status,'ALREADY_APPLIED');
  assert.deepEqual(target.projection(p,'exam').records,source.projection(p,'exam').records);
+ assert.deepEqual(target.communications.read(p,'exam'),source.communications.read(p,'exam'));
  assert.notEqual(target.authority.read(p,'exam').status,'ACTIVE');assert.equal(target.cycle().status,'BLOCKED');
  for(let i=0;i<40;i++)source.cycle();now+=86460000;source.authority.command(p,{action:'GRANT',id:'settle',sessionId:'exam',expectedVersion:1,mode:'ONE_HOUR'});for(let i=0;i<20;i++)source.cycle();
  const second=captureTwinCheckpoint(source,p,'exam',{...version,applicationRevision:'b'.repeat(40)},first);
@@ -33,6 +55,7 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  // observations can coexist, but canonical business records must remain equal.
  replayTwinCheckpoint(target,second,second.digest);
  assert.deepEqual(target.projection(p,'exam').records,source.projection(p,'exam').records);
+ assert.deepEqual(target.communications.read(p,'exam'),source.communications.read(p,'exam'));
  assert.equal(target.store.db.prepare('SELECT count(*) n FROM work8_sim_finance_events').get()?.n,22);
  assert.throws(()=>replayTwinCheckpoint(target,first,first.digest),/REPLAY_ORDER/);
  assert.throws(()=>replayTwinCheckpoint(target,{...second,owner:'foreign'},second.digest),/INTEGRITY/);

@@ -7,6 +7,8 @@ import {Work8TwinRuntime} from './work8-twin-runtime.js';
 // Explicit scope: canonical twin business state only. Secrets, live journals,
 // owner policy and authority grants are NEVER copied or replayed.
 const specs = [
+ ['work8_twin_media','workspace,session,mission,version','session',false],
+ ['work8_twin_communications','workspace,session,thread,version','session',false],
  ['work8_twin_events','workspace,session,version','session',false],
  ['work8_twin_admissions','workspace,id','session',false],
  ['work8_twin_observations','workspace,session,id','session',false],
