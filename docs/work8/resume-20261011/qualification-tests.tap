@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: owner decision persists immutably across restart and exact replay, without approval or authority
+ok 1 - owner decision persists immutably across restart and exact replay, without approval or authority
+  ---
+  duration_ms: 10.189476
+  type: 'test'
+  ...
+# Subtest: reject approval alias, caller-supplied actor, foreign workspace, stale digest and changed idempotency payload
+ok 2 - reject approval alias, caller-supplied actor, foreign workspace, stale digest and changed idempotency payload
+  ---
+  duration_ms: 3.60781
+  type: 'test'
+  ...
+# Subtest: mutation between initial read and fenced append is refused with no decision saved
+ok 3 - mutation between initial read and fenced append is refused with no decision saved
+  ---
+  duration_ms: 2.465284
+  type: 'test'
+  ...
+# Subtest: reviewed exact-product forecast is visible as assumptions, never supplier facts, cash or approval
+ok 4 - reviewed exact-product forecast is visible as assumptions, never supplier facts, cash or approval
+  ---
+  duration_ms: 7.077621
+  type: 'test'
+  ...
+# Subtest: forged journal metadata, workspace, command and stale or reversed forecast fail closed
+ok 5 - forged journal metadata, workspace, command and stale or reversed forecast fail closed
+  ---
+  duration_ms: 2.900991
+  type: 'test'
+  ...
+# Subtest: dossier derives observations and preserves unknown freight currency, rights and finance
+ok 6 - dossier derives observations and preserves unknown freight currency, rights and finance
+  ---
+  duration_ms: 3.152669
+  type: 'test'
+  ...
+# Subtest: pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+ok 7 - pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+  ---
+  duration_ms: 0.592805
+  type: 'test'
+  ...
+# Subtest: expiry changes digest without deleting historical observations
+ok 8 - expiry changes digest without deleting historical observations
+  ---
+  duration_ms: 0.668126
+  type: 'test'
+  ...
+# Subtest: ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+ok 9 - ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+  ---
+  duration_ms: 0.401912
+  type: 'test'
+  ...
+# Subtest: duplicate pins and wrong parent cannot pass qualification
+ok 10 - duplicate pins and wrong parent cannot pass qualification
+  ---
+  duration_ms: 0.654975
+  type: 'test'
+  ...
+# Subtest: actual adapter detail stock freight pinned deferral survives restart without recursive followups
+ok 11 - actual adapter detail stock freight pinned deferral survives restart without recursive followups
+  ---
+  duration_ms: 145.942294
+  type: 'test'
+  ...
+# Subtest: ambiguous variant missing destination wrong identity and denied provider defer without retry
+ok 12 - ambiguous variant missing destination wrong identity and denied provider defer without retry
+  ---
+  duration_ms: 228.582443
+  type: 'test'
+  ...
+# Subtest: quota interrupted lease expired source and state corruption fail closed
+ok 13 - quota interrupted lease expired source and state corruption fail closed
+  ---
+  duration_ms: 139.065064
+  type: 'test'
+  ...
+# Subtest: queue and receipt rollback together; restart duplicate tick creates no second job
+ok 14 - queue and receipt rollback together; restart duplicate tick creates no second job
+  ---
+  duration_ms: 27.796201
+  type: 'test'
+  ...
+# Subtest: owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+ok 15 - owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+  ---
+  duration_ms: 104.568478
+  type: 'test'
+  ...
+# Subtest: later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+ok 16 - later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+  ---
+  duration_ms: 88.318295
+  type: 'test'
+  ...
+# Subtest: 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+ok 17 - 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+  ---
+  duration_ms: 163.597801
+  type: 'test'
+  ...
+# Subtest: refresh selection resumes beyond its 32-parent page across restart
+ok 18 - refresh selection resumes beyond its 32-parent page across restart
+  ---
+  duration_ms: 60.841595
+  type: 'test'
+  ...
+# Subtest: two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+ok 19 - two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+  ---
+  duration_ms: 284.790728
+  type: 'test'
+  ...
+# Subtest: complete explicitly labelled protocol fixture qualifies for text screening without image rights or model authority
+ok 20 - complete explicitly labelled protocol fixture qualifies for text screening without image rights or model authority
+  ---
+  duration_ms: 36.565814
+  type: 'test'
+  ...
+# Subtest: missing review, contradicted forecast, reversed cash and model-only input cannot qualify
+ok 21 - missing review, contradicted forecast, reversed cash and model-only input cannot qualify
+  ---
+  duration_ms: 17.791926
+  type: 'test'
+  ...
+# Subtest: explicit compliance denial rejects; seven supplier-only citations cannot replace marketplace evidence
+ok 22 - explicit compliance denial rejects; seven supplier-only citations cannot replace marketplace evidence
+  ---
+  duration_ms: 20.306802
+  type: 'test'
+  ...
+# Subtest: review history is immutable and changed financial snapshot invalidates prior qualification
+ok 23 - review history is immutable and changed financial snapshot invalidates prior qualification
+  ---
+  duration_ms: 13.19697
+  type: 'test'
+  ...
+# Subtest: retained genuine CJ observations remain individually deferred without inventing qualification or image rights
+ok 24 - retained genuine CJ observations remain individually deferred without inventing qualification or image rights
+  ---
+  duration_ms: 14.930645
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1668.641888

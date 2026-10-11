@@ -1,0 +1,16 @@
+{
+  "backend": "10b8abc59233f829a903bcc9d251f3bdef227c69",
+  "tests": 24,
+  "genuineRetainedCandidatesExamined": 10,
+  "genuineQualified": 0,
+  "fixtureQualification": "QUALIFIED_TEXT_ONLY",
+  "imageDisplayAllowed": false,
+  "productionEffects": 0,
+  "inference": 0,
+  "next": "Exact-dossier assessment, canonical mission and owner authorization integration",
+  "officialCounts": {
+    "PASS": 1,
+    "PENDING": 39,
+    "BLOCKED": 5
+  }
+}

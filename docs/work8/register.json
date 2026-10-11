@@ -190,14 +190,14 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Bind fresh quote operands and reviewed currency evidence; preserve unknowns",
+      "nextAction": "Bind reviewed dossier to assessment and owner authorization; construct canonical isolated mission; verify full journey",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Endpoint-specific USD variant contract retained",
-      "examinationResult": "PENDING \u2014 10 variant prices; parent currency gaps",
+      "engineeringState": "Text-only QUALIFIED/DEFERRED/REJECTED evaluator implemented; immutable owner evidence review, canonical forecast/source-FX/cash binding; media permissions remain separate downstream gate",
+      "examinationResult": "24 scoped tests PASS; complete injected fixture qualifies; ten retained genuine CJ observations individually defer for missing mandatory evidence",
       "independentVerification": "Recorded contract and contradiction tests",
-      "continuationEvidence": "source-currency-contract.json",
-      "remainingDependency": "Current stock, freight, FX and landed costs"
+      "continuationEvidence": "resume-20261011/qualification-unit-1.json; resume-20261011/qualification-tests.tap",
+      "remainingDependency": "Canonical mission construction, exact-dossier assessment integration and genuine current evidence"
     },
     {
       "item": 9,
@@ -303,14 +303,14 @@
         "backend/src/validation/tests/work8-dossier-decisions.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Implement immutable reviewed qualification package that derives canonical inputs from server evidence; never accept model verification flags",
+      "nextAction": "Bind reviewed dossier to assessment and owner authorization; construct canonical isolated mission; verify full journey",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Source-bound dossier, explicit unknown states and reviewed exact-product forecast projection implemented",
-      "examinationResult": "Dossier/finance/enrichment fixture tests passed; genuine candidates remain deferred",
+      "engineeringState": "Text-only QUALIFIED/DEFERRED/REJECTED evaluator implemented; immutable owner evidence review, canonical forecast/source-FX/cash binding; media permissions remain separate downstream gate",
+      "examinationResult": "24 scoped tests PASS; complete injected fixture qualifies; ten retained genuine CJ observations individually defer for missing mandatory evidence",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
-      "remainingDependency": "Reviewed eligibility, supplier cost/FX/cash binding and permission verification are still implementation gaps"
+      "continuationEvidence": "resume-20261011/qualification-unit-1.json; resume-20261011/qualification-tests.tap",
+      "remainingDependency": "Canonical mission construction, exact-dossier assessment integration and genuine current evidence"
     },
     {
       "item": 13,
