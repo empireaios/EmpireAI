@@ -91,10 +91,10 @@
       "nextAction": "Add only missing filesystem-boundary cases to integrated harness",
       "responsibleComponent": "Isolated examination runtime",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Kernel network denial and isolated stores implemented",
+      "engineeringState": "Kernel network denial and isolated stores implemented; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "PENDING \u2014 local egress checks passed",
       "independentVerification": "Retained isolated receipts; no hosted claim",
-      "continuationEvidence": "examination-ledger.json; resume-20261011/AMENDMENTS.json",
+      "continuationEvidence": "examination-ledger.json; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json",
       "remainingDependency": "Full filesystem/operating isolation proof"
     },
     {
@@ -249,10 +249,10 @@
       "nextAction": "Execute fresh cohort across days; compare identity receipts",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Durable identity/deduplication implemented; existing Keepa history adapter now rejects mismatched ASIN/domain, ambiguous products and malformed histories",
+      "engineeringState": "Durable identity/deduplication implemented; existing Keepa history adapter now rejects mismatched ASIN/domain, ambiguous products and malformed histories; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "PENDING \u2014 bounded local cases passed",
       "independentVerification": "Retained source/receipt checks",
-      "continuationEvidence": "source-discovery-worker.md",
+      "continuationEvidence": "source-discovery-worker.md; resume-20261011/TWIN-FOUNDATION.json",
       "remainingDependency": "Genuine multi-day cohort"
     },
     {
@@ -494,10 +494,10 @@
       "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Guarded enrollment plans one isolated listing through canonical publication interception; existing image provenance checks retained; immutable reviewed dossier pinned in investigation grant; delivery, request and owner bound; current dossier rechecked by owner projection and enrollment; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine",
+      "engineeringState": "Guarded enrollment plans one isolated listing through canonical publication interception; existing image provenance checks retained; immutable reviewed dossier pinned in investigation grant; delivery, request and owner bound; current dossier rechecked by owner projection and enrollment; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json",
       "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance"
     },
     {
@@ -522,10 +522,10 @@
       "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Atomic eligible-mission enrollment, one SANDBOX order, supplier interception and delivery plan implemented; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine",
+      "engineeringState": "Atomic eligible-mission enrollment, one SANDBOX order, supplier interception and delivery plan implemented; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json",
       "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance"
     },
     {
@@ -645,10 +645,10 @@
       "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
       "responsibleComponent": "Financial reconciliation and owner readback",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Canonical receipts, shared snapshots and enrollment-bound simulated finance integrated; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine",
+      "engineeringState": "Canonical receipts, shared snapshots and enrollment-bound simulated finance integrated; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json",
       "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance"
     },
     {
@@ -887,10 +887,10 @@
       "nextAction": "Add only uncovered concurrency boundaries in completed integrated path",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Stock/cap atomicity and replay fences retained",
+      "engineeringState": "Stock/cap atomicity and replay fences retained; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "PENDING \u2014 actual SQLite contenders passed",
       "independentVerification": "Retained concurrency receipts",
-      "continuationEvidence": "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
+      "continuationEvidence": "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json",
       "remainingDependency": "Wider transport/concurrency matrix"
     },
     {
@@ -1047,10 +1047,10 @@
       "nextAction": "Extend cold restart to complete genuinely qualified business state; preserve existing compatibility receipts",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "New immutable enrollment table remains additive to commerce sidecar",
+      "engineeringState": "New immutable enrollment table remains additive to commerce sidecar; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "Exact Work7/Work8 compatibility3 passed after correcting local TypeScript dependency; prepared mission cold restart resumes one order without duplication",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json",
       "remainingDependency": "Combined full-flow migration/rollback acceptance remains"
     },
     {
@@ -1075,11 +1075,11 @@
       "nextAction": "Use secure browser authentication, then verify current candidate at desktop/mobile with genuine source/assessment prerequisites",
       "responsibleComponent": "Owner Console",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Owner dossier, financial/proposal distinctions and review-decision controls implemented",
+      "engineeringState": "Owner dossier, financial/proposal distinctions and review-decision controls implemented; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "Frontend typecheck/lint and four hosted workflows PASS; local changed-view browser blocked by invalid Chromium download",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
-      "remainingDependency": "Corrected preview READY; actual auth routing unverified due Cloud Browser credential protection; twin backend not deployed; authenticated desktop/mobile examination pending"
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json",
+      "remainingDependency": "Correct rebuilt preview reaches locked backend401; owner personal login and desktop/mobile acceptance pending; new twin backend not deployed"
     },
     {
       "item": 41,
@@ -1103,11 +1103,11 @@
       "nextAction": "Use secure browser authentication, then verify current candidate at desktop/mobile with genuine source/assessment prerequisites",
       "responsibleComponent": "Owner Console",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Pagination and shared finance snapshots retained",
+      "engineeringState": "Pagination and shared finance snapshots retained; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "PENDING \u2014 202 missions and1440/390px equality passed",
       "independentVerification": "Retained manifests and two-connection snapshot test",
-      "continuationEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
-      "remainingDependency": "Corrected preview READY; actual auth routing unverified due Cloud Browser credential protection; twin backend not deployed; authenticated desktop/mobile examination pending"
+      "continuationEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json",
+      "remainingDependency": "Correct rebuilt preview reaches locked backend401; owner personal login and desktop/mobile acceptance pending; new twin backend not deployed"
     },
     {
       "item": 42,
@@ -1192,10 +1192,10 @@
       "nextAction": "Keep exact revisions/parity/rollback dependencies; no twin build or activation",
       "responsibleComponent": "Future Work9 handoff",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Conditional handoff retained",
+      "engineeringState": "Conditional handoff retained; persistent twin lifecycle and canonical shared projection foundation implemented; server/UI/scheduler wiring pending",
       "examinationResult": "PENDING \u2014 Work9 not activated",
       "independentVerification": "Production and authority state unchanged",
-      "continuationEvidence": "checkpoint.json; resume-20261011/NEXT.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
+      "continuationEvidence": "checkpoint.json; resume-20261011/NEXT.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json",
       "remainingDependency": "Legitimate Work8 closure"
     }
   ],

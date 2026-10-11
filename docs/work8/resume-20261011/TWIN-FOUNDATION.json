@@ -1,0 +1,28 @@
+{
+  "backend": "f86eb6d54a9723051fec35c5d48bae72e6165a28",
+  "scope": "Durable session foundation over existing commerce store; not full twin acceptance",
+  "implemented": [
+    "immutable owner/workspace-bound lifecycle receipts",
+    "deterministic isolated workspace",
+    "create paused, resume, pause, terminal archive",
+    "transactional lifecycle version checks and idempotency",
+    "bounded shared product/listing/order projection with canonical finance references"
+  ],
+  "tests": {
+    "passed": 4,
+    "receipt": "work8-twin.test.ts",
+    "classification": "LABELLED_SYNTHETIC_LOCAL",
+    "typecheck": "focused strict PASS before final additional projection test"
+  },
+  "remaining": [
+    "authenticated server routes and owner identity binding",
+    "worker scheduler lifecycle integration",
+    "genuine source import contracts",
+    "Assurance projection",
+    "shared Owner Console environment selection and all-page projection",
+    "isolated persistent runtime activation",
+    "genuine journey and authenticated desktop/mobile acceptance"
+  ],
+  "noPaidCalls": true,
+  "noDeployment": true
+}

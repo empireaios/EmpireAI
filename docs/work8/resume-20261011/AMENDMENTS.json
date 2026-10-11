@@ -25,8 +25,8 @@
         45
       ],
       "scope": "Persistent isolated digital twin moves into Work8; reuse canonical commerce/finance/Assurance and existing Owner Console; Work9 is shadow/live commissioning",
-      "status": "PENDING",
-      "next": "Bind durable twin lifecycle and shared projections to existing engines; isolated runtime required; no new billable infrastructure"
+      "status": "FOUNDATION_IMPLEMENTED_NOT_ACCEPTED",
+      "next": "Wire authenticated server routes and existing worker/finance/Assurance projections to shared Console; no duplicate engines"
     },
     {
       "id": "CONTEXT_CHAT",
@@ -78,7 +78,7 @@
         42
       ],
       "scope": "Exactly one rebuild bc83ca6a with Work8-only binding",
-      "status": "READY_ROUTING_VERIFICATION_BLOCKED",
+      "status": "READY_BACKEND_AUTH_REACHABILITY_VERIFIED_OWNER_LOGIN_PENDING",
       "deployment": "dpl_kUh9svgitsyGCLDGjttpFZaDfMFr",
       "next": "Verify READY and no-credential routing; no new temporary protection bypass authorized"
     }
