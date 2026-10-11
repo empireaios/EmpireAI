@@ -1,3 +1,4 @@
+import {evaluateReviewedQualification} from './work8-qualification.js';
 import {reviewedDossierFinance} from './work8-dossier-finance.js';
 import {digest, type Evidence} from './model.js';
 import {verifiedSavedSource, cjVariantCurrencyContract, type SavedSourceReader} from '../runtime/commerce-runtime/governed/work8-source-projection.js';
@@ -12,7 +13,7 @@ const findingKinds=['DEMAND','COMPETITION','DIFFERENTIATION','QUALITY','COMPLIAN
  * The digest excludes read time, but includes freshness so expiry invalidates a decision.
  * Facts, model proposals, reviewed inputs and authority deliberately occupy separate fields.
  */
-export function qualificationDossier(reader:SavedSourceReader,workspace:string,binding:DossierBinding,now:number,financialSnapshot:Row|null=null){
+export function qualificationDossier(reader:SavedSourceReader,workspace:string,binding:DossierBinding,now:number,financialSnapshot:Row|null=null,review:Row|null=null){
  if(!workspace||!Number.isFinite(now)||binding.evidence.length>20||binding.evidence.length===0||new Set(binding.evidence.map(e=>e.id)).size!==binding.evidence.length||digest(binding.evidence)!==binding.snapshotDigest)throw Error('DOSSIER_BINDING_INVALID');
  const missing=new Set<string>();
  const sources=binding.evidence.map(pin=>{const {source,freshness}=verifiedSavedSource(reader,workspace,pin.id,now);if(digest(source)!==pin.envelopeDigest)throw Error('DOSSIER_SOURCE_CHANGED');if(freshness!=='FRESH')missing.add('SOURCE_EXPIRED');return {source,freshness};});
@@ -51,5 +52,6 @@ export function qualificationDossier(reader:SavedSourceReader,workspace:string,b
   findings:findingKinds.map(kind=>({kind,status:'MISSING_REVIEWED_EVIDENCE',value:null,sourceIds:[],verified:false})),
   eligibility:{status:'DEFERRED',qualified:false,missing:[...missing].sort()},
   modelProposal:null,ownerApproval:null,simulationEnrollment:null,grantsAuthority:false,externalEffects:0,paidInference:0};
- return {...body,digest:digest(body)};
+ const qualified={...body,...evaluateReviewedQualification(body,review,financialSnapshot,reader,now)};
+ return {...qualified,digest:digest(qualified)};
 }

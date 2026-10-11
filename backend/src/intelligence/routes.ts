@@ -1,3 +1,4 @@
+import {qualificationReviewSchema,recordQualificationReview,latestQualificationReview} from './work8-qualification.js';
 import {dossierDecisionSchema,recordDossierDecision} from './work8-dossier-decisions.js';
 import {qualificationDossier} from './work8-dossier.js';
 import {enrichmentBinding} from './work8-enrichment.js';
@@ -13,6 +14,7 @@ import {startIntelligence,resourceSchema,seedResourceGaps} from './runtime.js';
 import {jobSchema,key,strategySchema,digest} from './model.js';
 import {rankDiagnosis} from './engines.js';
 const command=z.discriminatedUnion('action',[
+ z.object({action:z.literal('qualification_review'),review:qualificationReviewSchema}).strict(),
  z.object({action:z.literal('dossier_decision'),decision:dossierDecisionSchema}).strict(),
  z.object({action:z.literal('investigation'),grant:investigationGrantSchema}).strict(),
  z.object({action:z.literal('close_investigation'),id:key,advisorRequestId:key,assessmentHash:z.string().length(64)}).strict(),
@@ -28,7 +30,8 @@ export function registerIntelligence(app:FastifyInstance,owner:(r:FastifyRequest
  app.post('/api/owner/advisor/intelligence',{preHandler:owner,bodyLimit:12000},async(r,reply)=>{try{
   if(r.headers.origin&&r.headers.origin!==env.CORS_ORIGIN)return reply.code(403).send({error:'Origin denied'});
   const c=command.parse(r.body),w=r.user!.workspaceId;let result:unknown;
-  if(c.action==='dossier_decision'){result=recordDossierDecision(s,w,r.user!.id,c.decision,candidateId=>qualificationDossier((ws,id)=>s.get(ws,'evidence',id) as Evidence|null,w,enrichmentBinding(s,w,candidateId),s.now(),productionFinance().snapshot(w)));}
+  if(c.action==='qualification_review'){result=recordQualificationReview(s,w,r.user!.id,c.review,()=>{const snapshot=productionFinance().snapshot(w);return {snapshot,dossier:qualificationDossier((ws,id)=>s.get(ws,'evidence',id) as Evidence|null,w,enrichmentBinding(s,w,c.review.candidateId),s.now(),snapshot)};});}
+  else if(c.action==='dossier_decision'){result=recordDossierDecision(s,w,r.user!.id,c.decision,candidateId=>qualificationDossier((ws,id)=>s.get(ws,'evidence',id) as Evidence|null,w,enrichmentBinding(s,w,candidateId),s.now(),productionFinance().snapshot(w),latestQualificationReview(s,w,candidateId)));}
   else if(c.action==='investigation'){
    const predecessors=[];
    const failedRequests:string[]=[];
