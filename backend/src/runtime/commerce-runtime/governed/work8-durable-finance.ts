@@ -2,7 +2,7 @@ import {verifySimulationEnrollment} from './work8-enrollment.js';
 import {GovernedCommerceStore,digest} from './store.js';
 import {CommerceWorker} from './worker.js';
 import type {CommerceState} from './engine.js';
-import {projectWork8Finance,type Work8FinanceEvent} from './work8-finance.js';
+import {canonicalFinanceSource,projectWork8Finance,type Work8FinanceEvent} from './work8-finance.js';
 type Plan={version:'SIM_FINANCE_V1';workspace:string;mission:string;taskId:string;sourceDigest:string;createdAt:number;assumptions:Record<string,unknown>;events:Work8FinanceEvent[]};
 const checkedMinor=(n:number)=>{const m=n*100;if(!Number.isSafeInteger(Math.round(m))||Math.abs(m-Math.round(m))>1e-7)throw Error('SIM_FINANCE_PRECISION');return Math.round(m);};
 /** Simulation journal shares commerce sidecar; it never imports to actual Work5 finance. */
@@ -21,7 +21,7 @@ export class DurableSimulatedFinance {
  private source(workspace:string,mission:string){
   const sizes=this.store.db.prepare('SELECT length(CAST(record AS BLOB)) n FROM commerce_runtime_receipts WHERE workspace=? AND mission=? LIMIT 513').all(workspace,mission);
   if(sizes.length>512||sizes.reduce((n,r)=>n+Number(r.n),0)>1048576)throw Error('SIM_FINANCE_SOURCE_BOUND');
-  const receipt=this.store.history(workspace,mission).at(-1);if(!receipt)throw Error('SIM_FINANCE_ORDER_SOURCE_MISSING');
+  const receipt=canonicalFinanceSource(this.store,workspace,mission);if(!receipt)throw Error('SIM_FINANCE_ORDER_SOURCE_MISSING');
   const state=receipt.state as unknown as CommerceState;if(receipt.classification!=='SYNTHETIC'||state.externalEffects!==0||state.paidInference!==0||Object.keys(state.orders).length>32||Object.values(state.orders).some(o=>o.order.integrationMode!=='SANDBOX'||o.outcome!=='DELIVERED'))throw Error('SIM_FINANCE_SOURCE_INELIGIBLE');return {receipt,state};
  }
  private make(workspace:string,taskId:string,createdAt:number):Plan{

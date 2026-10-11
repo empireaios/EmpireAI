@@ -1,7 +1,7 @@
 import {createHash} from 'node:crypto';
 import {z} from 'zod';
 import type {CommerceState} from './engine.js';
-import {GovernedCommerceStore} from './store.js';
+import {GovernedCommerceStore,digest} from './store.js';
 
 const kinds=['SALE','DISCOUNT','COGS','FREIGHT','FEE','DUTY','REFUND','CHARGEBACK','SUPPLIER_CREDIT','SETTLEMENT','PAYOUT_HOLD','PAYOUT_RELEASE','BANK_RECEIPT','SUPPLIER_PAYMENT'] as const;
 const eventSchema=z.object({id:z.string().min(1).max(160),orderId:z.string().min(1),sourceReceiptDigest:z.string().regex(/^[a-f0-9]{64}$/),kind:z.enum(kinds),currency:z.string().regex(/^[A-Z]{3}$/),minor:z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER).nullable(),at:z.string().datetime({offset:true}),classification:z.literal('SIMULATION'),assumptionRef:z.string().min(3).max(300).optional()}).strict();
@@ -12,10 +12,22 @@ const accounts:Record<Work8FinanceEvent['kind'],readonly [Account,Account]>={SAL
 const hash=(v:unknown)=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const add=(a:number,b:number)=>{const n=a+b;if(!Number.isSafeInteger(n))throw Error('FINANCE_INTEGER_OVERFLOW');return n;};
 
+/** Retirement only changes portfolio membership; historical money remains pinned to its prior receipt. */
+export function canonicalFinanceSource(store:GovernedCommerceStore,workspace:string,missionId:string){
+ const history=store.history(workspace,missionId),latest=history.at(-1);
+ if(latest?.command.type!=='retire')return latest;
+ const prior=history.at(-2);if(!prior)throw Error('FINANCE_RETIREMENT_SOURCE_INVALID');
+ const {retirement,...state}=latest.state;
+ const expected={actor:latest.actor.id,at:latest.at,reason:latest.command.reason};
+ if(latest.actor.role!=='OWNER'||(prior.state.approval as CommerceState['approval'])?.actor!==latest.actor.id||
+    digest(retirement)!==digest(expected)||digest(state)!==digest(prior.state))throw Error('FINANCE_RETIREMENT_SOURCE_INVALID');
+ return prior;
+}
+
 /** Loads canonical verified history itself. Caller-supplied state or hash is never trusted. */
 export function projectWork8Finance(store:GovernedCommerceStore,workspace:string,missionId:string,input:readonly Work8FinanceEvent[],cutoffAt:string){
  if(!(store instanceof GovernedCommerceStore)||!Number.isFinite(Date.parse(cutoffAt)))throw Error('FINANCE_SOURCE_OR_CUTOFF_INVALID');
- const source=store.history(workspace,missionId).at(-1);if(!source||source.classification!=='SYNTHETIC'||source.externalEffects!==0)throw Error('FINANCE_VERIFIED_RECEIPT_REQUIRED');
+ const source=canonicalFinanceSource(store,workspace,missionId);if(!source||source.classification!=='SYNTHETIC'||source.externalEffects!==0)throw Error('FINANCE_VERIFIED_RECEIPT_REQUIRED');
  const sourceReceiptDigest=source.digest;const state=source.state as unknown as CommerceState;
  const minor=(value:number,currency:string)=>{if(!['SGD','USD','EUR','GBP','AUD','CAD'].includes(currency))throw Error('FINANCE_CURRENCY_PRECISION_UNSUPPORTED');const n=value*100;if(!Number.isSafeInteger(Math.round(n))||Math.abs(n-Math.round(n))>1e-7)throw Error('FINANCE_CANONICAL_AMOUNT_PRECISION');return Math.round(n);};
  if(state.externalEffects!==0||state.paidInference!==0||Object.values(state.orders).some(o=>o.order.integrationMode!=='SANDBOX'))throw Error('FINANCE_SIMULATION_BOUNDARY');
