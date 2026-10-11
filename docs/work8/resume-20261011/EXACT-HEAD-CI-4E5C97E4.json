@@ -1,0 +1,64 @@
+{
+  "source": "4e5c97e42b62767793496b21ec37b0e74c78ff69",
+  "sourceTree": "600646bb2a248e7bb1442f9df8c6bdddb43070db",
+  "runs": [
+    {
+      "id": 38146487410,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38146487391,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38146487446,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38146487553,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "restartedRuns": 0,
+  "product": {
+    "job": 114490917097,
+    "tests": 223,
+    "passed": 223,
+    "failed": 0,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "checkoutCommit": "54223e47ece192dba7f069f7c4785e52798af61e",
+    "checkoutTree": "600646bb2a248e7bb1442f9df8c6bdddb43070db",
+    "sourceTreeDiff": "empty",
+    "attribution": "Different merge commit; identical complete source tree",
+    "frontendScope": "Previously reviewed72076472; new679f901d bundle not yet hosted-verified"
+  },
+  "runtime": {
+    "job": 114490823515,
+    "checkoutCommit": "4e5c97e42b62767793496b21ec37b0e74c78ff69",
+    "tests": 391,
+    "passed": 391,
+    "failed": 0,
+    "restoration": "Whole-volume stopped bundle finance/commerce restoration and quiesced primary/native stores, CJ history, interrupted mission continuity passed; retained original full-volume evidence unchanged"
+  },
+  "logs": {
+    "PRODUCT-4E5C97E4-TESTS.log": "108c39ebf59ceb59658cf5448a07161a11d7c00df0a998940bcb0b5c04b36a91",
+    "RUNTIME-4E5C97E4-TESTS.log": "30b8fcbe253b8deed26a8f7d9d15736e9e8282a80bc7f9fa9b780dab71632c28"
+  },
+  "priorPassingRunsPreserved": [
+    38142058029,
+    38142058040,
+    38142058048,
+    38142058061
+  ],
+  "newLocalSuccessorHostedVerified": false,
+  "deployment": false
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "WORK8_CONNECTOR_PUBLICATION_V1",
+  "repository": "empireaios/EmpireAI",
+  "entries": [
+    {
+      "branch": "work8/autonomous-examination-20261011",
+      "original": "d459c08b3a588904963ef9308283a14474600f8f",
+      "replacement": "4e5c97e42b62767793496b21ec37b0e74c78ff69",
+      "originalTree": "600646bb2a248e7bb1442f9df8c6bdddb43070db",
+      "replacementTree": "600646bb2a248e7bb1442f9df8c6bdddb43070db",
+      "parent": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb"
+    },
+    {
+      "branch": "work8/examination-evidence-20261011",
+      "original": "8facd724d904ce39db137d2d498616ee73305584",
+      "replacement": "57c033ace26747eafa1156faaf45c5fb1e6de497",
+      "originalTree": "fb55f736fbb839b821723bc518119f8ce0b44722",
+      "replacementTree": "fb55f736fbb839b821723bc518119f8ce0b44722",
+      "parent": "9c67f51b9500643ac0563c4fb2bdf562845fdffb"
+    }
+  ],
+  "verification": "All 42 changed blobs returned original identities. Both constructed trees matched the approved trees before expected-head non-force updates. Fetched remote objects have identical trees and empty complete source/evidence diffs. Remote heads and held frontend ref verified.",
+  "missingFiles": 0,
+  "modifiedFiles": 0,
+  "additionalFiles": 0,
+  "frontendDeploymentBranchHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "deployment": false,
+  "preservedCi": [
+    38142058029,
+    38142058040,
+    38142058048,
+    38142058061
+  ],
+  "newCi": [
+    38146487410,
+    38146487391,
+    38146487446,
+    38146487553
+  ]
+}

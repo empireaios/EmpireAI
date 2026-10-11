@@ -184,11 +184,11 @@
         13,
         19
       ],
-      "engineering": "Exact edit-request/version/source-bound Canva export consumer implemented locally; immutable attempt prevents blind retry; proposal receives no approvals.",
+      "engineering": "Exact edit-request/version/source-bound Canva export consumer implemented locally; immutable attempt prevents blind retry; proposal receives no approvals. Canva connector editing transactions are available separately from runtime adapter.",
       "acceptanceEvidence": "4 intercepted export tests PASS; full backend typecheck PASS; safe default route reviewed.",
-      "remaining": "Current adapter cannot execute editing instructions. Need supported editing surface or explicitly approved external editing process, exact asset permission, server authority/reader configuration, and native acceptance.",
+      "remaining": "Exact licensed product asset/design and account choice; runtime server authority/download policy or approved external editing workflow; native acceptance.",
       "status": "PENDING",
-      "nextAction": "Resolve provider editing capability and exact rights within shared media decision; retain blocked runtime default."
+      "nextAction": "Approve specific product design/asset workflow; preserve draft preview and separate save/internal/external decisions."
     },
     {
       "id": 11,
@@ -235,9 +235,9 @@
       ],
       "engineering": "Owner/request/context-bound retained Pillow proposal now feeds existing isolated preview and separate approval; canonical request hash reused.",
       "acceptanceEvidence": "4 focused tests PASS; frontend/backend typechecks and changed-file lint PASS; independent scoped review clear after hash repair.",
-      "remaining": "Bounded publication, genuine authorised completed proposal and native owner acceptance.",
+      "remaining": "Genuine authorised retained proposal and native owner acceptance; original integration source is now published.",
       "status": "PENDING",
-      "nextAction": "Publish reviewed batch after approval; consume exact authorised retained reply in existing Systems flow."
+      "nextAction": "Consume exact authorised retained reply in existing Systems flow and verify authenticated native owner acceptance."
     },
     {
       "id": 14,
@@ -328,10 +328,10 @@
         39
       ],
       "engineering": "Existing hosting proposal and billing inspection preserved; no runtime provisioned",
-      "acceptanceEvidence": "Retained cost/isolation inspection; no hosted acceptance",
+      "acceptanceEvidence": "Read-only inventory: canary has zero services, volumes and buckets; same production billing workspace. Prior billing inspection retained.",
       "remaining": "Identify isolated capacity, enforceable total exposure, protected retention and separate deployment authority",
       "status": "PENDING",
-      "nextAction": "Choose existing isolated capacity or fully priced separate billing option"
+      "nextAction": "Identify alternative approved isolated capacity or separately priced billing/retention option; no production workspace cap."
     },
     {
       "id": 19,
@@ -347,7 +347,7 @@
         40,
         41
       ],
-      "engineering": "Existing Console projections and persistent lifecycle retained",
+      "engineering": "Existing Console projections and persistent lifecycle retained Local qualification review form joins exact freight and seven cited findings to canonical financial/source snapshots.",
       "acceptanceEvidence": "Phone OFFLINE_FIXTURE pass; not genuine owner acceptance",
       "remaining": "Same genuine product/mission/order/finance/Assurance records on desktop and mobile",
       "status": "PENDING",

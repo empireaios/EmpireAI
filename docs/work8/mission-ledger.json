@@ -81,9 +81,11 @@
   "commerce": "LOCKED",
   "work9": "NOT_ACTIVATED",
   "latestPublication": {
-    "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
-    "evidence": "9c67f51b9500643ac0563c4fb2bdf562845fdffb",
-    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-A83C95EB.json"
+    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-D459C08B.json",
+    "source": "4e5c97e42b62767793496b21ec37b0e74c78ff69",
+    "evidence": "57c033ace26747eafa1156faaf45c5fb1e6de497",
+    "exactTreeEquality": true,
+    "noDeployment": true
   },
   "latestScopedReview": {
     "source": "a83c95eb8870a893c93920353c5da94351b5c34f",
@@ -104,25 +106,18 @@
     "verdict": "SCOPED_PASS_TEST_ONLY_CONTINUATION",
     "receipt": "resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json"
   },
-  "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-A3CD82A1.json",
+  "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-4E5C97E4.json",
   "latestLocalContinuation": {
-    "source": {
-      "commit": "d459c08b3a588904963ef9308283a14474600f8f",
-      "tree": "600646bb2a248e7bb1442f9df8c6bdddb43070db",
-      "published": false,
-      "targetBranch": "work8/autonomous-examination-20261011"
-    },
-    "frontend": {
-      "commit": "ad882b4e57bd6afb18fb0bca3a6cec40c467c10c",
-      "tree": "4839e76d114f62e2ed2fd48529fe0bea2684f321",
-      "base": "720764722e6178d4126dcf376383096e204ec5ba",
-      "published": false,
-      "bundle": "FRONTEND-PREVIEW-CANDIDATE.bundle",
-      "deploymentBranchMoved": false
-    },
-    "receipt": "resume-20261011/BUSINESS-INTEGRATION-REVIEW.json",
-    "newClosures": [],
-    "reason": "Short acceptance reconciliation found remaining complete scopes depend on genuine product/rights/accounting or hosted/native acceptance; local integration tests do not replace those gates."
+    "publication": "resume-20261011/CONNECTOR-PUBLICATION-D459C08B.json",
+    "publishedSource": "4e5c97e42b62767793496b21ec37b0e74c78ff69",
+    "publishedEvidence": "57c033ace26747eafa1156faaf45c5fb1e6de497",
+    "localSource": "03719d315db2a96c0a9c7e0a5bea75cdb381aa63",
+    "localSourceTree": "df63e2b9f3b68b70d0f832f471d428d358d35d93",
+    "localFrontend": "679f901d4f422eb9292273046f4424e982087236",
+    "localFrontendTree": "0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8",
+    "review": "resume-20261011/FREIGHT-QUALIFICATION-REVIEW.json",
+    "decision": "resume-20261011/OWNER-DECISION-CURRENT.md",
+    "newClosures": []
   },
   "ownerAmendments": {
     "register": "resume-20261011/OWNER-AMENDMENTS-19.json",

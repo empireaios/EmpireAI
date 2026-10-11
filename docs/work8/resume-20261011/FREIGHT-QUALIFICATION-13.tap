@@ -1,0 +1,100 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: dossier derives observations and uses exact freight currency contract while preserving unknown rights and finance
+ok 1 - dossier derives observations and uses exact freight currency contract while preserving unknown rights and finance
+  ---
+  duration_ms: 4.643556
+  type: 'test'
+  ...
+# Subtest: pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+ok 2 - pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+  ---
+  duration_ms: 0.657888
+  type: 'test'
+  ...
+# Subtest: expiry changes digest without deleting historical observations
+ok 3 - expiry changes digest without deleting historical observations
+  ---
+  duration_ms: 0.935944
+  type: 'test'
+  ...
+# Subtest: ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+ok 4 - ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+  ---
+  duration_ms: 1.634664
+  type: 'test'
+  ...
+# Subtest: duplicate pins and wrong parent cannot pass qualification
+ok 5 - duplicate pins and wrong parent cannot pass qualification
+  ---
+  duration_ms: 0.619074
+  type: 'test'
+  ...
+# (node:18) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:18) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:18) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: complete explicitly labelled protocol fixture qualifies for text screening without image rights or model authority
+ok 6 - complete explicitly labelled protocol fixture qualifies for text screening without image rights or model authority
+  ---
+  duration_ms: 39.120916
+  type: 'test'
+  ...
+# Subtest: missing review, contradicted forecast, reversed cash and model-only input cannot qualify
+ok 7 - missing review, contradicted forecast, reversed cash and model-only input cannot qualify
+  ---
+  duration_ms: 19.053313
+  type: 'test'
+  ...
+# Subtest: explicit compliance denial rejects; seven supplier-only citations cannot replace marketplace evidence
+ok 8 - explicit compliance denial rejects; seven supplier-only citations cannot replace marketplace evidence
+  ---
+  duration_ms: 18.206391
+  type: 'test'
+  ...
+# Subtest: review history is immutable and changed financial snapshot invalidates prior qualification
+ok 9 - review history is immutable and changed financial snapshot invalidates prior qualification
+  ---
+  duration_ms: 13.576495
+  type: 'test'
+  ...
+# Subtest: retained genuine CJ observations remain individually deferred without inventing qualification or image rights
+ok 10 - retained genuine CJ observations remain individually deferred without inventing qualification or image rights
+  ---
+  duration_ms: 13.026825
+  type: 'test'
+  ...
+# Subtest: multiple freight quotes require exact owner-reviewed row; documentation binds USD without invented response currency
+ok 11 - multiple freight quotes require exact owner-reviewed row; documentation binds USD without invented response currency
+  ---
+  duration_ms: 20.647973
+  type: 'test'
+  ...
+# Subtest: freight selection rejects absent, duplicate and currency-contradicting rows
+ok 12 - freight selection rejects absent, duplicate and currency-contradicting rows
+  ---
+  duration_ms: 27.89745
+  type: 'test'
+  ...
+# Subtest: a selected freight amount must still equal reviewed canonical financial costs
+ok 13 - a selected freight amount must still equal reviewed canonical financial costs
+  ---
+  duration_ms: 18.239991
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 998.630941

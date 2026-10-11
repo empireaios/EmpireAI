@@ -1,0 +1,135 @@
+{
+  "railway": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Found 2 project(s):\n\n- **empireai-canary-20260923** (feb90d26-c54b-4435-ac32-f666e3e25447) — workspace: empireaios's Projects, created: 2026-09-23T10:48:50.754Z\n- **empireai** (75374474-2b3a-4b0f-a9bc-203cdc1314d8) — workspace: empireaios's Projects, created: 2026-06-30T09:26:18.864Z"
+        }
+      ],
+      "structuredContent": {
+        "projects": [
+          {
+            "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+            "name": "empireai-canary-20260923",
+            "workspaceId": "a4962933-0870-4df7-bb46-3625ed800be1",
+            "workspaceName": "empireaios's Projects",
+            "createdAt": "2026-09-23T10:48:50.754Z"
+          },
+          {
+            "id": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+            "name": "empireai",
+            "workspaceId": "a4962933-0870-4df7-bb46-3625ed800be1",
+            "workspaceName": "empireaios's Projects",
+            "createdAt": "2026-06-30T09:26:18.864Z"
+          }
+        ]
+      },
+      "isError": false
+    }
+  },
+  "canary": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "**empireai-canary-20260923** (feb90d26-c54b-4435-ac32-f666e3e25447)\n\n**Environments:**\n- production (3b0664a3-8655-4fc1-b9cf-113034a81e0a)\n\nNo services found in this project."
+        }
+      ],
+      "structuredContent": {
+        "project": {
+          "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+          "name": "empireai-canary-20260923"
+        },
+        "environments": [
+          {
+            "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+            "name": "production"
+          }
+        ],
+        "services": []
+      },
+      "isError": false
+    }
+  },
+  "canva": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"items\":[{\"id\":\"DAHNck2Znbs\",\"title\":\"Red Black Futuristic AI Coming Soon Video\",\"thumbnail\":{\"width\":596,\"height\":335,\"url\":\"https://design.canva.ai/1LGMwl5gcYsfRwG\"},\"urls\":{\"edit_url\":\"https://www.canva.com/d/qSSYZjoa-lVRh-p\",\"view_url\":\"https://www.canva.com/d/RI9W7UX3tIrKJ0d\"},\"created_at\":1782266532,\"updated_at\":1790744971,\"page_count\":1,\"design_types\":[\"unknown\"]}]}"
+          }
+        ],
+        "structuredContent": {
+          "items": [
+            {
+              "id": "DAHNck2Znbs",
+              "title": "Red Black Futuristic AI Coming Soon Video",
+              "thumbnail": {
+                "width": 596,
+                "height": 335,
+                "url": "https://design.canva.ai/1LGMwl5gcYsfRwG"
+              },
+              "urls": {
+                "edit_url": "https://www.canva.com/d/qSSYZjoa-lVRh-p",
+                "view_url": "https://www.canva.com/d/RI9W7UX3tIrKJ0d"
+              },
+              "created_at": 1782266532,
+              "updated_at": 1790744971,
+              "page_count": 1,
+              "design_types": [
+                "unknown"
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"items\":[{\"id\":\"DAHNck2Znbs\",\"title\":\"Red Black Futuristic AI Coming Soon Video\",\"thumbnail\":{\"width\":596,\"height\":335,\"url\":\"https://design.canva.ai/rra_t3-NTulrYa4\"},\"urls\":{\"edit_url\":\"https://www.canva.com/d/7DFopplsNe4zQ_D\",\"view_url\":\"https://www.canva.com/d/fJmIJWYS2bNCb0s\"},\"created_at\":1782266532,\"updated_at\":1790744971,\"page_count\":1,\"design_types\":[\"unknown\"]}]}"
+          }
+        ],
+        "structuredContent": {
+          "items": [
+            {
+              "id": "DAHNck2Znbs",
+              "title": "Red Black Futuristic AI Coming Soon Video",
+              "thumbnail": {
+                "width": 596,
+                "height": 335,
+                "url": "https://design.canva.ai/rra_t3-NTulrYa4"
+              },
+              "urls": {
+                "edit_url": "https://www.canva.com/d/7DFopplsNe4zQ_D",
+                "view_url": "https://www.canva.com/d/fJmIJWYS2bNCb0s"
+              },
+              "created_at": 1782266532,
+              "updated_at": 1790744971,
+              "page_count": 1,
+              "design_types": [
+                "unknown"
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    }
+  ],
+  "limitations": [
+    "Canary has no runtime; same production billing workspace",
+    "Both Canva links returned same existing branded design; not product imagery",
+    "Connector supports editing transactions; EmpireAI runtime cannot call this connector directly; credentials not transferred",
+    "No asset editing, provider inference, infrastructure or deployment executed"
+  ]
+}

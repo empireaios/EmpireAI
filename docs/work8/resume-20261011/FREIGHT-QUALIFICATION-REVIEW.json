@@ -1,0 +1,59 @@
+{
+  "source": "5b8db109f087b3d5db621b283e0f2573045ea318",
+  "sourceTree": "0ee005478af7a0af3c6a1938f7a08702655084c7",
+  "frontend": "679f901d4f422eb9292273046f4424e982087236",
+  "frontendTree": "0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8",
+  "published": false,
+  "problem": "Real CJ freightCalculate returns multiple service quotes without currency per row; published dossier accepted one row only and had no explicit selection. Console lacked the existing API qualification-review form.",
+  "change": "Exact USD endpoint/field contract; retained options; owner review pins evidence envelope and row digest with exact identity/destination/quantity; existing Console form supplies seven cited findings, canonical finance/source digests, processing evidence and explicit attestation.",
+  "tests": {
+    "affectedDossierAndQualification": 13,
+    "failures": 0,
+    "backendTypecheckExit": 0,
+    "frontendTypecheckExit": 0,
+    "frontendLintExit": 0
+  },
+  "review": {
+    "verifier": "/root/review_retirement_finance",
+    "backend": "No scoped blocker; selected freight still requires matching reviewed finance and FX, no execution authority",
+    "frontend": "No scoped blocker; digest-key reset, bounded form, explicit attestation, stable retry identity, saved-review-only receipt",
+    "newAcceptedRequirements": [],
+    "newAcceptedAmendments": []
+  },
+  "currencyEvidence": {
+    "url": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+    "section": "1.1 Freight Calculation / Return",
+    "field": "logisticPrice",
+    "currency": "USD",
+    "contrastField": "logisticPriceCn is CNY",
+    "verifiedDate": "2026-10-11",
+    "doesNotProve": "Chosen service, total landed cost, tax, delivery guarantee, rights, market match or qualification"
+  },
+  "genuineProjection": "CURRENT-CANDIDATE-FREIGHT-PROJECTION.json",
+  "genuineStatus": "DEFERRED",
+  "inferenceCalls": 0,
+  "providerReadsTriggered": 0,
+  "deployments": 0,
+  "nativeAcceptance": false,
+  "receiptHashes": {
+    "FREIGHT-QUALIFICATION-13.tap": "e6263c66d32747c14214a65fed3a1443e493d5277766aa9d47e96756023ff0e6",
+    "FREIGHT-BACKEND-TYPECHECK.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "FREIGHT-FRONTEND-TYPECHECK.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "FREIGHT-FRONTEND-LINT.log": "db12ad97221988bf346c55d06788e21a01bb6a683d69266bf732ed4d6d9763c8",
+    "FRONTEND-QUALIFICATION-CANDIDATE.bundle": "6b4963312bec6b535d195590c9cbd9d032c6148fb3ab34512447488eba4b3812"
+  },
+  "exactSourceVerification": "Affected thirteen-test suite observed against committed5b8db109 tree after final currency-contract date normalization; no other suites restarted.",
+  "finalSource": "03719d315db2a96c0a9c7e0a5bea75cdb381aa63",
+  "finalSourceTree": "df63e2b9f3b68b70d0f832f471d428d358d35d93",
+  "finalSourceDifference": "Only .github/workflows/product-path-ci.yml differs from component test source5b8db109; no new hosted CI claimed.",
+  "workflowReview": {
+    "verifier": "/root/review_retirement_finance",
+    "result": "No scoped blocker; explicit prerequisite72076472, pinned bundle blob/target commit/full tree; evidence branch is transport only; no deployment or credentials",
+    "localCheck": "Shared-clone bundle verify/fetch/checkout and full target tree passed; not independent archive restoration proof",
+    "publicationOrder": [
+      "evidence",
+      "source"
+    ],
+    "bundleBlob": "3ea1170bad5dacc70ff53b1c2377f919017da858"
+  }
+}
