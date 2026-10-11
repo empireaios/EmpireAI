@@ -11,6 +11,7 @@ type Guard=(req:FastifyRequest,reply:FastifyReply)=>Promise<unknown>;
 export function registerWork8TwinRoutes(app:FastifyInstance,options:{
  authenticate:ReturnType<typeof createAuthMiddleware>;owner:Guard;
  sessions:()=>Work8TwinSessions;
+ projection?:(p:{workspace:string;owner:string},sessionId:string,after:string,limit:number)=>unknown;
 }){
  const guards=[options.authenticate,options.owner];
  const principal=(req:FastifyRequest)=>({workspace:req.user!.workspaceId,owner:req.user!.id});
@@ -23,7 +24,7 @@ export function registerWork8TwinRoutes(app:FastifyInstance,options:{
  };
  app.get('/api/owner/commerce/twin',{preHandler:guards},async(req,reply)=>{
   reply.header('cache-control','private, no-store');
-  try{const q=query.parse(req.query),sessions=options.sessions(),p=principal(req);return q.sessionId?sessions.snapshot(p,q.sessionId,q.after,q.limit):sessions.list(p,q.after,q.limit);}
+  try{const q=query.parse(req.query),sessions=options.sessions(),p=principal(req);return q.sessionId?(options.projection?options.projection(p,q.sessionId,q.after,q.limit):sessions.snapshot(p,q.sessionId,q.after,q.limit)):sessions.list(p,q.after,q.limit);}
   catch(error){return failure(reply,error);}
  });
 }
