@@ -120,6 +120,11 @@ export class Work8TwinRuntime {
   try{return this.tick({workspace:String(row.workspace),owner:event.owner},String(row.session),event.version);}
   catch(error){const reason=error instanceof Error&&/^[A-Z_]+$/.test(error.message)?error.message:'TWIN_SCHEDULER_FAILED_CLOSED';this.observe(String(row.workspace),String(row.session),{kind:/^TWIN_AUTHORITY_(NOT_GRANTED|REVOKED|EXPIRED|CONSUMED)$/.test(reason)?'AUTHORITY_PAUSED':'ASSURANCE_ESCALATION',reason});return {status:'BLOCKED',reason};}
  }
+ comparisonContext(rawPrincipal:unknown,raw:unknown){
+  const references=z.array(z.unknown()).min(2).max(4).parse(raw),comparison=references.map(r=>this.context(rawPrincipal,r));
+  if(new Set(comparison.map(c=>c.reference.missionId)).size!==comparison.length||new Set(comparison.map(c=>c.reference.sessionId??'LIVE_REFERENCE')).size!==1)throw Error('TWIN_COMPARISON_SCOPE');
+  return {comparison,classification:'BOUND_PRODUCT_COMPARISON' as const,grantsAuthority:false as const};
+ }
  context(rawPrincipal:unknown,raw:unknown){
   const p=principal.parse(rawPrincipal),ref=z.object({sessionId:key.optional(),missionId:z.string().regex(/^[A-Za-z0-9_.:-]{1,160}$/),receiptDigest:z.string().regex(/^[a-f0-9]{64}$/)}).strict().parse(raw),workspace=ref.sessionId?this.sessions.read(p,ref.sessionId).twinWorkspace:p.workspace;
   const receipt=this.store.history(workspace,ref.missionId).at(-1);if(!receipt)throw Error('TWIN_CONTEXT_NOT_FOUND');if(receipt.digest!==ref.receiptDigest)throw Error('TWIN_CONTEXT_STALE');

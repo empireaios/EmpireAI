@@ -31,6 +31,10 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  const version={applicationRevision:'a'.repeat(40),configurationDigest:digest({isolated:true})};
 
  const reference={sessionId:'exam',missionId:source.projection(p,'exam').records[0]!.missionId,receiptDigest:source.projection(p,'exam').records[0]!.receiptDigest};
+ const secondRef={sessionId:'exam',missionId:source.projection(p,'exam').records[1]!.missionId,receiptDigest:source.projection(p,'exam').records[1]!.receiptDigest};
+ assert.equal(source.comparisonContext(p,[reference,secondRef]).comparison.length,2);
+ assert.throws(()=>source.comparisonContext(p,[reference,reference]),/COMPARISON_SCOPE/);
+ assert.throws(()=>source.comparisonContext(p,[reference,{...secondRef,receiptDigest:'0'.repeat(64)}]),/STALE/);
  const intake={id:'inquiry',reference,threadId:'normal',expectedVersion:0,action:'RECEIVE',category:'PRODUCT_INQUIRY',message:'What size is it?',deadlineAt:now+1000};
  assert.equal(source.communications.command(p,intake).risk,'NORMAL');assert.equal(source.communications.command(p,intake).version,1);
  source.communications.command(p,{id:'draft',reference,threadId:'normal',expectedVersion:1,action:'PREPARE'});

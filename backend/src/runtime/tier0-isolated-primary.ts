@@ -400,7 +400,7 @@ export async function handleDurablePillowChat(
   const suppliedContext=input.workspaceContext as Record<string,unknown>|undefined;
   if(suppliedContext?.productContext){
     if(request.user.role!=='founder'||request.user.workspaceId!=='ws_empire_1'||request.user.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase())return reply.code(403).send({code:'PRODUCT_CONTEXT_OWNER_REQUIRED'});
-    try{input.workspaceContext={...suppliedContext,productContext:productionCommerce().twinRuntime.context({workspace:request.user.workspaceId,owner:request.user.id},suppliedContext.productContext)};}
+    try{input.workspaceContext={...suppliedContext,productContext:Array.isArray(suppliedContext.productContext)?productionCommerce().twinRuntime.comparisonContext({workspace:request.user.workspaceId,owner:request.user.id},suppliedContext.productContext):productionCommerce().twinRuntime.context({workspace:request.user.workspaceId,owner:request.user.id},suppliedContext.productContext)};}
     catch{return reply.code(409).send({code:'PRODUCT_CONTEXT_STALE_OR_UNAVAILABLE',error:'Return to the product and reopen its current context before sending.'});}
   }
   const claim = await acceptDurableChatRequestClaim({
