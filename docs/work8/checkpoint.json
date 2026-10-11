@@ -1,116 +1,202 @@
 {
-  "schema": "work8-resume-v1",
+  "schema": "work8-resume-v2",
   "status": "IN_PROGRESS_NO_GO",
-  "frontend": {
-    "pr": 112,
-    "sha": "915e7c59f6abaf35c99fea7ce6a88cb4e55bc63a",
-    "tree": "cbfdbfeeb54c80ff27a845951f01b07de2ea372f",
-    "localCommit": "fdb66e64",
-    "ciRunIds": [
-      38093167756,
-      38093167685,
-      38093167695,
-      38093167656
-    ],
-    "ciStatus": "NEW_FRESH_STATUS_HEAD_PENDING",
-    "previousAllFourSuccess": "3496eb83ee454726eb327883cbf64277a22c2efc"
-  },
+  "wholeProgrammeCertified": false,
   "backend": {
     "pr": 113,
-    "sha": "a09bd0e365d7740ce55455ad4d768f6df11d4a63",
-    "tree": "31e80a1549577f771a9cce11970ddaa1f7dba57f",
-    "localCommit": "d608ca2b",
-    "ciRunIds": [
-      38094488052
+    "branch": "work8/autonomous-examination-20261011",
+    "recoveredSha": "a09bd0e365d7740ce55455ad4d768f6df11d4a63",
+    "recoveredWorkflows": [
+      {
+        "id": 38094488052,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 619,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094488052/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094488052/logs",
+        "workflow_id": 362309382
+      },
+      {
+        "id": 38094487954,
+        "name": "Independent Assurance Core",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 67,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487954/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487954/logs",
+        "workflow_id": 373040927
+      },
+      {
+        "id": 38094487993,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 620,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487993/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487993/logs",
+        "workflow_id": 362674549
+      },
+      {
+        "id": 38094487948,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 621,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487948/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487948/logs",
+        "workflow_id": 362688325
+      }
     ],
-    "ciStatus": "A09_PRODUCT139_ASSURANCE_SEMANTIC_SUCCESS_RUNTIME_PENDING; LATER_QUEUE_EXCERPT_DELTA_REQUIRES_NEW_CI",
-    "sourceManifest": "candidate-source-manifest.json",
-    "priorRuntimeFailure": {
-      "sha": "27b1e23c",
-      "status": "FAILED",
-      "observation": "HTTP503 precutover/restore path",
-      "cause": "UNRESOLVED"
+    "sha": "e931668dca5e87df8f0d26213791de8501cf2d35",
+    "tree": "f9324fbd4f966ac12ea4acb3292e342a622694e1",
+    "localEquivalentCommit": "01f80167acdd5376da1a6d0489bb61ef677ba9d5",
+    "workflows": [
+      {
+        "id": 38104771940,
+        "name": "Pillow runtime repair CI",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_number": 624,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771940/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771940/logs",
+        "workflow_id": 362688325
+      },
+      {
+        "id": 38104771996,
+        "name": "Independent Assurance Core",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 68,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771996/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771996/logs",
+        "workflow_id": 373040927
+      },
+      {
+        "id": 38104772029,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 623,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772029/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772029/logs",
+        "workflow_id": 362674549
+      },
+      {
+        "id": 38104772057,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 622,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772057/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772057/logs",
+        "workflow_id": 362309382
+      }
+    ],
+    "coreTests": {
+      "tests": 146,
+      "pass": 146,
+      "fail": 0,
+      "runId": 38104772057,
+      "jobId": 114367893740,
+      "receipt": "resume-20261011/ci-work8-summary.txt"
     }
+  },
+  "frontend": {
+    "pr": 112,
+    "branch": "work8/owner-operating-evidence-20261011",
+    "sha": "e7ef46cb420fec15e3810b73d439459678834767",
+    "tree": "fb0b95f631cd69039198b4e400666a32c2914f97",
+    "workflows": [
+      {
+        "id": 38095007594,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 623,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007594/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007594/logs",
+        "workflow_id": 362688325
+      },
+      {
+        "id": 38095007637,
+        "name": "Assurance owner browser contract",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 71,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007637/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007637/logs",
+        "workflow_id": 378221685
+      },
+      {
+        "id": 38095007629,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 621,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007629/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007629/logs",
+        "workflow_id": 362309382
+      },
+      {
+        "id": 38095007593,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 622,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007593/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007593/logs",
+        "workflow_id": 362674549
+      }
+    ],
+    "modified": false,
+    "campaignRepeated": false
+  },
+  "production": {
+    "observedAt": "2026-10-11T02:16:09.387Z",
+    "backend": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+    "frontend": "71f9414d6c534b4c35dbd22696b82a77fcf7c597",
+    "backendDeployment": "4303f5e9-afef-4f70-9388-996a0e923949",
+    "volume": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "stagedChanges": false
   },
   "productionLease": "NONE_ACQUIRED",
   "effects": {
-    "commerce": 0,
+    "productionWrites": 0,
     "paidInference": 0,
+    "realCommerce": 0,
     "newInfrastructure": 0,
-    "release": false
+    "releaseLease": false,
+    "merge": false,
+    "deployment": false
   },
+  "fixedRequirementCounts": {
+    "PASS": 1,
+    "PENDING": 39,
+    "BLOCKED": 5
+  },
+  "accounting": {
+    "observedAt": "2026-10-11T02:16:10Z",
+    "count": 227,
+    "digest": "9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92",
+    "originalCount": 224,
+    "originalDigest": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+    "addedRowIdentitiesVerified": false,
+    "originalSubsetVerified": false,
+    "requestAttributionVerified": false,
+    "details": "resume-20261011/ACCOUNTING.md"
+  },
+  "preservedPreviousCheckpoint": "resume-20261011/recovered-checkpoint.json",
+  "canonicalProgress": "resume-20261011/PROGRESS.md",
+  "nextActionRecord": "resume-20261011/NEXT.md",
   "next": [
-    "Sustained shared-runtime PASS bound to a09bd0e3 bytes; preserve compressed exact report/checksum. Verify later assessment-readback delta separately; do not relabel endurance as latest code.",
-    "Resolve exact new backend/frontend upload SHA and required CI. Prior backend runtime503 cause remains unresolved; do not infer new-head pass.",
-    "Preserve source/assessment/financial sidecar integration evidence and rerun only concrete changed failures.",
-    "Persist final CI evidence and update fixed45 register, full exam ledger and scoped independentreview",
-    "Continue remaining coupled fault/endurance examinations in fixed31 map without replaying passing suites",
-    "Obtain approved source-refresh/actual Pillow-assessment capability with enforceable cost controls and exact imageusage evidence; current connector is readonly retained-data only",
-    "Obtain exact accountingrow-to-request/original224subset readback for later227count;3 productionPillowrequests retained as supporting not conclusive lineage",
-    "Complete genuine-candidate full owner-assessed simulatedlifecycle, independent closure and conditional Work9 handoff; do not release/activate"
-  ],
-  "register": "register.json",
-  "faultMap": "assurance-fault-coverage.json",
-  "closureReceipt": null,
-  "evidenceBranch": "work8/examination-evidence-20261011",
-  "verifiedExaminations": {
-    "priorExactCi": {
-      "sha": "d054cc57",
-      "tests": 105,
-      "pass": 105
-    },
-    "finalAtomicAuthorityTargeted": {
-      "tests": 7,
-      "pass": 7
-    },
-    "resourceSoak": {
-      "elapsedMs": 600006.986277,
-      "samples": 120,
-      "status": "PASS_SCOPED"
-    },
-    "ownerBrowser": {
-      "backendLocal": "be2cdfb5",
-      "totalCanonicalMissions": 202,
-      "manifestFiles": 5445,
-      "manifestSha256": "1ebde842507e6d2bbaf757f08a62bc89c7efdb91cd12a69eeb7a9659973d5404",
-      "scope": "Before final atomic read-only consistency delta; delta independently two-connection verified"
-    },
-    "sharedRuntime": {
-      "schema": "work8-shared-runtime-soak-v1",
-      "status": "PASS_SCOPED_SHARED_RUNTIME",
-      "started": "2026-10-10T23:10:57.138Z",
-      "elapsedMs": 600004.997997,
-      "cpuMicroseconds": 6755920,
-      "p99SliceMs": 97.42391200000003,
-      "maxSliceMs": 109.07983200001763,
-      "peakRssBytes": 160694272,
-      "rssGrowthBytes": 32686080,
-      "thresholds": {
-        "samples": 120,
-        "intervalMs": 5000,
-        "minimumElapsedMs": 600000,
-        "p99SliceMs": 2000,
-        "maxSliceMs": 5000,
-        "peakRssBytes": 536870912,
-        "rssGrowthBytes": 134217728,
-        "cpuMicroseconds": 120000000
-      },
-      "scope": "One persistent isolated runtime/store set with injected provider responses. Source products are synthetic protocol fixtures, not real-product visibility evidence. Manual cadence orchestration uses actual planners/workers/collectors, not deployed timers or hosted endurance. Virtual business day advances explicitly for simulated settlement; wall time is measured independently.",
-      "samples": 120,
-      "sourceFiles": 3926,
-      "sourceManifestMatches": true,
-      "rawSha256": "9e9e455a1642d89ff21e3b4b4fe0efd0a964d9c9c9d9b593e3787031e65ccf51",
-      "rawBytes": 1286042,
-      "gzipSha256": "b91766a0b77ffd4b35bcf33a0892b9bd48316f2b209d09d8fed122efd163d24b",
-      "gzipBytes": 397195,
-      "backendCandidate": "a09bd0e365d7740ce55455ad4d768f6df11d4a63",
-      "laterDeltasIncluded": false,
-      "report": "shared-runtime-soak.json.gz",
-      "discoveryTarget": 100,
-      "providerFailures": 1,
-      "deferred": 3,
-      "financeStatus": "COMPLETE_SIMULATION"
-    }
-  },
-  "productionFollowup": "production-preservation-followup.json"
+    "Read exact e931 runtime workflow38104771940 conclusion without restarting it.",
+    "Reconstruct lost reviewed qualification dossier with source/owner/workspace/financial proof; do not remove deliberate unknown/verification gates.",
+    "Restore typed recommendation and explicit optional prebirth simulated-payment assumption, then guarded enrollment and trusted FX lineage.",
+    "Continue remaining fixed31 coupled exams only for changed coverage.",
+    "Obtain genuine source/image/assessment and accounting row prerequisites; keep unavailable requirements blocked.",
+    "Obtain independent new-delta review; no Work8 COMPLETE/Work9 activation before legitimate closure."
+  ]
 }

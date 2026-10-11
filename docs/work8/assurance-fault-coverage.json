@@ -15,8 +15,9 @@
       "item": 2,
       "fault": "Scheduled job misfire",
       "coverage": "INTEGRATED_LOCAL",
-      "evidence": "work8-assurance-adversity-followup.test.ts: atomic scheduled admission, reopen before/after commit",
-      "scopeAndGap": "Real SQLite enqueue abort leaves due slot intact; durable admission reopens exactly once. Hosted scheduler clock misfire/Assurance detection remains outside this local atomicity proof."
+      "evidence": "work8-assurance-adversity-followup.test.ts: atomic scheduled admission, reopen before/after commit; resume-20261011/targeted-tests.tap",
+      "scopeAndGap": "Real SQLite enqueue abort leaves due slot intact; durable admission reopens exactly once. Hosted scheduler clock misfire/Assurance detection remains outside this local atomicity proof.",
+      "continuation": "New e931 queue probe:20 overdue queued jobs plus missed enabled schedule detected; real bounded worker drains21 admitted jobs; fresh passive read closes incident. Expired running lease refuses replay. Scope is isolated local runtime, not hosted scheduler endurance."
     },
     {
       "item": 3,
@@ -36,8 +37,9 @@
       "item": 5,
       "fault": "Queue backlog",
       "coverage": "INTEGRATED_LOCAL",
-      "evidence": "work6-scale.test.ts; work8-assurance-adversity-followup.test.ts: full queue drain/restart; work8-queue-probe.test.ts; work8-assurance-runtime-cycle.test.ts",
-      "scopeAndGap": "Actual20-job pressure opens registered passive incident; actual four-job drain independently closes it. Aged queued work/expired leases escalate without replay, oversized/unknown metadata fail closed. No remote broker or hosted drain-latency claim."
+      "evidence": "work6-scale.test.ts; work8-assurance-adversity-followup.test.ts: full queue drain/restart; work8-queue-probe.test.ts; work8-assurance-runtime-cycle.test.ts; resume-20261011/targeted-tests.tap",
+      "scopeAndGap": "Actual20-job pressure opens registered passive incident; actual four-job drain independently closes it. Aged queued work/expired leases escalate without replay, oversized/unknown metadata fail closed. No remote broker or hosted drain-latency claim.",
+      "continuation": "New e931 queue probe:20 overdue queued jobs plus missed enabled schedule detected; real bounded worker drains21 admitted jobs; fresh passive read closes incident. Expired running lease refuses replay. Scope is isolated local runtime, not hosted scheduler endurance."
     },
     {
       "item": 6,
@@ -190,8 +192,9 @@
       "item": 27,
       "fault": "Compounded faults",
       "coverage": "INTEGRATED_LOCAL",
-      "evidence": "work8-joint-exams.test.ts; work8-assurance-storage-recovery.test.ts",
-      "scopeAndGap": "Receipt/cursor crash + supplier unknown + finance conflict; separately corrupt task step array + lost primary monitor"
+      "evidence": "work8-joint-exams.test.ts; work8-assurance-storage-recovery.test.ts; resume-20261011/targeted-tests.tap",
+      "scopeAndGap": "Receipt/cursor crash + supplier unknown + finance conflict; separately corrupt task step array + lost primary monitor",
+      "continuation": "New e931 queue probe:20 overdue queued jobs plus missed enabled schedule detected; real bounded worker drains21 admitted jobs; fresh passive read closes incident. Expired running lease refuses replay. Scope is isolated local runtime, not hosted scheduler endurance."
     },
     {
       "item": 28,

@@ -17,15 +17,21 @@
       "code": [],
       "tests": [],
       "release": "WORK7_BASELINE_ONLY",
-      "nextAction": "Retain baseline; recheck after any authorised release",
-      "responsibleComponent": "Production handoff and owner authority"
+      "nextAction": "Preserve baseline; do not rerun Work7 campaign",
+      "responsibleComponent": "Production handoff and owner authority",
+      "priorRecoveryStatus": "PASS",
+      "engineeringState": "Approved baseline retained",
+      "examinationResult": "PASS \u2014 baseline only",
+      "independentVerification": "Production revision and COMPLETE receipt read",
+      "continuationEvidence": "baseline.json; recovery-receipt.json",
+      "remainingDependency": "None for Work7"
     },
     {
       "item": 2,
       "requirement": "Financial and historical preservation",
       "mandateSections": "2,6,16,22",
       "recoveredClassification": "VERIFIED IMPLEMENTED",
-      "status": "PARTIAL",
+      "status": "BLOCKED",
       "evidence": [
         "baseline.json"
       ],
@@ -33,15 +39,21 @@
       "code": [],
       "tests": [],
       "release": "WORK7_BASELINE_ONLY",
-      "nextAction": "Starting baseline verified. Journal3/history7 still exact; current accounting227 vs224 coincides with3 production Pillow requests, exact added-row/original-subset binding unavailable via aggregate-only reader.",
-      "responsibleComponent": "Production handoff and owner authority"
+      "nextAction": "Extract one snapshot; compare identities and immutable original subset; join canonical correlation",
+      "responsibleComponent": "Production handoff and owner authority",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Separate ledgers preserved; extractor ready",
+      "examinationResult": "BLOCKED \u2014 224\u2192227 attribution unresolved",
+      "independentVerification": "Journal3/history7 hashes unchanged; calls aggregate only",
+      "continuationEvidence": "resume-20261011/ACCOUNTING.md",
+      "remainingDependency": "Read-only call/provider rows, original224 rows, transport lineage"
     },
     {
       "item": 3,
       "requirement": "Approved UX and fifteen safety controls",
       "mandateSections": "2,10,16,17,22",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "../mission-state/work7-owner-ux-20261010/PRODUCTION-COMPLETE.md"
       ],
@@ -51,15 +63,21 @@
         "backend/src/validation/tests/work8-safety-matrix.test.ts"
       ],
       "release": "WORK7_BASELINE_ONLY",
-      "nextAction": "Approved Work7 UX recovered; candidate fixed15 positive/negative safety matrix passes, distinct from deployed certification.",
-      "responsibleComponent": "Production handoff and owner authority"
+      "nextAction": "Carry guard results into remaining genuine-source flows without bypass",
+      "responsibleComponent": "Production handoff and owner authority",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Work7 UX retained; candidate guards intact",
+      "examinationResult": "PENDING \u2014 15 guard pairs passed locally",
+      "independentVerification": "Retained safety source hashes7/7 match",
+      "continuationEvidence": "safety-matrix.json; independent-candidate-review.md",
+      "remainingDependency": "Complete integrated candidate acceptance"
     },
     {
       "item": 4,
       "requirement": "Sandbox isolation and denied egress",
       "mandateSections": "0,8,19,23",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "examination-blueprint.json"
       ],
@@ -70,15 +88,21 @@
       ],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Kernel network denial passes; filesystem confinement and hosted isolation remain unverified",
-      "responsibleComponent": "Isolated examination runtime"
+      "nextAction": "Add only missing filesystem-boundary cases to integrated harness",
+      "responsibleComponent": "Isolated examination runtime",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Kernel network denial and isolated stores implemented",
+      "examinationResult": "PENDING \u2014 local egress checks passed",
+      "independentVerification": "Retained isolated receipts; no hosted claim",
+      "continuationEvidence": "examination-ledger.json",
+      "remainingDependency": "Full filesystem/operating isolation proof"
     },
     {
       "item": 5,
       "requirement": "Real-source connectivity and entitlements",
       "mandateSections": "4,21,R3",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "BLOCKED",
       "evidence": [
         "source-authentic-readback.json"
       ],
@@ -86,15 +110,21 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Retained authenticated CJ reads verified; fresh daily provider acquisition not exercised",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Exercise existing bounded acquisition once permitted read access exists",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Retained readers and bounded acquisition implemented",
+      "examinationResult": "BLOCKED \u2014 fresh acquisition not exercised",
+      "independentVerification": "Genuine retained envelopes recovered",
+      "continuationEvidence": "source-authentic-readback.json",
+      "remainingDependency": "Permitted fresh read capability/account entitlement"
     },
     {
       "item": 6,
       "requirement": "Authentic source product records",
       "mandateSections": "4,R1,R4",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "source-visibility.md",
         "source-authentic-projection.json"
@@ -107,8 +137,14 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "10 genuine parent identities and10 variants retained; no qualified real products",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Bind fresh details, stock and freight to exact parent/variant/destination",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Genuine identities retained",
+      "examinationResult": "PENDING \u2014 10 parents/10 variants; zero qualified",
+      "independentVerification": "Retained envelope and projection evidence",
+      "continuationEvidence": "source-authentic-projection.json",
+      "remainingDependency": "Fresh complete product dossiers"
     },
     {
       "item": 7,
@@ -127,15 +163,21 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "0/19 image URLs have verified display rights; obtain supplier capability/rights evidence",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Attach permission covering exact URLs/use/validity; then render those assets",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "BLOCKED",
+      "engineeringState": "Unverified imagery withheld",
+      "examinationResult": "BLOCKED \u2014 0/19 assets licensed for display",
+      "independentVerification": "Exact-asset rights review retained",
+      "continuationEvidence": "source-image-rights-review.json",
+      "remainingDependency": "Applicable supplier/rightsholder permission"
     },
     {
       "item": 8,
       "requirement": "Observed supplier prices/currencies",
       "mandateSections": "4,R1,R4",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "source-visibility.md",
         "source-currency-contract.json"
@@ -148,15 +190,21 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Exact variant prices USD verified; parent currency and landed economics incomplete",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Bind fresh quote operands and reviewed currency evidence; preserve unknowns",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Endpoint-specific USD variant contract retained",
+      "examinationResult": "PENDING \u2014 10 variant prices; parent currency gaps",
+      "independentVerification": "Recorded contract and contradiction tests",
+      "continuationEvidence": "source-currency-contract.json",
+      "remainingDependency": "Current stock, freight, FX and landed costs"
     },
     {
       "item": 9,
       "requirement": "Competitor and market evidence",
       "mandateSections": "4,R1",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "source-visibility.md"
       ],
@@ -168,15 +216,21 @@
         "backend/src/validation/tests/work8-market-context.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Three authentic Amazon source records expose ten catalog ASIN identities and one USD18.99 offer; no verified CJ product match or demand inference.",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Establish identity match before using any market price or demand claim",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Separate authentic market projection",
+      "examinationResult": "PENDING \u2014 10 ASINs, one USD18.99 offer, zero matches",
+      "independentVerification": "Retained marketplace envelopes",
+      "continuationEvidence": "source-marketplace-projection.json",
+      "remainingDependency": "Verified product match and demand evidence"
     },
     {
       "item": 10,
       "requirement": "Normalization identity and deduplication",
       "mandateSections": "4,19,R2",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "source-visibility.md"
       ],
@@ -188,15 +242,21 @@
         "backend/src/validation/tests/work8-source-discovery.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Durable bounded discovery deduplicates receipt-bound parent identities across days; fresh provider discovery remains unproven.",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Execute fresh cohort across days; compare identity receipts",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Durable identity/deduplication implemented",
+      "examinationResult": "PENDING \u2014 bounded local cases passed",
+      "independentVerification": "Retained source/receipt checks",
+      "continuationEvidence": "source-discovery-worker.md",
+      "remainingDependency": "Genuine multi-day cohort"
     },
     {
       "item": 11,
       "requirement": "Freshness and quarantine",
       "mandateSections": "4,7,R3",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "source-visibility.md"
       ],
@@ -210,15 +270,21 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Expiry and contradiction quarantine tested; ongoing real refresh not proven",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Verify fresh replacement generation and preservation of old receipts",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Expiry/contradiction refusal implemented",
+      "examinationResult": "PENDING \u2014 adversarial cases passed",
+      "independentVerification": "Source binding and stale-response tests retained",
+      "continuationEvidence": "assurance-fault-coverage.json",
+      "remainingDependency": "Genuine refresh after expiry"
     },
     {
       "item": 12,
       "requirement": "Software screening and economics",
       "mandateSections": "4,6",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "source-visibility.md"
       ],
@@ -231,15 +297,21 @@
         "backend/src/validation/tests/work8-enrichment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Durable per-parent detail/logistics enrichment and explicit deferrals implemented under existing queue/quota bounds. Genuine complete qualification remains0; missing economic/market evidence is not inferred.",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Reconstruct immutable reviewed dossier without accepting model claims as verified facts",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Completeness screening exists; reviewed qualification path missing",
+      "examinationResult": "PENDING \u2014 genuine10/10 deferred",
+      "independentVerification": "Published code confirms forced unknown finance/unverified findings",
+      "continuationEvidence": "resume-20261011/CHANGES.md",
+      "remainingDependency": "Qualification dossier and canonical financial binding code"
     },
     {
       "item": 13,
       "requirement": "Actual Pillow assessment binding",
       "mandateSections": "4,R1,R2,R5",
       "recoveredClassification": "MISSING SOFTWARE LINK AND EXTERNAL DEPENDENCY",
-      "status": "IN_PROGRESS",
+      "status": "BLOCKED",
       "evidence": [
         "source-visibility.md"
       ],
@@ -247,8 +319,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Candidate-bound grants now pin exact evidence snapshots and durable context delivery; answer/request/owner/timestamp binding and two-process grant race examined. Genuine completed assessments remain0; authorized actual inference and sufficient evidence remain unavailable.",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Complete code prerequisites, then use separately authorised bounded assessment; never infer a paid-call grant",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "IN_PROGRESS",
+      "engineeringState": "Context/request/owner linkage and strict draft contract implemented",
+      "examinationResult": "BLOCKED \u2014 injected integration passed; genuine assessments0",
+      "independentVerification": "Exact source-bound protocol checks; no semantic-truth claim",
+      "continuationEvidence": "resume-20261011/targeted-tests.tap; owner-assessment-excerpt.md",
+      "remainingDependency": "Authorised actual assessment capability and fresh full context"
     },
     {
       "item": 14,
@@ -263,8 +341,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Recommendations correctly absent until completed qualified assessments",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Bind recommendation to immutable dossier/assessment hash; require separate owner decision",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PENDING",
+      "engineeringState": "Unreviewed proposal backend reconstructed; typed decision/UI path missing",
+      "examinationResult": "PENDING \u2014 draft boundaries passed",
+      "independentVerification": "Executing-engineer review; independent review pending",
+      "continuationEvidence": "resume-20261011/CHANGES.md",
+      "remainingDependency": "Dossier/decision integration and genuine assessment"
     },
     {
       "item": 15,
@@ -279,15 +363,21 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "10 real observations do not establish100 initial qualified products",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Run actual source screening and report qualified/deferred/rejected counts without forcing100",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PENDING",
+      "engineeringState": "Admission scaffolding retained",
+      "examinationResult": "PENDING \u2014 zero genuine qualified products",
+      "independentVerification": "No mock counted as a real product",
+      "continuationEvidence": "register.json; source-authentic-projection.json",
+      "remainingDependency": "Complete qualification path and sufficient genuine evidence"
     },
     {
       "item": 16,
       "requirement": "Daily discovery and low-supply outcomes",
       "mandateSections": "4,8,19",
       "recoveredClassification": "MISSING",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "examination-blueprint.json",
         "source-discovery-worker.md"
@@ -300,15 +390,21 @@
         "backend/src/validation/tests/work8-source-discovery.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Bounded page planner, atomic queue/cursor admission and append-only same-day discovery implemented and injected-adapter examined through100 distinct identities. Existing quotas unchanged; real daily source-refresh access remains unverified.",
-      "responsibleComponent": "Intelligence and product assessment"
+      "nextAction": "Verify daily bounds and genuine low-supply outcomes; do not inflate throughput",
+      "responsibleComponent": "Intelligence and product assessment",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Bounded daily jobs/generations and truthful deferrals",
+      "examinationResult": "PENDING \u2014 local admission cases passed",
+      "independentVerification": "Retained atomicity and source tests",
+      "continuationEvidence": "source-discovery-worker.md; examination-ledger.json",
+      "remainingDependency": "Fresh daily source cohorts"
     },
     {
       "item": 17,
       "requirement": "Transactional active portfolio cap",
       "mandateSections": "4,8,19",
       "recoveredClassification": "DEFECTIVE",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "portfolio-node22.log"
       ],
@@ -321,15 +417,21 @@
         "backend/src/validation/tests/work8-portfolio.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "1000 cap, reopen, retirement and concurrent999/1000/1001 boundaries pass locally; full genuine-candidate operating loop remains blocked.",
-      "responsibleComponent": "Governed commerce worker"
+      "nextAction": "Run same cap through completed genuine-candidate path only after it exists",
+      "responsibleComponent": "Governed commerce worker",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "1,000 cap and atomic admission retained",
+      "examinationResult": "PENDING \u2014 1,001st denial and SQLite contenders passed",
+      "independentVerification": "Retained concurrency oracle",
+      "continuationEvidence": "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+      "remainingDependency": "Real qualified cohort integration"
     },
     {
       "item": 18,
       "requirement": "Portfolio review retirement/replacement",
       "mandateSections": "4,19",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "portfolio-node22.log"
       ],
@@ -342,15 +444,21 @@
         "backend/src/validation/tests/work8-portfolio.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Owner retirement and safe replacement preserve immutable history; wider market retirement pending",
-      "responsibleComponent": "Governed commerce worker"
+      "nextAction": "Bind fresh outcome evidence to retirement/replacement without changing cap",
+      "responsibleComponent": "Governed commerce worker",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Retirement/replacement controls retained",
+      "examinationResult": "PENDING \u2014 replacement boundary cases passed",
+      "independentVerification": "Retained receipt and stock checks",
+      "continuationEvidence": "backend/src/validation/tests/work8-portfolio.test.ts",
+      "remainingDependency": "Genuine outcome review"
     },
     {
       "item": 19,
       "requirement": "Simulated listing schema/media",
       "mandateSections": "5,R2",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "finance-operating-exam-evidence.json.gz"
       ],
@@ -362,15 +470,21 @@
         "backend/src/validation/tests/work8-operating-exams.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Canonical intercepted listing lifecycle exercised; real qualified assessment lineage absent",
-      "responsibleComponent": "Governed commerce worker"
+      "nextAction": "Validate a rights-backed listing in isolated intercepted mode",
+      "responsibleComponent": "Governed commerce worker",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Intercepted listing and provenance schema retained",
+      "examinationResult": "PENDING \u2014 synthetic cases passed",
+      "independentVerification": "No live publication or licensed image inferred",
+      "continuationEvidence": "examination-ledger.json; source-image-rights-review.json",
+      "remainingDependency": "Genuine qualification and exact image rights"
     },
     {
       "item": 20,
       "requirement": "Simulated orders and supplier intents",
       "mandateSections": "5,8",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "finance-operating-exam-evidence.json.gz"
       ],
@@ -382,15 +496,21 @@
         "backend/src/validation/tests/work8-operating-exams.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Eight orders across four virtual mission scenarios; complete programme still pending",
-      "responsibleComponent": "Governed commerce worker"
+      "nextAction": "Add optional ASSUMED_PAID prebirth assumption; absent means no PAYMENT evidence",
+      "responsibleComponent": "Governed commerce worker",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Canonical simulated workflow retained; genuine enrollment missing",
+      "examinationResult": "PENDING \u2014 synthetic lifecycle and locks passed",
+      "independentVerification": "Seven live handlers remain unreachable in targeted exam",
+      "continuationEvidence": "resume-20261011/targeted-tests.tap",
+      "remainingDependency": "Explicit simulation assumption and guarded enrollment code"
     },
     {
       "item": 21,
       "requirement": "Partial shipments tracking/delivery",
       "mandateSections": "5,8",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "finance-operating-exam-evidence.json.gz"
       ],
@@ -404,15 +524,21 @@
         "backend/src/validation/tests/work8-assurance-runtime-cycle.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Canonical missing-tracking and overdue partial shipment collectors integrated into Assurance; local escalation/fresh terminal closure pass, no provider repair authority.",
-      "responsibleComponent": "Governed commerce worker"
+      "nextAction": "Carry exact product/variant/order identity through partial delivery cases",
+      "responsibleComponent": "Governed commerce worker",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Bounded monitoring and escalation retained",
+      "examinationResult": "PENDING \u2014 1,000 orders/four pages passed",
+      "independentVerification": "Retained independent adverse review",
+      "continuationEvidence": "fulfilment-adverse-review.md; independent-candidate-review.md",
+      "remainingDependency": "Real-product simulation linkage"
     },
     {
       "item": 22,
       "requirement": "Refund returns and supplier credits",
       "mandateSections": "5,6",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "finance-examination.md"
       ],
@@ -423,15 +549,21 @@
         "backend/src/validation/tests/work8-stock-race.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Chargeback loss, refund mismatch, repeated unconfirmed cancellation and unknown outcome covered locally; broader live-provider contract remains unavailable.",
-      "responsibleComponent": "Governed commerce worker"
+      "nextAction": "Reconcile refund/credit events after genuine-candidate simulation enrollment",
+      "responsibleComponent": "Governed commerce worker",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Simulation remedies and financial events retained",
+      "examinationResult": "PENDING \u2014 scoped remedy/conservation cases passed",
+      "independentVerification": "Retained finance oracle",
+      "continuationEvidence": "finance-examination.md; finance-boundary-exam-evidence.json",
+      "remainingDependency": "Full linked real-product simulated lifecycle"
     },
     {
       "item": 23,
       "requirement": "Settlement payout holds/bank receipts",
       "mandateSections": "5,6",
       "recoveredClassification": "MISSING",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "finance-examination.md"
       ],
@@ -450,15 +582,21 @@
         "backend/src/validation/tests/work8-durable-finance-runtime.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Durable SIMULATION-only sidecar lifecycle now progresses through existing5-second commerce runtime and authenticated readback, with explicit one-day simulated payout hold and null-runbook Assurance probes. Actual Work5 finance is untouched; genuine product lineage remains absent.",
-      "responsibleComponent": "Governed commerce worker"
+      "nextAction": "Extend admission without weakening source freeze, approval, payment or actual-ledger separation",
+      "responsibleComponent": "Governed commerce worker",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Durable acceptance-task simulation implemented",
+      "examinationResult": "PENDING \u2014 hold/restart cases passed",
+      "independentVerification": "Canonical simulated receipts retained",
+      "continuationEvidence": "durable-simulated-finance.md",
+      "remainingDependency": "Guarded genuine-mission enrollment and trusted conversion"
     },
     {
       "item": 24,
       "requirement": "Financial reconciliation and money conservation",
       "mandateSections": "6,22",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "assurance-draft-review.md"
       ],
@@ -477,15 +615,21 @@
         "backend/src/validation/tests/work8-simulated-fx.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Canonical money, chargeback, cutoff, negative cash and exact rational simulated FX checked; full programme not certified.",
-      "responsibleComponent": "Financial reconciliation and owner readback"
+      "nextAction": "Bind reviewed FX and immutable source lineage; exercise cutoff/refund/held settlement",
+      "responsibleComponent": "Financial reconciliation and owner readback",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Canonical receipts, rational simulated FX, atomic read snapshots",
+      "examinationResult": "PENDING \u2014 scoped money/conservation cases passed",
+      "independentVerification": "Retained independent arithmetic/source oracles",
+      "continuationEvidence": "finance-boundary-exam-evidence.json; simulated-fx-evidence.json",
+      "remainingDependency": "Full integrated genuine-product simulated reconciliation"
     },
     {
       "item": 25,
       "requirement": "Live Cost Centre separate accounting",
       "mandateSections": "6,22",
       "recoveredClassification": "VERIFIED IMPLEMENTED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "baseline.json",
         "finance-examination.md"
@@ -500,15 +644,21 @@
         "backend/src/validation/tests/work8-owner-finance.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Paged owner readback prevents silent200-record truncation; mission heads and simulation finance share one snapshot. Real fees/settlement/profit remain unknown.",
-      "responsibleComponent": "Financial reconciliation and owner readback"
+      "nextAction": "Reconcile real calls separately; keep real profit and unknown invoices unknown",
+      "responsibleComponent": "Financial reconciliation and owner readback",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Actual and simulated accounting remain separate",
+      "examinationResult": "PENDING \u2014 source separation/snapshot regression passed",
+      "independentVerification": "Actual journal/history hashes read unchanged",
+      "continuationEvidence": "owner-financial-readback.md; resume-20261011/ACCOUNTING.md",
+      "remainingDependency": "Actual row lineage and complete charge evidence"
     },
     {
       "item": 26,
       "requirement": "Assurance detection/correlation",
       "mandateSections": "7,18,20",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "joint-exam-evidence.json.gz"
       ],
@@ -524,15 +674,21 @@
         "backend/src/validation/tests/work8-response-binding.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Read-only financial risk and response-correlation collectors now reject negative/unknown/conflicting evidence and missing candidate context proof, with fresh independent closure. No financial or model replay repair authority.",
-      "responsibleComponent": "Assurance control plane"
+      "nextAction": "Advance missing coupled cases without replaying passing campaigns",
+      "responsibleComponent": "Assurance control plane",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "New passive queue/schedule probe registered; owner closure repaired",
+      "examinationResult": "PENDING \u2014 new combined detection/recovery passed",
+      "independentVerification": "Fresh read oracle; independent source review pending",
+      "continuationEvidence": "resume-20261011/targeted-tests.tap",
+      "remainingDependency": "Remaining fixed31 coverage"
     },
     {
       "item": 27,
       "requirement": "Bounded repair authority catalogue",
       "mandateSections": "7,18,20",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "assurance-examinations.md",
         "assurance-examinations.md"
@@ -545,15 +701,21 @@
         "backend/src/validation/tests/work8-assurance-commerce-recovery.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Allowlisted receipt-cursor repair registered in candidate Assurance; no production deployment",
-      "responsibleComponent": "Assurance control plane"
+      "nextAction": "Verify each remaining repair against exact allowlist and irreversible-effect denial",
+      "responsibleComponent": "Assurance control plane",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Allowlisted cursor repair retained; queue probe has no replay runbook",
+      "examinationResult": "PENDING \u2014 bounded repair/denial cases passed",
+      "independentVerification": "Retained control-plane review",
+      "continuationEvidence": "assurance-examinations.md",
+      "remainingDependency": "Full authority catalogue acceptance"
     },
     {
       "item": 28,
       "requirement": "Fresh independent recovery verification",
       "mandateSections": "7,20",
       "recoveredClassification": "DEFECTIVE",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "assurance-examinations.md",
         "assurance-draft-review.md"
@@ -564,15 +726,21 @@
         "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Fresh recovery and stale/future evidence denial pass; legacy collectors lack freshness guarantee",
-      "responsibleComponent": "Assurance control plane"
+      "nextAction": "Add missing collector freshness cases; reject stale/future recovery claims",
+      "responsibleComponent": "Assurance control plane",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Fresh queue closure and owner/request linkage enforced",
+      "examinationResult": "PENDING \u2014 unauthenticated closure defect reproduced and fixed",
+      "independentVerification": "Separate source reread after real bounded drain",
+      "continuationEvidence": "resume-20261011/CHANGES.md",
+      "remainingDependency": "Other collectors' freshness guarantees"
     },
     {
       "item": 29,
       "requirement": "Recurrence budget and circuit breaker",
       "mandateSections": "7,20",
       "recoveredClassification": "DEFECTIVE",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "assurance-examinations.md"
       ],
@@ -582,15 +750,21 @@
         "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Fault-family retry budget across incidents tested; operational recurrence prevention incomplete",
-      "responsibleComponent": "Assurance control plane"
+      "nextAction": "Exercise delayed recurrence in remaining integrated fault families",
+      "responsibleComponent": "Assurance control plane",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Fault-family retry/circuit limits retained",
+      "examinationResult": "PENDING \u2014 scoped recurrence cases passed",
+      "independentVerification": "Retained recovery tests",
+      "continuationEvidence": "assurance-examinations.md",
+      "remainingDependency": "Wider operational recurrence control"
     },
     {
       "item": 30,
       "requirement": "Assurance watchdog/degraded operation",
       "mandateSections": "7,19",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "assurance-examinations.md"
       ],
@@ -600,15 +774,21 @@
         "backend/src/validation/tests/work8-assurance-storage-recovery.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Existing supervisor tests retained; deployed Work8 watchdog acceptance pending",
-      "responsibleComponent": "Assurance control plane"
+      "nextAction": "Add missing self-failure/degraded-operation cases without granting repair authority",
+      "responsibleComponent": "Assurance control plane",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Supervisor/storage recovery retained",
+      "examinationResult": "PENDING \u2014 local watchdog cases passed",
+      "independentVerification": "Retained scoped tests",
+      "continuationEvidence": "assurance-fault-coverage.json",
+      "remainingDependency": "Coupled watchdog/endurance acceptance"
     },
     {
       "item": 31,
       "requirement": "Scenario blueprint seeds and independent oracles",
       "mandateSections": "8,9,19,20",
       "recoveredClassification": "MISSING",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "examination-blueprint.json"
       ],
@@ -622,15 +802,21 @@
         "backend/src/validation/tests/work8-operating-exams.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Fixed45 register and prerequisite blueprint established; fault map expansion underway",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Extend existing fixed scenario map with prerequisites and separate expected-value oracles",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Fixed45 register/fixed31 faults preserved",
+      "examinationResult": "PENDING \u2014 blueprint exists; missing scenarios explicit",
+      "independentVerification": "Evidence denominator unchanged",
+      "continuationEvidence": "examination-blueprint.json; assurance-fault-coverage.json",
+      "remainingDependency": "Uncovered integrated cases"
     },
     {
       "item": 32,
       "requirement": "Unit integration/contract and property exams",
       "mandateSections": "8,19",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "component-node22.log"
       ],
@@ -641,15 +827,21 @@
         "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Focused contract/identity/money/model/session/safety and compatibility exams pass; complete revised exact-head CI remains required.",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Inspect exact CI conclusions; repair only demonstrated defects",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "New contracts and probe covered; broader gates retained",
+      "examinationResult": "PENDING \u2014 13 targeted plus1 context case passed",
+      "independentVerification": "Remote exact-head CI tracked separately",
+      "continuationEvidence": "resume-20261011/targeted-tests.tap; recovery-receipt.json",
+      "remainingDependency": "Independent code review and remaining implementation"
     },
     {
       "item": 33,
       "requirement": "Concurrency races and replay",
       "mandateSections": "5,8,19",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "portfolio-node22.log"
       ],
@@ -664,15 +856,21 @@
         "backend/src/validation/tests/work8-stock-race.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Two actual SQLite contenders prove portfolio cap and aggregate stock admission; full transport/concurrency fault matrix remains open.",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Add only uncovered concurrency boundaries in completed integrated path",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Stock/cap atomicity and replay fences retained",
+      "examinationResult": "PENDING \u2014 actual SQLite contenders passed",
+      "independentVerification": "Retained concurrency receipts",
+      "continuationEvidence": "examination-ledger.json",
+      "remainingDependency": "Wider transport/concurrency matrix"
     },
     {
       "item": 34,
       "requirement": "Fault injection and compounded failures",
       "mandateSections": "7,8,19",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "joint-exam-evidence.json.gz",
         "assurance-fault-coverage.md"
@@ -686,15 +884,21 @@
         "backend/src/validation/tests/work8-sqlite-queue-containment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Joint and compound checkpoint+watchdog fault traces retained;31category gaps remain explicit",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Continue fixed31 gaps; preserve no replay on outcome-unknown work",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Queue+schedule compound examination added",
+      "examinationResult": "PENDING \u2014 full20 queue drains21 admitted jobs; fresh closure",
+      "independentVerification": "Real worker transitions and independent passive reads",
+      "continuationEvidence": "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json",
+      "remainingDependency": "Other coupled fault families"
     },
     {
       "item": 35,
       "requirement": "Provider outage malformed output and correlation",
       "mandateSections": "7,21",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "joint-exam-evidence.json.gz"
       ],
@@ -705,15 +909,21 @@
         "backend/src/validation/tests/work8-model-session-faults.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Actual locked router429/503/malformed usage injected under kernel denial; passive fresh receipt closure and no replay pass; real-provider outages and semantic hallucination remain unproven.",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Validate factual claims against sources; keep proposal verification false meanwhile",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "429/503/schema handling and strict model draft rejection",
+      "examinationResult": "PENDING \u2014 injected cases passed",
+      "independentVerification": "No real provider outage or semantic truth inferred",
+      "continuationEvidence": "assurance-fault-coverage.json; resume-20261011/CHANGES.md",
+      "remainingDependency": "Genuine authorised provider/assessment evidence"
     },
     {
       "item": 36,
       "requirement": "All fifteen safety controls positive/negative exams",
       "mandateSections": "7,9,22",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "baseline.json"
       ],
@@ -723,15 +933,21 @@
         "backend/src/validation/tests/work8-safety-matrix.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "15 catalog guards have positive/negative regression pairs; all7 live routes deny423 ordinarily and during autonomous repair, zerohandlers. Scope limits retained.",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Preserve guards in new qualification/enrollment path and verify changed boundaries",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "All15 controls and seven live locks retained",
+      "examinationResult": "PENDING \u2014 15 pairs and7-route denial passed",
+      "independentVerification": "Seven retained source hashes match; targeted locks rerun for changed Assurance",
+      "continuationEvidence": "safety-matrix.json; resume-20261011/targeted-tests.tap",
+      "remainingDependency": "Full integrated acceptance"
     },
     {
       "item": 37,
       "requirement": "Multi-day virtual-time operations",
       "mandateSections": "8,19",
       "recoveredClassification": "MISSING",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "portfolio-node22.log",
         "shared-store-days.json.gz"
@@ -748,15 +964,21 @@
         "scripts/work8/shared-store-days.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "One sharedstore10accelerated days/20orders/190receipts/10 verified recoveries and fixed56500minorunit oracle pass; genuine assessed source pipeline and elapsed business endurance remain open.",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Exercise completed real-source pipeline across virtual business days; label elapsed time separately",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Shared-store accelerated days and cap driver retained",
+      "examinationResult": "PENDING \u2014 10 days/20 orders/190 receipts/10 recoveries passed",
+      "independentVerification": "Fixed56500-minor-unit oracle retained",
+      "continuationEvidence": "shared-store-days.md; shared-store-days.json.gz",
+      "remainingDependency": "Genuine multi-day candidate pipeline"
     },
     {
       "item": 38,
       "requirement": "Measured elapsed endurance",
       "mandateSections": "8,19,20",
       "recoveredClassification": "MISSING",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "elapsed-soak.json",
         "shared-runtime-soak-receipt.json",
@@ -768,15 +990,21 @@
       ],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Sustained shared-runtime examination PASS: 600004.998ms elapsed,120 slices, p99 core 97.424ms, maximum 109.080ms, peak RSS 153.25MiB, growth 31.17MiB, CPU 6.756s. All declared bounds and 3926-file source manifests match. One persistent store set records100 injected discovery identities, one429, three deferrals, verified checkpoint recovery and complete simulated settlement; explicit virtual payout-day advance is not elapsed business time. Later source deltas require separate verification; no hosted multi-day/full-programme pass.",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Reuse accepted soak; add changed full-business coverage only when prerequisites exist",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Resource and persistent-runtime harnesses retained",
+      "examinationResult": "PENDING \u2014 120-sample600s scoped soaks passed",
+      "independentVerification": "Compressed/raw shared-runtime hashes independently match",
+      "continuationEvidence": "shared-runtime-soak-receipt.json; resource-soak.json",
+      "remainingDependency": "Full-business endurance after integration"
     },
     {
       "item": 39,
       "requirement": "Cold restart rollback/migration/restore",
       "mandateSections": "8,19,22",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "finance-operating-exam-evidence.json.gz",
         "assurance-fault-coverage.md"
@@ -788,15 +1016,21 @@
         "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Actual Work7 source reader/writer compatibility, corrupt/version99 refusal and stale-authority fencing pass. Full deployment rollback/combined migration remains separately scoped, not inferred.",
-      "responsibleComponent": "Integrated examination programme"
+      "nextAction": "Extend isolated combined-state rehearsal; no production rollback/deploy",
+      "responsibleComponent": "Integrated examination programme",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Sidecar compatibility and stale-authority fencing retained",
+      "examinationResult": "PENDING \u2014 scoped restart/restore cases passed",
+      "independentVerification": "Exact Work7 compatibility source retained",
+      "continuationEvidence": "sidecar-compatibility.md; assurance-fault-coverage.json",
+      "remainingDependency": "Combined full-flow migration/rollback acceptance"
     },
     {
       "item": 40,
       "requirement": "Actual owner-view real-product walkthrough",
       "mandateSections": "10,R2,R5",
       "recoveredClassification": "MISSING",
-      "status": "PARTIAL",
+      "status": "BLOCKED",
       "evidence": [
         "source-visibility.md"
       ],
@@ -810,15 +1044,21 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Authenticated isolated desktop/mobile displays genuine retained CJ/Amazon records; no linked genuine Pillow assessment, image permission or coherent real-candidate downstream lifecycle.",
-      "responsibleComponent": "Owner Console"
+      "nextAction": "Reconstruct dossier UI, then inspect one genuine linked journey with permitted images",
+      "responsibleComponent": "Owner Console",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Existing source visibility UI retained; lost dossier UI unavailable",
+      "examinationResult": "BLOCKED \u2014 historical desktop/mobile passed; true journey absent",
+      "independentVerification": "Prior authenticated browser manifests retained",
+      "continuationEvidence": "source-visibility.md; independent-candidate-review.md",
+      "remainingDependency": "Licensed assets, genuine assessment, missing UI/integration"
     },
     {
       "item": 41,
       "requirement": "Mobile desktop source-to-finance equality",
       "mandateSections": "6,10,R5",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "source-visibility.md"
       ],
@@ -832,15 +1072,21 @@
         "backend/src/validation/tests/work8-owner-finance.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Existing202-mission paginated desktop/mobile browser exam retained. Latest authenticated17-mission durable-SIM walkthrough passes per root report; its precise receipt/source bindings remain in frontend evidence, not inferred from old manifests.",
-      "responsibleComponent": "Owner Console"
+      "nextAction": "Verify that new flow on both viewports without rerunning unchanged browser campaign",
+      "responsibleComponent": "Owner Console",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Pagination and shared finance snapshots retained",
+      "examinationResult": "PENDING \u2014 202 missions and1440/390px equality passed",
+      "independentVerification": "Retained manifests and two-connection snapshot test",
+      "continuationEvidence": "owner-financial-readback.md; independent-candidate-review.md",
+      "remainingDependency": "Genuine linked source-to-finance flow"
     },
     {
       "item": 42,
       "requirement": "Review exact-head CI and release authority",
       "mandateSections": "12,25",
       "recoveredClassification": "EXTERNAL DEPENDENCY",
-      "status": "IN_PROGRESS",
+      "status": "PENDING",
       "evidence": [
         "assurance-draft-review.md",
         "CHECKPOINT.md"
@@ -849,8 +1095,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Backend PR113 a09bd0e365d7740ce55455ad4d768f6df11d4a63 matches locald608ca2b tree31e80a1549577f771a9cce11970ddaa1f7dba57f. New exact-head CI pending; old27b1e23c runtime503 cause unresolved. No release authority.",
-      "responsibleComponent": "Governed review and closure"
+      "nextAction": "Read all new conclusions, obtain independent delta review; do not merge/deploy",
+      "responsibleComponent": "Governed review and closure",
+      "priorRecoveryStatus": "IN_PROGRESS",
+      "engineeringState": "Backend continuation published; frontend unchanged; no release",
+      "examinationResult": "PENDING \u2014 recovered candidates4/4 each; new CI tracked",
+      "independentVerification": "GitHub exact-head status read; new independent code review missing",
+      "continuationEvidence": "recovery-receipt.json; resume-20261011/CHANGES.md",
+      "remainingDependency": "Independent delta review; separate release authority"
     },
     {
       "item": 43,
@@ -865,15 +1117,21 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Do not issue COMPLETE receipt with critical gates incomplete",
-      "responsibleComponent": "Governed review and closure"
+      "nextAction": "Issue no COMPLETE receipt until evidence supports every required gate",
+      "responsibleComponent": "Governed review and closure",
+      "priorRecoveryStatus": "PENDING",
+      "engineeringState": "Closure withheld",
+      "examinationResult": "PENDING \u2014 no Work8 COMPLETE",
+      "independentVerification": "No certification inferred from CI",
+      "continuationEvidence": "register.json; checkpoint.json",
+      "remainingDependency": "Mandatory acceptance gates and independent closure"
     },
     {
       "item": 44,
       "requirement": "GO/NO-GO residual risks",
       "mandateSections": "9,14,25",
       "recoveredClassification": "MISSING",
-      "status": "NO_GO",
+      "status": "PENDING",
       "evidence": [
         "CHECKPOINT.md"
       ],
@@ -881,15 +1139,21 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Critical source/assessment/visual/exam/operational gates incomplete; engineering continues",
-      "responsibleComponent": "Governed review and closure"
+      "nextAction": "Reassess only against new genuine evidence; preserve residual-risk record",
+      "responsibleComponent": "Governed review and closure",
+      "priorRecoveryStatus": "NO_GO",
+      "engineeringState": "Explicit NO-GO retained",
+      "examinationResult": "PENDING \u2014 full certification denied",
+      "independentVerification": "Unresolved gates and evidence scope enumerated",
+      "continuationEvidence": "resume-20261011/PROGRESS.md",
+      "remainingDependency": "Remaining implementation, examinations and blocked inputs"
     },
     {
       "item": 45,
       "requirement": "Work9 handoff without activation",
       "mandateSections": "13,14,25,R6",
       "recoveredClassification": "MISSING",
-      "status": "PARTIAL",
+      "status": "PENDING",
       "evidence": [
         "CHECKPOINT.md"
       ],
@@ -897,8 +1161,21 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Work9 parity/rollback/authority handoff prepared; no twin built or liveactivation. Final handoff remains conditional on legitimate Work8 closure.",
-      "responsibleComponent": "Future Work9 handoff"
+      "nextAction": "Keep exact revisions/parity/rollback dependencies; no twin build or activation",
+      "responsibleComponent": "Future Work9 handoff",
+      "priorRecoveryStatus": "PARTIAL",
+      "engineeringState": "Conditional handoff retained",
+      "examinationResult": "PENDING \u2014 Work9 not activated",
+      "independentVerification": "Production and authority state unchanged",
+      "continuationEvidence": "checkpoint.json; resume-20261011/NEXT.md",
+      "remainingDependency": "Legitimate Work8 closure"
     }
-  ]
+  ],
+  "continuation": "resume-20261011/PROGRESS.md",
+  "counts": {
+    "PASS": 1,
+    "BLOCKED": 5,
+    "PENDING": 39
+  },
+  "wholeProgrammeCertified": false
 }

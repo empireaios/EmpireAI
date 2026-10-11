@@ -1,0 +1,230 @@
+{
+  "schema": "work8-recovered-continuation-v1",
+  "observedAt": "2026-10-11T02:28:35.595Z",
+  "status": "IN_PROGRESS_NO_GO",
+  "wholeProgrammeCertified": false,
+  "originalEvidenceHead": "f5524cd44e1a77895a2a905a02edc557d08e7bdd",
+  "backend": {
+    "pr": 113,
+    "branch": "work8/autonomous-examination-20261011",
+    "recoveredSha": "a09bd0e365d7740ce55455ad4d768f6df11d4a63",
+    "recoveredWorkflows": [
+      {
+        "id": 38094488052,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 619,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094488052/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094488052/logs",
+        "workflow_id": 362309382
+      },
+      {
+        "id": 38094487954,
+        "name": "Independent Assurance Core",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 67,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487954/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487954/logs",
+        "workflow_id": 373040927
+      },
+      {
+        "id": 38094487993,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 620,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487993/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487993/logs",
+        "workflow_id": 362674549
+      },
+      {
+        "id": 38094487948,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 621,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487948/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38094487948/logs",
+        "workflow_id": 362688325
+      }
+    ],
+    "sha": "e931668dca5e87df8f0d26213791de8501cf2d35",
+    "tree": "f9324fbd4f966ac12ea4acb3292e342a622694e1",
+    "localEquivalentCommit": "01f80167acdd5376da1a6d0489bb61ef677ba9d5",
+    "workflows": [
+      {
+        "id": 38104771940,
+        "name": "Pillow runtime repair CI",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_number": 624,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771940/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771940/logs",
+        "workflow_id": 362688325
+      },
+      {
+        "id": 38104771996,
+        "name": "Independent Assurance Core",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 68,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771996/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104771996/logs",
+        "workflow_id": 373040927
+      },
+      {
+        "id": 38104772029,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 623,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772029/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772029/logs",
+        "workflow_id": 362674549
+      },
+      {
+        "id": 38104772057,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 622,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772057/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38104772057/logs",
+        "workflow_id": 362309382
+      }
+    ],
+    "coreTests": {
+      "tests": 146,
+      "pass": 146,
+      "fail": 0,
+      "runId": 38104772057,
+      "jobId": 114367893740,
+      "receipt": "resume-20261011/ci-work8-summary.txt"
+    }
+  },
+  "frontend": {
+    "pr": 112,
+    "branch": "work8/owner-operating-evidence-20261011",
+    "sha": "e7ef46cb420fec15e3810b73d439459678834767",
+    "tree": "fb0b95f631cd69039198b4e400666a32c2914f97",
+    "workflows": [
+      {
+        "id": 38095007594,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 623,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007594/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007594/logs",
+        "workflow_id": 362688325
+      },
+      {
+        "id": 38095007637,
+        "name": "Assurance owner browser contract",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 71,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007637/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007637/logs",
+        "workflow_id": 378221685
+      },
+      {
+        "id": 38095007629,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 621,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007629/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007629/logs",
+        "workflow_id": 362309382
+      },
+      {
+        "id": 38095007593,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 622,
+        "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007593/jobs",
+        "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38095007593/logs",
+        "workflow_id": 362674549
+      }
+    ],
+    "modified": false,
+    "campaignRepeated": false
+  },
+  "production": {
+    "observedAt": "2026-10-11T02:16:09.387Z",
+    "backend": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+    "frontend": "71f9414d6c534b4c35dbd22696b82a77fcf7c597",
+    "backendDeployment": "4303f5e9-afef-4f70-9388-996a0e923949",
+    "volume": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "stagedChanges": false
+  },
+  "accounting": {
+    "observedAt": "2026-10-11T02:16:10Z",
+    "count": 227,
+    "digest": "9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92",
+    "originalCount": 224,
+    "originalDigest": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+    "addedRowIdentitiesVerified": false,
+    "originalSubsetVerified": false,
+    "requestAttributionVerified": false,
+    "details": "resume-20261011/ACCOUNTING.md"
+  },
+  "retainedEvidenceVerification": {
+    "safetySourceHashes": {
+      "checked": 7,
+      "matched": 7
+    },
+    "sharedRuntimeArchive": {
+      "rawSha256": "9e9e455a1642d89ff21e3b4b4fe0efd0a964d9c9c9d9b593e3787031e65ccf51",
+      "gzipSha256": "b91766a0b77ffd4b35bcf33a0892b9bd48316f2b209d09d8fed122efd163d24b",
+      "bothVerified": true,
+      "repeated": false,
+      "sourceScope": "a09bd0e365d7740ce55455ad4d768f6df11d4a63"
+    }
+  },
+  "newLocalTests": {
+    "targeted": {
+      "pass": 13,
+      "fail": 0
+    },
+    "candidateContext": {
+      "pass": 1,
+      "fail": 0
+    },
+    "accountingExtractor": {
+      "pass": 4,
+      "fail": 0,
+      "injectedOnly": true
+    }
+  },
+  "independentCodeReview": "PENDING_NEW_DELTA; historical review retains original scope",
+  "counts": {
+    "PASS": 1,
+    "PENDING": 39,
+    "BLOCKED": 5
+  },
+  "lostLocalSource": {
+    "path": "/workspace/scratch/e0a785458d28",
+    "recoverable": false,
+    "qualificationDossier": "NOT_RECOVERED",
+    "simulationEnrollment": "NOT_RECOVERED",
+    "dossierUI": "NOT_RECOVERED",
+    "modelDraft": "RECONSTRUCTED_IN_NEW_CANDIDATE"
+  },
+  "effects": {
+    "productionWrites": 0,
+    "paidInference": 0,
+    "realCommerce": 0,
+    "newInfrastructure": 0,
+    "releaseLease": false,
+    "merge": false,
+    "deployment": false
+  },
+  "next": "resume-20261011/NEXT.md"
+}

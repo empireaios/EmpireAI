@@ -816,6 +816,59 @@
         "work8-finance-escalation.test.ts"
       ],
       "proof": "Real queue pressure/drain and same-snapshot corruption preflight; actual durable SIM missing-order/refund mismatch escalation; zero repair authority."
+    },
+    {
+      "id": "resume-20261011/targeted-tests.tap",
+      "scope": "changed response authority, registered queue/schedule probe, model draft protocol and seven-route isolation; injected isolated data",
+      "sha256": "e9cd9fd3298260f1bbd01d6aa1f97221a37465ea1555d6b7eb5ccefad8da0161",
+      "candidate": "e931668dca5e87df8f0d26213791de8501cf2d35",
+      "tree": "f9324fbd4f966ac12ea4acb3292e342a622694e1",
+      "summary": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "durationMs": 2776.679778
+      },
+      "genuineSourceAcceptance": false
+    },
+    {
+      "id": "resume-candidate-context-integration",
+      "scope": "candidate-grant context and linked proposal; injected source/assessment, no model call",
+      "test": "backend/src/validation/tests/work8-enrichment.test.ts",
+      "summary": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0
+      },
+      "receiptLimit": "Observed successful tool output; separate full TAP file not retained",
+      "genuineSourceAcceptance": false,
+      "testName": "owner grant pins candidate context and completed proof links only explicit candidate binding without inference"
+    },
+    {
+      "id": "resume-accounting-readonly-extractor",
+      "scope": "four injected-ledger utility checks, never production reconciliation",
+      "test": "scripts/work8/accounting-readonly-extract.test.mjs",
+      "summary": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "durationMs": 112.291537
+      },
+      "actualAccountingReconciled": false
+    },
+    {
+      "id": "e931-ci-work8-146",
+      "candidate": "e931668dca5e87df8f0d26213791de8501cf2d35",
+      "scope": "Work8 bounded integrated exams with kernel network denial; exact changed head",
+      "summary": {
+        "tests": 146,
+        "pass": 146,
+        "fail": 0
+      },
+      "workflowRun": 38104772057,
+      "job": 114367893740,
+      "receipt": "resume-20261011/ci-work8-summary.txt",
+      "wholeProgrammeAcceptance": false
     }
   ],
   "failureLineage": [
@@ -890,5 +943,27 @@
       "log": "ci-work8-27b1e23c.log",
       "scope": "Checkpoint before acquisition bridge and late-effect additions"
     }
-  }
+  },
+  "continuation": "resume-20261011/PROGRESS.md",
+  "continuationFailureLineage": [
+    {
+      "id": "resume-owner-closure-attestation",
+      "observation": "New negative test returned HEALTHY for unauthenticated/foreign-owner COMPLETE closure",
+      "repair": "Require AUTHENTICATED_OWNER, matching nonempty owner and closure not in future",
+      "verified": "targeted13/13; exact-head CI recorded separately"
+    },
+    {
+      "id": "resume-queue-test-canonical-column",
+      "observation": "Initial queue test assumed nextAt in JSON body, returning UNAVAILABLE",
+      "repair": "Probe reads canonical schedule next_at column",
+      "verified": "targeted13/13"
+    },
+    {
+      "id": "resume-local-test-setup",
+      "observation": "Initial strict compile lacked explicit node types; first route test lacked backend dependency path",
+      "repair": "Explicit --types node and scratch dependency symlink; no source safety change",
+      "verified": "focused strict compile and targeted13/13"
+    }
+  ],
+  "continuationCiEvidence": "recovery-receipt.json"
 }

@@ -1,0 +1,16 @@
+Source: GitHub Actions run 38104772057 / job 114367893740
+Commit: e931668dca5e87df8f0d26213791de8501cf2d35
+Scope: Work8 bounded integrated exams with kernel network denial
+This is a bounded excerpt of retrieved job logs, not a new local run.
+
+2026-10-11T02:25:51.8989996Z 1..146
+2026-10-11T02:25:51.8990399Z # tests 146
+2026-10-11T02:25:51.8990759Z # suites 0
+2026-10-11T02:25:51.8991369Z # pass 146
+2026-10-11T02:25:51.8991731Z # fail 0
+2026-10-11T02:25:51.8992091Z # cancelled 0
+2026-10-11T02:25:51.8992888Z # skipped 0
+2026-10-11T02:25:51.8993251Z # todo 0
+2026-10-11T02:25:51.8993629Z # duration_ms 209898.258504
+2026-10-11T02:25:51.9073005Z ##[group]Run node --import tsx --test src/validation/tests/quiesced-sqlite-save.test.ts src/validation/tests/shadow-ceo-quiesced-capture.test.ts src/validation/tests/coordinated-sqlite-capture.test.ts src/validation/tests/capture-http-admission.test.ts src/validation/tests/capture-brain-worker-drain.test.ts src/validation/tests/capture-shared-brain-queue.test.ts src/validation/tests/capture-pillow-boot-drain.test.ts src/validation/tests/capture-authority-json.test.ts src/validation/tests/native-store-capture.test.ts src/validation/tests/sqlite-persistence-boundary.test.ts
+
