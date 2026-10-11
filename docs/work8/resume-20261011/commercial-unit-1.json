@@ -1,0 +1,15 @@
+{
+  "unit": "source qualification dossier",
+  "remoteCandidate": "c08e80647138ac12e92ce46b393e2dc699d21b59",
+  "localCommit": "e16dcdb4",
+  "tree": "01279659fa589d6d4496e6f7629eff17835f4d31",
+  "testsPassed": 14,
+  "typecheck": "PASS",
+  "evidence": "Injected fixtures; no genuine supplier refresh, model call or commercial event",
+  "next": "Canonical reviewed financial inputs and immutable owner decision linkage",
+  "officialCounts": {
+    "PASS": 1,
+    "PENDING": 39,
+    "BLOCKED": 5
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "unit": "reviewed finance and immutable owner decisions",
+  "remoteCandidate": "3c2e353d7aae620ea943d3a73e836429acd8eb67",
+  "localCommit": "ff2bed2d",
+  "tree": "838a310c049189ad14ca32eb6eff273898eb7277",
+  "testsPassed": 19,
+  "typecheck": "PASS",
+  "scope": "Injected fixtures only. Owner review is not simulation authorization. Forecast remains assumptions. No financial rows written outside temporary tests.",
+  "next": "Implement reviewed eligibility and explicit simulation authorization with canonical worker and financial lineage",
+  "officialCounts": {
+    "PASS": 1,
+    "PENDING": 39,
+    "BLOCKED": 5
+  }
+}

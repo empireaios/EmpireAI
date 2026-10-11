@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: owner decision persists immutably across restart and exact replay, without approval or authority
+ok 1 - owner decision persists immutably across restart and exact replay, without approval or authority
+  ---
+  duration_ms: 9.883897
+  type: 'test'
+  ...
+# Subtest: reject approval alias, caller-supplied actor, foreign workspace, stale digest and changed idempotency payload
+ok 2 - reject approval alias, caller-supplied actor, foreign workspace, stale digest and changed idempotency payload
+  ---
+  duration_ms: 4.153537
+  type: 'test'
+  ...
+# Subtest: mutation between initial read and fenced append is refused with no decision saved
+ok 3 - mutation between initial read and fenced append is refused with no decision saved
+  ---
+  duration_ms: 3.272031
+  type: 'test'
+  ...
+# Subtest: reviewed exact-product forecast is visible as assumptions, never supplier facts, cash or approval
+ok 4 - reviewed exact-product forecast is visible as assumptions, never supplier facts, cash or approval
+  ---
+  duration_ms: 7.708228
+  type: 'test'
+  ...
+# Subtest: forged journal metadata, workspace, command and stale or reversed forecast fail closed
+ok 5 - forged journal metadata, workspace, command and stale or reversed forecast fail closed
+  ---
+  duration_ms: 3.84407
+  type: 'test'
+  ...
+# Subtest: dossier derives observations and preserves unknown freight currency, rights and finance
+ok 6 - dossier derives observations and preserves unknown freight currency, rights and finance
+  ---
+  duration_ms: 5.536802
+  type: 'test'
+  ...
+# Subtest: pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+ok 7 - pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+  ---
+  duration_ms: 0.791308
+  type: 'test'
+  ...
+# Subtest: expiry changes digest without deleting historical observations
+ok 8 - expiry changes digest without deleting historical observations
+  ---
+  duration_ms: 0.793536
+  type: 'test'
+  ...
+# Subtest: ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+ok 9 - ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+  ---
+  duration_ms: 0.443821
+  type: 'test'
+  ...
+# Subtest: duplicate pins and wrong parent cannot pass qualification
+ok 10 - duplicate pins and wrong parent cannot pass qualification
+  ---
+  duration_ms: 3.875784
+  type: 'test'
+  ...
+# Subtest: actual adapter detail stock freight pinned deferral survives restart without recursive followups
+ok 11 - actual adapter detail stock freight pinned deferral survives restart without recursive followups
+  ---
+  duration_ms: 123.602009
+  type: 'test'
+  ...
+# Subtest: ambiguous variant missing destination wrong identity and denied provider defer without retry
+ok 12 - ambiguous variant missing destination wrong identity and denied provider defer without retry
+  ---
+  duration_ms: 217.949438
+  type: 'test'
+  ...
+# Subtest: quota interrupted lease expired source and state corruption fail closed
+ok 13 - quota interrupted lease expired source and state corruption fail closed
+  ---
+  duration_ms: 145.292186
+  type: 'test'
+  ...
+# Subtest: queue and receipt rollback together; restart duplicate tick creates no second job
+ok 14 - queue and receipt rollback together; restart duplicate tick creates no second job
+  ---
+  duration_ms: 31.573545
+  type: 'test'
+  ...
+# Subtest: owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+ok 15 - owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+  ---
+  duration_ms: 132.789109
+  type: 'test'
+  ...
+# Subtest: later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+ok 16 - later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+  ---
+  duration_ms: 107.197905
+  type: 'test'
+  ...
+# Subtest: 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+ok 17 - 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+  ---
+  duration_ms: 172.072419
+  type: 'test'
+  ...
+# Subtest: refresh selection resumes beyond its 32-parent page across restart
+ok 18 - refresh selection resumes beyond its 32-parent page across restart
+  ---
+  duration_ms: 57.3823
+  type: 'test'
+  ...
+# Subtest: two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+ok 19 - two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+  ---
+  duration_ms: 352.534028
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1672.121297

@@ -297,13 +297,13 @@
         "backend/src/validation/tests/work8-enrichment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Reconstruct immutable reviewed dossier without accepting model claims as verified facts",
+      "nextAction": "Connect canonical reviewed financial inputs, immutable owner decisions and guarded simulation enrollment",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Completeness screening exists; reviewed qualification path missing",
-      "examinationResult": "PENDING \u2014 genuine10/10 deferred",
+      "engineeringState": "Source-bound dossier and reviewed exact-product canonical forecast projection implemented; reviewed forecast is not verified supplier evidence",
+      "examinationResult": "PENDING \u2014 19 focused fixture tests passed across dossier, reviewed finance, decisions and enrichment",
       "independentVerification": "Published code confirms forced unknown finance/unverified findings",
-      "continuationEvidence": "resume-20261011/CHANGES.md",
+      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
       "remainingDependency": "Qualification dossier and canonical financial binding code"
     },
     {
@@ -341,13 +341,13 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Bind recommendation to immutable dossier/assessment hash; require separate owner decision",
+      "nextAction": "Add owner-interface controls and reviewed eligibility; obtain genuine assessment before simulation authorization",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PENDING",
-      "engineeringState": "Unreviewed proposal backend reconstructed; typed decision/UI path missing",
-      "examinationResult": "PENDING \u2014 draft boundaries passed",
+      "engineeringState": "Owner read exposes source-bound model proposal separately from review recommendation and immutable authenticated owner review decisions",
+      "examinationResult": "PENDING \u2014 stale digest, foreign workspace, approval alias, conflicting replay and restart tests passed",
       "independentVerification": "Executing-engineer review; independent review pending",
-      "continuationEvidence": "resume-20261011/CHANGES.md",
+      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
       "remainingDependency": "Dossier/decision integration and genuine assessment"
     },
     {
@@ -476,7 +476,7 @@
       "engineeringState": "Intercepted listing and provenance schema retained",
       "examinationResult": "PENDING \u2014 synthetic cases passed",
       "independentVerification": "No live publication or licensed image inferred",
-      "continuationEvidence": "examination-ledger.json; source-image-rights-review.json",
+      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
       "remainingDependency": "Genuine qualification and exact image rights"
     },
     {
@@ -502,7 +502,7 @@
       "engineeringState": "Canonical simulated workflow retained; genuine enrollment missing",
       "examinationResult": "PENDING \u2014 synthetic lifecycle and locks passed",
       "independentVerification": "Seven live handlers remain unreachable in targeted exam",
-      "continuationEvidence": "resume-20261011/targeted-tests.tap",
+      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
       "remainingDependency": "Explicit simulation assumption and guarded enrollment code"
     },
     {
@@ -588,7 +588,7 @@
       "engineeringState": "Durable acceptance-task simulation implemented",
       "examinationResult": "PENDING \u2014 hold/restart cases passed",
       "independentVerification": "Canonical simulated receipts retained",
-      "continuationEvidence": "durable-simulated-finance.md",
+      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
       "remainingDependency": "Guarded genuine-mission enrollment and trusted conversion"
     },
     {
@@ -621,7 +621,7 @@
       "engineeringState": "Canonical receipts, rational simulated FX, atomic read snapshots",
       "examinationResult": "PENDING \u2014 scoped money/conservation cases passed",
       "independentVerification": "Retained independent arithmetic/source oracles",
-      "continuationEvidence": "finance-boundary-exam-evidence.json; simulated-fx-evidence.json",
+      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
       "remainingDependency": "Full integrated genuine-product simulated reconciliation"
     },
     {

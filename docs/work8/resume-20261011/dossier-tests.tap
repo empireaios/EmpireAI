@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: dossier derives observations and preserves unknown freight currency, rights and finance
+ok 1 - dossier derives observations and preserves unknown freight currency, rights and finance
+  ---
+  duration_ms: 3.100111
+  type: 'test'
+  ...
+# Subtest: pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+ok 2 - pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+  ---
+  duration_ms: 0.78858
+  type: 'test'
+  ...
+# Subtest: expiry changes digest without deleting historical observations
+ok 3 - expiry changes digest without deleting historical observations
+  ---
+  duration_ms: 0.878044
+  type: 'test'
+  ...
+# Subtest: ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+ok 4 - ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+  ---
+  duration_ms: 0.442932
+  type: 'test'
+  ...
+# Subtest: duplicate pins and wrong parent cannot pass qualification
+ok 5 - duplicate pins and wrong parent cannot pass qualification
+  ---
+  duration_ms: 0.676865
+  type: 'test'
+  ...
+# Subtest: actual adapter detail stock freight pinned deferral survives restart without recursive followups
+ok 6 - actual adapter detail stock freight pinned deferral survives restart without recursive followups
+  ---
+  duration_ms: 145.371585
+  type: 'test'
+  ...
+# Subtest: ambiguous variant missing destination wrong identity and denied provider defer without retry
+ok 7 - ambiguous variant missing destination wrong identity and denied provider defer without retry
+  ---
+  duration_ms: 214.615789
+  type: 'test'
+  ...
+# Subtest: quota interrupted lease expired source and state corruption fail closed
+ok 8 - quota interrupted lease expired source and state corruption fail closed
+  ---
+  duration_ms: 116.883636
+  type: 'test'
+  ...
+# Subtest: queue and receipt rollback together; restart duplicate tick creates no second job
+ok 9 - queue and receipt rollback together; restart duplicate tick creates no second job
+  ---
+  duration_ms: 33.009759
+  type: 'test'
+  ...
+# Subtest: owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+ok 10 - owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+  ---
+  duration_ms: 165.227317
+  type: 'test'
+  ...
+# Subtest: later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+ok 11 - later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+  ---
+  duration_ms: 283.008809
+  type: 'test'
+  ...
+# Subtest: 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+ok 12 - 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+  ---
+  duration_ms: 159.419194
+  type: 'test'
+  ...
+# Subtest: refresh selection resumes beyond its 32-parent page across restart
+ok 13 - refresh selection resumes beyond its 32-parent page across restart
+  ---
+  duration_ms: 49.964222
+  type: 'test'
+  ...
+# Subtest: two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+ok 14 - two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+  ---
+  duration_ms: 726.264623
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2107.334905
