@@ -1,44 +1,33 @@
-# Deterministic Work 8 continuation
+# Deterministic Work 8 resume
 
-Do not restart the programme or rerun old passing campaigns. Preserve the original 45 requirements and 1 PASS / 39 PENDING / 5 BLOCKED totals. Full certification remains NO-GO.
+Do not restart, repeat the mandate or rerun accepted expensive campaigns. Official register remains 1 PASS / 39 PENDING / 5 BLOCKED. Production unchanged, Pillow NOT_BORN, commerce LOCKED.
 
-## Durable source heads
+## Exact durable heads
 
-- Backend branch `work8/autonomous-examination-20261011`: remote `29c60af149f19eef2f779373a51e5fc55b2c20ef`; local `a78c14f5` has identical tree recorded in COMMERCIAL-CONTINUATION.json.
-- Frontend branch `work8/owner-operating-evidence-20261011`: remote `d47614747e001a2c3b1278bcddf9b9fc6cc939af`; local `e283e572` has identical tree recorded in COMMERCIAL-CONTINUATION.json.
-- Evidence branch `work8/examination-evidence-20261011`: this checkpoint. Earlier checkpoint `67d241cd29db6153773915012c51af831d0267c3` and backend `e931668dca5e87df8f0d26213791de8501cf2d35` remain historical evidence, not the current source head.
+Backend branch `work8/autonomous-examination-20261011`: `8af80c1ff322b7a78a3e95a773fb23e2d1276617`, local `ab4fec96`, matching tree `64ea8ba90975ce1e32c5bab8ec10b74ff70eea26`.
+Frontend branch `work8/owner-operating-evidence-20261011`: `7e85a0aeabe52ab4fd8c4d88d791488f395f8b1d`, local `9b3c99ed`, matching tree `c3e10263f29be1e8c9073a75ba5909473adcb5d1`.
+Evidence branch `work8/examination-evidence-20261011`: this commit, parent published `4cc8886381742b768d8ad27a068f093ec0027eba`.
 
-## First read, then engineering
+## Next executable engineering
 
-Read the existing final backend run conclusions: Assurance `38109828027` already SUCCESS; Product `38109828047`, runtime `38109828011`, semantic `38109828120` were still in progress. Do not start replacement runs. Frontend exact candidate already has four successful workflow conclusions (COMMERCIAL-CI.json). New local browser examination remains pending: Chromium151 download returned invalid archives, not a tested UI failure.
+Implement server-derived canonical candidate/listing preparation from an eligible reviewed dossier and source evidence, then explicit owner approval and existing enrollment. Do not invent SKU, warehouse, delivery-time interpretation, image permission or verified supplier claims to satisfy the canonical schema. Existing listing schema requires licensed images, so genuine media absence remains a downstream gate without blocking text qualification. Add explicit authenticated simulation authorization to Owner Console after the gateway exists.
 
-The next engineering task is the **server-owned reviewed qualification package** for original requirements12/14, followed by approved canonical mission creation for19/20. This is unfinished code, not solely an external blocker. Specifically:
+`work8-qualification.ts` now evaluates real reviewed source/canonical financial input and returns QUALIFIED/DEFERRED/REJECTED. Complete labelled fixture qualifies without images. Actual retained CJ records remain DEFERRED. Review inputs cite exact fresh same-product evidence, pin its envelope hashes, and distinguish owner interpretation from supplier facts. Financial conversion requires canonical reviewed exact-source FX quote entries and complete cash coverage. No browser verification booleans accepted.
 
-1. Extend the immutable review record to pin reviewed findings and real permission evidence, with explicit owner attestation and fresh source envelopes. Keep these distinct from unverified model proposals. Do not assign supplier permissions from an observed image URL.
-2. Bind reviewed forecast costs to supplier unit price/freight, canonical reviewed FX and complete cash/liability/commitment evidence. The current finance projection exposes reviewed forecast assumptions but deliberately leaves cash and FX null. It does not certify affordability.
-3. Derive a canonical candidate and listing from those server-owned inputs, retain original currency/price and conversion lineage, and create the canonical reviewed/approved isolated mission. Do not accept browser-supplied verification booleans or model approval.
-4. Only then make `qualificationDossier` produce an eligible result and canonicalCandidateDigest. Its current implementation always defers. The `enroll_simulation` API invokes the real dossier resolver and therefore correctly refuses current genuine candidates. Positive enrollment tests inject explicitly labelled qualification/assessment fixtures; they are not evidence of genuine qualification.
-5. Reuse `enrollQualifiedSimulation`, the canonical worker and durable simulation finance. They now support one explicit SANDBOX order, intercepted listing/supplier intent, delivery and settlement/hold/bank events with immutable enrollment/dossier/assessment lineage. Do not create a parallel order or actual finance ledger.
-6. Extend the Owner Console from review decisions to explicit simulation authorization only after eligibility exists. Current UI supports request review/defer/reject and never claims approval. Run bounded authenticated desktop/mobile changed-view tests, then a genuine linked journey once permitted evidence exists.
+`investigation.ts` pins reviewed dossier at grant creation, delivers exact pinned dossier and owner/request receipt, stores dossierDigest/owner in completed assessment. Owner projection and enrollment route pass current dossier to linkedCompletedAssessment, refusing changed or unbound assessments. Historical source-bound answers may remain inspectable but cannot satisfy current dossier linkage. No model calls performed.
 
-## Existing completed units and executable receipts
+`enrollQualifiedSimulation` still requires an existing canonical APPROVED mission and matching canonicalCandidateDigest. The actual HTTP dossier resolver does not yet derive that candidate/listing digest or create the mission. This is an implementation gap, not an external blocker. Positive enrollment tests remain explicitly injected fixtures. Reuse canonical worker and durable simulated finance; do not create a parallel actual ledger or weaken media/commerce guards.
 
-`work8-dossier.ts`: retained envelope pinning, source identity, price/currency, stock/freight and missing states; owner read integration.
-`work8-dossier-finance.ts`: canonical journal hash/workspace/entry validation and exact reviewed forecast projection; no financial writes.
-`work8-dossier-decisions.ts`: immutable authenticated review receipts, stale fingerprint refusal, replay and workspace bounds.
-`investigation.ts`: source-bound dossier in delivered Pillow context, dossier digest in delivery receipt; no model calls executed by this continuation.
-`QualificationDossier.tsx`: owner dossier/proposal/finance display and explicit review decision controls.
-`work8-enrollment.ts`: atomic guarded existing-mission enrollment, immutable plan lineage, bounded generated commands, no facts/approvals accepted in HTTP body.
-`worker.ts` and `work8-durable-finance.ts`: enrollment verification and simulated finance participation, all actual-money boundaries retained.
+## Verification and CI
 
-49 distinct scoped tests passed, with receipts listed in PROGRESS.md. Tests overlap between unit receipts; do not add duplicate reruns to the count. Exact Work7 compatibility initially failed because scratch TypeScript7 lacked the harness compiler API; correcting scratch to TypeScript5.9.3 and rerunning only those three cases passed. Source was not changed to mask that environment failure. Strict focused TypeScript5.9.3 check passes.
+24 tests in qualification-unit-1; 14 in assessment-binding-unit (overlap, no additive distinct count). Strict focused backend typecheck PASS. Frontend typecheck and QualificationDossier eslint PASS. Browser changed-view acceptance PENDING: earlier Chromium151 download invalid archive; use another supported browser/environment, do not repeat same download. Independent review remains pending, no self-review relabelled as independent.
 
-Local worktrees: `/workspace/scratch/815641ad53ec/work8`, `/workspace/scratch/815641ad53ec/frontend`, `/workspace/scratch/815641ad53ec/evidence`. Scratch dependencies are disposable. Backend `node_modules` symlinks are untracked; never commit them. Use Node22, tsx, zod3 and TypeScript compatible with backend `^5.8.2`. From backend cwd, run kernel-denied tests with:
+Read exact existing run IDs from QUALIFICATION-CI.json once useful; do not restart. Backend at current head: Assurance38110806149 SUCCESS, runtime38110806228 / Product38110806135 / semantic38110806126 IN_PROGRESS. Frontend: browser38110916587 / runtime38110916615 / semantic38110916533 / Product38110916551 IN_PROGRESS. Earlier backend29c runtime38109828011 CANCELLED; other three SUCCESS. Preserve original e931 and prior frontend full successes as historical exact-head evidence, not current-head certification.
 
-`python ../scripts/work8/isolated-exec.py /workspace/scratch/815641ad53ec/test-deps/node_modules/node-linux-x64/bin/node --import tsx --test src/validation/tests/work8-enrollment.test.ts`
+Use local worktrees `/workspace/scratch/815641ad53ec/work8`, `/workspace/scratch/815641ad53ec/frontend`, `/workspace/scratch/815641ad53ec/evidence`. Backend tests run from backend cwd under `python ../scripts/work8/isolated-exec.py /workspace/scratch/815641ad53ec/test-deps/node_modules/node-linux-x64/bin/node --import tsx --test src/validation/tests/work8-qualification.test.ts`. TypeScript5.9.3 supports Work7 compiler harness. Never commit node_modules symlinks.
 
-## External evidence and authority still missing
+## Genuine dependencies
 
-No fresh genuine supplier read, image permission, genuine completed candidate Pillow assessment or new production accounting-row extract was acquired. Preserve ten CJ parents/ten variants/19 unlicensed URLs, Amazon observations and zero genuine qualified candidates as historical scoped evidence. Accounting 224→227 still requires authorised individual calls/call_providers rows from `/data/commissioning/openai-october-2026.sqlite`, original224 identities and canonical transport lineage. Do not infer attribution from timestamps or modify production records.
+Fresh exact supplier/market reads, image usage permissions and genuine authorised completed Pillow assessment remain missing. Accounting224→227 requires authorised individual calls/call_providers rows from `/data/commissioning/openai-october-2026.sqlite`, original224 identities and canonical transport lineage. Aggregate count cannot attribute additions. Do not change production records or repeat aggregate endpoints.
 
-Do not merge, deploy, open a release lease, spend on inference/infrastructure, place listings/orders or move money. Pillow NOT_BORN, commerce LOCKED, fifteen protections, seven live-route locks and immutable histories remain mandatory. Independent delta review and full Work8 certification remain pending. Work9 is not activated.
+Continue remaining uncovered Assurance, endurance, financial and owner acceptance cases after commercial gateway. Preserve fixed45 register and passing1950-case/600s soak/cap campaigns. No paid inference, infrastructure, real listing/order/payment/transfer, merge, deployment or release lease is authorized.
