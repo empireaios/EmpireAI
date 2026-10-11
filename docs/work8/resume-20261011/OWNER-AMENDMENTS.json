@@ -210,7 +210,7 @@
         39,
         41
       ],
-      "engineering": "Bounded read-only adapter ports, durable evidence/exceptions, existing-journal invoice reconciliation, Vercel aggregate adapter and owner view implemented.",
+      "engineering": "Bounded read-only adapter ports, durable evidence/exceptions, existing-journal invoice reconciliation, Vercel aggregate adapter and owner view implemented. Published freshness repair ac9583c: cached reads cannot clear current outage; restart retains unresolved state. Three scoped tests and strict TypeScript PASS.",
       "acceptance": "PENDING",
       "remaining": "Additional authorised provider interfaces, subscription/invoice/payment detail, exact accounting rows, continuous activation reserved Work9."
     }

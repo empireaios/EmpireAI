@@ -675,10 +675,10 @@
       "nextAction": "Complete financial source adapters and owner-view acceptance without live activation.",
       "responsibleComponent": "Financial reconciliation and owner readback",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Isolated immutable Birth periods, archival history, exact integer service allocation, preserved position references; bounded cost discovery reuses existing evidence journal; owner rehearsal view added.",
-      "examinationResult": "FINANCIAL-CLOSURE-ENGINEERING.tap:6 PASS; final cost-bound test:2 PASS; Vercel authorised aggregate replay retains billed/effective distinction.",
+      "engineeringState": "Isolated immutable Birth periods, archival history, exact integer service allocation, preserved position references; bounded cost discovery reuses existing evidence journal; owner rehearsal view added. Cached successful provider reads now retain a current outage until fresh successful evidence arrives; decision survives restart.",
+      "examinationResult": "FINANCIAL-CLOSURE-ENGINEERING.tap:6 PASS; final cost-bound test:2 PASS; Vercel authorised aggregate replay retains billed/effective distinction. COST-FRESHNESS-20261011: regression failed before fix; all 3 cost-intelligence tests pass after fix; strict changed-module TypeScript passes.",
       "independentVerification": "Actual journal/history hashes read unchanged",
-      "continuationEvidence": "owner-financial-readback.md; resume-20261011/ACCOUNTING.md; resume-20261011/CLOSURE-CHANGES.md",
+      "continuationEvidence": "owner-financial-readback.md; resume-20261011/ACCOUNTING.md; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/DIRECTED-CLOSURE-DELTA.json",
       "remainingDependency": "Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance."
     },
     {
@@ -1048,11 +1048,11 @@
       "nextAction": "Compose existing primary/native/JSON captures under complete drained boundary; keep recovered credentials inert.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "V3 canonical replay retained; nine additional persisted-domain offline capture adapters reuse existing verifier; pinned checkpoint selection and inert inspection staging; WAL verification sidecar defect fixed.",
+      "engineeringState": "V3 canonical replay retained; nine additional persisted-domain offline capture adapters reuse existing verifier; pinned checkpoint selection and inert inspection staging; WAL verification sidecar defect fixed. Published e18f88b registers local background loops in existing admission drain.",
       "examinationResult": "Multi-store vault test PASS; financial cutover backup/restore PASS; prepared scheduler/recovery3 PASS.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Global quiescence, legacy checkpoint-set composition, Redis/pending RAM, protected off-host vault and hosted recovery."
+      "remainingDependency": "Complete full-runtime composition including durable reasoning/Redis, protected retention and hosted restoration; local gate is not global quiescence."
     },
     {
       "item": 40,
@@ -1127,8 +1127,8 @@
       "nextAction": "Read existing runs once complete; repair only demonstrated failures.",
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
-      "engineeringState": "Source units published incrementally; frontend remains a review commit, deployment-linked branch untouched.",
-      "examinationResult": "Prior be4936d all4 workflows SUCCESS; newer changed-head CI tracked separately.",
+      "engineeringState": "Source units published incrementally; frontend remains a review commit, deployment-linked branch untouched. Backend ac9583c5bb51c8b85fd3480c2128c89a3ac49518 published; exact tree 8fff240ac1b4b7daa385438c4858956cc6364979 matches tested source.",
+      "examinationResult": "Current candidate: Independent Assurance Core PASS; other 3 hosted workflows in progress at last read. Independent background delta review found no blocking defect; cost delta review found no demonstrated blocking defect; adapter freshness attestation remains a limitation.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
       "remainingDependency": "Latest exact-head conclusions, independent source review, separately governed release."

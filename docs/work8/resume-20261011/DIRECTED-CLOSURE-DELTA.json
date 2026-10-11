@@ -1,0 +1,50 @@
+{
+  "schema": "WORK8_DIRECTED_CLOSURE_DELTA_V1",
+  "backend": "ac9583c5bb51c8b85fd3480c2128c89a3ac49518",
+  "backendTree": "8fff240ac1b4b7daa385438c4858956cc6364979",
+  "frontendReview": "fefa75a05adb06dc8295f2e77cdd29ba436be937",
+  "frontendDeploymentBranchHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "counts": {
+    "PASS": 2,
+    "PENDING": 38,
+    "BLOCKED": 5
+  },
+  "costRegression": {
+    "before": "FAIL: old readback cleared current outage",
+    "after": "3 PASS; strict changed-module TypeScript PASS",
+    "receipt": "COST-FRESHNESS-20261011.tap",
+    "change": "Preserve current provider-unavailable exception unless a successful observation is fresh for that run; retain historical exceptions and restart persistence"
+  },
+  "backgroundReview": {
+    "published": "e18f88b2304f5d3607dbab2b67a4bac6461d2f48",
+    "tree": "b3e9af3511cbb8897a8d7cc113c65f76c9841681",
+    "result": "No concrete blocking defect in seven-file delta",
+    "limits": "Full runtime composition and other process/Redis/durable reasoning remain unproven"
+  },
+  "ci": {
+    "Independent Assurance Core": "SUCCESS",
+    "Pillow semantic repair CI": "IN_PROGRESS",
+    "Pillow runtime repair CI": "IN_PROGRESS",
+    "Product path CI": "IN_PROGRESS"
+  },
+  "hostingPreflight": {
+    "workspace": "a4962933-0870-4df7-bb46-3625ed800be1",
+    "type": "personal",
+    "separateTrialBillingWorkspaceVerified": false,
+    "billingLimitReaderExposed": false,
+    "localRailwayCliAvailable": false,
+    "localRedisServerAvailable": false,
+    "approvalReady": false
+  },
+  "productionChanged": false,
+  "paidInference": false,
+  "provisioning": false,
+  "deployment": false,
+  "work8": "NO_GO",
+  "work9": "NOT_ACTIVATED",
+  "independentEngineeringRemaining": true,
+  "costIndependentReview": {
+    "result": "No demonstrated blocking defect in staged delta",
+    "limitation": "Freshness trusts adapter observedAt; not full provider coverage or recovery of every resource. Reviewer did not independently recheck published tree correspondence."
+  }
+}

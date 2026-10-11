@@ -1,0 +1,11 @@
+✔ autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart (39.082366ms)
+✔ outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit (7.837435ms)
+✔ cached successful read cannot clear a newer outage; fresh read clears it after restart (6.046283ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.984656
