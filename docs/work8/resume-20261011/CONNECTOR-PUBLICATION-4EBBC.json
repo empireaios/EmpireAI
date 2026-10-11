@@ -1,0 +1,33 @@
+{
+  "schema": "WORK8_CONNECTOR_PUBLICATION_V1",
+  "verifiedAt": "2026-10-11T12:07:51.108056+00:00",
+  "repository": "empireaios/EmpireAI",
+  "entries": [
+    {
+      "branch": "work8/autonomous-examination-20261011",
+      "original": "4ebbc57db3bb939d36fd12dfb52303375b3deb64",
+      "replacement": "52338bd01a7269d9fa4328fe606312729565c1ff",
+      "originalTree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+      "replacementTree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27"
+    },
+    {
+      "branch": "work8/examination-evidence-20261011",
+      "original": "be1cbea6c88e68367d8a2edfc3fd45dd23d861fe",
+      "replacement": "e3be8ac17e8b68c26297ecf7e9e998b0c92b4f56",
+      "originalTree": "8c94d2b1bd54432306bcead08c7feefb0362beb8",
+      "replacementTree": "8c94d2b1bd54432306bcead08c7feefb0362beb8"
+    }
+  ],
+  "verification": "Connector trees equal original Git tree hashes before branch updates; fetched both remote replacements and compared full trees with empty git diff; expected-parent non-force ref updates succeeded. Different commit metadata is not identical commit identity.",
+  "missingFiles": 0,
+  "modifiedFiles": 0,
+  "additionalFiles": 0,
+  "frontendDeploymentBranchHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "deployment": false,
+  "priorRuntime": {
+    "run": 38136583689,
+    "conclusion": "failure",
+    "failedStep": "precutover Unclean stop",
+    "wholeVolumeRestore": "passed before subsequent failure"
+  }
+}

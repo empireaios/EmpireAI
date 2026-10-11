@@ -1,0 +1,2255 @@
+{
+  "schema": "WORK8_REMAINING_SCENARIO_DESIGN_V1",
+  "createdAt": "2026-10-11T12:12:17.307664+00:00",
+  "requirement": 31,
+  "scope": "Prospective design for remaining coverage of existing fixed31 faults; does not change original45 requirements or claim examination passes. Original pilots remain retrospectively recorded pilots, not preregistered.",
+  "seedRule": "8000 + original fault ID; input construction and mutation specified per row; no random hidden input",
+  "commonAcceptance": "Every listed oracle must be independently observed. Any missing prerequisite -> BLOCKED, any critical invariant failure -> FAIL/NO_GO. Unknown outcome stays unresolved. Observe only existing relevant passes; execute only missing coverage.",
+  "hostedPlan": "First separately approved trial is bounded60minutes. F31 consumes45minutes plus export/stop allowance. Other long fault modes, including F29 up to12minutes EACH, require separately scheduled bounded sessions within the same fully priced owner decision; they are not silently packed into the first60minutes. No new runtime or spending is authorised by this design.",
+  "scenarios": [
+    {
+      "faultId": 1,
+      "scenarioId": "W8-F01-REMAINING-V1",
+      "fault": "Stale Four Eyes evidence/cache expiry",
+      "seed": 8001,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "Expire pinned source/cache generation, then acquire permitted replacement.",
+      "expectedOutcome": "Old generation quarantined; no assessment qualifies until fresh source and assessment bindings match.",
+      "independentOracle": "Independently compare provider receipt timestamp/variant/request identity with persisted generation and incident.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "assurance-operating-scope.test.mjs; work8-assurance-recovery.test.mjs: stale-closure; work8-enrichment.test.ts; work8-response-binding.test.ts",
+      "previousCoverage": "PARTIAL",
+      "previousGap": "Exact pinned-source expiry and durable context/assessment chronology fail closed. Historical technical response health explicitly does not certify current product freshness. Real authorized stale-source refresh plus genuine assessment remains unavailable.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "generation": "g1 at t0; expire at configured maxAge+1ms; g2 observed after expiry",
+        "candidateSelection": "first lexicographic exact-variant identity in authorised sealed source receipt set"
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 2,
+      "scenarioId": "W8-F02-REMAINING-V1",
+      "fault": "Scheduled job misfire",
+      "seed": 8002,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Miss one real scheduler deadline during a bounded pause, then resume.",
+      "expectedOutcome": "One overdue incident; due slot admitted once after recovery; no catch-up flood.",
+      "independentOracle": "Compare registered schedule dueAt, queue admission IDs and durable incident timestamps.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-adversity-followup.test.ts: atomic scheduled admission, reopen before/after commit; resume-20261011/targeted-tests.tap",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Real SQLite enqueue abort leaves due slot intact; durable admission reopens exactly once. Hosted scheduler clock misfire/Assurance detection remains outside this local atomicity proof.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "dueAtOffsetMs": 5000,
+        "pauseFromMs": 4000,
+        "pauseUntilMs": 15000,
+        "missedSlots": 2,
+        "maxNewAdmissions": 1
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 3,
+      "scenarioId": "W8-F03-REMAINING-V1",
+      "fault": "Duplicate queue delivery",
+      "seed": 8003,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Deliver the same broker task twice across broker restart.",
+      "expectedOutcome": "Exactly one canonical command receipt; stale fence refused; no duplicate intent.",
+      "independentOracle": "Independent queue delivery trace joined to immutable command IDs and task fence.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-sqlite-queue-containment.test.ts: duplicate durable delivery and concurrent recovery",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual stale-fence task delivery refused after single canonical commit; duplicate concurrent recovery reconciles cursor once. No external broker transport or broker restart is claimed.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "taskId": "fixture:duplicate-delivery",
+        "deliveries": [
+          {
+            "atMs": 0,
+            "fence": 0
+          },
+          {
+            "atMs": 1000,
+            "fence": 0
+          }
+        ],
+        "restartBrokerAtMs": 500
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 4,
+      "scenarioId": "W8-F04-REMAINING-V1",
+      "fault": "Worker crash/restart",
+      "seed": 8004,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Kill worker after command receipt commit and before cursor settlement.",
+      "expectedOutcome": "Restart reconciles exactly one cursor gap; existing receipt bytes preserved.",
+      "independentOracle": "Separate database read of receipt chain and task cursor/fence before kill and after reopen.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-joint-exams.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual receipt/cursor gap + reopened store + Assurance independently verified worker recovery",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "crashBoundary": "after first canonical receipt commit before cursor0 becomes1",
+        "expectedReceiptCountBefore": 1,
+        "expectedCursorBefore": 0,
+        "expectedReceiptCountAfter": 1,
+        "expectedCursorAfter": 1
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 5,
+      "scenarioId": "W8-F05-REMAINING-V1",
+      "fault": "Queue backlog",
+      "seed": 8005,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Hold worker and admit20 bounded jobs with one overdue lease, then release.",
+      "expectedOutcome": "Backlog detected; bounded drain or justified escalation; expired unknown effects not replayed.",
+      "independentOracle": "Queue inventory and independent monotonic clock compared to progress receipts.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work6-scale.test.ts; work8-assurance-adversity-followup.test.ts: full queue drain/restart; work8-queue-probe.test.ts; work8-assurance-runtime-cycle.test.ts; resume-20261011/targeted-tests.tap",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual20-job pressure opens registered passive incident; actual four-job drain independently closes it. Aged queued work/expired leases escalate without replay, oversized/unknown metadata fail closed. No remote broker or hosted drain-latency claim.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "queued": 20,
+        "workerBatchBound": 4,
+        "expiredLeaseCount": 1,
+        "leaseExpiredByMs": 1
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 6,
+      "scenarioId": "W8-F06-REMAINING-V1",
+      "fault": "Database/network timeout",
+      "seed": 8006,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Hold one database writer lock and deny one test-owned network connection.",
+      "expectedOutcome": "Bounded timeout, no partial transaction; successful fresh reads required after release.",
+      "independentOracle": "Independent database row counts/digests and denied-connection trace; executor success is not oracle.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-sqlite-queue-containment.test.ts: real secondSQLitewriter timeout",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual BEGIN IMMEDIATE lock contention hits configured1second timeout with zero partial receipts; fresh read after test-controller lock release and exact command retry closes incident. No arbitrary database repair or real provider-network failover.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "sqliteLockMs": 1500,
+        "sqliteBusyTimeoutMs": 1000,
+        "deniedNetworkAttempts": 1,
+        "retryAfterRelease": 1
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 7,
+      "scenarioId": "W8-F07-REMAINING-V1",
+      "fault": "Redis/session interruption",
+      "seed": 8007,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Interrupt isolated Redis while two replicas have leased in-flight jobs.",
+      "expectedOutcome": "Recovered leases cannot settle twice; session and source-of-truth generations agree after restart.",
+      "independentOracle": "AOF readback, lease/fence identities and independently read shared Brain/accounting records.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-model-session-faults.test.ts: actual SessionStore/Fastify adapter failure and fresh-read recovery; GitHub runtime38127806768/job114435772828: actual Redis AOF SIGKILL/restart, leased-job recovery, stale settlement refusal, terminal receipt byte equality; capture-shared-brain-redis.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual CI-owned Redis daemon restart/AOF recovery, shared Brain drain and stale-worker settlement refusal passed on ac9583c5bb51c8b85fd3480c2128c89a3ac49518. Host failover and one globally consistent whole-system live checkpoint remain unproven. Do not repeat the already passed daemon tests as an absent capability.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "replicas": 2,
+        "leasedJobs": 2,
+        "redisStopMs": 5000,
+        "redisRestartAOF": true,
+        "staleSettlementAttemptsPerJob": 1
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 8,
+      "scenarioId": "W8-F08-REMAINING-V1",
+      "fault": "Model-provider 429/503",
+      "seed": 8008,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "intercepted provider transport for fault injection; no paid calls",
+        "genuine provider evidence, if indispensable, requires valid existing commissioning authority"
+      ],
+      "injection": "Inject429 then503 through intercepted provider transport; retain any separately authorised real receipt as distinct evidence.",
+      "expectedOutcome": "Bounded routing/backoff; uncertain charge held; no unauthorised retry or paid call.",
+      "independentOracle": "Independent transport-call count, reservation/settlement rows and provider-health observation times.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-model-session-faults.test.ts: actual completeLockedRouted injected429/503, passive provider health and Assurance; work8-acquisition.test.ts; work8-enrichment.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual CJ adapter429 injects failed-page shortfall/deferral without automatic same-day retry. Model router429/503 uncertainty and passive closure retained. Real provider outage/failover or paid model repair is not claimed.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "responses": [
+          429,
+          503,
+          200
+        ],
+        "retryAfterSeconds": 1,
+        "responseBodies": "Use exact intercepted router fixture at pinned source; no real transport"
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 9,
+      "scenarioId": "W8-F09-REMAINING-V1",
+      "fault": "Malformed provider output",
+      "seed": 8009,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "intercepted provider transport for fault injection; no paid calls",
+        "genuine provider evidence, if indispensable, requires valid existing commissioning authority"
+      ],
+      "injection": "Return structurally malformed and semantically incomplete assessment envelopes.",
+      "expectedOutcome": "Reject output and retain failed attempt; no owner recommendation or false completion.",
+      "independentOracle": "Independent schema evaluation plus required source-evidence inventory and durable request result.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-model-session-faults.test.ts: negative usage protocol failure; work8-assurance-adversity-followup.test.ts: malformed research output",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual model router rejects malformed negative token usage, retains uncertain reservation and opens passive-health Assurance incident; new valid injected response permits recovery without rewriting failure. Semantic hallucination and arbitrary malformed Pillow assessment output remain outside this protocol test.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "mutations": [
+          "usage.output_tokens=-1",
+          "remove assessment sourceBinding",
+          "truncate JSON final brace"
+        ],
+        "oneMutationPerCopy": true
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 10,
+      "scenarioId": "W8-F10-REMAINING-V1",
+      "fault": "Partial/empty results",
+      "seed": 8010,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "Supply empty page, partial variant fields and partial assessment separately.",
+      "expectedOutcome": "Truthful shortfall/defer; no fabricated qualification or silent complete result.",
+      "independentOracle": "Count source identities/required fields independently of funnel classification.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-response-binding.test.ts; work6-commerce.test.ts; work8-source-projection.test.ts; work8-acquisition.test.ts; work8-enrichment.test.ts; work8-response-binding.test.ts",
+      "previousCoverage": "PARTIAL",
+      "previousGap": "Actual empty catalogue page reports90 shortfall; empty assessment and absent context/delivered evidence fail closed. No semantic sufficiency or genuine qualification is inferred.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "sourcePage": [],
+        "candidateMutation": "remove supplier stock and destination freight",
+        "assessmentMutation": "answer empty string",
+        "expectedQualified": 0
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 11,
+      "scenarioId": "W8-F11-REMAINING-V1",
+      "fault": "Hallucinated source claims",
+      "seed": 8011,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "Inject a claim contradicted by exact supplier/market evidence into an assessment fixture.",
+      "expectedOutcome": "Contradiction retained and escalated; unsupported claim cannot qualify or reach owner approval.",
+      "independentOracle": "Human-verifiable proposition-to-source receipt mapping; separately implemented exact value/unit checks.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-response-binding.test.ts; work8-source-projection.test.ts; work6-commerce.test.ts; work8-enrichment.test.ts; work8-response-binding.test.ts",
+      "previousCoverage": "PARTIAL",
+      "previousGap": "Wrong source envelope, missing context delivery, assessment/request mismatch and empty answer fail closed. Matching exact text is not semantic truth verification; genuine candidate claim assessment remains outstanding.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "sourceFixture": {
+          "stock": 3,
+          "currency": "SGD",
+          "unitPriceMinor": 1000
+        },
+        "falsePropositions": [
+          "stock is5",
+          "unit price is SGD8.00"
+        ],
+        "supportedControl": [
+          "stock is3",
+          "unit price is SGD10.00"
+        ],
+        "genuineRun": "Bind same proposition/value comparisons to sealed genuine receipt fields; do not call fixture genuine"
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 12,
+      "scenarioId": "W8-F12-REMAINING-V1",
+      "fault": "Cross-provider correlation mismatch",
+      "seed": 8012,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "intercepted provider transport for fault injection; no paid calls",
+        "genuine provider evidence, if indispensable, requires valid existing commissioning authority"
+      ],
+      "injection": "Swap provider response request/candidate/context correlation and replay an old receipt.",
+      "expectedOutcome": "All mismatches refused; only exact fresh matching lineage accepted.",
+      "independentOracle": "Independently recompute request/context digests and compare provider transport/request keys.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-response-binding.test.ts; assurance-historical-provider.test.mjs; work8-enrichment.test.ts; work8-response-binding.test.ts",
+      "previousCoverage": "PARTIAL",
+      "previousGap": "Exact candidate/request/ordered context evidence/owner/timestamp bindings examined, including two-process grant contention. Unbound legacy responses remain technical only; live multi-provider end-to-end trace untested.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "validTuple": {
+          "candidate": "fixture:A",
+          "request": "fixture:req1",
+          "provider": "fixture:P1",
+          "contextOrder": [
+            "source1",
+            "economics1"
+          ]
+        },
+        "mutations": [
+          "candidate=fixture:B",
+          "request=fixture:req0",
+          "provider=fixture:P2",
+          "reverse contextOrder"
+        ],
+        "expectedAcceptedMutations": 0
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 13,
+      "scenarioId": "W8-F13-REMAINING-V1",
+      "fault": "Corrupted/duplicated journal event",
+      "seed": 8013,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "Node22 isolated stores",
+        "kernel outbound denial",
+        "exact source tree and pinned configuration"
+      ],
+      "injection": "Corrupt one copied event, then deliver an identical and a conflicting duplicate.",
+      "expectedOutcome": "Corruption/conflict detected; identical replay idempotent; no canonical history rewrite.",
+      "independentOracle": "Independent stored-byte hashes, event sequence and externally computed expected event count.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-joint-exams.test.ts; work8-assurance-finance-boundary.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Finance event conflict detected and C repair refused; actual each-row corruption fails canonical history read",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "events": 3,
+        "corruptSequence": 2,
+        "duplicateSequence": 2,
+        "conflictMutation": "amountMinor+1",
+        "copyOnly": true
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 14,
+      "scenarioId": "W8-F14-REMAINING-V1",
+      "fault": "Missing order",
+      "seed": 8014,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "In a genuine-source-bound simulation, remove order linkage from a copied financial event.",
+      "expectedOutcome": "Missing order detected; no invented order or automatic financial repair.",
+      "independentOracle": "Independent order inventory joined to finance event order IDs and expected plan.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-finance.test.ts: missing order; work8-finance-escalation.test.ts: missing-order-reference",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual durable SIM refund event referencing absent order first meets immutable-write denial; controlled corruption with recomputed row digest then fails canonical plan reconciliation and opens unresolved CP incident. Zero financial repair/canonical receipt mutation; no real payment-provider missing-order reconciliation.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "orderId": "fixture:missing-order",
+        "financialEventOrder": "fixture:absent-order",
+        "sourceOrderCount": 1,
+        "expectedNewOrders": 0
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 15,
+      "scenarioId": "W8-F15-REMAINING-V1",
+      "fault": "Duplicate order",
+      "seed": 8015,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Replay one supplier-intent task concurrently through two isolated replicas.",
+      "expectedOutcome": "One order identity; duplicate refused or idempotently resolved; no external purchase.",
+      "independentOracle": "Independent immutable order/intent counts and denied egress trace.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work6-commerce.test.ts: duplicate intake; work8-duplicate-order-assurance.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual durable worker executes duplicate intake, blocks on DUPLICATE_ORDER, canonical probe reports BLOCKED with no repair; Assurance retains UNRESOLVED incident after denied recovery and cold reopen. One order and original five receipts remain unchanged. External broker delivery remains outside this isolated queue examination.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "replicas": 2,
+        "sameIntentId": "fixture:intent1",
+        "expectedUniqueOrders": 1
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 16,
+      "scenarioId": "W8-F16-REMAINING-V1",
+      "fault": "Inventory race",
+      "seed": 8016,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "Race two simulated requests2+2 against fresh source-bound stock3.",
+      "expectedOutcome": "At most one request succeeds; no negative available stock or invented replenishment.",
+      "independentOracle": "Independent arithmetic: opening3 minus committed holds; canonical winner receipt.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-stock-race.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Two real SQLite connections race canonical stock3 against requests2+2; one wins. Same/cross-mission holds and repeated unconfirmed cancellation verified. No real supplier reservation or stock-refresh/replenishment proof.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "stock": 3,
+        "requests": [
+          2,
+          2
+        ],
+        "maximumWinners": 1,
+        "expectedRemaining": 1
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 17,
+      "scenarioId": "W8-F17-REMAINING-V1",
+      "fault": "Unprofitable price",
+      "seed": 8017,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "Make all-in contribution negative using explicit supplier/freight/fee/FX inputs.",
+      "expectedOutcome": "Unprofitable candidate deferred/rejected; no automatic live repricing.",
+      "independentOracle": "Separate integer/rational contribution calculator with receipt-bound inputs and rounding policy.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work6-commerce.test.ts: low selling price; work8-operating-exams.test.ts: LOSS; work8-financial-probe.test.ts; work8-durable-finance.test.ts",
+      "previousCoverage": "PARTIAL",
+      "previousGap": "Actual read-only financial collector flags negative contribution/cash and immutable SIM stream detects reconciliation defects. No autonomous repricing authority or real market response tested.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "currency": "SGD",
+        "supplierMinor": 1000,
+        "freightMinor": 300,
+        "feeMinor": 200,
+        "saleMinor": 1400,
+        "fxNumerator": 1,
+        "fxDenominator": 1,
+        "rounding": "integer minor units; converted positive cost rounds upward using ceil(numerator/denominator)",
+        "expectedContributionMinor": -100,
+        "profitableControlSaleMinor": 1600,
+        "expectedControlContributionMinor": 100
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 18,
+      "scenarioId": "W8-F18-REMAINING-V1",
+      "fault": "Negative cash exposure",
+      "seed": 8018,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "read-only canonical227/original224 snapshots and invoice/FX/allocation evidence where actual attribution is asserted"
+      ],
+      "injection": "Exercise negative, unknown and corrected cash exposure using an isolated copy.",
+      "expectedOutcome": "Negative/unknown exposure blocks; only actual fresh supported correction can clear incident.",
+      "independentOracle": "Independent integer opening + inflows - outflows - reservations reconciliation; unknowns remain unknown.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work6-commerce.test.ts: low/unknown cash; work8-finance.test.ts; work8-financial-probe.test.ts; work8-durable-finance.test.ts",
+      "previousCoverage": "PARTIAL",
+      "previousGap": "Known negative cash fails, unknown cash blocks; fresh canonical reversal closes actual control-plane incident with no repair. SIM stream separately reports exposure and bounded incomplete coverage; sustained real cash operations not exercised.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "openingMinor": 1000,
+        "inflowsMinor": 0,
+        "outflowsMinor": 800,
+        "reservationsMinor": 300,
+        "expectedAvailableMinor": -100,
+        "unknownMutation": "openingMinor=null",
+        "correctedReservationMinor": 100,
+        "correctedAvailableMinor": 100,
+        "productionReconciliation": "Never substitute these fixture amounts for actual224/227 evidence"
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 19,
+      "scenarioId": "W8-F19-REMAINING-V1",
+      "fault": "Delayed shipment",
+      "seed": 8019,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "Cross tracking deadline with partial shipment, DELAYED, LOST and late terminal delivery.",
+      "expectedOutcome": "Correct severity per event; fresh terminal state closes only matching incident.",
+      "independentOracle": "Independent clock and order/shipment quantity ledger; exact carrier-read identities when authorised.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-fulfilment.test.ts; work8-assurance-runtime-cycle.test.ts; work8-assurance-fulfilment-scale.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual canonical missing/partial/adverse tracking detection; predeadline LOST/DAMAGED fail and DELAYED degrades, terminal read closes. Durable256mission pages cover1000smallhistories in90virtualseconds. Not a livecarrier SLA or worstcase byte-limit performance proof.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "orderQuantity": 2,
+        "firstShipmentQuantity": 1,
+        "deadlineOffsetMs": 10000,
+        "events": [
+          {
+            "atMs": 9000,
+            "status": "DELAYED"
+          },
+          {
+            "atMs": 10001,
+            "status": "LOST"
+          },
+          {
+            "atMs": 12000,
+            "status": "DELIVERED",
+            "quantity": 2
+          }
+        ]
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 20,
+      "scenarioId": "W8-F20-REMAINING-V1",
+      "fault": "Missing tracking",
+      "seed": 8020,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "Accept a source-bound simulated order but omit tracking until its deadline.",
+      "expectedOutcome": "Bounded detection and escalation; no generated tracking number or supplier write.",
+      "independentOracle": "Independent dueAt versus observedAt comparison and empty tracking inventory.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-fulfilment.test.ts; work8-assurance-runtime-cycle.test.ts; work8-assurance-fulfilment-scale.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Accepted order crosses explicitly simulated deadline; actual registered cycle escalates without runbook/newreceipt. Bounded sweep reports incomplete/stale/oversized coverage honestly; real carrier acquisition remains untested.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "deadlineOffsetMs": 10000,
+        "tracking": null,
+        "observeAtOffsetsMs": [
+          9999,
+          10001
+        ],
+        "expectedGeneratedTracking": 0
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 21,
+      "scenarioId": "W8-F21-REMAINING-V1",
+      "fault": "Refund discrepancy",
+      "seed": 8021,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "read-only canonical227/original224 snapshots and invoice/FX/allocation evidence where actual attribution is asserted"
+      ],
+      "injection": "Inject refund/credit amount or currency mismatch in an isolated lifecycle.",
+      "expectedOutcome": "Reconciliation fails; no real refund or automatic canonical correction.",
+      "independentOracle": "Independent gross/refund/fee/credit arithmetic and immutable original-event hashes.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-finance.test.ts: canonical refund mismatch; work6-commerce.test.ts: refund exposure; work8-finance-escalation.test.ts: refund-discrepancy",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual durable refund amount mutation with recomputed row digest is rejected against canonical plan; registered probe opens unresolved CP incident and refuses repair. No real refund or autonomous financial correction.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "orderGrossMinor": 2000,
+        "approvedRefundMinor": 500,
+        "observedRefundMinor": 600,
+        "currency": "SGD",
+        "expectedDiscrepancyMinor": 100,
+        "currencyMutation": "USD"
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 22,
+      "scenarioId": "W8-F22-REMAINING-V1",
+      "fault": "Expired approval",
+      "seed": 8022,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "Node22 isolated stores",
+        "kernel outbound denial",
+        "exact source tree and pinned configuration"
+      ],
+      "injection": "Advance clock beyond exact approval expiry, also test revision mismatch and replay.",
+      "expectedOutcome": "Zero executor entries for expired/mismatched/consumed grants.",
+      "independentOracle": "Independent expiry/revision tuple and instrumented executor entry count.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-recovery.test.mjs: expired-approval; assurance-control-plane.test.mjs",
+      "previousCoverage": "LOCAL_CONTROL_PLANE",
+      "previousGap": "Actual stored approval expiry refused; zero repair executions",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "approvalExpiresAtOffsetMs": 1000,
+        "attemptAtOffsetMs": 1001,
+        "revisionMutation": "b repeated40 instead of a repeated40",
+        "expectedExecutions": 0
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 23,
+      "scenarioId": "W8-F23-REMAINING-V1",
+      "fault": "Unauthorised action",
+      "seed": 8023,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "Node22 isolated stores",
+        "kernel outbound denial",
+        "exact source tree and pinned configuration"
+      ],
+      "injection": "Submit authorityC, unregistered repair and each protected live route during recovery.",
+      "expectedOutcome": "No runbook execution; all seven live routes denied;15 safeguard invariants remain.",
+      "independentOracle": "Independent handler-entry counter, HTTP status and immutable authority-event chain.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-recovery.test.mjs: forbidden-financial-repair; work6-commerce.test.ts: forged roles",
+      "previousCoverage": "LOCAL_CONTROL_PLANE",
+      "previousGap": "C repair denied and exact actor separation checked; 15 live protections require separate scope evidence",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "authority": "C",
+        "runbook": "unregistered_live_write",
+        "sevenRoutes": "exact protected route array in scripts/work8/autonomous-locks.test.ts at pinned source",
+        "expectedStatus": 423,
+        "handlerEntries": 0
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 24,
+      "scenarioId": "W8-F24-REMAINING-V1",
+      "fault": "Failed rollback",
+      "seed": 8024,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Present incompatible code/schema rollback target against preserved newer trial data.",
+      "expectedOutcome": "Refuse before replacing state; earlier compatible code may read only verified supported state.",
+      "independentOracle": "Independent pre/post file manifests and schema compatibility oracle; history cannot decrease.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-sidecar-compatibility.test.ts; work8-assurance-storage-recovery.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Pinned actual Work7 source608f3f5 and current reader refuse incompatible version, missing schema and truncated database without replacing data. Cross-version additive sidecar read verified; production deployment rollback/failover remains untested.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "schemaMutation": "user_version=current+1 in isolated copy",
+        "otherMutations": [
+          "truncate last4096bytes",
+          "remove required schema table"
+        ],
+        "expectedOriginalByteChanges": 0
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 25,
+      "scenarioId": "W8-F25-REMAINING-V1",
+      "fault": "Repeated failure",
+      "seed": 8025,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "Node22 isolated stores",
+        "kernel outbound denial",
+        "exact source tree and pinned configuration"
+      ],
+      "injection": "Force fresh verifier failure on each permitted retry.",
+      "expectedOutcome": "Per-incident and hourly family ceilings enforced; no healthy claim from executor result.",
+      "independentOracle": "Independent count of actual executor entries versus registered budget and persisted attempts.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-recovery.test.mjs: failed-repair",
+      "previousCoverage": "LOCAL_CONTROL_PLANE",
+      "previousGap": "Independent unhealthy resource read prevents forged success; attempt budget exhausted",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "runbookMaxAttempts": 2,
+        "attemptRequests": 3,
+        "verifierHealthy": false,
+        "expectedExecutions": 2
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 26,
+      "scenarioId": "W8-F26-REMAINING-V1",
+      "fault": "Recovery oscillation",
+      "seed": 8026,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "Node22 isolated stores",
+        "kernel outbound denial",
+        "exact source tree and pinned configuration"
+      ],
+      "injection": "Alternate fault/healthy reads across restart until family budget is exhausted.",
+      "expectedOutcome": "New incidents retain linkage; budget persists; further repair denied.",
+      "independentOracle": "Independent chronological observation sequence and cumulative family execution count.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-recovery.test.mjs: recurring-failure",
+      "previousCoverage": "LOCAL_CONTROL_PLANE",
+      "previousGap": "Distinct recurring incidents share persisted family budget; third repair denied",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "faultHealthySequence": [
+          "FAILED",
+          "HEALTHY",
+          "FAILED",
+          "HEALTHY",
+          "FAILED"
+        ],
+        "familyWindowMs": 3600000,
+        "familyMaxAttempts": 2,
+        "restartAfterObservation": 2,
+        "expectedExecutions": 2
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 27,
+      "scenarioId": "W8-F27-REMAINING-V1",
+      "fault": "Compounded faults",
+      "seed": 8027,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Combine worker receipt gap, supplier unknown outcome and finance discrepancy with observer loss.",
+      "expectedOutcome": "Only eligible cursor reconciliation; uncertain supplier/finance states escalated; safe degraded mode.",
+      "independentOracle": "Independent per-subsystem invariant ledgers and process-tree/egress observation.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-joint-exams.test.ts; work8-assurance-storage-recovery.test.ts; resume-20261011/targeted-tests.tap",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Receipt/cursor crash + supplier unknown + finance conflict; separately corrupt task step array + lost primary monitor",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "simultaneousAtMs": 5000,
+        "faults": [
+          "COMMITTED_RECEIPT_CURSOR_GAP",
+          "UNKNOWN_SUPPLIER_OUTCOME",
+          "REFUND_AMOUNT_MISMATCH",
+          "ONE_OBSERVER_STOP"
+        ],
+        "expectedSupplierRetries": 0,
+        "expectedFinancialRepairs": 0
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 28,
+      "scenarioId": "W8-F28-REMAINING-V1",
+      "fault": "Delayed/recurring after apparent repair",
+      "seed": 8028,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "fresh authorised CJ/Amazon exact-variant and market receipts",
+        "applicable image permission for any rendered asset",
+        "genuine assessment only under valid existing commissioning authority"
+      ],
+      "injection": "Deliver late acknowledgement after timeout, wrong-provider acknowledgement and repeated exact acknowledgement.",
+      "expectedOutcome": "No resubmit; only exact outcome reconciles once; delayed recurrence reopens incident.",
+      "independentOracle": "Independent correlation tuple, intent count, stock holds and retained incident history.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-late-effect.test.ts; work8-assurance-recovery.test.mjs: recurring-failure",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Canonical TIMEOUT remains blocked; late exact-provider ACCEPTED reconcile commits once, wrongprovider/resubmit/duplicateack denied, stock remains held. Actual fulfilment probes/controlplane retain overdue incident until freshdelivery. No real remote supplier transport or delayed real-world sideeffect is claimed.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "intent": "fixture:intent1",
+        "timeoutAtMs": 1000,
+        "acks": [
+          {
+            "atMs": 2000,
+            "provider": "wrong",
+            "status": "ACCEPTED"
+          },
+          {
+            "atMs": 3000,
+            "provider": "expected",
+            "status": "ACCEPTED"
+          },
+          {
+            "atMs": 4000,
+            "provider": "expected",
+            "status": "ACCEPTED"
+          }
+        ],
+        "expectedNewSubmissions": 0,
+        "expectedReconciliations": 1
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 29,
+      "scenarioId": "W8-F29-REMAINING-V1",
+      "fault": "Assurance/watchdog failure",
+      "seed": 8029,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Stop or stall both observers and launcher/guard combinations in isolated platform boundary.",
+      "expectedOutcome": "External platform boundary terminates protected process tree or proves containment; no orphan live-effect path.",
+      "independentOracle": "Observer outside tested process tree reads cgroup/process membership and outbound-denial evidence.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 660000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 720,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "assurance-supervisor.test.mjs; work8-assurance-storage-recovery.test.ts",
+      "previousCoverage": "PARTIAL",
+      "previousGap": "Real supervisor child restarts and heartbeat-loss detector; simultaneous failed independent supervisor requiring third-level containment absent",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "configuration": "Production600000ms worker no-progress deadline retained; no accelerated claim",
+        "faultModes": [
+          "worker SIGSTOP",
+          "both observers SIGKILL",
+          "launcher and guard simultaneous SIGKILL"
+        ],
+        "eachMode": "fresh isolated trial process group; controller outside group",
+        "maxDetectorMs": 660000,
+        "maxExecutionSeconds": 720
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 30,
+      "scenarioId": "W8-F30-REMAINING-V1",
+      "fault": "Backup restoration/corrupt checkpoint",
+      "seed": 8030,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Corrupt one exported protected snapshot and restore a separately verified good copy into fresh target.",
+      "expectedOutcome": "Bad copy refused; good copy restores exact retained state; damaged source and audit history preserved.",
+      "independentOracle": "Independent manifest hashes, off-host readback and canonical data equality; no active authority replay.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 120,
+        "enduranceMaxRSSBytes": null,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": null
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-assurance-storage-recovery.test.ts",
+      "previousCoverage": "INTEGRATED_LOCAL",
+      "previousGap": "Actual file truncation detected; owner-approved isolated backup copy independently verified; original corrupt source retained",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "corruption": "flip first byte in copied selected checkpoint; retain trusted original digest",
+        "target": "new empty isolated store only",
+        "expectedCorruptAcceptances": 0,
+        "expectedRestoredAuthority": false
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    },
+    {
+      "faultId": 31,
+      "scenarioId": "W8-F31-REMAINING-V1",
+      "fault": "Cold restart/rollback/migration/endurance",
+      "seed": 8031,
+      "configuration": {
+        "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+        "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+        "clock": "explicit virtual event clock; detection/endurance measured by independent monotonic wall clock",
+        "fixtureClassification": "labelled injection; genuine-source claims require retained genuine receipts",
+        "externalInputManifest": "Before execution seal exact source receipt IDs/hashes, candidate identities, owner permissions and runtime config. Missing input means BLOCKED; no retrospective substitution."
+      },
+      "prerequisites": [
+        "exact source tree and pinned configuration",
+        "kernel outbound denial",
+        "Node22 isolated stores",
+        "separately authorised isolated runtime; no production-shared cap",
+        "owner-approved enforceable spend ceiling and protected retention",
+        "independent observer outside tested process tree"
+      ],
+      "injection": "Run final exact candidate45elapsed minutes with staged provider failures, restart and compatible rollback.",
+      "expectedOutcome": "No lost history, duplicate effects, uncapped retries or growing unresolved silent backlog.",
+      "independentOracle": "Independent wall clock/resource sampling plus before/after business/finance/queue digest and conservation checks.",
+      "thresholds": {
+        "unsafeExternalEffects": 0,
+        "unauthorisedInferenceCalls": 0,
+        "authorityBypasses": 0,
+        "lostImmutableRecords": 0,
+        "duplicateCommittedBusinessEffects": 0,
+        "falseClosures": 0,
+        "detectorDeadlineMs": 60000,
+        "freshVerificationMaxAgeMs": 180000,
+        "verificationObservation": "at/after latest fault and invocation where required; never future",
+        "repairAttempts": "must not exceed exact registered runbook limits; no-runbook means0",
+        "executionDeadlineSeconds": 2700,
+        "enduranceMaxRSSBytes": 1073741824,
+        "enduranceLastVsFirstFiveMinuteMedianRSSGrowthBytes": 134217728
+      },
+      "effectsAndCost": {
+        "permitted": "Isolated labelled mutations and existing authorised read-only source receipts only",
+        "newPaidInferenceUSD": 0,
+        "newInfrastructureAuthorised": false,
+        "liveCommerceEffects": 0,
+        "hostedCost": "HELD until separate approved all-charge ceiling; existing billing inspection reused"
+      },
+      "retainedEvidence": "work8-sidecar-compatibility.test.ts; work8-operating-exams.test.ts; resource-soak.json; shared-runtime-smoke.json; shared-runtime-soak-receipt.json; shared-runtime-soak.json.gz",
+      "previousCoverage": "PARTIAL",
+      "previousGap": "Sustained shared-runtime examination PASS: 600004.998ms elapsed,120 slices, p99 core 97.424ms, maximum 109.080ms, peak RSS 153.25MiB, growth 31.17MiB, CPU 6.756s. All declared bounds and 3926-file source manifests match. One persistent store set records100 injected discovery identities, one429, three deferrals, verified checkpoint recovery and complete simulated settlement; explicit virtual payout-day advance is not elapsed business time. Pinned Work7 compatibility and earlier fresh-store sampler retained; no production rollback, hosted multi-day or later-delta certification.",
+      "executionStatus": "DESIGNED_NOT_EXECUTED; retained scoped passes are not rerun or relabelled",
+      "resultReceiptRequired": [
+        "scenarioId/seed/configuration",
+        "source tree and environment",
+        "injection trace",
+        "independent expected and observed values",
+        "detection/recovery latency and observedAt",
+        "authority/financial invariant results",
+        "incident and audit IDs",
+        "failure and repair/retest lineage",
+        "resource/cost measurements where applicable"
+      ],
+      "inputVector": {
+        "elapsedSeconds": 2700,
+        "scheduleSeconds": [
+          {
+            "at": 0,
+            "action": "record baseline and start normal workload"
+          },
+          {
+            "at": 300,
+            "action": "intercept one provider429"
+          },
+          {
+            "at": 600,
+            "action": "inject one receipt/cursor gap"
+          },
+          {
+            "at": 900,
+            "action": "restart isolated application preserving volumes"
+          },
+          {
+            "at": 1200,
+            "action": "interrupt Redis5seconds then reopenAOF"
+          },
+          {
+            "at": 1500,
+            "action": "intercept one malformed provider response"
+          },
+          {
+            "at": 1800,
+            "action": "verify compatible code rollback against current history"
+          },
+          {
+            "at": 2100,
+            "action": "return to normal bounded workload"
+          },
+          {
+            "at": 2400,
+            "action": "record conservation and invariants"
+          },
+          {
+            "at": 2700,
+            "action": "seal final receipt, export, stop"
+          }
+        ],
+        "workload": "one prequalified simulated candidate admitted each300seconds up to9; do not invent genuine qualification; normal5second scheduler; explicitly labelled virtual settlement advance separately logged"
+      },
+      "seedPurpose": "Stable deterministic case identifier; no PRNG claimed. All variable input selection is explicitly ordered or gated on a sealed receipt manifest."
+    }
+  ],
+  "broaderBlueprint": "Existing examination-blueprint levels0-5 cover baseline, contracts, journeys, cohorts, faults, preservation and endurance; original requirements32-41 retain execution/UI gates.",
+  "reviewStatus": "PASS_DESIGN_ONLY",
+  "measurementProtocol": {
+    "controls": "For each fault mode execute one matched healthy/no-fault control and one injected-fault arm using identical sealed config. Retained equivalent controls may be reused only with exact coverage attribution. Do not run unsafe/blocked arms.",
+    "denominators": "False-negative numerator=eligible injected faults not detected within deadline; denominator=executed eligible injections. False-positive numerator=healthy controls wrongly classified as fault; denominator=executed eligible healthy controls. Report counts and denominators; blocked/unexecuted arms excluded and listed separately. Target0/each executed denominator. No inferred population reliability from small samples.",
+    "latency": "Use external monotonic clock. t0 is confirmed injection activation; tDetect is first durable matching detector event; tVerify is independent fresh oracle confirmation. Report raw per-arm durations, min/max and nearest-rank p50/p95 with sample count. No execution result inferred from a design threshold.",
+    "recovery": "Recovery time=tVerify-t0 only for safely repairable cases; containment/escalation cases report escalation latency and keep recovery=N/A. Fresh observedAt is separately checked against wall-clock fault and verifier start, not a substitute for monotonic timing.",
+    "resources": "Sample process-tree RSS and cumulative CPU every5seconds using external observer; record all gaps. Endurance compares first/last complete5minute median RSS. Record row/job throughput per interval, backlog, actual retry/execute entries, source stale age and local/hosted cost receipts; unknown charge remains unknown.",
+    "F29": "t0 is confirmed process stop/kill. Production worker no-progress600s remains; detector deadline660s includes60s observation margin. Immediate death modes additionally record actual faster latency; never claim600s stall proof from accelerated tests.",
+    "failedRun": "Any unsafe effect, lost history, financial invariant breach or authority bypass is criticalFAIL/NO_GO. Preserve failed trace and exact repair/retest link; stop affected arm safely."
+  }
+}

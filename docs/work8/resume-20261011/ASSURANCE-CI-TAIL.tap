@@ -1,0 +1,198 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: capability states preserve unavailable, stale and unconfigured evidence
+ok 1 - capability states preserve unavailable, stale and unconfigured evidence
+  ---
+  duration_ms: 1.042182
+  type: 'test'
+  ...
+# Subtest: new revision resolves historical incidents only with affirmative matching probe and no uncertain effect
+ok 2 - new revision resolves historical incidents only with affirmative matching probe and no uncertain effect
+  ---
+  duration_ms: 6.312525
+  type: 'test'
+  ...
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# {"schema":"isolated-assurance-discrepancy-v1","at":"2026-10-11T12:07:20.132Z","isolatedSyntheticSource":true,"clockScenarios":"Injected schedule timestamps in separate database; real scheduler restart remains separately required","checks":{"runtimeDiscrepancy":"FAIL","unavailableCollector":"SOURCE_UNAVAILABLE","staleEvidence":"STALE","authorityDiscrepancy":"FAIL","interruptedCycle":"ASSURANCE_OVERDUE","missedCycle":"ASSURANCE_OVERDUE","reopenedInNewProcess":true},"productionRecordsMutated":0,"inferenceCalls":0,"commerceWrites":0,"pillowSelfReportUsed":false}
+# (node:13) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: isolated probe preserves discrepancies across a new process and never overwrites its receipt
+ok 3 - isolated probe preserves discrepancies across a new process and never overwrites its receipt
+  ---
+  duration_ms: 185.665932
+  type: 'test'
+  ...
+# (node:19) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:19) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: exact retained refusal is classified uncertain; original full reservation and evidence remain unchanged
+ok 4 - exact retained refusal is classified uncertain; original full reservation and evidence remain unchanged
+  ---
+  duration_ms: 68.916977
+  type: 'test'
+  ...
+# Subtest: missing, corrupt, mismatched, settled, released or unbound historical sources cannot authorize disposition
+ok 5 - missing, corrupt, mismatched, settled, released or unbound historical sources cannot authorize disposition
+  ---
+  duration_ms: 104.477162
+  type: 'test'
+  ...
+# Subtest: a temporal transcript association alone cannot substitute for the original correlation binding
+ok 6 - a temporal transcript association alone cannot substitute for the original correlation binding
+  ---
+  duration_ms: 21.170815
+  type: 'test'
+  ...
+# Subtest: all seven current monitoring domains, omission completeness and current source truth remain mandatory
+ok 7 - all seven current monitoring domains, omission completeness and current source truth remain mandatory
+  ---
+  duration_ms: 25.038919
+  type: 'test'
+  ...
+# Subtest: administrative lifecycle retains immutable HIGH incident identity and history; new genuine failure creates a blocking incident
+ok 8 - administrative lifecycle retains immutable HIGH incident identity and history; new genuine failure creates a blocking incident
+  ---
+  duration_ms: 10.687723
+  type: 'test'
+  ...
+# Subtest: unknown recoveries, historical current faults, incomplete history, release leases and pause remain blocking
+ok 9 - unknown recoveries, historical current faults, incomplete history, release leases and pause remain blocking
+  ---
+  duration_ms: 29.572748
+  type: 'test'
+  ...
+# Subtest: older stale-first probe schema needs exact historical Gemini identity and independently verified other receipts
+ok 10 - older stale-first probe schema needs exact historical Gemini identity and independently verified other receipts
+  ---
+  duration_ms: 5.162069
+  type: 'test'
+  ...
+# Subtest: legacy configuration-only incidents require exact identities, full schema and retained containment proof
+ok 11 - legacy configuration-only incidents require exact identities, full schema and retained containment proof
+  ---
+  duration_ms: 5.651383
+  type: 'test'
+  ...
+# Subtest: legacy configuration lifecycle preserves original HIGH records and every event while retaining current uncertainty
+ok 12 - legacy configuration lifecycle preserves original HIGH records and every event while retaining current uncertainty
+  ---
+  duration_ms: 75.998018
+  type: 'test'
+  ...
+# (node:20) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:20) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: worker and independent inspector failures cannot inherit healthy evidence
+ok 13 - worker and independent inspector failures cannot inherit healthy evidence
+  ---
+  duration_ms: 33.120808
+  type: 'test'
+  ...
+# Subtest: independent reservation baseline detects deletion and mutation while allowing new reservations above the former cap without ledger writes
+ok 14 - independent reservation baseline detects deletion and mutation while allowing new reservations above the former cap without ledger writes
+  ---
+  duration_ms: 8.833434
+  type: 'test'
+  ...
+# (node:21) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:21) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: scope disposition preserves stale provider truth and requires all mandatory independent coverage
+ok 15 - scope disposition preserves stale provider truth and requires all mandatory independent coverage
+  ---
+  duration_ms: 3.665201
+  type: 'test'
+  ...
+# Subtest: Four Eyes uses actual recurring cadence while keeping optional and old facts unverified
+ok 16 - Four Eyes uses actual recurring cadence while keeping optional and old facts unverified
+  ---
+  duration_ms: 6.601525
+  type: 'test'
+  ...
+# Subtest: authorized scope reconciliation is durable, preserves original HIGH history, and never resolves uncertain effects
+ok 17 - authorized scope reconciliation is durable, preserves original HIGH history, and never resolves uncertain effects
+  ---
+  duration_ms: 19.342488
+  type: 'test'
+  ...
+# Subtest: lease and pause retain incident fencing; actual failures remain blocking
+ok 18 - lease and pause retain incident fencing; actual failures remain blocking
+  ---
+  duration_ms: 5.936734
+  type: 'test'
+  ...
+# Subtest: historical actual failures require later bound functional evidence, not merely a new scope
+ok 19 - historical actual failures require later bound functional evidence, not merely a new scope
+  ---
+  duration_ms: 0.353549
+  type: 'test'
+  ...
+# (node:22) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:22) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: passive provider receipts do not turn missing, old or failed calls healthy
+ok 20 - passive provider receipts do not turn missing, old or failed calls healthy
+  ---
+  duration_ms: 8.289014
+  type: 'test'
+  ...
+# Subtest: storage and freshness collectors read real sources without claiming backup or fresh provider access
+ok 21 - storage and freshness collectors read real sources without claiming backup or fresh provider access
+  ---
+  duration_ms: 18.338028
+  type: 'test'
+  ...
+# (node:23) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: collector and inspector restart independently and cannot receive provider or founder secrets
+ok 22 - collector and inspector restart independently and cannot receive provider or founder secrets
+  ---
+  duration_ms: 48.976281
+  type: 'test'
+  ...
+# Subtest: actual inspector restarts, reports missing durable cycles and stops promptly
+ok 23 - actual inspector restarts, reports missing durable cycles and stops promptly
+  ---
+  duration_ms: 609.561502
+  type: 'test'
+  ...
+# Subtest: repeated child failures exhaust bounded restart budget
+ok 24 - repeated child failures exhaust bounded restart budget
+  ---
+  duration_ms: 25.360751
+  type: 'test'
+  ...
+# Subtest: isolated service Assurance targets its own HTTPS origin and rejects ambiguous overrides before spawning
+ok 25 - isolated service Assurance targets its own HTTPS origin and rejects ambiguous overrides before spawning
+  ---
+  duration_ms: 0.873337
+  type: 'test'
+  ...
+# (node:65) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:65) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: detects unreported missing and corrupted assistant delivery independently
+ok 26 - detects unreported missing and corrupted assistant delivery independently
+  ---
+  duration_ms: 1.736623
+  type: 'test'
+  ...
+# Subtest: incomplete inventory, duplicates and malformed terminal records fail closed
+ok 27 - incomplete inventory, duplicates and malformed terminal records fail closed
+  ---
+  duration_ms: 0.670527
+  type: 'test'
+  ...
+1..27
+# tests 27
+# suites 0
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1180.086957

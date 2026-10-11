@@ -1,0 +1,12 @@
+Source: 52338bd01a7269d9fa4328fe606312729565c1ff
+Product workflow38137758738 SUCCESS; backend job114465121314 SUCCESS
+Selected exact hosted verification fixture log:
+2026-10-11T12:05:17.4917453Z # Subtest: seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+2026-10-11T12:05:17.4924381Z ok 1 - seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+2026-10-11T12:05:17.4925091Z   ---
+2026-10-11T12:05:17.4925368Z   duration_ms: 150.715356
+2026-10-11T12:05:17.4925687Z   type: 'test'
+2026-10-11T12:05:17.4925920Z   ...
+2026-10-11T12:05:20.9517834Z # Subtest: ten accelerated days preserve one shared canonical store through cold restarts, Assurance repairs and cumulative finance replay
+2026-10-11T12:05:20.9526287Z ok 2 - ten accelerated days preserve one shared canonical store through cold restarts, Assurance repairs and cumulative finance replay
+2026-10-11T12:05:20.9528038Z   ---

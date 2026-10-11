@@ -1,0 +1,68 @@
+{
+  "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+  "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+  "workflow_runs": [
+    {
+      "id": 38137758747,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 114,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38137758747/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38137758747/logs",
+      "workflow_id": 373040927
+    },
+    {
+      "id": 38137758767,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 673,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38137758767/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38137758767/logs",
+      "workflow_id": 362674549
+    },
+    {
+      "id": 38137758738,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 672,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38137758738/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38137758738/logs",
+      "workflow_id": 362309382
+    },
+    {
+      "id": 38137758734,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 674,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38137758734/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38137758734/logs",
+      "workflow_id": 362688325
+    }
+  ],
+  "artifact": {
+    "id": 11701238956,
+    "name": "precutover-closure",
+    "size_in_bytes": 5550,
+    "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/11701238956",
+    "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/11701238956/zip",
+    "expired": false,
+    "created_at": "2026-10-11T12:22:32Z",
+    "expires_at": "2026-10-25T12:22:31Z",
+    "updated_at": "2026-10-11T12:22:32Z",
+    "digest": "sha256:bbc611a33af8703d4ebab089b03eaba0c37a0e8356e3ac8edd34785bb62e5b94",
+    "workflow_run": {
+      "id": 38137758734,
+      "repository_id": 1275922460,
+      "head_repository_id": 1275922460,
+      "head_branch": "work8/autonomous-examination-20261011",
+      "head_sha": "52338bd01a7269d9fa4328fe606312729565c1ff"
+    }
+  },
+  "publication": "CONNECTOR-PUBLICATION-4EBBC.json",
+  "assuranceFailure": "Legacy capability-health fixture expected an untimestamped HEALTHY observation to close an incident. Local reviewed test-only85a1437f corrects it; no workflow restarted.",
+  "requirement28": "PENDING until required Assurance CI passes on published correction; local passes do not overwrite hosted failure."
+}

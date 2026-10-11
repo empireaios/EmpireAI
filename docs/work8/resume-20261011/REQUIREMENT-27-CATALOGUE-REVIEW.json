@@ -1,0 +1,161 @@
+{
+  "schema": "WORK8_REQUIREMENT_27_CATALOGUE_REVIEW_V1",
+  "requirement": 27,
+  "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+  "sourceTree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+  "reviewer": "/root/review_retirement_finance",
+  "verdict": "PASS",
+  "scope": "Bounded registered repair authority catalogue; independent read-only source and retained receipt mapping. Not full Assurance examination programme or release certification.",
+  "criteria": "MANDATE.txt sections7/18/20: pre-authorised reversible bounded idempotent repairs, verified preconditions/postconditions, budgets, safe rollback or containment, owner approval for privileged/exposure actions, no self-granted code/deployment powers.",
+  "catalogueSource": "backend/src/assurance/runtime.ts:createAssuranceRuntime",
+  "commonControls": {
+    "preconditions": [
+      "Registered immutable runbook ID/version and matching capability",
+      "Current revision; no conflicting active deployment lease; pause respected",
+      "Per-incident and persistent one-hour fault-family attempt ceilings; cooldown",
+      "Unknown prior outcome reconciled only by an explicit reconcile callback; no blind execute replay"
+    ],
+    "failureContainment": "FAILED verification remains DEGRADED; thrown/unknown execution remains UNRESOLVED. Durable attempts and immutable events retained. No success inferred from executor claim.",
+    "negativeReceipts": [
+      "RECOVERY-FRESHNESS-CORE.tap: expired/rejected approval; revision mismatch; deployment lease; unknown outcome; failed verification; circuit and replay cases",
+      "PASSIVE-CLOSURE-CORE.tap: missing/future/pre-fault source evidence refusal"
+    ]
+  },
+  "entries": [
+    {
+      "id": "work8_checkpoint_replay",
+      "authority": "A",
+      "executor": "Deterministic control-plane worker",
+      "capability": "commerce-checkpoint",
+      "version": "work8-checkpoint-v1",
+      "preconditions": [
+        "Exact workspace/task-bound probe; canonical immutable committed receipt ahead of saved cursor by exactly one",
+        "Unchanged expected fence and receipt-history digest; no BLOCKED/UNKNOWN supplier outcome; altered plan rejected"
+      ],
+      "effects": [
+        "Reconcile only existing task cursor/fence through idempotent worker replay",
+        "No new business command, receipt, approval, supplier retry or financial mutation"
+      ],
+      "budget": {
+        "maxAttempts": 1,
+        "cooldownMs": 1000,
+        "timeoutMs": 1000
+      },
+      "verification": "Independent task/history reread checks mission, cursor, fence, receipt digest and entire unchanged history; observedAt taken after read",
+      "rollbackOrContainment": "Canonical receipts untouched; invalid/unknown state refuses repair and remains unresolved, never rolls back commercial history",
+      "positiveNegativeReceipts": [
+        "RECOVERY-FRESHNESS-INTEGRATION.tap: candidate runbook repairs only real committed receipt checkpoint gap and independently preserves history",
+        "RECOVERY-FRESHNESS-INTEGRATION.tap: no-gap fresh-step refusal, altered payload refusal, unknown supplier outcome refusal, normal-worker-wins fresh closure"
+      ],
+      "testSource": "backend/src/validation/tests/work8-assurance-commerce-recovery.test.ts"
+    },
+    {
+      "id": "rebuild_reconciliation",
+      "authority": "A",
+      "executor": "Deterministic control-plane worker",
+      "capability": "reconciliation_view",
+      "version": "1",
+      "preconditions": [
+        "Derived operational view missing or inconsistent; canonical source files readable and validated"
+      ],
+      "effects": [
+        "Rebuild only derived reconciliation JSON from existing local records through temporary-file write, file fsync, rename and directory fsync"
+      ],
+      "budget": {
+        "maxAttempts": 2,
+        "cooldownMs": 30000,
+        "timeoutMs": 10000
+      },
+      "verification": "verifyReconciliation rereads view and original source set, validates workspace/schema/hash and current source digest, timestamps successful read",
+      "rollbackOrContainment": "Original authoritative stores unchanged; derived file is reproducible. Invalid read/build refuses success; partial temporary file does not authorize repair of originals. Unknown result may reconcile existing valid view without repeat execution",
+      "positiveNegativeReceipts": [
+        "PASSIVE-CLOSURE-INTEGRATION.tap: independent cycle repairs derived operational view, preserves sources and survives restart without repeated repair",
+        "PASSIVE-CLOSURE-INTEGRATION.tap: deployment lease rejects interruption; controlled deployment collision defers until fenced release; source preservation rejects original mutation/deletion"
+      ],
+      "testSource": "backend/src/validation/tests/advanced-assurance-runtime.test.ts"
+    },
+    {
+      "id": "rebuild_reconciliation_advisor",
+      "authority": "A",
+      "executor": "API_ADVISOR only; deterministic executor rejected",
+      "capability": "reconciliation_view",
+      "version": "1",
+      "preconditions": [
+        "Same validated source/view preconditions as rebuild_reconciliation",
+        "Scoped Advisor task permits this sole runbook; executor identity must match API_ADVISOR"
+      ],
+      "effects": [
+        "Same derived-view-only rebuild; model proposal does not create broader repair authority"
+      ],
+      "budget": {
+        "maxAttempts": 2,
+        "cooldownMs": 30000,
+        "timeoutMs": 10000
+      },
+      "verification": "Same fresh independent reconciliation source/view reread as deterministic rebuild",
+      "rollbackOrContainment": "Same immutable-source preservation and unknown-result containment as rebuild; other executor denied",
+      "positiveNegativeReceipts": [
+        "PASSIVE-CLOSURE-INTEGRATION.tap: designated Advisor recovery automatically admits exactly one bounded task and leaves deterministic executor excluded"
+      ],
+      "testSource": "backend/src/validation/tests/advanced-assurance-runtime.test.ts"
+    },
+    {
+      "id": "quarantine_reconciliation",
+      "authority": "B",
+      "executor": "Control-plane execution after exact durable owner approval",
+      "capability": "approval_quarantine",
+      "version": "1",
+      "preconditions": [
+        "Owner-requested bounded derived-view interruption",
+        "Approval matches incident/revision/runbook version, unexpired and unconsumed; pause/lease gates still apply"
+      ],
+      "effects": [
+        "Rename only derived JSON to retained approved timestamp copy; rebuild derived view",
+        "Record source digest before/after; no original finance/intelligence/commerce record write"
+      ],
+      "budget": {
+        "maxAttempts": 2,
+        "cooldownMs": 30000,
+        "timeoutMs": 10000
+      },
+      "verification": "Fresh verification result plus sourceUnchanged=true required; source/view integrity reread timestamp propagated",
+      "rollbackOrContainment": "Previous derived file retained as quarantine copy; canonical sources preserved; failed/unknown outcome is unresolved rather than automatic destructive rollback",
+      "positiveNegativeReceipts": [
+        "PASSIVE-CLOSURE-INTEGRATION.tap: B approval performs no interruption before exact owner decision and records governed verified recovery",
+        "PASSIVE-CLOSURE-INTEGRATION.tap: completed one-shot approval retains original probe and canonical recovery receipt",
+        "RECOVERY-FRESHNESS-CORE.tap: exact approval consumed once; expired/rejected/deferred/revision-mismatched and replay-conflicting approvals denied"
+      ],
+      "testSource": "backend/src/validation/tests/advanced-assurance-runtime.test.ts"
+    }
+  ],
+  "unsafeEscalation": {
+    "policy": "Unregistered runbook, mismatched capability or authority C -> NO_RUNBOOK and UNRESOLVED. B requires exact owner approval; no blanket permission. Unknown external effect is not safe replay.",
+    "coveredCases": [
+      "Forbidden financial repair and authority-C action cannot execute",
+      "Unknown supplier outcome remains BLOCKED with no runbook",
+      "Queue expiry/backlog has no replay runbook; observation/escalation only",
+      "Owner command parser rejects commerce unlock/effect expansion",
+      "Seven live-effect routes remain423 during and independently after repair; zero handler execution"
+    ],
+    "receipts": [
+      "RECOVERY-FRESHNESS-CORE.tap",
+      "RECOVERY-FRESHNESS-INTEGRATION.tap",
+      "PASSIVE-CLOSURE-INTEGRATION.tap",
+      "resume-20261011/AUTONOMOUS-LOCKS-FRESH.tap"
+    ]
+  },
+  "remainingCatalogueCriteria": [],
+  "limitations": [
+    "No new tests executed by reviewer",
+    "No paid/genuine provider journey, platform containment or full fault catalogue inferred",
+    "No register or mission ledger modification",
+    "Requirement28 exact-head CI remains pending; this record does not claim its closure",
+    "Broader26/29/30/34 acceptance remains separate"
+  ],
+  "receiptHashes": {
+    "resume-20261011/RECOVERY-FRESHNESS-CORE.tap": "3b1942d5ae4997fc782eb670cb83f63af8e339d2b5e67008939c4d014bb69a0a",
+    "resume-20261011/RECOVERY-FRESHNESS-INTEGRATION.tap": "099ac22fc8e3d1ac0197a53ccef677eadbd6e35e758fb93e9de68b22a2156473",
+    "resume-20261011/PASSIVE-CLOSURE-CORE.tap": "2fe660ed6a49f246b6131a8783b7297bbb990b3dbe815a7a7bb220a13c371fd5",
+    "resume-20261011/PASSIVE-CLOSURE-INTEGRATION.tap": "fdf8dc0cf11a1cf1b5a92d7263803bcdd71ec3764ea851266de16b18117a3973"
+  }
+}

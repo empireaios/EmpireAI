@@ -8,12 +8,13 @@
   ],
   "scope": "One bounded reconciliation, followed directly by implementation. Existing scoped passes retained. Original IDs and descriptions unchanged.",
   "closedNow": [
-    37
+    27,
+    31
   ],
   "counts": {
-    "PASS": 3,
+    "PASS": 5,
     "BLOCKED": 5,
-    "PENDING": 37
+    "PENDING": 35
   },
   "sharedExternalDependencies": {
     "SOURCE": [
@@ -525,11 +526,14 @@
       "retainedEvidence": [
         "assurance-examinations.md",
         "assurance-examinations.md",
-        "assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap"
+        "assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap",
+        "resume-20261011/REQUIREMENT-27-CATALOGUE-REVIEW.json"
       ],
-      "decision": "PENDING",
-      "acceptanceGap": "Full authority catalogue acceptance",
-      "nextAction": "Verify each remaining repair against exact allowlist and irreversible-effect denial"
+      "decision": "PASS",
+      "acceptanceGap": "None within bounded repair catalogue scope; full fault and runtime acceptance remain separate.",
+      "nextAction": "Preserve catalogue acceptance; re-review only changed entries or authority boundaries.",
+      "status": "PASS",
+      "latestEvidence": "Independent catalogue acceptance PASS; retained positive/negative receipt hashes verified."
     },
     {
       "item": 28,
@@ -545,10 +549,10 @@
         "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Exact reviewed successor publication and required exact-head CI; implementation/scoped acceptance supported.",
-      "nextAction": "Publish reviewed batch once approved; attach successful exact-head CI and independent closure, then mark PASS.",
+      "acceptanceGap": "Publish reviewed test-only fixture correction and pass required Assurance CI with exact revision attribution.",
+      "nextAction": "Publish one reviewed successor batch after approval; retain current successful runs and bind required successor CI before closure.",
       "status": "PENDING",
-      "latestEvidence": "49 original passes preserved;46 successor scoped passes and independent scoped review; exact successor build/typecheck PASS."
+      "latestEvidence": "Published Product, Semantic and Runtime CI SUCCESS; hosted IPC/protected-route fixes verified. Assurance legacy fixture fails; reviewed correction passes locally."
     },
     {
       "item": 29,
@@ -582,7 +586,8 @@
       "decision": "PENDING",
       "acceptanceGap": "Hosted platform containment, coupled loss and final-candidate endurance; runtime CI repair validation.",
       "nextAction": "Validate successor runtime CI; execute protected process-tree acceptance only in separately authorised host.",
-      "latestEvidence": "2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass."
+      "latestEvidence": "2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass.; published52338 Runtime and Semantic confirm actual observer IPC/launcher clean stop",
+      "status": "PENDING"
     },
     {
       "item": 31,
@@ -598,9 +603,11 @@
         "examination-blueprint.json",
         "examination-blueprint.json; assurance-fault-coverage.json"
       ],
-      "decision": "PENDING",
-      "acceptanceGap": "Uncovered integrated cases",
-      "nextAction": "Extend existing fixed scenario map with prerequisites and separate expected-value oracles"
+      "decision": "PASS",
+      "acceptanceGap": "None for blueprint/design scope. Execution gates32\u201341 remain separate.",
+      "nextAction": "Preserve accepted design; execute only missing authorised cases with sealed exact inputs and retain results.",
+      "status": "PASS",
+      "latestEvidence": "Independent design acceptance PASS; no remaining execution inferred."
     },
     {
       "item": 32,
@@ -617,9 +624,10 @@
         "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Exact successor CI and required native acceptance.",
-      "nextAction": "Publish reviewed batch; read required CI without restarting prior passes.",
-      "latestEvidence": "Exact source4ebbc full build PASS;46 scoped passes; independent review."
+      "acceptanceGap": "Publish reviewed test-only correction and validate required CI; native owner acceptance remains.",
+      "nextAction": "Validate corrected Assurance CI; preserve current successful runs and scoped tests.",
+      "latestEvidence": "Exact successor85a1437f typecheck PASS;27 remaining Assurance-tail cases plus1 replica examination PASS; published Product/Runtime/Semantic SUCCESS.",
+      "status": "PENDING"
     },
     {
       "item": 33,
@@ -638,7 +646,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Wider transport/concurrency matrix",
-      "nextAction": "Exercise only remaining cross-store/concurrent-writer combinations; preserve passed Redis evidence."
+      "nextAction": "Exercise only remaining cross-store/concurrent-writer combinations; preserve passed Redis evidence.",
+      "status": "PENDING",
+      "latestEvidence": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending Retained CI ac9583c proves real shared Brain pause/drain, Redis AOF crash recovery and stale settlement fencing.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority"
     },
     {
       "item": 34,
@@ -745,7 +755,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Global arbitrary-writer coordination, protected off-host retention and authenticated restore acceptance remain.",
-      "nextAction": "Retain passed CI; complete bounded writer coordination and separately authorised off-host retention."
+      "nextAction": "Retain passed CI; complete bounded writer coordination and separately authorised off-host retention.",
+      "status": "PENDING",
+      "latestEvidence": "b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; exact52338 runtime38137758734 SUCCESS: complete enabled-store/whole-volume restoration and financial/Redis continuity receipt retained"
     },
     {
       "item": 40,
@@ -795,10 +807,10 @@
         "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Successor publication/CI and hosted owner acceptance.",
-      "nextAction": "Read runtime38136583689 to conclusion; publish one approved reviewed successor batch.",
+      "acceptanceGap": "Test-only fixture correction publication and required Assurance CI; hosted owner acceptance.",
+      "nextAction": "Publish reviewed batch after bounded approval; validate exact revision and remaining CI gate.",
       "status": "PENDING",
-      "latestEvidence": "Assurance38136583716 and semantic38136583686 PASS; Product38136583720 FAIL with local reviewed repair; runtime38136583689 running."
+      "latestEvidence": "Product38137758738, Semantic38137758767, Runtime38137758734 SUCCESS; Assurance38137758747 legacy fixture FAILURE."
     },
     {
       "item": 43,

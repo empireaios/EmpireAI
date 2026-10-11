@@ -1,0 +1,38 @@
+Source: 52338bd01a7269d9fa4328fe606312729565c1ff
+Workflow: 38137758767 SUCCESS; job114465036672 SUCCESS
+Selected hosted log excerpts; complete logs retained by GitHub.
+2026-10-11T12:07:01.5345731Z TAP version 13
+2026-10-11T12:07:05.0808171Z # Subtest: actual observers release IPC and allow supervised launcher to exit cleanly
+2026-10-11T12:07:05.0814646Z ok 1 - actual observers release IPC and allow supervised launcher to exit cleanly
+2026-10-11T12:07:05.0815539Z   ---
+2026-10-11T12:07:05.0816259Z   duration_ms: 3524.508152
+2026-10-11T12:07:05.0817189Z   type: 'test'
+2026-10-11T12:07:05.0817752Z   ...
+2026-10-11T12:07:05.1214284Z # Subtest: actual permanent-worker.mjs publishes loop progress and exits after disconnect
+2026-10-11T12:07:05.1217525Z ok 2 - actual permanent-worker.mjs publishes loop progress and exits after disconnect
+2026-10-11T12:07:05.1218044Z   ---
+2026-10-11T12:07:05.1218297Z   duration_ms: 3512.76061
+2026-10-11T12:07:05.1218582Z   type: 'test'
+2026-10-11T12:07:05.1218833Z   ...
+2026-10-11T12:07:05.1219497Z # Subtest: actual permanent-inspector.mjs publishes loop progress and exits after disconnect
+2026-10-11T12:07:05.1220373Z ok 3 - actual permanent-inspector.mjs publishes loop progress and exits after disconnect
+2026-10-11T12:07:05.1221018Z   ---
+2026-10-11T12:07:05.1221280Z   duration_ms: 46.860921
+2026-10-11T12:07:05.1221621Z   type: 'test'
+2026-10-11T12:07:05.1221905Z   ...
+2026-10-11T12:07:08.5356994Z # Subtest: actual permanent-worker.mjs publishes loop progress and exits after SIGTERM
+2026-10-11T12:07:08.5358035Z ok 4 - actual permanent-worker.mjs publishes loop progress and exits after SIGTERM
+2026-10-11T12:07:08.5358778Z   ---
+2026-10-11T12:07:08.5359166Z   duration_ms: 3414.667576
+2026-10-11T12:07:08.5359659Z   type: 'test'
+2026-10-11T12:07:08.5360363Z   ...
+2026-10-11T12:07:08.5847544Z # Subtest: actual permanent-inspector.mjs publishes loop progress and exits after SIGTERM
+2026-10-11T12:07:08.5848593Z ok 5 - actual permanent-inspector.mjs publishes loop progress and exits after SIGTERM
+2026-10-11T12:07:08.5849691Z   ---
+2026-10-11T12:07:08.5850015Z   duration_ms: 50.117418
+2026-10-11T12:07:08.5850275Z   type: 'test'
+2026-10-11T12:07:08.5850481Z   ...
+2026-10-11T12:07:08.5902744Z 1..5
+2026-10-11T12:07:08.5902995Z # tests 5
+2026-10-11T12:07:08.5903231Z # suites 0
+2026-10-11T12:07:08.5904000Z # pass 5

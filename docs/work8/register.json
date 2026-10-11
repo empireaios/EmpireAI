@@ -742,7 +742,7 @@
       "requirement": "Bounded repair authority catalogue",
       "mandateSections": "7,18,20",
       "recoveredClassification": "IMPLEMENTED BUT UNVERIFIED",
-      "status": "PENDING",
+      "status": "PASS",
       "evidence": [
         "assurance-examinations.md",
         "assurance-examinations.md"
@@ -755,15 +755,15 @@
         "backend/src/validation/tests/work8-assurance-commerce-recovery.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Verify each remaining repair against exact allowlist and irreversible-effect denial",
+      "nextAction": "Preserve catalogue acceptance; re-review only changed entries or authority boundaries.",
       "responsibleComponent": "Assurance control plane",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Allowlisted cursor repair retained; queue probe has no replay runbook; independent research/commercial/backend-inspection/UX preparation grants, one-task/timed consumption, expiry/revoke and exact owner preview approval added; no paid inference or deployment grant",
-      "examinationResult": "PENDING \u2014 bounded repair/denial cases passed",
-      "independentVerification": "Retained control-plane review",
-      "continuationEvidence": "assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap",
-      "remainingDependency": "Full authority catalogue acceptance",
-      "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
+      "engineeringState": "Four bounded registered repairs; authority, preconditions, budgets, verification and containment mapped to published source.",
+      "examinationResult": "Independent catalogue acceptance PASS; retained positive/negative receipt hashes verified.",
+      "independentVerification": "resume-20261011/REQUIREMENT-27-CATALOGUE-REVIEW.json",
+      "continuationEvidence": "assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap; resume-20261011/REQUIREMENT-27-CATALOGUE-REVIEW.json",
+      "remainingDependency": "None within bounded repair catalogue scope; full fault and runtime acceptance remain separate.",
+      "acceptanceClass": "FULLY_SATISFIED"
     },
     {
       "item": 28,
@@ -781,14 +781,14 @@
         "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Publish reviewed batch once approved; attach successful exact-head CI and independent closure, then mark PASS.",
+      "nextAction": "Publish one reviewed successor batch after approval; retain current successful runs and bind required successor CI before closure.",
       "responsibleComponent": "Assurance control plane",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Fresh recovery.verify and passive closure require genuine post-fault source observations; cached provider/heartbeat receipts retain original timestamps.",
-      "examinationResult": "49 original passes preserved;46 successor scoped passes and independent scoped review; exact successor build/typecheck PASS.",
+      "engineeringState": "Fresh active/passive verification published with exact trees; original49 and successor46 scoped passes preserved.",
+      "examinationResult": "Published Product, Semantic and Runtime CI SUCCESS; hosted IPC/protected-route fixes verified. Assurance legacy fixture fails; reviewed correction passes locally.",
       "independentVerification": "Separate source reread after real bounded drain",
       "continuationEvidence": "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json",
-      "remainingDependency": "Exact reviewed successor publication and required exact-head CI; implementation/scoped acceptance supported.",
+      "remainingDependency": "Publish reviewed test-only fixture correction and pass required Assurance CI with exact revision attribution.",
       "acceptanceClass": "ACCEPTANCE_SUPPORTED_PUBLICATION_VALIDATION_PENDING"
     },
     {
@@ -835,7 +835,7 @@
       "responsibleComponent": "Assurance control plane",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Actual observer IPC shutdown repaired after reproduced SIGTERM hang; launcher exits naturally after cleanup.",
-      "examinationResult": "2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass.",
+      "examinationResult": "2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass.; published52338 Runtime and Semantic confirm actual observer IPC/launcher clean stop",
       "independentVerification": "Retained scoped tests",
       "continuationEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json",
       "remainingDependency": "Hosted platform containment, coupled loss and final-candidate endurance; runtime CI repair validation.",
@@ -846,7 +846,7 @@
       "requirement": "Scenario blueprint seeds and independent oracles",
       "mandateSections": "8,9,19,20",
       "recoveredClassification": "MISSING",
-      "status": "PENDING",
+      "status": "PASS",
       "evidence": [
         "examination-blueprint.json"
       ],
@@ -860,15 +860,15 @@
         "backend/src/validation/tests/work8-operating-exams.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Extend existing fixed scenario map with prerequisites and separate expected-value oracles",
+      "nextAction": "Preserve accepted design; execute only missing authorised cases with sealed exact inputs and retain results.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Fixed45 register/fixed31 faults preserved",
-      "examinationResult": "PENDING \u2014 blueprint exists; missing scenarios explicit",
-      "independentVerification": "Evidence denominator unchanged",
-      "continuationEvidence": "examination-blueprint.json; assurance-fault-coverage.json",
-      "remainingDependency": "Uncovered integrated cases",
-      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
+      "engineeringState": "Existing seeded blueprint completed with31 prospective fault designs, deterministic inputs, independent oracles and measurement rules.",
+      "examinationResult": "Independent design acceptance PASS; no remaining execution inferred.",
+      "independentVerification": "resume-20261011/REQUIREMENT-31-BLUEPRINT-REVIEW.json",
+      "continuationEvidence": "examination-blueprint.json; assurance-fault-coverage.json; resume-20261011/REMAINING-SCENARIO-DESIGN.json; resume-20261011/REQUIREMENT-31-BLUEPRINT-REVIEW.json",
+      "remainingDependency": "None for blueprint/design scope. Execution gates32\u201341 remain separate.",
+      "acceptanceClass": "FULLY_SATISFIED"
     },
     {
       "item": 32,
@@ -887,14 +887,14 @@
         "work8-keepa-history.test.ts:4 PASS; focused TypeScript PASS; labelled fixtures, no paid calls"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Publish reviewed batch; read required CI without restarting prior passes.",
+      "nextAction": "Validate corrected Assurance CI; preserve current successful runs and scoped tests.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Clean locked dependencies restore broader declarations; full backend/Pillow typecheck and build verified; fresh-route CI fixture repaired.",
-      "examinationResult": "Exact source4ebbc full build PASS;46 scoped passes; independent review.",
+      "examinationResult": "Exact successor85a1437f typecheck PASS;27 remaining Assurance-tail cases plus1 replica examination PASS; published Product/Runtime/Semantic SUCCESS.",
       "independentVerification": "Remote exact-head CI tracked separately",
       "continuationEvidence": "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json",
-      "remainingDependency": "Exact successor CI and required native acceptance.",
+      "remainingDependency": "Publish reviewed test-only correction and validate required CI; native owner acceptance remains.",
       "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
@@ -920,10 +920,10 @@
       "nextAction": "Exercise only remaining cross-store/concurrent-writer combinations; preserve passed Redis evidence.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Stock/cap atomicity and replay fences retained; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance",
-      "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending Retained CI ac9583c proves real shared Brain pause/drain, Redis AOF crash recovery and stale settlement fencing.",
+      "engineeringState": "Stock/cap atomicity and replay fences retained; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance; same-host cross-process canonical checkpoint writer exclusion and in-flight cursor replay examined without engine changes",
+      "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending Retained CI ac9583c proves real shared Brain pause/drain, Redis AOF crash recovery and stale settlement fencing.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority",
       "independentVerification": "Retained concurrency receipts; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
-      "continuationEvidence": "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
+      "continuationEvidence": "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json",
       "remainingDependency": "Wider transport/concurrency matrix",
       "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
@@ -1086,10 +1086,10 @@
       "nextAction": "Retain passed CI; complete bounded writer coordination and separately authorised off-host retention.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Whole isolated volume captures finance and commerce; retained restoration and compatibility machinery preserved.",
-      "examinationResult": "b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.",
+      "engineeringState": "Whole isolated volume captures finance and commerce; retained restoration and compatibility machinery preserved.; same-host cross-process canonical checkpoint writer exclusion and in-flight cursor replay examined without engine changes",
+      "examinationResult": "b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; exact52338 runtime38137758734 SUCCESS: complete enabled-store/whole-volume restoration and financial/Redis continuity receipt retained",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json",
       "remainingDependency": "Global arbitrary-writer coordination, protected off-host retention and authenticated restore acceptance remain.",
       "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
@@ -1165,14 +1165,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Read runtime38136583689 to conclusion; publish one approved reviewed successor batch.",
+      "nextAction": "Publish reviewed batch after bounded approval; validate exact revision and remaining CI gate.",
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
-      "engineeringState": "Approved fcafa source published as6f0bdc;07f573 evidence ascdbe46; complete trees equal and frontend branch held.",
-      "examinationResult": "Assurance38136583716 and semantic38136583686 PASS; Product38136583720 FAIL with local reviewed repair; runtime38136583689 running.",
+      "engineeringState": "Approved4ebbc/be1 pair published as52338bd0/e3be8ac1 with exact complete tree equality; frontend branch held.",
+      "examinationResult": "Product38137758738, Semantic38137758767, Runtime38137758734 SUCCESS; Assurance38137758747 legacy fixture FAILURE.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json",
-      "remainingDependency": "Successor publication/CI and hosted owner acceptance.",
+      "remainingDependency": "Test-only fixture correction publication and required Assurance CI; hosted owner acceptance.",
       "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
@@ -1247,9 +1247,9 @@
   ],
   "continuation": "OWNER-CLOSURE-DIRECTIVE.txt; resume-20261011/CLOSURE-CHECKPOINT.json",
   "counts": {
-    "PASS": 3,
+    "PASS": 5,
     "BLOCKED": 5,
-    "PENDING": 37
+    "PENDING": 35
   },
   "wholeProgrammeCertified": false,
   "reconciliation": "resume-20261011/CLOSURE-RECONCILIATION.json"

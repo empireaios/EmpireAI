@@ -1,0 +1,166 @@
+{
+  "schema": "precutover-closure-v1",
+  "buildSha": "52338bd01a7269d9fa4328fe606312729565c1ff",
+  "productionTouched": false,
+  "commerce": "LOCKED",
+  "birth": "NOT_BORN",
+  "passed": true,
+  "permanentProfile": true,
+  "noExpiry": true,
+  "observedSteadySeconds": 30,
+  "independentVolumeRestore": true,
+  "wholeDedicatedVolume": true,
+  "financialJournalContinuity": true,
+  "sourceRootsQuarantinedBeforeReopen": true,
+  "identityContinuity": true,
+  "missionHistoryContinuity": true,
+  "shadowOwnershipAuthorityContinuity": true,
+  "redisSessionAndTerminalContinuity": true,
+  "noDuplicateTerminalExecution": true,
+  "providerCredentials": 0,
+  "mutationGuards": true,
+  "unavailableRedisReadiness503": true,
+  "manifestSha256": "8319f22556625b33a10f548308c43821f5292b734a456d65fb0683e3ffe47c00",
+  "inventory": {
+    "application": [
+      {
+        "path": "commerce/runtime.sqlite",
+        "size": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      {
+        "path": "commerce/runtime.sqlite-shm",
+        "size": 32768,
+        "sha256": "427f590c4c5c12246d20cac21552fd513ba2a2d373611855db75360a3c553d66"
+      },
+      {
+        "path": "commerce/runtime.sqlite-wal",
+        "size": 547992,
+        "sha256": "e06601e968906161731b12670955678abaa01d1460ab95b58833c9d8ad1d09ea"
+      },
+      {
+        "path": "commerce/runtime.sqlite.initialized",
+        "size": 39,
+        "sha256": "fb10295358d1d0db2598ba04daee68c4847ac49fda83acfabaa4d3ee526d6880"
+      },
+      {
+        "path": "commissioning/assurance-discrepancy-proof-v1.json",
+        "size": 704,
+        "sha256": "d221fe5db0e463d65e60dba7e091df76cefded3948bf5e58b4fbe1ddf283a09a"
+      },
+      {
+        "path": "commissioning/assurance-live-probe-proof-v2.json",
+        "size": 3158,
+        "sha256": "58c7060b5b3996ce15a6b934cc70bebe38df2f68ad41af99cb4ff281a60c60c8"
+      },
+      {
+        "path": "commissioning/assurance-probe-ea3e0854-9aa0-45d5-9023-04d7b4727f99.sqlite",
+        "size": 16384,
+        "sha256": "b99a22b48dc81017f010bd7079681e52147f3cb28e7cb1b075c6c1ea0c5af830"
+      },
+      {
+        "path": "commissioning/assurance-probe-ea3e0854-9aa0-45d5-9023-04d7b4727f99.sqlite-shm",
+        "size": 32768,
+        "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+      },
+      {
+        "path": "commissioning/assurance-probe-ea3e0854-9aa0-45d5-9023-04d7b4727f99.sqlite-wal",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "commissioning/assurance.sqlite",
+        "size": 114688,
+        "sha256": "812c340664ca187f410290e6f14b529f37d6467e4afc1fce7a56b34f3fb5f4d9"
+      },
+      {
+        "path": "commissioning/assurance.sqlite.watchdog",
+        "size": 57,
+        "sha256": "f212cfd45a24e6d84cb3e384e9e0dd99a943b604d8795ea0540a12685ad6d9c6"
+      },
+      {
+        "path": "commissioning/communications.sqlite",
+        "size": 61440,
+        "sha256": "aed7b282118805e9cc9101a62b9c40d6f38b1888b947526188150cffd6f19076"
+      },
+      {
+        "path": "commissioning/empireai-brain.db",
+        "size": 2646016,
+        "sha256": "76664790dac33ec5a333fb76879b23ab7f616a5400c0b29528b17a7e71bf8982"
+      },
+      {
+        "path": "commissioning/empireai-brain.db.missions.sqlite",
+        "size": 8192,
+        "sha256": "126ad2c28d546552e026252882a120d4add2a62e71bceecc38d20b6584a79655"
+      },
+      {
+        "path": "commissioning/empireai-brain.db.shadow/shadow-ceo-authority/authority-store.json",
+        "size": 708,
+        "sha256": "e05b1efe9a1909b4b96e586c7a7000c09e8af8e71fa8ccb8697776efb7b012ac"
+      },
+      {
+        "path": "commissioning/empireai-brain.db.shadow/shadow-ceo-request-owners.json",
+        "size": 767,
+        "sha256": "ea6e5755544047966fc30cb919cbf143c42cf07a6c4167b0882a235651aeb4e2"
+      },
+      {
+        "path": "commissioning/empireai-brain.db.shadow/shadow-ceo.db",
+        "size": 20480,
+        "sha256": "5141ecf0fd5e02c8b00c3ce5dd221c4c8bb7e944cbbc897058d8e61d4ddb6b39"
+      },
+      {
+        "path": "commissioning/intelligence.sqlite",
+        "size": 45056,
+        "sha256": "4204b50bd23045ed0534d51b0de5058877273f80844b72135959695947ef0e09"
+      },
+      {
+        "path": "commissioning/pillow-institutional.sqlite",
+        "size": 45056,
+        "sha256": "a33e930112c9c892f957bbefce3c5eefc139ff2993bd144380cc083642b835d8"
+      },
+      {
+        "path": "commissioning/pillow-reasoning.sqlite",
+        "size": 36864,
+        "sha256": "682b2bcbf18a1a9723f1174f9b4dea983143a03745956218d29bf1fb8caecc39"
+      },
+      {
+        "path": "commissioning/pillow-request-receipts.sqlite",
+        "size": 16384,
+        "sha256": "e95d993efd3fefb45fcac3a4853796b5b6798aa04d258c870568762a91df3746"
+      },
+      {
+        "path": "finance/evidence.sqlite",
+        "size": 12288,
+        "sha256": "2540cd8c60f82ec23852e5d95e933a51ca48b74f6fa9109d4233c1de69de416d"
+      },
+      {
+        "path": "finance/evidence.sqlite.initialized",
+        "size": 43,
+        "sha256": "4e6daa1f09fa384fa33090c09ccfc5860e3c2003abf7b6ca9e92c4c70929cac4"
+      }
+    ],
+    "redis": [
+      {
+        "path": "appendonlydir/appendonly.aof.1.base.rdb",
+        "size": 89,
+        "sha256": "76463eb878d3a58360a99591b6cb467c66c130690f1bab27563094a95503598d"
+      },
+      {
+        "path": "appendonlydir/appendonly.aof.1.incr.aof",
+        "size": 4983,
+        "sha256": "cd4e6663426642c5b8852c36001875f3cf8917087ed315a203a07c7b8532c797"
+      },
+      {
+        "path": "appendonlydir/appendonly.aof.manifest",
+        "size": 88,
+        "sha256": "ca465c5845ad4d4c0a2b4cda8853efeb9423cb4242a4eaaa5ecbaa00a4e75492"
+      }
+    ]
+  },
+  "limitations": [
+    "bounded CI production-mode process proof, not 24/7 certification",
+    "no legacy state imported",
+    "new production services and routing not activated",
+    "provider accounts absent; real commerce unavailable"
+  ]
+}

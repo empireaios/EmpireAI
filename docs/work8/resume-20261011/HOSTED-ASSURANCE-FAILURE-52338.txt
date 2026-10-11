@@ -1,0 +1,39 @@
+Source: 52338bd01a7269d9fa4328fe606312729565c1ff
+Workflow38137758747; job114465036541; retained failure, not overwritten by local repair.
+2026-10-11T12:02:38.9724052Z not ok 2 - new revision resolves historical incidents only with affirmative matching probe and no uncertain effect
+2026-10-11T12:02:38.9725284Z   ---
+2026-10-11T12:02:38.9725566Z   duration_ms: 12.138884
+2026-10-11T12:02:38.9725882Z   type: 'test'
+2026-10-11T12:02:38.9726730Z   location: '/home/runner/work/EmpireAI/EmpireAI/backend/src/validation/tests/assurance-capability-health.test.mjs:21:1'
+2026-10-11T12:02:38.9727622Z   failureType: 'testCodeFailure'
+2026-10-11T12:02:38.9728018Z   error: |-
+2026-10-11T12:02:38.9728610Z     Expected values to be strictly equal:
+2026-10-11T12:02:38.9728939Z     + actual - expected
+2026-10-11T12:02:38.9729160Z     
+2026-10-11T12:02:38.9729346Z     + 'DETECTED'
+2026-10-11T12:02:38.9729566Z     - 'RECOVERED'
+2026-10-11T12:02:38.9730042Z     
+2026-10-11T12:02:38.9730259Z   code: 'ERR_ASSERTION'
+2026-10-11T12:02:38.9730504Z   name: 'AssertionError'
+2026-10-11T12:02:38.9730756Z   expected: 'RECOVERED'
+2026-10-11T12:02:38.9730985Z   actual: 'DETECTED'
+2026-10-11T12:02:38.9731215Z   operator: 'strictEqual'
+2026-10-11T12:02:38.9731445Z   stack: |-
+2026-10-11T12:02:38.9732561Z     TestContext.<anonymous> (file:///home/runner/work/EmpireAI/EmpireAI/backend/src/validation/tests/assurance-capability-health.test.mjs:31:120)
+2026-10-11T12:02:38.9733863Z     Test.runInAsyncScope (node:async_hooks:214:14)
+2026-10-11T12:02:38.9734530Z     Test.run (node:internal/test_runner/test:1047:25)
+2026-10-11T12:02:38.9735324Z     Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+2026-10-11T12:02:38.9736149Z     Test.postRun (node:internal/test_runner/test:1173:19)
+2026-10-11T12:02:38.9736821Z     Test.run (node:internal/test_runner/test:1101:12)
+2026-10-11T12:02:38.9737666Z     async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+2026-10-11T12:02:38.9738351Z   ...
+2026-10-11T12:02:38.9738652Z 1..2
+2026-10-11T12:02:38.9738952Z # tests 2
+2026-10-11T12:02:38.9739260Z # suites 0
+2026-10-11T12:02:38.9739563Z # pass 1
+2026-10-11T12:02:38.9740022Z # fail 1
+2026-10-11T12:02:38.9740342Z # cancelled 0
+2026-10-11T12:02:38.9740671Z # skipped 0
+2026-10-11T12:02:38.9740974Z # todo 0
+2026-10-11T12:02:38.9741313Z # duration_ms 22.37015
+2026-10-11T12:02:38.9795186Z ##[error]Process completed with exit code 1.
