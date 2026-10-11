@@ -67,7 +67,18 @@ export class Work8CostIntelligence {
     resources.set(key,o);
    }else if(r.id.startsWith('run:')&&r.payload.exceptions){
     const exceptions=r.payload.exceptions as Array<{provider:string;code:string}>;
-    for(const provider of new Set<string>([...(r.payload.providers??[]),...exceptions.map(e=>e.provider)]))if((r.payload.providers??[]).includes(provider)||!latestExceptions.has(provider))latestExceptions.set(provider,exceptions.filter(e=>e.provider===provider));
+    for(const provider of new Set<string>([...(r.payload.providers??[]),...exceptions.map(e=>e.provider)])){
+     if(!(r.payload.providers??[]).includes(provider)&&latestExceptions.has(provider))continue;
+     const next=exceptions.filter(e=>e.provider===provider);
+     // A successful transport carrying cached evidence does not establish recovery.
+     // Reconstruct this decision from durable runs so restart cannot clear an outage.
+     const freshRead=(r.payload.observations??[]).some((o:Observation)=>o.resource.provider===provider&&
+      Date.parse(o.resource.observedAt)>=r.payload.started&&Date.parse(o.resource.observedAt)<=r.payload.completed);
+     if(!freshRead)for(const old of latestExceptions.get(provider)??[]){
+      if(old.code==='PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY'&&!next.some(e=>e.code===old.code))next.push(old);
+     }
+     latestExceptions.set(provider,next);
+    }
     historicalExceptions.push(...exceptions.map(e=>({runId:r.id,...e})));
    }}
   alerts.push(...[...latestExceptions.values()].flat());

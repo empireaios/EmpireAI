@@ -50,3 +50,23 @@ test('outage, inactive provider, unknown subscription, cross-provider data and o
   await intel.examine('empty-provider',[{provider:'railway',discover:async()=>[],read:async()=>null}]);assert.ok(intel.projection().alerts.some(a=>a.provider==='railway'&&a.code==='NO_DISCOVERED_RESOURCES_COST_UNKNOWN'));
  }finally{centre.close();}
 });
+
+test('cached successful read cannot clear a newer outage; fresh read clears it after restart',async()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'cost-freshness-')),file=path.join(dir,'finance.sqlite');
+ let centre=new FinancialCentre(file),now=Date.parse('2026-01-10T00:00:00Z');
+ const current=()=>new Work8CostIntelligence(centre,workspace,'owner',()=>now);
+ const outage=()=>current().projection().alerts.some(a=>a.provider==='vercel'&&a.code==='PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY');
+ try{
+  await current().examine('fresh-initial',[port({resource:{...resource,observedAt:new Date(now).toISOString()},costs:[],complete:true,exceptions:[]})]);
+  now+=60000;
+  await current().examine('new-outage',[{provider:'vercel',discover:async()=>{throw Error('offline');},read:async()=>null}]);
+  assert.equal(outage(),true);
+  now+=60000;
+  await current().examine('cached-success',[port({resource:{...resource,observedAt:new Date(now-120000).toISOString()},costs:[],complete:true,exceptions:[]})]);
+  assert.equal(outage(),true,'old readback must retain current outage');
+  centre.close();centre=new FinancialCentre(file);assert.equal(outage(),true,'restart must retain unresolved outage');
+  await current().examine('fresh-success',[port({resource:{...resource,observedAt:new Date(now).toISOString()},costs:[],complete:true,exceptions:[]})]);
+  assert.equal(outage(),false);
+  assert.ok(current().projection().historicalExceptions.some(a=>a.provider==='vercel'&&a.code==='PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY'));
+ }finally{centre.close();fs.rmSync(dir,{recursive:true,force:true});}
+});
