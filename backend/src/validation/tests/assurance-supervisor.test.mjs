@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {superviseAssurance} from '../../../../deployment/assurance-supervisor.cjs';
+import {superviseAssurance,assuranceRuntimeOrigin} from '../../../../deployment/assurance-supervisor.cjs';
 test('collector and inspector restart independently and cannot receive provider or founder secrets',async()=>{
  const launched=[],events=[];
  const stop=superviseAssurance({cwd:'/safe',env:{PATH:'/bin',REDIS_URL:'redis-test',FOUNDER_PASSWORD:'never-forward',OPENAI_API_KEY:'never-forward'},retryMs:5,onEvent:e=>events.push(e),spawnImpl:(_exe,args,options)=>{const c=new EventEmitter();c.kill=()=>{c.killed=true;};launched.push({c,args,options});return c;}});
@@ -42,4 +42,13 @@ test('repeated child failures exhaust bounded restart budget',async()=>{
  const children=[],events=[];
  const stop=superviseAssurance({cwd:'/safe',env:{PATH:'/bin'},retryMs:1,maxRestarts:1,onEvent:e=>events.push(e),spawnImpl:()=>{const child=new EventEmitter();child.kill=()=>{};children.push(child);return child;}});
  try{children[0].emit('exit',1,null);await new Promise(r=>setTimeout(r,10));assert.equal(children.length,3);children[2].emit('exit',1,null);await new Promise(r=>setTimeout(r,10));assert.equal(children.length,3);assert.ok(events.some(e=>e.event==='assurance_restart_quarantined'));}finally{stop();}
+});
+
+test('isolated service Assurance targets its own HTTPS origin and rejects ambiguous overrides before spawning',()=>{
+ assert.equal(assuranceRuntimeOrigin({RAILWAY_PUBLIC_DOMAIN:'twin.example.invalid'}),'https://twin.example.invalid');
+ const children=[];const stop=superviseAssurance({cwd:'/safe',env:{PATH:'/bin',RAILWAY_PUBLIC_DOMAIN:'twin.example.invalid',ASSURANCE_RUNTIME_ORIGIN:'https://review.example.invalid/'},spawnImpl:(_exe,_args,options)=>{children.push(options.env);const child=new EventEmitter();child.kill=()=>{};return child;}});
+ try{assert.equal(children.length,2);assert.ok(children.every(env=>env.ASSURANCE_RUNTIME_ORIGIN==='https://review.example.invalid'));}finally{stop();}
+ for(const origin of ['http://twin.example.invalid','https://owner:secret@twin.example.invalid','https://twin.example.invalid/path','https://twin.example.invalid?query=1','https://twin.example.invalid#fragment','https://twin.example.invalid:444','']){
+  let spawned=false;assert.throws(()=>superviseAssurance({cwd:'/safe',env:{ASSURANCE_RUNTIME_ORIGIN:origin},spawnImpl:()=>{spawned=true;throw Error('must not spawn');}}),/Invalid Assurance/);assert.equal(spawned,false);
+ }
 });
