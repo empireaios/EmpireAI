@@ -1,0 +1,48 @@
+{
+  "source": "b7fe1e28bfa36be3677f495b71556fd4e63109e8",
+  "tree": "560aa871ec4fc32545a7eb543829a3c715484177",
+  "parent": "06a217eceb7cccb809ce90d7c9df3228fc3da47e",
+  "status": "LOCAL_REVIEWED_NOT_PUBLISHED",
+  "scope": [
+    "observer loop-progress IPC deadlines; no-progress quarantine without replay",
+    "separate runtime guard contains launcher death or stalled lease renewal",
+    "async file/directory-synced audit does not delay initiating stop",
+    "guaranteed probe Redis disconnect when deletion fails",
+    "actual worker/inspector progress and parent-disconnect shutdown"
+  ],
+  "tests": {
+    "total": 35,
+    "pass": 35,
+    "fail": 0,
+    "receipt": "OBSERVER-LAUNCHER-VERIFIED.tap",
+    "sha256": "9850e64af3fef1067e89bd6dd0211650b71302fc2262796e9dbd613b9151e663",
+    "runtime": "Local Node v24.19.0, kernel network denial via isolated-exec.py; target Node22 CI remains separate"
+  },
+  "preservedFailures": [
+    "Actual-worker fixture first omitted required40-character source revision; corrected fixture identity.",
+    "Actual-worker disconnect failed because failed probe deletion skipped Redis disconnect; fixed nested finally, actual2-observer retestPASS.",
+    "Accelerated250ms healthy-worker deadline was startup-sensitive; valid-message renewal test now covers2-second lease with2.5-second observation.",
+    "Initial complete suite34/35 failed stubborn-descendant forcedTermination expectation because fixed100ms parent delay did not ensure child TERM handler readiness. Replaced delay with READY handshake. Initial TAP preserved; final35/35PASS."
+  ],
+  "platformExamination": {
+    "attempt": "bwrap --unshare-user --unshare-pid --die-with-parent --ro-bind / / --dev /dev --proc /proc /bin/true",
+    "result": "BLOCKED",
+    "reason": "bwrap: setting up uid map: Operation not permitted",
+    "scope": "No platform-containment PASS; no escalation, provisioning or deployment"
+  },
+  "limits": [
+    "Progress proves loop activity, including failed cycles, not healthy monitoring.",
+    "600-second worker and90-second inspector production thresholds are not elapsed-time certified by accelerated fixtures.",
+    "Launcher-loss test uses real guard/processes and fixture business-state file, not whole-system financial preservation.",
+    "Audit timeout does not cancel filesystem IO or prove persistence.",
+    "Simultaneous guard/launcher loss and actual hosting/cgroup containment remain unverified."
+  ],
+  "acceptance": {
+    "26": "PENDING remaining fault families",
+    "28": "PENDING other collector freshness/recovery",
+    "29": "PENDING broader recurrence controls",
+    "30": "PENDING platform/coupled containment and endurance",
+    "34": "PENDING remaining compounded fault families"
+  },
+  "independentReview": "Final exact sourceb7fe1e28bfa36be3677f495b71556fd4e63109e8/tree560aa871ec4fc32545a7eb543829a3c715484177 reviewed by /root/review_retirement_finance:14files,35/35 receipt inspected,no blocker; readiness handshake removes unverified100ms assumption;26/28/29/30/34 remainPENDING. Read-only review;tests not independently rerun."
+}

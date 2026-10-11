@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "original": "5ea76039d7f815a5bde4ec3c0e5674ddc7e77fd7",
+      "branch": "work8/autonomous-examination-20261011",
+      "parent": "acef1c6bc1c4876dc62ea486e8181c425d016d63",
+      "tree": "24b9a732e44f62ca79fb5b820c5ea83e0ee88807",
+      "replacement": "06a217eceb7cccb809ce90d7c9df3228fc3da47e"
+    },
+    {
+      "original": "e4e0c89186bac3cf6ba5a9294847739716259f6d",
+      "branch": "work8/examination-evidence-20261011",
+      "parent": "36f29475d2a5bd6ed9769976e2c22265e14f2bfd",
+      "tree": "eb0e4f8feeecdf395eb4e6e8f715ef39b730291c",
+      "replacement": "4dcb057b9f58b0f0b47b0b0fbc2cc6b0657ffff6"
+    }
+  ],
+  "verification": "Fetched replacement heads; exact full Git trees and empty git diff. Zero omitted, modified or additional files. Commit identities differ. Prior29-test receipt and review preserved unchanged.",
+  "productionChanged": false,
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED"
+}

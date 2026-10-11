@@ -570,8 +570,8 @@
         "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Hung observers, launcher/platform loss, broader coupled watchdog and final-candidate endurance acceptance.",
-      "nextAction": "Verify remaining hung-observer and external launcher-loss containment under separately authorised isolated runtime."
+      "acceptanceGap": "Actual platform/cgroup containment, simultaneous guard/launcher loss, broader coupled watchdog and final-candidate endurance acceptance.",
+      "nextAction": "Verify protected process-tree termination in separately authorised isolated host; local namespace probe is blocked."
     },
     {
       "item": 31,
@@ -779,8 +779,8 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Published acef1c6b CI conclusions; new reviewed containment batch awaits publication; hosted acceptance remains separate.",
-      "nextAction": "Read existing exact-head CI; consolidate new source/evidence batch publication."
+      "acceptanceGap": "Published06a217ec runtime CI conclusion; consolidated observer/launcher source batch publication; separate hosted acceptance.",
+      "nextAction": "Read existing runtime38134138144 conclusion; publish only approved consolidated batch."
     },
     {
       "item": 43,
@@ -829,6 +829,7 @@
     "2026-10-11 closure reconciliation: retained all 45 IDs and exact decisions. New financial amendments add acceptance; they do not invalidate retained scoped evidence. All four be4936d workflows completed successfully; no reruns requested. Latest exact candidate independent review remains missing.",
     "Corrected stale gaps: V3 now restores preparation/enrollment lineage and measured point-in-time replay, import UI exists, historic authority is inert. Remaining whole-system/off-host/native/genuine-source gates are distinct.",
     "Requirement37 previously uncovered synthetic daily pipeline is now examined and independently accepted at published 3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6. Historical notes retained; no genuine-source scope inferred.",
-    "Published requirement37 closure unchanged in36f29475. Independent review of subsequent dual-observer containment supports no additional full requirement closure. Counts remain3/37/5."
+    "Published requirement37 closure unchanged in36f29475. Independent review of subsequent dual-observer containment supports no additional full requirement closure. Counts remain3/37/5.",
+    "Reviewed localb7fe1e28 observer-hang/launcher-loss/Rediscleanup delta:35 testsPASS;26/28/29/30/34 remainPENDING against complete criteria. No platform-host or whole-system recovery claim."
   ]
 }

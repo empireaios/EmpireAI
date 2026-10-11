@@ -209,7 +209,7 @@
       "coverage": "PARTIAL",
       "evidence": "assurance-supervisor.test.mjs; work8-assurance-storage-recovery.test.ts",
       "scopeAndGap": "Real supervisor child restarts and heartbeat-loss detector; simultaneous failed independent supervisor requiring third-level containment absent",
-      "continuation": "Local source5ea76039 dual observer process deaths exhaust restart budgets, durable stop intent and actual fixture runtime shutdown;29 tests pass. Hung observers, launcher loss and platform containment remain open; requirement30 stays PENDING."
+      "continuation": "Localb7fe1e28: observer-hang quarantine, independent guard launcher kill/stall containment, actual worker/inspector IPC disconnect, failedRediscleanup repair;35PASS. Platform namespace probe blocked UID map. Whole-host/cgroup and simultaneous guard+launcher loss remain open."
     },
     {
       "item": 30,

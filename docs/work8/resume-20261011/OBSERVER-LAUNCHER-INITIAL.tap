@@ -1,0 +1,236 @@
+TAP version 13
+# Subtest: actual permanent-worker.mjs publishes loop progress and exits after launcher disconnect
+ok 1 - actual permanent-worker.mjs publishes loop progress and exits after launcher disconnect
+  ---
+  duration_ms: 3952.530575
+  type: 'test'
+  ...
+# Subtest: actual permanent-inspector.mjs publishes loop progress and exits after launcher disconnect
+ok 2 - actual permanent-inspector.mjs publishes loop progress and exits after launcher disconnect
+  ---
+  duration_ms: 67.849758
+  type: 'test'
+  ...
+# Subtest: collector and inspector restart independently and cannot receive provider or founder secrets
+ok 3 - collector and inspector restart independently and cannot receive provider or founder secrets
+  ---
+  duration_ms: 42.448266
+  type: 'test'
+  ...
+# Subtest: actual inspector restarts, reports missing durable cycles and stops promptly
+ok 4 - actual inspector restarts, reports missing durable cycles and stops promptly
+  ---
+  duration_ms: 108.517364
+  type: 'test'
+  ...
+# Subtest: repeated child failures exhaust bounded restart budget
+ok 5 - repeated child failures exhaust bounded restart budget
+  ---
+  duration_ms: 21.640976
+  type: 'test'
+  ...
+# Subtest: isolated service Assurance targets its own HTTPS origin and rejects ambiguous overrides before spawning
+ok 6 - isolated service Assurance targets its own HTTPS origin and rejects ambiguous overrides before spawning
+  ---
+  duration_ms: 1.148887
+  type: 'test'
+  ...
+# Subtest: bounded configuration preserves absolute expiry and strips inherited settings
+ok 7 - bounded configuration preserves absolute expiry and strips inherited settings
+  ---
+  duration_ms: 2.394905
+  type: 'test'
+  ...
+# Subtest: expired, relative, missing and overlong deadlines cannot launch or renew on redeploy
+ok 8 - expired, relative, missing and overlong deadlines cannot launch or renew on redeploy
+  ---
+  duration_ms: 0.650127
+  type: 'test'
+  ...
+# Subtest: acknowledgement, private isolated data paths and Redis identity fail closed
+ok 9 - acknowledgement, private isolated data paths and Redis identity fail closed
+  ---
+  duration_ms: 0.632061
+  type: 'test'
+  ...
+# Subtest: provider credentials and public or reused account credentials are refused without values in errors
+ok 10 - provider credentials and public or reused account credentials are refused without values in errors
+  ---
+  duration_ms: 3.138888
+  type: 'test'
+  ...
+# Subtest: dotenv cannot reintroduce stripped provider credentials
+ok 11 - dotenv cannot reintroduce stripped provider credentials
+  ---
+  duration_ms: 0.639352
+  type: 'test'
+  ...
+# Subtest: expired supervision does not spawn a child
+ok 12 - expired supervision does not spawn a child
+  ---
+  duration_ms: 0.413292
+  type: 'test'
+  ...
+# Subtest: actual child receives TERM and finishes its save before the absolute deadline
+ok 13 - actual child receives TERM and finishes its save before the absolute deadline
+  ---
+  duration_ms: 736.280507
+  type: 'test'
+  ...
+# Subtest: actual stubborn descendant is killed when its parent exits
+not ok 14 - actual stubborn descendant is killed when its parent exits
+  ---
+  duration_ms: 332.22629
+  type: 'test'
+  location: '/workspace/scratch/425cef48de17/backend/deployment/canary-launcher.test.cjs:121:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/425cef48de17/backend/deployment/canary-launcher.test.cjs:134:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: launcher forwards external TERM and closes a real child
+ok 15 - launcher forwards external TERM and closes a real child
+  ---
+  duration_ms: 93.157504
+  type: 'test'
+  ...
+# Subtest: a child ignoring TERM is forcibly stopped within the original deadline
+ok 16 - a child ignoring TERM is forcibly stopped within the original deadline
+  ---
+  duration_ms: 704.901944
+  type: 'test'
+  ...
+# Subtest: failed persistence during deadline shutdown remains a failure
+ok 17 - failed persistence during deadline shutdown remains a failure
+  ---
+  duration_ms: 2507.111795
+  type: 'test'
+  ...
+# Subtest: external TERM cannot hide a child shutdown failure in the wrapper exit status
+ok 18 - external TERM cannot hide a child shutdown failure in the wrapper exit status
+  ---
+  duration_ms: 82.251121
+  type: 'test'
+  ...
+# Subtest: unlaunchable child is reported and supervision listeners are removed
+ok 19 - unlaunchable child is reported and supervision listeners are removed
+  ---
+  duration_ms: 1.515378
+  type: 'test'
+  ...
+# Subtest: Railway canary config requires readiness and disables all automatic restarts
+ok 20 - Railway canary config requires readiness and disables all automatic restarts
+  ---
+  duration_ms: 0.335531
+  type: 'test'
+  ...
+# Subtest: lifecycle records include searchable messages and retain truthful shutdown facts
+ok 21 - lifecycle records include searchable messages and retain truthful shutdown facts
+  ---
+  duration_ms: 2.257607
+  type: 'test'
+  ...
+# Subtest: runtime version injection cannot authorize a different actual executable
+ok 22 - runtime version injection cannot authorize a different actual executable
+  ---
+  duration_ms: 44.978501
+  type: 'test'
+  ...
+# Subtest: failure to persist launch identity kills the child instead of orphaning it
+ok 23 - failure to persist launch identity kills the child instead of orphaning it
+  ---
+  duration_ms: 2.243426
+  type: 'test'
+  ...
+# Subtest: an exited child with no remaining process group does not consume shutdown grace
+ok 24 - an exited child with no remaining process group does not consume shutdown grace
+  ---
+  duration_ms: 42.178664
+  type: 'test'
+  ...
+# Subtest: independent runtime guard contains launcher kill and preserves shutdown state
+ok 25 - independent runtime guard contains launcher kill and preserves shutdown state
+  ---
+  duration_ms: 205.161165
+  type: 'test'
+  ...
+# Subtest: independent runtime guard contains launcher stall and preserves shutdown state
+ok 26 - independent runtime guard contains launcher stall and preserves shutdown state
+  ---
+  duration_ms: 977.584835
+  type: 'test'
+  ...
+# Subtest: permanent profile is explicit, isolated, allows only bounded inference and named intelligence credentials and has no canary expiry
+ok 27 - permanent profile is explicit, isolated, allows only bounded inference and named intelligence credentials and has no canary expiry
+  ---
+  duration_ms: 3.698507
+  type: 'test'
+  ...
+# Subtest: permanent supervisor has no expiry and still forwards controlled shutdown
+ok 28 - permanent supervisor has no expiry and still forwards controlled shutdown
+  ---
+  duration_ms: 238.918137
+  type: 'test'
+  ...
+# Subtest: Work4 launcher forwards only named sensing credentials and explicit switches; commerce remains locked
+ok 29 - Work4 launcher forwards only named sensing credentials and explicit switches; commerce remains locked
+  ---
+  duration_ms: 0.979545
+  type: 'test'
+  ...
+# Subtest: whole-volume stopped bundle retains finance and commerce and restores legacy layout
+ok 30 - whole-volume stopped bundle retains finance and commerce and restores legacy layout
+  ---
+  duration_ms: 11.849962
+  type: 'test'
+  ...
+# Subtest: living observers with no loop progress are quarantined and runtime is contained
+ok 31 - living observers with no loop progress are quarantined and runtime is contained
+  ---
+  duration_ms: 331.496854
+  type: 'test'
+  ...
+# Subtest: fresh loop progress renews liveness, malformed messages do not
+ok 32 - fresh loop progress renews liveness, malformed messages do not
+  ---
+  duration_ms: 2516.044349
+  type: 'test'
+  ...
+# Subtest: simultaneous real observer deaths contain runtime; audit writable=true
+ok 33 - simultaneous real observer deaths contain runtime; audit writable=true
+  ---
+  duration_ms: 107.136898
+  type: 'test'
+  ...
+# Subtest: simultaneous real observer deaths contain runtime; audit writable=false
+ok 34 - simultaneous real observer deaths contain runtime; audit writable=false
+  ---
+  duration_ms: 95.774712
+  type: 'test'
+  ...
+# Subtest: one quarantined observer does not falsely claim complete coverage loss
+ok 35 - one quarantined observer does not falsely claim complete coverage loss
+  ---
+  duration_ms: 36.053397
+  type: 'test'
+  ...
+1..35
+# tests 35
+# suites 0
+# pass 34
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13739.448772

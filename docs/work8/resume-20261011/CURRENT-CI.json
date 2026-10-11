@@ -1,24 +1,24 @@
 {
-  "source": "acef1c6bc1c4876dc62ea486e8181c425d016d63",
+  "source": "06a217eceb7cccb809ce90d7c9df3228fc3da47e",
   "runs": [
     {
       "name": "Assurance",
-      "id": 38133421116,
+      "id": 38134138192,
       "status": "success"
     },
     {
       "name": "semantic",
-      "id": 38133421128,
+      "id": 38134138202,
       "status": "success"
     },
     {
       "name": "Product path",
-      "id": 38133421081,
-      "status": "in_progress"
+      "id": 38134138171,
+      "status": "success"
     },
     {
       "name": "runtime",
-      "id": 38133421103,
+      "id": 38134138144,
       "status": "in_progress"
     }
   ],
@@ -27,7 +27,6 @@
     "conclusion": "cancelled"
   },
   "priorFourPassingAndWholeVolumeEvidence": "Preserved b68e42b four successful workflows and RUNTIME-38129976823.txt; no workflows restarted.",
-  "previousSource": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
-  "previousConclusions": "Assurance/semantic/product SUCCESS;runtime38132767090 CANCELLED; no manual reruns",
-  "retainedEvidence": "Earlier four successful workflows and whole-volume restore receipts preserved. Current runtime image and web jobs PASS;durable runtime job114452334984 active at generated reasoning admission."
+  "previousSource": "acef1c6bc1c4876dc62ea486e8181c425d016d63",
+  "previousConclusions": "Assurance/semantic/product SUCCESS; runtime38133421103 CANCELLED; no manual restart"
 }
