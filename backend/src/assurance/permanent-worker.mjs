@@ -39,3 +39,6 @@ while(!stopping){
   await new Promise(r=>setTimeout(r,1000));
 }
 redis.disconnect();store.close();
+
+// Release the referenced parent IPC channel after orderly observer shutdown.
+if(process.connected)process.disconnect();

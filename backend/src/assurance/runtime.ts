@@ -75,7 +75,17 @@ export class AssuranceRuntime {
    const scopeNow=Date.now();
    const coverage=inspectAssurance(path.join(this.root,'commissioning','assurance.sqlite'),{now:scopeNow,epoch:0,intervalMs:300000,graceMs:120000});
    const scopeContext:any={profile:process.env.EMPIRE_RUNTIME_PROFILE,observedAt:scopeNow,coverage};
-   const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>this.control.observe(workspace,{id,capability:id,status,summary,evidence,classification:id,runbookId,...(['provider_configuration','four_eyes_reads'].includes(id)?{scopeContext}: {})});
+   const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>{
+    // These synchronous readers examine current local state. Cached provider,
+    // capability and scheduler evidence must retain the original source time.
+    const directRead=['governed_commerce','model_server_contract','durable_control','pricing_review','reconciliation_view'].includes(id);
+    const record=evidence as any;
+    const times=id==='provider_configuration'?record.providers?.map((p:any)=>Date.parse(p.observedAt)):
+     id==='four_eyes_reads'&&Array.isArray(evidence)?evidence.map((r:any)=>Date.parse(r.lastGoodAt)):
+     id==='four_eyes_scheduler'?[Date.parse(record.heartbeatAt)]:null;
+    const sourceObservedAt=times?.length&&times.every(Number.isSafeInteger)?Math.min(...times):directRead?Date.now():record?.observedAt;
+    return this.control.observe(workspace,{id,capability:id,status,summary,evidence,sourceObservedAt,classification:id,runbookId,...(['provider_configuration','four_eyes_reads'].includes(id)?{scopeContext}: {})});
+   };
    try{const commerce=readGovernedCommerce(workspace);const blocked=commerce.tasks.filter(t=>t.status==='BLOCKED');observe('governed_commerce',blocked.length?'DEGRADED':'HEALTHY','Immutable commerce evidence and bounded synthetic task progress',{tasks:commerce.tasks.map(t=>({id:t.id,status:t.status,cursor:t.cursor,error:t.error})),externalEffects:0,runbook:'Inspect exact failing receipt; reconcile unknown provider identity before resuming. Never retry an uncertain write or reset journal.'});}catch{observe('governed_commerce','UNAVAILABLE','Commerce evidence integrity or storage unavailable; execution stopped');}
    try{const commerce=productionCommerce();const recovery=makeWork8CommerceRecovery(commerce);for(const probe of recovery.probes(workspace))this.control.observe(workspace,probe);observe('work8_checkpoint_integrity','HEALTHY','Fresh verified commerce receipt and checkpoint integrity; business outcomes are assessed separately',{observedAt:Date.now()});}catch{observe('work8_checkpoint_integrity','UNAVAILABLE','Commerce checkpoint or receipt integrity unavailable; automatic progress repair denied',{observedAt:Date.now()});}
    try{for(const probe of makeWork8FulfilmentProbes(productionCommerce()).probes(workspace))this.control.observe(workspace,probe);observe('work8_fulfilment_integrity','HEALTHY','Bounded fulfilment slice read successfully; separate coverage probe reports incomplete or stale sweeps',{observedAt:Date.now()});}catch{observe('work8_fulfilment_integrity','UNAVAILABLE','Fulfilment history unavailable; no healthy order outcome may be inferred',{observedAt:Date.now()});}

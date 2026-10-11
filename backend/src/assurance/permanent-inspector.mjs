@@ -25,3 +25,6 @@ while(!stopping){
 }
 
 controlPlane?.close();
+
+// Release the referenced parent IPC channel after orderly observer shutdown.
+if(process.connected)process.disconnect();

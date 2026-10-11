@@ -79,6 +79,10 @@ export class AssuranceControlPlane {
     // across revisions. Preserve original incident identity and immutable events;
     // do not resolve an in-flight or unknown recovery outcome from probe health.
     for(const prior of this.list(w,'incident').filter(i=>i.probeId===p.id&&i.capability===p.capability&&i.classification===(p.classification??'UNKNOWN')&&!terminal.has(i.status))){
+     const sourceAt=p.sourceObservedAt??p.evidence?.observedAt;
+     if(!Number.isSafeInteger(sourceAt)||sourceAt>this.now()||sourceAt<prior.lastAt||this.now()-sourceAt>180000){
+      this.event(w,'FUNCTION_VERIFICATION_REJECTED',{incidentId:prior.id,reason:'FRESH_POST_FAULT_OBSERVATION_REQUIRED',sourceObservedAt:sourceAt??null,lastFaultObservedAt:prior.lastAt});continue;
+     }
      if(this.list(w,'recovery').some(r=>r.incidentId===prior.id&&['RUNNING','UNKNOWN'].includes(r.status)))continue;
      prior.status='RECOVERED';prior.verifiedAt=this.now();prior.closedAt=this.now();prior.verificationRevision=this.revision;this.put(w,'incident',prior.id,prior);this.event(w,'FUNCTION_VERIFIED',{incidentId:prior.id,probe});
     }return probe;
@@ -184,6 +188,6 @@ export class AssuranceControlPlane {
 /** Called only by the independently supervised inspector; never renews primary monitoring. */
 export function inspectControlPlaneMonitor(control,workspace='ws_empire_1'){
  const state=control.snapshot(workspace);
- const incident=control.observe(workspace,{id:'assurance-primary-monitor',capability:'assurance-monitor',status:state.monitor.fresh?'HEALTHY':'STALE',severity:'CRITICAL',classification:'MONITORING_COVERAGE_LOST',summary:state.monitor.fresh?'Primary Assurance monitor is current':'Primary Assurance monitor heartbeat is missing or stale',evidence:{heartbeat:state.monitor.heartbeat}});
+ const incident=control.observe(workspace,{id:'assurance-primary-monitor',capability:'assurance-monitor',status:state.monitor.fresh?'HEALTHY':'STALE',severity:'CRITICAL',classification:'MONITORING_COVERAGE_LOST',summary:state.monitor.fresh?'Primary Assurance monitor is current':'Primary Assurance monitor heartbeat is missing or stale',evidence:{heartbeat:state.monitor.heartbeat,observedAt:state.monitor.heartbeat?.at??null}});
  control.heartbeat(workspace,'watchdog');return {fresh:state.monitor.fresh,incident};
 }
