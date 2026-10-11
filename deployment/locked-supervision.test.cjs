@@ -6,6 +6,34 @@ const os = require('node:os');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
 const { runSupervisedRuntime } = require('./locked-supervision.cjs');
+const { superviseAssurance } = require('./assurance-supervisor.cjs');
+
+test('living observers with no loop progress are quarantined and runtime is contained', { timeout:10000 }, async()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'work8-hung-observers-'));fs.mkdirSync(path.join(root,'commissioning'));
+ const children=[],events=[];
+ try{
+  const result=await runSupervisedRuntime({cwd:root,env:{PATH:process.env.PATH,RAILWAY_VOLUME_MOUNT_PATH:root,ASSURANCE_RUNTIME_ORIGIN:'https://twin.example.invalid'},command:process.execPath,args:['-e','setInterval(()=>{},1000)'],graceMs:100,stdio:'ignore',onEvent:e=>events.push(e),supervisorOptions:{stallMs:{'permanent-worker.mjs':300,'permanent-inspector.mjs':300},spawnImpl:(_exe,args,options)=>{
+   const code=args[0].includes('inspector')?'while(true){}':'setInterval(()=>{},1000)';
+   const child=spawn(process.execPath,['-e',code],{env:options.env,stdio:['ignore','ignore','ignore','ipc']});children.push(child);return child;
+  }}});
+  assert.equal(result.coverageLost,true);assert.equal(result.reason,'containment');
+  assert.equal(events.filter(e=>e.event==='assurance_restart_quarantined'&&e.reason==='NO_PROGRESS').length,2);
+  assert.equal(children.length,2,'hung observers are not silently replayed');
+ }finally{for(const child of children)child.kill('SIGKILL');fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('fresh loop progress renews liveness, malformed messages do not', { timeout:10000 }, async()=>{
+ const children=[],events=[];
+ const stop=superviseAssurance({cwd:process.cwd(),env:{PATH:process.env.PATH},stallMs:{'permanent-worker.mjs':2000,'permanent-inspector.mjs':250},onEvent:e=>events.push(e),spawnImpl:(_exe,args,options)=>{
+  const type=args[0].includes('worker')?'assurance_progress':'not-progress';
+  const child=spawn(process.execPath,['-e',`setInterval(()=>process.send({type:${JSON.stringify(type)}},()=>{}),20)`],{env:options.env,stdio:['ignore','ignore','ignore','ipc']});children.push(child);return child;
+ }});
+ try{
+  await new Promise(resolve=>setTimeout(resolve,2500));
+  const lost=events.filter(e=>e.event==='assurance_restart_quarantined');assert.equal(lost.length,1);assert.equal(lost[0].component,'permanent-inspector.mjs');
+  assert.equal(children[0].exitCode,null);assert.equal(children[0].signalCode,null);
+ }finally{stop();for(const child of children)child.kill('SIGKILL');}
+});
 
 for (const writableAudit of [true, false]) test(`simultaneous real observer deaths contain runtime; audit writable=${writableAudit}`, { timeout: 10000 }, async () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'work8-containment-'));
@@ -56,16 +84,16 @@ for (const writableAudit of [true, false]) test(`simultaneous real observer deat
 
 test('one quarantined observer does not falsely claim complete coverage loss', { timeout: 10000 }, async () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'work8-one-observer-'));
-  const children = [], events = [];
+  const children = [], events = [];let runtime;
   try {
     const result = await runSupervisedRuntime({ cwd: root, env: { PATH: process.env.PATH, ASSURANCE_RUNTIME_ORIGIN: 'https://twin.example.invalid' },
-      command: process.execPath, args: ['-e', 'setInterval(()=>{},1000)'], expiresAt: Date.now() + 500, graceMs: 50, stdio: 'ignore',
-      onEvent: e => events.push(e), supervisorOptions: { maxRestarts: 0, spawnImpl: (_exe, args, options) => {
+      command: process.execPath, args: ['-e', 'setInterval(()=>{},1000)'], expiresAt: Date.now() + 5000, graceMs: 100, stdio: 'ignore',onSpawn:child=>{runtime=child;},
+      onEvent: e => {events.push(e);if(e.event==='assurance_restart_quarantined')runtime.kill('SIGTERM');}, supervisorOptions: { maxRestarts: 0, spawnImpl: (_exe, args, options) => {
         const child = spawn(process.execPath, ['-e', args[0].includes('permanent-worker') ? 'process.exit(1)' : 'setInterval(()=>{},1000)'], { env: options.env, stdio: 'ignore' });
         children.push(child); return child;
       } }
     });
-    assert.equal(result.coverageLost, false); assert.equal(result.reason, 'expired');
+    assert.equal(result.coverageLost, false); assert.equal(result.reason, 'child_exit');
     assert.equal(events.filter(e => e.event === 'assurance_restart_quarantined').length, 1);
     assert.equal(events.some(e => e.event === 'assurance_coverage_containment'), false);
   } finally { for (const child of children) child.kill('SIGKILL'); fs.rmSync(root, { recursive: true, force: true }); }

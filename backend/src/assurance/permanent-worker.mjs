@@ -9,6 +9,8 @@ import { AssuranceStore,runAssuranceCycle } from './independent-assurance.mjs';
 import { createRuntimeCollector } from './runtime-collector.mjs';
 import { assurancePaths,collectDurableOmissions } from './live-sources.mjs';
 
+process.once('disconnect',()=>process.kill(process.pid,'SIGTERM'));
+
 const intervalMs=300000,graceMs=120000;
 const paths=assurancePaths(process.env.RAILWAY_VOLUME_MOUNT_PATH);
 const store=new AssuranceStore(paths.database);fs.chmodSync(paths.database,0o600);
@@ -33,6 +35,7 @@ while(!stopping){
       console.log(JSON.stringify({event:'independent_assurance_cycle',slot,...receipt}));
     }catch{console.error(JSON.stringify({event:'independent_assurance_cycle_failed',slot}));}
   }
+  if(process.connected)process.send({type:'assurance_progress'},()=>{});
   await new Promise(r=>setTimeout(r,1000));
 }
 redis.disconnect();store.close();
