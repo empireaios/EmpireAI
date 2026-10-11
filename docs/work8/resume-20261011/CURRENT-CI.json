@@ -1,50 +1,33 @@
 {
-  "source": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
+  "source": "acef1c6bc1c4876dc62ea486e8181c425d016d63",
   "runs": [
     {
-      "id": 38132767097,
-      "name": "Pillow semantic repair CI",
-      "status": "completed",
-      "conclusion": "success",
-      "run_number": 668,
-      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38132767097/jobs",
-      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38132767097/logs",
-      "workflow_id": 362674549
+      "name": "Assurance",
+      "id": 38133421116,
+      "status": "success"
     },
     {
-      "id": 38132767056,
-      "name": "Product path CI",
-      "status": "in_progress",
-      "conclusion": null,
-      "run_number": 667,
-      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38132767056/jobs",
-      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38132767056/logs",
-      "workflow_id": 362309382
+      "name": "semantic",
+      "id": 38133421128,
+      "status": "success"
     },
     {
-      "id": 38132767067,
-      "name": "Independent Assurance Core",
-      "status": "completed",
-      "conclusion": "success",
-      "run_number": 109,
-      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38132767067/jobs",
-      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38132767067/logs",
-      "workflow_id": 373040927
+      "name": "Product path",
+      "id": 38133421081,
+      "status": "in_progress"
     },
     {
-      "id": 38132767090,
-      "name": "Pillow runtime repair CI",
-      "status": "in_progress",
-      "conclusion": null,
-      "run_number": 669,
-      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38132767090/jobs",
-      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38132767090/logs",
-      "workflow_id": 362688325
+      "name": "runtime",
+      "id": 38133421103,
+      "status": "in_progress"
     }
   ],
   "priorConnectorRuntime": {
     "id": 38132087949,
     "conclusion": "cancelled"
   },
-  "priorFourPassingAndWholeVolumeEvidence": "Preserved b68e42b four successful workflows and RUNTIME-38129976823.txt; no workflows restarted."
+  "priorFourPassingAndWholeVolumeEvidence": "Preserved b68e42b four successful workflows and RUNTIME-38129976823.txt; no workflows restarted.",
+  "previousSource": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
+  "previousConclusions": "Assurance/semantic/product SUCCESS;runtime38132767090 CANCELLED; no manual reruns",
+  "retainedEvidence": "Earlier four successful workflows and whole-volume restore receipts preserved. Current runtime image and web jobs PASS;durable runtime job114452334984 active at generated reasoning admission."
 }

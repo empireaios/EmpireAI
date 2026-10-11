@@ -1,5 +1,5 @@
-# Next executable work
+# Next executable action
 
-Requirement37 accepted at 3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6; 3 PASS /37 PENDING /5 BLOCKED. Preserve all original receipts.
+Published sourceacef1c6bc1c4876dc62ea486e8181c425d016d63 and evidence36f29475d2a5bd6ed9769976e2c22265e14f2bfd exactly match approved trees. Requirement37 PASS published;3/37/5 counts. New local source5ea76039d7f815a5bde4ec3c0e5674ddc7e77fd7 adds dual-observer containment and accurate PID-namespace test verification;29 tests pass. Preserve original supervisor8-test receipt.
 
-Review and retain the eight passing supervisor-origin tests, finish bounded hosting decision configuration requirements, and inspect existing current-head CI conclusions. New source delta remains unpublished pending bounded publication authority. No deployment or production state change. Preserve protected off-host/global recovery, provider evidence, native UX and endurance gaps; do not rerun accepted work.
+Read existing acef1c6b CI conclusions without restarting. Publish new bounded batch only with authority. Remaining verification: hung observers/external launcher loss, global writer consistency and protected off-host restore; genuine product/rights/provider-accounting evidence; owner authenticated native journey and final-candidate endurance. Hosting decision remains held for safe isolated cost/egress/retention controls. No deployment or live-effect authority.

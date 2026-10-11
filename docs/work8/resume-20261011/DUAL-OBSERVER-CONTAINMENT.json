@@ -1,0 +1,45 @@
+{
+  "source": "5ea76039d7f815a5bde4ec3c0e5674ddc7e77fd7",
+  "tree": "24b9a732e44f62ca79fb5b820c5ea83e0ee88807",
+  "parent": "acef1c6bc1c4876dc62ea486e8181c425d016d63",
+  "scope": "Dual observer process-failure containment by independent launcher",
+  "engineering": "Both observers exhausting separate restart budgets triggers fsynced append-only loss intent and orderly runtime/process-group shutdown. Audit failure still contains. Launcher returns failure even if runtime closes cleanly. Existing independent Assurance CI includes new examination.",
+  "examination": {
+    "tests": 29,
+    "pass": 29,
+    "fail": 0,
+    "receipt": "DUAL-OBSERVER-CONTAINMENT.tap",
+    "sha256": "b493d342bb5f9fdd78519c23c1e00c8c930ab32732cccc08934e4aecef5a0ee5",
+    "network": "Executed under isolated-exec.py seccomp denial",
+    "injection": "Real fixture observer processes killed; actual supervisor and actual bounded runtime subprocess exercised",
+    "cases": [
+      "both budgets exhausted",
+      "audit storage unavailable",
+      "single observer loss does not assert total loss",
+      "existing journal entry retained",
+      "orderly runtime stop"
+    ]
+  },
+  "initialFailure": {
+    "tests": 29,
+    "pass": 28,
+    "fail": 1,
+    "test": "actual stubborn descendant is killed when its parent exits",
+    "assertion": "orphan worker must not keep running; true !== false",
+    "diagnosis": "Work sandbox process.pid=2 versus /proc/self=63104, NSpid=63104 2. Old /proc/childPID read could inspect an unrelated host process. Test helper now matches NSpid and PID namespace inode; fails closed for live PID without verifiable /proc identity. Runtime group cleanup unchanged.",
+    "followup": "Isolated case and serialized29 passed; corrected final parallel29 passed. Failure retained, not erased."
+  },
+  "limits": [
+    "Receipt records stop intent, not verified recovery",
+    "Observers are real fixture processes; actual monitoring logic is not claimed by new tests",
+    "Hung-but-living observers remain uncovered",
+    "Launcher SIGKILL/event-loop failure and platform process-tree containment remain uncovered",
+    "No production deployment or complete requirement30 acceptance"
+  ],
+  "independentReview": {
+    "verifier": "/root/review_retirement_finance",
+    "source": "5ea76039d7f815a5bde4ec3c0e5674ddc7e77fd7",
+    "verdict": "No blocking defect in scoped six-file delta; final29/29 receipt inspected; not independently rerun",
+    "findings": "Parent-directory fsync, append preservation, PID namespace identity verification and failclosed missing identity verified. No additional requirement closure justified."
+  }
+}

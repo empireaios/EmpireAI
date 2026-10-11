@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "original": "f4981fc186526d92d42066c78bba1e14544ba879",
+      "branch": "work8/autonomous-examination-20261011",
+      "parent": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
+      "tree": "9dfb68ee8d70ecdea4d0051866f344934a537fb6",
+      "replacement": "acef1c6bc1c4876dc62ea486e8181c425d016d63"
+    },
+    {
+      "original": "25c67f326a0a53c056c55e00627157c208767be1",
+      "branch": "work8/examination-evidence-20261011",
+      "parent": "4cec32c0dc548eff4cb09f6f37ea2ca60832fe79",
+      "tree": "6bf36103db341f33502b28ec827aef3c2a6e93ca",
+      "replacement": "36f29475d2a5bd6ed9769976e2c22265e14f2bfd"
+    }
+  ],
+  "verification": "Fetched replacement branches; exact full tree equality and empty git diff for both approved payloads; zero missing, modified or additional files. Original commits retained; commit identities differ.",
+  "requirement37": "Closure now published unchanged in evidence replacement36f29475. 3PASS/37PENDING/5BLOCKED. Acceptance remains attributed to examined source3b5c4cc2.",
+  "frontendHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "productionChanged": false
+}

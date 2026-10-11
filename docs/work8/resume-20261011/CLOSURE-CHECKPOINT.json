@@ -1,6 +1,6 @@
 {
-  "backend": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
-  "backendTree": "9ab2db2994c173e57ca671d5239f8620d9ccb884",
+  "backend": "acef1c6bc1c4876dc62ea486e8181c425d016d63",
+  "backendTree": "9dfb68ee8d70ecdea4d0051866f344934a537fb6",
   "frontendReview": "720764722e6178d4126dcf376383096e204ec5ba",
   "frontendTree": "a4f9e1206a7d0e463da947644d721a1db45341e3",
   "frontendDeploymentBranchHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
@@ -16,15 +16,16 @@
   "commerce": "LOCKED",
   "work8": "NO_GO",
   "work9": "NOT_ACTIVATED",
-  "next": "Continue remaining engineering; scoped requirement37 accepted. Read existing current-head CI; no reruns.",
+  "next": "Read current acef1c6b CI without restart; reviewed dual-observer containment batch ready for bounded publication authority. External acceptance dependencies remain.",
   "localBackend": "6c74f8622a5f5f293e3b5047aaf52af176fb71e8",
-  "publishedEvidence": "4cec32c0dc548eff4cb09f6f37ea2ca60832fe79",
+  "publishedEvidence": "36f29475d2a5bd6ed9769976e2c22265e14f2bfd",
   "backendCi": "ASSURANCE_AND_SEMANTIC_SUCCESS_PRODUCT_AND_RUNTIME_RUNNING",
   "runtimeRun": 38129976823,
   "publication": "APPROVED_TWO_COMMITS_PUBLISHED_WITH_EXACT_TREE_EQUALITY",
   "localBackendTree": "9ab2db2994c173e57ca671d5239f8620d9ccb884",
   "priorBackendCi": "b68e42b_ALL_FOUR_SUCCESS",
-  "priorConnectorCi": "0bf69ac: Assurance,semantic,product SUCCESS;runtime38132087949 CANCELLED",
-  "unpublishedSource": "f4981fc186526d92d42066c78bba1e14544ba879",
-  "unpublishedSourceTree": "9dfb68ee8d70ecdea4d0051866f344934a537fb6"
+  "priorConnectorCi": "3b5c4cc2:Assurance/semantic/product success;runtime38132767090 cancelled",
+  "unpublishedSource": "5ea76039d7f815a5bde4ec3c0e5674ddc7e77fd7",
+  "unpublishedSourceTree": "24b9a732e44f62ca79fb5b820c5ea83e0ee88807",
+  "requirement37": "PASS_CLOSURE_PUBLISHED_UNCHANGED"
 }
