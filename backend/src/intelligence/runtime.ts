@@ -1,3 +1,4 @@
+import {runCaptureAwareBackground} from '../runtime/work8-background-capture.js';
 import {advanceWork8Enrichment,readWork8Enrichment} from './work8-enrichment.js';
 import {advanceWork8Acquisition} from './work8-acquisition.js';
 import {discoverNext} from './pipeline.js';
@@ -29,7 +30,7 @@ export function startIntelligence(store:IntelligenceStore,workspace='ws_empire_1
   for(let i=0;i<4;i++)if(!await runIntelligenceJob(store,workspace,acquirer))break;
   reconcileSignals(store,workspace);store.put(workspace,'scheduler','health',{id:'health',heartbeatAt:new Date(store.now()).toISOString(),status:plannerFailure?'DEGRADED':'RUNNING',plannerFailure,intervalMs:30000,inferenceCalls:0});store.prune(workspace);
  }catch{store.put(workspace,'scheduler','health',{id:'health',heartbeatAt:new Date(store.now()).toISOString(),status:'DEGRADED',failure:'SCHEDULER_TICK_FAILED'});}finally{workerActive=false;}};
- let flight:Promise<void>|null=null;const run=()=>{if(!flight)flight=tick().finally(()=>{flight=null;});};const timer=setInterval(run,30000);timer.unref();run();return async()=>{stopped=true;clearInterval(timer);await flight;};
+ let flight:Promise<void>|null=null;const run=()=>{if(!flight)flight=runCaptureAwareBackground(tick).finally(()=>{flight=null;});};const timer=setInterval(run,30000);timer.unref();run();return async()=>{stopped=true;clearInterval(timer);await flight;};
 }
 export const intelligenceDomains=['intelligence','arsenal','evidence','intelligence_jobs','opportunities','exceptions','resources','rank_growth','investigations'];
 export function readIntelligence(store:IntelligenceStore,workspace:string,domain:string,id?:string,after='',limit=20):unknown{

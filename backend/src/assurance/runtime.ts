@@ -1,3 +1,4 @@
+import {runCaptureAwareBackground} from '../runtime/work8-background-capture.js';
 import {readWork8QueueProbe} from './work8-queue-probe.js';
 import {readWork8ResponseBinding} from './work8-response-binding.js';
 import {readWork8FinancialProbe} from './work8-financial-probe.js';
@@ -122,7 +123,7 @@ export class AssuranceRuntime {
    await this.control.tick(workspace);
    for(const task of this.advisor.list(workspace))if(task.status==='WAITING_FOR_DEPENDENCY'&&task.stage!=='NOT_STARTED')await this.advisor.reconcile(workspace,String(task.id));
    await this.advisor.resumeEligible(workspace);
-   if(!this.advisorWork)this.advisorWork=this.advisor.runNext(workspace).catch(()=>null).finally(()=>{this.advisorWork=null;});
+   if(!this.advisorWork)this.advisorWork=runCaptureAwareBackground(()=>this.advisor.runNext(workspace)).catch(()=>null).finally(()=>{this.advisorWork=null;});
    if(admission?.mode==='MONITOR_FAILURE'&&!admission.completed){
     const monitorIncident=this.control.snapshot(workspace).incidents.find((i:any)=>i.probeId==='assurance-primary-monitor'&&i.lastAt>=admission.at&&i.verifiedAt>=admission.pauseUntil&&i.status==='RECOVERED');
     if(monitorIncident&&verifySourcePreservation(this.root,admission.sourceManifest).verified){const completed={...admission,completed:true,preservation:verifySourcePreservation(this.root,admission.sourceManifest),monitorIncidentId:monitorIncident.id,verifiedAt:Date.now()};this.control.put(workspace,'acceptance','active',completed);this.control.put(workspace,'acceptance_history',admission.id,completed);this.control.event(workspace,'MONITOR_RECOVERY_VERIFIED',{id:admission.id,monitorIncidentId:monitorIncident.id,independentInspector:true});}
@@ -198,7 +199,7 @@ export async function readAssuranceRecord(w:string,kind:string,id:string){if(w!=
 export async function assuranceOwnerCommand(ownerId:string,input:unknown){if(!active)throw Error('ASSURANCE_RUNTIME_UNAVAILABLE');return active.command(ownerId,input);}
 export function installAssuranceRuntime(app:FastifyInstance){
  let timer:ReturnType<typeof setInterval>|undefined;
- app.addHook('onReady',async()=>{if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')return;const root=process.env.RAILWAY_VOLUME_MOUNT_PATH,revision=process.env.RAILWAY_GIT_COMMIT_SHA;if(!root||!revision)return;active=await createAssuranceRuntime(root,revision);active.advisor.recoverInterrupted(workspace);const run=()=>active?.cycle().catch(()=>{ /* stale persisted heartbeat exposes failed monitoring */ });void run();timer=setInterval(run,30000);timer.unref();});
+ app.addHook('onReady',async()=>{if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')return;const root=process.env.RAILWAY_VOLUME_MOUNT_PATH,revision=process.env.RAILWAY_GIT_COMMIT_SHA;if(!root||!revision)return;active=await createAssuranceRuntime(root,revision);active.advisor.recoverInterrupted(workspace);const run=()=>runCaptureAwareBackground(()=>active?.cycle()).catch(()=>{ /* stale persisted heartbeat exposes failed monitoring */ });void run();timer=setInterval(run,30000);timer.unref();});
  app.addHook('onClose',async()=>{if(timer)clearInterval(timer);if(active?.advisorWork)await active.advisorWork;active?.control.close();active=null;});
 }
 

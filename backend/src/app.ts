@@ -1,3 +1,4 @@
+import { withDrainedWork8Background } from './runtime/work8-background-capture.js';
 import { runLegacyBusinessBootstrap } from "./runtime/startup-bootstrap-policy.js";
 import { installLockedCommissioning } from "./runtime/locked-commissioning.js";
 import { backgroundExecutionPolicy } from "./runtime/engineering-test-mode.js";
@@ -270,6 +271,11 @@ export type EmpireApp = {
    * Refuses degraded Redis; never use on the protected old deployment.
    */
   withDrainedSharedBrainNativeCapture: <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
+  /** Also drains the registered local intelligence, commerce, twin and Assurance timers.
+   * Other replicas, Redis producers and durable reasoning remain outside this boundary.
+   */
+  withDrainedWork8LocalCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
   finishRouteRegistration?: () => Promise<void>;
 };
@@ -649,6 +655,16 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       () => withDrainedLocalNativeCapture(shadow, captureAndVerify, timeoutMs), timeoutMs);
   };
 
+  const withDrainedWork8LocalCapture = <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs = 30_000): Promise<T> => {
+    const deadline = performance.now() + timeoutMs;
+    return withDrainedWork8Background(() => {
+      const remaining = Math.floor(deadline - performance.now());
+      if (remaining < 1) throw new Error("Work8 local capture drain deadline elapsed; no snapshot taken");
+      return withDrainedSharedBrainNativeCapture(shadow, captureAndVerify, remaining);
+    }, timeoutMs);
+  };
+
   if (earlyListen) {
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
     // Full REAL-module surface remains deferred behind finishRouteRegistration.
@@ -664,6 +680,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       withDrainedLocalSqliteCapture,
       withDrainedLocalNativeCapture,
       withDrainedSharedBrainNativeCapture,
+      withDrainedWork8LocalCapture,
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -681,6 +698,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     withDrainedLocalSqliteCapture,
     withDrainedLocalNativeCapture,
     withDrainedSharedBrainNativeCapture,
+    withDrainedWork8LocalCapture,
   };
 }
 

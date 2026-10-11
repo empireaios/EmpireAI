@@ -1,3 +1,4 @@
+import {runCaptureAwareBackground} from '../../work8-background-capture.js';
 import {readRecoveredAuthorityAudit} from './work8-twin-recovery.js';
 import {initializeSimulationEnrollments,verifySimulationEnrollment} from './work8-enrollment.js';
 import {Work8PreparationAuthority} from './work8-preparation-authority.js';
@@ -158,6 +159,6 @@ export class Work8TwinRuntime {
 export function startTwinScheduler(resolve:()=>Work8TwinRuntime|null,intervalMs=5000){
  if(!Number.isInteger(intervalMs)||intervalMs<10||intervalMs>60000)throw Error('TWIN_SCHEDULER_INTERVAL');
  let busy=false;
- const timer=setInterval(()=>{if(busy)return;busy=true;try{resolve()?.cycle();}catch{/* Storage failure denies progress; reads remain unavailable rather than healthy. */}finally{busy=false;}},intervalMs);
+ const timer=setInterval(()=>{void runCaptureAwareBackground(()=>{if(busy)return;busy=true;try{resolve()?.cycle();}catch{/* Storage failure denies progress; reads remain unavailable rather than healthy. */}finally{busy=false;}});},intervalMs);
  timer.unref();return ()=>clearInterval(timer);
 }
