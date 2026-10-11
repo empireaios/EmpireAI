@@ -15,3 +15,13 @@ Automatic approval review rejected the connector fetch because it may create an 
 Next required capability: owner authorization for a temporary Vercel protected-preview fetch limited to read-only /api/auth/me on these two previews, or restored manual Cloud Browser control permitting the equivalent authenticated read. Only after confirming routing may a Work8-only BRAIN_API_URL override and exact bc83ca6a preview rebuild proceed. Preserve production/global preview/Work7 bindings and all live restrictions.
 
 Owner resource amendment: Keepa preferred subject to plan/licence/purchase approval; Helium10 disabled future interface, subscription deferred; JungleScout excluded. This supersedes the earlier comparative resource recommendation. No paid API usage or purchases authorized.
+
+## Authorized diagnostic and branch repair, 2026-10-11 05:20 UTC
+
+Owner explicitly authorized temporary deployment-specific protection bypass for read-only routing checks. Created60-second links for the exact Work7/Work8 deployments; each was revoked with regenerate=false after its check. No EmpireAI authentication bypass, password submission or artificial owner session occurred. No token or access link is included in this evidence.
+
+Work8 GET /api/auth/me returned404 JSON with status:error, code:404, message/error:Application not found, upstream request_id q95QsT0JT12sdjZo9I3ezw, matched path /api/auth/me. This reproduces the application-routing error without credentials. Work7 protected fetch returned401 at fetch_deployment/after_redirect, with content withheld; do not count that as a fresh application-authentication success. Previously accepted Work7 evidence and direct locked-runtime401 remain separate evidence. The inherited destination value remains hidden, so its exact incorrect hostname is not asserted.
+
+Created only Work8 branch-specific preview BRAIN_API_URL entry SHUu2A0cbG8zgMFq, using the verified authoritative locked-runtime origin and documented Work7 pattern. Readback confirms preview-only target and exact work8/owner-operating-evidence-20261011 scope. Production, general preview and Work7 entry IDs/update times unchanged. No credential copied.
+
+The new configuration has NOT been deployed: latest owner authorization explicitly excludes deployment. Required next action is one preview-only rebuild of the existing frontend bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce, preserving branch configuration, followed by non-credential authentication reachability verification and only then owner sign-in. No claim that the existing immutable deployment is fixed. Work8 backend candidate remains undeployed; production locked-runtime does not contain the new Work8 backend changes, so restored sign-in alone cannot certify the integrated Work8 dry run.
