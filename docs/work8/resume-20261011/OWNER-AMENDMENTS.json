@@ -25,7 +25,7 @@
         24,
         39
       ],
-      "engineering": "V2 enrolled-simulation capture/restore, V1 migration, derived error evolution and duplicate divergence refusal tested.",
+      "engineering": "V2 enrolled-simulation capture/restore, V1 migration, derived error evolution and duplicate divergence refusal tested. Pinned-head chain verification and point-in-time isolated restoration tested.",
       "acceptance": "PENDING",
       "remaining": "Whole-system adapters and protected off-host retention remain."
     },
@@ -170,9 +170,9 @@
         26,
         40
       ],
-      "engineering": "Rule-based intake/risk/deadlines, draft and escalation history; Orders UI",
+      "engineering": "Eight-category risk/deadline/escalation workflow now prevents silent unresolved downgrade and deadline postponement; restart and recovery tested.",
       "acceptance": "PENDING",
-      "remaining": "Authorised AI-first preparation, adverse coverage and native acceptance remain"
+      "remaining": "Authorised AI-first draft preparation and native acceptance."
     },
     {
       "id": 15,

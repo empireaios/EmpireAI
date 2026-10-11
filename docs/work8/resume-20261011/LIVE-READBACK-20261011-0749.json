@@ -1,0 +1,25 @@
+{
+  "retrievedAt": "2026-10-11T07:49:07.475Z",
+  "reader": "EmpireAI Kings Advisor list_records accounting",
+  "recordCount": 227,
+  "recordDigestSha256": "9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92",
+  "invoiceActualMicroUsd": null,
+  "invoiceUnknownCount": 227,
+  "inferenceCalls": 0,
+  "rowLineageExposed": false,
+  "preservationConclusion": "Aggregate unchanged since retained observation; original224 row preservation and addition attribution remain unresolved.",
+  "missionsReadback": {
+    "retrievedAt": "2026-10-11T07:49:20.143Z",
+    "coverageComplete": false,
+    "exposedKeys": [
+      "checkpoint",
+      "productionVerification",
+      "work3",
+      "work4",
+      "work24IntegrationDefect",
+      "candidateInvestigations",
+      "advancedAssurance"
+    ],
+    "work8ClosureObserved": false
+  }
+}

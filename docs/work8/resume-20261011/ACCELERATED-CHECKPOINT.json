@@ -1,9 +1,9 @@
 {
   "schema": "WORK8_ACCELERATED_CHECKPOINT_V1",
   "backend": {
-    "commit": "4783a458f4cc6e4bfb4a79873058c692ee439eb9",
-    "tree": "3b6df15713783c91ce1b595c7cbf45bbcd982031",
-    "local": "89ff687c7ff251391ed2f7bf7fed7fdd5e35f183"
+    "commit": "189fa3a15683b6d9f8102ae6eba94d6fa6c8e863",
+    "tree": "bdfef32ad61081c891e6344e5b28dadb93e77249",
+    "local": "103760a80e4fc4a648c2fc9447cc7aeed903b6f9"
   },
   "frontend": {
     "reviewCommit": "7d92d8772c8af04f841bcf54a63163fd6302b972",
@@ -23,7 +23,9 @@
     "recoveryV2": "2 PASS under kernel network denial; includes V1 migration, enrolled fixture restoration, derived error removal and duplicate replay divergence",
     "mediaRejection": "Affected recovery suite2 PASS; same tests are not counted twice",
     "typescript": "Strict changed backend modules and full frontend noEmit PASS",
-    "lint": "Changed frontend files PASS"
+    "lint": "Changed frontend files PASS",
+    "communicationsAdversity": "All eight categories; no silent risk downgrade, pending deadline extension, or lost escalation; reopen preserves history.",
+    "pointInTime": "Independent pinned-head chain verification and atomic isolated past checkpoint restoration; missing ancestor and existing-target refusals; no hosted RTO guarantee."
   },
   "scope": "No genuine product/model assessment, hosted acceptance, independent delta review or whole-system backup claim.",
   "failedAttempts": [
@@ -36,5 +38,6 @@
     "deployment": false,
     "paidInference": false,
     "work9Activated": false
-  }
+  },
+  "latestFocusedRun": "3 PASS, same two recovery tests plus one new communications test; do not add previous reruns to this count."
 }
