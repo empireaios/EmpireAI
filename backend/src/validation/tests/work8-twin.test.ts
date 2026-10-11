@@ -32,6 +32,17 @@ test('failed canonical operation rolls back within active session without replac
  }finally{s.close();}
 });
 
+test('durable session recovery paginates only the authenticated owner records including archived sessions',()=>{
+ const s=new GovernedCommerceStore(':memory:'),twin=new Work8TwinSessions(s);try{
+  for(const sessionId of ['a','b','c'])twin.transition(p,{id:'create-'+sessionId,sessionId,action:'CREATE',expectedVersion:0});
+  twin.transition({...p,owner:'other'},{id:'create-other',sessionId:'d',action:'CREATE',expectedVersion:0});
+  twin.transition(p,{id:'archive',sessionId:'a',action:'ARCHIVE',expectedVersion:1});
+  const first=twin.list(p,'',2);assert.deepEqual(first.sessions.map(x=>x.sessionId),['a','b']);assert.equal(first.sessions[0].status,'ARCHIVED');assert.equal(first.next,'b');
+  assert.deepEqual(twin.list(p,first.next!,2).sessions.map(x=>x.sessionId),['c']);assert.equal(twin.list(p,'b',2).next,null);
+  assert.equal(twin.list({...p,workspace:'other'}).sessions.length,0);assert.throws(()=>twin.list(p,'',101),/PAGE_BOUND/);
+ }finally{s.close();}
+});
+
 test('twin projection follows existing canonical listing and order receipts and excludes live workspace',async()=>{
  const {GovernedCommerceEngine}=await import('../../runtime/commerce-runtime/governed/engine.js');
  const {acceptanceScenario}=await import('../../runtime/commerce-runtime/governed/scenario.js');

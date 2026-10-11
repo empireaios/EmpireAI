@@ -3,7 +3,8 @@ import {digest,type GovernedCommerceStore} from './store.js';
 import type {CommerceState} from './engine.js';
 const key=z.string().min(1).max(100).regex(/^[A-Za-z0-9_.:-]+$/);
 const principal=z.object({workspace:key,owner:key}).strict();
-const request=z.object({id:key,sessionId:key,expectedVersion:z.number().int().nonnegative(),action:z.enum(['CREATE','RESUME','PAUSE','ARCHIVE'])}).strict();
+export const twinLifecycleRequest=z.object({id:key,sessionId:key,expectedVersion:z.number().int().nonnegative(),action:z.enum(['CREATE','RESUME','PAUSE','ARCHIVE'])}).strict();
+const request=twinLifecycleRequest;
 type Principal=z.infer<typeof principal>;
 type TwinEvent={schema:'WORK8_TWIN_V1';workspace:string;owner:string;sessionId:string;twinWorkspace:string;id:string;version:number;action:z.infer<typeof request>['action'];status:'PAUSED'|'ACTIVE'|'ARCHIVED';at:number;previous:string;requestDigest:string;digest:string;classification:'SIMULATED_OPERATIONS';externalEffects:0};
 /** Lifecycle only. Commerce, tasks and finance remain in their existing canonical tables. */
@@ -24,6 +25,16 @@ export class Work8TwinSessions {
  }
  private namespace(p:Principal,sessionId:string){return 'twin_'+digest({workspace:p.workspace,owner:p.owner,sessionId}).slice(0,48);}
  read(rawPrincipal:unknown,sessionId:string){const p=principal.parse(rawPrincipal);key.parse(sessionId);const e=this.history(p,sessionId).at(-1);if(!e)throw Error('TWIN_NOT_FOUND');return e;}
+ /** Recover durable sessions after a browser or process restart; selection grants no authority. */
+ list(rawPrincipal:unknown,after='',limit=50){
+  const p=principal.parse(rawPrincipal);if(after)key.parse(after);
+  if(!Number.isInteger(limit)||limit<1||limit>100)throw Error('TWIN_PAGE_BOUND');
+  return this.store.transaction(()=>{
+   const ids=this.store.db.prepare("SELECT DISTINCT session FROM work8_twin_events WHERE workspace=? AND session>? AND json_extract(record,'$.owner')=? ORDER BY session LIMIT ?").all(p.workspace,after,p.owner,limit+1).map(x=>String(x.session));
+   const sessions=ids.slice(0,limit).map(sessionId=>this.read(p,sessionId));
+   return {sessions,next:ids.length>limit?ids[limit-1]:null,coverage:'BOUNDED_PAGE',externalEffects:0};
+  });
+ }
  transition(rawPrincipal:unknown,rawRequest:unknown){
   const p=principal.parse(rawPrincipal),r=request.parse(rawRequest),requestDigest=digest({p,r});
   return this.store.transaction(()=>{
