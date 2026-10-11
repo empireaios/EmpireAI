@@ -26,7 +26,10 @@
       ],
       "scope": "Persistent isolated digital twin moves into Work8; reuse canonical commerce/finance/Assurance and existing Owner Console; Work9 is shadow/live commissioning",
       "status": "FOUNDATION_IMPLEMENTED_NOT_ACCEPTED",
-      "next": "Wire authenticated server routes and existing worker/finance/Assurance projections to shared Console; no duplicate engines"
+      "next": "Wire canonical worker/finance/Assurance and existing Console using implemented owner safety inheritance across verified active twin namespaces; source import and isolated runtime remain pending.",
+      "engineeringHead": "5fb5e424d8d76d81d1bf2105c2619960d9359052",
+      "focusedTests": 7,
+      "regressionTests": 2
     },
     {
       "id": "CONTEXT_CHAT",
@@ -78,9 +81,9 @@
         42
       ],
       "scope": "Exactly one rebuild bc83ca6a with Work8-only binding",
-      "status": "READY_BACKEND_AUTH_REACHABILITY_VERIFIED_OWNER_LOGIN_PENDING",
+      "status": "READY_OWNER_AUTHENTICATION_CONFIRMED",
       "deployment": "dpl_kUh9svgitsyGCLDGjttpFZaDfMFr",
-      "next": "Verify READY and no-credential routing; no new temporary protection bypass authorized"
+      "next": "No further authentication diagnostics or credential submissions needed; continue examination with the authenticated Console. New twin backend remains undeployed."
     }
   ]
 }
