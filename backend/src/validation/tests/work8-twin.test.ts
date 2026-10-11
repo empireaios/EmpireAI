@@ -37,7 +37,7 @@ test('durable session recovery paginates only the authenticated owner records in
   for(const sessionId of ['a','b','c'])twin.transition(p,{id:'create-'+sessionId,sessionId,action:'CREATE',expectedVersion:0});
   twin.transition({...p,owner:'other'},{id:'create-other',sessionId:'d',action:'CREATE',expectedVersion:0});
   twin.transition(p,{id:'archive',sessionId:'a',action:'ARCHIVE',expectedVersion:1});
-  const first=twin.list(p,'',2);assert.deepEqual(first.sessions.map(x=>x.sessionId),['a','b']);assert.equal(first.sessions[0].status,'ARCHIVED');assert.equal(first.next,'b');
+  const first=twin.list(p,'',2);assert.deepEqual(first.sessions.map(x=>x.sessionId),['a','b']);assert.equal(first.sessions[0]!.status,'ARCHIVED');assert.equal(first.next,'b');
   assert.deepEqual(twin.list(p,first.next!,2).sessions.map(x=>x.sessionId),['c']);assert.equal(twin.list(p,'b',2).next,null);
   assert.equal(twin.list({...p,workspace:'other'}).sessions.length,0);assert.throws(()=>twin.list(p,'',101),/PAGE_BOUND/);
  }finally{s.close();}
@@ -50,7 +50,7 @@ test('twin projection follows existing canonical listing and order receipts and 
  try{twin.transition(p,command('create','CREATE',0));twin.transition(p,command('resume','RESUME',1));
  twin.run(p,'twin-one',2,w=>{for(const mission of ['mission-one','mission-two']){const fixture=acceptanceScenario(w,p.owner,now);fixture.steps.forEach((step,i)=>engine.execute(step.actor,{id:mission+'-'+i,missionId:mission,expectedVersion:i,command:step.command}));}});
  const outside=acceptanceScenario(p.workspace,p.owner,now);engine.execute(outside.actors.PROPOSER!,{id:'outside',missionId:'live-record',expectedVersion:0,command:outside.steps[0]!.command});
- const first=twin.snapshot(p,'twin-one','',1);assert.equal(first.records.length,1);assert.equal(first.next,'mission-one');assert.equal(first.records[0].listing?.productId,'cj-product-fixture');assert.equal(Object.keys(first.records[0].orders).length,1);
- const second=twin.snapshot(p,'twin-one',first.next!,1);assert.equal(second.records[0].missionId,'mission-two');assert.equal(second.next,null);assert.equal(second.records[0].sourceClassification,'SYNTHETIC');assert.equal(second.records[0].receiptDigest,s.history(first.session.twinWorkspace,'mission-two').at(-1)!.digest);
+ const first=twin.snapshot(p,'twin-one','',1);assert.equal(first.records.length,1);assert.equal(first.next,'mission-one');assert.equal(first.records[0]!.listing?.productId,'cj-product-fixture');assert.equal(Object.keys(first.records[0]!.orders).length,1);
+ const second=twin.snapshot(p,'twin-one',first.next!,1);assert.equal(second.records[0]!.missionId,'mission-two');assert.equal(second.next,null);assert.equal(second.records[0]!.sourceClassification,'SYNTHETIC');assert.equal(second.records[0]!.receiptDigest,s.history(first.session.twinWorkspace,'mission-two').at(-1)!.digest);
  }finally{s.close();}
 });
