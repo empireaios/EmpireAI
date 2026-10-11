@@ -1,0 +1,53 @@
+TAP version 13
+# {"classification":"INJECTED_VIRTUAL_DAYS_NOT_GENUINE_OR_ELAPSED","initialDiscovered":100,"initialDeferred":100,"reports":[{"day":1,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":1,"active":1},{"day":2,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":2,"active":1},{"day":3,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":3,"active":1},{"day":4,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":4,"active":1},{"day":5,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":5,"active":1},{"day":6,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":6,"active":1},{"day":7,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":7,"active":1},{"day":8,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":8,"active":1},{"day":9,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":9,"active":1},{"day":10,"discovered":100,"qualified":1,"deferred":98,"rejected":1,"orders":10,"active":1}],"externalEffects":0,"paidInference":0,"actualCashMovement":0}
+# Subtest: labelled ten-day discovery, qualification outcomes, twin settlement and portfolio replacement
+ok 1 - labelled ten-day discovery, qualification outcomes, twin settlement and portfolio replacement
+  ---
+  duration_ms: 9550.491489
+  type: 'test'
+  ...
+# Subtest: reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+ok 2 - reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+  ---
+  duration_ms: 535.38484
+  type: 'test'
+  ...
+# Subtest: missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+ok 3 - missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+  ---
+  duration_ms: 139.207624
+  type: 'test'
+  ...
+# Subtest: late policy failure rolls back all canonical commands and preparation receipt together
+ok 4 - late policy failure rolls back all canonical commands and preparation receipt together
+  ---
+  duration_ms: 49.464279
+  type: 'test'
+  ...
+# Subtest: stale dossier, changed source and foreign approval cannot inherit prepared authority
+ok 5 - stale dossier, changed source and foreign approval cannot inherit prepared authority
+  ---
+  duration_ms: 80.917278
+  type: 'test'
+  ...
+# Subtest: durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+ok 6 - durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+  ---
+  duration_ms: 85.44788
+  type: 'test'
+  ...
+# Subtest: cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+ok 7 - cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+  ---
+  duration_ms: 133.975341
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9953.544177

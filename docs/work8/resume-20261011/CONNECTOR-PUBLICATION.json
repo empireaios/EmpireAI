@@ -1,0 +1,29 @@
+{
+  "repository": "empireaios/EmpireAI",
+  "verification": "Remote refs fetched; git diff --exit-code returned zero for each original/replacement pair. Full tree SHA equality proves all tracked contents and paths retained. Commit metadata differs; commits are not identical.",
+  "publications": [
+    {
+      "original": "a5a7adf101b787d9289eaa35031db553f6a83079",
+      "parent": "b68e42b5ae0de4aeb4c8ff4aebbc58a9bb0cf0e0",
+      "base_tree": "30f39d67543950e57fcb529593d0dfcf3571a7ac",
+      "tree": "a31ff7719fc1305c12cda8c4d2734587c30fc5da",
+      "branch": "work8/autonomous-examination-20261011",
+      "replacement": "0bf69ac835b80ed977ecba5dd14c15245560b864"
+    },
+    {
+      "original": "ff46ce5811ff2cf062304fcf13dd469fc2b49d71",
+      "parent": "1d46255ff8de6ac01c18e0a6cba40f5806534a31",
+      "base_tree": "89732d0f14e697ea30005280c749d922eaaf763e",
+      "tree": "bf59f319b7e6a79d6d5b04bb3668254b0ffedd3f",
+      "branch": "work8/examination-evidence-20261011",
+      "replacement": "cf4266b0843c840fc9ba81cf1d666dc1b2e1e69f"
+    }
+  ],
+  "priorCi": {
+    "commit": "b68e42b5ae0de4aeb4c8ff4aebbc58a9bb0cf0e0",
+    "fourWorkflows": "SUCCESS",
+    "runtimeRun": 38129976823,
+    "wholeVolumeRestore": "SUCCESS"
+  },
+  "productionChanged": false
+}
