@@ -21,6 +21,7 @@ test('persistent vertical twin: multiple products, actual scheduler, checkpoint 
   c.sessions.transition(p,{id:'create',sessionId:'exam',expectedVersion:0,action:'CREATE'});c.sessions.transition(p,{id:'resume',sessionId:'exam',expectedVersion:1,action:'RESUME'});
   const admission={id:'cohort',sessionId:'exam',expectedVersion:2,count:3,authorizeLabelledFixtures:true};
   const admitted=c.runtime.admit(p,admission);assert.deepEqual(c.runtime.admit(p,admission),admitted);
+  c.runtime.authority.command(p,{action:'GRANT',id:'grant',sessionId:'exam',expectedVersion:0,mode:'ONE_HOUR'});
   c.runtime.inject(p,{id:'gap',sessionId:'exam',expectedVersion:2,kind:'COMMITTED_RECEIPT_CURSOR_GAP'});
   const before=c.runtime.projection(p,'exam');assert.equal(before.assurance.probes[0]?.status,'FAILED');
   c.runtime.cycle();const recovered=c.runtime.projection(p,'exam');assert.ok(recovered.assurance.observations.some(o=>o.kind==='ASSURANCE_RECOVERED'));
@@ -32,9 +33,10 @@ test('persistent vertical twin: multiple products, actual scheduler, checkpoint 
   let view=c.runtime.projection(p,'exam');assert.equal(view.records.length,3);assert.equal(new Set(view.records.map(r=>r.productId)).size,3);
   assert.ok(view.tasks.every(t=>t.status==='COMPLETE'),JSON.stringify(view.tasks.map(t=>({status:t.status,error:t.error}))));
   assert.ok(view.records.every(r=>r.publication?.status==='INTERCEPTED'&&Object.values(r.orders).every(o=>o.outcome==='DELIVERED')));
-  now+=86460000;stop=startTwinScheduler(()=>c.runtime,10);await waitFor(()=>c.runtime.projection(p,'exam').records.every(r=>r.finance.status==='COMPLETE_SIMULATION'));stop();
+  now+=86460000;assert.equal(c.runtime.authority.read(p,'exam').status,'EXPIRED');assert.equal(c.runtime.cycle().status,'BLOCKED');c.runtime.authority.command(p,{action:'GRANT',id:'renew',sessionId:'exam',expectedVersion:1,mode:'ONE_HOUR'});stop=startTwinScheduler(()=>c.runtime,10);await waitFor(()=>c.runtime.projection(p,'exam').records.every(r=>r.finance.status==='COMPLETE_SIMULATION'));stop();
   view=c.runtime.projection(p,'exam');assert.ok(view.records.every(r=>r.finance.status==='COMPLETE_SIMULATION'),JSON.stringify(view.records.map(r=>r.finance)));
   assert.ok(view.records.every(r=>r.finance.actualCashMovement===0&&r.sourceClassification==='SYNTHETIC'));
+  const current=view.records[0]!,reference={sessionId:'exam',missionId:current.missionId,receiptDigest:current.receiptDigest};assert.equal(c.runtime.context(p,reference).sku,current.sku);assert.throws(()=>c.runtime.context(p,{...reference,receiptDigest:'0'.repeat(64)}),/STALE/);assert.throws(()=>c.runtime.context({...p,owner:'other'},reference),/OWNER/);assert.throws(()=>c.runtime.context(p,{...reference,missionId:'foreign'}),/NOT_FOUND/);
   const w=view.session.twinWorkspace,counts=()=>[c.store.db.prepare('SELECT count(*) n FROM commerce_runtime_receipts WHERE workspace=?').get(w)?.n,c.store.db.prepare('SELECT count(*) n FROM work8_sim_finance_events WHERE workspace=?').get(w)?.n];
   const conserved=counts();c.store.close();c=open();for(let i=0;i<10;i++)c.runtime.cycle();assert.deepEqual(counts(),conserved);
   assert.ok(view.records.every(r=>r.finance.financial?.conserved===true));

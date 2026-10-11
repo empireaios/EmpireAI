@@ -25,7 +25,7 @@ export function makeWork8CommerceRecovery({store,worker,now=Date.now}:{store:Gov
   const current=gap(workspace,task);if(!current)throw Error('CHECKPOINT_REPLAY_NOT_REQUIRED');return current;
  }
  return {
-  probes(workspace:string){return worker.list(workspace).flatMap<Probe>(task=>{
+  probes(workspace:string,taskId?:string){const selected=taskId?worker.get(workspace,taskId):null;return (taskId?(selected?[selected]:[]):worker.list(workspace)).flatMap<Probe>(task=>{
    const history=store.history(workspace,task.mission),latest=history.at(-1);
    const common={id:probeId(workspace,task.id),capability:'commerce-checkpoint',classification:'COMMITTED_RECEIPT_CURSOR_GAP',severity:'HIGH'};
    const state=latest?.state as unknown as CommerceState|undefined;

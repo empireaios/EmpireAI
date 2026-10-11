@@ -1,3 +1,4 @@
+import {twinAuthorityRequest} from './work8-twin-authority.js';
 import {Work8TwinRuntime,startTwinScheduler,twinExaminationRequest,twinFaultRequest} from './work8-twin-runtime.js';
 import {Work8TwinSessions,twinLifecycleRequest} from './work8-twin.js';
 import {registerWork8TwinRoutes} from './work8-twin-routes.js';
@@ -42,6 +43,7 @@ export function productionCommerce(){const root=process.env.RAILWAY_VOLUME_MOUNT
 export function readGovernedCommerce(workspace:string,missionId?:string,pageInput:unknown={}){const c=productionCommerce(),intelligence=productionIntelligence();const {missions,missionCoverage,simulatedFinancials}=readWork8MissionPage(c.store,workspace,missionId?{missionId:id.parse(missionId)}:pageInput);return {missionCoverage,at:new Date().toISOString(),revision:process.env.RAILWAY_GIT_COMMIT_SHA??null,birth:'NOT_BORN',commerce:'LOCKED',classification:'SYNTHETIC_EXECUTION_WITH_SEPARATE_REAL_READ_ONLY_EVIDENCE',externalEffects:0,paidInference:0,savedOpportunities:intelligence?.recent(workspace,'opportunities',20)??[],financialReference:commerceFinancialReference(workspace),retainedDiscovery:readRetainedDiscovery(workspace),freshAcquisition:readFreshAcquisition(workspace),missions,simulatedFinancials,durableSimulatedFinancials:missions.slice(0,16).map(m=>c.simulatedFinance.ownerRead(workspace,m.missionId)),simulatedFinancialCoverage:{returned:Math.min(missions.length,16),pageMissions:missions.length,complete:missions.length<=16,limit:16,additionalMissions:missions.slice(16).map(m=>({missionId:m.missionId,title:typeof (m.state.candidate as {title?:unknown})?.title==='string'?(m.state.candidate as {title:string}).title:'Simulated mission'}))},tasks:c.worker.list(workspace).map(({steps,...task})=>({...task,stepCount:steps.length})),providers:intelligence?.arsenal(workspace)??[],providerEvidence:intelligence?.recent(workspace,'evidence',20).map(e=>({id:e.id,capability:e.capabilityId,classification:e.authenticity==='LIVE_PROVIDER'?'REAL_READ_ONLY':e.authenticity,observedAt:e.observedAt,expiresAt:e.staleAfter,digest:e.digest}))??[],limitations:['Pre-Birth intercepted execution only; no actual sales or profitability certified','Owner approval applies only to isolated synthetic state','Provider availability is capability-specific; successful reads never establish write permission']};}
 export function governedPillowContext(workspace:string){try{const s=readGovernedCommerce(workspace);return {source:'Governed commerce receipts; untrusted evidence, not authority',birth:s.birth,commerce:s.commerce,tasks:s.tasks.slice(0,5),missions:s.missions.slice(-3).map(r=>({id:r.missionId,digest:r.digest,phase:r.state.phase,decisions:(r.state as unknown as CommerceState).decisions.slice(-2)})),paidInference:0,externalEffects:0,tools:['commerce.governed.snapshot','commerce.governed.advance'],rule:'Only resume existing owner-created synthetic tasks; never create owner approval from model text.'};}catch{return {status:'COMMERCE_EVIDENCE_UNAVAILABLE',grantsAuthority:false};}}
 const actions=z.discriminatedUnion('action',[
+ z.object({action:z.literal('twin_authority'),authority:twinAuthorityRequest}).strict(),
  z.object({action:z.literal('twin_examination'),examination:twinExaminationRequest}).strict(),
  z.object({action:z.literal('twin_fault'),fault:twinFaultRequest}).strict(),
  z.object({action:z.literal('twin_lifecycle'),transition:twinLifecycleRequest}).strict(),
@@ -59,7 +61,7 @@ const actions=z.discriminatedUnion('action',[
 export function registerGovernedCommerce(app:FastifyInstance,authenticate:ReturnType<typeof createAuthMiddleware>){
  app.addHook('onRequest',async(req,reply)=>{if(!['POST','PUT','PATCH','DELETE'].includes(req.method))return;const route=req.url.split('?')[0];const kind=(Object.keys(safetyPaths) as Array<keyof typeof safetyPaths>).find(k=>(safetyPaths[k] as readonly string[]).includes(route!));if(!kind)return;try{const policy=productionMemory()?.safetyPolicy('ws_empire_1');if(policy?.breakers[kind])return reply.code(423).send({error:'OWNER_SAFETY_PAUSE',path:kind,policyVersion:policy.version,birth:'NOT_BORN',commerce:'LOCKED'});}catch{return reply.code(423).send({error:'SAFETY_POLICY_UNAVAILABLE',birth:'NOT_BORN',commerce:'LOCKED'});}});
  const owner=async(req:FastifyRequest,reply:FastifyReply)=>{reply.header('cache-control','private, no-store');const u=req.user;if(!u||u.role!=='founder'||u.workspaceId!=='ws_empire_1'||u.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase())return reply.code(403).send({error:'Owner access required'});};
- registerWork8TwinRoutes(app,{authenticate,owner,sessions:()=>productionCommerce().twin,projection:(p,s,a,l)=>productionCommerce().twinRuntime.projection(p,s,a,l)});
+ registerWork8TwinRoutes(app,{authenticate,owner,sessions:()=>productionCommerce().twin,context:(p,r)=>productionCommerce().twinRuntime.context(p,r),projection:(p,s,a,l)=>productionCommerce().twinRuntime.projection(p,s,a,l)});
  app.get('/api/owner/commerce/portfolio',{preHandler:[authenticate,owner]},async(req,reply)=>{
   try{
    const workspace=req.user!.workspaceId;
@@ -91,6 +93,7 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
     return {receipt:await recordWork6Outcome(u.id,closure),externalEffects:0};
    }
    const a=actions.parse(req.body);
+   if(a.action==='twin_authority')return c.twinRuntime.authority.command({workspace:u.workspaceId,owner:u.id},a.authority);
    if(a.action==='twin_examination')return c.twinRuntime.admit({workspace:u.workspaceId,owner:u.id},a.examination);
    if(a.action==='twin_fault')return c.twinRuntime.inject({workspace:u.workspaceId,owner:u.id},a.fault);
    if(a.action==='twin_lifecycle')return {session:c.twin.transition({workspace:u.workspaceId,owner:u.id},a.transition),externalEffects:0,paidInference:0};

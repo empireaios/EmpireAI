@@ -1,4 +1,4 @@
-import {registerGovernedCommerce} from './commerce-runtime/governed/runtime.js';
+import {registerGovernedCommerce,productionCommerce} from './commerce-runtime/governed/runtime.js';
 import {registerFinancialCentre} from '../finance/runtime.js';
 import { installAssuranceRuntime, readAdvancedAssurance } from '../assurance/runtime.js';
 import { registerAdvisorRoutes } from "../advisor/routes.js";
@@ -397,6 +397,12 @@ export async function handleDurablePillowChat(
     return reply.code(403).send({ error: "Workspace access denied" });
   }
   input.workspaceId = request.user.workspaceId;
+  const suppliedContext=input.workspaceContext as Record<string,unknown>|undefined;
+  if(suppliedContext?.productContext){
+    if(request.user.role!=='founder'||request.user.workspaceId!=='ws_empire_1'||request.user.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase())return reply.code(403).send({code:'PRODUCT_CONTEXT_OWNER_REQUIRED'});
+    try{input.workspaceContext={...suppliedContext,productContext:productionCommerce().twinRuntime.context({workspace:request.user.workspaceId,owner:request.user.id},suppliedContext.productContext)};}
+    catch{return reply.code(409).send({code:'PRODUCT_CONTEXT_STALE_OR_UNAVAILABLE',error:'Return to the product and reopen its current context before sending.'});}
+  }
   const claim = await acceptDurableChatRequestClaim({
     sessionId: String(input.sessionId),
     message: String(input.message),

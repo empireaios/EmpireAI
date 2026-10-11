@@ -11,6 +11,7 @@ type Guard=(req:FastifyRequest,reply:FastifyReply)=>Promise<unknown>;
 export function registerWork8TwinRoutes(app:FastifyInstance,options:{
  authenticate:ReturnType<typeof createAuthMiddleware>;owner:Guard;
  sessions:()=>Work8TwinSessions;
+ context?:(p:{workspace:string;owner:string},raw:unknown)=>unknown;
  projection?:(p:{workspace:string;owner:string},sessionId:string,after:string,limit:number)=>unknown;
 }){
  const guards=[options.authenticate,options.owner];
@@ -18,10 +19,11 @@ export function registerWork8TwinRoutes(app:FastifyInstance,options:{
  const failure=(reply:FastifyReply,error:unknown)=>{
   if(error instanceof z.ZodError)return reply.code(400).send({error:'INVALID_TWIN_REQUEST'});
   const code=error instanceof Error?error.message:'';
-  const publicErrors=['TWIN_NOT_FOUND','TWIN_OWNER_SCOPE_DENIED','TWIN_VERSION_CONFLICT','TWIN_TRANSITION_DENIED','TWIN_IDEMPOTENCY_CONFLICT'];
+  const publicErrors=['TWIN_NOT_FOUND','TWIN_OWNER_SCOPE_DENIED','TWIN_VERSION_CONFLICT','TWIN_TRANSITION_DENIED','TWIN_IDEMPOTENCY_CONFLICT','TWIN_CONTEXT_STALE','TWIN_CONTEXT_NOT_FOUND'];
   return reply.code(code==='TWIN_NOT_FOUND'?404:code==='TWIN_OWNER_SCOPE_DENIED'?403:publicErrors.includes(code)?409:503)
    .send({error:publicErrors.includes(code)?code:'TWIN_EVIDENCE_UNAVAILABLE'});
  };
+ app.get('/api/owner/commerce/twin/context',{preHandler:guards},async(req,reply)=>{reply.header('cache-control','private, no-store');try{if(!options.context)return reply.code(503).send({error:'TWIN_CONTEXT_UNAVAILABLE'});return options.context(principal(req),req.query);}catch(error){return failure(reply,error);}});
  app.get('/api/owner/commerce/twin',{preHandler:guards},async(req,reply)=>{
   reply.header('cache-control','private, no-store');
   try{const q=query.parse(req.query),sessions=options.sessions(),p=principal(req);return q.sessionId?(options.projection?options.projection(p,q.sessionId,q.after,q.limit):sessions.snapshot(p,q.sessionId,q.after,q.limit)):sessions.list(p,q.after,q.limit);}
