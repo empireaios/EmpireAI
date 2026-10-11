@@ -36,12 +36,13 @@
     "frontend Next route type generation, TypeScript and changed-component ESLint PASS"
   ],
   "genuineJourney": "NOT_COMPLETED",
-  "browser": "SIGN_IN_BLOCKED; desktop/mobile acceptance pending",
+  "browser": "Secure sign-in submitted; latest preview returned Application not found. No authenticated success; no credential retry. Desktop/mobile acceptance pending.",
   "production": {
     "backend": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
     "frontend": "71f9414d6c534b4c35dbd22696b82a77fcf7c597",
     "pillow": "NOT_BORN",
     "commerce": "LOCKED"
   },
-  "authority": "No purchase, paid inference, production deploy, merge, release lease or live commerce performed"
+  "authority": "No purchase, paid inference, production deploy, merge, release lease or live commerce performed",
+  "ci": "Backend4/4 SUCCESS; frontend4/4 SUCCESS at exact published candidate heads"
 }

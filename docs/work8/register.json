@@ -1073,7 +1073,7 @@
       "examinationResult": "Frontend typecheck/lint and four hosted workflows PASS; local changed-view browser blocked by invalid Chromium download",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-      "remainingDependency": "Latest preview requires owner sign-in; authenticated desktop and mobile source-to-finance walkthrough not performed"
+      "remainingDependency": "Latest preview sign-in returned Application not found; upstream routing/configuration and authorized candidate runtime required; authenticated desktop/mobile acceptance pending"
     },
     {
       "item": 41,
@@ -1101,7 +1101,7 @@
       "examinationResult": "PENDING \u2014 202 missions and1440/390px equality passed",
       "independentVerification": "Retained manifests and two-connection snapshot test",
       "continuationEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-      "remainingDependency": "Latest preview requires owner sign-in; authenticated desktop and mobile source-to-finance walkthrough not performed"
+      "remainingDependency": "Latest preview sign-in returned Application not found; upstream routing/configuration and authorized candidate runtime required; authenticated desktop/mobile acceptance pending"
     },
     {
       "item": 42,
@@ -1121,7 +1121,7 @@
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
       "engineeringState": "Backend and frontend source published incrementally to existing candidate branches; no release",
-      "examinationResult": "Frontend d4761474 all4 PASS; final backend exact-head CI awaiting conclusion; old e931 all4 preserved",
+      "examinationResult": "PENDING \u2014 backend4/4 and frontend4/4 exact-head CI SUCCESS; browser/business acceptance and release authority remain outstanding",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
       "remainingDependency": "Final backend CI and independent delta review; separate release authority"
