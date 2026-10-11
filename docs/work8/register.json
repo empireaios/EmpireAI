@@ -355,13 +355,13 @@
         "backend/src/validation/tests/work8-dossier-decisions.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Complete reviewed qualification boundary, then wire explicit simulation authorization after eligibility; current decisions are DEFER/REJECT/REQUEST_REVIEW only",
+      "nextAction": "Complete canonical mission preparation and explicit simulation owner authorization; genuine assessment remains externally dependent",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PENDING",
-      "engineeringState": "Dossier delivered in candidate-bound Pillow context; owner proposal/recommendation display and immutable authenticated review decisions implemented",
-      "examinationResult": "19 dossier/decision/enrichment tests; frontend typecheck/lint; frontend 4/4 CI",
+      "engineeringState": "Dossier delivered in candidate-bound Pillow context; owner proposal/recommendation display and immutable authenticated review decisions implemented; immutable reviewed dossier pinned in investigation grant; delivery, request and owner bound; current dossier rechecked by owner projection and enrollment",
+      "examinationResult": "19 dossier/decision/enrichment tests; frontend typecheck/lint; frontend 4/4 CI; 14 qualification/enrichment tests PASS including changed financial dossier, unbound historical assessment and corrupt pinned dossier refusals",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json",
       "remainingDependency": "Genuine assessment, reviewed eligibility, simulation authorization UX and changed-view browser acceptance"
     },
     {
@@ -486,13 +486,13 @@
         "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Bind verified permitted assets to reviewed dossier; create canonical mission without synthetic supplier substitution",
+      "nextAction": "Complete canonical mission preparation and explicit simulation owner authorization; genuine assessment remains externally dependent",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Guarded enrollment plans one isolated listing through canonical publication interception; existing image provenance checks retained",
-      "examinationResult": "Qualified injected fixture listing interception passed; all15 safety tests retained on changed worker",
+      "engineeringState": "Guarded enrollment plans one isolated listing through canonical publication interception; existing image provenance checks retained; immutable reviewed dossier pinned in investigation grant; delivery, request and owner bound; current dossier rechecked by owner projection and enrollment",
+      "examinationResult": "Qualified injected fixture listing interception passed; all15 safety tests retained on changed worker; 14 qualification/enrichment tests PASS including changed financial dossier, unbound historical assessment and corrupt pinned dossier refusals",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json",
       "remainingDependency": "Actual rights evidence and genuine eligible dossier-to-mission creation"
     },
     {

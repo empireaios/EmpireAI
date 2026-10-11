@@ -1,0 +1,14 @@
+{
+  "backendHead": "8af80c1ff322b7a78a3e95a773fb23e2d1276617",
+  "tree": "64ea8ba90975ce1e32c5bab8ec10b74ff70eea26",
+  "tests": 14,
+  "failures": 0,
+  "strictTypecheck": "PASS",
+  "classification": "ISOLATED_FIXTURE_EXAMINATION_NOT_GENUINE_PILLOW_ASSESSMENT",
+  "officialCounts": {
+    "PASS": 1,
+    "PENDING": 39,
+    "BLOCKED": 5
+  },
+  "nextAction": "Canonical qualified mission preparation and explicit owner simulation approval; updated Owner Console qualification presentation; exact-head CI readback"
+}
