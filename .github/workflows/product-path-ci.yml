@@ -331,8 +331,25 @@ jobs:
         with:
           ref: 720764722e6178d4126dcf376383096e204ec5ba
           persist-credentials: false
-      - name: Verify reviewed source identity
-        run: test "$(git rev-parse HEAD)" = 720764722e6178d4126dcf376383096e204ec5ba
+      # Publish the approved evidence bundle before this source head. The branch
+      # is only transport: blob, commit and complete tree are independently pinned.
+      - name: Checkout retained frontend bundle without deployment credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: work8/examination-evidence-20261011
+          path: _work8_evidence
+          persist-credentials: false
+      - name: Verify and restore exact frontend review candidate
+        shell: bash
+        run: |
+          bundle=_work8_evidence/docs/work8/resume-20261011/FRONTEND-QUALIFICATION-CANDIDATE.bundle
+          test "$(git hash-object "$bundle")" = 3ea1170bad5dacc70ff53b1c2377f919017da858
+          git bundle verify "$bundle"
+          git fetch "$bundle" HEAD
+          git checkout --detach 679f901d4f422eb9292273046f4424e982087236
+          test "$(git rev-parse HEAD)" = 679f901d4f422eb9292273046f4424e982087236
+          test "$(git rev-parse HEAD^{tree})" = 0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8
+          rm -rf -- _work8_evidence
       - name: Use pinned Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:

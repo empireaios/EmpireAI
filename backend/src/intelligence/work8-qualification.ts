@@ -1,3 +1,4 @@
+import {freightOptions,selectFreight} from './work8-freight.js';
 import {z} from 'zod';
 import {listingSchema} from '../runtime/commerce-runtime/governed/contracts.js';
 export const reviewedListingSchema=z.object({listing:listingSchema,detailSourceId:z.string(),stockSourceId:z.string(),freightSourceId:z.string(),rightsSourceIds:z.array(z.string()).min(1).max(9),deliveryDays:z.number().int().min(1).max(180),deliveryRationale:z.string().trim().min(10).max(1000),attestation:z.literal('I_REVIEWED_EXACT_LISTING_AND_IMAGE_PERMISSIONS')}).strict();
@@ -5,7 +6,7 @@ import {digest,key,type Evidence} from './model.js';
 import type {Row} from './store.js';
 import {verifiedSavedSource,type SavedSourceReader} from '../runtime/commerce-runtime/governed/work8-source-projection.js';
 const kind=z.enum(['DEMAND','COMPETITION','DIFFERENTIATION','QUALITY','COMPLIANCE','RETURNS','MARKETPLACE']);
-export const qualificationReviewSchema=z.object({id:key,candidateId:key,sourceSnapshotDigest:z.string().regex(/^[a-f0-9]{64}$/),financialDigest:z.string().regex(/^[a-f0-9]{64}$/),restricted:z.boolean(),budgetSgd:z.number().finite().nonnegative().max(1e9),processingDays:z.number().int().min(0).max(180),processingSourceId:key,findings:z.array(z.object({kind,value:z.number().finite().min(0).max(100),sourceId:key,rationale:z.string().trim().min(10).max(1000)}).strict()).length(7),listingPreparation:reviewedListingSchema.optional(),attestation:z.literal('I_REVIEWED_THE_CITED_EVIDENCE_NOT_JUST_MODEL_OUTPUT')}).strict();
+export const qualificationReviewSchema=z.object({id:key,candidateId:key,sourceSnapshotDigest:z.string().regex(/^[a-f0-9]{64}$/),financialDigest:z.string().regex(/^[a-f0-9]{64}$/),restricted:z.boolean(),budgetSgd:z.number().finite().nonnegative().max(1e9),processingDays:z.number().int().min(0).max(180),processingSourceId:key,freightSelection:z.object({evidenceId:key,rowDigest:z.string().regex(/^[a-f0-9]{64}$/)}).strict().optional(),findings:z.array(z.object({kind,value:z.number().finite().min(0).max(100),sourceId:key,rationale:z.string().trim().min(10).max(1000)}).strict()).length(7),listingPreparation:reviewedListingSchema.optional(),attestation:z.literal('I_REVIEWED_THE_CITED_EVIDENCE_NOT_JUST_MODEL_OUTPUT')}).strict();
 /** Text screening has no image display or publication. Media rights and model/owner
  * execution authority are separate downstream gates, never waived by QUALIFIED. */
 export const qualificationPolicy={version:'WORK8_TEXT_QUALIFICATION_V1',intendedUse:'INTERNAL_TEXT_SCREENING',mandatory:['EXACT_IDENTITY','FRESH_PRICE_CURRENCY_STOCK','PROCESSING','DESTINATION_FREIGHT','REVIEWED_SEVEN_FINDINGS','COMPLETE_REVIEWED_ECONOMICS','SOURCE_COST_FX_BINDING','COMPLETE_CASH_LIABILITIES_COMMITMENTS','EXPOSURE_BUDGET'],optional:['PRODUCT_IMAGES','MODEL_PROPOSAL'],imageDisplayAllowed:false,grantsExecutionAuthority:false} as const;
@@ -21,6 +22,12 @@ export function evaluateReviewedQualification(dossier:Row,review:Row|null,snapsh
  else{try{input=qualificationReviewSchema.parse(review.command);if(review.workspace!==dossier.workspace||review.candidateId!==dossier.candidateId||!review.actor||review.attestedBy!=='AUTHENTICATED_OWNER'||input.sourceSnapshotDigest!==dossier.sourceBinding.snapshotDigest||input.financialDigest!==finance.financialDigest||new Set(input.findings.map(f=>f.kind)).size!==7)throw Error('REVIEW_BINDING');
   if(input.restricted)rejected.add('RESTRICTED_PRODUCT');
   read(input.processingSourceId);
+  if(input.freightSelection){
+   const pin=dossier.sourceBinding.evidence.find((p:Row)=>p.id===input!.freightSelection!.evidenceId),source=read(input.freightSelection.evidenceId),request=source.facts.request as Row;
+   if(!pin||pin.envelopeDigest!==digest(source)||source.subject.variant!==dossier.sourceBinding.subject.variant||source.subject.destination!==supplier.destination||request?.startCountryCode!=='CN'||request?.endCountryCode!==supplier.destination||!Array.isArray(request.products)||request.products.length!==1||request.products[0]?.vid!==source.subject.variant||request.products[0]?.quantity!==1)throw Error('FREIGHT_SELECTION_BINDING');
+   const selected=selectFreight(freightOptions(source),input.freightSelection);
+   if(!selected||selected.amount===null||selected.currency!=='USD'||!selected.service)throw Error('FREIGHT_SELECTION_INVALID');
+  }
   if(input.listingPreparation){for(const sourceId of [...new Set([input.listingPreparation.detailSourceId,input.listingPreparation.stockSourceId,input.listingPreparation.freightSourceId,...input.listingPreparation.rightsSourceIds,...input.listingPreparation.listing.sourceEvidence])])read(sourceId);}
   for(const f of input.findings){const source=read(f.sourceId);const eyes=f.kind==='DEMAND'||f.kind==='COMPETITION'||f.kind==='MARKETPLACE'?['MARKET']:f.kind==='COMPLIANCE'?['INTERNET','SUPPLIER']:['SUPPLIER','MARKET'];if(!eyes.includes(source.eye))throw Error('REVIEW_EVIDENCE_DOMAIN');if(f.kind==='COMPLIANCE'&&f.value!==100)rejected.add('COMPLIANCE_DENIED');}
  if(review.evidencePins&&digest(review.evidencePins)!==digest(evidencePins))throw Error('REVIEW_SOURCE_CHANGED');

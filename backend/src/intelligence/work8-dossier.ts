@@ -1,4 +1,5 @@
-import {evaluateReviewedQualification} from './work8-qualification.js';
+import {freightOptions,selectFreight} from './work8-freight.js';
+import {qualificationReviewSchema,evaluateReviewedQualification} from './work8-qualification.js';
 import {reviewedDossierFinance} from './work8-dossier-finance.js';
 import {digest, type Evidence} from './model.js';
 import {verifiedSavedSource, cjVariantCurrencyContract, type SavedSourceReader} from '../runtime/commerce-runtime/governed/work8-source-projection.js';
@@ -37,17 +38,19 @@ export function qualificationDossier(reader:SavedSourceReader,workspace:string,b
  const stock=stockMatches.length===1&&Number.isSafeInteger(stockMatches[0]!.storageNum)&&stockMatches[0]!.storageNum>=0?stockMatches[0]!.storageNum as number:null;
  if(stock===null)missing.add('EXACT_STOCK_REQUIRED');else if(stock===0)missing.add('OUT_OF_STOCK');
  const freightSources=exact('cj.freight','/logistic/freightCalculate').filter(({source:s})=>{const r=object(s.facts.request);return s.subject.variant===binding.subject.variant&&s.subject.destination===binding.subject.destination&&r.startCountryCode==='CN'&&r.endCountryCode===binding.subject.destination&&Array.isArray(r.products)&&r.products.length===1&&r.products[0]?.vid===binding.subject.variant&&r.products[0]?.quantity===1;});
- const freightRows=freightSources.length===1&&Array.isArray(freightSources[0]!.source.facts.response)?freightSources[0]!.source.facts.response as unknown[]:[];
- const freight=freightRows.length===1?object(freightRows[0]):{};
- const freightAmount=money(freight.logisticPrice);
- // Product price documentation is not a currency contract for a freight response.
- const freightCurrency=typeof freight.currency==='string'&&/^[A-Z]{3}$/.test(freight.currency)?freight.currency:null;
+ const options=freightOptions(freightSources.length===1?freightSources[0]!.source:null);
+ const parsed=qualificationReviewSchema.safeParse(review?.command);
+ const selection=parsed.success&&review?.workspace===workspace&&review?.candidateId===binding.candidateId&&review?.actor&&review?.attestedBy==='AUTHENTICATED_OWNER'&&parsed.data.sourceSnapshotDigest===binding.snapshotDigest?parsed.data.freightSelection:undefined;
+ const freight=selectFreight(options,selection);
+ const freightAmount=freight?.amount??null,freightCurrency=freight?.currency??null;
  if(freightAmount===null)missing.add('EXACT_FREIGHT_REQUIRED');if(freightCurrency===null)missing.add('FREIGHT_CURRENCY_REQUIRED');
+ if(freight?.currencyContradiction)missing.add('FREIGHT_CURRENCY_CONTRADICTION');
+ if(selection&&!freight)missing.add('FREIGHT_SELECTION_STALE_OR_AMBIGUOUS');
  const images=[...new Set([response.productImage,...(Array.isArray(response.productImageSet)?response.productImageSet:[]),variant.variantImage].filter((u):u is string=>{try{const p=new URL(String(u));return p.protocol==='https:'&&!p.username&&!p.password;}catch{return false;}}))].slice(0,10).map(url=>({observedUrl:url,displayUrl:null,rights:'UNVERIFIED' as const,permissionEvidence:null}));
  missing.add('IMAGE_PERMISSION_REQUIRED');missing.add('REVIEWED_FINANCIAL_INPUTS_REQUIRED');missing.add('REVIEWED_ELIGIBILITY_REQUIRED');missing.add('PILLOW_COMPLETED_ASSESSMENT_REQUIRED');missing.add('EXPLICIT_SIMULATION_AUTHORIZATION_REQUIRED');
  const body={schema:'WORK8_QUALIFICATION_DOSSIER_V1',workspace,candidateId:binding.candidateId,sourceBinding:binding,
   sourceEvidence:sources.map(({source:s,freshness})=>({id:s.id,envelopeDigest:digest(s),factsDigest:s.digest,provider:s.provider,capability:s.capabilityId,endpoint:s.endpoint,observedAt:s.observedAt,expiresAt:s.staleAfter,freshness,classification:'RETAINED_PROVIDER_OBSERVATION'})),
-  supplier:{productId:binding.productId,variantId:identity?binding.subject.variant:null,destination:binding.subject.destination??null,identityVerified:identity,title:identity?text(response.productNameEn):null,price:contradiction?null:price,currency:price!==null&&!contradiction?'USD':null,currencyBasis:price!==null&&!contradiction?cjVariantCurrencyContract:null,stock,freight:{amount:freightAmount,currency:freightCurrency,service:text(freight.logisticName),leadTime:text(freight.logisticAging)},images},
+  supplier:{productId:binding.productId,variantId:identity?binding.subject.variant:null,destination:binding.subject.destination??null,identityVerified:identity,title:identity?text(response.productNameEn):null,price:contradiction?null:price,currency:price!==null&&!contradiction?'USD':null,currencyBasis:price!==null&&!contradiction?cjVariantCurrencyContract:null,stock,freight:{amount:freightAmount,currency:freightCurrency,service:freight?.service??null,leadTime:freight?.leadTime??null,currencyBasis:freight?.currencyBasis??null,selectedBy:selection?review?.actor??null:null,selection:selection??null,options},images},
   financialInputs:reviewedDossierFinance(workspace,binding.productId,binding.subject.destination,financialSnapshot,now),
   findings:findingKinds.map(kind=>({kind,status:'MISSING_REVIEWED_EVIDENCE',value:null,sourceIds:[],verified:false})),
   eligibility:{status:'DEFERRED',qualified:false,missing:[...missing].sort()},
