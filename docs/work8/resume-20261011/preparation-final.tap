@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+ok 1 - reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+  ---
+  duration_ms: 503.669552
+  type: 'test'
+  ...
+# Subtest: missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+ok 2 - missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+  ---
+  duration_ms: 155.127291
+  type: 'test'
+  ...
+# Subtest: late policy failure rolls back all canonical commands and preparation receipt together
+ok 3 - late policy failure rolls back all canonical commands and preparation receipt together
+  ---
+  duration_ms: 47.070756
+  type: 'test'
+  ...
+# Subtest: stale dossier, changed source and foreign approval cannot inherit prepared authority
+ok 4 - stale dossier, changed source and foreign approval cannot inherit prepared authority
+  ---
+  duration_ms: 45.383288
+  type: 'test'
+  ...
+# Subtest: durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+ok 5 - durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+  ---
+  duration_ms: 74.049942
+  type: 'test'
+  ...
+# Subtest: cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+ok 6 - cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+  ---
+  duration_ms: 105.216165
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1299.363397

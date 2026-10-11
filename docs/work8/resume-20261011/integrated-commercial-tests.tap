@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: explicit qualified fixture enrolls one simulated listing/order/delivery and immutable financial lifecycle
+ok 1 - explicit qualified fixture enrolls one simulated listing/order/delivery and immutable financial lifecycle
+  ---
+  duration_ms: 438.352391
+  type: 'test'
+  ...
+# Subtest: deferred dossier, missing assessment, foreign owner, changed candidate and missing explicit acknowledgement refuse with no tasks
+ok 2 - deferred dossier, missing assessment, foreign owner, changed candidate and missing explicit acknowledgement refuse with no tasks
+  ---
+  duration_ms: 43.079912
+  type: 'test'
+  ...
+# Subtest: changed task plan and changed idempotency request cannot alter enrollment
+ok 3 - changed task plan and changed idempotency request cannot alter enrollment
+  ---
+  duration_ms: 8.710431
+  type: 'test'
+  ...
+# Subtest: source expiry after enrollment blocks the canonical worker without replay or financial events
+ok 4 - source expiry after enrollment blocks the canonical worker without replay or financial events
+  ---
+  duration_ms: 9.86659
+  type: 'test'
+  ...
+# Subtest: derived identifiers are bounded before any task or enrollment is written
+ok 5 - derived identifiers are bounded before any task or enrollment is written
+  ---
+  duration_ms: 5.047976
+  type: 'test'
+  ...
+# Subtest: reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+ok 6 - reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+  ---
+  duration_ms: 497.355321
+  type: 'test'
+  ...
+# Subtest: missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+ok 7 - missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+  ---
+  duration_ms: 118.437742
+  type: 'test'
+  ...
+# Subtest: late policy failure rolls back all canonical commands and preparation receipt together
+ok 8 - late policy failure rolls back all canonical commands and preparation receipt together
+  ---
+  duration_ms: 43.915674
+  type: 'test'
+  ...
+# Subtest: stale dossier, changed source and foreign approval cannot inherit prepared authority
+ok 9 - stale dossier, changed source and foreign approval cannot inherit prepared authority
+  ---
+  duration_ms: 43.421839
+  type: 'test'
+  ...
+# Subtest: complete explicitly labelled protocol fixture qualifies for text screening without image rights or model authority
+ok 10 - complete explicitly labelled protocol fixture qualifies for text screening without image rights or model authority
+  ---
+  duration_ms: 30.829431
+  type: 'test'
+  ...
+# Subtest: missing review, contradicted forecast, reversed cash and model-only input cannot qualify
+ok 11 - missing review, contradicted forecast, reversed cash and model-only input cannot qualify
+  ---
+  duration_ms: 26.91672
+  type: 'test'
+  ...
+# Subtest: explicit compliance denial rejects; seven supplier-only citations cannot replace marketplace evidence
+ok 12 - explicit compliance denial rejects; seven supplier-only citations cannot replace marketplace evidence
+  ---
+  duration_ms: 19.650162
+  type: 'test'
+  ...
+# Subtest: review history is immutable and changed financial snapshot invalidates prior qualification
+ok 13 - review history is immutable and changed financial snapshot invalidates prior qualification
+  ---
+  duration_ms: 13.731447
+  type: 'test'
+  ...
+# Subtest: retained genuine CJ observations remain individually deferred without inventing qualification or image rights
+ok 14 - retained genuine CJ observations remain individually deferred without inventing qualification or image rights
+  ---
+  duration_ms: 20.200798
+  type: 'test'
+  ...
+# Subtest: guard duplicate-orders positive and negative boundaries
+ok 15 - guard duplicate-orders positive and negative boundaries
+  ---
+  duration_ms: 38.900849
+  type: 'test'
+  ...
+# Subtest: guard order-reconciliation positive and negative boundaries
+ok 16 - guard order-reconciliation positive and negative boundaries
+  ---
+  duration_ms: 32.715184
+  type: 'test'
+  ...
+# Subtest: guard stock positive and negative boundaries
+ok 17 - guard stock positive and negative boundaries
+  ---
+  duration_ms: 0.675372
+  type: 'test'
+  ...
+# Subtest: guard profitability positive and negative boundaries
+ok 18 - guard profitability positive and negative boundaries
+  ---
+  duration_ms: 0.642694
+  type: 'test'
+  ...
+# Subtest: guard capital positive and negative boundaries
+ok 19 - guard capital positive and negative boundaries
+  ---
+  duration_ms: 0.611269
+  type: 'test'
+  ...
+# Subtest: guard delivery positive and negative boundaries
+ok 20 - guard delivery positive and negative boundaries
+  ---
+  duration_ms: 33.915428
+  type: 'test'
+  ...
+# Subtest: guard compliance positive and negative boundaries
+ok 21 - guard compliance positive and negative boundaries
+  ---
+  duration_ms: 0.549062
+  type: 'test'
+  ...
+# Subtest: guard supplier-reliability positive and negative boundaries
+ok 22 - guard supplier-reliability positive and negative boundaries
+  ---
+  duration_ms: 0.315612
+  type: 'test'
+  ...
+# Subtest: guard durability positive and negative boundaries
+ok 23 - guard durability positive and negative boundaries
+  ---
+  duration_ms: 8.568076
+  type: 'test'
+  ...
+# Subtest: guard safe-retry positive and negative boundaries
+ok 24 - guard safe-retry positive and negative boundaries
+  ---
+  duration_ms: 15.261419
+  type: 'test'
+  ...
+# Subtest: guard financial-reconciliation positive and negative boundaries
+ok 25 - guard financial-reconciliation positive and negative boundaries
+  ---
+  duration_ms: 13.087247
+  type: 'test'
+  ...
+# Subtest: guard monitoring positive and negative boundaries
+ok 26 - guard monitoring positive and negative boundaries
+  ---
+  duration_ms: 4.736166
+  type: 'test'
+  ...
+# Subtest: guard circuit-breakers positive and negative boundaries
+ok 27 - guard circuit-breakers positive and negative boundaries
+  ---
+  duration_ms: 3.676338
+  type: 'test'
+  ...
+# Subtest: guard owner-authority positive and negative boundaries
+ok 28 - guard owner-authority positive and negative boundaries
+  ---
+  duration_ms: 7.687162
+  type: 'test'
+  ...
+# Subtest: guard disaster-recovery positive and negative boundaries
+ok 29 - guard disaster-recovery positive and negative boundaries
+  ---
+  duration_ms: 10.212153
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1147.452575
