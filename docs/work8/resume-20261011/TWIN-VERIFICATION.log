@@ -1,0 +1,42 @@
+TAP version 13
+# Subtest: future Helium10 boundary is disabled even for well-shaped evidence and rejects identity mismatch
+ok 1 - future Helium10 boundary is disabled even for well-shaped evidence and rejects identity mismatch
+  ---
+  duration_ms: 4.855837
+  type: 'test'
+  ...
+# Subtest: temporary authority: explicit admission, one-task consumption, expiry, revocation and immutable scope
+ok 2 - temporary authority: explicit admission, one-task consumption, expiry, revocation and immutable scope
+  ---
+  duration_ms: 139.167416
+  type: 'test'
+  ...
+# Subtest: revocation contains an injected checkpoint fault until an explicit fresh grant permits canonical recovery
+ok 3 - revocation contains an injected checkpoint fault until an explicit fresh grant permits canonical recovery
+  ---
+  duration_ms: 68.511558
+  type: 'test'
+  ...
+# {"kind":"LABELLED_TWIN_SCALE","executedCandidates":100,"canonicalReceipts":1000,"retainedTaskCap":1000,"elapsedMs":13307,"timerCadenceMs":10,"virtualAdmissionDays":10,"actualCashMovement":0,"limits":"Not genuine product qualification; not 1000 executed products; settlement endurance separate"}
+# Subtest: 100-candidate twin day executes on shared timer; daily admission and 1000-task retention cap remain bounded
+ok 4 - 100-candidate twin day executes on shared timer; daily admission and 1000-task retention cap remain bounded
+  ---
+  duration_ms: 14541.954311
+  type: 'test'
+  ...
+# ◇ injected env (0) from .env
+# Subtest: persistent vertical twin: multiple products, actual scheduler, checkpoint fault recovery, shipments, settlement and restart equality
+ok 5 - persistent vertical twin: multiple products, actual scheduler, checkpoint fault recovery, shipments, settlement and restart equality
+  ---
+  duration_ms: 2128.069463
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14885.416207

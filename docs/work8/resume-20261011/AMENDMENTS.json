@@ -25,11 +25,12 @@
         45
       ],
       "scope": "Persistent isolated digital twin moves into Work8; reuse canonical commerce/finance/Assurance and existing Owner Console; Work9 is shadow/live commissioning",
-      "status": "FOUNDATION_IMPLEMENTED_NOT_ACCEPTED",
-      "next": "Wire canonical worker/finance/Assurance and existing Console using implemented owner safety inheritance across verified active twin namespaces; source import and isolated runtime remain pending.",
-      "engineeringHead": "5fb5e424d8d76d81d1bf2105c2619960d9359052",
+      "status": "VERTICAL_INTEGRATION_IMPLEMENTED_ISOLATED_EXAM_PASSED_NOT_OWNER_ACCEPTED",
+      "next": "Complete integrated multi-day examination and genuine context coverage; separately approved isolated hosting and native owner acceptance remain",
+      "engineeringHead": "b7003144b7056f31cd55221613fa55e895c42545",
       "focusedTests": 7,
-      "regressionTests": 2
+      "regressionTests": 2,
+      "frontendPublishedCommit": "a295ce085214cc4be1f2687391aad3b907e3d7e0"
     },
     {
       "id": "CONTEXT_CHAT",
@@ -42,7 +43,8 @@
         41
       ],
       "scope": "Compact per-product/listing/order chat icon, exact server-validated workspace/variant/evidence context, removable persistent tag",
-      "status": "PENDING"
+      "status": "TWIN_PRODUCT_LISTING_CONTEXT_IMPLEMENTED_NOT_FULLY_ACCEPTED",
+      "next": "Complete genuine reference-record coverage and native interaction; no model inference submitted"
     },
     {
       "id": "TEMP_AUTHORITY",
@@ -55,7 +57,8 @@
         41
       ],
       "scope": "Systems authority one-task/15m/1h grants, expiry/revocation/immutable audit; cannot grant Birth/live/release/credential authority",
-      "status": "PENDING"
+      "status": "TWIN_SCOPE_IMPLEMENTED_EXPIRY_REVOCATION_VERIFIED_NOT_OWNER_ACCEPTED",
+      "next": "Native Systems interaction acceptance; no live/Birth/inference/release authority granted"
     },
     {
       "id": "RESOURCE_DECISION",
@@ -69,8 +72,8 @@
       ],
       "scope": "Keepa preferred pending plan/licence/purchase; Helium10 disabled future adapter; JungleScout excluded",
       "status": "DECISION_RECORDED_NOT_INTEGRATION_ACCEPTANCE",
-      "existingAdapter": "Keepa history adapter in intelligence/acquisition.ts; no Helium10 adapter found in backend/src",
-      "next": "Reuse Keepa adapter; validate token/licence/identity boundaries and prepare disabled Helium10 contract; no paid calls"
+      "existingAdapter": "Keepa preserved; Helium10 disabled typed compatibility contract added",
+      "next": "External entitlement and authentic evidence remain blocked; no purchase or provider calls"
     },
     {
       "id": "PREVIEW_REBUILD",

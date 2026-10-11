@@ -1,0 +1,34 @@
+{
+  "schema": "WORK8_VERTICAL_INTEGRATION_V1",
+  "backend": "b7003144b7056f31cd55221613fa55e895c42545",
+  "frontendPublishedCommit": "a295ce085214cc4be1f2687391aad3b907e3d7e0",
+  "frontendBranchHeadUnchanged": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "deploymentPerformed": false,
+  "classification": "ISOLATED_LABELLED_FIXTURE_EXAMINATION_NOT_GENUINE_QUALIFICATION",
+  "verified": [
+    "real shared scheduler timer",
+    "3 distinct canonical products and delivered orders",
+    "intercepted listing publication",
+    "33 canonical simulated financial events",
+    "checkpoint fault detected and verified recovery through existing Assurance runbook",
+    "pause and process restart without duplication",
+    "authenticated HTTP canonical record equality and anonymous401",
+    "seven Console destination server-render checks against same canonical service output",
+    "frontend typecheck and changed-file lint",
+    "one-task/15-minute/one-hour authority enforced with expiry and immediate revocation",
+    "server-resolved receipt-bound twin product chat context; no inference submitted",
+    "100 labelled candidates executed on actual timer: 1000 canonical receipts in 13307ms",
+    "1000 retained-task cap across 10 virtual admission days",
+    "Helium10 disabled compatibility contract rejects acquisition without entitlement"
+  ],
+  "remaining": [
+    "native authenticated browser acceptance",
+    "separately approved isolated runtime/preview deployment",
+    "genuine supplier qualification and authorised assessment",
+    "product context coverage for genuine/live reference records",
+    "multi-day settlement and compounded-failure endurance"
+  ],
+  "register": "1 PASS / 39 PENDING / 5 BLOCKED",
+  "scaleLimitations": "10ms test cadence; virtual admission clock; not 1000 executed products or genuine qualification",
+  "performanceRepair": "Initial 120-second bound failed; replaced per-turn whole-queue Assurance scan with exact selected-task probe; full projection probes retained"
+}
