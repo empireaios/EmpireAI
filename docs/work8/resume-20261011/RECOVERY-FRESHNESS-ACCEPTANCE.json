@@ -1,0 +1,48 @@
+{
+  "schema": "work8-scoped-recovery-verification-v1",
+  "source": "fcafa3e1995a207a8ede310fdccaf2838ee31dd5",
+  "tree": "4e0be42b2508d449876ab0a4ddaadf9aa9d13ce8",
+  "published": false,
+  "criterion": "Requirement28: recovery independently verified from fresh evidence; supports26,29,34 but does not close them",
+  "reproduction": {
+    "tests": 5,
+    "pass": 1,
+    "fail": 4,
+    "receipt": "RECOVERY-FRESHNESS-BEFORE.tap",
+    "defect": "healthy:true accepted with missing, stale, future or pre-verification observation timestamp"
+  },
+  "verification": {
+    "controlTests": 32,
+    "integrationTests": 17,
+    "failed": 0,
+    "receipts": [
+      "RECOVERY-FRESHNESS-CORE.tap",
+      "RECOVERY-FRESHNESS-INTEGRATION.tap"
+    ],
+    "environment": "Node24.19.0; kernel network denial; synthetic isolated resources; no provider inference",
+    "typecheck": "FAILED locally: incomplete shared dependency declarations and other project diagnostics; no diagnostics in the changed runtime/reconciliation files; not claimed as passing or all pre-existing",
+    "typecheckReceipt": "RECOVERY-FRESHNESS-TYPECHECK.txt"
+  },
+  "independentReview": {
+    "reviewer": "/root/review_retirement_finance",
+    "verdict": "SCOPED_PASS",
+    "limitations": [
+      "Review did not rerun tests",
+      "Timestamp validity alone does not prove semantic independence",
+      "Cannot distinguish cached evidence stamped in the same millisecond",
+      "Full requirement28 remains PENDING"
+    ]
+  },
+  "governance": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "deployments": 0,
+    "inferenceCalls": 0
+  },
+  "receiptSha256": {
+    "RECOVERY-FRESHNESS-BEFORE.tap": "184e59349b016ae04c21cc90359f638513cb15a0b2dd57962bf561af2f70de5a",
+    "RECOVERY-FRESHNESS-CORE.tap": "3b1942d5ae4997fc782eb670cb83f63af8e339d2b5e67008939c4d014bb69a0a",
+    "RECOVERY-FRESHNESS-INTEGRATION.tap": "099ac22fc8e3d1ac0197a53ccef677eadbd6e35e758fb93e9de68b22a2156473",
+    "RECOVERY-FRESHNESS-TYPECHECK.txt": "a4865f9a7a1c51da1997f19d44cfa0bf18c164e2be63423a8778fc4bfbad9620"
+  }
+}

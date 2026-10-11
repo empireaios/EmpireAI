@@ -1,0 +1,115 @@
+TAP version 13
+# ◇ injected env (0) from .env
+# Subtest: owner command parser rejects effect expansion and incomplete acceptance authority
+ok 1 - owner command parser rejects effect expansion and incomplete acceptance authority
+  ---
+  duration_ms: 1.309128
+  type: 'test'
+  ...
+# Subtest: independent cycle repairs derived operational view, preserves sources and survives restart without repeated repair
+ok 2 - independent cycle repairs derived operational view, preserves sources and survives restart without repeated repair
+  ---
+  duration_ms: 68.921267
+  type: 'test'
+  ...
+# Subtest: B approval performs no interruption before exact owner decision and records governed verified recovery
+ok 3 - B approval performs no interruption before exact owner decision and records governed verified recovery
+  ---
+  duration_ms: 14.176007
+  type: 'test'
+  ...
+# Subtest: deployment lease rejects interruption acceptance before source/view mutation
+ok 4 - deployment lease rejects interruption acceptance before source/view mutation
+  ---
+  duration_ms: 10.78662
+  type: 'test'
+  ...
+# Subtest: designated Advisor recovery automatically admits exactly one bounded task and leaves deterministic executor excluded
+ok 5 - designated Advisor recovery automatically admits exactly one bounded task and leaves deterministic executor excluded
+  ---
+  duration_ms: 61.284156
+  type: 'test'
+  ...
+# Subtest: closure cannot be asserted from owner text before exact server-held acceptance receipts
+ok 6 - closure cannot be asserted from owner text before exact server-held acceptance receipts
+  ---
+  duration_ms: 7.031853
+  type: 'test'
+  ...
+# Subtest: controlled deployment collision records real deferral and only recovers after fenced owner release
+ok 7 - controlled deployment collision records real deferral and only recovers after fenced owner release
+  ---
+  duration_ms: 29.335808
+  type: 'test'
+  ...
+# Subtest: monitor pause auto expires and requires independently observed stale then restored heartbeat
+ok 8 - monitor pause auto expires and requires independently observed stale then restored heartbeat
+  ---
+  duration_ms: 39.579996
+  type: 'test'
+  ...
+# Subtest: preservation accepts additive evidence but rejects any existing record mutation or deletion
+ok 9 - preservation accepts additive evidence but rejects any existing record mutation or deletion
+  ---
+  duration_ms: 21.416529
+  type: 'test'
+  ...
+# Subtest: completed one-shot approval is reconciled from canonical receipts without changing the original probe
+ok 10 - completed one-shot approval is reconciled from canonical receipts without changing the original probe
+  ---
+  duration_ms: 30.793044
+  type: 'test'
+  ...
+# Subtest: full owner handover is immutable, idempotent, durable, and does not start a Work
+ok 11 - full owner handover is immutable, idempotent, durable, and does not start a Work
+  ---
+  duration_ms: 11.545472
+  type: 'test'
+  ...
+# ◇ injected env (0) from .env
+# Subtest: Candidate001 later technical closure coexists with unchanged insufficient assessment, failures and unknown invoices
+ok 12 - Candidate001 later technical closure coexists with unchanged insufficient assessment, failures and unknown invoices
+  ---
+  duration_ms: 1.909582
+  type: 'test'
+  ...
+# Subtest: unbound or earlier closure cannot supersede; missing evidence produces stable durable incident key
+ok 13 - unbound or earlier closure cannot supersede; missing evidence produces stable durable incident key
+  ---
+  duration_ms: 0.957419
+  type: 'test'
+  ...
+# Subtest: actual supported Pillow context reads materialized durable sources; restart, corruption repair, source change and workspace isolation
+ok 14 - actual supported Pillow context reads materialized durable sources; restart, corruption repair, source change and workspace isolation
+  ---
+  duration_ms: 28.90273
+  type: 'test'
+  ...
+# Subtest: Candidate001 exact live consultation keys correlate both ledger calls and exclude unrelated calls
+ok 15 - Candidate001 exact live consultation keys correlate both ledger calls and exclude unrelated calls
+  ---
+  duration_ms: 2.827244
+  type: 'test'
+  ...
+# ◇ injected env (0) from .env
+# Subtest: actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+ok 16 - actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+  ---
+  duration_ms: 392.608794
+  type: 'test'
+  ...
+# Subtest: Commerce task, Assurance recovery and finance share real canonical identities and state
+ok 17 - Commerce task, Assurance recovery and finance share real canonical identities and state
+  ---
+  duration_ms: 104.087562
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2661.826473

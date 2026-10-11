@@ -1,0 +1,202 @@
+TAP version 13
+# Subtest: normal observation autonomously detects and verifies recovery, dedup and immutable evidence
+ok 1 - normal observation autonomously detects and verifies recovery, dedup and immutable evidence
+  ---
+  duration_ms: 27.623071
+  type: 'test'
+  ...
+# Subtest: B requires exact durable approval and follows through once; replay conflict denied
+ok 2 - B requires exact durable approval and follows through once; replay conflict denied
+  ---
+  duration_ms: 15.438217
+  type: 'test'
+  ...
+# Subtest: expired and rejected approval cannot execute
+ok 3 - expired and rejected approval cannot execute
+  ---
+  duration_ms: 8.330954
+  type: 'test'
+  ...
+# Subtest: deployment lease defers repair; fenced finish triggers safe recovery
+ok 4 - deployment lease defers repair; fenced finish triggers safe recovery
+  ---
+  duration_ms: 8.848293
+  type: 'test'
+  ...
+# Subtest: unknown outcome preserved across process replacement and never blindly replayed
+ok 5 - unknown outcome preserved across process replacement and never blindly replayed
+  ---
+  duration_ms: 25.458794
+  type: 'test'
+  ...
+# Subtest: partial recovery verification failure respects cooldown and attempt breaker
+ok 6 - partial recovery verification failure respects cooldown and attempt breaker
+  ---
+  duration_ms: 21.088805
+  type: 'test'
+  ...
+# Subtest: pause retains observation; monitoring freshness, isolation and prohibited recovery
+ok 7 - pause retains observation; monitoring freshness, isolation and prohibited recovery
+  ---
+  duration_ms: 22.868128
+  type: 'test'
+  ...
+# Subtest: concurrent recovery ticks execute only once
+ok 8 - concurrent recovery ticks execute only once
+  ---
+  duration_ms: 14.172499
+  type: 'test'
+  ...
+# Subtest: rejected decision remains denied without approval spam
+ok 9 - rejected decision remains denied without approval spam
+  ---
+  duration_ms: 9.915573
+  type: 'test'
+  ...
+# Subtest: expired lease remains blocking until trusted live deployment reconciliation
+ok 10 - expired lease remains blocking until trusted live deployment reconciliation
+  ---
+  duration_ms: 37.673342
+  type: 'test'
+  ...
+# Subtest: unknown recovery reconciles completed state without repeat execution
+ok 11 - unknown recovery reconciles completed state without repeat execution
+  ---
+  duration_ms: 9.752357
+  type: 'test'
+  ...
+# Subtest: owner approval bound to revision cannot authorize a new release
+ok 12 - owner approval bound to revision cannot authorize a new release
+  ---
+  duration_ms: 17.467255
+  type: 'test'
+  ...
+# Subtest: deferred approvals can be revisited without losing exact scope
+ok 13 - deferred approvals can be revisited without losing exact scope
+  ---
+  duration_ms: 18.918541
+  type: 'test'
+  ...
+# Subtest: expired approval creates a new scoped request while original decision evidence survives
+ok 14 - expired approval creates a new scoped request while original decision evidence survives
+  ---
+  duration_ms: 6.462565
+  type: 'test'
+  ...
+# Subtest: independent inspector detects lost primary heartbeat without hiding failure and records restoration
+ok 15 - independent inspector detects lost primary heartbeat without hiding failure and records restoration
+  ---
+  duration_ms: 18.051626
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: missing
+ok 16 - recovery requires an observation from the current verification: missing
+  ---
+  duration_ms: 13.873476
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: stale
+ok 17 - recovery requires an observation from the current verification: stale
+  ---
+  duration_ms: 5.661216
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: future
+ok 18 - recovery requires an observation from the current verification: future
+  ---
+  duration_ms: 5.106076
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: before-verification
+ok 19 - recovery requires an observation from the current verification: before-verification
+  ---
+  duration_ms: 4.422467
+  type: 'test'
+  ...
+# Subtest: recovery requires an observation from the current verification: fresh
+ok 20 - recovery requires an observation from the current verification: fresh
+  ---
+  duration_ms: 5.255374
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: cache-expiry
+ok 21 - Work8 real control-plane exam: cache-expiry
+  ---
+  duration_ms: 10.342355
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: duplicate-delivery
+ok 22 - Work8 real control-plane exam: duplicate-delivery
+  ---
+  duration_ms: 3.410008
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: failed-repair
+ok 23 - Work8 real control-plane exam: failed-repair
+  ---
+  duration_ms: 5.067734
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: unknown-outcome
+ok 24 - Work8 real control-plane exam: unknown-outcome
+  ---
+  duration_ms: 3.331769
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: expired-approval
+ok 25 - Work8 real control-plane exam: expired-approval
+  ---
+  duration_ms: 3.890646
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: forbidden-financial-repair
+ok 26 - Work8 real control-plane exam: forbidden-financial-repair
+  ---
+  duration_ms: 3.138645
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: watchdog-loss
+ok 27 - Work8 real control-plane exam: watchdog-loss
+  ---
+  duration_ms: 4.459761
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: compounded-cache-worker
+ok 28 - Work8 real control-plane exam: compounded-cache-worker
+  ---
+  duration_ms: 5.031888
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: restart-preservation
+ok 29 - Work8 real control-plane exam: restart-preservation
+  ---
+  duration_ms: 4.344445
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: recurring-failure
+ok 30 - Work8 real control-plane exam: recurring-failure
+  ---
+  duration_ms: 4.837267
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: stale-closure
+ok 31 - Work8 real control-plane exam: stale-closure
+  ---
+  duration_ms: 1.789911
+  type: 'test'
+  ...
+# Subtest: unregistered scenarios and non-reproducible seeds rejected
+ok 32 - unregistered scenarios and non-reproducible seeds rejected
+  ---
+  duration_ms: 0.625723
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 443.872709

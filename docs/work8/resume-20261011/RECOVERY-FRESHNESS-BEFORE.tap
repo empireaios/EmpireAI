@@ -1,0 +1,91 @@
+✖ recovery requires an observation from the current verification: missing (10.705339ms)
+✖ recovery requires an observation from the current verification: stale (2.04725ms)
+✖ recovery requires an observation from the current verification: future (2.167437ms)
+✖ recovery requires an observation from the current verification: before-verification (2.134651ms)
+✔ recovery requires an observation from the current verification: fresh (4.084916ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.96959
+
+✖ failing tests:
+
+test at backend/src/validation/tests/assurance-recovery-freshness.test.mjs:9:2
+✖ recovery requires an observation from the current verification: missing (10.705339ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'VERIFIED'
+  - 'FAILED'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/425cef48de17/backend/backend/src/validation/tests/assurance-recovery-freshness.test.mjs:22:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'VERIFIED',
+    expected: 'FAILED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at backend/src/validation/tests/assurance-recovery-freshness.test.mjs:9:2
+✖ recovery requires an observation from the current verification: stale (2.04725ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'VERIFIED'
+  - 'FAILED'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/425cef48de17/backend/backend/src/validation/tests/assurance-recovery-freshness.test.mjs:22:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'VERIFIED',
+    expected: 'FAILED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at backend/src/validation/tests/assurance-recovery-freshness.test.mjs:9:2
+✖ recovery requires an observation from the current verification: future (2.167437ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'VERIFIED'
+  - 'FAILED'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/425cef48de17/backend/backend/src/validation/tests/assurance-recovery-freshness.test.mjs:22:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'VERIFIED',
+    expected: 'FAILED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at backend/src/validation/tests/assurance-recovery-freshness.test.mjs:9:2
+✖ recovery requires an observation from the current verification: before-verification (2.134651ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'VERIFIED'
+  - 'FAILED'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/425cef48de17/backend/backend/src/validation/tests/assurance-recovery-freshness.test.mjs:22:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'VERIFIED',
+    expected: 'FAILED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

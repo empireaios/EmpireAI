@@ -1,0 +1,81 @@
+{
+  "schema": "work8-connector-publication-v1",
+  "observedAt": "2026-10-11",
+  "publications": [
+    {
+      "original": "b7fe1e28bfa36be3677f495b71556fd4e63109e8",
+      "replacement": "70a9d709399fa8f50d62951fda7ea02ba9101d4b",
+      "branch": "work8/autonomous-examination-20261011",
+      "originalTree": "560aa871ec4fc32545a7eb543829a3c715484177",
+      "replacementTree": "560aa871ec4fc32545a7eb543829a3c715484177",
+      "previousRemoteHead": "06a217eceb7cccb809ce90d7c9df3228fc3da47e",
+      "verifiedRemoteHead": "70a9d709399fa8f50d62951fda7ea02ba9101d4b",
+      "missingFiles": 0,
+      "modifiedFiles": 0,
+      "additionalFiles": 0
+    },
+    {
+      "original": "2cae9fb2c20b6b7210deda8d586fe3d3c90100d3",
+      "replacement": "5f75d7d4e2de5873a3796368faeeac9dbda63d0f",
+      "branch": "work8/examination-evidence-20261011",
+      "originalTree": "7d9c11b6b0ed3fd45c9841d44613da99ef05da24",
+      "replacementTree": "7d9c11b6b0ed3fd45c9841d44613da99ef05da24",
+      "previousRemoteHead": "4dcb057b9f58b0f0b47b0b0fbc2cc6b0657ffff6",
+      "verifiedRemoteHead": "5f75d7d4e2de5873a3796368faeeac9dbda63d0f",
+      "missingFiles": 0,
+      "modifiedFiles": 0,
+      "additionalFiles": 0
+    }
+  ],
+  "verification": "Fetched remote Git objects; full tree SHA equality and empty git diff; different commit metadata/SHAs, not identical commits.",
+  "retainedTests": 35,
+  "priorCI": [
+    {
+      "id": 38134138192,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 111,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38134138192/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38134138192/logs",
+      "workflow_id": 373040927
+    },
+    {
+      "id": 38134138202,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 670,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38134138202/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38134138202/logs",
+      "workflow_id": 362674549
+    },
+    {
+      "id": 38134138171,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 669,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38134138171/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38134138171/logs",
+      "workflow_id": 362309382
+    },
+    {
+      "id": 38134138144,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 671,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38134138144/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38134138144/logs",
+      "workflow_id": 362688325
+    }
+  ],
+  "heldFrontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "governance": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "deployed": false,
+    "merged": false
+  }
+}

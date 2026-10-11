@@ -1,0 +1,98 @@
+{
+  "schema": "work8-readonly-correlation-v1",
+  "observedAt": "2026-10-11",
+  "requests": [
+    {
+      "createdAt": "2026-10-10T21:37:30.026Z",
+      "inference": {
+        "capability": "reasoning",
+        "requestKey": "f8deb9058521916cb70cb9cd59ab05aea5041a8bf0cd95d887cb07834ff8a6f2",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "outcome": "success"
+          }
+        ]
+      },
+      "request": {
+        "requestId": "req-18z",
+        "sessionId": "49ea7b46-c131-4b66-94b0-610da6aaf3c2",
+        "workspaceId": "ws_empire_1",
+        "codeSha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+        "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949",
+        "entrypoint": "POST /api/pillow/chat",
+        "reboundSessionId": null,
+        "layer": "brain-pillow-host"
+      },
+      "pillowRequestId": "pcr_d9c4b797ac1a431a",
+      "correlationVerification": {
+        "algorithm": "SHA256(workspaceId + NUL + pillowRequestId)",
+        "matches": true,
+        "transportRequestIdIsAccountingKey": false
+      }
+    },
+    {
+      "createdAt": "2026-10-10T21:43:10.681Z",
+      "inference": {
+        "capability": "reasoning",
+        "requestKey": "6c76dd5f4dcd84dd4e4f8772f93ba2fb5710f09fd0321c5c1b280b9d26fcb45c",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "outcome": "success"
+          }
+        ]
+      },
+      "request": {
+        "requestId": "req-1kb",
+        "sessionId": "49ea7b46-c131-4b66-94b0-610da6aaf3c2",
+        "workspaceId": "ws_empire_1",
+        "codeSha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+        "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949",
+        "entrypoint": "POST /api/pillow/chat",
+        "reboundSessionId": null,
+        "layer": "brain-pillow-host"
+      },
+      "pillowRequestId": "pcr_f4316f954345430a",
+      "correlationVerification": {
+        "algorithm": "SHA256(workspaceId + NUL + pillowRequestId)",
+        "matches": true,
+        "transportRequestIdIsAccountingKey": false
+      }
+    },
+    {
+      "createdAt": "2026-10-10T21:45:06.964Z",
+      "inference": {
+        "capability": "reasoning",
+        "requestKey": "98ae751cae47d20b22745b5c4ab709d2c57754c3ebb7eda50483f0f669a528f4",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "outcome": "success"
+          }
+        ]
+      },
+      "request": {
+        "requestId": "req-1o9",
+        "sessionId": "49ea7b46-c131-4b66-94b0-610da6aaf3c2",
+        "workspaceId": "ws_empire_1",
+        "codeSha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+        "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949",
+        "entrypoint": "POST /api/pillow/chat",
+        "reboundSessionId": null,
+        "layer": "brain-pillow-host"
+      },
+      "pillowRequestId": "pcr_ea7be3e4e9974a3f",
+      "correlationVerification": {
+        "algorithm": "SHA256(workspaceId + NUL + pillowRequestId)",
+        "matches": true,
+        "transportRequestIdIsAccountingKey": false
+      }
+    }
+  ],
+  "scope": "Historical stored request provenance only. No new inference, provider refresh, ledger mutation or financial acceptance.",
+  "remaining": "Full canonical 227 rows and original 224 snapshot/subset verification remain required. Three correlated requests are not proof that these are the three additional accounting rows."
+}

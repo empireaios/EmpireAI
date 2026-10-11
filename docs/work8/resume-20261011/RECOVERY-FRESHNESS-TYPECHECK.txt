@@ -1,0 +1,774 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @empireai/backend@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+src/app.ts(10,20): error TS2307: Cannot find module '@fastify/cookie' or its corresponding type declarations.
+src/auth/middleware.ts(19,34): error TS2339: Property 'cookies' does not exist on type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+src/auth/routes.ts(83,11): error TS2339: Property 'setCookie' does not exist on type 'FastifyReply<RouteGenericInterface, RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, unknown, FastifySchema, FastifyTypeProviderDefault, unknown>'.
+src/auth/routes.ts(106,34): error TS2339: Property 'cookies' does not exist on type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+src/auth/routes.ts(124,11): error TS2339: Property 'clearCookie' does not exist on type 'FastifyReply<RouteGenericInterface, RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, unknown, FastifySchema, FastifyTypeProviderDefault, unknown>'.
+src/auth/routes.ts(157,11): error TS2339: Property 'setCookie' does not exist on type 'FastifyReply<RouteGenericInterface, RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, unknown, FastifySchema, FastifyTypeProviderDefault, unknown>'.
+src/brain/llm/anthropic-provider.ts(1,23): error TS2307: Cannot find module '@anthropic-ai/sdk' or its corresponding type declarations.
+src/brain/llm/anthropic-provider.ts(45,46): error TS7006: Parameter 'block' implicitly has an 'any' type.
+src/brain/llm/anthropic-provider.ts(47,8): error TS7006: Parameter 'block' implicitly has an 'any' type.
+src/brain/llm/anthropic-provider.ts(54,37): error TS7006: Parameter 'block' implicitly has an 'any' type.
+src/brain/llm/gemini-provider.ts(1,36): error TS2307: Cannot find module '@google/generative-ai' or its corresponding type declarations.
+src/brain/llm/openai-provider.ts(1,20): error TS2307: Cannot find module 'openai' or its corresponding type declarations.
+src/brain/llm/openai-provider.ts(56,56): error TS7006: Parameter 'call' implicitly has an 'any' type.
+src/brain/sqlite-database.ts(5,44): error TS2307: Cannot find module 'sql.js' or its corresponding type declarations.
+src/brain/task-queue.ts(47,37): error TS2339: Property 'client' does not exist on type 'Queue<BrainTaskPayload, unknown, BrainTaskType, BrainTaskPayload, unknown, BrainTaskType, RedisQueueBackend, ConnectionOptions>'.
+src/brain/task-queue.ts(60,37): error TS2339: Property 'client' does not exist on type 'Queue<BrainTaskPayload, unknown, BrainTaskType, BrainTaskPayload, unknown, BrainTaskType, RedisQueueBackend, ConnectionOptions>'.
+src/brain/task-queue.ts(84,27): error TS2339: Property 'getRepeatableJobs' does not exist on type 'Queue<BrainTaskPayload, unknown, BrainTaskType, BrainTaskPayload, unknown, BrainTaskType, RedisQueueBackend, ConnectionOptions>'.
+src/brain/task-queue.ts(96,58): error TS2345: Argument of type '"paused"' is not assignable to parameter of type 'JobType'.
+src/brain/task-queue.ts(181,7): error TS2353: Object literal may only specify known properties, and 'repeat' does not exist in type 'JobsOptions'.
+src/orchestration/executive-learning/institutional-memory-service.ts(15,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/executive-learning/institutional-memory-service.ts(477,21): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/orchestration/executive-learning/repository/sqlite-executive-learning-repository.ts(7,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/executive-learning/service.ts(12,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/executive-learning/service.ts(77,48): error TS2339: Property 'workspaceId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(79,34): error TS2339: Property 'workspaceId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(91,26): error TS2339: Property 'workspaceId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(107,24): error TS2339: Property 'sessionId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(108,24): error TS2339: Property 'requestId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(130,26): error TS2339: Property 'workspaceId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(142,24): error TS2339: Property 'sessionId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(143,24): error TS2339: Property 'requestId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(157,26): error TS2339: Property 'workspaceId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(158,28): error TS2339: Property 'requestId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(160,26): error TS2339: Property 'sessionId' does not exist on type 'ObserveConversationInput'.
+src/orchestration/executive-learning/service.ts(387,20): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/executive-learning/service.ts(389,11): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/executive-learning/service.ts(396,47): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/orchestration/pillow-approval/cursor-bridge-adapter.ts(5,36): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-approval/cursor-bridge-adapter.ts(6,44): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-approval/cursor-bridge-adapter.ts(425,18): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/orchestration/pillow-executive-council/service.ts(10,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-executive-council/service.ts(82,20): error TS2339: Property 'topic' does not exist on type 'RunCouncilForProposalInput'.
+src/orchestration/pillow-host/accessibility-intelligence-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/accessibility-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/accounting-export-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/accounting-export-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/acquisition-evaluation-engine-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/acquisition-evaluation-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/adaptive-interface-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/adaptive-interface-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ai-campaign-generator-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ai-campaign-generator-bridge.ts(2,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ai-customer-support-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ai-customer-support-bridge.ts(2,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ai-evolution-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/aliexpress-integration-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/aliexpress-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/amazon-inventory-sync-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/amazon-inventory-sync-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/amazon-marketplace-integration-bridge.ts(1,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/amazon-marketplace-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/amazon-order-management-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/amazon-order-management-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/amazon-product-intelligence-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/amazon-product-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/approval-workflow-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/approval-workflow-bridge.ts(2,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/architecture-evolution-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/attribution-engine-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/attribution-engine-bridge.ts(2,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/audience-intelligence-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/audience-intelligence-bridge.ts(2,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-builder-certification-bridge.ts(1,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-builder-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-decision-monitor-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-empire-evolution-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-empire-evolution-bridge.ts(2,89): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-growth-optimizer-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-growth-optimizer-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-investment-engine-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-investment-engine-bridge.ts(2,79): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-marketing-engine-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-marketing-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-portfolio-board-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-portfolio-board-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-scaling-framework-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-scaling-framework-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-ux-audit-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/autonomous-ux-audit-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/banking-integration-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/banking-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/bottleneck-intelligence-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/bottleneck-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/brain-llm-adapter.ts(7,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/brain-llm-adapter.ts(16,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/brain-llm-adapter.ts(51,22): error TS7006: Parameter 'request' implicitly has an 'any' type.
+src/orchestration/pillow-host/brain-llm-adapter.ts(51,31): error TS7006: Parameter 'providers' implicitly has an 'any' type.
+src/orchestration/pillow-host/brain-llm-adapter.ts(51,42): error TS7006: Parameter 'justification' implicitly has an 'any' type.
+src/orchestration/pillow-host/brain-runtime-bridge.ts(2,43): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/brand-creation-engine-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/brand-creation-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/budget-management-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/budget-management-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/budget-optimization-engine-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/budget-optimization-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/builder-console-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/builder-monitor-bridge.ts(1,47): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-automation-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-factory-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-health-ranking-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-health-ranking-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-launch-orchestrator-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-launch-orchestrator-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-model-generator-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-model-generator-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-opportunity-discovery-bridge.ts(1,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/business-opportunity-discovery-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/campaign-manager-bridge.ts(1,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/campaign-manager-bridge.ts(2,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/capacity-planning-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/capacity-planning-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/capital-allocation-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/capital-distribution-engine-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/capital-distribution-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/capital-risk-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cash-flow-monitor-bridge.ts(1,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cash-flow-monitor-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cash-reserve-intelligence-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/change-documentation-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/change-documentation-bridge.ts(2,77): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/civilization-knowledge-engine-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/civilization-knowledge-engine-bridge.ts(2,81): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cj-dropshipping-integration-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cj-dropshipping-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cockpit-ux-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/commerce-operating-model-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/commercial-intelligence-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/company-factory-certified-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/company-factory-certified-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/company-factory-framework-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/company-factory-framework-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/company-lifecycle-manager-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/company-lifecycle-manager-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/competitor-intelligence-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/competitor-marketing-monitor-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/competitor-marketing-monitor-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/component-generator-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/component-generator-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/component-recognition-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/component-recognition-bridge.ts(2,76): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/conflict-resolution-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/context-awareness-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/context-awareness-bridge.ts(2,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/continuous-collaboration-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/continuous-collaboration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/continuous-screen-observation-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/continuous-screen-observation-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/continuous-ux-evolution-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/continuous-ux-evolution-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/conversion-intelligence-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/conversion-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/corporate-vision-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cost-optimization-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/country-intelligence-engine-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/country-intelligence-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/creative-asset-manager-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/creative-asset-manager-bridge.ts(2,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/crisis-decision-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/crm-foundation-bridge.ts(1,49): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/crm-foundation-bridge.ts(2,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-business-intelligence-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-business-knowledge-engine-bridge.ts(1,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-business-knowledge-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-channel-orchestrator-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-channel-orchestrator-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-company-resource-engine-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-company-resource-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-empire-governance-engine-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-empire-governance-engine-bridge.ts(2,81): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-region-learning-engine-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/cross-region-learning-engine-bridge.ts(2,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/currency-intelligence-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/currency-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-behaviour-intelligence-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-identity-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-identity-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-journey-intelligence-engine-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-journey-intelligence-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-lifetime-value-engine-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-lifetime-value-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-operations-certification-bridge.ts(1,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-operations-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-risk-engine-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-risk-engine-bridge.ts(2,69): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-segmentation-engine-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-segmentation-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-sentiment-engine-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-sentiment-engine-bridge.ts(2,71): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-timeline-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/customer-timeline-engine-bridge.ts(2,69): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/decision-audit-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/decision-simulation-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/department-planning-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/design-system-intelligence-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/design-system-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/digital-soul-bridge.ts(11,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/digital-soul-bridge.ts(15,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/domain-digital-asset-planner-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/domain-digital-asset-planner-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/durable-sessions-bridge.ts(1,45): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ebay-marketplace-integration-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ebay-marketplace-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/email-communication-engine-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/email-communication-engine-bridge.ts(2,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-capital-allocation-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-capital-allocation-bridge.ts(2,85): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-evolution-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-innovation-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-innovation-engine-bridge.ts(2,71): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-intelligence-framework-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-intelligence-framework-bridge.ts(2,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-knowledge-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-knowledge-engine-bridge.ts(2,69): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-legacy-engine-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-legacy-engine-bridge.ts(2,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-memory-engine-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-memory-engine-bridge.ts(2,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-opportunity-engine-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-opportunity-engine-bridge.ts(2,73): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-optimization-engine-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-optimization-engine-bridge.ts(2,75): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-performance-guardian-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-performance-guardian-bridge.ts(2,89): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-resilience-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-resilience-engine-bridge.ts(2,71): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-self-improvement-engine-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/empire-self-improvement-engine-bridge.ts(2,81): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-audit-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-constitutional-guardian-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-constitutional-guardian-bridge.ts(11,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-governance-framework-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-pattern-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-portfolio-framework-bridge.ts(1,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-portfolio-framework-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-risk-governance-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-risk-governance-bridge.ts(7,116): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-succession-engine-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-succession-engine-bridge.ts(2,79): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-valuation-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-value-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/enterprise-value-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/eta-engine-bridge.ts(1,34): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/etsy-marketplace-integration-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/etsy-marketplace-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/execution-control-center-bridge.ts(2,47): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-accountability-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-advisory-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-approval-intelligence-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-architecture-framework-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-benchmark-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-budget-planner-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-calendar-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-capital-strategy-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-collaboration-certification-bridge.ts(1,71): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-collaboration-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-compliance-engine-bridge.ts(12,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-compliance-engine-bridge.ts(19,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-confidence-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-consensus-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-constitutional-monitor-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-customer-dashboard-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-customer-dashboard-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-decision-architecture-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-decision-certification-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-dependency-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-empire-dashboard-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-escalation-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-ethics-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-exception-manager-bridge.ts(10,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-exception-manager-bridge.ts(11,131): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-finance-framework-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-financial-dashboard-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-financial-dashboard-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-forecast-intelligence-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-global-dashboard-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-global-dashboard-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-governance-certification-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-insight-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-intelligence-certification-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-knowledge-graph-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-kpi-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-performance-dashboard-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-planning-certification-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-planning-dashboard-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-policy-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-policy-evolution-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-policy-evolution-bridge.ts(11,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-portfolio-dashboard-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-portfolio-dashboard-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-prediction-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-recommendation-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-resilience-engine-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-resilience-engine-bridge.ts(11,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-review-board-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-review-board-bridge.ts(11,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-roadmap-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-scaling-dashboard-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-scaling-dashboard-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-scenario-planner-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-style-learning-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-style-learning-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-transparency-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-trust-engine-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-trust-engine-bridge.ts(11,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-workspace-intelligence-bridge.ts(1,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/executive-workspace-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/expense-engine-bridge.ts(1,49): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/expense-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/explain-decisions-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/explain-decisions-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/explainability-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-executive-certification-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-forecast-engine-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-forecast-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-framework-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-framework-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-operations-certification-bridge.ts(1,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-operations-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-risk-monitor-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-risk-monitor-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-scale-engine-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-scale-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/financial-scenario-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/first-revenue-optimizer-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/first-revenue-optimizer-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/frontend-builder-bridge.ts(1,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/frontend-builder-bridge.ts(2,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/fulfilment-orchestrator-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/fulfilment-orchestrator-bridge.ts(2,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/fulfilment-sla-monitor-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/fulfilment-sla-monitor-bridge.ts(2,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-brand-management-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-brand-management-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-expansion-framework-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-expansion-framework-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-expansion-simulator-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-expansion-simulator-bridge.ts(2,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-market-intelligence-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-market-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-risk-intelligence-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-risk-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-scaling-planner-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-scaling-planner-bridge.ts(9,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-talent-intelligence-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-talent-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-tax-intelligence-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/global-tax-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/google-ads-integration-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/google-ads-integration-bridge.ts(2,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/governance-knowledge.ts(9,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/governance-knowledge.ts(48,12): error TS7006: Parameter 'absolutePath' implicitly has an 'any' type.
+src/orchestration/pillow-host/grand-king-advisory-engine-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/grand-king-advisory-engine-bridge.ts(2,73): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/grand-king-executive-cockpit-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/grand-king-executive-cockpit-bridge.ts(11,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/grand-king-operating-account-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/growth-initialization-engine-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/growth-initialization-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/guardian-monitoring-bridge.ts(2,49): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/industry-intelligence-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/infinite-growth-engine-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/infinite-growth-engine-bridge.ts(2,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/initiative-portfolio-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/innovation-intelligence-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/interaction-tracking-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/interaction-tracking-bridge.ts(2,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/international-executive-cockpit-bridge.ts(1,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/international-executive-cockpit-bridge.ts(2,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/international-logistics-engine-bridge.ts(1,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/international-logistics-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/international-partnership-engine-bridge.ts(1,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/international-partnership-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/investment-evaluation-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/invoice-generator-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/invoice-generator-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/knowledge-evolution-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/language-intelligence-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/language-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/launch-monitoring-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/launch-monitoring-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/launch-readiness-validator-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/launch-readiness-validator-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/layout-evaluation-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/layout-evaluation-bridge.ts(2,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/layout-refactoring-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/layout-refactoring-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/layout-understanding-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/layout-understanding-bridge.ts(2,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/live-chat-integration-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/live-chat-integration-bridge.ts(2,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/live-eta-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/localization-engine-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/localization-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/logistics-optimization-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/logistics-optimization-bridge.ts(2,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/long-term-growth-planner-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/loyalty-programme-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/loyalty-programme-engine-bridge.ts(2,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/market-intelligence-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/market-validation-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/market-validation-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketing-analytics-dashboard-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketing-analytics-dashboard-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketing-experiment-engine-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketing-experiment-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketing-framework-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketing-framework-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketing-scale-engine-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketing-scale-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-certification-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-connector-framework-bridge.ts(1,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-connector-framework-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-health-monitor-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-health-monitor-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-order-normalization-bridge.ts(1,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-order-normalization-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-product-normalization-bridge.ts(1,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/marketplace-product-normalization-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/meta-ads-integration-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/meta-ads-integration-bridge.ts(2,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/mission-execution/service.ts(3,46): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/mission-execution/service.ts(28,17): error TS7006: Parameter 'missionId' implicitly has an 'any' type.
+src/orchestration/pillow-host/mission-execution/service.ts(28,28): error TS7006: Parameter 'dispatchId' implicitly has an 'any' type.
+src/orchestration/pillow-host/mission-execution/service.ts(30,16): error TS7006: Parameter 'binding' implicitly has an 'any' type.
+src/orchestration/pillow-host/mission-execution/service.ts(35,19): error TS7006: Parameter 'jobId' implicitly has an 'any' type.
+src/orchestration/pillow-host/multi-company-registry-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/multi-company-registry-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/multi-currency-engine-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/multi-currency-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/multi-proposal-generator-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/multi-proposal-generator-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/multi-warehouse-support-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/multi-warehouse-support-bridge.ts(2,73): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/natural-ux-conversation-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/natural-ux-conversation-bridge.ts(2,72): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/navigation-mapping-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/navigation-mapping-bridge.ts(2,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/operational-elasticity-engine-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/operational-elasticity-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/opportunity-discovery-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/opportunity-prioritization-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/oss1688-integration-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/oss1688-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/payment-gateway-integration-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/payment-gateway-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/performance-governance-bridge.ts(2,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/performance-preservation-engine-bridge.ts(1,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/performance-preservation-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-balance-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-balance-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-certified-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-certified-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-expansion-planner-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-expansion-planner-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-forecast-engine-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-forecast-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-intelligence-certified-bridge.ts(1,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-intelligence-certified-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-optimization-engine-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-optimization-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-performance-engine-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-performance-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-risk-engine-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/portfolio-risk-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/preference-learning-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/preference-learning-bridge.ts(2,75): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/preview-generator-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/preview-generator-bridge.ts(2,69): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/pricing-strategy-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/pricing-strategy-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/priority-management-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/procurement-engine-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/procurement-engine-bridge.ts(2,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/procurement-intelligence-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/procurement-intelligence-bridge.ts(2,82): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/product-portfolio-builder-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/product-portfolio-builder-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/production-mode-bridge.ts(2,45): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/productivity-intelligence-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/productivity-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/profit-calculation-engine-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/profit-calculation-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/profit-optimization-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/profit-scaling-engine-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/profit-scaling-engine-bridge.ts(9,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/real-world-operations-certification-bridge.ts(1,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/real-world-operations-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/recommendation-engine-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/recommendation-engine-bridge.ts(2,70): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/reconciliation-engine-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/reconciliation-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/refund-engine-bridge.ts(1,48): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/refund-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/regional-compliance-engine-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/regional-compliance-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/regional-growth-optimizer-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/regional-growth-optimizer-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/regression-protection-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/regression-protection-bridge.ts(2,69): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/repository-architecture-bridge.ts(1,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/repository-evolution-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/resolve-repo-root.ts(4,36): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/resource-allocation-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/return-management-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/return-management-bridge.ts(2,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/returns-intelligence-engine-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/returns-intelligence-engine-bridge.ts(2,83): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/revenue-acceleration-engine-bridge.ts(1,61): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/revenue-acceleration-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/revenue-engine-bridge.ts(1,49): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/revenue-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/review-management-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/review-management-engine-bridge.ts(2,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/risk-assessment-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/roi-intelligence-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/rollback-manager-bridge.ts(1,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/rollback-manager-bridge.ts(2,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(1017,43): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(1333,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(1359,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(2150,83): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(2195,83): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(2265,72): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(2312,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(2313,47): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(3075,20): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(3110,29): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(3325,28): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(6702,49): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(6757,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(6758,49): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(6810,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(6913,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(6929,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(6961,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(6977,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7026,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7042,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7058,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7074,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7090,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7106,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7155,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7171,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7187,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7203,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7219,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7235,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7251,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7267,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7316,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7332,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7348,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7364,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7380,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7412,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7428,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7493,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7509,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7525,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7541,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7573,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7589,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7654,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7670,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7686,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7702,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7718,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7734,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7766,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7782,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7847,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7863,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7879,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7895,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7927,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7943,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(7959,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(8024,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(8040,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(8056,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(8072,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(8088,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(8104,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/routes/pillow-routes.ts(8120,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/scale-simulation-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/scale-simulation-engine-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/scaling-architecture-bridge.ts(2,50): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/scaling-decision-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/scaling-decision-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/scaling-risk-monitor-bridge.ts(1,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/scaling-risk-monitor-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/screen-annotation-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/screen-annotation-bridge.ts(2,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/self-balancing-enterprise-bridge.ts(1,59): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/self-balancing-enterprise-bridge.ts(6,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/self-improving-ux-bridge.ts(1,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/self-improving-ux-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/seo-intelligence-bridge.ts(1,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/seo-intelligence-bridge.ts(2,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/session-continuity-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/session-continuity-bridge.ts(2,69): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shared-customer-intelligence-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shared-customer-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shared-supplier-intelligence-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shared-supplier-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shipment-tracking-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shipment-tracking-engine-bridge.ts(2,74): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shipping-carrier-integration-bridge.ts(1,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shipping-carrier-integration-bridge.ts(2,70): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shopify-store-marketplace-integration-bridge.ts(1,70): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/shopify-store-marketplace-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/side-by-side-comparison-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/side-by-side-comparison-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/sms-communication-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/sms-communication-engine-bridge.ts(2,64): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/store-generation-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/store-generation-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/strategic-alignment-monitor-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/strategic-objective-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supervisor-system-bridge.ts(1,47): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-framework-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-framework-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-inventory-sync-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-inventory-sync-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-operations-certification-bridge.ts(1,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-operations-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-pricing-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-pricing-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-product-sync-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-product-sync-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-ranking-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-ranking-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-risk-monitor-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-risk-monitor-bridge.ts(2,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-scale-engine-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/supplier-scale-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/tax-intelligence-engine-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/tax-intelligence-engine-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/theme-builder-bridge.ts(1,48): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/theme-builder-bridge.ts(2,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/threat-detection-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ticket-management-engine-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ticket-management-engine-bridge.ts(2,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/tiktok-ads-integration-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/tiktok-ads-integration-bridge.ts(2,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/tiktok-shop-marketplace-integration-bridge.ts(1,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/tiktok-shop-marketplace-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/trade-off-analysis-engine-bridge.ts(4,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/types.ts(3,43): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/types.ts(4,38): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ui-state-mapper-bridge.ts(1,49): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ui-state-mapper-bridge.ts(2,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ux-intelligence-certification-bridge.ts(1,63): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ux-intelligence-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ux-opportunity-discovery-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ux-opportunity-discovery-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ux-rule-engine-bridge.ts(1,48): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ux-rule-engine-bridge.ts(2,62): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ux-scoring-bridge.ts(1,45): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/ux-scoring-bridge.ts(2,54): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/validation-engine-bridge.ts(1,52): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/validation-engine-bridge.ts(2,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/viral-trend-intelligence-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/viral-trend-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/vision-integrity-engine-bridge.ts(1,46): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-capture-bridge.ts(1,49): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-capture-bridge.ts(2,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-consistency-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-consistency-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-foundation-certification-bridge.ts(1,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-foundation-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-intelligence-certification-bridge.ts(1,67): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-intelligence-certification-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-memory-bridge.ts(1,48): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/visual-memory-bridge.ts(2,60): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/voice-ux-commands-bridge.ts(1,51): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/voice-ux-commands-bridge.ts(2,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/walmart-marketplace-integration-bridge.ts(1,65): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/walmart-marketplace-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/warehouse-intelligence-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/warehouse-intelligence-bridge.ts(2,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/whatsapp-integration-bridge.ts(1,55): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/whatsapp-integration-bridge.ts(2,66): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/winning-product-detector-bridge.ts(1,58): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/winning-product-detector-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/woocommerce-marketplace-integration-bridge.ts(1,69): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/woocommerce-marketplace-integration-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/workflow-evolution-bridge.ts(1,53): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/workflow-evolution-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/workflow-optimization-bridge.ts(1,56): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/workflow-optimization-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/workforce-intelligence-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/workforce-intelligence-bridge.ts(5,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/youtube-ads-integration-bridge.ts(1,57): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/orchestration/pillow-host/youtube-ads-integration-bridge.ts(2,70): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/runtime/tier0-isolated-primary.ts(34,20): error TS2307: Cannot find module '@fastify/cookie' or its corresponding type declarations.
+src/runtime/tier0-isolated-primary.ts(470,11): error TS2339: Property 'setCookie' does not exist on type 'FastifyReply<RouteGenericInterface, RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, unknown, FastifySchema, FastifyTypeProviderDefault, unknown>'.
+src/runtime/tier0-isolated-primary.ts(657,34): error TS2339: Property 'cookies' does not exist on type 'FastifyRequest<RouteGenericInterface, Server<typeof IncomingMessage, typeof ServerResponse>, IncomingMessage, ... 4 more ..., ResolveFastifyRequestType<...>>'.
+src/runtime/tier0-isolated-primary.ts(660,11): error TS2339: Property 'clearCookie' does not exist on type 'FastifyReply<RouteGenericInterface, Server<typeof IncomingMessage, typeof ServerResponse>, IncomingMessage, ... 4 more ..., unknown>'.
+src/runtime/tier0-isolated-primary.ts(703,11): error TS2339: Property 'setCookie' does not exist on type 'FastifyReply<RouteGenericInterface, Server<typeof IncomingMessage, typeof ServerResponse>, IncomingMessage, ... 4 more ..., unknown>'.
+src/validation/tests/capture-shared-brain-redis.test.ts(94,48): error TS2353: Object literal may only specify known properties, and 'repeat' does not exist in type 'JobsOptions'.
+src/validation/tests/capture-shared-brain-redis.test.ts(95,40): error TS2339: Property 'getRepeatableJobs' does not exist on type 'Queue<any, any, string, any, any, string, RedisQueueBackend, ConnectionOptions>'.
+src/validation/tests/executive-heterogeneous-adversarial.test.ts(111,38): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(value: unknown, message?: Error | AssertMessageFunction | undefined): asserts value', gave the following error.
+    Argument of type '"finance" | "suppliers" | "marketing" | "strategy" | "commerce" | "security" | "operations" | "infrastructure" | undefined' is not assignable to parameter of type 'Error | AssertMessageFunction | undefined'.
+      Type '"finance"' is not assignable to type 'Error | AssertMessageFunction | undefined'.
+  Overload 2 of 2, '(value: unknown, message: string, ...args: unknown[]): asserts value', gave the following error.
+    Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+src/validation/tests/executive-learning-engine.test.ts(56,20): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/executive-learning-engine.test.ts(72,7): error TS2353: Object literal may only specify known properties, and 'workspaceId' does not exist in type 'ObserveConversationInput'.
+src/validation/tests/executive-learning-engine.test.ts(90,7): error TS2353: Object literal may only specify known properties, and 'workspaceId' does not exist in type 'ObserveConversationInput'.
+src/validation/tests/executive-learning-engine.test.ts(120,7): error TS2353: Object literal may only specify known properties, and 'workspaceId' does not exist in type 'ObserveConversationInput'.
+src/validation/tests/executive-learning-engine.test.ts(144,7): error TS2353: Object literal may only specify known properties, and 'workspaceId' does not exist in type 'ObserveConversationInput'.
+src/validation/tests/executive-learning-engine.test.ts(172,7): error TS2353: Object literal may only specify known properties, and 'workspaceId' does not exist in type 'ObserveConversationInput'.
+src/validation/tests/executive-learning-engine.test.ts(221,10): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/validation/tests/executive-learning-engine.test.ts(228,7): error TS2353: Object literal may only specify known properties, and 'workspaceId' does not exist in type 'ObserveConversationInput'.
+src/validation/tests/fixtures/mission-authority-wiring-child.ts(2,38): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/institutional-memory.test.ts(15,47): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/llm-provider-cancellation.test.ts(3,20): error TS2307: Cannot find module 'openai' or its corresponding type declarations.
+src/validation/tests/llm-provider-cancellation.test.ts(4,23): error TS2307: Cannot find module '@anthropic-ai/sdk' or its corresponding type declarations.
+src/validation/tests/llm-provider-cancellation.test.ts(5,36): error TS2307: Cannot find module '@google/generative-ai' or its corresponding type declarations.
+src/validation/tests/locked-provider-orchestration.test.ts(78,47): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/locked-provider-orchestration.test.ts(84,244): error TS7031: Binding element 'provider' implicitly has an 'any' type.
+src/validation/tests/locked-provider-orchestration.test.ts(84,253): error TS7031: Binding element 'outcome' implicitly has an 'any' type.
+src/validation/tests/locked-reasoning-integration.test.ts(10,36): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/locked-reasoning-integration.test.ts(11,38): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/locked-reasoning-integration.test.ts(12,32): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/locked-reasoning-integration.test.ts(13,30): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/locked-reasoning-integration.test.ts(35,167): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/validation/tests/locked-reasoning-integration.test.ts(35,169): error TS7006: Parameter 'providers' implicitly has an 'any' type.
+src/validation/tests/locked-reasoning-integration.test.ts(40,134): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(10,68): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/mission-authority-wiring.test.ts(50,122): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(60,57): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(70,57): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(73,57): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(89,59): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(93,43): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(94,45): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(163,29): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/validation/tests/mission-authority-wiring.test.ts(219,45): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/validation/tests/offline-state-bundle.test.ts(9,38): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/offline-state-bundle.test.ts(62,55): error TS7006: Parameter 't' implicitly has an 'any' type.
+src/validation/tests/offline-state-bundle.test.ts(120,55): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/validation/tests/pillow-commerce-presale.test.ts(2,20): error TS2307: Cannot find module '@fastify/cookie' or its corresponding type declarations.
+src/validation/tests/pillow-executive-council.test.ts(32,7): error TS2353: Object literal may only specify known properties, and 'topic' does not exist in type 'RunCouncilForProposalInput'.
+src/validation/tests/pillow-executive-council.test.ts(51,7): error TS2353: Object literal may only specify known properties, and 'topic' does not exist in type 'RunCouncilForProposalInput'.
+src/validation/tests/pillow-executive-council.test.ts(70,7): error TS2353: Object literal may only specify known properties, and 'topic' does not exist in type 'RunCouncilForProposalInput'.
+src/validation/tests/pillow-executive-council.test.ts(96,7): error TS2353: Object literal may only specify known properties, and 'topic' does not exist in type 'RunCouncilForProposalInput'.
+src/validation/tests/pillow-governance-bundle.test.ts(10,8): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/pillow-governance-knowledge.test.ts(43,41): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+src/validation/tests/pillow-governance-knowledge.test.ts(44,52): error TS7006: Parameter 'file' implicitly has an 'any' type.
+src/validation/tests/pillow-investigation.test.ts(10,38): error TS2307: Cannot find module '@empireai/pillow' or its corresponding type declarations.
+src/validation/tests/pillow-investigation.test.ts(45,96): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/validation/tests/sqlite-persistence-boundary.test.ts(33,79): error TS7006: Parameter 'row' implicitly has an 'any' type.
+src/validation/tests/work8-model-session-faults.test.ts(8,20): error TS2307: Cannot find module '@fastify/cookie' or its corresponding type declarations.
