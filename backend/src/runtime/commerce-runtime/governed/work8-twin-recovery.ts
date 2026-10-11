@@ -72,6 +72,7 @@ function verifyEnrollments(runtime:Work8TwinRuntime,workspace:string){
  for(const row of rows){const task=runtime.worker.get(workspace,String(row.id));if(!task)throw Error('RECOVERY_ENROLLMENT_TASK_MISSING');verifySimulationEnrollment(runtime.store,task);}
 }
 function verifyExtension(before:TwinRecoveryCheckpoint,after:TwinRecoveryCheckpoint){
+ if(after.capturedAt<before.capturedAt)throw Error('RECOVERY_CLOCK_REGRESSION');
  if(before.schema==='WORK8_TWIN_RECOVERY_V2'&&after.schema!=='WORK8_TWIN_RECOVERY_V2')throw Error('RECOVERY_SCHEMA_DOWNGRADE');
  for(const [table,keys,,mutable] of specsFor(after.schema)){const identity=(r:Row)=>JSON.stringify(keys.split(',').map(k=>r[k]));
   const rows=new Map(after.tables[table]!.map(r=>[identity(r),r]));
@@ -141,5 +142,42 @@ export function replayTwinCheckpoint(target:Work8TwinRuntime,raw:unknown,expecte
   let after='';do{const view=target.projection(p,pack.sessionId,after,100);after=view.next??'';}while(after);
   target.store.db.prepare('INSERT INTO work8_recovery_checkpoints VALUES(?,?,?)').run(pack.sequence,pack.digest,JSON.stringify(pack));
   return {status:'APPLIED',digest:pack.digest,authorityRestored:false};
+ });
+}
+
+/** Independent vault readback, pinned to a caller-retained trusted head digest.
+ * No runtime, credentials, source database, listing, deletion or upload is used.
+ * Local permissions are not an off-host retention or WORM guarantee. */
+export function inspectTwinRecoveryVault(vault:string,trustedHead:string,at:number){
+ if(!Number.isSafeInteger(at)||at<0)throw Error('RECOVERY_POINT_IN_TIME');
+ const chain:TwinRecoveryCheckpoint[]=[];let next=trustedHead,bytes=0;
+ const seen=new Set<string>();
+ while(next){
+  if(seen.has(next)||chain.length>=10000)throw Error('RECOVERY_LINEAGE_BOUND');seen.add(next);
+  const pack=readTwinCheckpoint(vault,next);bytes+=Buffer.byteLength(JSON.stringify(pack));
+  if(bytes>128*1024*1024)throw Error('RECOVERY_CHAIN_BYTE_BOUND');chain.push(pack);next=pack.previous;
+ }
+ if(!chain.length)throw Error('RECOVERY_TRUSTED_HEAD_REQUIRED');
+ chain.reverse();
+ for(const [i,pack]of chain.entries()){
+  const before=chain[i-1];
+  if(pack.sequence!==i+1||pack.previous!==(before?.digest??''))throw Error('RECOVERY_REPLAY_ORDER');
+  if(before){if(pack.workspace!==before.workspace||pack.owner!==before.owner||pack.sessionId!==before.sessionId)throw Error('RECOVERY_LINEAGE_SCOPE');verifyExtension(before,pack);}
+ }
+ const selected=chain.filter(p=>p.capturedAt<=at).at(-1);if(!selected)throw Error('RECOVERY_NO_CHECKPOINT_AT_TIME');
+ return {chain:chain.slice(0,selected.sequence),trustedHead,selectedDigest:selected.digest,selectedSequence:selected.sequence,
+  selectedAt:selected.capturedAt,requestedAt:at,recoveryPointGapMs:at-selected.capturedAt,verifiedCheckpoints:chain.length,
+  retention:'NO_PRUNING; ALL REPLAY ANCESTORS REQUIRED',protection:'LOCAL_WRITE_ONCE_ONLY; OFF_HOST_PROTECTION_NOT_ATTESTED',authorityRestored:false as const};
+}
+/** Point-in-time restoration is only for a fresh, explicitly marked isolated
+ * target. It is never application rollback of an existing business database. */
+export function restoreTwinPointInTime(target:Work8TwinRuntime,vault:string,trustedHead:string,at:number){
+ const started=performance.now(),inspection=inspectTwinRecoveryVault(vault,trustedHead,at);
+ return target.store.transaction(()=>{
+  if(!target.store.db.prepare("SELECT 1 FROM sqlite_master WHERE name='work8_recovery_checkpoints'").get())throw Error('RECOVERY_TARGET_NOT_INITIALIZED');
+  if(target.store.db.prepare('SELECT 1 FROM work8_recovery_checkpoints LIMIT 1').get())throw Error('RECOVERY_POINT_IN_TIME_TARGET_NOT_EMPTY');
+  for(const pack of inspection.chain)replayTwinCheckpoint(target,pack,pack.digest);
+  const {chain,...receipt}=inspection;
+  return {...receipt,status:'RESTORED_ISOLATED_COPY',appliedCheckpoints:chain.length,elapsedMs:performance.now()-started,applicationRevision:chain.at(-1)!.applicationRevision,configurationDigest:chain.at(-1)!.configurationDigest,operationalRtoGuaranteed:false};
  });
 }

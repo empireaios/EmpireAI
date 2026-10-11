@@ -32,12 +32,18 @@ export class Work8TwinCommunications{
  if(!last&&this.read(p,r.reference.sessionId).length>=100)throw Error('COMMUNICATION_THREAD_BOUND');
  if(r.action!=='RECEIVE'&&(r.category||r.message||r.deadlineAt!==undefined))throw Error('COMMUNICATION_ACTION_FIELDS');
  const category=r.category??last!.category,high=['CHARGEBACK_DISPUTE','SELLER_PERFORMANCE','UNANSWERABLE'].includes(category)||category==='HOSTILE_EXCHANGE'&&history.some(h=>h.category==='HOSTILE_EXCHANGE');
- const risk=high?'HIGH' as const:['COMPLAINT','RETURN_REFUND','HOSTILE_EXCHANGE'].includes(category)?'ELEVATED' as const:'NORMAL' as const;
+ const calculatedRisk=high?'HIGH' as const:['COMPLAINT','RETURN_REFUND','HOSTILE_EXCHANGE'].includes(category)?'ELEVATED' as const:'NORMAL' as const;
+ const unresolved=last&&last.status!=='RESOLVED';
+ const rank={NORMAL:0,ELEVATED:1,HIGH:2};
+ const risk=unresolved&&rank[last.risk]>rank[calculatedRisk]?last.risk:calculatedRisk;
+ const deadlineAt=unresolved&&last.deadlineAt!==null?Math.min(last.deadlineAt,r.deadlineAt??last.deadlineAt):r.deadlineAt??last?.deadlineAt??null;
+ const overdue=deadlineAt!==null&&this.runtime.worker.engine.clock()>deadlineAt;
+ const escalation=high||risk==='HIGH'||overdue||unresolved&&last.status==='OWNER_ESCALATION';
  const session=this.runtime.sessions.read(p,r.reference.sessionId),receipt=this.runtime.store.history(session.twinWorkspace,r.reference.missionId).at(-1)!;
  const state=receipt.state as {orders?:Record<string,{outcome?:string}>};
  const draft=r.action==='PREPARE'?`Prepared for owner review — simulated communication. Product: ${context.label}. ${category==='SHIPPING_QUESTION'?Object.values(state.orders??{}).map(o=>'Recorded order status: '+String(o.outcome??'unverified')).join('; '):'Question requires review against the attached product evidence.'} No delivery date, compensation, refund or policy exception has been authorised.`:null;
  const body={version:r.expectedVersion+1,id:r.id,owner:p.owner,workspace:p.workspace,sessionId:r.reference.sessionId,missionId:r.reference.missionId,threadId:r.threadId,requestDigest,previous:last?.digest??'',at:this.runtime.worker.engine.clock(),action:r.action,category,risk,
- status:r.action==='RESOLVE'?'RESOLVED':r.action==='ESCALATE'||high?'OWNER_ESCALATION':r.action==='PREPARE'?'DRAFT_FOR_OWNER_REVIEW':'ASSESSMENT_REQUIRED',deadlineAt:r.deadlineAt??last?.deadlineAt??null,message:r.message??null,draft,receiptDigest:receipt.digest,classification:'SIMULATED_COMMUNICATION' as const,externalEffects:0 as const,modelAssessment:'NOT_REQUESTED' as const};
+ status:r.action==='RESOLVE'?'RESOLVED':r.action==='ESCALATE'||escalation?'OWNER_ESCALATION':r.action==='PREPARE'?'DRAFT_FOR_OWNER_REVIEW':'ASSESSMENT_REQUIRED',deadlineAt,message:r.message??null,draft,receiptDigest:receipt.digest,classification:'SIMULATED_COMMUNICATION' as const,externalEffects:0 as const,modelAssessment:'NOT_REQUESTED' as const};
  const event={...body,digest:digest(body)};this.runtime.store.db.prepare('INSERT INTO work8_twin_communications VALUES(?,?,?,?,?,?)').run(p.workspace,r.reference.sessionId,r.threadId,event.version,r.id,JSON.stringify(event));return event;
  });}
 }

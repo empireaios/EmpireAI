@@ -7,7 +7,7 @@ import {CommerceWorker} from '../../runtime/commerce-runtime/governed/worker.js'
 import {DurableSimulatedFinance} from '../../runtime/commerce-runtime/governed/work8-durable-finance.js';
 import {Work8TwinSessions} from '../../runtime/commerce-runtime/governed/work8-twin.js';
 import {Work8TwinRuntime} from '../../runtime/commerce-runtime/governed/work8-twin-runtime.js';
-import {captureTwinCheckpoint,initializeTwinRecoveryTarget,replayTwinCheckpoint,saveTwinCheckpoint,readTwinCheckpoint} from '../../runtime/commerce-runtime/governed/work8-twin-recovery.js';
+import {inspectTwinRecoveryVault,restoreTwinPointInTime,captureTwinCheckpoint,initializeTwinRecoveryTarget,replayTwinCheckpoint,saveTwinCheckpoint,readTwinCheckpoint} from '../../runtime/commerce-runtime/governed/work8-twin-recovery.js';
 import {InstitutionalMemory} from '../../institutional-memory/store.js';import {enforceOwnerSafety} from '../../runtime/commerce-runtime/governed/safety-admission.js';
 test('versioned twin snapshot, ordered catch-up, immutable vault and no restored authority',()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'twin-recovery-')),p={workspace:'ws',owner:'owner'},memory=new InstitutionalMemory(path.join(root,'memory.sqlite'));let now=1791676800000;
@@ -93,6 +93,10 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  const recordDigest=digest(target.projection(p,'exam').records);
  // Code/configuration reference may return to older revision; business history
  // still extends the latest checkpoint and cannot revert to the older snapshot.
+ saveTwinCheckpoint(vault,second);
+ const past=open('past.sqlite');try{initializeTwinRecoveryTarget(past.store);const restored=restoreTwinPointInTime(past,vault,second.digest,first.capturedAt);assert.equal(restored.selectedDigest,first.digest);assert.equal(restored.appliedCheckpoints,1);assert.equal(restored.authorityRestored,false);assert.equal(restored.operationalRtoGuaranteed,false);assert.equal(past.store.db.prepare('SELECT count(*) n FROM work8_sim_finance_events').get()?.n,first.tables.work8_sim_finance_events!.length);assert.throws(()=>restoreTwinPointInTime(past,vault,second.digest,second.capturedAt),/TARGET_NOT_EMPTY/);}finally{past.store.close();}
+ assert.throws(()=>inspectTwinRecoveryVault(vault,second.digest,first.capturedAt-1),/NO_CHECKPOINT_AT_TIME/);
+ const missingVault=path.join(root,'missing');fs.mkdirSync(missingVault);saveTwinCheckpoint(missingVault,second);assert.throws(()=>inspectTwinRecoveryVault(missingVault,second.digest,second.capturedAt),/ENOENT/);
  const third=captureTwinCheckpoint(source,p,'exam',version,second);replayTwinCheckpoint(target,third,third.digest);
  assert.equal(digest(target.projection(p,'exam').records),recordDigest);
  target.cycle();
