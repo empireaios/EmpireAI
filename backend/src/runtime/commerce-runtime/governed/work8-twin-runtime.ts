@@ -1,4 +1,5 @@
 import {readRecoveredAuthorityAudit} from './work8-twin-recovery.js';
+import {initializeSimulationEnrollments,verifySimulationEnrollment} from './work8-enrollment.js';
 import {Work8PreparationAuthority} from './work8-preparation-authority.js';
 import {Work8TwinMedia} from './work8-twin-media.js';
 import {Work8TwinCommunications} from './work8-twin-communications.js';
@@ -24,6 +25,7 @@ export class Work8TwinRuntime {
  readonly recovery:ReturnType<typeof makeWork8CommerceRecovery>;
  constructor(readonly sessions:Work8TwinSessions,readonly worker:CommerceWorker,readonly finance:DurableSimulatedFinance){
   if(sessions.store!==worker.engine.store||finance.store!==sessions.store)throw Error('TWIN_STORE_MISMATCH');
+  initializeSimulationEnrollments(sessions.store);
   this.preparation=new Work8PreparationAuthority(this);
   this.media=new Work8TwinMedia(this);
   this.communications=new Work8TwinCommunications(this);
@@ -71,6 +73,16 @@ export class Work8TwinRuntime {
  }
  private verifyPlan(workspace:string,sessionId:string,owner:string,taskId:string,twinWorkspace:string){
   const rows=this.store.db.prepare("SELECT record FROM work8_twin_admissions WHERE workspace=? AND session=? AND EXISTS(SELECT 1 FROM json_each(record,'$.tasks') WHERE json_extract(value,'$.taskId')=?) LIMIT 2").all(workspace,sessionId,taskId);
+  if(rows.length===0){
+   // The enrollment path already binds source dossier, assessment, preparation,
+   // explicit product approval and separate simulation authorization. Recheck its
+   // immutable lineage at every scheduler step; a grant alone cannot admit work.
+   const task=this.worker.get(twinWorkspace,taskId);
+   if(!task||task.owner!==owner||task.workspace!==twinWorkspace)throw Error('TWIN_TASK_ADMISSION_UNVERIFIED');
+   const enrollment=verifySimulationEnrollment(this.store,task);
+   if(enrollment.owner!==owner||!enrollment.preparationDigest)throw Error('TWIN_PREPARED_ENROLLMENT_REQUIRED');
+   return;
+  }
   if(rows.length!==1)throw Error('TWIN_TASK_ADMISSION_UNVERIFIED');
   const admission=JSON.parse(String(rows[0]!.record)),manifest=admission.tasks.find((t:{taskId:string})=>t.taskId===taskId),task=this.worker.get(twinWorkspace,taskId);
   if(admission.owner!==owner||!task||task.owner!==owner||manifest.missionId!==task.mission||manifest.planDigest!==digest(task.steps))throw Error('TWIN_TASK_PLAN_UNVERIFIED');
