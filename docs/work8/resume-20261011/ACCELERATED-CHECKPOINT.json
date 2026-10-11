@@ -1,14 +1,14 @@
 {
   "schema": "WORK8_ACCELERATED_CHECKPOINT_V1",
   "backend": {
-    "commit": "189fa3a15683b6d9f8102ae6eba94d6fa6c8e863",
-    "tree": "bdfef32ad61081c891e6344e5b28dadb93e77249",
-    "local": "103760a80e4fc4a648c2fc9447cc7aeed903b6f9"
+    "commit": "be4936d84530156b88169541c9e0898ebe9c3d0b",
+    "tree": "b8ff5cd0346ff3de980faf83ac3adefeed265947",
+    "local": "b1bb6b0a0da7e1125260dc9b792e18719c6e3c32"
   },
   "frontend": {
-    "reviewCommit": "7d92d8772c8af04f841bcf54a63163fd6302b972",
-    "tree": "707276d6b62cdd1bba5c8fca858e93487b7ecfbe",
-    "local": "5eddcda82f7d54b4115c0dfb86a446bf79df0a02",
+    "reviewCommit": "b450082268d7f96616d5d94b770ce8d10ad914ba",
+    "tree": "821f7f7a5e9de67c0f075490030bd2b25379bedd",
+    "local": "96b5d74f342fec82b87d8a3ae2e2a13c13297ce6",
     "deployedBranchUnchanged": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce"
   },
   "counts": {
@@ -25,13 +25,17 @@
     "typescript": "Strict changed backend modules and full frontend noEmit PASS",
     "lint": "Changed frontend files PASS",
     "communicationsAdversity": "All eight categories; no silent risk downgrade, pending deadline extension, or lost escalation; reopen preserves history.",
-    "pointInTime": "Independent pinned-head chain verification and atomic isolated past checkpoint restoration; missing ancestor and existing-target refusals; no hosted RTO guarantee."
+    "pointInTime": "Independent pinned-head chain verification and atomic isolated past checkpoint restoration; missing ancestor and existing-target refusals; no hosted RTO guarantee.",
+    "preparedRecovery": "14 affected preparation/enrollment/recovery tests PASS; source-fixture mission through settlement and atomic missing-preparation refusal. Focused3 PASS after final lineage validation.",
+    "authorityAudit": "Three recovery tests PASS with inert original authority/preview decision history; final two legacy compatibility cases PASS after omitting optional audit field from old manifests. Reruns overlap and are not summed.",
+    "frontendFinal": "Full frontend TypeScript noEmit and changed TwinWorkspace lint PASS."
   },
   "scope": "No genuine product/model assessment, hosted acceptance, independent delta review or whole-system backup claim.",
   "failedAttempts": [
-    "First media form write used an incorrect working-directory prefix; no file mutation occurred. Corrected paths before typecheck/lint."
+    "First media form write used an incorrect working-directory prefix; no file mutation occurred. Corrected paths before typecheck/lint.",
+    "Official Playwright chromium v1234 download returned invalid/truncated archive; stopped repeated automatic retries with exit130. No browser acceptance claimed."
   ],
-  "next": "Continue whole-system backup foundation and remaining fault/authority consumers; current hosted/source/rights/accounting dependencies remain consolidated.",
+  "next": "Extend existing multi-store capture machinery to uncovered subsystem stores; connect authorised model consumers; complete remaining fixed31 faults; native browser remains unavailable; no whole-system backup or final release claim.",
   "authority": {
     "birth": "NOT_BORN",
     "commerce": "LOCKED",
@@ -39,5 +43,5 @@
     "paidInference": false,
     "work9Activated": false
   },
-  "latestFocusedRun": "3 PASS, same two recovery tests plus one new communications test; do not add previous reruns to this count."
+  "latestFocusedRun": "RECOVERY-LEGACY-FINAL.tap:2 PASS; RECOVERY-AUTHORITY-AUDIT.tap:3 PASS; PREPARED-RECOVERY.tap:14 PASS with overlaps explicitly retained."
 }

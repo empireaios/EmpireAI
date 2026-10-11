@@ -25,7 +25,7 @@
         24,
         39
       ],
-      "engineering": "V2 enrolled-simulation capture/restore, V1 migration, derived error evolution and duplicate divergence refusal tested. Pinned-head chain verification and point-in-time isolated restoration tested.",
+      "engineering": "V3 prepared-mission/enrollment snapshots, V1/V2 migration, independently verified chain and atomic point-in-time restore; inert authority/preview history survives without restoring grants.",
       "acceptance": "PENDING",
       "remaining": "Whole-system adapters and protected off-host retention remain."
     },
@@ -144,7 +144,7 @@
         27,
         36
       ],
-      "engineering": "Four independent preparation/inspection scopes, one-task/timed grants, expiry/revoke, durable consumption and safe local consumers implemented; scheduler authority separate.",
+      "engineering": "Four independent preparation/inspection scopes, one-task/timed grants, expiry/revoke, durable consumption and safe local consumers implemented; scheduler authority separate. Recovered grant/preview history is retained separately as inert audit evidence and exposed in collapsed Systems details.",
       "acceptance": "PENDING",
       "remaining": "Full model-tool consumer integration and authenticated native acceptance; external commerce remains locked."
     },

@@ -1,0 +1,10 @@
+{
+  "status": "BLOCKED_NATIVE_BROWSER_UNAVAILABLE",
+  "attempt": "Official installed Playwright CLI install chromium",
+  "revision": "chromium v1234 / Chrome for Testing151.0.7922.34",
+  "source": "https://cdn.playwright.dev/builds/cft/151.0.7922.34/linux64/chrome-linux64.zip",
+  "failure": "End of central directory record signature not found. Either not a zip file, or file is truncated.",
+  "action": "Stopped automatic retries; exit130. No alternative untrusted binary, production login or credential workaround.",
+  "nativeAcceptance": false,
+  "hostedAcceptance": false
+}

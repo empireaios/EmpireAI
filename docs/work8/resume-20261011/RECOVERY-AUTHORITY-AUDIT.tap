@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: prepared mission dossier and assessment lineage survive V3 restoration; missing preparation rolls back atomically
+ok 1 - prepared mission dossier and assessment lineage survive V3 restoration; missing preparation rolls back atomically
+  ---
+  duration_ms: 1033.554339
+  type: 'test'
+  ...
+# {"scope":"Canonical isolated snapshot and replay; application references only, no deployed upgrade claimed","orders":2,"financialEvents":22,"authorityRestored":false}
+# {"scope":"Injected qualification fixture; no genuine assessment","enrollments":1,"orders":1,"events":11,"restoredAuthority":false}
+# Subtest: versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+ok 2 - versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+  ---
+  duration_ms: 4700.152346
+  type: 'test'
+  ...
+# Subtest: versioned snapshots restore enrolled simulation lineage, evolves derived errors, and validates duplicate replay
+ok 3 - versioned snapshots restore enrolled simulation lineage, evolves derived errors, and validates duplicate replay
+  ---
+  duration_ms: 601.067614
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5871.021011

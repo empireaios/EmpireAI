@@ -1,0 +1,96 @@
+TAP version 13
+# Subtest: explicit qualified fixture enrolls one simulated listing/order/delivery and immutable financial lifecycle
+ok 1 - explicit qualified fixture enrolls one simulated listing/order/delivery and immutable financial lifecycle
+  ---
+  duration_ms: 531.311697
+  type: 'test'
+  ...
+# Subtest: deferred dossier, missing assessment, foreign owner, changed candidate and missing explicit acknowledgement refuse with no tasks
+ok 2 - deferred dossier, missing assessment, foreign owner, changed candidate and missing explicit acknowledgement refuse with no tasks
+  ---
+  duration_ms: 41.02996
+  type: 'test'
+  ...
+# Subtest: changed task plan and changed idempotency request cannot alter enrollment
+ok 3 - changed task plan and changed idempotency request cannot alter enrollment
+  ---
+  duration_ms: 11.137718
+  type: 'test'
+  ...
+# Subtest: source expiry after enrollment blocks the canonical worker without replay or financial events
+ok 4 - source expiry after enrollment blocks the canonical worker without replay or financial events
+  ---
+  duration_ms: 13.09686
+  type: 'test'
+  ...
+# Subtest: derived identifiers are bounded before any task or enrollment is written
+ok 5 - derived identifiers are bounded before any task or enrollment is written
+  ---
+  duration_ms: 6.259286
+  type: 'test'
+  ...
+# Subtest: reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+ok 6 - reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+  ---
+  duration_ms: 766.386209
+  type: 'test'
+  ...
+# Subtest: missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+ok 7 - missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+  ---
+  duration_ms: 154.567275
+  type: 'test'
+  ...
+# Subtest: late policy failure rolls back all canonical commands and preparation receipt together
+ok 8 - late policy failure rolls back all canonical commands and preparation receipt together
+  ---
+  duration_ms: 50.107323
+  type: 'test'
+  ...
+# Subtest: stale dossier, changed source and foreign approval cannot inherit prepared authority
+ok 9 - stale dossier, changed source and foreign approval cannot inherit prepared authority
+  ---
+  duration_ms: 64.048934
+  type: 'test'
+  ...
+# Subtest: durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+ok 10 - durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+  ---
+  duration_ms: 74.488368
+  type: 'test'
+  ...
+# Subtest: cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+ok 11 - cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+  ---
+  duration_ms: 122.309972
+  type: 'test'
+  ...
+# Subtest: prepared mission dossier and assessment lineage survive V3 restoration; missing preparation rolls back atomically
+ok 12 - prepared mission dossier and assessment lineage survive V3 restoration; missing preparation rolls back atomically
+  ---
+  duration_ms: 782.472737
+  type: 'test'
+  ...
+# {"scope":"Canonical isolated snapshot and replay; application references only, no deployed upgrade claimed","orders":2,"financialEvents":22,"authorityRestored":false}
+# {"scope":"Injected qualification fixture; no genuine assessment","enrollments":1,"orders":1,"events":11,"restoredAuthority":false}
+# Subtest: versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+ok 13 - versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+  ---
+  duration_ms: 2875.235301
+  type: 'test'
+  ...
+# Subtest: V2 restores enrolled simulation lineage, evolves derived errors, and validates duplicate replay
+ok 14 - V2 restores enrolled simulation lineage, evolves derived errors, and validates duplicate replay
+  ---
+  duration_ms: 808.426121
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5489.80345
