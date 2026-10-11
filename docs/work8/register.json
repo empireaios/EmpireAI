@@ -520,14 +520,14 @@
         "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Connect existing authorised assessment path without granting new paid or send authority.",
+      "nextAction": "Bind fresh genuine sources and approved assessment to the existing prepared enrollment path.",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Durable communication workflow preserves unresolved severity, earliest pending deadline and explicit escalation across benign follow-ups; eight categories covered.",
-      "examinationResult": "All eight simulated categories, repeated hostility, overdue response, idempotency, owner isolation and restart pass.",
+      "engineeringState": "Prepared qualified simulation enrollments now run through the canonical twin scheduler with explicit temporary authority and immutable source/preparation/assessment lineage.",
+      "examinationResult": "PREPARED-SCHEDULER-FINAL.tap:3 PASS; labelled injected qualification/assessment, no real product claim.",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Authorised AI-first preparation and native acceptance."
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
+      "remainingDependency": "Genuine qualification, authorised inference and native owner acceptance."
     },
     {
       "item": 21,
@@ -672,14 +672,14 @@
         "backend/src/validation/tests/work8-owner-finance.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Reconcile real calls separately; keep real profit and unknown invoices unknown",
+      "nextAction": "Complete financial source adapters and owner-view acceptance without live activation.",
       "responsibleComponent": "Financial reconciliation and owner readback",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Actual and simulated accounting remain separate",
-      "examinationResult": "PENDING \u2014 source separation/snapshot regression passed",
+      "engineeringState": "Isolated immutable Birth periods, archival history, exact integer service allocation, preserved position references; bounded cost discovery reuses existing evidence journal; owner rehearsal view added.",
+      "examinationResult": "FINANCIAL-CLOSURE-ENGINEERING.tap:6 PASS; final cost-bound test:2 PASS; Vercel authorised aggregate replay retains billed/effective distinction.",
       "independentVerification": "Actual journal/history hashes read unchanged",
-      "continuationEvidence": "owner-financial-readback.md; resume-20261011/ACCOUNTING.md",
-      "remainingDependency": "Actual row lineage and complete charge evidence"
+      "continuationEvidence": "owner-financial-readback.md; resume-20261011/ACCOUNTING.md; resume-20261011/CLOSURE-CHANGES.md",
+      "remainingDependency": "Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance."
     },
     {
       "item": 26,
@@ -1045,14 +1045,14 @@
         "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Complete non-commerce subsystem backup adapters and protected vault verification foundation.",
+      "nextAction": "Compose existing primary/native/JSON captures under complete drained boundary; keep recovered credentials inert.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "V3 checkpoints preserve mission preparations and enrollment lineage; V1/V2 migration, point-in-time restoration, immutable history and divergence checks. Permission/preview history is archived without reinstating grants.",
-      "examinationResult": "Prepared source-fixture mission restores through settlement; absent preparation rolls back atomically. Legacy migration and inactive restored authority pass; original rollback examination retained.",
+      "engineeringState": "V3 canonical replay retained; nine additional persisted-domain offline capture adapters reuse existing verifier; pinned checkpoint selection and inert inspection staging; WAL verification sidecar defect fixed.",
+      "examinationResult": "Multi-store vault test PASS; financial cutover backup/restore PASS; prepared scheduler/recovery3 PASS.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json",
-      "remainingDependency": "Whole-system adapters, protected off-host retention, measured hosted restoration and upgrade acceptance."
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
+      "remainingDependency": "Global quiescence, legacy checkpoint-set composition, Redis/pending RAM, protected off-host vault and hosted recovery."
     },
     {
       "item": 40,
@@ -1101,14 +1101,14 @@
         "backend/src/validation/tests/work8-owner-finance.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Native mobile/desktop journey, five-tab geometry and media/communication interaction checks.",
+      "nextAction": "Use existing browser harness once an authorised browser environment is available.",
       "responsibleComponent": "Owner Console",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Seven Console projections wired to durable session; product-context links and Systems authority implemented; Existing same-session projections extended with media and communication records.",
-      "examinationResult": "Canonical equality after snapshot/replay; frontend typecheck/lint.",
+      "engineeringState": "Financial rehearsal tab renders actual backend period and cost projection; existing mobile navigation and owner UX retained.",
+      "examinationResult": "Full frontend typecheck/lint PASS; service-generated financial SSR PASS; not native browser acceptance.",
       "independentVerification": "Same canonical records via authenticated isolated HTTP and seven actual component SSR checks; not native browser acceptance",
-      "continuationEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Native mobile/desktop journey, five-tab geometry and media/communication interaction checks."
+      "continuationEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
+      "remainingDependency": "Native desktop/mobile authenticated journey and source-to-finance equality."
     },
     {
       "item": 42,
@@ -1124,14 +1124,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Read current-head CI and obtain independent exact-revision review; no deployment.",
+      "nextAction": "Read existing runs once complete; repair only demonstrated failures.",
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
-      "engineeringState": "Backendbe4936d and frontend reviewb450082 published with exact local-tree equality; deployment branch unchanged.",
-      "examinationResult": "Scoped tests and strict changed-backend compile; full frontend typecheck and changed-file lint pass. Native installer failed; no browser or independent-review claim.",
+      "engineeringState": "Source units published incrementally; frontend remains a review commit, deployment-linked branch untouched.",
+      "examinationResult": "Prior be4936d all4 workflows SUCCESS; newer changed-head CI tracked separately.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Latest backend CI conclusions; independent review; separately governed preview acceptance."
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
+      "remainingDependency": "Latest exact-head conclusions, independent source review, separately governed release."
     },
     {
       "item": 43,
@@ -1200,7 +1200,7 @@
       "remainingDependency": "Legitimate Work8 closure"
     }
   ],
-  "continuation": "resume-20261011/PROGRESS.md",
+  "continuation": "OWNER-CLOSURE-DIRECTIVE.txt; resume-20261011/CLOSURE-CHECKPOINT.json",
   "counts": {
     "PASS": 2,
     "BLOCKED": 5,

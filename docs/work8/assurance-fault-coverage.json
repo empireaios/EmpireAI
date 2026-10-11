@@ -107,9 +107,9 @@
     {
       "item": 15,
       "fault": "Duplicate order",
-      "coverage": "PARTIAL",
-      "evidence": "work6-commerce.test.ts: duplicate intake",
-      "scopeAndGap": "Actual canonical intake duplicate denied; no queue-origin repeated order incident walkthrough"
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work6-commerce.test.ts: duplicate intake; work8-duplicate-order-assurance.test.ts",
+      "scopeAndGap": "Actual durable worker executes duplicate intake, blocks on DUPLICATE_ORDER, canonical probe reports BLOCKED with no repair; Assurance retains UNRESOLVED incident after denied recovery and cold reopen. One order and original five receipts remain unchanged. External broker delivery remains outside this isolated queue examination."
     },
     {
       "item": 16,

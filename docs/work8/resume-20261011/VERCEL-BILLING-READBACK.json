@@ -1,0 +1,145 @@
+{
+  "requested": {
+    "from": "2026-10-01T00:00:00Z",
+    "to": "2026-10-11T00:00:00Z"
+  },
+  "teamId": "team_gdcskAnaJteKW7BYtw8zlSWy",
+  "summary": {
+    "recordCount": 7270,
+    "periodStart": "2026-09-30T07:00:00.000Z",
+    "periodEnd": "2026-10-10T07:00:00.000Z",
+    "currency": "USD",
+    "totalBilledCost": 0.140116843823,
+    "totalEffectiveCost": 19.933990200364,
+    "totalsByCurrency": [
+      {
+        "currency": "USD",
+        "billedCost": 0.140116843823,
+        "effectiveCost": 19.933990200364,
+        "recordCount": 7270
+      }
+    ]
+  },
+  "byCategory": [
+    {
+      "category": "Build & Deploy",
+      "currency": "USD",
+      "billedCost": 0.14,
+      "effectiveCost": 12.138,
+      "recordCount": 40
+    },
+    {
+      "category": "Observability",
+      "currency": "USD",
+      "billedCost": 0.0000768,
+      "effectiveCost": 0.4040556,
+      "recordCount": 60
+    },
+    {
+      "category": "Vercel Functions",
+      "currency": "USD",
+      "billedCost": 0.000033493756,
+      "effectiveCost": 0.716112917031,
+      "recordCount": 690
+    },
+    {
+      "category": "Content, Caching & Optimization",
+      "currency": "USD",
+      "billedCost": 0.0000048,
+      "effectiveCost": 0.0021496,
+      "recordCount": 2560
+    },
+    {
+      "category": "Vercel Delivery Network",
+      "currency": "USD",
+      "billedCost": 0.000001750067,
+      "effectiveCost": 0.007005416667,
+      "recordCount": 650
+    },
+    {
+      "category": "Sandbox",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 0,
+      "recordCount": 1280
+    },
+    {
+      "category": "Queues",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 0,
+      "recordCount": 1050
+    },
+    {
+      "category": "Web Application Firewall",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 0,
+      "recordCount": 640
+    },
+    {
+      "category": "Services",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 0,
+      "recordCount": 210
+    },
+    {
+      "category": "Subscription Licenses",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 6.666666666667,
+      "recordCount": 40
+    },
+    {
+      "category": "Vercel Connect",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 0,
+      "recordCount": 20
+    },
+    {
+      "category": "AI Tokens",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 0,
+      "recordCount": 10
+    },
+    {
+      "category": "KMS",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 0,
+      "recordCount": 10
+    },
+    {
+      "category": "VCR",
+      "currency": "USD",
+      "billedCost": 0,
+      "effectiveCost": 0,
+      "recordCount": 10
+    }
+  ],
+  "context": {
+    "summaryIncludesAllRecords": true,
+    "totalRecords": 7270,
+    "sampleRecords": 100,
+    "sampleTruncated": true,
+    "omittedSampleRecords": 7170,
+    "sampleSelection": "first-and-last",
+    "serviceGroups": 67,
+    "returnedServiceGroups": 50,
+    "serviceGroupsTruncated": true,
+    "dateRange": {
+      "from": "inclusive",
+      "to": "exclusive",
+      "guidance": "For a whole month, use the first day at 00:00:00Z through the first day of the next month at 00:00:00Z. The summary includes every streamed record."
+    }
+  },
+  "qualifications": [
+    "Returned periods differ from requested UTC bounds; do not silently normalize.",
+    "Billed/effective amounts are not paid-invoice evidence.",
+    "Full charge row reconciliation unavailable in this aggregated tool response.",
+    "No production accounting write performed."
+  ]
+}

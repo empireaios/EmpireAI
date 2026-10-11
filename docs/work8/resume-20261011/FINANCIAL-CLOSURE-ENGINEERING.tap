@@ -1,0 +1,47 @@
+TAP version 13
+# Subtest: half-open cutover, fixed prepaid allocation, late bills/corrections and currency conservation
+ok 1 - half-open cutover, fixed prepaid allocation, late bills/corrections and currency conservation
+  ---
+  duration_ms: 5.234958
+  type: 'test'
+  ...
+# Subtest: persistent immutable cutover survives cold reopen and old journal writer; owner and live scope refused
+ok 2 - persistent immutable cutover survives cold reopen and old journal writer; owner and live scope refused
+  ---
+  duration_ms: 5.741031
+  type: 'test'
+  ...
+# Subtest: autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart
+ok 3 - autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart
+  ---
+  duration_ms: 93.765571
+  type: 'test'
+  ...
+# Subtest: outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit
+ok 4 - outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit
+  ---
+  duration_ms: 23.404886
+  type: 'test'
+  ...
+# ◇ injected env (0) from .env
+# Subtest: authenticated isolated birth command cannot choose workspace or change actual journal; seven live effects stay denied
+ok 5 - authenticated isolated birth command cannot choose workspace or change actual journal; seven live effects stay denied
+  ---
+  duration_ms: 129.742343
+  type: 'test'
+  ...
+# Subtest: owner financial projection, backup and old/new writer preserve cutover and original live journal
+ok 6 - owner financial projection, backup and old/new writer preserve cutover and original live journal
+  ---
+  duration_ms: 49.616038
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 983.395226

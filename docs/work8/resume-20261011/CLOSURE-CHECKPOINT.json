@@ -1,0 +1,19 @@
+{
+  "schema": "WORK8_CLOSURE_CONTINUATION_V1",
+  "backend": "dbf2909822890c8c27a0a27a1cd8ae3f49c1c32a",
+  "backendTree": "808a6481b44cbf94086d5d62261f68cf8d1801d8",
+  "frontendReview": "fefa75a05adb06dc8295f2e77cdd29ba436be937",
+  "frontendTree": "06ef80bfda314c26d87c1b3c18880af750353571",
+  "frontendDeploymentBranchHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "sourceDirective": "OWNER-CLOSURE-DIRECTIVE.txt",
+  "counts": {
+    "PASS": 2,
+    "PENDING": 38,
+    "BLOCKED": 5
+  },
+  "amendments": 17,
+  "work8": "NO_GO",
+  "work9": "NOT_ACTIVATED",
+  "productionChanged": false,
+  "next": "Publish duplicate-order Assurance examination, then continue whole-system recovery composition, cost exception lifecycle and final exact-head CI. Independent source review and hosting still require separate gates."
+}

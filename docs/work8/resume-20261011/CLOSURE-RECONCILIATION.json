@@ -3,12 +3,11 @@
   "governingDocuments": [
     "MANDATE.txt",
     "resume-20261011/OWNER-HOLISTIC-DIRECTIVE.txt",
-    "resume-20261011/OWNER-ACCELERATED-DIRECTIVE.txt"
+    "resume-20261011/OWNER-ACCELERATED-DIRECTIVE.txt",
+    "resume-20261011/OWNER-CLOSURE-DIRECTIVE.txt"
   ],
   "scope": "One bounded reconciliation, followed directly by implementation. Existing scoped passes retained. Original IDs and descriptions unchanged.",
-  "closedNow": [
-    17
-  ],
+  "closedNow": [],
   "counts": {
     "PASS": 2,
     "BLOCKED": 5,
@@ -365,7 +364,7 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Native gallery acceptance, genuine rights evidence, Canva runtime and import completion.",
+      "acceptanceGap": "Native gallery acceptance, genuine rights and authorised Canva integration; import engineering complete.",
       "nextAction": "Native gallery acceptance, genuine rights evidence, Canva runtime and import completion."
     },
     {
@@ -486,7 +485,7 @@
         "owner-financial-readback.md; resume-20261011/ACCOUNTING.md"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Actual row lineage and complete charge evidence",
+      "acceptanceGap": "Actual accounting row lineage, autonomous billing discovery and reconciliation, isolated financial Birth cutover.",
       "nextAction": "Reconcile real calls separately; keep real profit and unknown invoices unknown"
     },
     {
@@ -727,7 +726,7 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Protected off-host vault, whole-system adapters, genuine-enrollment recovery, restore RTO and hosted migration acceptance.",
+      "acceptanceGap": "Whole-system adapters, protected off-host retention, hosted migration acceptance; V3 prepared-enrollment/PIT and measured local replay retained.",
       "nextAction": "Protected off-host vault, whole-system adapters, genuine-enrollment recovery, restore RTO and hosted migration acceptance."
     },
     {
@@ -777,7 +776,7 @@
         "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Latest backend CI conclusions; independent review; separately governed preview acceptance.",
+      "acceptanceGap": "Independent exact candidate review and separately authorised hosted acceptance; all four existing backend CI workflows passed.",
       "nextAction": "Latest backend CI conclusions; independent review; separately governed preview acceptance."
     },
     {
@@ -823,6 +822,8 @@
   "notes": [
     "Synthetic permission for the cap is explicit in R4; cap source and both tests match the retained examined manifest. Prior failed concurrency harness and passing corrected retest remain preserved.",
     "Requirement37 does not require genuine sources for virtual-time proof; integrated daily qualification/discovery, rejects and replacement through the complete twin remain uncovered. Genuine source demonstration is separately governed by R1\u2013R5.",
-    "No Work8 COMPLETE or Work9 activation receipt issued."
+    "No Work8 COMPLETE or Work9 activation receipt issued.",
+    "2026-10-11 closure reconciliation: retained all 45 IDs and exact decisions. New financial amendments add acceptance; they do not invalidate retained scoped evidence. All four be4936d workflows completed successfully; no reruns requested. Latest exact candidate independent review remains missing.",
+    "Corrected stale gaps: V3 now restores preparation/enrollment lineage and measured point-in-time replay, import UI exists, historic authority is inert. Remaining whole-system/off-host/native/genuine-source gates are distinct."
   ]
 }

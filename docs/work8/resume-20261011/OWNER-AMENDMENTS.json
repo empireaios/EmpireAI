@@ -25,9 +25,9 @@
         24,
         39
       ],
-      "engineering": "V3 prepared-mission/enrollment snapshots, V1/V2 migration, independently verified chain and atomic point-in-time restore; inert authority/preview history survives without restoring grants.",
+      "engineering": "V3 prepared-mission/enrollment snapshots, V1/V2 migration, independently verified chain and atomic point-in-time restore; inert authority/preview history survives without restoring grants. Nine-store offline vault inventory and financial WAL immutable verification added.",
       "acceptance": "PENDING",
-      "remaining": "Whole-system adapters and protected off-host retention remain."
+      "remaining": "Whole-system live quiescence/legacy composition, Redis and protected off-host retention."
     },
     {
       "id": 3,
@@ -185,6 +185,34 @@
       "engineering": "Existing validation and disabled adapter preserved",
       "acceptance": "PENDING",
       "remaining": "Licensing/entitlement verification remains; Jungle Scout excluded"
+    },
+    {
+      "id": 16,
+      "amendment": "Financial Birth Cutover",
+      "originalRequirementIds": [
+        2,
+        24,
+        25,
+        39,
+        41
+      ],
+      "engineering": "Immutable isolated Birth identity, service-period allocations, preserved archive/position references, backup/restore and existing authenticated owner route/view implemented.",
+      "acceptance": "PENDING",
+      "remaining": "Genuine complete financial inputs, independent opening-position review and native owner acceptance; live cutover forbidden."
+    },
+    {
+      "id": 17,
+      "amendment": "Autonomous Cost Intelligence",
+      "originalRequirementIds": [
+        2,
+        24,
+        25,
+        39,
+        41
+      ],
+      "engineering": "Bounded read-only adapter ports, durable evidence/exceptions, existing-journal invoice reconciliation, Vercel aggregate adapter and owner view implemented.",
+      "acceptance": "PENDING",
+      "remaining": "Additional authorised provider interfaces, subscription/invoice/payment detail, exact accounting rows, continuous activation reserved Work9."
     }
   ]
 }

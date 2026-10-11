@@ -1,0 +1,132 @@
+{
+  "classification": "ISOLATED_ADAPTER_REPLAY_OF_AUTHORISED_PROVIDER_READ",
+  "sourceFile": "VERCEL-BILLING-READBACK.json",
+  "productionWrites": 0,
+  "schema": "WORK8_COST_INTELLIGENCE_V1",
+  "resources": [
+    {
+      "id": "team_gdcskAnaJteKW7BYtw8zlSWy",
+      "provider": "vercel",
+      "service": "Team billing aggregate",
+      "state": "ACTIVE",
+      "billingOwner": "team_gdcskAnaJteKW7BYtw8zlSWy",
+      "fixedAmountMicro": null,
+      "currency": "USD",
+      "renewalAt": null,
+      "cancellationTerms": null,
+      "sharedAllocationBps": null,
+      "evidenceRef": "vercel:billing-charges:53c13f3fd35c124677b73a96752d27fa8b0203ece7e9182ed762f8f7412fb6ca",
+      "observedAt": "2026-10-11T08:38:42.386Z"
+    }
+  ],
+  "providerSummaries": [
+    {
+      "provider": "vercel",
+      "currency": "USD",
+      "billed": "0.140116843823",
+      "effective": "19.933990200364",
+      "recordCount": 7270,
+      "periodStart": "2026-09-30T07:00:00.000Z",
+      "periodEnd": "2026-10-10T07:00:00.000Z",
+      "qualification": "AGGREGATED_PROVIDER_READBACK_NOT_PAYMENT"
+    }
+  ],
+  "totalsByCurrencyStageAuthenticity": {},
+  "alerts": [
+    {
+      "provider": "github",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "railway",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "openai",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "anthropic",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "gemini",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "cj",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "amazon",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "keepa",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "canva",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "domains",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "storage",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "databases",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "monitoring",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "research",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "other-integrations",
+      "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+    },
+    {
+      "provider": "vercel",
+      "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+      "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+    },
+    {
+      "provider": "vercel",
+      "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+      "code": "SHARED_ALLOCATION_UNKNOWN"
+    },
+    {
+      "provider": "vercel",
+      "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+      "code": "SUBSCRIPTION_INVOICE_AND_PAYMENT_UNKNOWN"
+    },
+    {
+      "provider": "vercel",
+      "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+      "code": "EXACT_REQUESTED_PERIOD_ALIGNMENT_UNVERIFIED"
+    },
+    {
+      "provider": "vercel",
+      "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+      "code": "CHARGE_ROW_SAMPLE_INCOMPLETE"
+    },
+    {
+      "provider": "vercel",
+      "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+      "code": "SERVICE_GROUPS_INCOMPLETE"
+    }
+  ],
+  "observationsDigest": "76ca24db685a483c5e33788965d9a76d4fe3524d3c9f57616a933dd05f8e1cda",
+  "canonicalEntriesDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "totalsQualification": "UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS",
+  "operationalProfitIncluded": false,
+  "continuousLiveActivation": false
+}

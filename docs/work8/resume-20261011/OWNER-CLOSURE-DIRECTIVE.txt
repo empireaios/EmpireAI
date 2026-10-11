@@ -1,0 +1,581 @@
+# EMPIREAI — WORK 8 CLOSURE RECOVERY, FINANCIAL CUTOVER & COMPLETE CERTIFICATION
+
+**GRAND KING — SUPERSEDING OWNER DIRECTIVE**
+
+**MISSION: RESUME THE PUBLISHED WORK 8 CHECKPOINT, CLOSE ALL SATISFIED REQUIREMENTS, COMPLETE THE REMAINING ENGINEERING AND ACHIEVE LEGITIMATE WORK 8 CLOSURE.**
+
+This directive supersedes prior execution instructions only where they conflict with the closure sequence below.
+
+The original Work 8 Master Mandate, its binding addenda, all approved owner amendments, financial safeguards and completed engineering remain authoritative.
+
+**DO NOT RESTART WORK 8. DO NOT REBUILD COMPLETED COMPONENTS. DO NOT REPEAT ACCEPTED TEST CAMPAIGNS WITHOUT CHANGED COVERAGE.**
+
+## 1. RECOVER THE EXACT CURRENT CHECKPOINT
+
+Repository: `empireaios/EmpireAI`
+
+Previous published revisions:
+
+Backend: `be4936d`
+
+Frontend review candidate: `b450082`
+
+Evidence: `8c6bdbc82735878ebe162b441a1c33eebefc11f5`
+
+Recover their exact full SHAs and verify whether a newer authorised successor exists.
+
+Read the retained progress and continuation files under:
+
+`docs/work8/resume-20261011/`
+
+Recover:
+
+- The original 45-item register.
+- All owner amendment records.
+- Examination ledger and passing receipts.
+- Existing backend/frontend candidate branches.
+- Current CI workflow IDs and conclusions.
+- Independent review status.
+- Existing isolated-hosting proposal.
+- Work 7 COMPLETE receipt and production preservation baseline.
+
+The previous official register was:
+
+**2 PASS / 38 PENDING / 5 BLOCKED = 45.**
+
+Do not reset this register.
+
+## 2. FIRST ACTION — COMPLETE TARGETED ACCEPTANCE RECONCILIATION
+
+This is a bounded closure operation, not another broad audit.
+
+For all 45 original requirements:
+
+1. Compare the actual governing acceptance criteria with the existing implementation.
+2. Credit retained passing tests and independent evidence.
+3. Close requirements whose full acceptance criteria are already satisfied.
+4. Identify genuinely missing engineering separately from missing verification.
+5. Identify external blockers separately from implementation defects.
+6. Consolidate requirements that depend on the same unresolved acceptance gate.
+7. Preserve every original requirement ID and description.
+8. Record the exact evidence supporting each changed classification.
+
+Requirement 17 has already been legitimately closed. Preserve that decision.
+
+Do not leave an already satisfied requirement pending merely because it previously appeared that way.
+
+Do not manufacture PASS classifications.
+
+**Finish this reconciliation once, then immediately execute the remaining closure tasks.**
+
+## 3. RECOVER CURRENT CI AND INDEPENDENT REVIEW
+
+At the interrupted checkpoint, one backend workflow had passed and three were still running.
+
+Check their existing conclusions.
+
+Do not restart passing workflows.
+
+If a workflow failed, inspect its exact failing step and repair only the demonstrated defect.
+
+Independently review the exact backend and frontend candidate revisions.
+
+Preserve reviewed source-tree identities and existing financial/safety evidence.
+
+Do not equate CI passing with full Work 8 acceptance.
+
+## 4. PRESERVE ALL COMPLETED WORK
+
+The following engineering and examinations must remain credited within their actual scopes:
+
+- Source-bound product dossiers and qualification.
+- QUALIFIED / DEFERRED / REJECTED outcomes.
+- Reviewed cost, FX and cash checks.
+- Exact Pillow dossier/owner/request binding.
+- Canonical mission preparation.
+- Separate product approval and simulation authorisation.
+- Transactional 1,000-active-product ceiling.
+- Persistent owner-bound digital twin.
+- Shared Home/Intelligence/Products/Listings/Orders/Finance/Assurance records.
+- Scheduler-driven simulated commerce.
+- Autonomous Assurance recovery and escalation.
+- Five mobile bottom shortcuts.
+- Compact product-linked Pillow Chat.
+- Product comparisons and preserved context through compaction.
+- Versioned media, import and two-stage approvals.
+- Collapsible media archive.
+- Simulated customer communication risk management.
+- Temporary preparation authority and UX-preview approval.
+- Protected snapshot/replay and point-in-time restoration.
+- V3 lineage, immutable historical evidence and authority exclusion.
+- Old/new/old application compatibility.
+- Ten-minute measured endurance evidence.
+
+Preserve exact test scopes and do not claim hosted/native acceptance from isolated tests.
+
+## 5. COMPLETE THE WHOLE-SYSTEM TWIN AND RECOVERY FOUNDATION
+
+The owner has approved the architecture:
+
+**Authoritative Live State + Protected Backup Vault + Persistent Digital Twin + Isolated Future-State Workspace + Governed Release.**
+
+This covers:
+
+- Pillow.
+- Intelligence.
+- Commerce.
+- Operational Finance.
+- Live Cost Centre.
+- Assurance.
+- Systems authority.
+- Owner Console.
+- Mission Ledger.
+
+Reuse existing snapshot, replay, finance and Assurance mechanisms.
+
+Do not create duplicate engines.
+
+Complete only the remaining:
+
+- Whole-system snapshot adapters.
+- Protected backup retention and integrity checks.
+- Off-host recovery readiness where authorised.
+- Event ordering, replay and divergence checks.
+- Future-state workspace isolation.
+- Backward-compatible application upgrades.
+- Safe code rollback retaining newer committed orders.
+- Independent recovery verification.
+- Recovery-point and recovery-time measurement.
+
+Preserve successful V3 restore, point-in-time selection, atomic refusal, missing-ancestor detection and authority-exclusion tests.
+
+Work 9 shall activate continuous production synchronisation and operational backup schedules.
+
+## 6. NEW BINDING FINANCIAL AMENDMENT — FINANCIAL BIRTH CUTOVER
+
+**OWNER-APPROVED REQUIREMENT**
+
+At the separately authorised Work 9 live-launch timestamp, EmpireAI's new live operating reporting period must begin at zero.
+
+Work 8 must build and examine this capability in isolation before closure.
+
+### Required financial treatment
+
+**Pre-Launch Archive**
+
+Preserve development, commissioning, testing, historical subscriptions, model charges, infrastructure costs and existing accounting records.
+
+Do not delete or rewrite historical financial evidence.
+
+**Live Operating Period**
+
+Begin live-period revenue and expense reporting at zero at the authorised cutover timestamp.
+
+Use explicit period identity and cutoff rules.
+
+**Opening Financial Position**
+
+Preserve legitimate cash balances, liabilities, receivables, unpaid bills, prepayments and ongoing commitments.
+
+Do not falsely reset real balance-sheet obligations.
+
+**Simulated Finance**
+
+Keep all twin-generated revenue, supplier costs, shipping, marketplace fees, refunds, settlements and profits in the isolated twin ledger.
+
+Do not carry simulated profits into live financial actuals.
+
+### Mandatory examinations
+
+1. Pre-launch records remain available in the archive.
+2. Live reporting starts at zero at the configured cutover.
+3. Events immediately before and after the cutover are classified correctly.
+4. Late-arriving bills and corrections retain their correct accounting periods.
+5. Prepaid subscriptions and outstanding liabilities remain accounted for.
+6. No transaction disappears, duplicates or changes identity at cutover.
+7. Twin finance remains separate from actual finance.
+8. Restore/rollback preserves cutover identity and historical data.
+9. Owner Console presents the new live period clearly.
+10. Independent financial reconciliation confirms conservation.
+
+Work 8 must test the cutover.
+
+**Do not perform the real financial Birth cutover during Work 8.**
+
+## 7. NEW BINDING FINANCIAL AMENDMENT — AUTONOMOUS COST INTELLIGENCE
+
+The Live Cost Centre must become an autonomous cost-discovery, classification and reconciliation capability.
+
+The owner does not want recurring manual entry to be the normal operating method.
+
+### Required service coverage
+
+Inventory all existing and potential cost-bearing services, including:
+
+- GitHub.
+- Vercel.
+- Railway.
+- OpenAI.
+- Anthropic.
+- Gemini.
+- CJdropshipping.
+- Amazon seller operations.
+- Keepa, if activated.
+- Canva, where applicable.
+- Domain/DNS providers.
+- Storage, databases, monitoring and research services.
+- Other connected paid integrations.
+
+Distinguish actual configured resources from merely proposed or inactive providers.
+
+Do not assume a service is free merely because usage is zero.
+
+Do not assume GitHub's billing interface reveals charges belonging to Vercel, Railway or other providers.
+
+### Required automated workflow
+
+**Discover resource → Identify billing owner → Retrieve authorised billing/usage evidence → Classify cost → Reconcile → Present → Monitor → Escalate exceptions.**
+
+Classify:
+
+- Fixed monthly costs.
+- Variable usage charges.
+- Recurring subscriptions.
+- One-off expenditure.
+- Unbilled usage.
+- Outstanding invoices.
+- Paid invoices.
+- Commitments and reservations.
+- Prepaid periods.
+- Estimates.
+- Unknown amounts.
+- Foreign-currency amounts.
+- Shared-team allocations.
+- Renewal dates and cancellation terms.
+
+Preserve distinct financial states.
+
+Do not add estimated or unbilled amounts into confirmed settled expenditure.
+
+Do not invent conversions, prices or allocations.
+
+### Provider integration
+
+Inspect existing GitHub, Railway, Vercel and model-provider connections first.
+
+Use supported read-only billing/usage interfaces wherever available.
+
+Build only genuinely missing adapters and contracts.
+
+For unavailable billing data, preserve an explicit exception rather than inventing a zero amount.
+
+Automatically investigate through permitted evidence sources.
+
+Ask the owner for manual information only when genuinely indispensable and after automatic retrieval options have been exhausted.
+
+### Owner Console acceptance
+
+Live Cost Centre should clearly show:
+
+1. Active provider and service.
+2. Billing account or owner.
+3. Fixed subscription charge.
+4. Variable usage and relevant unit.
+5. Outstanding and paid amounts.
+6. Next renewal/payment date.
+7. Currency and available conversion.
+8. Current total by supported financial stage.
+9. Missing-data exceptions.
+10. Cost changes requiring attention.
+
+Keep infrastructure expenses separate from operational product-level profit.
+
+### Mandatory cost-intelligence examinations
+
+Test resource discovery, subscription activation, zero usage with fixed fees, variable usage spikes, delayed invoices, shared billing, missing FX, duplicate invoices, cancelled services, inactive providers, renewal changes, provider outages and restart persistence.
+
+Test invoice/usage reconciliation without double counting.
+
+Test unknown-cost escalation and preserve durable evidence.
+
+**Work 8 builds and examines this system. Work 9 activates it continuously against authorised live billing information.**
+
+## 8. COMPLETE GENUINE PRODUCT AND PILLOW ASSESSMENT
+
+The synthetic commerce engine is substantially implemented.
+
+Do not rebuild it.
+
+Complete:
+
+- Fresh authorised CJ/Amazon reads.
+- Exact variant, stock, freight and destination evidence.
+- Verified supplier price and currency.
+- Marketplace eligibility and fees.
+- Reviewed financial assumptions.
+- Product image-use permission.
+- Genuine authorised Pillow assessment.
+- Owner recommendation and decision.
+- Canonical qualified mission.
+- Complete simulated commerce and finance lineage.
+
+Do not fabricate evidence to achieve acceptance.
+
+If a provider capability is genuinely unavailable, preserve the exact blocker and complete independent work.
+
+### Resource decisions
+
+Keepa is the preferred additional research tool, subject to separate owner purchase authority.
+
+Helium 10 must remain future-ready with no subscription.
+
+Jungle Scout is excluded.
+
+Do not reopen settled resource decisions.
+
+## 9. COMPLETE APPROVED OWNER UX
+
+Preserve the Work 7 visual identity and Home artwork.
+
+Complete the existing approved changes, including:
+
+**Mobile navigation**
+
+CEO · Intelligence · Products · Orders · Finance.
+
+Home remains the default landing page and accessible through existing navigation.
+
+**Product-linked Pillow Chat**
+
+Compact chat icon, exact product/SKU/context chip, removal, switching and comparison.
+
+**Product media**
+
+Complete original/revised image and video gallery, versioned proposals, side-by-side review, Canva-assisted editing where authorised, individual/batch approval, separate internal/external approval, external-approval reminders, exact-version binding and collapsed Archive dropdown.
+
+Internal approval never automatically publishes to Amazon.
+
+**Temporary Systems authority**
+
+One-task and time-limited grants, automatic expiry, revocation, owner identity, durable receipts and strict scope enforcement.
+
+**Conversational UX preparation**
+
+Pillow may prepare a proposed change and preview where authorised, but cannot self-authorise deployment.
+
+**Customer communication risk**
+
+Classify inquiries, complaints, returns, chargebacks, account-health notices and other messages.
+
+Preserve severity, response deadlines and escalation.
+
+Do not downgrade unresolved critical risks because of a later benign message.
+
+Do not postpone an outstanding deadline merely because another message arrives.
+
+AI-drafted responses require authorised inference; otherwise label drafts as rule-based preparation.
+
+## 10. COMPLETE ASSURANCE AND MOCK EXAMINATIONS
+
+Finish uncovered fixed-fault scenarios, coupled failures, recurrence, watchdog failures, financial discrepancies and provider outages.
+
+Preserve passing examinations.
+
+Complete:
+
+- 100-candidate daily throughput target.
+- 1,000-active-product capacity.
+- Multi-day virtual operation.
+- Measured endurance.
+- Concurrent simulated orders.
+- Refunds and settlement.
+- Authority expiry and revocation.
+- Recovery and escalation.
+- Source/ledger/UI equality.
+- Snapshot and point-in-time restoration.
+- Upgrade and rollback without losing newer transactions.
+- Financial Birth cutover simulation.
+- Autonomous cost-intelligence examination.
+- Whole-system twin isolation.
+
+Do not claim real provider acceptance from mock-only responses.
+
+## 11. HOSTED TWIN — RESOLVE ONE CONSOLIDATED RESOURCE DEPENDENCY
+
+The previous infrastructure examination found an empty Railway canary project and no existing isolated Work 8 service.
+
+Recover the already prepared hosting proposal.
+
+Do not repeat the same infrastructure inventory.
+
+Verify whether an existing no-additional-cost isolated environment can meet the requirements.
+
+If not, present one bounded owner decision with:
+
+- Required services and volumes.
+- Isolation.
+- Expected monthly cost.
+- Spending controls.
+- Source revisions.
+- Deployment sequence.
+- Rollback and teardown.
+- Financial preservation.
+
+No billable provisioning or deployment without separate authority.
+
+Continue all other executable engineering while awaiting that decision.
+
+## 12. AUTHENTICATED OWNER-VISIBLE ACCEPTANCE
+
+After appropriate hosted authority, show the complete digital twin through the approved Owner Console:
+
+**Home → Intelligence → Products & Approvals → Listings → Orders & Fulfilment → Operational Finance → Assurance.**
+
+Include multiple labelled simulated orders and genuine supplier evidence where authorised.
+
+Verify product Chat, media approvals, archived versions, communications, temporary authority and financial reports.
+
+Verify desktop and mobile operation.
+
+If browser credential protection blocks observation, preserve the accepted evidence and identify only the narrow missing state.
+
+Do not repeat accepted Android tests or request password resets.
+
+## 13. GOVERNED CI, RELEASE AND INDEPENDENT CLOSURE
+
+Obtain complete exact-head CI conclusions.
+
+Obtain independent source review and Assurance verification.
+
+Do not merge, deploy or open a release lease without separate authority.
+
+Where authorised, verify release identity, preservation, security and rollback.
+
+Work 8 COMPLETE requires legitimate evidence for all mandatory operating, financial, UX and safety gates.
+
+A NO-GO must remain NO-GO until requirements are satisfied or the owner explicitly changes their scope.
+
+Do not claim Work 9 readiness merely because tests passed.
+
+## 14. FIXED 45-ITEM REGISTER AND AMENDMENTS
+
+Maintain exactly the original 45 Work 8 requirement IDs.
+
+The starting classification is:
+
+**2 PASS / 38 PENDING / 5 BLOCKED.**
+
+Reconcile updated engineering and passing evidence without fabricating acceptance.
+
+Maintain a separate owner amendment register for the digital twin, backups, seamless upgrades, product Chat, temporary Systems authority, mobile navigation, media workflow, human interactions and the new financial requirements.
+
+Every progress report must include one complete original 45-row table with:
+
+- Original requirement.
+- Implemented engineering.
+- Examination evidence.
+- Remaining work.
+- Official status.
+- Exact next action.
+
+Do not create competing progress tables with inconsistent denominators.
+
+## 15. EXECUTION ORDER — MANDATORY CLOSURE PATH
+
+Execute in this order, adjusting only for actual dependencies:
+
+1. Recover current CI and independent-review status.
+2. Complete the bounded acceptance reconciliation and close already-satisfied requirements.
+3. Finish remaining whole-system backup and point-in-time recovery work.
+4. Implement and test Financial Birth Cutover.
+5. Implement and test Autonomous Cost Intelligence.
+6. Complete remaining owner-media, communication and Systems UX.
+7. Complete independently executable genuine-product integration.
+8. Finish uncovered Assurance and commercial examinations.
+9. Obtain exact-head CI and independent review.
+10. Present one consolidated hosting/authority decision if needed.
+11. After approval, complete hosted owner-visible acceptance.
+12. Reconcile all 45 requirements and owner amendments.
+13. Obtain independent Work 8 closure evidence.
+14. Prepare Work 9 handoff without activation.
+
+**Do not stop after steps 1 or 2. The purpose of reconciliation is to enable closure, not replace engineering.**
+
+## 16. EXECUTION DISCIPLINE — NO AUDIT LOOP
+
+Recover once, implement, verify, publish, reconcile and advance.
+
+Do not restart successful CI campaigns without changed coverage.
+
+Do not repeatedly investigate the same known blockers.
+
+Commit source and evidence after every meaningful engineering unit.
+
+Do not leave substantial work unpublished.
+
+If two successive sessions repeat the same work without progress, trigger targeted closure reconciliation immediately.
+
+If a platform limit or interruption stops execution, save the exact state and next executable command.
+
+Continue all authorised independent work even when one requirement is externally blocked.
+
+No unnecessary owner intervention.
+
+## 17. NON-NEGOTIABLE SAFEGUARDS
+
+Production remains unchanged without separate authority.
+
+Pillow remains **NOT_BORN**.
+
+Commerce remains **LOCKED**.
+
+All 15 protections and seven denied live-effect routes remain enforced.
+
+No real listings, supplier orders, customer payments, refunds or financial transfers.
+
+No unauthorised paid inference.
+
+No unapproved subscriptions or billable infrastructure.
+
+No financial history alteration or fabricated accounting attribution.
+
+No digital-twin experiment may alter actual production records.
+
+No application rollback may silently lose newer business transactions.
+
+## REQUIRED RESULT
+
+Complete the existing Work 8 system and obtain legitimate closure.
+
+Deliver:
+
+1. Fully reconciled 45-item register.
+2. Closure of all evidence-complete requirements.
+3. Persistent whole-system digital twin.
+4. Protected backup/replay and recovery capability.
+5. Safe future-state upgrade and rollback foundation.
+6. Financial Birth Cutover simulation.
+7. Autonomous Cost Intelligence.
+8. Approved owner UX.
+9. Genuine-product assessment where authorised.
+10. Complete commercial/Assurance examinations.
+11. Hosted owner-visible dry run.
+12. Independent CI, review and financial preservation.
+13. Legitimate GO/NO-GO and Mission Ledger closure.
+14. Complete Work 9 operational commissioning handoff.
+
+**GRAND KING'S EXECUTION INSTRUCTION**
+
+**STOP THE REPEATED AUDIT–IMPLEMENT–STOP LOOP.**
+
+Close requirements whose full criteria have already been satisfied.
+
+Complete genuinely missing engineering.
+
+Resolve shared external dependencies once.
+
+Publish all completed work.
+
+**DO NOT STOP AT ANOTHER AUDIT OR PASSING TEST CHECKPOINT WHEN AUTHORISED ENGINEERING REMAINS.**
+
+**OBJECTIVE: FINISH WORK 8 AS A COMPLETE, RECOVERABLE, UPGRADEABLE, OWNER-VISIBLE AUTONOMOUS DIGITAL-TWIN BUSINESS SYSTEM.**
