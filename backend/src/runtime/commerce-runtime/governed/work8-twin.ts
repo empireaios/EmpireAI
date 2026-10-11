@@ -24,6 +24,16 @@ export class Work8TwinSessions {
    previous=hash;return e;});
  }
  private namespace(p:Principal,sessionId:string){return 'twin_'+digest({workspace:p.workspace,owner:p.owner,sessionId}).slice(0,48);}
+ /** Resolve only verified, active twin namespaces; never fall back to an absent twin policy. */
+ safetyWorkspace(workspace:string){
+  if(!workspace.startsWith('twin_'))return workspace;
+  const row=this.store.db.prepare("SELECT record FROM work8_twin_events WHERE json_extract(record,'$.twinWorkspace')=? ORDER BY version DESC LIMIT 1").get(workspace);
+  if(!row)throw Error('TWIN_NAMESPACE_UNVERIFIED');
+  const event=JSON.parse(String(row.record)) as TwinEvent;
+  const session=this.read({workspace:event.workspace,owner:event.owner},event.sessionId);
+  if(session.twinWorkspace!==workspace||session.status!=='ACTIVE')throw Error('TWIN_INACTIVE_OR_STALE');
+  return session.workspace;
+ }
  read(rawPrincipal:unknown,sessionId:string){const p=principal.parse(rawPrincipal);key.parse(sessionId);const e=this.history(p,sessionId).at(-1);if(!e)throw Error('TWIN_NOT_FOUND');return e;}
  /** Recover durable sessions after a browser or process restart; selection grants no authority. */
  list(rawPrincipal:unknown,after='',limit=50){
