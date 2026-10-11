@@ -1,5 +1,5 @@
-# Work8 fixed execution register
+# Original Work8 register
 
-The current single continuous 45-item acceptance table is [PROGRESS.md](resume-20261011/PROGRESS.md). Machine-readable original IDs, preserved recovered statuses, implementation/test mappings, dependencies and exact next actions remain in [register.json](register.json).
+6 PASS / 34 PENDING / 5 BLOCKED = 45.
 
-IN_PROGRESS / NO_GO: 5 PASS, 35 PENDING, 5 BLOCKED at complete-requirement scope. Scoped examination PASS does not certify the whole requirement. No denominator change or inferred completion percentage.
+Authoritative machine register: [register.json](register.json). Full original45-row progress: [PROGRESS.md](resume-20261011/PROGRESS.md). Owner amendments remain separate in [AMENDMENTS.json](resume-20261011/AMENDMENTS.json). No programme certification or live activation.

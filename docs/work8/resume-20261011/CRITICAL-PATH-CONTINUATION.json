@@ -1,0 +1,29 @@
+{
+  "schema": "WORK8_CRITICAL_PATH_CONTINUATION_V1",
+  "source": "a83c95eb8870a893c93920353c5da94351b5c34f",
+  "sourceTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "base": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+  "scope": "One registered-runtime recurrence examination and demonstrated cross-store mutation detection repair",
+  "tests": {
+    "registeredRecurrence": {
+      "passed": 1,
+      "clock": "virtual"
+    },
+    "crossStoreCapture": {
+      "before": "expected exception missing: reproduced defect",
+      "afterPassed": 2
+    },
+    "backendTypecheck": "PASS Node22 tsc --noEmit, 4GiB heap"
+  },
+  "publication": "NOT_AUTHORISED_FOR_SUCCESSOR",
+  "requirement29": "PENDING_PUBLICATION_AND_ATTRIBUTION",
+  "requirements33and39": "PENDING_GLOBAL_QUIESCENCE_OFFHOST_HOSTED_ACCEPTANCE",
+  "hashes": {
+    "REGISTERED-RECURRENCE-PLAN.json": "d487eb2ce23fdcbbde0374be70bcf24ae5c1258743d8925655c11b8c81ad011e",
+    "REGISTERED-RECURRENCE.tap": "9ea224e0d1feb1f6ac79369ad223630b7770d2e208d9db4b577a0ecbf8924721",
+    "REGISTERED-RECURRENCE-TYPECHECK.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "CROSS-STORE-CAPTURE-PLAN.json": "27986abc28896c57f1f60c9710d1d17dc0fc9ef5aa742f8e0bf452adbcfdfce4",
+    "CROSS-STORE-CAPTURE-BEFORE.tap": "2e71b8a089f0f52b686cdc6bfb4848ec02d7f1e8a6fdd408f67c76d0ac52ceae",
+    "CROSS-STORE-CAPTURE-AFTER.tap": "e24268e837d89d76fe778fdd06111a34ba77e6fbb81296741b55ef3c87acc6cb"
+  }
+}

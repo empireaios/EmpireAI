@@ -1,0 +1,29 @@
+TAP version 13
+# Subtest: whole-volume capture refuses a second-store writer during later Redis copy
+not ok 1 - whole-volume capture refuses a second-store writer during later Redis copy
+  ---
+  duration_ms: 174.121824
+  type: 'test'
+  location: '/workspace/scratch/425cef48de17/backend/deployment/locked-runtime.test.cjs:5:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/425cef48de17/backend/deployment/locked-runtime.test.cjs:28:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 422.598156

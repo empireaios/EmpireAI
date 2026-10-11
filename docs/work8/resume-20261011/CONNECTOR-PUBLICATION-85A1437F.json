@@ -1,0 +1,34 @@
+{
+  "schema": "WORK8_CONNECTOR_PUBLICATION_V1",
+  "verifiedAt": "2026-10-11T12:36:38.193215+00:00",
+  "repository": "empireaios/EmpireAI",
+  "entries": [
+    {
+      "branch": "work8/autonomous-examination-20261011",
+      "original": "85a1437f65bbeddc08e712187a9d5372bc28999f",
+      "replacement": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+      "originalTree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
+      "replacementTree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356"
+    },
+    {
+      "branch": "work8/examination-evidence-20261011",
+      "original": "f616f940201f1e310790f15bf0a22fd4361b9a54",
+      "replacement": "ad3bf4f73a44d1624018343a5240529ed9401407",
+      "originalTree": "cc394f74f8a6e932013d2b20a339cc37fbaaa86b",
+      "replacementTree": "cc394f74f8a6e932013d2b20a339cc37fbaaa86b"
+    }
+  ],
+  "verification": "Connector tree equality before non-force expected-parent updates; fetched remote objects and empty full-tree git diffs. Replacement metadata yields different commits, not identical commit identities.",
+  "missingFiles": 0,
+  "modifiedFiles": 0,
+  "additionalFiles": 0,
+  "frontendDeploymentBranchHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "deployment": false,
+  "finalRemoteReadback": {
+    "at": "2026-10-11T12:42:44.548317+00:00",
+    "method": "git ls-remote origin exact three branch refs",
+    "source": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+    "evidence": "ad3bf4f73a44d1624018343a5240529ed9401407",
+    "frontendHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce"
+  }
+}

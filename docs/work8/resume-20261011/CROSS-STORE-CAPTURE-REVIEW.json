@@ -1,0 +1,34 @@
+{
+  "schema": "WORK8_CROSS_STORE_CAPTURE_REVIEW_V1",
+  "reviewer": "/root/review_retirement_finance",
+  "verdict": "SCOPED_PASS",
+  "scope": "Detect mutation of earlier application root during later Redis-root copy before sealing bundle manifest",
+  "sourceState": "Reviewed local working files; no publication inferred",
+  "sourceHashes": {
+    "deployment/locked-state-bundle.cjs": "29c3662730d1732e63272fd7323a776d70d1225e3601fe984ee62e2d5ec428b1",
+    "deployment/locked-runtime.test.cjs": "7cd0c18eefe597f6e2e3442db9cd68aca469a95d1911f0029949ccf09953b0f6"
+  },
+  "evidenceHashes": {
+    "CROSS-STORE-CAPTURE-PLAN.json": "27986abc28896c57f1f60c9710d1d17dc0fc9ef5aa742f8e0bf452adbcfdfce4",
+    "CROSS-STORE-CAPTURE-BEFORE.tap": "2e71b8a089f0f52b686cdc6bfb4848ec02d7f1e8a6fdd408f67c76d0ac52ceae",
+    "CROSS-STORE-CAPTURE-AFTER.tap": "e24268e837d89d76fe778fdd06111a34ba77e6fbb81296741b55ef3c87acc6cb"
+  },
+  "findings": [
+    "Actual second-process SQLite commit occurs after first-root verification at deterministic later-root read barrier",
+    "Final all-root revalidation refuses capture and leaves no manifest",
+    "Stable retry after writer exit restores committed generation2",
+    "Child termination promise handles spawn error and exit; guarded cleanup reuses promise and drains stderr; original readFileSync restored"
+  ],
+  "limitations": [
+    "Sequential final checks cannot prevent mutation after an earlier final check",
+    "Caller-enforced global shutdown remains necessary; no atomic arbitrary-writer snapshot proof",
+    "No protected off-host retention or production/platform proof",
+    "Reviewer did not rerun tests; retained AFTER receipt records two passing whole-volume tests"
+  ],
+  "requirement33": "PENDING",
+  "requirement39": "PENDING",
+  "reviewedLocalSource": "a83c95eb8870a893c93920353c5da94351b5c34f",
+  "reviewedLocalTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "publicationState": "LOCAL_COMMIT_NOT_PUBLISHED",
+  "publishedBase": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb"
+}

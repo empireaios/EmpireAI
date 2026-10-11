@@ -1,0 +1,22 @@
+# Work8 critical path after approved publication
+
+Official register: 6 PASS / 34 PENDING / 5 BLOCKED = 45. Accepted IDs: 1,17,27,28,31,37. Requirement29 has independently reviewed sufficient scoped evidence but remains PENDING until its new test/evidence publication and exact-revision attribution. No other full closure is supported by this bounded review.
+
+| Order / parallel lane | Remaining engineering | Independent acceptance | External dependency |
+|---|---|---|---|
+| Ready local batch | Registered-runtime recurrence test complete; cross-store mutation detector corrected (failing reproduction, passing repair). No new engine built. | Scoped reviews complete; bind consolidated batch to published exact tree and required CI. Then close29 if unchanged. | One bounded publication approval for this subsequent batch. |
+| Assurance/recovery | Locally eligible F13/22/23/25/26 are covered, including registered recurrence. Execute remaining fixed31 detection/correlation/compound acceptance only when its specified external prerequisites exist. Global writer quiescence must be enforced by the isolated runtime or an explicit coordinated shutdown; sequential file hashes do not provide it. | Actual host coupled observer/launcher loss, final-candidate endurance, independent protected restore and cross-store consistency. | Isolated host/retention execution boundary. |
+| Genuine product lane | Existing readers, qualification, portfolio and simulated lifecycle reused; only defects demonstrated by fresh inputs need engineering. | Fresh exact variants, supplier economics, market identity, genuine authorised assessment and rights; linked source-to-finance lifecycle. | Fresh read execution/receipts, existing valid commissioning assessment, exact image permissions. |
+| Finance lane | Existing immutable extractor, Birth Cutover, allocation and Cost Intelligence reused. | Original224/current227 row delta, provider actuals/FX/allocation and opening-balance conservation. | Canonical read-only snapshots and billing evidence. |
+| Join lanes | Integrate demonstrated gaps only; retain approved Work7 UX and existing seven destinations/five shortcuts/media/authority controls. | Authenticated native desktop/mobile walkthrough, source-to-finance equality, final exact-head CI and independent Mission Ledger/GO-NO-GO. | All four shared inputs supplied; separate scoped test deployment authority. |
+| Handoff | No live activation. | Work8 COMPLETE only when every mandatory original criterion is evidenced; then Work9 handoff. | No commerce or Pillow Birth authority implied. |
+
+Independent bounded review identified no uncovered currently executable local assertion in the accepted scenario design. This does not prove absence of undiscovered defects or grant26/34 acceptance.
+
+The smallest shared dependency set is four: source/assessment execution, image permissions, canonical accounting evidence, isolated hosted acceptance with protected retention. Multiple pending rows depend on each; fixing more isolated mechanics cannot substitute for these inputs.
+
+For the ready publication/CI/attribution lane, allow roughly30–45 minutes after approval if runner queues are short and no new failure appears; this is a planning allowance based on the observed workflow duration, not a completion guarantee for29/32 or the programme.
+
+No reliable calendar completion date is possible while these inputs and hosting authority are unavailable. Known execution budgets are the prospective45-minute final-candidate endurance schedule, up to12 minutes per watchdog arm, and the current CI workflow's30-minute job limit; these are individual budgets, not a programme estimate. The first proposed60-minute host trial cannot also contain every watchdog arm. Once the four inputs and priced runtime are ready, the exact remaining arm set and native walkthrough can be scheduled and a credible completion window given. Additional genuine defects could extend that window. No claim that all45 can close from one CI run.
+
+Next executable actions: all four current published workflows concluded SUCCESS, including runtime38139483205; preserve them without rerun. Publish only a separately approved consolidated successor batch and bind29 evidence. Obtain the four inputs using CONSOLIDATED-HOSTING-DECISION.md; then run prepared read-only accounting extraction and existing genuine-source qualification before the joined native/hosted acceptance. Do not repeat accepted examinations or Railway billing inspection.

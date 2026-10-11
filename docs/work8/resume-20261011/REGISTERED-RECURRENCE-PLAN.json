@@ -1,0 +1,16 @@
+{
+  "schema": "WORK8_REGISTERED_RECURRENCE_PLAN_V1",
+  "registeredBeforeExecution": "2026-10-11T12:35:12.777709+00:00",
+  "case": "W8-F26-REGISTERED-RECURRENCE-V1",
+  "sourceBase": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+  "scope": "Requirement29 uncovered actual registration integration; no full closure inferred",
+  "injection": "Delete derived reconciliation view three times within one hour, spaced 31000ms virtual time, restarting after first recovery",
+  "oracle": [
+    "First two actual registered rebuilds VERIFIED",
+    "Third recurrence UNRESOLVED with durable family circuit open and no third recovery",
+    "Healthy controls add no repair",
+    "Canonical source rows and prior recovery records unchanged after restart",
+    "No inference or external network effects"
+  ],
+  "clock": "Virtual, not elapsed endurance"
+}

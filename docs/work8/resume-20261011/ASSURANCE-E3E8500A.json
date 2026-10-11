@@ -1,0 +1,143 @@
+{
+  "source": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+  "original": "85a1437f65bbeddc08e712187a9d5372bc28999f",
+  "tree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
+  "runId": 38139483272,
+  "jobId": 114470203321,
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 114470203321,
+      "name": "deterministic-assurance",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38139483272,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run node --test deployment/runtime-revision.test.cjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        }
+      ]
+    }
+  ],
+  "logExcerpts": [
+    "2026-10-11T12:30:13.6282084Z \u001b[36;1mnode --test backend/src/validation/tests/assurance-passive-closure.test.mjs backend/src/validation/tests/assurance-recovery-freshness.test.mjs backend/src/validation/tests/assurance-deployment-verifier.test.mjs backend/src/validation/tests/assurance-control-plane.test.mjs\u001b[0m",
+    "2026-10-11T12:30:13.7485131Z # tests 1",
+    "2026-10-11T12:30:13.7486738Z # pass 1",
+    "2026-10-11T12:30:13.7488721Z # fail 0",
+    "2026-10-11T12:30:17.4994619Z # tests 7",
+    "2026-10-11T12:30:17.4995646Z # pass 7",
+    "2026-10-11T12:30:17.4996179Z # fail 0",
+    "2026-10-11T12:30:19.0839078Z # Subtest: passive closure requires post-fault evidence: missing",
+    "2026-10-11T12:30:19.0839559Z ok 50 - passive closure requires post-fault evidence: missing",
+    "2026-10-11T12:30:19.0840815Z # Subtest: passive closure requires post-fault evidence: future",
+    "2026-10-11T12:30:19.0841290Z ok 51 - passive closure requires post-fault evidence: future",
+    "2026-10-11T12:30:19.0843465Z # Subtest: passive closure requires post-fault evidence: pre-fault",
+    "2026-10-11T12:30:19.0843976Z ok 52 - passive closure requires post-fault evidence: pre-fault",
+    "2026-10-11T12:30:19.0845261Z # Subtest: passive closure requires post-fault evidence: pre-latest-fault",
+    "2026-10-11T12:30:19.0846056Z ok 53 - passive closure requires post-fault evidence: pre-latest-fault",
+    "2026-10-11T12:30:19.0847422Z # Subtest: passive closure requires post-fault evidence: fresh",
+    "2026-10-11T12:30:19.0847924Z ok 54 - passive closure requires post-fault evidence: fresh",
+    "2026-10-11T12:30:19.0861451Z # Subtest: recovery requires an observation from the current verification: fresh",
+    "2026-10-11T12:30:19.0862059Z ok 59 - recovery requires an observation from the current verification: fresh",
+    "2026-10-11T12:30:19.0863649Z # tests 59",
+    "2026-10-11T12:30:19.0864004Z # pass 59",
+    "2026-10-11T12:30:19.0864179Z # fail 0",
+    "2026-10-11T12:30:19.1320327Z # tests 2",
+    "2026-10-11T12:30:19.1320707Z # pass 2",
+    "2026-10-11T12:30:19.1320888Z # fail 0",
+    "2026-10-11T12:30:19.4653689Z # tests 7",
+    "2026-10-11T12:30:19.4655077Z # pass 7",
+    "2026-10-11T12:30:19.4655722Z # fail 0",
+    "2026-10-11T12:30:19.5842789Z # tests 4",
+    "2026-10-11T12:30:19.5844081Z # pass 4",
+    "2026-10-11T12:30:19.5844618Z # fail 0",
+    "2026-10-11T12:30:19.7406345Z # tests 10",
+    "2026-10-11T12:30:19.7407406Z # pass 10",
+    "2026-10-11T12:30:19.7408002Z # fail 0",
+    "2026-10-11T12:30:19.8223005Z # tests 2",
+    "2026-10-11T12:30:19.8246378Z # pass 2",
+    "2026-10-11T12:30:19.8246851Z # fail 0",
+    "2026-10-11T12:30:19.9094672Z # tests 5",
+    "2026-10-11T12:30:19.9095813Z # pass 5",
+    "2026-10-11T12:30:19.9096361Z # fail 0",
+    "2026-10-11T12:30:20.0015395Z # tests 1",
+    "2026-10-11T12:30:20.0018623Z # pass 1",
+    "2026-10-11T12:30:20.0020423Z # fail 0",
+    "2026-10-11T12:30:20.0649536Z # tests 2",
+    "2026-10-11T12:30:20.0650883Z # pass 2",
+    "2026-10-11T12:30:20.0651404Z # fail 0",
+    "2026-10-11T12:30:20.1270995Z # Subtest: new revision resolves historical incidents only with affirmative matching probe and no uncertain effect",
+    "2026-10-11T12:30:20.1273171Z ok 2 - new revision resolves historical incidents only with affirmative matching probe and no uncertain effect",
+    "2026-10-11T12:30:20.1283799Z # tests 2",
+    "2026-10-11T12:30:20.1285319Z # pass 2",
+    "2026-10-11T12:30:20.1303213Z # fail 0",
+    "2026-10-11T12:30:20.2118723Z # tests 5",
+    "2026-10-11T12:30:20.2119495Z # pass 5",
+    "2026-10-11T12:30:20.2119963Z # fail 0",
+    "2026-10-11T12:30:20.8955637Z # tests 9",
+    "2026-10-11T12:30:20.8956944Z # pass 9",
+    "2026-10-11T12:30:20.8957510Z # fail 0",
+    "2026-10-11T12:30:20.9857727Z # tests 2",
+    "2026-10-11T12:30:20.9859119Z # pass 2",
+    "2026-10-11T12:30:20.9859649Z # fail 0",
+    "2026-10-11T12:30:21.0801662Z # tests 2",
+    "2026-10-11T12:30:21.0803903Z # pass 2",
+    "2026-10-11T12:30:21.0804537Z # fail 0",
+    "2026-10-11T12:30:21.2903987Z # tests 4",
+    "2026-10-11T12:30:21.2905128Z # pass 4",
+    "2026-10-11T12:30:21.2905641Z # fail 0",
+    "2026-10-11T12:30:21.3748496Z # tests 1",
+    "2026-10-11T12:30:21.3751801Z # pass 1",
+    "2026-10-11T12:30:21.3753532Z # fail 0",
+    "2026-10-11T12:30:21.4284387Z # tests 2",
+    "2026-10-11T12:30:21.4285575Z # pass 2",
+    "2026-10-11T12:30:21.4286131Z # fail 0"
+  ],
+  "priorThreePassingRuns": {
+    "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+    "product": 38137758738,
+    "runtime": 38137758734,
+    "semantic": 38137758767
+  },
+  "sourceDelta": "Three test-only files; no runtime implementation change; prior runs preserved, not manually restarted."
+}

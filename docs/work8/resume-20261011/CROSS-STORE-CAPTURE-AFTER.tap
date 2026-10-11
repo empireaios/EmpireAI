@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: whole-volume capture refuses a second-store writer during later Redis copy
+ok 1 - whole-volume capture refuses a second-store writer during later Redis copy
+  ---
+  duration_ms: 49.60209
+  type: 'test'
+  ...
+# Subtest: whole-volume stopped bundle retains finance and commerce and restores legacy layout
+ok 2 - whole-volume stopped bundle retains finance and commerce and restores legacy layout
+  ---
+  duration_ms: 8.967942
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 115.062328

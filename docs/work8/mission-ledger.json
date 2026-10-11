@@ -3,9 +3,9 @@
   "missionStatus": "IN_PROGRESS",
   "decision": "NO_GO",
   "counts": {
-    "PASS": 5,
-    "BLOCKED": 5,
-    "PENDING": 35
+    "PASS": 6,
+    "PENDING": 34,
+    "BLOCKED": 5
   },
   "requirementDecisions": [
     {
@@ -31,6 +31,14 @@
       "receipt": "resume-20261011/REQUIREMENT-31-BLUEPRINT-REVIEW.json",
       "independentVerifier": "/root/review_retirement_finance",
       "scope": "Prospective blueprint only, no execution acceptance"
+    },
+    {
+      "item": 28,
+      "status": "PASS",
+      "source": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+      "tree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
+      "receipt": "resume-20261011/REQUIREMENT-28-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
     }
   ],
   "preservedPasses": [
@@ -41,11 +49,26 @@
   "commerce": "LOCKED",
   "work9": "NOT_ACTIVATED",
   "latestPublication": {
-    "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
-    "evidence": "e3be8ac17e8b68c26297ecf7e9e998b0c92b4f56",
-    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-4EBBC.json"
+    "source": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+    "evidence": "ad3bf4f73a44d1624018343a5240529ed9401407",
+    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-85A1437F.json"
   },
   "latestScopedReview": {
+    "source": "a83c95eb8870a893c93920353c5da94351b5c34f",
+    "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+    "verdict": "SCOPED_PASS_PUBLICATION_PENDING",
+    "receipts": [
+      "resume-20261011/REGISTERED-RECURRENCE-REVIEW.json",
+      "resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json"
+    ],
+    "newAcceptanceNotGranted": [
+      29,
+      32,
+      33,
+      39
+    ]
+  },
+  "priorScopedReview": {
     "source": "85a1437f65bbeddc08e712187a9d5372bc28999f",
     "tree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
     "verdict": "SCOPED_PASS_TEST_ONLY_CONTINUATION",

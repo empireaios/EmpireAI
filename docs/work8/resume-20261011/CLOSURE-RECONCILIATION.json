@@ -8,13 +8,12 @@
   ],
   "scope": "One bounded reconciliation, followed directly by implementation. Existing scoped passes retained. Original IDs and descriptions unchanged.",
   "closedNow": [
-    27,
-    31
+    28
   ],
   "counts": {
-    "PASS": 5,
-    "BLOCKED": 5,
-    "PENDING": 35
+    "PASS": 6,
+    "PENDING": 34,
+    "BLOCKED": 5
   },
   "sharedExternalDependencies": {
     "SOURCE": [
@@ -68,7 +67,9 @@
       ],
       "decision": "PASS",
       "acceptanceGap": "None for Work7",
-      "nextAction": "Preserve baseline; do not rerun Work7 campaign"
+      "nextAction": "Preserve baseline; do not rerun Work7 campaign",
+      "status": "PASS",
+      "latestEvidence": "PASS \u2014 baseline only"
     },
     {
       "item": 2,
@@ -98,7 +99,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Complete integrated candidate acceptance",
-      "nextAction": "Carry guard results into remaining genuine-source flows without bypass"
+      "nextAction": "Carry guard results into remaining genuine-source flows without bypass",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 15 guard pairs passed locally"
     },
     {
       "item": 4,
@@ -114,7 +117,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Full filesystem/operating isolation proof",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 local egress checks passed"
     },
     {
       "item": 5,
@@ -129,7 +134,9 @@
       ],
       "decision": "BLOCKED",
       "acceptanceGap": "Permitted fresh read capability/account entitlement",
-      "nextAction": "Exercise existing bounded acquisition once permitted read access exists"
+      "nextAction": "Exercise existing bounded acquisition once permitted read access exists",
+      "status": "BLOCKED",
+      "latestEvidence": "BLOCKED \u2014 fresh acquisition not exercised"
     },
     {
       "item": 6,
@@ -146,7 +153,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Fresh complete product dossiers",
-      "nextAction": "Bind fresh details, stock and freight to exact parent/variant/destination"
+      "nextAction": "Bind fresh details, stock and freight to exact parent/variant/destination",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 10 parents/10 variants; zero qualified"
     },
     {
       "item": 7,
@@ -162,7 +171,9 @@
       ],
       "decision": "BLOCKED",
       "acceptanceGap": "Applicable supplier/rightsholder permission",
-      "nextAction": "Attach permission covering exact URLs/use/validity; then render those assets"
+      "nextAction": "Attach permission covering exact URLs/use/validity; then render those assets",
+      "status": "BLOCKED",
+      "latestEvidence": "BLOCKED \u2014 0/19 assets licensed for display"
     },
     {
       "item": 8,
@@ -179,7 +190,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Fresh genuine exact variant stock/freight and reviewed FX/cost quote entries; no new supplier read claimed",
-      "nextAction": "Bind reviewed dossier to assessment and owner authorization; construct canonical isolated mission; verify full journey"
+      "nextAction": "Bind reviewed dossier to assessment and owner authorization; construct canonical isolated mission; verify full journey",
+      "status": "PENDING",
+      "latestEvidence": "24 scoped tests PASS; complete injected fixture qualifies; ten retained genuine CJ observations individually defer for missing mandatory evidence"
     },
     {
       "item": 9,
@@ -196,7 +209,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Verified product match and demand evidence",
-      "nextAction": "Establish identity match before using any market price or demand claim"
+      "nextAction": "Establish identity match before using any market price or demand claim",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 10 ASINs, one USD18.99 offer, zero matches"
     },
     {
       "item": 10,
@@ -213,7 +228,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Genuine multi-day cohort",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 bounded local cases passed"
     },
     {
       "item": 11,
@@ -232,7 +249,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Genuine refresh after expiry",
-      "nextAction": "Verify fresh replacement generation and preservation of old receipts"
+      "nextAction": "Verify fresh replacement generation and preservation of old receipts",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 adversarial cases passed"
     },
     {
       "item": 12,
@@ -255,7 +274,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
-      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
     },
     {
       "item": 13,
@@ -268,7 +289,9 @@
       ],
       "decision": "BLOCKED",
       "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
-      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
+      "status": "BLOCKED",
+      "latestEvidence": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
     },
     {
       "item": 14,
@@ -288,7 +311,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
-      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
     },
     {
       "item": 15,
@@ -301,7 +326,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Complete qualification path and sufficient genuine evidence",
-      "nextAction": "Run actual source screening and report qualified/deferred/rejected counts without forcing100"
+      "nextAction": "Run actual source screening and report qualified/deferred/rejected counts without forcing100",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 zero genuine qualified products"
     },
     {
       "item": 16,
@@ -318,7 +345,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Fresh daily source cohorts",
-      "nextAction": "Verify daily bounds and genuine low-supply outcomes; do not inflate throughput"
+      "nextAction": "Verify daily bounds and genuine low-supply outcomes; do not inflate throughput",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 local admission cases passed"
     },
     {
       "item": 17,
@@ -335,7 +364,9 @@
       ],
       "decision": "PASS",
       "acceptanceGap": "None for this isolated portfolio-cap requirement. Genuine product acceptance remains in requirements 5\u201316 and 40.",
-      "nextAction": "Preserve cap; rerun only if its implementation or transaction boundary changes."
+      "nextAction": "Preserve cap; rerun only if its implementation or transaction boundary changes.",
+      "status": "PASS",
+      "latestEvidence": "PASS \u2014 retained 999/1000/1001 boundaries, two actual SQLite contenders, duplicate variants, reopen and retirement/replacement."
     },
     {
       "item": 18,
@@ -352,7 +383,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Genuine outcome review; synthetic daily pipeline accepted under requirement37.",
-      "nextAction": "Bind genuine outcome evidence to retirement/replacement; preserve accepted synthetic pipeline."
+      "nextAction": "Bind genuine outcome evidence to retirement/replacement; preserve accepted synthetic pipeline.",
+      "status": "PENDING",
+      "latestEvidence": "11 isolated tests pass; independent scoped review found no blocker.; ten-day synthetic pipeline and nine replacements PASS"
     },
     {
       "item": 19,
@@ -370,7 +403,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Verified rights, authorised Canva runtime editing and native owner observation.",
-      "nextAction": "Connect supported provider editing under existing authorisation; observe native import/approval workflow."
+      "nextAction": "Connect supported provider editing under existing authorisation; observe native import/approval workflow.",
+      "status": "PENDING",
+      "latestEvidence": "Rejection/restore regressions pass; frontend typecheck and changed-file lint pass."
     },
     {
       "item": 20,
@@ -388,7 +423,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Genuine qualification, authorised inference and native owner acceptance.",
-      "nextAction": "Bind fresh genuine sources and approved assessment to the existing prepared enrollment path."
+      "nextAction": "Bind fresh genuine sources and approved assessment to the existing prepared enrollment path.",
+      "status": "PENDING",
+      "latestEvidence": "PREPARED-SCHEDULER-FINAL.tap:3 PASS; labelled injected qualification/assessment, no real product claim."
     },
     {
       "item": 21,
@@ -406,7 +443,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Real-product simulation linkage",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
+      "status": "PENDING",
+      "latestEvidence": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending"
     },
     {
       "item": 22,
@@ -422,7 +461,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Full linked real-product simulated lifecycle",
-      "nextAction": "Reconcile refund/credit events after genuine-candidate simulation enrollment"
+      "nextAction": "Reconcile refund/credit events after genuine-candidate simulation enrollment",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 scoped remedy/conservation cases passed"
     },
     {
       "item": 23,
@@ -447,7 +488,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
+      "status": "PENDING",
+      "latestEvidence": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending"
     },
     {
       "item": 24,
@@ -472,7 +515,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Genuine linked lifecycle and actual financial lineage remain.",
-      "nextAction": "Publish reviewed repair; verify changed-head CI and genuine-source prerequisites."
+      "nextAction": "Preserve published retirement/finance repair; bind genuine lifecycle and actual financial lineage when accessible.",
+      "status": "PENDING",
+      "latestEvidence": "11 isolated tests pass, including three settled orders and two replacements with source/plan conservation."
     },
     {
       "item": 25,
@@ -491,7 +536,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance.",
-      "nextAction": "Reconcile actual invoice/payment/usage rows when accessible; certify opening balances and authenticated view against exact candidate."
+      "nextAction": "Reconcile actual invoice/payment/usage rows when accessible; certify opening balances and authenticated view against exact candidate.",
+      "status": "PENDING",
+      "latestEvidence": "30 financial integration tests PASS; six final cost tests PASS; independent cross-module finance review; two financial view SSR tests PASS. Invoice/payment and continuous provider access not inferred."
     },
     {
       "item": 26,
@@ -510,8 +557,8 @@
         "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Remaining fixed31 coverage",
-      "nextAction": "Reconcile remaining fixed31 detector, semantic correlation, fresh independent read and recurrence conditions; retain scoped passes. Publish reviewed freshness batch only with approval.",
+      "acceptanceGap": "Joint genuine-source/assessment/accounting and hosted acceptance prerequisites from accepted fixed31 design; no uncovered currently executable local assertion identified",
+      "nextAction": "Obtain consolidated external inputs; execute only remaining designed joint acceptance arms, preserving local passes",
       "status": "PENDING",
       "latestEvidence": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending;29 targeted tests PASS, actual fixture observer deaths and audit-failure containment;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected"
     },
@@ -548,11 +595,11 @@
         "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
         "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
-      "decision": "PENDING",
-      "acceptanceGap": "Publish reviewed test-only fixture correction and pass required Assurance CI with exact revision attribution.",
-      "nextAction": "Publish one reviewed successor batch after approval; retain current successful runs and bind required successor CI before closure.",
-      "status": "PENDING",
-      "latestEvidence": "Published Product, Semantic and Runtime CI SUCCESS; hosted IPC/protected-route fixes verified. Assurance legacy fixture fails; reviewed correction passes locally."
+      "decision": "PASS",
+      "acceptanceGap": "None for fresh independent recovery verification scope",
+      "nextAction": "Preserve acceptance; broader recurrence, platform and programme certification remain separate",
+      "status": "PASS",
+      "latestEvidence": "PASS \u2014 exact-head Assurance38139483272; retained Product/Runtime/Semantic implementation coverage; fresh runbook and passive closure positive/negative evidence"
     },
     {
       "item": 29,
@@ -566,10 +613,10 @@
         "assurance-examinations.md"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Wider operational recurrence control",
-      "nextAction": "Reconcile remaining fixed31 detector, semantic correlation, fresh independent read and recurrence conditions; retain scoped passes. Publish reviewed freshness batch only with approval.",
+      "acceptanceGap": "Publish reviewed recurrence test/evidence and bind exact revision; no further recurrence assertion identified",
+      "nextAction": "Include a83c95eb in one approved successor batch; verify exact tree and attribution before PASS",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 scoped recurrence cases passed;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected"
+      "latestEvidence": "Retained generic budget cases plus actual registered-runtime recurrence PASS: two verified repairs, restart, third refused, source/events retained; independent scoped review PASS"
     },
     {
       "item": 30,
@@ -584,7 +631,7 @@
         "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Hosted platform containment, coupled loss and final-candidate endurance; runtime CI repair validation.",
+      "acceptanceGap": "Hosted platform containment, coupled loss and final-candidate endurance; exact published runtime CI now passed",
       "nextAction": "Validate successor runtime CI; execute protected process-tree acceptance only in separately authorised host.",
       "latestEvidence": "2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass.; published52338 Runtime and Semantic confirm actual observer IPC/launcher clean stop",
       "status": "PENDING"
@@ -624,8 +671,8 @@
         "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Publish reviewed test-only correction and validate required CI; native owner acceptance remains.",
-      "nextAction": "Validate corrected Assurance CI; preserve current successful runs and scoped tests.",
+      "acceptanceGap": "Exact-source coverage and CI attribution including reviewed capture correction; no specific missing Level1 examination identified",
+      "nextAction": "Bind retained unit/contract/property evidence and new capture test to published successor and required CI; independently verify scoped acceptance",
       "latestEvidence": "Exact successor85a1437f typecheck PASS;27 remaining Assurance-tail cases plus1 replica examination PASS; published Product/Runtime/Semantic SUCCESS.",
       "status": "PENDING"
     },
@@ -646,9 +693,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Wider transport/concurrency matrix",
-      "nextAction": "Exercise only remaining cross-store/concurrent-writer combinations; preserve passed Redis evidence.",
+      "nextAction": "Publish reviewed correction as consolidated batch; prove enforced global shutdown/consistent capture and protected off-host restore on isolated runtime",
       "status": "PENDING",
-      "latestEvidence": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending Retained CI ac9583c proves real shared Brain pause/drain, Redis AOF crash recovery and stale settlement fencing.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority"
+      "latestEvidence": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending Retained CI ac9583c proves real shared Brain pause/drain, Redis AOF crash recovery and stale settlement fencing.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; child finance writer during Redis copy: before failure retained, corrected refusal and stable restore 2 tests PASS"
     },
     {
       "item": 34,
@@ -665,8 +712,8 @@
         "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Other coupled fault families",
-      "nextAction": "Reconcile remaining fixed31 detector, semantic correlation, fresh independent read and recurrence conditions; retain scoped passes. Publish reviewed freshness batch only with approval.",
+      "acceptanceGap": "Joint genuine-source/assessment/accounting and hosted acceptance prerequisites from accepted fixed31 design; no uncovered currently executable local assertion identified",
+      "nextAction": "Obtain consolidated external inputs; execute only remaining designed joint acceptance arms, preserving local passes",
       "status": "PENDING",
       "latestEvidence": "PENDING \u2014 full20 queue drains21 admitted jobs; fresh closure;29 targeted tests PASS, actual fixture observer deaths and audit-failure containment;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected"
     },
@@ -684,7 +731,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Genuine authorised provider/assessment evidence",
-      "nextAction": "Validate factual claims against sources; keep proposal verification false meanwhile"
+      "nextAction": "Validate factual claims against sources; keep proposal verification false meanwhile",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 injected cases passed"
     },
     {
       "item": 36,
@@ -699,7 +748,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Full integrated genuine acceptance",
-      "nextAction": "Retain changed-boundary refusals and verify genuine path once qualified; do not weaken guards"
+      "nextAction": "Retain changed-boundary refusals and verify genuine path once qualified; do not weaken guards",
+      "status": "PENDING",
+      "latestEvidence": "15 safety tests passed alongside new enrollment/finance tests"
     },
     {
       "item": 37,
@@ -721,7 +772,9 @@
       ],
       "decision": "PASS",
       "acceptanceGap": "None for synthetic virtual-time scope",
-      "nextAction": "Preserve scoped acceptance; genuine-source and elapsed-endurance obligations remain separate"
+      "nextAction": "Preserve scoped acceptance; genuine-source and elapsed-endurance obligations remain separate",
+      "status": "PASS",
+      "latestEvidence": "7 focused tests PASS;1100 identities,10 settlements,9 replacements,qualification outcomes and cold reopen;retained cap1000 concurrent race PASS"
     },
     {
       "item": 38,
@@ -738,7 +791,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Broader full-business elapsed endurance, final-candidate scope and genuine source cohort.",
-      "nextAction": "Run only missing final-candidate endurance coverage after remaining integration."
+      "nextAction": "Run only missing final-candidate endurance coverage after remaining integration.",
+      "status": "PENDING",
+      "latestEvidence": "Ten-minute bounded elapsed run PASS; virtual settlement time is separate; later preparation/context delta covered separately."
     },
     {
       "item": 39,
@@ -755,9 +810,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Global arbitrary-writer coordination, protected off-host retention and authenticated restore acceptance remain.",
-      "nextAction": "Retain passed CI; complete bounded writer coordination and separately authorised off-host retention.",
+      "nextAction": "Publish reviewed correction as consolidated batch; prove enforced global shutdown/consistent capture and protected off-host restore on isolated runtime",
       "status": "PENDING",
-      "latestEvidence": "b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; exact52338 runtime38137758734 SUCCESS: complete enabled-store/whole-volume restoration and financial/Redis continuity receipt retained"
+      "latestEvidence": "b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; exact52338 runtime38137758734 SUCCESS: complete enabled-store/whole-volume restoration and financial/Redis continuity receipt retained; child finance writer during Redis copy: before failure retained, corrected refusal and stable restore 2 tests PASS; exact e3e8500a runtime38139483205 SUCCESS; whole-volume/finance/Redis continuity artifact11702567419 independently hash-verified"
     },
     {
       "item": 40,
@@ -775,7 +830,9 @@
       ],
       "decision": "BLOCKED",
       "acceptanceGap": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority.",
-      "nextAction": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority."
+      "nextAction": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority.",
+      "status": "BLOCKED",
+      "latestEvidence": "Frontend typecheck/lint passed; no native browser claim."
     },
     {
       "item": 41,
@@ -793,7 +850,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Native desktop/mobile authenticated journey and source-to-finance equality.",
-      "nextAction": "Use existing browser harness once an authorised browser environment is available."
+      "nextAction": "Use existing browser harness once an authorised browser environment is available.",
+      "status": "PENDING",
+      "latestEvidence": "Two backend-service-generated SSR tests PASS; changed component lint PASS; exact frontend review CI newly pinned in backend workflow."
     },
     {
       "item": 42,
@@ -807,10 +866,10 @@
         "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Test-only fixture correction publication and required Assurance CI; hosted owner acceptance.",
-      "nextAction": "Publish reviewed batch after bounded approval; validate exact revision and remaining CI gate.",
+      "acceptanceGap": "Reviewed local successor publication/CI attribution and final integrated/hosted owner acceptance",
+      "nextAction": "Approve/publish consolidated a83c95eb batch; verify exact trees and required CI without restarting prior passes",
       "status": "PENDING",
-      "latestEvidence": "Product38137758738, Semantic38137758767, Runtime38137758734 SUCCESS; Assurance38137758747 legacy fixture FAILURE."
+      "latestEvidence": "All four exact-head e3e8500a workflows SUCCESS: Assurance38139483272, Semantic38139483234, Product38139483206, Runtime38139483205; no reruns"
     },
     {
       "item": 43,
@@ -823,7 +882,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Mandatory acceptance gates and independent closure",
-      "nextAction": "Issue no COMPLETE receipt until evidence supports every required gate"
+      "nextAction": "Issue no COMPLETE receipt until evidence supports every required gate",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 no Work8 COMPLETE"
     },
     {
       "item": 44,
@@ -836,7 +897,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Remaining implementation, examinations and blocked inputs",
-      "nextAction": "Reassess only against new genuine evidence; preserve residual-risk record"
+      "nextAction": "Reassess only against new genuine evidence; preserve residual-risk record",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 full certification denied"
     },
     {
       "item": 45,
@@ -849,7 +912,9 @@
       ],
       "decision": "PENDING",
       "acceptanceGap": "Legitimate Work8 closure",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
+      "status": "PENDING",
+      "latestEvidence": "PENDING \u2014 Work9 not activated"
     }
   ],
   "notes": [

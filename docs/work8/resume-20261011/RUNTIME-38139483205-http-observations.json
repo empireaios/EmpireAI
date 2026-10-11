@@ -1,0 +1,4526 @@
+[
+  {
+    "sequence": 1,
+    "at": "2026-10-11T12:48:49.799Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 46,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 2,
+    "at": "2026-10-11T12:48:50.303Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 3,
+    "at": "2026-10-11T12:48:50.807Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 4,
+    "at": "2026-10-11T12:48:51.312Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 5,
+    "at": "2026-10-11T12:48:51.817Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 6,
+    "at": "2026-10-11T12:48:52.323Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 7,
+    "at": "2026-10-11T12:48:52.829Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 8,
+    "at": "2026-10-11T12:48:53.333Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 9,
+    "at": "2026-10-11T12:48:53.838Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 10,
+    "at": "2026-10-11T12:48:54.343Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 11,
+    "at": "2026-10-11T12:48:54.846Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 12,
+    "at": "2026-10-11T12:48:55.348Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 3,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 13,
+    "at": "2026-10-11T12:48:55.852Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 14,
+    "at": "2026-10-11T12:48:56.358Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 15,
+    "at": "2026-10-11T12:48:56.865Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 16,
+    "at": "2026-10-11T12:48:57.372Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 17,
+    "at": "2026-10-11T12:48:57.878Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 18,
+    "at": "2026-10-11T12:48:58.384Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 19,
+    "at": "2026-10-11T12:48:58.891Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 8,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 20,
+    "at": "2026-10-11T12:48:59.396Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 21,
+    "at": "2026-10-11T12:48:59.900Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 22,
+    "at": "2026-10-11T12:49:00.404Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 23,
+    "at": "2026-10-11T12:49:00.909Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 24,
+    "at": "2026-10-11T12:49:01.415Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 25,
+    "at": "2026-10-11T12:49:01.920Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 26,
+    "at": "2026-10-11T12:49:02.424Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 27,
+    "at": "2026-10-11T12:49:02.930Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 28,
+    "at": "2026-10-11T12:49:03.435Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 29,
+    "at": "2026-10-11T12:49:03.941Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 30,
+    "at": "2026-10-11T12:49:04.446Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 31,
+    "at": "2026-10-11T12:49:04.951Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 32,
+    "at": "2026-10-11T12:49:05.457Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 33,
+    "at": "2026-10-11T12:49:05.962Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 34,
+    "at": "2026-10-11T12:49:06.466Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 35,
+    "at": "2026-10-11T12:49:06.971Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 36,
+    "at": "2026-10-11T12:49:07.477Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 37,
+    "at": "2026-10-11T12:49:07.983Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 38,
+    "at": "2026-10-11T12:49:08.486Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 39,
+    "at": "2026-10-11T12:49:08.993Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 40,
+    "at": "2026-10-11T12:49:09.497Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 41,
+    "at": "2026-10-11T12:49:10.003Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 42,
+    "at": "2026-10-11T12:49:10.509Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 43,
+    "at": "2026-10-11T12:49:11.016Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 44,
+    "at": "2026-10-11T12:49:11.520Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 5,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 45,
+    "at": "2026-10-11T12:49:11.528Z",
+    "method": "POST",
+    "route": "/auth/login",
+    "status": 200,
+    "elapsedMs": 7,
+    "response": {}
+  },
+  {
+    "sequence": 46,
+    "at": "2026-10-11T12:49:11.551Z",
+    "method": "GET",
+    "route": "/pillow-commissioning/birth",
+    "status": 200,
+    "elapsedMs": 23,
+    "response": {}
+  },
+  {
+    "sequence": 47,
+    "at": "2026-10-11T12:49:11.553Z",
+    "method": "POST",
+    "route": "/pillow-commerce-presale/run",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 48,
+    "at": "2026-10-11T12:49:11.555Z",
+    "method": "POST",
+    "route": "/pillow-commissioning/birth",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 49,
+    "at": "2026-10-11T12:49:11.557Z",
+    "method": "POST",
+    "route": "/amazon/publish",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 50,
+    "at": "2026-10-11T12:49:11.559Z",
+    "method": "POST",
+    "route": "/amazon/inventory",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 51,
+    "at": "2026-10-11T12:49:11.561Z",
+    "method": "POST",
+    "route": "/amazon/price",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 52,
+    "at": "2026-10-11T12:49:11.563Z",
+    "method": "POST",
+    "route": "/cj/orders",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 53,
+    "at": "2026-10-11T12:49:11.565Z",
+    "method": "POST",
+    "route": "/fulfilment",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 54,
+    "at": "2026-10-11T12:49:11.567Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/execute",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 55,
+    "at": "2026-10-11T12:49:11.582Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/create-mission",
+    "status": 200,
+    "elapsedMs": 15,
+    "response": {}
+  },
+  {
+    "sequence": 56,
+    "at": "2026-10-11T12:49:11.591Z",
+    "method": "POST",
+    "route": "/api/pillow/chat",
+    "status": 202,
+    "elapsedMs": 9,
+    "response": {}
+  },
+  {
+    "sequence": 57,
+    "at": "2026-10-11T12:49:11.593Z",
+    "method": "GET",
+    "route": "/api/pillow/chat-request/pcr_b301a2e73cec45cb",
+    "status": 200,
+    "elapsedMs": 2,
+    "response": {}
+  },
+  {
+    "sequence": 58,
+    "at": "2026-10-11T12:49:12.095Z",
+    "method": "GET",
+    "route": "/api/pillow/chat-request/pcr_b301a2e73cec45cb",
+    "status": 200,
+    "elapsedMs": 3,
+    "response": {}
+  },
+  {
+    "sequence": 59,
+    "at": "2026-10-11T12:49:12.598Z",
+    "method": "GET",
+    "route": "/api/pillow/chat-request/pcr_b301a2e73cec45cb",
+    "status": 200,
+    "elapsedMs": 3,
+    "response": {}
+  },
+  {
+    "sequence": 60,
+    "at": "2026-10-11T12:49:17.604Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 6,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 61,
+    "at": "2026-10-11T12:49:17.616Z",
+    "method": "GET",
+    "route": "/pillow-commissioning/birth",
+    "status": 200,
+    "elapsedMs": 12,
+    "response": {}
+  },
+  {
+    "sequence": 62,
+    "at": "2026-10-11T12:49:17.618Z",
+    "method": "POST",
+    "route": "/pillow-commerce-presale/run",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 63,
+    "at": "2026-10-11T12:49:17.619Z",
+    "method": "POST",
+    "route": "/pillow-commissioning/birth",
+    "status": 423,
+    "elapsedMs": 1,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 64,
+    "at": "2026-10-11T12:49:17.622Z",
+    "method": "POST",
+    "route": "/amazon/publish",
+    "status": 423,
+    "elapsedMs": 3,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 65,
+    "at": "2026-10-11T12:49:17.623Z",
+    "method": "POST",
+    "route": "/amazon/inventory",
+    "status": 423,
+    "elapsedMs": 1,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 66,
+    "at": "2026-10-11T12:49:17.625Z",
+    "method": "POST",
+    "route": "/amazon/price",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 67,
+    "at": "2026-10-11T12:49:17.627Z",
+    "method": "POST",
+    "route": "/cj/orders",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 68,
+    "at": "2026-10-11T12:49:17.629Z",
+    "method": "POST",
+    "route": "/fulfilment",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 69,
+    "at": "2026-10-11T12:49:17.631Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/execute",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 70,
+    "at": "2026-10-11T12:49:22.636Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 5,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 71,
+    "at": "2026-10-11T12:49:22.650Z",
+    "method": "GET",
+    "route": "/pillow-commissioning/birth",
+    "status": 200,
+    "elapsedMs": 14,
+    "response": {}
+  },
+  {
+    "sequence": 72,
+    "at": "2026-10-11T12:49:22.652Z",
+    "method": "POST",
+    "route": "/pillow-commerce-presale/run",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 73,
+    "at": "2026-10-11T12:49:22.654Z",
+    "method": "POST",
+    "route": "/pillow-commissioning/birth",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 74,
+    "at": "2026-10-11T12:49:22.656Z",
+    "method": "POST",
+    "route": "/amazon/publish",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 75,
+    "at": "2026-10-11T12:49:22.658Z",
+    "method": "POST",
+    "route": "/amazon/inventory",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 76,
+    "at": "2026-10-11T12:49:22.660Z",
+    "method": "POST",
+    "route": "/amazon/price",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 77,
+    "at": "2026-10-11T12:49:22.662Z",
+    "method": "POST",
+    "route": "/cj/orders",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 78,
+    "at": "2026-10-11T12:49:22.664Z",
+    "method": "POST",
+    "route": "/fulfilment",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 79,
+    "at": "2026-10-11T12:49:22.666Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/execute",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 80,
+    "at": "2026-10-11T12:49:27.671Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 6,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 81,
+    "at": "2026-10-11T12:49:27.682Z",
+    "method": "GET",
+    "route": "/pillow-commissioning/birth",
+    "status": 200,
+    "elapsedMs": 11,
+    "response": {}
+  },
+  {
+    "sequence": 82,
+    "at": "2026-10-11T12:49:27.683Z",
+    "method": "POST",
+    "route": "/pillow-commerce-presale/run",
+    "status": 423,
+    "elapsedMs": 1,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 83,
+    "at": "2026-10-11T12:49:27.685Z",
+    "method": "POST",
+    "route": "/pillow-commissioning/birth",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 84,
+    "at": "2026-10-11T12:49:27.687Z",
+    "method": "POST",
+    "route": "/amazon/publish",
+    "status": 423,
+    "elapsedMs": 1,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 85,
+    "at": "2026-10-11T12:49:27.689Z",
+    "method": "POST",
+    "route": "/amazon/inventory",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 86,
+    "at": "2026-10-11T12:49:27.691Z",
+    "method": "POST",
+    "route": "/amazon/price",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 87,
+    "at": "2026-10-11T12:49:27.693Z",
+    "method": "POST",
+    "route": "/cj/orders",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 88,
+    "at": "2026-10-11T12:49:27.695Z",
+    "method": "POST",
+    "route": "/fulfilment",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 89,
+    "at": "2026-10-11T12:49:27.697Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/execute",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 90,
+    "at": "2026-10-11T12:49:32.702Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 5,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 91,
+    "at": "2026-10-11T12:49:32.713Z",
+    "method": "GET",
+    "route": "/pillow-commissioning/birth",
+    "status": 200,
+    "elapsedMs": 11,
+    "response": {}
+  },
+  {
+    "sequence": 92,
+    "at": "2026-10-11T12:49:32.715Z",
+    "method": "POST",
+    "route": "/pillow-commerce-presale/run",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 93,
+    "at": "2026-10-11T12:49:32.717Z",
+    "method": "POST",
+    "route": "/pillow-commissioning/birth",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 94,
+    "at": "2026-10-11T12:49:32.719Z",
+    "method": "POST",
+    "route": "/amazon/publish",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 95,
+    "at": "2026-10-11T12:49:32.721Z",
+    "method": "POST",
+    "route": "/amazon/inventory",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 96,
+    "at": "2026-10-11T12:49:32.723Z",
+    "method": "POST",
+    "route": "/amazon/price",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 97,
+    "at": "2026-10-11T12:49:32.725Z",
+    "method": "POST",
+    "route": "/cj/orders",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 98,
+    "at": "2026-10-11T12:49:32.727Z",
+    "method": "POST",
+    "route": "/fulfilment",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 99,
+    "at": "2026-10-11T12:49:32.727Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/execute",
+    "status": 423,
+    "elapsedMs": 0,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 100,
+    "at": "2026-10-11T12:49:37.733Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 6,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 101,
+    "at": "2026-10-11T12:49:37.742Z",
+    "method": "GET",
+    "route": "/pillow-commissioning/birth",
+    "status": 200,
+    "elapsedMs": 9,
+    "response": {}
+  },
+  {
+    "sequence": 102,
+    "at": "2026-10-11T12:49:37.744Z",
+    "method": "POST",
+    "route": "/pillow-commerce-presale/run",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 103,
+    "at": "2026-10-11T12:49:37.745Z",
+    "method": "POST",
+    "route": "/pillow-commissioning/birth",
+    "status": 423,
+    "elapsedMs": 1,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 104,
+    "at": "2026-10-11T12:49:37.747Z",
+    "method": "POST",
+    "route": "/amazon/publish",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 105,
+    "at": "2026-10-11T12:49:37.749Z",
+    "method": "POST",
+    "route": "/amazon/inventory",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 106,
+    "at": "2026-10-11T12:49:37.751Z",
+    "method": "POST",
+    "route": "/amazon/price",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 107,
+    "at": "2026-10-11T12:49:37.753Z",
+    "method": "POST",
+    "route": "/cj/orders",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 108,
+    "at": "2026-10-11T12:49:37.755Z",
+    "method": "POST",
+    "route": "/fulfilment",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 109,
+    "at": "2026-10-11T12:49:37.757Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/execute",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 110,
+    "at": "2026-10-11T12:49:42.762Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 5,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 111,
+    "at": "2026-10-11T12:49:42.774Z",
+    "method": "GET",
+    "route": "/pillow-commissioning/birth",
+    "status": 200,
+    "elapsedMs": 12,
+    "response": {}
+  },
+  {
+    "sequence": 112,
+    "at": "2026-10-11T12:49:42.776Z",
+    "method": "POST",
+    "route": "/pillow-commerce-presale/run",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 113,
+    "at": "2026-10-11T12:49:42.778Z",
+    "method": "POST",
+    "route": "/pillow-commissioning/birth",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 114,
+    "at": "2026-10-11T12:49:42.780Z",
+    "method": "POST",
+    "route": "/amazon/publish",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 115,
+    "at": "2026-10-11T12:49:42.782Z",
+    "method": "POST",
+    "route": "/amazon/inventory",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 116,
+    "at": "2026-10-11T12:49:42.784Z",
+    "method": "POST",
+    "route": "/amazon/price",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 117,
+    "at": "2026-10-11T12:49:42.786Z",
+    "method": "POST",
+    "route": "/cj/orders",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 118,
+    "at": "2026-10-11T12:49:42.788Z",
+    "method": "POST",
+    "route": "/fulfilment",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 119,
+    "at": "2026-10-11T12:49:42.790Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/execute",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 120,
+    "at": "2026-10-11T12:49:42.794Z",
+    "method": "POST",
+    "route": "/api/owner/finance",
+    "status": 200,
+    "elapsedMs": 4,
+    "response": {}
+  },
+  {
+    "sequence": 121,
+    "at": "2026-10-11T12:49:42.798Z",
+    "method": "GET",
+    "route": "/api/owner/finance",
+    "status": 200,
+    "elapsedMs": 4,
+    "response": {}
+  },
+  {
+    "sequence": 122,
+    "at": "2026-10-11T12:49:42.805Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/history",
+    "status": 200,
+    "elapsedMs": 7,
+    "response": {}
+  },
+  {
+    "sequence": 123,
+    "at": "2026-10-11T12:49:44.524Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 38,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 124,
+    "at": "2026-10-11T12:49:45.027Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 125,
+    "at": "2026-10-11T12:49:45.532Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 126,
+    "at": "2026-10-11T12:49:46.041Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 9,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 127,
+    "at": "2026-10-11T12:49:46.545Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 128,
+    "at": "2026-10-11T12:49:47.050Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 129,
+    "at": "2026-10-11T12:49:47.555Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 130,
+    "at": "2026-10-11T12:49:48.059Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 131,
+    "at": "2026-10-11T12:49:48.563Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 132,
+    "at": "2026-10-11T12:49:49.066Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 133,
+    "at": "2026-10-11T12:49:49.571Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 134,
+    "at": "2026-10-11T12:49:50.074Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 4,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 135,
+    "at": "2026-10-11T12:49:50.576Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 3,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": false,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": false
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 136,
+    "at": "2026-10-11T12:49:51.082Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 137,
+    "at": "2026-10-11T12:49:51.588Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 138,
+    "at": "2026-10-11T12:49:52.095Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 139,
+    "at": "2026-10-11T12:49:52.601Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 8,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 140,
+    "at": "2026-10-11T12:49:53.104Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 141,
+    "at": "2026-10-11T12:49:53.611Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 142,
+    "at": "2026-10-11T12:49:54.116Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 143,
+    "at": "2026-10-11T12:49:54.621Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 144,
+    "at": "2026-10-11T12:49:55.126Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 145,
+    "at": "2026-10-11T12:49:55.631Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 146,
+    "at": "2026-10-11T12:49:56.136Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 147,
+    "at": "2026-10-11T12:49:56.641Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 148,
+    "at": "2026-10-11T12:49:57.146Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 149,
+    "at": "2026-10-11T12:49:57.653Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 150,
+    "at": "2026-10-11T12:49:58.157Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 151,
+    "at": "2026-10-11T12:49:58.662Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 152,
+    "at": "2026-10-11T12:49:59.167Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 153,
+    "at": "2026-10-11T12:49:59.672Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 154,
+    "at": "2026-10-11T12:50:00.177Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 155,
+    "at": "2026-10-11T12:50:00.686Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 9,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 156,
+    "at": "2026-10-11T12:50:01.191Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 157,
+    "at": "2026-10-11T12:50:01.697Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 158,
+    "at": "2026-10-11T12:50:02.202Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 159,
+    "at": "2026-10-11T12:50:02.708Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 160,
+    "at": "2026-10-11T12:50:03.213Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 161,
+    "at": "2026-10-11T12:50:03.719Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 7,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 162,
+    "at": "2026-10-11T12:50:04.223Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 163,
+    "at": "2026-10-11T12:50:04.733Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 10,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 164,
+    "at": "2026-10-11T12:50:05.239Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 165,
+    "at": "2026-10-11T12:50:05.745Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": false
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 166,
+    "at": "2026-10-11T12:50:06.250Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 6,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 167,
+    "at": "2026-10-11T12:50:06.255Z",
+    "method": "POST",
+    "route": "/auth/login",
+    "status": 200,
+    "elapsedMs": 5,
+    "response": {}
+  },
+  {
+    "sequence": 168,
+    "at": "2026-10-11T12:50:06.275Z",
+    "method": "GET",
+    "route": "/pillow-commissioning/birth",
+    "status": 200,
+    "elapsedMs": 20,
+    "response": {}
+  },
+  {
+    "sequence": 169,
+    "at": "2026-10-11T12:50:06.277Z",
+    "method": "POST",
+    "route": "/pillow-commerce-presale/run",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 170,
+    "at": "2026-10-11T12:50:06.280Z",
+    "method": "POST",
+    "route": "/pillow-commissioning/birth",
+    "status": 423,
+    "elapsedMs": 3,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 171,
+    "at": "2026-10-11T12:50:06.282Z",
+    "method": "POST",
+    "route": "/amazon/publish",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 172,
+    "at": "2026-10-11T12:50:06.284Z",
+    "method": "POST",
+    "route": "/amazon/inventory",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 173,
+    "at": "2026-10-11T12:50:06.286Z",
+    "method": "POST",
+    "route": "/amazon/price",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 174,
+    "at": "2026-10-11T12:50:06.288Z",
+    "method": "POST",
+    "route": "/cj/orders",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 175,
+    "at": "2026-10-11T12:50:06.290Z",
+    "method": "POST",
+    "route": "/fulfilment",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 176,
+    "at": "2026-10-11T12:50:06.292Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/execute",
+    "status": 423,
+    "elapsedMs": 2,
+    "response": {
+      "code": "LOCKED_COMMISSIONING",
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 177,
+    "at": "2026-10-11T12:50:06.295Z",
+    "method": "GET",
+    "route": "/auth/me",
+    "status": 200,
+    "elapsedMs": 3,
+    "response": {}
+  },
+  {
+    "sequence": 178,
+    "at": "2026-10-11T12:50:06.305Z",
+    "method": "POST",
+    "route": "/api/pillow/mission-runtime/history",
+    "status": 200,
+    "elapsedMs": 10,
+    "response": {}
+  },
+  {
+    "sequence": 179,
+    "at": "2026-10-11T12:50:06.308Z",
+    "method": "GET",
+    "route": "/api/pillow/chat-request/pcr_b301a2e73cec45cb",
+    "status": 200,
+    "elapsedMs": 3,
+    "response": {}
+  },
+  {
+    "sequence": 180,
+    "at": "2026-10-11T12:50:06.317Z",
+    "method": "GET",
+    "route": "/api/owner/finance",
+    "status": 200,
+    "elapsedMs": 5,
+    "response": {}
+  },
+  {
+    "sequence": 181,
+    "at": "2026-10-11T12:50:07.884Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 6,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": false,
+          "ping": false
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 182,
+    "at": "2026-10-11T12:50:08.391Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": false,
+          "ping": false
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 183,
+    "at": "2026-10-11T12:50:08.895Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 503,
+    "elapsedMs": 5,
+    "response": {
+      "ready": false,
+      "workerReady": false,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": false,
+          "ping": false
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": false
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  },
+  {
+    "sequence": 184,
+    "at": "2026-10-11T12:50:09.400Z",
+    "method": "GET",
+    "route": "/health/ready",
+    "status": 200,
+    "elapsedMs": 6,
+    "response": {
+      "ready": true,
+      "workerReady": true,
+      "workerOnline": true,
+      "sessionStore": "redis",
+      "checks": {
+        "tier0Primary": {
+          "ok": true
+        },
+        "redis": {
+          "ok": true,
+          "ping": true
+        },
+        "brainWorker": {
+          "ok": true
+        },
+        "brainWorkerReady": {
+          "ok": true
+        },
+        "pillow": {
+          "ok": true
+        }
+      },
+      "operational": false,
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED"
+    }
+  }
+]

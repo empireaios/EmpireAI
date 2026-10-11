@@ -1,0 +1,32 @@
+{
+  "schema": "WORK8_REGISTERED_RECURRENCE_REVIEW_V1",
+  "requirement": 29,
+  "reviewer": "/root/review_retirement_finance",
+  "verdict": "SCOPED_PASS_ACCEPTANCE_SUPPORTED_PUBLICATION_PENDING",
+  "sourceBase": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+  "testSha256": "51831a5df5e2faa8acd8afd4b1a8a4e744c57d714d08cecacc53d2dade98baac",
+  "planSha256": "d487eb2ce23fdcbbde0374be70bcf24ae5c1258743d8925655c11b8c81ad011e",
+  "receiptSha256": "9ea224e0d1feb1f6ac79369ad223630b7770d2e208d9db4b577a0ecbf8924721",
+  "findings": [
+    "Uses actual createAssuranceRuntime and registered rebuild_reconciliation; no substituted runbook",
+    "Nonempty canonical evidence row makes source preservation nonvacuous",
+    "Two verified recoveries separated by31000ms and runtime reopen; healthy cycles do not repair",
+    "Third missing-view recurrence remains missing/UNRESOLVED with family-circuit reason; no third recovery across another reopen",
+    "Two prior RECOVERY_RESULT events and recovery records retained unchanged",
+    "Inference denial port remains uncalled; virtual time not elapsed endurance"
+  ],
+  "requirement29Assessment": "Together with retained failed-verifier, per-incident cooldown, unknown-outcome and persistent fault-family control-plane examinations, the previously identified registered-runtime integration gap is satisfied. No additional recurrence engineering assertion identified.",
+  "remaining": [
+    "Commit/publish exact reviewed test and evidence; bind accepted relevant CI/result lineage before formal register PASS"
+  ],
+  "limits": [
+    "No source engine change",
+    "No execution by reviewer",
+    "No broader fault programme, host or production certification"
+  ],
+  "crossStoreGap": "Replica examination locks only source.store SQLite. It does not show a second replica writing another enabled store is fenced by the same capture boundary. One focused follow-up: a test-owned second process commits to a separate enabled intelligence/finance store across whole-volume capture; require rejection/defer or a manifest consistently before/after that committed cross-store update, rather than mixed generations.",
+  "reviewedLocalSource": "a83c95eb8870a893c93920353c5da94351b5c34f",
+  "reviewedLocalTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "publicationState": "LOCAL_COMMIT_NOT_PUBLISHED",
+  "publishedBase": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb"
+}

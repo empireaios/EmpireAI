@@ -1,0 +1,40 @@
+{
+  "schema": "WORK8_REQUIREMENT_28_ACCEPTANCE_V1",
+  "requirement": 28,
+  "status": "PASS",
+  "scope": "Fresh independent recovery verification, including runbook and passive incident closure; not whole-programme or release certification",
+  "source": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+  "sourceTree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
+  "independentVerifier": "/root/review_retirement_finance",
+  "criteriaSatisfied": [
+    "Runbook recovery observation must fall within current verification invocation; missing/stale/future/pre-verification claims refused",
+    "Passive closure requires recent valid source observation at or after latest fault; cached pre-fault and missing observations refused",
+    "Original source timestamps retained for cached providers/capabilities/scheduler; local synchronous verification performs fresh reads",
+    "Unknown/in-flight outcomes cannot be closed by healthy probes; failed repairs and immutable incident/events retained",
+    "Actual registered reconciliation, commerce and monitor positive/negative evidence retained; restart and no-replay checks preserved"
+  ],
+  "ci": {
+    "exactHeadAssuranceRun": 38139483272,
+    "job": 114470203321,
+    "conclusion": "SUCCESS",
+    "retainedIdenticalRuntimeSource": "52338bd01a7269d9fa4328fe606312729565c1ff",
+    "retainedProductRun": 38137758738,
+    "retainedRuntimeRun": 38137758734,
+    "retainedSemanticRun": 38137758767,
+    "delta": "Exactly three test-only files; no runtime implementation changes",
+    "successorOtherRuns": "Running at review; no success inferred. Prior successful implementation coverage retained."
+  },
+  "receiptHashes": {
+    "ASSURANCE-E3E8500A.json": "9b5169dd79c7d9225e2666353a6f6ad23b73208884d37fb63b108ac48386e8ba",
+    "PASSIVE-CLOSURE-ACCEPTANCE.json": "2945f13388c1fd38e8a91435b90827405db90285b0d9bc0fcfaa8acffc019de5",
+    "EXACT-HEAD-CI-52338.json": "5a34246ffb8589f35b1b8f3c7388507857cc33d2da4cb87d01f0a0ec4c882a21",
+    "RUNTIME-38137758734-receipt.json": "ca512d23f67b1737acf6bad03a5cb4593d3ad1d5c02b4f24988bd57bb7e5b75a"
+  },
+  "remainingRequirement28Criteria": [],
+  "limitations": [
+    "Read-only independent source/receipt review; reviewer did not rerun tests",
+    "No production deployment or overall Work8 completion",
+    "Broader detection/recurrence/watchdog/compounded-fault gates remain separate",
+    "No register or ledger edited by this reviewer"
+  ]
+}

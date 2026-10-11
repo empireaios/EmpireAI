@@ -1,0 +1,8 @@
+{
+  "schema": "WORK8_CROSS_STORE_CAPTURE_PLAN_V1",
+  "registeredBeforeExecution": "2026-10-11T12:37:52.827435+00:00",
+  "scope": "Uncovered concurrent second-store mutation after application inventory check, during Redis copy",
+  "injection": "Separate child commits finance SQLite generation2 during Redis copy after application copy/check",
+  "oracle": "Backup refuses without sealed manifest; after child exit retry captures consistent final generation; no global quiescence inferred",
+  "sourceBase": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb"
+}
