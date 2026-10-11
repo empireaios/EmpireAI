@@ -4,10 +4,11 @@ import {z} from 'zod';
 import {digest,GovernedCommerceStore} from './store.js';
 import {readMissionPreparation} from './work8-mission-preparation.js';
 import {verifySimulationEnrollment} from './work8-enrollment.js';
-import {Work8TwinRuntime} from './work8-twin-runtime.js';
+import type {Work8TwinRuntime} from './work8-twin-runtime.js';
 
 // Explicit scope: canonical twin business state only. Secrets, live journals,
-// owner policy and authority grants are NEVER copied or replayed.
+// owner policy and live authority are never replayed. Historic grants may be
+// retained separately as inert, independently checked audit evidence.
 const specs = [
  ['work8_twin_media','workspace,session,mission,version','session',false],
  ['work8_twin_communications','workspace,session,thread,version','session',false],
@@ -29,6 +30,7 @@ const manifest=z.object({schema:z.enum(['WORK8_TWIN_RECOVERY_V1','WORK8_TWIN_REC
  sequence:z.number().int().positive(),previous:z.string(),capturedAt:z.number().int().nonnegative(),
  applicationRevision:z.string().regex(/^[a-f0-9]{40}$/),configurationDigest:z.string().regex(/^[a-f0-9]{64}$/),
  classification:z.literal('SIMULATED_OPERATIONS'),authorityRestored:z.literal(false),
+ authorityAudit:z.array(z.object({scope:z.enum(['TWIN_SCHEDULER_ONLY','RESEARCH_REASONING','COMMERCIAL_PREPARATION','BACKEND_READ_ONLY','UX_CHANGE_PREPARATION']),events:z.array(z.record(z.unknown())).min(1).max(1000)}).strict()).max(100).optional(),
  tables:z.record(z.array(z.record(z.union([z.string(),z.number(),z.null()])))),digest:z.string().regex(/^[a-f0-9]{64}$/)}).strict();
 export type TwinRecoveryCheckpoint=z.infer<typeof manifest>;
 function checked(raw:unknown,expected:string){
@@ -41,6 +43,7 @@ function checked(raw:unknown,expected:string){
   if(row.workspace!==(scope==='session'?p.workspace:p.twinWorkspace)||scope==='session'&&row.session!==p.sessionId)throw Error('RECOVERY_SCOPE_DENIED');
   const id=JSON.stringify(keys.split(',').map(k=>row[k]));if(seen.has(id))throw Error('RECOVERY_DUPLICATE_ROW');seen.add(id);
  }}
+ validateAuthorityAudit(p);
  return p;
 }
 /** Capture runs in the canonical store transaction. Full checkpoints are bounded;
@@ -61,7 +64,7 @@ export function captureTwinCheckpoint(runtime:Work8TwinRuntime,principal:unknown
   }
   const body={schema:'WORK8_TWIN_RECOVERY_V3' as const,workspace:session.workspace,owner:session.owner,sessionId,twinWorkspace:session.twinWorkspace,
    sequence:(prior?.sequence??0)+1,previous:prior?.digest??'',capturedAt:runtime.worker.engine.clock(),...version,
-   classification:'SIMULATED_OPERATIONS' as const,authorityRestored:false as const,tables};
+   classification:'SIMULATED_OPERATIONS' as const,authorityRestored:false as const,authorityAudit:captureAuthorityAudit(runtime,session.workspace,session.owner,sessionId),tables};
   if(Buffer.byteLength(JSON.stringify(body))>64*1024*1024)throw Error('RECOVERY_BYTE_BOUND');
   const pack=checked({...body,digest:digest(body)},digest(body));
   if(prior)verifyExtension(prior,pack);
@@ -80,6 +83,7 @@ function verifyEnrollments(runtime:Work8TwinRuntime,workspace:string,owner:strin
  for(const row of rows){const task=runtime.worker.get(workspace,String(row.id));if(!task||task.owner!==owner)throw Error('RECOVERY_ENROLLMENT_TASK_MISSING');verifySimulationEnrollment(runtime.store,task);}
 }
 function verifyExtension(before:TwinRecoveryCheckpoint,after:TwinRecoveryCheckpoint){
+ for(const old of before.authorityAudit??[]){const next=(after.authorityAudit??[]).find(a=>a.scope===old.scope&&a.events[0]?.digest===old.events[0]?.digest);if(!next||digest(next.events.slice(0,old.events.length))!==digest(old.events))throw Error('RECOVERY_AUTHORITY_AUDIT_REWRITE');}
  if(after.capturedAt<before.capturedAt)throw Error('RECOVERY_CLOCK_REGRESSION');
  if(Number(before.schema.slice(-1))>Number(after.schema.slice(-1)))throw Error('RECOVERY_SCHEMA_DOWNGRADE');
  for(const [table,keys,,mutable] of specsFor(after.schema)){const identity=(r:Row)=>JSON.stringify(keys.split(',').map(k=>r[k]));
@@ -188,4 +192,36 @@ export function restoreTwinPointInTime(target:Work8TwinRuntime,vault:string,trus
   const {chain,...receipt}=inspection;
   return {...receipt,status:'RESTORED_ISOLATED_COPY',appliedCheckpoints:chain.length,elapsedMs:performance.now()-started,applicationRevision:chain.at(-1)!.applicationRevision,configurationDigest:chain.at(-1)!.configurationDigest,operationalRtoGuaranteed:false};
  });
+}
+
+// Historic grant/decision receipts are retained as inert audit data in the
+// checkpoint record. They are NEVER inserted into either active authority table.
+function validateAuthorityAudit(pack:TwinRecoveryCheckpoint){
+ const identities=new Set<string>();
+ for(const chain of pack.authorityAudit??[]){let previous='',version=0;
+  const identity=chain.scope+':'+String(chain.events[0]?.digest);if(identities.has(identity))throw Error('RECOVERY_AUTHORITY_AUDIT_DUPLICATE');identities.add(identity);
+  for(const event of chain.events){const {digest:hash,...body}=event;
+   if(event.owner!==pack.owner||event.workspace!==pack.workspace||event.sessionId!==pack.sessionId||event.scope!==chain.scope||event.version!==++version||event.previous!==previous||typeof hash!=='string'||digest(body)!==hash)throw Error('RECOVERY_AUTHORITY_AUDIT_UNVERIFIED');previous=hash;
+  }
+ }
+}
+export function readRecoveredAuthorityAudit(runtime:Work8TwinRuntime,p:{workspace:string;owner:string},sessionId:string){
+ runtime.sessions.read(p,sessionId);
+ if(!runtime.store.db.prepare("SELECT 1 FROM sqlite_master WHERE name='work8_recovery_checkpoints'").get())return [];
+ const row=runtime.store.db.prepare('SELECT record FROM work8_recovery_checkpoints ORDER BY sequence DESC LIMIT 1').get();if(!row)return [];
+ const raw=JSON.parse(String(row.record)),pack=checked(raw,raw.digest);
+ if(pack.workspace!==p.workspace||pack.owner!==p.owner||pack.sessionId!==sessionId)throw Error('RECOVERY_LINEAGE_SCOPE');
+ return pack.authorityAudit??[];
+}
+function captureAuthorityAudit(runtime:Work8TwinRuntime,workspace:string,owner:string,sessionId:string){
+ const p={workspace,owner},inherited=readRecoveredAuthorityAudit(runtime,p,sessionId);
+ // Canonical readers validate the active histories before archival.
+ runtime.authority.read(p,sessionId);runtime.preparation.all(p,sessionId);
+ const all=[...inherited];
+ for(const table of ['work8_twin_authority','work8_preparation_authority']){
+  const rows=runtime.store.db.prepare(`SELECT record FROM ${table} WHERE workspace=? AND session=? ORDER BY version LIMIT 5001`).all(workspace,sessionId);if(rows.length>5000)throw Error('RECOVERY_AUTHORITY_AUDIT_BOUND');
+  const groups=new Map<string,Record<string,unknown>[]>();for(const row of rows){const e=JSON.parse(String(row.record));const events=groups.get(e.scope)??[];events.push(e);groups.set(e.scope,events);}
+  for(const [scope,events]of groups){const existing=all.find(a=>a.scope===scope&&a.events[0]?.digest===events[0]?.digest);if(existing){if(digest(events.slice(0,existing.events.length))!==digest(existing.events))throw Error('RECOVERY_AUTHORITY_AUDIT_REWRITE');existing.events=events;}else all.push({scope:scope as NonNullable<TwinRecoveryCheckpoint['authorityAudit']>[number]['scope'],events});}
+ }
+ return all;
 }

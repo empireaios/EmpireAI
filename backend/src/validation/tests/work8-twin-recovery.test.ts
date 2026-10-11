@@ -64,11 +64,11 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  assert.equal(JSON.stringify(first).includes('NEVER_COPY_PRODUCTION_SECRET'),false);
  // Retained V1 snapshots remain readable and can precede a V2 checkpoint.
  const {work8_simulation_enrollments: omitted,work8_mission_preparations: omittedPreparations,...legacyTables}=first.tables;
- const {digest: ignored,...legacyBody}=first;
+ const {digest: ignored,authorityAudit: absentInV1,...legacyBody}=first;
  const v1body={...legacyBody,schema:'WORK8_TWIN_RECOVERY_V1' as const,tables:legacyTables};
  const legacy={...v1body,digest:digest(v1body)},legacyTarget=open('legacy.sqlite');
  try{initializeTwinRecoveryTarget(legacyTarget.store);replayTwinCheckpoint(legacyTarget,legacy,legacy.digest);const upgraded=captureTwinCheckpoint(source,p,'exam',version,legacy);replayTwinCheckpoint(legacyTarget,upgraded,upgraded.digest);assert.deepEqual(legacyTarget.projection(p,'exam').records,source.projection(p,'exam').records);}finally{legacyTarget.store.close();}
- const {work8_mission_preparations: notInV2,...v2tables}=first.tables;const {digest: oldDigest,...v2base}=first;const v2body={...v2base,schema:'WORK8_TWIN_RECOVERY_V2' as const,tables:v2tables},v2={...v2body,digest:digest(v2body)},v2target=open('v2.sqlite');try{initializeTwinRecoveryTarget(v2target.store);replayTwinCheckpoint(v2target,v2,v2.digest);const v3=captureTwinCheckpoint(source,p,'exam',version,v2);replayTwinCheckpoint(v2target,v3,v3.digest);assert.deepEqual(v2target.projection(p,'exam').records,source.projection(p,'exam').records);}finally{v2target.store.close();}
+ const {work8_mission_preparations: notInV2,...v2tables}=first.tables;const {digest: oldDigest,authorityAudit: absentInV2,...v2base}=first;const v2body={...v2base,schema:'WORK8_TWIN_RECOVERY_V2' as const,tables:v2tables},v2={...v2body,digest:digest(v2body)},v2target=open('v2.sqlite');try{initializeTwinRecoveryTarget(v2target.store);replayTwinCheckpoint(v2target,v2,v2.digest);const v3=captureTwinCheckpoint(source,p,'exam',version,v2);replayTwinCheckpoint(v2target,v3,v3.digest);assert.deepEqual(v2target.projection(p,'exam').records,source.projection(p,'exam').records);}finally{v2target.store.close();}
  assert.throws(()=>initializeTwinRecoveryTarget(source.store),/NOT_EMPTY/);
  initializeTwinRecoveryTarget(target.store);
  const vault=path.join(root,'vault');fs.mkdirSync(vault);saveTwinCheckpoint(vault,first);assert.throws(()=>saveTwinCheckpoint(vault,first),/EEXIST/);
@@ -78,6 +78,9 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  assert.deepEqual(target.projection(p,'exam').records,source.projection(p,'exam').records);
  assert.deepEqual(target.communications.read(p,'exam'),source.communications.read(p,'exam'));
  assert.ok(target.preparation.all(p,'exam').every(g=>g.status==='NOT_GRANTED'));
+ assert.equal(first.authorityAudit?.length,4);assert.ok(first.authorityAudit?.some(a=>a.events.some(e=>e.action==='APPROVE_PREVIEW')));
+ assert.deepEqual(target.projection(p,'exam').recoveredAuthorityAudit.histories,first.authorityAudit);
+ const recaptured=captureTwinCheckpoint(target,p,'exam',version);assert.deepEqual(recaptured.authorityAudit,first.authorityAudit);
  assert.notEqual(target.authority.read(p,'exam').status,'ACTIVE');assert.throws(()=>target.authority.require(p,'exam'),/NOT_GRANTED/);
  for(let i=0;i<40;i++)source.cycle();now+=86460000;source.authority.command(p,{action:'GRANT',id:'settle',sessionId:'exam',expectedVersion:1,mode:'ONE_HOUR'});for(let i=0;i<20;i++)source.cycle();
  assert.equal(source.preparation.read(p,'exam','RESEARCH_REASONING').status,'EXPIRED');
