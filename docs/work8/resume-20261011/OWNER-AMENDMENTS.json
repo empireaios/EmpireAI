@@ -25,9 +25,9 @@
         24,
         39
       ],
-      "engineering": "Scoped write-once snapshots and ordered replay; integrity and divergence checks tested",
+      "engineering": "V2 enrolled-simulation capture/restore, V1 migration, derived error evolution and duplicate divergence refusal tested.",
       "acceptance": "PENDING",
-      "remaining": "Off-host protection, retention and genuine enrollment scope remain"
+      "remaining": "Whole-system adapters and protected off-host retention remain."
     },
     {
       "id": 3,
@@ -99,9 +99,9 @@
         19,
         40
       ],
-      "engineering": "Durable asset proposals, original/current/revised view and history",
+      "engineering": "Image/video import form now records batch source, rights, checksum, editing provenance and instructions; existing proposal/approval endpoint reused.",
       "acceptance": "PENDING",
-      "remaining": "Native tests, verified rights, import UX and provider editing integration remain"
+      "remaining": "Native observation, independently verified media bytes/rights and authorised Canva execution remain."
     },
     {
       "id": 9,
@@ -122,7 +122,7 @@
         19,
         36
       ],
-      "engineering": "Individual/batch internal selection, exact-version intercepted external step tested",
+      "engineering": "Individual/batch internal selection, exact-version intercepted external step tested Rejected approved batches now lose selected/submitted status; regression passes.",
       "acceptance": "PENDING",
       "remaining": "Native acceptance and genuine rights evidence remain"
     },

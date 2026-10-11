@@ -1,0 +1,24 @@
+TAP version 13
+# {"scope":"Canonical isolated snapshot and replay; application references only, no deployed upgrade claimed","orders":2,"financialEvents":22,"authorityRestored":false}
+# {"scope":"Injected qualification fixture; no genuine assessment","enrollments":1,"orders":1,"events":11,"restoredAuthority":false}
+# Subtest: versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+ok 1 - versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+  ---
+  duration_ms: 2520.151053
+  type: 'test'
+  ...
+# Subtest: V2 restores enrolled simulation lineage, evolves derived errors, and validates duplicate replay
+ok 2 - V2 restores enrolled simulation lineage, evolves derived errors, and validates duplicate replay
+  ---
+  duration_ms: 436.364113
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3275.758636

@@ -1,0 +1,828 @@
+{
+  "schema": "WORK8_BOUNDED_ACCEPTANCE_RECONCILIATION_V1",
+  "governingDocuments": [
+    "MANDATE.txt",
+    "resume-20261011/OWNER-HOLISTIC-DIRECTIVE.txt",
+    "resume-20261011/OWNER-ACCELERATED-DIRECTIVE.txt"
+  ],
+  "scope": "One bounded reconciliation, followed directly by implementation. Existing scoped passes retained. Original IDs and descriptions unchanged.",
+  "closedNow": [
+    17
+  ],
+  "counts": {
+    "PASS": 2,
+    "BLOCKED": 5,
+    "PENDING": 38
+  },
+  "sharedExternalDependencies": {
+    "SOURCE": [
+      "Fresh permitted CJ/Amazon exact-product reads, stock/freight/fees/FX and rights evidence",
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      40
+    ],
+    "ASSESSMENT": [
+      "Existing authorised inference/commissioning channel with enforceable budget; no new paid authority",
+      13,
+      14,
+      40
+    ],
+    "HISTORY": [
+      "Read-only original224 accounting subset and three added-call attribution",
+      2,
+      25
+    ],
+    "HOSTED": [
+      "Separate hosting/deployment approval, isolated auth/configuration, enforceable spending ceiling and actual desktop/mobile observation",
+      4,
+      40,
+      41,
+      42
+    ],
+    "REVIEW": [
+      "Independent affected-revision review; no certification inferred from self-review",
+      42,
+      43
+    ]
+  },
+  "requirements": [
+    {
+      "item": 1,
+      "requirement": "Work7 exact production/closure",
+      "governingSections": "0,16,R6",
+      "sourceAndTests": [],
+      "retainedEvidence": [
+        "baseline.json",
+        "baseline.json; recovery-receipt.json"
+      ],
+      "decision": "PASS",
+      "acceptanceGap": "None for Work7",
+      "nextAction": "Preserve baseline; do not rerun Work7 campaign"
+    },
+    {
+      "item": 2,
+      "requirement": "Financial and historical preservation",
+      "governingSections": "2,6,16,22",
+      "sourceAndTests": [],
+      "retainedEvidence": [
+        "baseline.json",
+        "resume-20261011/ACCOUNTING.md"
+      ],
+      "decision": "BLOCKED",
+      "acceptanceGap": "Read-only call/provider rows, original224 rows, transport lineage",
+      "nextAction": "Extract one snapshot; compare identities and immutable original subset; join canonical correlation"
+    },
+    {
+      "item": 3,
+      "requirement": "Approved UX and fifteen safety controls",
+      "governingSections": "2,10,16,17,22",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-safety-matrix.test.ts"
+      ],
+      "retainedEvidence": [
+        "../mission-state/work7-owner-ux-20261010/PRODUCTION-COMPLETE.md",
+        "safety-matrix.json; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Complete integrated candidate acceptance",
+      "nextAction": "Carry guard results into remaining genuine-source flows without bypass"
+    },
+    {
+      "item": 4,
+      "requirement": "Sandbox isolation and denied egress",
+      "governingSections": "0,8,19,23",
+      "sourceAndTests": [
+        "scripts/work8/isolated-exec.py",
+        "scripts/work8/incoming-only-exec.py"
+      ],
+      "retainedEvidence": [
+        "examination-blueprint.json",
+        "examination-ledger.json; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Full filesystem/operating isolation proof",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 5,
+      "requirement": "Real-source connectivity and entitlements",
+      "governingSections": "4,21,R3",
+      "sourceAndTests": [
+        "work8-keepa-history.test.ts:4 PASS; focused TypeScript PASS; labelled fixtures, no paid calls"
+      ],
+      "retainedEvidence": [
+        "source-authentic-readback.json",
+        "source-authentic-readback.json; resume-20261011/RESOURCE-READINESS.md"
+      ],
+      "decision": "BLOCKED",
+      "acceptanceGap": "Permitted fresh read capability/account entitlement",
+      "nextAction": "Exercise existing bounded acquisition once permitted read access exists"
+    },
+    {
+      "item": 6,
+      "requirement": "Authentic source product records",
+      "governingSections": "4,R1,R4",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts",
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "source-authentic-projection.json",
+        "source-authentic-projection.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Fresh complete product dossiers",
+      "nextAction": "Bind fresh details, stock and freight to exact parent/variant/destination"
+    },
+    {
+      "item": 7,
+      "requirement": "Product images and usage rights",
+      "governingSections": "4,R1,R5",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts",
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "source-image-rights-review.json"
+      ],
+      "decision": "BLOCKED",
+      "acceptanceGap": "Applicable supplier/rightsholder permission",
+      "nextAction": "Attach permission covering exact URLs/use/validity; then render those assets"
+    },
+    {
+      "item": 8,
+      "requirement": "Observed supplier prices/currencies",
+      "governingSections": "4,R1,R4",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts",
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "source-currency-contract.json",
+        "resume-20261011/qualification-unit-1.json; resume-20261011/qualification-tests.tap"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Fresh genuine exact variant stock/freight and reviewed FX/cost quote entries; no new supplier read claimed",
+      "nextAction": "Bind reviewed dossier to assessment and owner authorization; construct canonical isolated mission; verify full journey"
+    },
+    {
+      "item": 9,
+      "requirement": "Competitor and market evidence",
+      "governingSections": "4,R1",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-market-context.ts",
+        "backend/src/validation/tests/work8-market-context.test.ts",
+        "work8-keepa-history.test.ts:4 PASS; focused TypeScript PASS; labelled fixtures, no paid calls"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "source-marketplace-projection.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Verified product match and demand evidence",
+      "nextAction": "Establish identity match before using any market price or demand claim"
+    },
+    {
+      "item": 10,
+      "requirement": "Normalization identity and deduplication",
+      "governingSections": "4,19,R2",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts",
+        "backend/src/validation/tests/work8-source-discovery.test.ts",
+        "work8-keepa-history.test.ts:4 PASS; focused TypeScript PASS; labelled fixtures, no paid calls"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "source-discovery-worker.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Genuine multi-day cohort",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 11,
+      "requirement": "Freshness and quarantine",
+      "governingSections": "4,7,R3",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts",
+        "backend/src/validation/tests/work8-source-discovery.test.ts",
+        "backend/src/validation/tests/work8-source-projection.test.ts",
+        "work8-keepa-history.test.ts:4 PASS; focused TypeScript PASS; labelled fixtures, no paid calls"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "assurance-fault-coverage.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Genuine refresh after expiry",
+      "nextAction": "Verify fresh replacement generation and preservation of old receipts"
+    },
+    {
+      "item": 12,
+      "requirement": "Software screening and economics",
+      "governingSections": "4,6",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts",
+        "backend/src/intelligence/work8-dossier.ts",
+        "backend/src/intelligence/work8-dossier-finance.ts",
+        "backend/src/intelligence/work8-dossier-decisions.ts",
+        "backend/src/validation/tests/work8-source-projection.test.ts",
+        "backend/src/validation/tests/work8-enrichment.test.ts",
+        "backend/src/validation/tests/work8-dossier.test.ts",
+        "backend/src/validation/tests/work8-dossier-finance.test.ts",
+        "backend/src/validation/tests/work8-dossier-decisions.test.ts"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "resume-20261011/qualification-unit-1.json; resume-20261011/qualification-tests.tap; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+    },
+    {
+      "item": 13,
+      "requirement": "Actual Pillow assessment binding",
+      "governingSections": "4,R1,R2,R5",
+      "sourceAndTests": [],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "resume-20261011/targeted-tests.tap; owner-assessment-excerpt.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; HOLISTIC-product-context-tests.tap"
+      ],
+      "decision": "BLOCKED",
+      "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+    },
+    {
+      "item": 14,
+      "requirement": "Owner recommendations and decisions",
+      "governingSections": "4,10,R2",
+      "sourceAndTests": [
+        "backend/src/intelligence/work8-dossier.ts",
+        "backend/src/intelligence/work8-dossier-finance.ts",
+        "backend/src/intelligence/work8-dossier-decisions.ts",
+        "backend/src/validation/tests/work8-dossier.test.ts",
+        "backend/src/validation/tests/work8-dossier-finance.test.ts",
+        "backend/src/validation/tests/work8-dossier-decisions.test.ts"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; HOLISTIC-product-context-tests.tap"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+    },
+    {
+      "item": 15,
+      "requirement": "Initial up-to-100 qualification",
+      "governingSections": "4,8,19",
+      "sourceAndTests": [],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "register.json; source-authentic-projection.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Complete qualification path and sufficient genuine evidence",
+      "nextAction": "Run actual source screening and report qualified/deferred/rejected counts without forcing100"
+    },
+    {
+      "item": 16,
+      "requirement": "Daily discovery and low-supply outcomes",
+      "governingSections": "4,8,19",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts",
+        "backend/src/validation/tests/work8-source-discovery.test.ts"
+      ],
+      "retainedEvidence": [
+        "examination-blueprint.json",
+        "source-discovery-worker.md",
+        "source-discovery-worker.md; examination-ledger.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Fresh daily source cohorts",
+      "nextAction": "Verify daily bounds and genuine low-supply outcomes; do not inflate throughput"
+    },
+    {
+      "item": 17,
+      "requirement": "Transactional active portfolio cap",
+      "governingSections": "4,8,19",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-portfolio.ts",
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+        "backend/src/validation/tests/work8-portfolio.test.ts"
+      ],
+      "retainedEvidence": [
+        "portfolio-node22.log",
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts"
+      ],
+      "decision": "PASS",
+      "acceptanceGap": "None for this isolated portfolio-cap requirement. Genuine product acceptance remains in requirements 5\u201316 and 40.",
+      "nextAction": "Preserve cap; rerun only if its implementation or transaction boundary changes."
+    },
+    {
+      "item": 18,
+      "requirement": "Portfolio review retirement/replacement",
+      "governingSections": "4,19",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-portfolio.ts",
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+        "backend/src/validation/tests/work8-portfolio.test.ts"
+      ],
+      "retainedEvidence": [
+        "portfolio-node22.log",
+        "backend/src/validation/tests/work8-portfolio.test.ts"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Genuine outcome review",
+      "nextAction": "Bind fresh outcome evidence to retirement/replacement without changing cap"
+    },
+    {
+      "item": 19,
+      "requirement": "Simulated listing schema/media",
+      "governingSections": "5,R2",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-enrollment.ts",
+        "backend/src/validation/tests/work8-operating-exams.test.ts",
+        "backend/src/validation/tests/work8-enrollment.test.ts"
+      ],
+      "retainedEvidence": [
+        "finance-operating-exam-evidence.json.gz",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Native gallery acceptance, genuine rights evidence, Canva runtime and import completion.",
+      "nextAction": "Native gallery acceptance, genuine rights evidence, Canva runtime and import completion."
+    },
+    {
+      "item": 20,
+      "requirement": "Simulated orders and supplier intents",
+      "governingSections": "5,8",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-enrollment.ts",
+        "backend/src/validation/tests/work8-operating-exams.test.ts",
+        "backend/src/validation/tests/work8-enrollment.test.ts"
+      ],
+      "retainedEvidence": [
+        "finance-operating-exam-evidence.json.gz",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Authorised AI response preparation, broader normal/adverse scenario coverage and native acceptance.",
+      "nextAction": "Authorised AI response preparation, broader normal/adverse scenario coverage and native acceptance."
+    },
+    {
+      "item": 21,
+      "requirement": "Partial shipments tracking/delivery",
+      "governingSections": "5,8",
+      "sourceAndTests": [
+        "backend/src/assurance/work8-fulfilment-probes.ts",
+        "backend/src/validation/tests/work8-assurance-fulfilment-scale.test.ts",
+        "backend/src/validation/tests/work8-assurance-fulfilment.test.ts",
+        "backend/src/validation/tests/work8-assurance-runtime-cycle.test.ts"
+      ],
+      "retainedEvidence": [
+        "finance-operating-exam-evidence.json.gz",
+        "fulfilment-adverse-review.md; independent-candidate-review.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Real-product simulation linkage",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 22,
+      "requirement": "Refund returns and supplier credits",
+      "governingSections": "5,6",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-finance-additional.test.ts",
+        "backend/src/validation/tests/work8-stock-race.test.ts"
+      ],
+      "retainedEvidence": [
+        "finance-examination.md",
+        "finance-examination.md; finance-boundary-exam-evidence.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Full linked real-product simulated lifecycle",
+      "nextAction": "Reconcile refund/credit events after genuine-candidate simulation enrollment"
+    },
+    {
+      "item": 23,
+      "requirement": "Settlement payout holds/bank receipts",
+      "governingSections": "5,6",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-finance-boundary-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-finance.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-enrollment.ts",
+        "backend/src/validation/tests/work8-assurance-finance-boundary.test.ts",
+        "backend/src/validation/tests/work8-finance-additional.test.ts",
+        "backend/src/validation/tests/work8-finance.test.ts",
+        "backend/src/validation/tests/work8-owner-finance.test.ts",
+        "backend/src/validation/tests/work8-durable-finance.test.ts",
+        "backend/src/validation/tests/work8-durable-finance-runtime.test.ts",
+        "backend/src/validation/tests/work8-enrollment.test.ts"
+      ],
+      "retainedEvidence": [
+        "finance-examination.md",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 24,
+      "requirement": "Financial reconciliation and money conservation",
+      "governingSections": "6,22",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-finance-boundary-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-finance.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-simulated-fx.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-enrollment.ts",
+        "backend/src/validation/tests/work8-assurance-finance-boundary.test.ts",
+        "backend/src/validation/tests/work8-finance-additional.test.ts",
+        "backend/src/validation/tests/work8-finance.test.ts",
+        "backend/src/validation/tests/work8-owner-finance.test.ts",
+        "backend/src/validation/tests/work8-simulated-fx.test.ts",
+        "backend/src/validation/tests/work8-enrollment.test.ts"
+      ],
+      "retainedEvidence": [
+        "assurance-draft-review.md",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 25,
+      "requirement": "Live Cost Centre separate accounting",
+      "governingSections": "6,22",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-mission-page.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts",
+        "backend/src/validation/tests/work8-mission-page.test.ts",
+        "backend/src/validation/tests/work8-owner-finance.test.ts"
+      ],
+      "retainedEvidence": [
+        "baseline.json",
+        "finance-examination.md",
+        "owner-financial-readback.md; resume-20261011/ACCOUNTING.md"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Actual row lineage and complete charge evidence",
+      "nextAction": "Reconcile real calls separately; keep real profit and unknown invoices unknown"
+    },
+    {
+      "item": 26,
+      "requirement": "Assurance detection/correlation",
+      "governingSections": "7,18,20",
+      "sourceAndTests": [
+        "backend/src/assurance/work8-commerce-recovery.ts",
+        "backend/src/assurance/work8-fulfilment-probes.ts",
+        "backend/src/validation/tests/work8-assurance-commerce-recovery.test.ts",
+        "backend/src/validation/tests/work8-assurance-runtime-cycle.test.ts",
+        "backend/src/validation/tests/work8-financial-probe.test.ts",
+        "backend/src/validation/tests/work8-response-binding.test.ts"
+      ],
+      "retainedEvidence": [
+        "joint-exam-evidence.json.gz",
+        "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Remaining fixed31 coverage",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 27,
+      "requirement": "Bounded repair authority catalogue",
+      "governingSections": "7,18,20",
+      "sourceAndTests": [
+        "backend/src/assurance/work8-commerce-recovery.ts",
+        "backend/src/validation/tests/work8-assurance-commerce-recovery.test.ts"
+      ],
+      "retainedEvidence": [
+        "assurance-examinations.md",
+        "assurance-examinations.md",
+        "assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Full authority catalogue acceptance",
+      "nextAction": "Verify each remaining repair against exact allowlist and irreversible-effect denial"
+    },
+    {
+      "item": 28,
+      "requirement": "Fresh independent recovery verification",
+      "governingSections": "7,20",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
+      ],
+      "retainedEvidence": [
+        "assurance-examinations.md",
+        "assurance-draft-review.md",
+        "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Other collectors' freshness guarantees",
+      "nextAction": "Add missing collector freshness cases; reject stale/future recovery claims"
+    },
+    {
+      "item": 29,
+      "requirement": "Recurrence budget and circuit breaker",
+      "governingSections": "7,20",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-assurance-recovery.test.mjs"
+      ],
+      "retainedEvidence": [
+        "assurance-examinations.md",
+        "assurance-examinations.md"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Wider operational recurrence control",
+      "nextAction": "Exercise delayed recurrence in remaining integrated fault families"
+    },
+    {
+      "item": 30,
+      "requirement": "Assurance watchdog/degraded operation",
+      "governingSections": "7,19",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-assurance-storage-recovery.test.ts"
+      ],
+      "retainedEvidence": [
+        "assurance-examinations.md",
+        "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Coupled watchdog/endurance acceptance",
+      "nextAction": "Add missing self-failure/degraded-operation cases without granting repair authority"
+    },
+    {
+      "item": 31,
+      "requirement": "Scenario blueprint seeds and independent oracles",
+      "governingSections": "8,9,19,20",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-joint-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts",
+        "backend/src/validation/tests/work8-joint-exams.test.ts",
+        "backend/src/validation/tests/work8-operating-exams.test.ts"
+      ],
+      "retainedEvidence": [
+        "examination-blueprint.json",
+        "examination-blueprint.json; assurance-fault-coverage.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Uncovered integrated cases",
+      "nextAction": "Extend existing fixed scenario map with prerequisites and separate expected-value oracles"
+    },
+    {
+      "item": 32,
+      "requirement": "Unit integration/contract and property exams",
+      "governingSections": "8,19",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-model-session-faults.test.ts",
+        "backend/src/validation/tests/work8-sidecar-compatibility.test.ts",
+        "work8-keepa-history.test.ts:4 PASS; focused TypeScript PASS; labelled fixtures, no paid calls"
+      ],
+      "retainedEvidence": [
+        "component-node22.log",
+        "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Independent delta review and current-head hosted CI; native browser checks.",
+      "nextAction": "Independent delta review and current-head hosted CI; native browser checks."
+    },
+    {
+      "item": 33,
+      "requirement": "Concurrency races and replay",
+      "governingSections": "5,8,19",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-portfolio.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-stock.ts",
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+        "backend/src/validation/tests/work8-portfolio.test.ts",
+        "backend/src/validation/tests/work8-stock-race.test.ts"
+      ],
+      "retainedEvidence": [
+        "portfolio-node22.log",
+        "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Wider transport/concurrency matrix",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 34,
+      "requirement": "Fault injection and compounded failures",
+      "governingSections": "7,8,19",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-joint-exams.ts",
+        "backend/src/validation/tests/work8-joint-exams.test.ts",
+        "backend/src/validation/tests/work8-sqlite-queue-containment.test.ts"
+      ],
+      "retainedEvidence": [
+        "joint-exam-evidence.json.gz",
+        "assurance-fault-coverage.md",
+        "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Other coupled fault families",
+      "nextAction": "Continue fixed31 gaps; preserve no replay on outcome-unknown work"
+    },
+    {
+      "item": 35,
+      "requirement": "Provider outage malformed output and correlation",
+      "governingSections": "7,21",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-assurance-adversity-followup.test.ts",
+        "backend/src/validation/tests/work8-model-session-faults.test.ts"
+      ],
+      "retainedEvidence": [
+        "joint-exam-evidence.json.gz",
+        "assurance-fault-coverage.json; resume-20261011/CHANGES.md"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Genuine authorised provider/assessment evidence",
+      "nextAction": "Validate factual claims against sources; keep proposal verification false meanwhile"
+    },
+    {
+      "item": 36,
+      "requirement": "All fifteen safety controls positive/negative exams",
+      "governingSections": "7,9,22",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-safety-matrix.test.ts"
+      ],
+      "retainedEvidence": [
+        "baseline.json",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Full integrated genuine acceptance",
+      "nextAction": "Retain changed-boundary refusals and verify genuine path once qualified; do not weaken guards"
+    },
+    {
+      "item": 37,
+      "requirement": "Multi-day virtual-time operations",
+      "governingSections": "8,19",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-portfolio.ts",
+        "backend/src/validation/tests/work8-operating-exams.test.ts",
+        "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
+        "backend/src/validation/tests/work8-portfolio.test.ts",
+        "scripts/work8/shared-store-days.test.ts"
+      ],
+      "retainedEvidence": [
+        "portfolio-node22.log",
+        "shared-store-days.json.gz",
+        "shared-store-days.md; shared-store-days.json.gz; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Genuine multi-day candidate pipeline",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 38,
+      "requirement": "Measured elapsed endurance",
+      "governingSections": "8,19,20",
+      "sourceAndTests": [
+        "scripts/work8/resource-soak.mjs"
+      ],
+      "retainedEvidence": [
+        "elapsed-soak.json",
+        "shared-runtime-soak-receipt.json",
+        "shared-runtime-soak.json.gz",
+        "shared-runtime-soak-receipt.json; resource-soak.json; resume-20261011/HOLISTIC-CHECKPOINT.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Broader full-business elapsed endurance, final-candidate scope and genuine source cohort.",
+      "nextAction": "Run only missing final-candidate endurance coverage after remaining integration."
+    },
+    {
+      "item": 39,
+      "requirement": "Cold restart rollback/migration/restore",
+      "governingSections": "8,19,22",
+      "sourceAndTests": [
+        "backend/src/validation/tests/work8-assurance-storage-recovery.test.ts",
+        "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
+      ],
+      "retainedEvidence": [
+        "finance-operating-exam-evidence.json.gz",
+        "assurance-fault-coverage.md",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Protected off-host vault, whole-system adapters, genuine-enrollment recovery, restore RTO and hosted migration acceptance.",
+      "nextAction": "Protected off-host vault, whole-system adapters, genuine-enrollment recovery, restore RTO and hosted migration acceptance."
+    },
+    {
+      "item": 40,
+      "requirement": "Actual owner-view real-product walkthrough",
+      "governingSections": "10,R2,R5",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-market-context.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts",
+        "backend/src/validation/tests/work8-market-context.test.ts",
+        "backend/src/validation/tests/work8-source-projection.test.ts"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+      ],
+      "decision": "BLOCKED",
+      "acceptanceGap": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority.",
+      "nextAction": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority."
+    },
+    {
+      "item": 41,
+      "requirement": "Mobile desktop source-to-finance equality",
+      "governingSections": "6,10,R5",
+      "sourceAndTests": [
+        "backend/src/runtime/commerce-runtime/governed/work8-mission-page.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts",
+        "backend/src/validation/tests/work8-mission-page.test.ts",
+        "backend/src/validation/tests/work8-owner-finance.test.ts"
+      ],
+      "retainedEvidence": [
+        "source-visibility.md",
+        "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Native mobile/desktop journey, five-tab geometry and media/communication interaction checks.",
+      "nextAction": "Native mobile/desktop journey, five-tab geometry and media/communication interaction checks."
+    },
+    {
+      "item": 42,
+      "requirement": "Review exact-head CI and release authority",
+      "governingSections": "12,25",
+      "sourceAndTests": [],
+      "retainedEvidence": [
+        "assurance-draft-review.md",
+        "CHECKPOINT.md",
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Latest backend CI conclusions; independent review; separately governed preview acceptance.",
+      "nextAction": "Latest backend CI conclusions; independent review; separately governed preview acceptance."
+    },
+    {
+      "item": 43,
+      "requirement": "Independent Mission Ledger closure",
+      "governingSections": "14,25",
+      "sourceAndTests": [],
+      "retainedEvidence": [
+        "register.json",
+        "register.json; checkpoint.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Mandatory acceptance gates and independent closure",
+      "nextAction": "Issue no COMPLETE receipt until evidence supports every required gate"
+    },
+    {
+      "item": 44,
+      "requirement": "GO/NO-GO residual risks",
+      "governingSections": "9,14,25",
+      "sourceAndTests": [],
+      "retainedEvidence": [
+        "CHECKPOINT.md",
+        "resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Remaining implementation, examinations and blocked inputs",
+      "nextAction": "Reassess only against new genuine evidence; preserve residual-risk record"
+    },
+    {
+      "item": 45,
+      "requirement": "Work9 handoff without activation",
+      "governingSections": "13,14,25,R6",
+      "sourceAndTests": [],
+      "retainedEvidence": [
+        "CHECKPOINT.md",
+        "checkpoint.json; resume-20261011/NEXT.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log"
+      ],
+      "decision": "PENDING",
+      "acceptanceGap": "Legitimate Work8 closure",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    }
+  ],
+  "notes": [
+    "Synthetic permission for the cap is explicit in R4; cap source and both tests match the retained examined manifest. Prior failed concurrency harness and passing corrected retest remain preserved.",
+    "Requirement37 does not require genuine sources for virtual-time proof; integrated daily qualification/discovery, rejects and replacement through the complete twin remain uncovered. Genuine source demonstration is separately governed by R1\u2013R5.",
+    "No Work8 COMPLETE or Work9 activation receipt issued."
+  ]
+}

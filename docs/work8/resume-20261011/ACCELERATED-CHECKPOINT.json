@@ -1,0 +1,40 @@
+{
+  "schema": "WORK8_ACCELERATED_CHECKPOINT_V1",
+  "backend": {
+    "commit": "4783a458f4cc6e4bfb4a79873058c692ee439eb9",
+    "tree": "3b6df15713783c91ce1b595c7cbf45bbcd982031",
+    "local": "89ff687c7ff251391ed2f7bf7fed7fdd5e35f183"
+  },
+  "frontend": {
+    "reviewCommit": "7d92d8772c8af04f841bcf54a63163fd6302b972",
+    "tree": "707276d6b62cdd1bba5c8fca858e93487b7ecfbe",
+    "local": "5eddcda82f7d54b4115c0dfb86a446bf79df0a02",
+    "deployedBranchUnchanged": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce"
+  },
+  "counts": {
+    "PASS": 2,
+    "BLOCKED": 5,
+    "PENDING": 38
+  },
+  "closedRequirements": [
+    17
+  ],
+  "tests": {
+    "recoveryV2": "2 PASS under kernel network denial; includes V1 migration, enrolled fixture restoration, derived error removal and duplicate replay divergence",
+    "mediaRejection": "Affected recovery suite2 PASS; same tests are not counted twice",
+    "typescript": "Strict changed backend modules and full frontend noEmit PASS",
+    "lint": "Changed frontend files PASS"
+  },
+  "scope": "No genuine product/model assessment, hosted acceptance, independent delta review or whole-system backup claim.",
+  "failedAttempts": [
+    "First media form write used an incorrect working-directory prefix; no file mutation occurred. Corrected paths before typecheck/lint."
+  ],
+  "next": "Continue whole-system backup foundation and remaining fault/authority consumers; current hosted/source/rights/accounting dependencies remain consolidated.",
+  "authority": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "deployment": false,
+    "paidInference": false,
+    "work9Activated": false
+  }
+}

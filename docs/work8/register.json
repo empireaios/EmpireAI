@@ -423,7 +423,7 @@
       "requirement": "Transactional active portfolio cap",
       "mandateSections": "4,8,19",
       "recoveredClassification": "DEFECTIVE",
-      "status": "PENDING",
+      "status": "PASS",
       "evidence": [
         "portfolio-node22.log"
       ],
@@ -436,14 +436,15 @@
         "backend/src/validation/tests/work8-portfolio.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Run same cap through completed genuine-candidate path only after it exists",
+      "nextAction": "Preserve cap; rerun only if its implementation or transaction boundary changes.",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "1,000 cap and atomic admission retained",
-      "examinationResult": "PENDING \u2014 1,001st denial and SQLite contenders passed",
-      "independentVerification": "Retained concurrency oracle",
+      "engineeringState": "Canonical publication admission counts distinct product identities inside the SQLite command transaction; retirement and replacement preserve history.",
+      "examinationResult": "PASS \u2014 retained 999/1000/1001 boundaries, two actual SQLite contenders, duplicate variants, reopen and retirement/replacement.",
+      "independentVerification": "Retained passing retest and exact current SHA256 match for engine, portfolio module and both portfolio test files.",
       "continuationEvidence": "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
-      "remainingDependency": "Real qualified cohort integration"
+      "remainingDependency": "None for this isolated portfolio-cap requirement. Genuine product acceptance remains in requirements 5\u201316 and 40.",
+      "acceptanceBasis": "MANDATE section4,8,19 and R4 explicitly permit seeded synthetic cohorts for cap/concurrency. Genuine cohort was an over-broad tracker dependency, not this requirement acceptance gate."
     },
     {
       "item": 18,
@@ -491,14 +492,14 @@
         "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Native gallery acceptance, genuine rights evidence, Canva runtime and import completion.",
+      "nextAction": "Connect supported provider editing under existing authorisation; observe native import/approval workflow.",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Guarded enrollment plans one isolated listing through canonical publication interception; existing image provenance checks retained; immutable reviewed dossier pinned in investigation grant; delivery, request and owner bound; current dossier rechecked by owner projection and enrollment; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance; Durable media proposals, selected internal batch, separate simulated submission, per-asset rights declaration and immutable version history added.",
-      "examinationResult": "Media rights refusal, internal-before-external gate, stale-version invalidation and restore tested.",
+      "engineeringState": "Versioned media, separate internal/publication approval, closed Archive and image/video import form implemented. Rejection invalidates current selection and submitted status.",
+      "examinationResult": "Rejection/restore regressions pass; frontend typecheck and changed-file lint pass.",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Native gallery acceptance, genuine rights evidence, Canva runtime and import completion."
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json",
+      "remainingDependency": "Verified rights, authorised Canva runtime editing and native owner observation."
     },
     {
       "item": 20,
@@ -1044,14 +1045,14 @@
         "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Protected off-host vault, whole-system adapters, genuine-enrollment recovery, restore RTO and hosted migration acceptance.",
+      "nextAction": "Complete non-commerce subsystem backup adapters and protected vault verification foundation.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "New immutable enrollment table remains additive to commerce sidecar; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance; Write-once scoped twin checkpoint, integrity validation, ordered replay, restored authority exclusion and divergent-target refusal implemented.",
-      "examinationResult": "Restore/catch-up conserved two orders/22 events; process upgrade/rollback conserved four orders/44 events.",
+      "engineeringState": "V2 checkpoints preserve enrollment lineage; V1 migration, ordered replay, derived error updates/deletions, duplicate-replay divergence checks and authority exclusion.",
+      "examinationResult": "Two integrated recovery tests pass: retained two-order/22-event case and enrolled fixture one-order/11-event case. Strict changed-module TypeScript passed.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
-      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Protected off-host vault, whole-system adapters, genuine-enrollment recovery, restore RTO and hosted migration acceptance."
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json",
+      "remainingDependency": "Whole-system adapters, protected off-host retention, measured hosted restoration and upgrade acceptance."
     },
     {
       "item": 40,
@@ -1201,9 +1202,10 @@
   ],
   "continuation": "resume-20261011/PROGRESS.md",
   "counts": {
-    "PASS": 1,
-    "PENDING": 39,
-    "BLOCKED": 5
+    "PASS": 2,
+    "BLOCKED": 5,
+    "PENDING": 38
   },
-  "wholeProgrammeCertified": false
+  "wholeProgrammeCertified": false,
+  "reconciliation": "resume-20261011/CLOSURE-RECONCILIATION.json"
 }
