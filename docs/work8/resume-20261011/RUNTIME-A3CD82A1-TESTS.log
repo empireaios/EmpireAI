@@ -1,0 +1,1409 @@
+2026-10-11T13:09:45.3004741Z TAP version 13
+2026-10-11T13:09:45.3482996Z # Subtest: synthetic unit pair gives only narrow support, never complete requirement credit
+2026-10-11T13:09:45.3486349Z ok 1 - synthetic unit pair gives only narrow support, never complete requirement credit
+2026-10-11T13:09:45.3488880Z # Subtest: rejects missing check
+2026-10-11T13:09:45.3490319Z ok 2 - rejects missing check
+2026-10-11T13:09:45.3494398Z # Subtest: rejects failed before
+2026-10-11T13:09:45.3503656Z ok 3 - rejects failed before
+2026-10-11T13:09:45.3517694Z # Subtest: rejects same boot
+2026-10-11T13:09:45.3518051Z ok 4 - rejects same boot
+2026-10-11T13:09:45.3519401Z # Subtest: rejects different expiry
+2026-10-11T13:09:45.3520211Z ok 5 - rejects different expiry
+2026-10-11T13:09:45.3521614Z # Subtest: rejects foreign account
+2026-10-11T13:09:45.3522001Z ok 6 - rejects foreign account
+2026-10-11T13:09:45.3523369Z # Subtest: rejects lost history
+2026-10-11T13:09:45.3523722Z ok 7 - rejects lost history
+2026-10-11T13:09:45.3525074Z # Subtest: rejects fake result
+2026-10-11T13:09:45.3525405Z ok 8 - rejects fake result
+2026-10-11T13:09:45.3532074Z # Subtest: rejects missing observations
+2026-10-11T13:09:45.3536519Z ok 9 - rejects missing observations
+2026-10-11T13:09:45.3538253Z # Subtest: rejects forced stop
+2026-10-11T13:09:45.3538642Z ok 10 - rejects forced stop
+2026-10-11T13:09:45.3540206Z # Subtest: rejects unknown shutdown
+2026-10-11T13:09:45.3548868Z ok 11 - rejects unknown shutdown
+2026-10-11T13:09:45.3550168Z # Subtest: rejects false credit
+2026-10-11T13:09:45.3550404Z ok 12 - rejects false credit
+2026-10-11T13:09:45.8337389Z # Subtest: projection excludes oracle/forbidden and future corrections
+2026-10-11T13:09:45.8338434Z ok 13 - projection excludes oracle/forbidden and future corrections
+2026-10-11T13:09:45.8361681Z # Subtest: scope rejects actual production, wrong source, expired config and absent approval
+2026-10-11T13:09:45.8362781Z ok 14 - scope rejects actual production, wrong source, expired config and absent approval
+2026-10-11T13:09:45.8371178Z # Subtest: live CLI-equivalent fails closed with zero network without implemented budget verifier
+2026-10-11T13:09:45.8372701Z ok 15 - live CLI-equivalent fails closed with zero network without implemented budget verifier
+2026-10-11T13:09:45.8375720Z # Subtest: six mock cases collected ungraded with actual transport evidence fields required
+2026-10-11T13:09:45.8376946Z ok 16 - six mock cases collected ungraded with actual transport evidence fields required
+2026-10-11T13:09:45.8378989Z # Subtest: missing socket-close evidence prevents correction, preserving initial collection
+2026-10-11T13:09:45.8379928Z ok 17 - missing socket-close evidence prevents correction, preserving initial collection
+2026-10-11T13:09:45.8382363Z # Subtest: credential echo is rejected before raw persistence
+2026-10-11T13:09:45.8382964Z ok 18 - credential echo is rejected before raw persistence
+2026-10-11T13:09:45.8384761Z # Subtest: accepted requests remain recorded when polling fails; never falsely not executed
+2026-10-11T13:09:45.8385802Z ok 19 - accepted requests remain recorded when polling fails; never falsely not executed
+2026-10-11T13:09:45.8387632Z # Subtest: wrong authenticated workspace stops before any model request
+2026-10-11T13:09:45.8388338Z ok 20 - wrong authenticated workspace stops before any model request
+2026-10-11T13:09:45.8390300Z # Subtest: isolated environment named production is permitted only with exact project/environment IDs
+2026-10-11T13:09:45.8391312Z ok 21 - isolated environment named production is permitted only with exact project/environment IDs
+2026-10-11T13:09:45.8392873Z # Subtest: submission intent survives TRANSPORT_LOST without retry
+2026-10-11T13:09:45.8393261Z ok 22 - submission intent survives TRANSPORT_LOST without retry
+2026-10-11T13:09:45.8394425Z # Subtest: submission intent survives RESPONSE_BOUND without retry
+2026-10-11T13:09:45.8394980Z ok 23 - submission intent survives RESPONSE_BOUND without retry
+2026-10-11T13:09:45.8396661Z # Subtest: submission intent survives SECRET_ECHO_REFUSED without retry
+2026-10-11T13:09:45.8397251Z ok 24 - submission intent survives SECRET_ECHO_REFUSED without retry
+2026-10-11T13:09:45.8398827Z # Subtest: submission intent survives TOTAL_RESPONSE_BOUND without retry
+2026-10-11T13:09:45.8399510Z ok 25 - submission intent survives TOTAL_RESPONSE_BOUND without retry
+2026-10-11T13:09:45.8401399Z # Subtest: fsynced intent survives actual child process kill and read-only reopen
+2026-10-11T13:09:45.8402180Z ok 26 - fsynced intent survives actual child process kill and read-only reopen
+2026-10-11T13:09:45.8403900Z # Subtest: journal refuses secret output and detects corruption
+2026-10-11T13:09:45.8404510Z ok 27 - journal refuses secret output and detects corruption
+2026-10-11T13:09:45.8431661Z # Subtest: failed pre-submission fsync barrier prevents transport call
+2026-10-11T13:09:45.8432412Z ok 28 - failed pre-submission fsync barrier prevents transport call
+2026-10-11T13:09:48.1529442Z # Subtest: missing evidence is BLOCKED with full mandatory list, never authority
+2026-10-11T13:09:48.1542629Z ok 29 - missing evidence is BLOCKED with full mandatory list, never authority
+2026-10-11T13:09:48.1588167Z # Subtest: PASS requires independent rerun; verified coverage remains unaccepted
+2026-10-11T13:09:48.1588917Z ok 30 - PASS requires independent rerun; verified coverage remains unaccepted
+2026-10-11T13:09:48.1590544Z # Subtest: tampered artifact and verifier code are rejected
+2026-10-11T13:09:48.1591139Z ok 31 - tampered artifact and verifier code are rejected
+2026-10-11T13:09:48.1592782Z # Subtest: source, workspace, environment and deployment changes cannot reuse coverage
+2026-10-11T13:09:48.1593567Z ok 32 - source, workspace, environment and deployment changes cannot reuse coverage
+2026-10-11T13:09:48.1595687Z # Subtest: failures and revocations remain blocking until explicitly superseded with retained history
+2026-10-11T13:09:48.1596674Z ok 33 - failures and revocations remain blocking until explicitly superseded with retained history
+2026-10-11T13:09:48.1598819Z # Subtest: strict fields, duplicate receipts, incomplete criterion coverage and oversized input fail closed
+2026-10-11T13:09:48.1599839Z ok 34 - strict fields, duplicate receipts, incomplete criterion coverage and oversized input fail closed
+2026-10-11T13:09:48.1601846Z # Subtest: artifact paths reject traversal, absolute paths, alternate streams and symlinks
+2026-10-11T13:09:48.1602705Z ok 35 - artifact paths reject traversal, absolute paths, alternate streams and symlinks
+2026-10-11T13:09:48.1604669Z # Subtest: held-out cases require precommitted registry oracle and at least three distinct cases
+2026-10-11T13:09:48.1625304Z ok 36 - held-out cases require precommitted registry oracle and at least three distinct cases
+2026-10-11T13:09:48.1627318Z # Subtest: phase selection cannot imply completion of other phases
+2026-10-11T13:09:48.1627746Z ok 37 - phase selection cannot imply completion of other phases
+2026-10-11T13:09:48.1628858Z # Subtest: superseded failure artifacts cannot be removed or rewritten
+2026-10-11T13:09:48.1629279Z ok 38 - superseded failure artifacts cannot be removed or rewritten
+2026-10-11T13:09:48.1630566Z # Subtest: trusted ledger rejects deleting failure and clearing all supersession references
+2026-10-11T13:09:48.1631106Z ok 39 - trusted ledger rejects deleting failure and clearing all supersession references
+2026-10-11T13:09:48.1632286Z # Subtest: trusted registry rejects unpinned imported helpers before they execute
+2026-10-11T13:09:48.1632743Z ok 40 - trusted registry rejects unpinned imported helpers before they execute
+2026-10-11T13:09:48.1634162Z # Subtest: trusted historical source hashes reject changed or missing recovered documents
+2026-10-11T13:09:48.1635024Z ok 41 - trusted historical source hashes reject changed or missing recovered documents
+2026-10-11T13:09:48.1636984Z # Subtest: trusted snapshot cannot be replaced by dirty rehashed registry or unapproved source commit
+2026-10-11T13:09:48.1637816Z ok 42 - trusted snapshot cannot be replaced by dirty rehashed registry or unapproved source commit
+2026-10-11T13:09:48.1657800Z # tests 42
+2026-10-11T13:09:48.1658715Z # pass 42
+2026-10-11T13:09:48.1659254Z # fail 0
+2026-10-11T13:09:48.1659642Z # cancelled 0
+2026-10-11T13:09:48.1659975Z # skipped 0
+2026-10-11T13:09:48.1660312Z # todo 0
+2026-10-11T13:09:48.1660688Z # duration_ms 2875.59794
+2026-10-11T13:11:10.6768544Z TAP version 13
+2026-10-11T13:11:10.9312334Z # Subtest: completion needs a matching explicit receipt for every assigned worker
+2026-10-11T13:11:10.9318675Z ok 1 - completion needs a matching explicit receipt for every assigned worker
+2026-10-11T13:11:10.9327594Z # Subtest: generic pass never earns completion
+2026-10-11T13:11:10.9328081Z ok 2 - generic pass never earns completion
+2026-10-11T13:11:10.9329601Z # Subtest: missing receipt never earns completion
+2026-10-11T13:11:10.9330856Z ok 3 - missing receipt never earns completion
+2026-10-11T13:11:10.9333077Z # Subtest: asynchronous receipt never earns completion
+2026-10-11T13:11:10.9334758Z ok 4 - asynchronous receipt never earns completion
+2026-10-11T13:11:10.9336515Z # Subtest: rejects mission completion receipt
+2026-10-11T13:11:10.9337447Z ok 5 - rejects mission completion receipt
+2026-10-11T13:11:10.9342682Z # Subtest: rejects worker completion receipt
+2026-10-11T13:11:10.9355400Z ok 6 - rejects worker completion receipt
+2026-10-11T13:11:10.9357133Z # Subtest: rejects duplicate completion receipt
+2026-10-11T13:11:10.9357596Z ok 7 - rejects duplicate completion receipt
+2026-10-11T13:11:10.9358789Z # Subtest: rejects empty completion receipt
+2026-10-11T13:11:10.9359114Z ok 8 - rejects empty completion receipt
+2026-10-11T13:11:10.9360189Z # Subtest: rejects structural completion receipt
+2026-10-11T13:11:10.9360496Z ok 9 - rejects structural completion receipt
+2026-10-11T13:11:10.9361829Z # Subtest: worker-reported failure and missing worker integration fail truthfully
+2026-10-11T13:11:10.9362310Z ok 10 - worker-reported failure and missing worker integration fail truthfully
+2026-10-11T13:11:10.9363432Z # Subtest: rejects contradictory envelope receipt: structuralSignalOnly
+2026-10-11T13:11:10.9364086Z ok 11 - rejects contradictory envelope receipt: structuralSignalOnly
+2026-10-11T13:11:10.9366416Z # Subtest: rejects contradictory envelope receipt: fabricated
+2026-10-11T13:11:10.9376443Z ok 12 - rejects contradictory envelope receipt: fabricated
+2026-10-11T13:11:10.9378258Z # Subtest: rejects contradictory envelope receipt: decision
+2026-10-11T13:11:10.9378897Z ok 13 - rejects contradictory envelope receipt: decision
+2026-10-11T13:11:10.9394017Z # Subtest: rejects contradictory envelope receipt: succeeded
+2026-10-11T13:11:10.9394633Z ok 14 - rejects contradictory envelope receipt: succeeded
+2026-10-11T13:11:10.9396493Z # Subtest: rejects contradictory envelope receipt: errors
+2026-10-11T13:11:10.9397065Z ok 15 - rejects contradictory envelope receipt: errors
+2026-10-11T13:11:10.9410686Z # Subtest: rejects contradictory worker receipt: structuralSignalOnly
+2026-10-11T13:11:10.9411470Z ok 16 - rejects contradictory worker receipt: structuralSignalOnly
+2026-10-11T13:11:10.9413297Z # Subtest: rejects contradictory worker receipt: fabricated
+2026-10-11T13:11:10.9413674Z ok 17 - rejects contradictory worker receipt: fabricated
+2026-10-11T13:11:10.9415072Z # Subtest: rejects contradictory worker receipt: decision
+2026-10-11T13:11:10.9415805Z ok 18 - rejects contradictory worker receipt: decision
+2026-10-11T13:11:10.9417317Z # Subtest: rejects contradictory worker receipt: succeeded
+2026-10-11T13:11:10.9417661Z ok 19 - rejects contradictory worker receipt: succeeded
+2026-10-11T13:11:10.9418705Z # Subtest: rejects contradictory worker receipt: errors
+2026-10-11T13:11:10.9419047Z ok 20 - rejects contradictory worker receipt: errors
+2026-10-11T13:11:10.9420143Z # Subtest: only one delegate is called when both orchestration and registry are present
+2026-10-11T13:11:10.9420644Z ok 21 - only one delegate is called when both orchestration and registry are present
+2026-10-11T13:11:10.9421827Z # Subtest: unknown supplied mission ID neither creates a replacement nor dispatches
+2026-10-11T13:11:10.9422552Z ok 22 - unknown supplied mission ID neither creates a replacement nor dispatches
+2026-10-11T13:11:10.9424275Z # Subtest: unmet prerequisites block side effects and preserve pending state
+2026-10-11T13:11:10.9424729Z ok 23 - unmet prerequisites block side effects and preserve pending state
+2026-10-11T13:11:10.9426107Z # Subtest: exceptions leave an unconfirmed outcome instead of a retryable success or failure
+2026-10-11T13:11:10.9426646Z ok 24 - exceptions leave an unconfirmed outcome instead of a retryable success or failure
+2026-10-11T13:11:10.9428311Z # Subtest: a persisted dispatched mission is not executed twice after interruption
+2026-10-11T13:11:10.9429015Z ok 25 - a persisted dispatched mission is not executed twice after interruption
+2026-10-11T13:11:11.6333933Z # Subtest: acknowledged mission and complete creation history survive actual SIGKILL and fresh-process reload
+2026-10-11T13:11:11.6343998Z ok 26 - acknowledged mission and complete creation history survive actual SIGKILL and fresh-process reload
+2026-10-11T13:11:11.6348018Z # Subtest: lifecycle history and reporting survive reload without re-executing integrations
+2026-10-11T13:11:11.6349500Z ok 27 - lifecycle history and reporting survive reload without re-executing integrations
+2026-10-11T13:11:11.6352711Z # Subtest: native busy failure propagates and does not expose an uncommitted mission as accepted state
+2026-10-11T13:11:11.6369862Z ok 28 - native busy failure propagates and does not expose an uncommitted mission as accepted state
+2026-10-11T13:11:11.6372706Z # Subtest: stale concurrent instance cannot overwrite a newer persisted mission
+2026-10-11T13:11:11.6373615Z ok 29 - stale concurrent instance cannot overwrite a newer persisted mission
+2026-10-11T13:11:11.6375161Z # Subtest: corrupt, unknown-version and invalid-authority files fail closed and are preserved
+2026-10-11T13:11:11.6375962Z ok 30 - corrupt, unknown-version and invalid-authority files fail closed and are preserved
+2026-10-11T13:11:11.6377395Z # Subtest: mission identifiers remain unique after sequence reset at the same timestamp
+2026-10-11T13:11:11.6378260Z ok 31 - mission identifiers remain unique after sequence reset at the same timestamp
+2026-10-11T13:11:11.6379563Z # Subtest: SQLite commit failure aborts the complete creation state and preserves prior durable content
+2026-10-11T13:11:11.6380156Z ok 32 - SQLite commit failure aborts the complete creation state and preserves prior durable content
+2026-10-11T13:11:11.6382643Z # Subtest: hosted mission storage follows the configured database volume and production rejects RAM-only mode
+2026-10-11T13:11:11.6383584Z ok 33 - hosted mission storage follows the configured database volume and production rejects RAM-only mode
+2026-10-11T13:11:11.6385385Z # Subtest: saved approval never authorizes a later execution or allows stored risk to be downgraded
+2026-10-11T13:11:11.6386478Z ok 34 - saved approval never authorizes a later execution or allows stored risk to be downgraded
+2026-10-11T13:11:11.6388537Z # Subtest: restored paused, failed and interrupted missions require current permission before resume, retry or recovery
+2026-10-11T13:11:11.6389672Z ok 35 - restored paused, failed and interrupted missions require current permission before resume, retry or recovery
+2026-10-11T13:11:11.6391738Z # Subtest: all nested history shapes are validated on reload and invalid bytes remain untouched
+2026-10-11T13:11:11.6392630Z ok 36 - all nested history shapes are validated on reload and invalid bytes remain untouched
+2026-10-11T13:11:11.6394922Z # Subtest: snapshot is bound to the canonical organization and cannot be silently adopted after identity changes
+2026-10-11T13:11:11.6396192Z ok 37 - snapshot is bound to the canonical organization and cannot be silently adopted after identity changes
+2026-10-11T13:11:11.6398322Z # Subtest: unapproved high-risk draft is durably recorded without granting execution authority
+2026-10-11T13:11:11.6399308Z ok 38 - unapproved high-risk draft is durably recorded without granting execution authority
+2026-10-11T13:11:11.6401253Z # Subtest: draft creation retains validation and governance boundaries
+2026-10-11T13:11:11.6401955Z ok 39 - draft creation retains validation and governance boundaries
+2026-10-11T13:11:11.6403774Z # Subtest: bounded planning checkpoint persists atomically without execution or approval
+2026-10-11T13:11:11.6404665Z ok 40 - bounded planning checkpoint persists atomically without execution or approval
+2026-10-11T13:11:12.2068521Z # Subtest: SIGKILL during a real SQLite write rolls back, releases OS lock and permits a fresh writer without deleting any lock
+2026-10-11T13:11:12.2082511Z ok 41 - SIGKILL during a real SQLite write rolls back, releases OS lock and permits a fresh writer without deleting any lock
+2026-10-11T13:11:12.4630087Z # Subtest: a stale process cannot replace another process's newly committed history
+2026-10-11T13:11:12.4631004Z ok 42 - a stale process cannot replace another process's newly committed history
+2026-10-11T13:11:12.4633042Z # Subtest: legacy JSON needs explicit scope-checked migration and is preserved byte for byte
+2026-10-11T13:11:12.4634039Z ok 43 - legacy JSON needs explicit scope-checked migration and is preserved byte for byte
+2026-10-11T13:11:12.4636228Z # Subtest: corrupt legacy bytes and a potentially active old writer are retained and never adopted
+2026-10-11T13:11:12.4637419Z ok 44 - corrupt legacy bytes and a potentially active old writer are retained and never adopted
+2026-10-11T13:11:12.4639532Z # Subtest: capacity failure preserves all prior state; SQLite ownership and sync settings are explicit
+2026-10-11T13:11:12.4640543Z ok 45 - capacity failure preserves all prior state; SQLite ownership and sync settings are explicit
+2026-10-11T13:11:12.4650569Z # Subtest: unrelated SQLite and symlinked files are rejected without recreating their history
+2026-10-11T13:11:12.4651617Z ok 46 - unrelated SQLite and symlinked files are rejected without recreating their history
+2026-10-11T13:11:12.4653866Z # Subtest: missing authoritative row fails closed instead of presenting empty history
+2026-10-11T13:11:12.4654791Z ok 47 - missing authoritative row fails closed instead of presenting empty history
+2026-10-11T13:11:12.4657205Z # Subtest: error after commit is not acknowledged or silently retried over its durable revision
+2026-10-11T13:11:12.4658058Z ok 48 - error after commit is not acknowledged or silently retried over its durable revision
+2026-10-11T13:11:12.6444088Z # Subtest: Pillow recurring observer runtime policy
+2026-10-11T13:11:12.6445042Z     # Subtest: defaults every optional recurring observer off in the headless Brain worker
+2026-10-11T13:11:12.6445967Z     ok 1 - defaults every optional recurring observer off in the headless Brain worker
+2026-10-11T13:11:12.6456589Z     # Subtest: requires the explicit headless opt-in and still honors legacy per-engine flags
+2026-10-11T13:11:12.6470740Z     ok 2 - requires the explicit headless opt-in and still honors legacy per-engine flags
+2026-10-11T13:11:12.6473369Z     # Subtest: preserves legacy defaults outside the Brain worker
+2026-10-11T13:11:12.6473967Z     ok 3 - preserves legacy defaults outside the Brain worker
+2026-10-11T13:11:12.6475897Z     # Subtest: fails closed for invalid or explicit false headless opt-in values
+2026-10-11T13:11:12.6476622Z     ok 4 - fails closed for invalid or explicit false headless opt-in values
+2026-10-11T13:11:12.6478574Z ok 49 - Pillow recurring observer runtime policy
+2026-10-11T13:11:12.8914370Z # Subtest: typed read-only deliberation never grants executable capability or imports historical authority
+2026-10-11T13:11:12.8916857Z ok 50 - typed read-only deliberation never grants executable capability or imports historical authority
+2026-10-11T13:11:13.1581002Z # Subtest: reasoning-only completion cannot execute tools
+2026-10-11T13:11:13.1604552Z     # Subtest: blocks capabilities and artifact writes with conversational mode false
+2026-10-11T13:11:13.1605923Z     ok 1 - blocks capabilities and artifact writes with conversational mode false
+2026-10-11T13:11:13.1612630Z     # Subtest: blocks capabilities and artifact writes with conversational mode true
+2026-10-11T13:11:13.1637310Z     ok 2 - blocks capabilities and artifact writes with conversational mode true
+2026-10-11T13:11:13.1644590Z     # Subtest: does not bypass the constitutional gate
+2026-10-11T13:11:13.1645320Z     ok 3 - does not bypass the constitutional gate
+2026-10-11T13:11:13.1648390Z ok 51 - reasoning-only completion cannot execute tools
+2026-10-11T13:11:13.1651162Z # Subtest: preserves malformed JSON as inert text without dispatch or follow-up
+2026-10-11T13:11:13.1652086Z ok 52 - preserves malformed JSON as inert text without dispatch or follow-up
+2026-10-11T13:11:13.1654761Z # Subtest: valid read-only calculation uses one receipt round and preserves commentary phase
+2026-10-11T13:11:13.1656277Z ok 53 - valid read-only calculation uses one receipt round and preserves commentary phase
+2026-10-11T13:11:13.1659053Z # Subtest: preserves prefixed, fenced and nested JSON as inert text without another inference
+2026-10-11T13:11:13.1660139Z ok 54 - preserves prefixed, fenced and nested JSON as inert text without another inference
+2026-10-11T13:11:13.1662988Z # Subtest: preserves prefixed, fenced and nested JSON as inert text without another inference
+2026-10-11T13:11:13.1664076Z ok 55 - preserves prefixed, fenced and nested JSON as inert text without another inference
+2026-10-11T13:11:13.1666915Z # Subtest: preserves prefixed, fenced and nested JSON as inert text without another inference
+2026-10-11T13:11:13.1667955Z ok 56 - preserves prefixed, fenced and nested JSON as inert text without another inference
+2026-10-11T13:11:13.1742349Z # tests 61
+2026-10-11T13:11:13.1742859Z # pass 61
+2026-10-11T13:11:13.1743109Z # fail 0
+2026-10-11T13:11:13.1743367Z # cancelled 0
+2026-10-11T13:11:13.1743641Z # skipped 0
+2026-10-11T13:11:13.1744187Z # todo 0
+2026-10-11T13:11:13.1744502Z # duration_ms 2509.407013
+2026-10-11T13:12:36.3657408Z TAP version 13
+2026-10-11T13:12:37.6751615Z # Subtest: bounded package rejects unknown authority, version, traversal, unsafe assets and excess bytes
+2026-10-11T13:12:37.6752836Z ok 1 - bounded package rejects unknown authority, version, traversal, unsafe assets and excess bytes
+2026-10-11T13:12:37.6770283Z # Subtest: deterministic routing isolates advice from authority and never executes hostile text
+2026-10-11T13:12:37.6773267Z ok 2 - deterministic routing isolates advice from authority and never executes hostile text
+2026-10-11T13:12:37.6788865Z # Subtest: transactional import survives reopen, enforces duplicate integrity and workspace isolation
+2026-10-11T13:12:37.6789835Z ok 3 - transactional import survives reopen, enforces duplicate integrity and workspace isolation
+2026-10-11T13:12:38.2817276Z # Subtest: OAuth PKCE, one-use codes, read-only token isolation, owner import, MCP return, revocation and locks
+2026-10-11T13:12:38.2863833Z ok 4 - OAuth PKCE, one-use codes, read-only token isolation, owner import, MCP return, revocation and locks
+2026-10-11T13:12:38.3107471Z # Subtest: secret projection and missing evidence remain truthful without provider access
+2026-10-11T13:12:38.3197164Z ok 5 - secret projection and missing evidence remain truthful without provider access
+2026-10-11T13:12:38.3516853Z # Subtest: non-synthetic CEO review reaches the existing durable queue boundary with untrusted provenance; duplicate does not enqueue again
+2026-10-11T13:12:38.3522113Z ok 6 - non-synthetic CEO review reaches the existing durable queue boundary with untrusted provenance; duplicate does not enqueue again
+2026-10-11T13:12:38.3742470Z # Subtest: real stored evidence read is workspace scoped, bounded, source-labelled and does not mutate its database
+2026-10-11T13:12:38.3744207Z ok 7 - real stored evidence read is workspace scoped, bounded, source-labelled and does not mutate its database
+2026-10-11T13:12:38.5040894Z # Subtest: settled Advisor CEO results survive request expiry without overwriting the Advisor artifact; failures never become success
+2026-10-11T13:12:38.5042312Z ok 8 - settled Advisor CEO results survive request expiry without overwriting the Advisor artifact; failures never become success
+2026-10-11T13:12:38.5253482Z # Subtest: Pillow newest discovery, chronology, exact complete text, failure state, pagination and links are read-only
+2026-10-11T13:12:38.5254599Z ok 9 - Pillow newest discovery, chronology, exact complete text, failure state, pagination and links are read-only
+2026-10-11T13:12:38.5270611Z # Subtest: rejected drafts persist independently, redact credentials and retain the first evidence
+2026-10-11T13:12:38.5271628Z ok 10 - rejected drafts persist independently, redact credentials and retain the first evidence
+2026-10-11T13:12:38.5285743Z # Subtest: diagnostic bounds and symlink rejection do not allow arbitrary reads
+2026-10-11T13:12:38.5286651Z ok 11 - diagnostic bounds and symlink rejection do not allow arbitrary reads
+2026-10-11T13:12:38.5307727Z # Subtest: investigation transport enforces collector query bounds and reserves schema input without adding provider tools
+2026-10-11T13:12:38.5309104Z ok 12 - investigation transport enforces collector query bounds and reserves schema input without adding provider tools
+2026-10-11T13:12:38.5311931Z # Subtest: NOT_BORN inference is durable and never changes HTTP mutation authority
+2026-10-11T13:12:38.5312861Z ok 13 - NOT_BORN inference is durable and never changes HTTP mutation authority
+2026-10-11T13:12:38.5316212Z # Subtest: cumulative reservations cross former ceiling across processes; arithmetic and missing ledger fail closed
+2026-10-11T13:12:38.5317554Z ok 14 - cumulative reservations cross former ceiling across processes; arithmetic and missing ledger fail closed
+2026-10-11T13:12:38.5320334Z # Subtest: Responses commentary never becomes final answer or duplicated tool protocol
+2026-10-11T13:12:38.5321357Z ok 15 - Responses commentary never becomes final answer or duplicated tool protocol
+2026-10-11T13:12:38.5324146Z # Subtest: incomplete receipt retains bounded reason and configured ceiling without replay or release
+2026-10-11T13:12:38.5325299Z ok 16 - incomplete receipt retains bounded reason and configured ceiling without replay or release
+2026-10-11T13:12:38.5328496Z # Subtest: Pillow OpenAI headroom reserves 10000 tokens and keeps concise answers above former ceiling with bounded accounting
+2026-10-11T13:12:38.5329920Z ok 17 - Pillow OpenAI headroom reserves 10000 tokens and keeps concise answers above former ceiling with bounded accounting
+2026-10-11T13:12:38.5332714Z # Subtest: expired production pricing remains fail-closed before any reservation
+2026-10-11T13:12:38.5333669Z ok 18 - expired production pricing remains fail-closed before any reservation
+2026-10-11T13:12:38.5336590Z # Subtest: reviewed OpenAI renewal appends to existing reservations without resetting historical accounting
+2026-10-11T13:12:38.5337820Z ok 19 - reviewed OpenAI renewal appends to existing reservations without resetting historical accounting
+2026-10-11T13:12:38.5340954Z # Subtest: reviewed alternative renewals remain exact-model scoped and preserve historical reservations
+2026-10-11T13:12:38.5342142Z ok 20 - reviewed alternative renewals remain exact-model scoped and preserve historical reservations
+2026-10-11T13:12:38.9217285Z # Subtest: three actual wire contracts preserve roles, priced usage, provenance and no tool authority
+2026-10-11T13:12:38.9247643Z ok 21 - three actual wire contracts preserve roles, priced usage, provenance and no tool authority
+2026-10-11T13:12:38.9386804Z # Subtest: one bounded fallback on refusal; both reservations retained; replay cannot pay again
+2026-10-11T13:12:38.9416517Z ok 22 - one bounded fallback on refusal; both reservations retained; replay cannot pay again
+2026-10-11T13:12:38.9507072Z # Subtest: uncertain transport, invalid credentials and corrupt usage never trigger fallback
+2026-10-11T13:12:38.9536585Z ok 23 - uncertain transport, invalid credentials and corrupt usage never trigger fallback
+2026-10-11T13:12:38.9610510Z # Subtest: capability routing and credential isolation do not silently substitute explicit provider
+2026-10-11T13:12:38.9611716Z ok 24 - capability routing and credential isolation do not silently substitute explicit provider
+2026-10-11T13:12:38.9614301Z # Subtest: existing cumulative charges and independent provider sublimits cannot reset
+2026-10-11T13:12:38.9615295Z ok 25 - existing cumulative charges and independent provider sublimits cannot reset
+2026-10-11T13:12:38.9618006Z # Subtest: legacy v1 ledger rows remain byte-for-byte values after crossing former commissioning ceiling
+2026-10-11T13:12:38.9619132Z ok 26 - legacy v1 ledger rows remain byte-for-byte values after crossing former commissioning ceiling
+2026-10-11T13:12:38.9621769Z # Subtest: two temporary refusals stop without a third provider; bad usage cannot masquerade as a response
+2026-10-11T13:12:38.9622932Z ok 27 - two temporary refusals stop without a third provider; bad usage cannot masquerade as a response
+2026-10-11T13:12:39.5357163Z # Subtest: real shared router consultation reserves two distinct identities and replay cannot pay again
+2026-10-11T13:12:39.5401968Z ok 28 - real shared router consultation reserves two distinct identities and replay cannot pay again
+2026-10-11T13:12:39.5695406Z # Subtest: concurrent duplicate requests admit one paid transport and one durable reservation
+2026-10-11T13:12:39.5703905Z ok 29 - concurrent duplicate requests admit one paid transport and one durable reservation
+2026-10-11T13:12:44.0833052Z # Subtest: Pillow engine through Brain adapter preserves capability, metadata separation, bounded fallback and duplicate guard
+2026-10-11T13:12:44.0834532Z ok 30 - Pillow engine through Brain adapter preserves capability, metadata separation, bounded fallback and duplicate guard
+2026-10-11T13:12:44.1126074Z # Subtest: operator receipts retain safe failure status and budget without prompts or credentials
+2026-10-11T13:12:44.1140977Z ok 31 - operator receipts retain safe failure status and budget without prompts or credentials
+2026-10-11T13:12:44.4938559Z # Subtest: durable transcript and pending evidence survive reopen without importing authority
+2026-10-11T13:12:44.4940123Z ok 32 - durable transcript and pending evidence survive reopen without importing authority
+2026-10-11T13:12:44.4946363Z # Subtest: genuine receipt, exact rational arithmetic and scope/operation denials
+2026-10-11T13:12:44.4947433Z ok 33 - genuine receipt, exact rational arithmetic and scope/operation denials
+2026-10-11T13:12:44.4950716Z # Subtest: capability selection and explicit consultation do not fan out ordinary requests
+2026-10-11T13:12:44.4951820Z ok 34 - capability selection and explicit consultation do not fan out ordinary requests
+2026-10-11T13:12:44.4953582Z # Subtest: model-selected arithmetic executes once; generated write request cannot execute
+2026-10-11T13:12:44.4954369Z ok 35 - model-selected arithmetic executes once; generated write request cannot execute
+2026-10-11T13:12:44.4955889Z # Subtest: bounded pure repository context never dispatches operational resolvers
+2026-10-11T13:12:44.4956381Z ok 36 - bounded pure repository context never dispatches operational resolvers
+2026-10-11T13:12:44.4958005Z # Subtest: ambient state cannot manufacture recommendation; correction preserves unrelated reasoning
+2026-10-11T13:12:44.4958655Z ok 37 - ambient state cannot manufacture recommendation; correction preserves unrelated reasoning
+2026-10-11T13:12:44.4960550Z # Subtest: full release gate retains a new non-commerce explanation rather than ambient commercial advice
+2026-10-11T13:12:44.4962461Z ok 38 - full release gate retains a new non-commerce explanation rather than ambient commercial advice
+2026-10-11T13:12:44.4963967Z # Subtest: fresh devices and restart resolve one canonical conversation; isolated sessions cannot replace it
+2026-10-11T13:12:44.4964609Z ok 39 - fresh devices and restart resolve one canonical conversation; isolated sessions cannot replace it
+2026-10-11T13:12:44.4966323Z # Subtest: browser historical archive is idempotent, owner scoped and excluded from reasoning/authority
+2026-10-11T13:12:44.4966985Z ok 40 - browser historical archive is idempotent, owner scoped and excluded from reasoning/authority
+2026-10-11T13:12:44.4985025Z # Subtest: read-only provider answers are validated without heuristic rewriting
+2026-10-11T13:12:44.4986142Z ok 41 - read-only provider answers are validated without heuristic rewriting
+2026-10-11T13:12:44.5665743Z # Subtest: operator decisions reach supervised stdout when production Fastify logging is disabled
+2026-10-11T13:12:44.5666725Z ok 42 - operator decisions reach supervised stdout when production Fastify logging is disabled
+2026-10-11T13:12:44.5668564Z # Subtest: operator read fails closed when the audit sink fails
+2026-10-11T13:12:44.5669168Z ok 43 - operator read fails closed when the audit sink fails
+2026-10-11T13:12:44.5689216Z # Subtest: existing ledger snapshot preserves uncertain reservations and distinguishes estimates from invoices
+2026-10-11T13:12:44.5690427Z ok 44 - existing ledger snapshot preserves uncertain reservations and distinguishes estimates from invoices
+2026-10-11T13:12:44.5692574Z # Subtest: HTTP readback requires configured founder and workspace and fails closed without leaking errors
+2026-10-11T13:12:44.5693457Z ok 45 - HTTP readback requires configured founder and workspace and fails closed without leaking errors
+2026-10-11T13:12:44.5695352Z # Subtest: real locked onRequest boundary permits only the two founder isolated demo actions and independent observation
+2026-10-11T13:12:44.5696490Z ok 46 - real locked onRequest boundary permits only the two founder isolated demo actions and independent observation
+2026-10-11T13:12:44.5702142Z # Subtest: commissioning operator reads accounting without founder credentials and cannot use mutation or founder routes
+2026-10-11T13:12:44.5702877Z ok 47 - commissioning operator reads accounting without founder credentials and cannot use mutation or founder routes
+2026-10-11T13:12:44.5704543Z # Subtest: locked startup preserves existing business rows and refuses deferred fixture bootstrap
+2026-10-11T13:12:44.5705141Z ok 48 - locked startup preserves existing business rows and refuses deferred fixture bootstrap
+2026-10-11T13:12:44.5706938Z # Subtest: provider receipt readback preserves exact failure and held cost without secrets or mutation
+2026-10-11T13:12:44.5707556Z ok 49 - provider receipt readback preserves exact failure and held cost without secrets or mutation
+2026-10-11T13:12:44.5708718Z # tests 49
+2026-10-11T13:12:44.5709073Z # pass 49
+2026-10-11T13:12:44.5709328Z # fail 0
+2026-10-11T13:12:44.5709549Z # cancelled 0
+2026-10-11T13:12:44.5709828Z # skipped 0
+2026-10-11T13:12:44.5710061Z # todo 0
+2026-10-11T13:12:44.5710310Z # duration_ms 8218.599944
+2026-10-11T13:25:08.7186811Z TAP version 13
+2026-10-11T13:25:09.0762903Z # Subtest: executive response completion
+2026-10-11T13:25:09.0776523Z     # Subtest: never emits ask-again degraded text
+2026-10-11T13:25:09.0777168Z     ok 1 - never emits ask-again degraded text
+2026-10-11T13:25:09.0779342Z     # Subtest: does not inject governance on evidence-only degraded path
+2026-10-11T13:25:09.0796334Z     ok 2 - does not inject governance on evidence-only degraded path
+2026-10-11T13:25:09.0799403Z     # Subtest: addresses multi-part structure without inventing sealed answers
+2026-10-11T13:25:09.0800353Z     ok 3 - addresses multi-part structure without inventing sealed answers
+2026-10-11T13:25:09.0803064Z     # Subtest: rewrites constitutional ask-again drafts into useful terminals
+2026-10-11T13:25:09.0803942Z     ok 4 - rewrites constitutional ask-again drafts into useful terminals
+2026-10-11T13:25:09.0806644Z     # Subtest: records reliability telemetry without user resubmission
+2026-10-11T13:25:09.0807387Z     ok 5 - records reliability telemetry without user resubmission
+2026-10-11T13:25:09.0810273Z ok 1 - executive response completion
+2026-10-11T13:25:09.0812824Z # Subtest: terminal inference failure never increments completed or useful counters
+2026-10-11T13:25:09.0813854Z ok 2 - terminal inference failure never increments completed or useful counters
+2026-10-11T13:25:09.0938265Z # Subtest: BFF chat sanitize path-parity + valid-answer invariant
+2026-10-11T13:25:09.0939126Z     # Subtest: does not degrade substantive NovaCart answer that includes product-focus footer
+2026-10-11T13:25:09.0947260Z     ok 1 - does not degrade substantive NovaCart answer that includes product-focus footer
+2026-10-11T13:25:09.0950391Z     # Subtest: LumaHome-style single paragraph with product focus MUST NOT become terminal
+2026-10-11T13:25:09.0951332Z     ok 2 - LumaHome-style single paragraph with product focus MUST NOT become terminal
+2026-10-11T13:25:09.0953691Z     # Subtest: still degrades truly empty upstream
+2026-10-11T13:25:09.0954306Z     ok 3 - still degrades truly empty upstream
+2026-10-11T13:25:09.0956837Z     # Subtest: still degrades short worker proxy timeout text
+2026-10-11T13:25:09.0957500Z     ok 4 - still degrades short worker proxy timeout text
+2026-10-11T13:25:09.0960071Z     # Subtest: strip helper removes pure footer lines only
+2026-10-11T13:25:09.0960707Z     ok 5 - strip helper removes pure footer lines only
+2026-10-11T13:25:09.0962989Z     # Subtest: terminal copy points to durable retrieval, not false ownership
+2026-10-11T13:25:09.0963795Z     ok 6 - terminal copy points to durable retrieval, not false ownership
+2026-10-11T13:25:09.0966346Z     # Subtest: VALID_BRAIN_ANSWER_REPLACED invariant: nonempty never degrades
+2026-10-11T13:25:09.0967098Z     ok 7 - VALID_BRAIN_ANSWER_REPLACED invariant: nonempty never degrades
+2026-10-11T13:25:09.0968639Z     # Subtest: Tier-0 terminal_infrastructure is NOT brain success
+2026-10-11T13:25:09.0969086Z     ok 8 - Tier-0 terminal_infrastructure is NOT brain success
+2026-10-11T13:25:09.0970601Z     # Subtest: durable_pending is not a BFF degrade terminal
+2026-10-11T13:25:09.0971019Z     ok 9 - durable_pending is not a BFF degrade terminal
+2026-10-11T13:25:09.0972593Z     # Subtest: preserves explicit Tier-0 durability failures as non-200 responses
+2026-10-11T13:25:09.0973149Z     ok 10 - preserves explicit Tier-0 durability failures as non-200 responses
+2026-10-11T13:25:09.0974995Z ok 3 - BFF chat sanitize path-parity + valid-answer invariant
+2026-10-11T13:25:09.1827988Z # Subtest: typed answer survives quoted transport language unchanged
+2026-10-11T13:25:09.1856487Z ok 4 - typed answer survives quoted transport language unchanged
+2026-10-11T13:25:09.1946563Z # Subtest: failure metadata remains authoritative: {"kind":"degraded_useful"}
+2026-10-11T13:25:09.1990063Z ok 5 - failure metadata remains authoritative: {"kind":"degraded_useful"}
+2026-10-11T13:25:09.1996710Z # Subtest: failure metadata remains authoritative: {"brainCompleted":false}
+2026-10-11T13:25:09.1997599Z ok 6 - failure metadata remains authoritative: {"brainCompleted":false}
+2026-10-11T13:25:09.1999992Z # Subtest: failure metadata remains authoritative: {"semanticSuccess":false}
+2026-10-11T13:25:09.2000886Z ok 7 - failure metadata remains authoritative: {"semanticSuccess":false}
+2026-10-11T13:25:09.2003667Z # Subtest: failure metadata remains authoritative: {"transportContractPassed":false}
+2026-10-11T13:25:09.2004633Z ok 8 - failure metadata remains authoritative: {"transportContractPassed":false}
+2026-10-11T13:25:09.2007271Z # Subtest: failure metadata remains authoritative: {"degradedUsed":true}
+2026-10-11T13:25:09.2008105Z ok 9 - failure metadata remains authoritative: {"degradedUsed":true}
+2026-10-11T13:25:09.2010534Z # Subtest: failure metadata remains authoritative: {"requestRemainsRunning":true}
+2026-10-11T13:25:09.2011451Z ok 10 - failure metadata remains authoritative: {"requestRemainsRunning":true}
+2026-10-11T13:25:09.2013907Z # Subtest: failure metadata remains authoritative: {"recoveryExhausted":true}
+2026-10-11T13:25:09.2014786Z ok 11 - failure metadata remains authoritative: {"recoveryExhausted":true}
+2026-10-11T13:25:09.2017554Z # Subtest: failure metadata remains authoritative: {"reasoningFailure":{"code":"INFERENCE_FAILED"}}
+2026-10-11T13:25:09.2018584Z ok 12 - failure metadata remains authoritative: {"reasoningFailure":{"code":"INFERENCE_FAILED"}}
+2026-10-11T13:25:09.2021421Z # Subtest: failure metadata remains authoritative: {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.2022507Z ok 13 - failure metadata remains authoritative: {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.2025237Z # Subtest: failure metadata remains authoritative: {"responseContract":{"code":"blocked"}}
+2026-10-11T13:25:09.2026451Z ok 14 - failure metadata remains authoritative: {"responseContract":{"code":"blocked"}}
+2026-10-11T13:25:09.2029148Z # Subtest: failure metadata remains authoritative: {"message":""}
+2026-10-11T13:25:09.2030287Z ok 15 - failure metadata remains authoritative: {"message":""}
+2026-10-11T13:25:09.4242967Z # Subtest: Pillow durable browser delivery — never repeat accepted execution
+2026-10-11T13:25:09.4243879Z     # Subtest: 202 persists receipt before GET and delivers RUNNING/RETRYABLE/COMPLETED using one POST
+2026-10-11T13:25:09.4244767Z     ok 1 - 202 persists receipt before GET and delivers RUNNING/RETRYABLE/COMPLETED using one POST
+2026-10-11T13:25:09.4246837Z     # Subtest: 202 header-only receipt is sufficient to retrieve, never treated as answer
+2026-10-11T13:25:09.4259431Z     ok 2 - 202 header-only receipt is sufficient to retrieve, never treated as answer
+2026-10-11T13:25:09.4317638Z     # Subtest: legacy 200 durable_pending still switches to retrieval
+2026-10-11T13:25:09.4318338Z     ok 3 - legacy 200 durable_pending still switches to retrieval
+2026-10-11T13:25:09.4321532Z     # Subtest: failed transport with a durable receipt retrieves the original job
+2026-10-11T13:25:09.4322393Z     ok 4 - failed transport with a durable receipt retrieves the original job
+2026-10-11T13:25:09.4324838Z     # Subtest: FAILED_FATAL stops polling and never becomes still-running or successful
+2026-10-11T13:25:09.4325892Z     ok 5 - FAILED_FATAL stops polling and never becomes still-running or successful
+2026-10-11T13:25:09.4328301Z     # Subtest: FAILED stops polling and never becomes still-running or successful
+2026-10-11T13:25:09.4329147Z     ok 6 - FAILED stops polling and never becomes still-running or successful
+2026-10-11T13:25:09.4331527Z     # Subtest: network loss after admission remains UNKNOWN and never repeats POST
+2026-10-11T13:25:09.4332259Z     ok 7 - network loss after admission remains UNKNOWN and never repeats POST
+2026-10-11T13:25:09.4334784Z     # Subtest: RETRYABLE stays an honest recoverable interruption at poll deadline
+2026-10-11T13:25:09.4335797Z     ok 8 - RETRYABLE stays an honest recoverable interruption at poll deadline
+2026-10-11T13:25:09.4338248Z     # Subtest: RUNNING at deadline is a receipt, not an executive answer
+2026-10-11T13:25:09.4339028Z     ok 9 - RUNNING at deadline is a receipt, not an executive answer
+2026-10-11T13:25:09.4341336Z     # Subtest: GET 401 never fabricates completion or rePOSTs
+2026-10-11T13:25:09.4342253Z     ok 10 - GET 401 never fabricates completion or rePOSTs
+2026-10-11T13:25:09.4344450Z     # Subtest: GET 403 never fabricates completion or rePOSTs
+2026-10-11T13:25:09.4345108Z     ok 11 - GET 403 never fabricates completion or rePOSTs
+2026-10-11T13:25:09.4347707Z     # Subtest: GET 404 never fabricates completion or rePOSTs
+2026-10-11T13:25:09.4348354Z     ok 12 - GET 404 never fabricates completion or rePOSTs
+2026-10-11T13:25:09.4350601Z     # Subtest: GET 503 never fabricates completion or rePOSTs
+2026-10-11T13:25:09.4351236Z     ok 13 - GET 503 never fabricates completion or rePOSTs
+2026-10-11T13:25:09.4353693Z     # Subtest: POST 202 without a receipt is not automatically repeated
+2026-10-11T13:25:09.4354442Z     ok 14 - POST 202 without a receipt is not automatically repeated
+2026-10-11T13:25:09.4356937Z     # Subtest: POST 401 without a receipt is not automatically repeated
+2026-10-11T13:25:09.4357667Z     ok 15 - POST 401 without a receipt is not automatically repeated
+2026-10-11T13:25:09.4359923Z     # Subtest: POST 404 without a receipt is not automatically repeated
+2026-10-11T13:25:09.4360644Z     ok 16 - POST 404 without a receipt is not automatically repeated
+2026-10-11T13:25:09.4362857Z     # Subtest: POST 503 without a receipt is not automatically repeated
+2026-10-11T13:25:09.4363561Z     ok 17 - POST 503 without a receipt is not automatically repeated
+2026-10-11T13:25:09.4365947Z     # Subtest: lost POST response cannot trigger a second submission
+2026-10-11T13:25:09.4366657Z     ok 18 - lost POST response cannot trigger a second submission
+2026-10-11T13:25:09.4368804Z     # Subtest: browser reopen resumes via GET only
+2026-10-11T13:25:09.4369385Z     ok 19 - browser reopen resumes via GET only
+2026-10-11T13:25:09.4371688Z     # Subtest: completed GET preserves a later rebound session instead of an older POST envelope
+2026-10-11T13:25:09.4372640Z     ok 20 - completed GET preserves a later rebound session instead of an older POST envelope
+2026-10-11T13:25:09.4375162Z     # Subtest: refresh retrieval preserves the saved rebound session
+2026-10-11T13:25:09.4376041Z     ok 21 - refresh retrieval preserves the saved rebound session
+2026-10-11T13:25:09.4378271Z     # Subtest: cancelling restore does not poll or execute work
+2026-10-11T13:25:09.4378992Z     ok 22 - cancelling restore does not poll or execute work
+2026-10-11T13:25:09.4381296Z     # Subtest: session creation coalesces only inside the same owner and workspace
+2026-10-11T13:25:09.4382136Z     ok 23 - session creation coalesces only inside the same owner and workspace
+2026-10-11T13:25:09.4385293Z ok 16 - Pillow durable browser delivery — never repeat accepted execution
+2026-10-11T13:25:09.4397452Z # Subtest: Honest delivery state and receipt persistence
+2026-10-11T13:25:09.4398212Z     # Subtest: accepts completed llm without mislabeling it as unavailable
+2026-10-11T13:25:09.4398999Z     ok 1 - accepts completed llm without mislabeling it as unavailable
+2026-10-11T13:25:09.4401334Z     # Subtest: llm fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.4402127Z     ok 2 - llm fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.4404565Z     # Subtest: llm fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T13:25:09.4405621Z     ok 3 - llm fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T13:25:09.4407918Z     # Subtest: llm fails closed when {"degradedUsed":true}
+2026-10-11T13:25:09.4408541Z     ok 4 - llm fails closed when {"degradedUsed":true}
+2026-10-11T13:25:09.4410764Z     # Subtest: llm fails closed when {"transportContractPassed":false}
+2026-10-11T13:25:09.4411494Z     ok 5 - llm fails closed when {"transportContractPassed":false}
+2026-10-11T13:25:09.4413684Z     # Subtest: llm fails closed when {"semanticSuccess":false}
+2026-10-11T13:25:09.4414344Z     ok 6 - llm fails closed when {"semanticSuccess":false}
+2026-10-11T13:25:09.4416574Z     # Subtest: llm fails closed when {"brainCompleted":false}
+2026-10-11T13:25:09.4417166Z     ok 7 - llm fails closed when {"brainCompleted":false}
+2026-10-11T13:25:09.4419543Z     # Subtest: llm fails closed when {"requestRemainsRunning":true}
+2026-10-11T13:25:09.4441525Z     ok 8 - llm fails closed when {"requestRemainsRunning":true}
+2026-10-11T13:25:09.4457510Z     # Subtest: llm fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T13:25:09.4458259Z     ok 9 - llm fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T13:25:09.4459859Z     # Subtest: accepts completed authority_refusal without mislabeling it as unavailable
+2026-10-11T13:25:09.4460355Z     ok 10 - accepts completed authority_refusal without mislabeling it as unavailable
+2026-10-11T13:25:09.4461716Z     # Subtest: authority_refusal fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.4462390Z     ok 11 - authority_refusal fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.4464343Z     # Subtest: authority_refusal fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T13:25:09.4471048Z     ok 12 - authority_refusal fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T13:25:09.4473421Z     # Subtest: authority_refusal fails closed when {"degradedUsed":true}
+2026-10-11T13:25:09.4474071Z     ok 13 - authority_refusal fails closed when {"degradedUsed":true}
+2026-10-11T13:25:09.4476038Z     # Subtest: authority_refusal fails closed when {"transportContractPassed":false}
+2026-10-11T13:25:09.4476804Z     ok 14 - authority_refusal fails closed when {"transportContractPassed":false}
+2026-10-11T13:25:09.4478603Z     # Subtest: authority_refusal fails closed when {"semanticSuccess":false}
+2026-10-11T13:25:09.4479273Z     ok 15 - authority_refusal fails closed when {"semanticSuccess":false}
+2026-10-11T13:25:09.4497796Z     # Subtest: authority_refusal fails closed when {"brainCompleted":false}
+2026-10-11T13:25:09.4498487Z     ok 16 - authority_refusal fails closed when {"brainCompleted":false}
+2026-10-11T13:25:09.4500296Z     # Subtest: authority_refusal fails closed when {"requestRemainsRunning":true}
+2026-10-11T13:25:09.4501013Z     ok 17 - authority_refusal fails closed when {"requestRemainsRunning":true}
+2026-10-11T13:25:09.4503093Z     # Subtest: authority_refusal fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T13:25:09.4503999Z     ok 18 - authority_refusal fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T13:25:09.4506050Z     # Subtest: accepts completed authority_facts without mislabeling it as unavailable
+2026-10-11T13:25:09.4506830Z     ok 19 - accepts completed authority_facts without mislabeling it as unavailable
+2026-10-11T13:25:09.4508685Z     # Subtest: authority_facts fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.4509443Z     ok 20 - authority_facts fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.4511521Z     # Subtest: authority_facts fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T13:25:09.4512452Z     ok 21 - authority_facts fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T13:25:09.4514224Z     # Subtest: authority_facts fails closed when {"degradedUsed":true}
+2026-10-11T13:25:09.4514816Z     ok 22 - authority_facts fails closed when {"degradedUsed":true}
+2026-10-11T13:25:09.4516695Z     # Subtest: authority_facts fails closed when {"transportContractPassed":false}
+2026-10-11T13:25:09.4517427Z     ok 23 - authority_facts fails closed when {"transportContractPassed":false}
+2026-10-11T13:25:09.4519146Z     # Subtest: authority_facts fails closed when {"semanticSuccess":false}
+2026-10-11T13:25:09.4519773Z     ok 24 - authority_facts fails closed when {"semanticSuccess":false}
+2026-10-11T13:25:09.4541451Z     # Subtest: authority_facts fails closed when {"brainCompleted":false}
+2026-10-11T13:25:09.4542380Z     ok 25 - authority_facts fails closed when {"brainCompleted":false}
+2026-10-11T13:25:09.4544697Z     # Subtest: authority_facts fails closed when {"requestRemainsRunning":true}
+2026-10-11T13:25:09.4545479Z     ok 26 - authority_facts fails closed when {"requestRemainsRunning":true}
+2026-10-11T13:25:09.4548224Z     # Subtest: authority_facts fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T13:25:09.4549307Z     ok 27 - authority_facts fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T13:25:09.4552510Z     # Subtest: accepts completed response_contract without mislabeling it as unavailable
+2026-10-11T13:25:09.4553589Z     ok 28 - accepts completed response_contract without mislabeling it as unavailable
+2026-10-11T13:25:09.4556578Z     # Subtest: response_contract fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.4557657Z     ok 29 - response_contract fails closed when {"constitutionalGate":{"allowed":false}}
+2026-10-11T13:25:09.4560557Z     # Subtest: response_contract fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T13:25:09.4561675Z     ok 30 - response_contract fails closed when {"responseContract":{"code":"EXECUTIVE_RESPONSE_BLOCKED"}}
+2026-10-11T13:25:09.4564011Z     # Subtest: response_contract fails closed when {"degradedUsed":true}
+2026-10-11T13:25:09.4564505Z     ok 31 - response_contract fails closed when {"degradedUsed":true}
+2026-10-11T13:25:09.4566932Z     # Subtest: response_contract fails closed when {"transportContractPassed":false}
+2026-10-11T13:25:09.4567640Z     ok 32 - response_contract fails closed when {"transportContractPassed":false}
+2026-10-11T13:25:09.4568806Z     # Subtest: response_contract fails closed when {"semanticSuccess":false}
+2026-10-11T13:25:09.4569198Z     ok 33 - response_contract fails closed when {"semanticSuccess":false}
+2026-10-11T13:25:09.4570266Z     # Subtest: response_contract fails closed when {"brainCompleted":false}
+2026-10-11T13:25:09.4570667Z     ok 34 - response_contract fails closed when {"brainCompleted":false}
+2026-10-11T13:25:09.4571780Z     # Subtest: response_contract fails closed when {"requestRemainsRunning":true}
+2026-10-11T13:25:09.4572241Z     ok 35 - response_contract fails closed when {"requestRemainsRunning":true}
+2026-10-11T13:25:09.4573392Z     # Subtest: response_contract fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T13:25:09.4573933Z     ok 36 - response_contract fails closed when {"message":"PILLOW_RESULT_PENDING: still queued"}
+2026-10-11T13:25:09.4575102Z     # Subtest: COMPLETED with invalid payload is not success: null
+2026-10-11T13:25:09.4575476Z     ok 37 - COMPLETED with invalid payload is not success: null
+2026-10-11T13:25:09.4576935Z     # Subtest: COMPLETED with invalid payload is not success: {}
+2026-10-11T13:25:09.4577326Z     ok 38 - COMPLETED with invalid payload is not success: {}
+2026-10-11T13:25:09.4578473Z     # Subtest: COMPLETED with invalid payload is not success: {"message":""}
+2026-10-11T13:25:09.4578909Z     ok 39 - COMPLETED with invalid payload is not success: {"message":""}
+2026-10-11T13:25:09.4580063Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"llm","message":" "}
+2026-10-11T13:25:09.4580541Z     ok 40 - COMPLETED with invalid payload is not success: {"kind":"llm","message":" "}
+2026-10-11T13:25:09.4581738Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"error","message":"error"}
+2026-10-11T13:25:09.4582376Z     ok 41 - COMPLETED with invalid payload is not success: {"kind":"error","message":"error"}
+2026-10-11T13:25:09.4583666Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"durable_pending","message":"pending"}
+2026-10-11T13:25:09.4584224Z     ok 42 - COMPLETED with invalid payload is not success: {"kind":"durable_pending","message":"pending"}
+2026-10-11T13:25:09.4585998Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"command_fallback","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1"}
+2026-10-11T13:25:09.4587033Z     ok 43 - COMPLETED with invalid payload is not success: {"kind":"command_fallback","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1"}
+2026-10-11T13:25:09.4588707Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"unrecognised","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1"}
+2026-10-11T13:25:09.4589699Z     ok 44 - COMPLETED with invalid payload is not success: {"kind":"unrecognised","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1"}
+2026-10-11T13:25:09.4591457Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","semanticSuccess":false}
+2026-10-11T13:25:09.4592502Z     ok 45 - COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","semanticSuccess":false}
+2026-10-11T13:25:09.4594442Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","brainCompleted":false}
+2026-10-11T13:25:09.4595471Z     ok 46 - COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","brainCompleted":false}
+2026-10-11T13:25:09.4597438Z     # Subtest: COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","requestRemainsRunning":true}
+2026-10-11T13:25:09.4598449Z     ok 47 - COMPLETED with invalid payload is not success: {"kind":"llm","message":"The synthetic evidence is incomplete; keep commerce locked.","sessionId":"session_1","requestRemainsRunning":true}
+2026-10-11T13:25:09.4600151Z     # Subtest: retrieval ID mismatch fails closed
+2026-10-11T13:25:09.4600465Z     ok 48 - retrieval ID mismatch fails closed
+2026-10-11T13:25:09.4601649Z     # Subtest: pending text remains a status through UI mapping and sanitization
+2026-10-11T13:25:09.4602066Z     ok 49 - pending text remains a status through UI mapping and sanitization
+2026-10-11T13:25:09.4603163Z     # Subtest: owner namespaces isolate receipts, deduplicate IDs, and retain other requests
+2026-10-11T13:25:09.4603643Z     ok 50 - owner namespaces isolate receipts, deduplicate IDs, and retain other requests
+2026-10-11T13:25:09.4604786Z     # Subtest: the completed answer replaces its receipt instead of appending another assistant turn
+2026-10-11T13:25:09.4605294Z     ok 51 - the completed answer replaces its receipt instead of appending another assistant turn
+2026-10-11T13:25:09.4606636Z     # Subtest: conversation and host sessions cannot cross owners or import the legacy unscoped key
+2026-10-11T13:25:09.4607147Z     ok 52 - conversation and host sessions cannot cross owners or import the legacy unscoped key
+2026-10-11T13:25:09.4608288Z     # Subtest: provider has exactly one attempt and BFF does not hold back the accepted ID
+2026-10-11T13:25:09.4608778Z     ok 53 - provider has exactly one attempt and BFF does not hold back the accepted ID
+2026-10-11T13:25:09.4609984Z ok 17 - Honest delivery state and receipt persistence
+2026-10-11T13:25:09.4641620Z # tests 104
+2026-10-11T13:25:09.4642098Z # pass 104
+2026-10-11T13:25:09.4642309Z # fail 0
+2026-10-11T13:25:09.4642508Z # cancelled 0
+2026-10-11T13:25:09.4642964Z # skipped 0
+2026-10-11T13:25:09.4643137Z # todo 0
+2026-10-11T13:25:09.4643325Z # duration_ms 762.81392
+2026-10-11T13:31:18.1273903Z TAP version 13
+2026-10-11T13:31:18.2066656Z # Subtest: whole-volume capture refuses a second-store writer during later Redis copy
+2026-10-11T13:31:18.2071929Z ok 1 - whole-volume capture refuses a second-store writer during later Redis copy
+2026-10-11T13:31:18.2075933Z # Subtest: permanent profile is explicit, isolated, allows only bounded inference and named intelligence credentials and has no canary expiry
+2026-10-11T13:31:18.2077299Z ok 2 - permanent profile is explicit, isolated, allows only bounded inference and named intelligence credentials and has no canary expiry
+2026-10-11T13:31:18.4444740Z # Subtest: permanent supervisor has no expiry and still forwards controlled shutdown
+2026-10-11T13:31:18.4463144Z ok 3 - permanent supervisor has no expiry and still forwards controlled shutdown
+2026-10-11T13:31:18.4465476Z # Subtest: Work4 launcher forwards only named sensing credentials and explicit switches; commerce remains locked
+2026-10-11T13:31:18.4466959Z ok 4 - Work4 launcher forwards only named sensing credentials and explicit switches; commerce remains locked
+2026-10-11T13:31:18.4468658Z # Subtest: whole-volume stopped bundle retains finance and commerce and restores legacy layout
+2026-10-11T13:31:18.4469257Z ok 5 - whole-volume stopped bundle retains finance and commerce and restores legacy layout
+2026-10-11T13:31:18.4513483Z # tests 5
+2026-10-11T13:31:18.4513983Z # pass 5
+2026-10-11T13:31:18.4514228Z # fail 0
+2026-10-11T13:31:18.4514467Z # cancelled 0
+2026-10-11T13:31:18.4514733Z # skipped 0
+2026-10-11T13:31:18.4515043Z # todo 0
+2026-10-11T13:31:18.4515427Z # duration_ms 333.017119
+2026-10-11T13:32:40.2415898Z TAP version 13
+2026-10-11T13:32:40.5009014Z # Subtest: unconfigured or denied trusted verifier cannot dispatch; client permission fields are forbidden
+2026-10-11T13:32:40.5015920Z ok 1 - unconfigured or denied trusted verifier cannot dispatch; client permission fields are forbidden
+2026-10-11T13:32:40.5018709Z # Subtest: success retains full reservation; duplicate request and reopen never redispatch
+2026-10-11T13:32:40.5019641Z ok 2 - success retains full reservation; duplicate request and reopen never redispatch
+2026-10-11T13:32:40.6604365Z # Subtest: timeout aborts one attempt and preserves uncertain full hold without retry
+2026-10-11T13:32:40.6605416Z ok 3 - timeout aborts one attempt and preserves uncertain full hold without retry
+2026-10-11T13:32:40.6627673Z # Subtest: provider/model mismatch, tools, fallback and prompt mutation are rejected before dispatch
+2026-10-11T13:32:40.6628655Z ok 4 - provider/model mismatch, tools, fallback and prompt mutation are rejected before dispatch
+2026-10-11T13:32:40.6629973Z # Subtest: missing/expired pricing or unknown other costs cannot reserve or dispatch
+2026-10-11T13:32:40.6630469Z ok 5 - missing/expired pricing or unknown other costs cannot reserve or dispatch
+2026-10-11T13:32:40.6631667Z # Subtest: independent ledger connections racing distinct steps cannot overspend campaign cap
+2026-10-11T13:32:40.6632215Z ok 6 - independent ledger connections racing distinct steps cannot overspend campaign cap
+2026-10-11T13:32:40.6633478Z # Subtest: provider response violation retains hold and a policy revision cannot reset prior spend
+2026-10-11T13:32:40.6634056Z ok 7 - provider response violation retains hold and a policy revision cannot reset prior spend
+2026-10-11T13:32:40.6635273Z # Subtest: actual scope, output bound, expiry and pre-aborted calls fail before dispatch
+2026-10-11T13:32:40.6635956Z ok 8 - actual scope, output bound, expiry and pre-aborted calls fail before dispatch
+2026-10-11T13:32:40.6637568Z # Subtest: retained verifier references and mutable originals cannot change the approved dispatch snapshot
+2026-10-11T13:32:40.6638266Z ok 9 - retained verifier references and mutable originals cannot change the approved dispatch snapshot
+2026-10-11T13:32:40.8363015Z # Subtest: known zero stock stays zero; unknown, fractional and nondecimal stock cannot become inventory
+2026-10-11T13:32:40.8370935Z ok 10 - known zero stock stays zero; unknown, fractional and nondecimal stock cannot become inventory
+2026-10-11T13:32:40.8373840Z # Subtest: title-only identity, malformed or conflicting ASINs and missing SKU are blocked
+2026-10-11T13:32:40.8374894Z ok 11 - title-only identity, malformed or conflicting ASINs and missing SKU are blocked
+2026-10-11T13:32:40.8378184Z # Subtest: price and currency remain explicit; new catalog creation is not assumed supported
+2026-10-11T13:32:40.8379234Z ok 12 - price and currency remain explicit; new catalog creation is not assumed supported
+2026-10-11T13:32:40.8381920Z # Subtest: a supplier product identifier with known format is necessary for catalog comparison
+2026-10-11T13:32:40.8407854Z ok 13 - a supplier product identifier with known format is necessary for catalog comparison
+2026-10-11T13:32:40.8410860Z # Subtest: catalog evidence must bind exact ASIN, marketplace and supplier identifier
+2026-10-11T13:32:40.8412178Z ok 14 - catalog evidence must bind exact ASIN, marketplace and supplier identifier
+2026-10-11T13:32:40.8415009Z # Subtest: a matching title never overrides a different product identifier or identifier type
+2026-10-11T13:32:40.8416257Z ok 15 - a matching title never overrides a different product identifier or identifier type
+2026-10-11T13:32:40.8419135Z # Subtest: a documented acknowledgement proves processing admission only, never listing availability
+2026-10-11T13:32:40.8420289Z ok 16 - a documented acknowledgement proves processing admission only, never listing availability
+2026-10-11T13:32:40.8423255Z # Subtest: empty or unexpected provider responses, preview success and other HTTP statuses fail closed
+2026-10-11T13:32:40.8424449Z ok 17 - empty or unexpected provider responses, preview success and other HTTP statuses fail closed
+2026-10-11T13:32:40.8427388Z # Subtest: contradictory identity and malformed or error issue evidence cannot be accepted
+2026-10-11T13:32:40.8428611Z ok 18 - contradictory identity and malformed or error issue evidence cannot be accepted
+2026-10-11T13:32:40.8431569Z # Subtest: missing exact seller, SKU, marketplace or ASIN request binding cannot produce a receipt
+2026-10-11T13:32:40.8432723Z ok 19 - missing exact seller, SKU, marketplace or ASIN request binding cannot produce a receipt
+2026-10-11T13:32:41.4139465Z # Subtest: direct Amazon executor rejects forged stored approval and environment unlock flags before every outbound call
+2026-10-11T13:32:41.4141144Z ok 20 - direct Amazon executor rejects forged stored approval and environment unlock flags before every outbound call
+2026-10-11T13:32:41.4191353Z # Subtest: unauthenticated requests cannot prepare or execute listings
+2026-10-11T13:32:41.4193015Z ok 21 - unauthenticated requests cannot prepare or execute listings
+2026-10-11T13:32:41.5384892Z # Subtest: offline draft preparation remains available but request approval booleans cannot grant authority
+2026-10-11T13:32:41.5386441Z ok 22 - offline draft preparation remains available but request approval booleans cannot grant authority
+2026-10-11T13:32:41.5892601Z # Subtest: operators, foreign founders, admins and wrong-workspace sessions cannot execute even forged approved packages
+2026-10-11T13:32:41.5893784Z ok 23 - operators, foreign founders, admins and wrong-workspace sessions cannot execute even forged approved packages
+2026-10-11T13:32:41.6346390Z # Subtest: configured owner execution is still blocked by canonical authority without a false published audit
+2026-10-11T13:32:41.6347923Z ok 24 - configured owner execution is still blocked by canonical authority without a false published audit
+2026-10-11T13:32:41.6740391Z # Subtest: owner identity cannot be moved with workspace headers or body fields
+2026-10-11T13:32:41.6743525Z ok 25 - owner identity cannot be moved with workspace headers or body fields
+2026-10-11T13:32:41.6773120Z # Subtest: absent configured owner and foreign stored package fail closed
+2026-10-11T13:32:41.6780072Z ok 26 - absent configured owner and foreign stored package fail closed
+2026-10-11T13:32:41.6785669Z # Subtest: publishing health remains blocked when credentials are configured but Birth is unaccepted
+2026-10-11T13:32:41.6786279Z ok 27 - publishing health remains blocked when credentials are configured but Birth is unaccepted
+2026-10-11T13:32:46.7014024Z # Subtest: Grand King auth readiness
+2026-10-11T13:32:46.7019952Z     # Subtest: reports not ready when founder identity is missing
+2026-10-11T13:32:46.7020577Z     ok 1 - reports not ready when founder identity is missing
+2026-10-11T13:32:47.8606787Z     # Subtest: reports ready after idempotent founder seed
+2026-10-11T13:32:47.8607561Z     ok 2 - reports ready after idempotent founder seed
+2026-10-11T13:32:47.8611657Z ok 28 - Grand King auth readiness
+2026-10-11T13:32:54.2462405Z # Subtest: G4-05B — Authentication verification
+2026-10-11T13:32:54.2466420Z     # Subtest: rejects invalid login credentials
+2026-10-11T13:32:54.2466926Z     ok 1 - rejects invalid login credentials
+2026-10-11T13:32:55.2709966Z     # Subtest: creates session cookie and returns Grand King platformIdentity
+2026-10-11T13:32:55.2714348Z     ok 2 - creates session cookie and returns Grand King platformIdentity
+2026-10-11T13:32:57.5775904Z     # Subtest: validates session on /auth/me and allows Executive Home dispatch
+2026-10-11T13:32:57.5780120Z     ok 3 - validates session on /auth/me and allows Executive Home dispatch
+2026-10-11T13:32:58.5443764Z     # Subtest: destroys session on logout and rejects subsequent /auth/me
+2026-10-11T13:32:58.5444789Z     ok 4 - destroys session on logout and rejects subsequent /auth/me
+2026-10-11T13:32:58.5450574Z ok 29 - G4-05B — Authentication verification
+2026-10-11T13:33:08.5364591Z # Subtest: production requires both bootstrap accounts to be configured
+2026-10-11T13:33:08.5365957Z ok 30 - production requires both bootstrap accounts to be configured
+2026-10-11T13:33:08.5369200Z # Subtest: configured production credentials pass without exposing their values
+2026-10-11T13:33:08.5370434Z ok 31 - configured production credentials pass without exposing their values
+2026-10-11T13:33:08.5372754Z # Subtest: development fixtures remain available only outside production
+2026-10-11T13:33:08.5373683Z ok 32 - development fixtures remain available only outside production
+2026-10-11T13:33:08.5375390Z # Subtest: unsafe-configuration error discloses no password values
+2026-10-11T13:33:08.5386427Z ok 33 - unsafe-configuration error discloses no password values
+2026-10-11T13:33:14.0834230Z # Subtest: Bootstrap account password sync
+2026-10-11T13:33:14.0835268Z     # Subtest: re-hashes founder password when env password no longer matches stored hash
+2026-10-11T13:33:14.0836357Z     ok 1 - re-hashes founder password when env password no longer matches stored hash
+2026-10-11T13:33:14.0845184Z ok 34 - Bootstrap account password sync
+2026-10-11T13:33:14.7497325Z # Subtest: real Redis shared Brain pause drains independent BullMQ worker and refuses overlap
+2026-10-11T13:33:14.7498328Z ok 35 - real Redis shared Brain pause drains independent BullMQ worker and refuses overlap
+2026-10-11T13:33:15.2103142Z # Subtest: evidence intake is scoped, durable, bounded and cannot grant certification
+2026-10-11T13:33:15.2103943Z     # Subtest: strict schema rejects supplied authority, duplicate artifacts and malformed identities
+2026-10-11T13:33:15.2104909Z     ok 1 - strict schema rejects supplied authority, duplicate artifacts and malformed identities
+2026-10-11T13:33:15.2279718Z     # Subtest: failed save is not acknowledged on insert, duplicate or readback
+2026-10-11T13:33:15.2281057Z     ok 2 - failed save is not acknowledged on insert, duplicate or readback
+2026-10-11T13:33:15.3242903Z     # Subtest: delayed persistence cannot resolve ingestion early
+2026-10-11T13:33:15.3264169Z     ok 3 - delayed persistence cannot resolve ingestion early
+2026-10-11T13:33:15.3291815Z     # Subtest: failure history, exact idempotency and workspace isolation survive database reopen
+2026-10-11T13:33:15.3292985Z     ok 4 - failure history, exact idempotency and workspace isolation survive database reopen
+2026-10-11T13:33:15.3297151Z     # Subtest: audit insertion failure rolls back receipt insertion
+2026-10-11T13:33:15.3297571Z     ok 5 - audit insertion failure rolls back receipt insertion
+2026-10-11T13:33:15.3433052Z     # Subtest: HTTP enforces authenticated roles, explicit scope and body bounds
+2026-10-11T13:33:15.3433879Z     ok 6 - HTTP enforces authenticated roles, explicit scope and body bounds
+2026-10-11T13:33:15.3436786Z     # Subtest: durable readbacks and identical retries do not export the entire database again
+2026-10-11T13:33:15.3437519Z     ok 7 - durable readbacks and identical retries do not export the entire database again
+2026-10-11T13:33:15.3440515Z     # Subtest: nonpersistent configuration cannot ingest evidence
+2026-10-11T13:33:15.3441489Z     ok 8 - nonpersistent configuration cannot ingest evidence
+2026-10-11T13:33:15.3673465Z     # Subtest: missing audit cannot be exposed through reads or retries
+2026-10-11T13:33:15.3683243Z     ok 9 - missing audit cannot be exposed through reads or retries
+2026-10-11T13:33:15.3685011Z ok 36 - evidence intake is scoped, durable, bounded and cannot grant certification
+2026-10-11T13:33:15.5896762Z # Subtest: commerce discussion and unconditional prohibitions are not execution requests
+2026-10-11T13:33:15.5897889Z ok 37 - commerce discussion and unconditional prohibitions are not execution requests
+2026-10-11T13:33:15.5900721Z # Subtest: independent effects cannot be laundered by analysis, disclaimers or denials
+2026-10-11T13:33:15.5901756Z ok 38 - independent effects cannot be laundered by analysis, disclaimers or denials
+2026-10-11T13:33:15.5904446Z # Subtest: commerce refusal is terminal incomplete reasoning, including legacy responses
+2026-10-11T13:33:15.5905475Z ok 39 - commerce refusal is terminal incomplete reasoning, including legacy responses
+2026-10-11T13:33:15.5908238Z # Subtest: action families retain local polarity and mixed-request boundaries
+2026-10-11T13:33:15.5929405Z ok 40 - action families retain local polarity and mixed-request boundaries
+2026-10-11T13:33:16.3317020Z # Subtest: continuity heartbeat clock and real off-thread recovery
+2026-10-11T13:33:16.3326678Z     # Subtest: preserves the failed epoch and both signed 32-bit wrap boundaries
+2026-10-11T13:33:16.3332054Z     ok 1 - preserves the failed epoch and both signed 32-bit wrap boundaries
+2026-10-11T13:33:16.3334728Z     # Subtest: keeps the SQLite in-flight flag separate from the atomic timestamp
+2026-10-11T13:33:16.3335739Z     ok 2 - keeps the SQLite in-flight flag separate from the atomic timestamp
+2026-10-11T13:33:16.3337884Z     # Subtest: does not turn missing, negative, future, or unsafe clocks into healthy ages
+2026-10-11T13:33:16.3338628Z     ok 3 - does not turn missing, negative, future, or unsafe clocks into healthy ages
+2026-10-11T13:33:16.3339923Z     # Subtest: wall-clock rollback and forward jumps do not alter heartbeat age
+2026-10-11T13:33:16.3340365Z     ok 4 - wall-clock rollback and forward jumps do not alter heartbeat age
+2026-10-11T13:33:16.3341503Z     # Subtest: preserves exact stall, cold-start, and SQLite flush hard-cap boundaries
+2026-10-11T13:33:16.3341958Z     ok 5 - preserves exact stall, cold-start, and SQLite flush hard-cap boundaries
+2026-10-11T13:33:16.3343088Z     # Subtest: allows a bounded invalid-reading recovery window and resets it after a valid beat
+2026-10-11T13:33:16.3343582Z     ok 6 - allows a bounded invalid-reading recovery window and resets it after a valid beat
+2026-10-11T13:33:16.3608617Z     # Subtest: async SQLite export publishes liveness before releasing its guard
+2026-10-11T13:33:16.3609689Z     ok 7 - async SQLite export publishes liveness before releasing its guard
+2026-10-11T13:33:16.3615078Z     # Subtest: shutdown SQLite export publishes liveness before releasing its guard
+2026-10-11T13:33:16.3616221Z     ok 8 - shutdown SQLite export publishes liveness before releasing its guard
+2026-10-11T13:33:16.4634459Z     # Subtest: a failed worker remains unhealthy even while the main heartbeat timer still runs
+2026-10-11T13:33:16.4635902Z     ok 9 - a failed worker remains unhealthy even while the main heartbeat timer still runs
+2026-10-11T13:33:16.5976151Z     # Subtest: requires a ready handshake and survives old-worker exit callbacks after reset
+2026-10-11T13:33:16.5977265Z     ok 10 - requires a ready handshake and survives old-worker exit callbacks after reset
+2026-10-11T13:33:17.2345157Z     # Subtest: the actual worker leaves a current monotonic heartbeat alive
+2026-10-11T13:33:17.2345973Z     ok 11 - the actual worker leaves a current monotonic heartbeat alive
+2026-10-11T13:33:22.2967182Z     # Subtest: the actual worker terminates an isolated process whose main thread cannot run callbacks
+2026-10-11T13:33:22.2970102Z     ok 12 - the actual worker terminates an isolated process whose main thread cannot run callbacks
+2026-10-11T13:33:22.2971496Z ok 41 - continuity heartbeat clock and real off-thread recovery
+2026-10-11T13:33:23.5230451Z # Subtest: paid autonomous cost authorization
+2026-10-11T13:33:23.5234112Z     # Subtest: blocks unknown authority without inventing budgets or recording spend
+2026-10-11T13:33:23.5234890Z     ok 1 - blocks unknown authority without inventing budgets or recording spend
+2026-10-11T13:33:23.5236865Z     # Subtest: requires dailyAiBudgetUsd even when the other budgets are known
+2026-10-11T13:33:23.5237575Z     ok 2 - requires dailyAiBudgetUsd even when the other budgets are known
+2026-10-11T13:33:23.5249336Z     # Subtest: requires autonomousPaidActionLimitUsd even when the other budgets are known
+2026-10-11T13:33:23.5251007Z     ok 3 - requires autonomousPaidActionLimitUsd even when the other budgets are known
+2026-10-11T13:33:23.5253905Z     # Subtest: requires monthlyOperatingBudgetUsd even when the other budgets are known
+2026-10-11T13:33:23.5254890Z     ok 4 - requires monthlyOperatingBudgetUsd even when the other budgets are known
+2026-10-11T13:33:23.5257614Z     # Subtest: does not turn a deployment-only amount into paid AI authority
+2026-10-11T13:33:23.5258139Z     ok 5 - does not turn a deployment-only amount into paid AI authority
+2026-10-11T13:33:23.5259877Z     # Subtest: rejects nonfinite and negative estimates before any paid work
+2026-10-11T13:33:23.5260402Z     ok 6 - rejects nonfinite and negative estimates before any paid work
+2026-10-11T13:33:23.5262173Z     # Subtest: rejects malformed stored authorization rather than coercing it into permission
+2026-10-11T13:33:23.5262791Z     ok 7 - rejects malformed stored authorization rather than coercing it into permission
+2026-10-11T13:33:23.5264575Z     # Subtest: counts actual and committed daily AI spend in the projection
+2026-10-11T13:33:23.5265098Z     ok 8 - counts actual and committed daily AI spend in the projection
+2026-10-11T13:33:23.5281505Z     # Subtest: counts actual and committed autonomous paid spend in the projection
+2026-10-11T13:33:23.5282354Z     ok 9 - counts actual and committed autonomous paid spend in the projection
+2026-10-11T13:33:23.5286970Z     # Subtest: counts actual and committed monthly operating spend in the projection
+2026-10-11T13:33:23.5287833Z     ok 10 - counts actual and committed monthly operating spend in the projection
+2026-10-11T13:33:23.5294959Z     # Subtest: rejects invalid new spend and halts on a malformed persisted event
+2026-10-11T13:33:23.5295401Z     ok 11 - rejects invalid new spend and halts on a malformed persisted event
+2026-10-11T13:33:23.5296776Z     # Subtest: counts AI charges toward the monthly operating cap without double-posting spend
+2026-10-11T13:33:23.5297271Z     ok 12 - counts AI charges toward the monthly operating cap without double-posting spend
+2026-10-11T13:33:23.5298403Z     # Subtest: keeps a zero owner limit and existing hard stops effective
+2026-10-11T13:33:23.5298973Z     ok 13 - keeps a zero owner limit and existing hard stops effective
+2026-10-11T13:33:23.5300096Z     # Subtest: allows bounded AI work without inventing unrelated commerce authority
+2026-10-11T13:33:23.5300534Z     ok 14 - allows bounded AI work without inventing unrelated commerce authority
+2026-10-11T13:33:23.5301656Z     # Subtest: stops the real LLM router before resolving or contacting a provider
+2026-10-11T13:33:23.5302072Z     ok 15 - stops the real LLM router before resolving or contacting a provider
+2026-10-11T13:33:23.5303256Z     # Subtest: blocks existing AI budgets during engineering testing without contacting a provider
+2026-10-11T13:33:23.5303768Z     ok 16 - blocks existing AI budgets during engineering testing without contacting a provider
+2026-10-11T13:33:23.5758214Z     # Subtest: router aborts its actual provider invocation on timeout without retry
+2026-10-11T13:33:23.5763397Z     ok 17 - router aborts its actual provider invocation on timeout without retry
+2026-10-11T13:33:23.5765277Z     # Subtest: invalid router timeout fails before provider resolution
+2026-10-11T13:33:23.5765854Z     ok 18 - invalid router timeout fails before provider resolution
+2026-10-11T13:33:23.5767851Z ok 42 - paid autonomous cost authorization
+2026-10-11T13:33:23.7615365Z # Subtest: D-006 durable pending receipt is not a useful answer
+2026-10-11T13:33:23.7622409Z     # Subtest: labels pending with requestId and rejects as useful
+2026-10-11T13:33:23.7623368Z     ok 1 - labels pending with requestId and rejects as useful
+2026-10-11T13:33:23.7625826Z     # Subtest: legacy accepted wording without answer is not useful
+2026-10-11T13:33:23.7656373Z     ok 2 - legacy accepted wording without answer is not useful
+2026-10-11T13:33:23.7681907Z     # Subtest: completed two-line decision remains useful
+2026-10-11T13:33:23.7682716Z     ok 3 - completed two-line decision remains useful
+2026-10-11T13:33:23.7685112Z ok 43 - D-006 durable pending receipt is not a useful answer
+2026-10-11T13:33:26.4266776Z # Subtest: Bounded engineering deployment mode
+2026-10-11T13:33:26.4270014Z     # Subtest: refuses malformed configuration rather than accidentally enabling commerce
+2026-10-11T13:33:26.4271724Z     ok 1 - refuses malformed configuration rather than accidentally enabling commerce
+2026-10-11T13:33:26.4274998Z     # Subtest: suppresses generic queue consumers and all commerce repeat definitions
+2026-10-11T13:33:26.4286913Z     ok 2 - suppresses generic queue consumers and all commerce repeat definitions
+2026-10-11T13:33:26.4288430Z     # Subtest: blocks direct commerce ticks and service calls before storage or network access
+2026-10-11T13:33:26.4290149Z     ok 3 - blocks direct commerce ticks and service calls before storage or network access
+2026-10-11T13:33:26.4291838Z     # Subtest: presale: engineering mode never starts the background commerce task
+2026-10-11T13:33:26.4292295Z     ok 4 - presale: engineering mode never starts the background commerce task
+2026-10-11T13:33:26.4293452Z     # Subtest: presale: stopping before boot cancels both boot and recurring callbacks
+2026-10-11T13:33:26.4293904Z     ok 5 - presale: stopping before boot cancels both boot and recurring callbacks
+2026-10-11T13:33:26.4295728Z     # Subtest: presale: shutdown drains an in-flight tick and prevents overlapping ticks
+2026-10-11T13:33:26.4296578Z     ok 6 - presale: shutdown drains an in-flight tick and prevents overlapping ticks
+2026-10-11T13:33:26.4297897Z     # Subtest: executive: engineering mode never starts the background commerce task
+2026-10-11T13:33:26.4298331Z     ok 7 - executive: engineering mode never starts the background commerce task
+2026-10-11T13:33:26.4299464Z     # Subtest: executive: stopping before boot cancels both boot and recurring callbacks
+2026-10-11T13:33:26.4299913Z     ok 8 - executive: stopping before boot cancels both boot and recurring callbacks
+2026-10-11T13:33:26.4301309Z     # Subtest: executive: shutdown drains an in-flight tick and prevents overlapping ticks
+2026-10-11T13:33:26.4301784Z     ok 9 - executive: shutdown drains an in-flight tick and prevents overlapping ticks
+2026-10-11T13:33:26.4303279Z     # Subtest: cancels a boot callback even if its timer fired just before shutdown
+2026-10-11T13:33:26.4303720Z     ok 10 - cancels a boot callback even if its timer fired just before shutdown
+2026-10-11T13:33:26.4305058Z     # Subtest: drains delayed Pillow boot and can be restarted after a fully stopped generation
+2026-10-11T13:33:26.4305687Z     ok 11 - drains delayed Pillow boot and can be restarted after a fully stopped generation
+2026-10-11T13:33:26.4306874Z     # Subtest: clears the readiness timeout when an already-starting Pillow host completes
+2026-10-11T13:33:26.4307345Z     ok 12 - clears the readiness timeout when an already-starting Pillow host completes
+2026-10-11T13:33:26.4308877Z ok 44 - Bounded engineering deployment mode
+2026-10-11T13:33:26.7599478Z # Subtest: exec-cap authority + compact candidate binding
+2026-10-11T13:33:26.7600088Z     # Subtest: refuses live listing/ad asks while NOT_BORN
+2026-10-11T13:33:26.7606787Z     ok 1 - refuses live listing/ad asks while NOT_BORN
+2026-10-11T13:33:26.7613598Z     # Subtest: answers Birth/mode from canonical authority facts
+2026-10-11T13:33:26.7614211Z     ok 2 - answers Birth/mode from canonical authority facts
+2026-10-11T13:33:26.7616353Z     # Subtest: answers the failed canary authority ask and unfamiliar permission paraphrases from locked state
+2026-10-11T13:33:26.7617331Z     ok 3 - answers the failed canary authority ask and unfamiliar permission paraphrases from locked state
+2026-10-11T13:33:26.7619406Z     # Subtest: does not replace strategy, third-party permissions or additional tasks with authority facts
+2026-10-11T13:33:26.7620269Z     ok 4 - does not replace strategy, third-party permissions or additional tasks with authority facts
+2026-10-11T13:33:26.7622330Z     # Subtest: does not hijack Eligible/Selected into checkpoint contracts
+2026-10-11T13:33:26.7622944Z     ok 5 - does not hijack Eligible/Selected into checkpoint contracts
+2026-10-11T13:33:26.7624396Z     # Subtest: binds compact Kestrel/Lumen/Morrow paragraph
+2026-10-11T13:33:26.7624724Z     ok 6 - binds compact Kestrel/Lumen/Morrow paragraph
+2026-10-11T13:33:26.7625948Z     # Subtest: applies contribution correction and 5d delivery
+2026-10-11T13:33:26.7626281Z     ok 7 - applies contribution correction and 5d delivery
+2026-10-11T13:33:26.7627489Z     # Subtest: binds reordered Nova facts
+2026-10-11T13:33:26.7627748Z     ok 8 - binds reordered Nova facts
+2026-10-11T13:33:26.7628899Z ok 45 - exec-cap authority + compact candidate binding
+2026-10-11T13:33:27.5759509Z # Subtest: Executive Continuity Watchdog
+2026-10-11T13:33:27.5760373Z     # Subtest: starts and reports continuity health snapshot
+2026-10-11T13:33:27.5762416Z     ok 1 - starts and reports continuity health snapshot
+2026-10-11T13:33:27.5766026Z     # Subtest: high-lag recovery requests graceful shutdown only once and reports non-readiness
+2026-10-11T13:33:27.5767514Z     ok 2 - high-lag recovery requests graceful shutdown only once and reports non-readiness
+2026-10-11T13:33:27.5770247Z     # Subtest: clearEventLoopLagAfterKnownBlock drops ghost lag after sync export
+2026-10-11T13:33:27.5771273Z     ok 3 - clearEventLoopLagAfterKnownBlock drops ghost lag after sync export
+2026-10-11T13:33:27.5774662Z ok 46 - Executive Continuity Watchdog
+2026-10-11T13:33:27.7993522Z # Subtest: campaign identity/cap/expiry are immutable and malformed money cannot authorize
+2026-10-11T13:33:27.7997595Z ok 47 - campaign identity/cap/expiry are immutable and malformed money cannot authorize
+2026-10-11T13:33:27.8000577Z # Subtest: foreign databases are refused without replacing their records
+2026-10-11T13:33:27.8001396Z ok 48 - foreign databases are refused without replacing their records
+2026-10-11T13:33:27.8005001Z # Subtest: timeouts, retry IDs and restart retain reservations; duplicate IDs never redispatch
+2026-10-11T13:33:27.8006202Z ok 49 - timeouts, retry IDs and restart retain reservations; duplicate IDs never redispatch
+2026-10-11T13:33:27.8013553Z # Subtest: only final receipt releases unused reservation; conflicting settlement and overruns are visible
+2026-10-11T13:33:27.8014794Z ok 50 - only final receipt releases unused reservation; conflicting settlement and overruns are visible
+2026-10-11T13:33:27.9793854Z # Subtest: expired campaign cannot reserve even with remaining balance but final reconciliation remains possible
+2026-10-11T13:33:27.9795097Z ok 51 - expired campaign cannot reserve even with remaining balance but final reconciliation remains possible
+2026-10-11T13:33:28.1717426Z # Subtest: independent processes cannot reserve the same funds twice; committed reservation survives exit without close
+2026-10-11T13:33:28.1719171Z ok 52 - independent processes cannot reserve the same funds twice; committed reservation survives exit without close
+2026-10-11T13:33:28.5424152Z # Subtest: independent: planned shutdown on final permitted attempt retains full admitted job for restart
+2026-10-11T13:33:28.5425279Z ok 53 - independent: planned shutdown on final permitted attempt retains full admitted job for restart
+2026-10-11T13:33:28.6554479Z # Subtest: independent: inability to durably release work during stop must propagate as shutdown failure
+2026-10-11T13:33:28.6555443Z ok 54 - independent: inability to durably release work during stop must propagate as shutdown failure
+2026-10-11T13:33:29.0576254Z # Subtest: timeouts are finite integer bounded and reject malformed configuration
+2026-10-11T13:33:29.0577533Z ok 55 - timeouts are finite integer bounded and reject malformed configuration
+2026-10-11T13:33:29.0716889Z # Subtest: deadline aborts the actual in-flight fake provider once
+2026-10-11T13:33:29.0717626Z ok 56 - deadline aborts the actual in-flight fake provider once
+2026-10-11T13:33:29.0721284Z # Subtest: already cancelled caller cannot invoke provider; caller cancellation propagates
+2026-10-11T13:33:29.0722401Z ok 57 - already cancelled caller cannot invoke provider; caller cancellation propagates
+2026-10-11T13:33:29.0978987Z # Subtest: fast success clears timer and provider errors are never retried
+2026-10-11T13:33:29.0979598Z ok 58 - fast success clears timer and provider errors are never retried
+2026-10-11T13:33:29.1080185Z # Subtest: a noncooperative provider remains bounded locally without claiming remote cancellation
+2026-10-11T13:33:29.1084516Z ok 59 - a noncooperative provider remains bounded locally without claiming remote cancellation
+2026-10-11T13:33:29.1086588Z # Subtest: an unavailable selected provider never silently charges an available fallback
+2026-10-11T13:33:29.1087431Z ok 60 - an unavailable selected provider never silently charges an available fallback
+2026-10-11T13:33:29.4558006Z # Subtest: openai real SDK receives per-request maxRetries zero and performs one fake fetch on 503
+2026-10-11T13:33:29.4559331Z ok 61 - openai real SDK receives per-request maxRetries zero and performs one fake fetch on 503
+2026-10-11T13:33:29.4874723Z # Subtest: openai actual SDK fake fetch sees timeout abort
+2026-10-11T13:33:29.4875752Z ok 62 - openai actual SDK fake fetch sees timeout abort
+2026-10-11T13:33:29.4877859Z # Subtest: anthropic real SDK receives per-request maxRetries zero and performs one fake fetch on 503
+2026-10-11T13:33:29.4879076Z ok 63 - anthropic real SDK receives per-request maxRetries zero and performs one fake fetch on 503
+2026-10-11T13:33:29.5189312Z # Subtest: anthropic actual SDK fake fetch sees timeout abort
+2026-10-11T13:33:29.5189787Z ok 64 - anthropic actual SDK fake fetch sees timeout abort
+2026-10-11T13:33:29.5362856Z # Subtest: Gemini adapter forwards cancellation and rejects already-aborted work before client acquisition
+2026-10-11T13:33:29.5364130Z ok 65 - Gemini adapter forwards cancellation and rejects already-aborted work before client acquisition
+2026-10-11T13:33:29.5664809Z # Subtest: Gemini installed SDK propagates signal into its actual fetch transport
+2026-10-11T13:33:29.5665865Z ok 66 - Gemini installed SDK propagates signal into its actual fetch transport
+2026-10-11T13:33:29.9189874Z # Subtest: permanent locked profile denies commerce and Birth mutations before handlers
+2026-10-11T13:33:29.9191741Z ok 67 - permanent locked profile denies commerce and Birth mutations before handlers
+2026-10-11T13:33:32.7139701Z # Subtest: actual authenticated mission route commits intent, auto-enqueues, executes canonical read and reconciles once
+2026-10-11T13:33:32.7140685Z ok 68 - actual authenticated mission route commits intent, auto-enqueues, executes canonical read and reconciles once
+2026-10-11T13:33:32.9342332Z # Subtest: outbox write failure is not acknowledged; restart automatically recovers the original durable intent
+2026-10-11T13:33:32.9343663Z ok 69 - outbox write failure is not acknowledged; restart automatically recovers the original durable intent
+2026-10-11T13:33:32.9655225Z # Subtest: durable output survives reconciliation commit failure and is credited after restart without rereading
+2026-10-11T13:33:32.9656549Z ok 70 - durable output survives reconciliation commit failure and is credited after restart without rereading
+2026-10-11T13:33:32.9831542Z # Subtest: unfinished old-build job becomes unknown after upgrade and never receives completion
+2026-10-11T13:33:32.9832633Z ok 71 - unfinished old-build job becomes unknown after upgrade and never receives completion
+2026-10-11T13:33:33.0307673Z # Subtest: paused or cancelled missions cannot be completed from a stored output
+2026-10-11T13:33:33.0308821Z ok 72 - paused or cancelled missions cannot be completed from a stored output
+2026-10-11T13:33:33.0400535Z # Subtest: reserved worker never falls through generic delegates; missing scope or adapter fails closed
+2026-10-11T13:33:33.0401561Z ok 73 - reserved worker never falls through generic delegates; missing scope or adapter fails closed
+2026-10-11T13:33:33.0595949Z # Subtest: returning mission history cannot mutate persisted intent; every mismatched receipt identity fails closed
+2026-10-11T13:33:33.0597084Z ok 74 - returning mission history cannot mutate persisted intent; every mismatched receipt identity fails closed
+2026-10-11T13:33:33.0945795Z # Subtest: diagnostics distinguish disabled executor, bad configuration and configured paused runtime
+2026-10-11T13:33:33.0947552Z ok 75 - diagnostics distinguish disabled executor, bad configuration and configured paused runtime
+2026-10-11T13:33:38.4752588Z # Subtest: real process termination at intent/output boundaries recovers without fabricating or redispatching
+2026-10-11T13:33:38.4753327Z ok 76 - real process termination at intent/output boundaries recovers without fabricating or redispatching
+2026-10-11T13:33:38.9746928Z # Subtest: authenticated actual route durably enqueues, worker reads canonical authority and exposes only the actual output
+2026-10-11T13:33:38.9755112Z ok 77 - authenticated actual route durably enqueues, worker reads canonical authority and exposes only the actual output
+2026-10-11T13:33:38.9842945Z # Subtest: new execution routes reject unauthenticated or foreign identity before storing jobs
+2026-10-11T13:33:38.9853343Z ok 78 - new execution routes reject unauthenticated or foreign identity before storing jobs
+2026-10-11T13:33:38.9947142Z # Subtest: client effects, forged receipts, owner fields and unregistered mission dispatch are rejected
+2026-10-11T13:33:38.9957744Z ok 79 - client effects, forged receipts, owner fields and unregistered mission dispatch are rejected
+2026-10-11T13:33:39.0053137Z # Subtest: mission pause after admission blocks the real worker at execution time
+2026-10-11T13:33:39.0061276Z ok 80 - mission pause after admission blocks the real worker at execution time
+2026-10-11T13:33:39.0100323Z # Subtest: storage failure returns unavailable, never 202 accepted
+2026-10-11T13:33:39.0101057Z ok 81 - storage failure returns unavailable, never 202 accepted
+2026-10-11T13:33:39.2809218Z # Subtest: durable admission deduplicates exact content and rejects changed dispatch/build
+2026-10-11T13:33:39.2830631Z ok 82 - durable admission deduplicates exact content and rejects changed dispatch/build
+2026-10-11T13:33:39.2832757Z # Subtest: competing claims fence stale readers after lease expiry and commit one durable actual output
+2026-10-11T13:33:39.2833792Z ok 83 - competing claims fence stale readers after lease expiry and commit one durable actual output
+2026-10-11T13:33:39.2836579Z # Subtest: completed prior-build receipt survives upgrade; unfinished changed-build job becomes unknown
+2026-10-11T13:33:39.2837554Z ok 84 - completed prior-build receipt survives upgrade; unfinished changed-build job becomes unknown
+2026-10-11T13:33:39.2839236Z # Subtest: interrupted read attempts are bounded
+2026-10-11T13:33:39.2839738Z ok 85 - interrupted read attempts are bounded
+2026-10-11T13:33:39.2841506Z # Subtest: actual worker persists output before mission reconciliation and retries reconciliation only
+2026-10-11T13:33:39.2856574Z ok 86 - actual worker persists output before mission reconciliation and retries reconciliation only
+2026-10-11T13:33:39.2859079Z # Subtest: inspection exception remains unknown with no leaked exception text
+2026-10-11T13:33:39.2859815Z ok 87 - inspection exception remains unknown with no leaked exception text
+2026-10-11T13:33:39.2861626Z # Subtest: pause and unavailable host prevent dispatch; stop waits for active readonly result
+2026-10-11T13:33:39.2862487Z ok 88 - pause and unavailable host prevent dispatch; stop waits for active readonly result
+2026-10-11T13:33:39.2863833Z # Subtest: scope mismatch, corrupt output hash and unexpected schema fail closed
+2026-10-11T13:33:39.2864303Z ok 89 - scope mismatch, corrupt output hash and unexpected schema fail closed
+2026-10-11T13:33:39.2865385Z # Subtest: failed receipt commit cannot acknowledge completion
+2026-10-11T13:33:39.2865998Z ok 90 - failed receipt commit cannot acknowledge completion
+2026-10-11T13:33:39.4847571Z # Subtest: killed claimed worker recovers after lease without orphan lock
+2026-10-11T13:33:39.4848102Z ok 91 - killed claimed worker recovers after lease without orphan lock
+2026-10-11T13:33:39.6663727Z # Subtest: kill during SQLite transaction rolls back and next writer preserves queued job
+2026-10-11T13:33:39.6664933Z ok 92 - kill during SQLite transaction rolls back and next writer preserves queued job
+2026-10-11T13:33:39.9167491Z # Subtest: two separate worker processes cannot both claim one job
+2026-10-11T13:33:39.9168000Z ok 93 - two separate worker processes cannot both claim one job
+2026-10-11T13:33:40.0938285Z # Subtest: kill after actual read before commit is unconfirmed and only safe readonly action can retry
+2026-10-11T13:33:40.0939729Z ok 94 - kill after actual read before commit is unconfirmed and only safe readonly action can retry
+2026-10-11T13:33:40.2694880Z # Subtest: kill after receipt commit preserves output and never executes again
+2026-10-11T13:33:40.2695877Z ok 95 - kill after receipt commit preserves output and never executes again
+2026-10-11T13:33:40.6415747Z # Subtest: all actual mission read/action routes reject unauthenticated access before touching host
+2026-10-11T13:33:40.6417288Z ok 96 - all actual mission read/action routes reject unauthenticated access before touching host
+2026-10-11T13:33:40.6470195Z # Subtest: configured founder can access the shared organization through authenticated session scope
+2026-10-11T13:33:40.6471374Z ok 97 - configured founder can access the shared organization through authenticated session scope
+2026-10-11T13:33:40.6518640Z # Subtest: configured admin has the intended shared organization access
+2026-10-11T13:33:40.6519947Z ok 98 - configured admin has the intended shared organization access
+2026-10-11T13:33:40.6597684Z # Subtest: foreign founder/admin identities cannot read or operate the organization's missions
+2026-10-11T13:33:40.6598677Z ok 99 - foreign founder/admin identities cannot read or operate the organization's missions
+2026-10-11T13:33:40.6818061Z # Subtest: configured email alone cannot replace the correct role or authenticated workspace
+2026-10-11T13:33:40.6819098Z ok 100 - configured email alone cannot replace the correct role or authenticated workspace
+2026-10-11T13:33:40.6958878Z # Subtest: a caller-supplied workspace header cannot move or repair session authority
+2026-10-11T13:33:40.6959863Z ok 101 - a caller-supplied workspace header cannot move or repair session authority
+2026-10-11T13:33:40.7005028Z # Subtest: foreign workspace body is rejected on every actual action route
+2026-10-11T13:33:40.7005887Z ok 102 - foreign workspace body is rejected on every actual action route
+2026-10-11T13:33:40.7055426Z # Subtest: missing configured owner identity fails closed even for an authenticated founder
+2026-10-11T13:33:40.7056474Z ok 103 - missing configured owner identity fails closed even for an authenticated founder
+2026-10-11T13:33:43.4097707Z # Subtest: quiesced real primary/native stores restore and reopen with identical completed receipt, history and business data
+2026-10-11T13:33:43.4098973Z ok 104 - quiesced real primary/native stores restore and reopen with identical completed receipt, history and business data
+2026-10-11T13:33:43.4504898Z # Subtest: offline backup and restore preserve native CJ point history; corrupt ledger refuses publication
+2026-10-11T13:33:43.4506411Z ok 105 - offline backup and restore preserve native CJ point history; corrupt ledger refuses publication
+2026-10-11T13:33:52.3303499Z # Subtest: offline multi-store backup and restore accept a valid primary above 512 MiB
+2026-10-11T13:33:52.3304350Z ok 106 - offline multi-store backup and restore accept a valid primary above 512 MiB
+2026-10-11T13:33:52.3932959Z # Subtest: restored queued readonly mission continues its original dispatch and completes once
+2026-10-11T13:33:52.3934540Z ok 107 - restored queued readonly mission continues its original dispatch and completes once
+2026-10-11T13:33:52.4178173Z # Subtest: missing quiescence/build/evidence or wrong primary/native scope is refused before publication
+2026-10-11T13:33:52.4179279Z ok 108 - missing quiescence/build/evidence or wrong primary/native scope is refused before publication
+2026-10-11T13:33:52.4419519Z # Subtest: active readers/writers and WAL/SHM/journal sidecars are refused without copying a live database
+2026-10-11T13:33:52.4420922Z ok 109 - active readers/writers and WAL/SHM/journal sidecars are refused without copying a live database
+2026-10-11T13:33:52.4709939Z # Subtest: manifest/build/scope/required set and exact bytes are checked before restore
+2026-10-11T13:33:52.4711242Z ok 110 - manifest/build/scope/required set and exact bytes are checked before restore
+2026-10-11T13:33:52.4979154Z # Subtest: existing targets, symlink files and linked source identities are never overwritten
+2026-10-11T13:33:52.4980922Z ok 111 - existing targets, symlink files and linked source identities are never overwritten
+2026-10-11T13:33:52.5265626Z # Subtest: SQL.js-style atomic source replacement is detected and never publishes an apparently complete bundle
+2026-10-11T13:33:52.5267406Z ok 112 - SQL.js-style atomic source replacement is detected and never publishes an apparently complete bundle
+2026-10-11T13:33:52.5538139Z # Subtest: failed staged writes preserve source history and leave no published backup or restore
+2026-10-11T13:33:52.5538996Z ok 113 - failed staged writes preserve source history and leave no published backup or restore
+2026-10-11T13:33:52.5921750Z # Subtest: legacy migration lineage is included only when native history binds its original bytes
+2026-10-11T13:33:52.5923249Z ok 114 - legacy migration lineage is included only when native history binds its original bytes
+2026-10-11T13:33:52.6297033Z # Subtest: unexpected staged files or changed restore proof are rejected before publication
+2026-10-11T13:33:52.6298484Z ok 115 - unexpected staged files or changed restore proof are rejected before publication
+2026-10-11T13:33:52.9413712Z # Subtest: pillow accepted-request recovery Level A
+2026-10-11T13:33:52.9414741Z     # Subtest: 1 accepts request with durable identity
+2026-10-11T13:33:52.9416243Z     ok 1 - 1 accepts request with durable identity
+2026-10-11T13:33:52.9418564Z     # Subtest: 2 bounded retry succeeds after first transient failure
+2026-10-11T13:33:52.9419110Z     ok 2 - 2 bounded retry succeeds after first transient failure
+2026-10-11T13:33:54.4444780Z     # Subtest: 3 worker unavailable then recovers before attempt
+2026-10-11T13:33:54.4445730Z     ok 3 - 3 worker unavailable then recovers before attempt
+2026-10-11T13:33:54.4448608Z     # Subtest: 3b HTTP 500 after worker flap retries (GK checkpoint class)
+2026-10-11T13:33:54.4449235Z     ok 4 - 3b HTTP 500 after worker flap retries (GK checkpoint class)
+2026-10-11T13:33:54.4460139Z     # Subtest: 4 timeout hierarchy constants are ordered FE >= BFF >= Tier0 budget
+2026-10-11T13:33:54.4460904Z     ok 5 - 4 timeout hierarchy constants are ordered FE >= BFF >= Tier0 budget
+2026-10-11T13:33:54.4468102Z     # Subtest: 5 attempt timeout respects remaining budget
+2026-10-11T13:33:54.4468715Z     ok 6 - 5 attempt timeout respects remaining budget
+2026-10-11T13:33:54.4471076Z     # Subtest: 6 remaining budget declines
+2026-10-11T13:33:54.4471496Z     ok 7 - 6 remaining budget declines
+2026-10-11T13:33:54.4473118Z     # Subtest: 7 degraded/terminal suppresses Birth on synthetic isolation
+2026-10-11T13:33:54.4473771Z     ok 8 - 7 degraded/terminal suppresses Birth on synthetic isolation
+2026-10-11T13:33:54.4475393Z     # Subtest: 8 Birth may appear only when asked
+2026-10-11T13:33:54.4476005Z     ok 9 - 8 Birth may appear only when asked
+2026-10-11T13:33:54.4477717Z     # Subtest: 9 infrastructure failure is not clarification
+2026-10-11T13:33:54.4478250Z     ok 10 - 9 infrastructure failure is not clarification
+2026-10-11T13:33:54.4479725Z     # Subtest: 9b REQUEST_NOT_ACCEPTED is not blind retry language
+2026-10-11T13:33:54.4480244Z     ok 11 - 9b REQUEST_NOT_ACCEPTED is not blind retry language
+2026-10-11T13:33:54.4481697Z     # Subtest: 10 idempotency: reasoning kind only; side_effect throws
+2026-10-11T13:33:54.4482461Z     ok 12 - 10 idempotency: reasoning kind only; side_effect throws
+2026-10-11T13:33:54.4483982Z     # Subtest: 11 recovery exhausted returns transient classification
+2026-10-11T13:33:54.4484524Z     ok 13 - 11 recovery exhausted returns transient classification
+2026-10-11T13:33:54.4486126Z     # Subtest: 12 empty message is transient and retried
+2026-10-11T13:33:54.4486595Z     ok 14 - 12 empty message is transient and retried
+2026-10-11T13:33:54.4487891Z     # Subtest: 13 503 upstream is transient
+2026-10-11T13:33:54.4488421Z     ok 15 - 13 503 upstream is transient
+2026-10-11T13:33:54.4489808Z     # Subtest: 14 400 upstream is not treated as worker-unavailable class only
+2026-10-11T13:33:54.4490204Z     ok 16 - 14 400 upstream is not treated as worker-unavailable class only
+2026-10-11T13:33:54.4491260Z     # Subtest: 15 worker 500 upstream is transient (GK checkpoint class)
+2026-10-11T13:33:54.4491625Z     ok 17 - 15 worker 500 upstream is transient (GK checkpoint class)
+2026-10-11T13:33:54.4492693Z     # Subtest: 16 upstream_error without status is transient (defensive)
+2026-10-11T13:33:54.4493052Z     ok 18 - 16 upstream_error without status is transient (defensive)
+2026-10-11T13:33:54.4499203Z ok 116 - pillow accepted-request recovery Level A
+2026-10-11T13:33:54.6277331Z # Subtest: current implementation reporting remains unverified and locked
+2026-10-11T13:33:54.6278989Z ok 117 - current implementation reporting remains unverified and locked
+2026-10-11T13:33:54.6280993Z # Subtest: historical immutable receipt observations survive readback without authority promotion
+2026-10-11T13:33:54.6283054Z ok 118 - historical immutable receipt observations survive readback without authority promotion
+2026-10-11T13:33:54.8538163Z # Subtest: pillow chat request durability + admission
+2026-10-11T13:33:54.8541777Z     # Subtest: admits oversized recentConversationTurns instead of hard-fail
+2026-10-11T13:33:54.8542643Z     ok 1 - admits oversized recentConversationTurns instead of hard-fail
+2026-10-11T13:33:54.8544713Z     # Subtest: zod schema transform truncates without throwing
+2026-10-11T13:33:54.8545161Z     ok 2 - zod schema transform truncates without throwing
+2026-10-11T13:33:54.8546635Z     # Subtest: durable request completes and is retrievable
+2026-10-11T13:33:54.8547132Z     ok 3 - durable request completes and is retrievable
+2026-10-11T13:33:54.8548119Z     # Subtest: durable request failure taxonomy stored
+2026-10-11T13:33:54.8548408Z     ok 4 - durable request failure taxonomy stored
+2026-10-11T13:33:54.8551142Z     # Subtest: retryable failure stays RETRYABLE not fatal
+2026-10-11T13:33:54.8552769Z     ok 5 - retryable failure stays RETRYABLE not fatal
+2026-10-11T13:33:54.8558164Z     # Subtest: persist precedes delivery markers
+2026-10-11T13:33:54.8561980Z     ok 6 - persist precedes delivery markers
+2026-10-11T13:33:54.8586043Z     # Subtest: admitChatRequestBody mutates oversized envelope
+2026-10-11T13:33:54.8590833Z     ok 7 - admitChatRequestBody mutates oversized envelope
+2026-10-11T13:33:54.8592101Z ok 119 - pillow chat request durability + admission
+2026-10-11T13:33:55.4239179Z # Subtest: durable request HTTP owner/workspace isolation
+2026-10-11T13:33:55.4249817Z     # Subtest: rejects unauthenticated result, list, and forensic reads
+2026-10-11T13:33:55.4258289Z     ok 1 - rejects unauthenticated result, list, and forensic reads
+2026-10-11T13:33:55.4274390Z     # Subtest: foreign users/workspaces receive 404 and cannot mutate delivered state
+2026-10-11T13:33:55.4279835Z     ok 2 - foreign users/workspaces receive 404 and cannot mutate delivered state
+2026-10-11T13:33:55.4313994Z     # Subtest: filters both list and forensic responses without leaking global dashboards
+2026-10-11T13:33:55.4314733Z     ok 3 - filters both list and forensic responses without leaking global dashboards
+2026-10-11T13:33:55.4322278Z     # Subtest: denies authenticated non-founder/operator access
+2026-10-11T13:33:55.4333370Z     ok 4 - denies authenticated non-founder/operator access
+2026-10-11T13:33:55.4345209Z     # Subtest: owner retrieves a genuine answer and sees only own diagnostics
+2026-10-11T13:33:55.4349241Z     ok 5 - owner retrieves a genuine answer and sees only own diagnostics
+2026-10-11T13:33:55.4360170Z ok 120 - durable request HTTP owner/workspace isolation
+2026-10-11T13:33:55.4381673Z # Subtest: Tier-0 encoded Pillow route containment
+2026-10-11T13:33:55.4419126Z     # Subtest: rejects aliases that Fastify would decode into ordinary worker chat
+2026-10-11T13:33:55.4427520Z     ok 1 - rejects aliases that Fastify would decode into ordinary worker chat
+2026-10-11T13:33:55.4429997Z ok 121 - Tier-0 encoded Pillow route containment
+2026-10-11T13:33:55.4482790Z # Subtest: Tier-0 production bootstrap credential boundary
+2026-10-11T13:33:55.4485462Z     # Subtest: actual login route fails closed before issuing sessions for either unsafe account
+2026-10-11T13:33:55.4486414Z     ok 1 - actual login route fails closed before issuing sessions for either unsafe account
+2026-10-11T13:33:55.4487770Z ok 122 - Tier-0 production bootstrap credential boundary
+2026-10-11T13:33:55.6876134Z # Subtest: durable delivery fault matrix (level A)
+2026-10-11T13:33:55.6877481Z     # Subtest: OVERSIZED_CONTEXT >= 10 admits without schema rejection
+2026-10-11T13:33:55.6878303Z     ok 1 - OVERSIZED_CONTEXT >= 10 admits without schema rejection
+2026-10-11T13:33:55.6880936Z     # Subtest: WORKER_RECYCLE >= 10 → RETRYABLE then COMPLETED
+2026-10-11T13:33:55.6881679Z     ok 2 - WORKER_RECYCLE >= 10 → RETRYABLE then COMPLETED
+2026-10-11T13:33:55.6884052Z     # Subtest: HTTP_400 early attempt is retryable (recycle race), not REQUEST_NOT_ACCEPTED fatal
+2026-10-11T13:33:55.6885009Z     ok 3 - HTTP_400 early attempt is retryable (recycle race), not REQUEST_NOT_ACCEPTED fatal
+2026-10-11T13:33:55.6888020Z     # Subtest: HTTP_500 >= 10 classified retryable, not terminal on attempt 1
+2026-10-11T13:33:55.6888719Z     ok 4 - HTTP_500 >= 10 classified retryable, not terminal on attempt 1
+2026-10-11T13:33:55.6918286Z     # Subtest: BFF_RESTART >= 5 — Redis recovers after process memory drop
+2026-10-11T13:33:55.6919200Z     ok 5 - BFF_RESTART >= 5 — Redis recovers after process memory drop
+2026-10-11T13:33:55.6921443Z     # Subtest: fails closed when Redis PING passed but a durable SETEX later fails
+2026-10-11T13:33:55.6921996Z     ok 6 - fails closed when Redis PING passed but a durable SETEX later fails
+2026-10-11T13:33:55.6930041Z     # Subtest: fails closed on idempotency GET failure instead of duplicating execution
+2026-10-11T13:33:55.6930629Z     ok 7 - fails closed on idempotency GET failure instead of duplicating execution
+2026-10-11T13:33:55.6932300Z     # Subtest: fails closed when strict Redis is absent or does not acknowledge SETEX
+2026-10-11T13:33:55.6932840Z     ok 8 - fails closed when strict Redis is absent or does not acknowledge SETEX
+2026-10-11T13:33:55.6934565Z     # Subtest: CLIENT_DISCONNECT >= 5 — completion persists without delivery
+2026-10-11T13:33:55.6935127Z     ok 9 - CLIENT_DISCONNECT >= 5 — completion persists without delivery
+2026-10-11T13:33:55.6937036Z     # Subtest: SLOW_BRAIN >= 5 — sync expire leaves RETRYABLE
+2026-10-11T13:33:55.6937406Z     ok 10 - SLOW_BRAIN >= 5 — sync expire leaves RETRYABLE
+2026-10-11T13:33:55.6938492Z     # Subtest: LONG_SESSION / STATEFUL_MIXED context admission preserves recent compact turns
+2026-10-11T13:33:55.6938967Z     ok 11 - LONG_SESSION / STATEFUL_MIXED context admission preserves recent compact turns
+2026-10-11T13:33:55.6940097Z     # Subtest: idempotency: duplicate accept reuses inflight/completed
+2026-10-11T13:33:55.6940476Z     ok 12 - idempotency: duplicate accept reuses inflight/completed
+2026-10-11T13:33:55.6941629Z ok 123 - durable delivery fault matrix (level A)
+2026-10-11T13:33:56.1827784Z # Subtest: real Redis durable reasoning queue (required, no skipped certification)
+2026-10-11T13:33:56.1828739Z     # Subtest: terminal JSON bytes survive repeated retrieval, legacy upgrade and Redis restart without re-execution
+2026-10-11T13:33:56.1829399Z     ok 1 - terminal JSON bytes survive repeated retrieval, legacy upgrade and Redis restart without re-execution
+2026-10-11T13:33:56.1974286Z     # Subtest: persists typed missing-provider failure after one claim and never schedules another attempt
+2026-10-11T13:33:56.1975281Z     ok 2 - persists typed missing-provider failure after one claim and never schedules another attempt
+2026-10-11T13:33:56.2028091Z     # Subtest: 40 simultaneous accepts create one indexed job and 20 workers claim only once
+2026-10-11T13:33:56.2029255Z     ok 3 - 40 simultaneous accepts create one indexed job and 20 workers claim only once
+2026-10-11T13:33:56.2097179Z     # Subtest: planned shutdown on the final allowed attempt preserves input and refunds only that interrupted attempt
+2026-10-11T13:33:56.2100549Z     ok 4 - planned shutdown on the final allowed attempt preserves input and refunds only that interrupted attempt
+2026-10-11T13:33:56.2121839Z     # Subtest: a completed answer wins over a simultaneous shutdown signal
+2026-10-11T13:33:56.2123454Z     ok 5 - a completed answer wins over a simultaneous shutdown signal
+2026-10-11T13:33:56.2150791Z     # Subtest: returns completed disposition without execution; rejects reused key with changed input
+2026-10-11T13:33:56.2151585Z     ok 6 - returns completed disposition without execution; rejects reused key with changed input
+2026-10-11T13:33:57.0761741Z     # Subtest: actual process death preserves full input and fences the abandoned worker
+2026-10-11T13:33:57.0762716Z     ok 7 - actual process death preserves full input and fences the abandoned worker
+2026-10-11T13:33:57.0878990Z     # Subtest: survives actual Redis SIGKILL/restart with the accepted job in AOF
+2026-10-11T13:33:57.0879835Z     ok 8 - survives actual Redis SIGKILL/restart with the accepted job in AOF
+2026-10-11T13:33:57.7540235Z     # Subtest: leased job survives Redis process death and rejects stale settlement after recovery
+2026-10-11T13:33:57.7541210Z     ok 9 - leased job survives Redis process death and rejects stale settlement after recovery
+2026-10-11T13:33:58.8165197Z     # Subtest: same shared session/queue binding recovers from startup outage and later Redis crash
+2026-10-11T13:33:58.8166224Z     ok 10 - same shared session/queue binding recovers from startup outage and later Redis crash
+2026-10-11T13:33:59.3407529Z     # Subtest: worker production boot fails closed then primary/worker auth bindings recover together
+2026-10-11T13:33:59.3436555Z     ok 11 - worker production boot fails closed then primary/worker auth bindings recover together
+2026-10-11T13:33:59.3464940Z     # Subtest: event clients await initial readiness with offline buffering disabled
+2026-10-11T13:33:59.3465940Z     ok 12 - event clients await initial readiness with offline buffering disabled
+2026-10-11T13:33:59.3511044Z     # Subtest: bounded attempts become retained terminal failure/DLQ, not forever-pending
+2026-10-11T13:33:59.3521427Z     ok 13 - bounded attempts become retained terminal failure/DLQ, not forever-pending
+2026-10-11T13:33:59.5941546Z     # Subtest: expired third lease moves to DLQ instead of starting a fourth attempt
+2026-10-11T13:33:59.5942409Z     ok 14 - expired third lease moves to DLQ instead of starting a fourth attempt
+2026-10-11T13:33:59.7218909Z     # Subtest: Redis write failure after completed computation never creates a false completed state
+2026-10-11T13:33:59.7219725Z     ok 15 - Redis write failure after completed computation never creates a false completed state
+2026-10-11T13:33:59.7242463Z     # Subtest: does not consume attempts during delayed worker readiness
+2026-10-11T13:33:59.7243167Z     ok 16 - does not consume attempts during delayed worker readiness
+2026-10-11T13:33:59.7254534Z     # Subtest: strict Redis reads cannot use a stale local completion when Redis is unavailable
+2026-10-11T13:33:59.7255456Z     ok 17 - strict Redis reads cannot use a stale local completion when Redis is unavailable
+2026-10-11T13:33:59.7275019Z     # Subtest: wrong-type due index fails before writes and cannot yield false duplicate acceptance
+2026-10-11T13:33:59.7275945Z     ok 18 - wrong-type due index fails before writes and cannot yield false duplicate acceptance
+2026-10-11T13:33:59.7295070Z     # Subtest: previously partial pending records cannot return a new accepted receipt
+2026-10-11T13:33:59.7296130Z     ok 19 - previously partial pending records cannot return a new accepted receipt
+2026-10-11T13:33:59.7324570Z     # Subtest: late Lua command denial cannot turn a failed write into unindexed duplicate acceptance
+2026-10-11T13:33:59.7325869Z     ok 20 - late Lua command denial cannot turn a failed write into unindexed duplicate acceptance
+2026-10-11T13:33:59.7351959Z     # Subtest: late cleanup command denial retains the committed result for later retrieval
+2026-10-11T13:33:59.7352817Z     ok 21 - late cleanup command denial retains the committed result for later retrieval
+2026-10-11T13:33:59.7370742Z     # Subtest: settlement key corruption preserves recovery input and never reports completion
+2026-10-11T13:33:59.7371624Z     ok 22 - settlement key corruption preserves recovery input and never reports completion
+2026-10-11T13:33:59.8010920Z     # Subtest: HTTP accepts only after durable indexing, duplicate posts reuse, owner GET returns persisted result
+2026-10-11T13:33:59.8012148Z     ok 23 - HTTP accepts only after durable indexing, duplicate posts reuse, owner GET returns persisted result
+2026-10-11T13:33:59.8041518Z     # Subtest: HTTP returns typed 503 and never 202 when atomic Redis acceptance fails
+2026-10-11T13:33:59.8042339Z     ok 24 - HTTP returns typed 503 and never 202 when atomic Redis acceptance fails
+2026-10-11T13:33:59.8079396Z ok 124 - real Redis durable reasoning queue (required, no skipped certification)
+2026-10-11T13:34:01.5851235Z # Subtest: durable worker completion contract
+2026-10-11T13:34:01.5852428Z     # Subtest: keeps pre-inference failures explicit in the transcript and fatal in transport
+2026-10-11T13:34:01.5853414Z     ok 1 - keeps pre-inference failures explicit in the transcript and fatal in transport
+2026-10-11T13:34:01.5855357Z     # Subtest: preserves the distinct host transcript identity before wrapping the durable response
+2026-10-11T13:34:01.5856409Z     ok 2 - preserves the distinct host transcript identity before wrapping the durable response
+2026-10-11T13:34:01.5858254Z     # Subtest: does not retry a deterministic constitutional refusal
+2026-10-11T13:34:01.5858861Z     ok 3 - does not retry a deterministic constitutional refusal
+2026-10-11T13:34:01.5860669Z     # Subtest: fails known no-provider fallback once without claiming reasoning completion
+2026-10-11T13:34:01.5861469Z     ok 4 - fails known no-provider fallback once without claiming reasoning completion
+2026-10-11T13:34:01.5878016Z     # Subtest: stops a typed inference failure without a new paid attempt
+2026-10-11T13:34:01.5878740Z     ok 5 - stops a typed inference failure without a new paid attempt
+2026-10-11T13:34:01.5881409Z     # Subtest: does not infer a terminal configuration failure from text or an unknown typed failure
+2026-10-11T13:34:01.5882668Z     ok 6 - does not infer a terminal configuration failure from text or an unknown typed failure
+2026-10-11T13:34:01.5898459Z     # Subtest: accepts the canonical authority facts for the failed canary question without treating fallback as success
+2026-10-11T13:34:01.5899480Z     ok 7 - accepts the canonical authority facts for the failed canary question without treating fallback as success
+2026-10-11T13:34:01.5901787Z     # Subtest: rejects production fallback kinds rather than misreporting completed capability
+2026-10-11T13:34:01.5902740Z     ok 8 - rejects production fallback kinds rather than misreporting completed capability
+2026-10-11T13:34:01.5904688Z     # Subtest: permits complete reasoning and deliberate non-action constitutional responses
+2026-10-11T13:34:01.5906668Z     ok 9 - permits complete reasoning and deliberate non-action constitutional responses
+2026-10-11T13:34:01.5908702Z     # Subtest: never promotes a contradictory pending/blocked/empty llm response
+2026-10-11T13:34:01.5909435Z     ok 10 - never promotes a contradictory pending/blocked/empty llm response
+2026-10-11T13:34:01.5911663Z     # Subtest: classifies authentication refusal as fatal; infrastructure as retryable
+2026-10-11T13:34:01.5912419Z     ok 11 - classifies authentication refusal as fatal; infrastructure as retryable
+2026-10-11T13:34:01.5914112Z     # Subtest: rejects action replay before making any request
+2026-10-11T13:34:01.5914649Z     ok 12 - rejects action replay before making any request
+2026-10-11T13:34:01.5978441Z     # Subtest: shutdown cancels an in-flight real HTTP request without acknowledging completion
+2026-10-11T13:34:01.5979629Z     ok 13 - shutdown cancels an in-flight real HTTP request without acknowledging completion
+2026-10-11T13:34:01.5983149Z     # Subtest: sweeper stop awaits its readiness probe and does not claim new work after shutdown
+2026-10-11T13:34:01.5984457Z     ok 14 - sweeper stop awaits its readiness probe and does not claim new work after shutdown
+2026-10-11T13:34:01.5986927Z     # Subtest: shutdown propagates an in-flight failure instead of reporting a confirmed queue drain
+2026-10-11T13:34:01.5987541Z     ok 15 - shutdown propagates an in-flight failure instead of reporting a confirmed queue drain
+2026-10-11T13:34:01.5988846Z ok 125 - durable worker completion contract
+2026-10-11T13:34:04.1578714Z # Subtest: owner grant is exact, isolated, single use and durable
+2026-10-11T13:34:04.1579666Z ok 126 - owner grant is exact, isolated, single use and durable
+2026-10-11T13:34:04.1583352Z # Subtest: failed investigation is durably terminal and cannot replay its grant
+2026-10-11T13:34:04.1587847Z ok 127 - failed investigation is durably terminal and cannot replay its grant
+2026-10-11T13:34:04.1589884Z # Subtest: commissioning returns durable evidence, rejects replay and write/unbounded jobs before execution
+2026-10-11T13:34:04.1597146Z ok 128 - commissioning returns durable evidence, rejects replay and write/unbounded jobs before execution
+2026-10-11T13:34:04.1599105Z # Subtest: CEO engine consumes two receipt rounds and aggregates all three accounted calls
+2026-10-11T13:34:04.1599923Z ok 129 - CEO engine consumes two receipt rounds and aggregates all three accounted calls
+2026-10-11T13:34:04.1602063Z # Subtest: ordinary reasoning cannot investigate; proposal-only and third tool round fail closed
+2026-10-11T13:34:04.1602668Z ok 130 - ordinary reasoning cannot investigate; proposal-only and third tool round fail closed
+2026-10-11T13:34:04.3267382Z # Subtest: authenticated successor reconciles failed mission and closure requires durable response and all four Eyes
+2026-10-11T13:34:04.3268251Z ok 131 - authenticated successor reconciles failed mission and closure requires durable response and all four Eyes
+2026-10-11T13:34:04.5675228Z # Subtest: completed legacy writes preserve the exact JSON answer in the durable envelope
+2026-10-11T13:34:04.5676453Z ok 132 - completed legacy writes preserve the exact JSON answer in the durable envelope
+2026-10-11T13:34:04.5679128Z # Subtest: atomic settlement supplies original JSON outside the Lua-decoded patch
+2026-10-11T13:34:04.5680435Z ok 133 - atomic settlement supplies original JSON outside the Lua-decoded patch
+2026-10-11T13:34:04.5684522Z # Subtest: idempotent completed acceptance hydrates the canonical answer and hides its storage field
+2026-10-11T13:34:04.5685992Z ok 134 - idempotent completed acceptance hydrates the canonical answer and hides its storage field
+2026-10-11T13:34:04.5690261Z # Subtest: invalid canonical envelopes fail closed rather than silently falling back to altered fields
+2026-10-11T13:34:04.5691541Z ok 135 - invalid canonical envelopes fail closed rather than silently falling back to altered fields
+2026-10-11T13:34:05.3770635Z # Subtest: real primary SIGTERM drains, forwards to child, waits for disk save and suppresses respawn
+2026-10-11T13:34:05.3771725Z ok 136 - real primary SIGTERM drains, forwards to child, waits for disk save and suppresses respawn
+2026-10-11T13:34:06.5954601Z # Subtest: a hung child is force terminated at deadline and is never reported successfully saved
+2026-10-11T13:34:06.5955474Z ok 137 - a hung child is force terminated at deadline and is never reported successfully saved
+2026-10-11T13:34:07.0462933Z # Subtest: child save failure exits parent nonzero and preserves failure rather than claiming success
+2026-10-11T13:34:07.0464202Z ok 138 - child save failure exits parent nonzero and preserves failure rather than claiming success
+2026-10-11T13:34:07.2562828Z # Subtest: shutdown during delayed worker start cancels the pending spawn
+2026-10-11T13:34:07.2567880Z ok 139 - shutdown during delayed worker start cancels the pending spawn
+2026-10-11T13:34:07.2578295Z # Subtest: shutdown grace is finite and bounded even with invalid configuration
+2026-10-11T13:34:07.2579051Z ok 140 - shutdown grace is finite and bounded even with invalid configuration
+2026-10-11T13:34:07.7007081Z # Subtest: store finalizer failure denies clean shutdown evidence
+2026-10-11T13:34:07.7007853Z ok 141 - store finalizer failure denies clean shutdown evidence
+2026-10-11T13:34:07.8887141Z # Subtest: durable chat reasoning-only boundary
+2026-10-11T13:34:07.8907157Z     # Subtest: never calls the command, episode or learning callbacks under durable retries
+2026-10-11T13:34:07.8908000Z     ok 1 - never calls the command, episode or learning callbacks under durable retries
+2026-10-11T13:34:07.8909841Z     # Subtest: retains ordinary authorized non-durable action callbacks
+2026-10-11T13:34:07.8910478Z     ok 2 - retains ordinary authorized non-durable action callbacks
+2026-10-11T13:34:07.8912300Z     # Subtest: uses a restrictive transport mode, never prompt text as an authority grant
+2026-10-11T13:34:07.8913078Z     ok 3 - uses a restrictive transport mode, never prompt text as an authority grant
+2026-10-11T13:34:07.8914911Z     # Subtest: wires the guarded stages into the real host source and both route attempts
+2026-10-11T13:34:07.8915864Z     ok 4 - wires the guarded stages into the real host source and both route attempts
+2026-10-11T13:34:07.8917795Z ok 142 - durable chat reasoning-only boundary
+2026-10-11T13:34:08.2441444Z # Subtest: shared session command failures fail closed
+2026-10-11T13:34:08.2442096Z     # Subtest: does not issue a session when a post-PING SETEX fails
+2026-10-11T13:34:08.2443362Z     ok 1 - does not issue a session when a post-PING SETEX fails
+2026-10-11T13:34:08.2445137Z     # Subtest: requires the exact Redis write acknowledgement
+2026-10-11T13:34:08.2446690Z     ok 2 - requires the exact Redis write acknowledgement
+2026-10-11T13:34:08.2448570Z     # Subtest: wraps failed GET without pretending the token is invalid
+2026-10-11T13:34:08.2449393Z     ok 3 - wraps failed GET without pretending the token is invalid
+2026-10-11T13:34:08.2451224Z     # Subtest: wraps corrupted durable records instead of accepting them
+2026-10-11T13:34:08.2452032Z     ok 4 - wraps corrupted durable records instead of accepting them
+2026-10-11T13:34:08.2453801Z     # Subtest: rejects structurally invalid valid-JSON records
+2026-10-11T13:34:08.2454527Z     ok 5 - rejects structurally invalid valid-JSON records
+2026-10-11T13:34:08.2459941Z     # Subtest: requires token identity and a non-expired session
+2026-10-11T13:34:08.2460743Z     ok 6 - requires token identity and a non-expired session
+2026-10-11T13:34:08.2462404Z     # Subtest: does not report successful logout when DEL fails
+2026-10-11T13:34:08.2462960Z     ok 7 - does not report successful logout when DEL fails
+2026-10-11T13:34:08.2470641Z     # Subtest: accepts already-absent logout but not an unacknowledged delete
+2026-10-11T13:34:08.2471681Z     ok 8 - accepts already-absent logout but not an unacknowledged delete
+2026-10-11T13:34:08.2546597Z     # Subtest: returns typed 503 and never executes a protected handler on failed GET
+2026-10-11T13:34:08.2547407Z     ok 9 - returns typed 503 and never executes a protected handler on failed GET
+2026-10-11T13:34:08.2549245Z ok 143 - shared session command failures fail closed
+2026-10-11T13:34:08.5443194Z # Subtest: Railway Shadow CEO records and authority use its volume, never the application directory
+2026-10-11T13:34:08.5455925Z ok 144 - Railway Shadow CEO records and authority use its volume, never the application directory
+2026-10-11T13:34:08.5458072Z # Subtest: authority JSON preserves the last durable record on interrupted write and refuses corrupt state
+2026-10-11T13:34:08.5459096Z ok 145 - authority JSON preserves the last durable record on interrupted write and refuses corrupt state
+2026-10-11T13:34:08.5461153Z # Subtest: corrupt request-owner state refuses retry and an interrupted atomic write preserves old authority
+2026-10-11T13:34:08.5462248Z ok 146 - corrupt request-owner state refuses retry and an interrupted atomic write preserves old authority
+2026-10-11T13:34:08.8591857Z # Subtest: SQLite corruption quarantine recovery
+2026-10-11T13:34:08.8601280Z     # Subtest: quarantineSqliteFile renames without deleting payload
+2026-10-11T13:34:08.8604227Z     ok 1 - quarantineSqliteFile renames without deleting payload
+2026-10-11T13:34:08.8606229Z     # Subtest: EmpireDatabase quarantines malformed file and opens empty DB
+2026-10-11T13:34:08.8606900Z     ok 2 - EmpireDatabase quarantines malformed file and opens empty DB
+2026-10-11T13:34:08.8608668Z     # Subtest: production refuses a corrupt database without moving or replacing its original bytes
+2026-10-11T13:34:08.8609510Z     ok 3 - production refuses a corrupt database without moving or replacing its original bytes
+2026-10-11T13:34:08.8611562Z     # Subtest: Railway always refuses corrupt state even with NODE_ENV missing or misconfigured
+2026-10-11T13:34:08.8612347Z     ok 4 - Railway always refuses corrupt state even with NODE_ENV missing or misconfigured
+2026-10-11T13:34:08.8614046Z     # Subtest: EmpireDatabase opens valid empty-created file without quarantine
+2026-10-11T13:34:08.8614746Z     ok 5 - EmpireDatabase opens valid empty-created file without quarantine
+2026-10-11T13:34:08.8616737Z ok 147 - SQLite corruption quarantine recovery
+2026-10-11T13:34:09.1933488Z # Subtest: critical persistence resolves only after data is readable from a fresh database
+2026-10-11T13:34:09.1934635Z ok 148 - critical persistence resolves only after data is readable from a fresh database
+2026-10-11T13:34:09.2026701Z # Subtest: a second critical waiter includes a mutation after the first export
+2026-10-11T13:34:09.2029849Z ok 149 - a second critical waiter includes a mutation after the first export
+2026-10-11T13:34:09.2121860Z # Subtest: close fences an older async export from overwriting the final newer snapshot
+2026-10-11T13:34:09.2123490Z ok 150 - close fences an older async export from overwriting the final newer snapshot
+2026-10-11T13:34:09.2125844Z # Subtest: close before async export starts does not access a closed SQL.js handle
+2026-10-11T13:34:09.2126786Z ok 151 - close before async export starts does not access a closed SQL.js handle
+2026-10-11T13:34:09.4665026Z # Subtest: ENOSPC rejects critical save and a later explicit retry persists the same writes
+2026-10-11T13:34:09.4665759Z ok 152 - ENOSPC rejects critical save and a later explicit retry persists the same writes
+2026-10-11T13:34:09.4735207Z # Subtest: file sync failure rejects without replacing a prior valid snapshot
+2026-10-11T13:34:09.4736188Z ok 153 - file sync failure rejects without replacing a prior valid snapshot
+2026-10-11T13:34:09.4840523Z # Subtest: rename failure rejects and preserves pending data for retry
+2026-10-11T13:34:09.4841329Z ok 154 - rename failure rejects and preserves pending data for retry
+2026-10-11T13:34:09.5551729Z # Subtest: POSIX directory-sync failure is reported even if rename already completed
+2026-10-11T13:34:09.5552629Z ok 155 - POSIX directory-sync failure is reported even if rename already completed
+2026-10-11T13:34:09.5673898Z # Subtest: reopened database save cannot collide with a closed instance's pending temp file
+2026-10-11T13:34:09.5674804Z ok 156 - reopened database save cannot collide with a closed instance's pending temp file
+2026-10-11T13:34:09.5676968Z # Subtest: failed shutdown save throws, leaves database usable, and succeeds on retry
+2026-10-11T13:34:09.5678008Z ok 157 - failed shutdown save throws, leaves database usable, and succeeds on retry
+2026-10-11T13:34:14.8669919Z # Subtest: application shutdown waits for the existing database save
+2026-10-11T13:34:14.8671888Z ok 158 - application shutdown waits for the existing database save
+2026-10-11T13:34:15.6082718Z # Subtest: application shutdown propagates disk-save failure instead of reporting success
+2026-10-11T13:34:15.6084594Z ok 159 - application shutdown propagates disk-save failure instead of reporting success
+2026-10-11T13:34:21.1131960Z # Subtest: S010 Strategic Memory Engine
+2026-10-11T13:34:21.1132613Z     # Subtest: registers ten strategic memory Brain tools
+2026-10-11T13:34:21.1133201Z     ok 1 - registers ten strategic memory Brain tools
+2026-10-11T13:34:21.1134923Z     # Subtest: seeds default memories across all seven categories
+2026-10-11T13:34:21.1135465Z     ok 2 - seeds default memories across all seven categories
+2026-10-11T13:34:21.1137229Z     # Subtest: records a new strategic memory with lifecycle
+2026-10-11T13:34:21.1137756Z     ok 3 - records a new strategic memory with lifecycle
+2026-10-11T13:34:21.1139335Z     # Subtest: recalls memories by category, query, and tags
+2026-10-11T13:34:21.1144860Z     ok 4 - recalls memories by category, query, and tags
+2026-10-11T13:34:21.1151221Z     # Subtest: modifies active memories and blocks terminal entries
+2026-10-11T13:34:21.1151806Z     ok 5 - modifies active memories and blocks terminal entries
+2026-10-11T13:34:21.1153406Z     # Subtest: archives and supersedes without deleting records
+2026-10-11T13:34:21.1154097Z     ok 6 - archives and supersedes without deleting records
+2026-10-11T13:34:21.1155118Z     # Subtest: returns summary counts by category
+2026-10-11T13:34:21.1155780Z     ok 7 - returns summary counts by category
+2026-10-11T13:34:21.1156843Z     # Subtest: exposes strategic memory operations via Brain tools
+2026-10-11T13:34:21.1157192Z     ok 8 - exposes strategic memory operations via Brain tools
+2026-10-11T13:34:21.1158337Z ok 160 - S010 Strategic Memory Engine
+2026-10-11T13:34:21.7727601Z # Subtest: strategic-memory reads preserve stores and cross-workspace reads/writes are denied
+2026-10-11T13:34:21.7728676Z ok 161 - strategic-memory reads preserve stores and cross-workspace reads/writes are denied
+2026-10-11T13:34:22.3152675Z # Subtest: tier0 isolated primary
+2026-10-11T13:34:22.3153155Z     # Subtest: disables isolation for brain-worker role
+2026-10-11T13:34:22.3154037Z     ok 1 - disables isolation for brain-worker role
+2026-10-11T13:34:22.3167118Z     # Subtest: can force isolation outside production
+2026-10-11T13:34:22.3169082Z     ok 2 - can force isolation outside production
+2026-10-11T13:34:22.3212604Z     # Subtest: enables isolation when Railway env is present
+2026-10-11T13:34:22.3218278Z     ok 3 - enables isolation when Railway env is present
+2026-10-11T13:34:22.3229159Z     # Subtest: admits Railway traffic through readiness and forbids monolith fallback
+2026-10-11T13:34:22.3238568Z     ok 4 - admits Railway traffic through readiness and forbids monolith fallback
+2026-10-11T13:34:22.3256997Z     # Subtest: reports not-ready when the Brain worker is unavailable
+2026-10-11T13:34:22.3258495Z     ok 5 - reports not-ready when the Brain worker is unavailable
+2026-10-11T13:34:22.3287638Z     # Subtest: reports ready only when every required readiness dependency is available
+2026-10-11T13:34:22.3288413Z     ok 6 - reports ready only when every required readiness dependency is available
+2026-10-11T13:34:22.3304588Z     # Subtest: requires an authoritative running Pillow lifecycle
+2026-10-11T13:34:22.3305422Z     ok 7 - requires an authoritative running Pillow lifecycle
+2026-10-11T13:34:22.3315326Z     # Subtest: checks the live Redis client rather than a startup snapshot
+2026-10-11T13:34:22.3316535Z     ok 8 - checks the live Redis client rather than a startup snapshot
+2026-10-11T13:34:22.3441888Z     # Subtest: serves route-level 503 until both worker/Pillow and Redis sessions are ready
+2026-10-11T13:34:22.3443147Z     ok 9 - serves route-level 503 until both worker/Pillow and Redis sessions are ready
+2026-10-11T13:34:22.3445726Z     # Subtest: fails Tier-0 closed for memory sessions even if a synthetic probe passes
+2026-10-11T13:34:22.3446846Z     ok 10 - fails Tier-0 closed for memory sessions even if a synthetic probe passes
+2026-10-11T13:34:22.3449156Z     # Subtest: rejects a worker ready claim that omits authoritative Pillow state
+2026-10-11T13:34:22.3449978Z     ok 11 - rejects a worker ready claim that omits authoritative Pillow state
+2026-10-11T13:34:22.3455711Z     # Subtest: re-evaluates Tier-0 Redis readiness on every request
+2026-10-11T13:34:22.3456325Z     ok 12 - re-evaluates Tier-0 Redis readiness on every request
+2026-10-11T13:34:22.3458098Z     # Subtest: returns 503 before an auth handler can issue a private-memory session
+2026-10-11T13:34:22.3459163Z     ok 13 - returns 503 before an auth handler can issue a private-memory session
+2026-10-11T13:34:22.3460920Z     # Subtest: maps durable-store write failures to an explicit 503 contract
+2026-10-11T13:34:22.3461582Z     ok 14 - maps durable-store write failures to an explicit 503 contract
+2026-10-11T13:34:22.3463569Z     # Subtest: serves worker readiness from live Redis and Pillow lifecycle state
+2026-10-11T13:34:22.3464274Z     ok 15 - serves worker readiness from live Redis and Pillow lifecycle state
+2026-10-11T13:34:22.3466327Z     # Subtest: serves route-level 200 only for a ready worker and live shared sessions
+2026-10-11T13:34:22.3467326Z     ok 16 - serves route-level 200 only for a ready worker and live shared sessions
+2026-10-11T13:34:22.3476355Z     # Subtest: runs one worker probe and at most one upstream request per proxy attempt
+2026-10-11T13:34:22.3477779Z     ok 17 - runs one worker probe and at most one upstream request per proxy attempt
+2026-10-11T13:34:22.3480141Z     # Subtest: preserves the worker-unavailable response contract after the single probe
+2026-10-11T13:34:22.3481022Z     ok 18 - preserves the worker-unavailable response contract after the single probe
+2026-10-11T13:34:22.3483145Z     # Subtest: reuses the chat recovery readiness probe instead of nesting another probe
+2026-10-11T13:34:22.3483648Z     ok 19 - reuses the chat recovery readiness probe instead of nesting another probe
+2026-10-11T13:34:22.3484867Z     # Subtest: never forwards or marks an attempt when chat readiness never succeeds
+2026-10-11T13:34:22.3485301Z     ok 20 - never forwards or marks an attempt when chat readiness never succeeds
+2026-10-11T13:34:22.3486600Z     # Subtest: preserves the bounded retry after a transient upstream failure
+2026-10-11T13:34:22.3487233Z     ok 21 - preserves the bounded retry after a transient upstream failure
+2026-10-11T13:34:22.3488589Z ok 162 - tier0 isolated primary
+2026-10-11T13:34:24.3950705Z # Subtest: active doctrine survives 45 newer claims with supersession and workspace isolation
+2026-10-11T13:34:24.3951582Z ok 163 - active doctrine survives 45 newer claims with supersession and workspace isolation
+2026-10-11T13:34:24.3954181Z # Subtest: invalid evidence clocks are rejected before storage
+2026-10-11T13:34:24.3959613Z ok 164 - invalid evidence clocks are rejected before storage
+2026-10-11T13:34:24.3961753Z # Subtest: future health and heartbeat cannot establish current capability
+2026-10-11T13:34:24.3962482Z ok 165 - future health and heartbeat cannot establish current capability
+2026-10-11T13:34:24.3972862Z # Subtest: historical success cannot override missing credentials or stale reads
+2026-10-11T13:34:24.3976319Z ok 166 - historical success cannot override missing credentials or stale reads
+2026-10-11T13:34:24.3978286Z # Subtest: fresh exact cache survives unrelated volume; synthetic and other workspace excluded
+2026-10-11T13:34:24.3979086Z ok 167 - fresh exact cache survives unrelated volume; synthetic and other workspace excluded
+2026-10-11T13:34:24.3980326Z # Subtest: price comparison uses latest observation pair despite out of order ingestion
+2026-10-11T13:34:24.3980834Z ok 168 - price comparison uses latest observation pair despite out of order ingestion
+2026-10-11T13:34:24.3982049Z # Subtest: freight requires exact variant and unique supported warehouse country
+2026-10-11T13:34:24.3982533Z ok 169 - freight requires exact variant and unique supported warehouse country
+2026-10-11T13:34:24.3983641Z # Subtest: Canva unfinished export does not report asset success
+2026-10-11T13:34:24.3984026Z ok 170 - Canva unfinished export does not report asset success
+2026-10-11T13:34:24.7711053Z # Subtest: bounded executive review retains synthetic lineage and creates candidate without promotion
+2026-10-11T13:34:24.7712788Z ok 171 - bounded executive review retains synthetic lineage and creates candidate without promotion
+2026-10-11T13:34:24.7715641Z # Subtest: structured decision expectations and explicitly used memory IDs survive a fresh session
+2026-10-11T13:34:24.7716584Z ok 172 - structured decision expectations and explicitly used memory IDs survive a fresh session
+2026-10-11T13:34:24.7718542Z # Subtest: actual provider list-shaped review is bounded, normalized and retained without another inference
+2026-10-11T13:34:24.7719560Z ok 173 - actual provider list-shaped review is bounded, normalized and retained without another inference
+2026-10-11T13:34:25.9285336Z # Subtest: locked production gate admits owner memory only through existing authentication and keeps commerce blocked
+2026-10-11T13:34:25.9286790Z ok 174 - locked production gate admits owner memory only through existing authentication and keeps commerce blocked
+2026-10-11T13:34:25.9293489Z # Subtest: identity persists across instances, sessions and model changes without Redis
+2026-10-11T13:34:25.9294257Z ok 175 - identity persists across instances, sessions and model changes without Redis
+2026-10-11T13:34:25.9296166Z # Subtest: synthetic lifecycle freezes expectation, computes discrepancy and never enters real retrieval
+2026-10-11T13:34:25.9297041Z ok 176 - synthetic lifecycle freezes expectation, computes discrepancy and never enters real retrieval
+2026-10-11T13:34:25.9299181Z # Subtest: idempotency conflicts, optimistic concurrency and cross-workspace references fail closed
+2026-10-11T13:34:25.9300190Z ok 177 - idempotency conflicts, optimistic concurrency and cross-workspace references fail closed
+2026-10-11T13:34:25.9302223Z # Subtest: explicit authenticated doctrine only; immutable supersession; no authority fields accepted
+2026-10-11T13:34:25.9302815Z ok 178 - explicit authenticated doctrine only; immutable supersession; no authority fields accepted
+2026-10-11T13:34:25.9304273Z # Subtest: model and Advisor impersonation text cannot become doctrine or corroboration
+2026-10-11T13:34:25.9305163Z ok 179 - model and Advisor impersonation text cannot become doctrine or corroboration
+2026-10-11T13:34:25.9307319Z # Subtest: owner-confirmed lesson remains qualified and contradiction removes active influence
+2026-10-11T13:34:25.9307885Z ok 180 - owner-confirmed lesson remains qualified and contradiction removes active influence
+2026-10-11T13:34:25.9309103Z # Subtest: numeric discrepancy requires matching units; nonexecution is not business failure
+2026-10-11T13:34:25.9309632Z ok 181 - numeric discrepancy requires matching units; nonexecution is not business failure
+2026-10-11T13:34:25.9310850Z # Subtest: retrieval and storage inputs bounded, legacy fixtures not imported, trivial chat not captured
+2026-10-11T13:34:25.9311437Z ok 182 - retrieval and storage inputs bounded, legacy fixtures not imported, trivial chat not captured
+2026-10-11T13:34:26.9416603Z # Subtest: configured and credential present never mean verified; last good becomes stale
+2026-10-11T13:34:26.9422057Z ok 183 - configured and credential present never mean verified; last good becomes stale
+2026-10-11T13:34:26.9424905Z # Subtest: durable idempotent queue rejects scope injection and ID collisions
+2026-10-11T13:34:26.9425801Z ok 184 - durable idempotent queue rejects scope injection and ID collisions
+2026-10-11T13:34:26.9427479Z # Subtest: restart never blindly retries possibly consumed provider call
+2026-10-11T13:34:26.9428120Z ok 185 - restart never blindly retries possibly consumed provider call
+2026-10-11T13:34:26.9430028Z # Subtest: daily quota reservation atomic and bounded across store instances
+2026-10-11T13:34:26.9430740Z ok 186 - daily quota reservation atomic and bounded across store instances
+2026-10-11T13:34:26.9432512Z # Subtest: evidence immutable, provenance validated, freshness excludes stale and synthetic
+2026-10-11T13:34:26.9433374Z ok 187 - evidence immutable, provenance validated, freshness excludes stale and synthetic
+2026-10-11T13:34:26.9435196Z # Subtest: public research injection remains data; no arbitrary URL or instructions executed
+2026-10-11T13:34:26.9446760Z ok 188 - public research injection remains data; no arbitrary URL or instructions executed
+2026-10-11T13:34:26.9449208Z # Subtest: cache hit makes no provider call; stored Advisor reads never refresh
+2026-10-11T13:34:26.9449680Z ok 189 - cache hit makes no provider call; stored Advisor reads never refresh
+2026-10-11T13:34:26.9451494Z # Subtest: 429 no retry, preserves last good and backoff; healthy recovery resolves exception
+2026-10-11T13:34:26.9452245Z ok 190 - 429 no retry, preserves last good and backoff; healthy recovery resolves exception
+2026-10-11T13:34:26.9506819Z # Subtest: response bound and redirect refusal
+2026-10-11T13:34:26.9507513Z ok 191 - response bound and redirect refusal
+2026-10-11T13:34:26.9509866Z # Subtest: synthetic rank diagnostics preserve funnel and never guarantee ranking or commerce
+2026-10-11T13:34:26.9510867Z ok 192 - synthetic rank diagnostics preserve funnel and never guarantee ranking or commerce
+2026-10-11T13:34:26.9513065Z # Subtest: scheduler cadence survives restart and missing credentials do not poll
+2026-10-11T13:34:26.9513675Z ok 193 - scheduler cadence survives restart and missing credentials do not poll
+2026-10-11T13:34:26.9515998Z # Subtest: missing scheduler cannot appear PASS in intelligence readback
+2026-10-11T13:34:26.9516867Z ok 194 - missing scheduler cannot appear PASS in intelligence readback
+2026-10-11T13:34:27.3658487Z # Subtest: actual owner route rejects anonymous, forged provider verification and commerce mutation
+2026-10-11T13:34:27.3659292Z ok 195 - actual owner route rejects anonymous, forged provider verification and commerce mutation
+2026-10-11T13:34:27.4721798Z # Subtest: Pillow commissioning and resource proposals are bounded, durable and cannot self-approve
+2026-10-11T13:34:27.4723303Z ok 196 - Pillow commissioning and resource proposals are bounded, durable and cannot self-approve
+2026-10-11T13:34:27.4724826Z # Subtest: cross-source opportunity links require exact source and target variants
+2026-10-11T13:34:27.4725312Z ok 197 - cross-source opportunity links require exact source and target variants
+2026-10-11T13:34:28.0118204Z # Subtest: unauthenticated Birth response keeps 401, exact body and authentication headers
+2026-10-11T13:34:28.0119247Z ok 198 - unauthenticated Birth response keeps 401, exact body and authentication headers
+2026-10-11T13:34:28.0269654Z # Subtest: real engineering commerce guard keeps its blocked explanation through the proxy
+2026-10-11T13:34:28.0270586Z ok 199 - real engineering commerce guard keeps its blocked explanation through the proxy
+2026-10-11T13:34:28.0335962Z # Subtest: owner authentication, request body, query and permission errors survive one forwarding attempt
+2026-10-11T13:34:28.0337432Z ok 200 - owner authentication, request body, query and permission errors survive one forwarding attempt
+2026-10-11T13:34:28.0384476Z # Subtest: worker 404 remains an application response with its exact explanation
+2026-10-11T13:34:28.0385778Z ok 201 - worker 404 remains an application response with its exact explanation
+2026-10-11T13:34:28.0429219Z # Subtest: worker 409 remains an application response with its exact explanation
+2026-10-11T13:34:28.0430410Z ok 202 - worker 409 remains an application response with its exact explanation
+2026-10-11T13:34:28.0475775Z # Subtest: worker 429 remains an application response with its exact explanation
+2026-10-11T13:34:28.0478717Z ok 203 - worker 429 remains an application response with its exact explanation
+2026-10-11T13:34:28.0521740Z # Subtest: worker 500 remains an application response with its exact explanation
+2026-10-11T13:34:28.0524620Z ok 204 - worker 500 remains an application response with its exact explanation
+2026-10-11T13:34:28.0581129Z # Subtest: worker 503 remains an application response with its exact explanation
+2026-10-11T13:34:28.0582256Z ok 205 - worker 503 remains an application response with its exact explanation
+2026-10-11T13:34:28.0656290Z # Subtest: redirect is relayed without sending owner credentials to the redirect target
+2026-10-11T13:34:28.0657851Z ok 206 - redirect is relayed without sending owner credentials to the redirect target
+2026-10-11T13:34:28.0728473Z # Subtest: decoded error body has correct length and excludes hop-by-hop response headers
+2026-10-11T13:34:28.0729858Z ok 207 - decoded error body has correct length and excludes hop-by-hop response headers
+2026-10-11T13:34:28.0797884Z # Subtest: HEAD and no-content responses preserve empty bodies
+2026-10-11T13:34:28.0798358Z ok 208 - HEAD and no-content responses preserve empty bodies
+2026-10-11T13:34:28.0822110Z # Subtest: failed readiness never sends the request and remains retryable 503
+2026-10-11T13:34:28.0824262Z ok 209 - failed readiness never sends the request and remains retryable 503
+2026-10-11T13:34:28.0888152Z # Subtest: network failure remains proxy 503 and is not an application success
+2026-10-11T13:34:28.0888753Z ok 210 - network failure remains proxy 503 and is not an application success
+2026-10-11T13:34:28.1219764Z # Subtest: timed-out worker remains proxy 503 with only one forwarded attempt
+2026-10-11T13:34:28.1220873Z ok 211 - timed-out worker remains proxy 503 with only one forwarded attempt
+2026-10-11T13:34:28.1407105Z # tests 391
+2026-10-11T13:34:28.1407596Z # pass 391
+2026-10-11T13:34:28.1407832Z # fail 0
+2026-10-11T13:34:28.1408235Z # cancelled 0
+2026-10-11T13:34:28.1408528Z # skipped 0
+2026-10-11T13:34:28.1408791Z # todo 0
+2026-10-11T13:34:28.1409078Z # duration_ms 107917.262316
+

@@ -1,0 +1,994 @@
+2026-10-11T13:10:05.5985091Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ee203983ff5c97404de90b1a282a9ff532476822:refs/remotes/pull/113/merge
+2026-10-11T13:10:07.6589241Z  * [new ref]           ee203983ff5c97404de90b1a282a9ff532476822 -> pull/113/merge
+2026-10-11T13:10:08.3911865Z HEAD is now at ee203983 Merge a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb into 608f3f5382e32d295ebe3733194846ac7cbb9d57
+2026-10-11T13:10:08.3986848Z ee203983ff5c97404de90b1a282a9ff532476822
+2026-10-11T13:12:34.8656570Z # Subtest: seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+2026-10-11T13:12:34.8662499Z ok 1 - seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+2026-10-11T13:12:37.1224991Z # Subtest: ten accelerated days preserve one shared canonical store through cold restarts, Assurance repairs and cumulative finance replay
+2026-10-11T13:12:37.1226754Z ok 2 - ten accelerated days preserve one shared canonical store through cold restarts, Assurance repairs and cumulative finance replay
+2026-10-11T13:12:38.0348817Z # Subtest: authenticated owner API, origin protection, workspace isolation, durable scenario and all seven live effects denied
+2026-10-11T13:12:38.0350008Z ok 3 - authenticated owner API, origin protection, workspace isolation, durable scenario and all seven live effects denied
+2026-10-11T13:12:39.3243219Z # Subtest: independent real SQLite admission race creates one page and one append-only admission
+2026-10-11T13:12:39.3244514Z ok 4 - independent real SQLite admission race creates one page and one append-only admission
+2026-10-11T13:12:39.3247361Z # Subtest: direct admission independently rejects wrong-query evidence and old-day scheduler seed
+2026-10-11T13:12:39.3252968Z ok 5 - direct admission independently rejects wrong-query evidence and old-day scheduler seed
+2026-10-11T13:12:39.3254768Z # Subtest: corrupted derived discovery checkpoint does not starve existing internal jobs and remains explicitly degraded
+2026-10-11T13:12:39.3255748Z ok 6 - corrupted derived discovery checkpoint does not starve existing internal jobs and remains explicitly degraded
+2026-10-11T13:12:39.3260076Z # Subtest: append-only admission binds retained job request bytes before a later page can be admitted
+2026-10-11T13:12:39.3261154Z ok 7 - append-only admission binds retained job request bytes before a later page can be admitted
+2026-10-11T13:12:41.8832056Z # Subtest: existing scheduled job -> actual CJ read adapter -> append-only discovery reaches100 distinct identities with no real transport
+2026-10-11T13:12:41.8834245Z ok 8 - existing scheduled job -> actual CJ read adapter -> append-only discovery reaches100 distinct identities with no real transport
+2026-10-11T13:12:41.8837962Z # Subtest: repeated/empty pages, denied/429 and incorrect page echo report shortfall without automatic failed-page retry
+2026-10-11T13:12:41.8839507Z ok 9 - repeated/empty pages, denied/429 and incorrect page echo report shortfall without automatic failed-page retry
+2026-10-11T13:12:41.8843059Z # Subtest: quota exhaustion is explicit and no unreserved provider request occurs
+2026-10-11T13:12:41.8844270Z ok 10 - quota exhaustion is explicit and no unreserved provider request occurs
+2026-10-11T13:12:41.8862745Z # Subtest: atomic planner admission survives enqueue crash/reopen and simultaneous duplicate ticks
+2026-10-11T13:12:41.8863945Z ok 11 - atomic planner admission survives enqueue crash/reopen and simultaneous duplicate ticks
+2026-10-11T13:12:41.8866894Z # Subtest: same-day late arrivals append after exhaustion and expired sources quarantine; next day preserves acquisition cursor
+2026-10-11T13:12:41.8867807Z ok 12 - same-day late arrivals append after exhaustion and expired sources quarantine; next day preserves acquisition cursor
+2026-10-11T13:12:43.0856064Z # Subtest: actual read adapter persists 429/503/schema failure, restart backoff and fresh recovery evidence
+2026-10-11T13:12:43.0857287Z ok 13 - actual read adapter persists 429/503/schema failure, restart backoff and fresh recovery evidence
+2026-10-11T13:12:43.0902377Z # Subtest: actual expired provider read lease becomes INTERRUPTED on reopen and cannot silently replay
+2026-10-11T13:12:43.0904030Z ok 14 - actual expired provider read lease becomes INTERRUPTED on reopen and cannot silently replay
+2026-10-11T13:12:43.0937770Z # Subtest: scheduled observation and due advancement commit atomically across failure and reopening
+2026-10-11T13:12:43.0938789Z ok 15 - scheduled observation and due advancement commit atomically across failure and reopening
+2026-10-11T13:12:43.0941981Z # Subtest: full read queue cannot consume a due slot or create unbounded catch-up
+2026-10-11T13:12:43.0942634Z ok 16 - full read queue cannot consume a due slot or create unbounded catch-up
+2026-10-11T13:12:43.0945086Z # Subtest: real scheduler drains a full queue before retrying atomic due admission
+2026-10-11T13:12:43.0946096Z ok 17 - real scheduler drains a full queue before retrying atomic due admission
+2026-10-11T13:12:43.5489203Z # Subtest: candidate runbook repairs only real committed receipt checkpoint gap and independently preserves history
+2026-10-11T13:12:43.5490580Z ok 18 - candidate runbook repairs only real committed receipt checkpoint gap and independently preserves history
+2026-10-11T13:12:43.5493365Z # Subtest: normal task with no committed gap cannot execute a fresh step through recovery
+2026-10-11T13:12:43.5498616Z ok 19 - normal task with no committed gap cannot execute a fresh step through recovery
+2026-10-11T13:12:43.5502025Z # Subtest: altered committed step payload cannot be used as replay authority
+2026-10-11T13:12:43.5503005Z ok 20 - altered committed step payload cannot be used as replay authority
+2026-10-11T13:12:43.5506722Z # Subtest: unknown supplier outcome cannot be relabelled as safe checkpoint recovery
+2026-10-11T13:12:43.5507361Z ok 21 - unknown supplier outcome cannot be relabelled as safe checkpoint recovery
+2026-10-11T13:12:43.5509525Z # Subtest: fresh aligned observation closes a gap when normal worker wins race without extra recovery effect
+2026-10-11T13:12:43.5510278Z ok 22 - fresh aligned observation closes a gap when normal worker wins race without extra recovery effect
+2026-10-11T13:12:43.8725986Z # Subtest: finance reads every historical digest, not only the final source receipt
+2026-10-11T13:12:43.8727414Z ok 23 - finance reads every historical digest, not only the final source receipt
+2026-10-11T13:12:43.8754797Z # Subtest: finance rejects recomputed prior receipt digest when next receipt still links original history
+2026-10-11T13:12:43.8755651Z ok 24 - finance rejects recomputed prior receipt digest when next receipt still links original history
+2026-10-11T13:12:43.8757285Z # Subtest: finance cannot select a receipt from a different workspace or mission
+2026-10-11T13:12:43.8757934Z ok 25 - finance cannot select a receipt from a different workspace or mission
+2026-10-11T13:12:44.0840474Z # Subtest: mixed saved claims cannot hide an unbound last-good timestamp behind a valid source
+2026-10-11T13:12:44.0844397Z ok 26 - mixed saved claims cannot hide an unbound last-good timestamp behind a valid source
+2026-10-11T13:13:33.6745113Z # Subtest: 1000 canonical accepted orders receive bounded fresh coverage at actual30second cadence
+2026-10-11T13:13:33.6746433Z ok 27 - 1000 canonical accepted orders receive bounded fresh coverage at actual30second cadence
+2026-10-11T13:13:34.3743314Z # Subtest: actual overdue missing tracking escalates without writes; fresh delivered observation closes
+2026-10-11T13:13:34.3745018Z ok 28 - actual overdue missing tracking escalates without writes; fresh delivered observation closes
+2026-10-11T13:13:34.3748482Z # Subtest: partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment
+2026-10-11T13:13:34.3749557Z ok 29 - partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment
+2026-10-11T13:13:34.3752178Z # Subtest: unknown supplier remains blocked and verified history corruption never produces healthy evidence
+2026-10-11T13:13:34.3762612Z ok 30 - unknown supplier remains blocked and verified history corruption never produces healthy evidence
+2026-10-11T13:13:34.3773849Z # Subtest: bounded mission scan resumes from durable cursor and never clears skipped order incidents
+2026-10-11T13:13:34.3775012Z ok 31 - bounded mission scan resumes from durable cursor and never clears skipped order incidents
+2026-10-11T13:13:34.3777764Z # Subtest: history bound fails closed without healthy order probes and stale sweep cannot claim coverage
+2026-10-11T13:13:34.3778954Z ok 32 - history bound fails closed without healthy order probes and stale sweep cannot claim coverage
+2026-10-11T13:13:34.3781885Z # Subtest: new mission inserted behind durable cursor prevents false complete coverage
+2026-10-11T13:13:34.3782898Z ok 33 - new mission inserted behind durable cursor prevents false complete coverage
+2026-10-11T13:13:34.3785673Z # Subtest: pre-deadline adverse tracking escalates immediately and fresh delivery closes; uncertainty takes precedence
+2026-10-11T13:13:34.3787234Z ok 34 - pre-deadline adverse tracking escalates immediately and fresh delivery closes; uncertainty takes precedence
+2026-10-11T13:13:34.7197855Z # Subtest: late supplier acceptance after timeout reconciles exact identity without replay or stock release and closes only from fresh delivery
+2026-10-11T13:13:34.7200539Z ok 35 - late supplier acceptance after timeout reconciles exact identity without replay or stock release and closes only from fresh delivery
+2026-10-11T13:13:35.0450198Z # Subtest: Work8 real control-plane exam: cache-expiry
+2026-10-11T13:13:35.0451756Z ok 36 - Work8 real control-plane exam: cache-expiry
+2026-10-11T13:13:35.0454533Z # Subtest: Work8 real control-plane exam: duplicate-delivery
+2026-10-11T13:13:35.0455332Z ok 37 - Work8 real control-plane exam: duplicate-delivery
+2026-10-11T13:13:35.0502462Z # Subtest: Work8 real control-plane exam: failed-repair
+2026-10-11T13:13:35.0503077Z ok 38 - Work8 real control-plane exam: failed-repair
+2026-10-11T13:13:35.0505392Z # Subtest: Work8 real control-plane exam: unknown-outcome
+2026-10-11T13:13:35.0506046Z ok 39 - Work8 real control-plane exam: unknown-outcome
+2026-10-11T13:13:35.0508229Z # Subtest: Work8 real control-plane exam: expired-approval
+2026-10-11T13:13:35.0508882Z ok 40 - Work8 real control-plane exam: expired-approval
+2026-10-11T13:13:35.0542625Z # Subtest: Work8 real control-plane exam: forbidden-financial-repair
+2026-10-11T13:13:35.0543775Z ok 41 - Work8 real control-plane exam: forbidden-financial-repair
+2026-10-11T13:13:35.0545585Z # Subtest: Work8 real control-plane exam: watchdog-loss
+2026-10-11T13:13:35.0546319Z ok 42 - Work8 real control-plane exam: watchdog-loss
+2026-10-11T13:13:35.0548389Z # Subtest: Work8 real control-plane exam: compounded-cache-worker
+2026-10-11T13:13:35.0549233Z ok 43 - Work8 real control-plane exam: compounded-cache-worker
+2026-10-11T13:13:35.0551691Z # Subtest: Work8 real control-plane exam: restart-preservation
+2026-10-11T13:13:35.0554044Z ok 44 - Work8 real control-plane exam: restart-preservation
+2026-10-11T13:13:35.0556992Z # Subtest: Work8 real control-plane exam: recurring-failure
+2026-10-11T13:13:35.0557793Z ok 45 - Work8 real control-plane exam: recurring-failure
+2026-10-11T13:13:35.0559916Z # Subtest: Work8 real control-plane exam: stale-closure
+2026-10-11T13:13:35.0560627Z ok 46 - Work8 real control-plane exam: stale-closure
+2026-10-11T13:13:35.0563353Z # Subtest: unregistered scenarios and non-reproducible seeds rejected
+2026-10-11T13:13:35.0564182Z ok 47 - unregistered scenarios and non-reproducible seeds rejected
+2026-10-11T13:13:35.8391624Z # Subtest: actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+2026-10-11T13:13:35.8398634Z ok 48 - actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+2026-10-11T13:13:36.2374638Z # Subtest: real truncated journal is contained; explicitly approved isolated backup restoration preserves exact history
+2026-10-11T13:13:36.2382270Z ok 49 - real truncated journal is contained; explicitly approved isolated backup restoration preserves exact history
+2026-10-11T13:13:36.2385124Z # Subtest: corrupt task checkpoint plus lost Assurance heartbeat require two distinct retained incidents
+2026-10-11T13:13:36.2386341Z ok 50 - corrupt task checkpoint plus lost Assurance heartbeat require two distinct retained incidents
+2026-10-11T13:13:36.2388640Z # Subtest: revision rollback keeps new-revision approval fenced and preserves immutable history
+2026-10-11T13:13:36.2389725Z ok 51 - revision rollback keeps new-revision approval fenced and preserves immutable history
+2026-10-11T13:13:36.2392514Z # Subtest: forged COMPLETE checkpoint with no receipts is rejected by execution and owner read projections
+2026-10-11T13:13:36.2393280Z ok 52 - forged COMPLETE checkpoint with no receipts is rejected by execution and owner read projections
+2026-10-11T13:13:36.2394920Z # Subtest: task plan cannot be truncated after execution; altered committed payload is independently rejected
+2026-10-11T13:13:36.2395677Z ok 53 - task plan cannot be truncated after execution; altered committed payload is independently rejected
+2026-10-11T13:13:36.5719918Z # Subtest: local background capture drains active work, holds the real twin timer, and resumes
+2026-10-11T13:13:36.5721291Z ok 54 - local background capture drains active work, holds the real twin timer, and resumes
+2026-10-11T13:13:36.5825397Z # Subtest: failed drain never captures; thrown jobs and capture errors release admission
+2026-10-11T13:13:36.5826406Z ok 55 - failed drain never captures; thrown jobs and capture errors release admission
+2026-10-11T13:13:36.8335728Z # Subtest: half-open cutover, fixed prepaid allocation, late bills/corrections and currency conservation
+2026-10-11T13:13:36.8341326Z ok 56 - half-open cutover, fixed prepaid allocation, late bills/corrections and currency conservation
+2026-10-11T13:13:36.8346436Z # Subtest: persistent immutable cutover survives cold reopen and old journal writer; owner and live scope refused
+2026-10-11T13:13:36.8348315Z ok 57 - persistent immutable cutover survives cold reopen and old journal writer; owner and live scope refused
+2026-10-11T13:13:37.1932711Z # Subtest: communication risk, pending deadlines and escalation survive benign follow-ups and restart
+2026-10-11T13:13:37.1942322Z ok 58 - communication risk, pending deadlines and escalation survive benign follow-ups and restart
+2026-10-11T13:13:37.5188088Z # Subtest: autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart
+2026-10-11T13:13:37.5189404Z ok 59 - autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart
+2026-10-11T13:13:37.5192301Z # Subtest: outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit
+2026-10-11T13:13:37.5193591Z ok 60 - outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit
+2026-10-11T13:13:37.5196097Z # Subtest: cached successful read cannot clear a newer outage; fresh read clears it after restart
+2026-10-11T13:13:37.5197502Z ok 61 - cached successful read cannot clear a newer outage; fresh read clears it after restart
+2026-10-11T13:13:37.5199712Z # Subtest: reversed discovery charges stay excluded through replacement and restart
+2026-10-11T13:13:37.5215473Z ok 62 - reversed discovery charges stay excluded through replacement and restart
+2026-10-11T13:13:37.5220508Z # Subtest: a rejected multi-charge observation cannot partially commit its journal or observation
+2026-10-11T13:13:37.5221949Z ok 63 - a rejected multi-charge observation cannot partially commit its journal or observation
+2026-10-11T13:13:37.5224486Z # Subtest: Railway account readback preserves unknown actuals and never double counts plan allowance
+2026-10-11T13:13:37.5225659Z ok 64 - Railway account readback preserves unknown actuals and never double counts plan allowance
+2026-10-11T13:13:47.2910066Z # Subtest: labelled ten-day discovery, qualification outcomes, twin settlement and portfolio replacement
+2026-10-11T13:13:47.2911262Z ok 65 - labelled ten-day discovery, qualification outcomes, twin settlement and portfolio replacement
+2026-10-11T13:13:47.5961286Z # Subtest: owner decision persists immutably across restart and exact replay, without approval or authority
+2026-10-11T13:13:47.5962739Z ok 66 - owner decision persists immutably across restart and exact replay, without approval or authority
+2026-10-11T13:13:47.5965479Z # Subtest: reject approval alias, caller-supplied actor, foreign workspace, stale digest and changed idempotency payload
+2026-10-11T13:13:47.5966918Z ok 67 - reject approval alias, caller-supplied actor, foreign workspace, stale digest and changed idempotency payload
+2026-10-11T13:13:47.5969217Z # Subtest: mutation between initial read and fenced append is refused with no decision saved
+2026-10-11T13:13:47.5971156Z ok 68 - mutation between initial read and fenced append is refused with no decision saved
+2026-10-11T13:13:47.8378659Z # Subtest: reviewed exact-product forecast is visible as assumptions, never supplier facts, cash or approval
+2026-10-11T13:13:47.8380462Z ok 69 - reviewed exact-product forecast is visible as assumptions, never supplier facts, cash or approval
+2026-10-11T13:13:47.8383798Z # Subtest: forged journal metadata, workspace, command and stale or reversed forecast fail closed
+2026-10-11T13:13:47.8386533Z ok 70 - forged journal metadata, workspace, command and stale or reversed forecast fail closed
+2026-10-11T13:13:48.0846727Z # Subtest: dossier derives observations and preserves unknown freight currency, rights and finance
+2026-10-11T13:13:48.0848531Z ok 71 - dossier derives observations and preserves unknown freight currency, rights and finance
+2026-10-11T13:13:48.0852498Z # Subtest: pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+2026-10-11T13:13:48.0853815Z ok 72 - pinned evidence refuses cross-workspace, changed envelopes and forged bodies
+2026-10-11T13:13:48.0857255Z # Subtest: expiry changes digest without deleting historical observations
+2026-10-11T13:13:48.0858482Z ok 73 - expiry changes digest without deleting historical observations
+2026-10-11T13:13:48.0862441Z # Subtest: ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+2026-10-11T13:13:48.0863564Z ok 74 - ambiguous stock, wrong freight quantity and conflicting currency remain unusable
+2026-10-11T13:13:48.0867733Z # Subtest: duplicate pins and wrong parent cannot pass qualification
+2026-10-11T13:13:48.0868733Z ok 75 - duplicate pins and wrong parent cannot pass qualification
+2026-10-11T13:13:48.4203508Z # Subtest: queue-origin duplicate intake blocks durably and Assurance cannot replay or erase the incident
+2026-10-11T13:13:48.4204785Z ok 76 - queue-origin duplicate intake blocks durably and Assurance cannot replay or erase the incident
+2026-10-11T13:14:07.4371363Z # Subtest: actual five-second runtime timer persists simulated financial events and authenticated owner GET returns them
+2026-10-11T13:14:07.4372353Z ok 77 - actual five-second runtime timer persists simulated financial events and authenticated owner GET returns them
+2026-10-11T13:14:10.5852542Z # Subtest: durable simulated finance resumes partial events, holds payout and independently reconciles after cold restart
+2026-10-11T13:14:10.5854474Z ok 78 - durable simulated finance resumes partial events, holds payout and independently reconciles after cold restart
+2026-10-11T13:14:10.5859657Z # Subtest: source advance and corrupt refund event block Assurance without automatic repair
+2026-10-11T13:14:10.5882037Z ok 79 - source advance and corrupt refund event block Assurance without automatic repair
+2026-10-11T13:14:10.5928895Z # Subtest: bounded Assurance rotation visits omitted plans without claiming whole-workspace health
+2026-10-11T13:14:10.5930072Z ok 80 - bounded Assurance rotation visits omitted plans without claiming whole-workspace health
+2026-10-11T13:14:10.5933023Z # Subtest: historical plan count above1000 does not cap new admission or existing progress; failed admission is durable and bounded
+2026-10-11T13:14:10.5934535Z ok 81 - historical plan count above1000 does not cap new admission or existing progress; failed admission is durable and bounded
+2026-10-11T13:14:12.9502624Z # Subtest: actual adapter detail stock freight pinned deferral survives restart without recursive followups
+2026-10-11T13:14:12.9532181Z ok 82 - actual adapter detail stock freight pinned deferral survives restart without recursive followups
+2026-10-11T13:14:12.9712768Z # Subtest: ambiguous variant missing destination wrong identity and denied provider defer without retry
+2026-10-11T13:14:12.9713551Z ok 83 - ambiguous variant missing destination wrong identity and denied provider defer without retry
+2026-10-11T13:14:12.9715133Z # Subtest: quota interrupted lease expired source and state corruption fail closed
+2026-10-11T13:14:12.9715725Z ok 84 - quota interrupted lease expired source and state corruption fail closed
+2026-10-11T13:14:12.9717221Z # Subtest: queue and receipt rollback together; restart duplicate tick creates no second job
+2026-10-11T13:14:12.9717878Z ok 85 - queue and receipt rollback together; restart duplicate tick creates no second job
+2026-10-11T13:14:12.9719511Z # Subtest: owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+2026-10-11T13:14:12.9720337Z ok 86 - owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+2026-10-11T13:14:12.9722136Z # Subtest: later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+2026-10-11T13:14:12.9722850Z ok 87 - later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+2026-10-11T13:14:12.9724626Z # Subtest: 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+2026-10-11T13:14:12.9725423Z ok 88 - 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+2026-10-11T13:14:12.9726939Z # Subtest: refresh selection resumes beyond its 32-parent page across restart
+2026-10-11T13:14:12.9727486Z ok 89 - refresh selection resumes beyond its 32-parent page across restart
+2026-10-11T13:14:13.3131570Z # Subtest: two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+2026-10-11T13:14:13.3132566Z ok 90 - two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+2026-10-11T13:14:14.0613036Z # Subtest: explicit qualified fixture enrolls one simulated listing/order/delivery and immutable financial lifecycle
+2026-10-11T13:14:14.0621359Z ok 91 - explicit qualified fixture enrolls one simulated listing/order/delivery and immutable financial lifecycle
+2026-10-11T13:14:14.0624611Z # Subtest: deferred dossier, missing assessment, foreign owner, changed candidate and missing explicit acknowledgement refuse with no tasks
+2026-10-11T13:14:14.0626757Z ok 92 - deferred dossier, missing assessment, foreign owner, changed candidate and missing explicit acknowledgement refuse with no tasks
+2026-10-11T13:14:14.0635639Z # Subtest: changed task plan and changed idempotency request cannot alter enrollment
+2026-10-11T13:14:14.0662099Z ok 93 - changed task plan and changed idempotency request cannot alter enrollment
+2026-10-11T13:14:14.0683231Z # Subtest: source expiry after enrollment blocks the canonical worker without replay or financial events
+2026-10-11T13:14:14.0684153Z ok 94 - source expiry after enrollment blocks the canonical worker without replay or financial events
+2026-10-11T13:14:14.0685786Z # Subtest: derived identifiers are bounded before any task or enrollment is written
+2026-10-11T13:14:14.0686461Z ok 95 - derived identifiers are bounded before any task or enrollment is written
+2026-10-11T13:14:14.3511059Z # Subtest: canonical chargeback, unknown fees, cutoff and cash traces pass; unsupported currency remains a gap
+2026-10-11T13:14:14.3513270Z ok 96 - canonical chargeback, unknown fees, cutoff and cash traces pass; unsupported currency remains a gap
+2026-10-11T13:14:14.6003988Z # Subtest: last drained app closes financial WAL without creating unused state or losing entries
+2026-10-11T13:14:14.6006780Z ok 97 - last drained app closes financial WAL without creating unused state or losing entries
+2026-10-11T13:14:15.4973760Z # Subtest: canonical amounts and full settlement conserve source money
+2026-10-11T13:14:15.4974659Z ok 98 - canonical amounts and full settlement conserve source money
+2026-10-11T13:14:15.4978049Z # Subtest: unknown costs and period cutoff remain explicit
+2026-10-11T13:14:15.4978931Z ok 99 - unknown costs and period cutoff remain explicit
+2026-10-11T13:14:15.5039922Z # Subtest: forged amounts, state/receipt pairs, duplicate liabilities and unsourced assumptions rejected
+2026-10-11T13:14:15.5041379Z ok 100 - forged amounts, state/receipt pairs, duplicate liabilities and unsourced assumptions rejected
+2026-10-11T13:14:15.5043763Z # Subtest: losses, negative cash and delayed payouts remain visible
+2026-10-11T13:14:15.5044638Z ok 101 - losses, negative cash and delayed payouts remain visible
+2026-10-11T13:14:15.5046914Z # Subtest: 100 canonical integer scenarios satisfy independent conservation
+2026-10-11T13:14:15.5047779Z ok 102 - 100 canonical integer scenarios satisfy independent conservation
+2026-10-11T13:14:15.7728123Z # Subtest: actual financial risk escalates without repair; fresh retained-source reversal closes
+2026-10-11T13:14:15.7729628Z ok 103 - actual financial risk escalates without repair; fresh retained-source reversal closes
+2026-10-11T13:14:15.7752044Z # Subtest: partial negative contribution and budget alert degrade; absent coverage stays blocked
+2026-10-11T13:14:15.7753198Z ok 104 - partial negative contribution and budget alert degrade; absent coverage stays blocked
+2026-10-11T13:14:15.7755076Z # Subtest: corrupt and over-bound financial sources fail closed
+2026-10-11T13:14:15.7755569Z ok 105 - corrupt and over-bound financial sources fail closed
+2026-10-11T13:14:16.2758272Z # Subtest: authenticated isolated birth command cannot choose workspace or change actual journal; seven live effects stay denied
+2026-10-11T13:14:16.2759642Z ok 106 - authenticated isolated birth command cannot choose workspace or change actual journal; seven live effects stay denied
+2026-10-11T13:14:16.5303053Z # Subtest: owner financial projection, backup and old/new writer preserve cutover and original live journal
+2026-10-11T13:14:16.5304537Z ok 107 - owner financial projection, backup and old/new writer preserve cutover and original live journal
+2026-10-11T13:14:16.7594934Z # Subtest: future Helium10 boundary is disabled even for well-shaped evidence and rejects identity mismatch
+2026-10-11T13:14:16.7598360Z ok 108 - future Helium10 boundary is disabled even for well-shaped evidence and rejects identity mismatch
+2026-10-11T13:14:17.1342850Z # Subtest: Commerce task, Assurance recovery and finance share real canonical identities and state
+2026-10-11T13:14:17.1345747Z ok 109 - Commerce task, Assurance recovery and finance share real canonical identities and state
+2026-10-11T13:14:17.3409430Z # Subtest: labelled history fixture preserves identity, units, missing-value sentinels and token observations
+2026-10-11T13:14:17.3411196Z ok 110 - labelled history fixture preserves identity, units, missing-value sentinels and token observations
+2026-10-11T13:14:17.3414845Z # Subtest: wrong product, marketplace and ambiguous response cannot become product evidence
+2026-10-11T13:14:17.3416045Z ok 111 - wrong product, marketplace and ambiguous response cannot become product evidence
+2026-10-11T13:14:17.3439529Z # Subtest: malformed, unordered, empty histories and invalid token balances fail closed
+2026-10-11T13:14:17.3441247Z ok 112 - malformed, unordered, empty histories and invalid token balances fail closed
+2026-10-11T13:14:17.3445504Z # Subtest: history bound preserves complete timestamp-value pairs
+2026-10-11T13:14:17.3451657Z ok 113 - history bound preserves complete timestamp-value pairs
+2026-10-11T13:14:17.5921842Z # Subtest: actual Amazon evidence yields broad market context and no inferred supplier match
+2026-10-11T13:14:17.5923545Z ok 114 - actual Amazon evidence yields broad market context and no inferred supplier match
+2026-10-11T13:14:17.5939427Z # Subtest: expired observation remains historical without refreshed source claim
+2026-10-11T13:14:17.5940946Z ok 115 - expired observation remains historical without refreshed source claim
+2026-10-11T13:14:17.5944293Z # Subtest: malformed or contradictory prices cannot produce a market quote
+2026-10-11T13:14:17.5945250Z ok 116 - malformed or contradictory prices cannot produce a market quote
+2026-10-11T13:14:17.5948010Z # Subtest: wrong ASIN, market identity, missing catalogue, or tampered facts refuses quote
+2026-10-11T13:14:17.5949144Z ok 117 - wrong ASIN, market identity, missing catalogue, or tampered facts refuses quote
+2026-10-11T13:14:18.2111187Z # Subtest: 201 canonical missions paginate without hidden truncation or workspace leakage
+2026-10-11T13:14:18.2112168Z ok 118 - 201 canonical missions paginate without hidden truncation or workspace leakage
+2026-10-11T13:14:18.2117902Z # Subtest: empty scoped page explicitly complete and bounded lower limit advances lexical cursor
+2026-10-11T13:14:18.2118844Z ok 119 - empty scoped page explicitly complete and bounded lower limit advances lexical cursor
+2026-10-11T13:14:18.2433235Z # Subtest: mission heads and finance stay on one WAL read snapshot while second connection commits
+2026-10-11T13:14:18.2434464Z ok 120 - mission heads and finance stay on one WAL read snapshot while second connection commits
+2026-10-11T13:14:19.5365532Z # Subtest: reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+2026-10-11T13:14:19.5366843Z ok 121 - reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+2026-10-11T13:14:19.5369529Z # Subtest: missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+2026-10-11T13:14:19.5371105Z ok 122 - missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+2026-10-11T13:14:19.5373990Z # Subtest: late policy failure rolls back all canonical commands and preparation receipt together
+2026-10-11T13:14:19.5375144Z ok 123 - late policy failure rolls back all canonical commands and preparation receipt together
+2026-10-11T13:14:19.5377529Z # Subtest: stale dossier, changed source and foreign approval cannot inherit prepared authority
+2026-10-11T13:14:19.5378635Z ok 124 - stale dossier, changed source and foreign approval cannot inherit prepared authority
+2026-10-11T13:14:19.5381107Z # Subtest: durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+2026-10-11T13:14:19.5381924Z ok 125 - durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+2026-10-11T13:14:19.5383698Z # Subtest: cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+2026-10-11T13:14:19.5384972Z ok 126 - cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+2026-10-11T13:14:19.7872273Z # Subtest: source-bound proposal preserves nullable economics and never grants fact/payment/approval authority
+2026-10-11T13:14:19.7873901Z ok 127 - source-bound proposal preserves nullable economics and never grants fact/payment/approval authority
+2026-10-11T13:14:19.7879067Z # Subtest: forged authority, nullable-value substitution, unsupported citations and cross-candidate snapshots refuse
+2026-10-11T13:14:19.7880467Z ok 128 - forged authority, nullable-value substitution, unsupported citations and cross-candidate snapshots refuse
+2026-10-11T13:14:19.7883367Z # Subtest: delivered citations permit only unreviewed model estimates, not their factual promotion
+2026-10-11T13:14:19.7884686Z ok 129 - delivered citations permit only unreviewed model estimates, not their factual promotion
+2026-10-11T13:14:19.7887188Z # Subtest: multiple tags, malformed and oversized output produce bounded explicit refusal
+2026-10-11T13:14:19.7888241Z ok 130 - multiple tags, malformed and oversized output produce bounded explicit refusal
+2026-10-11T13:14:20.3240134Z # Subtest: actual locked router failures feed passive Assurance and require a new successful receipt to recover
+2026-10-11T13:14:20.3244452Z ok 131 - actual locked router failures feed passive Assurance and require a new successful receipt to recover
+2026-10-11T13:14:20.3404516Z # Subtest: actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers
+2026-10-11T13:14:20.3405555Z ok 132 - actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers
+2026-10-11T13:14:21.2228324Z # Subtest: seeded canonical commerce, cold crash replay and finance produce reproducible multi-order traces
+2026-10-11T13:14:21.2229974Z ok 133 - seeded canonical commerce, cold crash replay and finance produce reproducible multi-order traces
+2026-10-11T13:14:21.2232006Z # Subtest: examination bounds prevent unbounded scenario or malformed seed requests
+2026-10-11T13:14:21.2234731Z ok 134 - examination bounds prevent unbounded scenario or malformed seed requests
+2026-10-11T13:14:21.5961889Z # Subtest: owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+2026-10-11T13:14:21.5963741Z ok 135 - owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+2026-10-11T13:14:21.5966812Z # Subtest: mission with research but no orders never fabricates zero revenue or complete finance
+2026-10-11T13:14:21.5967586Z ok 136 - mission with research but no orders never fabricates zero revenue or complete finance
+2026-10-11T13:15:07.1616923Z # Subtest: independent SQLite worker connections race for 1000th slot; 1001st denied
+2026-10-11T13:15:07.1621124Z ok 137 - independent SQLite worker connections race for 1000th slot; 1001st denied
+2026-10-11T13:15:52.2741115Z # Subtest: daily virtual cohorts reach 1000 active products; 1001 blocked after reopen, retirement permits one replacement
+2026-10-11T13:15:52.2743070Z ok 138 - daily virtual cohorts reach 1000 active products; 1001 blocked after reopen, retirement permits one replacement
+2026-10-11T13:15:52.2745803Z # Subtest: duplicate product variants cannot consume multiple active slots; owner retirement cannot be forged; replay is unchanged
+2026-10-11T13:15:52.2747259Z ok 139 - duplicate product variants cannot consume multiple active slots; owner retirement cannot be forged; replay is unchanged
+2026-10-11T13:15:53.2032255Z # Subtest: prepared mission dossier and assessment lineage survive V3 restoration; missing preparation rolls back atomically
+2026-10-11T13:15:53.2033772Z ok 140 - prepared mission dossier and assessment lineage survive V3 restoration; missing preparation rolls back atomically
+2026-10-11T13:15:53.4574829Z # Subtest: exact server-bound product context survives schema parsing and long conversation compaction
+2026-10-11T13:15:53.4578394Z ok 141 - exact server-bound product context survives schema parsing and long conversation compaction
+2026-10-11T13:15:53.7512513Z # Subtest: workspace product chat binds current canonical evidence, rejects foreign and stale references, and never grants authority
+2026-10-11T13:15:53.7514056Z ok 142 - workspace product chat binds current canonical evidence, rejects foreign and stale references, and never grants authority
+2026-10-11T13:15:54.1551391Z # Subtest: complete explicitly labelled protocol fixture qualifies for text screening without image rights or model authority
+2026-10-11T13:15:54.1553559Z ok 143 - complete explicitly labelled protocol fixture qualifies for text screening without image rights or model authority
+2026-10-11T13:15:54.1556469Z # Subtest: missing review, contradicted forecast, reversed cash and model-only input cannot qualify
+2026-10-11T13:15:54.1557669Z ok 144 - missing review, contradicted forecast, reversed cash and model-only input cannot qualify
+2026-10-11T13:15:54.1560233Z # Subtest: explicit compliance denial rejects; seven supplier-only citations cannot replace marketplace evidence
+2026-10-11T13:15:54.1562166Z ok 145 - explicit compliance denial rejects; seven supplier-only citations cannot replace marketplace evidence
+2026-10-11T13:15:54.1565052Z # Subtest: review history is immutable and changed financial snapshot invalidates prior qualification
+2026-10-11T13:15:54.1566155Z ok 146 - review history is immutable and changed financial snapshot invalidates prior qualification
+2026-10-11T13:15:54.1633585Z # Subtest: retained genuine CJ observations remain individually deferred without inventing qualification or image rights
+2026-10-11T13:15:54.1635176Z ok 147 - retained genuine CJ observations remain individually deferred without inventing qualification or image rights
+2026-10-11T13:15:55.7232465Z # Subtest: compounded backlog and missed schedule alert closes only after actual bounded worker drain and rescheduled admission
+2026-10-11T13:15:55.7233432Z ok 148 - compounded backlog and missed schedule alert closes only after actual bounded worker drain and rescheduled admission
+2026-10-11T13:15:55.7235137Z # Subtest: expired running lease is escalated without replay; corrupt schedule fails closed
+2026-10-11T13:15:55.7235806Z ok 149 - expired running lease is escalated without replay; corrupt schedule fails closed
+2026-10-11T13:15:56.1597306Z # Subtest: composed recovery set binds nine stores, primary, native mission ledger/execution and inert authority evidence
+2026-10-11T13:15:56.1598671Z ok 150 - composed recovery set binds nine stores, primary, native mission ledger/execution and inert authority evidence
+2026-10-11T13:15:56.7573831Z # Subtest: registered reconciliation family budget survives restart and refuses a third recurring repair
+2026-10-11T13:15:56.7575245Z ok 151 - registered reconciliation family budget survives restart and refuses a third recurring repair
+2026-10-11T13:15:57.4967132Z # Subtest: another process cannot interleave canonical checkpoint tables; receipt-before-cursor survives isolated replay
+2026-10-11T13:15:57.4992780Z ok 152 - another process cannot interleave canonical checkpoint tables; receipt-before-cursor survives isolated replay
+2026-10-11T13:15:58.2696855Z # Subtest: actual pending investigation is never healthy; fresh canonical request completion independently closes binding incident
+2026-10-11T13:15:58.2698401Z ok 153 - actual pending investigation is never healthy; fresh canonical request completion independently closes binding incident
+2026-10-11T13:15:58.2705763Z # Subtest: wrong request, altered assessment, empty answer, foreign delivered evidence and corrupt source fail closed
+2026-10-11T13:15:58.2707111Z ok 154 - wrong request, altered assessment, empty answer, foreign delivered evidence and corrupt source fail closed
+2026-10-11T13:15:58.2709177Z # Subtest: oversized response source is refused by byte preflight before payload SELECT or JSON parsing
+2026-10-11T13:15:58.2709897Z ok 155 - oversized response source is refused by byte preflight before payload SELECT or JSON parsing
+2026-10-11T13:15:58.2712389Z # Subtest: unbound technical responses cannot acquire a fabricated candidate assessment binding
+2026-10-11T13:15:58.2713388Z ok 156 - unbound technical responses cannot acquire a fabricated candidate assessment binding
+2026-10-11T13:15:58.2715611Z # Subtest: completed binding cannot close on absent authenticated-owner attestation or owner identity
+2026-10-11T13:15:58.2716711Z ok 157 - completed binding cannot close on absent authenticated-owner attestation or owner identity
+2026-10-11T13:15:58.7228585Z # Subtest: guard duplicate-orders positive and negative boundaries
+2026-10-11T13:15:58.7229752Z ok 158 - guard duplicate-orders positive and negative boundaries
+2026-10-11T13:15:58.7233210Z # Subtest: guard order-reconciliation positive and negative boundaries
+2026-10-11T13:15:58.7234185Z ok 159 - guard order-reconciliation positive and negative boundaries
+2026-10-11T13:15:58.7236308Z # Subtest: guard stock positive and negative boundaries
+2026-10-11T13:15:58.7237008Z ok 160 - guard stock positive and negative boundaries
+2026-10-11T13:15:58.7239426Z # Subtest: guard profitability positive and negative boundaries
+2026-10-11T13:15:58.7240151Z ok 161 - guard profitability positive and negative boundaries
+2026-10-11T13:15:58.7242842Z # Subtest: guard capital positive and negative boundaries
+2026-10-11T13:15:58.7243564Z ok 162 - guard capital positive and negative boundaries
+2026-10-11T13:15:58.7245578Z # Subtest: guard delivery positive and negative boundaries
+2026-10-11T13:15:58.7246312Z ok 163 - guard delivery positive and negative boundaries
+2026-10-11T13:15:58.7248425Z # Subtest: guard compliance positive and negative boundaries
+2026-10-11T13:15:58.7249199Z ok 164 - guard compliance positive and negative boundaries
+2026-10-11T13:15:58.7251474Z # Subtest: guard supplier-reliability positive and negative boundaries
+2026-10-11T13:15:58.7252270Z ok 165 - guard supplier-reliability positive and negative boundaries
+2026-10-11T13:15:58.7254247Z # Subtest: guard durability positive and negative boundaries
+2026-10-11T13:15:58.7254951Z ok 166 - guard durability positive and negative boundaries
+2026-10-11T13:15:58.7257334Z # Subtest: guard safe-retry positive and negative boundaries
+2026-10-11T13:15:58.7257995Z ok 167 - guard safe-retry positive and negative boundaries
+2026-10-11T13:15:58.7259956Z # Subtest: guard financial-reconciliation positive and negative boundaries
+2026-10-11T13:15:58.7261059Z ok 168 - guard financial-reconciliation positive and negative boundaries
+2026-10-11T13:15:58.7263060Z # Subtest: guard monitoring positive and negative boundaries
+2026-10-11T13:15:58.7263757Z ok 169 - guard monitoring positive and negative boundaries
+2026-10-11T13:15:58.7265845Z # Subtest: guard circuit-breakers positive and negative boundaries
+2026-10-11T13:15:58.7266643Z ok 170 - guard circuit-breakers positive and negative boundaries
+2026-10-11T13:15:58.7268665Z # Subtest: guard owner-authority positive and negative boundaries
+2026-10-11T13:15:58.7269420Z ok 171 - guard owner-authority positive and negative boundaries
+2026-10-11T13:15:58.7271647Z # Subtest: guard disaster-recovery positive and negative boundaries
+2026-10-11T13:15:58.7272721Z ok 172 - guard disaster-recovery positive and negative boundaries
+2026-10-11T13:16:00.1996917Z # Subtest: exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact
+2026-10-11T13:16:00.1998521Z ok 173 - exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact
+2026-10-11T13:16:00.4079575Z # Subtest: exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data
+2026-10-11T13:16:00.4102133Z ok 174 - exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data
+2026-10-11T13:16:00.4523453Z # Subtest: both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation
+2026-10-11T13:16:00.4524317Z ok 175 - both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation
+2026-10-11T13:16:00.7772839Z # Subtest: explicit rational quote preserves separate canonical SGD and translated USD journals
+2026-10-11T13:16:00.7774118Z ok 176 - explicit rational quote preserves separate canonical SGD and translated USD journals
+2026-10-11T13:16:00.7776817Z # Subtest: missing, forged, expired, wrong-currency and unsupported rounding/precision quotes fail closed
+2026-10-11T13:16:00.7778582Z ok 177 - missing, forged, expired, wrong-currency and unsupported rounding/precision quotes fail closed
+2026-10-11T13:16:00.7780939Z # Subtest: unknown fee stays unknown after translation
+2026-10-11T13:16:00.7786763Z ok 178 - unknown fee stays unknown after translation
+2026-10-11T13:16:01.7664960Z # Subtest: bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities
+2026-10-11T13:16:01.7666376Z ok 179 - bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities
+2026-10-11T13:16:01.7669063Z # Subtest: authentic retained cohort has truthful under-supply and zero provider discovery
+2026-10-11T13:16:01.7670208Z ok 180 - authentic retained cohort has truthful under-supply and zero provider discovery
+2026-10-11T13:16:01.7673156Z # Subtest: source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent
+2026-10-11T13:16:01.7674603Z ok 181 - source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent
+2026-10-11T13:16:01.7677350Z # Subtest: source expiry and snapshot mutation cannot become fresh qualified candidates
+2026-10-11T13:16:01.7678254Z ok 182 - source expiry and snapshot mutation cannot become fresh qualified candidates
+2026-10-11T13:16:01.7680332Z # Subtest: daily target is bounded at 100 and durable receipt tampering fails closed
+2026-10-11T13:16:01.7681166Z ok 183 - daily target is bounded at 100 and durable receipt tampering fails closed
+2026-10-11T13:16:01.7683084Z # Subtest: changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor
+2026-10-11T13:16:01.7684094Z ok 184 - changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor
+2026-10-11T13:16:01.7699324Z # Subtest: facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot
+2026-10-11T13:16:01.7700833Z ok 185 - facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot
+2026-10-11T13:16:01.7707852Z # Subtest: deleted or mutated parent identity blocks read/retry/new day rather than recounting
+2026-10-11T13:16:01.7708659Z ok 186 - deleted or mutated parent identity blocks read/retry/new day rather than recounting
+2026-10-11T13:16:02.0168124Z # Subtest: retained source projection preserves unknown currency and withholds unlicensed image
+2026-10-11T13:16:02.0169725Z ok 187 - retained source projection preserves unknown currency and withholds unlicensed image
+2026-10-11T13:16:02.0172958Z # Subtest: reject forged authenticity, digest, identity, invalid dates and future observations
+2026-10-11T13:16:02.0174228Z ok 188 - reject forged authenticity, digest, identity, invalid dates and future observations
+2026-10-11T13:16:02.0176922Z # Subtest: expired authentic source remains explicitly historical and deferred
+2026-10-11T13:16:02.0177930Z ok 189 - expired authentic source remains explicitly historical and deferred
+2026-10-11T13:16:02.0180287Z # Subtest: variant is matched exactly and cannot inherit product price
+2026-10-11T13:16:02.0181357Z ok 190 - variant is matched exactly and cannot inherit product price
+2026-10-11T13:16:02.0184059Z # Subtest: catalogue query is not confused with returned product identity, duplicates deduplicated
+2026-10-11T13:16:02.0185287Z ok 191 - catalogue query is not confused with returned product identity, duplicates deduplicated
+2026-10-11T13:16:02.0188943Z # Subtest: workspace reader and absent provider shape cannot substitute fixtures
+2026-10-11T13:16:02.0190214Z ok 192 - workspace reader and absent provider shape cannot substitute fixtures
+2026-10-11T13:16:02.0223808Z # Subtest: retained authenticated readback reproduces ten products without inventing rights or currency
+2026-10-11T13:16:02.0225325Z ok 193 - retained authenticated readback reproduces ten products without inventing rights or currency
+2026-10-11T13:16:02.0228302Z # Subtest: only exact detail variant price receives documented USD unit; contradictory currency quarantined
+2026-10-11T13:16:02.0231059Z ok 194 - only exact detail variant price receives documented USD unit; contradictory currency quarantined
+2026-10-11T13:16:02.0234678Z # Subtest: unselected observed variants reject contradictory parent and variant currencies
+2026-10-11T13:16:02.0235799Z ok 195 - unselected observed variants reject contradictory parent and variant currencies
+2026-10-11T13:16:03.4080261Z # Subtest: real second-connection SQLite lock times out with no partial receipt; release and exact safe retry close incident from fresh readback
+2026-10-11T13:16:03.4081727Z ok 196 - real second-connection SQLite lock times out with no partial receipt; release and exact safe retry close incident from fresh readback
+2026-10-11T13:16:03.4084800Z # Subtest: duplicate delivery of actual durable task is fenced without second receipt; fresh state closes retained incident
+2026-10-11T13:16:03.4086057Z ok 197 - duplicate delivery of actual durable task is fenced without second receipt; fresh state closes retained incident
+2026-10-11T13:16:03.4089565Z # Subtest: duplicate concurrent recovery deliveries reconcile a committed cursor gap once without another business step
+2026-10-11T13:16:03.4091167Z ok 198 - duplicate concurrent recovery deliveries reconcile a committed cursor gap once without another business step
+2026-10-11T13:16:03.7216512Z # Subtest: same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases
+2026-10-11T13:16:03.7218618Z ok 199 - same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases
+2026-10-11T13:16:03.9204615Z # Subtest: two real SQLite connections competing for3 units admit exactly one2-unit order
+2026-10-11T13:16:03.9205935Z ok 200 - two real SQLite connections competing for3 units admit exactly one2-unit order
+2026-10-11T13:16:04.2405892Z # Subtest: nine persisted domains: pinned chain, missing ancestor, tamper refusal and inert isolated inspection
+2026-10-11T13:16:04.2408900Z ok 201 - nine persisted domains: pinned chain, missing ancestor, tamper refusal and inert isolated inspection
+2026-10-11T13:16:04.6276386Z # Subtest: temporary authority: explicit admission, one-task consumption, expiry, revocation and immutable scope
+2026-10-11T13:16:04.6277888Z ok 202 - temporary authority: explicit admission, one-task consumption, expiry, revocation and immutable scope
+2026-10-11T13:16:04.6280396Z # Subtest: revocation contains an injected checkpoint fault until an explicit fresh grant permits canonical recovery
+2026-10-11T13:16:04.6281461Z ok 203 - revocation contains an injected checkpoint fault until an explicit fresh grant permits canonical recovery
+2026-10-11T13:16:09.6700996Z # Subtest: three virtual days: compounded checkpoint gap, revocation, pause and cold restart preserve six settled orders
+2026-10-11T13:16:09.6704362Z ok 204 - three virtual days: compounded checkpoint gap, revocation, pause and cold restart preserve six settled orders
+2026-10-11T13:16:12.9515766Z # Subtest: versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+2026-10-11T13:16:12.9524126Z ok 205 - versioned twin snapshot, ordered catch-up, immutable vault and no restored authority
+2026-10-11T13:16:12.9526643Z # Subtest: versioned snapshots restore enrolled simulation lineage, evolves derived errors, and validates duplicate replay
+2026-10-11T13:16:12.9527897Z ok 206 - versioned snapshots restore enrolled simulation lineage, evolves derived errors, and validates duplicate replay
+2026-10-11T13:16:13.3530882Z # Subtest: twin read route requires session and owner and derives identity only from authenticated principal
+2026-10-11T13:16:13.3532549Z ok 207 - twin read route requires session and owner and derives identity only from authenticated principal
+2026-10-11T13:16:13.6582740Z # Subtest: canonical twin execution inherits owner pause and limits and refuses inactive or unknown namespaces
+2026-10-11T13:16:13.6586768Z ok 208 - canonical twin execution inherits owner pause and limits and refuses inactive or unknown namespaces
+2026-10-11T13:16:23.7940004Z # Subtest: 100-candidate twin day executes on shared timer; daily admission and 1000-task retention cap remain bounded
+2026-10-11T13:16:23.7943543Z ok 209 - 100-candidate twin day executes on shared timer; daily admission and 1000-task retention cap remain bounded
+2026-10-11T13:16:26.2307341Z # Subtest: persistent vertical twin: multiple products, actual scheduler, checkpoint fault recovery, shipments, settlement and restart equality
+2026-10-11T13:16:26.2309019Z ok 210 - persistent vertical twin: multiple products, actual scheduler, checkpoint fault recovery, shipments, settlement and restart equality
+2026-10-11T13:16:26.4957092Z # Subtest: durable twin lifecycle survives restart, preserves replay and refuses stale or revoked execution
+2026-10-11T13:16:26.4958389Z ok 211 - durable twin lifecycle survives restart, preserves replay and refuses stale or revoked execution
+2026-10-11T13:16:26.4961471Z # Subtest: owner and workspace isolation, immutable receipts and idempotency conflicts fail closed
+2026-10-11T13:16:26.4962670Z ok 212 - owner and workspace isolation, immutable receipts and idempotency conflicts fail closed
+2026-10-11T13:16:26.4965938Z # Subtest: failed canonical operation rolls back within active session without replacing lifecycle
+2026-10-11T13:16:26.4967226Z ok 213 - failed canonical operation rolls back within active session without replacing lifecycle
+2026-10-11T13:16:26.4969696Z # Subtest: durable session recovery paginates only the authenticated owner records including archived sessions
+2026-10-11T13:16:26.4971113Z ok 214 - durable session recovery paginates only the authenticated owner records including archived sessions
+2026-10-11T13:16:26.5952103Z # Subtest: twin projection follows existing canonical listing and order receipts and excludes live workspace
+2026-10-11T13:16:26.5953153Z ok 215 - twin projection follows existing canonical listing and order receipts and excludes live workspace
+2026-10-11T13:16:26.6055145Z # tests 215
+2026-10-11T13:16:26.6055761Z # pass 215
+2026-10-11T13:16:26.6056059Z # fail 0
+2026-10-11T13:16:27.0247792Z # Subtest: candidate capture fences both authority JSON writers through asynchronous readback
+2026-10-11T13:16:27.0280352Z ok 1 - candidate capture fences both authority JSON writers through asynchronous readback
+2026-10-11T13:16:27.0404149Z # Subtest: candidate authority fence releases both stores on failure and partial acquisition
+2026-10-11T13:16:27.0461954Z ok 2 - candidate authority fence releases both stores on failure and partial acquisition
+2026-10-11T13:16:27.4852635Z # Subtest: candidate local Brain worker drains before capture and resumes after error
+2026-10-11T13:16:27.4853848Z ok 3 - candidate local Brain worker drains before capture and resumes after error
+2026-10-11T13:16:27.4967707Z # Subtest: a timed-out local worker drain cannot permit another capture before the worker settles
+2026-10-11T13:16:27.4969125Z ok 4 - a timed-out local worker drain cannot permit another capture before the worker settles
+2026-10-11T13:16:27.5212611Z # Subtest: HTTP capture gate drains admitted requests, refuses later reads and writes, then reopens
+2026-10-11T13:16:27.5221887Z ok 5 - HTTP capture gate drains admitted requests, refuses later reads and writes, then reopens
+2026-10-11T13:16:27.5244627Z # Subtest: timed-out HTTP drain never enters snapshot and reopens admission
+2026-10-11T13:16:27.5245729Z ok 6 - timed-out HTTP drain never enters snapshot and reopens admission
+2026-10-11T13:16:27.5249700Z # Subtest: Pillow boot is drained and a delayed boot is held through capture
+2026-10-11T13:16:27.5251416Z ok 7 - Pillow boot is drained and a delayed boot is held through capture
+2026-10-11T13:16:27.5254938Z # Subtest: timed-out Pillow drain cannot start another capture or boot while work remains active
+2026-10-11T13:16:27.5256290Z ok 8 - timed-out Pillow drain cannot start another capture or boot while work remains active
+2026-10-11T13:16:28.1698388Z # Subtest: shared Brain queue refuses overlapping capture and drains other consumers before callback
+2026-10-11T13:16:28.1739967Z ok 9 - shared Brain queue refuses overlapping capture and drains other consumers before callback
+2026-10-11T13:16:28.1833353Z # Subtest: registered repeat producers refuse shared capture and restore queue
+2026-10-11T13:16:28.1834744Z ok 10 - registered repeat producers refuse shared capture and restore queue
+2026-10-11T13:16:28.1838234Z # Subtest: a producer event during callback invalidates capture even when queue is still paused
+2026-10-11T13:16:28.1839307Z ok 11 - a producer event during callback invalidates capture even when queue is still paused
+2026-10-11T13:16:28.1842156Z # Subtest: cooperating task and repeat producers refuse while capture owns queue
+2026-10-11T13:16:28.1843173Z ok 12 - cooperating task and repeat producers refuse while capture owns queue
+2026-10-11T13:16:28.1846238Z # Subtest: shared queue releases its pause on timeout and callback failure; preexisting pause stays untouched
+2026-10-11T13:16:28.1847589Z ok 13 - shared queue releases its pause on timeout and callback failure; preexisting pause stays untouched
+2026-10-11T13:16:28.1850408Z # Subtest: lost capture ownership refuses snapshot and never resumes another owner's queue
+2026-10-11T13:16:28.1851651Z ok 14 - lost capture ownership refuses snapshot and never resumes another owner's queue
+2026-10-11T13:16:36.7189266Z # Subtest: application local drain saves both RAM-backed SQL handles before caller readback
+2026-10-11T13:16:36.7195327Z ok 15 - application local drain saves both RAM-backed SQL handles before caller readback
+2026-10-11T13:16:36.7446007Z # Subtest: both open SQL.js handles save RAM and refuse writes through one verified capture
+2026-10-11T13:16:36.7447293Z ok 16 - both open SQL.js handles save RAM and refuse writes through one verified capture
+2026-10-11T13:16:36.7608479Z # Subtest: Shadow CEO writes are fenced before the first Brain save yields
+2026-10-11T13:16:36.7609342Z ok 17 - Shadow CEO writes are fenced before the first Brain save yields
+2026-10-11T13:16:36.7726414Z # Subtest: capture refuses a second SQL.js handle and blocks a new alias until release
+2026-10-11T13:16:36.7727552Z ok 18 - capture refuses a second SQL.js handle and blocks a new alias until release
+2026-10-11T13:16:36.7793214Z # Subtest: a hard-link alias of a persisted Brain file cannot evade capture admission
+2026-10-11T13:16:36.7794193Z ok 19 - a hard-link alias of a persisted Brain file cannot evade capture admission
+2026-10-11T13:16:37.5391622Z # Subtest: existing native mission stores are locked across asynchronous disk copy and released
+2026-10-11T13:16:37.5392755Z ok 20 - existing native mission stores are locked across asynchronous disk copy and released
+2026-10-11T13:16:37.5394893Z # Subtest: missing, alien and overlapping native stores refuse capture without callback
+2026-10-11T13:16:37.5395569Z ok 21 - missing, alien and overlapping native stores refuse capture without callback
+2026-10-11T13:16:37.5401442Z # Subtest: an unsaved live SQL.js record reaches the verified copy while writes are fenced
+2026-10-11T13:16:37.5402142Z ok 22 - an unsaved live SQL.js record reaches the verified copy while writes are fenced
+2026-10-11T13:16:37.5406397Z # Subtest: a failed capture releases the handle fence without producing a successful copy
+2026-10-11T13:16:37.5407098Z ok 23 - a failed capture releases the handle fence without producing a successful copy
+2026-10-11T13:16:37.5436900Z # Subtest: running Shadow CEO SQLite handle saves its RAM records while its verified disk copy is fenced
+2026-10-11T13:16:37.5437887Z ok 24 - running Shadow CEO SQLite handle saves its RAM records while its verified disk copy is fenced
+2026-10-11T13:16:37.5442957Z # Subtest: critical persistence resolves only after data is readable from a fresh database
+2026-10-11T13:16:37.5443713Z ok 25 - critical persistence resolves only after data is readable from a fresh database
+2026-10-11T13:16:37.5449203Z # Subtest: a second critical waiter includes a mutation after the first export
+2026-10-11T13:16:37.5449992Z ok 26 - a second critical waiter includes a mutation after the first export
+2026-10-11T13:16:37.5456368Z # Subtest: close fences an older async export from overwriting the final newer snapshot
+2026-10-11T13:16:37.5457436Z ok 27 - close fences an older async export from overwriting the final newer snapshot
+2026-10-11T13:16:37.5459556Z # Subtest: close before async export starts does not access a closed SQL.js handle
+2026-10-11T13:16:37.5460450Z ok 28 - close before async export starts does not access a closed SQL.js handle
+2026-10-11T13:16:37.5467382Z # Subtest: ENOSPC rejects critical save and a later explicit retry persists the same writes
+2026-10-11T13:16:37.5468292Z ok 29 - ENOSPC rejects critical save and a later explicit retry persists the same writes
+2026-10-11T13:16:37.5475337Z # Subtest: file sync failure rejects without replacing a prior valid snapshot
+2026-10-11T13:16:37.5475898Z ok 30 - file sync failure rejects without replacing a prior valid snapshot
+2026-10-11T13:16:37.5482520Z # Subtest: rename failure rejects and preserves pending data for retry
+2026-10-11T13:16:37.5483033Z ok 31 - rename failure rejects and preserves pending data for retry
+2026-10-11T13:16:37.5487748Z # Subtest: POSIX directory-sync failure is reported even if rename already completed
+2026-10-11T13:16:37.5488356Z ok 32 - POSIX directory-sync failure is reported even if rename already completed
+2026-10-11T13:16:37.5494652Z # Subtest: reopened database save cannot collide with a closed instance's pending temp file
+2026-10-11T13:16:37.5495299Z ok 33 - reopened database save cannot collide with a closed instance's pending temp file
+2026-10-11T13:16:37.5496783Z # Subtest: failed shutdown save throws, leaves database usable, and succeeds on retry
+2026-10-11T13:16:37.5497463Z ok 34 - failed shutdown save throws, leaves database usable, and succeeds on retry
+2026-10-11T13:16:37.5501703Z # tests 34
+2026-10-11T13:16:37.5502133Z # pass 34
+2026-10-11T13:16:37.5502342Z # fail 0
+2026-10-11T13:16:38.3503142Z # Subtest: Amazon US listing pages use seller binding, persist across process restart and complete only after final page
+2026-10-11T13:16:38.3512603Z ok 1 - Amazon US listing pages use seller binding, persist across process restart and complete only after final page
+2026-10-11T13:16:38.4319597Z # Subtest: seller B2C USD offer is current-cycle read-only price evidence, never supplier cost
+2026-10-11T13:16:38.4321329Z ok 2 - seller B2C USD offer is current-cycle read-only price evidence, never supplier cost
+2026-10-11T13:16:38.5355782Z # Subtest: ambiguous, unsupported, zero and malformed seller offers cannot create a price receipt
+2026-10-11T13:16:38.5356907Z ok 3 - ambiguous, unsupported, zero and malformed seller offers cannot create a price receipt
+2026-10-11T13:16:38.6461133Z # Subtest: malformed listing response, missing seller binding and HTTP failure never claim catalog proof
+2026-10-11T13:16:38.6462635Z ok 4 - malformed listing response, missing seller binding and HTTP failure never claim catalog proof
+2026-10-11T13:16:38.9937006Z # Subtest: owner-started partial listing page queues normal continuation without a recovery failure
+2026-10-11T13:16:38.9938290Z ok 5 - owner-started partial listing page queues normal continuation without a recovery failure
+2026-10-11T13:16:39.1142683Z # Subtest: continuation pauses an owner-started cursor after provider rejection
+2026-10-11T13:16:39.1143799Z ok 6 - continuation pauses an owner-started cursor after provider rejection
+2026-10-11T13:16:39.6626925Z # Subtest: Amazon seller authorization request contract
+2026-10-11T13:16:39.6628370Z     # Subtest: uses application ID and state on consent URL and refuses missing production config before saving state
+2026-10-11T13:16:39.6629512Z     ok 1 - uses application ID and state on consent URL and refuses missing production config before saving state
+2026-10-11T13:16:39.6632071Z     # Subtest: binds state to workspace, rejects expiry, and permits a single completion
+2026-10-11T13:16:39.6636673Z     ok 2 - binds state to workspace, rejects expiry, and permits a single completion
+2026-10-11T13:16:39.6639091Z     # Subtest: posts the exact form grant and returns only validated tokens
+2026-10-11T13:16:39.6640038Z     ok 3 - posts the exact form grant and returns only validated tokens
+2026-10-11T13:16:39.6642676Z     # Subtest: keeps failed or malformed token replies from authorizing connection and never exposes raw response
+2026-10-11T13:16:39.6643824Z     ok 4 - keeps failed or malformed token replies from authorizing connection and never exposes raw response
+2026-10-11T13:16:39.6661689Z     # Subtest: refresh uses its own form grant and a missing refresh token cannot dispatch
+2026-10-11T13:16:39.6667927Z     ok 5 - refresh uses its own form grant and a missing refresh token cannot dispatch
+2026-10-11T13:16:39.6670089Z ok 7 - Amazon seller authorization request contract
+2026-10-11T13:16:40.2656705Z # Subtest: owner order reads preserve an uninitialized and partially initialized import schema
+2026-10-11T13:16:40.2657907Z ok 8 - owner order reads preserve an uninitialized and partially initialized import schema
+2026-10-11T13:16:40.4933466Z # Subtest: Amazon US imports a real-form page, preserves cursor across restart and only finishes after final page
+2026-10-11T13:16:40.4934784Z ok 9 - Amazon US imports a real-form page, preserves cursor across restart and only finishes after final page
+2026-10-11T13:16:40.4943093Z # Subtest: malformed or foreign-marketplace pages cannot be counted or persisted
+2026-10-11T13:16:40.4943969Z ok 10 - malformed or foreign-marketplace pages cannot be counted or persisted
+2026-10-11T13:16:40.4946061Z # Subtest: Amazon HTTP calls enforce bounded provider response size without storing response data
+2026-10-11T13:16:40.4947096Z ok 11 - Amazon HTTP calls enforce bounded provider response size without storing response data
+2026-10-11T13:16:40.6881607Z # Subtest: saved partial Amazon cursor pauses unattended work on missing credential and exposes no token
+2026-10-11T13:16:40.6882949Z ok 12 - saved partial Amazon cursor pauses unattended work on missing credential and exposes no token
+2026-10-11T13:16:40.8788986Z # Subtest: worker restart resumes owner-started order cursor using only a durable scoped vault reference
+2026-10-11T13:16:40.8790086Z ok 13 - worker restart resumes owner-started order cursor using only a durable scoped vault reference
+2026-10-11T13:16:42.8172784Z # Subtest: independent Node processes resume a durable Amazon cursor and verify sanitized result
+2026-10-11T13:16:42.8174241Z ok 14 - independent Node processes resume a durable Amazon cursor and verify sanitized result
+2026-10-11T13:16:43.4583043Z # Subtest: production-critical Amazon import route enforces founder identity before read or sync
+2026-10-11T13:16:43.4584115Z ok 15 - production-critical Amazon import route enforces founder identity before read or sync
+2026-10-11T13:16:44.1642422Z # Subtest: seller-managed quantities survive disk restart with seller-bound cursor and no price claim
+2026-10-11T13:16:44.1643689Z ok 16 - seller-managed quantities survive disk restart with seller-bound cursor and no price claim
+2026-10-11T13:16:44.2752618Z # Subtest: FBA-only, absent and malformed seller inventory do not create usable stock receipts
+2026-10-11T13:16:44.2753397Z ok 17 - FBA-only, absent and malformed seller inventory do not create usable stock receipts
+2026-10-11T13:16:44.6380476Z # Subtest: a partial seller inventory sync is queued without granting full-cycle inventory proof
+2026-10-11T13:16:44.6382565Z ok 18 - a partial seller inventory sync is queued without granting full-cycle inventory proof
+2026-10-11T13:16:44.7542595Z # Subtest: inventory continuation pauses after a provider failure and retains prior saved stock
+2026-10-11T13:16:44.7543607Z ok 19 - inventory continuation pauses after a provider failure and retains prior saved stock
+2026-10-11T13:16:45.3886339Z # Subtest: unsupported pricing and missing inventory/listing/order credentials never invent processed records
+2026-10-11T13:16:45.3887519Z ok 20 - unsupported pricing and missing inventory/listing/order credentials never invent processed records
+2026-10-11T13:16:45.3893404Z # Subtest: historic completed fixture jobs cannot unlock production commerce readiness
+2026-10-11T13:16:45.3894918Z ok 21 - historic completed fixture jobs cannot unlock production commerce readiness
+2026-10-11T13:16:45.3898004Z # Subtest: empty seller catalog or inventory imports never count as a verified full cycle
+2026-10-11T13:16:45.3899072Z ok 22 - empty seller catalog or inventory imports never count as a verified full cycle
+2026-10-11T13:16:45.3902039Z # Subtest: production Amazon notifications cannot be manufactured with caller-supplied HMAC secrets
+2026-10-11T13:16:45.3902946Z ok 23 - production Amazon notifications cannot be manufactured with caller-supplied HMAC secrets
+2026-10-11T13:16:49.5617199Z # Subtest: REAL-002B — Live Commerce Integration
+2026-10-11T13:16:49.5618236Z     # Subtest: REAL-002B — live commerce integration dashboard reports REAL-002B mission
+2026-10-11T13:16:49.5619315Z     ok 1 - REAL-002B — live commerce integration dashboard reports REAL-002B mission
+2026-10-11T13:16:49.5621874Z     # Subtest: REAL-002B — OAuth uses region-specific Seller Central for amazon-sg
+2026-10-11T13:16:49.5622762Z     ok 2 - REAL-002B — OAuth uses region-specific Seller Central for amazon-sg
+2026-10-11T13:16:49.5624723Z     # Subtest: REAL-002B — OAuth lifecycle start and complete
+2026-10-11T13:16:49.5625404Z     ok 3 - REAL-002B — OAuth lifecycle start and complete
+2026-10-11T13:16:49.9785730Z     # Subtest: REAL-002B — marketplace validation requires credentials then verifies in sandbox
+2026-10-11T13:16:49.9786533Z     ok 4 - REAL-002B — marketplace validation requires credentials then verifies in sandbox
+2026-10-11T13:16:49.9788118Z     # Subtest: REAL-002B — supplier authentication and sync operations
+2026-10-11T13:16:49.9788636Z     ok 5 - REAL-002B — supplier authentication and sync operations
+2026-10-11T13:16:49.9790577Z     # Subtest: REAL-002B — webhook processing validates signature and dead-letters invalid
+2026-10-11T13:16:49.9791707Z     ok 6 - REAL-002B — webhook processing validates signature and dead-letters invalid
+2026-10-11T13:16:50.3796589Z     # Subtest: REAL-002B — failure recovery retries failed sync operations
+2026-10-11T13:16:50.3797272Z     ok 7 - REAL-002B — failure recovery retries failed sync operations
+2026-10-11T13:16:50.7240582Z     # Subtest: REAL-002B — sandbox connections and simulated syncs cannot authorize go-live
+2026-10-11T13:16:50.7241992Z     ok 8 - REAL-002B — sandbox connections and simulated syncs cannot authorize go-live
+2026-10-11T13:16:50.7244620Z ok 24 - REAL-002B — Live Commerce Integration
+2026-10-11T13:16:50.7850420Z # tests 35
+2026-10-11T13:16:50.7851118Z # pass 35
+2026-10-11T13:16:50.7851384Z # fail 0
+2026-10-11T13:16:51.5458341Z # Subtest: unpriced exact model never reaches a provider
+2026-10-11T13:16:51.5466652Z ok 1 - unpriced exact model never reaches a provider
+2026-10-11T13:16:51.6032061Z # Subtest: owner-budgeted exact price reserves to disk before one fake provider call and blocks another
+2026-10-11T13:16:51.6033774Z ok 2 - owner-budgeted exact price reserves to disk before one fake provider call and blocks another
+2026-10-11T13:16:51.6243763Z # tests 2
+2026-10-11T13:16:51.6244390Z # pass 2
+2026-10-11T13:16:51.6251535Z # fail 0
+2026-10-11T13:16:52.0682597Z # Subtest: only successful exact-cent USD Amazon fee estimates become live economics
+2026-10-11T13:16:52.0752304Z ok 1 - only successful exact-cent USD Amazon fee estimates become live economics
+2026-10-11T13:16:52.0996027Z # Subtest: CJ API 2.0 authentication
+2026-10-11T13:16:52.1021834Z     # Subtest: obtains access token with apiKey only (CJ API 2.0)
+2026-10-11T13:16:52.1052136Z     ok 1 - obtains access token with apiKey only (CJ API 2.0)
+2026-10-11T13:16:52.1055317Z     # Subtest: includes legacy apiSecret when configured
+2026-10-11T13:16:52.1055998Z     ok 2 - includes legacy apiSecret when configured
+2026-10-11T13:16:52.1058868Z     # Subtest: refreshes access token when cached access token expires
+2026-10-11T13:16:52.1059846Z     ok 3 - refreshes access token when cached access token expires
+2026-10-11T13:16:52.1062654Z     # Subtest: reuses cached access token without network call
+2026-10-11T13:16:52.1063426Z     ok 4 - reuses cached access token without network call
+2026-10-11T13:16:52.1128836Z     # Subtest: isolates concurrent CJ account tokens and coalesces same-account auth
+2026-10-11T13:16:52.1157204Z     ok 5 - isolates concurrent CJ account tokens and coalesces same-account auth
+2026-10-11T13:16:52.1164029Z     # Subtest: does not reuse an access token after API secret or endpoint changes
+2026-10-11T13:16:52.1165037Z     ok 6 - does not reuse an access token after API secret or endpoint changes
+2026-10-11T13:16:52.1167752Z     # Subtest: refuses token responses without an independently valid expiry
+2026-10-11T13:16:52.1169033Z     ok 7 - refuses token responses without an independently valid expiry
+2026-10-11T13:16:52.1171769Z     # Subtest: buildCjAuthHeaders sets CJ-Access-Token header
+2026-10-11T13:16:52.1172683Z     ok 8 - buildCjAuthHeaders sets CJ-Access-Token header
+2026-10-11T13:16:52.1175925Z ok 2 - CJ API 2.0 authentication
+2026-10-11T13:16:52.1365842Z # Subtest: CJ live auth proof (B6-02B)
+2026-10-11T13:16:52.1389934Z     # Subtest: reports missing credentials without exposing secrets
+2026-10-11T13:16:52.1391184Z     ok 1 - reports missing credentials without exposing secrets
+2026-10-11T13:16:52.1394007Z     # Subtest: passes redacted proof when auth and product list succeed
+2026-10-11T13:16:52.1394890Z     ok 2 - passes redacted proof when auth and product list succeed
+2026-10-11T13:16:52.1397822Z ok 3 - CJ live auth proof (B6-02B)
+2026-10-11T13:16:54.8813423Z # Subtest: independent CJ workers cannot both spend the same account's final points
+2026-10-11T13:16:54.8814961Z ok 4 - independent CJ workers cannot both spend the same account's final points
+2026-10-11T13:16:54.8818036Z # Subtest: preexisting SQL.js point history blocks native-ledger reset
+2026-10-11T13:16:54.8819013Z ok 5 - preexisting SQL.js point history blocks native-ledger reset
+2026-10-11T13:16:54.8822065Z # Subtest: unreconciled native ledger sidecars withhold CJ point dispatch
+2026-10-11T13:16:54.8823015Z ok 6 - unreconciled native ledger sidecars withhold CJ point dispatch
+2026-10-11T13:16:54.8826008Z # Subtest: CJ requests need disk-backed owner budgets, reserve before dispatch, and retain uncertain charges across restart
+2026-10-11T13:16:54.8827421Z ok 7 - CJ requests need disk-backed owner budgets, reserve before dispatch, and retain uncertain charges across restart
+2026-10-11T13:16:54.9028408Z # Subtest: CJ authentication sends API key only in JSON body and withholds production readiness
+2026-10-11T13:16:54.9029848Z ok 8 - CJ authentication sends API key only in JSON body and withholds production readiness
+2026-10-11T13:16:54.9033393Z # Subtest: HTTP success without a valid CJ access token is not authentication proof
+2026-10-11T13:16:54.9034938Z ok 9 - HTTP success without a valid CJ access token is not authentication proof
+2026-10-11T13:16:54.9037999Z # Subtest: CJ production syncs refuse fabricated counts without issuing provider operations
+2026-10-11T13:16:54.9038956Z ok 10 - CJ production syncs refuse fabricated counts without issuing provider operations
+2026-10-11T13:16:54.9041300Z # Subtest: one VID sums only direct CJ-managed warehouse units and never factory inventory
+2026-10-11T13:16:54.9042579Z ok 11 - one VID sums only direct CJ-managed warehouse units and never factory inventory
+2026-10-11T13:16:54.9044211Z # Subtest: a stock lookup never retries and spends at most one queryByVid call on provider failure
+2026-10-11T13:16:54.9044884Z ok 12 - a stock lookup never retries and spends at most one queryByVid call on provider failure
+2026-10-11T13:16:56.5382802Z # Subtest: pillow-commerce-presale
+2026-10-11T13:16:56.5383455Z     # Subtest: registers Pillow commerce tools
+2026-10-11T13:16:56.5384081Z     ok 1 - registers Pillow commerce tools
+2026-10-11T13:16:56.5386767Z     # Subtest: treats ACCEPTED as not BUYABLE (Proof 001 regression class)
+2026-10-11T13:16:56.5387577Z     ok 2 - treats ACCEPTED as not BUYABLE (Proof 001 regression class)
+2026-10-11T13:16:56.5389960Z     # Subtest: rejects Proof 001 Anker / blocked ASIN identity
+2026-10-11T13:16:56.5390851Z     ok 3 - rejects Proof 001 Anker / blocked ASIN identity
+2026-10-11T13:16:56.5394521Z     # Subtest: normalizes a VID-bound CJ variantSellPrice into cost
+2026-10-11T13:16:56.5395307Z     ok 4 - normalizes a VID-bound CJ variantSellPrice into cost
+2026-10-11T13:16:56.5397534Z     # Subtest: rejects CJ price ranges, product-level cost fallback, fake VIDs and conflicting variant quotes
+2026-10-11T13:16:56.5398738Z     ok 5 - rejects CJ price ranges, product-level cost fallback, fake VIDs and conflicting variant quotes
+2026-10-11T13:16:56.5401698Z     # Subtest: rejects loss-making economics and unavailable live inputs
+2026-10-11T13:16:56.5402368Z     ok 6 - rejects loss-making economics and unavailable live inputs
+2026-10-11T13:16:56.5417011Z     # Subtest: refuses stale, mismatched or absent provider response receipts
+2026-10-11T13:16:56.5417973Z     ok 7 - refuses stale, mismatched or absent provider response receipts
+2026-10-11T13:16:58.1662762Z     # Subtest: runs autonomous cycle via Pillow path: reject bad, qualify good, surface approval, no publish/spend
+2026-10-11T13:16:58.1664064Z     ok 8 - runs autonomous cycle via Pillow path: reject bad, qualify good, surface approval, no publish/spend
+2026-10-11T13:16:58.1666518Z ok 13 - pillow-commerce-presale
+2026-10-11T13:16:58.2215771Z # Subtest: only bounded exact-cent monetary evidence can pass Pillow contribution gate
+2026-10-11T13:16:58.2216499Z ok 14 - only bounded exact-cent monetary evidence can pass Pillow contribution gate
+2026-10-11T13:16:58.2218050Z # tests 29
+2026-10-11T13:16:58.2218469Z # pass 29
+2026-10-11T13:16:58.2218672Z # fail 0
+2026-10-11T13:16:58.8448240Z # Subtest: Bounded commercial routing + fallback authority
+2026-10-11T13:16:58.8481915Z     # Subtest: detects bounded decision without magic hypothetical wording
+2026-10-11T13:16:58.8491559Z     ok 1 - detects bounded decision without magic hypothetical wording
+2026-10-11T13:16:58.8611642Z     # Subtest: does not classify live order queries as bounded synthetic
+2026-10-11T13:16:58.8641807Z     ok 2 - does not classify live order queries as bounded synthetic
+2026-10-11T13:16:58.8682636Z     # Subtest: section titles are not extracted as claims
+2026-10-11T13:16:58.8683391Z     ok 3 - section titles are not extracted as claims
+2026-10-11T13:16:58.8686012Z     # Subtest: decision-aware synthesis replaces Unsupported takeover for Snapshot
+2026-10-11T13:16:58.8687041Z     ok 4 - decision-aware synthesis replaces Unsupported takeover for Snapshot
+2026-10-11T13:16:58.8689839Z     # Subtest: synthesizeTaskUnitAnswer uses decision path before epistemic stub
+2026-10-11T13:16:58.8691032Z     ok 5 - synthesizeTaskUnitAnswer uses decision path before epistemic stub
+2026-10-11T13:16:58.8693812Z     # Subtest: reconstruct numbers sections 1..N without Unsupported clone takeover
+2026-10-11T13:16:58.8694705Z     ok 6 - reconstruct numbers sections 1..N without Unsupported clone takeover
+2026-10-11T13:16:58.8697209Z     # Subtest: epistemic template alone does not treat Snapshot as Unsupported claim
+2026-10-11T13:16:58.8698122Z     ok 7 - epistemic template alone does not treat Snapshot as Unsupported claim
+2026-10-11T13:16:58.8701102Z ok 1 - Bounded commercial routing + fallback authority
+2026-10-11T13:16:58.9794201Z # Subtest: Case provenance + executable causal graph lock
+2026-10-11T13:16:58.9841707Z     # Subtest: NEW_BOUNDED_CASE redacts foreign specimen facts from prior turns
+2026-10-11T13:16:58.9932555Z     ok 1 - NEW_BOUNDED_CASE redacts foreign specimen facts from prior turns
+2026-10-11T13:16:59.0064006Z     # Subtest: firewall strips foreign timestamps/mechanisms from visible answer
+2026-10-11T13:16:59.0101584Z     ok 2 - firewall strips foreign timestamps/mechanisms from visible answer
+2026-10-11T13:16:59.0221691Z     # Subtest: CONTINUATION preserves prior case facts
+2026-10-11T13:16:59.0255109Z     ok 3 - CONTINUATION preserves prior case facts
+2026-10-11T13:16:59.0402036Z     # Subtest: multi-hop warehouse chain: PATH>1 ⇒ direct claim CONTRADICTED
+2026-10-11T13:16:59.0431847Z     ok 4 - multi-hop warehouse chain: PATH>1 ⇒ direct claim CONTRADICTED
+2026-10-11T13:16:59.0611688Z     # Subtest: connected claim SUPPORTED when PATH exists without common root
+2026-10-11T13:16:59.0634709Z     ok 5 - connected claim SUPPORTED when PATH exists without common root
+2026-10-11T13:16:59.0721561Z     # Subtest: Audit:/Also: prefixed quotes extract as claims
+2026-10-11T13:16:59.0724024Z     ok 6 - Audit:/Also: prefixed quotes extract as claims
+2026-10-11T13:16:59.0726948Z ok 2 - Case provenance + executable causal graph lock
+2026-10-11T13:17:00.3517198Z # Subtest: Causal predicate + visible envelope lock
+2026-10-11T13:17:00.3541765Z     # Subtest: headCausalEntity strips claim nouns
+2026-10-11T13:17:00.3571516Z     ok 1 - headCausalEntity strips claim nouns
+2026-10-11T13:17:00.3603525Z     # Subtest: directly caused over multi-hop path is CONTRADICTED (not UNRESOLVED)
+2026-10-11T13:17:00.3604510Z     ok 2 - directly caused over multi-hop path is CONTRADICTED (not UNRESOLVED)
+2026-10-11T13:17:00.3607378Z     # Subtest: unrelated-because-different-mechanism with path is CONTRADICTED
+2026-10-11T13:17:00.3608431Z     ok 3 - unrelated-because-different-mechanism with path is CONTRADICTED
+2026-10-11T13:17:00.3611447Z     # Subtest: same root on cascade without common root is CONTRADICTED
+2026-10-11T13:17:00.3613006Z     ok 4 - same root on cascade without common root is CONTRADICTED
+2026-10-11T13:17:00.3617304Z     # Subtest: release rewrites Supported direct/unrelated leftovers to Contradicted
+2026-10-11T13:17:00.3618405Z     ok 5 - release rewrites Supported direct/unrelated leftovers to Contradicted
+2026-10-11T13:17:00.3621377Z     # Subtest: envelope strips Recommendation lead and Risk/lesson trailing on exact-N
+2026-10-11T13:17:00.3622444Z     ok 6 - envelope strips Recommendation lead and Risk/lesson trailing on exact-N
+2026-10-11T13:17:00.3625380Z     # Subtest: ensureCausalClaimConsistency does not append Risk/lesson under exact sections
+2026-10-11T13:17:00.3626520Z     ok 7 - ensureCausalClaimConsistency does not append Risk/lesson under exact sections
+2026-10-11T13:17:00.3629468Z     # Subtest: transport authorize still requires complete verdicts
+2026-10-11T13:17:00.3630330Z     ok 8 - transport authorize still requires complete verdicts
+2026-10-11T13:17:00.3633257Z ok 3 - Causal predicate + visible envelope lock
+2026-10-11T13:17:00.3701578Z # Subtest: EC01/EC02 commercial arithmetic
+2026-10-11T13:17:00.3731323Z     # Subtest: documents precision policies
+2026-10-11T13:17:00.3732126Z     ok 1 - documents precision policies
+2026-10-11T13:17:00.3783317Z     # Subtest: EC01 classic: 40-18-4-6%-1 = 14.60 not 15
+2026-10-11T13:17:00.3783975Z     ok 2 - EC01 classic: 40-18-4-6%-1 = 14.60 not 15
+2026-10-11T13:17:00.3786703Z     # Subtest: EC02 cost shock: cost 20 → 12.60
+2026-10-11T13:17:00.3787418Z     ok 3 - EC02 cost shock: cost 20 → 12.60
+2026-10-11T13:17:00.3789751Z     # Subtest: 14.5% fee on 39.90 with decimals
+2026-10-11T13:17:00.3790369Z     ok 4 - 14.5% fee on 39.90 with decimals
+2026-10-11T13:17:00.3793092Z     # Subtest: mixed currency without FX → UNKNOWN
+2026-10-11T13:17:00.3793844Z     ok 5 - mixed currency without FX → UNKNOWN
+2026-10-11T13:17:00.3796446Z     # Subtest: US$ amounts alone are USD not MIXED (no S$ false positive inside US$)
+2026-10-11T13:17:00.3797437Z     ok 6 - US$ amounts alone are USD not MIXED (no S$ false positive inside US$)
+2026-10-11T13:17:00.3800054Z     # Subtest: fee mentioned without value → UNKNOWN
+2026-10-11T13:17:00.3801242Z     ok 7 - fee mentioned without value → UNKNOWN
+2026-10-11T13:17:00.3901069Z     # Subtest: synthesizeTaskUnitAnswer uses calculator not whole-number approx
+2026-10-11T13:17:00.3902020Z     ok 8 - synthesizeTaskUnitAnswer uses calculator not whole-number approx
+2026-10-11T13:17:00.3904722Z     # Subtest: detects mismatch 15 vs 14.60
+2026-10-11T13:17:00.3905300Z     ok 9 - detects mismatch 15 vs 14.60
+2026-10-11T13:17:00.3907777Z     # Subtest: margin percent separate from dollar contribution
+2026-10-11T13:17:00.3908505Z     ok 10 - margin percent separate from dollar contribution
+2026-10-11T13:17:00.3910931Z     # Subtest: negative contribution allowed
+2026-10-11T13:17:00.3911528Z     ok 11 - negative contribution allowed
+2026-10-11T13:17:00.3914086Z     # Subtest: isCommercialArithmeticAsk true for unit economics
+2026-10-11T13:17:00.3914829Z     ok 12 - isCommercialArithmeticAsk true for unit economics
+2026-10-11T13:17:00.3917124Z     # Subtest: formatMoneyVisible SGD
+2026-10-11T13:17:00.3917692Z     ok 13 - formatMoneyVisible SGD
+2026-10-11T13:17:00.3920195Z     # Subtest: synthesizeCommercialArithmeticAnswer returns exact
+2026-10-11T13:17:00.3921275Z     ok 14 - synthesizeCommercialArithmeticAnswer returns exact
+2026-10-11T13:17:00.3923823Z     # Subtest: repair overrides invented FX on MIXED currency
+2026-10-11T13:17:00.3924588Z     ok 15 - repair overrides invented FX on MIXED currency
+2026-10-11T13:17:00.3927112Z     # Subtest: repair overrides false-complete when fee unknown
+2026-10-11T13:17:00.3927919Z     ok 16 - repair overrides false-complete when fee unknown
+2026-10-11T13:17:00.3930870Z ok 4 - EC01/EC02 commercial arithmetic
+2026-10-11T13:17:00.3933338Z # Subtest: Given-metric arithmetic authority (Juniper class)
+2026-10-11T13:17:00.3934330Z     # Subtest: GK forensic: not arith ask, USD only, no unit-econ stub, DecisionCase SELECT Juniper
+2026-10-11T13:17:00.3935505Z     ok 1 - GK forensic: not arith ask, USD only, no unit-econ stub, DecisionCase SELECT Juniper
+2026-10-11T13:17:00.3938713Z     # Subtest: given contribution decision does not hijack via subject Unit economics
+2026-10-11T13:17:00.3939745Z     ok 2 - given contribution decision does not hijack via subject Unit economics
+2026-10-11T13:17:00.3943032Z     # Subtest: negation 'do not recompute unit economics' does not flip given-metric to calc ask
+2026-10-11T13:17:00.3944175Z     ok 3 - negation 'do not recompute unit economics' does not flip given-metric to calc ask
+2026-10-11T13:17:00.3946929Z     # Subtest: repair does not rewrite given-metric decisions
+2026-10-11T13:17:00.3947678Z     ok 4 - repair does not rewrite given-metric decisions
+2026-10-11T13:17:00.3950356Z ok 5 - Given-metric arithmetic authority (Juniper class)
+2026-10-11T13:17:00.3953136Z # Subtest: owner-supplied monetary facts in ordinary prose
+2026-10-11T13:17:00.3954162Z     # Subtest: preserves explicitly supplied prices and computes through the answer path
+2026-10-11T13:17:00.3955201Z     ok 1 - preserves explicitly supplied prices and computes through the answer path
+2026-10-11T13:17:00.3957913Z     # Subtest: does not borrow another field or interpret malformed/ranged money as a price
+2026-10-11T13:17:00.3958889Z     ok 2 - does not borrow another field or interpret malformed/ranged money as a price
+2026-10-11T13:17:00.3962015Z ok 6 - owner-supplied monetary facts in ordinary prose
+2026-10-11T13:17:00.3964455Z # Subtest: supplied marketplace fees remain in scenario economics
+2026-10-11T13:17:00.3965582Z     # Subtest: uses the recovered owner fact summary without claiming the original transcript or provider qualification
+2026-10-11T13:17:00.3966902Z     ok 1 - uses the recovered owner fact summary without claiming the original transcript or provider qualification
+2026-10-11T13:17:00.3969648Z     # Subtest: reads plural fixed and percentage fees without stealing a later margin
+2026-10-11T13:17:00.3970591Z     ok 2 - reads plural fixed and percentage fees without stealing a later margin
+2026-10-11T13:17:00.3973779Z ok 7 - supplied marketplace fees remain in scenario economics
+2026-10-11T13:17:00.3976295Z # Subtest: Decision-state authority lock
+2026-10-11T13:17:00.3976945Z     # Subtest: derives ELIGIBLE_SET={FLINT} and SELECT FLINT
+2026-10-11T13:17:00.3977693Z     ok 1 - derives ELIGIBLE_SET={FLINT} and SELECT FLINT
+2026-10-11T13:17:00.3980960Z     # Subtest: pending≠eligible and count claims CONTRADICTED
+2026-10-11T13:17:00.3982057Z     ok 2 - pending≠eligible and count claims CONTRADICTED
+2026-10-11T13:17:00.3984700Z     # Subtest: cross-section repair: detail FAIL + summary eligible + DO NOT SELECT
+2026-10-11T13:17:00.3985719Z     ok 3 - cross-section repair: detail FAIL + summary eligible + DO NOT SELECT
+2026-10-11T13:17:00.3988403Z     # Subtest: same-line peers and soft-correct inject DO NOT SELECT / SELECT
+2026-10-11T13:17:00.3989290Z     ok 4 - same-line peers and soft-correct inject DO NOT SELECT / SELECT
+2026-10-11T13:17:00.3991945Z     # Subtest: polish locks claim verdicts from decision case
+2026-10-11T13:17:00.3992718Z     ok 5 - polish locks claim verdicts from decision case
+2026-10-11T13:17:00.3995663Z ok 8 - Decision-state authority lock
+2026-10-11T13:17:00.3998064Z # Subtest: Deterministic resolved-verdict lock
+2026-10-11T13:17:00.3999277Z     # Subtest: Harbour-class nothing-to-do-with + transfer facts → contradicted; polish locks Claim 1
+2026-10-11T13:17:00.4000610Z     ok 1 - Harbour-class nothing-to-do-with + transfer facts → contradicted; polish locks Claim 1
+2026-10-11T13:17:00.4003673Z     # Subtest: UNRESOLVED judgment control: generic preference claim does not force Contradicted
+2026-10-11T13:17:00.4004826Z     ok 2 - UNRESOLVED judgment control: generic preference claim does not force Contradicted
+2026-10-11T13:17:00.4007991Z ok 9 - Deterministic resolved-verdict lock
+2026-10-11T13:17:00.4010349Z # Subtest: Final visible contract lock
+2026-10-11T13:17:00.4011306Z     # Subtest: strips Section contract diagnostic and never appends it via enforce
+2026-10-11T13:17:00.4012341Z     ok 1 - strips Section contract diagnostic and never appends it via enforce
+2026-10-11T13:17:00.4015067Z     # Subtest: rejects diagnostic tail even when sections 1–6 are present
+2026-10-11T13:17:00.4016243Z     ok 2 - rejects diagnostic tail even when sections 1–6 are present
+2026-10-11T13:17:00.4018773Z     # Subtest: 28/40 @ higher % loses to 25/25 full population on evidence strength
+2026-10-11T13:17:00.4019661Z     ok 3 - 28/40 @ higher % loses to 25/25 full population on evidence strength
+2026-10-11T13:17:00.4022748Z     # Subtest: objective validator false-pass and false-fail are zero on fixture set
+2026-10-11T13:17:00.4023746Z     ok 4 - objective validator false-pass and false-fail are zero on fixture set
+2026-10-11T13:17:00.4026548Z ok 10 - Final visible contract lock
+2026-10-11T13:17:00.5409332Z # Subtest: FAST INVARIANT GATE
+2026-10-11T13:17:00.5451029Z     # Subtest: catalog has >=25 invariants
+2026-10-11T13:17:00.5452340Z     ok 1 - catalog has >=25 invariants
+2026-10-11T13:17:00.5571509Z     # Subtest: critical interaction pairs defined
+2026-10-11T13:17:00.5601468Z     ok 2 - critical interaction pairs defined
+2026-10-11T13:17:00.5711622Z     # Subtest: IC-03 soft claim extracts after assess newline
+2026-10-11T13:17:00.5721199Z     ok 3 - IC-03 soft claim extracts after assess newline
+2026-10-11T13:17:00.5834959Z     # Subtest: IC-03 bare Assess: cue extracts quoted and newline propositions
+2026-10-11T13:17:00.5835903Z     ok 4 - IC-03 bare Assess: cue extracts quoted and newline propositions
+2026-10-11T13:17:00.5838494Z     # Subtest: IC-03 causal grades: DIRECT / INDIRECT / COMMON_ROOT / UNRELATED
+2026-10-11T13:17:00.5839475Z     ok 5 - IC-03 causal grades: DIRECT / INDIRECT / COMMON_ROOT / UNRELATED
+2026-10-11T13:17:00.5844328Z     # Subtest: IC-03 causal_unrelated assesses contradicted on transfer path
+2026-10-11T13:17:00.5845297Z     ok 6 - IC-03 causal_unrelated assesses contradicted on transfer path
+2026-10-11T13:17:00.5848034Z     # Subtest: IC-16/22 visible contract envelope: no unrequested pre/post semantic blocks
+2026-10-11T13:17:00.5848883Z     ok 7 - IC-16/22 visible contract envelope: no unrequested pre/post semantic blocks
+2026-10-11T13:17:00.5851414Z     # Subtest: IC-20 irrelevant doctrine strips when no refund obligation
+2026-10-11T13:17:00.5852225Z     ok 8 - IC-20 irrelevant doctrine strips when no refund obligation
+2026-10-11T13:17:00.5859703Z     # Subtest: change-impact mapping covers claim and memory modules
+2026-10-11T13:17:00.5860538Z     ok 9 - change-impact mapping covers claim and memory modules
+2026-10-11T13:17:00.5863364Z ok 11 - FAST INVARIANT GATE
+2026-10-11T13:17:01.6180139Z # Subtest: Resolved verdict authority — canonical owns final explicit verdict
+2026-10-11T13:17:01.6181852Z     # Subtest: negative controls: canonical Contradicted + LLM Supported must not false-pass
+2026-10-11T13:17:01.6183047Z     ok 1 - negative controls: canonical Contradicted + LLM Supported must not false-pass
+2026-10-11T13:17:01.6186182Z     # Subtest: 100 raw resolved cases: LLM tempted opposite; final matches canonical; no leftover Supported
+2026-10-11T13:17:01.6187436Z     ok 2 - 100 raw resolved cases: LLM tempted opposite; final matches canonical; no leftover Supported
+2026-10-11T13:17:01.6192903Z     # Subtest: judgment controls: unresolved claims stay Unproven/Unknown — not over-determinized to Supported
+2026-10-11T13:17:01.6194246Z     ok 3 - judgment controls: unresolved claims stay Unproven/Unknown — not over-determinized to Supported
+2026-10-11T13:17:01.6197031Z ok 12 - Resolved verdict authority — canonical owns final explicit verdict
+2026-10-11T13:17:01.6442454Z # Subtest: Sterling multi-failure lock
+2026-10-11T13:17:01.6443207Z     # Subtest: demotes nested ranking so exactly 6 top-level sections remain
+2026-10-11T13:17:01.6444077Z     ok 1 - demotes nested ranking so exactly 6 top-level sections remain
+2026-10-11T13:17:01.6446370Z     # Subtest: 5 claims with only Claim 2 verdict become 5 explicit verdicts
+2026-10-11T13:17:01.6447193Z     ok 2 - 5 claims with only Claim 2 verdict become 5 explicit verdicts
+2026-10-11T13:17:01.6464209Z     # Subtest: evidence strength ranks full-population ahead of higher sample %
+2026-10-11T13:17:01.6465141Z     ok 3 - evidence strength ranks full-population ahead of higher sample %
+2026-10-11T13:17:01.6466986Z ok 13 - Sterling multi-failure lock
+2026-10-11T13:17:01.6468752Z # Subtest: Transport-boundary contract lock
+2026-10-11T13:17:01.6469235Z     # Subtest: reproduces Valence-class: 5 claim texts / 1 verdict must FAIL authorize
+2026-10-11T13:17:01.6469811Z     ok 1 - reproduces Valence-class: 5 claim texts / 1 verdict must FAIL authorize
+2026-10-11T13:17:01.6471473Z     # Subtest: 5 claims / 5 verdicts AUTHORIZE
+2026-10-11T13:17:01.6471820Z     ok 2 - 5 claims / 5 verdicts AUTHORIZE
+2026-10-11T13:17:01.6473179Z     # Subtest: mutation-after-validation: stripping a verdict must fail re-authorize
+2026-10-11T13:17:01.6473757Z     ok 3 - mutation-after-validation: stripping a verdict must fail re-authorize
+2026-10-11T13:17:01.6475371Z     # Subtest: diagnostic tail fails even with complete claims
+2026-10-11T13:17:01.6475875Z     ok 4 - diagnostic tail fails even with complete claims
+2026-10-11T13:17:01.6477770Z ok 14 - Transport-boundary contract lock
+2026-10-11T13:17:01.6479375Z # Subtest: UNBLOCK epistemic open/bounded writer authority
+2026-10-11T13:17:01.6480010Z     # Subtest: classifies open strategy as open reasoning, not claim audit
+2026-10-11T13:17:01.6480583Z     ok 1 - classifies open strategy as open reasoning, not claim audit
+2026-10-11T13:17:01.6482526Z     # Subtest: EC18 reconstruct does not emit Unverified assertion stub
+2026-10-11T13:17:01.6483108Z     ok 2 - EC18 reconstruct does not emit Unverified assertion stub
+2026-10-11T13:17:01.6484880Z     # Subtest: warm light eligibility builds decision case and SELECT NEXO
+2026-10-11T13:17:01.6485440Z     ok 3 - warm light eligibility builds decision case and SELECT NEXO
+2026-10-11T13:17:01.6486881Z     # Subtest: principle transfer case selects granted, not pending
+2026-10-11T13:17:01.6487372Z     ok 4 - principle transfer case selects granted, not pending
+2026-10-11T13:17:01.6490396Z     # Subtest: claim audit still may use epistemic writer
+2026-10-11T13:17:01.6491016Z     ok 5 - claim audit still may use epistemic writer
+2026-10-11T13:17:01.6492289Z     # Subtest: open shell synthesizer stays non-stub
+2026-10-11T13:17:01.6492817Z     ok 6 - open shell synthesizer stays non-stub
+2026-10-11T13:17:01.6494075Z     # Subtest: live fact query remains live-classified
+2026-10-11T13:17:01.6494449Z     ok 7 - live fact query remains live-classified
+2026-10-11T13:17:01.6495853Z     # Subtest: mere mention of supplier feeds is not Unverified assertion branch
+2026-10-11T13:17:01.6496364Z     ok 8 - mere mention of supplier feeds is not Unverified assertion branch
+2026-10-11T13:17:01.6497925Z ok 15 - UNBLOCK epistemic open/bounded writer authority
+2026-10-11T13:17:01.6499314Z # tests 83
+2026-10-11T13:17:01.6499725Z # pass 83
+2026-10-11T13:17:01.6499925Z # fail 0
+2026-10-11T13:17:02.0601261Z # Subtest: authority + synthetic ledger isolation
+2026-10-11T13:17:02.0625139Z     # Subtest: blocks live-rationale actions while NOT_BORN even if authorized flag set
+2026-10-11T13:17:02.0652131Z     ok 1 - blocks live-rationale actions while NOT_BORN even if authorized flag set
+2026-10-11T13:17:02.0703499Z     # Subtest: rejects live ledger fields on synthetic entries
+2026-10-11T13:17:02.0704252Z     ok 2 - rejects live ledger fields on synthetic entries
+2026-10-11T13:17:02.0710885Z ok 1 - authority + synthetic ledger isolation
+2026-10-11T13:17:02.0861870Z # Subtest: comma contribution ranking (D-002)
+2026-10-11T13:17:02.0862831Z     # Subtest: ranks US$5,000 above US$4,950
+2026-10-11T13:17:02.0879607Z     ok 1 - ranks US$5,000 above US$4,950
+2026-10-11T13:17:02.0882765Z ok 2 - comma contribution ranking (D-002)
+2026-10-11T13:17:02.0982183Z # Subtest: later correction supersedes earlier delivery (D-003)
+2026-10-11T13:17:02.1001025Z     # Subtest: uses corrected delivery for eligibility
+2026-10-11T13:17:02.1002314Z     ok 1 - uses corrected delivery for eligibility
+2026-10-11T13:17:02.1005330Z ok 3 - later correction supersedes earlier delivery (D-003)
+2026-10-11T13:17:02.4652089Z # Subtest: exec-cap authority + compact candidate binding
+2026-10-11T13:17:02.4652953Z     # Subtest: refuses live listing/ad asks while NOT_BORN
+2026-10-11T13:17:02.4653682Z     ok 1 - refuses live listing/ad asks while NOT_BORN
+2026-10-11T13:17:02.4655995Z     # Subtest: answers Birth/mode from canonical authority facts
+2026-10-11T13:17:02.4657166Z     ok 2 - answers Birth/mode from canonical authority facts
+2026-10-11T13:17:02.4659855Z     # Subtest: answers the failed canary authority ask and unfamiliar permission paraphrases from locked state
+2026-10-11T13:17:02.4661280Z     ok 3 - answers the failed canary authority ask and unfamiliar permission paraphrases from locked state
+2026-10-11T13:17:02.4664151Z     # Subtest: does not replace strategy, third-party permissions or additional tasks with authority facts
+2026-10-11T13:17:02.4665445Z     ok 4 - does not replace strategy, third-party permissions or additional tasks with authority facts
+2026-10-11T13:17:02.4667997Z     # Subtest: does not hijack Eligible/Selected into checkpoint contracts
+2026-10-11T13:17:02.4668746Z     ok 5 - does not hijack Eligible/Selected into checkpoint contracts
+2026-10-11T13:17:02.4670282Z     # Subtest: binds compact Kestrel/Lumen/Morrow paragraph
+2026-10-11T13:17:02.4670906Z     ok 6 - binds compact Kestrel/Lumen/Morrow paragraph
+2026-10-11T13:17:02.4678961Z     # Subtest: applies contribution correction and 5d delivery
+2026-10-11T13:17:02.4679740Z     ok 7 - applies contribution correction and 5d delivery
+2026-10-11T13:17:02.4681824Z     # Subtest: binds reordered Nova facts
+2026-10-11T13:17:02.4685908Z     ok 8 - binds reordered Nova facts
+2026-10-11T13:17:02.4688517Z ok 4 - exec-cap authority + compact candidate binding
+2026-10-11T13:17:02.4786944Z # Subtest: W1-T1 corrected-delivery decision authority
+2026-10-11T13:17:02.4788137Z     # Subtest: extractCurrentDeliveryDays prefers corrected over earlier
+2026-10-11T13:17:02.4788892Z     ok 1 - extractCurrentDeliveryDays prefers corrected over earlier
+2026-10-11T13:17:02.4791132Z     # Subtest: DecisionCase: sole eligible Nova, Vega FAIL on corrected 8
+2026-10-11T13:17:02.4791788Z     ok 2 - DecisionCase: sole eligible Nova, Vega FAIL on corrected 8
+2026-10-11T13:17:02.4793474Z     # Subtest: repair removes cross-section contradictions for sole eligible
+2026-10-11T13:17:02.4793974Z     ok 3 - repair removes cross-section contradictions for sole eligible
+2026-10-11T13:17:02.4795557Z     # Subtest: bare contribution numbers in multi-gate packs are given-metric not calc asks
+2026-10-11T13:17:02.4796154Z     ok 4 - bare contribution numbers in multi-gate packs are given-metric not calc asks
+2026-10-11T13:17:02.4797656Z     # Subtest: Helios-shaped Supplier headers: Ember sole eligible; Grove CF changes selection
+2026-10-11T13:17:02.4798277Z     ok 5 - Helios-shaped Supplier headers: Ember sole eligible; Grove CF changes selection
+2026-10-11T13:17:02.4799854Z ok 5 - W1-T1 corrected-delivery decision authority
+2026-10-11T13:17:02.4801423Z # tests 17
+2026-10-11T13:17:02.4801829Z # pass 17
+2026-10-11T13:17:02.4802037Z # fail 0
+2026-10-11T13:17:05.8691066Z # Subtest: canonical executive truth
+2026-10-11T13:17:05.8692702Z     # Subtest: treats awaiting implementation as no active mission
+2026-10-11T13:17:05.8698277Z     ok 1 - treats awaiting implementation as no active mission
+2026-10-11T13:17:05.8703199Z     # Subtest: counts commerce opportunity as pending approval
+2026-10-11T13:17:05.8705491Z     ok 2 - counts commerce opportunity as pending approval
+2026-10-11T13:17:05.8715205Z     # Subtest: uses operational readiness — not credential-gap engine FAILED — for health
+2026-10-11T13:17:05.8716538Z     ok 3 - uses operational readiness — not credential-gap engine FAILED — for health
+2026-10-11T13:17:05.8719367Z     # Subtest: dedupes attention titles
+2026-10-11T13:17:05.8719937Z     ok 4 - dedupes attention titles
+2026-10-11T13:17:05.8722231Z ok 1 - canonical executive truth
+2026-10-11T13:17:05.9228581Z # Subtest: DC-05421 fact precedence + response contract
+2026-10-11T13:17:05.9229372Z     # Subtest: extracts supplied contributions and sums to 16.00
+2026-10-11T13:17:05.9230097Z     ok 1 - extracts supplied contributions and sums to 16.00
+2026-10-11T13:17:05.9232474Z     # Subtest: does not invoke commercial calculator / SELLING_PRICE
+2026-10-11T13:17:05.9233250Z     ok 2 - does not invoke commercial calculator / SELLING_PRICE
+2026-10-11T13:17:05.9235964Z     # Subtest: projects exact four-line contract without extra prose
+2026-10-11T13:17:05.9236744Z     ok 3 - projects exact four-line contract without extra prose
+2026-10-11T13:17:05.9238859Z     # Subtest: blocks when token missing
+2026-10-11T13:17:05.9239295Z     ok 4 - blocks when token missing
+2026-10-11T13:17:05.9241342Z     # Subtest: US$5000 exceeds US$4950 for ranking facts
+2026-10-11T13:17:05.9241910Z     ok 5 - US$5000 exceeds US$4950 for ranking facts
+2026-10-11T13:17:05.9243964Z ok 2 - DC-05421 fact precedence + response contract
+2026-10-11T13:17:05.9249603Z # Subtest: pillow accepted-request recovery Level A
+2026-10-11T13:17:05.9250286Z     # Subtest: 1 accepts request with durable identity
+2026-10-11T13:17:05.9251722Z     ok 1 - 1 accepts request with durable identity
+2026-10-11T13:17:05.9253414Z     # Subtest: 2 bounded retry succeeds after first transient failure
+2026-10-11T13:17:05.9255835Z     ok 2 - 2 bounded retry succeeds after first transient failure
+2026-10-11T13:17:05.9257947Z     # Subtest: 3 worker unavailable then recovers before attempt
+2026-10-11T13:17:05.9258633Z     ok 3 - 3 worker unavailable then recovers before attempt
+2026-10-11T13:17:05.9260887Z     # Subtest: 3b HTTP 500 after worker flap retries (GK checkpoint class)
+2026-10-11T13:17:05.9261686Z     ok 4 - 3b HTTP 500 after worker flap retries (GK checkpoint class)
+2026-10-11T13:17:05.9263838Z     # Subtest: 4 timeout hierarchy constants are ordered FE >= BFF >= Tier0 budget
+2026-10-11T13:17:05.9264682Z     ok 5 - 4 timeout hierarchy constants are ordered FE >= BFF >= Tier0 budget
+2026-10-11T13:17:05.9266729Z     # Subtest: 5 attempt timeout respects remaining budget
+2026-10-11T13:17:05.9267350Z     ok 6 - 5 attempt timeout respects remaining budget
+2026-10-11T13:17:05.9269271Z     # Subtest: 6 remaining budget declines
+2026-10-11T13:17:05.9269798Z     ok 7 - 6 remaining budget declines
+2026-10-11T13:17:05.9271804Z     # Subtest: 7 degraded/terminal suppresses Birth on synthetic isolation
+2026-10-11T13:17:05.9272801Z     ok 8 - 7 degraded/terminal suppresses Birth on synthetic isolation
+2026-10-11T13:17:05.9274805Z     # Subtest: 8 Birth may appear only when asked
+2026-10-11T13:17:05.9275372Z     ok 9 - 8 Birth may appear only when asked
+2026-10-11T13:17:05.9277310Z     # Subtest: 9 infrastructure failure is not clarification
+2026-10-11T13:17:05.9277974Z     ok 10 - 9 infrastructure failure is not clarification
+2026-10-11T13:17:05.9279986Z     # Subtest: 9b REQUEST_NOT_ACCEPTED is not blind retry language
+2026-10-11T13:17:05.9280798Z     ok 11 - 9b REQUEST_NOT_ACCEPTED is not blind retry language
+2026-10-11T13:17:05.9282847Z     # Subtest: 10 idempotency: reasoning kind only; side_effect throws
+2026-10-11T13:17:05.9283496Z     ok 12 - 10 idempotency: reasoning kind only; side_effect throws
+2026-10-11T13:17:05.9285704Z     # Subtest: 11 recovery exhausted returns transient classification
+2026-10-11T13:17:05.9286443Z     ok 13 - 11 recovery exhausted returns transient classification
+2026-10-11T13:17:05.9288481Z     # Subtest: 12 empty message is transient and retried
+2026-10-11T13:17:05.9289105Z     ok 14 - 12 empty message is transient and retried
+2026-10-11T13:17:05.9291107Z     # Subtest: 13 503 upstream is transient
+2026-10-11T13:17:05.9291608Z     ok 15 - 13 503 upstream is transient
+2026-10-11T13:17:05.9293629Z     # Subtest: 14 400 upstream is not treated as worker-unavailable class only
+2026-10-11T13:17:05.9294462Z     ok 16 - 14 400 upstream is not treated as worker-unavailable class only
+2026-10-11T13:17:05.9296519Z     # Subtest: 15 worker 500 upstream is transient (GK checkpoint class)
+2026-10-11T13:17:05.9297290Z     ok 17 - 15 worker 500 upstream is transient (GK checkpoint class)
+2026-10-11T13:17:05.9299379Z     # Subtest: 16 upstream_error without status is transient (defensive)
+2026-10-11T13:17:05.9300089Z     ok 18 - 16 upstream_error without status is transient (defensive)
+2026-10-11T13:17:05.9302628Z ok 3 - pillow accepted-request recovery Level A
+2026-10-11T13:17:05.9307044Z # Subtest: Shadow CEO chat admission — request control
+2026-10-11T13:17:05.9307677Z     # Subtest: does not admit ordinary non-operating chat
+2026-10-11T13:17:05.9308282Z     ok 1 - does not admit ordinary non-operating chat
+2026-10-11T13:17:05.9310448Z     # Subtest: evaluates supplied Kestrel/Lumen/Morrow — never demo catalog
+2026-10-11T13:17:05.9311524Z     ok 2 - evaluates supplied Kestrel/Lumen/Morrow — never demo catalog
+2026-10-11T13:17:05.9313678Z     # Subtest: is idempotent for duplicate delivery of the same candidate pack
+2026-10-11T13:17:05.9314514Z     ok 3 - is idempotent for duplicate delivery of the same candidate pack
+2026-10-11T13:17:05.9316928Z     # Subtest: blocks generic Shadow CEO operate chat instead of substituting demo slice
+2026-10-11T13:17:05.9317723Z     ok 4 - blocks generic Shadow CEO operate chat instead of substituting demo slice
+2026-10-11T13:17:05.9319634Z     # Subtest: blocks arbitrary synthetic trial wording without supplied candidates
+2026-10-11T13:17:05.9320424Z     ok 5 - blocks arbitrary synthetic trial wording without supplied candidates
+2026-10-11T13:17:05.9322686Z     # Subtest: selects none when no candidate is eligible
+2026-10-11T13:17:05.9323346Z     ok 6 - selects none when no candidate is eligible
+2026-10-11T13:17:05.9325369Z     # Subtest: ranks multiple eligible by highest contribution when asked
+2026-10-11T13:17:05.9326165Z     ok 7 - ranks multiple eligible by highest contribution when asked
+2026-10-11T13:17:05.9328445Z     # Subtest: isolates two concurrent requests with different products
+2026-10-11T13:17:05.9329214Z     ok 8 - isolates two concurrent requests with different products
+2026-10-11T13:17:05.9333314Z     # Subtest: blocks plan-as-execution DNS on source-backed brief text
+2026-10-11T13:17:05.9334187Z     ok 9 - blocks plan-as-execution DNS on source-backed brief text
+2026-10-11T13:17:05.9336808Z ok 4 - Shadow CEO chat admission — request control
+2026-10-11T13:17:05.9348511Z # Subtest: Railway Shadow CEO records and authority use its volume, never the application directory
+2026-10-11T13:17:05.9349337Z ok 5 - Railway Shadow CEO records and authority use its volume, never the application directory
+2026-10-11T13:17:05.9351260Z # Subtest: authority JSON preserves the last durable record on interrupted write and refuses corrupt state
+2026-10-11T13:17:05.9352407Z ok 6 - authority JSON preserves the last durable record on interrupted write and refuses corrupt state
+2026-10-11T13:17:05.9354564Z # Subtest: corrupt request-owner state refuses retry and an interrupted atomic write preserves old authority
+2026-10-11T13:17:05.9355514Z ok 7 - corrupt request-owner state refuses retry and an interrupted atomic write preserves old authority
+2026-10-11T13:17:05.9357440Z # tests 39
+2026-10-11T13:17:05.9357968Z # pass 39
+2026-10-11T13:17:05.9358240Z # fail 0

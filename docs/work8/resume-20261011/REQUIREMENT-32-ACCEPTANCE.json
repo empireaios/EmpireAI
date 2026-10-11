@@ -1,0 +1,68 @@
+{
+  "schema": "WORK8_REQUIREMENT_32_ACCEPTANCE_V1",
+  "requirement": 32,
+  "status": "PASS",
+  "scope": "Unit/integration/contract and property examinations under mandate8/19; no genuine owner end-to-end acceptance inferred",
+  "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+  "sourceTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "actualProductCheckout": "ee203983ff5c97404de90b1a282a9ff532476822",
+  "productAttribution": "Distinct PR merge commit has identical complete tree; not mislabelled literal PR head",
+  "runtimeAttribution": "Runtime main job and restoration receipt pin literal published a3cd82a1 source",
+  "independentVerifier": "/root/review_retirement_finance",
+  "criteriaSatisfied": [
+    "Retained component contract, identity, authority, monetary and idempotency positive/negative examinations",
+    "Seeded generated integer-conservation properties and reproducible commerce/finance traces; invalid seed and bounds refusal",
+    "Current bounded Work8 Product suite215/215 including registered recurrence and real-source deferral/identity cases",
+    "Current Runtime391/391 and demonstrated cross-store capture refusal regression PASS",
+    "Clean typecheck/build and all four required current workflows SUCCESS",
+    "Affected implementation and test-only successor source attribution reconciled; failures and repairs retained"
+  ],
+  "workflowRuns": [
+    {
+      "id": 38142058029,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38142058040,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38142058048,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38142058061,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "runtimeJob": 114477757239,
+  "artifact": {
+    "id": 11703737345,
+    "zipSha256": "6b12e9cb7579dd3ec2e21aa2cadd0b30aacfd657cdf36db8949d20a0e28415b4",
+    "receiptPassed": true
+  },
+  "evidenceHashes": {
+    "resume-20261011/EXACT-HEAD-CI-A3CD82A1.json": "327a5f656cb302e0efed24169c5cc2b3d8e8fe04fd670c1b1d065ab6c2c7194a",
+    "resume-20261011/PRODUCT-A3CD82A1-ATTRIBUTION.json": "ec7fa676878794600776f1db82f595ee6b2c52a28d2f968c48f518a8906c5f0f",
+    "resume-20261011/PRODUCT-A3CD82A1-TESTS.log": "12ff08b40f0f74a54668be7a81a0a1673ca2d0ae62251f6d5695923b5cd7f0d1",
+    "resume-20261011/RUNTIME-A3CD82A1-TESTS.log": "ffb2a977c95eb9c2df89e466eb72c472ffd5a1214e97eeeb6243cb91a9ff3662",
+    "resume-20261011/RUNTIME-38142058061-receipt.json": "a90519c7fcdd3279e1850a146614cffdcddf9750d052750de254a06c7c7cb8a6",
+    "component-node22.log": "0a12a6cb970a00b37c944ea7a516543106aef911c6c7b0e0ad824f1d0ec2387a"
+  },
+  "remainingCriteriaWithinScope": [],
+  "excludedClaims": [
+    "Native owner real-product journey under40/41",
+    "Global arbitrary-writer quiescence or complete33/39 acceptance",
+    "Full fault-programme or measured hosted endurance",
+    "Production release or whole Work8 completion"
+  ],
+  "reviewMethod": "Independent review of retained source and hosted receipts; no examinations rerun; no register or ledger edits"
+}

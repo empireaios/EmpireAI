@@ -1,0 +1,70 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: Canva export result binds exact edit request, source assets, rights and version; grants no approvals
+ok 1 - Canva export result binds exact edit request, source assets, rights and version; grants no approvals
+  ---
+  duration_ms: 192.142086
+  type: 'test'
+  ...
+# Subtest: Canva refuses stale requests, unbound runtime authority and changed export identity without proposal
+ok 2 - Canva refuses stale requests, unbound runtime authority and changed export identity without proposal
+  ---
+  duration_ms: 831.080693
+  type: 'test'
+  ...
+# Subtest: Canva catches asynchronous version change and reserves unknown outcomes against retry
+ok 3 - Canva catches asynchronous version change and reserves unknown outcomes against retry
+  ---
+  duration_ms: 450.849263
+  type: 'test'
+  ...
+# Subtest: Canva rechecks current authority after export and before consuming downloaded bytes
+ok 4 - Canva rechecks current authority after export and before consuming downloaded bytes
+  ---
+  duration_ms: 285.227962
+  type: 'test'
+  ...
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: retained Pillow proposal reaches existing preview and exact approval without inference or authority expansion
+ok 5 - retained Pillow proposal reaches existing preview and exact approval without inference or authority expansion
+  ---
+  duration_ms: 38.897735
+  type: 'test'
+  ...
+# Subtest: foreign owner, session, input, pending completion and non-model reply cannot become a proposal
+ok 6 - foreign owner, session, input, pending completion and non-model reply cannot become a proposal
+  ---
+  duration_ms: 43.027294
+  type: 'test'
+  ...
+# Subtest: malformed, oversized, authority-bearing and wrong-context model output is refused
+ok 7 - malformed, oversized, authority-bearing and wrong-context model output is refused
+  ---
+  duration_ms: 42.555607
+  type: 'test'
+  ...
+# Subtest: expiry and revocation while saved request is read prevent preview consumption
+ok 8 - expiry and revocation while saved request is read prevent preview consumption
+  ---
+  duration_ms: 10.483185
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2206.444686

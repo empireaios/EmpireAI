@@ -1,0 +1,357 @@
+{
+  "schema": "WORK8_OWNER_AMENDMENTS_19_V1",
+  "authority": "OWNER-BUSINESS-ACTIVATION-DIRECTIVE.txt",
+  "separateFromOriginal45": true,
+  "denominator": 19,
+  "counts": {
+    "PASS": 0,
+    "PENDING": 19,
+    "BLOCKED": 0
+  },
+  "legacyRegister": "OWNER-AMENDMENTS.json",
+  "crosswalk": "Original 17 amendment IDs preserved unchanged. Latest directive splits persistent/whole-system twin; media archive remains within item9 with legacy11; hosted and integrated acceptance are explicit19-row entries. No original45 IDs changed.",
+  "amendments": [
+    {
+      "id": 1,
+      "amendment": "Persistent autonomous digital twin",
+      "legacyAmendmentIds": [
+        1
+      ],
+      "originalRequirementIds": [
+        4,
+        10,
+        19,
+        20,
+        24,
+        39
+      ],
+      "engineering": "Existing canonical twin retained; media and communications added",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Hosted cross-store/global writer consistency and genuine operating acceptance; existing persistent engine and adapters preserved.",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 2,
+      "amendment": "Whole-system twin",
+      "legacyAmendmentIds": [
+        1
+      ],
+      "originalRequirementIds": [
+        4,
+        10,
+        19,
+        20,
+        24,
+        39
+      ],
+      "engineering": "Existing canonical twin retained; media and communications added",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Hosted cross-store/global writer consistency and genuine operating acceptance; existing persistent engine and adapters preserved.",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 3,
+      "amendment": "Protected backup vault",
+      "legacyAmendmentIds": [
+        2
+      ],
+      "originalRequirementIds": [
+        2,
+        24,
+        39
+      ],
+      "engineering": "V3 prepared-mission/enrollment snapshots, V1/V2 migration, independently verified chain and atomic point-in-time restore; inert authority/preview history survives without restoring grants. Nine-store offline vault inventory and financial WAL immutable verification added.",
+      "acceptanceEvidence": "Runtime38142058061 verified whole-volume, finance and Redis continuity; prior sealed snapshot/replay evidence retained",
+      "remaining": "Global writer coordination, protected off-host retention and authenticated independent restore; current whole-volume/Redis/financial continuity already passed",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 4,
+      "amendment": "Future-state workspace",
+      "legacyAmendmentIds": [
+        3
+      ],
+      "originalRequirementIds": [
+        4,
+        39
+      ],
+      "engineering": "New empty recovery stores; divergent experiment replay refused",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Authenticated future-state workspace lifecycle and isolated runtime acceptance; no new dashboard required.",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 5,
+      "amendment": "Seamless upgrades and rollback",
+      "legacyAmendmentIds": [
+        4
+      ],
+      "originalRequirementIds": [
+        39,
+        42
+      ],
+      "engineering": "Old/new/old separate process test preserved 4 orders and44 financial events",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Hosted upgrade, zero-downtime evidence and operational controls remain",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 6,
+      "amendment": "Owner-visible autonomous dry run",
+      "legacyAmendmentIds": [
+        5
+      ],
+      "originalRequirementIds": [
+        19,
+        20,
+        24,
+        26,
+        40,
+        41
+      ],
+      "engineering": "Seven existing views plus media/communication extensions",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Authenticated native acceptance and genuine source journey remain",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 7,
+      "amendment": "Five mobile shortcuts",
+      "legacyAmendmentIds": [
+        6
+      ],
+      "originalRequirementIds": [
+        3,
+        40,
+        41
+      ],
+      "engineering": "CEO/Intelligence/Products/Orders/Finance; Home preserved; typecheck/lint passed",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Native phone touch, geometry and keyboard acceptance remain",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 8,
+      "amendment": "Product-linked Pillow Chat",
+      "legacyAmendmentIds": [
+        7
+      ],
+      "originalRequirementIds": [
+        13,
+        14,
+        40,
+        41
+      ],
+      "engineering": "Single and2\u20134 comparison references server-validated; product binding survives prompt schema and conversation compaction; removable chips and Orders links added.",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Native browser acceptance and authorised genuine assessment.",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 9,
+      "amendment": "Product image/video management",
+      "legacyAmendmentIds": [
+        8,
+        11
+      ],
+      "originalRequirementIds": [
+        7,
+        19,
+        40
+      ],
+      "engineering": "Image/video import form now records batch source, rights, checksum, editing provenance and instructions; existing proposal/approval endpoint reused. Native details element closed by default; original revisions retained",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Native observation, independently verified media bytes/rights and authorised Canva execution remain. Native browser verification remains",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 10,
+      "amendment": "Canva-assisted editing",
+      "legacyAmendmentIds": [
+        9
+      ],
+      "originalRequirementIds": [
+        7,
+        13,
+        19
+      ],
+      "engineering": "Exact edit-request/version/source-bound Canva export consumer implemented locally; immutable attempt prevents blind retry; proposal receives no approvals.",
+      "acceptanceEvidence": "4 intercepted export tests PASS; full backend typecheck PASS; safe default route reviewed.",
+      "remaining": "Current adapter cannot execute editing instructions. Need supported editing surface or explicitly approved external editing process, exact asset permission, server authority/reader configuration, and native acceptance.",
+      "status": "PENDING",
+      "nextAction": "Resolve provider editing capability and exact rights within shared media decision; retain blocked runtime default."
+    },
+    {
+      "id": 11,
+      "amendment": "Separate internal/external media approval",
+      "legacyAmendmentIds": [
+        10
+      ],
+      "originalRequirementIds": [
+        19,
+        36
+      ],
+      "engineering": "Individual/batch internal selection, exact-version intercepted external step tested Rejected approved batches now lose selected/submitted status; regression passes.",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Native acceptance and genuine rights evidence remain",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 12,
+      "amendment": "Temporary Systems authority",
+      "legacyAmendmentIds": [
+        12
+      ],
+      "originalRequirementIds": [
+        27,
+        36
+      ],
+      "engineering": "Four independent preparation/inspection scopes, one-task/timed grants, expiry/revoke, durable consumption and safe local consumers implemented; scheduler authority separate. Recovered grant/preview history is retained separately as inert audit evidence and exposed in collapsed Systems details.",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Genuine authorised model consumer and authenticated native grant/expiry/revocation acceptance; local retained-proposal integration reviewed.",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 13,
+      "amendment": "Conversational UX changes",
+      "legacyAmendmentIds": [
+        13
+      ],
+      "originalRequirementIds": [
+        3,
+        27,
+        40
+      ],
+      "engineering": "Owner/request/context-bound retained Pillow proposal now feeds existing isolated preview and separate approval; canonical request hash reused.",
+      "acceptanceEvidence": "4 focused tests PASS; frontend/backend typechecks and changed-file lint PASS; independent scoped review clear after hash repair.",
+      "remaining": "Bounded publication, genuine authorised completed proposal and native owner acceptance.",
+      "status": "PENDING",
+      "nextAction": "Publish reviewed batch after approval; consume exact authorised retained reply in existing Systems flow."
+    },
+    {
+      "id": 14,
+      "amendment": "Human-interaction risk management",
+      "legacyAmendmentIds": [
+        14
+      ],
+      "originalRequirementIds": [
+        20,
+        21,
+        22,
+        26,
+        40
+      ],
+      "engineering": "Eight-category risk/deadline/escalation workflow now prevents silent unresolved downgrade and deadline postponement; restart and recovery tested. Existing preparation is explicitly rule-based (modelAssessment NOT_REQUESTED), allowed while inference is unauthorised.",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Native risk/escalation acceptance; genuine model-prepared draft only through separately authorised inference.",
+      "status": "PENDING",
+      "nextAction": "Demonstrate truthful rule-based preparation and escalation in the shared owner journey; do not label it AI-written."
+    },
+    {
+      "id": 15,
+      "amendment": "Keepa and Helium 10 readiness",
+      "legacyAmendmentIds": [
+        15
+      ],
+      "originalRequirementIds": [
+        5,
+        9,
+        16
+      ],
+      "engineering": "Existing validation and disabled adapter preserved",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Licensing/entitlement verification remains; Jungle Scout excluded",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 16,
+      "amendment": "Financial Birth Cutover",
+      "legacyAmendmentIds": [
+        16
+      ],
+      "originalRequirementIds": [
+        2,
+        24,
+        25,
+        39,
+        41
+      ],
+      "engineering": "Immutable isolated Birth identity, service-period allocations, preserved archive/position references, backup/restore and existing authenticated owner route/view implemented.",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Genuine complete financial inputs, independent opening-position review and native owner acceptance; live cutover forbidden.",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 17,
+      "amendment": "Autonomous Cost Intelligence",
+      "legacyAmendmentIds": [
+        17
+      ],
+      "originalRequirementIds": [
+        2,
+        24,
+        25,
+        39,
+        41
+      ],
+      "engineering": "Bounded read-only adapter ports, durable evidence/exceptions, existing-journal invoice reconciliation, Vercel aggregate adapter and owner view implemented. Published freshness repair ac9583c: cached reads cannot clear current outage; restart retains unresolved state. Three scoped tests and strict TypeScript PASS.",
+      "acceptanceEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "remaining": "Additional authorised provider interfaces, subscription/invoice/payment detail, exact accounting rows, continuous activation reserved Work9.",
+      "status": "PENDING",
+      "nextAction": "Complete the applicable step in the same genuine-product owner journey; preserve existing passes"
+    },
+    {
+      "id": 18,
+      "amendment": "Isolated hosted twin",
+      "legacyAmendmentIds": [
+        1
+      ],
+      "originalRequirementIds": [
+        4,
+        10,
+        19,
+        20,
+        24,
+        39
+      ],
+      "engineering": "Existing hosting proposal and billing inspection preserved; no runtime provisioned",
+      "acceptanceEvidence": "Retained cost/isolation inspection; no hosted acceptance",
+      "remaining": "Identify isolated capacity, enforceable total exposure, protected retention and separate deployment authority",
+      "status": "PENDING",
+      "nextAction": "Choose existing isolated capacity or fully priced separate billing option"
+    },
+    {
+      "id": 19,
+      "amendment": "Integrated owner acceptance",
+      "legacyAmendmentIds": [
+        5
+      ],
+      "originalRequirementIds": [
+        19,
+        20,
+        24,
+        26,
+        40,
+        41
+      ],
+      "engineering": "Existing Console projections and persistent lifecycle retained",
+      "acceptanceEvidence": "Phone OFFLINE_FIXTURE pass; not genuine owner acceptance",
+      "remaining": "Same genuine product/mission/order/finance/Assurance records on desktop and mobile",
+      "status": "PENDING",
+      "nextAction": "Join source/assessment, rights, accounting and hosted inputs"
+    }
+  ]
+}

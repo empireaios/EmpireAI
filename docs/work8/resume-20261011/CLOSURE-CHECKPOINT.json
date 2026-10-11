@@ -1,14 +1,14 @@
 {
-  "backend": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
-  "backendTree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
+  "backend": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+  "backendTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
   "frontendReview": "720764722e6178d4126dcf376383096e204ec5ba",
   "frontendTree": "a4f9e1206a7d0e463da947644d721a1db45341e3",
   "frontendDeploymentBranchHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
   "recoveredBackend": "ac9583c5bb51c8b85fd3480c2128c89a3ac49518",
   "recoveredEvidence": "890448974d79a2e9b6d0f8e87254ca81bbef5c44",
   "counts": {
-    "PASS": 6,
-    "PENDING": 34,
+    "PASS": 10,
+    "PENDING": 30,
     "BLOCKED": 5
   },
   "productionChanged": false,
@@ -16,18 +16,24 @@
   "commerce": "LOCKED",
   "work8": "NO_GO",
   "work9": "NOT_ACTIVATED",
-  "next": "Obtain one consolidated successor publication approval; publish exact reviewed source a83c95eb and evidence trees, verify heads and CI, then independently attribute29/32 acceptance. Four external inputs and isolated hosted authority remain; see CONSOLIDATED-HOSTING-DECISION.md. No uncovered currently executable local assertion identified in accepted scenario design.",
+  "next": "Execute the consolidated four-input owner decision: genuine source/assessment receipts, exact image permissions, read-only accounting snapshots, isolated runtime/retention and separate test deployment authority. No remaining currently executable local assertion identified; no new source patch awaits publication.",
   "localBackend": "a83c95eb8870a893c93920353c5da94351b5c34f",
-  "publishedEvidence": "ad3bf4f73a44d1624018343a5240529ed9401407",
-  "backendCi": "ALL_FOUR_SUCCESS_AT_E3E8500A",
-  "runtimeRun": 38139483205,
+  "publishedEvidence": "9c67f51b9500643ac0563c4fb2bdf562845fdffb",
+  "backendCi": "ALL_FOUR_SUCCESS",
+  "runtimeRun": 38142058061,
   "publication": "APPROVED_TWO_COMMITS_PUBLISHED_WITH_EXACT_TREE_EQUALITY",
   "localBackendTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
   "priorBackendCi": "b68e42b_ALL_FOUR_SUCCESS",
   "priorConnectorCi": "06a217ec:all4SUCCESS including runtime38134138144",
-  "unpublishedSource": "a83c95eb8870a893c93920353c5da94351b5c34f",
-  "unpublishedSourceTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
   "requirement37": "PASS_CLOSURE_PUBLISHED_UNCHANGED",
-  "publishedEvidenceTree": "cc394f74f8a6e932013d2b20a339cc37fbaaa86b",
-  "priorCurrentHeadCI": "70a9: Assurance,semantic,Product PASS; runtime38135512670 FAILURE in precutover stop after whole-volume restore PASS"
+  "publishedEvidenceTree": "38004aad468e3db3ce0214033a832816cca895e5",
+  "priorCurrentHeadCI": "70a9: Assurance,semantic,Product PASS; runtime38135512670 FAILURE in precutover stop after whole-volume restore PASS",
+  "currentCiReceipt": "EXACT-HEAD-CI-A3CD82A1.json",
+  "newAcceptedRequirements": [
+    10,
+    15,
+    29,
+    32
+  ],
+  "acceptanceEvidencePublication": "LOCAL_POST_PUBLICATION_BATCH_NOT_INCLUDED_IN_APPROVED_EVIDENCE_TREE"
 }

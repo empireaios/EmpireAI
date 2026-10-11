@@ -1,0 +1,30 @@
+{
+  "schema": "WORK8_REQUIREMENT_29_ACCEPTANCE_V1",
+  "requirement": 29,
+  "status": "PASS",
+  "scope": "Recurrence budget and circuit breaker; retained negative/control cases plus actual registered-runtime recurrence integration",
+  "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+  "sourceTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "originalReviewedSource": "a83c95eb8870a893c93920353c5da94351b5c34f",
+  "independentVerifier": "/root/review_retirement_finance",
+  "findings": [
+    "Uses actual createAssuranceRuntime and registered rebuild_reconciliation; no substituted runbook",
+    "Nonempty canonical evidence row makes source preservation nonvacuous",
+    "Two verified recoveries separated by31000ms and runtime reopen; healthy cycles do not repair",
+    "Third missing-view recurrence remains missing/UNRESOLVED with family-circuit reason; no third recovery across another reopen",
+    "Two prior RECOVERY_RESULT events and recovery records retained unchanged",
+    "Inference denial port remains uncalled; virtual time not elapsed endurance"
+  ],
+  "criteriaAssessment": "Together with retained failed-verifier, per-incident cooldown, unknown-outcome and persistent fault-family control-plane examinations, the previously identified registered-runtime integration gap is satisfied. No additional recurrence engineering assertion identified.",
+  "testSha256": "51831a5df5e2faa8acd8afd4b1a8a4e744c57d714d08cecacc53d2dade98baac",
+  "receiptSha256": "9ea224e0d1feb1f6ac79369ad223630b7770d2e208d9db4b577a0ecbf8924721",
+  "planSha256": "d487eb2ce23fdcbbde0374be70bcf24ae5c1258743d8925655c11b8c81ad011e",
+  "verification": "Fetched published tree equals reviewed/tested local tree with zero diff. Published test bytes equal reviewed hash. Recurrence runtime implementation unchanged from prior all-four-CI-success source e3e8500a. New case retained as isolated passing evidence.",
+  "ciScope": "New automatically triggered CI is pending; no current-head full-CI success or release acceptance inferred. Separate bundle-capture runtime delta belongs to #32/#33/#39/#42 validation.",
+  "remainingRequirement29Criteria": [],
+  "limitations": [
+    "No tests rerun by reviewer",
+    "No hosted endurance, full fault programme or production acceptance",
+    "No register or mission ledger changed by reviewer"
+  ]
+}

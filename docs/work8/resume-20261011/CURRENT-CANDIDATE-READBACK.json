@@ -1,0 +1,1425 @@
+{
+  "retrievedAt": "2026-10-11T13:42:07.216Z",
+  "readOnly": true,
+  "externalRefresh": false,
+  "inferenceCalls": 0,
+  "capabilities": {
+    "retrievedAt": "2026-10-11T13:41:43.496Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "capabilities",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "Shared capability declarations plus current durable named intelligence read receipts",
+    "data": {
+      "declared": [
+        {
+          "id": "live_sqlite_commissioning",
+          "label": "SQLite commissioning / one-product record",
+          "category": "database",
+          "availability": "available",
+          "read": true,
+          "write": false,
+          "mechanism": "buildExecutiveTruthSnapshot → getOneProductCommissioningRecord",
+          "evidenceReturned": "ASIN, productName, stage, selectionAuthority, etc.",
+          "limitations": "Only durable commissioning row; not arbitrary marketplace APIs"
+        },
+        {
+          "id": "live_sqlite_kpi",
+          "label": "Smart-viable / commerce KPI snapshot",
+          "category": "runtime_state",
+          "availability": "available",
+          "read": true,
+          "write": false,
+          "mechanism": "buildSmartViableKpiSnapshot / live commercial situation",
+          "evidenceReturned": "orders, realisedRevenueUsd, listing counts",
+          "limitations": "Realised metrics only; does not invent market research"
+        },
+        {
+          "id": "birth_record",
+          "label": "Birth commissioning record",
+          "category": "runtime_state",
+          "availability": "available",
+          "read": true,
+          "write": false,
+          "mechanism": "getBirthRecord",
+          "evidenceReturned": "status, technicallyReady, birthTimestamp, gates",
+          "limitations": "Birth authorisation is Grand King only"
+        },
+        {
+          "id": "railway_deploy_env",
+          "label": "Railway deploy identity env",
+          "category": "deploy",
+          "availability": "available",
+          "read": true,
+          "write": false,
+          "mechanism": "RAILWAY_GIT_COMMIT_SHA / RAILWAY_DEPLOYMENT_ID on process",
+          "evidenceReturned": "git commit SHA, deployment id when present",
+          "limitations": "Process env only; not Railway dashboard UI scraping"
+        },
+        {
+          "id": "executive_chat_llm",
+          "label": "LLM completion for executive chat",
+          "category": "llm_tools",
+          "availability": "available",
+          "read": false,
+          "write": false,
+          "mechanism": "llmLayer.complete",
+          "evidenceReturned": "generated text (not external source retrieval)",
+          "limitations": "Narrative is not provenance"
+        },
+        {
+          "id": "chat_tool_calling_loop",
+          "label": "In-chat tool calling loop",
+          "category": "llm_tools",
+          "availability": "partial",
+          "read": true,
+          "write": false,
+          "mechanism": "Locked reasoning: one bounded local arithmetic round; no general tool loop",
+          "evidenceReturned": "Hashed request-scoped execution receipt only when invoked",
+          "limitations": "No network/code/write execution; at most three arithmetic operations"
+        },
+        {
+          "id": "gmail_inbox",
+          "label": "Gmail / email inbox",
+          "category": "external_comms",
+          "availability": "unavailable",
+          "read": false,
+          "write": false,
+          "mechanism": "none wired to executive chat",
+          "evidenceReturned": "none",
+          "limitations": "Cannot claim email was reviewed"
+        },
+        {
+          "id": "project_management_tool",
+          "label": "Project management tool / dashboard",
+          "category": "project_mgmt",
+          "availability": "unavailable",
+          "read": false,
+          "write": false,
+          "mechanism": "none wired to executive chat",
+          "evidenceReturned": "none",
+          "limitations": "Cannot claim PM tool access"
+        },
+        {
+          "id": "supplier_comms_channel",
+          "label": "Supplier communications channel",
+          "category": "external_comms",
+          "availability": "unavailable",
+          "read": false,
+          "write": false,
+          "mechanism": "none wired to executive chat",
+          "evidenceReturned": "none",
+          "limitations": "Cannot claim supplier email/chat review"
+        },
+        {
+          "id": "meeting_notes_repository",
+          "label": "Meeting notes repository",
+          "category": "documents",
+          "availability": "unavailable",
+          "read": false,
+          "write": false,
+          "mechanism": "none wired to executive chat",
+          "evidenceReturned": "none",
+          "limitations": "Cannot claim meeting participation/review"
+        },
+        {
+          "id": "internal_audit_system",
+          "label": "Internal audit system / operational audits store",
+          "category": "documents",
+          "availability": "unavailable",
+          "read": false,
+          "write": false,
+          "mechanism": "none wired to executive chat as a browsable audit store",
+          "evidenceReturned": "none",
+          "limitations": "Live truth snapshot is not an audit-report browser"
+        },
+        {
+          "id": "market_analysis_tool",
+          "label": "Market analysis / competitive research tool",
+          "category": "market_intel",
+          "availability": "unavailable",
+          "read": false,
+          "write": false,
+          "mechanism": "none wired to executive chat",
+          "evidenceReturned": "none",
+          "limitations": "Cannot invent market analysis reports"
+        }
+      ],
+      "currentProviderAccess": "PER_CAPABILITY",
+      "commerceEffects": "BLOCKED",
+      "amazon": {
+        "status": "AVAILABLE",
+        "scope": "Named read endpoints only; not full provider eligibility or commerce authority",
+        "capabilities": [
+          {
+            "id": "amazon.account",
+            "status": "STALE",
+            "readState": "STALE",
+            "lastVerifiedRead": "2026-10-11T00:37:15.300Z",
+            "endpoint": "/sellers/v1/marketplaceParticipations"
+          },
+          {
+            "id": "amazon.catalog",
+            "status": "AVAILABLE",
+            "readState": "READ_VERIFIED",
+            "lastVerifiedRead": "2026-10-11T12:39:16.028Z",
+            "endpoint": "/catalog/2022-04-01/items"
+          },
+          {
+            "id": "amazon.offers",
+            "status": "AVAILABLE",
+            "readState": "READ_VERIFIED",
+            "lastVerifiedRead": "2026-10-11T12:39:17.562Z",
+            "endpoint": "/products/pricing/v0/items/B0GN1TZZ9W/offers"
+          },
+          {
+            "id": "amazon.fees",
+            "status": "STALE",
+            "readState": "STALE",
+            "lastVerifiedRead": "2026-10-09T08:48:36.740Z",
+            "endpoint": "/products/fees/v0/items/B0GN1TZZ9W/feesEstimate"
+          },
+          {
+            "id": "amazon.analytics",
+            "status": "DEGRADED",
+            "readState": "UNVERIFIED",
+            "lastVerifiedRead": null,
+            "endpoint": null
+          },
+          {
+            "id": "amazon.restrictions",
+            "status": "STALE",
+            "readState": "STALE",
+            "lastVerifiedRead": "2026-10-09T08:49:40.152Z",
+            "endpoint": "/listings/2021-08-01/restrictions"
+          },
+          {
+            "id": "amazon.requirements",
+            "status": "UNVERIFIED",
+            "readState": "UNVERIFIED",
+            "lastVerifiedRead": null,
+            "endpoint": null
+          },
+          {
+            "id": "amazon.orders",
+            "status": "UNVERIFIED",
+            "readState": "UNVERIFIED",
+            "lastVerifiedRead": null,
+            "endpoint": null
+          },
+          {
+            "id": "amazon.opportunity",
+            "status": "UNAVAILABLE",
+            "readState": "UNVERIFIED",
+            "lastVerifiedRead": null,
+            "endpoint": null
+          }
+        ],
+        "lockedRuntimeAccess": "See per-capability verified endpoint and timestamp"
+      },
+      "cj": {
+        "status": "AVAILABLE",
+        "scope": "Named read endpoints only; not full provider eligibility or commerce authority",
+        "capabilities": [
+          {
+            "id": "cj.catalog",
+            "status": "AVAILABLE",
+            "readState": "READ_VERIFIED",
+            "lastVerifiedRead": "2026-10-11T12:39:16.745Z",
+            "endpoint": "/product/list"
+          },
+          {
+            "id": "cj.detail",
+            "status": "AVAILABLE",
+            "readState": "READ_VERIFIED",
+            "lastVerifiedRead": "2026-10-11T12:39:18.147Z",
+            "endpoint": "/product/query"
+          },
+          {
+            "id": "cj.stock",
+            "status": "AVAILABLE",
+            "readState": "READ_VERIFIED",
+            "lastVerifiedRead": "2026-10-11T12:39:45.665Z",
+            "endpoint": "/product/stock/queryByVid"
+          },
+          {
+            "id": "cj.freight",
+            "status": "AVAILABLE",
+            "readState": "READ_VERIFIED",
+            "lastVerifiedRead": "2026-10-11T12:39:46.162Z",
+            "endpoint": "/logistic/freightCalculate"
+          }
+        ],
+        "lockedRuntimeAccess": "See per-capability verified endpoint and timestamp"
+      },
+      "keepa": {
+        "status": "UNVERIFIED",
+        "scope": "Named read endpoints only; not full provider eligibility or commerce authority",
+        "capabilities": [
+          {
+            "id": "keepa.history",
+            "status": "UNAVAILABLE",
+            "readState": "UNVERIFIED",
+            "lastVerifiedRead": null,
+            "endpoint": null
+          }
+        ],
+        "lockedRuntimeAccess": "See per-capability verified endpoint and timestamp"
+      },
+      "costCentre": {
+        "status": "UNAVAILABLE",
+        "handover": "Work5"
+      },
+      "truthVocabulary": [
+        "AVAILABLE",
+        "DEGRADED",
+        "UNAVAILABLE",
+        "STALE",
+        "UNVERIFIED",
+        "BLOCKED"
+      ],
+      "arsenalDomain": "arsenal"
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "accounting": {
+    "retrievedAt": "2026-10-11T13:41:43.603Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "accounting",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": "2026-10-11T13:41:43.603Z",
+    "source": "existing accounting snapshot; recorded estimates are not provider invoices",
+    "data": {
+      "schema": "owner-commissioning-accounting-v1",
+      "observedAt": "2026-10-11T13:41:43.604Z",
+      "readOnly": true,
+      "recordCount": 227,
+      "recordDigestSha256": "9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92",
+      "ceilingMicroUsd": null,
+      "heldMicroUsd": 112427447,
+      "remainingMicroUsd": null,
+      "recordedEstimateMicroUsd": 20507705,
+      "estimateUnknownCount": 5,
+      "invoiceActualMicroUsd": null,
+      "invoiceUnknownCount": 227,
+      "reservationReleased": false,
+      "inferenceCalls": 0
+    },
+    "coverage": {
+      "limit": 3,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "detail": {
+    "retrievedAt": "2026-10-11T13:42:28.894Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "evidence",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+    "data": {
+      "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+      "capabilityId": "cj.detail",
+      "eye": "SUPPLIER",
+      "provider": "CJ",
+      "endpoint": "/product/query",
+      "subject": {
+        "id": "2610110805301627100",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-11T12:39:18.147Z",
+      "retrievedAt": "2026-10-11T12:39:18.147Z",
+      "staleAfter": "2026-10-11T18:39:18.147Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "38919003068b86281d6bd5a1263b0ea919f4457f480b9ddbca76b7dec67f69d8",
+      "facts": {
+        "response": {
+          "pid": "2610110805301627100",
+          "productName": "[\"新款跨境AI毛绒玩具桌伴搭子AI公仔闺蜜送同学礼物AI搭子源头工厂\",\"新款跨境ai毛绒玩具桌伴\",\"搭子ai公仔闺蜜送\"]",
+          "productNameSet": [
+            "新款跨境AI毛绒玩具桌伴搭子AI公仔闺蜜送同学礼物AI搭子源头工厂",
+            "新款跨境ai毛绒玩具桌伴",
+            "搭子ai公仔闺蜜送"
+          ],
+          "productNameEn": "Desk Buddy Gives A Classmate An AI Plush Toy As A Gift",
+          "productSku": "CJMR3238857",
+          "bigImage": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/cd19a326-fe60-4536-ba49-cf607831de40_fine.jpeg",
+          "productImage": "[\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/cd19a326-fe60-4536-ba49-cf607831de40_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/16335887-68a6-42e3-afcf-55d1e93db743_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/9eb2799c-22e2-4dd3-83e1-13e6b7f0ade1_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/6c007c17-b5fd-466e-915e-11c2baa60c67_trans.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/7fd66aa3-70f1-49e7-8171-980c8dc0b405_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/61f8dda3-45ff-4c00-b453-02763fc5941b_fine.jpeg\",\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/36709969-6264-4421-a984-808977b99dbd_trans.jpeg\"]",
+          "productImageSet": [
+            "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/6c007c17-b5fd-466e-915e-11c2baa60c67_trans.jpeg",
+            "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/36709969-6264-4421-a984-808977b99dbd_trans.jpeg",
+            "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/7fd66aa3-70f1-49e7-8171-980c8dc0b405_fine.jpeg",
+            "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/9eb2799c-22e2-4dd3-83e1-13e6b7f0ade1_trans.jpeg",
+            "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/cd19a326-fe60-4536-ba49-cf607831de40_fine.jpeg",
+            "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/16335887-68a6-42e3-afcf-55d1e93db743_fine.jpeg",
+            "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/61f8dda3-45ff-4c00-b453-02763fc5941b_fine.jpeg"
+          ],
+          "productWeight": "430.00",
+          "productUnit": null,
+          "productType": "ORDINARY_PRODUCT",
+          "categoryId": "DD918287-C279-466A-B9C6-56079DE4B37A",
+          "categoryName": "Toys, Kids & Babies / Toys & Hobbies / Stuffed & Plush Animals",
+          "entryCode": "9503002100",
+          "entryName": "毛绒公仔",
+          "entryNameEn": "Plush Doll",
+          "materialName": "[\"布料\"]",
+          "materialNameSet": [
+            "布料"
+          ],
+          "materialNameEn": "[\"Cloth\"]",
+          "materialNameEnSet": [
+            "Cloth"
+          ],
+          "materialKey": "[\"FABRIC\"]",
+          "materialKeySet": [
+            "FABRIC"
+          ],
+          "packingWeight": "450.00",
+          "packingName": "[\"塑料袋\"]",
+          "packingNameSet": [
+            "塑料袋"
+          ],
+          "packingNameEn": "[\"Plastic bags\"]",
+          "packingNameEnSet": [
+            "Plastic bags"
+          ],
+          "packingKey": "[\"PLASTIC_BAG\"]",
+          "packingKeySet": [
+            "PLASTIC_BAG"
+          ],
+          "productKey": "[\"颜色\",\"规格\"]",
+          "productKeySet": [
+            "颜色",
+            "规格"
+          ],
+          "productKeyEn": "Color-Specifications",
+          "productKeyEnSet": [
+            "Color",
+            "Specifications"
+          ],
+          "productPro": "[\"内置电池\",\"抛货\"]",
+          "productProSet": [
+            "内置电池",
+            "抛货"
+          ],
+          "productProEn": "[\"BATTERY\",\"OVERSIZE\"]",
+          "productProEnSet": [
+            "BATTERY",
+            "OVERSIZE"
+          ],
+          "sellPrice": "24.13",
+          "sourceFrom": 19,
+          "description": "<p><b>Product information:</b><br/>Color: Gold-Brown [Domestic Version], Fairy Pink [Domestic Version], Blue-Gray [Domestic Version], Brown-Beige Two-Tone [Domestic Version], Gold-Brown [Overseas Version], Fairy Pink [Overseas Version], Blue-Gray [Overseas Version], Brown-Beige Two-Tone [Overseas Version]<br/> Processing Method: OEM/Logo Customization<br/>Material: Polyester Fiber<br/> Height: 12 cm<br/> Applicable Gender: Female</p>\n<br/>\n<b>Packing list: </b>\n<br/>1 x AI Plush Toy\n\n<b>Product Image:</b><div>\n<b><br/></b>\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/35e6c3e0-c2d2-4752-9ad2-bcf35f222155.jpg\"/>\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/0ab91422-5fd0-4c4a-a956-e3ea3c37528d.jpg\"/>\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/141c16d1-faa1-466f-9679-96ff2070cf0a.jpg\"/>\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/fed0f2f8-3ded-4e9f-b713-75b2f17acb4f.jpg\"/>\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/08/0dc01e17-bed7-409c-b8ef-65daa151f06c.jpg\"/>\n<img src=\"https://cf.cjdropshipping.com/quick/product/34051142-bdcb-49af-92c5-62a910405a3a.jpg\"/></div>",
+          "variants": [
+            {
+              "vid": "2610110805301628000",
+              "pid": "2610110805301627100",
+              "variantName": null,
+              "variantNameEn": "Desk Buddy Gives A Classmate An AI Plush Toy As A Gift Golden Brown Overseas Version",
+              "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/61f8dda3-45ff-4c00-b453-02763fc5941b_fine.jpeg",
+              "variantSku": "CJMR323885705EV",
+              "barcode": "1600017114910",
+              "variantUnit": "个",
+              "variantProperty": "[]",
+              "variantKey": "Golden Brown-Overseas Version",
+              "variantLength": 300,
+              "variantWidth": 200,
+              "variantHeight": 100,
+              "variantVolume": 6000000,
+              "variantWeight": 450,
+              "variantSellPrice": 24.13,
+              "createTime": 1791705930000,
+              "variantStandard": "long=300,width=200,height=100",
+              "variantSugSellPrice": 132.24,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610110805301628001",
+              "pid": "2610110805301627100",
+              "variantName": null,
+              "variantNameEn": "Desk Buddy Gives A Classmate An AI Plush Toy As A Gift Fairy Pink Overseas Version",
+              "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/36709969-6264-4421-a984-808977b99dbd_trans.jpeg",
+              "variantSku": "CJMR323885706FU",
+              "barcode": "1600017114911",
+              "variantUnit": "个",
+              "variantProperty": "[]",
+              "variantKey": "Fairy Pink-Overseas Version",
+              "variantLength": 300,
+              "variantWidth": 200,
+              "variantHeight": 100,
+              "variantVolume": 6000000,
+              "variantWeight": 450,
+              "variantSellPrice": 24.13,
+              "createTime": 1791705930000,
+              "variantStandard": "long=300,width=200,height=100",
+              "variantSugSellPrice": 132.24,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610110805301628002",
+              "pid": "2610110805301627100",
+              "variantName": null,
+              "variantNameEn": "Desk Buddy Gives A Classmate An AI Plush Toy As A Gift Blue Gray Overseas Version",
+              "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/6c007c17-b5fd-466e-915e-11c2baa60c67_trans.jpeg",
+              "variantSku": "CJMR323885707GT",
+              "barcode": "1600017114912",
+              "variantUnit": "个",
+              "variantProperty": "[]",
+              "variantKey": "Blue Gray-Overseas Version",
+              "variantLength": 300,
+              "variantWidth": 200,
+              "variantHeight": 100,
+              "variantVolume": 6000000,
+              "variantWeight": 450,
+              "variantSellPrice": 24.13,
+              "createTime": 1791705930000,
+              "variantStandard": "long=300,width=200,height=100",
+              "variantSugSellPrice": 132.24,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610110805301628003",
+              "pid": "2610110805301627100",
+              "variantName": null,
+              "variantNameEn": "Desk Buddy Gives A Classmate An AI Plush Toy As A Gift Brown Beige Overseas Version",
+              "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/7fd66aa3-70f1-49e7-8171-980c8dc0b405_fine.jpeg",
+              "variantSku": "CJMR323885708HS",
+              "barcode": "1600017114913",
+              "variantUnit": "个",
+              "variantProperty": "[]",
+              "variantKey": "Brown Beige-Overseas Version",
+              "variantLength": 300,
+              "variantWidth": 200,
+              "variantHeight": 100,
+              "variantVolume": 6000000,
+              "variantWeight": 450,
+              "variantSellPrice": 24.13,
+              "createTime": 1791705930000,
+              "variantStandard": "long=300,width=200,height=100",
+              "variantSugSellPrice": 132.24,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            }
+          ],
+          "addMarkStatus": 0,
+          "createrTime": "2026-10-11T08:05:30+08:00",
+          "productVideo": null,
+          "status": "3",
+          "suggestSellPrice": "132.24",
+          "listedNum": 0,
+          "supplierName": null,
+          "supplierId": null,
+          "customizationVersion": null,
+          "customizationJson1": null,
+          "customizationJson2": null,
+          "customizationJson3": null,
+          "customizationJson4": null,
+          "isTestProduct": false
+        },
+        "pointsInfo": {
+          "total": 50000,
+          "usedToday": 140,
+          "remaining": 50000
+        },
+        "request": {
+          "pid": "2610110805301627100"
+        },
+        "interpretation": "Supplier evidence only; does not establish independent customer demand."
+      },
+      "jobId": "follow_6d32384f3cc96c251e2fb5aa678bc2676bfb",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "CJ:/product/query"
+      ],
+      "grantsAuthority": false
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "freight": {
+    "retrievedAt": "2026-10-11T13:42:30.127Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "evidence",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+    "data": {
+      "id": "ev_119511e70455436bd854aff8f35a9b0149089b1a",
+      "capabilityId": "cj.freight",
+      "eye": "SUPPLIER",
+      "provider": "CJ",
+      "endpoint": "/logistic/freightCalculate",
+      "subject": {
+        "id": "2610110805301627100",
+        "variant": "2610110805301628000",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "observedAt": "2026-10-11T12:39:46.162Z",
+      "retrievedAt": "2026-10-11T12:39:46.162Z",
+      "staleAfter": "2026-10-11T18:39:46.162Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "43157962e11bc4242f7ca56f7d2fee7d76a04bb3cc191c00462d1a7d660077be",
+      "facts": {
+        "response": [
+          {
+            "logisticAging": "4-7",
+            "logisticPrice": 15.03,
+            "logisticPriceCn": 93.13,
+            "logisticName": "YunExpress Sensitive",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 15.03
+          },
+          {
+            "logisticAging": "15-25",
+            "logisticPrice": 15.28,
+            "logisticPriceCn": 94.65,
+            "logisticName": "CJPacket FJTY Eub Special Line",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 15.28
+          },
+          {
+            "logisticAging": "4-9",
+            "logisticPrice": 16.06,
+            "logisticPriceCn": 99.48,
+            "logisticName": "CJPacket Sensitive",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 16.06
+          },
+          {
+            "logisticAging": "7-12",
+            "logisticPrice": 19.97,
+            "logisticPriceCn": 123.74,
+            "logisticName": "CJPacket Sensitive Over Length",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 19.97
+          },
+          {
+            "logisticAging": "6-11",
+            "logisticPrice": 22.08,
+            "logisticPriceCn": 136.85,
+            "logisticName": "CJPacket Sensitive Pro+",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 22.08
+          },
+          {
+            "logisticAging": "8-20",
+            "logisticPrice": 23.76,
+            "logisticPriceCn": 147.3,
+            "logisticName": "CJPacket LX Sensitive Plant",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 23.76
+          },
+          {
+            "logisticAging": "8-16",
+            "logisticPrice": 22.92,
+            "logisticPriceCn": 142.09,
+            "logisticName": "CJPacket Sensitive Oversize Line",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 22.92
+          },
+          {
+            "logisticAging": "5-11",
+            "logisticPrice": 27.9,
+            "logisticPriceCn": 172.9,
+            "logisticName": "CJPacket Sensitive Pro",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 27.9
+          },
+          {
+            "logisticAging": "10-23",
+            "logisticPrice": 24.3,
+            "logisticPriceCn": 150.65,
+            "logisticName": "CJPacket Eub Special Line",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0.46,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 24.76
+          },
+          {
+            "logisticAging": "5-11",
+            "logisticPrice": 25.42,
+            "logisticPriceCn": 157.55,
+            "logisticName": "CJPacket Liquid US",
+            "channelId": null,
+            "error": null,
+            "errorEn": null,
+            "optionId": null,
+            "postage": null,
+            "postageCNY": null,
+            "priceIncreases": null,
+            "reSort": null,
+            "remoteFee": null,
+            "remoteFeeCNY": null,
+            "tip": null,
+            "orderId": null,
+            "unWeightChargeTarget": null,
+            "volumeWeight": null,
+            "floatMaxPrice": null,
+            "floatMinPrice": null,
+            "logisticsParamRespDTO": null,
+            "message": null,
+            "wrapPostage": null,
+            "wrapPostageCNY": null,
+            "wrapWeight": null,
+            "ruleTipTypes": null,
+            "stopWords": null,
+            "channel": null,
+            "cjRespDTO": null,
+            "destArea": null,
+            "srcArea": null,
+            "option": null,
+            "zonePrice": [],
+            "allRuleTips": null,
+            "ruleTips": null,
+            "taxesFee": 0,
+            "clearanceOperationFee": 0,
+            "recommendLogisticsTypeList": [],
+            "timePrioritySort": null,
+            "pricePrioritySort": null,
+            "compositeRecommendSort": null,
+            "totalPostageFee": 25.42
+          }
+        ],
+        "pointsInfo": {
+          "total": 50000,
+          "usedToday": 160,
+          "remaining": 50000
+        },
+        "request": {
+          "startCountryCode": "CN",
+          "endCountryCode": "US",
+          "products": [
+            {
+              "quantity": 1,
+              "vid": "2610110805301628000"
+            }
+          ]
+        },
+        "interpretation": "Freight and delivery estimates, not guarantees; quantity 1; duties/returns not established."
+      },
+      "jobId": "follow_6c0ea022bf988ffa83eedf13ad0812b48802",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "CJ:/logistic/freightCalculate"
+      ],
+      "grantsAuthority": false
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "stock": {
+    "id": "ev_6ef90e9b746cdf1e441b5a843d8c38c229b6a608",
+    "capabilityId": "cj.stock",
+    "eye": "SUPPLIER",
+    "provider": "CJ",
+    "endpoint": "/product/stock/queryByVid",
+    "subject": {
+      "id": "2610110805301627100",
+      "variant": "2610110805301628000",
+      "marketplace": "US",
+      "destination": "US"
+    },
+    "observedAt": "2026-10-11T12:39:45.665Z",
+    "retrievedAt": "2026-10-11T12:39:45.665Z",
+    "staleAfter": "2026-10-11T18:39:45.665Z",
+    "authenticity": "LIVE_PROVIDER",
+    "digest": "635d1237b1174d40975da1f391afcf3f56e4383d0263ad7bb745300c917c2192",
+    "facts": {
+      "response": [
+        {
+          "vid": "2610110805301628000",
+          "areaId": "1",
+          "areaEn": "China Warehouse",
+          "countryCode": "CN",
+          "storageNum": 9669,
+          "totalInventoryNum": 9669,
+          "cjInventoryNum": 0,
+          "factoryInventoryNum": 9669,
+          "stock": [
+            {
+              "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+              "inventory": 0,
+              "factoryInventory": 9669
+            }
+          ]
+        }
+      ],
+      "pointsInfo": {
+        "total": 50000,
+        "usedToday": 150,
+        "remaining": 50000
+      },
+      "request": {
+        "vid": "2610110805301628000"
+      },
+      "interpretation": "Supplier evidence only; does not establish independent customer demand."
+    },
+    "jobId": "follow_6c0ea022bf988ffa83eedf13ad0812b48802",
+    "quality": [
+      "SOURCE_SPECIFIC",
+      "BOUNDED_SAMPLE",
+      "NO_EXECUTION_AUTHORITY"
+    ],
+    "lineage": [
+      "CJ:/product/stock/queryByVid"
+    ],
+    "grantsAuthority": false
+  },
+  "amazonOffer": {
+    "id": "ev_39b7a36c67dd54104408f746dca8c49aa1863930",
+    "capabilityId": "amazon.offers",
+    "eye": "MARKET",
+    "provider": "Amazon",
+    "endpoint": "/products/pricing/v0/items/B0GN1TZZ9W/offers",
+    "subject": {
+      "id": "B0GN1TZZ9W",
+      "marketplace": "US"
+    },
+    "observedAt": "2026-10-11T12:39:17.562Z",
+    "retrievedAt": "2026-10-11T12:39:17.562Z",
+    "staleAfter": "2026-10-11T18:39:17.562Z",
+    "authenticity": "LIVE_PROVIDER",
+    "digest": "e80d7e8e62fca7eb3013b53c3d95bada2bd869f94e99ebdd9ca3851549f97cc2",
+    "facts": {
+      "response": {
+        "payload": {
+          "ASIN": "B0GN1TZZ9W",
+          "status": "Success",
+          "ItemCondition": "New",
+          "Identifier": {
+            "MarketplaceId": "ATVPDKIKX0DER",
+            "ItemCondition": "New",
+            "ASIN": "B0GN1TZZ9W"
+          },
+          "Summary": {
+            "LowestPrices": [
+              {
+                "condition": "new",
+                "fulfillmentChannel": "Amazon",
+                "LandedPrice": {
+                  "CurrencyCode": "USD",
+                  "Amount": 18.99
+                },
+                "ListingPrice": {
+                  "CurrencyCode": "USD",
+                  "Amount": 18.99
+                },
+                "Shipping": {
+                  "CurrencyCode": "USD",
+                  "Amount": 0
+                }
+              }
+            ],
+            "BuyBoxPrices": [
+              {
+                "condition": "New",
+                "LandedPrice": {
+                  "CurrencyCode": "USD",
+                  "Amount": 18.99
+                },
+                "ListingPrice": {
+                  "CurrencyCode": "USD",
+                  "Amount": 18.99
+                },
+                "Shipping": {
+                  "CurrencyCode": "USD",
+                  "Amount": 0
+                }
+              }
+            ],
+            "NumberOfOffers": [
+              {
+                "condition": "new",
+                "fulfillmentChannel": "Amazon",
+                "OfferCount": 1
+              }
+            ],
+            "BuyBoxEligibleOffers": [
+              {
+                "condition": "new",
+                "fulfillmentChannel": "Amazon",
+                "OfferCount": 1
+              }
+            ],
+            "SalesRankings": [
+              {
+                "ProductCategoryId": "office_product_display_on_website",
+                "Rank": 284
+              },
+              {
+                "ProductCategoryId": "1069544",
+                "Rank": 1
+              }
+            ],
+            "ListPrice": {
+              "CurrencyCode": "USD",
+              "Amount": 19.99
+            },
+            "TotalOfferCount": 1
+          },
+          "Offers": [
+            {
+              "Shipping": {
+                "CurrencyCode": "USD",
+                "Amount": 0
+              },
+              "ListingPrice": {
+                "CurrencyCode": "USD",
+                "Amount": 18.99
+              },
+              "ShippingTime": {
+                "maximumHours": 0,
+                "minimumHours": 0,
+                "availabilityType": "NOW"
+              },
+              "SellerFeedbackRating": {
+                "FeedbackCount": 66521,
+                "SellerPositiveFeedbackRating": 99
+              },
+              "PrimeInformation": {
+                "IsPrime": true,
+                "IsNationalPrime": true
+              },
+              "SubCondition": "new",
+              "SellerId": "A2K3WARBVMJ9U9",
+              "IsFeaturedMerchant": true,
+              "IsBuyBoxWinner": true,
+              "IsFulfilledByAmazon": true
+            }
+          ],
+          "marketplaceId": "ATVPDKIKX0DER"
+        }
+      },
+      "price": 18.99,
+      "currency": "USD",
+      "marketplaceId": "ATVPDKIKX0DER",
+      "interpretation": "Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim."
+    },
+    "jobId": "follow_53f6d4b23a4aa7c300a7391716a009dabc9d",
+    "quality": [
+      "SOURCE_SPECIFIC",
+      "BOUNDED_SAMPLE",
+      "NO_EXECUTION_AUTHORITY"
+    ],
+    "lineage": [
+      "Amazon:/products/pricing/v0/items/B0GN1TZZ9W/offers"
+    ],
+    "grantsAuthority": false
+  },
+  "amazonIdentity": {
+    "id": "ev_d6133849368f4450b0e0bd0990e52f31349935cf",
+    "capabilityId": "amazon.catalog",
+    "eye": "MARKET",
+    "provider": "Amazon",
+    "endpoint": "/catalog/2022-04-01/items",
+    "subject": {
+      "id": "B0GN1TZZ9W",
+      "marketplace": "US"
+    },
+    "observedAt": "2026-10-11T12:39:16.028Z",
+    "retrievedAt": "2026-10-11T12:39:16.028Z",
+    "staleAfter": "2026-10-11T18:39:16.028Z",
+    "authenticity": "LIVE_PROVIDER",
+    "digest": "90df87e4d4721b6a4f9398e12e824c924cc8e42d70ec0f1aeb852898faa463d3",
+    "facts": {
+      "response": {
+        "asin": "B0GN1TZZ9W",
+        "dimensions": [
+          {
+            "marketplaceId": "ATVPDKIKX0DER",
+            "item": {
+              "height": {
+                "unit": "[DEPTH_BOUND]",
+                "value": "[DEPTH_BOUND]"
+              },
+              "length": {
+                "unit": "[DEPTH_BOUND]",
+                "value": "[DEPTH_BOUND]"
+              },
+              "width": {
+                "unit": "[DEPTH_BOUND]",
+                "value": "[DEPTH_BOUND]"
+              }
+            },
+            "package": {
+              "height": {
+                "unit": "[DEPTH_BOUND]",
+                "value": "[DEPTH_BOUND]"
+              },
+              "length": {
+                "unit": "[DEPTH_BOUND]",
+                "value": "[DEPTH_BOUND]"
+              },
+              "weight": {
+                "unit": "[DEPTH_BOUND]",
+                "value": "[DEPTH_BOUND]"
+              },
+              "width": {
+                "unit": "[DEPTH_BOUND]",
+                "value": "[DEPTH_BOUND]"
+              }
+            }
+          }
+        ],
+        "identifiers": [
+          {
+            "marketplaceId": "ATVPDKIKX0DER",
+            "identifiers": [
+              {
+                "identifierType": "[DEPTH_BOUND]",
+                "identifier": "[DEPTH_BOUND]"
+              },
+              {
+                "identifierType": "[DEPTH_BOUND]",
+                "identifier": "[DEPTH_BOUND]"
+              }
+            ]
+          }
+        ],
+        "salesRanks": [
+          {
+            "marketplaceId": "ATVPDKIKX0DER",
+            "classificationRanks": [
+              {
+                "classificationId": "[DEPTH_BOUND]",
+                "title": "[DEPTH_BOUND]",
+                "link": "[DEPTH_BOUND]",
+                "rank": "[DEPTH_BOUND]"
+              }
+            ],
+            "displayGroupRanks": [
+              {
+                "websiteDisplayGroup": "[DEPTH_BOUND]",
+                "title": "[DEPTH_BOUND]",
+                "link": "[DEPTH_BOUND]",
+                "rank": "[DEPTH_BOUND]"
+              }
+            ]
+          }
+        ],
+        "summaries": [
+          {
+            "marketplaceId": "ATVPDKIKX0DER",
+            "adultProduct": false,
+            "autographed": false,
+            "brand": "WALI",
+            "browseClassification": {
+              "displayName": "Letter Trays & Stacking Supports",
+              "classificationId": "1069544"
+            },
+            "color": "Black",
+            "itemClassification": "BASE_PRODUCT",
+            "itemName": "WALI Desk File Organizer, 4 Tier Desktop Paper Letter Tray Organizer with Drawer and 2 Pen Holders, Office Desk Accessories & Workspace Organizers for Office, Home Supplies(DO005DH-B), 1 Pack, Black",
+            "manufacturer": "WALI",
+            "memorabilia": false,
+            "modelNumber": "DO005DH-B",
+            "packageQuantity": 1,
+            "partNumber": "DO005DH-B",
+            "size": "4-Tier",
+            "style": "Modern",
+            "tradeInEligible": false,
+            "websiteDisplayGroup": "office_product_display_on_website",
+            "websiteDisplayGroupName": "Office Product"
+          }
+        ]
+      },
+      "interpretation": "Catalog rank proxy; not demand or profit"
+    },
+    "jobId": "scheduled_amazon.catalog_29862039",
+    "quality": [
+      "SOURCE_SPECIFIC",
+      "BOUNDED_SAMPLE",
+      "NO_EXECUTION_AUTHORITY"
+    ],
+    "lineage": [
+      "Amazon:/catalog/2022-04-01/items",
+      "ev_9bb2b81725b6965246c96d22e0771b7383a1c598"
+    ],
+    "grantsAuthority": false
+  }
+}

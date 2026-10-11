@@ -1,0 +1,259 @@
+{
+  "projectionSource": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+  "readTime": "2026-10-11T13:42:07.216Z",
+  "dossier": {
+    "schema": "WORK8_QUALIFICATION_DOSSIER_V1",
+    "workspace": "ws_empire_1",
+    "candidateId": "CJ:2610110805301627100:2610110805301628000",
+    "sourceBinding": {
+      "candidateId": "CJ:2610110805301627100:2610110805301628000",
+      "productId": "2610110805301627100",
+      "subject": {
+        "id": "2610110805301627100",
+        "variant": "2610110805301628000",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "evidence": [
+        {
+          "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+          "envelopeDigest": "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7"
+        },
+        {
+          "id": "ev_6ef90e9b746cdf1e441b5a843d8c38c229b6a608",
+          "envelopeDigest": "a13a4f8046d581eeb4e1524068d948be05bbbe63a917e80627802fcd325418bf"
+        },
+        {
+          "id": "ev_119511e70455436bd854aff8f35a9b0149089b1a",
+          "envelopeDigest": "be871ac5fa2d1180ea49d3379451637da667e09d92efa55e682d36ef4f797092"
+        }
+      ],
+      "snapshotDigest": "d19230ee9391659687d58f6a3a8a0c79ec06c86dda2bb1e40f28db5a41c0d4ae"
+    },
+    "sourceEvidence": [
+      {
+        "id": "ev_3bf0abef750e435660ab844f737ea3af33a7f9a4",
+        "envelopeDigest": "cd1742dd3d2d8d00058d2ea226e9c5015b5b77ae28afc1ee56648cee517265a7",
+        "factsDigest": "38919003068b86281d6bd5a1263b0ea919f4457f480b9ddbca76b7dec67f69d8",
+        "provider": "CJ",
+        "capability": "cj.detail",
+        "endpoint": "/product/query",
+        "observedAt": "2026-10-11T12:39:18.147Z",
+        "expiresAt": "2026-10-11T18:39:18.147Z",
+        "freshness": "FRESH",
+        "classification": "RETAINED_PROVIDER_OBSERVATION"
+      },
+      {
+        "id": "ev_6ef90e9b746cdf1e441b5a843d8c38c229b6a608",
+        "envelopeDigest": "a13a4f8046d581eeb4e1524068d948be05bbbe63a917e80627802fcd325418bf",
+        "factsDigest": "635d1237b1174d40975da1f391afcf3f56e4383d0263ad7bb745300c917c2192",
+        "provider": "CJ",
+        "capability": "cj.stock",
+        "endpoint": "/product/stock/queryByVid",
+        "observedAt": "2026-10-11T12:39:45.665Z",
+        "expiresAt": "2026-10-11T18:39:45.665Z",
+        "freshness": "FRESH",
+        "classification": "RETAINED_PROVIDER_OBSERVATION"
+      },
+      {
+        "id": "ev_119511e70455436bd854aff8f35a9b0149089b1a",
+        "envelopeDigest": "be871ac5fa2d1180ea49d3379451637da667e09d92efa55e682d36ef4f797092",
+        "factsDigest": "43157962e11bc4242f7ca56f7d2fee7d76a04bb3cc191c00462d1a7d660077be",
+        "provider": "CJ",
+        "capability": "cj.freight",
+        "endpoint": "/logistic/freightCalculate",
+        "observedAt": "2026-10-11T12:39:46.162Z",
+        "expiresAt": "2026-10-11T18:39:46.162Z",
+        "freshness": "FRESH",
+        "classification": "RETAINED_PROVIDER_OBSERVATION"
+      }
+    ],
+    "supplier": {
+      "productId": "2610110805301627100",
+      "variantId": "2610110805301628000",
+      "destination": "US",
+      "identityVerified": true,
+      "title": "Desk Buddy Gives A Classmate An AI Plush Toy As A Gift",
+      "price": 24.13,
+      "currency": "USD",
+      "currencyBasis": {
+        "currency": "USD",
+        "endpoint": "/product/query",
+        "field": "variants[].variantSellPrice",
+        "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+        "section": "1.5 Product Details(GET) / Variant",
+        "verifiedAt": "2026-10-10T21:42:51Z"
+      },
+      "stock": 9669,
+      "freight": {
+        "amount": null,
+        "currency": null,
+        "service": null,
+        "leadTime": null
+      },
+      "images": [
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/6c007c17-b5fd-466e-915e-11c2baa60c67_trans.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED",
+          "permissionEvidence": null
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/36709969-6264-4421-a984-808977b99dbd_trans.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED",
+          "permissionEvidence": null
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/7fd66aa3-70f1-49e7-8171-980c8dc0b405_fine.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED",
+          "permissionEvidence": null
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/9eb2799c-22e2-4dd3-83e1-13e6b7f0ade1_trans.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED",
+          "permissionEvidence": null
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/cd19a326-fe60-4536-ba49-cf607831de40_fine.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED",
+          "permissionEvidence": null
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/16335887-68a6-42e3-afcf-55d1e93db743_fine.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED",
+          "permissionEvidence": null
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/11/08/61f8dda3-45ff-4c00-b453-02763fc5941b_fine.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED",
+          "permissionEvidence": null
+        }
+      ]
+    },
+    "financialInputs": {
+      "status": "MISSING_REVIEWED_CANONICAL_INPUTS",
+      "reason": "CANONICAL_FINANCIAL_READ_UNAVAILABLE",
+      "economics": null,
+      "cash": null,
+      "fx": null,
+      "financialDigest": null,
+      "grantsAuthority": false
+    },
+    "findings": [
+      {
+        "kind": "DEMAND",
+        "status": "MISSING_REVIEWED_EVIDENCE",
+        "value": null,
+        "sourceIds": [],
+        "verified": false
+      },
+      {
+        "kind": "COMPETITION",
+        "status": "MISSING_REVIEWED_EVIDENCE",
+        "value": null,
+        "sourceIds": [],
+        "verified": false
+      },
+      {
+        "kind": "DIFFERENTIATION",
+        "status": "MISSING_REVIEWED_EVIDENCE",
+        "value": null,
+        "sourceIds": [],
+        "verified": false
+      },
+      {
+        "kind": "QUALITY",
+        "status": "MISSING_REVIEWED_EVIDENCE",
+        "value": null,
+        "sourceIds": [],
+        "verified": false
+      },
+      {
+        "kind": "COMPLIANCE",
+        "status": "MISSING_REVIEWED_EVIDENCE",
+        "value": null,
+        "sourceIds": [],
+        "verified": false
+      },
+      {
+        "kind": "RETURNS",
+        "status": "MISSING_REVIEWED_EVIDENCE",
+        "value": null,
+        "sourceIds": [],
+        "verified": false
+      },
+      {
+        "kind": "MARKETPLACE",
+        "status": "MISSING_REVIEWED_EVIDENCE",
+        "value": null,
+        "sourceIds": [],
+        "verified": false
+      }
+    ],
+    "eligibility": {
+      "status": "DEFERRED",
+      "qualified": false,
+      "missing": [
+        "AUTHENTICATED_EVIDENCE_REVIEW_REQUIRED",
+        "CANONICAL_FINANCIAL_SNAPSHOT_REQUIRED",
+        "COMPLETE_CURRENT_CASH_POSITION_REQUIRED",
+        "COMPLETE_REVIEWED_FORECAST_REQUIRED",
+        "EXACT_FREIGHT_REQUIRED",
+        "FREIGHT_CURRENCY_REQUIRED",
+        "SOURCE_COST_FX_BINDING_REQUIRED"
+      ],
+      "rejected": []
+    },
+    "modelProposal": null,
+    "ownerApproval": null,
+    "simulationEnrollment": null,
+    "grantsAuthority": false,
+    "externalEffects": 0,
+    "paidInference": 0,
+    "policy": {
+      "version": "WORK8_TEXT_QUALIFICATION_V1",
+      "intendedUse": "INTERNAL_TEXT_SCREENING",
+      "mandatory": [
+        "EXACT_IDENTITY",
+        "FRESH_PRICE_CURRENCY_STOCK",
+        "PROCESSING",
+        "DESTINATION_FREIGHT",
+        "REVIEWED_SEVEN_FINDINGS",
+        "COMPLETE_REVIEWED_ECONOMICS",
+        "SOURCE_COST_FX_BINDING",
+        "COMPLETE_CASH_LIABILITIES_COMMITMENTS",
+        "EXPOSURE_BUDGET"
+      ],
+      "optional": [
+        "PRODUCT_IMAGES",
+        "MODEL_PROPOSAL"
+      ],
+      "imageDisplayAllowed": false,
+      "grantsExecutionAuthority": false
+    },
+    "review": null,
+    "reviewEvidencePins": [],
+    "financialQualification": {
+      "status": "INCOMPLETE",
+      "netEstimate": null,
+      "exposure": null,
+      "cash": null,
+      "conversions": []
+    },
+    "downstreamGates": {
+      "imageDisplay": "PERMISSION_REQUIRED",
+      "listing": "PERMISSION_AND_LISTING_REVIEW_REQUIRED",
+      "assessment": "COMPLETED_DOSSIER_BOUND_ASSESSMENT_REQUIRED",
+      "simulation": "EXPLICIT_OWNER_AUTHORITY_REQUIRED"
+    },
+    "digest": "c84844dbd57ed5b05def2c9361a8658a40fcf579f6638e43f505dca43eda5e92"
+  },
+  "marketMatch": "UNMATCHED: Amazon WALI desk organiser is not this CJ plush toy",
+  "selection": "SCREENING_ONLY_NOT_QUALIFIED_OR_ENROLLED"
+}

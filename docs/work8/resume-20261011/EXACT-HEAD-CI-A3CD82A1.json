@@ -1,0 +1,344 @@
+{
+  "schema": "WORK8_EXACT_HEAD_CI_V1",
+  "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+  "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "runs": [
+    {
+      "id": 38142058029,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38142058040,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38142058048,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38142058061,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "runtimeJobs": [
+    {
+      "id": 114477757239,
+      "name": "Durable runtime \u2014 real Redis, restart, ownership and authorization",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38142058061,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Require offline certification, redeploy and collection evidence tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Install Redis binary for test-owned isolated AOF processes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Clean install, typecheck and build Pillow",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run mandatory Pillow observer and reasoning-only policy tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Clean install, verify, typecheck and build backend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Verify bounded multi-provider inference and preserved authority",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Verify generated complete reasoning admission path with intercepted provider HTTP",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Verify response completion and frontend preservation safeguards",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Verify complete generated response delivery to owner UI",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Prove permanent locked runtime and complete enabled-store restore",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Retain pre-cutover closure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Run mandatory isolated runtime and session tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Record exact tested revision and scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33
+        }
+      ]
+    },
+    {
+      "id": 114477757411,
+      "name": "Exact-source Railway Railpack image",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38142058061,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout candidate source without merge or persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Use the repository Node pin",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Build the effective root Railway configuration without deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Preserve exact-source packaging receipt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Post Use the repository Node pin",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Checkout candidate source without merge or persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        }
+      ]
+    },
+    {
+      "id": 114477757427,
+      "name": "Durable web \u2014 receipt recovery, one submission, tests and build",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38142058061,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Clean install and typecheck canonical Next.js web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run web tests with mandatory durable-delivery coverage",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Build canonical Next.js web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Record exact tested revision and scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 114482628115,
+      "name": "Runtime repair result (no deployment)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38142058061,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Require both mandatory repair gates to pass",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        }
+      ]
+    }
+  ],
+  "manualReruns": 0,
+  "retainedPriorPassingRuns": [
+    38139483272,
+    38139483234,
+    38139483206,
+    38139483205
+  ],
+  "testedRevisionAttribution": {
+    "runtimeMain": "literal published source head",
+    "productMerge": "ee203983ff5c97404de90b1a282a9ff532476822",
+    "mergeTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+    "mergeVsHeadTreeDiff": [],
+    "differentCommitIdentities": true
+  },
+  "wholeVolumeArtifact": {
+    "id": 11703737345,
+    "sha256": "6b12e9cb7579dd3ec2e21aa2cadd0b30aacfd657cdf36db8949d20a0e28415b4",
+    "receipts": [
+      "RUNTIME-38142058061-receipt.json",
+      "RUNTIME-38142058061-http-observations.json"
+    ]
+  },
+  "testLog": "RUNTIME-A3CD82A1-TESTS.log",
+  "limitations": [
+    "CI and scoped restoration proof; not hosted owner acceptance, protected off-host recovery, global arbitrary-writer quiescence or programme certification"
+  ],
+  "evidenceHashes": {
+    "RUNTIME-A3CD82A1-TESTS.log": "ffb2a977c95eb9c2df89e466eb72c472ffd5a1214e97eeeb6243cb91a9ff3662",
+    "RUNTIME-38142058061-receipt.json": "a90519c7fcdd3279e1850a146614cffdcddf9750d052750de254a06c7c7cb8a6",
+    "RUNTIME-38142058061-http-observations.json": "5c30cc247c8719f463ce878c2af7bdfd25e09f1d120b838c67d96fcce1650294"
+  }
+}

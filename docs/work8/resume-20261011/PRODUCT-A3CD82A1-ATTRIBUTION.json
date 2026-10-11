@@ -1,0 +1,19 @@
+{
+  "schema": "WORK8_PRODUCT_CI_ATTRIBUTION_V1",
+  "run": 38142058048,
+  "job": 114477853108,
+  "conclusion": "SUCCESS",
+  "approvedOriginal": "a83c95eb8870a893c93920353c5da94351b5c34f",
+  "publishedSource": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+  "actualProductCheckout": "ee203983ff5c97404de90b1a282a9ff532476822",
+  "commonTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "fullTreeDiff": [],
+  "work8BoundedIntegratedTests": {
+    "tests": 215,
+    "pass": 215,
+    "fail": 0
+  },
+  "log": "PRODUCT-A3CD82A1-TESTS.log",
+  "logSha256": "12ff08b40f0f74a54668be7a81a0a1673ca2d0ae62251f6d5695923b5cd7f0d1",
+  "scope": "Existing CI readback, no reruns. Exact tested tree equality; distinct commit identities recorded. Other test groups separately retained in log. Not wholeprogramme acceptance."
+}

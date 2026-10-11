@@ -1,0 +1,25 @@
+{
+  "evidenceMode": "OFFLINE_FIXTURE",
+  "sourceHead": "ee203983ff5c97404de90b1a282a9ff532476822",
+  "terminalRejectionVisible": true,
+  "productStageFilterVerified": true,
+  "ownerHomeProductsEvidenceJourney": true,
+  "ownerHistoricalProviderSnapshot": true,
+  "approvalLocked": true,
+  "ownerApiWriteDenied": true,
+  "browserLogin": true,
+  "phoneViewport": [
+    390,
+    844
+  ],
+  "bffBackendDiskReadback": true,
+  "realAuthMiddleware": true,
+  "sessionBackend": "isolated in-memory",
+  "logoutRevokesSession": true,
+  "foreignWorkspaceQueryRefused": true,
+  "providerAuthenticity": false,
+  "transactionKey": "amz:111-2222222-3333333|item:item-1|sku:EMP-FD-MV3UE51U",
+  "realisedFixtureContributionUsd": 15.95,
+  "authorityChanged": false,
+  "productionTouched": false
+}

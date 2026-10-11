@@ -8,51 +8,55 @@
   ],
   "scope": "One bounded reconciliation, followed directly by implementation. Existing scoped passes retained. Original IDs and descriptions unchanged.",
   "closedNow": [
-    28
+    10,
+    15,
+    29,
+    32
   ],
   "counts": {
-    "PASS": 6,
-    "PENDING": 34,
+    "PASS": 10,
+    "PENDING": 30,
     "BLOCKED": 5
   },
   "sharedExternalDependencies": {
-    "SOURCE": [
-      "Fresh permitted CJ/Amazon exact-product reads, stock/freight/fees/FX and rights evidence",
+    "SOURCE_ASSESSMENT": [
+      "Authorised exact-variant CJ/Amazon read surface or fresh receipts and genuine source-bound commissioned assessment",
       5,
       6,
-      7,
       8,
       9,
       11,
       12,
       13,
       14,
-      15,
       16,
+      18,
+      20,
+      35,
       40
     ],
-    "ASSESSMENT": [
-      "Existing authorised inference/commissioning channel with enforceable budget; no new paid authority",
-      13,
-      14,
+    "RIGHTS": [
+      "Permission covering exact displayed assets and intended use",
+      7,
+      19,
       40
     ],
-    "HISTORY": [
-      "Read-only original224 accounting subset and three added-call attribution",
+    "ACCOUNTING": [
+      "Read-only original224/current227 canonical rows, provider invoices, FX and allocation evidence",
       2,
+      24,
       25
     ],
     "HOSTED": [
-      "Separate hosting/deployment approval, isolated auth/configuration, enforceable spending ceiling and actual desktop/mobile observation",
+      "Separate isolated runtime/deployment authority, proven containment, protected retention and authenticated desktop/mobile acceptance",
       4,
+      30,
+      33,
+      38,
+      39,
       40,
       41,
       42
-    ],
-    "REVIEW": [
-      "Independent affected-revision review; no certification inferred from self-review",
-      42,
-      43
     ]
   },
   "requirements": [
@@ -69,7 +73,7 @@
       "acceptanceGap": "None for Work7",
       "nextAction": "Preserve baseline; do not rerun Work7 campaign",
       "status": "PASS",
-      "latestEvidence": "PASS \u2014 baseline only"
+      "latestEvidence": "PASS — baseline only"
     },
     {
       "item": 2,
@@ -78,13 +82,13 @@
       "sourceAndTests": [],
       "retainedEvidence": [
         "baseline.json",
-        "resume-20261011/ACCOUNTING.md"
+        "resume-20261011/ACCOUNTING.md; resume-20261011/ACCOUNTING-REQUEST-CORRELATION.json"
       ],
       "decision": "BLOCKED",
       "acceptanceGap": "Read-only canonical call/provider rows and original224 snapshot; join recovered request keys to actual added rows",
       "nextAction": "Extract one snapshot; compare identities and immutable original subset; join canonical correlation",
       "status": "BLOCKED",
-      "latestEvidence": "BLOCKED \u2014 224\u2192227 attribution unresolved"
+      "latestEvidence": "BLOCKED — 224→227 attribution unresolved"
     },
     {
       "item": 3,
@@ -101,7 +105,7 @@
       "acceptanceGap": "Complete integrated candidate acceptance",
       "nextAction": "Carry guard results into remaining genuine-source flows without bypass",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 15 guard pairs passed locally"
+      "latestEvidence": "PENDING — 15 guard pairs passed locally"
     },
     {
       "item": 4,
@@ -119,7 +123,7 @@
       "acceptanceGap": "Full filesystem/operating isolation proof",
       "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 local egress checks passed"
+      "latestEvidence": "PENDING — local egress checks passed"
     },
     {
       "item": 5,
@@ -136,7 +140,7 @@
       "acceptanceGap": "Permitted fresh read capability/account entitlement",
       "nextAction": "Exercise existing bounded acquisition once permitted read access exists",
       "status": "BLOCKED",
-      "latestEvidence": "BLOCKED \u2014 fresh acquisition not exercised"
+      "latestEvidence": "BLOCKED — fresh acquisition not exercised"
     },
     {
       "item": 6,
@@ -155,7 +159,7 @@
       "acceptanceGap": "Fresh complete product dossiers",
       "nextAction": "Bind fresh details, stock and freight to exact parent/variant/destination",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 10 parents/10 variants; zero qualified"
+      "latestEvidence": "PENDING — 10 parents/10 variants; zero qualified"
     },
     {
       "item": 7,
@@ -173,7 +177,7 @@
       "acceptanceGap": "Applicable supplier/rightsholder permission",
       "nextAction": "Attach permission covering exact URLs/use/validity; then render those assets",
       "status": "BLOCKED",
-      "latestEvidence": "BLOCKED \u2014 0/19 assets licensed for display"
+      "latestEvidence": "BLOCKED — 0/19 assets licensed for display"
     },
     {
       "item": 8,
@@ -211,7 +215,7 @@
       "acceptanceGap": "Verified product match and demand evidence",
       "nextAction": "Establish identity match before using any market price or demand claim",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 10 ASINs, one USD18.99 offer, zero matches"
+      "latestEvidence": "PENDING — 10 ASINs, one USD18.99 offer, zero matches"
     },
     {
       "item": 10,
@@ -224,13 +228,13 @@
       ],
       "retainedEvidence": [
         "source-visibility.md",
-        "source-discovery-worker.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log"
+        "source-discovery-worker.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/REQUIREMENT-10-ACCEPTANCE.json; resume-20261011/PRODUCT-A3CD82A1-ATTRIBUTION.json"
       ],
-      "decision": "PENDING",
-      "acceptanceGap": "Genuine multi-day cohort",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
-      "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 bounded local cases passed"
+      "decision": "PASS",
+      "acceptanceGap": "None within independently accepted component scope; fresh acquisition and owner journey remain separate",
+      "nextAction": "Preserve accepted scope; continue genuine source/assessment and owner-visible acceptance",
+      "status": "PASS",
+      "latestEvidence": "PASS — current-tree source identity, contradictory variant/currency refusal, durable cross-process and next-day deduplication tests"
     },
     {
       "item": 11,
@@ -251,7 +255,7 @@
       "acceptanceGap": "Genuine refresh after expiry",
       "nextAction": "Verify fresh replacement generation and preservation of old receipts",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 adversarial cases passed"
+      "latestEvidence": "PENDING — adversarial cases passed"
     },
     {
       "item": 12,
@@ -276,7 +280,7 @@
       "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
       "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
+      "latestEvidence": "PENDING — 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
     },
     {
       "item": 13,
@@ -291,7 +295,7 @@
       "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
       "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
       "status": "BLOCKED",
-      "latestEvidence": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
+      "latestEvidence": "PENDING — 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
     },
     {
       "item": 14,
@@ -313,7 +317,7 @@
       "acceptanceGap": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
       "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
+      "latestEvidence": "PENDING — 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted"
     },
     {
       "item": 15,
@@ -322,13 +326,13 @@
       "sourceAndTests": [],
       "retainedEvidence": [
         "source-visibility.md",
-        "register.json; source-authentic-projection.json"
+        "register.json; source-authentic-projection.json; resume-20261011/REQUIREMENT-15-ACCEPTANCE.json; resume-20261011/PRODUCT-A3CD82A1-ATTRIBUTION.json"
       ],
-      "decision": "PENDING",
-      "acceptanceGap": "Complete qualification path and sufficient genuine evidence",
-      "nextAction": "Run actual source screening and report qualified/deferred/rejected counts without forcing100",
-      "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 zero genuine qualified products"
+      "decision": "PASS",
+      "acceptanceGap": "None within independently accepted component scope; fresh acquisition and owner journey remain separate",
+      "nextAction": "Preserve accepted scope; continue genuine source/assessment and owner-visible acceptance",
+      "status": "PASS",
+      "latestEvidence": "PASS — ten retained genuine candidates individually DEFERRED; separately labelled synthetic100 initial exercise; no genuine qualification minimum invented"
     },
     {
       "item": 16,
@@ -347,7 +351,7 @@
       "acceptanceGap": "Fresh daily source cohorts",
       "nextAction": "Verify daily bounds and genuine low-supply outcomes; do not inflate throughput",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 local admission cases passed"
+      "latestEvidence": "PENDING — local admission cases passed"
     },
     {
       "item": 17,
@@ -363,10 +367,10 @@
         "backend/src/validation/tests/work8-portfolio-concurrency.test.ts"
       ],
       "decision": "PASS",
-      "acceptanceGap": "None for this isolated portfolio-cap requirement. Genuine product acceptance remains in requirements 5\u201316 and 40.",
+      "acceptanceGap": "None for this isolated portfolio-cap requirement. Genuine product acceptance remains in requirements 5–16 and 40.",
       "nextAction": "Preserve cap; rerun only if its implementation or transaction boundary changes.",
       "status": "PASS",
-      "latestEvidence": "PASS \u2014 retained 999/1000/1001 boundaries, two actual SQLite contenders, duplicate variants, reopen and retirement/replacement."
+      "latestEvidence": "PASS — retained 999/1000/1001 boundaries, two actual SQLite contenders, duplicate variants, reopen and retirement/replacement."
     },
     {
       "item": 18,
@@ -399,7 +403,7 @@
       ],
       "retainedEvidence": [
         "finance-operating-exam-evidence.json.gz",
-        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Verified rights, authorised Canva runtime editing and native owner observation.",
@@ -419,7 +423,7 @@
       ],
       "retainedEvidence": [
         "finance-operating-exam-evidence.json.gz",
-        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Genuine qualification, authorised inference and native owner acceptance.",
@@ -463,7 +467,7 @@
       "acceptanceGap": "Full linked real-product simulated lifecycle",
       "nextAction": "Reconcile refund/credit events after genuine-candidate simulation enrollment",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 scoped remedy/conservation cases passed"
+      "latestEvidence": "PENDING — scoped remedy/conservation cases passed"
     },
     {
       "item": 23,
@@ -532,7 +536,7 @@
       "retainedEvidence": [
         "baseline.json",
         "finance-examination.md",
-        "owner-financial-readback.md; resume-20261011/ACCOUNTING.md"
+        "owner-financial-readback.md; resume-20261011/ACCOUNTING.md; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/DIRECTED-CLOSURE-DELTA.json"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance.",
@@ -554,7 +558,7 @@
       ],
       "retainedEvidence": [
         "joint-exam-evidence.json.gz",
-        "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+        "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Joint genuine-source/assessment/accounting and hosted acceptance prerequisites from accepted fixed31 design; no uncovered currently executable local assertion identified",
@@ -573,8 +577,7 @@
       "retainedEvidence": [
         "assurance-examinations.md",
         "assurance-examinations.md",
-        "assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap",
-        "resume-20261011/REQUIREMENT-27-CATALOGUE-REVIEW.json"
+        "assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap; resume-20261011/REQUIREMENT-27-CATALOGUE-REVIEW.json"
       ],
       "decision": "PASS",
       "acceptanceGap": "None within bounded repair catalogue scope; full fault and runtime acceptance remain separate.",
@@ -592,14 +595,13 @@
       "retainedEvidence": [
         "assurance-examinations.md",
         "assurance-draft-review.md",
-        "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-        "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
+        "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/REQUIREMENT-28-ACCEPTANCE.json; resume-20261011/ASSURANCE-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json"
       ],
       "decision": "PASS",
       "acceptanceGap": "None for fresh independent recovery verification scope",
       "nextAction": "Preserve acceptance; broader recurrence, platform and programme certification remain separate",
       "status": "PASS",
-      "latestEvidence": "PASS \u2014 exact-head Assurance38139483272; retained Product/Runtime/Semantic implementation coverage; fresh runbook and passive closure positive/negative evidence"
+      "latestEvidence": "PASS — exact-head Assurance38139483272; retained Product/Runtime/Semantic implementation coverage; fresh runbook and passive closure positive/negative evidence"
     },
     {
       "item": 29,
@@ -610,12 +612,12 @@
       ],
       "retainedEvidence": [
         "assurance-examinations.md",
-        "assurance-examinations.md"
+        "assurance-examinations.md; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; resume-20261011/REGISTERED-RECURRENCE-PLAN.json; resume-20261011/REGISTERED-RECURRENCE.tap; resume-20261011/REGISTERED-RECURRENCE-REVIEW.json; resume-20261011/REQUIREMENT-29-ACCEPTANCE.json"
       ],
-      "decision": "PENDING",
-      "acceptanceGap": "Publish reviewed recurrence test/evidence and bind exact revision; no further recurrence assertion identified",
-      "nextAction": "Include a83c95eb in one approved successor batch; verify exact tree and attribution before PASS",
-      "status": "PENDING",
+      "decision": "PASS",
+      "acceptanceGap": "None within recurrence budget/circuit-breaker scope",
+      "nextAction": "Preserve accepted recurrence evidence; hosted joint fault gates remain separate",
+      "status": "PASS",
       "latestEvidence": "Retained generic budget cases plus actual registered-runtime recurrence PASS: two verified repairs, restart, third refused, source/events retained; independent scoped review PASS"
     },
     {
@@ -627,12 +629,11 @@
       ],
       "retainedEvidence": [
         "assurance-examinations.md",
-        "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-        "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
+        "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Hosted platform containment, coupled loss and final-candidate endurance; exact published runtime CI now passed",
-      "nextAction": "Validate successor runtime CI; execute protected process-tree acceptance only in separately authorised host.",
+      "nextAction": "Preserve current CI results; execute coupled process-tree containment and final-candidate endurance only on separately authorised isolated host",
       "latestEvidence": "2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass.; published52338 Runtime and Semantic confirm actual observer IPC/launcher clean stop",
       "status": "PENDING"
     },
@@ -648,10 +649,10 @@
       ],
       "retainedEvidence": [
         "examination-blueprint.json",
-        "examination-blueprint.json; assurance-fault-coverage.json"
+        "examination-blueprint.json; assurance-fault-coverage.json; resume-20261011/REMAINING-SCENARIO-DESIGN.json; resume-20261011/REQUIREMENT-31-BLUEPRINT-REVIEW.json"
       ],
       "decision": "PASS",
-      "acceptanceGap": "None for blueprint/design scope. Execution gates32\u201341 remain separate.",
+      "acceptanceGap": "None for blueprint/design scope. Execution gates32–41 remain separate.",
       "nextAction": "Preserve accepted design; execute only missing authorised cases with sealed exact inputs and retain results.",
       "status": "PASS",
       "latestEvidence": "Independent design acceptance PASS; no remaining execution inferred."
@@ -667,14 +668,13 @@
       ],
       "retainedEvidence": [
         "component-node22.log",
-        "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json",
-        "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
+        "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/REQUIREMENT-32-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json"
       ],
-      "decision": "PENDING",
-      "acceptanceGap": "Exact-source coverage and CI attribution including reviewed capture correction; no specific missing Level1 examination identified",
-      "nextAction": "Bind retained unit/contract/property evidence and new capture test to published successor and required CI; independently verify scoped acceptance",
-      "latestEvidence": "Exact successor85a1437f typecheck PASS;27 remaining Assurance-tail cases plus1 replica examination PASS; published Product/Runtime/Semantic SUCCESS.",
-      "status": "PENDING"
+      "decision": "PASS",
+      "acceptanceGap": "None within unit/integration/contract/property scope; owner journeys and wider recovery remain separate",
+      "nextAction": "Preserve accepted Level1 examinations; rerun only affected boundaries if implementation changes",
+      "latestEvidence": "PASS — current Product215/215, Runtime391/391, capture regression, retained contracts/properties, clean builds and four successful workflows; exact tested tree verified",
+      "status": "PASS"
     },
     {
       "item": 33,
@@ -689,11 +689,11 @@
       ],
       "retainedEvidence": [
         "portfolio-node22.log",
-        "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log"
+        "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Wider transport/concurrency matrix",
-      "nextAction": "Publish reviewed correction as consolidated batch; prove enforced global shutdown/consistent capture and protected off-host restore on isolated runtime",
+      "nextAction": "Prove enforced global shutdown/consistent capture and protected off-host restore on separately authorised isolated runtime; published capture correction retained",
       "status": "PENDING",
       "latestEvidence": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending Retained CI ac9583c proves real shared Brain pause/drain, Redis AOF crash recovery and stale settlement fencing.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; child finance writer during Redis copy: before failure retained, corrected refusal and stable restore 2 tests PASS"
     },
@@ -709,13 +709,13 @@
       "retainedEvidence": [
         "joint-exam-evidence.json.gz",
         "assurance-fault-coverage.md",
-        "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log"
+        "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Joint genuine-source/assessment/accounting and hosted acceptance prerequisites from accepted fixed31 design; no uncovered currently executable local assertion identified",
       "nextAction": "Obtain consolidated external inputs; execute only remaining designed joint acceptance arms, preserving local passes",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 full20 queue drains21 admitted jobs; fresh closure;29 targeted tests PASS, actual fixture observer deaths and audit-failure containment;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected"
+      "latestEvidence": "PENDING — full20 queue drains21 admitted jobs; fresh closure;29 targeted tests PASS, actual fixture observer deaths and audit-failure containment;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected"
     },
     {
       "item": 35,
@@ -733,7 +733,7 @@
       "acceptanceGap": "Genuine authorised provider/assessment evidence",
       "nextAction": "Validate factual claims against sources; keep proposal verification false meanwhile",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 injected cases passed"
+      "latestEvidence": "PENDING — injected cases passed"
     },
     {
       "item": 36,
@@ -767,7 +767,6 @@
       "retainedEvidence": [
         "portfolio-node22.log",
         "shared-store-days.json.gz",
-        "shared-store-days.md; shared-store-days.json.gz; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
         "resume-20261011/REQUIREMENT-37-ACCEPTANCE.json; resume-20261011/FULL-COHORT-EXAM.tap; examination-ledger.json"
       ],
       "decision": "PASS",
@@ -806,13 +805,13 @@
       "retainedEvidence": [
         "finance-operating-exam-evidence.json.gz",
         "assurance-fault-coverage.md",
-        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/RUNTIME-38142058061-receipt.json"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Global arbitrary-writer coordination, protected off-host retention and authenticated restore acceptance remain.",
-      "nextAction": "Publish reviewed correction as consolidated batch; prove enforced global shutdown/consistent capture and protected off-host restore on isolated runtime",
+      "nextAction": "Prove enforced global shutdown/consistent capture and protected off-host restore on separately authorised isolated runtime; published capture correction retained",
       "status": "PENDING",
-      "latestEvidence": "b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; exact52338 runtime38137758734 SUCCESS: complete enabled-store/whole-volume restoration and financial/Redis continuity receipt retained; child finance writer during Redis copy: before failure retained, corrected refusal and stable restore 2 tests PASS; exact e3e8500a runtime38139483205 SUCCESS; whole-volume/finance/Redis continuity artifact11702567419 independently hash-verified"
+      "latestEvidence": "b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; exact52338 runtime38137758734 SUCCESS: complete enabled-store/whole-volume restoration and financial/Redis continuity receipt retained; child finance writer during Redis copy: before failure retained, corrected refusal and stable restore 2 tests PASS; exact e3e8500a runtime38139483205 SUCCESS; whole-volume/finance/Redis continuity artifact11702567419 independently hash-verified; current a3cd82a1 Runtime38142058061 SUCCESS; whole-volume/finance/Redis continuity artifact11703737345 hash-verified"
     },
     {
       "item": 40,
@@ -846,13 +845,13 @@
       ],
       "retainedEvidence": [
         "source-visibility.md",
-        "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json"
+        "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/browser-a3cd82a1/attribution.json"
       ],
       "decision": "PENDING",
       "acceptanceGap": "Native desktop/mobile authenticated journey and source-to-finance equality.",
       "nextAction": "Use existing browser harness once an authorised browser environment is available.",
       "status": "PENDING",
-      "latestEvidence": "Two backend-service-generated SSR tests PASS; changed component lint PASS; exact frontend review CI newly pinned in backend workflow."
+      "latestEvidence": "Two backend-service-generated SSR tests PASS; changed component lint PASS; exact frontend review CI newly pinned in backend workflow. Current Product phone browser OFFLINE_FIXTURE PASS; actual tested merge tree equals published tree; no genuine native owner walkthrough inferred."
     },
     {
       "item": 42,
@@ -862,14 +861,13 @@
       "retainedEvidence": [
         "assurance-draft-review.md",
         "CHECKPOINT.md",
-        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json",
-        "resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json"
+        "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json"
       ],
       "decision": "PENDING",
-      "acceptanceGap": "Reviewed local successor publication/CI attribution and final integrated/hosted owner acceptance",
-      "nextAction": "Approve/publish consolidated a83c95eb batch; verify exact trees and required CI without restarting prior passes",
+      "acceptanceGap": "Final integrated/hosted owner acceptance and independent final-candidate review",
+      "nextAction": "Preserve passing CI and exact tree evidence; complete final integrated review after shared inputs",
       "status": "PENDING",
-      "latestEvidence": "All four exact-head e3e8500a workflows SUCCESS: Assurance38139483272, Semantic38139483234, Product38139483206, Runtime38139483205; no reruns"
+      "latestEvidence": "All four current published-revision workflows SUCCESS: Assurance38142058029, Semantic38142058040, Product38142058048, Runtime38142058061; exact tested tree verified; no reruns"
     },
     {
       "item": 43,
@@ -884,7 +882,7 @@
       "acceptanceGap": "Mandatory acceptance gates and independent closure",
       "nextAction": "Issue no COMPLETE receipt until evidence supports every required gate",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 no Work8 COMPLETE"
+      "latestEvidence": "PENDING — no Work8 COMPLETE"
     },
     {
       "item": 44,
@@ -899,7 +897,7 @@
       "acceptanceGap": "Remaining implementation, examinations and blocked inputs",
       "nextAction": "Reassess only against new genuine evidence; preserve residual-risk record",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 full certification denied"
+      "latestEvidence": "PENDING — full certification denied"
     },
     {
       "item": 45,
@@ -914,12 +912,12 @@
       "acceptanceGap": "Legitimate Work8 closure",
       "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
       "status": "PENDING",
-      "latestEvidence": "PENDING \u2014 Work9 not activated"
+      "latestEvidence": "PENDING — Work9 not activated"
     }
   ],
   "notes": [
     "Synthetic permission for the cap is explicit in R4; cap source and both tests match the retained examined manifest. Prior failed concurrency harness and passing corrected retest remain preserved.",
-    "Requirement37 does not require genuine sources for virtual-time proof; integrated daily qualification/discovery, rejects and replacement through the complete twin remain uncovered. Genuine source demonstration is separately governed by R1\u2013R5.",
+    "Requirement37 does not require genuine sources for virtual-time proof; integrated daily qualification/discovery, rejects and replacement through the complete twin remain uncovered. Genuine source demonstration is separately governed by R1–R5.",
     "No Work8 COMPLETE or Work9 activation receipt issued.",
     "2026-10-11 closure reconciliation: retained all 45 IDs and exact decisions. New financial amendments add acceptance; they do not invalidate retained scoped evidence. All four be4936d workflows completed successfully; no reruns requested. Latest exact candidate independent review remains missing.",
     "Corrected stale gaps: V3 now restores preparation/enrollment lineage and measured point-in-time replay, import UI exists, historic authority is inert. Remaining whole-system/off-host/native/genuine-source gates are distinct.",

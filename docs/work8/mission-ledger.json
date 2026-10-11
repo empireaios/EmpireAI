@@ -3,8 +3,8 @@
   "missionStatus": "IN_PROGRESS",
   "decision": "NO_GO",
   "counts": {
-    "PASS": 6,
-    "PENDING": 34,
+    "PASS": 10,
+    "PENDING": 30,
     "BLOCKED": 5
   },
   "requirementDecisions": [
@@ -39,6 +39,38 @@
       "tree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
       "receipt": "resume-20261011/REQUIREMENT-28-ACCEPTANCE.json",
       "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 29,
+      "status": "PASS",
+      "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+      "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+      "receipt": "resume-20261011/REQUIREMENT-29-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 10,
+      "status": "PASS",
+      "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+      "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+      "receipt": "resume-20261011/REQUIREMENT-10-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 15,
+      "status": "PASS",
+      "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+      "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+      "receipt": "resume-20261011/REQUIREMENT-15-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 32,
+      "status": "PASS",
+      "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+      "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+      "receipt": "resume-20261011/REQUIREMENT-32-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
     }
   ],
   "preservedPasses": [
@@ -49,21 +81,19 @@
   "commerce": "LOCKED",
   "work9": "NOT_ACTIVATED",
   "latestPublication": {
-    "source": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
-    "evidence": "ad3bf4f73a44d1624018343a5240529ed9401407",
-    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-85A1437F.json"
+    "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+    "evidence": "9c67f51b9500643ac0563c4fb2bdf562845fdffb",
+    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-A83C95EB.json"
   },
   "latestScopedReview": {
     "source": "a83c95eb8870a893c93920353c5da94351b5c34f",
     "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
-    "verdict": "SCOPED_PASS_PUBLICATION_PENDING",
+    "verdict": "SCOPED_PASS_PUBLISHED_EXACT_TREE",
     "receipts": [
       "resume-20261011/REGISTERED-RECURRENCE-REVIEW.json",
       "resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json"
     ],
     "newAcceptanceNotGranted": [
-      29,
-      32,
       33,
       39
     ]
@@ -73,5 +103,34 @@
     "tree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
     "verdict": "SCOPED_PASS_TEST_ONLY_CONTINUATION",
     "receipt": "resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json"
+  },
+  "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-A3CD82A1.json",
+  "latestLocalContinuation": {
+    "source": {
+      "commit": "d459c08b3a588904963ef9308283a14474600f8f",
+      "tree": "600646bb2a248e7bb1442f9df8c6bdddb43070db",
+      "published": false,
+      "targetBranch": "work8/autonomous-examination-20261011"
+    },
+    "frontend": {
+      "commit": "ad882b4e57bd6afb18fb0bca3a6cec40c467c10c",
+      "tree": "4839e76d114f62e2ed2fd48529fe0bea2684f321",
+      "base": "720764722e6178d4126dcf376383096e204ec5ba",
+      "published": false,
+      "bundle": "FRONTEND-PREVIEW-CANDIDATE.bundle",
+      "deploymentBranchMoved": false
+    },
+    "receipt": "resume-20261011/BUSINESS-INTEGRATION-REVIEW.json",
+    "newClosures": [],
+    "reason": "Short acceptance reconciliation found remaining complete scopes depend on genuine product/rights/accounting or hosted/native acceptance; local integration tests do not replace those gates."
+  },
+  "ownerAmendments": {
+    "register": "resume-20261011/OWNER-AMENDMENTS-19.json",
+    "counts": {
+      "PASS": 0,
+      "PENDING": 19,
+      "BLOCKED": 0
+    },
+    "legacyIdsPreserved": true
   }
 }

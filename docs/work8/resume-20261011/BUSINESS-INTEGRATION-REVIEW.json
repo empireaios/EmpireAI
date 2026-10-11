@@ -1,0 +1,61 @@
+{
+  "schema": "WORK8_BUSINESS_INTEGRATION_REVIEW_V1",
+  "source": {
+    "commit": "d459c08b3a588904963ef9308283a14474600f8f",
+    "tree": "600646bb2a248e7bb1442f9df8c6bdddb43070db",
+    "published": false,
+    "targetBranch": "work8/autonomous-examination-20261011"
+  },
+  "frontend": {
+    "commit": "ad882b4e57bd6afb18fb0bca3a6cec40c467c10c",
+    "tree": "4839e76d114f62e2ed2fd48529fe0bea2684f321",
+    "base": "720764722e6178d4126dcf376383096e204ec5ba",
+    "published": false,
+    "bundle": "FRONTEND-PREVIEW-CANDIDATE.bundle",
+    "deploymentBranchMoved": false
+  },
+  "verifier": "/root/review_retirement_finance",
+  "review": "Independent scoped UX review; root reviewed Canva implementation. Canonical hash-format mismatch found, repaired using real durable-store hashChatInput, fixture independently bound; reviewer verified fix. Default runtime Canva action has no ports and refuses before provider execution. No remaining scoped blocker identified.",
+  "tests": {
+    "newFocused": {
+      "pass": 8,
+      "fail": 0,
+      "receipt": "BUSINESS-INTEGRATION-8.tap",
+      "classification": "LABELLED_INTERCEPTED_REQUEST_AND_EXPORT_FIXTURES"
+    },
+    "backendTypecheck": {
+      "exitCode": 0
+    },
+    "frontendTypecheck": {
+      "exitCode": 0
+    },
+    "changedFrontendLint": {
+      "exitCode": 0
+    }
+  },
+  "limitations": [
+    "No real Pillow request or Canva provider execution",
+    "No instruction-based Canva editing capability in current provider adapter",
+    "Canva runtime authority and host-constrained artifact reader not configured",
+    "No hosted CI for new candidate; prior CI belongs to published a3cd82a1 tree",
+    "No native browser acceptance or deployment"
+  ],
+  "initialDiagnostics": [
+    "Independent review discovered 64-character preview hash incompatible with canonical 32-character store hash; fixed",
+    "Incomplete durable-request test fixture fields corrected before final typecheck",
+    "Default-heap typecheck exhausted memory; final complete backend check with established 4GB heap exited 0"
+  ],
+  "governance": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "productionChanged": false,
+    "paidInference": 0
+  },
+  "receiptHashes": {
+    "BUSINESS-INTEGRATION-8.tap": "a38c6224f24dd22bb3fe637a2ef5c6f61a5d8d9e07cc5eb5079a03b24fc61840",
+    "BUSINESS-BACKEND-TYPECHECK.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "BUSINESS-FRONTEND-TYPECHECK.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "BUSINESS-FRONTEND-LINT.log": "db12ad97221988bf346c55d06788e21a01bb6a683d69266bf732ed4d6d9763c8",
+    "FRONTEND-PREVIEW-CANDIDATE.bundle": "bd0100df8871dea42c5bb8f88be93a2cde48e8b66e72979483c40ef20d242335"
+  }
+}

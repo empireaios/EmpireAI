@@ -1,5 +1,7 @@
-# Next executable actions
+# Exact continuation
 
-Obtain one consolidated successor publication approval; publish exact reviewed source a83c95eb and evidence trees, verify heads and CI, then independently attribute29/32 acceptance. Four external inputs and isolated hosted authority remain; see CONSOLIDATED-HOSTING-DECISION.md. No uncovered currently executable local assertion identified in accepted scenario design.
+Do not republish a83c95eb/6b19830a: published replacements remain a3cd82a1/9c67f51b. Preserve four current passes and ten acceptance decisions.
 
-Published source/evidence: e3e8500a5ae7c8bd0d556d1d37a24238619d84fb / ad3bf4f73a44d1624018343a5240529ed9401407. Local reviewed successor: a83c95eb8870a893c93920353c5da94351b5c34f tree a802c0fef2a2f58ddc13a3815f066b46396fd3d1. All four published-head CI workflows passed. Source successor remains unpublished. No deployment or new authority. Pillow NOT_BORN; commerce LOCKED.
+Next executable publication action: after bounded approval, reproduce complete local source d459c08b3a588904963ef9308283a14474600f8f tree 600646bb2a248e7bb1442f9df8c6bdddb43070db and the final evidence commit/tree on existing Work8 branches; verify every blob/mode/path and remote heads. Do not move frontend deployment branch. Frontend ad882b4e57bd6afb18fb0bca3a6cec40c467c10c tree 4839e76d114f62e2ed2fd48529fe0bea2684f321 is retained as incremental bundle based on 720764722e6178d4126dcf376383096e204ec5ba.
+
+Then inspect required new-head CI without rerunning earlier passes. Resolve selected genuine product/assessment, asset permission, canonical accounting export, and separately authorised isolated host as one decision; perform connected native desktop/mobile acceptance and only the retained missing hosted scenarios. No live effects.

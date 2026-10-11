@@ -1,0 +1,44 @@
+{
+  "schema": "WORK8_SCOPED_REQUIREMENT_ACCEPTANCE_V1",
+  "requirement": 15,
+  "status": "PASS",
+  "scope": "Initial up-to-100 qualification/screening with truthful conditional low supply",
+  "governingCriteria": "Mandate4/8/19 and R4: up-to100 is a conditional target, not minimum guaranteed genuine qualifications",
+  "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+  "actualTestCommit": "ee203983ff5c97404de90b1a282a9ff532476822",
+  "testedTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "treeEquality": "Complete fetched Git trees identical; distinct merge and PR-head commit identities preserved",
+  "independentVerifier": "/root/review_retirement_finance",
+  "ciRun": 38142058048,
+  "ciJob": 114477853108,
+  "ciConclusion": "SUCCESS",
+  "boundedSuite": {
+    "tests": 215,
+    "pass": 215,
+    "fail": 0
+  },
+  "relevantPassedCaseNumbers": [
+    65,
+    147,
+    180
+  ],
+  "evidenceHashes": {
+    "PRODUCT-A3CD82A1-ATTRIBUTION.json": "ec7fa676878794600776f1db82f595ee6b2c52a28d2f968c48f518a8906c5f0f",
+    "PRODUCT-A3CD82A1-TESTS.log": "12ff08b40f0f74a54668be7a81a0a1673ca2d0ae62251f6d5695923b5cd7f0d1",
+    "qualification-unit-1.json": "bf48a8118d70bb9da4995a6b409e1e519e01d1aae4e3c2b9daaa3b731976500b"
+  },
+  "findings": [
+    "Ten retained genuine observations are individually evaluated and deferred; zero genuine qualifications honestly reported",
+    "Accepted initial100 synthetic qualification exercise and ten virtual daily cohorts remain explicitly injected",
+    "Positive fixture qualification and genuine deferral paths both covered; no guaranteed100 genuine qualification or publication quota"
+  ],
+  "remainingCriteriaWithinScope": [],
+  "excludedClaims": [
+    "Fresh genuine acquisition or genuine elapsed multi-day throughput",
+    "Genuine Pillow assessment",
+    "Rights for unlicensed images or display of all19 assets",
+    "Complete R2 real-product owner walkthrough or downstream genuine acceptance",
+    "Overall Work8 or production release acceptance"
+  ],
+  "reviewMethod": "Read retained original mandate, source/tests and current hosted result attribution; no reruns; no register changes"
+}

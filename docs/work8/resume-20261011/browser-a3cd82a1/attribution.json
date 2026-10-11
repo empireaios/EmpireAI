@@ -1,0 +1,26 @@
+{
+  "schema": "WORK8_BROWSER_ARTIFACT_ATTRIBUTION_V1",
+  "run": 38142058048,
+  "job": 114477853195,
+  "artifact": 11702924359,
+  "artifactSha256": "ac3741d15eebd787b3a36dc47a5168d087fcbb350edb3119110f5faafb444343",
+  "pullRequestHead": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+  "actualTestedCommit": "ee203983ff5c97404de90b1a282a9ff532476822",
+  "actualTestedTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "publishedTree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+  "fullTreeDiff": [],
+  "verification": "Fetched GitHub PR merge commit ee203983 and compared full tree: equal to approved/published source. Different commit identity explicitly retained. Runtime main job explicitly checks PR head; Product default checkout tests merge revision.",
+  "scope": "OFFLINE_FIXTURE: authenticated phone login, Home/Products/Evidence, terminal rejection, locked approval, BFF/backend/disk transaction, logout and workspace refusal",
+  "limitations": [
+    "Not actual owner-performed acceptance",
+    "Not seven-destination Work8 twin walkthrough",
+    "Not fresh genuine qualification/assessment or complete autonomous business loop",
+    "Session backend isolated in-memory; provider authenticity false"
+  ],
+  "files": {
+    "phone-transaction.png": "2b69bc92e5c3006ffd362f7cee65a3603810b5a6b16339f2c79f5b3651e2f93e",
+    "phone-home.png": "63fb83b584e29eb19438e978144edba1473d8a2b668b290deb4b5eab3970c984",
+    "phone-product.png": "ecdad303fb0a085f52ecc247ef03e8671990285cd4724f3a70e21ecc805821e6",
+    "receipt.json": "9f8cadbd99857e71865d0b0730b9583953145e32acd5e36ce9cfceb1f9200ae5"
+  }
+}
