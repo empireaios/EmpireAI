@@ -16,6 +16,18 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  source.sessions.transition(p,{id:'create',sessionId:'exam',expectedVersion:0,action:'CREATE'});source.sessions.transition(p,{id:'resume',sessionId:'exam',expectedVersion:1,action:'RESUME'});
  source.admit(p,{id:'cohort',sessionId:'exam',expectedVersion:2,count:2,authorizeLabelledFixtures:true});source.authority.command(p,{action:'GRANT',id:'grant',sessionId:'exam',expectedVersion:0,mode:'ONE_HOUR'});
  for(let i=0;i<5;i++)source.cycle();
+
+ const scope='UX_CHANGE_PREPARATION';
+ const grant=source.preparation.command(p,{action:'GRANT',id:'ux-grant',sessionId:'exam',scope,expectedVersion:0,mode:'ONE_TASK',taskId:'green-preview'});
+ assert.throws(()=>source.preparation.prepare(p,{id:'wrong-task',sessionId:'exam',scope,grantDigest:grant.digest,color:'GREEN'}),/AUTHORITY_DENIED/);
+ const prepared=source.preparation.prepare(p,{id:'green-preview',sessionId:'exam',scope,grantDigest:grant.digest,color:'GREEN'});assert.equal(prepared.result?.productionChange,false);assert.equal(prepared.result?.background,'#e8f5ed');assert.equal(source.preparation.read(p,'exam',scope).status,'CONSUMED');
+ const approved=source.preparation.command(p,{action:'APPROVE_PREVIEW',id:'approve-green',sessionId:'exam',scope,expectedVersion:2,proposalDigest:prepared.digest});assert.equal(approved.result?.ownerApproved,true);assert.equal(approved.result?.deploymentAuthorized,false);
+ assert.equal(source.preparation.prepare(p,{id:'green-preview',sessionId:'exam',scope,grantDigest:grant.digest,color:'GREEN'}).digest,prepared.digest);
+ assert.throws(()=>source.preparation.command(p,{action:'GRANT',id:'live-grant',sessionId:'exam',scope:'LIVE_COMMERCE',expectedVersion:0,mode:'ONE_HOUR'}));
+ source.preparation.command(p,{action:'GRANT',id:'research-grant',sessionId:'exam',scope:'RESEARCH_REASONING',expectedVersion:0,mode:'FIFTEEN_MINUTES'});
+ const inspectGrant=source.preparation.command(p,{action:'GRANT',id:'inspect-grant',sessionId:'exam',scope:'BACKEND_READ_ONLY',expectedVersion:0,mode:'FIFTEEN_MINUTES'});
+ source.preparation.command(p,{action:'REVOKE',id:'inspect-revoke',sessionId:'exam',scope:'BACKEND_READ_ONLY',expectedVersion:1});
+ assert.throws(()=>source.preparation.prepare(p,{id:'inspect',sessionId:'exam',scope:'BACKEND_READ_ONLY',grantDigest:inspectGrant.digest}),/AUTHORITY_DENIED/);
  const version={applicationRevision:'a'.repeat(40),configurationDigest:digest({isolated:true})};
 
  const reference={sessionId:'exam',missionId:source.projection(p,'exam').records[0]!.missionId,receiptDigest:source.projection(p,'exam').records[0]!.receiptDigest};
@@ -49,8 +61,10 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  assert.equal(replayTwinCheckpoint(target,first,first.digest).status,'ALREADY_APPLIED');
  assert.deepEqual(target.projection(p,'exam').records,source.projection(p,'exam').records);
  assert.deepEqual(target.communications.read(p,'exam'),source.communications.read(p,'exam'));
+ assert.ok(target.preparation.all(p,'exam').every(g=>g.status==='NOT_GRANTED'));
  assert.notEqual(target.authority.read(p,'exam').status,'ACTIVE');assert.throws(()=>target.authority.require(p,'exam'),/NOT_GRANTED/);
  for(let i=0;i<40;i++)source.cycle();now+=86460000;source.authority.command(p,{action:'GRANT',id:'settle',sessionId:'exam',expectedVersion:1,mode:'ONE_HOUR'});for(let i=0;i<20;i++)source.cycle();
+ assert.equal(source.preparation.read(p,'exam','RESEARCH_REASONING').status,'EXPIRED');
  const second=captureTwinCheckpoint(source,p,'exam',{...version,applicationRevision:'b'.repeat(40)},first);
  assert.equal(source.projection(p,'exam').records.length,2);assert.ok(source.projection(p,'exam').records.every(r=>r.finance.status==='COMPLETE_SIMULATION'));
  // Replay requires unchanged isolated target business history.

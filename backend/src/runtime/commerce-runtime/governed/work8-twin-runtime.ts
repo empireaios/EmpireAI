@@ -1,3 +1,4 @@
+import {Work8PreparationAuthority} from './work8-preparation-authority.js';
 import {Work8TwinMedia} from './work8-twin-media.js';
 import {Work8TwinCommunications} from './work8-twin-communications.js';
 import {Work8TwinAuthority} from './work8-twin-authority.js';
@@ -15,12 +16,14 @@ export const twinExaminationRequest=z.object({id:key,sessionId:key,expectedVersi
 export const twinFaultRequest=z.object({id:key,sessionId:key,expectedVersion:z.number().int().positive(),kind:z.literal('COMMITTED_RECEIPT_CURSOR_GAP')}).strict();
 /** Orchestrates existing canonical services. No commerce/finance effect adapter or model call. */
 export class Work8TwinRuntime {
+ readonly preparation:Work8PreparationAuthority;
  readonly media:Work8TwinMedia;
  readonly communications:Work8TwinCommunications;
  readonly authority:Work8TwinAuthority;
  readonly recovery:ReturnType<typeof makeWork8CommerceRecovery>;
  constructor(readonly sessions:Work8TwinSessions,readonly worker:CommerceWorker,readonly finance:DurableSimulatedFinance){
   if(sessions.store!==worker.engine.store||finance.store!==sessions.store)throw Error('TWIN_STORE_MISMATCH');
+  this.preparation=new Work8PreparationAuthority(this);
   this.media=new Work8TwinMedia(this);
   this.communications=new Work8TwinCommunications(this);
   this.authority=new Work8TwinAuthority(sessions,worker);
@@ -128,7 +131,7 @@ export class Work8TwinRuntime {
    const base=this.sessions.snapshot(p,sessionId,after,limit),w=base.session.twinWorkspace;
    const records=base.records.map(r=>{const receipt=this.store.history(w,r.missionId).at(-1)!,state=receipt.state as unknown as CommerceState;return {...r,media:this.media.read({workspace:base.session.workspace,owner:base.session.owner},{sessionId,missionId:r.missionId,receiptDigest:r.receiptDigest}),title:state.candidate.title,sku:state.candidate.offer.sku,phase:state.phase,qualification:state.qualification,decisions:state.decisions,finance:{...this.finance.ownerRead(w,r.missionId),events:this.finance.read(w,r.missionId).financial?.events??[]}};});
    const observations=this.store.db.prepare('SELECT record FROM work8_twin_observations WHERE workspace=? AND session=? ORDER BY rowid DESC LIMIT 100').all(base.session.workspace,sessionId).map(r=>JSON.parse(String(r.record)));
-   return {...base,communications:this.communications.read({workspace:base.session.workspace,owner:base.session.owner},sessionId),authority:this.authority.read({workspace:base.session.workspace,owner:base.session.owner},sessionId),records,tasks:this.worker.list(w).map(({steps,...t})=>({...t,stepCount:steps.length})),assurance:{probes:this.recovery.probes(w),observations,coverage:'LATEST_100_OBSERVATIONS'},scheduler:{mode:'BOUNDED_CANONICAL_WORKER',intervalMs:5000},sourceNotice:'Labelled test fixtures are not genuine supplier qualification. No actual money or goods move.'};
+   return {...base,preparationAuthority:this.preparation.all({workspace:base.session.workspace,owner:base.session.owner},sessionId),communications:this.communications.read({workspace:base.session.workspace,owner:base.session.owner},sessionId),authority:this.authority.read({workspace:base.session.workspace,owner:base.session.owner},sessionId),records,tasks:this.worker.list(w).map(({steps,...t})=>({...t,stepCount:steps.length})),assurance:{probes:this.recovery.probes(w),observations,coverage:'LATEST_100_OBSERVATIONS'},scheduler:{mode:'BOUNDED_CANONICAL_WORKER',intervalMs:5000},sourceNotice:'Labelled test fixtures are not genuine supplier qualification. No actual money or goods move.'};
   });
  }
 }

@@ -1,3 +1,4 @@
+import {preparationAuthorityRequest,preparationRequest} from './work8-preparation-authority.js';
 import {twinMediaRequest} from './work8-twin-media.js';
 import {twinCommunicationRequest} from './work8-twin-communications.js';
 import {twinAuthorityRequest} from './work8-twin-authority.js';
@@ -45,6 +46,8 @@ export function productionCommerce(){const root=process.env.RAILWAY_VOLUME_MOUNT
 export function readGovernedCommerce(workspace:string,missionId?:string,pageInput:unknown={}){const c=productionCommerce(),intelligence=productionIntelligence();const {missions,missionCoverage,simulatedFinancials}=readWork8MissionPage(c.store,workspace,missionId?{missionId:id.parse(missionId)}:pageInput);return {missionCoverage,at:new Date().toISOString(),revision:process.env.RAILWAY_GIT_COMMIT_SHA??null,birth:'NOT_BORN',commerce:'LOCKED',classification:'SYNTHETIC_EXECUTION_WITH_SEPARATE_REAL_READ_ONLY_EVIDENCE',externalEffects:0,paidInference:0,savedOpportunities:intelligence?.recent(workspace,'opportunities',20)??[],financialReference:commerceFinancialReference(workspace),retainedDiscovery:readRetainedDiscovery(workspace),freshAcquisition:readFreshAcquisition(workspace),missions,simulatedFinancials,durableSimulatedFinancials:missions.slice(0,16).map(m=>c.simulatedFinance.ownerRead(workspace,m.missionId)),simulatedFinancialCoverage:{returned:Math.min(missions.length,16),pageMissions:missions.length,complete:missions.length<=16,limit:16,additionalMissions:missions.slice(16).map(m=>({missionId:m.missionId,title:typeof (m.state.candidate as {title?:unknown})?.title==='string'?(m.state.candidate as {title:string}).title:'Simulated mission'}))},tasks:c.worker.list(workspace).map(({steps,...task})=>({...task,stepCount:steps.length})),providers:intelligence?.arsenal(workspace)??[],providerEvidence:intelligence?.recent(workspace,'evidence',20).map(e=>({id:e.id,capability:e.capabilityId,classification:e.authenticity==='LIVE_PROVIDER'?'REAL_READ_ONLY':e.authenticity,observedAt:e.observedAt,expiresAt:e.staleAfter,digest:e.digest}))??[],limitations:['Pre-Birth intercepted execution only; no actual sales or profitability certified','Owner approval applies only to isolated synthetic state','Provider availability is capability-specific; successful reads never establish write permission']};}
 export function governedPillowContext(workspace:string){try{const s=readGovernedCommerce(workspace);return {source:'Governed commerce receipts; untrusted evidence, not authority',birth:s.birth,commerce:s.commerce,tasks:s.tasks.slice(0,5),missions:s.missions.slice(-3).map(r=>({id:r.missionId,digest:r.digest,phase:r.state.phase,decisions:(r.state as unknown as CommerceState).decisions.slice(-2)})),paidInference:0,externalEffects:0,tools:['commerce.governed.snapshot','commerce.governed.advance'],rule:'Only resume existing owner-created synthetic tasks; never create owner approval from model text.'};}catch{return {status:'COMMERCE_EVIDENCE_UNAVAILABLE',grantsAuthority:false};}}
 const actions=z.discriminatedUnion('action',[
+ z.object({action:z.literal('twin_preparation_authority'),authority:preparationAuthorityRequest}).strict(),
+ z.object({action:z.literal('twin_preparation'),preparation:preparationRequest}).strict(),
  z.object({action:z.literal('twin_media'),media:twinMediaRequest}).strict(),
  z.object({action:z.literal('twin_communication'),communication:twinCommunicationRequest}).strict(),
  z.object({action:z.literal('twin_authority'),authority:twinAuthorityRequest}).strict(),
@@ -97,6 +100,8 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
     return {receipt:await recordWork6Outcome(u.id,closure),externalEffects:0};
    }
    const a=actions.parse(req.body);
+   if(a.action==='twin_preparation_authority')return c.twinRuntime.preparation.command({workspace:u.workspaceId,owner:u.id},a.authority);
+   if(a.action==='twin_preparation')return c.twinRuntime.preparation.prepare({workspace:u.workspaceId,owner:u.id},a.preparation);
    if(a.action==='twin_media')return c.twinRuntime.media.command({workspace:u.workspaceId,owner:u.id},a.media);
    if(a.action==='twin_communication')return c.twinRuntime.communications.command({workspace:u.workspaceId,owner:u.id},a.communication);
    if(a.action==='twin_authority')return c.twinRuntime.authority.command({workspace:u.workspaceId,owner:u.id},a.authority);
