@@ -38,7 +38,9 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  source.media.command(p,{action:'PROPOSE',id:'media-three',reference,expectedVersion:4,instructions:'Later fixture edit invalidates submission',assets:[{...asset,rightsStatus:'OWNER_REVIEWED'}],editingReceipt:'fixture-not-provider-receipt'});
  assert.equal(source.media.read(p,reference).externalStatus,'NOT_SUBMITTED');
  assert.throws(()=>source.media.command(p,{action:'APPROVE_EXTERNAL',id:'stale-media',reference,expectedVersion:5,batchDigest:revised.batchDigest}),/PROPOSAL_STALE/);
+ source.store.db.exec("CREATE TABLE protected_live_record(value TEXT);INSERT INTO protected_live_record VALUES('NEVER_COPY_PRODUCTION_SECRET')");
  const first=captureTwinCheckpoint(source,p,'exam',version);
+ assert.equal(JSON.stringify(first).includes('NEVER_COPY_PRODUCTION_SECRET'),false);
  assert.throws(()=>initializeTwinRecoveryTarget(source.store),/NOT_EMPTY/);
  initializeTwinRecoveryTarget(target.store);
  const vault=path.join(root,'vault');fs.mkdirSync(vault);saveTwinCheckpoint(vault,first);assert.throws(()=>saveTwinCheckpoint(vault,first),/EEXIST/);
@@ -47,12 +49,11 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  assert.equal(replayTwinCheckpoint(target,first,first.digest).status,'ALREADY_APPLIED');
  assert.deepEqual(target.projection(p,'exam').records,source.projection(p,'exam').records);
  assert.deepEqual(target.communications.read(p,'exam'),source.communications.read(p,'exam'));
- assert.notEqual(target.authority.read(p,'exam').status,'ACTIVE');assert.equal(target.cycle().status,'BLOCKED');
+ assert.notEqual(target.authority.read(p,'exam').status,'ACTIVE');assert.throws(()=>target.authority.require(p,'exam'),/NOT_GRANTED/);
  for(let i=0;i<40;i++)source.cycle();now+=86460000;source.authority.command(p,{action:'GRANT',id:'settle',sessionId:'exam',expectedVersion:1,mode:'ONE_HOUR'});for(let i=0;i<20;i++)source.cycle();
  const second=captureTwinCheckpoint(source,p,'exam',{...version,applicationRevision:'b'.repeat(40)},first);
  assert.equal(source.projection(p,'exam').records.length,2);assert.ok(source.projection(p,'exam').records.every(r=>r.finance.status==='COMPLETE_SIMULATION'));
- // Scheduler observation made in the target is an experiment; immutable source
- // observations can coexist, but canonical business records must remain equal.
+ // Replay requires unchanged isolated target business history.
  replayTwinCheckpoint(target,second,second.digest);
  assert.deepEqual(target.projection(p,'exam').records,source.projection(p,'exam').records);
  assert.deepEqual(target.communications.read(p,'exam'),source.communications.read(p,'exam'));
@@ -65,6 +66,10 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  // still extends the latest checkpoint and cannot revert to the older snapshot.
  const third=captureTwinCheckpoint(source,p,'exam',version,second);replayTwinCheckpoint(target,third,third.digest);
  assert.equal(digest(target.projection(p,'exam').records),recordDigest);
+ target.cycle();
+ const fourth=captureTwinCheckpoint(source,p,'exam',version,third);
+ assert.throws(()=>replayTwinCheckpoint(target,fourth,fourth.digest),/TARGET_DIVERGED/);
+ assert.equal(source.store.db.prepare('SELECT value FROM protected_live_record').get()?.value,'NEVER_COPY_PRODUCTION_SECRET');
  console.log(JSON.stringify({scope:'Canonical isolated snapshot and replay; application references only, no deployed upgrade claimed',orders:2,financialEvents:22,authorityRestored:false}));
  }finally{source.store.close();target.store.close();fs.rmSync(root,{recursive:true,force:true});}
 });

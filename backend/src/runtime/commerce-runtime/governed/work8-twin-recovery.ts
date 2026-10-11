@@ -103,6 +103,13 @@ export function replayTwinCheckpoint(target:Work8TwinRuntime,raw:unknown,expecte
   if(last?.digest===pack.digest)return {status:'ALREADY_APPLIED',digest:pack.digest,authorityRestored:false};
   if(pack.sequence!==(last?.sequence??0)+1||pack.previous!==(last?.digest??''))throw Error('RECOVERY_REPLAY_ORDER');
   if(last){if(last.owner!==pack.owner||last.workspace!==pack.workspace||last.sessionId!==pack.sessionId)throw Error('RECOVERY_LINEAGE_SCOPE');verifyExtension(last,pack);}
+  if(target.store.db.prepare('SELECT 1 FROM work8_twin_authority LIMIT 1').get())throw Error('RECOVERY_TARGET_HAS_AUTHORITY');
+  // A future-state experiment must fork again, never accept replication on top
+  // of independently changed business state (including extra or deleted rows).
+  for(const [table,keys] of specs){
+   const existing=target.store.db.prepare(`SELECT * FROM ${table} ORDER BY ${keys} LIMIT 100001`).all();
+   if(digest(existing)!==digest(last?.tables[table]??[]))throw Error('RECOVERY_TARGET_DIVERGED');
+  }
   for(const [table,keys,,mutable] of specs){
    const columns=target.store.db.prepare(`PRAGMA table_info(${table})`).all().map(c=>String(c.name));
    for(const row of pack.tables[table]!){
