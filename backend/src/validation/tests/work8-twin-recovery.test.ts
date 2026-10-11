@@ -63,11 +63,12 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  const first=captureTwinCheckpoint(source,p,'exam',version);
  assert.equal(JSON.stringify(first).includes('NEVER_COPY_PRODUCTION_SECRET'),false);
  // Retained V1 snapshots remain readable and can precede a V2 checkpoint.
- const {work8_simulation_enrollments: omitted,...legacyTables}=first.tables;
+ const {work8_simulation_enrollments: omitted,work8_mission_preparations: omittedPreparations,...legacyTables}=first.tables;
  const {digest: ignored,...legacyBody}=first;
  const v1body={...legacyBody,schema:'WORK8_TWIN_RECOVERY_V1' as const,tables:legacyTables};
  const legacy={...v1body,digest:digest(v1body)},legacyTarget=open('legacy.sqlite');
  try{initializeTwinRecoveryTarget(legacyTarget.store);replayTwinCheckpoint(legacyTarget,legacy,legacy.digest);const upgraded=captureTwinCheckpoint(source,p,'exam',version,legacy);replayTwinCheckpoint(legacyTarget,upgraded,upgraded.digest);assert.deepEqual(legacyTarget.projection(p,'exam').records,source.projection(p,'exam').records);}finally{legacyTarget.store.close();}
+ const {work8_mission_preparations: notInV2,...v2tables}=first.tables;const {digest: oldDigest,...v2base}=first;const v2body={...v2base,schema:'WORK8_TWIN_RECOVERY_V2' as const,tables:v2tables},v2={...v2body,digest:digest(v2body)},v2target=open('v2.sqlite');try{initializeTwinRecoveryTarget(v2target.store);replayTwinCheckpoint(v2target,v2,v2.digest);const v3=captureTwinCheckpoint(source,p,'exam',version,v2);replayTwinCheckpoint(v2target,v3,v3.digest);assert.deepEqual(v2target.projection(p,'exam').records,source.projection(p,'exam').records);}finally{v2target.store.close();}
  assert.throws(()=>initializeTwinRecoveryTarget(source.store),/NOT_EMPTY/);
  initializeTwinRecoveryTarget(target.store);
  const vault=path.join(root,'vault');fs.mkdirSync(vault);saveTwinCheckpoint(vault,first);assert.throws(()=>saveTwinCheckpoint(vault,first),/EEXIST/);
@@ -107,7 +108,7 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  }finally{source.store.close();target.store.close();fs.rmSync(root,{recursive:true,force:true});}
 });
 
-test('V2 restores enrolled simulation lineage, evolves derived errors, and validates duplicate replay',()=>{
+test('versioned snapshots restore enrolled simulation lineage, evolves derived errors, and validates duplicate replay',()=>{
  assert.equal(process.env.WORK8_KERNEL_EGRESS,'DENIED');
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'twin-enrolled-recovery-')),p={workspace:'ws',owner:'owner'};let now=1791676800000;
  const open=(file:string)=>{const store=new GovernedCommerceStore(path.join(root,file)),sessions=new Work8TwinSessions(store,()=>now),worker=new CommerceWorker(new GovernedCommerceEngine(store,()=>now));return new Work8TwinRuntime(sessions,worker,new DurableSimulatedFinance(store,worker,()=>now));};
@@ -120,7 +121,7 @@ test('V2 restores enrolled simulation lineage, evolves derived errors, and valid
  enrollQualifiedSimulation(source.worker,w,p.owner,{id:'enrolled',missionId:mission,candidateId:dossier.candidateId,expectedVersion:4,dossierDigest:dossier.digest,simulationOnly:true,acknowledgeNoActualPayment:true},()=>dossier);
  const version={applicationRevision:'a'.repeat(40),configurationDigest:digest({isolated:true})};
  source.store.db.prepare('INSERT INTO work8_sim_finance_admission VALUES(?,?,?,?,?,?)').run(w,mission,'enrolled','SIM_FINANCE_TASK_INELIGIBLE','d'.repeat(64),now);
- const first=captureTwinCheckpoint(source,p,'exam',version);assert.equal(first.schema,'WORK8_TWIN_RECOVERY_V2');assert.equal(first.tables.work8_simulation_enrollments!.length,1);
+ const first=captureTwinCheckpoint(source,p,'exam',version);assert.equal(first.schema,'WORK8_TWIN_RECOVERY_V3');assert.equal(first.tables.work8_simulation_enrollments!.length,1);
  initializeTwinRecoveryTarget(target.store);replayTwinCheckpoint(target,first,first.digest);
  assert.equal(verifySimulationEnrollment(target.store,target.worker.get(w,'enrolled')!).dossierDigest,dossier.digest);
  for(let i=0;i<6;i++){const task=source.worker.get(w,'enrolled')!;source.worker.tick(w,task.id,task.fence);}

@@ -1,3 +1,4 @@
+import {initializeMissionPreparations,readMissionPreparation} from './work8-mission-preparation.js';
 import {z} from 'zod';
 import {id,envelopeSchema,type Command,type Actor,type CanonicalOrder} from './contracts.js';
 import {qualify,type CommerceState} from './engine.js';
@@ -5,7 +6,7 @@ import {digest,type GovernedCommerceStore} from './store.js';
 import type {CommerceWorker,Task} from './worker.js';
 import type {Row} from '../../../intelligence/store.js';
 export const simulationEnrollmentSchema=z.object({id:id.max(96),missionId:id,candidateId:id,expectedVersion:z.number().int().positive(),dossierDigest:z.string().regex(/^[a-f0-9]{64}$/),simulationOnly:z.literal(true),acknowledgeNoActualPayment:z.literal(true)}).strict();
-export function initializeSimulationEnrollments(store:GovernedCommerceStore){store.db.exec(`CREATE TABLE IF NOT EXISTS work8_simulation_enrollments(workspace TEXT NOT NULL,id TEXT NOT NULL,mission TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,id),UNIQUE(workspace,mission));
+export function initializeSimulationEnrollments(store:GovernedCommerceStore){initializeMissionPreparations(store);store.db.exec(`CREATE TABLE IF NOT EXISTS work8_simulation_enrollments(workspace TEXT NOT NULL,id TEXT NOT NULL,mission TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,id),UNIQUE(workspace,mission));
  CREATE TRIGGER IF NOT EXISTS immutable_work8_enrollment_update BEFORE UPDATE ON work8_simulation_enrollments BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SIMULATION_ENROLLMENT');END;
  CREATE TRIGGER IF NOT EXISTS immutable_work8_enrollment_delete BEFORE DELETE ON work8_simulation_enrollments BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SIMULATION_ENROLLMENT');END;`);}
 const planDigest=(t:Task)=>digest({id:t.id,mission:t.mission,workspace:t.workspace,owner:t.owner,baseVersion:t.baseVersion,steps:t.steps});
@@ -14,7 +15,9 @@ export function verifySimulationEnrollment(store:GovernedCommerceStore,task:Task
  if(!raw||String(raw.record).length>16000)throw Error('SIMULATION_ENROLLMENT_MISSING');
  const r=JSON.parse(String(raw.record)),{digest:actual,...body}=r;
  if(actual!==digest(body)||r.workspace!==task.workspace||r.mission!==task.mission||r.owner!==task.owner||r.baseVersion!==task.baseVersion||r.taskPlanDigest!==planDigest(task)||r.classification!=='SIMULATION_EXCLUDED_FROM_ACTUALS'||r.externalEffects!==0||r.paidInference!==0)throw Error('SIMULATION_ENROLLMENT_CORRUPT');
- const history=store.history(task.workspace,task.mission);if(history[(task.baseVersion??0)-1]?.digest!==r.sourceReceiptDigest)throw Error('SIMULATION_ENROLLMENT_SOURCE_CHANGED');return r;
+ const history=store.history(task.workspace,task.mission);if(history[(task.baseVersion??0)-1]?.digest!==r.sourceReceiptDigest)throw Error('SIMULATION_ENROLLMENT_SOURCE_CHANGED');
+ if(r.preparationDigest){const preparation=readMissionPreparation(store,task.workspace,task.mission);if(!preparation||preparation.digest!==r.preparationDigest||preparation.owner!==task.owner||preparation.dossierDigest!==r.dossierDigest||preparation.assessmentHash!==r.assessmentHash||preparation.requestId!==r.assessmentRequestId||preparation.investigationId!==r.investigationId||history[preparation.preparedVersion-1]?.digest!==preparation.sourceReceiptDigest)throw Error('SIMULATION_PREPARATION_LINEAGE_MISSING');}
+ return r;
 }
 /** Server-only resolver must re-read source qualification and completed assessment proof.
  * The HTTP body contains identities/acknowledgements only, never candidates, facts or approval.
