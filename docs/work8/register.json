@@ -290,21 +290,27 @@
       ],
       "ownerAction": "NONE",
       "code": [
-        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts"
+        "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts",
+        "backend/src/intelligence/work8-dossier.ts",
+        "backend/src/intelligence/work8-dossier-finance.ts",
+        "backend/src/intelligence/work8-dossier-decisions.ts"
       ],
       "tests": [
         "backend/src/validation/tests/work8-source-projection.test.ts",
-        "backend/src/validation/tests/work8-enrichment.test.ts"
+        "backend/src/validation/tests/work8-enrichment.test.ts",
+        "backend/src/validation/tests/work8-dossier.test.ts",
+        "backend/src/validation/tests/work8-dossier-finance.test.ts",
+        "backend/src/validation/tests/work8-dossier-decisions.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Connect canonical reviewed financial inputs, immutable owner decisions and guarded simulation enrollment",
+      "nextAction": "Implement immutable reviewed qualification package that derives canonical inputs from server evidence; never accept model verification flags",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Source-bound dossier and reviewed exact-product canonical forecast projection implemented; reviewed forecast is not verified supplier evidence",
-      "examinationResult": "PENDING \u2014 19 focused fixture tests passed across dossier, reviewed finance, decisions and enrichment",
-      "independentVerification": "Published code confirms forced unknown finance/unverified findings",
-      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
-      "remainingDependency": "Qualification dossier and canonical financial binding code"
+      "engineeringState": "Source-bound dossier, explicit unknown states and reviewed exact-product forecast projection implemented",
+      "examinationResult": "Dossier/finance/enrichment fixture tests passed; genuine candidates remain deferred",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Reviewed eligibility, supplier cost/FX/cash binding and permission verification are still implementation gaps"
     },
     {
       "item": 13,
@@ -338,17 +344,25 @@
         "source-visibility.md"
       ],
       "ownerAction": "NONE",
-      "code": [],
-      "tests": [],
+      "code": [
+        "backend/src/intelligence/work8-dossier.ts",
+        "backend/src/intelligence/work8-dossier-finance.ts",
+        "backend/src/intelligence/work8-dossier-decisions.ts"
+      ],
+      "tests": [
+        "backend/src/validation/tests/work8-dossier.test.ts",
+        "backend/src/validation/tests/work8-dossier-finance.test.ts",
+        "backend/src/validation/tests/work8-dossier-decisions.test.ts"
+      ],
       "release": "NOT_RELEASED",
-      "nextAction": "Add owner-interface controls and reviewed eligibility; obtain genuine assessment before simulation authorization",
+      "nextAction": "Complete reviewed qualification boundary, then wire explicit simulation authorization after eligibility; current decisions are DEFER/REJECT/REQUEST_REVIEW only",
       "responsibleComponent": "Intelligence and product assessment",
       "priorRecoveryStatus": "PENDING",
-      "engineeringState": "Owner read exposes source-bound model proposal separately from review recommendation and immutable authenticated owner review decisions",
-      "examinationResult": "PENDING \u2014 stale digest, foreign workspace, approval alias, conflicting replay and restart tests passed",
-      "independentVerification": "Executing-engineer review; independent review pending",
-      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
-      "remainingDependency": "Dossier/decision integration and genuine assessment"
+      "engineeringState": "Dossier delivered in candidate-bound Pillow context; owner proposal/recommendation display and immutable authenticated review decisions implemented",
+      "examinationResult": "19 dossier/decision/enrichment tests; frontend typecheck/lint; frontend 4/4 CI",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Genuine assessment, reviewed eligibility, simulation authorization UX and changed-view browser acceptance"
     },
     {
       "item": 15,
@@ -464,20 +478,22 @@
       ],
       "ownerAction": "NONE",
       "code": [
-        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts"
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-enrollment.ts"
       ],
       "tests": [
-        "backend/src/validation/tests/work8-operating-exams.test.ts"
+        "backend/src/validation/tests/work8-operating-exams.test.ts",
+        "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Validate a rights-backed listing in isolated intercepted mode",
+      "nextAction": "Bind verified permitted assets to reviewed dossier; create canonical mission without synthetic supplier substitution",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Intercepted listing and provenance schema retained",
-      "examinationResult": "PENDING \u2014 synthetic cases passed",
-      "independentVerification": "No live publication or licensed image inferred",
-      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
-      "remainingDependency": "Genuine qualification and exact image rights"
+      "engineeringState": "Guarded enrollment plans one isolated listing through canonical publication interception; existing image provenance checks retained",
+      "examinationResult": "Qualified injected fixture listing interception passed; all15 safety tests retained on changed worker",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Actual rights evidence and genuine eligible dossier-to-mission creation"
     },
     {
       "item": 20,
@@ -490,20 +506,22 @@
       ],
       "ownerAction": "NONE",
       "code": [
-        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts"
+        "backend/src/runtime/commerce-runtime/governed/work8-operating-exams.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-enrollment.ts"
       ],
       "tests": [
-        "backend/src/validation/tests/work8-operating-exams.test.ts"
+        "backend/src/validation/tests/work8-operating-exams.test.ts",
+        "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Add optional ASSUMED_PAID prebirth assumption; absent means no PAYMENT evidence",
+      "nextAction": "Implement server-owned reviewed qualification builder; keep production API refusal until its proof exists",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Canonical simulated workflow retained; genuine enrollment missing",
-      "examinationResult": "PENDING \u2014 synthetic lifecycle and locks passed",
-      "independentVerification": "Seven live handlers remain unreachable in targeted exam",
-      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
-      "remainingDependency": "Explicit simulation assumption and guarded enrollment code"
+      "engineeringState": "Atomic eligible-mission enrollment, one SANDBOX order, supplier interception and delivery plan implemented",
+      "examinationResult": "5 enrollment tests passed: fixture journey, refusals, immutable plan/replay, expiry and identifier bounds",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Genuine qualification builder and source-bound approved canonical mission; positive fixture injects qualification proof"
     },
     {
       "item": 21,
@@ -571,7 +589,8 @@
       "code": [
         "backend/src/runtime/commerce-runtime/governed/work8-finance-boundary-exams.ts",
         "backend/src/runtime/commerce-runtime/governed/work8-finance.ts",
-        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts"
+        "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-enrollment.ts"
       ],
       "tests": [
         "backend/src/validation/tests/work8-assurance-finance-boundary.test.ts",
@@ -579,17 +598,18 @@
         "backend/src/validation/tests/work8-finance.test.ts",
         "backend/src/validation/tests/work8-owner-finance.test.ts",
         "backend/src/validation/tests/work8-durable-finance.test.ts",
-        "backend/src/validation/tests/work8-durable-finance-runtime.test.ts"
+        "backend/src/validation/tests/work8-durable-finance-runtime.test.ts",
+        "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Extend admission without weakening source freeze, approval, payment or actual-ledger separation",
+      "nextAction": "Use a genuinely eligible approved mission with existing enrollment service; preserve exclusion from actual accounting",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Durable acceptance-task simulation implemented",
-      "examinationResult": "PENDING \u2014 hold/restart cases passed",
-      "independentVerification": "Canonical simulated receipts retained",
-      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
-      "remainingDependency": "Guarded genuine-mission enrollment and trusted conversion"
+      "engineeringState": "Enrolled missions can enter durable simulated settlement/hold/release/bank lifecycle with enrollment/dossier/assessment lineage",
+      "examinationResult": "4 durable-finance tests plus enrolled fixture lifecycle passed; actualCashMovement=0",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Genuine-source qualification and full business acceptance remain absent"
     },
     {
       "item": 24,
@@ -605,24 +625,26 @@
         "backend/src/runtime/commerce-runtime/governed/work8-finance-boundary-exams.ts",
         "backend/src/runtime/commerce-runtime/governed/work8-finance.ts",
         "backend/src/runtime/commerce-runtime/governed/work8-owner-finance.ts",
-        "backend/src/runtime/commerce-runtime/governed/work8-simulated-fx.ts"
+        "backend/src/runtime/commerce-runtime/governed/work8-simulated-fx.ts",
+        "backend/src/runtime/commerce-runtime/governed/work8-enrollment.ts"
       ],
       "tests": [
         "backend/src/validation/tests/work8-assurance-finance-boundary.test.ts",
         "backend/src/validation/tests/work8-finance-additional.test.ts",
         "backend/src/validation/tests/work8-finance.test.ts",
         "backend/src/validation/tests/work8-owner-finance.test.ts",
-        "backend/src/validation/tests/work8-simulated-fx.test.ts"
+        "backend/src/validation/tests/work8-simulated-fx.test.ts",
+        "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Bind reviewed FX and immutable source lineage; exercise cutoff/refund/held settlement",
+      "nextAction": "Finish canonical cost/FX/cash qualification binding; obtain authorised read-only three-row extract without changing records",
       "responsibleComponent": "Financial reconciliation and owner readback",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Canonical receipts, rational simulated FX, atomic read snapshots",
-      "examinationResult": "PENDING \u2014 scoped money/conservation cases passed",
-      "independentVerification": "Retained independent arithmetic/source oracles",
-      "continuationEvidence": "resume-20261011/commercial-unit-2.json; resume-20261011/dossier-unit2-tests.tap",
-      "remainingDependency": "Full integrated genuine-product simulated reconciliation"
+      "engineeringState": "Canonical receipts, shared snapshots and enrollment-bound simulated finance integrated",
+      "examinationResult": "Owner finance2, enrolled lifecycle, existing finance4 and strict typecheck passed",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Production three-row accounting lineage remains unavailable; genuine product financial binding incomplete"
     },
     {
       "item": 25,
@@ -933,14 +955,14 @@
         "backend/src/validation/tests/work8-safety-matrix.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Preserve guards in new qualification/enrollment path and verify changed boundaries",
+      "nextAction": "Retain changed-boundary refusals and verify genuine path once qualified; do not weaken guards",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "All15 controls and seven live locks retained",
-      "examinationResult": "PENDING \u2014 15 pairs and7-route denial passed",
-      "independentVerification": "Seven retained source hashes match; targeted locks rerun for changed Assurance",
-      "continuationEvidence": "safety-matrix.json; resume-20261011/targeted-tests.tap",
-      "remainingDependency": "Full integrated acceptance"
+      "engineeringState": "All15 controls and seven live locks retained; new admission rejects incomplete proofs and stale authority",
+      "examinationResult": "15 safety tests passed alongside new enrollment/finance tests",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Full integrated genuine acceptance"
     },
     {
       "item": 37,
@@ -1016,14 +1038,14 @@
         "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Extend isolated combined-state rehearsal; no production rollback/deploy",
+      "nextAction": "Extend cold restart to complete genuinely qualified business state; preserve existing compatibility receipts",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Sidecar compatibility and stale-authority fencing retained",
-      "examinationResult": "PENDING \u2014 scoped restart/restore cases passed",
-      "independentVerification": "Exact Work7 compatibility source retained",
-      "continuationEvidence": "sidecar-compatibility.md; assurance-fault-coverage.json",
-      "remainingDependency": "Combined full-flow migration/rollback acceptance"
+      "engineeringState": "New immutable enrollment table remains additive to commerce sidecar",
+      "examinationResult": "Exact Work7/Work8 compatibility3 passed after correcting local TypeScript dependency",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Combined full-flow migration/rollback acceptance remains"
     },
     {
       "item": 40,
@@ -1044,14 +1066,14 @@
         "backend/src/validation/tests/work8-source-projection.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Reconstruct dossier UI, then inspect one genuine linked journey with permitted images",
+      "nextAction": "Run bounded authenticated desktop/mobile dossier walkthrough when browser is available, then genuine linked journey",
       "responsibleComponent": "Owner Console",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Existing source visibility UI retained; lost dossier UI unavailable",
-      "examinationResult": "BLOCKED \u2014 historical desktop/mobile passed; true journey absent",
-      "independentVerification": "Prior authenticated browser manifests retained",
-      "continuationEvidence": "source-visibility.md; independent-candidate-review.md",
-      "remainingDependency": "Licensed assets, genuine assessment, missing UI/integration"
+      "engineeringState": "Owner dossier, financial/proposal distinctions and review-decision controls implemented",
+      "examinationResult": "Frontend typecheck/lint and four hosted workflows PASS; local changed-view browser blocked by invalid Chromium download",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Licensed assets, genuine assessment and actual changed-view browser acceptance"
     },
     {
       "item": 41,
@@ -1095,14 +1117,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Read all new conclusions, obtain independent delta review; do not merge/deploy",
+      "nextAction": "Read existing final backend workflows once complete; repair only demonstrated failure; obtain independent review",
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
-      "engineeringState": "Backend continuation published; frontend unchanged; no release",
-      "examinationResult": "PENDING \u2014 recovered candidates4/4 each; new backend4/4 passed",
-      "independentVerification": "GitHub exact-head status read; new independent code review missing",
-      "continuationEvidence": "recovery-receipt.json; resume-20261011/CHANGES.md",
-      "remainingDependency": "Independent delta review; separate release authority"
+      "engineeringState": "Backend and frontend source published incrementally to existing candidate branches; no release",
+      "examinationResult": "Frontend d4761474 all4 PASS; final backend exact-head CI awaiting conclusion; old e931 all4 preserved",
+      "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
+      "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md",
+      "remainingDependency": "Final backend CI and independent delta review; separate release authority"
     },
     {
       "item": 43,
@@ -1174,8 +1196,8 @@
   "continuation": "resume-20261011/PROGRESS.md",
   "counts": {
     "PASS": 1,
-    "BLOCKED": 5,
-    "PENDING": 39
+    "PENDING": 39,
+    "BLOCKED": 5
   },
   "wholeProgrammeCertified": false
 }

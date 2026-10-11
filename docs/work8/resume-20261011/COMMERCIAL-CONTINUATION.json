@@ -1,0 +1,70 @@
+{
+  "recordedAt": "2026-10-11T03:55:08.553701+00:00",
+  "backend": {
+    "branch": "work8/autonomous-examination-20261011",
+    "remoteHead": "29c60af149f19eef2f779373a51e5fc55b2c20ef",
+    "localHead": "a78c14f56a116bafbdc64b5333ccbbfa95738673",
+    "tree": "897a2cd7dfa16fb487e563b6914052ba1019b0ba"
+  },
+  "frontend": {
+    "branch": "work8/owner-operating-evidence-20261011",
+    "remoteHead": "d47614747e001a2c3b1278bcddf9b9fc6cc939af",
+    "localHead": "e283e57292dad7de4bd692ebe989efcb87ac6209",
+    "tree": "627b098378333c3e42b16856176a1f01e78fe1f4"
+  },
+  "sourceUnits": [
+    "c08e80647138ac12e92ce46b393e2dc699d21b59",
+    "3c2e353d7aae620ea943d3a73e836429acd8eb67",
+    "f578be5908d35e25400e4b139ce8d720fb108da7",
+    "81fd3c7cae3a2b7cd41481a9f8471ed6012c7d9f",
+    "29c60af149f19eef2f779373a51e5fc55b2c20ef"
+  ],
+  "tests": {
+    "dossierFinanceDecisionEnrichment": 19,
+    "enrollmentFinal": 5,
+    "durableFinance": 4,
+    "safetyControls": 15,
+    "ownerFinance": 2,
+    "portfolioConcurrency": 1,
+    "sidecarCompatibility": 3,
+    "distinctScopedTestsPassed": 49,
+    "typescript": "5.9.3 --strict focused check PASS",
+    "frontendTypecheck": "PASS",
+    "frontendChangedComponentLint": "PASS"
+  },
+  "localHarnessFailure": {
+    "initialSidecarFailures": 3,
+    "cause": "Scratch TypeScript7.0.2 lacks compiler API used by exact Work7 harness",
+    "resolution": "Install scratch TypeScript5.9.3 compatible with backend ^5.8.2; rerun only compatibility tests; all3PASS",
+    "productionCodeChangedForFailure": false
+  },
+  "browser": {
+    "status": "PENDING",
+    "reason": "Playwright Chromium151 download returned invalid ZIP archives; changed dossier view not visually examined"
+  },
+  "scope": {
+    "qualificationPositiveTest": "Injected protocol fixture, not genuine supplier/model/owner evidence",
+    "currentProductionDossierQualified": false,
+    "currentApiEnrollment": "Fails closed until reviewed qualification builder supplies eligible proof; new service positive tests inject explicitly labelled fixtures",
+    "actualFinancialRowsWritten": 0,
+    "paidInference": 0,
+    "productionDeployments": 0,
+    "productionMerges": 0,
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "gaps": [
+    "Server-owned reviewed eligibility/permission package and canonical cost/FX/cash binding not completed",
+    "Dossier-to-approved-canonical-mission creation not completed",
+    "No genuine new supplier or Pillow evidence obtained",
+    "Changed-view authenticated browser walkthrough not completed",
+    "Production three-row accounting identity/lineage still unresolved",
+    "Independent delta review and final backend CI required"
+  ],
+  "officialCounts": {
+    "PASS": 1,
+    "PENDING": 39,
+    "BLOCKED": 5
+  },
+  "certification": "NO-GO"
+}

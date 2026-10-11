@@ -967,5 +967,17 @@
   ],
   "continuationCiEvidence": "recovery-receipt.json",
   "continuationCiStatus": "ALL_FOUR_SUCCESS",
-  "continuationCiSourceBinding": "resume-20261011/ci-source-binding.json"
+  "continuationCiSourceBinding": "resume-20261011/ci-source-binding.json",
+  "targetedCommercialContinuation": {
+    "evidence": "resume-20261011/COMMERCIAL-CONTINUATION.json",
+    "progress": "resume-20261011/PROGRESS.md",
+    "ci": "resume-20261011/COMMERCIAL-CI.json",
+    "resume": "resume-20261011/NEXT.md",
+    "officialRegisterCounts": {
+      "PASS": 1,
+      "PENDING": 39,
+      "BLOCKED": 5
+    },
+    "wholeProgrammeCertified": false
+  }
 }

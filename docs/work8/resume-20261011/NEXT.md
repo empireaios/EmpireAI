@@ -1,21 +1,44 @@
-# Continue this Work 8 state; do not restart
+# Deterministic Work 8 continuation
 
-Candidate backend: PR113 / `work8/autonomous-examination-20261011` / `e931668dca5e87df8f0d26213791de8501cf2d35` / tree `f9324fbd4f966ac12ea4acb3292e342a622694e1`. Local commit `01f80167acdd5376da1a6d0489bb61ef677ba9d5` has the identical tree; GitHub connector created the remote commit because plain git push lacked credentials. Never force reset an advanced ref.
+Do not restart the programme or rerun old passing campaigns. Preserve the original 45 requirements and 1 PASS / 39 PENDING / 5 BLOCKED totals. Full certification remains NO-GO.
 
-Candidate frontend: PR112 / `work8/owner-operating-evidence-20261011` / `e7ef46cb420fec15e3810b73d439459678834767` / tree `fb0b95f631cd69039198b4e400666a32c2914f97`. Existing four successful workflows are retained; no change/restart in this continuation.
+## Durable source heads
 
-Original recovered evidence head: `f5524cd44e1a77895a2a905a02edc557d08e7bdd`. This evidence branch appends continuation records and keeps prior examination runs/failure lineage. Read `recovery-receipt.json` for exact CI readback rather than stale older checkpoint prose. No historical source-bound endurance/browser receipt becomes latest-head evidence by inheritance.
+- Backend branch `work8/autonomous-examination-20261011`: remote `29c60af149f19eef2f779373a51e5fc55b2c20ef`; local `a78c14f5` has identical tree recorded in COMMERCIAL-CONTINUATION.json.
+- Frontend branch `work8/owner-operating-evidence-20261011`: remote `d47614747e001a2c3b1278bcddf9b9fc6cc939af`; local `e283e572` has identical tree recorded in COMMERCIAL-CONTINUATION.json.
+- Evidence branch `work8/examination-evidence-20261011`: this checkpoint. Earlier checkpoint `67d241cd29db6153773915012c51af831d0267c3` and backend `e931668dca5e87df8f0d26213791de8501cf2d35` remain historical evidence, not the current source head.
 
-CI readback complete: all four new backend workflows succeeded (38104772057, 38104771996, 38104772029, 38104771940). Product merge-source equality is recorded; runtime checkout directly matches candidate. No CI restart is needed. Personal-context recovery returned no exact unpublished module source or accounting rows.
+## First read, then engineering
 
-Next executable engineering action: reconstruct the lost reviewed qualification dossier behind existing server-authenticated owner/workspace boundaries. Current `backend/src/intelligence/work8-enrichment.ts:evaluateCompleteEnrichment` and `backend/src/runtime/commerce-runtime/governed/runtime.ts` deliberately force unknown cash/FX and unverified findings. Do not simply remove those assignments. A source-complete dossier needs immutable generation/source hashes, source-derived exact variant/stock/freight/currency, independently supported findings, canonical financial reference and reviewed conversion lineage, byte bounds before reads/cloning, and stale/foreign-owner/replay refusal. Test positive shapes only as injected fixtures; genuine qualification remains zero until real evidence exists.
+Read the existing final backend run conclusions: Assurance `38109828027` already SUCCESS; Product `38109828047`, runtime `38109828011`, semantic `38109828120` were still in progress. Do not start replacement runs. Frontend exact candidate already has four successful workflow conclusions (COMMERCIAL-CI.json). New local browser examination remains pending: Chromium151 download returned invalid archives, not a tested UI failure.
 
-Then restore typed recommendation/dossier context and owner UI. The newly reconstructed model proposal is explicitly unreviewed and may supply a draft only. It cannot overwrite source price/FX/cash/budget/payment or mark its findings verified. Rebind after every changed dossier/economics revision; old recommendation/assessment cannot be reused.
+The next engineering task is the **server-owned reviewed qualification package** for original requirements12/14, followed by approved canonical mission creation for19/20. This is unfinished code, not solely an external blocker. Specifically:
 
-Before any genuine-candidate **simulated** order flow, implement explicit optional unchecked assumption `simulation:{purpose:'PREBIRTH_ORDER_SIMULATION',payment:'ASSUMED_PAID',currency:'SGD',actualPayment:false}`. Absence must yield no PAYMENT evidence. Guard simulation enrollment and bind USD→SGD conversion to reviewed canonical evidence. Current durable finance accepts only completed `acceptance:` tasks. Preserve approval separation, immutable source freeze, refund/cash conservation, payout hold/restart, unknown actuals and strict actual/simulation separation. Never label assumed payment REAL or write Work5 money.
+1. Extend the immutable review record to pin reviewed findings and real permission evidence, with explicit owner attestation and fresh source envelopes. Keep these distinct from unverified model proposals. Do not assign supplier permissions from an observed image URL.
+2. Bind reviewed forecast costs to supplier unit price/freight, canonical reviewed FX and complete cash/liability/commitment evidence. The current finance projection exposes reviewed forecast assumptions but deliberately leaves cash and FX null. It does not certify affordability.
+3. Derive a canonical candidate and listing from those server-owned inputs, retain original currency/price and conversion lineage, and create the canonical reviewed/approved isolated mission. Do not accept browser-supplied verification booleans or model approval.
+4. Only then make `qualificationDossier` produce an eligible result and canonicalCandidateDigest. Its current implementation always defers. The `enroll_simulation` API invokes the real dossier resolver and therefore correctly refuses current genuine candidates. Positive enrollment tests inject explicitly labelled qualification/assessment fixtures; they are not evidence of genuine qualification.
+5. Reuse `enrollQualifiedSimulation`, the canonical worker and durable simulation finance. They now support one explicit SANDBOX order, intercepted listing/supplier intent, delivery and settlement/hold/bank events with immutable enrollment/dossier/assessment lineage. Do not create a parallel order or actual finance ledger.
+6. Extend the Owner Console from review decisions to explicit simulation authorization only after eligibility exists. Current UI supports request review/defer/reject and never claims approval. Run bounded authenticated desktop/mobile changed-view tests, then a genuine linked journey once permitted evidence exists.
 
-Use remaining fixed31 coupled-fault cases after that flow exists. Preserve previously passed ten-minute soaks, cap/race,1,000-order,202-pagination,15guard and authenticated browser receipts; repeat only for changed coverage. New code needs scoped negative/positive tests, independent review and exact-head CI. The current engineer's review is not an independent reviewer approval.
+## Existing completed units and executable receipts
 
-Unavailable genuine prerequisites: fresh read-only source acquisition through the exposed bridge; exact-asset image permission; actual source-bound assessment with separate paid-call authority if necessary; complete financial evidence; production call rows plus original224 snapshot and request/transport lineage. `ACCOUNTING.md` and the tested read-only extraction script define the exact accounting capability. Do not alter production rows or attribute count changes from timestamps alone.
+`work8-dossier.ts`: retained envelope pinning, source identity, price/currency, stock/freight and missing states; owner read integration.
+`work8-dossier-finance.ts`: canonical journal hash/workspace/entry validation and exact reviewed forecast projection; no financial writes.
+`work8-dossier-decisions.ts`: immutable authenticated review receipts, stale fingerprint refusal, replay and workspace bounds.
+`investigation.ts`: source-bound dossier in delivered Pillow context, dossier digest in delivery receipt; no model calls executed by this continuation.
+`QualificationDossier.tsx`: owner dossier/proposal/finance display and explicit review decision controls.
+`work8-enrollment.ts`: atomic guarded existing-mission enrollment, immutable plan lineage, bounded generated commands, no facts/approvals accepted in HTTP body.
+`worker.ts` and `work8-durable-finance.ts`: enrollment verification and simulated finance participation, all actual-money boundaries retained.
 
-Work9 handoff remains conditional: same authority model, source identity/currency/freshness,1,000-cap/stock locks, receipt schemas, finance separation, replay fences and rollback/restore evidence must carry forward. No twin activation, production merge/deploy or release lease is authorised. No new infrastructure or paid inference. NOT_BORN / LOCKED / NO_GO remain binding.
+49 distinct scoped tests passed, with receipts listed in PROGRESS.md. Tests overlap between unit receipts; do not add duplicate reruns to the count. Exact Work7 compatibility initially failed because scratch TypeScript7 lacked the harness compiler API; correcting scratch to TypeScript5.9.3 and rerunning only those three cases passed. Source was not changed to mask that environment failure. Strict focused TypeScript5.9.3 check passes.
+
+Local worktrees: `/workspace/scratch/815641ad53ec/work8`, `/workspace/scratch/815641ad53ec/frontend`, `/workspace/scratch/815641ad53ec/evidence`. Scratch dependencies are disposable. Backend `node_modules` symlinks are untracked; never commit them. Use Node22, tsx, zod3 and TypeScript compatible with backend `^5.8.2`. From backend cwd, run kernel-denied tests with:
+
+`python ../scripts/work8/isolated-exec.py /workspace/scratch/815641ad53ec/test-deps/node_modules/node-linux-x64/bin/node --import tsx --test src/validation/tests/work8-enrollment.test.ts`
+
+## External evidence and authority still missing
+
+No fresh genuine supplier read, image permission, genuine completed candidate Pillow assessment or new production accounting-row extract was acquired. Preserve ten CJ parents/ten variants/19 unlicensed URLs, Amazon observations and zero genuine qualified candidates as historical scoped evidence. Accounting 224→227 still requires authorised individual calls/call_providers rows from `/data/commissioning/openai-october-2026.sqlite`, original224 identities and canonical transport lineage. Do not infer attribution from timestamps or modify production records.
+
+Do not merge, deploy, open a release lease, spend on inference/infrastructure, place listings/orders or move money. Pillow NOT_BORN, commerce LOCKED, fifteen protections, seven live-route locks and immutable histories remain mandatory. Independent delta review and full Work8 certification remain pending. Work9 is not activated.

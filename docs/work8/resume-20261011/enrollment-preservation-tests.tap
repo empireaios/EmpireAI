@@ -1,0 +1,86 @@
+TAP version 13
+# Subtest: owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+ok 1 - owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+  ---
+  duration_ms: 114.601039
+  type: 'test'
+  ...
+# Subtest: mission with research but no orders never fabricates zero revenue or complete finance
+ok 2 - mission with research but no orders never fabricates zero revenue or complete finance
+  ---
+  duration_ms: 4.511328
+  type: 'test'
+  ...
+# Subtest: independent SQLite worker connections race for 1000th slot; 1001st denied
+ok 3 - independent SQLite worker connections race for 1000th slot; 1001st denied
+  ---
+  duration_ms: 62872.936194
+  type: 'test'
+  ...
+# Subtest: exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact
+not ok 4 - exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact
+  ---
+  duration_ms: 2.263918
+  type: 'test'
+  location: '/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:1:2431'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'ES2022')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    baseline (/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:20:400)
+    TestContext.<anonymous> (/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:25:130)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data
+not ok 5 - exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data
+  ---
+  duration_ms: 1.037418
+  type: 'test'
+  location: '/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:1:3613'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'ES2022')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    baseline (/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:20:400)
+    TestContext.<anonymous> (/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:28:139)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation
+not ok 6 - both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation
+  ---
+  duration_ms: 1.099863
+  type: 'test'
+  location: '/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:1:5436'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'ES2022')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    baseline (/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:20:400)
+    TestContext.<anonymous> (/workspace/scratch/815641ad53ec/work8/backend/src/validation/tests/work8-sidecar-compatibility.test.ts:32:135)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 3
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 63275.811279

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: explicit qualified fixture enrolls one simulated listing/order/delivery and immutable financial lifecycle
+ok 1 - explicit qualified fixture enrolls one simulated listing/order/delivery and immutable financial lifecycle
+  ---
+  duration_ms: 399.772397
+  type: 'test'
+  ...
+# Subtest: deferred dossier, missing assessment, foreign owner, changed candidate and missing explicit acknowledgement refuse with no tasks
+ok 2 - deferred dossier, missing assessment, foreign owner, changed candidate and missing explicit acknowledgement refuse with no tasks
+  ---
+  duration_ms: 33.85653
+  type: 'test'
+  ...
+# Subtest: changed task plan and changed idempotency request cannot alter enrollment
+ok 3 - changed task plan and changed idempotency request cannot alter enrollment
+  ---
+  duration_ms: 9.327335
+  type: 'test'
+  ...
+# Subtest: source expiry after enrollment blocks the canonical worker without replay or financial events
+ok 4 - source expiry after enrollment blocks the canonical worker without replay or financial events
+  ---
+  duration_ms: 10.948996
+  type: 'test'
+  ...
+# Subtest: derived identifiers are bounded before any task or enrollment is written
+ok 5 - derived identifiers are bounded before any task or enrollment is written
+  ---
+  duration_ms: 4.679344
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 699.896425
