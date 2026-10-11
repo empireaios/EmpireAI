@@ -1,3 +1,5 @@
+> SUPERSEDED OWNER SELECTION (2026-10-11): Keepa preferred pending exact plan/licence and purchase approval; Helium10 future-ready disabled adapter only, subscription deferred until profitability; JungleScout excluded. The comparison below is historical research, not the current purchase recommendation.
+
 # Work 8 consolidated resource decision — 11 October 2026
 
 This is a resource package, not a replacement or expansion of the official 45-requirement register. No subscription, paid inference, external write, purchase or deployment was performed for this assessment. Production remains unchanged; Pillow NOT_BORN; commerce LOCKED.

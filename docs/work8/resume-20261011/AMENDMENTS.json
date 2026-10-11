@@ -1,0 +1,86 @@
+{
+  "schema": "work8-owner-amendments-v1",
+  "authority": "Grand King superseding directive 2026-10-11 13:23 Singapore",
+  "officialDenominator": 45,
+  "amendments": [
+    {
+      "id": "TWIN",
+      "requirements": [
+        4,
+        10,
+        16,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        26,
+        33,
+        37,
+        38,
+        39,
+        40,
+        41,
+        45
+      ],
+      "scope": "Persistent isolated digital twin moves into Work8; reuse canonical commerce/finance/Assurance and existing Owner Console; Work9 is shadow/live commissioning",
+      "status": "PENDING",
+      "next": "Bind durable twin lifecycle and shared projections to existing engines; isolated runtime required; no new billable infrastructure"
+    },
+    {
+      "id": "CONTEXT_CHAT",
+      "requirements": [
+        3,
+        10,
+        13,
+        14,
+        40,
+        41
+      ],
+      "scope": "Compact per-product/listing/order chat icon, exact server-validated workspace/variant/evidence context, removable persistent tag",
+      "status": "PENDING"
+    },
+    {
+      "id": "TEMP_AUTHORITY",
+      "requirements": [
+        3,
+        4,
+        27,
+        36,
+        40,
+        41
+      ],
+      "scope": "Systems authority one-task/15m/1h grants, expiry/revocation/immutable audit; cannot grant Birth/live/release/credential authority",
+      "status": "PENDING"
+    },
+    {
+      "id": "RESOURCE_DECISION",
+      "requirements": [
+        5,
+        9,
+        12,
+        15,
+        16,
+        45
+      ],
+      "scope": "Keepa preferred pending plan/licence/purchase; Helium10 disabled future adapter; JungleScout excluded",
+      "status": "DECISION_RECORDED_NOT_INTEGRATION_ACCEPTANCE",
+      "existingAdapter": "Keepa history adapter in intelligence/acquisition.ts; no Helium10 adapter found in backend/src",
+      "next": "Reuse Keepa adapter; validate token/licence/identity boundaries and prepare disabled Helium10 contract; no paid calls"
+    },
+    {
+      "id": "PREVIEW_REBUILD",
+      "requirements": [
+        3,
+        40,
+        41,
+        42
+      ],
+      "scope": "Exactly one rebuild bc83ca6a with Work8-only binding",
+      "status": "READY_ROUTING_VERIFICATION_BLOCKED",
+      "deployment": "dpl_kUh9svgitsyGCLDGjttpFZaDfMFr",
+      "next": "Verify READY and no-credential routing; no new temporary protection bypass authorized"
+    }
+  ]
+}
