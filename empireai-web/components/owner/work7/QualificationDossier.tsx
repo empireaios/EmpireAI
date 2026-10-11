@@ -37,6 +37,6 @@ export function QualificationDossier({candidate}:{candidate:Row}){
   <div className={s.toolbar}><label>Decision<select value={decision} disabled={pending||!!receipt} onChange={e=>setDecision(e.target.value)}><option value="REQUEST_REVIEW">Request further review</option><option value="DEFER">Defer candidate</option><option value="REJECT">Reject candidate</option></select></label><label>Reason<textarea value={reason} minLength={10} maxLength={1000} disabled={pending||!!receipt} onChange={e=>setReason(e.target.value)}/></label><button type="button" disabled={pending||!!receipt||reason.trim().length<10} onClick={()=>void submit()}>{pending?'Recording…':'Record review decision'}</button></div>
   {error?<p role="alert" className={s.error}>{error}</p>:null}{receipt?<p role="status">Review decision recorded: {text(row(receipt.command).decision)}. Receipt {text(receipt.id)}. Commercial approval remains absent.</p>:null}
   {history.length?<details className={s.details}><summary>Saved review decisions ({history.length}, latest 20)</summary>{history.map(r=><p key={text(r.id)}>{text(row(r.command).decision)} · {text(r.at)} · {r.current===true?'Current dossier':'Earlier dossier'}<br/>{text(row(r.command).reason)}</p>)}</details>:null}
-  <SimulationAuthorization key={text(dossier.digest)} candidate={candidate}/>
+  <SimulationAuthorization key={text(dossier.digest)} candidate={{...candidate,ownerDecisions:receipt?[...history,{...receipt,current:true}]:history}}/>
  </section>;
 }

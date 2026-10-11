@@ -8,7 +8,9 @@ export function SimulationAuthorization({candidate}:{candidate:Row}){
  const dossier=row(candidate.dossier),assessment=row(candidate.assessment);
  const [prepared,setPrepared]=useState<Row|null>(null),[version,setVersion]=useState(0),[approved,setApproved]=useState(false),[authorized,setAuthorized]=useState(false),[ack,setAck]=useState(false),[pending,setPending]=useState(false),[error,setError]=useState('');
  const inFlight=useRef(false),ids=useRef<Record<string,string>>({});
- const eligible=row(dossier.eligibility).qualified===true&&assessment.status==='COMPLETED_ASSESSMENT_LINKED'&&typeof assessment.investigationId==='string'&&Boolean(row(dossier.review).listingPreparation);
+ const decisions=Array.isArray(candidate.ownerDecisions)?candidate.ownerDecisions.map(row).filter(r=>r.current===true):[],latestDecision=row(decisions.at(-1)?.command).decision;
+ const withheld=latestDecision==='DEFER'||latestDecision==='REJECT';
+ const eligible=!withheld&&row(dossier.eligibility).qualified===true&&assessment.status==='COMPLETED_ASSESSMENT_LINKED'&&typeof assessment.investigationId==='string'&&Boolean(row(dossier.review).listingPreparation);
  async function act(action:'prepare_simulation'|'approve_prepared_simulation'|'enroll_simulation'){
   if(!eligible||inFlight.current||authorized)return;
   if(action==='approve_prepared_simulation'&&(!prepared||approved))return;
@@ -39,7 +41,7 @@ export function SimulationAuthorization({candidate}:{candidate:Row}){
  return <section className={s.details} aria-label="Isolated simulation authorization">
   <h4 className={s.rowTitle}>Product approval &amp; isolated simulation</h4>
   <p>Live commerce is locked. These steps cannot publish to Amazon, buy from a supplier or move money.</p>
-  {!eligible?<p role="status">Preparation needs a qualified dossier, a completed assessment for this exact dossier, and reviewed listing content with exact image permissions.</p>:<>
+  {!eligible?<p role="status">{withheld?'Your current review decision withholds simulation. Return this dossier to review before proceeding.':'Preparation needs a qualified dossier, a completed assessment for this exact dossier, and reviewed listing content with exact image permissions.'}</p>:<>
    <ol><li>Prepare or recover the source-bound mission.</li><li>Approve this product for an isolated scenario.</li><li>Separately authorize one simulated listing, order and delivery.</li></ol>
    <div className={s.toolbar}>
     <button type="button" disabled={pending||!!prepared||authorized} onClick={()=>void act('prepare_simulation')}>{prepared?'Mission prepared':'Prepare / recover mission'}</button>
