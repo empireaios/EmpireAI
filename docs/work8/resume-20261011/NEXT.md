@@ -1,15 +1,11 @@
-# Work8 directed closure continuation
+# Work8 exact continuation
 
-Backend published ac9583c5bb51c8b85fd3480c2128c89a3ac49518, tree 8fff240ac1b4b7daa385438c4858956cc6364979. Frontend review remains fefa75a05adb06dc8295f2e77cdd29ba436be937; deployment branch remains bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce. Do not use older checkpoint heads as current.
+Published backend b68e42b5ae0de4aeb4c8ff4aebbc58a9bb0cf0e0 has all four workflows SUCCESS, including runtime38129976823 and whole-volume restoration. Do not restart those workflows.
 
-Finite remaining task groups (original45 unchanged):
-1. Full-runtime isolated recovery composition: registered background drain already exists; cover gateway durable reasoning and Redis persistence/reconstruction; verify no newer transaction loss. Do not rebuild vaults. Local redis-server is unavailable in this execution environment.
-2. Authenticated provenance for conversational UX preparation; preserve existing scoped grants.
-3. Complete provider billing ports using authorised reads; fresh-success outage regression is fixed. Missing provider interfaces are unknown, not free. Railway connector has no billing/limit reader, and local Railway CLI is absent.
-4. Obtain the exact original224/current227 accounting rows and transport joins using the existing read-only extractor. Aggregate digests cannot close preservation.
-5. Fresh CJ/Amazon exact variants, supplier economics, rights and authorised completed assessment; then canonical simulated mission. No fabricated rights or paid inference.
-6. Execute remaining fixed31 fault coverage, full-source-to-finance equality and final-candidate endurance only after missing integration.
-7. Finish existing hosting preflight: only one personal Railway workspace observed; separate billing workspace/limit eligibility unverified. Do not apply a hard limit to production workspace. Approval proposal remains not ready; no provisioning/deployment authorised. Browser fallback for billing verification requires user approval under available browser tool routing rules.
-8. Read existing current-head CI to conclusion, retain independent review, perform separately authorised hosted desktop/mobile acceptance, reconcile original45 and17 amendments, issue closure only if all mandatory gates pass.
+Reviewed local successor a5a7adf101b787d9289eaa35031db553f6a83079 lives at /workspace/scratch/425cef48de17/backend. It repairs retirement invalidating settled finance and adds composed daily lifecycle coverage. 11 tests pass under inherited seccomp egress denial; focused strict TypeScript passes. It has NOT been published: automatic approval review rejected source export twice and requires explicit user-authored destination/payload approval.
 
-Production untouched; Pillow NOT_BORN; commerce LOCKED. Work9 not activated. Independent engineering remains; this is not a completion receipt.
+Next action after approval: push this exact successor to empireaios/EmpireAI, work8/autonomous-examination-20261011. No production merge/deployment. Read changed-head CI; retained passing baseline is not successor CI. Publish this evidence worktree to the existing examination-evidence branch by fast-forward only after approval and remote-head verification.
+
+Continue FINITE-EXECUTION.md tasks2–7. The new composed test uses separate discovery and qualification IntelligenceStores and does not close requirement37. Complete persisted daily pipeline linkage, remaining fixed31 faults, global writer coordination, factual accounting lineage and permitted source inputs. Existing hosting decision stays HELD; no all-charge cap or deployment permission is newly established. Owner amendments17 unchanged. Fixed45 remains2 PASS/38 PENDING/5 BLOCKED.
+
+Production unchanged. Pillow NOT_BORN. Commerce LOCKED. Work9 not activated.

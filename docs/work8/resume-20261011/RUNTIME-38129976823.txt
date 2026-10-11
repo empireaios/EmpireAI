@@ -1,0 +1,22 @@
+Backend b68e42b5ae0de4aeb4c8ff4aebbc58a9bb0cf0e0
+Run 38129976823, job 114442169966, conclusion SUCCESS retrieved from GitHub.
+Selected verbatim log lines; not full log:
+2026-10-11T09:54:06.4755729Z # fail 0
+2026-10-11T09:54:06.4756447Z # skipped 0
+2026-10-11T09:55:46.2164880Z # fail 0
+2026-10-11T09:55:46.2165683Z # skipped 0
+2026-10-11T09:57:38.8157397Z # fail 0
+2026-10-11T09:57:38.8158133Z # skipped 0
+2026-10-11T10:08:14.1792417Z # fail 0
+2026-10-11T10:08:14.1793013Z # skipped 0
+2026-10-11T10:13:23.5362937Z # Subtest: whole-volume stopped bundle retains finance and commerce and restores legacy layout
+2026-10-11T10:13:23.5364353Z ok 4 - whole-volume stopped bundle retains finance and commerce and restores legacy layout
+2026-10-11T10:13:23.5513064Z # fail 0
+2026-10-11T10:13:23.5513470Z # skipped 0
+2026-10-11T10:16:05.6293782Z # Subtest: quiesced real primary/native stores restore and reopen with identical completed receipt, history and business data
+2026-10-11T10:16:05.6295976Z ok 104 - quiesced real primary/native stores restore and reopen with identical completed receipt, history and business data
+2026-10-11T10:16:53.6066183Z # tests 391
+2026-10-11T10:16:53.6067257Z # fail 0
+2026-10-11T10:16:53.6067815Z # skipped 0
+2026-10-11T10:16:53.6611505Z [36;1m  echo 'Isolated real-Redis AOF/restart, duplicate delivery, authorization and recovery tests passed with zero skipped tests.'[0m
+

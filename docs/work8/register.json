@@ -481,14 +481,14 @@
         "backend/src/validation/tests/work8-portfolio.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Bind fresh outcome evidence to retirement/replacement without changing cap",
+      "nextAction": "Publish local a5a7adf after explicit export approval; preserve exact pending genuine-source gates.",
       "responsibleComponent": "Governed commerce worker",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Retirement/replacement controls retained",
-      "examinationResult": "PENDING \u2014 replacement boundary cases passed",
+      "engineeringState": "Retirement preserves historical financial source and plan; new composed three-day fixture examination added.",
+      "examinationResult": "11 isolated tests pass; independent scoped review found no blocker.",
       "independentVerification": "Retained receipt and stock checks",
       "continuationEvidence": "backend/src/validation/tests/work8-portfolio.test.ts",
-      "remainingDependency": "Genuine outcome review",
+      "remainingDependency": "Genuine outcome review; complete persisted daily pipeline acceptance.",
       "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
@@ -666,14 +666,14 @@
         "backend/src/validation/tests/work8-enrollment.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
+      "nextAction": "Publish reviewed repair; verify changed-head CI and genuine-source prerequisites.",
       "responsibleComponent": "Financial reconciliation and owner readback",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Canonical receipts, shared snapshots and enrollment-bound simulated finance integrated; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance",
-      "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending",
+      "engineeringState": "Settled simulated finance remains pinned across verified owner retirement; other source advances still blocked.",
+      "examinationResult": "11 isolated tests pass, including three settled orders and two replacements with source/plan conservation.",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "remainingDependency": "Genuine linked lifecycle and actual financial lineage remain.",
       "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
@@ -1029,14 +1029,14 @@
         "scripts/work8/shared-store-days.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Extend retained daily pipeline examination only for uncovered integrated stages; genuine source gate tracked separately.",
+      "nextAction": "Unify persisted discovery-to-qualification integration without treating injected fixtures as genuine sources.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Shared-store accelerated days and cap driver retained; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance",
-      "examinationResult": "PENDING \u2014 10 days/20 orders/190 receipts/10 recoveries passed",
+      "engineeringState": "Three composed virtual-day cohorts: nine discovered identities, three qualified, three deferred, three rejected, three orders and two replacements.",
+      "examinationResult": "Injected fixtures pass with immutable history prefixes, stable finance pins and cold restart equality.",
       "independentVerification": "Fixed56500-minor-unit oracle retained; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "shared-store-days.md; shared-store-days.json.gz; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Integrated virtual-day discovery, qualification, rejection, retirement and replacement through complete twin; synthetic acceptance permitted for this examination.",
+      "remainingDependency": "Discovery and qualification fixtures use separate IntelligenceStores; persistent autonomous pipeline acceptance remains.",
       "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
@@ -1083,14 +1083,14 @@
         "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Conclude full-runtime rehearsal CI; then finish bounded global writer protocol and protected retention acceptance without rebuilding vault.",
+      "nextAction": "Retain passed CI; complete bounded writer coordination and separately authorised off-host retention.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "V3 canonical replay retained; nine additional persisted-domain offline capture adapters reuse existing verifier; pinned checkpoint selection and inert inspection staging; WAL verification sidecar defect fixed. Published e18f88b registers local background loops in existing admission drain. Finance singleton finalizes after writers stop; existing stopped-runtime bundle now captures whole isolated volume, including finance and commerce, with compatible legacy layout.",
-      "examinationResult": "Retained real Redis AOF/process-death/stale-worker CI PASS on ac9583c; 11 shutdown/bundle checks PASS. Full-volume successor CI pending.",
+      "engineeringState": "Whole isolated volume captures finance and commerce; retained restoration and compatibility machinery preserved.",
+      "examinationResult": "b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Current full-runtime stopped-volume+Redis CI; globally consistent arbitrary-writer capture, protected off-host retention and authenticated restoration remain separate.",
+      "remainingDependency": "Global arbitrary-writer coordination, protected off-host retention and authenticated restore acceptance remain.",
       "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
@@ -1165,14 +1165,14 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Read running current-head CI to conclusion and repair demonstrated failures; no passing workflow restart.",
+      "nextAction": "Obtain explicit approval to push a5a7adf to existing work8/autonomous-examination-20261011 branch; then read new CI.",
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
-      "engineeringState": "Backend b68e42b5ae0de4aeb4c8ff4aebbc58a9bb0cf0e0; frontend review720764722e6178d4126dcf376383096e204ec5ba. Deployment branch unchanged. Exact frontend candidate gets isolated build/test CI job.",
-      "examinationResult": "ac9583c all four workflows PASS. 703bfd three workflows failed on test TS7006, corrected in6fb2be5. Current successor CI pending; affected finance/recovery independently reviewed.",
+      "engineeringState": "Published backend b68e42b; local reviewed successor a5a7adf; frontend7207647 unchanged.",
+      "examinationResult": "All four b68e42b workflows PASS. Successor11 isolated tests and focused strict TypeScript PASS; independent source review no blocker.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Latest exact-head conclusions, independent source review, separately governed release.",
+      "remainingDependency": "Automatic approval review rejected successor publication; changed-head hosted CI not started.",
       "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {

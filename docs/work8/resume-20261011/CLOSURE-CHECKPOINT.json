@@ -16,5 +16,10 @@
   "commerce": "LOCKED",
   "work8": "NO_GO",
   "work9": "NOT_ACTIVATED",
-  "next": "Conclude b68e42b exact-head CI including pinned frontend and full-volume Redis restore; repair demonstrated failures. Continue finite task list."
+  "next": "Approve exact successor publication to existing branch; then changed-head CI. Full45 remains NO-GO.",
+  "localBackend": "a5a7adf101b787d9289eaa35031db553f6a83079",
+  "publishedEvidence": "1d46255ff8de6ac01c18e0a6cba40f5806534a31",
+  "backendCi": "ALL_FOUR_SUCCESS",
+  "runtimeRun": 38129976823,
+  "publication": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW"
 }

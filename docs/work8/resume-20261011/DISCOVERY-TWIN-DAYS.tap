@@ -1,0 +1,77 @@
+TAP version 13
+# {"classification":"INJECTED_VIRTUAL_DAYS_NOT_GENUINE_OR_ELAPSED","reports":[{"day":1,"discovered":3,"qualified":1,"deferred":1,"rejected":1,"orders":1,"active":1},{"day":2,"discovered":3,"qualified":1,"deferred":1,"rejected":1,"orders":2,"active":1},{"day":3,"discovered":3,"qualified":1,"deferred":1,"rejected":1,"orders":3,"active":1}],"externalEffects":0,"paidInference":0,"actualCashMovement":0}
+# Subtest: labelled three-day discovery, qualification outcomes, twin settlement and portfolio replacement
+ok 1 - labelled three-day discovery, qualification outcomes, twin settlement and portfolio replacement
+  ---
+  duration_ms: 3923.883195
+  type: 'test'
+  ...
+# Subtest: durable simulated finance resumes partial events, holds payout and independently reconciles after cold restart
+ok 2 - durable simulated finance resumes partial events, holds payout and independently reconciles after cold restart
+  ---
+  duration_ms: 885.958795
+  type: 'test'
+  ...
+# Subtest: source advance and corrupt refund event block Assurance without automatic repair
+ok 3 - source advance and corrupt refund event block Assurance without automatic repair
+  ---
+  duration_ms: 965.36893
+  type: 'test'
+  ...
+# Subtest: bounded Assurance rotation visits omitted plans without claiming whole-workspace health
+ok 4 - bounded Assurance rotation visits omitted plans without claiming whole-workspace health
+  ---
+  duration_ms: 2270.572726
+  type: 'test'
+  ...
+# Subtest: historical plan count above1000 does not cap new admission or existing progress; failed admission is durable and bounded
+ok 5 - historical plan count above1000 does not cap new admission or existing progress; failed admission is durable and bounded
+  ---
+  duration_ms: 195.595288
+  type: 'test'
+  ...
+# Subtest: reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+ok 6 - reviewed source fixture creates canonical mission then separate owner approval and simulation through settlement
+  ---
+  duration_ms: 443.383124
+  type: 'test'
+  ...
+# Subtest: missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+ok 7 - missing rights, incorrect SKU, ambiguous delivery and forged browser qualification cannot produce missions
+  ---
+  duration_ms: 113.656273
+  type: 'test'
+  ...
+# Subtest: late policy failure rolls back all canonical commands and preparation receipt together
+ok 8 - late policy failure rolls back all canonical commands and preparation receipt together
+  ---
+  duration_ms: 50.019692
+  type: 'test'
+  ...
+# Subtest: stale dossier, changed source and foreign approval cannot inherit prepared authority
+ok 9 - stale dossier, changed source and foreign approval cannot inherit prepared authority
+  ---
+  duration_ms: 38.027559
+  type: 'test'
+  ...
+# Subtest: durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+ok 10 - durable owner rejection blocks a prepared mission approval until the exact dossier is returned to review
+  ---
+  duration_ms: 73.692474
+  type: 'test'
+  ...
+# Subtest: cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+ok 11 - cold restart preserves preparation identity and resumes one approved simulation without duplicate orders
+  ---
+  duration_ms: 161.036101
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4574.63744
