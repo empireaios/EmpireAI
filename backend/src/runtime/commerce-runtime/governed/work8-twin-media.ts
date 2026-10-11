@@ -1,7 +1,7 @@
 import {z} from 'zod';import {digest} from './store.js';import type {Work8TwinRuntime} from './work8-twin-runtime.js';import type {CommerceState} from './engine.js';
 const key=z.string().min(1).max(160).regex(/^[A-Za-z0-9_.:-]+$/),hash=z.string().regex(/^[a-f0-9]{64}$/);
 const ref=z.object({sessionId:key,missionId:key,receiptDigest:hash}).strict();
-const asset=z.object({id:key,url:z.string().url().refine(s=>s.startsWith('https://')),kind:z.enum(['IMAGE','VIDEO']),sha256:hash,sourceIdentity:z.string().min(1).max(300),rightsEvidence:z.string().min(1).max(500),rightsStatus:z.enum(['UNVERIFIED','OWNER_REVIEWED']),provenance:z.string().min(1).max(1000)}).strict();
+const asset=z.object({id:key,url:z.string().max(2000).url().refine(s=>{const u=new URL(s);return u.protocol==='https:'&&!u.username&&!u.password;}),kind:z.enum(['IMAGE','VIDEO']),sha256:hash,sourceIdentity:z.string().min(1).max(300),rightsEvidence:z.string().min(1).max(500),rightsStatus:z.enum(['UNVERIFIED','OWNER_REVIEWED']),provenance:z.string().min(1).max(1000)}).strict();
 export const twinMediaRequest=z.discriminatedUnion('action',[
  z.object({action:z.literal('REQUEST_EDIT'),id:key,reference:ref,expectedVersion:z.number().int().nonnegative(),instructions:z.string().trim().min(1).max(3000),assetIds:z.array(key).min(1).max(20)}).strict(),
  z.object({action:z.literal('PROPOSE'),id:key,reference:ref,expectedVersion:z.number().int().nonnegative(),instructions:z.string().trim().min(1).max(3000),assets:z.array(asset).min(1).max(20),editingReceipt:z.string().min(1).max(1000)}).strict(),
@@ -24,9 +24,10 @@ export class Work8TwinMedia{
  const original=(state.listing?.images??[]).map((a,i)=>({id:'original-'+i,url:a.url,kind:'IMAGE' as const,sha256:a.sha256,sourceIdentity:context.productId,rightsEvidence:a.rightsEvidence,rightsStatus:'UNVERIFIED' as const,provenance:a.license}));
  const history=this.history(p,reference.sessionId,reference.missionId),proposal=history.filter(e=>e.action==='PROPOSE').at(-1)??null;
  const approval=history.filter(e=>e.action==='APPROVE_INTERNAL').at(-1)??null;
- const current=approval?{batchDigest:approval.batchDigest,assets:approval.assets.filter(a=>approval.selectedIds.includes(a.id))}:null;
+ const rejected=history.some(e=>e.action==='REJECT'&&e.batchDigest===approval?.batchDigest);
+ const current=approval&&!rejected?{batchDigest:approval.batchDigest,assets:approval.assets.filter(a=>approval.selectedIds.includes(a.id))}:null;
  const last=history.at(-1),external=history.filter(e=>e.action==='APPROVE_EXTERNAL').at(-1)??null;
- return {version:last?.version??0,original,proposal,current,history,status:last?.status??'ORIGINAL_ONLY',reminder:current&&(!external||external.batchDigest!==current.batchDigest||external.version<(approval?.version??0))?'Approved internally; separate publication approval is outstanding.':null,sourceBindingCurrent:proposal?.receiptDigest===reference.receiptDigest,externalStatus:external&&external.receiptDigest===reference.receiptDigest&&external.version>(proposal?.version??0)&&external.version>(approval?.version??0)?'SIMULATED_SUBMISSION_INTERCEPTED':'NOT_SUBMITTED',editingCapability:'CANVA_RUNTIME_NOT_CONFIGURED',classification:'SIMULATED_MEDIA_WORKFLOW',externalEffects:0};
+ return {version:last?.version??0,original,proposal,current,history,status:last?.status??'ORIGINAL_ONLY',reminder:current&&(!external||external.batchDigest!==current.batchDigest||external.version<(approval?.version??0))?'Approved internally; separate publication approval is outstanding.':null,sourceBindingCurrent:proposal?.receiptDigest===reference.receiptDigest,externalStatus:!rejected&&external&&external.receiptDigest===reference.receiptDigest&&external.version>(proposal?.version??0)&&external.version>(approval?.version??0)?'SIMULATED_SUBMISSION_INTERCEPTED':'NOT_SUBMITTED',editingCapability:'CANVA_RUNTIME_NOT_CONFIGURED',classification:'SIMULATED_MEDIA_WORKFLOW',externalEffects:0};
  }
  command(p:{workspace:string;owner:string},raw:unknown){const r=twinMediaRequest.parse(raw);return this.runtime.store.transaction(()=>{
  const view=this.read(p,r.reference),history=view.history,last=history.at(-1),requestDigest=digest({p,r});const prior=this.runtime.store.db.prepare('SELECT record FROM work8_twin_media WHERE workspace=? AND id=?').get(p.workspace,r.id);

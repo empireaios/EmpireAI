@@ -53,9 +53,12 @@ test('versioned twin snapshot, ordered catch-up, immutable vault and no restored
  source.media.command(p,{action:'APPROVE_INTERNAL',id:'internal',reference,expectedVersion:2,batchDigest:revised.batchDigest});
  source.media.command(p,{action:'APPROVE_EXTERNAL',id:'external',reference,expectedVersion:3,batchDigest:revised.batchDigest});
  assert.equal(source.media.read(p,reference).externalStatus,'SIMULATED_SUBMISSION_INTERCEPTED');
- source.media.command(p,{action:'PROPOSE',id:'media-three',reference,expectedVersion:4,instructions:'Later fixture edit invalidates submission',assets:[{...asset,rightsStatus:'OWNER_REVIEWED'}],editingReceipt:'fixture-not-provider-receipt'});
+ source.media.command(p,{action:'REJECT',id:'reject-approved',reference,expectedVersion:4,batchDigest:revised.batchDigest});
+ assert.equal(source.media.read(p,reference).externalStatus,'NOT_SUBMITTED');assert.equal(source.media.read(p,reference).current,null);
+ assert.throws(()=>source.media.command(p,{action:'APPROVE_INTERNAL',id:'restore-rejected',reference,expectedVersion:5,batchDigest:revised.batchDigest}),/PROPOSAL_STALE/);
+ source.media.command(p,{action:'PROPOSE',id:'media-three',reference,expectedVersion:5,instructions:'Later fixture edit invalidates submission',assets:[{...asset,rightsStatus:'OWNER_REVIEWED'}],editingReceipt:'fixture-not-provider-receipt'});
  assert.equal(source.media.read(p,reference).externalStatus,'NOT_SUBMITTED');
- assert.throws(()=>source.media.command(p,{action:'APPROVE_EXTERNAL',id:'stale-media',reference,expectedVersion:5,batchDigest:revised.batchDigest}),/PROPOSAL_STALE/);
+ assert.throws(()=>source.media.command(p,{action:'APPROVE_EXTERNAL',id:'stale-media',reference,expectedVersion:6,batchDigest:revised.batchDigest}),/PROPOSAL_STALE/);
  source.store.db.exec("CREATE TABLE protected_live_record(value TEXT);INSERT INTO protected_live_record VALUES('NEVER_COPY_PRODUCTION_SECRET')");
  const first=captureTwinCheckpoint(source,p,'exam',version);
  assert.equal(JSON.stringify(first).includes('NEVER_COPY_PRODUCTION_SECRET'),false);
