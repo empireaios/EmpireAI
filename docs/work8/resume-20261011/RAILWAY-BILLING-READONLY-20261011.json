@@ -1,0 +1,80 @@
+{
+  "source": "Authenticated Cloud Browser read-only Railway billing and usage pages",
+  "observedDate": "2026-10-11",
+  "workspace": "a4962933-0870-4df7-bb46-3625ed800be1",
+  "currency": "USD",
+  "plan": "Pro",
+  "monthlyPlanFee": 20,
+  "includedMonthlyUsage": 20,
+  "currentPeriod": {
+    "display": "Oct 5 - Nov 5",
+    "usage": 3.63,
+    "estimatedBillDisplayed": 11.03,
+    "currentBillDisplayed": 3.63,
+    "memory": 0.9914,
+    "cpu": 0.0566,
+    "egress": 2.5436,
+    "volume": 0.0351,
+    "note": "Displayed current/estimated totals retained as shown; not a settled invoice or independent forecast."
+  },
+  "priorPeriod": {
+    "display": "Sep 5 - Oct 5",
+    "totalUsage": 43.78,
+    "totalBill": 43.78,
+    "memory": 27.2025,
+    "cpu": 11.6692,
+    "egress": 0.0984,
+    "volume": 0.23,
+    "agent": 4.5786,
+    "projectDisplayedCosts": {
+      "empireai": 39.07,
+      "empireai-canary-20260923": 0.0852
+    },
+    "note": "Rounded UI/project totals are not a line-item invoice reconciliation."
+  },
+  "billingHistoryDisplayed": [
+    {
+      "date": "2026-10-05",
+      "amount": 43.78
+    },
+    {
+      "date": "2026-09-06",
+      "amount": 14.83
+    },
+    {
+      "date": "2026-09-05",
+      "amount": 40.55
+    },
+    {
+      "date": "2026-08-05",
+      "amount": 22.88
+    },
+    {
+      "date": "2026-07-05",
+      "amount": 5
+    }
+  ],
+  "controls": {
+    "computeHardLimitEffect": "All resources stopped at this amount",
+    "computeSoftLimitEffect": "Email notification",
+    "agentHardLimitEffect": "Agent features disabled at this amount",
+    "dialogInputValues": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "placeholdersOnly": [
+      150,
+      25,
+      20,
+      10
+    ],
+    "agentUsageDisplay": "0.00 / 20.00 USD",
+    "configuredComputeHardLimitVerified": false,
+    "note": "Blank values and placeholders do not establish configured limits. No field was edited; dialog cancelled."
+  },
+  "mutations": 0,
+  "credentialOrPaymentDetailsRetained": false,
+  "incrementalCostConclusion": "Additional runtime consumes billable resources; included allowance may offset some use but does not establish zero incremental invoice cost. Shared workspace hard-stop risks production."
+}

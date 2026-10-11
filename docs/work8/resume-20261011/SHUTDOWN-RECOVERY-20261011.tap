@@ -1,0 +1,27 @@
+✔ real primary SIGTERM drains, forwards to child, waits for disk save and suppresses respawn (497.87279ms)
+✔ a hung child is force terminated at deadline and is never reported successfully saved (1869.790242ms)
+✔ child save failure exits parent nonzero and preserves failure rather than claiming success (444.362882ms)
+✔ shutdown during delayed worker start cancels the pending spawn (164.87136ms)
+✔ shutdown grace is finite and bounded even with invalid configuration (0.403255ms)
+✔ store finalizer failure denies clean shutdown evidence (418.219026ms)
+✔ last drained app closes financial WAL without creating unused state or losing entries (13.520764ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4037.881675
+✔ permanent profile is explicit, isolated, allows only bounded inference and named intelligence credentials and has no canary expiry (3.032745ms)
+✔ permanent supervisor has no expiry and still forwards controlled shutdown (302.943548ms)
+✔ Work4 launcher forwards only named sensing credentials and explicit switches; commerce remains locked (1.38902ms)
+✔ whole-volume stopped bundle retains finance and commerce and restores legacy layout (12.55862ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 425.6744

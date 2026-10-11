@@ -52,8 +52,8 @@
       "item": 7,
       "fault": "Redis/session interruption",
       "coverage": "INTEGRATED_LOCAL",
-      "evidence": "work8-model-session-faults.test.ts: actual SessionStore/Fastify adapter failure and fresh-read recovery",
-      "scopeAndGap": "Injected Redis-compatible GET failure yields typed503 before protected handler; fresh successful GET drives independent Assurance recovery. No actual Redis daemon restart, persistence, network reconnect or host failover tested."
+      "evidence": "work8-model-session-faults.test.ts: actual SessionStore/Fastify adapter failure and fresh-read recovery; GitHub runtime38127806768/job114435772828: actual Redis AOF SIGKILL/restart, leased-job recovery, stale settlement refusal, terminal receipt byte equality; capture-shared-brain-redis.test.ts",
+      "scopeAndGap": "Actual CI-owned Redis daemon restart/AOF recovery, shared Brain drain and stale-worker settlement refusal passed on ac9583c5bb51c8b85fd3480c2128c89a3ac49518. Host failover and one globally consistent whole-system live checkpoint remain unproven. Do not repeat the already passed daemon tests as an absent capability."
     },
     {
       "item": 8,

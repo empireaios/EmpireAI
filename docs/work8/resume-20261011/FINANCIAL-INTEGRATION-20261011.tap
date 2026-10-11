@@ -1,0 +1,39 @@
+✔ review, idempotency, conflicting retry, workspace isolation (107.189358ms)
+✔ accrual to invoice to settlement counts once; reversal retains history (140.970647ms)
+✔ duplicate invoices and duplicate underlying sources rejected (14.757344ms)
+✔ non-real records excluded from actual KPIs and approval (54.079159ms)
+✔ FX unknown without evidence; tax credit allocation preserve original (58.053286ms)
+✔ malformed/future evidence and invalid arithmetic fail closed (31.897955ms)
+✔ cash unavailable and stale cash never become spendable (16.523738ms)
+✔ budget, stale and renewal alerts (2.869235ms)
+✔ independent unit arithmetic and zero-sales adverse forecasts (8.374694ms)
+✔ durable reopen preserves journal and approvals (55.199086ms)
+✔ reviewed complete cash scope and linked outcome learning are explicit (16.91241ms)
+✔ missing durable journal marker fails closed without erasing history (7.28149ms)
+✔ filtered reports cannot certify cash; unpaid costs reduce complete available cash (7.777682ms)
+✔ financial closure requires every fixed criterion and matching actual source digests (3.955358ms)
+✔ missing obligation FX cannot certify available cash (4.049283ms)
+✔ consumed unbilled usage remains a liability against available cash (0.983163ms)
+✔ conversion overflow is rejected before a record can break financial readback (11.790154ms)
+✔ reversed outcomes stop financial learning while original history survives (22.774021ms)
+✔ committed liabilities reduce cash without becoming technology expenses (2.002128ms)
+◇ injected env (0) from .env
+✔ standalone categories survive reopen; edit/archive preserve original entries and monetary projection (30.708681ms)
+✔ category and mapping writes reject stale edits, duplicate names, absent vendors and archived targets (2.569243ms)
+✔ real authenticated owner route saves categories while foreign identities and live effects remain denied (353.752527ms)
+✔ half-open cutover, fixed prepaid allocation, late bills/corrections and currency conservation (12.067849ms)
+✔ persistent immutable cutover survives cold reopen and old journal writer; owner and live scope refused (6.129865ms)
+✔ autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart (41.781098ms)
+✔ outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit (9.93376ms)
+✔ cached successful read cannot clear a newer outage; fresh read clears it after restart (6.869736ms)
+✔ reversed discovery charges stay excluded through replacement and restart (5.27544ms)
+✔ a rejected multi-charge observation cannot partially commit its journal or observation (2.980231ms)
+✔ owner financial projection, backup and old/new writer preserve cutover and original live journal (24.850285ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4548.68897

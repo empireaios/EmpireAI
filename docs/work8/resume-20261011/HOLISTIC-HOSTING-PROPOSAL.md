@@ -1,3 +1,5 @@
+Superseded for current cost/footprint decision by CONSOLIDATED-HOSTING-DECISION.md; retained as historical evidence.
+
 # Isolated Work 8 hosting proposal — not deployment authority
 
 Read-only Railway inventory reconfirmed on 2026-10-11: canary project `feb90d26-c54b-4435-ac32-f666e3e25447` is empty. Its environment `3b0664a3-8655-4fc1-b9cf-113034a81e0a` is named production but contains no service; this is not the EmpireAI production runtime. No provisioning or environment change was performed.

@@ -1,19 +1,20 @@
 {
-  "schema": "WORK8_CLOSURE_CONTINUATION_V1",
-  "backend": "dbf2909822890c8c27a0a27a1cd8ae3f49c1c32a",
-  "backendTree": "808a6481b44cbf94086d5d62261f68cf8d1801d8",
-  "frontendReview": "fefa75a05adb06dc8295f2e77cdd29ba436be937",
-  "frontendTree": "06ef80bfda314c26d87c1b3c18880af750353571",
+  "backend": "b68e42b5ae0de4aeb4c8ff4aebbc58a9bb0cf0e0",
+  "backendTree": "30f39d67543950e57fcb529593d0dfcf3571a7ac",
+  "frontendReview": "720764722e6178d4126dcf376383096e204ec5ba",
+  "frontendTree": "a4f9e1206a7d0e463da947644d721a1db45341e3",
   "frontendDeploymentBranchHeld": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
-  "sourceDirective": "OWNER-CLOSURE-DIRECTIVE.txt",
+  "recoveredBackend": "ac9583c5bb51c8b85fd3480c2128c89a3ac49518",
+  "recoveredEvidence": "890448974d79a2e9b6d0f8e87254ca81bbef5c44",
   "counts": {
     "PASS": 2,
     "PENDING": 38,
     "BLOCKED": 5
   },
-  "amendments": 17,
+  "productionChanged": false,
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
   "work8": "NO_GO",
   "work9": "NOT_ACTIVATED",
-  "productionChanged": false,
-  "next": "Publish duplicate-order Assurance examination, then continue whole-system recovery composition, cost exception lifecycle and final exact-head CI. Independent source review and hosting still require separate gates."
+  "next": "Conclude b68e42b exact-head CI including pinned frontend and full-volume Redis restore; repair demonstrated failures. Continue finite task list."
 }

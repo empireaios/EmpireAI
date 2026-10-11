@@ -1,0 +1,375 @@
+{
+  "schema": "WORK8_FOCUSED_ACCEPTANCE_20261011",
+  "counts": {
+    "PASS": 2,
+    "PENDING": 38,
+    "BLOCKED": 5
+  },
+  "closedNow": [],
+  "preservedPass": [
+    1,
+    17
+  ],
+  "requirements": [
+    {
+      "item": 1,
+      "requirement": "Work7 exact production/closure",
+      "classification": "FULLY_SATISFIED",
+      "status": "PASS",
+      "remaining": "None for Work7",
+      "nextAction": "Preserve baseline; do not rerun Work7 campaign"
+    },
+    {
+      "item": 2,
+      "requirement": "Financial and historical preservation",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "BLOCKED",
+      "remaining": "Read-only call/provider rows, original224 rows, transport lineage",
+      "nextAction": "Extract one snapshot; compare identities and immutable original subset; join canonical correlation"
+    },
+    {
+      "item": 3,
+      "requirement": "Approved UX and fifteen safety controls",
+      "classification": "MISSING_ACCEPTANCE_EVIDENCE",
+      "status": "PENDING",
+      "remaining": "Complete integrated candidate acceptance",
+      "nextAction": "Carry guard results into remaining genuine-source flows without bypass"
+    },
+    {
+      "item": 4,
+      "requirement": "Sandbox isolation and denied egress",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Full filesystem/operating isolation proof",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 5,
+      "requirement": "Real-source connectivity and entitlements",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "BLOCKED",
+      "remaining": "Permitted fresh read capability/account entitlement",
+      "nextAction": "Exercise existing bounded acquisition once permitted read access exists"
+    },
+    {
+      "item": 6,
+      "requirement": "Authentic source product records",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Fresh complete product dossiers",
+      "nextAction": "Bind fresh details, stock and freight to exact parent/variant/destination"
+    },
+    {
+      "item": 7,
+      "requirement": "Product images and usage rights",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "BLOCKED",
+      "remaining": "Applicable supplier/rightsholder permission",
+      "nextAction": "Attach permission covering exact URLs/use/validity; then render those assets"
+    },
+    {
+      "item": 8,
+      "requirement": "Observed supplier prices/currencies",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Fresh genuine exact variant stock/freight and reviewed FX/cost quote entries; no new supplier read claimed",
+      "nextAction": "Bind reviewed dossier to assessment and owner authorization; construct canonical isolated mission; verify full journey"
+    },
+    {
+      "item": 9,
+      "requirement": "Competitor and market evidence",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Verified product match and demand evidence",
+      "nextAction": "Establish identity match before using any market price or demand claim"
+    },
+    {
+      "item": 10,
+      "requirement": "Normalization identity and deduplication",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Genuine multi-day cohort",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 11,
+      "requirement": "Freshness and quarantine",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Genuine refresh after expiry",
+      "nextAction": "Verify fresh replacement generation and preservation of old receipts"
+    },
+    {
+      "item": 12,
+      "requirement": "Software screening and economics",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+    },
+    {
+      "item": 13,
+      "requirement": "Actual Pillow assessment binding",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "BLOCKED",
+      "remaining": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+    },
+    {
+      "item": 14,
+      "requirement": "Owner recommendations and decisions",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough"
+    },
+    {
+      "item": 15,
+      "requirement": "Initial up-to-100 qualification",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Complete qualification path and sufficient genuine evidence",
+      "nextAction": "Run actual source screening and report qualified/deferred/rejected counts without forcing100"
+    },
+    {
+      "item": 16,
+      "requirement": "Daily discovery and low-supply outcomes",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Fresh daily source cohorts",
+      "nextAction": "Verify daily bounds and genuine low-supply outcomes; do not inflate throughput"
+    },
+    {
+      "item": 17,
+      "requirement": "Transactional active portfolio cap",
+      "classification": "FULLY_SATISFIED",
+      "status": "PASS",
+      "remaining": "None for this isolated portfolio-cap requirement. Genuine product acceptance remains in requirements 5\u201316 and 40.",
+      "nextAction": "Preserve cap; rerun only if its implementation or transaction boundary changes."
+    },
+    {
+      "item": 18,
+      "requirement": "Portfolio review retirement/replacement",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Genuine outcome review",
+      "nextAction": "Bind fresh outcome evidence to retirement/replacement without changing cap"
+    },
+    {
+      "item": 19,
+      "requirement": "Simulated listing schema/media",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Verified rights, authorised Canva runtime editing and native owner observation.",
+      "nextAction": "Connect supported provider editing under existing authorisation; observe native import/approval workflow."
+    },
+    {
+      "item": 20,
+      "requirement": "Simulated orders and supplier intents",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Genuine qualification, authorised inference and native owner acceptance.",
+      "nextAction": "Bind fresh genuine sources and approved assessment to the existing prepared enrollment path."
+    },
+    {
+      "item": 21,
+      "requirement": "Partial shipments tracking/delivery",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Real-product simulation linkage",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 22,
+      "requirement": "Refund returns and supplier credits",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Full linked real-product simulated lifecycle",
+      "nextAction": "Reconcile refund/credit events after genuine-candidate simulation enrollment"
+    },
+    {
+      "item": 23,
+      "requirement": "Settlement payout holds/bank receipts",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 24,
+      "requirement": "Financial reconciliation and money conservation",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 25,
+      "requirement": "Live Cost Centre separate accounting",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance.",
+      "nextAction": "Reconcile actual invoice/payment/usage rows when accessible; certify opening balances and authenticated view against exact candidate."
+    },
+    {
+      "item": 26,
+      "requirement": "Assurance detection/correlation",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Remaining fixed31 coverage",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    },
+    {
+      "item": 27,
+      "requirement": "Bounded repair authority catalogue",
+      "classification": "MISSING_ACCEPTANCE_EVIDENCE",
+      "status": "PENDING",
+      "remaining": "Full authority catalogue acceptance",
+      "nextAction": "Verify each remaining repair against exact allowlist and irreversible-effect denial"
+    },
+    {
+      "item": 28,
+      "requirement": "Fresh independent recovery verification",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Other collectors' freshness guarantees",
+      "nextAction": "Add missing collector freshness cases; reject stale/future recovery claims"
+    },
+    {
+      "item": 29,
+      "requirement": "Recurrence budget and circuit breaker",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Wider operational recurrence control",
+      "nextAction": "Exercise delayed recurrence in remaining integrated fault families"
+    },
+    {
+      "item": 30,
+      "requirement": "Assurance watchdog/degraded operation",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Coupled watchdog/endurance acceptance",
+      "nextAction": "Add missing self-failure/degraded-operation cases without granting repair authority"
+    },
+    {
+      "item": 31,
+      "requirement": "Scenario blueprint seeds and independent oracles",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Uncovered integrated cases",
+      "nextAction": "Extend existing fixed scenario map with prerequisites and separate expected-value oracles"
+    },
+    {
+      "item": 32,
+      "requirement": "Unit integration/contract and property exams",
+      "classification": "MISSING_ACCEPTANCE_EVIDENCE",
+      "status": "PENDING",
+      "remaining": "Independent delta review and current-head hosted CI; native browser checks.",
+      "nextAction": "Independent delta review and current-head hosted CI; native browser checks."
+    },
+    {
+      "item": 33,
+      "requirement": "Concurrency races and replay",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Wider transport/concurrency matrix",
+      "nextAction": "Exercise only remaining cross-store/concurrent-writer combinations; preserve passed Redis evidence."
+    },
+    {
+      "item": 34,
+      "requirement": "Fault injection and compounded failures",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Other coupled fault families",
+      "nextAction": "Continue fixed31 gaps; preserve no replay on outcome-unknown work"
+    },
+    {
+      "item": 35,
+      "requirement": "Provider outage malformed output and correlation",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Genuine authorised provider/assessment evidence",
+      "nextAction": "Validate factual claims against sources; keep proposal verification false meanwhile"
+    },
+    {
+      "item": 36,
+      "requirement": "All fifteen safety controls positive/negative exams",
+      "classification": "MISSING_ACCEPTANCE_EVIDENCE",
+      "status": "PENDING",
+      "remaining": "Full integrated genuine acceptance",
+      "nextAction": "Retain changed-boundary refusals and verify genuine path once qualified; do not weaken guards"
+    },
+    {
+      "item": 37,
+      "requirement": "Multi-day virtual-time operations",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Integrated virtual-day discovery, qualification, rejection, retirement and replacement through complete twin; synthetic acceptance permitted for this examination.",
+      "nextAction": "Extend retained daily pipeline examination only for uncovered integrated stages; genuine source gate tracked separately."
+    },
+    {
+      "item": 38,
+      "requirement": "Measured elapsed endurance",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Broader full-business elapsed endurance, final-candidate scope and genuine source cohort.",
+      "nextAction": "Run only missing final-candidate endurance coverage after remaining integration."
+    },
+    {
+      "item": 39,
+      "requirement": "Cold restart rollback/migration/restore",
+      "classification": "MISSING_ENGINEERING_OR_INTEGRATION",
+      "status": "PENDING",
+      "remaining": "Current full-runtime stopped-volume+Redis CI; globally consistent arbitrary-writer capture, protected off-host retention and authenticated restoration remain separate.",
+      "nextAction": "Conclude full-runtime rehearsal CI; then finish bounded global writer protocol and protected retention acceptance without rebuilding vault."
+    },
+    {
+      "item": 40,
+      "requirement": "Actual owner-view real-product walkthrough",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "BLOCKED",
+      "remaining": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority.",
+      "nextAction": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority."
+    },
+    {
+      "item": 41,
+      "requirement": "Mobile desktop source-to-finance equality",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Native desktop/mobile authenticated journey and source-to-finance equality.",
+      "nextAction": "Use existing browser harness once an authorised browser environment is available."
+    },
+    {
+      "item": 42,
+      "requirement": "Review exact-head CI and release authority",
+      "classification": "MISSING_ACCEPTANCE_EVIDENCE",
+      "status": "PENDING",
+      "remaining": "Latest exact-head conclusions, independent source review, separately governed release.",
+      "nextAction": "Read running current-head CI to conclusion and repair demonstrated failures; no passing workflow restart."
+    },
+    {
+      "item": 43,
+      "requirement": "Independent Mission Ledger closure",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Mandatory acceptance gates and independent closure",
+      "nextAction": "Issue no COMPLETE receipt until evidence supports every required gate"
+    },
+    {
+      "item": 44,
+      "requirement": "GO/NO-GO residual risks",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Remaining implementation, examinations and blocked inputs",
+      "nextAction": "Reassess only against new genuine evidence; preserve residual-risk record"
+    },
+    {
+      "item": 45,
+      "requirement": "Work9 handoff without activation",
+      "classification": "EXTERNALLY_BLOCKED",
+      "status": "PENDING",
+      "remaining": "Legitimate Work8 closure",
+      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance"
+    }
+  ]
+}

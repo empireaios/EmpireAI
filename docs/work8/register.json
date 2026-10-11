@@ -24,7 +24,8 @@
       "examinationResult": "PASS \u2014 baseline only",
       "independentVerification": "Production revision and COMPLETE receipt read",
       "continuationEvidence": "baseline.json; recovery-receipt.json",
-      "remainingDependency": "None for Work7"
+      "remainingDependency": "None for Work7",
+      "acceptanceClass": "FULLY_SATISFIED"
     },
     {
       "item": 2,
@@ -46,7 +47,8 @@
       "examinationResult": "BLOCKED \u2014 224\u2192227 attribution unresolved",
       "independentVerification": "Journal3/history7 hashes unchanged; calls aggregate only",
       "continuationEvidence": "resume-20261011/ACCOUNTING.md",
-      "remainingDependency": "Read-only call/provider rows, original224 rows, transport lineage"
+      "remainingDependency": "Read-only call/provider rows, original224 rows, transport lineage",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 3,
@@ -70,7 +72,8 @@
       "examinationResult": "PENDING \u2014 15 guard pairs passed locally",
       "independentVerification": "Retained safety source hashes7/7 match",
       "continuationEvidence": "safety-matrix.json; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
-      "remainingDependency": "Complete integrated candidate acceptance"
+      "remainingDependency": "Complete integrated candidate acceptance",
+      "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
       "item": 4,
@@ -95,7 +98,8 @@
       "examinationResult": "PENDING \u2014 local egress checks passed",
       "independentVerification": "Retained isolated receipts; no hosted claim",
       "continuationEvidence": "examination-ledger.json; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log",
-      "remainingDependency": "Full filesystem/operating isolation proof"
+      "remainingDependency": "Full filesystem/operating isolation proof",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 5,
@@ -119,7 +123,8 @@
       "examinationResult": "BLOCKED \u2014 fresh acquisition not exercised",
       "independentVerification": "Genuine retained envelopes recovered",
       "continuationEvidence": "source-authentic-readback.json; resume-20261011/RESOURCE-READINESS.md",
-      "remainingDependency": "Permitted fresh read capability/account entitlement"
+      "remainingDependency": "Permitted fresh read capability/account entitlement",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 6,
@@ -146,7 +151,8 @@
       "examinationResult": "PENDING \u2014 10 parents/10 variants; zero qualified",
       "independentVerification": "Retained envelope and projection evidence",
       "continuationEvidence": "source-authentic-projection.json",
-      "remainingDependency": "Fresh complete product dossiers"
+      "remainingDependency": "Fresh complete product dossiers",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 7,
@@ -172,7 +178,8 @@
       "examinationResult": "BLOCKED \u2014 0/19 assets licensed for display",
       "independentVerification": "Exact-asset rights review retained",
       "continuationEvidence": "source-image-rights-review.json",
-      "remainingDependency": "Applicable supplier/rightsholder permission"
+      "remainingDependency": "Applicable supplier/rightsholder permission",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 8,
@@ -199,7 +206,8 @@
       "examinationResult": "24 scoped tests PASS; complete injected fixture qualifies; ten retained genuine CJ observations individually defer for missing mandatory evidence",
       "independentVerification": "Recorded contract and contradiction tests",
       "continuationEvidence": "resume-20261011/qualification-unit-1.json; resume-20261011/qualification-tests.tap",
-      "remainingDependency": "Fresh genuine exact variant stock/freight and reviewed FX/cost quote entries; no new supplier read claimed"
+      "remainingDependency": "Fresh genuine exact variant stock/freight and reviewed FX/cost quote entries; no new supplier read claimed",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 9,
@@ -226,7 +234,8 @@
       "examinationResult": "PENDING \u2014 10 ASINs, one USD18.99 offer, zero matches",
       "independentVerification": "Retained marketplace envelopes",
       "continuationEvidence": "source-marketplace-projection.json",
-      "remainingDependency": "Verified product match and demand evidence"
+      "remainingDependency": "Verified product match and demand evidence",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 10,
@@ -253,7 +262,8 @@
       "examinationResult": "PENDING \u2014 bounded local cases passed",
       "independentVerification": "Retained source/receipt checks",
       "continuationEvidence": "source-discovery-worker.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log",
-      "remainingDependency": "Genuine multi-day cohort"
+      "remainingDependency": "Genuine multi-day cohort",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 11,
@@ -282,7 +292,8 @@
       "examinationResult": "PENDING \u2014 adversarial cases passed",
       "independentVerification": "Source binding and stale-response tests retained",
       "continuationEvidence": "assurance-fault-coverage.json",
-      "remainingDependency": "Genuine refresh after expiry"
+      "remainingDependency": "Genuine refresh after expiry",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 12,
@@ -315,7 +326,8 @@
       "examinationResult": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification",
       "continuationEvidence": "resume-20261011/qualification-unit-1.json; resume-20261011/qualification-tests.tap; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance"
+      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 13,
@@ -337,7 +349,8 @@
       "examinationResult": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification",
       "continuationEvidence": "resume-20261011/targeted-tests.tap; owner-assessment-excerpt.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; HOLISTIC-product-context-tests.tap",
-      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance"
+      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 14,
@@ -367,7 +380,8 @@
       "examinationResult": "PENDING \u2014 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; HOLISTIC-product-context-tests.tap",
-      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance"
+      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 15,
@@ -389,7 +403,8 @@
       "examinationResult": "PENDING \u2014 zero genuine qualified products",
       "independentVerification": "No mock counted as a real product",
       "continuationEvidence": "register.json; source-authentic-projection.json",
-      "remainingDependency": "Complete qualification path and sufficient genuine evidence"
+      "remainingDependency": "Complete qualification path and sufficient genuine evidence",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 16,
@@ -416,7 +431,8 @@
       "examinationResult": "PENDING \u2014 local admission cases passed",
       "independentVerification": "Retained atomicity and source tests",
       "continuationEvidence": "source-discovery-worker.md; examination-ledger.json",
-      "remainingDependency": "Fresh daily source cohorts"
+      "remainingDependency": "Fresh daily source cohorts",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 17,
@@ -444,7 +460,8 @@
       "independentVerification": "Retained passing retest and exact current SHA256 match for engine, portfolio module and both portfolio test files.",
       "continuationEvidence": "backend/src/validation/tests/work8-portfolio-concurrency.test.ts",
       "remainingDependency": "None for this isolated portfolio-cap requirement. Genuine product acceptance remains in requirements 5\u201316 and 40.",
-      "acceptanceBasis": "MANDATE section4,8,19 and R4 explicitly permit seeded synthetic cohorts for cap/concurrency. Genuine cohort was an over-broad tracker dependency, not this requirement acceptance gate."
+      "acceptanceBasis": "MANDATE section4,8,19 and R4 explicitly permit seeded synthetic cohorts for cap/concurrency. Genuine cohort was an over-broad tracker dependency, not this requirement acceptance gate.",
+      "acceptanceClass": "FULLY_SATISFIED"
     },
     {
       "item": 18,
@@ -471,7 +488,8 @@
       "examinationResult": "PENDING \u2014 replacement boundary cases passed",
       "independentVerification": "Retained receipt and stock checks",
       "continuationEvidence": "backend/src/validation/tests/work8-portfolio.test.ts",
-      "remainingDependency": "Genuine outcome review"
+      "remainingDependency": "Genuine outcome review",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 19,
@@ -499,7 +517,8 @@
       "examinationResult": "Rejection/restore regressions pass; frontend typecheck and changed-file lint pass.",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json",
-      "remainingDependency": "Verified rights, authorised Canva runtime editing and native owner observation."
+      "remainingDependency": "Verified rights, authorised Canva runtime editing and native owner observation.",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 20,
@@ -527,7 +546,8 @@
       "examinationResult": "PREPARED-SCHEDULER-FINAL.tap:3 PASS; labelled injected qualification/assessment, no real product claim.",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Genuine qualification, authorised inference and native owner acceptance."
+      "remainingDependency": "Genuine qualification, authorised inference and native owner acceptance.",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 21,
@@ -555,7 +575,8 @@
       "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending",
       "independentVerification": "Retained independent adverse review; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "fulfilment-adverse-review.md; independent-candidate-review.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Real-product simulation linkage"
+      "remainingDependency": "Real-product simulation linkage",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 22,
@@ -580,7 +601,8 @@
       "examinationResult": "PENDING \u2014 scoped remedy/conservation cases passed",
       "independentVerification": "Retained finance oracle",
       "continuationEvidence": "finance-examination.md; finance-boundary-exam-evidence.json",
-      "remainingDependency": "Full linked real-product simulated lifecycle"
+      "remainingDependency": "Full linked real-product simulated lifecycle",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 23,
@@ -615,7 +637,8 @@
       "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance"
+      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 24,
@@ -650,7 +673,8 @@
       "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending",
       "independentVerification": "Independent delta source review; discovered older owner-refusal history bug fixed; final6 preparation tests passed; not full programme certification; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance"
+      "remainingDependency": "Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 25,
@@ -672,14 +696,15 @@
         "backend/src/validation/tests/work8-owner-finance.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Complete financial source adapters and owner-view acceptance without live activation.",
+      "nextAction": "Reconcile actual invoice/payment/usage rows when accessible; certify opening balances and authenticated view against exact candidate.",
       "responsibleComponent": "Financial reconciliation and owner readback",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Isolated immutable Birth periods, archival history, exact integer service allocation, preserved position references; bounded cost discovery reuses existing evidence journal; owner rehearsal view added. Cached successful provider reads now retain a current outage until fresh successful evidence arrives; decision survives restart.",
-      "examinationResult": "FINANCIAL-CLOSURE-ENGINEERING.tap:6 PASS; final cost-bound test:2 PASS; Vercel authorised aggregate replay retains billed/effective distinction. COST-FRESHNESS-20261011: regression failed before fix; all 3 cost-intelligence tests pass after fix; strict changed-module TypeScript passes.",
+      "engineeringState": "Isolated immutable Birth periods, archival history, exact integer service allocation, preserved position references; bounded cost discovery reuses existing evidence journal; owner rehearsal view added. Cached successful provider reads now retain a current outage until fresh successful evidence arrives; decision survives restart. Atomic multi-charge ingestion and reversal-aware totals implemented. Authorised Railway UI account adapter preserves plan/usage/history separately from actual charges.",
+      "examinationResult": "30 financial integration tests PASS; six final cost tests PASS; independent cross-module finance review; two financial view SSR tests PASS. Invoice/payment and continuous provider access not inferred.",
       "independentVerification": "Actual journal/history hashes read unchanged",
       "continuationEvidence": "owner-financial-readback.md; resume-20261011/ACCOUNTING.md; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/DIRECTED-CLOSURE-DELTA.json",
-      "remainingDependency": "Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance."
+      "remainingDependency": "Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance.",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 26,
@@ -709,7 +734,8 @@
       "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending",
       "independentVerification": "Fresh read oracle; independent source review pending; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Remaining fixed31 coverage"
+      "remainingDependency": "Remaining fixed31 coverage",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 27,
@@ -736,7 +762,8 @@
       "examinationResult": "PENDING \u2014 bounded repair/denial cases passed",
       "independentVerification": "Retained control-plane review",
       "continuationEvidence": "assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap",
-      "remainingDependency": "Full authority catalogue acceptance"
+      "remainingDependency": "Full authority catalogue acceptance",
+      "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
       "item": 28,
@@ -761,7 +788,8 @@
       "examinationResult": "PENDING \u2014 unauthenticated closure defect reproduced and fixed; collector5 and actual runtime-cycle1 regression passed",
       "independentVerification": "Separate source reread after real bounded drain",
       "continuationEvidence": "resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-      "remainingDependency": "Other collectors' freshness guarantees"
+      "remainingDependency": "Other collectors' freshness guarantees",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 29,
@@ -785,7 +813,8 @@
       "examinationResult": "PENDING \u2014 scoped recurrence cases passed",
       "independentVerification": "Retained recovery tests",
       "continuationEvidence": "assurance-examinations.md",
-      "remainingDependency": "Wider operational recurrence control"
+      "remainingDependency": "Wider operational recurrence control",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 30,
@@ -809,7 +838,8 @@
       "examinationResult": "PENDING \u2014 local watchdog cases passed; collector5 and actual runtime-cycle1 regression passed",
       "independentVerification": "Retained scoped tests",
       "continuationEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-      "remainingDependency": "Coupled watchdog/endurance acceptance"
+      "remainingDependency": "Coupled watchdog/endurance acceptance",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 31,
@@ -837,7 +867,8 @@
       "examinationResult": "PENDING \u2014 blueprint exists; missing scenarios explicit",
       "independentVerification": "Evidence denominator unchanged",
       "continuationEvidence": "examination-blueprint.json; assurance-fault-coverage.json",
-      "remainingDependency": "Uncovered integrated cases"
+      "remainingDependency": "Uncovered integrated cases",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 32,
@@ -863,7 +894,8 @@
       "examinationResult": "Frontend typecheck after Next route generation; changed-file ESLint zero errors.",
       "independentVerification": "Remote exact-head CI tracked separately",
       "continuationEvidence": "resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Independent delta review and current-head hosted CI; native browser checks."
+      "remainingDependency": "Independent delta review and current-head hosted CI; native browser checks.",
+      "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
       "item": 33,
@@ -885,14 +917,15 @@
         "backend/src/validation/tests/work8-stock-race.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
+      "nextAction": "Exercise only remaining cross-store/concurrent-writer combinations; preserve passed Redis evidence.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Stock/cap atomicity and replay fences retained; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance",
-      "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending",
+      "examinationResult": "Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending Retained CI ac9583c proves real shared Brain pause/drain, Redis AOF crash recovery and stale settlement fencing.",
       "independentVerification": "Retained concurrency receipts; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Wider transport/concurrency matrix"
+      "remainingDependency": "Wider transport/concurrency matrix",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 34,
@@ -920,7 +953,8 @@
       "examinationResult": "PENDING \u2014 full20 queue drains21 admitted jobs; fresh closure",
       "independentVerification": "Real worker transitions and independent passive reads; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Other coupled fault families"
+      "remainingDependency": "Other coupled fault families",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 35,
@@ -945,7 +979,8 @@
       "examinationResult": "PENDING \u2014 injected cases passed",
       "independentVerification": "No real provider outage or semantic truth inferred",
       "continuationEvidence": "assurance-fault-coverage.json; resume-20261011/CHANGES.md",
-      "remainingDependency": "Genuine authorised provider/assessment evidence"
+      "remainingDependency": "Genuine authorised provider/assessment evidence",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 36,
@@ -969,7 +1004,8 @@
       "examinationResult": "15 safety tests passed alongside new enrollment/finance tests",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json",
-      "remainingDependency": "Full integrated genuine acceptance"
+      "remainingDependency": "Full integrated genuine acceptance",
+      "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
       "item": 37,
@@ -993,14 +1029,15 @@
         "scripts/work8/shared-store-days.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance",
+      "nextAction": "Extend retained daily pipeline examination only for uncovered integrated stages; genuine source gate tracked separately.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
       "engineeringState": "Shared-store accelerated days and cap driver retained; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance",
       "examinationResult": "PENDING \u2014 10 days/20 orders/190 receipts/10 recoveries passed",
       "independentVerification": "Fixed56500-minor-unit oracle retained; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "shared-store-days.md; shared-store-days.json.gz; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log",
-      "remainingDependency": "Genuine multi-day candidate pipeline"
+      "remainingDependency": "Integrated virtual-day discovery, qualification, rejection, retirement and replacement through complete twin; synthetic acceptance permitted for this examination.",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 38,
@@ -1026,7 +1063,8 @@
       "examinationResult": "Ten-minute bounded elapsed run PASS; virtual settlement time is separate; later preparation/context delta covered separately.",
       "independentVerification": "Compressed/raw shared-runtime hashes independently match",
       "continuationEvidence": "shared-runtime-soak-receipt.json; resource-soak.json; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Broader full-business elapsed endurance, final-candidate scope and genuine source cohort."
+      "remainingDependency": "Broader full-business elapsed endurance, final-candidate scope and genuine source cohort.",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 39,
@@ -1045,14 +1083,15 @@
         "backend/src/validation/tests/work8-sidecar-compatibility.test.ts"
       ],
       "release": "NOT_RELEASED",
-      "nextAction": "Compose existing primary/native/JSON captures under complete drained boundary; keep recovered credentials inert.",
+      "nextAction": "Conclude full-runtime rehearsal CI; then finish bounded global writer protocol and protected retention acceptance without rebuilding vault.",
       "responsibleComponent": "Integrated examination programme",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "V3 canonical replay retained; nine additional persisted-domain offline capture adapters reuse existing verifier; pinned checkpoint selection and inert inspection staging; WAL verification sidecar defect fixed. Published e18f88b registers local background loops in existing admission drain.",
-      "examinationResult": "Multi-store vault test PASS; financial cutover backup/restore PASS; prepared scheduler/recovery3 PASS.",
+      "engineeringState": "V3 canonical replay retained; nine additional persisted-domain offline capture adapters reuse existing verifier; pinned checkpoint selection and inert inspection staging; WAL verification sidecar defect fixed. Published e18f88b registers local background loops in existing admission drain. Finance singleton finalizes after writers stop; existing stopped-runtime bundle now captures whole isolated volume, including finance and commerce, with compatible legacy layout.",
+      "examinationResult": "Retained real Redis AOF/process-death/stale-worker CI PASS on ac9583c; 11 shutdown/bundle checks PASS. Full-volume successor CI pending.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending; canonical twin vertical and three-virtual-day compounded-failure examination passed; fixture-only",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Complete full-runtime composition including durable reasoning/Redis, protected retention and hosted restoration; local gate is not global quiescence."
+      "remainingDependency": "Current full-runtime stopped-volume+Redis CI; globally consistent arbitrary-writer capture, protected off-host retention and authenticated restoration remain separate.",
+      "acceptanceClass": "MISSING_ENGINEERING_OR_INTEGRATION"
     },
     {
       "item": 40,
@@ -1080,7 +1119,8 @@
       "examinationResult": "Frontend typecheck/lint passed; no native browser claim.",
       "independentVerification": "Same canonical records via authenticated isolated HTTP and seven actual component SSR checks; not native browser acceptance",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json",
-      "remainingDependency": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority."
+      "remainingDependency": "Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority.",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 41,
@@ -1104,11 +1144,12 @@
       "nextAction": "Use existing browser harness once an authorised browser environment is available.",
       "responsibleComponent": "Owner Console",
       "priorRecoveryStatus": "PARTIAL",
-      "engineeringState": "Financial rehearsal tab renders actual backend period and cost projection; existing mobile navigation and owner UX retained.",
-      "examinationResult": "Full frontend typecheck/lint PASS; service-generated financial SSR PASS; not native browser acceptance.",
+      "engineeringState": "Financial rehearsal tab renders actual backend period and cost projection; existing mobile navigation and owner UX retained. Qualified Railway account cards added to existing financial view.",
+      "examinationResult": "Two backend-service-generated SSR tests PASS; changed component lint PASS; exact frontend review CI newly pinned in backend workflow.",
       "independentVerification": "Same canonical records via authenticated isolated HTTP and seven actual component SSR checks; not native browser acceptance",
       "continuationEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Native desktop/mobile authenticated journey and source-to-finance equality."
+      "remainingDependency": "Native desktop/mobile authenticated journey and source-to-finance equality.",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 42,
@@ -1124,14 +1165,15 @@
       "code": [],
       "tests": [],
       "release": "NOT_RELEASED",
-      "nextAction": "Read existing runs once complete; repair only demonstrated failures.",
+      "nextAction": "Read running current-head CI to conclusion and repair demonstrated failures; no passing workflow restart.",
       "responsibleComponent": "Governed review and closure",
       "priorRecoveryStatus": "IN_PROGRESS",
-      "engineeringState": "Source units published incrementally; frontend remains a review commit, deployment-linked branch untouched. Backend ac9583c5bb51c8b85fd3480c2128c89a3ac49518 published; exact tree 8fff240ac1b4b7daa385438c4858956cc6364979 matches tested source.",
-      "examinationResult": "Current candidate: Independent Assurance Core PASS; other 3 hosted workflows in progress at last read. Independent background delta review found no blocking defect; cost delta review found no demonstrated blocking defect; adapter freshness attestation remains a limitation.",
+      "engineeringState": "Backend b68e42b5ae0de4aeb4c8ff4aebbc58a9bb0cf0e0; frontend review720764722e6178d4126dcf376383096e204ec5ba. Deployment branch unchanged. Exact frontend candidate gets isolated build/test CI job.",
+      "examinationResult": "ac9583c all four workflows PASS. 703bfd three workflows failed on test TS7006, corrected in6fb2be5. Current successor CI pending; affected finance/recovery independently reviewed.",
       "independentVerification": "Focused executable checks and retained receipts; independent delta review still pending",
       "continuationEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md",
-      "remainingDependency": "Latest exact-head conclusions, independent source review, separately governed release."
+      "remainingDependency": "Latest exact-head conclusions, independent source review, separately governed release.",
+      "acceptanceClass": "MISSING_ACCEPTANCE_EVIDENCE"
     },
     {
       "item": 43,
@@ -1153,7 +1195,8 @@
       "examinationResult": "PENDING \u2014 no Work8 COMPLETE",
       "independentVerification": "No certification inferred from CI",
       "continuationEvidence": "register.json; checkpoint.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-      "remainingDependency": "Mandatory acceptance gates and independent closure"
+      "remainingDependency": "Mandatory acceptance gates and independent closure",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 44,
@@ -1175,7 +1218,8 @@
       "examinationResult": "PENDING \u2014 full certification denied",
       "independentVerification": "Unresolved gates and evidence scope enumerated",
       "continuationEvidence": "resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
-      "remainingDependency": "Remaining implementation, examinations and blocked inputs"
+      "remainingDependency": "Remaining implementation, examinations and blocked inputs",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     },
     {
       "item": 45,
@@ -1197,7 +1241,8 @@
       "examinationResult": "PENDING \u2014 Work9 not activated",
       "independentVerification": "Production and authority state unchanged",
       "continuationEvidence": "checkpoint.json; resume-20261011/NEXT.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log",
-      "remainingDependency": "Legitimate Work8 closure"
+      "remainingDependency": "Legitimate Work8 closure",
+      "acceptanceClass": "EXTERNALLY_BLOCKED"
     }
   ],
   "continuation": "OWNER-CLOSURE-DIRECTIVE.txt; resume-20261011/CLOSURE-CHECKPOINT.json",
