@@ -7,3 +7,10 @@ test('actual financial service projection renders period identity, aggregate sta
  assert.match(html,/isolated-ui-exam/);assert.match(html,/0\.140116843823/);assert.match(html,/19\.933990200364/);assert.match(html,/Fixed fee: (?:<!-- -->)?Unknown/);assert.match(html,/do not confirm invoice payment/);assert.match(html,/Revenue and expenses begin at zero/);
  assert.equal(evidence.productionWrites,0);assert.equal(evidence.value.birth.liveActivation,false);
 });
+
+test('authorised Railway account readback renders separately from actual charges',()=>{
+ const evidence=JSON.parse(fs.readFileSync(new URL('./railway-rehearsal-readback.json',import.meta.url),'utf8'));
+ const html=renderToStaticMarkup(createElement(m.exports.FinancialRehearsal,{value:evidence.value,busy:false,submit:async()=>null}));
+ assert.match(html,/Pro/);assert.match(html,/3\.63/);assert.match(html,/43\.78/);assert.match(html,/unverified/i);assert.match(html,/production/i);
+ assert.equal(evidence.productionWrites,0);
+});
