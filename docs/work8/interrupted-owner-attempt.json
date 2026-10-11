@@ -1,0 +1,9 @@
+{
+  "status": "INTERRUPTED_NOT_ACCEPTANCE",
+  "reason": "Parent lifted source freeze after independent review found early LOST/DAMAGED collector defect; active walkthrough stopped by SIGINT before completed teardown/manifest verification.",
+  "node": "22.23.2",
+  "exitCode": 130,
+  "sourceManifestBefore": "source-manifest-before.json",
+  "artifactsFromThisAttempt": "Any regenerated backend-readback or PNG screenshots from interrupted attempt are not accepted verification evidence. Existing receipt predates this attempt; do not combine with newly generated artifacts.",
+  "retry": "Only after parent confirms corrected source frozen."
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "original": "durable-finance-desktop.png",
+    "originalSha256": "2db79e2a54645bfb6e2997210a9c1245245331a91239fdf5e07cdb699deced35",
+    "losslessCopy": "durable-finance-desktop.webp",
+    "sha256": "3a758779b5587af49b6b62fe564676713593bd3d99bb2031da9cb0439633744b"
+  },
+  {
+    "original": "durable-finance-mobile.png",
+    "originalSha256": "9d7474fb450c14b792fb9bfc2089106ae55a0dda26202e29678c2fc7ef43056f",
+    "losslessCopy": "durable-finance-mobile.webp",
+    "sha256": "eb565f8ec11b3ff7c58812899e121398f07021df8c275238e2357816576b95a6"
+  }
+]

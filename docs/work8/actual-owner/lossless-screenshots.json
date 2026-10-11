@@ -1,0 +1,26 @@
+[
+  {
+    "original": "portfolio-390.png",
+    "originalSha256": "a2281aa39ef8c07a92dacbd357f3ee82668904e23bbb9a264cc0ac7df8ee3ace",
+    "losslessCopy": "portfolio-390.webp",
+    "sha256": "c93c9fdea54277f7453ee02088815fce01bafdd8af53f21b7e8994c239020fe0"
+  },
+  {
+    "original": "orders-1440.png",
+    "originalSha256": "86940d92f8e1cafcc9d1ab22fab08d8750cf0a626f1ea8614755f02858a28078",
+    "losslessCopy": "orders-1440.webp",
+    "sha256": "1789d6f0e119815c86489fb67aa90c7724a6d6b15801e000ebdc001602b2143a"
+  },
+  {
+    "original": "orders-390.png",
+    "originalSha256": "215c54341548b658b650d99405aad7b956646dbcae20f8505faa583bc5abc6b4",
+    "losslessCopy": "orders-390.webp",
+    "sha256": "1a533db25a2bb3744853e36c48b154a743094485730af1c8cd6b1f4782db5d91"
+  },
+  {
+    "original": "portfolio-1440.png",
+    "originalSha256": "d06e4a8c699edfe3ccb1b4b326e16338bf8e41198d24978eecc87a9c73be90bc",
+    "losslessCopy": "portfolio-1440.webp",
+    "sha256": "512a76917ceb2d906611ce1d695e0bed1c07763f74f09137b966f8d31b4a6bc4"
+  }
+]

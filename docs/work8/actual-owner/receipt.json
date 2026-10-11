@@ -1,0 +1,41 @@
+{
+  "candidateDigests": {
+    "harnessSha256": "b5ac706431ba668afd8abe2a25aa6304eebe81325003668634c2f6f7c333d89b"
+  },
+  "status": "PASS",
+  "scope": "ISOLATED_AUTHENTICATED_BROWSER_NEXT_BFF_ACTUAL_CANDIDATE_FASTIFY",
+  "at": "2026-10-10T22:34:26.089Z",
+  "backendRevision": "be2cdfb55f125ab6aff0edd3557ba3d65df543c0",
+  "frontendRevision": "bb8e9e239d5ad2ce8cdcfb440a40fc2904e79ead",
+  "checks": [
+    "Actual BFF auth: anonymous401 and foreign/admin403",
+    "Canonical isolated scenario completed through authenticated BFF commands",
+    "1440px Portfolio/Orders actual BFF data equals verified backend projections; next/previous record groups cover202 unique missions, no overflow",
+    "390px Portfolio/Orders actual BFF data equals verified backend projections; next/previous record groups cover202 unique missions, no overflow",
+    "Backend process restart preserves canonical receipts exactly"
+  ],
+  "sourceMode": "AUTHENTIC_RETAINED_OBSERVATIONS_NOT_PROVIDER_REFRESH",
+  "providerCredentials": false,
+  "productionAccess": false,
+  "externalEffects": 0,
+  "paidInference": 0,
+  "backendConnect": "DENIED_BY_REQUIRED_SECCOMP_LAUNCHER",
+  "frontendIsolation": "Clean fixture environment and JavaScript localhost/fixed-port guards; not a kernel IP filter",
+  "blockedBrowserOrigins": [],
+  "portfolioDigest": "be04ca1d907a10d22a410c0acc92741a1b4898b0ecbcd60284e7a48d3806ef00",
+  "marketDigest": "5a1872402c87ec8fdcb34f19ad29a6e89355bb9f377eb3a26078338cf5b0f20f",
+  "missionDigest": "2be2a951790bf4c611ad19110a5d17d53a1632dd9a94417d2f5d3c9fe3daaf57",
+  "screenshots": [
+    "portfolio-1440.png",
+    "orders-1440.png",
+    "portfolio-390.png",
+    "orders-390.png"
+  ],
+  "executedSourceManifest": {
+    "beforeSha256": "1ebde842507e6d2bbaf757f08a62bc89c7efdb91cd12a69eeb7a9659973d5404",
+    "afterSha256": "1ebde842507e6d2bbaf757f08a62bc89c7efdb91cd12a69eeb7a9659973d5404",
+    "unchanged": true,
+    "fileCount": 5445,
+    "dependencyCount": 11
+  }
+}

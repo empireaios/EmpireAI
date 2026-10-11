@@ -306,6 +306,8 @@ jobs:
         run: npm run typecheck --prefix empireai-web
       - name: Test Next.js web
         run: npm test --prefix empireai-web
+      - name: Verify Work8 observed sources and simulated financial truth
+        run: node --test empireai-web/tests/work8/*.test.mjs
       - name: Build Next.js web
         run: npm run build --prefix empireai-web
       - name: Enforce frontend lint (same command as Vercel promotion check)
