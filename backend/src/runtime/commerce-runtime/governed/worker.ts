@@ -1,3 +1,4 @@
+import {initializeSimulationEnrollments,verifySimulationEnrollment} from './work8-enrollment.js';
 import {z} from 'zod';
 import {id,capacitySchema,actorSchema,envelopeSchema} from './contracts.js';
 import {qualify,type CommerceState} from './engine.js';
@@ -9,6 +10,7 @@ export type Task={scopeKey?:string;listingKey?:string;batchId?:string;baseVersio
 /** Uses the runtime's single durable task table. No external writes, inference, polling loop or in-memory completion state. */
 export class CommerceWorker {
  constructor(readonly engine:GovernedCommerceEngine){
+  initializeSimulationEnrollments(engine.store);
   // Freeze execution intent after its first committed receipt, including the
   // receipt-before-cursor crash window. Pre-execution fixture configuration is
   // still permitted; status/cursor remain mutable only through verified reads.
@@ -83,6 +85,7 @@ export class CommerceWorker {
     if(actor.workspace!==workspace||receipt.id!==input.id||receipt.requestDigest!==digest({actor,input}))invalid();
    }catch{invalid();}
   }
+  if(this.engine.store.db.prepare('SELECT 1 FROM work8_simulation_enrollments WHERE workspace=? AND id=?').get(workspace,id))verifySimulationEnrollment(this.engine.store,task);
   return task;
  }
  list(workspace:string):Task[]{return this.engine.store.db.prepare('SELECT record FROM commerce_runtime_tasks WHERE workspace=? ORDER BY rowid DESC LIMIT 2000').all(workspace).map(x=>this.get(workspace,(JSON.parse(String(x.record)) as Task).id)!);}
