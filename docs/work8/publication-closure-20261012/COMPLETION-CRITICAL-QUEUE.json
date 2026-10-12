@@ -1,0 +1,530 @@
+{
+  "schema": "WORK8_COMPLETION_CRITICAL_QUEUE_V1",
+  "basis": "Existing authoritative register/receipts only; no new audit or external query for queue construction. Does not modify official statuses.",
+  "registerPath": "/workspace/scratch/dc845312c8f5/evidence/docs/work8/revised-review-20261012/FIXED-REGISTERS.json",
+  "registerSha256": "1fa6f8e69289a7375e0a5c18653083acb70775f54c73d22e0c0566e6aa9b4057",
+  "originalCounts": {
+    "PASS": 30,
+    "PENDING": 11,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "remainingOriginal": 15,
+  "remainingAmendments": 11,
+  "evidenceSupportedNewCompleteStatuses": [],
+  "missionLedger": {
+    "originalRequirement": 43,
+    "status": "PENDING",
+    "work8": "NO_GO",
+    "work9": "INACTIVE",
+    "independentCertification": "BATCH_AND_SCOPED_ROWS_ONLY_NOT_PROGRAMME",
+    "productionMissionComplete": "NOT_ESTABLISHED_BY_RETAINED_EVIDENCE",
+    "exactAssertion": "Independent Mission Ledger closure only after mandatory gates and accepted method amendment; repository ledger update is not production mission_complete.",
+    "liveLedgerReadPerformedForThisQueue": false
+  },
+  "groups": {
+    "R": {
+      "name": "Whole-runtime restoration and custody",
+      "members": [
+        "O33",
+        "O39",
+        "A1",
+        "A2",
+        "A3",
+        "A5"
+      ],
+      "prerequisites": "Complete cooperating-writer inventory retained; global isolation against old/external writers, actual replacement topology and independently controlled protected storage still required.",
+      "shortestPath": "Finish one bounded whole-application restore/continuation with preserved money, work and authority after global writer exclusion; restore protected copy through separate identity; reuse accepted rollback/capture receipts.",
+      "mode": "MIXED_ENGINEERING_AND_EXTERNAL_CUSTODY",
+      "evidence": "continued-closure-20261012/recovery/INDEPENDENT-REVIEW.txt; writer-coverage-independent-review.json; PROTECTED-CUSTODY-INVENTORY.json"
+    },
+    "S": {
+      "name": "Independent Assurance and compounded failures",
+      "members": [
+        "O26",
+        "O30",
+        "O34"
+      ],
+      "prerequisites": "Source-bound genuine acquisition/assessment for O26; outside-tested-process-tree oracle and independent operational delivery/containment through primary/host or launcher+guard loss.",
+      "shortestPath": "Use accepted F02/F27 corrections; wire/examine only missing complete-runtime/outside-tree arms at original timing. Prove actual delivered alert rather than owner-pull or attempted delivery.",
+      "mode": "MIXED_ENGINEERING_AND_EXTERNAL_BOUNDARY",
+      "evidence": "continued-closure-20261012/f27-independent-review.json; f02-successor-independent-review.json; f29-boundary-assessment-20261013/ASSESSMENT.md"
+    },
+    "B": {
+      "name": "One genuine dossier and owner operating chain",
+      "members": [
+        "O9",
+        "O13",
+        "O14",
+        "O40",
+        "O41",
+        "A6",
+        "A8",
+        "A19"
+      ],
+      "prerequisites": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "mode": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "evidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted."
+    },
+    "M": {
+      "name": "Exact permitted media and Canva",
+      "members": [
+        "O7",
+        "O19",
+        "A9",
+        "A10",
+        "A11"
+      ],
+      "prerequisites": "Exact asset/version permission and allowed display/edit/private-demo/marketplace uses; specified authorized Canva design and actual application consumer entitlement.",
+      "shortestPath": "Apply existing valid rights instrument to selected assets; exercise gallery/archive and separate internal/external approvals; exact authorized export through existing consumer; no live listing publication.",
+      "mode": "EXTERNAL_RIGHTS_THEN_EXAMINATION",
+      "evidence": "source-image-rights-review.json; existing media-rejection/gallery/listing and4intercepted Canva export software examinations."
+    },
+    "F": {
+      "name": "Historical financial lineage",
+      "members": [
+        "O2"
+      ],
+      "prerequisites": "Actual original224-row snapshot from named custodian or attributable retained backup.",
+      "shortestPath": "When supplied, compare IDs and immutable contents with private227calls/219provider records. No new generic hunt without credible lead.",
+      "mode": "EXTERNAL_EVIDENCE_BLOCKER",
+      "evidence": "resume-20261011/ACCOUNTING.md; ACCOUNTING-REQUEST-CORRELATION.json; resume-20261012/ACCOUNTING-INTEGRITY.json"
+    },
+    "K": {
+      "name": "Market-data entitlement",
+      "members": [
+        "A15"
+      ],
+      "prerequisites": "Applicable existing Keepa entitlement/credentials with authorized scope; preserve deferred Helium10.",
+      "shortestPath": "Verify existing entitlement and bounded readiness without purchase/subscription/activation.",
+      "mode": "EXTERNAL_ENTITLEMENT_BLOCKER",
+      "evidence": "Current15:48capabilities:keepa.history UNAVAILABLE/UNVERIFIED; no verified read."
+    },
+    "C": {
+      "name": "Exact-source CI and final certification",
+      "members": [
+        "O42",
+        "O43"
+      ],
+      "prerequisites": "Root-owned authorized exact evidence-first publication, hosted Node22 CI on published exact tree; all mandatory remaining gates before independent Mission Ledger closure.",
+      "shortestPath": "Observe existing publication/CI; fix only evidenced failures without restarting passing/running work. Then independent full-programme certification and governed Mission Ledger completion.",
+      "mode": "PUBLICATION_CI_EXECUTABLE_CERTIFICATION_DEPENDENT",
+      "evidence": "FINAL-INTEGRATION-SUCCESSOR-INDEPENDENT-REVIEW.json; exact evidence9bf611c7/treeb4c65de1 independently approved. Root owns new publication/CI state; no live reads performed for this queue."
+    }
+  },
+  "items": [
+    {
+      "key": "O2",
+      "name": "Financial and historical preservation",
+      "officialStatus": "BLOCKED",
+      "exactRemainingAssertion": "Recover the actual original 224-row canonical snapshot from its custodian or an attributable retained backup; compare IDs and immutable contents against privately preserved current 227 calls/219 providers. Three exact joins do not establish the delta.",
+      "dependencyGroup": "F",
+      "prerequisite": "Actual original224-row snapshot from named custodian or attributable retained backup.",
+      "existingEvidence": "resume-20261011/ACCOUNTING.md; resume-20261011/ACCOUNTING-REQUEST-CORRELATION.json; resume-20261012/ACCOUNTING-INTEGRITY.json (current227/219 recovered, original224 absent)",
+      "currentScopedEvidence": "resume-20261011/ACCOUNTING.md; ACCOUNTING-REQUEST-CORRELATION.json; resume-20261012/ACCOUNTING-INTEGRITY.json",
+      "shortestPath": "When supplied, compare IDs and immutable contents with private227calls/219provider records. No new generic hunt without credible lead.",
+      "executionClass": "EXTERNAL_EVIDENCE_BLOCKER",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O7",
+      "name": "Product images and usage rights",
+      "officialStatus": "BLOCKED",
+      "exactRemainingAssertion": "Apply documented existing supplier/platform media permissions for exact selected assets; record unknown permission without asserting a licence or routine correspondence.",
+      "dependencyGroup": "M",
+      "prerequisite": "Exact asset/version permission and allowed display/edit/private-demo/marketplace uses; specified authorized Canva design and actual application consumer entitlement.",
+      "existingEvidence": "source-image-rights-review.json",
+      "currentScopedEvidence": "source-image-rights-review.json; existing media-rejection/gallery/listing and4intercepted Canva export software examinations.",
+      "shortestPath": "Apply existing valid rights instrument to selected assets; exercise gallery/archive and separate internal/external approvals; exact authorized export through existing consumer; no live listing publication.",
+      "executionClass": "EXTERNAL_RIGHTS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O9",
+      "name": "Competitor and market evidence",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Complete attributable exact or explicitly comparable marketplace identity, price and demand evidence; do not label a comparable product an exact match.",
+      "dependencyGroup": "B",
+      "prerequisite": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "existingEvidence": "source-marketplace-projection.json; resume-20261011/CURRENT-CANDIDATE-READBACK.json; CURRENT-CANDIDATE-DOSSIER.json",
+      "currentScopedEvidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "executionClass": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O13",
+      "name": "Actual Pillow assessment binding",
+      "officialStatus": "BLOCKED",
+      "exactRemainingAssertion": "Use a complete eligible dossier and valid source-bound commissioning authority for actual Pillow inference; absent those, preserve refusal and request one bounded provider examination only when its inputs and cost can be specified.",
+      "dependencyGroup": "B",
+      "prerequisite": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "existingEvidence": "resume-20261011/targeted-tests.tap; owner-assessment-excerpt.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; HOLISTIC-product-context-tests.tap",
+      "currentScopedEvidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "executionClass": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O14",
+      "name": "Owner recommendations and decisions",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Bind an authentic eligible Pillow recommendation to an authenticated persisted owner decision; technical UI fixtures do not supply genuine reasoning.",
+      "dependencyGroup": "B",
+      "prerequisite": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; HOLISTIC-product-context-tests.tap",
+      "currentScopedEvidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "executionClass": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O19",
+      "name": "Simulated listing schema/media",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Complete permitted exact-asset media/listing examination and authenticated approval separation; authorised Canva export only for a specified permitted design.",
+      "dependencyGroup": "M",
+      "prerequisite": "Exact asset/version permission and allowed display/edit/private-demo/marketplace uses; specified authorized Canva design and actual application consumer entitlement.",
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json",
+      "currentScopedEvidence": "source-image-rights-review.json; existing media-rejection/gallery/listing and4intercepted Canva export software examinations.",
+      "shortestPath": "Apply existing valid rights instrument to selected assets; exercise gallery/archive and separate internal/external approvals; exact authorized export through existing consumer; no live listing publication.",
+      "executionClass": "EXTERNAL_RIGHTS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O26",
+      "name": "Assurance detection/correlation",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Corrected F27 fresh event/incident/mission binding and authenticated owner-pull inbox independently accepted as bounded software. Genuine acquisition/assessment correlation and full coupled-runtime monitoring remain.",
+      "dependencyGroup": "S",
+      "prerequisite": "Source-bound genuine acquisition/assessment for O26; outside-tested-process-tree oracle and independent operational delivery/containment through primary/host or launcher+guard loss.",
+      "existingEvidence": "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "continued-closure-20261012/f27-independent-review.json; f02-successor-independent-review.json; f29-boundary-assessment-20261013/ASSESSMENT.md",
+      "shortestPath": "Use accepted F02/F27 corrections; wire/examine only missing complete-runtime/outside-tree arms at original timing. Prove actual delivered alert rather than owner-pull or attempted delivery.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_BOUNDARY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O30",
+      "name": "Assurance watchdog/degraded operation",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Preserve accepted UNKNOWN restart safety and inspector-to-inbox path. Confirm independent operational escalation during primary/host failure; owner-pull is not independent external push.",
+      "dependencyGroup": "S",
+      "prerequisite": "Source-bound genuine acquisition/assessment for O26; outside-tested-process-tree oracle and independent operational delivery/containment through primary/host or launcher+guard loss.",
+      "existingEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "continued-closure-20261012/f27-independent-review.json; f02-successor-independent-review.json; f29-boundary-assessment-20261013/ASSESSMENT.md",
+      "shortestPath": "Use accepted F02/F27 corrections; wire/examine only missing complete-runtime/outside-tree arms at original timing. Prove actual delivered alert rather than owner-pull or attempted delivery.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_BOUNDARY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O33",
+      "name": "Concurrency races and replay",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Independent writer inventory verifies cooperating producers, observers, continuation timers, mission/reasoning workers and SQL.js. Distinct Redis replacement race corrected and independently verified. Global exclusion of arbitrary external/old writers and complete authorized operational business/money/authority replay remain unproven.",
+      "dependencyGroup": "R",
+      "prerequisite": "Complete cooperating-writer inventory retained; global isolation against old/external writers, actual replacement topology and independently controlled protected storage still required.",
+      "existingEvidence": "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "continued-closure-20261012/recovery/INDEPENDENT-REVIEW.txt; writer-coverage-independent-review.json; PROTECTED-CUSTODY-INVENTORY.json",
+      "shortestPath": "Finish one bounded whole-application restore/continuation with preserved money, work and authority after global writer exclusion; restore protected copy through separate identity; reuse accepted rollback/capture receipts.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_CUSTODY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O34",
+      "name": "Fault injection and compounded failures",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "F27 independently detected in 25.593s against unchanged60s; wrong-incident oracle rejected. F02 actual scheduler pause and durable missed-slot marker examined; corrupt metadata successor independently accepted. Full outside-process-tree oracle, genuine source/assessment and coupled-runtime arms remain; F29 simultaneous launcher/guard external containment unavailable.",
+      "dependencyGroup": "S",
+      "prerequisite": "Source-bound genuine acquisition/assessment for O26; outside-tested-process-tree oracle and independent operational delivery/containment through primary/host or launcher+guard loss.",
+      "existingEvidence": "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "continued-closure-20261012/f27-independent-review.json; f02-successor-independent-review.json; f29-boundary-assessment-20261013/ASSESSMENT.md",
+      "shortestPath": "Use accepted F02/F27 corrections; wire/examine only missing complete-runtime/outside-tree arms at original timing. Prove actual delivered alert rather than owner-pull or attempted delivery.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_BOUNDARY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O39",
+      "name": "Cold restart rollback/migration/restore",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Distinct password-protected Redis replacement after original shutdown, atomic target identity, AOF-only crash recovery, paused fence and once-only labelled pending continuation independently pass. Full authorized application restoration, owner-session restoration into replacement topology and protected independently authenticated off-host custody remain.",
+      "dependencyGroup": "R",
+      "prerequisite": "Complete cooperating-writer inventory retained; global isolation against old/external writers, actual replacement topology and independently controlled protected storage still required.",
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/RUNTIME-38142058061-receipt.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "continued-closure-20261012/recovery/INDEPENDENT-REVIEW.txt; writer-coverage-independent-review.json; PROTECTED-CUSTODY-INVENTORY.json",
+      "shortestPath": "Finish one bounded whole-application restore/continuation with preserved money, work and authority after global writer exclusion; restore protected copy through separate identity; reuse accepted rollback/capture receipts.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_CUSTODY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O40",
+      "name": "Actual owner-view real-product walkthrough",
+      "officialStatus": "BLOCKED",
+      "exactRemainingAssertion": "Complete the existing authenticated desktop/mobile genuine-product walkthrough with source, actual authorised Pillow assessment and linked simulated finance/Assurance. A separately purchased visual host is no longer required by the current owner directive; genuine visual evidence is still mandatory.",
+      "dependencyGroup": "B",
+      "prerequisite": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey)",
+      "currentScopedEvidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "executionClass": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O41",
+      "name": "Mobile desktop source-to-finance equality",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Preserve accepted source/price desktop-mobile display and five-shortcut evidence. Complete genuine same-identity full source/Pillow/owner/simulated finance/Assurance walkthrough; no physical-device certificate is required by the directive.",
+      "dependencyGroup": "B",
+      "prerequisite": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "existingEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/browser-a3cd82a1/attribution.json; resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey)",
+      "currentScopedEvidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "executionClass": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O42",
+      "name": "Review exact-head CI and release authority",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Published45f32655: Product38273853502 and Runtime38273853504 FAILURE from three obsolete ownership test assertions; Semantic38273853534 and Assurance38273853575 SUCCESS. Both generated corpora1950/1381 SUCCESS. Tests-only ed73d106 and inbox integration ac1afbb8 independently accepted; bounded evidence-first/source-second publication and hosted Node22 verification remain. Full42 additionally requires genuine owner acceptance/final certification. No merge/deploy authority.",
+      "dependencyGroup": "C",
+      "prerequisite": "Root-owned authorized exact evidence-first publication, hosted Node22 CI on published exact tree; all mandatory remaining gates before independent Mission Ledger closure.",
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json; resume-20261012/EXACT-HEAD-CI.json (four SUCCESS, no reruns); resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey); continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "FINAL-INTEGRATION-SUCCESSOR-INDEPENDENT-REVIEW.json; exact evidence9bf611c7/treeb4c65de1 independently approved. Root owns new publication/CI state; no live reads performed for this queue.",
+      "shortestPath": "Observe existing publication/CI; fix only evidenced failures without restarting passing/running work. Then independent full-programme certification and governed Mission Ledger completion.",
+      "executionClass": "PUBLICATION_CI_EXECUTABLE_CERTIFICATION_DEPENDENT",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "O43",
+      "name": "Independent Mission Ledger closure",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Obtain independent Mission Ledger closure only after mandatory gates and accepted method amendment; a repository ledger update is not production mission_complete.",
+      "dependencyGroup": "C",
+      "prerequisite": "Root-owned authorized exact evidence-first publication, hosted Node22 CI on published exact tree; all mandatory remaining gates before independent Mission Ledger closure.",
+      "existingEvidence": "register.json; checkpoint.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
+      "currentScopedEvidence": "FINAL-INTEGRATION-SUCCESSOR-INDEPENDENT-REVIEW.json; exact evidence9bf611c7/treeb4c65de1 independently approved. Root owns new publication/CI state; no live reads performed for this queue.",
+      "shortestPath": "Observe existing publication/CI; fix only evidenced failures without restarting passing/running work. Then independent full-programme certification and governed Mission Ledger completion.",
+      "executionClass": "PUBLICATION_CI_EXECUTABLE_CERTIFICATION_DEPENDENT",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A1",
+      "name": "Persistent autonomous digital twin",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Complete global capture/replay and genuine operating acceptance through the existing twin and Console; preserve new scoped integration and accepted isolated capability.",
+      "dependencyGroup": "R",
+      "prerequisite": "Complete cooperating-writer inventory retained; global isolation against old/external writers, actual replacement topology and independently controlled protected storage still required.",
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "currentScopedEvidence": "continued-closure-20261012/recovery/INDEPENDENT-REVIEW.txt; writer-coverage-independent-review.json; PROTECTED-CUSTODY-INVENTORY.json",
+      "shortestPath": "Finish one bounded whole-application restore/continuation with preserved money, work and authority after global writer exclusion; restore protected copy through separate identity; reuse accepted rollback/capture receipts.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_CUSTODY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A2",
+      "name": "Whole-system twin",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Cooperating writer coverage and distinct Redis inspection replacement verified; global exclusion and complete whole-system operational restoration remain. completeLiveState=false and bootAllowed=false preserved.",
+      "dependencyGroup": "R",
+      "prerequisite": "Complete cooperating-writer inventory retained; global isolation against old/external writers, actual replacement topology and independently controlled protected storage still required.",
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "continued-closure-20261012/recovery/INDEPENDENT-REVIEW.txt; writer-coverage-independent-review.json; PROTECTED-CUSTODY-INVENTORY.json",
+      "shortestPath": "Finish one bounded whole-application restore/continuation with preserved money, work and authority after global writer exclusion; restore protected copy through separate identity; reuse accepted rollback/capture receipts.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_CUSTODY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A3",
+      "name": "Protected backup vault",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Current Railway read-only inventory: both accessible projects have only production environment; zero buckets. Primary volumes application/Redis-mounted in sfo, canary empty. Missing protected off-host copy, retention/deletion protection, separate restore identity and actual independently protected restore.",
+      "dependencyGroup": "R",
+      "prerequisite": "Complete cooperating-writer inventory retained; global isolation against old/external writers, actual replacement topology and independently controlled protected storage still required.",
+      "existingEvidence": "Runtime38142058061 verified whole-volume, finance and Redis continuity; prior sealed snapshot/replay evidence retained; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "continued-closure-20261012/recovery/INDEPENDENT-REVIEW.txt; writer-coverage-independent-review.json; PROTECTED-CUSTODY-INVENTORY.json",
+      "shortestPath": "Finish one bounded whole-application restore/continuation with preserved money, work and authority after global writer exclusion; restore protected copy through separate identity; reuse accepted rollback/capture receipts.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_CUSTODY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A5",
+      "name": "Seamless upgrades and rollback",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Preserve accepted operating rollback. Complete whole-application consistency and authorized restore across all domains; paused inspection recovery is not complete application rollback.",
+      "dependencyGroup": "R",
+      "prerequisite": "Complete cooperating-writer inventory retained; global isolation against old/external writers, actual replacement topology and independently controlled protected storage still required.",
+      "existingEvidence": "Old/current/old operating commerce38226997080:6completed tasks114receipts25financial events; no complete-settlement claim; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "currentScopedEvidence": "continued-closure-20261012/recovery/INDEPENDENT-REVIEW.txt; writer-coverage-independent-review.json; PROTECTED-CUSTODY-INVENTORY.json",
+      "shortestPath": "Finish one bounded whole-application restore/continuation with preserved money, work and authority after global writer exclusion; restore protected copy through separate identity; reuse accepted rollback/capture receipts.",
+      "executionClass": "MIXED_ENGINEERING_AND_EXTERNAL_CUSTODY",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A6",
+      "name": "Owner-visible autonomous dry run",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Provide authenticated visual same-identity genuine source-to-owner-to-simulated-results evidence using existing Console. No separately purchased visual host or waiver of genuine evidence is required.",
+      "dependencyGroup": "B",
+      "prerequisite": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "currentScopedEvidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "executionClass": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A8",
+      "name": "Product-linked Pillow Chat",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Verify genuine source-bound assessment and authenticated product-linked chat; no unauthorised inference.",
+      "dependencyGroup": "B",
+      "prerequisite": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "currentScopedEvidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "executionClass": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A9",
+      "name": "Product image/video management",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Complete exact permitted media-byte/version and authenticated gallery/archive acceptance; preserve existing management workflow.",
+      "dependencyGroup": "M",
+      "prerequisite": "Exact asset/version permission and allowed display/edit/private-demo/marketplace uses; specified authorized Canva design and actual application consumer entitlement.",
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "currentScopedEvidence": "source-image-rights-review.json; existing media-rejection/gallery/listing and4intercepted Canva export software examinations.",
+      "shortestPath": "Apply existing valid rights instrument to selected assets; exercise gallery/archive and separate internal/external approvals; exact authorized export through existing consumer; no live listing publication.",
+      "executionClass": "EXTERNAL_RIGHTS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A10",
+      "name": "Canva-assisted editing",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Provide the exact authorised permitted asset/design and editing/export operation through existing Canva consumer; no runtime entitlement inferred from ChatGPT connector.",
+      "dependencyGroup": "M",
+      "prerequisite": "Exact asset/version permission and allowed display/edit/private-demo/marketplace uses; specified authorized Canva design and actual application consumer entitlement.",
+      "existingEvidence": "4 intercepted export tests PASS; full backend typecheck PASS; safe default route reviewed.",
+      "currentScopedEvidence": "source-image-rights-review.json; existing media-rejection/gallery/listing and4intercepted Canva export software examinations.",
+      "shortestPath": "Apply existing valid rights instrument to selected assets; exercise gallery/archive and separate internal/external approvals; exact authorized export through existing consumer; no live listing publication.",
+      "executionClass": "EXTERNAL_RIGHTS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A11",
+      "name": "Separate internal/external media approval",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Complete authentic media permission and authenticated internal/external approval separation; no live publication.",
+      "dependencyGroup": "M",
+      "prerequisite": "Exact asset/version permission and allowed display/edit/private-demo/marketplace uses; specified authorized Canva design and actual application consumer entitlement.",
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "currentScopedEvidence": "source-image-rights-review.json; existing media-rejection/gallery/listing and4intercepted Canva export software examinations.",
+      "shortestPath": "Apply existing valid rights instrument to selected assets; exercise gallery/archive and separate internal/external approvals; exact authorized export through existing consumer; no live listing publication.",
+      "executionClass": "EXTERNAL_RIGHTS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A15",
+      "name": "Keepa and Helium 10 readiness",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Verify applicable Keepa entitlement and preserve deferred Helium10 readiness; no subscription or activation.",
+      "dependencyGroup": "K",
+      "prerequisite": "Applicable existing Keepa entitlement/credentials with authorized scope; preserve deferred Helium10.",
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "currentScopedEvidence": "Current15:48capabilities:keepa.history UNAVAILABLE/UNVERIFIED; no verified read.",
+      "shortestPath": "Verify existing entitlement and bounded readiness without purchase/subscription/activation.",
+      "executionClass": "EXTERNAL_ENTITLEMENT_BLOCKER",
+      "completeStatusSupportedNow": false
+    },
+    {
+      "key": "A19",
+      "name": "Integrated owner acceptance",
+      "officialStatus": "PENDING",
+      "exactRemainingAssertion": "Use existing authenticated Console to verify identical genuine product/mission/order/finance/Assurance records on desktop and mobile; owner must be able to inspect them. No additional purchase-method approval required.",
+      "dependencyGroup": "B",
+      "prerequisite": "Current exact supplier/variant identity, availability/freight/currency and market demand/fees/restrictions; canonical economics; authenticated application access; separately commissioned actual Pillow assessment once eligible.",
+      "existingEvidence": "Pinned frontend679f901d hosted typecheck,215 web+2 finance tests and build PASS; offline fixture evidence retained; no genuine native owner acceptance.",
+      "currentScopedEvidence": "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json at15:48:09Z; current16 returned opportunities UNMATCHED/0-of-8; retained consumer/software examinations remain accepted.",
+      "shortestPath": "One bounded current provider_read acquisition, source qualification, bound actual assessment, authenticated decision, then same-identity source/product/order/simulated-finance/Assurance desktop/mobile walkthrough.",
+      "executionClass": "EXTERNAL_INPUT_AND_ACCESS_THEN_EXAMINATION",
+      "completeStatusSupportedNow": false
+    }
+  ],
+  "executionOrder": [
+    "Root publication/CI already authorized; observe rather than request approval again.",
+    "Local recovery/Assurance engineering may continue only against a named missing full assertion with its actual isolation/oracle boundary available; no repeat accepted campaigns.",
+    "Acquire genuine dossier through existing authorized application access; no provider inference until dossier and bounded authority ready.",
+    "Apply exact media rights and entitlement evidence when available.",
+    "One joined owner walkthrough after genuine prerequisites.",
+    "Independent programme certification last."
+  ],
+  "consolidatedOwnerInputs": [
+    {
+      "input": "Existing qualifying protected store and separate restore identity, or a concrete costed provisioning proposal only if no qualifying existing resource.",
+      "affects": [
+        "A3",
+        "O39",
+        "A1",
+        "A2",
+        "A5"
+      ],
+      "timing": "Do not provision/purchase without authority."
+    },
+    {
+      "input": "Existing supplier/platform rights instrument for exact assets, and specified permitted Canva operation/design.",
+      "affects": [
+        "O7",
+        "O19",
+        "A9",
+        "A10",
+        "A11"
+      ],
+      "timing": "Read existing permissions first; do not invent rights or require routine supplier correspondence."
+    },
+    {
+      "input": "Existing Keepa entitlement and original224-row snapshot custodian/backup lead.",
+      "affects": [
+        "A15",
+        "O2"
+      ],
+      "timing": "Do not repeat already-exhausted searches."
+    },
+    {
+      "input": "Bounded source-specific commissioning request plus owner genuine product decision/walkthrough.",
+      "affects": [
+        "O13",
+        "O14",
+        "O40",
+        "O41",
+        "A6",
+        "A8",
+        "A19"
+      ],
+      "timing": "Only after eligible dossier, concrete inputs and cost are ready; no premature paid-inference approval request."
+    }
+  ],
+  "nonOwnerEngineeringDependencies": [
+    "Authenticated application provider_read access is a capability prerequisite; existing read authority need not be requested again.",
+    "Independent delivered-alert/containment and protected restore identities are real runtime capabilities, not assertions a fixture can manufacture."
+  ],
+  "preserve": [
+    "Original18 and amendment18 PASS",
+    "Accepted finance20-25/A16/A17",
+    "Accepted45-minute endurance and rollback",
+    "Pillow NOT_BORN;commerce LOCKED;Work9 INACTIVE",
+    "No deployment, live commerce, paid inference or infrastructure from this queue"
+  ],
+  "latestExecutionState": {
+    "publishedSource": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+    "CI": "2SUCCESS/2FAILURE; complete1950/1381generatedcorporaPASS",
+    "reviewedSuccessor": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
+    "unacceptedRecovery": "f7428efe3d79a258939bb46cad3ff87b495f86a7",
+    "newCompleteClosures": 0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "decision": "ACCEPT_PRELIMINARY_SCOPED_INTEGRATION_AND_FRONTEND_PIN",
+  "source": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
+  "tree": "29f1d17b3f9312d77d21a1a24f0ce3e54ee6de93",
+  "inheritedBase": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+  "acceptedComponents": {
+    "tests": "ed73d106e39614010ff84554d022aea2298865af",
+    "inboxBackend": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+    "frontend": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4"
+  },
+  "exactChangedBackendTestBlobsMatched": 6,
+  "substantiveReview": [
+    "Canonical display pagination extends existing authenticated workspace/company listing. Ingestion continuation and display cursor stay distinct. Missing/foreign cursor returns409; deterministic tie order prevents duplicate/missing continuation for unchanged list.",
+    "Inherited inspector coverage fields and notice-only acknowledgement authority unchanged. Sidecar cleanup/inventory changes remain tests-only. No new inference, recovery or commerce authority introduced.",
+    "Seven-line workflow append occurs after verified e7fd frontend restoration. It checks bundle blob, verifies prerequisite, fetchesHEAD, checks exactad5commit/tree, then runs existing review-only gates. No deployment/ref mutation."
+  ],
+  "workflow": {
+    "yamlParsed": true,
+    "shellSyntaxPass": true,
+    "existingPartitionUnchanged": true,
+    "bundlePath": "docs/work8/publication-closure-20261012/owner-inbox-frontend.bundle",
+    "bundleBlob": "46d9a524ccbb88270791742ffab7a1575cefb573",
+    "requiredFrontend": "e7fd599a447a4e1b273363d7f664507194cd2ba1",
+    "frontendTree": "31a817093307b986ed97c870bab0ce5b5ba81e84",
+    "actualLocalBundleVerify": "PASS",
+    "verificationRepository": "/workspace/scratch/ed471dff75f8/portfolio-owner-frontend",
+    "lazyFetchDisabled": true
+  },
+  "reusedReviewReceipts": [
+    {
+      "path": "/workspace/scratch/dc845312c8f5/CI-SIDECAR-INDEPENDENT-REVIEW.json",
+      "sha256": "d3a1631e79a363454697b044597bd97f4154e6aeeef4043e72d0a7c1614e0bbd"
+    },
+    {
+      "path": "/workspace/scratch/dc845312c8f5/owner-inbox-independent-review.json",
+      "sha256": "c1eb52d3a11857d0efa42e7fa8413a530a0fce12b5fe730307ae03bc30614af1"
+    }
+  ],
+  "blockingDefects": [],
+  "conditions": [
+    "Publish matching approved evidence containing new inbox bundle before source CI retrieves it.",
+    "Later recovery integration needs its own exact delta/final integration check.",
+    "Hosted exact-source CI remains separate; no full build/exhaustive tests repeated here."
+  ],
+  "scope": "Scoped software integration only; no full26/30/34/40/41/A19 closure or genuine owner acceptance."
+}

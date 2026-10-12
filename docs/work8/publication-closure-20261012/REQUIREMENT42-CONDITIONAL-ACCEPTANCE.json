@@ -1,0 +1,75 @@
+{
+  "decision": "CONDITIONAL_EXACT_HEAD_REVIEW_CI_PUBLICATION_SUBGATE_ONLY",
+  "originalRequirement": 42,
+  "officialStatus": "PENDING",
+  "question": "Do four terminal CI successes plus independent review and exact publication authority alone close original42?",
+  "answer": "No under retained original42 contract mapping sections12and25: they satisfy exact-head review/CI/publication subgate. Final independent certification and mandatory integrated/owner acceptance remain explicitly retained dependencies. No merge/deployment is required merely to satisfy this authorized publication subgate.",
+  "controllingEvidence": [
+    {
+      "path": "MANDATE.txt",
+      "section": "12 GOVERNED ENGINEERING AND RELEASE",
+      "criterion": "Required tests and independent Assurance gates pass exact commits; merge/deploy only with separate approval and lease/fence; governed release proof only where such release authorized and necessary."
+    },
+    {
+      "path": "MANDATE.txt",
+      "section": "25 FINAL WORK8 CERTIFICATION AND WORK9 HANDOFF",
+      "criterion": "Distinguish built/integrated/examined/independently verified/released(if separately authorized)/Work9ready. Full critical operating/healing loops, safe preservation and legitimate closure receipts required for programme completion."
+    },
+    {
+      "path": "register.json",
+      "item": 42,
+      "mandateSections": "12,25",
+      "remainingDependency": "All four exact-source CI workflows passed. Genuine hosted owner acceptance and final independent certification remain.",
+      "nextAction": "Preserve completed runs; certify only after remaining integrated and hosted acceptance."
+    },
+    {
+      "path": "resume-20261011/OWNER-HOLISTIC-DIRECTIVE.txt",
+      "sections": "19 Priorities8-10;21 Endstate",
+      "criterion": "Exact-head CI/review, authenticated owner acceptance and legitimate closure are distinct deliverables. No production release without separate authority; no CI-only programme completion."
+    }
+  ],
+  "reportedPublication": {
+    "evidenceCommit": "5e2574cbc1abceacd433f75c6db25167392cfcfc",
+    "evidenceTree": "b4c65de1fab417381cd8e46434e5fd1eb5c66667",
+    "sourceCommit": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+    "sourceTree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
+    "basis": "Root verified publication refs/trees and draftPR113; reviewer did no fresh external read for this assessment"
+  },
+  "conditionalCI": [
+    {
+      "workflow": "Product",
+      "id": 38273853502,
+      "required": "completed/success on45f326558ac8594636d7e4e29154c0cb5c7cc354"
+    },
+    {
+      "workflow": "Runtime",
+      "id": 38273853504,
+      "required": "completed/success including both mandatory generated matrix members and aggregate gate on45f326558ac8594636d7e4e29154c0cb5c7cc354"
+    },
+    {
+      "workflow": "Semantic",
+      "id": 38273853534,
+      "required": "completed/success on45f326558ac8594636d7e4e29154c0cb5c7cc354"
+    },
+    {
+      "workflow": "Assurance",
+      "id": 38273853575,
+      "required": "completed/success on45f326558ac8594636d7e4e29154c0cb5c7cc354",
+      "reported": "success"
+    }
+  ],
+  "onceAllCIIsTerminalSuccess": "Accept exact-head reviewed publication/hostedCI subgate; record all receipts and exact tree equivalence. Do not promote whole42 or programme solely from this subgate.",
+  "remainingFull42Dependencies": [
+    "Mandatory genuine authenticated operating/owner acceptance preserved in40/41/A6/A19.",
+    "Mandatory independently accepted operating/healing/preservation gates still open, then final independent certification under mandate25.",
+    "Exact-source certification scope remains current if later fixes change application/frontend identities."
+  ],
+  "notRequiredWithoutSeparateAuthorization": [
+    "Merge or production deployment",
+    "Birth/commerce unlock",
+    "A repeated already-passing endurance or rollback campaign",
+    "New hosting purchase solely for visual demonstration"
+  ],
+  "promotionNow": false,
+  "newAuditOrExternalRead": false
+}

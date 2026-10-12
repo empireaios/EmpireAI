@@ -1,0 +1,57 @@
+{
+  "candidate": "f7428efe3d79a258939bb46cad3ff87b495f86a7",
+  "tree": "0e19a226ada5cd87595450b43ecc5e9e1c7b9bbb",
+  "disposition": "UNACCEPTED_INDEPENDENT_EXECUTION_REVIEW_INCOMPLETE",
+  "reviewMode": "Normal-permission source/evidence inspection and safe in-process negative-boundary examination",
+  "priorSecurityFlag": {
+    "known": "Owner reports prior independent review interrupted by automated security flag",
+    "unknown": "Exact rejected action and reviewer reason not recovered from examined retained artifacts; not invented"
+  },
+  "independentlyObserved": {
+    "cleanWorktree": true,
+    "authorReceiptSourceMatchesCandidate": true,
+    "observerSpawnsInRetainedEvents": 6,
+    "labelledSimulatedBusinessTasks": 2,
+    "simulatedFinanceEvents": 22,
+    "simulatedReceipts": 20,
+    "retainedAuthority": "REVOKED",
+    "captureDigest": "919959210253c17c04454aadd79b5da6cd611df8e169f6cf97f97203a167270f",
+    "captureScope": "SCOPED_INSPECTION_ONLY",
+    "fullRuntimeRestored": false,
+    "externalCustody": false
+  },
+  "acceptedPriorScope": {
+    "candidate": "466c09896c21ef2cd8beceddf19a732aeda3aab4",
+    "scope": "Isolated Redis inspection restore only; does not accept current candidate"
+  },
+  "remaining33": [
+    "Global exclusion of arbitrary external or old writers",
+    "Complete authorized operational business/money/authority replay"
+  ],
+  "remaining39": [
+    "Full authorized application restoration",
+    "Independent acceptance of replacement owner-session restoration",
+    "Protected independently authenticated off-host custody"
+  ],
+  "shortestNextPackage": "Independent positive source-cohort/permit/staging and replacement topology examination under normally permitted existing runner, only if security-limitation scope is established. No blocked operation retried.",
+  "newOriginalClosures": [],
+  "newAmendmentClosures": [],
+  "receiptHashes": {
+    "receipt.json": "4b56af4987e4cbd9144f10a171573170e3cb3f8b2179f9989ac57c97b1c92e66",
+    "guard.tap": "58a8574e9cbffea0bd31194099fb5f51ed8ad678783f7953b8d5f3539a203bd9",
+    "events.jsonl": "ced5a83cf18766b9fea1a97a439a089f9eb5ede14ab90e2d1f301472ea5faf65",
+    "pending-business.json.continued.json": "70cd1501112ffd6a0277cc1b8ffd68e3816428a3df84e127221ad0ff252f4ba7",
+    "negative-boundary.cjs": "4ad35a375f4f1f4716adfacb38abf8692006092f729b8fbd20b6aabb0940b32a",
+    "negative-boundary.log": "4735e785f7bc87072b887d6c60e0b33bf044c3a6ec0041082ab5d4ec008c0d2a",
+    "activation-independent.tap": "77c454b0f7b304ac14ac6e48606eb8c8c909c81227722e661f553c984514a680"
+  },
+  "independentExecutableProgress": {
+    "status": "PASS_SCOPED_NEGATIVE_BOUNDARIES",
+    "reviewerAuthoredNegativeAssertions": 10,
+    "committedActivationTestIndependentRerun": 1,
+    "runner": "Existing default exec runner with empty external IPv4 route table; no namespace created",
+    "effects": "No child processes or network operations from test harness; only reviewer-owned temporary files",
+    "wholeCandidateAcceptance": false,
+    "remaining": "Successful source-child registration, one-use permit issuance/staging and complete replacement topology not independently executed; retained author receipts alone do not establish these independent execution assertions"
+  }
+}

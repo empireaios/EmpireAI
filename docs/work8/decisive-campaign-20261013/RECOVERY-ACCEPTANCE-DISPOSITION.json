@@ -1,0 +1,49 @@
+{
+  "package": "LANE_B_RECOVERY_PERMISSION_AND_ACCEPTANCE",
+  "requirements": [
+    33,
+    39
+  ],
+  "source": "f7428efe3d79a258939bb46cad3ff87b495f86a7",
+  "tree": "0e19a226ada5cd87595450b43ecc5e9e1c7b9bbb",
+  "worktreeClean": true,
+  "disposition": "BLOCKED_INDEPENDENT_POSITIVE_RESTORATION_REVIEW",
+  "priorReviewSha256": "8970ee6fd6a078d20064e9c623275bb3c809f2b53ebfcdb3d31b0ae1e14a0223",
+  "securityBoundary": {
+    "priorRejectionKnown": true,
+    "exactRejectedActionAndReason": "NOT_RECOVERED in retained authoritative review",
+    "positiveExecutionAttempted": false,
+    "blockedActionRetried": false,
+    "requiredResolution": "Recover original automatic-review denial details and establish a legitimately permitted positive examination. No inference of approval from interruption."
+  },
+  "independentStaticFindings": {
+    "writerCoordination": "Registration checks only enumerated caller-supplied child PIDs, minimum four, with matching root/revision. Does not establish exclusion of arbitrary other writers.",
+    "capturedStateBinding": "Permit source binds source commit, root device/inode, registered capture PID, registration time and manifest digest; staging re-verifies digest. Static confirmation only.",
+    "pendingReplay": "Existing topology script continues two labelled simulated business tasks; does not demonstrate authorized full operational replay.",
+    "launchFence": "Marked restored roots require test mode, engineering flag, external-route isolation, exact activation digest and no deployment identity; incomplete/historical marker blocks activation. Prior independent negative tests preserved.",
+    "protectedBackup": "Staging explicitly emits protectedCustody=false. No independent off-host custody or protected recovery evidenced.",
+    "replacementInstance": "Existing author script exercises replacement Redis/runtime/session, but independent positive execution remains incomplete."
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "testsRepeated": [],
+  "sourceChanges": [],
+  "publicationAllowedByThisReceipt": false,
+  "remainingAssertions": {
+    "33": [
+      "Global runtime writer exclusion",
+      "Complete authorized business/money/authority replay"
+    ],
+    "39": [
+      "Independently accepted positive permit/staging/replacement topology",
+      "Full authorized application restoration",
+      "Protected independently authenticated off-host custody and restoration"
+    ]
+  },
+  "ownerDecisionScope": "Provide original rejected-action/reason or arrange permitted independent review; separately identify provisioned protected off-host backup destination and verifier. Owner approval alone cannot override automatic security restriction.",
+  "inspectedSourceHashes": {
+    "deployment/runtime-recovery-activation.cjs": "ad08cdbb11187d11bbf1ae68e48a14a85ec916b45f0fb8ae3698c43734cfb5ae",
+    "deployment/work8-recovery-set.cjs": "7ea24673f0c597ff7f19fb9110b3338746c498064c978acc3a2ba00fc3e116a4",
+    "scripts/work8/replacement-topology-exam.cjs": "37325e2c52edccbcbe6f5ca2421e0e65ac463989d8a3007566e369ff04db28fe"
+  }
+}

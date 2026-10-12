@@ -1,0 +1,35 @@
+{
+  "schema": "WORK8_EXACT_PUBLICATION_RECEIPT_V1",
+  "time": "2026-10-12T15:56:37.284Z",
+  "approvedEvidence": "9bf611c7bf4f61714af25b1b89808bbc9b7df3b1",
+  "approvedSource": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+  "evidence": {
+    "commit": "5e2574cbc1abceacd433f75c6db25167392cfcfc",
+    "tree": "b4c65de1fab417381cd8e46434e5fd1eb5c66667",
+    "time": "2026-10-12T15:55:05.912Z"
+  },
+  "source": {
+    "commit": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+    "tree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
+    "time": "2026-10-12T15:56:23.972Z"
+  },
+  "evidenceBranch": "work8/examination-evidence-20261011",
+  "sourceBranch": "work8/autonomous-examination-20261011",
+  "completeTreeEquality": true,
+  "modeEquality": "Git tree identity includes all modes, paths and blobs",
+  "order": "evidence verified before source ref mutation",
+  "prInitialRead": {
+    "head": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "noMerge": true,
+  "noDeployment": true,
+  "prVerified": {
+    "head": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  }
+}

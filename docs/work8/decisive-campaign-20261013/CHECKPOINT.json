@@ -1,0 +1,51 @@
+{
+  "schema": "WORK8_DECISIVE_CAMPAIGN_CHECKPOINT_V1",
+  "time": "2026-10-12T17:12:28.268285+00:00",
+  "status": "NO_GO_AUTHORITY_AND_EXTERNAL_BOUNDARIES",
+  "original": {
+    "PASS": 30,
+    "PENDING": 11,
+    "BLOCKED": 4
+  },
+  "amendments": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "publishedSource": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+  "publishedEvidence": "5e2574cbc1abceacd433f75c6db25167392cfcfc",
+  "candidateSource": "e5165a266702f1c63caf6a5577226a5600b7b8a0",
+  "candidateSourceTree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+  "candidateSourceParent": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
+  "candidateSourcePath": "/workspace/scratch/798050748e67/business-source",
+  "evidenceBase": "cd09b361e03eb31726850ef507ddd1f2129ca095",
+  "evidencePath": "/workspace/scratch/7260f6eab8b6/evidence-candidate",
+  "evidenceBranch": "work8/decisive-campaign-evidence-20261013",
+  "evidenceSelfIdentity": "Resolve this file through containing Git commit; external final review seals exact commit/tree",
+  "recoveryUnaccepted": "f7428efe3d79a258939bb46cad3ff87b495f86a7",
+  "recoveryPath": "/workspace/scratch/dc845312c8f5/recovery-next",
+  "GitHubActiveRunsAtReadback": [],
+  "providerJobs": "All five root/followup jobs terminal; exact IDs BUSINESS-LANE-RESULT.json",
+  "newIndependentTests": {
+    "Node24": 5,
+    "Node22": "PENDING_HOSTED_PUBLICATION"
+  },
+  "authority": "Exact successor publication requires one owner decision; no production merge/deployment or frontend deployment-branch move",
+  "nextActions": [
+    "After exact batch approval publish reviewed evidence tree first, verify full tree; publish reviewed source tree second, verify full tree",
+    "Observe hosted exact-source affected CI; preserve accepted generated corpora and do not dispatch duplicate endurance",
+    "Resolve recovery security-limitation scope and protected independent custody; do not retry denied positive operation",
+    "Use observed authenticated Console read access; do not repeat connector-only access-blocker claim",
+    "Complete exact product/comparator attribution and approved Console presentation; unknown demand permitted by original contract, no invented values",
+    "After separate deployment authority and approved rollout, fresh catalog read can populate newly preserved facts; old truncated records cannot be reconstructed",
+    "Obtain genuine eligible dossier before any bounded actual Pillow commissioning request; preserve media/entitlement/history blockers"
+  ],
+  "governance": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "safeguards": 15,
+    "deniedLiveEffectRoutes": 7
+  }
+}

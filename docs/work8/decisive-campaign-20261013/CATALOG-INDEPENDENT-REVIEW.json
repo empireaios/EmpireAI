@@ -1,0 +1,52 @@
+{
+  "verdict": "ACCEPT_BOUNDED_ENGINEERING_REPAIR_NOT_O9_FULL_ACCEPTANCE",
+  "source": "e5165a266702f1c63caf6a5577226a5600b7b8a0",
+  "tree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+  "parent": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
+  "files": {
+    "backend/src/intelligence/acquisition.ts": "92daab65b9be297aed77232053e897c27a9365f42faa8fee747083ba124be858",
+    "backend/src/intelligence/amazon-catalog-facts.ts": "ee9a93172eb2a00e04b8fe3c54c0179e99c63bbec2882dcf2b508279926171ee",
+    "backend/src/intelligence/amazon-catalog-facts.test.ts": "cdfc868d1ef1f3cb193f130b3ad6eab74ccd26ce2046bb887eb9e817d3f9b417"
+  },
+  "independentTest": {
+    "runtime": "Node24.19.0",
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "path": "/workspace/scratch/798050748e67/closure-lane/catalog-independent.test.ts",
+    "assertions": [
+      "Ambiguous duplicate marketplace groups rejected; distinct ASIN untouched; input unmodified",
+      "Zero/negative/fractional/nonfinite/unsafe ranks and sensitive title rejected",
+      "Requested marketplace only; first10 record bound and original identity order",
+      "Invalid measurements dropped; depth limit remains on unrelated metadata; no inferred unit sales"
+    ]
+  },
+  "limitations": [
+    "No Node22 claim",
+    "No publication/deployment",
+    "Existing truncated provider evidence unrecoverable from stored values; fresh source receipt required",
+    "Selected POCREATION has empty rank arrays; no demand inferred",
+    "Full O9 must be judged against original mandate4/R1 with unknown fields permitted and owner-visible attributable comparator evidence"
+  ],
+  "scope": "No generic sanitizer depth increase; additive bounded allowlisted source measurements with existing redaction applied to text; rank proxy never unit demand; no source matching authority added",
+  "independentAcquisitionIntegration": {
+    "runtime": "Node24.19.0",
+    "command": "node --import /workspace/scratch/dc845312c8f5/integration/backend/node_modules/tsx/dist/loader.mjs --test backend/src/intelligence/amazon-catalog-facts.test.ts",
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "assertions": "Actual ReadAcquirer using injected provider response, IntelligenceStore persistence and reopened exact digest, absent selected rank preserved, other ASIN valid rank retained, redaction and authority false"
+  },
+  "originalO9Disposition": {
+    "status": "PENDING_CONNECTED_PRESENTATION_EVIDENCE",
+    "governingSource": "/workspace/scratch/dc845312c8f5/evidence/docs/work8/MANDATE.txt",
+    "clauses": [
+      "Section4: verifies product identity and variants, screens competitive price ranges and evidence completeness, retains rejection/deferment source references",
+      "R1: genuine supplier/marketplace information in approved Owner Console; currency observation time source reference freshness; observed competitor prices and market evidence where obtainable; clearly identified unknown fields and screening reason"
+    ],
+    "notRequired": "Known demand rank or unit-sales figure is not independently imposed; original explicitly permits unknown/unavailable fields",
+    "unprovenAsOfReview": "Business observer confirms authenticated Console has source records and technical receipt modal, but no observed source-to-comparator presentation associating POCREATION USD14 with retained CJ cardbox, explicit geometry differences and unknown demand. Fresh CJ query returned unrelated snow cover and pairing was correctly refused.",
+    "separateGates": "Full personal owner walkthrough and actual Pillow assessment remain O40/O41/O13; do not import them into isolated O9 criterion.",
+    "businessEvidenceScreenshot": "/workspace/scratch/798050748e67/business-completed-jobs.jpg"
+  }
+}

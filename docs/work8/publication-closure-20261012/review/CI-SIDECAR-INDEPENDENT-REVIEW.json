@@ -1,0 +1,37 @@
+{
+  "decision": "ACCEPT_TESTS_ONLY_CI_CORRECTION",
+  "candidate": "ed73d106e39614010ff84554d022aea2298865af",
+  "tree": "f551b85eb69d9af46fe9202227debd8898b9ef50",
+  "base": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+  "changedPaths": [
+    "backend/src/validation/tests/shadow-ceo-quiesced-capture.test.ts",
+    "backend/src/validation/tests/sqlite-corruption-recovery.test.ts"
+  ],
+  "productionSourceChanged": false,
+  "substantiveReview": [
+    "Shadow cleanup closes repository before removing directory in one ordered hook. close exceptions remain failures. Fenced writes, disk copy, resumed writes and failed-copy recovery assertions unchanged.",
+    "Production/Railway corrupt opens retain exact refusal, recovered=false and original-byte equality. Exact inventory permits only database plus named .sqljs-owner.sqlite; no wildcard exclusion or arbitrary sidecars.",
+    "Sidecar must be regular single-link file, have valid SQLite integrity and empty application schema. BEGIN EXCLUSIVE proves constructor released ownership. No business or authority assertion weakened."
+  ],
+  "independentExecution": {
+    "exitCode": 0,
+    "tests": 6,
+    "pass": 6,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 2197.936361,
+    "node": "24.19.0",
+    "launcher": "Existing isolated-exec.py socket/connect/send denial",
+    "receipt": "/workspace/scratch/dc845312c8f5/CI-SIDECAR-INDEPENDENT.tap",
+    "sha256": "f0a98d80f4eb9836ffb70043d6bfdf1368e011f605d9010db172fc0ecbf299c0"
+  },
+  "authorReceipt": {
+    "path": "/workspace/scratch/dc845312c8f5/CI-SIDECAR-FOCUSED.tap",
+    "sha256": "8707bb97d8da596980fb693c58babc0a315e51e0a0878df6d2239545cdc3f074"
+  },
+  "limits": [
+    "HostedNode22 gates must validate exact successor after authorized publication; focused tests are not wholeCI pass.",
+    "Preserve original hosted failures. No production logic/workflow/timing/programme statuses changed."
+  ]
+}

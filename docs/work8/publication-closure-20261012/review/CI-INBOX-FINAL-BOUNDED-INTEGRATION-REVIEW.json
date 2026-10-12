@@ -1,0 +1,238 @@
+{
+  "schema": "WORK8_FINAL_BOUNDED_CI_INBOX_INTEGRATION_REVIEW_V1",
+  "reviewer": "independent integration_review agent",
+  "decision": "ACCEPT_SCOPED_CI_INBOX_INTEGRATION_FOR_BOUNDED_PUBLICATION_REQUEST",
+  "source": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
+  "tree": "29f1d17b3f9312d77d21a1a24f0ce3e54ee6de93",
+  "base": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+  "componentBlobChecks": [
+    {
+      "path": "backend/src/validation/tests/shadow-ceo-quiesced-capture.test.ts",
+      "component": "ed73d106e39614010ff84554d022aea2298865af",
+      "blob": "8aa0b4dce27dd2fa2430a4f90ec07c8561d7f107"
+    },
+    {
+      "path": "backend/src/validation/tests/sqlite-corruption-recovery.test.ts",
+      "component": "ed73d106e39614010ff84554d022aea2298865af",
+      "blob": "a2d6d7771ea5299c9dcd5fff605c6f06cff52a67"
+    },
+    {
+      "path": "backend/src/global-notifications/models/global-notification.ts",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "78144afc8c078635cd493cb5fec9550b5014dc98"
+    },
+    {
+      "path": "backend/src/global-notifications/routes/global-notification-routes.ts",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "08198c78a49148b0b9df9e96399464dc133c4273"
+    },
+    {
+      "path": "backend/src/global-notifications/services/global-notification-service.ts",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "20c0a5253a69e8d449ce412089e8305fbb649fa7"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-assurance-notification.test.ts",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "9d0aa1556cc76cc2c22299fec7e925c6edfec510"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/BOUNDARY.md",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "4766e96e1dabca6141435d17f05f0f969024dc00"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/SEAL.json",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "080002f6321d1337f4ce423f7bf4104c99d65eb4"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/backend-contract.tap",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "b4f18cfdc94a270168905abad2c1841cb36af09d"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/lint.txt",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-first-failure.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "a1f92b47eb758b260e8fae604974fa8b2c0a4e28"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-first-failure/backend-errors.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-first-failure/backend.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "512b96db275de8a2a2ea04c9253c1b735a7667c3"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-initial-pass.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-initial-pass/backend-errors.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-initial-pass/backend.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "794a97c2577ba83500eb867a1230c03a0adcb154"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-initial-pass/desktop.png",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "feab917a4bb43cf721342cac2aeeecab23b10a11"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-initial-pass/mobile.png",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "90aa6cbb5447da0bf07d9dbbc5cf876c0eff2b85"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-initial-pass/receipt.json",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "15226d1d9afb1f5107f25fd6bfa7d98fa97cfad4"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-process-shim-failure.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "3a7814f93d3b19369ecd8f1bbeace8d61fdb08b1"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-process-shim-failure/backend-errors.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-process-shim-failure/backend.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "31fad8289612d1499636e525a0d2cd041ceb2c13"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-process-shim-failure/failure.json",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "666a42591fdf7c5312f0fc90685aafe6cf4477f3"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native-process-shim-failure/failure.png",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "cc95dc2fa275eb4c517eec63a21e0b59016a8291"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native/backend-errors.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native/backend.log",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "2e535ed24203c311b4b7a5c494ddbdc6eec53fe4"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native/desktop-viewport.png",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "f347721eafab2d2e2e87ecba2dde3e186a521203"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native/desktop.png",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "4b948f74acd2f893dff4c5581d1fd5fa333ad083"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native/mobile-viewport.png",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "bf3ee83bf6f83dd99f0e75115567411da87a77ed"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native/mobile.png",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "d122bea1647e45fc719eb291304746140cea34bb"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/native/receipt.json",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "75c7c08db44f25470d37fb735af8783f5f62b7ac"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/proxy.tap",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "bf23be74b9bb4a455aac77fab99950d6d7e5b7bb"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/typecheck.txt",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/native-and-frontend/typegen.txt",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "7bab5fceadb39ca7d44c9f1a13fba79599520d0b"
+    },
+    {
+      "path": "docs/work8/owner-inbox-connected-20261013/tie-seed-failure.tap",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "f5bdb30a36651eca7d0f35749ebb65122d87a3bf"
+    },
+    {
+      "path": "scripts/work8/owner-inbox-browser-backend.mts",
+      "component": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+      "blob": "125949e099addcbbdefc634ed4e52801932f7fcd"
+    }
+  ],
+  "reusedReviews": [
+    {
+      "path": "/workspace/scratch/dc845312c8f5/CI-SIDECAR-INDEPENDENT-REVIEW.json",
+      "sha256": "d3a1631e79a363454697b044597bd97f4154e6aeeef4043e72d0a7c1614e0bbd",
+      "decision": "ACCEPT_TESTS_ONLY_CI_CORRECTION"
+    },
+    {
+      "path": "/workspace/scratch/dc845312c8f5/owner-inbox-independent-review.json",
+      "sha256": "c1eb52d3a11857d0efa42e7fa8413a530a0fce12b5fe730307ae03bc30614af1",
+      "decision": "ACCEPT_SCOPED_CONNECTED_CANONICAL_INBOX_SOFTWARE"
+    },
+    {
+      "path": "/workspace/scratch/dc845312c8f5/INBOX-CI-PRELIMINARY-INTEGRATION-REVIEW.json",
+      "sha256": "79519e1b74d1bc5ae634abc6d877de10066ccea7c3069be8289a6617c9513ed7",
+      "decision": "ACCEPT_PRELIMINARY_SCOPED_INTEGRATION_AND_FRONTEND_PIN"
+    }
+  ],
+  "remainingLocalChecks": [],
+  "testReuseJustification": "Exact unchanged independently accepted component blobs; only integration delta is seven-line workflow frontend pin already independently parsed, shell-checked and bundle-verified in preliminary integration review. No new behavioral boundary warrants duplicate local tests.",
+  "requiredEvidence": {
+    "bundlePath": "docs/work8/publication-closure-20261012/owner-inbox-frontend.bundle",
+    "bundleBlob": "46d9a524ccbb88270791742ffab7a1575cefb573",
+    "bundleSha256": "1e867a8df34ebb0d881310ba5ee46c3894ad726df854e5fb29eb52be9e579118",
+    "frontendCommit": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4",
+    "frontendTree": "31a817093307b986ed97c870bab0ce5b5ba81e84",
+    "prerequisite": "e7fd599a447a4e1b273363d7f664507194cd2ba1"
+  },
+  "conditions": [
+    "Owner bounded publication authorization is separate.",
+    "Matching reviewed evidence must publish before source workflow retrieves it.",
+    "Hosted exact-source CI remains required after authorized publication; this is not CI success.",
+    "Any added recovery or other delta requires separate integration review."
+  ],
+  "excluded": [
+    "recovery-next candidate",
+    "production deployment",
+    "PR merge",
+    "whole requirement or amendment closures",
+    "genuine owner acceptance"
+  ],
+  "newOriginalClosures": [],
+  "newAmendmentClosures": [],
+  "timestampUtc": "2026-10-12T16:42:02.600637+00:00"
+}

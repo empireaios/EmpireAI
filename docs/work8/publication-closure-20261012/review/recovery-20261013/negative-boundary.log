@@ -1,0 +1,11 @@
+PASS deployed railway runtime refused
+PASS credential supplied refused
+PASS proxy supplied refused
+PASS engineering flag absent refused
+PASS forged permit refused before target writes
+PASS unregistered source refused
+PASS empty source cohort refused
+PASS duplicate source cohort refused
+PASS invalid source revision refused
+PASS self cannot register as source child
+{"status":"PASS_SCOPED_NEGATIVE_BOUNDARIES","assertions":10,"spawnedChildProcesses":0,"networkOperations":0,"sourceWrites":0}

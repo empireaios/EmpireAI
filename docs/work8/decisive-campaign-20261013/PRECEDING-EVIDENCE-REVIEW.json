@@ -1,0 +1,64 @@
+{
+  "schema": "WORK8_INDEPENDENT_EVIDENCE_PUBLICATION_REVIEW_V1",
+  "decision": "ACCEPT_BOUNDED_EVIDENCE_FIRST_SOURCE_SECOND_PUBLICATION_REQUEST",
+  "timestampUtc": "2026-10-12T17:03:16.402502+00:00",
+  "evidence": {
+    "commit": "cd09b361e03eb31726850ef507ddd1f2129ca095",
+    "tree": "054ca5e596b190620e9b2d5d6044389827e95b0d",
+    "branch": "work8/examination-evidence-20261011",
+    "workingTreeClean": true,
+    "changedPathsAgainstPublishedEvidence": 58
+  },
+  "source": {
+    "commit": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
+    "tree": "29f1d17b3f9312d77d21a1a24f0ce3e54ee6de93",
+    "branch": "work8/autonomous-examination-20261011",
+    "integrationReviewRepeated": false,
+    "pathCount": 38,
+    "componentPaths": 37,
+    "additionalIntegrationPath": ".github/workflows/product-path-ci.yml"
+  },
+  "bundle": {
+    "path": "docs/work8/publication-closure-20261012/owner-inbox-frontend.bundle",
+    "blob": "46d9a524ccbb88270791742ffab7a1575cefb573",
+    "sha256": "1e867a8df34ebb0d881310ba5ee46c3894ad726df854e5fb29eb52be9e579118",
+    "frontendCommit": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4",
+    "frontendTree": "31a817093307b986ed97c870bab0ce5b5ba81e84",
+    "prerequisite": "e7fd599a447a4e1b273363d7f664507194cd2ba1",
+    "gitBundleVerify": "PASS against retained frontend repository",
+    "identityMatchesAcceptedIntegrationReceipt": true
+  },
+  "register": {
+    "rows": 64,
+    "unchangedStatusSequenceAgainstPublishedEvidence": true,
+    "original": {
+      "PASS": 30,
+      "PENDING": 11,
+      "BLOCKED": 4
+    },
+    "amendments": {
+      "PASS": 8,
+      "PENDING": 11
+    },
+    "markdownRows": 64,
+    "newClosures": 0,
+    "Work8": "NO_GO",
+    "Work9": "INACTIVE",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "privacyReview": {
+    "scope": "Changed publication paths including decompressed CI logs; retained reviewed bundle identities; representative canonical screenshot visibly labelled examination incidents",
+    "result": "No actual credentials or private financial transaction rows found in reviewed delta. Credential-pattern hit is explicit synthetic-not-real test input. Finance continuation contains aggregate preservation and blocker findings, no private row export.",
+    "limitation": "Bounded delta review; no claim of universal historical repository secret audit."
+  },
+  "conditions": [
+    "Owner approval covers these exact evidence/source trees as one batch.",
+    "Publish evidence branch first and verify complete tree equality, then source branch and complete tree equality.",
+    "Keep PR113 draft and unmerged; no deployment or deployment-linked frontend branch movement.",
+    "Verify affected hosted CI against published source; retain accepted generated corpora without discretionary repeat.",
+    "Unaccepted recovery f7428efe remains excluded. No Work8 completion or new requirement acceptance inferred."
+  ],
+  "canonicalFilesEdited": false,
+  "publicationPerformed": false
+}

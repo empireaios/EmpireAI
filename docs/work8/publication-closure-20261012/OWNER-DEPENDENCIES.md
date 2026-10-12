@@ -1,0 +1,15 @@
+# Consolidated external prerequisites
+
+These dependencies cannot be marked PASS by documenting a limitation. Existing scoped software acceptance remains valid; full programme certification remains NO_GO until mandatory assertions are satisfied. No approval is requested again for the exact batch already published.
+
+| Missing capability or evidence | Existing authorised alternative | Minimum owner input or decision | Consequence of deferral |
+|---|---|---|---|
+| Original 224-row canonical financial snapshot | Attributable retained backup from its custodian | Identify the actual custodian/backup or supply the original privately; no new generic search | Original #2 remains BLOCKED; current227/219 records cannot establish the missing baseline |
+| Protected independent off-host custody with retention/deletion controls and separate restore identity | Any existing authorised store meeting those exact controls | Identify that existing store and access identity; if none, a separately reviewed, costed provisioning proposal is needed before purchase | #39/A3 protected-custody assertions remain open; same-host volumes, repository commits and ordinary CI artifacts are insufficient |
+| Independent alert delivery and containment after primary host or launcher+guard failure | Existing external monitor/oracle with independent failure domain and bounded execution authority | Identify an existing controlled endpoint/monitor and permitted test target; no messaging recipient or new service is assumed | #30/#34 host-failure assertions remain open; owner-pull and examiner cleanup do not substitute |
+| Authenticated application source refresh and exact eligible dossier | Existing governed provider_read action; existing read authority remains valid | Provide access through the existing application interface; stored-read Advisor connector cannot perform refresh | Genuine source/market/financial/Pillow/owner chain cannot complete from stale UNMATCHED records |
+| Exact media permissions and Canva operation | Existing supplier/platform rights covering identified asset bytes/version and specified uses | Supply or identify those rights plus the exact permitted design/export and existing consumer entitlement | #7/#19/A9–A11 remain open; internal text qualification can progress separately |
+| Applicable Keepa entitlement | Existing subscribed/authorised account scope | Identify existing applicable entitlement; no subscription purchase or activation is authorised | A15 remains PENDING; Helium10 remains deferred |
+| Genuine Pillow assessment and persisted owner acceptance | Existing source-bound commissioning and authenticated Console workflow | Once a dossier qualifies, approve one concrete bounded assessment with exact inputs/cost; then inspect and persist the genuine decision | #13/#14/#40/#41/A6/A8/A19 remain incomplete; no premature inference request or synthetic substitute |
+
+Engineering restoration and Console work remain separately executable. Their local successors require independent acceptance and a coherent exact publication decision before changing the published batch; production merge/deployment remains unauthorised.

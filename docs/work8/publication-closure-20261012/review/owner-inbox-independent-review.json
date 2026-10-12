@@ -1,0 +1,83 @@
+{
+  "schema": "WORK8_CANONICAL_INBOX_INDEPENDENT_REVIEW_V1",
+  "verdict": "ACCEPT_SCOPED_CONNECTED_CANONICAL_INBOX_SOFTWARE",
+  "backendCommit": "d6609bd3ad590406c3f658cf880a70bd134cd5f1",
+  "backendTree": "182da3a79f2f26faed7b4c20e1f68e73011e5fd9",
+  "frontendCommit": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4",
+  "frontendTree": "31a817093307b986ed97c870bab0ce5b5ba81e84",
+  "sealVerification": "ALL_BACKEND_FRONTEND_ARTIFACT_AND_BUNDLE_HASHES_MATCH; native pre-dot source reconstructed exactly",
+  "independentTests": [
+    {
+      "command": "python3 scripts/work8/isolated-exec.py node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/work8-assurance-notification.test.ts",
+      "passed": 1,
+      "failed": 0,
+      "exitCode": 0,
+      "log": "/workspace/scratch/dc845312c8f5/inbox-independent-backend.tap"
+    },
+    {
+      "command": "node --import <backend-tsx-loader> --test lib/owner/notifications-handler.test.ts",
+      "passed": 1,
+      "failed": 0,
+      "exitCode": 0,
+      "log": "/workspace/scratch/dc845312c8f5/inbox-independent-proxy.tap"
+    },
+    {
+      "negative": "Direct dot-only acknowledge IDs . and .. return400 with zero upstream fetch calls",
+      "passed": true
+    }
+  ],
+  "reviewFindingsResolved": [
+    "Inspector metadata object could crash view; strict statuses now reject",
+    "Malformed ack could replace saved content; full notice shape now validated",
+    "Successful authenticated proxy lacked explicit cache policy; private,no-store now enforced",
+    "Dot-only path segment normalized outside intended endpoint; explicitly rejected"
+  ],
+  "reviewedProperties": [
+    "Canonical empireai-web mounted consumer; obsolete Vite unchanged",
+    "Fixed company/source/limit and upstream endpoints; backend cookie authentication retained",
+    "Same-origin bounded JSON action gate; no arbitrary recovery approvals",
+    "Source ingestion and display continuation separate; deterministic tie order and409 missing/foreign cursor",
+    "Failed/malformed reads retain saved notices and truthful error/coverage",
+    "Acknowledgement changes notice only; canonical incident preserved"
+  ],
+  "nativeEvidence": {
+    "status": "PASS_CONNECTED_CANONICAL_INBOX_LABELLED_FIXTURE",
+    "incidents": 205,
+    "sourceWindows": 3,
+    "desktop": [
+      1365,
+      900
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "screenshotsReviewed": [
+      "final desktop-viewport.png1365x900",
+      "final mobile-viewport.png390x844",
+      "mobile fullpage"
+    ],
+    "scope": "Actual component+NextLink minimal local shell, actual proxy and authenticated fixture backend; not deployed full Next page",
+    "finalDelta": "Native predates only dot-only guard, explicitly sealed; final negative contracts cover guard",
+    "repeatByReviewer": false
+  },
+  "limitations": [
+    "No whole26/30/34/40/41/A19 closure",
+    "No off-host push or simultaneous host/launcher/guard-loss containment",
+    "No real owner personal acceptance or genuine Pillow product walkthrough",
+    "Exact published integration CI and release gates remain separate"
+  ],
+  "actions": "Read-only source review and isolated local tests only",
+  "visualAppendix": {
+    "method": "tools.view_image on both exact committed finalnative viewport PNGs",
+    "result": "PASS_SCOPED_COMPONENT_VISUAL_REVIEW",
+    "observations": [
+      "Desktop and mobile headings, source coverage limits and service-outage limitation readable",
+      "Notice acknowledgement clearly distinct from source incident resolution",
+      "Cards and action controls fit viewport; mobile wraps naturally with no visible clipping",
+      "Desktop notice navigation and acknowledgement are distinct adjacent controls; acknowledged notice does not show ack control"
+    ],
+    "scope": "Minimal native component shell only; no deployed complete Next page or fullproduction Tailwind certification",
+    "sourceDelta": "Native image source predates only final dot-only identifier rejection; exact reconstructed hashes and final direct negative guard tests retained"
+  }
+}

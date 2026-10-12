@@ -1,0 +1,253 @@
+{
+  "at": "2026-10-12T17:10:21Z",
+  "lane": "C genuine business acquisition and preservation repair",
+  "acceptancePackage": "current provider-read acquisition with truthful unmatched disposition; bounded catalogue rank/dimension repair",
+  "governingRows": [
+    "O9",
+    "O13",
+    "O14",
+    "O40",
+    "O41",
+    "A6",
+    "A8",
+    "A19"
+  ],
+  "authenticatedAccess": {
+    "url": "https://empire-ai.co/cockpit/eyes",
+    "existingSession": true,
+    "readOnlyAdvisorInsufficient": true,
+    "queueBoundedReadExecuted": true,
+    "exactPidVariantControlsObserved": false,
+    "availableControls": [
+      "Source: Amazon market/CJ sourcing/US product safety",
+      "Research topic",
+      "Queue bounded read"
+    ],
+    "inferenceAuthorizationControlUsed": false
+  },
+  "jobs": [
+    {
+      "id": "owner_dbe9db24-7eb7-4911-9a7d-6b6fa2c0f65e",
+      "capabilities": [
+        "amazon.catalog"
+      ],
+      "createdAt": "2026-10-12T17:02:32.729Z",
+      "startedAt": "2026-10-12T17:02:46.987Z",
+      "completedAt": "2026-10-12T17:02:48.137Z",
+      "status": "COMPLETED",
+      "requestsUsed": 2,
+      "requestLimit": 4,
+      "inferenceCalls": 0,
+      "commerceEffects": 0
+    },
+    {
+      "id": "follow_849a34224a56427449e59a8fea0924440a9d",
+      "capabilities": [
+        "amazon.offers"
+      ],
+      "createdAt": "2026-10-12T17:02:48.106Z",
+      "completedAt": "2026-10-12T17:02:48.845Z",
+      "status": "COMPLETED",
+      "requestsUsed": 1,
+      "requestLimit": 3,
+      "inferenceCalls": 0,
+      "commerceEffects": 0
+    },
+    {
+      "id": "owner_89f9f54e-ddb0-4909-820a-5faaeea819ba",
+      "capabilities": [
+        "cj.catalog"
+      ],
+      "createdAt": "2026-10-12T17:04:43.997Z",
+      "completedAt": "2026-10-12T17:04:47.435Z",
+      "status": "COMPLETED",
+      "requestsUsed": 1,
+      "requestLimit": 4,
+      "inferenceCalls": 0,
+      "commerceEffects": 0,
+      "evidence": [
+        "ev_1563f67d9935be6e66dfc8ce11a3a6afe48d6bb4"
+      ]
+    },
+    {
+      "id": "follow_af66b1e85dce764cda856ec0b38d43a9f883",
+      "capabilities": [
+        "cj.detail"
+      ],
+      "receiptObservedAt": "2026-10-12T17:04:48.101Z",
+      "status": "COMPLETED_UI_OBSERVED",
+      "inferenceCalls": 0,
+      "commerceEffects": 0
+    },
+    {
+      "id": "follow_44bdf9d75f797fc608ccc2e4525ed9591469",
+      "capabilities": [
+        "cj.stock",
+        "cj.freight"
+      ],
+      "createdAt": "2026-10-12T17:04:48.112Z",
+      "completedAt": "2026-10-12T17:04:49.351Z",
+      "status": "COMPLETED",
+      "requestsUsed": 2,
+      "requestLimit": 4,
+      "inferenceCalls": 0,
+      "commerceEffects": 0
+    }
+  ],
+  "receipts": [
+    {
+      "id": "ev_660dbc19cb332ad153756ce3e220d4e9125de6e8",
+      "capabilityId": "amazon.catalog",
+      "subject": {
+        "id": "research",
+        "marketplace": "US",
+        "query": "Horizontal PU magnetic trading card deck box black red 10.5x9x8cm"
+      },
+      "observedAt": "2026-10-12T17:02:48.076Z",
+      "staleAfter": "2026-10-12T23:02:48.076Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "7ec03b2f4a6dbe485d34b11b44cacf93ec91ab75c56d3db1fb19d708d96d39ed",
+      "jobId": "owner_dbe9db24-7eb7-4911-9a7d-6b6fa2c0f65e",
+      "endpoint": "/catalog/2022-04-01/items"
+    },
+    {
+      "id": "ev_4ab6088cb03516f954073daf0c0a95abe398e0c9",
+      "capabilityId": "amazon.catalog",
+      "subject": {
+        "id": "B0HGNRNC8M",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-12T17:02:48.076Z",
+      "staleAfter": "2026-10-12T23:02:48.076Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "6e97aee545ae12d5b3417ead6b18de14c1d6b8dca8288a50c6570d858eac4cd3",
+      "jobId": "owner_dbe9db24-7eb7-4911-9a7d-6b6fa2c0f65e",
+      "endpoint": "/catalog/2022-04-01/items"
+    },
+    {
+      "id": "ev_5a16ad30c77d6155567f2fb91f76e43e679e3434",
+      "capabilityId": "amazon.offers",
+      "subject": {
+        "id": "B0HGNRNC8M",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-12T17:02:48.797Z",
+      "staleAfter": "2026-10-12T23:02:48.797Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "8754f4776171cb2b271cbc124d71d683e0841f880fd043addbed39f12048a795",
+      "jobId": "follow_849a34224a56427449e59a8fea0924440a9d",
+      "endpoint": "/products/pricing/v0/items/B0HGNRNC8M/offers"
+    },
+    {
+      "id": "ev_be3ad1bd6f7ad0d800c95559781cdf8701e06958",
+      "capabilityId": "cj.detail",
+      "subject": {
+        "id": "2610120908411602000",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-12T17:04:48.101Z",
+      "staleAfter": "2026-10-12T23:04:48.101Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "2bf62e6a2bc7eb6e0384ec74a428ed9f5275f3364c4b84ac0622cfde326620c3",
+      "jobId": "follow_af66b1e85dce764cda856ec0b38d43a9f883",
+      "endpoint": "/product/query"
+    },
+    {
+      "id": "ev_6841ba23e233d7dc92cc08bf2ef2b1fc20cb8218",
+      "capabilityId": "cj.stock",
+      "subject": {
+        "id": "2610120908411602000",
+        "variant": "2610120908411602900",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "observedAt": "2026-10-12T17:04:48.793Z",
+      "staleAfter": "2026-10-12T23:04:48.793Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "e0587ad7b73fffa02ebca8077125c98a9d3e22df5a197bfc7b8fa9866c2c6187",
+      "jobId": "follow_44bdf9d75f797fc608ccc2e4525ed9591469",
+      "endpoint": "/product/stock/queryByVid"
+    },
+    {
+      "id": "ev_bc061780c4909428bd5e631367258799c1c28282",
+      "capabilityId": "cj.freight",
+      "subject": {
+        "id": "2610120908411602000",
+        "variant": "2610120908411602900",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "observedAt": "2026-10-12T17:04:49.323Z",
+      "staleAfter": "2026-10-12T23:04:49.323Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "299c1bfba908e5402af87ed7f2f1386a60cb365261d618854252bb99c7badf2c",
+      "jobId": "follow_44bdf9d75f797fc608ccc2e4525ed9591469",
+      "endpoint": "/logistic/freightCalculate"
+    }
+  ],
+  "market": {
+    "query": "Horizontal PU magnetic trading card deck box black red 10.5x9x8cm",
+    "numberOfResults": 9,
+    "selectedAsin": "B0HGNRNC8M",
+    "title": "POCREATION Magnetic Card Deck Storage Box, 4.1 X 3.3 X .1in (Black Red)",
+    "marketplace": "Amazon US",
+    "price": 14,
+    "currency": "USD",
+    "priceBasis": "Marketplace lowest new offer LandedPrice (ListingPrice14 plus Shipping0), NOT EmpireAI landed acquisition cost",
+    "offerCount": 1,
+    "shipFromCountry": "CN",
+    "selectedRank": "ABSENT",
+    "otherSevenCandidateRankEntries": "DEPTH_BOUND_IN_DURABLE_RECORD",
+    "relationship": "POSSIBLE_COMPARABLE_ONLY_NOT_EXACT_MATCH",
+    "difference": "POCREATION branded, title dimensions 4.1x3.3x.1in do not establish CJ 10.5x9x8cm identity",
+    "unitDemand": "UNKNOWN",
+    "profit": "NOT_CALCULATED"
+  },
+  "supplier": {
+    "query": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer",
+    "returnedPid": "2610120908411602000",
+    "returnedVid": "2610120908411602900",
+    "title": "Magnetic Waterproof Car Windshield Snow Frost Sun Shade Cover",
+    "variant": "9Magnet Small 2 Wind Ropes-1PCS",
+    "sku": "CJQT324842701AZ",
+    "price": 1.62,
+    "currency": "NOT_EXPLICIT_IN_RETURNED_RECORD",
+    "factoryInventory": 6727,
+    "cjInventory": 0,
+    "warehouseCountry": "CN",
+    "freight": {
+      "origin": "CN",
+      "destination": "US",
+      "quantity": 1,
+      "variant": "2610120908411602900",
+      "lowestObservedLogisticPrice": 12.36,
+      "currency": "NOT_EXPLICIT_IN_RETURNED_RECORD",
+      "allReturnedLogisticAgingRange": "4-50",
+      "dutiesAndReturns": "NOT_ESTABLISHED"
+    },
+    "disposition": "UNRELATED_TO_REQUESTED_CARD_BOX_AND_MARKET_COMPARATOR; NO_PAIRING"
+  },
+  "engineering": {
+    "commit": "e5165a266702f1c63caf6a5577226a5600b7b8a0",
+    "tree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+    "parentPrefix": "ac1afbb8",
+    "change": "Specific allowlisted ASIN/marketplace rank and measurement projection before generic depth loss; generic sanitizer unchanged",
+    "test": "Acquire through intercepted Amazon transport \u2192 durable IntelligenceStore \u2192 reopened exact digest; PASS Node24.19.0",
+    "independentReview": "closure-lane/CATALOG-INDEPENDENT-REVIEW.json",
+    "productionEffect": "NONE; no deployment; old discarded ranks cannot be recovered"
+  },
+  "result": {
+    "newFullRequirementPasses": [],
+    "eligibleDossier": false,
+    "paidInference": 0,
+    "commerceEffects": 0,
+    "remaining": [
+      "O9 genuine attributable comparator presentation in approved Console, with differing identity and explicit unknowns; no new full owner-visible chain established",
+      "Current exact retained CJ card-box detail/stock/freight refresh not exposed by observed topic-only controls; fresh query instead returned unrelated product",
+      "Exact allowed media rights and canonical currency/economics unresolved",
+      "No authentic source-bound Pillow assessment or persisted genuine owner decision"
+    ],
+    "noPrematureCommissioningRequest": true
+  },
+  "visualReceipt": "Captured in browser tool; local synchronization unavailable, no file attachment claimed"
+}

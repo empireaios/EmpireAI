@@ -1,0 +1,9 @@
+✔ derived simulation volume cannot bypass boot guard via absent or unrelated configured roots (160.286696ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 190.17935

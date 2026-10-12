@@ -1,0 +1,58 @@
+{
+  "source": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+  "verdict": "PRESERVE_ACCEPTED_FINANCE_NO_NEW_FULL_CLOSURE",
+  "allRegisterItemsRead": 64,
+  "preserveOriginal": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "preserveAmendments": [
+    16,
+    17
+  ],
+  "newClosures": 0,
+  "newTests": 0,
+  "newProviderCalls": 0,
+  "newSpend": 0,
+  "original224Searches": 0,
+  "dependencies": [
+    {
+      "rows": [
+        "2"
+      ],
+      "blocker": "Actual original224 canonical snapshot or attributable retained backup with immutable identity comparison; no credible new lead supplied. No repeated search."
+    },
+    {
+      "rows": [
+        "13",
+        "14",
+        "40",
+        "41",
+        "A8",
+        "A19"
+      ],
+      "blocker": "No current eligible genuine dossier with reviewed source-cost/FX/freight/fees, forecast and complete cash exposure; no corresponding authorised actual Pillow assessment and durable owner decision. Current readback15:48:09Z carries old STALE provider receipts;16 opportunities UNMATCHED/0-of-8. Readback time is not source refresh.",
+      "next": "Existing authenticated application provider_read refresh and exact candidate qualification owned by acceptance lane; then reuse canonical financial lifecycle and actual desktop/mobile consumer harness for same-identity chain."
+    }
+  ],
+  "scopeCorrections": [
+    "Do not reopen #24/#25/A16/A17 because actual224 is absent.",
+    "Do not turn actual billing readers or continuous live inventory into missing Work8 software criteria; A17 already accepted, Work9 inactive.",
+    "Permitted internal text screening does not require media rights; media/listing publication rights remain separate #7/#19/A9-A11.",
+    "No synthetic financial dossier can substitute for missing current genuine source inputs or actual assessment.",
+    "No additional financial code defect or independently executable complete finance acceptance remains established by this evidence."
+  ],
+  "files": {
+    "evidence/docs/work8/revised-review-20261012/FIXED-REGISTERS.json": "1fa6f8e69289a7375e0a5c18653083acb70775f54c73d22e0c0566e6aa9b4057",
+    "evidence/docs/work8/revised-review-20261012/FULL-TRACKER.md": "eb635d184cb94da66df7f82d3d9b50ca31072a3614c815d3f7b3efc2dd48b345",
+    "evidence/docs/work8/post-publication-20261012/review/FINANCE-DECISION.md": "e3acfb60a79b00e9fd1ce74f23a85143f7b76cd31b96b639b2867649a2078e17",
+    "evidence/docs/work8/revised-review-20261012/review/REQUIREMENT-24-DECISION.md": "1e41355cbebc5ca0da573d35a094ba80df47f184ba41ae9aebf224857e6a2fc0",
+    "evidence/docs/work8/interrupted-recovery-20261012/review/REQUIREMENT-25-DECISION.md": "e607ad7c8d14f103eff4b9b1b0fb70811b8ca4c460824570a18bf1361cf764c8",
+    "evidence/docs/work8/integrated-acceptance-20261012/review/cost17/SUCCESSOR-ACCEPTANCE.md": "e737bcb5a47a62a26e36f161d3061ec23bd80e28fdf7a658943d664159b22fe1",
+    "BUSINESS-PUBLICATION-CONTINUATION-READBACK.json": "a79b09c419c0ff75d6c6d8d5f52590098d041f388eb171d001bdf50c05ef537f"
+  }
+}

@@ -447,8 +447,8 @@
       "status": "PENDING",
       "category": "ENGINEERING_AND_EXAMINATION",
       "unsatisfiedAssertionOrPreservation": "Corrected F27 fresh event/incident/mission binding and authenticated owner-pull inbox independently accepted as bounded software. Genuine acquisition/assessment correlation and full coupled-runtime monitoring remain.",
-      "nextAction": "Corrected F27 fresh event/incident/mission binding and authenticated owner-pull inbox independently accepted as bounded software. Genuine acquisition/assessment correlation and full coupled-runtime monitoring remain.",
-      "acceptedEvidence": "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "nextAction": "Corrected F27 fresh event/incident/mission binding and authenticated owner-pull inbox independently accepted as bounded software. Genuine acquisition/assessment correlation and full coupled-runtime monitoring remain. Independently accepted canonical saved-inbox connection/pagination/error preservation is a reviewed unpublished successor; external push and genuine operating acceptance remain separate.",
+      "acceptedEvidence": "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, unpublished successor)",
       "newProgrammeAcceptance": false,
       "sharedDependency": "D \u2014 source truth, full writer containment, delivered alerts and native UX",
       "classification": "EXTERNAL_EVIDENCE_OR_AUTHORITY_DEPENDENCY",
@@ -507,8 +507,8 @@
       "status": "PENDING",
       "category": "ENGINEERING_AND_EXAMINATION",
       "unsatisfiedAssertionOrPreservation": "Preserve accepted UNKNOWN restart safety and inspector-to-inbox path. Confirm independent operational escalation during primary/host failure; owner-pull is not independent external push.",
-      "nextAction": "Preserve accepted UNKNOWN restart safety and inspector-to-inbox path. Confirm independent operational escalation during primary/host failure; owner-pull is not independent external push.",
-      "acceptedEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "nextAction": "Preserve accepted UNKNOWN restart safety and inspector-to-inbox path. Confirm independent operational escalation during primary/host failure; owner-pull is not independent external push. Independently accepted canonical saved-inbox connection/pagination/error preservation is a reviewed unpublished successor; external push and genuine operating acceptance remain separate.",
+      "acceptedEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, unpublished successor)",
       "newProgrammeAcceptance": false,
       "sharedDependency": "D \u2014 source truth, full writer containment, delivered alerts and native UX",
       "classification": "EXECUTABLE_ENGINEERING_OR_EXAMINATION",
@@ -559,7 +559,8 @@
       "sharedDependency": "A \u2014 full-runtime consistency and protected operational restore",
       "classification": "EXECUTABLE_ENGINEERING_OR_EXAMINATION",
       "authority": "Existing local noncommercial engineering authority; new exact-source independent review/publication needs bounded approval",
-      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence",
+      "unacceptedEvidence": "New isolated operational replacement candidate f7428efe examination retained separately; exact final review interrupted by automated security flag. No status promotion or integration."
     },
     {
       "group": "original45",
@@ -651,7 +652,8 @@
       "sharedDependency": "A \u2014 full-runtime consistency and protected operational restore",
       "classification": "EXECUTABLE_ENGINEERING_OR_EXAMINATION",
       "authority": "Existing local noncommercial engineering authority; new exact-source independent review/publication needs bounded approval",
-      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence",
+      "unacceptedEvidence": "New isolated operational replacement candidate f7428efe examination retained separately; exact final review interrupted by automated security flag. No status promotion or integration."
     },
     {
       "group": "original45",
@@ -690,8 +692,8 @@
       "status": "PENDING",
       "category": "GOVERNANCE",
       "unsatisfiedAssertionOrPreservation": "Published8222dcf5: Product38264268740, Semantic38264268729, Assurance38264268885 SUCCESS; Runtime38264268728 CANCELLED at30minute job deadline. Reviewed local workflow split preserves all1950/1381 cases and mandatory final gate; fresh exact evidence/source publication then hosted Node22 CI remains. No merge/deploy authority.",
-      "nextAction": "Published8222dcf5: Product38264268740, Semantic38264268729, Assurance38264268885 SUCCESS; Runtime38264268728 CANCELLED at30minute job deadline. Reviewed local workflow split preserves all1950/1381 cases and mandatory final gate; fresh exact evidence/source publication then hosted Node22 CI remains. No merge/deploy authority.",
-      "acceptedEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json; resume-20261012/EXACT-HEAD-CI.json (four SUCCESS, no reruns); resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey); continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "nextAction": "Published45f32655 exact reviewed treec0af8ce7: Semantic38273853534 and Assurance38273853575 SUCCESS; Product38273853502 and Runtime38273853504 FAILURE from three obsolete ownership-sidecar test assumptions. Both unlimited generated corpora1950/1381 now completeSUCCESS; no timeout cancellation. Independently accepted tests-only correctioned73d106 awaits coherent reviewed successor publication and hosted Node22 verification. Full42 also retains genuine owner acceptance/final certification.",
+      "acceptedEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json; resume-20261012/EXACT-HEAD-CI.json (four SUCCESS, no reruns); resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey); continued-closure-20261012 scoped independent receipts (no new full closure); publication-closure-20261012/PUBLICATION-RECEIPT.json; publication-closure-20261012/EXACT-SOURCE-CI.json; publication-closure-20261012/REQUIREMENT42-CONDITIONAL-ACCEPTANCE.json",
       "newProgrammeAcceptance": false,
       "continuationEvidence": "connector-publication-20261012/PUBLICATION.json; FULL-TREE-VERIFICATION.json; CI-RESULT.json; revised-publication-20261012/REVIEW.md",
       "sharedDependency": "E \u2014 exact-source independent review and final mandatory gates",
@@ -1068,5 +1070,36 @@
   "ciSource": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
   "candidateCi": "NOT_PUBLISHED",
   "newClosuresThisContinuation": 0,
-  "newAmendmentClosuresThisContinuation": 0
+  "newAmendmentClosuresThisContinuation": 0,
+  "latestPublication": {
+    "sourceCommit": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+    "sourceTree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
+    "reviewedSource": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+    "evidenceCommit": "5e2574cbc1abceacd433f75c6db25167392cfcfc",
+    "evidenceTree": "b4c65de1fab417381cd8e46434e5fd1eb5c66667",
+    "reviewedEvidence": "9bf611c7bf4f61714af25b1b89808bbc9b7df3b1",
+    "treeEquality": true,
+    "evidenceFirst": true,
+    "CI": "TERMINAL: ProductFAILURE;RuntimeFAILURE;SemanticSUCCESS;IndependentAssuranceSUCCESS. BothgeneratedcorporaSUCCESS1950/1381.",
+    "runs": [
+      38273853502,
+      38273853504,
+      38273853534,
+      38273853575
+    ]
+  },
+  "newlyAcceptedOriginalIdsThisPublication": [],
+  "newlyAcceptedAmendmentIdsThisPublication": [],
+  "latestReviewedUnpublishedSource": {
+    "commit": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
+    "tree": "29f1d17b3f9312d77d21a1a24f0ce3e54ee6de93",
+    "frontendCommit": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4",
+    "frontendTree": "31a817093307b986ed97c870bab0ce5b5ba81e84",
+    "scope": "CI tests-only compatibility correction and connected canonical owner-pull inbox; no recovery activation change"
+  },
+  "unacceptedRecoveryCandidate": {
+    "commit": "f7428efe3d79a258939bb46cad3ff87b495f86a7",
+    "tree": "0e19a226ada5cd87595450b43ecc5e9e1c7b9bbb",
+    "reason": "Exact final independent review interrupted by automated security flag; not integrated or published; no full33/39 acceptance"
+  }
 }

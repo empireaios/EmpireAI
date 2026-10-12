@@ -1,0 +1,137 @@
+{
+  "schema": "WORK8_PUBLICATION_CLOSURE_CHECKPOINT_V1",
+  "time": "2026-10-12T16:51:20.819417+00:00",
+  "publication": {
+    "schema": "WORK8_EXACT_PUBLICATION_RECEIPT_V1",
+    "time": "2026-10-12T15:56:37.284Z",
+    "approvedEvidence": "9bf611c7bf4f61714af25b1b89808bbc9b7df3b1",
+    "approvedSource": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+    "evidence": {
+      "commit": "5e2574cbc1abceacd433f75c6db25167392cfcfc",
+      "tree": "b4c65de1fab417381cd8e46434e5fd1eb5c66667",
+      "time": "2026-10-12T15:55:05.912Z"
+    },
+    "source": {
+      "commit": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+      "tree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
+      "time": "2026-10-12T15:56:23.972Z"
+    },
+    "evidenceBranch": "work8/examination-evidence-20261011",
+    "sourceBranch": "work8/autonomous-examination-20261011",
+    "completeTreeEquality": true,
+    "modeEquality": "Git tree identity includes all modes, paths and blobs",
+    "order": "evidence verified before source ref mutation",
+    "prInitialRead": {
+      "head": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+      "draft": true,
+      "merged": false,
+      "state": "open"
+    },
+    "noMerge": true,
+    "noDeployment": true,
+    "prVerified": {
+      "head": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+      "draft": true,
+      "merged": false,
+      "state": "open"
+    }
+  },
+  "activeCI": {
+    "source": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+    "runs": []
+  },
+  "originalCounts": {
+    "PASS": 30,
+    "PENDING": 11,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "newlyAcceptedOriginalIds": [],
+  "newlyAcceptedAmendmentIds": [],
+  "decision": "NO_GO",
+  "Pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "Work9": "INACTIVE",
+  "safeguards": 15,
+  "deniedLiveEffectRoutes": 7,
+  "activeWorkspaces": {
+    "recovery": "/workspace/scratch/dc845312c8f5/recovery-next",
+    "frontend": "/dev/shm/work8-notification-frontend",
+    "integration": "/workspace/scratch/dc845312c8f5/integration",
+    "evidence": "/workspace/scratch/7260f6eab8b6/evidence-candidate"
+  },
+  "nextActions": [
+    "Retain recovery candidate unaccepted; positive source-cohort/permit/staging/topology review requires normal permitted execution and established prior security-limitation scope",
+    "Obtain one bounded authority for independently reviewed CI/inbox evidence-first/source-second publication",
+    "Verify hosted Node22 affected checks after publication; preserve successful 1950/1381 generated receipts without discretionary rerun",
+    "Resolve exact external prerequisites in OWNER-DEPENDENCIES.md; no whole requirement promotion from partial evidence"
+  ],
+  "resources": {
+    "ChatGPTCreditsUsed": null,
+    "ChatGPTCreditsRemaining": null,
+    "creditMeterAvailable": false,
+    "newPaidInferenceCalls": 0,
+    "newInfrastructureProvisioned": 0,
+    "billingChanges": 0,
+    "githubExecutionCost": "not exposed by available run metadata",
+    "filesystemInodesFreeObserved": 3673,
+    "filesystemBytesAvailableObserved": "12GiB",
+    "timeOfFilesystemObservation": "2026-10-12T15:58Z approximate"
+  },
+  "authority": "Exact9bf/ba3 publication fulfilled; no merge/deploy; successor source batches require independent review and bounded publication approval.",
+  "ciReceipt": "EXACT-SOURCE-CI.json",
+  "ciCheckedAt": "2026-10-12T16:11:24.850Z",
+  "ciTerminal": true,
+  "newCandidateBranch": "work8/publication-successor-20261013",
+  "newCandidatePublication": "NOT_AUTHORIZED_BY_EXACT_PRIOR_BATCH_APPROVAL; consolidate reviewed candidates first",
+  "ciConclusions": [
+    {
+      "id": 38273853502,
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 38273853504,
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 38273853534,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 38273853575,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "integratedCandidate": {
+    "commit": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
+    "tree": "29f1d17b3f9312d77d21a1a24f0ce3e54ee6de93",
+    "status": "INDEPENDENTLY_ACCEPTED_SCOPED_INTEGRATION",
+    "includes": [
+      "tests-only SQLjs ownership fixture correction",
+      "canonical owner-pull inbox backend",
+      "pinned canonical frontend ad5ce5df bundle review path"
+    ]
+  },
+  "pendingRecoveryCandidate": {
+    "commit": "f7428efe3d79a258939bb46cad3ff87b495f86a7",
+    "tree": "0e19a226ada5cd87595450b43ecc5e9e1c7b9bbb",
+    "status": "UNACCEPTED_POSITIVE_INDEPENDENT_EXECUTION_INCOMPLETE",
+    "independentProgress": "10 reviewer negative assertions and1 activation test PASS; no blocked operation retried"
+  },
+  "activeHostedRuns": [],
+  "remoteVerified": {
+    "backend": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
+    "evidence": "5e2574cbc1abceacd433f75c6db25167392cfcfc",
+    "frontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+    "pr113": "OPEN_DRAFT_UNMERGED",
+    "backendInProgressRuns": 0,
+    "backendQueuedRuns": 0
+  }
+}

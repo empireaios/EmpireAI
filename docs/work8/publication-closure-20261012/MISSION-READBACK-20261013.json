@@ -1,0 +1,48 @@
+{
+  "retrievedAt": "2026-10-12T16:46:50.897Z",
+  "readOnly": true,
+  "inferenceCalls": 0,
+  "externalRefresh": false,
+  "source": "versioned engineering checkpoint; durable production verification supersedes historical packaged checkpoints",
+  "coverage": {
+    "limit": 20,
+    "after": "",
+    "since": null,
+    "complete": false,
+    "providerAccessVerified": false,
+    "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+    "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+  },
+  "availableMissionIds": [
+    {
+      "id": "WORK-1-COMPREHENSIVE-AUDIT",
+      "state": "ACCEPTANCE_PENDING"
+    },
+    {
+      "id": "WORK-5-FINANCIAL-INTELLIGENCE",
+      "state": "COMPLETE"
+    },
+    {
+      "id": "WORK-6-GOVERNED-COMMERCE",
+      "state": "COMPLETE"
+    },
+    {
+      "id": "WORK-7-PREMIUM-OWNER",
+      "state": "COMPLETE"
+    },
+    {
+      "id": "WORK-7-PREMIUM-OWNER:UX-PR109",
+      "state": "COMPLETE"
+    },
+    {
+      "id": "advanced-autonomous-assurance",
+      "state": "COMPLETE"
+    },
+    {
+      "id": "work6-governed-commerce",
+      "state": "IN_PROGRESS"
+    }
+  ],
+  "work8Present": false,
+  "limitation": "Bounded bridge read did not expose a Work8 live mission completion. Repository requirement43 remains pending; no production completion inferred."
+}
