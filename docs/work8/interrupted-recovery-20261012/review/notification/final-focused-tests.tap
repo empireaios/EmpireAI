@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: thrown, never-resolving and malformed transports terminate UNKNOWN without retry or false sent
+ok 1 - thrown, never-resolving and malformed transports terminate UNKNOWN without retry or false sent
+  ---
+  duration_ms: 36.409381
+  type: 'test'
+  ...
+# Subtest: late success cannot change UNKNOWN; exact message replay does not resend and conflicting replay is refused
+ok 2 - late success cannot change UNKNOWN; exact message replay does not resend and conflicting replay is refused
+  ---
+  duration_ms: 30.523616
+  type: 'test'
+  ...
+# Subtest: explicit negative delivery retains bounded retry and a real affirmative outcome; concurrent drain cannot duplicate dispatch
+ok 3 - explicit negative delivery retains bounded retry and a real affirmative outcome; concurrent drain cannot duplicate dispatch
+  ---
+  duration_ms: 1.133434
+  type: 'test'
+  ...
+# Subtest: actual worker sends canonical incident bytes to independent durable local receiver; rejection/hang never become delivered
+ok 4 - actual worker sends canonical incident bytes to independent durable local receiver; rejection/hang never become delivered
+  ---
+  duration_ms: 129.516505
+  type: 'test'
+  ...
+# {"level":30,"time":1791811155512,"pid":15,"hostname":"7b7b0efbbb80","dbPath":"/tmp/notification-restart-jLBAib/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+# {"level":30,"time":1791811155526,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1791811155558,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1791811155566,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1791811155594,"pid":15,"hostname":"7b7b0efbbb80","dbPath":"/tmp/notification-restart-jLBAib/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+# {"level":30,"time":1791811155603,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1791811155620,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1791811155628,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1791811155673,"pid":15,"hostname":"7b7b0efbbb80","dbPath":"/tmp/notification-restart-jLBAib/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+# {"level":30,"time":1791811155686,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1791811155692,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: Brain-persisted dispatch reservation survives restart and competing workers cannot resend
+ok 5 - Brain-persisted dispatch reservation survives restart and competing workers cannot resend
+  ---
+  duration_ms: 670.061748
+  type: 'test'
+  ...
+# Subtest: physical process crash after dispatch leaves durable UNKNOWN and restarted worker never dispatches again
+ok 6 - physical process crash after dispatch leaves durable UNKNOWN and restarted worker never dispatches again
+  ---
+  duration_ms: 1783.984044
+  type: 'test'
+  ...
+# {"level":30,"time":1791811155724,"pid":15,"hostname":"7b7b0efbbb80","dbPath":"/tmp/notification-restart-jLBAib/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+# {"level":30,"time":1791811155727,"pid":15,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: hung persistence reservation and completion terminate UNKNOWN; late reservation never dispatches
+ok 7 - hung persistence reservation and completion terminate UNKNOWN; late reservation never dispatches
+  ---
+  duration_ms: 2017.742804
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5368.028275

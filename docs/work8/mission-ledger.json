@@ -3,9 +3,9 @@
   "missionStatus": "IN_PROGRESS",
   "decision": "NO_GO",
   "counts": {
-    "PASS": 10,
-    "PENDING": 30,
-    "BLOCKED": 5
+    "PASS": 29,
+    "PENDING": 12,
+    "BLOCKED": 4
   },
   "requirementDecisions": [
     {
@@ -71,6 +71,13 @@
       "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
       "receipt": "resume-20261011/REQUIREMENT-32-ACCEPTANCE.json",
       "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 25,
+      "status": "PASS",
+      "receipt": "interrupted-recovery-20261012/review/REQUIREMENT-25-DECISION.md",
+      "source": "97f44e7ce156cb622b5a680cb69cd6bf4b5d04fa",
+      "scope": "Original section22 isolated software; actual historical224 and financial attestation separate."
     }
   ],
   "preservedPasses": [
@@ -81,15 +88,10 @@
   "commerce": "LOCKED",
   "work9": "NOT_ACTIVATED",
   "latestPublication": {
-    "receipt": "resume-20261011/CONNECTOR-PUBLICATION-03719D31.json",
-    "source": "76206d799412a57bea17df1bc476fba33aa04637",
-    "evidence": "8ae8edb7fa882f62b34e0e6d1222d42400c01aa6",
-    "order": [
-      "evidence",
-      "source"
-    ],
-    "exactTreeEquality": true,
-    "noDeployment": true
+    "source": "1ff047b32547f9e987ed6f6cd5d6634d49735ccb",
+    "evidence": "073a2220f554d8c31459b7ce96bc278108335205",
+    "frontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+    "currentSessionPublished": false
   },
   "latestScopedReview": {
     "source": "a83c95eb8870a893c93920353c5da94351b5c34f",
@@ -111,32 +113,61 @@
     "receipt": "resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json"
   },
   "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-76206D79.json",
-  "latestLocalContinuation": {
-    "publication": "resume-20261011/CONNECTOR-PUBLICATION-03719D31.json",
-    "publishedSource": "76206d799412a57bea17df1bc476fba33aa04637",
-    "publishedEvidence": "8ae8edb7fa882f62b34e0e6d1222d42400c01aa6",
-    "localSource": "03719d315db2a96c0a9c7e0a5bea75cdb381aa63",
-    "localSourceTree": "df63e2b9f3b68b70d0f832f471d428d358d35d93",
-    "localFrontend": "679f901d4f422eb9292273046f4424e982087236",
-    "localFrontendTree": "0e7551d76ebfcd8217cab8ca6ed03c2065f55fb8",
-    "review": "resume-20261011/FREIGHT-QUALIFICATION-REVIEW.json",
-    "decision": "resume-20261011/OWNER-DECISION-CURRENT.md",
-    "newClosures": [],
-    "localSourcePublished": true,
-    "localFrontendHostedChecks": "PASS; no deployment or genuine native acceptance"
-  },
+  "latestLocalContinuation": "integrated-acceptance-20261012/CONTINUATION.json",
   "ownerAmendments": {
     "register": "resume-20261011/OWNER-AMENDMENTS-19.json",
-    "counts": {
+    "legacyIdsPreserved": true,
+    "historicalCounts": {
       "PASS": 0,
       "PENDING": 19,
       "BLOCKED": 0
     },
-    "legacyIdsPreserved": true
+    "currentRegister": "revised-review-20261012/FIXED-REGISTERS.json",
+    "counts": {
+      "PASS": 7,
+      "PENDING": 12
+    }
   },
   "latestScopedClosureCheck": {
-    "reviewer": "/root/review_retirement_finance",
-    "newClosures": [],
-    "reason": "Genuine sources/review/assessment, exact media rights, canonical accounting and hosted native acceptance remain mandatory. Only existing current-head CI collection independently executable."
-  }
+    "newClosures": [
+      "A13",
+      "A17"
+    ],
+    "receipt": "integrated-acceptance-20261012/REPORT.md",
+    "remainingFullRequirements": [
+      18,
+      33,
+      39
+    ]
+  },
+  "amendmentCounts": {
+    "PASS": 7,
+    "PENDING": 12
+  },
+  "authoritativeRegister": "revised-review-20261012/FIXED-REGISTERS.json",
+  "sourceCandidate": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+  "productionMissionComplete": false,
+  "amendmentDecisions": [
+    {
+      "item": 14,
+      "status": "PASS",
+      "receipt": "interrupted-recovery-20261012/review/A14-SUCCESSOR-DECISION.md",
+      "backend": "71aa461beed38b6f4a20240a6233a19682d3d0ee",
+      "frontend": "900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a",
+      "scope": "Complete original simulated communication risk software criterion; no actual send or inference."
+    },
+    {
+      "item": 13,
+      "status": "PASS",
+      "receipt": "integrated-acceptance-20261012/review/ux13-independent-acceptance.json",
+      "scope": "Preserve independently accepted isolated conversational preview software; personal King acceptance, arbitrary app-wide changes and deployment remain separate."
+    },
+    {
+      "item": 17,
+      "status": "PASS",
+      "receipt": "integrated-acceptance-20261012/review/cost17/SUCCESSOR-ACCEPTANCE.md",
+      "scope": "Preserve full Work8 software acceptance with authenticated governed discovery and truthful unavailable access; continuous live billing remains Work9, not activated."
+    }
+  ],
+  "sourceCandidateReview": "APPROVE_EXACT_SOURCE_FOR_BOUNDED_PUBLICATION_REQUEST"
 }

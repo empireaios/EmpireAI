@@ -1,0 +1,61 @@
+{
+  "status": "PASS_ISOLATED_COST_CENTRE",
+  "frontend": "960d6167206e5fc9994adfe89c63d4ce83dd1123",
+  "auth": "real isolated auth session; no actual owner attestation",
+  "source": "synthetic fixture exercised actual application journal, accounting, API and native UI",
+  "results": [
+    {
+      "width": 390,
+      "geometry": {
+        "width": 390,
+        "scroll": 390
+      },
+      "journalDigest": "0e488614cb7e975e594bb1c0f8d86bce24faf95315177be4051e08b0d9b98e43",
+      "estimateMicroUsd": 2000000,
+      "reservedMicroUsd": 6000000,
+      "confirmedSgdMicro": 10000000
+    },
+    {
+      "width": 1440,
+      "geometry": {
+        "width": 1440,
+        "scroll": 1440
+      },
+      "journalDigest": "0e488614cb7e975e594bb1c0f8d86bce24faf95315177be4051e08b0d9b98e43",
+      "estimateMicroUsd": 2000000,
+      "reservedMicroUsd": 6000000,
+      "confirmedSgdMicro": 10000000
+    },
+    {
+      "phase": "PAID",
+      "width": 390,
+      "geometry": {
+        "width": 390,
+        "scroll": 390
+      },
+      "journalDigest": "007bc6ee5b97bef9ff591f8e29e7ca2545d81d0196b78f9485a166516c185051",
+      "estimateMicroUsd": 2000000,
+      "reservedMicroUsd": 6000000,
+      "confirmedSgdMicro": 10000000
+    },
+    {
+      "phase": "PAID",
+      "width": 1440,
+      "geometry": {
+        "width": 1440,
+        "scroll": 1440
+      },
+      "journalDigest": "007bc6ee5b97bef9ff591f8e29e7ca2545d81d0196b78f9485a166516c185051",
+      "estimateMicroUsd": 2000000,
+      "reservedMicroUsd": 6000000,
+      "confirmedSgdMicro": 10000000
+    }
+  ],
+  "paymentProjection": {
+    "invoiced": 0,
+    "settled": 10000000,
+    "totalTechnology": 10000000
+  },
+  "paidInference": 0,
+  "externalEffects": 0
+}

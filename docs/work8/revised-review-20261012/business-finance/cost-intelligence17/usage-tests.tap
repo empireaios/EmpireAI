@@ -1,0 +1,34 @@
+✔ review, idempotency, conflicting retry, workspace isolation (110.481406ms)
+✔ accrual to invoice to settlement counts once; reversal retains history (6.034509ms)
+✔ duplicate invoices and duplicate underlying sources rejected (15.171462ms)
+✔ non-real records excluded from actual KPIs and approval (26.950841ms)
+✔ FX unknown without evidence; tax credit allocation preserve original (18.444904ms)
+✔ malformed/future evidence and invalid arithmetic fail closed (35.212202ms)
+✔ cash unavailable and stale cash never become spendable (7.378812ms)
+✔ budget, stale and renewal alerts (2.675395ms)
+✔ independent unit arithmetic and zero-sales adverse forecasts (2.37251ms)
+✔ durable reopen preserves journal and approvals (40.521675ms)
+✔ reviewed complete cash scope and linked outcome learning are explicit (44.360912ms)
+✔ missing durable journal marker fails closed without erasing history (9.612153ms)
+✔ filtered reports cannot certify cash; unpaid costs reduce complete available cash (136.724064ms)
+✔ financial closure requires every fixed criterion and matching actual source digests (49.79533ms)
+✔ missing obligation FX cannot certify available cash (135.596696ms)
+✔ consumed unbilled usage remains a liability against available cash (33.837183ms)
+✔ conversion overflow is rejected before a record can break financial readback (8.582957ms)
+✔ reversed outcomes stop financial learning while original history survives (71.039844ms)
+✔ committed liabilities reduce cash without becoming technology expenses (9.660092ms)
+✔ autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart (77.111925ms)
+✔ outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit (17.670393ms)
+✔ cached successful read cannot clear a newer outage; fresh read clears it after restart (12.777333ms)
+✔ reversed discovery charges stay excluded through replacement and restart (50.580455ms)
+✔ a rejected multi-charge observation cannot partially commit its journal or observation (5.94967ms)
+✔ Railway account readback preserves unknown actuals and never double counts plan allowance (3.974092ms)
+✔ cost discovery owner projection preserves known zero and fractional usage, unknowns and original charge without journal mutation (105.617303ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3248.945121

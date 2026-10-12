@@ -1,0 +1,16 @@
+{
+  "README.md": "5093ca494261b97ddf9dc432fe701f401cf064fcff245ebb481e444e607e3021",
+  "attempt-immediate-assertion/failure-page.txt": "3730157834de9daddfeea0cbe659617bbd46eb21b0597266eb0ed15f56170e9b",
+  "attempt-immediate-assertion/failure.json": "a13b37894d115189cd28f2a02c7284bc94eb441d329d7b545b078c71eddd4641",
+  "auth-harness.mts": "9624f4f201e6547037879560a62e78396988a38f384e8346b9b689618f164ddf",
+  "browser.mjs": "00b623f364bd52446f8e1df631bb009e0af984282dea61b750882ac7ebfac9b2",
+  "native/backend.log": "bef7774699b92c37b5599f141db007140ff48c28a04d07ec957f159da4c1af32",
+  "native/brief.json": "45814e3a12d9e8c557507b1b87f35d11148927c02de8e9c21d93f9dab473de25",
+  "native/owner-readback.json": "ac1438e9f360dea4c83a8f203e6ddc1000785725a091e7c3329074ceb198a761",
+  "native/preview-1440.png": "92f87d624e62016950e20fc4d514c257b86c2ee93c27ed846f44414488bd2d05",
+  "native/preview-390.png": "ee7d2ab1866563e2978152134d965ac63de2731c2fc62d5a222e9e4071028a1b",
+  "native/receipt.json": "341e0398e3cf1f50ea8405f1943f5957b64a589c66e028c8799b2bbed7588b13",
+  "native/saved-response.json": "6d718f2f64de7a141d5ad6271f8ffbca15987b05a2feb295e7b89288cd74ebc2",
+  "native/web.log": "b6931668a60c50aed73b72cb6bf3bfbd6c19a946d659efb89c1c035759f049c1",
+  "preview-tests.tap": "afb83e1f95f038f656556e3a7f6738dc669d79861e64b4dbe7f96a7428103f47"
+}

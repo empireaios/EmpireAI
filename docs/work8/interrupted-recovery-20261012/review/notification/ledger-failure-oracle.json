@@ -1,0 +1,30 @@
+[
+  {
+    "phase": "reserve",
+    "mode": "throw",
+    "status": "unknown",
+    "effects": 0,
+    "externalEffects": 0
+  },
+  {
+    "phase": "reserve",
+    "mode": "reject",
+    "status": "unknown",
+    "effects": 0,
+    "externalEffects": 0
+  },
+  {
+    "phase": "finish",
+    "mode": "throw",
+    "status": "unknown",
+    "effects": 1,
+    "externalEffects": 0
+  },
+  {
+    "phase": "finish",
+    "mode": "reject",
+    "status": "unknown",
+    "effects": 1,
+    "externalEffects": 0
+  }
+]

@@ -1,0 +1,28 @@
+✔ empty registry persists unknowns, replay and reopen without actual journal effects (584.276247ms)
+✔ server scope, concurrent exclusion, registry identity and rejected evidence (155.745026ms)
+✔ registered synthetic read preserves validated observation and canonical owner readback (68.63584ms)
+✔ financial action enforces authenticated founder workspace/origin and strict input (3549.984829ms)
+✔ server capability inventory is durable, scoped and prevents inactive reads (3.762021ms)
+✔ autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart (93.862027ms)
+✔ outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit (28.357718ms)
+✔ cached successful read cannot clear a newer outage; fresh read clears it after restart (33.207984ms)
+✔ reversed discovery charges stay excluded through replacement and restart (21.658724ms)
+✔ a rejected multi-charge observation cannot partially commit its journal or observation (5.029143ms)
+✔ Railway account readback preserves unknown actuals and never double counts plan allowance (5.724491ms)
+✔ cost discovery owner projection preserves known zero and fractional usage, unknowns and original charge without journal mutation (66.151049ms)
+✔ retained Pillow proposal reaches existing preview and exact approval without inference or authority expansion (77.055027ms)
+✔ foreign owner, session, input, pending completion and non-model reply cannot become a proposal (106.030158ms)
+✔ malformed, oversized, authority-bearing and wrong-context model output is refused (67.562424ms)
+✔ expiry and revocation while saved request is read prevent preview consumption (23.409806ms)
+✔ actual fixed preview implementation is inspected and source change across await or before approval is refused (47.388025ms)
+✔ simulated outcome review links durably to governed retirement without changing historical finance (2911.20715ms)
+✔ reversed review evidence cannot support linkage; legacy unlinked retirement remains valid (388.245758ms)
+✔ health advisory covers six recommendation classes and exposes unknown capital (6.623091ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8328.355987

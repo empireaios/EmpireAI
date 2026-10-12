@@ -1,0 +1,35 @@
+Customer communications · simulation
+
+Incoming questions and concerns are assessed individually. Drafts require owner review; nothing is sent.
+
+Product 
+Choose product
+Synthetic storage organiser
+Interaction 
+product inquiry
+shipping question
+complaint
+return refund
+hostile exchange
+chargeback dispute
+seller performance
+unanswerable
+Simulated incoming message Record simulated message
+shipping question
+
+NORMAL priority · draft for owner review
+
+Response deadline not recorded
+
+Labelled synthetic customer question: what status is recorded?
+
+Model-prepared simulation draft — owner review required. Your question has been recorded for review. No order status is recorded in this product context. The owner must review the evidence before any response or decision. No delivery date, compensation, refund or policy exception has been authorised.
+
+Saved model reply consumed for this draft. Owner review remains required.
+
+Prepare with a saved Pillow reply
+
+Uses existing commercial preparation permission. This prepares an internal simulation draft for owner review; nothing is sent and no inference is run.
+
+Advanced: link saved reply evidence
+Prepare template draftEscalate to ownerMark reviewed and resolved

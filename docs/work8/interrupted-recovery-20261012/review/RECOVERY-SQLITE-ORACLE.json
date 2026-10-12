@@ -1,0 +1,51 @@
+{
+  "readonly-replay-execution.sqlite": {
+    "integrity": [
+      [
+        "ok"
+      ]
+    ],
+    "outputs": 2
+  },
+  "readonly-replay-missions.sqlite": {
+    "integrity": [
+      [
+        "ok"
+      ]
+    ]
+  },
+  "integrated-brain.sqlite": {
+    "integrity": [
+      [
+        "ok"
+      ]
+    ],
+    "rows": [
+      [
+        "executive",
+        "committed"
+      ],
+      [
+        "http",
+        "committed"
+      ],
+      [
+        "presale",
+        "committed"
+      ]
+    ]
+  },
+  "integrated-native-domain.sqlite": {
+    "integrity": [
+      [
+        "ok"
+      ]
+    ],
+    "rows": [
+      [
+        "native-background",
+        "committed"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "schema": "WORK8_TWIN_PROJECTION_V1",
+  "label": "DIGITAL TWIN — SIMULATED OPERATIONS",
+  "session": {
+    "schema": "WORK8_TWIN_V1",
+    "workspace": "ws_empire_1",
+    "owner": "21873479-830f-429b-ac83-1504d79871dd",
+    "sessionId": "preview-exam",
+    "twinWorkspace": "twin_1500f2075d7d7b1bbd5b9fd0e1431258dffffb38afc060a5",
+    "id": "create",
+    "version": 1,
+    "action": "CREATE",
+    "status": "PAUSED",
+    "at": 1791814206146,
+    "previous": "",
+    "requestDigest": "c081179d768b5bc59273d11024f8386e0a2a49731d322994722b9fcbafa64f28",
+    "classification": "SIMULATED_OPERATIONS",
+    "externalEffects": 0,
+    "digest": "de2c548055cf186490ba148c78bdda27a93698465e5352f5ad65130812518db0"
+  },
+  "records": [],
+  "next": null,
+  "coverage": "BOUNDED_PAGE",
+  "actualCashMovement": 0,
+  "liveCommerce": "LOCKED",
+  "birth": "NOT_BORN",
+  "recoveredAuthorityAudit": {
+    "classification": "HISTORICAL_ONLY_NO_AUTHORITY",
+    "histories": []
+  },
+  "preparationAuthority": [
+    {
+      "scope": "RESEARCH_REASONING",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "COMMERCIAL_PREPARATION",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "BACKEND_READ_ONLY",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "UX_CHANGE_PREPARATION",
+      "latestPreparation": {
+        "workspace": "ws_empire_1",
+        "owner": "21873479-830f-429b-ac83-1504d79871dd",
+        "sessionId": "preview-exam",
+        "scope": "UX_CHANGE_PREPARATION",
+        "id": "01ff2eac-3b7b-40b3-b011-a1e682444873",
+        "action": "CONSUME",
+        "version": 2,
+        "grantDigest": "45b9603f6d2b0d64b41183f685cc6e9570b8e358d5a34a023cca4a8516146377",
+        "at": 1791814233450,
+        "expiresAt": 1791817831937,
+        "previous": "45b9603f6d2b0d64b41183f685cc6e9570b8e358d5a34a023cca4a8516146377",
+        "requestDigest": "2e7122198fd3295ac863fb57efc51186dc5d1d9783e65b9fa77bc2f4738d0911",
+        "result": {
+          "scope": "UX_CHANGE_PREPARATION",
+          "sessionId": "preview-exam",
+          "classification": "LOCAL_PREPARATION_ONLY",
+          "paidInference": 0,
+          "externalEffects": 0,
+          "productionChange": false,
+          "coverage": "FIRST_20_CANONICAL_MISSIONS",
+          "missionReferences": [],
+          "kind": "OWNER_THEME_PREVIEW",
+          "color": "BLUE",
+          "background": "#ecf6ff",
+          "approvalRequired": true,
+          "deploymentAuthorized": false,
+          "modelProposal": {
+            "requestId": "pcr_labelled_synthetic_preview",
+            "chatSessionId": "synthetic-chat",
+            "inputHash": "4ec711b584cfe5125c71cbce44e54cdf",
+            "contextDigest": "bdd43cb89146b67583be1a80d15dd1c6cdef52807a450679402dde0759d74cda",
+            "responseDigest": "4730f106fdfab1bdde86ef049270cd00a12bd946fec71eeab6e577e530706d5f",
+            "commandDigest": "5027f4b167748017b6fd01ff6b9ad6f101f436679cdbb44ffd359265fef23bcf",
+            "inspection": {
+              "target": "ISOLATED_OWNER_COLOUR_PREVIEW",
+              "artifact": "Server-owned preview implementation",
+              "inspectionScope": "SERVER_PREVIEW_IMPLEMENTATION_ONLY_NOT_FRONTEND_OR_APP_WIDE",
+              "sourceDigest": "403fce6f789fc2c5ea6bd2449c300623659ac751729c9d0f275fa2763c2ad176",
+              "sourceBytes": 8905,
+              "deploymentAuthorized": false
+            },
+            "rationale": "Explicit synthetic saved model-response fixture, no provider call or actual model assessment.",
+            "classification": "RETAINED_PILLOW_PROPOSAL_NOT_OWNER_APPROVAL"
+          }
+        },
+        "digest": "d2da1eff752e391495d8c34c3374a6594ad515a954d622bd0496cc4ed45580fa"
+      },
+      "latestApproval": {
+        "workspace": "ws_empire_1",
+        "owner": "21873479-830f-429b-ac83-1504d79871dd",
+        "sessionId": "preview-exam",
+        "scope": "UX_CHANGE_PREPARATION",
+        "id": "392bba5d-c608-4a08-a183-3fd81031ef18",
+        "action": "APPROVE_PREVIEW",
+        "version": 3,
+        "at": 1791814234545,
+        "expiresAt": 1791814234545,
+        "previous": "d2da1eff752e391495d8c34c3374a6594ad515a954d622bd0496cc4ed45580fa",
+        "requestDigest": "ed411dc27a6615539205f2c404ba838f6571371a490d71481be8fd4774562341",
+        "result": {
+          "scope": "UX_CHANGE_PREPARATION",
+          "sessionId": "preview-exam",
+          "classification": "LOCAL_PREPARATION_ONLY",
+          "paidInference": 0,
+          "externalEffects": 0,
+          "productionChange": false,
+          "coverage": "FIRST_20_CANONICAL_MISSIONS",
+          "missionReferences": [],
+          "kind": "OWNER_THEME_PREVIEW",
+          "color": "BLUE",
+          "background": "#ecf6ff",
+          "approvalRequired": true,
+          "deploymentAuthorized": false,
+          "modelProposal": {
+            "requestId": "pcr_labelled_synthetic_preview",
+            "chatSessionId": "synthetic-chat",
+            "inputHash": "4ec711b584cfe5125c71cbce44e54cdf",
+            "contextDigest": "bdd43cb89146b67583be1a80d15dd1c6cdef52807a450679402dde0759d74cda",
+            "responseDigest": "4730f106fdfab1bdde86ef049270cd00a12bd946fec71eeab6e577e530706d5f",
+            "commandDigest": "5027f4b167748017b6fd01ff6b9ad6f101f436679cdbb44ffd359265fef23bcf",
+            "inspection": {
+              "target": "ISOLATED_OWNER_COLOUR_PREVIEW",
+              "artifact": "Server-owned preview implementation",
+              "inspectionScope": "SERVER_PREVIEW_IMPLEMENTATION_ONLY_NOT_FRONTEND_OR_APP_WIDE",
+              "sourceDigest": "403fce6f789fc2c5ea6bd2449c300623659ac751729c9d0f275fa2763c2ad176",
+              "sourceBytes": 8905,
+              "deploymentAuthorized": false
+            },
+            "rationale": "Explicit synthetic saved model-response fixture, no provider call or actual model assessment.",
+            "classification": "RETAINED_PILLOW_PROPOSAL_NOT_OWNER_APPROVAL"
+          },
+          "proposalDigest": "d2da1eff752e391495d8c34c3374a6594ad515a954d622bd0496cc4ed45580fa",
+          "ownerApproved": true
+        },
+        "digest": "e55d46c0effd879a10c4d7a999109ae916e3df1747984576a9ffe6d1942cdbcf"
+      },
+      "version": 3,
+      "grant": {
+        "workspace": "ws_empire_1",
+        "owner": "21873479-830f-429b-ac83-1504d79871dd",
+        "sessionId": "preview-exam",
+        "scope": "UX_CHANGE_PREPARATION",
+        "id": "d50c21a3-7ed9-4af7-8726-4514603a62da",
+        "action": "GRANT",
+        "version": 1,
+        "at": 1791814231937,
+        "expiresAt": 1791817831937,
+        "previous": "",
+        "requestDigest": "f4af6310cc3620279849c1fa063e5e842588e6a1c72600297f9dde31763e48a2",
+        "mode": "ONE_HOUR",
+        "digest": "45b9603f6d2b0d64b41183f685cc6e9570b8e358d5a34a023cca4a8516146377"
+      },
+      "status": "ACTIVE",
+      "paidInference": false,
+      "externalEffects": false
+    }
+  ],
+  "communications": [],
+  "authority": {
+    "grant": null,
+    "version": 0,
+    "status": "NOT_GRANTED",
+    "scope": "TWIN_SCHEDULER_ONLY",
+    "externalEffects": 0
+  },
+  "tasks": [],
+  "assurance": {
+    "probes": [],
+    "observations": [],
+    "coverage": "LATEST_100_OBSERVATIONS"
+  },
+  "scheduler": {
+    "mode": "BOUNDED_CANONICAL_WORKER",
+    "intervalMs": 5000
+  },
+  "sourceNotice": "Labelled test fixtures are not genuine supplier qualification. No actual money or goods move."
+}

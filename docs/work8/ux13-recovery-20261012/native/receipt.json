@@ -1,0 +1,19 @@
+{
+  "status": "PASS_SCOPED_AUTHENTICATED_SAVED_PREVIEW_APPROVAL",
+  "backend": "/workspace/scratch/a6f78cfbb763/work8-ux-inspection",
+  "frontend": "/tmp/work8-pillow-preview-5276",
+  "modelResponse": "LABELLED_SYNTHETIC_NO_PROVIDER_CALL",
+  "actualInspectionContext": true,
+  "actualSavedRequestConsumer": true,
+  "actualOwnerApproval": true,
+  "technicalDetailsClosed": true,
+  "externalEffects": 0,
+  "paidInference": 0,
+  "productionDeployment": false,
+  "backendCommit": "61d89b2ad3dfb89473051691ced0c027375a311c",
+  "backendTree": "35191c9edd3a6f5c91f21eb843fbe3154a8b2612",
+  "frontendCommit": "858b1c99c5acd3ada160f2fe9c1448eb8e6beb09",
+  "frontendTree": "c268a1083fcf9b6364f1b000e4aa3ee7337c5ec4",
+  "ownerApprovalClassification": "AUTHENTICATED_SYNTHETIC_OWNER_FIXTURE_NOT_PERSONAL_OWNER_ACCEPTANCE",
+  "inspectionScope": "SERVER_PREVIEW_IMPLEMENTATION_ONLY_NOT_FRONTEND_OR_APP_WIDE"
+}

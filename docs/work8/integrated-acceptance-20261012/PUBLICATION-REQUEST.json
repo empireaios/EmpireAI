@@ -1,0 +1,28 @@
+{
+  "action": "REQUEST_BOUNDED_PUBLICATION_ONLY",
+  "sourceCommit": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+  "sourceTree": "29bddc44ab41fa30c8db4c0b6f6144e9950f58d4",
+  "sourceBranch": "work8/autonomous-examination-20261011",
+  "evidenceBranch": "work8/examination-evidence-20261011",
+  "sourceExpectedParent": "1ff047b32547f9e987ed6f6cd5d6634d49735ccb",
+  "evidenceExpectedParent": "073a2220f554d8c31459b7ce96bc278108335205",
+  "order": [
+    "reviewed evidence tree",
+    "reviewed source tree",
+    "applicable exact-source CI",
+    "record outcomes"
+  ],
+  "scope": "Publish exact reviewed trees using existing GitHub connector; metadata recreation allowed only if tree equality is preserved and explicitly approved. No modification of deployment-linked frontend branch.",
+  "exclusions": [
+    "merge",
+    "production deployment",
+    "release lease",
+    "new infrastructure",
+    "paid inference",
+    "live billing activation",
+    "commerce effects",
+    "Work9 activation"
+  ],
+  "authorityReason": "Current owner directive section5 requires fresh authority where prior frozen-source approval does not cover this changed source. Retained checkpoint expressly states newPublicationAuthorized=false.",
+  "evidenceIdentity": "Final evidence commit/tree provided in completion response and detached publication receipt to avoid circular self-reference."
+}

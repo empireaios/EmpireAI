@@ -1,0 +1,114 @@
+Skip to content
+EmpireAI
+A Bigger Tomorrow, Together
+Home
+Intelligence
+Pillow (CEO)
+Products & Approvals
+Listings
+Orders & Fulfilment
+Operational Finance
+Live Cost Centre
+Assurance
+Calendar
+System
+Sign out
+Mon, 12 Oct 2026
+10:09:28 pm SGT
+Home
+/
+System
+DIGITAL TWIN / SIMULATED
+Live reference
+preview-exam · PAUSED
+Refresh saved records
+Twin controls
+Persistent twin controls
+
+Simulation only. Owner authentication and safety limits remain enforced. Test candidates are labelled fixtures; no supplier facts or Pillow assessments are fabricated.
+
+Resume twin
+Pause twin
+Archive twin
+Authorise three labelled test candidates and their simulated approval, listing, orders and settlement plan
+Admit test cohort
+Temporary authority
+15 minutes
+One hour
+One commerce task, maximum one hour
+Grant bounded twin authority
+Revoke now
+
+Authority: NOT_GRANTED. One-task authority excludes the separate financial scheduler. No grant permits live commerce, inference, credentials or Pillow Birth.
+
+Examine checkpoint recovery
+System
+DIGITAL TWIN / SIMULATED
+
+Labelled test fixtures are not genuine supplier qualification. No actual money or goods move. NOT_BORN · Commerce LOCKED.
+
+Temporary permissions
+
+These permissions cover isolated preparation only. Paid inference keeps its existing separate authorisation and accounting. External commercial actions remain locked.
+
+Duration 
+One task
+15 minutes
+1 hour
+Research and reasoning
+
+NOT_GRANTED
+
+Grant temporary permissionRevoke nowPrepare evidence brief
+Commercial preparation
+
+NOT_GRANTED
+
+Grant temporary permissionRevoke nowPrepare evidence brief
+Read-only backend inspection
+
+NOT_GRANTED
+
+Grant temporary permissionRevoke nowInspect canonical references
+UX change preparation
+
+ACTIVE · Expires 12/10/2026, 11:09:27 pm
+
+Grant temporary permissionRevoke nowPreview colour 
+Green
+Blue
+Lavender
+Prepare isolated colour preview
+Prepare a preview with Pillow
+
+Link a completed Pillow reply to this isolated preview. This does not run inference or deploy changes. Any new Pillow request needs its existing separate authorisation.
+
+Requested change 
+
+Inspected the server’s isolated colour-preview implementation. This inspection covers that preview only.
+
+Saved conversation details
+Prepare bound conversation briefOpen existing Pillow ChatUse completed reply as preview
+Proposed screen colour
+
+Pillow proposal: Explicit synthetic saved model-response fixture, no provider call or actual model assessment.
+
+Preview only. Owner approval and a separately governed release are still required.
+
+0 linked missions · No new inference or external action from this preview action.
+
+Awaiting owner approval.
+
+Approve this preview proposal
+
+One bounded scheduler turn every five seconds; settlement holds use actual service time. Paused sessions do not progress.
+
+Durable scheduler tasks
+
+No committed business records yet. Start or resume the authorised labelled examination in System.
+
+First records
+Next records
+Bounded page of up to50 missions · same session across all views
+Private owner workspace · NOT_BORN · Commerce LOCKED
+Inspect authority and evidence →

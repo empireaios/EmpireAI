@@ -1,0 +1,531 @@
+{
+  "base": "073a2220f554d8c31459b7ce96bc278108335205",
+  "scope": "changed batch files only; excludes this self manifest; historical omitted files remain local",
+  "files": [
+    {
+      "path": "docs/work8/CURRENT-ACCEPTANCE.json",
+      "sha256": "2ed7f2675150edc71cb40f57d1c8c79da0127482bfaadef70155b4808910db27",
+      "bytes": 356
+    },
+    {
+      "path": "docs/work8/cost-contract-20261012/ACCEPTANCE-PACKAGE.md",
+      "sha256": "f94908e4a34e18fe1591dcef43619f93180caae13af4c7e0b670d2b8629041d1",
+      "bytes": 8663
+    },
+    {
+      "path": "docs/work8/cost-contract-20261012/browser-receipt.json",
+      "sha256": "560f7ad658969aafbe014a2a87c220ab52efaf586fd68d9cb1a379233aa679c5",
+      "bytes": 1706
+    },
+    {
+      "path": "docs/work8/cost-contract-20261012/cost-centre-390.png",
+      "sha256": "db43a6600ae5d8616094fa939ba09ca0868a0fb3cec15e8de60921842e059e7f",
+      "bytes": 481431
+    },
+    {
+      "path": "docs/work8/cost-contract-20261012/journal-crash.tap",
+      "sha256": "b6b060117eec88083dba2e75620f25832dfc150b6ea0c6754b9703ad4fc60f86",
+      "bytes": 245
+    },
+    {
+      "path": "docs/work8/cost-contract-20261012/paid-cost-centre-390.png",
+      "sha256": "09dbb8fe9e0546f4f34e30cfb45ba49409d789accb3f19c33b8d3bec1912adf7",
+      "bytes": 480096
+    },
+    {
+      "path": "docs/work8/cost-contract-20261012/source-separation.tap",
+      "sha256": "58077ce08908fc4e874bd41dc33c208402e01822bd466f4a633d0238c0d799a8",
+      "bytes": 240
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/CONTINUATION.json",
+      "sha256": "bc6dc09d4e79b29c702e26625dbfe9032bc80ce1636bcc93dd7295256f08911b",
+      "bytes": 1759
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/FINAL-VERIFICATION.json",
+      "sha256": "1013736be7c561bc2714d9d3a6c921deedde3eb6c5068e03d7bce9bb29046218",
+      "bytes": 1496
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/LOCAL-EVIDENCE-SCOPE.md",
+      "sha256": "8881c84e383d773400b3687b2b01e52f9bf46886f1895a6fa14eaae3cab76a26",
+      "bytes": 1108
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/PUBLICATION-REQUEST.json",
+      "sha256": "5b91470d3f1ece45a51040c5e14305f0465793fa9319ab86aee149a4c939575b",
+      "bytes": 1368
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/REPORT.md",
+      "sha256": "22622ec08823dcce9647356768842274ac69d2e7543aad3327e62177617b2bec",
+      "bytes": 6846
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/COMBINED-7ADC-EQUALITY.json",
+      "sha256": "19a13319e2be51d96ac6e808aaa159875271a7fd8e50e8bb482c4414dffb9883",
+      "bytes": 10515
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/COMBINED-FINAL-EQUALITY.json",
+      "sha256": "d5643af11ac8bda0912b03b654979cf261d7479fba8e8fa61d4e4dee57a1dba9",
+      "bytes": 12020
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/COMBINED-FINAL-SOURCE-DECISION.md",
+      "sha256": "697d360b70d5b60721e9b73e11fd4de62ad29245b57ff48051e52900bb59be1f",
+      "bytes": 3899
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/FRONTEND-CHAIN-REVIEW.json",
+      "sha256": "ff4e89e00ad85187793b225c3a241a05f056a3c49be0b405f5359ebd2f42b05c",
+      "bytes": 3180
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/OBSERVER-INDEPENDENT-REVIEW.md",
+      "sha256": "2d826c4c457873835cb63953e3e9e610aa7ea0cf0599e72eb934e55959d5bec3",
+      "bytes": 3387
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/cost17/SUCCESSOR-ACCEPTANCE.md",
+      "sha256": "e737bcb5a47a62a26e36f161d3061ec23bd80e28fdf7a658943d664159b22fe1",
+      "bytes": 7451
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/cost17/SUCCESSOR-SOURCE.json",
+      "sha256": "0fffdae2c1b297466bbc1283153368e11ef1551dca61bbe5125d4be474b6724d",
+      "bytes": 605
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/cost17/successor-tests.tap",
+      "sha256": "5dbba94bbc72a1916106323a34507af31c60fd319ce0021dd7aebc1325e2624b",
+      "bytes": 1272
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/cost17/successor-typecheck.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/portfolio-health-independent-review.json",
+      "sha256": "48b43cacf9cbfdc9cdbb11fdbe93ac58370d2767917a566734de3e5e178137f3",
+      "bytes": 1345
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/portfolio-scheduler-independent-review.json",
+      "sha256": "264df4343789405da95012b141ac992ec96060e33b2f05cdb5eeaefb3ae3de30",
+      "bytes": 1814
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/ux13-independent-acceptance.json",
+      "sha256": "be4209e9599f48819b4918fe7179c335dd376b0c3d5ed53a7fa25fff82dd9017",
+      "bytes": 2597
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/review/ux13-independent-preview.tap",
+      "sha256": "cd4644f5382b62de00c62c6e797e2360ed69ad90dc4503857741705da3207d53",
+      "bytes": 681
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/tests/acceptance-combined.log",
+      "sha256": "ec2e3d0a41cf539b9637c5b4ed0068d49663bd67edce044c8f76113d9bb03471",
+      "bytes": 2307
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/tests/combined-final-independent.log",
+      "sha256": "3ccf745e314ea77cf6e73574be322716546a1b3f62013605b788461ad4a8bae5",
+      "bytes": 1132
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/tests/final-backend-build.log",
+      "sha256": "99903fc1c74e1fe85363271e0bc921bb1497e6f5e2902e71b897108ba5953d60",
+      "bytes": 573
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/tests/final-preview.log",
+      "sha256": "341f72d07da828760c1b2227a46c60f75575b46cce89a2e4b6b584b498077910",
+      "bytes": 680
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/tests/observer-combined.log",
+      "sha256": "a1db82d5fe137c2568f39f1d709c3ec6478296c114dbed69a16f921c9b37dcc1",
+      "bytes": 1727
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/tests/portfolio-scheduler-combined.log",
+      "sha256": "40764d9d11e2953bba94a7becb56349e1ae500d3fecad7ebbef5f846e7db36a1",
+      "bytes": 566
+    },
+    {
+      "path": "docs/work8/integrated-acceptance-20261012/tests/redis-loopback-with-binary.log",
+      "sha256": "0e2c9fc6c911f1fe4f8cb1be09ab6488e4c4a291a4d74abff79e185e0b1807f1",
+      "bytes": 567
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/ASSURANCE-READINESS-MATRIX.md",
+      "sha256": "fad05941fcfb8d8250a4a19f0e2998d4647db8d2053cc2ab4af81ffb8ba2bd01",
+      "bytes": 2257
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/WORK9-READINESS-HANDOFF.md",
+      "sha256": "c6e4fc642bafcabf7a9ce0a8c02f812dcf567d256c55207081896c40ac550a60",
+      "bytes": 1488
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/bundles/FRONTEND-COMMUNICATION.bundle",
+      "sha256": "4f48dd9bc1debc0cec615a9f61ca57df034f5e860faedb1bcd3cf3a67d65bc52",
+      "bytes": 3401
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/communication/browser-receipt.json",
+      "sha256": "ee57efa7c4cb970c229ac96a3a4ee56019132df0a6f4a8ab5eebadd997d13bd9",
+      "bytes": 619
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/communication/consumed-event.json",
+      "sha256": "61cb365ed336e82a6ad3a777bff4676b7645044f423685996cd75d9f13d37ee3",
+      "bytes": 1888
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/communication/normal-desktop.png",
+      "sha256": "9dc6b8eb1415a8a61dd90d955f06619fd1499768c498b1985c0cf98487f48623",
+      "bytes": 78383
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/communication/normal-mobile.png",
+      "sha256": "cb47b4f17de7ed2be75b4b5db4e4b2bbe54df326c88586b0ee0d27c3eac807f9",
+      "bytes": 79754
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/communication/owner-ui.txt",
+      "sha256": "b6685fb654b1feee5917669b13ec492d05bfc8a240c98818223fe7ecee2f10d3",
+      "bytes": 1214
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/A14-SUCCESSOR-DECISION.md",
+      "sha256": "ae02dd65841ffc30da833097eea0e9005a0a9a15601e2a283e213d5a41dd1748",
+      "bytes": 3160
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/COMBINED-81C8-EQUALITY.json",
+      "sha256": "063029256a4f2af6a88e436bcbd9da1e731a9ab60c2f8e2c878d59a030c93775",
+      "bytes": 4015
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/COMBINED-SOURCE-DECISION.md",
+      "sha256": "388140b42666b2a45076fae4c22b222d72055007492715c37b5d299ef62aa449",
+      "bytes": 2661
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/FINANCE-DEPENDENCY-DECISION.md",
+      "sha256": "126c11f19aa2e899124b8a0d4d787db11c131f0d2bfa0cdadba5a26abf0d5065",
+      "bytes": 1171
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/RECOVERY-INTEGRATED-DECISION.md",
+      "sha256": "ceb69bfe610213db9b978755525026155d7c87ce6102fbe14fc63dd930b19413",
+      "bytes": 2452
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/RECOVERY-SQLITE-ORACLE.json",
+      "sha256": "3658bcccaa86f21caced6a8b7269bfca41d2d0ca12ad2a7008ed4faa5c42128d",
+      "bytes": 678
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/REQUIREMENT-25-DECISION.md",
+      "sha256": "e607ad7c8d14f103eff4b9b1b0fb70811b8ca4c460824570a18bf1361cf764c8",
+      "bytes": 2958
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/cost-tests.tap",
+      "sha256": "bfd8b700c949537377a6a4b30a97d4f5045d7e7512cf780da18ffc49bbdccd0d",
+      "bytes": 1772
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/notification/DECISION.md",
+      "sha256": "f19f5ac7e37532232a8ebbf1ef63ad4a21fdfcb55544edc431e7f97ec93baac1",
+      "bytes": 3237
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/notification/final-focused-tests.tap",
+      "sha256": "3c9e4befb663e01f56af4199bd6558b279872fdf71c9268e0d636073ac029a5f",
+      "bytes": 4315
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/notification/ledger-failure-oracle.json",
+      "sha256": "8c46f6e35b6d14bbe97aacddf1497d26319672cb5076d7a28bf382acc9085338",
+      "bytes": 491
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/notification/notification-restart-fixed.tap",
+      "sha256": "0208ef639012aaff9bcdf220c0d4822d42b1c16b9bb71be3c4a927720c51d697",
+      "bytes": 4314
+    },
+    {
+      "path": "docs/work8/interrupted-recovery-20261012/review/recovery-integrated.tap",
+      "sha256": "26712b12edac4f18da7355413d8a266323037d05b7a31fed72ab332494815266",
+      "bytes": 1054
+    },
+    {
+      "path": "docs/work8/mission-ledger.json",
+      "sha256": "e6c808c3f93f7fa8a64b78cf5e11dc613a591dedd940931aa4328a4f8b36f597",
+      "bytes": 6136
+    },
+    {
+      "path": "docs/work8/remediation-20261012/FIXED-REGISTERS.json",
+      "sha256": "1a79c3202a9038e7db7ab35434b01b76c52c27a414689bf15f282b3004898fa5",
+      "bytes": 80503
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/observer-drain/EVIDENCE.sha256",
+      "sha256": "4a70b856a1fc9a1cd8f0f2877c7bfa787c8149516d6e62c7a406e8ddd45afa7e",
+      "bytes": 1051
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/observer-drain/EXAM.md",
+      "sha256": "ecdc8d76c0f2cc516d3d25e827f171d52696d36e8ecebae00c1d7a414560f658",
+      "bytes": 5425
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/pillow-preview/frontend-858b1c99.bundle",
+      "sha256": "b55e7cc29eb70e1787726f3cd5388eff366928d48ca20da625e85cf94960aa29",
+      "bytes": 987
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/producer-drain/EXAM.md",
+      "sha256": "9cbe862bea5773ffd535c89b0b3782305d4da03b05ecb6d85f4a04d763a37dd5",
+      "bytes": 6085
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/producer-drain/UNCHANGED-TASK-QUEUE.sha256",
+      "sha256": "59bd85e0e14d1b119232ff7c4c865fe4464860bb3ec835f36e83bb78182bf93b",
+      "bytes": 98
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/review/A17-ORIGINAL-CONTRACT-DECISION.md",
+      "sha256": "a12ebd37097f409724b72554d2accb9d0e0e56345a29437f33d976696033346a",
+      "bytes": 2887
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/review/COST-USAGE-SOURCE-DECISION.md",
+      "sha256": "c5b2401c051ea8b0fca1956bd9dae569888757da2f0f4935898ee5acd75e30fc",
+      "bytes": 3611
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/review/MINIMAL-EVIDENCE-ALLOWLIST.json",
+      "sha256": "a45c104a9469b2887909187797efd06d51b7a59332eddd317ad094e061f80906",
+      "bytes": 4222
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/review/NOTIFICATION-CANONICAL-PATH-DECISION.md",
+      "sha256": "cb6e055aacf28835521c825957b35dc41908fdf7c080d2de473660fa437fdd28",
+      "bytes": 2542
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/review/PRODUCER-SETTLEMENT-DECISION.md",
+      "sha256": "b425b8ff3566ccb8f3a40d405a93a93733c5c507bd49e8a9ed893533b422526f",
+      "bytes": 3213
+    },
+    {
+      "path": "docs/work8/resumed-execution-20261012/review/RECOVERED-EVIDENCE-9C9-REVIEW.md",
+      "sha256": "cb2f363cefc3cb9b95bc1da597566d84de6de98b9d2f333d5cb7b962e4d8a3fa",
+      "bytes": 3070
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/CI-RESULT.json",
+      "sha256": "0e9e68bf8ad99ec1a2c7f5de2c903317cc2342ec8afed116c7bdcb0de6ea3ee3",
+      "bytes": 41849
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/FIXED-REGISTERS.json",
+      "sha256": "783554b666d0df1250873dbcceef18747d6cbf04ff6f53ac1526028074e01cc2",
+      "bytes": 82474
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/FULL-TRACKER.md",
+      "sha256": "c446c3b120afc13f575498964e34e89a8c1151a58ed8f672c5dcc221fb4ea91b",
+      "bytes": 27607
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/CRITERIA-AND-RESULT.md",
+      "sha256": "b7bff370e16c8fe244714eaaa20adfe8a1ff19c0da1050213b30cfa2ade68754",
+      "bytes": 4712
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/FINAL-RESULT.md",
+      "sha256": "5039cc548d157cf21a1365c371a89256db01083b4064058d90381749f00f2fb0",
+      "bytes": 4871
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/FRONTEND-900ee-to-5276.bundle",
+      "sha256": "7c1cb541857fd5fe547ceedaa0ed77fedae0e58d600b16df67dfd4b139c66f2c",
+      "bytes": 1696
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/SEAL.json",
+      "sha256": "171d07ad07d50f4e20d765eb408c262463be583780c8792f2aa9edd62d960183",
+      "bytes": 4450
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/SOURCE.json",
+      "sha256": "230ac509c98b686789e0e042c603807a205ed60cdacd49c065d0bdfbd3fe1845",
+      "bytes": 575
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/activation-receipt.json",
+      "sha256": "f32a1e5f356bc2db52ce9c75753ed4fa49e2ae9aac9877bf1a90e6157d983813",
+      "bytes": 25155
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/finalsource-attribution.json",
+      "sha256": "94afd11ffd24c13c2878333bbef149b520f06144ed49829a47993a804c3582ff",
+      "bytes": 1496
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/legacy-unit-receipt.json",
+      "sha256": "56f7b5e68113cd47734356ff5fa5d143e6533797fbcbf5cf2350d3594dabde65",
+      "bytes": 408
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/native-api.json",
+      "sha256": "3374b573561279aacc33308eeb4501d6294b275d5088383a55a33d42408e78b0",
+      "bytes": 33233
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/native-desktop.txt",
+      "sha256": "1fd31f4486ac5f5ea286c4eebd0e3b60d49f4a9964e39b019517a03270e0ead4",
+      "bytes": 7646
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/native-projection.json",
+      "sha256": "a6d8e4605a05be2355072b81dc0927426bb43b410030e04e1c12e6ca1bc9cb6f",
+      "bytes": 21055
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/native-receipt.json",
+      "sha256": "950c9efcdd36d94f47df4d70ce7a44e7b8d20967133583a50db3a8c0e43aaa3b",
+      "bytes": 684
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/usage-tests.tap",
+      "sha256": "3e7a644c1a0e71ba98fad2a063e2c4ceec9e525528b97cc10b9ca3c8a98d63a2",
+      "bytes": 2480
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/render-register.py",
+      "sha256": "87d9281bf5ef665051d6c389d9e06116d692a05d2df2634e45725b533bb81fdd",
+      "bytes": 2660
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/AUTOMATION-DRAIN-DECISION.md",
+      "sha256": "0661cdfc15f183aebb66b9fccadbb77081613c2b24bccbc1967a65343835dfc5",
+      "bytes": 2241
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/COMMUNICATION-14-REVIEW.md",
+      "sha256": "f87a363d032682fcef2258d37b92ec8808cbb8a4ea51fbfc2eaa0bcffe9f4e4d",
+      "bytes": 3547
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/INSPECTION-ADAPTER-DECISION.md",
+      "sha256": "ebe958fab68d080f9ab1979594d2f75fe79ff0a401e4c9ac3a9f96f1a0ed032f",
+      "bytes": 2810
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/PORTFOLIO-LINK-DECISION.md",
+      "sha256": "d5037c553835f4d7ea0043303bc10e86e8767678d11573d1c1ac505a7c8e45cd",
+      "bytes": 1884
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/PUBLISHED-BATCH-CI-DECISION.md",
+      "sha256": "8c6d2e1c7dd8e0d6b6ff3bb1672e48b6c84762c74b1f1b820a4363d619179022",
+      "bytes": 1692
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/REQUIREMENT-24-DECISION.md",
+      "sha256": "1e41355cbebc5ca0da573d35a094ba80df47f184ba41ae9aebf224857e6a2fc0",
+      "bytes": 4007
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/REQUIREMENT-3-DECISION.md",
+      "sha256": "78639e92cdf0096885c2bc3c6d7761ee4f06a8f43a6ca5bd4de0a8137e4286a9",
+      "bytes": 3477
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/SEMANTIC-0EE9-DECISION.md",
+      "sha256": "a092d89d9b99c78e6163826c6c1707221c8feed14e0117fc4cf39abab0ec4856",
+      "bytes": 3056
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/review/SEMANTIC-77A9-REJECTION.md",
+      "sha256": "b5e073995e4bc1ef441749d334490d06fdee053198573016582e057fc0342dfc",
+      "bytes": 1825
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/MANIFEST.json",
+      "sha256": "a702be530454c1a89a026b3530bc5f3f342199824a488e06aa143d436dddc0d4",
+      "bytes": 1341
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/README.md",
+      "sha256": "5093ca494261b97ddf9dc432fe701f401cf064fcff245ebb481e444e607e3021",
+      "bytes": 2098
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/attempt-immediate-assertion/failure-page.txt",
+      "sha256": "3730157834de9daddfeea0cbe659617bbd46eb21b0597266eb0ed15f56170e9b",
+      "bytes": 3100
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/attempt-immediate-assertion/failure.json",
+      "sha256": "a13b37894d115189cd28f2a02c7284bc94eb441d329d7b545b078c71eddd4641",
+      "bytes": 106
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/auth-harness.mts",
+      "sha256": "9624f4f201e6547037879560a62e78396988a38f384e8346b9b689618f164ddf",
+      "bytes": 5275
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/browser.mjs",
+      "sha256": "00b623f364bd52446f8e1df631bb009e0af984282dea61b750882ac7ebfac9b2",
+      "bytes": 6922
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/native/brief.json",
+      "sha256": "45814e3a12d9e8c557507b1b87f35d11148927c02de8e9c21d93f9dab473de25",
+      "bytes": 10840
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/native/owner-readback.json",
+      "sha256": "ac1438e9f360dea4c83a8f203e6ddc1000785725a091e7c3329074ceb198a761",
+      "bytes": 7847
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/native/preview-1440.png",
+      "sha256": "92f87d624e62016950e20fc4d514c257b86c2ee93c27ed846f44414488bd2d05",
+      "bytes": 164698
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/native/preview-390.png",
+      "sha256": "ee7d2ab1866563e2978152134d965ac63de2731c2fc62d5a222e9e4071028a1b",
+      "bytes": 161542
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/native/receipt.json",
+      "sha256": "341e0398e3cf1f50ea8405f1943f5957b64a589c66e028c8799b2bbed7588b13",
+      "bytes": 896
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/native/saved-response.json",
+      "sha256": "6d718f2f64de7a141d5ad6271f8ffbca15987b05a2feb295e7b89288cd74ebc2",
+      "bytes": 198
+    },
+    {
+      "path": "docs/work8/ux13-recovery-20261012/preview-tests.tap",
+      "sha256": "afb83e1f95f038f656556e3a7f6738dc669d79861e64b4dbe7f96a7428103f47",
+      "bytes": 1872
+    }
+  ]
+}

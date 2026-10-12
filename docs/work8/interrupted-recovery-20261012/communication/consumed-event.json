@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "id": "model-draft",
+  "owner": "eeda6234-547c-4207-83a0-99d6027c3942",
+  "workspace": "ws_empire_1",
+  "sessionId": "communication-exam",
+  "missionId": "fixture:communication",
+  "threadId": "thread",
+  "requestDigest": "434ca464860191eb3b9e727500609c4f42c91222a4ab3ed10320197be2a783e0",
+  "previous": "da6d1168f2d6d568b20107c1a3de78dc715f77673397cf6023d6436f1a777db1",
+  "at": 1791810514661,
+  "action": "PREPARE",
+  "category": "SHIPPING_QUESTION",
+  "risk": "NORMAL",
+  "status": "DRAFT_FOR_OWNER_REVIEW",
+  "deadlineAt": null,
+  "message": null,
+  "draft": "Model-prepared simulation draft — owner review required. Your question has been recorded for review. No order status is recorded in this product context. The owner must review the evidence before any response or decision. No delivery date, compensation, refund or policy exception has been authorised.",
+  "receiptDigest": "33b7104dbeb38fae71f06606ecca025d5439fa77fbb2b3a770ac79bf12124c80",
+  "classification": "SIMULATED_COMMUNICATION",
+  "externalEffects": 0,
+  "modelAssessment": "RETAINED_REQUEST_CONSUMED",
+  "modelProposal": {
+    "requestId": "pcr_labelled_synthetic_communication",
+    "chatSessionId": "synthetic-chat",
+    "inputHash": "fa605103b76abc28ea950cba5343ca2b",
+    "contextDigest": "5c3dde4f6578dcad42be044683379ca8645f82d842b8acec345004284e1f6454",
+    "responseDigest": "e0942ca1dc1f4ee6132c97cfdb89c82e7c0a3dcfc03143c715dbe184c120c36f",
+    "commandDigest": "c4fb201d8d3b45c86bd182ce2ed0518186530045c03a99013d4cfaa53fa2de59",
+    "parts": [
+      "ACKNOWLEDGE",
+      "RECORDED_STATUS",
+      "OWNER_REVIEW"
+    ],
+    "rationale": "Explicit synthetic saved model-response fixture, no provider call or actual model assessment.",
+    "classification": "RETAINED_MODEL_DRAFT_NOT_OWNER_APPROVAL"
+  },
+  "digest": "9ead368b9392bff45084f15d721353299eaf448148c6f51c3adb754aad272b39"
+}

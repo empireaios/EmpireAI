@@ -1,0 +1,9 @@
+# Independent semantic candidate rejection
+
+BLOCKING_CHANGES_REQUIRED: source 77a9b891ebf5db158f0ec5985628683fab3489e4, tree 71bf212e804d13a5055c1efed75bfd1dc98d6289. Source inspected in immutable work8-review-semantic. Published source 1ff047b is unaffected.
+
+Independent exact-source reproduction in semantic-coverage-negative.mts/.log creates a price contradiction (0.01 vs retained genuine source 2.76), producing a failed probe and incident. It then replaces the typed price claim with an unrelated truthful response.pid scalar. The price assertion is never rechecked, but the probe becomes HEALTHY and Assurance marks the price incident RECOVERED. Regression oracle expects UNRESOLVED and fails deterministically (actual RECOVERED).
+
+Root: work8-source-claims.ts lines 15–26 checks only current claims and returns MATCHED for any nonempty matching subset. work8-response-binding.ts line 43 protects only missing claims with checked===0. Existing control-plane.mjs lines 77–87 closes incidents from a later HEALTHY probe; it has no identity-bound proof that the previously faulting observation was corrected. Thus changing coverage bypasses the omitted-claims fix.
+
+Correction must retain and recheck prior faulted claim identity (candidate/snapshot/source/subject/path) before semantic incident closure, or conservatively require manual/nonautomatic closure for changed coverage. A fresh correction to the original price claim should recover; dropping it or substituting an unrelated truthful scalar must leave the original incident unresolved. Preserve actual source envelopes; do not rewrite them or treat free prose as verified. No source edits performed by reviewer. Portfolio and inspection adapter decisions are unaffected. Do not integrate/publish this feature until a corrected exact candidate is reviewed.

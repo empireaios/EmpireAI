@@ -1,0 +1,17 @@
+✔ retained Pillow proposal reaches existing preview and exact approval without inference or authority expansion (177.646831ms)
+✔ foreign owner, session, input, pending completion and non-model reply cannot become a proposal (79.411216ms)
+✔ malformed, oversized, authority-bearing and wrong-context model output is refused (30.380127ms)
+✔ expiry and revocation while saved request is read prevent preview consumption (83.47376ms)
+✔ actual fixed preview implementation is inspected and source change across await or before approval is refused (117.307285ms)
+✔ simulated outcome review links durably to governed retirement without changing historical finance (657.694513ms)
+✔ reversed review evidence cannot support linkage; legacy unlinked retirement remains valid (215.932693ms)
+✔ health advisory covers six recommendation classes and exposes unknown capital (9.209654ms)
+✔ existing scheduler records bounded advisory without commerce lineage mutation; reconstruction and revocation (2085.354122ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5234.826392

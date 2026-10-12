@@ -1,0 +1,1045 @@
+{
+  "schema": "work5-finance-v1",
+  "observedAt": "2026-10-12T13:43:32.793Z",
+  "currency": "SGD",
+  "scope": {
+    "from": "0000",
+    "to": "9999",
+    "provider": ""
+  },
+  "source": "Append-only evidence journal linked to canonical legacy ledger and inference accounting",
+  "noExecutionAuthority": true,
+  "entries": [],
+  "entryDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "costs": [],
+  "pending": [],
+  "providers": [
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT development subscription",
+      "category": "AI/development",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI / Pillow",
+      "category": "AI inference",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "category": "AI inference",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "category": "AI inference",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "railway",
+      "name": "Railway compute, Redis, storage",
+      "category": "Infrastructure",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel hosting and builds",
+      "category": "Infrastructure",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "domains",
+      "name": "Domains / DNS / email",
+      "category": "Infrastructure",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "backups",
+      "name": "Backups and recovery",
+      "category": "Infrastructure",
+      "commissioned": "UNKNOWN",
+      "mandatory": false,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "monitoring",
+      "name": "Monitoring / security / logging",
+      "category": "Infrastructure",
+      "commissioned": "UNKNOWN",
+      "mandatory": false,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon seller / platform technology",
+      "category": "Commerce technology",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "cj",
+      "name": "CJ API / service costs",
+      "category": "Commerce technology",
+      "commissioned": "YES",
+      "mandatory": true,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "keepa",
+      "name": "Keepa",
+      "category": "Research",
+      "commissioned": "NO",
+      "mandatory": false,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Not commissioned; not required for completion"
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "category": "Creative technology",
+      "commissioned": "UNKNOWN",
+      "mandatory": false,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "tinyfish",
+      "name": "TinyFish",
+      "category": "Automation",
+      "commissioned": "UNKNOWN",
+      "mandatory": false,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "browser",
+      "name": "Browser automation",
+      "category": "Automation",
+      "commissioned": "UNKNOWN",
+      "mandatory": false,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "plugins",
+      "name": "Plugins / connectors / workflow SaaS",
+      "category": "Automation",
+      "commissioned": "UNKNOWN",
+      "mandatory": false,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    },
+    {
+      "id": "development",
+      "name": "Other development / testing tools",
+      "category": "Development",
+      "commissioned": "UNKNOWN",
+      "mandatory": false,
+      "billingAccess": "UNAVAILABLE",
+      "note": "Cost unknown until evidence is imported; bundled services must not be double counted"
+    }
+  ],
+  "costDirectory": {
+    "categories": [],
+    "mappings": []
+  },
+  "directoryCapabilities": {
+    "standaloneCategories": true,
+    "providerCategoryMapping": true
+  },
+  "budgets": [],
+  "cash": [],
+  "knownCashSgdMicro": null,
+  "completeCashPosition": false,
+  "availableCashSgdMicro": null,
+  "runway": null,
+  "totals": {
+    "SETTLED": {
+      "sgdMicro": 0,
+      "unknownFx": 0
+    },
+    "INVOICED": {
+      "sgdMicro": 0,
+      "unknownFx": 0
+    },
+    "ACCRUED_UNBILLED": {
+      "sgdMicro": 0,
+      "unknownFx": 0
+    },
+    "ESTIMATED": {
+      "sgdMicro": 0,
+      "unknownFx": 0
+    },
+    "COMMITTED": {
+      "sgdMicro": 0,
+      "unknownFx": 0
+    }
+  },
+  "kpis": {
+    "verifiedRevenueSgdMicro": 0,
+    "knownTechnologySgdMicro": 0,
+    "knownCogsSgdMicro": 0,
+    "knownGrossProfitSgdMicro": 0,
+    "knownContributionSgdMicro": 0,
+    "knownNetSgdMicro": 0,
+    "complete": false,
+    "qualification": "PARTIAL_KNOWN_AMOUNTS_NOT_CERTIFIED_PROFIT"
+  },
+  "position": {
+    "capitalSgdMicro": 0,
+    "payableSgdMicro": 0,
+    "receivableSgdMicro": 0,
+    "commitmentsSgdMicro": 0
+  },
+  "alerts": [
+    {
+      "code": "CASH_UNVERIFIED",
+      "detail": "Current complete bank/payment-account evidence is unavailable; runway is unknown",
+      "refs": []
+    },
+    {
+      "code": "PRICING_REVIEW_DUE",
+      "detail": "openai reviewed tariff expires 2026-10-15T00:00:00.000Z; renewal requires reviewed evidence, never automatic",
+      "refs": [
+        "reviewed-local-admission-policy"
+      ]
+    },
+    {
+      "code": "PRICING_REVIEW_DUE",
+      "detail": "anthropic reviewed tariff expires 2026-10-15T00:00:00.000Z; renewal requires reviewed evidence, never automatic",
+      "refs": [
+        "reviewed-local-admission-policy"
+      ]
+    },
+    {
+      "code": "PRICING_REVIEW_DUE",
+      "detail": "gemini reviewed tariff expires 2026-10-15T00:00:00.000Z; renewal requires reviewed evidence, never automatic",
+      "refs": [
+        "reviewed-local-admission-policy"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "topic": "Capital allocation",
+      "text": "Preserve capital until complete cash, liabilities and unit economics are verified; no spending approval is implied."
+    },
+    {
+      "topic": "Cost efficiency",
+      "text": "Review renewals and compare equivalent service coverage before recommending cancellation; imported usage and invoice lineage remain distinct."
+    }
+  ],
+  "outcomes": [],
+  "learningStatus": "OUTCOME_LINKED_CAPABILITY; COMPOUNDED_IMPROVEMENT_UNPROVEN",
+  "work8FinancialRehearsal": {
+    "workspace": "work8-twin:finance:6c8e839d4fd2ba586e607b20e73b26c5",
+    "birth": null,
+    "costs": {
+      "schema": "WORK8_COST_INTELLIGENCE_V1",
+      "variableUsage": [
+        {
+          "entryId": "synthetic-charge-0",
+          "provider": "vercel",
+          "service": "Synthetic metered hosting",
+          "stage": "ESTIMATED",
+          "authenticity": "SYNTHETIC",
+          "quantity": null,
+          "unitRateMicro": null,
+          "currency": "USD",
+          "amountMicro": 1000000,
+          "periodStart": "2026-10-11T13:43:05.594Z",
+          "periodEnd": "2026-10-12T13:43:04.594Z",
+          "unitName": null,
+          "unitQualification": "UNIT_NAME_NOT_RECORDED",
+          "classification": "UNREVIEWED_DISCOVERED_USAGE_NOT_CONFIRMED_ACTUALS"
+        },
+        {
+          "entryId": "synthetic-charge-1",
+          "provider": "vercel",
+          "service": "Synthetic metered hosting",
+          "stage": "ACCRUED_UNBILLED",
+          "authenticity": "SYNTHETIC",
+          "quantity": 2,
+          "unitRateMicro": 1000000,
+          "currency": "USD",
+          "amountMicro": 2000000,
+          "periodStart": "2026-10-11T13:43:05.594Z",
+          "periodEnd": "2026-10-12T13:43:04.594Z",
+          "unitName": "requests",
+          "unitQualification": "RECORDED_UNIT_NO_CONVERSION",
+          "classification": "UNREVIEWED_DISCOVERED_USAGE_NOT_CONFIRMED_ACTUALS"
+        },
+        {
+          "entryId": "synthetic-charge-2",
+          "provider": "vercel",
+          "service": "Synthetic metered hosting",
+          "stage": "INVOICED",
+          "authenticity": "SYNTHETIC",
+          "quantity": 3,
+          "unitRateMicro": 1000000,
+          "currency": "USD",
+          "amountMicro": 3000000,
+          "periodStart": "2026-10-11T13:43:05.594Z",
+          "periodEnd": "2026-10-12T13:43:04.594Z",
+          "unitName": "requests",
+          "unitQualification": "RECORDED_UNIT_NO_CONVERSION",
+          "classification": "UNREVIEWED_DISCOVERED_USAGE_NOT_CONFIRMED_ACTUALS"
+        },
+        {
+          "entryId": "synthetic-charge-3",
+          "provider": "vercel",
+          "service": "Synthetic metered hosting",
+          "stage": "SETTLED",
+          "authenticity": "SYNTHETIC",
+          "quantity": 4,
+          "unitRateMicro": 1000000,
+          "currency": "USD",
+          "amountMicro": 4000000,
+          "periodStart": "2026-10-11T13:43:05.594Z",
+          "periodEnd": "2026-10-12T13:43:04.594Z",
+          "unitName": "requests",
+          "unitQualification": "RECORDED_UNIT_NO_CONVERSION",
+          "classification": "UNREVIEWED_DISCOVERED_USAGE_NOT_CONFIRMED_ACTUALS"
+        },
+        {
+          "entryId": "synthetic-charge-4",
+          "provider": "vercel",
+          "service": "Synthetic metered hosting",
+          "stage": "COMMITTED",
+          "authenticity": "SYNTHETIC",
+          "quantity": 0,
+          "unitRateMicro": 0,
+          "currency": "USD",
+          "amountMicro": 5000000,
+          "periodStart": "2026-10-11T13:43:05.594Z",
+          "periodEnd": "2026-10-12T13:43:04.594Z",
+          "unitName": "requests",
+          "unitQualification": "RECORDED_UNIT_NO_CONVERSION",
+          "classification": "UNREVIEWED_DISCOVERED_USAGE_NOT_CONFIRMED_ACTUALS"
+        }
+      ],
+      "resources": [
+        {
+          "id": "synthetic-github",
+          "provider": "github",
+          "service": "Labelled simulation github",
+          "state": "ACTIVE",
+          "billingOwner": null,
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-github",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-vercel",
+          "provider": "vercel",
+          "service": "Labelled simulation vercel",
+          "state": "ACTIVE",
+          "billingOwner": "synthetic-team",
+          "fixedAmountMicro": 20000000,
+          "currency": "USD",
+          "renewalAt": "2026-10-13T13:43:05.594Z",
+          "cancellationTerms": "Synthetic monthly cancellation terms",
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-vercel",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-railway",
+          "provider": "railway",
+          "service": "Labelled simulation railway",
+          "state": "ACTIVE",
+          "billingOwner": null,
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-railway",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-openai",
+          "provider": "openai",
+          "service": "Labelled simulation openai",
+          "state": "ACTIVE",
+          "billingOwner": "synthetic-team",
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-openai",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-anthropic",
+          "provider": "anthropic",
+          "service": "Labelled simulation anthropic",
+          "state": "ACTIVE",
+          "billingOwner": null,
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-anthropic",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-gemini",
+          "provider": "gemini",
+          "service": "Labelled simulation gemini",
+          "state": "ACTIVE",
+          "billingOwner": "synthetic-team",
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-gemini",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-cj",
+          "provider": "cj",
+          "service": "Labelled simulation cj",
+          "state": "ACTIVE",
+          "billingOwner": null,
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-cj",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-amazon",
+          "provider": "amazon",
+          "service": "Labelled simulation amazon",
+          "state": "ACTIVE",
+          "billingOwner": "synthetic-team",
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-amazon",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-keepa",
+          "provider": "keepa",
+          "service": "Labelled simulation keepa",
+          "state": "INACTIVE",
+          "billingOwner": null,
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-keepa",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-canva",
+          "provider": "canva",
+          "service": "Labelled simulation canva",
+          "state": "PROPOSED",
+          "billingOwner": "synthetic-team",
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-canva",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-domains",
+          "provider": "domains",
+          "service": "Labelled simulation domains",
+          "state": "ACTIVE",
+          "billingOwner": null,
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-domains",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-storage",
+          "provider": "storage",
+          "service": "Labelled simulation storage",
+          "state": "ACTIVE",
+          "billingOwner": "synthetic-team",
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-storage",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-databases",
+          "provider": "databases",
+          "service": "Labelled simulation databases",
+          "state": "ACTIVE",
+          "billingOwner": null,
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-databases",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-monitoring",
+          "provider": "monitoring",
+          "service": "Labelled simulation monitoring",
+          "state": "ACTIVE",
+          "billingOwner": "synthetic-team",
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-monitoring",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-research",
+          "provider": "research",
+          "service": "Labelled simulation research",
+          "state": "ACTIVE",
+          "billingOwner": null,
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-research",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        },
+        {
+          "id": "synthetic-other-integrations",
+          "provider": "other-integrations",
+          "service": "Labelled simulation other-integrations",
+          "state": "UNKNOWN",
+          "billingOwner": "synthetic-team",
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "fixture:inventory-not-live-other-integrations",
+          "observedAt": "2026-10-12T13:43:05.594Z"
+        }
+      ],
+      "providerSummaries": [],
+      "accountReadbacks": [],
+      "totalsByCurrencyStageAuthenticity": {
+        "USD:ESTIMATED:SYNTHETIC": 1000000,
+        "USD:ACCRUED_UNBILLED:SYNTHETIC": 2000000,
+        "USD:INVOICED:SYNTHETIC": 3000000,
+        "USD:SETTLED:SYNTHETIC": 4000000,
+        "USD:COMMITTED:SYNTHETIC": 5000000
+      },
+      "alerts": [
+        {
+          "provider": "vercel",
+          "code": "FX_UNAVAILABLE"
+        },
+        {
+          "provider": "vercel",
+          "code": "FX_UNAVAILABLE"
+        },
+        {
+          "provider": "vercel",
+          "code": "DELAYED_INVOICE"
+        },
+        {
+          "provider": "vercel",
+          "code": "FX_UNAVAILABLE"
+        },
+        {
+          "provider": "vercel",
+          "code": "FX_UNAVAILABLE"
+        },
+        {
+          "provider": "vercel",
+          "code": "FX_UNAVAILABLE"
+        },
+        {
+          "provider": "github",
+          "resource": "synthetic-github",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "github",
+          "resource": "synthetic-github",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "github",
+          "resource": "synthetic-github",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "github",
+          "resource": "synthetic-github",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "github",
+          "resource": "synthetic-github",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "vercel",
+          "resource": "synthetic-vercel",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "vercel",
+          "resource": "synthetic-vercel",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "vercel",
+          "resource": "synthetic-vercel",
+          "code": "RENEWAL_DUE"
+        },
+        {
+          "provider": "vercel",
+          "resource": "synthetic-vercel",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "vercel",
+          "resource": "synthetic-vercel",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "vercel",
+          "resource": "synthetic-vercel",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "railway",
+          "resource": "synthetic-railway",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "railway",
+          "resource": "synthetic-railway",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "railway",
+          "resource": "synthetic-railway",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "railway",
+          "resource": "synthetic-railway",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "railway",
+          "resource": "synthetic-railway",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "openai",
+          "resource": "synthetic-openai",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "openai",
+          "resource": "synthetic-openai",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "openai",
+          "resource": "synthetic-openai",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "openai",
+          "resource": "synthetic-openai",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "openai",
+          "resource": "synthetic-openai",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "anthropic",
+          "resource": "synthetic-anthropic",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "anthropic",
+          "resource": "synthetic-anthropic",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "anthropic",
+          "resource": "synthetic-anthropic",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "anthropic",
+          "resource": "synthetic-anthropic",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "anthropic",
+          "resource": "synthetic-anthropic",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "gemini",
+          "resource": "synthetic-gemini",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "gemini",
+          "resource": "synthetic-gemini",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "gemini",
+          "resource": "synthetic-gemini",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "gemini",
+          "resource": "synthetic-gemini",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "gemini",
+          "resource": "synthetic-gemini",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "cj",
+          "resource": "synthetic-cj",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "cj",
+          "resource": "synthetic-cj",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "cj",
+          "resource": "synthetic-cj",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "cj",
+          "resource": "synthetic-cj",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "cj",
+          "resource": "synthetic-cj",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "amazon",
+          "resource": "synthetic-amazon",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "amazon",
+          "resource": "synthetic-amazon",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "amazon",
+          "resource": "synthetic-amazon",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "amazon",
+          "resource": "synthetic-amazon",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "amazon",
+          "resource": "synthetic-amazon",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "keepa",
+          "resource": "synthetic-keepa",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "keepa",
+          "resource": "synthetic-keepa",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "keepa",
+          "resource": "synthetic-keepa",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "keepa",
+          "resource": "synthetic-keepa",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "canva",
+          "resource": "synthetic-canva",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "canva",
+          "resource": "synthetic-canva",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "canva",
+          "resource": "synthetic-canva",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "canva",
+          "resource": "synthetic-canva",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "domains",
+          "resource": "synthetic-domains",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "domains",
+          "resource": "synthetic-domains",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "domains",
+          "resource": "synthetic-domains",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "domains",
+          "resource": "synthetic-domains",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "domains",
+          "resource": "synthetic-domains",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "storage",
+          "resource": "synthetic-storage",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "storage",
+          "resource": "synthetic-storage",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "storage",
+          "resource": "synthetic-storage",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "storage",
+          "resource": "synthetic-storage",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "storage",
+          "resource": "synthetic-storage",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "databases",
+          "resource": "synthetic-databases",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "databases",
+          "resource": "synthetic-databases",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "databases",
+          "resource": "synthetic-databases",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "databases",
+          "resource": "synthetic-databases",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "databases",
+          "resource": "synthetic-databases",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "monitoring",
+          "resource": "synthetic-monitoring",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "monitoring",
+          "resource": "synthetic-monitoring",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "monitoring",
+          "resource": "synthetic-monitoring",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "monitoring",
+          "resource": "synthetic-monitoring",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "monitoring",
+          "resource": "synthetic-monitoring",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "research",
+          "resource": "synthetic-research",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "research",
+          "resource": "synthetic-research",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "research",
+          "resource": "synthetic-research",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "research",
+          "resource": "synthetic-research",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "research",
+          "resource": "synthetic-research",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        },
+        {
+          "provider": "other-integrations",
+          "resource": "synthetic-other-integrations",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "other-integrations",
+          "resource": "synthetic-other-integrations",
+          "code": "FIXTURE_ONLY_NOT_LIVE_PROVIDER_INVENTORY"
+        },
+        {
+          "provider": "other-integrations",
+          "resource": "synthetic-other-integrations",
+          "code": "USAGE_UNIT_NOT_OBSERVED"
+        },
+        {
+          "provider": "other-integrations",
+          "resource": "synthetic-other-integrations",
+          "code": "RENEWAL_OR_ALLOCATION_UNVERIFIED"
+        }
+      ],
+      "historicalExceptions": [],
+      "observationsDigest": "a8918bd9366e9524e2dc35e8d741208f00226f20ccb21dd92bd8b19decbf0343",
+      "canonicalEntriesDigest": "8cb333a20614a760bb10e26469168cd03c47b6b54a011813fe7e940b77b69a5b",
+      "totalsQualification": "UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS",
+      "operationalProfitIncluded": false,
+      "continuousLiveActivation": false
+    },
+    "liveActivation": false,
+    "label": "Isolated financial rehearsal"
+  },
+  "legacy": {
+    "status": "UNAVAILABLE",
+    "records": [],
+    "digest": null,
+    "duplicateRoyaltyGroups": []
+  },
+  "accounting": {
+    "status": "UNAVAILABLE",
+    "classification": "UNKNOWN_NOT_ZERO"
+  },
+  "pricing": [
+    {
+      "provider": "openai",
+      "expiresAt": "2026-10-15T00:00:00.000Z",
+      "status": "CURRENT",
+      "source": "reviewed-local-admission-policy",
+      "automaticRenewal": false
+    },
+    {
+      "provider": "anthropic",
+      "expiresAt": "2026-10-15T00:00:00.000Z",
+      "status": "CURRENT",
+      "source": "reviewed-local-admission-policy",
+      "automaticRenewal": false
+    },
+    {
+      "provider": "gemini",
+      "expiresAt": "2026-10-15T00:00:00.000Z",
+      "status": "CURRENT",
+      "source": "reviewed-local-admission-policy",
+      "automaticRenewal": false
+    }
+  ],
+  "backendRevision": null
+}

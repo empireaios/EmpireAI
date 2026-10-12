@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "879a960c2206ac40d219d1ce80c372ef54beb0b1",
+  "sourceTree": "d6c7d1969a8aa48e40a944c3e22e37bb7505c894",
+  "predecessor": "7f29fa9211c68019ec6f9b56f898d7708c270fc4",
+  "tests": {
+    "pass": 11,
+    "fail": 0
+  },
+  "strictRouteGraphTypecheck": "PASS_ZERO_DIAGNOSTICS",
+  "scope": "Isolated software examination; no live billing, inference, production or commerce effects",
+  "files": {
+    "successor-tests.tap": "5dbba94bbc72a1916106323a34507af31c60fd319ce0021dd7aebc1325e2624b",
+    "successor-typecheck.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

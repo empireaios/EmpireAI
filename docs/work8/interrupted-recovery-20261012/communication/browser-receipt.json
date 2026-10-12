@@ -1,0 +1,14 @@
+{
+  "status": "DRAFT_FOR_OWNER_REVIEW",
+  "classification": "LABELLED_SYNTHETIC_SAVED_MODEL_RESPONSE_NO_PROVIDER_CALL",
+  "authenticatedNativeUiConsumer": true,
+  "requestId": "pcr_labelled_synthetic_communication",
+  "responseDigest": "e0942ca1dc1f4ee6132c97cfdb89c82e7c0a3dcfc03143c715dbe184c120c36f",
+  "contextDigest": "5c3dde4f6578dcad42be044683379ca8645f82d842b8acec345004284e1f6454",
+  "communicationDigest": "9ead368b9392bff45084f15d721353299eaf448148c6f51c3adb754aad272b39",
+  "grantStatus": "CONSUMED",
+  "externalEffects": 0,
+  "paidInference": 0,
+  "actualModelAssessment": false,
+  "ownerApproval": false
+}

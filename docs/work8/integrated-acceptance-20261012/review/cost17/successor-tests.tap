@@ -1,0 +1,19 @@
+✔ empty registry persists unknowns, replay and reopen without actual journal effects (34.031487ms)
+✔ server scope, concurrent exclusion, registry identity and rejected evidence (6.093558ms)
+✔ registered synthetic read preserves validated observation and canonical owner readback (6.495143ms)
+✔ financial action enforces authenticated founder workspace/origin and strict input (669.136718ms)
+✔ server capability inventory is durable, scoped and prevents inactive reads (6.35918ms)
+✔ autonomous discovery, fixed fee with zero usage, delayed invoices, spike, dedupe, renewal, cancellation and restart (212.278758ms)
+✔ outage, inactive provider, unknown subscription, cross-provider data and owner scope remain explicit (215.748977ms)
+✔ cached successful read cannot clear a newer outage; fresh read clears it after restart (86.785508ms)
+✔ reversed discovery charges stay excluded through replacement and restart (41.566924ms)
+✔ a rejected multi-charge observation cannot partially commit its journal or observation (123.101897ms)
+✔ Railway account readback preserves unknown actuals and never double counts plan allowance (4.293529ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5640.659302

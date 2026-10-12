@@ -1,0 +1,12 @@
+✔ actual app recovery entrypoint composes inherited primary IPC, local fences and real Redis (78204.454451ms)
+✔ shared capture waits for cross-process producer admission through queue and audit settlement (980.515633ms)
+✔ shared capture refuses crashed producer admission and uncertain failures retain every admission (1400.710164ms)
+✔ shared capture refuses a rejected producer whose real Redis command can still commit later (818.203447ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82708.061794

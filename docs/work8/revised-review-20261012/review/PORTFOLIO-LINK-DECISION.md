@@ -1,0 +1,9 @@
+# Independent portfolio linkage review
+
+Verdict: APPROVE_UNCHANGED for commit `827ed0ad10efca2ac04a21429b4fb359a9f99446`, tree `f5e84c2a536ab824fda92160baa85f1b3fed7809`, against base `06c6ae6517546359a8406d2568a6eebcb9a51503`. Reviewed immutable detached worktree work8-review-portfolio. All nine changed paths inspected, including three runtime contracts/engine/finance files and retained execution receipts. No source edits or publication performed.
+
+The optional retire.reviewDecisionId is same-mission, persisted, and backed by nonempty fresh verified unreversed outcomes at the time of linking. Existing owner identity, active publication and resolved-order requirements remain in force. It records historical owner-stated basis, not automatic obedience or new authority. The finance source verifier accounts for this one permitted retirement field while preserving the complete predecessor-state digest. Legacy unlinked retirements remain compatible.
+
+Independently executed under kernel network denial: work8-portfolio-review-link, work8-finance, work8-finance-additional and work8-owner-finance tests: 10 tests, 10 passed, zero failures, duration 8175.546091 ms. New boundaries include missing/foreign references, wrong actor, expiry/reversal, reopen, exact idempotency/conflict, source-history immutability and SGD38 simulated contribution conservation. Existing 100 canonical integer conservation scenarios also passed. Agent strict dependency typecheck receipt is supporting evidence, not an independently rerun typecheck.
+
+Requirement #18 remains PENDING: this clears the bounded software review-to-retirement implementation, not complete continual Pillow health assessment or review scheduling. No real owner decision, actual commerce, actual revenue, or new provider data is certified. Pillow NOT_BORN; commerce LOCKED. No merge/deployment authorized by this decision.

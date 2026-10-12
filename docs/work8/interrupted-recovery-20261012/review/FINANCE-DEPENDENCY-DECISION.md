@@ -1,0 +1,5 @@
+# Independent financial scope correction
+
+APPROVE correction to the tracker dependency coupling #25 to #2. Original MANDATE section22 requires testing separated Live Cost Centre economics: reservations, actual inference costs including failed/incomplete calls, commitments/accruals/invoices/payments/shared allocation/FX/vendor persistence, source→journal→report→owner UI equality and financial adversity. Section16 separately demands preservation of224 accounting /3 journal /7 historical baseline records or audited explanation of changed counts. Original224 snapshot retrieval is not a necessary prerequisite to isolated #25 software examination. #2 historical preservation remains independently outstanding.
+
+This is not a #25 PASS: full section22 software coverage and independent owner-view reconciliation must be established by evidence, including actual cost semantics (unknown inputs never zero). business_finance is mapping coverage and any concrete defect. Existing #24 and A16 acceptances are preserved. Register recovered and recounted28PASS/13PENDING/4BLOCKED, amendments4PASS/15PENDING before new decisions. No central register mutation by reviewer.

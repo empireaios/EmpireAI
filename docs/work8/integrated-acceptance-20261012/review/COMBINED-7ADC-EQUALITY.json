@@ -1,0 +1,256 @@
+{
+  "source": "7adc7afd3cfaa848d1e8561541938ebcf725a40f",
+  "tree": "90e87c94be1d67f5f0f9bd3e1ac87702e1ef7bd0",
+  "baseline": "81c8b57114cc5e189363bb9843150f7718ed1327",
+  "checks": [
+    {
+      "path": "backend/src/global-notifications/services/assurance-notification-ingestion.ts",
+      "scoped": "4ed74e9c031f3ca7131b3ffde54236b6030764c0",
+      "scopedBlob": "8699875b77f6dab9b7cc6f835d4b51aa28c4d367",
+      "combinedBlob": "8699875b77f6dab9b7cc6f835d4b51aa28c4d367",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-assurance-notification.test.ts",
+      "scoped": "4ed74e9c031f3ca7131b3ffde54236b6030764c0",
+      "scopedBlob": "85c6ea8d89f487a9bb67b53492e619d182a7c76f",
+      "combinedBlob": "85c6ea8d89f487a9bb67b53492e619d182a7c76f",
+      "equal": true
+    },
+    {
+      "path": "backend/src/brain/task-queue.ts",
+      "scoped": "0546920d6d692b8ae32f6dda6f0567ecdec6f038",
+      "scopedBlob": "a9b2f6f19b6d35919b8abb0ac4de3700509cdf1e",
+      "combinedBlob": "a9b2f6f19b6d35919b8abb0ac4de3700509cdf1e",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/capture-shared-brain-queue.test.ts",
+      "scoped": "0546920d6d692b8ae32f6dda6f0567ecdec6f038",
+      "scopedBlob": "b7068ec9c42ebe1d93e665626ca5009ab75160f5",
+      "combinedBlob": "b7068ec9c42ebe1d93e665626ca5009ab75160f5",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/capture-shared-brain-redis.test.ts",
+      "scoped": "0546920d6d692b8ae32f6dda6f0567ecdec6f038",
+      "scopedBlob": "318251a627e23f8e492ccd7808f39aaa75c5baa0",
+      "combinedBlob": "318251a627e23f8e492ccd7808f39aaa75c5baa0",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/fixtures/work8-producer-capture-child.ts",
+      "scoped": "0546920d6d692b8ae32f6dda6f0567ecdec6f038",
+      "scopedBlob": "5568bbdbe2f952a9e7ac8ff33ba74d2e87022786",
+      "combinedBlob": "5568bbdbe2f952a9e7ac8ff33ba74d2e87022786",
+      "equal": true
+    },
+    {
+      "path": "backend/src/finance/work8-cost-intelligence.ts",
+      "scoped": "879a960c2206ac40d219d1ce80c372ef54beb0b1",
+      "scopedBlob": "2fb28a685017d2c1c36f5f07944591151d0765d9",
+      "combinedBlob": "2fb28a685017d2c1c36f5f07944591151d0765d9",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-cost-usage.test.ts",
+      "scoped": "12fde942c47eb1549f16806269274fe4fa79a2d6",
+      "scopedBlob": "ba5b810d6762f6bb3f1a733758fcbba5da1772fc",
+      "combinedBlob": "ba5b810d6762f6bb3f1a733758fcbba5da1772fc",
+      "equal": true
+    },
+    {
+      "path": "backend/src/assurance/permanent-inspector.mjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "bb0fd30774f5cad8e661bfee7c4a04bc89b235d3",
+      "combinedBlob": "bb0fd30774f5cad8e661bfee7c4a04bc89b235d3",
+      "equal": true
+    },
+    {
+      "path": "backend/src/assurance/permanent-worker.mjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "4cdab088c82f68f495dfde372ffa1b6dcae123fb",
+      "combinedBlob": "4cdab088c82f68f495dfde372ffa1b6dcae123fb",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/tier0-isolated-primary.ts",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "d29d2a93d6d461c89d35328c77a40c2c0820e76a",
+      "combinedBlob": "d29d2a93d6d461c89d35328c77a40c2c0820e76a",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/work8-observer-capture.ts",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "6b456ca11dddbad0a5344d5809342492875c79f8",
+      "combinedBlob": "6b456ca11dddbad0a5344d5809342492875c79f8",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "aa04bb6b51c3fdf5df2a48809654e59847a66947",
+      "combinedBlob": "aa04bb6b51c3fdf5df2a48809654e59847a66947",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-runtime-recovery.test.ts",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "02c4b17163151648f10ca1f4d5b33b39c481ae6b",
+      "combinedBlob": "02c4b17163151648f10ca1f4d5b33b39c481ae6b",
+      "equal": true
+    },
+    {
+      "path": "deployment/assurance-supervisor.cjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "f564e02b43b41ba9ae42de258af69e3485fa7f9b",
+      "combinedBlob": "f564e02b43b41ba9ae42de258af69e3485fa7f9b",
+      "equal": true
+    },
+    {
+      "path": "deployment/fixtures/observer-capture-child.mjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "fc8a6c470829fb3ef45f1504490f66e8b5d16ed2",
+      "combinedBlob": "fc8a6c470829fb3ef45f1504490f66e8b5d16ed2",
+      "equal": true
+    },
+    {
+      "path": "deployment/launcher-loss-guard.cjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "07a66aabb31f3980c73f4cfe5bcdb4a1f685554e",
+      "combinedBlob": "07a66aabb31f3980c73f4cfe5bcdb4a1f685554e",
+      "equal": true
+    },
+    {
+      "path": "deployment/locked-supervision.cjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "8d471fa11622bae36c8357ab614af936efa45b5a",
+      "combinedBlob": "8d471fa11622bae36c8357ab614af936efa45b5a",
+      "equal": true
+    },
+    {
+      "path": "deployment/observer-capture.cjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "7577f4ba86edc65181fc62bd89b9c372f708a73a",
+      "combinedBlob": "7577f4ba86edc65181fc62bd89b9c372f708a73a",
+      "equal": true
+    },
+    {
+      "path": "deployment/observer-capture.test.cjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "80158707cf338cd3b4a99c7d61d6421d4dbd49fb",
+      "combinedBlob": "80158707cf338cd3b4a99c7d61d6421d4dbd49fb",
+      "equal": true
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "scoped": "02eb25b103e1d43dee633aa9f32773f822c8e938",
+      "scopedBlob": "d5ef81b50f7b6a866c3fd5da81e5cb36ffd09aba",
+      "combinedBlob": "d5ef81b50f7b6a866c3fd5da81e5cb36ffd09aba",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/assurance-observer-capture.test.mjs",
+      "scoped": "ce8d8ac7c72a8b592e48e89f6b7aa529bba5e027",
+      "scopedBlob": "de628f5f5a274889ded8f03f7933e1f493291805",
+      "combinedBlob": "de628f5f5a274889ded8f03f7933e1f493291805",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-pillow-preview.ts",
+      "scoped": "61d89b2ad3dfb89473051691ced0c027375a311c",
+      "scopedBlob": "bac16ad462c5eb5473641d50c737c4154e50bcb3",
+      "combinedBlob": "bac16ad462c5eb5473641d50c737c4154e50bcb3",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts",
+      "scoped": "61d89b2ad3dfb89473051691ced0c027375a311c",
+      "scopedBlob": "c98aea4396c63a81354cba21a47a06e894780a1f",
+      "combinedBlob": "c98aea4396c63a81354cba21a47a06e894780a1f",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-preview-inspection.ts",
+      "scoped": "61d89b2ad3dfb89473051691ced0c027375a311c",
+      "scopedBlob": "1c9a7fca87a790a0a2b7e7091d3108dd9602d306",
+      "combinedBlob": "1c9a7fca87a790a0a2b7e7091d3108dd9602d306",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-pillow-preview.test.ts",
+      "scoped": "61d89b2ad3dfb89473051691ced0c027375a311c",
+      "scopedBlob": "f93139fbec20a72a537f0f18a2ee714d98eb972b",
+      "combinedBlob": "f93139fbec20a72a537f0f18a2ee714d98eb972b",
+      "equal": true
+    },
+    {
+      "path": "backend/src/finance/runtime.ts",
+      "scoped": "879a960c2206ac40d219d1ce80c372ef54beb0b1",
+      "scopedBlob": "ca06aa16027917ca8e66b532ca5970d36d46634d",
+      "combinedBlob": "ca06aa16027917ca8e66b532ca5970d36d46634d",
+      "equal": true
+    },
+    {
+      "path": "backend/src/finance/work8-cost-dispatch.ts",
+      "scoped": "879a960c2206ac40d219d1ce80c372ef54beb0b1",
+      "scopedBlob": "708607dae67e3cce7531ebd598696b95636240dd",
+      "combinedBlob": "708607dae67e3cce7531ebd598696b95636240dd",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-cost-dispatch.test.ts",
+      "scoped": "879a960c2206ac40d219d1ce80c372ef54beb0b1",
+      "scopedBlob": "eb9cb755f9d9588adc0402e588d389437d8877db",
+      "combinedBlob": "eb9cb755f9d9588adc0402e588d389437d8877db",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/engine.ts",
+      "scoped": "50490ed961ec085797d0e003413fcbc0922274d2",
+      "scopedBlob": "a95682dd4af5c4fbe41f3a2c3c5d9e789f55d52a",
+      "combinedBlob": "a95682dd4af5c4fbe41f3a2c3c5d9e789f55d52a",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-portfolio-health.ts",
+      "scoped": "50490ed961ec085797d0e003413fcbc0922274d2",
+      "scopedBlob": "cf1bd7abc0d24343d798b6c84141f3484ca6af02",
+      "combinedBlob": "cf1bd7abc0d24343d798b6c84141f3484ca6af02",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-portfolio-review-link.test.ts",
+      "scoped": "50490ed961ec085797d0e003413fcbc0922274d2",
+      "scopedBlob": "7d862d94ba5681b7bbd69df5007b34cb1463560d",
+      "combinedBlob": "7d862d94ba5681b7bbd69df5007b34cb1463560d",
+      "equal": true
+    },
+    {
+      "path": "docs/work8/portfolio-health-20261012/DECISION-BOUNDARY.md",
+      "scoped": "50490ed961ec085797d0e003413fcbc0922274d2",
+      "scopedBlob": "24396fc55a4ecb336db0325f15369212f17b9694",
+      "combinedBlob": "24396fc55a4ecb336db0325f15369212f17b9694",
+      "equal": true
+    },
+    {
+      "path": "docs/work8/portfolio-health-20261012/tests.tap",
+      "scoped": "50490ed961ec085797d0e003413fcbc0922274d2",
+      "scopedBlob": "e2894bad23ef25f499fd909863af5d3bdab54a63",
+      "combinedBlob": "e2894bad23ef25f499fd909863af5d3bdab54a63",
+      "equal": true
+    },
+    {
+      "path": "docs/work8/portfolio-health-20261012/typecheck.txt",
+      "scoped": "50490ed961ec085797d0e003413fcbc0922274d2",
+      "scopedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "combinedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "equal": true
+    }
+  ],
+  "unmapped": [
+    ".github/workflows/product-path-ci.yml"
+  ],
+  "allEqual": true
+}

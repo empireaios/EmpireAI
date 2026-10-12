@@ -1,0 +1,43 @@
+{
+  "schema": "WORK8_INDEPENDENT_AMENDMENT_ACCEPTANCE_V1",
+  "amendment": 13,
+  "decision": "PASS_WORK8_SOFTWARE_CONTRACT",
+  "reviewer": "independent observer agent (not UX implementer)",
+  "backend": "61d89b2ad3dfb89473051691ced0c027375a311c",
+  "frontend": "858b1c99c5acd3ada160f2fe9c1448eb8e6beb09",
+  "originalBoundary": "OWNER-HOLISTIC-DIRECTIVE.txt section10 conversational UX and current owner continuation D",
+  "criteria": {
+    "inspected_authorised_code": "PASS: server-owned isolated preview implementation opened without symlink following, bounded and SHA256 bound; no user path or URL accepted",
+    "prepare_proposal": "PASS: retained completed owner/workspace/chat/request/input binding, active temporary grant, schema-constrained colours/rationale",
+    "safe_preview": "PASS: existing isolated colour component, no execution or arbitrary CSS, no production change",
+    "explicit_owner_approval": "PASS: exact digest/version durable APPROVE_PREVIEW event; source changes refuse approval",
+    "human_readable": "PASS: request/preview/approval explained; desktop1440 and phone390 native screenshots, technical conversation references and source context behind closed details",
+    "authority": "PASS: temporary grant expiry/revocation, strict request/output schema, paidInference0 externalEffects0 deploymentAuthorizedfalse"
+  },
+  "independentExecution": {
+    "tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "receipt": "ux13-independent-preview.tap",
+    "kernelEgress": "DENIED"
+  },
+  "nativeEvidence": {
+    "receiptSha256": "341e0398e3cf1f50ea8405f1943f5957b64a589c66e028c8799b2bbed7588b13",
+    "inspected": [
+      "browser.mjs",
+      "auth-harness.mts",
+      "native/receipt.json",
+      "native/owner-readback.json",
+      "native/preview-390.png"
+    ],
+    "readback": "Authenticated saved proposal -> safe preview -> explicit approval; actual server inspection; LABELLED_SYNTHETIC_NO_PROVIDER_CALL"
+  },
+  "limitations": [
+    "Approval is software examination under an isolated synthetic authenticated owner; not Grand King personal visual acceptance.",
+    "Retained model-response fixture tests existing accounted conversation consumer; no new live model capability result or paid inference claimed.",
+    "Inspection applies only to isolated server preview implementation, not arbitrary frontend screens or app-wide code changes.",
+    "No production deployment or live commercial authority.",
+    "Phone screenshot is an element capture including fixed navigation; no full Console safe-area acceptance inferred."
+  ],
+  "publication": "LOCAL_REVIEW_ONLY"
+}

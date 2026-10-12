@@ -1,0 +1,24 @@
+✔ actual permanent-worker.mjs fences startup and changes generation after interruption (2883.74072ms)
+✔ actual permanent-inspector.mjs fences startup and changes generation after interruption (190.530106ms)
+✔ actual permanent-worker.mjs publishes loop progress and exits after disconnect (3707.963937ms)
+✔ actual permanent-inspector.mjs publishes loop progress and exits after disconnect (107.517226ms)
+✔ actual permanent-worker.mjs publishes loop progress and exits after SIGTERM (3709.830457ms)
+✔ actual permanent-inspector.mjs publishes loop progress and exits after SIGTERM (171.941898ms)
+✔ actual observers release IPC and allow supervised launcher to exit cleanly (3784.788496ms)
+✔ actual sibling cycles drain late SQLite/watchdog writes; held cycles skip without progress; release preserves generation (276.093561ms)
+✔ wrong release generation contains both actual observers without reopening (104.346784ms)
+✔ active-cycle drain timeout is fail closed and capture acknowledgements do not renew stall watchdog (1041.912899ms)
+✔ requester disconnect while held contains actual observers (286.245451ms)
+✔ observer process loss while held refuses rather than substituting a new generation (544.257781ms)
+✔ held acknowledgement does not postpone existing no-progress containment (712.195053ms)
+✔ actual launcher and loss guard relay capture to both actual cycle fixtures (545.875229ms)
+✔ timed-out actual cycle collector retains admission through its late durable write (180.502846ms)
+✔ actual supervised capture timeout surfaces containment and coverage loss (989.956047ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8531.082241

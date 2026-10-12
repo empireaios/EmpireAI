@@ -1,0 +1,13 @@
+✔ retained Pillow proposal reaches existing preview and exact approval without inference or authority expansion (33.980613ms)
+✔ foreign owner, session, input, pending completion and non-model reply cannot become a proposal (42.519559ms)
+✔ malformed, oversized, authority-bearing and wrong-context model output is refused (37.97809ms)
+✔ expiry and revocation while saved request is read prevent preview consumption (16.945393ms)
+✔ actual fixed preview implementation is inspected and source change across await or before approval is refused (44.124817ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1104.549272

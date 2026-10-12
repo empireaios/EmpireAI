@@ -1,0 +1,27 @@
+# Supervised observer capture boundary
+
+Candidate `02eb25b103e1d43dee633aa9f32773f822c8e938`, tree `8e37d5cbe90f6745bb2596f2e6f75b3194508465`, descendant of approved producer settlement054. Source isolated in work8-observer-capture; frozen integrations unchanged. This is implementation evidence, not independent certification.
+
+## Actual path and invariant
+
+The locked launcher already starts Assurance worker and inspector siblings outside primary/Brain IPC. The new dedicated private inherited-IPC protocol traverses primary → launcher-loss-guard → locked-supervision → both observer children. Primary acquires this fence before closing its HTTP admission, so an admitted observer health collection can finish. The supervisor binds exact child objects and immutable child generation acknowledgements; both must acknowledge drain. Replacement, loss, wrong generation, timeout and requester disconnect cannot produce success. Failure kills observer processes and aborts runtime through the existing supervisor; containment sets coverageLost and uses existing containment audit. The guard remains an independent launcher-loss safety boundary.
+
+Actual permanent-worker initialization, including spending-baseline schema creation and startup probes, runs within admission. Both real periodic cycle invocations run within admission. Inspector initialization is synchronous before ready. Underlying collector promises are separately tracked because the existing cycle deadline races the collector promise without establishing cancellation. Existing deadline/status semantics are unchanged; a timed-out collector that has not settled continues to block capture. Arbitrary untracked work spawned by an adapter is not proven by this promise boundary.
+
+While held, scheduled cycles skip without emitting assurance_progress. Capture acknowledgements never reset progress watchdogs. Existing worker/inspector cadence and stall deadlines are not extended. Supervisor capture lifetime is20s; requester22s, primary30s. Failure of existing shorter remaining progress budget contains/refuses capture rather than extending health. No synthetic fresh watchdog sidecar is generated for capture.
+
+Supervised capture includes original assurance.sqlite.watchdog bytes as an optional separate JSON digest in the existing historical manifest, not as another SQLite store. The SQLite count remains13. Missing, symlink/alias, oversized (>65536 bytes), malformed observation and leftover .tmp refuse; verifier independently checks digest and bound. Previous scoped manifests remain accepted. Older readers that reject the new optional JSON entry must refuse; no rollback compatibility certification is claimed. Restored bytes remain historical, bootAllowed=false and completeLiveState=false. Startup probe proof artifacts are still outside this scoped recovery inventory.
+
+## Local exams
+
+Final exact-source SEALED-DEPLOYMENT-EXAM.log:16 unique tests pass (9 new observer tests and7 existing launcher/loss-guard tests). SEALED-RUNTIME-EXAM.log:10 unique tests pass (sidecar boundary plus prior inventory/provisional/primary IPC checks). Total26 unique tests; repeated development runs are not additional coverage.
+
+Actual forked fixtures invoke production runAssuranceCycle and runInspectorPass against isolated native SQLite. Tests hold both cycles and prove neither early held acknowledgment nor dropped late SQLite/watchdog write; while held, cycles skip and sidecar remains unchanged; release permits a fresh inspector pass. Tests include wrong generation, child/requester loss, stalled drain, unchanged no-progress watchdog containment, real launcher/loss-guard IPC chain success and actual supervised timeout containment. The full-chain runtime callback is an isolated protocol fixture, not a production app boot or external provider exam.
+
+UNTRACKED-COLLECTOR-NEGATIVE.log preserves expected1 failure: only the fixture collector wrapper was changed from gate.track to Promise.resolve().then, leaving its real underlying delayed SQLite write active after runAssuranceCycle's20ms deadline. The held reply incorrectly arrived (1 versus expected0). This is an explicit untracked-control experiment, not an assertion the predecessor had this new protocol. Restored tracking passes the same late-write assertion. Earlier FIRST/FINAL/COLLECTOR/CONTAINMENT logs preserve development runs.
+
+Full exact-source build including tsc, revision recording and postbuild exited0; SEALED-BUILD.log preserves the result. Local Node24 differs from pinned CI Node22. No broad endurance/rollback repetition, deployment, production authority activation, external provider action or paid inference occurred.
+
+## Limits against original33/39
+
+This supplies one concrete existing launcher-owned observer generation and writer-drain boundary. It does not establish deployment-wide ownership of every replica/process, fence arbitrary Redis clients/older TaskQueue versions, export independent SQL.js RAM, authorize operational replay, or establish protected independently controlled custody. Complete capture still defaults to refusal. Actual external ownership facts required remain the complete writer/process inventory bound to source generations and their enforceable admission/custody arrangements, plus a separately controlled protected recovery destination. The local source does not prove those facts. Independent review is pending for this exact candidate.

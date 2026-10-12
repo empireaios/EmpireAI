@@ -1,0 +1,1297 @@
+{
+  "source": "1ff047b32547f9e987ed6f6cd5d6634d49735ccb",
+  "reviewedLocalSource": "06c6ae6517546359a8406d2568a6eebcb9a51503",
+  "tree": "7f5422c918f5859ed620684369259ecee0e90d79",
+  "mergeRef": "ec70971f3c2bb699c4fd7e3b5ab8b8554d5a7918",
+  "mergeRefTreeEquality": true,
+  "frontendCommit": "960d6167206e5fc9994adfe89c63d4ce83dd1123",
+  "frontendTree": "a956c4f2235ac48d745d8e51a170fe5909bb3427",
+  "workflow_runs": [
+    {
+      "id": 38248307246,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 121,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38248307246/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38248307246/logs",
+      "workflow_id": 373040927
+    },
+    {
+      "id": 38248306921,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 680,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38248306921/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38248306921/logs",
+      "workflow_id": 362674549
+    },
+    {
+      "id": 38248306966,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 679,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38248306966/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38248306966/logs",
+      "workflow_id": 362309382
+    },
+    {
+      "id": 38248307087,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 681,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38248307087/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/38248307087/logs",
+      "workflow_id": 362688325
+    }
+  ],
+  "jobs": [
+    {
+      "run": 38248307246,
+      "jobs": [
+        {
+          "id": 114807712706,
+          "name": "deterministic-assurance",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248307246,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run node --test deployment/runtime-revision.test.cjs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": 38248307087,
+      "jobs": [
+        {
+          "id": 114807712314,
+          "name": "Exact-source Railway Railpack image",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248307087,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout candidate source without merge or persisted credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use the repository Node pin",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Build the effective root Railway configuration without deployment",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Preserve exact-source packaging receipt",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Post Use the repository Node pin",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Post Checkout candidate source without merge or persisted credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            }
+          ]
+        },
+        {
+          "id": 114807712470,
+          "name": "Durable web — receipt recovery, one submission, tests and build",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248307087,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Clean install and typecheck canonical Next.js web",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run web tests with mandatory durable-delivery coverage",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Build canonical Next.js web",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Record exact tested revision and scope",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        },
+        {
+          "id": 114807712487,
+          "name": "Durable runtime — real Redis, restart, ownership and authorization",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248307087,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Require offline certification, redeploy and collection evidence tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install Redis binary for test-owned isolated AOF processes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Clean install, typecheck and build Pillow",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Run mandatory Pillow observer and reasoning-only policy tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Clean install, verify, typecheck and build backend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Verify bounded multi-provider inference and preserved authority",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Verify generated complete reasoning admission path with intercepted provider HTTP",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Verify response completion and frontend preservation safeguards",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Verify complete generated response delivery to owner UI",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Prove permanent locked runtime and complete enabled-store restore",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Retain pre-cutover closure evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Run mandatory isolated runtime and session tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Record exact tested revision and scope",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Post Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 32
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 33
+            }
+          ]
+        },
+        {
+          "id": 114816189228,
+          "name": "Runtime repair result (no deployment)",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248307087,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Require both mandatory repair gates to pass",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": 38248306921,
+      "jobs": [
+        {
+          "id": 114807712754,
+          "name": "Semantic evidence preservation — offline full engineering gate",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306921,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Clean install, typecheck and build Pillow",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Clean install, typecheck and build backend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Work6 governed commerce lifecycle and authority",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Work7 owner projections and safety policy",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Work5 financial integrity regressions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Create network-denial preload for offline child processes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Run full semantic engineering regressions with no provider access",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Require CJ receipt truth and authorization regressions without provider access",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Owner regression and certification readback tests (offline)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Visible proposition scope and adjacent bypass regressions (offline)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Advanced Assurance deterministic resilience and reconciliation",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Record exact revision and verification limits",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Post Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 30
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 31
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": 38248306966,
+      "jobs": [
+        {
+          "id": 114807712095,
+          "name": "Work8 exact frontend review candidate (no deployment)",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout pinned review source without moving deployment branch",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Checkout retained frontend bundle without deployment credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Verify and restore exact frontend review candidate",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Use pinned Node runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Clean install reviewed web",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Typecheck reviewed web",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Test reviewed web and financial readbacks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Build reviewed web without deployment",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Post Use pinned Node runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Post Checkout retained frontend bundle without deployment credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            },
+            {
+              "name": "Post Checkout pinned review source without moving deployment branch",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            }
+          ]
+        },
+        {
+          "id": 114807712186,
+          "name": "Repository and deployment-root contract",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use Node.js 22",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Verify package scripts, lockfiles and the production web contract",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Verify deterministic build configuration and reject runtime drift",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Verify isolated provider read-only observation without credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Rehearse combined disk capture and fresh-process restore without production access",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Preserve restore rehearsal receipt",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Verify disk-only legacy checkpoint capture and refusal cases",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Verify disk-only legacy Shadow CEO multi-store capture",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Verify bounded canary configuration and child-process cleanup",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Record tested revision and limits",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Post Use Node.js 22",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            }
+          ]
+        },
+        {
+          "id": 114807712456,
+          "name": "Real Redis image expiry, AOF and signal proof",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact tested source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use the pinned supervisor runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Build actual Redis image and execute runtime-library checks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Require actual image authentication, AOF recovery, signal and expiry proof",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Preserve image verification outcome in job summary",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Use the pinned supervisor runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Checkout exact tested source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        },
+        {
+          "id": 114807894785,
+          "name": "Exact old revision pending-RAM capture decision (isolated)",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout reviewed proof without persisted credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Checkout exact protected source into separate isolated directory",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Use pinned proof runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install exact old locked dependencies without lifecycle scripts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "One bounded proof using unmodified old storage source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Preserve synthetic capture artifacts and decision",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Use pinned proof runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Post Checkout exact protected source into separate isolated directory",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Checkout reviewed proof without persisted credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        },
+        {
+          "id": 114807894831,
+          "name": "Phone browser to authenticated persisted commerce fixture",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use pinned Node runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install isolated application and browser dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Verify real phone browser login BFF backend and disk transaction",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Preserve browser receipt screenshot and bounded server logs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Use pinned Node runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        },
+        {
+          "id": 114807894834,
+          "name": "Backend — clean install, typecheck, build, offline tests",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Clean install and build linked Pillow package",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Clean install backend dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Verify backend development environment",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Typecheck backend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Build backend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Work8 bounded integrated exams with kernel network denial",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Verify isolated SQL.js and HTTP capture admission, save and readback",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Verify Amazon sync evidence and sandbox go-live isolation",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Verify exact-model paid LLM price and durable reservation without provider calls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Verify CJ account-bound authentication and exact VID stock without provider calls",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Run fast invariant gate",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Run ranking, correction and authority lock tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Run chat, recovery and canonical-truth tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Record reviewed offline scope",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            },
+            {
+              "name": "Post Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 33
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 34
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 35
+            }
+          ]
+        },
+        {
+          "id": 114807894884,
+          "name": "Canonical Next.js web — clean install, typecheck, test, build",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Clean install Next.js web dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Typecheck Next.js web",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Test Next.js web",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Build Next.js web",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Diagnose known lint debt without masking product checks",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Record lint baseline debt",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Post Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            }
+          ]
+        },
+        {
+          "id": 114807895003,
+          "name": "Pillow — clean install, typecheck, build, offline test",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Clean install Pillow dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Typecheck Pillow",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Build Pillow",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Run reviewed in-process Pillow commerce and operations suites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        },
+        {
+          "id": 114807895374,
+          "name": "Legacy Vite compatibility — clean install, typecheck, build",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Clean install legacy frontend dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Typecheck legacy frontend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Build legacy frontend",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Record current test coverage gap",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Use Node.js 22 with npm cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Checkout exact event revision without persisting credentials",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        },
+        {
+          "id": 114810375786,
+          "name": "Product path result (no deployment)",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38248306966,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Require every product check to pass",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "reruns": 0,
+  "scope": "Exact-source CI; not whole Work8 certification or deployment"
+}

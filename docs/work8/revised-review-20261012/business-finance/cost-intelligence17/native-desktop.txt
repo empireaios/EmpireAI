@@ -1,0 +1,309 @@
+Financial launch rehearsal
+
+Rehearse a new reporting period in isolation. Historical records and real balances remain preserved. Live activation belongs to the separately approved launch.
+
+Rehearsal period name
+Cutover time in UTC
+Create an isolated rehearsal only.
+Prepare rehearsal period
+Cost discovery
+
+Provider evidence stays separate by currency and stage. Unreviewed discoveries are not confirmed financial actuals.
+
+github · Labelled simulation github
+
+ACTIVE · Billing owner: Unknown
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+vercel · Labelled simulation vercel
+
+ACTIVE · Billing owner: synthetic-team
+
+Fixed fee: 20 USD
+
+Renewal: 2026-10-13T13:43:05.594Z
+
+Cancellation: Synthetic monthly cancellation terms
+
+railway · Labelled simulation railway
+
+ACTIVE · Billing owner: Unknown
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+openai · Labelled simulation openai
+
+ACTIVE · Billing owner: synthetic-team
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+anthropic · Labelled simulation anthropic
+
+ACTIVE · Billing owner: Unknown
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+gemini · Labelled simulation gemini
+
+ACTIVE · Billing owner: synthetic-team
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+cj · Labelled simulation cj
+
+ACTIVE · Billing owner: Unknown
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+amazon · Labelled simulation amazon
+
+ACTIVE · Billing owner: synthetic-team
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+keepa · Labelled simulation keepa
+
+INACTIVE · Billing owner: Unknown
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+canva · Labelled simulation canva
+
+PROPOSED · Billing owner: synthetic-team
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+domains · Labelled simulation domains
+
+ACTIVE · Billing owner: Unknown
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+storage · Labelled simulation storage
+
+ACTIVE · Billing owner: synthetic-team
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+databases · Labelled simulation databases
+
+ACTIVE · Billing owner: Unknown
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+monitoring · Labelled simulation monitoring
+
+ACTIVE · Billing owner: synthetic-team
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+research · Labelled simulation research
+
+ACTIVE · Billing owner: Unknown
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+other-integrations · Labelled simulation other-integrations
+
+UNKNOWN · Billing owner: synthetic-team
+
+Fixed fee: Unknown
+
+Renewal: Unknown
+
+Cancellation: Unknown
+
+Variable usage · unreviewed evidence
+
+vercel · Synthetic metered hosting · ESTIMATED
+
+Reported quantity: Unknown · Reported unit rate: Unknown
+
+Usage unit: Unknown. Quantity and rate do not establish a confirmed charge.
+
+Reported amount: 1 USD · 2026-10-11T13:43:05.594Z through 2026-10-12T13:43:04.594Z
+
+vercel · Synthetic metered hosting · ACCRUED UNBILLED
+
+Reported quantity: 2 · Reported unit rate: 1 USD
+
+Usage unit: requests. Quantity and rate do not establish a confirmed charge.
+
+Reported amount: 2 USD · 2026-10-11T13:43:05.594Z through 2026-10-12T13:43:04.594Z
+
+vercel · Synthetic metered hosting · INVOICED
+
+Reported quantity: 3 · Reported unit rate: 1 USD
+
+Usage unit: requests. Quantity and rate do not establish a confirmed charge.
+
+Reported amount: 3 USD · 2026-10-11T13:43:05.594Z through 2026-10-12T13:43:04.594Z
+
+vercel · Synthetic metered hosting · SETTLED
+
+Reported quantity: 4 · Reported unit rate: 1 USD
+
+Usage unit: requests. Quantity and rate do not establish a confirmed charge.
+
+Reported amount: 4 USD · 2026-10-11T13:43:05.594Z through 2026-10-12T13:43:04.594Z
+
+vercel · Synthetic metered hosting · COMMITTED
+
+Reported quantity: 0 · Reported unit rate: 0 USD
+
+Usage unit: requests. Quantity and rate do not establish a confirmed charge.
+
+Reported amount: 5 USD · 2026-10-11T13:43:05.594Z through 2026-10-12T13:43:04.594Z
+
+USD · ESTIMATED · SYNTHETIC: 1 USD · Unreviewed evidence
+
+USD · ACCRUED_UNBILLED · SYNTHETIC: 2 USD · Unreviewed evidence
+
+USD · INVOICED · SYNTHETIC: 3 USD · Unreviewed evidence
+
+USD · SETTLED · SYNTHETIC: 4 USD · Unreviewed evidence
+
+USD · COMMITTED · SYNTHETIC: 5 USD · Unreviewed evidence
+
+vercel: FX UNAVAILABLE
+vercel: FX UNAVAILABLE
+vercel: DELAYED INVOICE
+vercel: FX UNAVAILABLE
+vercel: FX UNAVAILABLE
+vercel: FX UNAVAILABLE
+github: UNKNOWN ACTIVE COST OR OWNER
+github: SHARED ALLOCATION UNKNOWN
+github: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+github: USAGE UNIT NOT OBSERVED
+github: RENEWAL OR ALLOCATION UNVERIFIED
+vercel: UNKNOWN ACTIVE COST OR OWNER
+vercel: SHARED ALLOCATION UNKNOWN
+vercel: RENEWAL DUE
+vercel: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+vercel: USAGE UNIT NOT OBSERVED
+vercel: RENEWAL OR ALLOCATION UNVERIFIED
+railway: UNKNOWN ACTIVE COST OR OWNER
+railway: SHARED ALLOCATION UNKNOWN
+railway: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+railway: USAGE UNIT NOT OBSERVED
+railway: RENEWAL OR ALLOCATION UNVERIFIED
+openai: UNKNOWN ACTIVE COST OR OWNER
+openai: SHARED ALLOCATION UNKNOWN
+openai: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+openai: USAGE UNIT NOT OBSERVED
+openai: RENEWAL OR ALLOCATION UNVERIFIED
+anthropic: UNKNOWN ACTIVE COST OR OWNER
+anthropic: SHARED ALLOCATION UNKNOWN
+anthropic: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+anthropic: USAGE UNIT NOT OBSERVED
+anthropic: RENEWAL OR ALLOCATION UNVERIFIED
+gemini: UNKNOWN ACTIVE COST OR OWNER
+gemini: SHARED ALLOCATION UNKNOWN
+gemini: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+gemini: USAGE UNIT NOT OBSERVED
+gemini: RENEWAL OR ALLOCATION UNVERIFIED
+cj: UNKNOWN ACTIVE COST OR OWNER
+cj: SHARED ALLOCATION UNKNOWN
+cj: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+cj: USAGE UNIT NOT OBSERVED
+cj: RENEWAL OR ALLOCATION UNVERIFIED
+amazon: UNKNOWN ACTIVE COST OR OWNER
+amazon: SHARED ALLOCATION UNKNOWN
+amazon: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+amazon: USAGE UNIT NOT OBSERVED
+amazon: RENEWAL OR ALLOCATION UNVERIFIED
+keepa: SHARED ALLOCATION UNKNOWN
+keepa: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+keepa: USAGE UNIT NOT OBSERVED
+keepa: RENEWAL OR ALLOCATION UNVERIFIED
+canva: SHARED ALLOCATION UNKNOWN
+canva: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+canva: USAGE UNIT NOT OBSERVED
+canva: RENEWAL OR ALLOCATION UNVERIFIED
+domains: UNKNOWN ACTIVE COST OR OWNER
+domains: SHARED ALLOCATION UNKNOWN
+domains: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+domains: USAGE UNIT NOT OBSERVED
+domains: RENEWAL OR ALLOCATION UNVERIFIED
+storage: UNKNOWN ACTIVE COST OR OWNER
+storage: SHARED ALLOCATION UNKNOWN
+storage: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+storage: USAGE UNIT NOT OBSERVED
+storage: RENEWAL OR ALLOCATION UNVERIFIED
+databases: UNKNOWN ACTIVE COST OR OWNER
+databases: SHARED ALLOCATION UNKNOWN
+databases: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+databases: USAGE UNIT NOT OBSERVED
+databases: RENEWAL OR ALLOCATION UNVERIFIED
+monitoring: UNKNOWN ACTIVE COST OR OWNER
+monitoring: SHARED ALLOCATION UNKNOWN
+monitoring: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+monitoring: USAGE UNIT NOT OBSERVED
+monitoring: RENEWAL OR ALLOCATION UNVERIFIED
+research: UNKNOWN ACTIVE COST OR OWNER
+research: SHARED ALLOCATION UNKNOWN
+research: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+research: USAGE UNIT NOT OBSERVED
+research: RENEWAL OR ALLOCATION UNVERIFIED
+other-integrations: SHARED ALLOCATION UNKNOWN
+other-integrations: FIXTURE ONLY NOT LIVE PROVIDER INVENTORY
+other-integrations: USAGE UNIT NOT OBSERVED
+other-integrations: RENEWAL OR ALLOCATION UNVERIFIED
+Costs by stage and evidence identity

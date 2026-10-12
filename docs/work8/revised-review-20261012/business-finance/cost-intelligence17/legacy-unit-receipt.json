@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "oldCommit": "81c8b571",
+  "legacyEntriesDigest": "18503088cc9db02e9219f961edc108c3b56bfe89244964eade7c5be04e39c2d7",
+  "oldPrefixByteEqual": true,
+  "legacyNewFieldAbsent": true,
+  "newUsageUnit": "GiB-hours",
+  "oldFinancialRead": true,
+  "oldDiscoveryProjection": true,
+  "oldWriterAppend": true,
+  "newReopenCount": 3,
+  "classification": "LABELLED_SYNTHETIC_NO_PROVIDER_CHARGE"
+}

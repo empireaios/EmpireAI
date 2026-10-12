@@ -1,0 +1,37 @@
+[
+  {
+    "path": "docs/work8/resume-20261011/FRONTEND-AUTONOMY-CANDIDATE.bundle",
+    "blob": "f559557f06a1e493e52fe5fe7f9c3c04b7773cda",
+    "commit": "7dff79a6b712972b08add445d19e30cb664f69e0",
+    "tree": "03e55a6cea520a6cb1d1a752b51d3c9781290c65",
+    "verification": "/workspace/scratch/203606f92361/evidence/docs/work8/resume-20261011/FRONTEND-AUTONOMY-CANDIDATE.bundle is okay\nThe bundle contains this ref:\n7dff79a6b712972b08add445d19e30cb664f69e0 HEAD\nThe bundle requires this ref:\n720764722e6178d4126dcf376383096e204ec5ba \nThe bundle uses this hash algorithm: sha1"
+  },
+  {
+    "path": "docs/work8/remediation-20261012/assurance-console/frontend-mobile-finance.bundle",
+    "blob": "7b81f4069aef77823770cd1d26338c32a0e88838",
+    "commit": "960d6167206e5fc9994adfe89c63d4ce83dd1123",
+    "tree": "a956c4f2235ac48d745d8e51a170fe5909bb3427",
+    "verification": "/workspace/scratch/203606f92361/evidence/docs/work8/remediation-20261012/assurance-console/frontend-mobile-finance.bundle is okay\nThe bundle contains this ref:\n960d6167206e5fc9994adfe89c63d4ce83dd1123 HEAD\nThe bundle requires this ref:\n7dff79a6b712972b08add445d19e30cb664f69e0 \nThe bundle uses this hash algorithm: sha1"
+  },
+  {
+    "path": "docs/work8/interrupted-recovery-20261012/bundles/FRONTEND-COMMUNICATION.bundle",
+    "blob": "a4a4609a6a2e324d62730cc530642f7532c2525e",
+    "commit": "900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a",
+    "tree": "79d458316ebb7407aa9aad45a4bab3f6f26c4f91",
+    "verification": "/workspace/scratch/203606f92361/evidence/docs/work8/interrupted-recovery-20261012/bundles/FRONTEND-COMMUNICATION.bundle is okay\nThe bundle contains this ref:\n900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a refs/heads/work8/communication-ui-20261012\nThe bundle requires this ref:\n960d6167206e5fc9994adfe89c63d4ce83dd1123 \nThe bundle uses this hash algorithm: sha1"
+  },
+  {
+    "path": "docs/work8/revised-review-20261012/business-finance/cost-intelligence17/FRONTEND-900ee-to-5276.bundle",
+    "blob": "05a7bc977a276f6af1402fe026c444e9ad65f007",
+    "commit": "5276c8dc7b58cc8602c1801f8db676f896db29d7",
+    "tree": "94fd9dde528fe900e635671d91ce2586650d09a3",
+    "verification": "/workspace/scratch/203606f92361/evidence/docs/work8/revised-review-20261012/business-finance/cost-intelligence17/FRONTEND-900ee-to-5276.bundle is okay\nThe bundle contains this ref:\n5276c8dc7b58cc8602c1801f8db676f896db29d7 refs/heads/work8/cost-usage-ui-20261012\nThe bundle requires this ref:\n900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a \nThe bundle uses this hash algorithm: sha1"
+  },
+  {
+    "path": "docs/work8/resumed-execution-20261012/pillow-preview/frontend-858b1c99.bundle",
+    "blob": "b5c40b1eb0a4bc97bf7e3cba347585f01b4c758c",
+    "commit": "858b1c99c5acd3ada160f2fe9c1448eb8e6beb09",
+    "tree": "c268a1083fcf9b6364f1b000e4aa3ee7337c5ec4",
+    "verification": "/workspace/scratch/203606f92361/evidence/docs/work8/resumed-execution-20261012/pillow-preview/frontend-858b1c99.bundle is okay\nThe bundle contains this ref:\n858b1c99c5acd3ada160f2fe9c1448eb8e6beb09 HEAD\nThe bundle requires this ref:\n5276c8dc7b58cc8602c1801f8db676f896db29d7 \nThe bundle uses this hash algorithm: sha1"
+  }
+]

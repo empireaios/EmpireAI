@@ -1,0 +1,21 @@
+{
+  "status": "PASS_SCOPED_NATIVE_DISCOVERY",
+  "backend": "FINAL_SOURCE_ATTRIBUTION_JSON",
+  "frontend": "5276c8dc7b58cc8602c1801f8db676f896db29d7",
+  "classification": "16_LABELLED_SYNTHETIC_PROVIDER_RESOURCE_FIXTURES_NOT_LIVE_INVENTORY",
+  "canonicalApiEqual": true,
+  "desktopMobileTextEqual": true,
+  "providerCount": 16,
+  "stages": {
+    "USD:ESTIMATED:SYNTHETIC": 1000000,
+    "USD:ACCRUED_UNBILLED:SYNTHETIC": 2000000,
+    "USD:INVOICED:SYNTHETIC": 3000000,
+    "USD:SETTLED:SYNTHETIC": 4000000,
+    "USD:COMMITTED:SYNTHETIC": 5000000
+  },
+  "paidInference": 0,
+  "providerCalls": 0,
+  "actualChargesClaimed": false,
+  "liveActivation": false,
+  "unitUnknownExplicit": true
+}

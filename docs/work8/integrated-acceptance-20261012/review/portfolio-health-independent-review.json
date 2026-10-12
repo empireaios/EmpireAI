@@ -1,0 +1,25 @@
+{
+  "decision": "PASS_SCOPED_SOFTWARE_ADVISORY_DELTA",
+  "reviewer": "independent ux13 agent; not portfolio implementation author",
+  "sourceCommit": "50490ed961ec085797d0e003413fcbc0922274d2",
+  "tree": "304404188b4c74c57d2decef5115c4812e04acea",
+  "base": "80e68716",
+  "independentTests": {
+    "command": "Node22 --import tsx --test src/validation/tests/work8-portfolio-review-link.test.ts",
+    "passed": 3,
+    "failed": 0
+  },
+  "findings": [
+    "Existing reassess role gate and fresh/verified/unreversed filter remain operative; only persisted optional health metadata added.",
+    "All recommendation categories are advisory; grantsAuthority false, SOFTWARE_ADVISORY_ONLY, score meaning and unknown cash explicit.",
+    "days is schema-constrained to30/60/90 so equality90 matches current >=90 policy boundary.",
+    "No effect writer, scheduling, Pillow invocation or retirement authority added; existing detailed actions retained.",
+    "Three independent tests passed including durable linkage and finance invariants."
+  ],
+  "fullRequirement18": "PENDING",
+  "limitations": [
+    "No autonomous periodic scheduler acceptance.",
+    "No genuine product recommendation, actual Pillow judgement or owner acceptance claim.",
+    "Known-check score may be100 with unknown cash, but unknown count and OBSERVE explicitly retained."
+  ]
+}

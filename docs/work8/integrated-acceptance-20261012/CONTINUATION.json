@@ -1,0 +1,70 @@
+{
+  "updatedAt": "2026-10-12T14:20:54.348218+00:00",
+  "integration": {
+    "path": "/workspace/scratch/203606f92361/integration",
+    "commit": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+    "tree": "29bddc44ab41fa30c8db4c0b6f6144e9950f58d4"
+  },
+  "published": {
+    "backend": "1ff047b32547f9e987ed6f6cd5d6634d49735ccb",
+    "frontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+    "evidence": "073a2220f554d8c31459b7ce96bc278108335205"
+  },
+  "counts": {
+    "PASS": 29,
+    "PENDING": 12,
+    "BLOCKED": 4
+  },
+  "amendments": {
+    "PASS": 7,
+    "PENDING": 12
+  },
+  "ci": {
+    "38248306966": "success",
+    "38248307087": "success",
+    "38248306921": "success",
+    "38248307246": "success"
+  },
+  "active": {},
+  "localTests": {
+    "costUsagePreviewPortfolio": {
+      "passed": 20,
+      "failed": 0
+    },
+    "observer": {
+      "passed": 16,
+      "failed": 0
+    },
+    "actualAppRedis": {
+      "passed": 4,
+      "failed": 0
+    },
+    "portfolioScheduled": {
+      "passed": 4,
+      "failed": 0
+    },
+    "finalPreview": {
+      "passed": 5,
+      "failed": 0
+    },
+    "independentFinalPreviewAndPortfolio": {
+      "passed": 9,
+      "failed": 0
+    }
+  },
+  "governance": {
+    "publicationAuthorized": false,
+    "paidInference": 0,
+    "externalEffects": 0,
+    "productionChanges": 0,
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE"
+  },
+  "next": "Seal reviewed evidence/source identities and request one bounded publication approval; exact-source CI only after authorized publication.",
+  "sourceReview": "APPROVE_EXACT_SOURCE_FOR_BOUNDED_PUBLICATION_REQUEST",
+  "ciScope": {
+    "source": "1ff047b32547f9e987ed6f6cd5d6634d49735ccb",
+    "currentCandidate": "PENDING_PUBLICATION_AUTHORITY"
+  }
+}

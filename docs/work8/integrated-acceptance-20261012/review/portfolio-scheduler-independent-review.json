@@ -1,0 +1,24 @@
+{
+  "decision": "PASS_SCOPED_SCHEDULER_ADVISORY_DELTA",
+  "reviewer": "independent ux13 agent; not implementation author",
+  "sourceCommit": "131dd4d9bea5ba537d7557c1e08b48d8a065b1e1",
+  "tree": "0c323f3cb2c6e4b6cb752e54100e11bb741201dc",
+  "independentTests": {
+    "command": "Node22 --import tsx --test src/validation/tests/work8-portfolio-review-link.test.ts src/validation/tests/work8-portfolio-scheduler.test.ts",
+    "passed": 4,
+    "failed": 0
+  },
+  "findings": [
+    "Existing sessions.run transaction enforces active version and owner; authority.require enforces granted unexpired nonrevoked scheduler authority. ONE_TASK skips portfolio review.",
+    "One completed owner task selected via persistent lexical rotation; existing admission or prepared-enrollment lineage reverified before observation.",
+    "Observation contains canonical latest receipt digest and filtered fresh verified unreversed evidence IDs; no commerce receipt or admitted-plan mutation.",
+    "Existing immutable observation store deduplicates identical value including five-minute evaluation window; same-window changed evidence can create distinct observation, appropriately source-bound.",
+    "Independent tests verify restart dedup, next window, exact commerce and task history preservation, authenticated projection, revocation and no one-task review."
+  ],
+  "fullRequirement18": "PENDING",
+  "limitations": [
+    "Bound is one review per tick, not a claim of constant-time task selection or bounded total history storage.",
+    "No actual Pillow judgement, genuine product health acceptance or complete human-readable recommendation workflow acceptance.",
+    "Tests exercise empty outcome scheduler path; outcome policy filtering is directly inspected and separate outcome linkage tests cover advisory producer."
+  ]
+}

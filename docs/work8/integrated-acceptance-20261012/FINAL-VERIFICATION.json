@@ -1,0 +1,54 @@
+{
+  "source": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+  "tree": "29bddc44ab41fa30c8db4c0b6f6144e9950f58d4",
+  "backendBuild": {
+    "exitCode": 0,
+    "includes": [
+      "tsc",
+      "runtime revision recording",
+      "postbuild"
+    ],
+    "nodeOptions": "--max-old-space-size=8192",
+    "log": "tests/final-backend-build.log"
+  },
+  "combinedTests": {
+    "costUsagePreviewPortfolio": {
+      "passed": 20,
+      "failed": 0
+    },
+    "observer": {
+      "passed": 16,
+      "failed": 0
+    },
+    "actualAppRedis": {
+      "passed": 4,
+      "failed": 0
+    },
+    "portfolioScheduled": {
+      "passed": 4,
+      "failed": 0
+    },
+    "finalPreview": {
+      "passed": 5,
+      "failed": 0
+    },
+    "independentFinalPreviewAndPortfolio": {
+      "passed": 9,
+      "failed": 0
+    }
+  },
+  "counting": "Overlapping scopes and development repetitions are not summed into unique coverage. Build and final independent9 are exact final source; prior integration receipts are scoped predecessors whose unchanged boundaries were checked by exact blob review.",
+  "hostedExactSourceCI": "PENDING_PUBLICATION_AUTHORITY",
+  "localNode": "24; hosted pin22 remains separate",
+  "priorSetupFailures": [
+    "kernel denied loopback",
+    "Redis missing PATH corrected using retained binary",
+    "default heap2GB exhausted",
+    "preview test TS2532 corrected test-only index expression"
+  ],
+  "effects": {
+    "paidInference": 0,
+    "externalMessages": 0,
+    "productionDeployment": 0
+  }
+}

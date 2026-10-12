@@ -1,0 +1,30 @@
+{
+  "status": "FINAL_SOURCE_ATTRIBUTION",
+  "receiptAnnotation": "native-receipt.json backend placeholder resolves to this manifest; captured receipt is unchanged. Attribution added after examination from pinned harness import path and unchanged source worktrees.",
+  "backend": {
+    "commit": "12fde942c47eb1549f16806269274fe4fa79a2d6",
+    "tree": "9283265875c0e2eb455d86dda4bc08251633df4d",
+    "worktree": "/workspace/scratch/a6f78cfbb763/work8-cost-usage",
+    "files": {
+      "backend/src/finance/work8-cost-intelligence.ts": "0e415c8d7d7fdc5f4bb28e11f9a4d5b850be245b3f6dfe82ae43c758d859dc8d",
+      "backend/src/validation/tests/work8-cost-usage.test.ts": "e8d020dcf52e88d76b9632b3f018f8651e5d5524471a97192077a2ddd1fc4eab"
+    }
+  },
+  "frontend": {
+    "commit": "5276c8dc7b58cc8602c1801f8db676f896db29d7",
+    "tree": "94fd9dde528fe900e635671d91ce2586650d09a3",
+    "base": "900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a",
+    "files": {
+      "empireai-web/components/owner/work8/FinancialRehearsal.tsx": "4644c78d538e604c4fe83872e64c3c21086eecfd11d5be42c474897847d03025"
+    }
+  },
+  "oldReader": {
+    "commit": "81c8b57114cc5e189363bb9843150f7718ed1327",
+    "financialCentre": "old-financial-centre.mts exact original bytes",
+    "costIntelligence": "old-cost-intelligence.mts original bytes except import target for isolated old FinancialCentre"
+  },
+  "financialSchemaNetChange": false,
+  "nativeKnownUnit": "requests",
+  "nativeUnknownUnit": true,
+  "actualChargesClaimed": false
+}

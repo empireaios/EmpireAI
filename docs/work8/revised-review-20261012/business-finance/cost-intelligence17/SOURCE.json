@@ -1,0 +1,9 @@
+{
+  "commit": "97f44e7ce156cb622b5a680cb69cd6bf4b5d04fa",
+  "sourceHashes": {
+    "backend/src/finance/financial-centre.ts": "aabe58fb2fe6bb7f925be7f8571ccbdf24b6f85ea800f9b197b6a9901a17266b",
+    "backend/src/finance/work8-cost-intelligence.ts": "46e591e60362de66ab36a957a93b16a6650031f96583c74031a35ca717e4ca2c",
+    "backend/src/finance/work8-financial-view.ts": "61bd0915c9ab4f443b88bf46508ad33fe5f094b631ad01fc4b5b5fcd90fa1e77",
+    "backend/src/validation/tests/work8-cost-intelligence.test.ts": "53fed3404d1a7f68f3913ed08cd2559417ecf02745fb0e010a13ea77e7906ce9"
+  }
+}

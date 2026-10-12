@@ -1,0 +1,760 @@
+{
+  "status": "PASS_SCOPED",
+  "classification": "LABELLED_SYNTHETIC_NO_PROVIDER_CALL",
+  "outputs": [
+    {
+      "phase": "proposed",
+      "projection": {
+        "schema": "WORK8_COST_INTELLIGENCE_V1",
+        "resources": [
+          {
+            "id": "synthetic-host",
+            "provider": "vercel",
+            "service": "Labelled synthetic subscription",
+            "state": "PROPOSED",
+            "billingOwner": "synthetic-team",
+            "fixedAmountMicro": null,
+            "currency": "USD",
+            "renewalAt": null,
+            "cancellationTerms": "Unknown until observed",
+            "sharedAllocationBps": null,
+            "evidenceRef": "fixture:subscription-activation-not-provider-evidence",
+            "observedAt": "2026-10-12T13:28:47.312Z"
+          }
+        ],
+        "providerSummaries": [],
+        "accountReadbacks": [],
+        "totalsByCurrencyStageAuthenticity": {},
+        "alerts": [
+          {
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "vercel",
+            "resource": "synthetic-host",
+            "code": "SHARED_ALLOCATION_UNKNOWN"
+          }
+        ],
+        "historicalExceptions": [
+          {
+            "runId": "run:proposed",
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          }
+        ],
+        "observationsDigest": "29a23f0bcbb92fb50ad02c07c81d4cbc089e214a46fd35f9b11a182c7f8f30f1",
+        "canonicalEntriesDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "totalsQualification": "UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS",
+        "operationalProfitIncluded": false,
+        "continuousLiveActivation": false
+      }
+    },
+    {
+      "phase": "inactive",
+      "projection": {
+        "schema": "WORK8_COST_INTELLIGENCE_V1",
+        "resources": [
+          {
+            "id": "synthetic-host",
+            "provider": "vercel",
+            "service": "Labelled synthetic subscription",
+            "state": "INACTIVE",
+            "billingOwner": "synthetic-team",
+            "fixedAmountMicro": null,
+            "currency": "USD",
+            "renewalAt": null,
+            "cancellationTerms": "Unknown until observed",
+            "sharedAllocationBps": null,
+            "evidenceRef": "fixture:subscription-activation-not-provider-evidence",
+            "observedAt": "2026-10-12T13:28:47.312Z"
+          }
+        ],
+        "providerSummaries": [],
+        "accountReadbacks": [],
+        "totalsByCurrencyStageAuthenticity": {},
+        "alerts": [
+          {
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "vercel",
+            "resource": "synthetic-host",
+            "code": "SHARED_ALLOCATION_UNKNOWN"
+          }
+        ],
+        "historicalExceptions": [
+          {
+            "runId": "run:proposed",
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          }
+        ],
+        "observationsDigest": "f1fc808cf38f3c69f1a73ec36eac3d490d08cdde4551b6f1715212a6f6c629f5",
+        "canonicalEntriesDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "totalsQualification": "UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS",
+        "operationalProfitIncluded": false,
+        "continuousLiveActivation": false
+      }
+    },
+    {
+      "phase": "activated",
+      "projection": {
+        "schema": "WORK8_COST_INTELLIGENCE_V1",
+        "resources": [
+          {
+            "id": "synthetic-host",
+            "provider": "vercel",
+            "service": "Labelled synthetic subscription",
+            "state": "ACTIVE",
+            "billingOwner": "synthetic-team",
+            "fixedAmountMicro": 20000000,
+            "currency": "USD",
+            "renewalAt": null,
+            "cancellationTerms": "Unknown until observed",
+            "sharedAllocationBps": null,
+            "evidenceRef": "fixture:subscription-activation-not-provider-evidence",
+            "observedAt": "2026-10-12T13:28:47.312Z"
+          }
+        ],
+        "providerSummaries": [],
+        "accountReadbacks": [],
+        "totalsByCurrencyStageAuthenticity": {},
+        "alerts": [
+          {
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "provider": "vercel",
+            "resource": "synthetic-host",
+            "code": "SHARED_ALLOCATION_UNKNOWN"
+          }
+        ],
+        "historicalExceptions": [
+          {
+            "runId": "run:proposed",
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:proposed",
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:inactive",
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "github",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "railway",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "openai",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "anthropic",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "gemini",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "cj",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "amazon",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "keepa",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "canva",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "domains",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "storage",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "databases",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "monitoring",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "research",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          },
+          {
+            "runId": "run:activated",
+            "provider": "other-integrations",
+            "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+          }
+        ],
+        "observationsDigest": "8b3a77d1048b9bb13923aec1f7b12c50a5fb14c65c2d6540b42bcd7a2b45eb50",
+        "canonicalEntriesDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "totalsQualification": "UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS",
+        "operationalProfitIncluded": false,
+        "continuousLiveActivation": false
+      }
+    }
+  ],
+  "canonicalOwnerProjectionEqual": true,
+  "coldReopenEqual": true,
+  "ownerIsolation": true,
+  "actualAndIsolatedCostEntries": 0,
+  "actualChargesInferred": false,
+  "paidInference": 0,
+  "externalEffects": 0
+}

@@ -1,0 +1,111 @@
+{
+  "head": "81c8b57114cc5e189363bb9843150f7718ed1327",
+  "tree": "ba8cb06fde54a2b13d6da817509726b803247246",
+  "equalPaths": [
+    {
+      "boundary": "communication",
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "blob": "e33d9339d37fd94cc04b20a130c4d101f8c5384f"
+    },
+    {
+      "boundary": "communication",
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-communication-model.ts",
+      "blob": "c630e393bc08186cead45b0a8d32f6a83c3b12a5"
+    },
+    {
+      "boundary": "communication",
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts",
+      "blob": "fe2f3f08fa2a9ca3d268908cf058f1393f389619"
+    },
+    {
+      "boundary": "communication",
+      "path": "backend/src/validation/tests/work8-communication-model.test.ts",
+      "blob": "4d2260f4530c5ff34402a448e6f8bf50172bcd80"
+    },
+    {
+      "boundary": "recovery",
+      "path": "backend/src/validation/tests/capture-shared-brain-redis.test.ts",
+      "blob": "a2d930f283ca5b3df1aa021a795d0bf570da142d"
+    },
+    {
+      "boundary": "recovery",
+      "path": "backend/src/validation/tests/fixtures/work8-replay-capture-child.ts",
+      "blob": "a2ce34cbebcbfd674580a7d745ba7bd40f49ee62"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/global-notifications/deep-links.ts",
+      "blob": "9de8efa17fbc4f7b3bd5d642c319da7867603de5"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/global-notifications/models/global-notification.ts",
+      "blob": "fd064f9e317acb2f981b68b23dc13cd81ad74687"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/global-notifications/routes/global-notification-routes.ts",
+      "blob": "5fafeed7697ac33ceefd29da3d70a2d70d12b56c"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/global-notifications/services/assurance-notification-ingestion.ts",
+      "blob": "0370670cab495d257aa525d31b8c219a6a57a905"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/global-notifications/services/global-notification-service.ts",
+      "blob": "3c8588ed94d50502363187eae1509ae7601d8e28"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/global-notifications/services/notification-ingestion-service.ts",
+      "blob": "24d931b67c3d4059288f056eccbb21a90a821d32"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/orchestration/pillow-host/notification-delivery-ledger.ts",
+      "blob": "4b121cea24f4aa54c3f24959c06004ba40e21ca8"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/orchestration/pillow-host/pillow-host.ts",
+      "blob": "e6100f38bebcee6a1020c81791b3bf99e09d9473"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/validation/tests/fixtures/notification-crash-worker.ts",
+      "blob": "0264a51408883deac018b5ba3aadca7ad7b581a1"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/validation/tests/work8-assurance-notification.test.ts",
+      "blob": "a971ad26892912e95a78e8f0e82cb5a795462d41"
+    },
+    {
+      "boundary": "notification",
+      "path": "backend/src/validation/tests/work8-notification-restart.test.ts",
+      "blob": "485252f7978727d84712715bba5827314ba83b7c"
+    },
+    {
+      "boundary": "notification",
+      "path": "pillow/src/notification-worker/engine.ts",
+      "blob": "2ec32ce5c4809e06cafd40a8468040d36c249d40"
+    },
+    {
+      "boundary": "notification",
+      "path": "pillow/src/notification-worker/types.ts",
+      "blob": "ebd21625a52b7fe69ed5162f5ab995d62a9c7e4d"
+    },
+    {
+      "boundary": "notification",
+      "path": "pillow/src/validation/tests/fixtures/notification-local-receiver.mjs",
+      "blob": "7723d68377c47ba9b1fc06f965c3850bdf94c8e7"
+    },
+    {
+      "boundary": "notification",
+      "path": "pillow/src/validation/tests/notification-delivery-boundary.test.ts",
+      "blob": "1f97e2771d242dd7188b28866512a0f2e6866590"
+    }
+  ]
+}
