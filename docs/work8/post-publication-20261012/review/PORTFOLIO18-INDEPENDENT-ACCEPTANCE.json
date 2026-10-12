@@ -1,0 +1,58 @@
+{
+  "decision": "PASS_ORIGINAL_REQUIREMENT18_WORK8_SOFTWARE_CONTRACT",
+  "reviewer": "independent ux13 agent; not implementation author",
+  "backendCommit": "2282f97ab3c21271197453baa2e1e701f082adab",
+  "backendTree": "a2ae3d46aa94e01395fd6081d99a238147d306bc",
+  "frontendCommit": "e7fd599a447a4e1b273363d7f664507194cd2ba1",
+  "frontendTree": "f077bb0e7008663f64dac4e01c4e218e67e4222e",
+  "scope": "Requirement18 portfolio review retirement/replacement software acceptance; not genuine business acceptance or whole Work8",
+  "originalBasis": {
+    "section4": "Pillow continually scores portfolio health and recommends retain, improve, observe, pause, retire or replace; retain historical reasons, decisions and performance.",
+    "section19": "Integrated full business and Assurance loops with realistic provider fakes and owner-facing UI verification permitted.",
+    "interpretation": "No invented requirement for genuine live sales or newly paid inference; portfolio-specific model binding is now demonstrated rather than deterministic rules relabelled as Pillow."
+  },
+  "independentTests": {
+    "modelConsumer": {
+      "passed": 6,
+      "failed": 0,
+      "receipt": "PORTFOLIO18-INDEPENDENT-MODEL.tap"
+    },
+    "frontend": {
+      "passed": 4,
+      "failed": 0,
+      "receipt": "PORTFOLIO18-INDEPENDENT-UI.tap"
+    }
+  },
+  "criterionDecisions": {
+    "sourceIdentity": "PASS exact owner/workspace/session/mission/latest receipt and filtered verified unreversed fresh outcome IDs in bound context",
+    "modelPath": "PASS authenticated existing action route wires existing durable request reader; dedicated test uses acceptDurableChatRequest, completion and getChatRequest; no provider call",
+    "sixRecommendationsAndScore": "PASS strict bounded score, six recommendation enum values, rationale, exact evidence IDs and no extra authority fields",
+    "negativeCases": "PASS foreign/missing/pending/fallback/changed output, changed source/outcome reversal, expiry/revocation across await rejected without consuming authority",
+    "idempotencyHistory": "PASS concurrent exact replay single retained receipt; conflicting replay denied; disk reconstruction preserves proposals and owner projection; foreign owner projection rejected",
+    "continuousReview": "PASS existing bounded rotating scheduler distinguishes pending versus exact bound retained model; completed admitted immutable plan integrates with model consumer while finance pin and commerce history remain identical",
+    "ownerPresentation": "PASS actual React component with actual reconstructed consumer projection at390/1440; source-bound model score/rationale distinct from software check score, technical history optional, stale record historical, no arbitrary mutation controls",
+    "retirementReplacementCap": "PASS preserved independently accepted cap, governed retirement/outcome linkage and historical finance protections; files governing portfolio/cap/financial transition unchanged from frozen7b7b4ec4 and earlier scoped acceptance remains valid"
+  },
+  "preservedEvidence": [
+    "work8-portfolio.test.ts accepted retirement/replacement and immutable finance scope",
+    "work8-portfolio-concurrency.test.ts accepted transactional cap requirement17",
+    "requirement37 accepted multi-day replacement corpus",
+    "portfolio-health-independent-review.json",
+    "portfolio-scheduler-independent-review.json"
+  ],
+  "limitations": [
+    "Synthetic model replies test software contract; no genuine provider assessment or actual live operating outcomes claimed.",
+    "Native visual exam is actual component/projection, not repeated full cockpit HTTP authentication or personal owner acceptance.",
+    "Existing scheduled software observes due review; new paid model work remains separately authorised.",
+    "No merge, deployment, commerce activation, or whole Work8 certification.",
+    "This review covers portfolio delta only; unrelated intelligence source freshness change in backend ancestor requires its own review."
+  ],
+  "evidenceHashes": {
+    "actual-model-owner-projection.json": "f8cbd518dacb12a6b5746e196541e85f023d41167ea6acd21b9d3d677678976d",
+    "native-model-visual-receipt.json": "686bdd85db788bb04e64a9a3f39c9f15eb43fd3564b4f7fe869dff1d6a3df9af",
+    "model-mobile.png": "4348ecac60834684d636f312119e204796a16793340a7f4e07a771d8c1623b59",
+    "model-desktop.png": "482fc9b10a997694ab390f3417f6d4f9c4fd749bf726edc26b0c1a74c433e39f",
+    "portfolio-model.tap": "ce19d37f9f6313c565468fee037bbb67c391172f4e1ddc876f40fb8ae24b8d3e",
+    "portfolio-model-typecheck.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

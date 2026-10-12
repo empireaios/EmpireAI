@@ -1,0 +1,295 @@
+{
+  "at": "2026-10-12T05:29:21.031036+00:00",
+  "run": "/workspace/scratch/425cef48de17/evidence/docs/work8/certification-20261012/endurance-45-run3",
+  "originalTerminalStatus": "FAIL",
+  "status": "VERIFIED_WITH_RECORDED_FAILURES",
+  "counts": {
+    "admittedTasks": 9,
+    "tasksByStatus": {
+      "COMPLETE": 8,
+      "BLOCKED": 1
+    },
+    "canonicalReceipts": 154,
+    "orders": 8,
+    "financePlans": 8,
+    "financialEvents": 96,
+    "settlementEvents": 8
+  },
+  "financialTotalsMinorSGD": {
+    "SALE": 64000,
+    "COGS": 12800,
+    "FREIGHT": 4800,
+    "FEE": 10880,
+    "DUTY": 3200,
+    "DISCOUNT": 0,
+    "REFUND": 16000,
+    "SETTLEMENT": 37120,
+    "PAYOUT_HOLD": 37120,
+    "SUPPLIER_PAYMENT": 20800,
+    "PAYOUT_RELEASE": 37120,
+    "BANK_RECEIPT": 37120
+  },
+  "checks": {
+    "commerce_integrity": {
+      "pass": true,
+      "detail": "SQLite quick_check"
+    },
+    "nine_tasks_complete": {
+      "pass": false,
+      "detail": {
+        "COMPLETE": 8,
+        "BLOCKED": 1
+      }
+    },
+    "no_worker_backlog": {
+      "pass": false,
+      "detail": [
+        "elapsed-8"
+      ]
+    },
+    "canonical_hash_chains_and_cursors": {
+      "pass": true,
+      "detail": {
+        "receipts": 154
+      }
+    },
+    "unique_canonical_receipt_ids": {
+      "pass": true,
+      "detail": 154
+    },
+    "zero_external_effects_and_inference": {
+      "pass": true,
+      "detail": "Persisted synthetic receipts"
+    },
+    "shutdown_projection_equals_persisted_tasks": {
+      "pass": true,
+      "detail": "2026-10-12T05:23:58.024Z"
+    },
+    "unique_order_identities": {
+      "pass": true,
+      "detail": [
+        "order-fixture-0",
+        "order-fixture-1",
+        "order-fixture-2",
+        "order-fixture-3",
+        "order-fixture-4",
+        "order-fixture-5",
+        "order-fixture-6",
+        "order-fixture-7"
+      ]
+    },
+    "financial_event_digests_and_source_binding": {
+      "pass": true,
+      "detail": 96
+    },
+    "unique_financial_event_identities": {
+      "pass": true,
+      "detail": 96
+    },
+    "financial_conservation_existing_plans": {
+      "pass": true,
+      "detail": [
+        {
+          "mission": "acceptance:elapsed-0",
+          "events": 12,
+          "plannedEvents": 12,
+          "complete": true,
+          "conserved": true,
+          "bankMinor": 4640,
+          "supplierMinor": 2600,
+          "contributionMinor": 2040
+        },
+        {
+          "mission": "acceptance:elapsed-1",
+          "events": 12,
+          "plannedEvents": 12,
+          "complete": true,
+          "conserved": true,
+          "bankMinor": 4640,
+          "supplierMinor": 2600,
+          "contributionMinor": 2040
+        },
+        {
+          "mission": "acceptance:elapsed-2",
+          "events": 12,
+          "plannedEvents": 12,
+          "complete": true,
+          "conserved": true,
+          "bankMinor": 4640,
+          "supplierMinor": 2600,
+          "contributionMinor": 2040
+        },
+        {
+          "mission": "acceptance:elapsed-3",
+          "events": 12,
+          "plannedEvents": 12,
+          "complete": true,
+          "conserved": true,
+          "bankMinor": 4640,
+          "supplierMinor": 2600,
+          "contributionMinor": 2040
+        },
+        {
+          "mission": "acceptance:elapsed-4",
+          "events": 12,
+          "plannedEvents": 12,
+          "complete": true,
+          "conserved": true,
+          "bankMinor": 4640,
+          "supplierMinor": 2600,
+          "contributionMinor": 2040
+        },
+        {
+          "mission": "acceptance:elapsed-5",
+          "events": 12,
+          "plannedEvents": 12,
+          "complete": true,
+          "conserved": true,
+          "bankMinor": 4640,
+          "supplierMinor": 2600,
+          "contributionMinor": 2040
+        },
+        {
+          "mission": "acceptance:elapsed-6",
+          "events": 12,
+          "plannedEvents": 12,
+          "complete": true,
+          "conserved": true,
+          "bankMinor": 4640,
+          "supplierMinor": 2600,
+          "contributionMinor": 2040
+        },
+        {
+          "mission": "acceptance:elapsed-7",
+          "events": 12,
+          "plannedEvents": 12,
+          "complete": true,
+          "conserved": true,
+          "bankMinor": 4640,
+          "supplierMinor": 2600,
+          "contributionMinor": 2040
+        }
+      ]
+    },
+    "all_nine_settlements_complete": {
+      "pass": false,
+      "detail": 8
+    },
+    "elapsed_45_minutes": {
+      "pass": true,
+      "detail": {
+        "start": "2026-10-12T04:38:57.078Z",
+        "end": "2026-10-12T05:23:58.117Z",
+        "wallSeconds": 2701.039,
+        "monotonicMs": 2701038.507789
+      }
+    },
+    "observed_resource_limits": {
+      "pass": true,
+      "detail": {
+        "samples": 540,
+        "peakRss": 186286080,
+        "medianRssGrowth": 40820736,
+        "maxSampleGapMs": 5194.961776000215,
+        "medianSampleGapMs": 5014.406466000015,
+        "configuredSchedulerMs": 5000,
+        "limitsAreObservedNotPlatformEnforced": true
+      }
+    },
+    "provider_faults_truthfully_failed": {
+      "pass": true,
+      "detail": [
+        {
+          "fault": "429",
+          "status": "FAILED"
+        },
+        {
+          "fault": "malformed",
+          "status": "FAILED"
+        }
+      ]
+    },
+    "application_restart_record": {
+      "pass": true,
+      "detail": [
+        {
+          "wallAt": "2026-10-12T04:53:58.258Z",
+          "kind": "APPLICATION_PROCESS_RESTART_EQUALITY",
+          "beforePid": 18,
+          "afterPid": 31,
+          "digest": "b8c09f224d3a774e242e4598ef1f5115484e3de20311df55d47ccd23f0d66651"
+        }
+      ]
+    },
+    "assurance_integrity": {
+      "pass": true,
+      "detail": "SQLite quick_check"
+    },
+    "fresh_assurance_recovery": {
+      "pass": true,
+      "detail": [
+        {
+          "id": "rec_29717e53-75d3-4654-bd3f-974152929685",
+          "status": "VERIFIED",
+          "startedAt": 1791780537649,
+          "observedAt": 1791780537702,
+          "completedAt": 1791780537707
+        }
+      ]
+    },
+    "no_recovery_release_leases": {
+      "pass": true,
+      "detail": "Retained Assurance store"
+    },
+    "no_unresolved_acquisition_worker_backlog": {
+      "pass": true,
+      "detail": {
+        "jobStates": {
+          "FAILED": 2
+        },
+        "failedJobsAreExpectedProviderFaultOutcomes": true
+      }
+    },
+    "clean_recorded_shutdown": {
+      "pass": true,
+      "detail": [
+        {
+          "wallAt": "2026-10-12T05:23:58.111Z",
+          "kind": "CHILD_EXIT",
+          "code": 0,
+          "signal": null
+        }
+      ]
+    },
+    "exam_processes_absent_after_shutdown": {
+      "pass": true,
+      "detail": []
+    },
+    "original_evidence_bytes_unchanged": {
+      "pass": true,
+      "detail": "All original regular files except transient SQLite shm hash-equal before/after read-only verification"
+    }
+  },
+  "sourceHashes": {
+    "commerce.sqlite-wal": "33ad159c7db804127cbcf0f587bb7a453472b1415bc0dd3531e8dc6951ba02aa",
+    "commerce.sqlite": "c8825e1063a29b95e14273322f3647e87944e4dc5ec9e9e3dcf353e849841c4a",
+    "control.json": "d52130e5950d3f7af4f22449de0cbd9196d7df43d6b39d42ac48b893fc20da08",
+    "commerce.sqlite.initialized": "fb10295358d1d0db2598ba04daee68c4847ac49fda83acfabaa4d3ee526d6880",
+    "receipt.json": "f62c437ba06495602547e6eee19e5cbdfe60d3abac3ce508175e1fb3d9ec0bc8",
+    "observer-progress.json": "2748dee4d1647a41f7e41031904e1338602e50677220590cda16b426748ae82d",
+    "events.jsonl": "3d9343a36cdc5ee5bd9b345dfbbca45f71b5e90f8c4c96527b69739a420610d6",
+    "worker.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "worker-latest.json": "8abaa2d07e4bf2bf58f3c4bed7973fd67c177031dcd92262c2761faf29db3cdf",
+    "intelligence.sqlite": "3466d25e276841243bed4c0a24f6f80ff267895c5c9c1427508b7864cff42d98",
+    "assurance/assurance.sqlite": "650805b5b1d96365829a91d004230ba693161170ecf887b340a9dfdc2585900c",
+    "assurance/assurance.sqlite-wal": "831cf62a4ccadf283110f00019ec8d15a1e7afb27b8b0c0343d20d4cad005c04"
+  },
+  "verifierSha256": "7237b70770bd265428399f0edce9723f8f5bb4d14a1ab6c7f638dabe9624c82a",
+  "limits": [
+    "No independent human/governance certification",
+    "No full coupled F31 PASS",
+    "No platform-enforced resource limit claim",
+    "Older-version readback is separately attributed; not inferred here",
+    "No protected off-host failure-domain claim"
+  ]
+}

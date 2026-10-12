@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @empireai/backend@0.1.0 prebuild
+> node ../scripts/sync-pillow-governance.mjs
+
+[sync-pillow-governance] Bundle ready at /workspace/scratch/ed471dff75f8/closure-integration/backend/.pillow-governance-bundle
+
+> @empireai/backend@0.1.0 build
+> tsc -p tsconfig.json && node scripts/record-runtime-revision.cjs
+
+
+> @empireai/backend@0.1.0 postbuild
+> node -e "require('node:fs').copyFileSync('src/runtime/native-store-capture-lock.cjs','dist/runtime/native-store-capture-lock.cjs')"
+

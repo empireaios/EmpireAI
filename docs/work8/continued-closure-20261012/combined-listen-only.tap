@@ -1,0 +1,17 @@
+{"level":30,"time":1791819214235,"pid":12,"hostname":"7b7b0efbbb80","dbPath":"/tmp/inspector-inbox-qMDFvW/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1791819214239,"pid":12,"hostname":"7b7b0efbbb80","msg":"Auth routes registered"}
+{"level":30,"time":1791819217244,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819217270,"pid":12,"hostname":"7b7b0efbbb80","dbPath":"/tmp/inspector-inbox-qMDFvW/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1791819219420,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ independent domain and monitor failures reach authenticated inbox without primary control plane; ack isolation, restart and recovery (12788.703705ms)
+{"level":30,"time":1791819287328,"pid":38,"hostname":"7b7b0efbbb80","dbPath":"/tmp/joined-assurance-dWAMor/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1791819288391,"pid":38,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ registered joint Assurance cycle contains actual concurrent source finance supplier worker and observer faults (66771.940769ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85981.29269

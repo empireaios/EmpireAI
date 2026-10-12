@@ -1,0 +1,5 @@
+{"level":30,"time":1791815744902,"pid":46,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815744909,"pid":46,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"symlinkAfterExport":true}
+{"independentAliasOpener":{"kind":"refused","error":"Error: SQLJS_PROCESS_OWNERSHIP_UNAVAILABLE"}}
+{"level":30,"time":1791815745356,"pid":46,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}

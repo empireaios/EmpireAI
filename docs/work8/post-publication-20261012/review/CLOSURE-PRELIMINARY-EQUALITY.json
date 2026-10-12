@@ -1,0 +1,146 @@
+{
+  "source": "cf545e503dcda523320a2039859ae9df60574f98",
+  "tree": "d346e39432b2491c47aa1451ec0daf4b3ffeeeab",
+  "checks": [
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/brain/sqlite-database.ts",
+      "scopedBlob": "87c7801afe1be12ecedda40c1d7b6a85195c379a",
+      "integratedBlob": "87c7801afe1be12ecedda40c1d7b6a85195c379a",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/brain/sqlite-process-owner.ts",
+      "scopedBlob": "b57ec03195bd1b50cc58bd7017f737a98336eb44",
+      "integratedBlob": "b57ec03195bd1b50cc58bd7017f737a98336eb44",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/coordinated-sqlite-capture.test.ts",
+      "scopedBlob": "4641a8d3af2b9aed527738e77085bf3c49219dc8",
+      "integratedBlob": "4641a8d3af2b9aed527738e77085bf3c49219dc8",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/fixtures/sqljs-process-owner-child.ts",
+      "scopedBlob": "5ab25bb24b679295b7131162fbde748ae0279fcf",
+      "integratedBlob": "5ab25bb24b679295b7131162fbde748ae0279fcf",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/sqlite-persistence-boundary.test.ts",
+      "scopedBlob": "0044f19a49eb81161658491573d695ca8eed8149",
+      "integratedBlob": "0044f19a49eb81161658491573d695ca8eed8149",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/sqlite-process-owner.test.ts",
+      "scopedBlob": "75c9c57b5c032fbaf56e1ef621864b773e807824",
+      "integratedBlob": "75c9c57b5c032fbaf56e1ef621864b773e807824",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "docs/work8/recovery-operational-20261012/SCOPE.md",
+      "scopedBlob": "543f081a91f564e8d26ddc8f3e2141ce720eb7c9",
+      "integratedBlob": "543f081a91f564e8d26ddc8f3e2141ce720eb7c9",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/assurance-inspector-ingestion.ts",
+      "scopedBlob": "317f534518c000ca3a6c16f9f11aedfd0bfd4c35",
+      "integratedBlob": "317f534518c000ca3a6c16f9f11aedfd0bfd4c35",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/global-notification-service.ts",
+      "scopedBlob": "18b955733d8b82bfdea40136158ba986223e4673",
+      "integratedBlob": "18b955733d8b82bfdea40136158ba986223e4673",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/notification-ingestion-service.ts",
+      "scopedBlob": "89e66a40493d2a575a810d25aeab445920fc6fac",
+      "integratedBlob": "89e66a40493d2a575a810d25aeab445920fc6fac",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/validation/tests/work8-inspector-inbox.test.ts",
+      "scopedBlob": "0716d71c654989004c879f1d7c8474cd405f17e9",
+      "integratedBlob": "0716d71c654989004c879f1d7c8474cd405f17e9",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/BOUNDARY.md",
+      "scopedBlob": "a3e4045e6813a9ef8ca5188fa82d3fdf4b6e7020",
+      "integratedBlob": "a3e4045e6813a9ef8ca5188fa82d3fdf4b6e7020",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/tests.tap",
+      "scopedBlob": "3c7ceb3159f83117eac131b3ffa22571a2382532",
+      "integratedBlob": "3c7ceb3159f83117eac131b3ffa22571a2382532",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/typecheck.txt",
+      "scopedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "backend/src/intelligence/runtime.ts",
+      "scopedBlob": "e4dc9ebf80b0bbeab64e0cdd2f9ba9081b4a5956",
+      "integratedBlob": "e4dc9ebf80b0bbeab64e0cdd2f9ba9081b4a5956",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "backend/src/validation/tests/work8-scheduled-freshness.test.ts",
+      "scopedBlob": "2b7e41e38ee2119059a7e278c749b664231dd6e7",
+      "integratedBlob": "2b7e41e38ee2119059a7e278c749b664231dd6e7",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-after.tap",
+      "scopedBlob": "416fa99132488be0e61508505c6348c3aa3f2440",
+      "integratedBlob": "416fa99132488be0e61508505c6348c3aa3f2440",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-before.tap",
+      "scopedBlob": "4b24adac3d9cb589580edfb55cfcd214baa155fa",
+      "integratedBlob": "4b24adac3d9cb589580edfb55cfcd214baa155fa",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-typecheck.txt",
+      "scopedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/current-business-readback.json",
+      "scopedBlob": "e7fa7a1c933de00dadad77b6d5a821ede1b3d1aa",
+      "integratedBlob": "e7fa7a1c933de00dadad77b6d5a821ede1b3d1aa",
+      "equal": true
+    }
+  ]
+}

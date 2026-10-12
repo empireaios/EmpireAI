@@ -1,0 +1,66 @@
+{"level":30,"time":1791819060689,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819062047,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819062728,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819062764,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ independent SQL.js opener cannot retain stale RAM before or during capture; close transfers ownership (2140.887177ms)
+{"level":30,"time":1791819063412,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ process interruption releases kernel ownership and committed records survive restart (653.729393ms)
+{"level":30,"time":1791819063421,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819063429,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ hard-link database aliases and replaced ownership inode fail closed (16.101909ms)
+{"level":30,"time":1791819063430,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819063434,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819064072,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ recovery-owned read-only SQL.js view excludes independent late flush owners (638.185991ms)
+{"level":30,"time":1791819064091,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819065200,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ symlink opener exports to canonical owner path and never splits aliases (1131.725482ms)
+{"level":30,"time":1791819065205,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791819065208,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ ownership loss during snapshot refuses release and retains the write fence (7.840296ms)
+✖ independent domain and monitor failures reach authenticated inbox without primary control plane; ack isolation, restart and recovery (4.555134ms)
+✔ all six saved portfolio proposals bind outcomes and retain history without commerce or finance writes (504.922831ms)
+✔ foreign pending altered unsupported and evidence-mismatched saved responses refuse without consuming authority (550.363407ms)
+✔ expiry revocation source mutation and outcome reversal during await invalidate portfolio consumption (196.971689ms)
+✔ saved portfolio proposal and exact owner projection survive database reconstruction (82.259741ms)
+✔ consumer reads the canonical saved Pillow request path without a provider call (43.914525ms)
+✔ admitted immutable worker plan connects scheduled pending review to retained Pillow response with finance pins intact (391.243938ms)
+✔ compounded backlog and missed schedule alert closes only after actual bounded worker drain and rescheduled admission (767.053397ms)
+✔ expired running lease is escalated without replay; corrupt schedule fails closed (7.984157ms)
+✔ scheduled admission cannot use pre-admission near-expiry cache while ordinary reads still can (559.588585ms)
+✔ scheduled refresh failure/backoff remains truthful rather than completing from old cache (349.752042ms)
+✔ scheduled refresh retains provider quota and interrupted jobs never automatically replay (204.813341ms)
+✔ delayed scheduled job may reuse a genuinely newer observation without another request (213.446346ms)
+✔ late admitted slot remains degraded across reopen until genuinely timely later admission; failed admission cannot clear it (66.09777ms)
+✔ persisted scheduler metadata corruption cannot clear a late admission, while original legacy schedules remain readable (38.489314ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15997.472076
+
+✖ failing tests:
+
+test at src/validation/tests/work8-inspector-inbox.test.ts:1:452
+✖ independent domain and monitor failures reach authenticated inbox without primary control plane; ack isolation, restart and recovery (4.555134ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'DENIED'
+  - 'CONNECT_DENIED_LISTEN_ALLOWED'
+  
+      at TestContext.<anonymous> (/workspace/scratch/dc845312c8f5/integration/backend/src/validation/tests/work8-inspector-inbox.test.ts:7:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'DENIED',
+    expected: 'CONNECT_DENIED_LISTEN_ALLOWED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

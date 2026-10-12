@@ -1,0 +1,53 @@
+{"level":30,"time":1791815799795,"pid":12,"hostname":"7b7b0efbbb80","redisUrl":"redis://127.0.0.1:6379","clientKind":"probe","msg":"Creating ioredis client"}
+{"level":50,"time":1791815799803,"pid":12,"hostname":"7b7b0efbbb80","host":"127.0.0.1","errorMessage":"connect EPERM 127.0.0.1:6379 - Local (undefined:undefined)","errorName":"Error","errorStack":"Error: connect EPERM 127.0.0.1:6379 - Local (undefined:undefined)\n    at internalConnect (node:net:1315:16)\n    at defaultTriggerAsyncIdScope (node:internal/async_hooks:472:18)\n    at node:net:1572:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)","err":{"type":"Error","message":"connect EPERM 127.0.0.1:6379 - Local (undefined:undefined)","stack":"Error: connect EPERM 127.0.0.1:6379 - Local (undefined:undefined)\n    at internalConnect (node:net:1315:16)\n    at defaultTriggerAsyncIdScope (node:internal/async_hooks:472:18)\n    at node:net:1572:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)","errno":-1,"code":"EPERM","syscall":"connect","address":"127.0.0.1","port":6379},"msg":"Redis connection failed"}
+{"level":40,"time":1791815799804,"pid":12,"hostname":"7b7b0efbbb80","msg":"Redis unavailable — running in local degraded mode (queue/events/sessions in-memory). Start Redis with: redis-server, Upstash REDIS_URL, or npm run dev:redis (optional Docker)"}
+{"level":30,"time":1791815799971,"pid":12,"hostname":"7b7b0efbbb80","dbPath":"/tmp/app-local-capture-kLcEVe/brain.db","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1791815800017,"pid":12,"hostname":"7b7b0efbbb80","msg":"Event bus started (local in-memory mode)"}
+{"level":30,"time":1791815800017,"pid":12,"hostname":"7b7b0efbbb80","agents":13,"tools":944,"llmProviders":[],"redisMode":"degraded","msg":"EmpireAI Brain initialized"}
+{"level":30,"time":1791815800428,"pid":12,"hostname":"7b7b0efbbb80","email":"founder@empireai.com","role":"founder","msg":"Seeded bootstrap account"}
+{"level":30,"time":1791815800822,"pid":12,"hostname":"7b7b0efbbb80","email":"admin@empireai.com","role":"admin","msg":"Seeded bootstrap account"}
+{"level":30,"time":1791815800855,"pid":12,"hostname":"7b7b0efbbb80","workspaceId":"ws_empire_1","companies":4,"msg":"Domain data seeded"}
+{"level":30,"time":1791815800859,"pid":12,"hostname":"7b7b0efbbb80","workspaceId":"ws_empire_1","companyId":"co-grand-king","account":"Grand King","msg":"Grand King account seeded"}
+{"level":30,"time":1791815800915,"pid":12,"hostname":"7b7b0efbbb80","msg":"Event stream hub started"}
+{"level":30,"time":1791815801012,"pid":12,"hostname":"7b7b0efbbb80","msg":"Auth routes registered"}
+{"level":30,"time":1791815801107,"pid":12,"hostname":"7b7b0efbbb80","workspaceId":"ws_empire_1","seeded":47,"total":47,"birthCreated":38,"msg":"Institutional memory bootstrap complete"}
+{"level":30,"time":1791815801107,"pid":12,"hostname":"7b7b0efbbb80","seeded":{"seeded":47,"keys":["gk.directive.first_dollar_dropshipping","gk.directive.pillow_initiates_commerce","gk.directive.cursor_minimization","gk.directive.no_publish_without_approval","commerce.lesson.accepted_ne_buyable","commerce.lesson.anker_brand_gate","commerce.lesson.preflight_restrictions_mandatory","ops.lesson.eos_session_storm","collab.memory.ready","birth.lesson.estimate_ne_realised","birth.lesson.cooccurrence_ne_identity","birth.lesson.unknown_stays_local","birth.lesson.hypothetical_ne_current","birth.lesson.synthetic_isolation","birth.lesson.current_turn_intent","birth.lesson.partial_gate_ne_full_unlock","birth.lesson.eligibility_ne_preference","birth.lesson.observation_ne_causation","birth.lesson.canonical_proposition_authority","birth.lesson.compound_claim_all_components","birth.lesson.auth_ne_capability","birth.lesson.capability_ne_execution","birth.lesson.newer_owner_wins","birth.lesson.accepted_request_server_owned","birth.lesson.cumulative_exposure_propagates","birth.lesson.sibling_identity","birth.lesson.no_lifecycle_residue_on_evidence","birth.lesson.first_accepted_must_complete","birth.lesson.normal_response_no_recovery_residue","birth.lesson.certification_grades_visible_surface","birth.lesson.first_request_vs_retry","birth.lesson.http_success_ne_semantic_success","birth.lesson.later_outcome_ne_nonoccurrence","birth.lesson.explicit_claim_set_complete","birth.lesson.memory_transfers_principle_not_surface","birth.lesson.exact_section_contract","birth.lesson.middle_claim_cannot_drop","birth.lesson.cross_section_conclusion_reuse","birth.lesson.lesson_principle_not_dump","birth.lesson.source_domain_surface_purity","birth.lesson.registry_outranks_cooccurrence","birth.lesson.measured_subset_not_full_population","birth.lesson.section_headings_are_not_claims","birth.lesson.no_duplicate_post_answer_synthesis","birth.lesson.evidence_ne_authority_route","birth.lesson.temporal_supersession","birth.doctrine.grand_king_ultimate"]},"msg":"Institutional memory bootstrap seeded"}
+{"level":30,"time":1791815801107,"pid":12,"hostname":"7b7b0efbbb80","msg":"Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)"}
+{"level":30,"time":1791815801132,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801138,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801144,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801161,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801166,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801415,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801432,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801436,"pid":12,"hostname":"7b7b0efbbb80","msg":"EmpireAI Brain shutdown complete"}
+✔ application local drain saves both RAM-backed SQL handles before caller readback (1655.812206ms)
+{"level":30,"time":1791815801439,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801461,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801462,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801471,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801476,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801484,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ both open SQL.js handles save RAM and refuse writes through one verified capture (37.860452ms)
+{"level":30,"time":1791815801485,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801493,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801496,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801529,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ Shadow CEO writes are fenced before the first Brain save yields (44.376847ms)
+{"level":30,"time":1791815801530,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801534,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801545,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ capture refuses a second SQL.js handle and blocks a new alias until release (17.916482ms)
+{"level":30,"time":1791815801547,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801548,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801553,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815801556,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ a hard-link alias of a persisted Brain file cannot evade capture admission (8.679285ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40545.31574

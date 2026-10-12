@@ -1,0 +1,28 @@
+{"level":30,"time":1791815838708,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815843550,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815844360,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815844412,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ independent SQL.js opener cannot retain stale RAM before or during capture; close transfers ownership (5703.02952ms)
+{"level":30,"time":1791815845225,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ process interruption releases kernel ownership and committed records survive restart (850.560504ms)
+{"level":30,"time":1791815845246,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815845255,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ hard-link database aliases and replaced ownership inode fail closed (27.194892ms)
+{"level":30,"time":1791815845256,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815845270,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815847716,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ recovery-owned read-only SQL.js view excludes independent late flush owners (2450.209286ms)
+{"level":30,"time":1791815847724,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815851736,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ symlink opener exports to canonical owner path and never splits aliases (4030.309425ms)
+{"level":30,"time":1791815851756,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815851762,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ ownership loss during snapshot refuses release and retains the write fence (22.837818ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14543.19809

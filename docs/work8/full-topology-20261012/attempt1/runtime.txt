@@ -1,0 +1,9 @@
+{"level":30,"time":1791816448641,"pid":54,"hostname":"7b7b0efbbb80","redisUrl":"redis://127.0.0.1:42623","clientKind":"persistent","msg":"Creating ioredis client"}
+{"level":30,"time":1791816448644,"pid":54,"hostname":"7b7b0efbbb80","msg":"Tier-0 primary binds shared Redis; unavailable commands fail closed while connection recovers"}
+{"level":30,"time":1791816448802,"pid":54,"hostname":"7b7b0efbbb80","port":39593,"workerPort":36505,"msg":"Tier-0 isolated primary listening (auth/health independent of sql.js worker)"}
+{"level":30,"time":1791816448817,"pid":54,"hostname":"7b7b0efbbb80","workerPort":36505,"pid":80,"msg":"Tier-0 primary spawned Brain worker"}
+{"level":40,"time":1791816449190,"pid":80,"hostname":"7b7b0efbbb80","freedBytes":0,"deletedCount":0,"keptCorrupt":null,"beforeBytes":851492,"afterBytes":851492,"msg":"Volume reclaim completed (temps/old quarantines only)"}
+{"level":40,"time":1791816449262,"pid":54,"hostname":"7b7b0efbbb80","reason":"worker_unavailable","url":"/api/owner/commerce/twin/recovery-inventory","msg":"Tier-0 primary proxy to worker failed"}
+{"level":30,"time":1791816456921,"pid":80,"hostname":"7b7b0efbbb80","redisUrl":"redis://127.0.0.1:42623","clientKind":"probe","msg":"Creating ioredis client"}
+{"level":30,"time":1791816456955,"pid":80,"hostname":"7b7b0efbbb80","redisUrl":"redis://127.0.0.1:42623","clientKind":"persistent","msg":"Creating ioredis client"}
+{"level":30,"time":1791816456964,"pid":80,"hostname":"7b7b0efbbb80","redisUrl":"redis://127.0.0.1:42623","clientKind":"bullmq","msg":"Creating ioredis client"}

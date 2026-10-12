@@ -1,0 +1,37 @@
+{
+  "candidate": "ee7fea92617a4e438e18c033e630b371cb074d81",
+  "tree": "38b30765e75c17317f34613ec8b11a20830c91bf",
+  "verdict": "ACCEPT_BOUNDED_SOFTWARE_EXAMINATION_ONLY",
+  "node": "v24.19.0",
+  "hostedNode22": "PENDING",
+  "sealedFiles": "All four candidate SEAL hashes independently matched",
+  "positive": {
+    "runId": "joined-assurance-7g2c7B",
+    "detectMs": 25593.301455999997,
+    "testMs": 69102.746651,
+    "deadlineMs": 60000,
+    "timerMs": 30000,
+    "observerRestarts": 1,
+    "inferenceCalls": 0,
+    "externalEffects": 0
+  },
+  "negative": {
+    "mutation": "Replace requested financial incident ID with simultaneous semantic incident ID in fresh INCIDENT_OBSERVED lookup; retain fresh-time filter and all subsequent identity assertions",
+    "result": "EXPECTED_REJECTION",
+    "reason": "new incident observation required, old incident alone is insufficient",
+    "testMs": 31843.519188
+  },
+  "findings": [
+    "Fresh finance audit event seq24 binds exact financial incident, probe, mission acceptance:finance-task and post-injection corruption observation; no stale incident-only pass.",
+    "Actual Fastify onReady uses unchanged production capture-aware 30000ms cycle; actual inspector child termination/restart observed. Manual baseline cycle and virtual finance preparation are disclosed. No intelligence/commerce production loop installed.",
+    "Eligible checkpoint cursor repaired exactly once without rewriting committed history. Corrupt finance remains UNRESOLVED after semantic correction; unknown supplier remains unhealthy and history stable; source evidence digest unchanged.",
+    "Owner notification sync confirms exact incident IDs and independent inspector source. This is authenticated owner-pull escalation, not independent external push.",
+    "Full original F27 outside-tested-process-tree independent oracle and protected boundary prerequisites not established by this same-process examiner. Genuine-source acquisition/assessment, complete coupled runtime monitoring and F02/F29 remain separate. No full #26/#34 closure."
+  ],
+  "files": {
+    "f27-independent-receipt.json": "970d957cfc23659311c97a7cc8f453b040e3cb2cfa1df7c8b42e7b6a9e8043bc",
+    "f27-independent.tap": "27fa199cb4a7d80bfb69997094086f308a3f25298fdccd1846db0459f99c83e8",
+    "f27-negative.tap": "fbb00c86694be1da6a298a194a7ec9eee1857aca62cd16d0482375d13ebac5ad",
+    "f27-negative-oracle.test.ts": "c9ac6143077371f35e1d6fac5d333b6188c6212aa7a4ba7c25074193e91e480b"
+  }
+}

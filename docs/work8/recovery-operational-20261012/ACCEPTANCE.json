@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+  "sourceTree": "021ce53403e114a61cedcc90539e6eaba03b8c45",
+  "decision": "PASS_SCOPED_COOPERATING_SQLJS_PROCESS_OWNERSHIP",
+  "typecheck": {
+    "command": "node --max-old-space-size=6144 node_modules/typescript/bin/tsc -p tsconfig.json --noEmit",
+    "exitCode": 0,
+    "diagnostics": 0,
+    "earlierAttempt": "Default2GB heap ran out of memory; not a successful check"
+  },
+  "tests": {
+    "author": "19 persistence/shutdown batch +5coordinated batch +6final-owner batch overlap; do not sum as distinct tests",
+    "independent": "13 distinct assertions documented in INDEPENDENT-REVIEW.md"
+  },
+  "originalRequirements": {
+    "33": "PENDING",
+    "39": "PENDING"
+  },
+  "remaining": [
+    "Uncooperative/old SQL.js and independent Redis writers need established runtime isolation",
+    "Complete coherent operational restore, pending work continuation and full business/money/authority replay",
+    "Protected independently authenticated off-host custody"
+  ],
+  "nextExecutableBoundary": "Reuse existing app.captureWork8Recovery composition and work8-replay-capture-child; establish isolation and complete guarded pending-work continuation before any operational restore capability is exposed. Do not toggle bootAllowed or completeLiveState solely on this patch.",
+  "published": false
+}

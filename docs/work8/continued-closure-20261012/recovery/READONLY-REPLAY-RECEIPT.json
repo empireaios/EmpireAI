@@ -1,0 +1,33 @@
+{
+  "integratedWriterClasses": [
+    "http",
+    "native-background",
+    "presale-timer",
+    "executive-timer"
+  ],
+  "sourceSha": "466c09896c21ef2cd8beceddf19a732aeda3aab4",
+  "captureDigest": "c79b0ed27e6e6c47acfa88b86073c39b76d2a7a798dd792430ab47d4a333d3c4",
+  "stores": 13,
+  "sourceQuarantined": true,
+  "restoredQueuePaused": true,
+  "restoredProducerRefused": true,
+  "completedReceiptByteEquivalent": true,
+  "pendingContinuedOnce": true,
+  "pendingReconciled": true,
+  "committedOutputEvents": 2,
+  "duplicateReadSuppressed": true,
+  "changedDispatchRefused": true,
+  "birth": "NOT_BORN",
+  "commerce": "LOCKED",
+  "fullRuntimeRestored": false,
+  "protectedCustody": false,
+  "inspectionOwnerBoundToManifest": true,
+  "redisRestartFencePreserved": true,
+  "distinctReplacementInstance": true,
+  "sourceRedisStoppedBeforeRestore": true,
+  "completeSurvivingRedisInventoryValueEquivalent": true,
+  "passwordAuthenticationRequired": true,
+  "aofOnlyCrashRecovery": true,
+  "defaultAndStaleAndWrongManifestAndSourceAndNonemptyRefused": true,
+  "remaining": "Inspection ownership transferred; queue transport remains fenced. No operational release or full-runtime restore claimed"
+}

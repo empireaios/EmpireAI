@@ -1,0 +1,12 @@
+✔ known score does not hide unknown capital; evidence is optional and no mutation controls exist (10.598741ms)
+✔ wrong mission or stale record binding cannot show healthy advice (1.421559ms)
+✔ missing outcomes remain unknown and unsupported classification is rejected (3.524973ms)
+✔ saved Pillow proposal is separate from software summary and historical binding cannot claim current recommendation (6.410498ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 266.798518

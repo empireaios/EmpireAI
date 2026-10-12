@@ -1,0 +1,18 @@
+{
+  "status": "PASS_ACTUAL_SUPERVISED_TOPOLOGY_SCOPED_CAPTURE",
+  "sourceCommit": "272fae796af47003b5b1cb4105cbbc76f16416b0",
+  "compiledEntrySha256": "bb3848bca608ed2620858eb7e5b253ad3f1055fb21853c5ae9138a9813a69a82",
+  "stores": 13,
+  "actualPrimary": true,
+  "actualWorker": true,
+  "actualObservers": true,
+  "redis": true,
+  "authenticatedPrimary": true,
+  "watchdogCaptured": true,
+  "bootAllowed": false,
+  "fullRuntimeRestored": false,
+  "providerEffects": 0,
+  "paidInference": 0,
+  "externalCustody": false,
+  "root": "/tmp/full-topology-dvnVlW"
+}

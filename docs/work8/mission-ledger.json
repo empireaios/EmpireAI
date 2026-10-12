@@ -3,8 +3,8 @@
   "missionStatus": "IN_PROGRESS",
   "decision": "NO_GO",
   "counts": {
-    "PASS": 29,
-    "PENDING": 12,
+    "PASS": 30,
+    "PENDING": 11,
     "BLOCKED": 4
   },
   "requirementDecisions": [
@@ -78,6 +78,18 @@
       "receipt": "interrupted-recovery-20261012/review/REQUIREMENT-25-DECISION.md",
       "source": "97f44e7ce156cb622b5a680cb69cd6bf4b5d04fa",
       "scope": "Original section22 isolated software; actual historical224 and financial attestation separate."
+    },
+    {
+      "item": 18,
+      "status": "PASS",
+      "scope": "Requirement18 portfolio review retirement/replacement software acceptance; not genuine business acceptance or whole Work8",
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "tree": "a2ae3d46aa94e01395fd6081d99a238147d306bc",
+      "frontend": "e7fd599a447a4e1b273363d7f664507194cd2ba1",
+      "frontendTree": "f077bb0e7008663f64dac4e01c4e218e67e4222e",
+      "receipt": "post-publication-20261012/review/PORTFOLIO18-INDEPENDENT-ACCEPTANCE.json",
+      "independentVerifier": "/root/ux13",
+      "publication": "local successor; fresh publication authority required"
     }
   ],
   "preservedPasses": [
@@ -141,8 +153,8 @@
     ]
   },
   "amendmentCounts": {
-    "PASS": 7,
-    "PENDING": 12
+    "PASS": 8,
+    "PENDING": 11
   },
   "authoritativeRegister": "revised-review-20261012/FIXED-REGISTERS.json",
   "sourceCandidate": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
@@ -167,6 +179,16 @@
       "status": "PASS",
       "receipt": "integrated-acceptance-20261012/review/cost17/SUCCESSOR-ACCEPTANCE.md",
       "scope": "Preserve full Work8 software acceptance with authenticated governed discovery and truthful unavailable access; continuous live billing remains Work9, not activated."
+    },
+    {
+      "item": 18,
+      "status": "PASS",
+      "scope": "Equivalent isolated runtime software and minimal proposal, not always-on service or protected custody",
+      "source": "272fae796af47003b5b1cb4105cbbc76f16416b0",
+      "runtimeEquivalent": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "harnessAndClarification": "d2fbce46f849ea3876c1622960d44ca38b90a134",
+      "receipt": "post-publication-20261012/review/A18-INDEPENDENT-DECISION.md",
+      "independentVerifier": "/root/observer_review"
     }
   ],
   "sourceCandidateReview": "APPROVE_EXACT_SOURCE_FOR_BOUNDED_PUBLICATION_REQUEST"

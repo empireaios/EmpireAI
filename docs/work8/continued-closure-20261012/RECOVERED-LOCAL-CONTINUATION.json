@@ -1,0 +1,51 @@
+{
+  "checkpointTime": "2026-10-12T15:06:02.853845+00:00",
+  "publication": "PUBLICATION.json",
+  "decision": "NO_GO",
+  "sourceWorkspace": "/workspace/scratch/ed471dff75f8/closure-integration",
+  "sourceHead": "8277718e03a0e5d9b612dbe1240bb4a005e56856",
+  "evidenceWorkspace": "/workspace/scratch/ed471dff75f8/closure-evidence",
+  "acceptedCounts": {
+    "original": {
+      "PASS": 30,
+      "PENDING": 11,
+      "BLOCKED": 4
+    },
+    "amendments": {
+      "PASS": 8,
+      "PENDING": 11
+    }
+  },
+  "active": {
+    "observer": "bounded replacement-instance Redis inspection restore; scoped original guarded restoration remains failclosed",
+    "ux13": "actual30s scheduler missed-slot durable diagnosis; F29 external oracle assessment",
+    "cost17": "joined F27 oracle corrections: installed lifecycle, post-injection finance corruption, accurate bounded repairs",
+    "observer_review": "independent changed-boundary verification of corrected joined fault and replacement Redis candidates"
+  },
+  "independentScopedAcceptances": [
+    "SQLjs ownership351ba54c",
+    "inspector inboxc15fa78d",
+    "scheduled acquisition8b3d286c"
+  ],
+  "nextSourcePublication": "requires exact final independent review and fresh owner authority",
+  "prohibited": [
+    "merge",
+    "deployment",
+    "paid inference",
+    "new infrastructure",
+    "external communication",
+    "Work9 activation"
+  ],
+  "preserved": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "safeguards": 15,
+    "deniedRoutes": 7
+  },
+  "newClosures": [
+    18
+  ],
+  "newAmendmentClosures": [
+    18
+  ]
+}

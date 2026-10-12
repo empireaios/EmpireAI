@@ -1,0 +1,30 @@
+{
+  "parent": "3a248c61b72b90b8bf84bfa9feac734be3fe50ba",
+  "scope": "presence-based metadata integrity successor; focused contracts only",
+  "files": {
+    "backend/src/assurance/work8-queue-probe.ts": {
+      "sha256": "108f6486c83102c5377e8aea04cc1fb38905d6b2198ff4a2fc00758f01327c84",
+      "gitBlob": "7742b046547a213db1a4eadc112cdfe927d6959e"
+    },
+    "backend/src/validation/tests/work8-scheduler-misfire.test.ts": {
+      "sha256": "5e4c4e78af8b08bd08520dcfeca1a112f6b3791268b0d57f5154abf8aca108d7",
+      "gitBlob": "8c2e1605a58427a797b1279ac6c22ca4806e107a"
+    },
+    "docs/work8/scheduler-metadata-successor-20261013/contracts.tap": {
+      "sha256": "0299afc4b63309e6efa4db8983b5b5fb079a5d16d344958a2dfb6ab025bcd8a7",
+      "gitBlob": "9031bd3d8efa17f654eee98a78a789dfbb5410ae"
+    },
+    "docs/work8/scheduler-metadata-successor-20261013/BOUNDARY.md": {
+      "sha256": "256a9b4c397deb22d2680fa770dfe2b1108b1660b0d5f8ceb6f8323eb0152023",
+      "gitBlob": "d4f1731d0f9facd3586b26c08531272d09b2937c"
+    },
+    "docs/work8/scheduler-metadata-successor-20261013/f02-independent-review.json": {
+      "sha256": "d8ee0f01abcd725b898f49571fd62e2ac84ad642fe53f3425178bde445bf1f2f",
+      "gitBlob": "2be948269de98d0d032c6478404c42f2015194f0"
+    },
+    "docs/work8/scheduler-metadata-successor-20261013/f02-negative-results.json": {
+      "sha256": "99c7aade423d2c7827f286a3f10aa50cb12defd30375b59cf5b219c96b01414d",
+      "gitBlob": "5c59d2d33ee6b2198ac4aaebeea8f573bbc1d515"
+    }
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "decision": "ACCEPT_SCOPED_INHERITED_INTEGRATION_STATIC_REVIEW",
+  "reviewer": "acceptance agent independent of implementation authors",
+  "source": "8277718e03a0e5d9b612dbe1240bb4a005e56856",
+  "tree": "ca3b32d3278eb297a7b4000fb76e07da4ed879b7",
+  "base": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+  "blobEquality": [
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/brain/sqlite-database.ts",
+      "scopedBlob": "87c7801afe1be12ecedda40c1d7b6a85195c379a",
+      "integratedBlob": "87c7801afe1be12ecedda40c1d7b6a85195c379a",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/brain/sqlite-process-owner.ts",
+      "scopedBlob": "b57ec03195bd1b50cc58bd7017f737a98336eb44",
+      "integratedBlob": "b57ec03195bd1b50cc58bd7017f737a98336eb44",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/coordinated-sqlite-capture.test.ts",
+      "scopedBlob": "4641a8d3af2b9aed527738e77085bf3c49219dc8",
+      "integratedBlob": "4641a8d3af2b9aed527738e77085bf3c49219dc8",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/fixtures/sqljs-process-owner-child.ts",
+      "scopedBlob": "5ab25bb24b679295b7131162fbde748ae0279fcf",
+      "integratedBlob": "5ab25bb24b679295b7131162fbde748ae0279fcf",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/sqlite-persistence-boundary.test.ts",
+      "scopedBlob": "0044f19a49eb81161658491573d695ca8eed8149",
+      "integratedBlob": "0044f19a49eb81161658491573d695ca8eed8149",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/sqlite-process-owner.test.ts",
+      "scopedBlob": "75c9c57b5c032fbaf56e1ef621864b773e807824",
+      "integratedBlob": "75c9c57b5c032fbaf56e1ef621864b773e807824",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "docs/work8/recovery-operational-20261012/SCOPE.md",
+      "scopedBlob": "543f081a91f564e8d26ddc8f3e2141ce720eb7c9",
+      "integratedBlob": "543f081a91f564e8d26ddc8f3e2141ce720eb7c9",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/assurance-inspector-ingestion.ts",
+      "scopedBlob": "317f534518c000ca3a6c16f9f11aedfd0bfd4c35",
+      "integratedBlob": "317f534518c000ca3a6c16f9f11aedfd0bfd4c35",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/global-notification-service.ts",
+      "scopedBlob": "18b955733d8b82bfdea40136158ba986223e4673",
+      "integratedBlob": "18b955733d8b82bfdea40136158ba986223e4673",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/notification-ingestion-service.ts",
+      "scopedBlob": "89e66a40493d2a575a810d25aeab445920fc6fac",
+      "integratedBlob": "89e66a40493d2a575a810d25aeab445920fc6fac",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/validation/tests/work8-inspector-inbox.test.ts",
+      "scopedBlob": "0716d71c654989004c879f1d7c8474cd405f17e9",
+      "integratedBlob": "0716d71c654989004c879f1d7c8474cd405f17e9",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/BOUNDARY.md",
+      "scopedBlob": "a3e4045e6813a9ef8ca5188fa82d3fdf4b6e7020",
+      "integratedBlob": "a3e4045e6813a9ef8ca5188fa82d3fdf4b6e7020",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/tests.tap",
+      "scopedBlob": "3c7ceb3159f83117eac131b3ffa22571a2382532",
+      "integratedBlob": "3c7ceb3159f83117eac131b3ffa22571a2382532",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/typecheck.txt",
+      "scopedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "backend/src/intelligence/runtime.ts",
+      "scopedBlob": "e4dc9ebf80b0bbeab64e0cdd2f9ba9081b4a5956",
+      "integratedBlob": "e4dc9ebf80b0bbeab64e0cdd2f9ba9081b4a5956",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "backend/src/validation/tests/work8-scheduled-freshness.test.ts",
+      "scopedBlob": "2b7e41e38ee2119059a7e278c749b664231dd6e7",
+      "integratedBlob": "2b7e41e38ee2119059a7e278c749b664231dd6e7",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-after.tap",
+      "scopedBlob": "416fa99132488be0e61508505c6348c3aa3f2440",
+      "integratedBlob": "416fa99132488be0e61508505c6348c3aa3f2440",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-before.tap",
+      "scopedBlob": "4b24adac3d9cb589580edfb55cfcd214baa155fa",
+      "integratedBlob": "4b24adac3d9cb589580edfb55cfcd214baa155fa",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-typecheck.txt",
+      "scopedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/current-business-readback.json",
+      "scopedBlob": "e7fa7a1c933de00dadad77b6d5a821ede1b3d1aa",
+      "integratedBlob": "e7fa7a1c933de00dadad77b6d5a821ede1b3d1aa",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "scopedBlob": "7e72006d05cc1e5e0b745756ba2923f6562a4b90",
+      "integratedBlob": "7e72006d05cc1e5e0b745756ba2923f6562a4b90",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-portfolio-model.ts",
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "scopedBlob": "228d3311471b31673b77196f83f5c91f1064c7f4",
+      "integratedBlob": "228d3311471b31673b77196f83f5c91f1064c7f4",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts",
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "scopedBlob": "d7195efab70e5824abfe7f06b7fbe04710933b50",
+      "integratedBlob": "d7195efab70e5824abfe7f06b7fbe04710933b50",
+      "equal": true
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-twin-runtime.ts",
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "scopedBlob": "95875fb081a9b32580e0f9dc0fb45eaf3895307c",
+      "integratedBlob": "95875fb081a9b32580e0f9dc0fb45eaf3895307c",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-portfolio-model.test.ts",
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "scopedBlob": "344c88455bedc386f7271eb25cedf8b99b0571f8",
+      "integratedBlob": "344c88455bedc386f7271eb25cedf8b99b0571f8",
+      "equal": true
+    }
+  ],
+  "substantiveReview": [
+    "SQL.js canonicalizes actual IO pathname to locked identity; adjacent native exclusive lock survives SQL.js rename, is asserted on writes and capture release, constructor exception releases, failed final flush retains ownership. New inbox reads independent native Assurance database, so does not introduce a second SQL.js mutable owner. Current-code cooperation boundary remains explicit.",
+    "Independent inbox is connected through existing authenticated sync, bounds and validates read-only canonical source, uses scoped durable notification store, preserves source and notice acknowledgement separation. Reports system-workspace operator-visible pull coverage, never independent push or current monitor health.",
+    "Scheduled acquisition requires post-admission observation only for server SCHEDULER requester. Other requester caching remains unchanged. Current ReadAcquirer and Store.cache are not overridden. Failure/backoff/quota continue through original path.",
+    "Portfolio route uses existing retained request reader and source-bound context. Consumer rechecks context and authority after awaited read within store transaction, validates identity/input/response/evidence and temporal bounds, idempotently appends advisory preparation only. It does not call model or mutate commerce/finance lineage. Scheduler recognizes exact retained receipt/outcome set; frontend review remains distinct from software deterministic health.",
+    "Workflow delta retains review-only frontend restoration chain; exact portfolio bundle blob, commit and tree are pinned. No deployment branch mutation introduced. Actual prior independent shell restoration receipt read.",
+    "A18 harness actually starts supervised primary/worker/observers/Redis and authenticates captures; asserts thirteen stores, false operational restore flags, pending-work retention and shared session after cold restart. Harness uses labelled fixtures, no frontend execution. Corrected frontend field is metadata only."
+  ],
+  "frontendBundle": {
+    "path": "/workspace/scratch/ed471dff75f8/closure-evidence/docs/work8/post-publication-20261012/portfolio18/frontend-858b-to-e7fd.bundle",
+    "gitBlob": "c1deb0b80b2219b5248dc4cf674050ffa1e98a57",
+    "commit": "e7fd599a447a4e1b273363d7f664507194cd2ba1",
+    "tree": "f077bb0e7008663f64dac4e01c4e218e67e4222e"
+  },
+  "blockingDefectsFound": [],
+  "conditions": [
+    "Publish independently approved matching evidence containing new frontend bundle before source CI is expected to retrieve it; old published evidence alone is insufficient.",
+    "Root must run one final combined build/smoke after later recovery/F27/F02 changes; no final-head aggregate runtime proof is asserted by this inherited review.",
+    "A18 runtime examination used earlier SQL.js topology source; accept its scoped inherited topology evidence only, not execution of the latest combined inbox/cache/portfolio binary."
+  ],
+  "exclusions": [
+    "Later CI78b2 or any subsequent source changes are outside this pinned review.",
+    "No repeated exhaustive tests, live inference, deployment, production mutation or publication.",
+    "No global restoration, custody, independent push, genuine product/owner acceptance or whole-programme promotion."
+  ],
+  "registersPreserved": {
+    "original": "30 PASS / 11 PENDING / 4 BLOCKED",
+    "amendments": "8 PASS / 11 PENDING"
+  }
+}

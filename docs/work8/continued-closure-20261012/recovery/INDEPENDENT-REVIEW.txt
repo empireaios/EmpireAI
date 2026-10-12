@@ -1,0 +1,7 @@
+Reviewed commit: 466c09896c21ef2cd8beceddf19a732aeda3aab4
+Reviewed tree: ce2f5acbe09a15ac27b2cbc088769997d7d212a9
+Disposition: scoped acceptance of isolated inspection restore only.
+Original f1d6494b target identity TOCTOU reproduced: pin db4, SELECT db5 before EVAL, success reports db4 while writing db5. independent-race.tap documents reproduction; later failure was invalid raw hash DUMP-byte oracle.
+Successor atomically asserts run_id and selects pinned database before first write. Independent separately instrumented fixture from 3f57 (runtime identical to 466c) rejects eval-time wrong run_id without writes and contains SELECT db5 to pinned db4, leaving db5 empty. Full independent fixture passed 1/1 in 30.071s. Author exact committed 466c fixture passed 1/1 in 47.578s.
+Password authentication refusal tested before restore and after AOF-only crash/restart; source Redis killed before restore; target distinct. Paused queue, persistent owner, producer refusal, canonical fixture inventory, exact historical receipt and once-only pending continuation checked.
+Trust remains externally supplied digest/source identity plus expected target; no protected custody attested. General binary-field or stream corpus not tested. No full operational runtime restore, no authority release, no #33/#39 completion.

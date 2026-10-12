@@ -1,0 +1,16 @@
+{
+  "dataset": "LABELLED_SYNTHETIC_ONLY",
+  "sourceFiles": "reviewed source history in git bundle",
+  "includedEvidence": "synthetic owner projections, test receipts, component browser captures, harnesses, independent reviews",
+  "excluded": [
+    "native HTML build bundles (reproducible)",
+    "environment files",
+    "provider credentials",
+    "genuine owner session identifiers",
+    "unrelated live intelligence responses"
+  ],
+  "redactions": [],
+  "providerCalls": 0,
+  "externalMessages": 0,
+  "disclosure": "Technical synthetic identities and hashes retained for exact attribution; no actual paid model or commerce outcomes represented."
+}

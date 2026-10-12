@@ -1,0 +1,174 @@
+{
+  "readOnly": true,
+  "inventory": [
+    {
+      "project": {
+        "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+        "name": "empireai-canary-20260923",
+        "workspaceName": "empireaios's Projects"
+      },
+      "environment": {
+        "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+        "name": "production",
+        "isEphemeral": false
+      },
+      "staged": null,
+      "region": null,
+      "services": [],
+      "volumes": [],
+      "buckets": [],
+      "sharedVariableNames": []
+    },
+    {
+      "project": {
+        "id": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+        "name": "empireai",
+        "workspaceName": "empireaios's Projects"
+      },
+      "environment": {
+        "id": "da94aed2-956b-4903-a886-68a5e9a557c8",
+        "name": "production",
+        "isEphemeral": false
+      },
+      "staged": null,
+      "region": null,
+      "services": [
+        {
+          "id": "fdef2b8f-a806-455e-bd4a-ab9e93e3b8c9",
+          "name": "empireai-locked-redis",
+          "state": "live",
+          "source": {
+            "image": "redis:7.2.16-bookworm",
+            "repo": null,
+            "branch": null
+          },
+          "regions": [
+            "sfo"
+          ],
+          "numReplicas": 1,
+          "cronSchedule": null,
+          "volumeMounts": [
+            {
+              "volumeId": "af8cc57d-7175-47c5-8145-3b68713c52c5",
+              "volumeName": "empireai-locked-redis-data",
+              "mountPath": "/data"
+            }
+          ],
+          "latestDeployment": {
+            "id": "2ca21fd5-1eda-418a-916a-ad16b6746af5",
+            "status": "SUCCESS",
+            "createdAt": "2026-10-01T11:46:59.942Z",
+            "url": null
+          },
+          "stagedChangeCount": 0
+        },
+        {
+          "id": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+          "name": "EmpireAI",
+          "state": "live",
+          "source": {
+            "image": null,
+            "repo": "empireaios/EmpireAI",
+            "branch": "main"
+          },
+          "regions": [
+            "sfo"
+          ],
+          "numReplicas": 1,
+          "cronSchedule": null,
+          "volumeMounts": [
+            {
+              "volumeId": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+              "volumeName": "empireai-volume",
+              "mountPath": "/data"
+            }
+          ],
+          "latestDeployment": {
+            "id": "208a2de6-ecda-44a4-ae48-bd6393b6fb78",
+            "status": "FAILED",
+            "createdAt": "2026-09-14T17:59:01.747Z",
+            "url": null
+          },
+          "stagedChangeCount": 0
+        },
+        {
+          "id": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+          "name": "empireai-locked-runtime",
+          "state": "live",
+          "source": {
+            "image": null,
+            "repo": "empireaios/EmpireAI",
+            "branch": "work2/backend-release"
+          },
+          "regions": [
+            "sfo"
+          ],
+          "numReplicas": 1,
+          "cronSchedule": null,
+          "volumeMounts": [
+            {
+              "volumeId": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+              "volumeName": "empireai-locked-runtime-data",
+              "mountPath": "/data"
+            }
+          ],
+          "latestDeployment": {
+            "id": "4303f5e9-afef-4f70-9388-996a0e923949",
+            "status": "SUCCESS",
+            "createdAt": "2026-10-10T21:09:07.045Z",
+            "url": null
+          },
+          "stagedChangeCount": 0
+        }
+      ],
+      "volumes": [
+        {
+          "id": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+          "name": "empireai-volume",
+          "state": "live",
+          "region": "sfo",
+          "sizeMB": 5000,
+          "mountedOn": {
+            "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+            "serviceName": "EmpireAI",
+            "mountPath": "/data"
+          },
+          "stagedChangeCount": 0
+        },
+        {
+          "id": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+          "name": "empireai-locked-runtime-data",
+          "state": "live",
+          "region": "sfo",
+          "sizeMB": 1024,
+          "mountedOn": {
+            "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+            "serviceName": "empireai-locked-runtime",
+            "mountPath": "/data"
+          },
+          "stagedChangeCount": 0
+        },
+        {
+          "id": "af8cc57d-7175-47c5-8145-3b68713c52c5",
+          "name": "empireai-locked-redis-data",
+          "state": "live",
+          "region": "sfo",
+          "sizeMB": 1024,
+          "mountedOn": {
+            "serviceId": "fdef2b8f-a806-455e-bd4a-ab9e93e3b8c9",
+            "serviceName": "empireai-locked-redis",
+            "mountPath": "/data"
+          },
+          "stagedChangeCount": 0
+        }
+      ],
+      "buckets": [],
+      "sharedVariableNames": []
+    }
+  ],
+  "conclusion": "No buckets in the two inspected production environments. Canary is empty; existing primary volumes are application/Redis-mounted in sfo. No separately protected copy, retention/deletion protection or independent restore identity demonstrated.",
+  "limits": "Does not assert absence of resources outside connected Railway scope. No credentials retrieved, infrastructure purchased, settings changed or restoration performed.",
+  "minimumDecision": "Identify an existing independently controlled protected store and separate restore identity, or authorize a separately costed bounded provisioning proposal before any creation. Existing attached volumes alone do not satisfy A3/#39.",
+  "environmentEnumeration": "list_services independently confirms each of the two connected projects has exactly one environment: production",
+  "readAt": "2026-10-12T15:36:55.182560+00:00"
+}

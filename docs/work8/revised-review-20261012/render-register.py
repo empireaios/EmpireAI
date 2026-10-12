@@ -22,13 +22,16 @@ lines = ['# Work 8 full acceptance register', '',
     f"Original requirements: **{counts(register['counts'])} = 45**.",
     f"Owner amendments: **{counts(register['amendmentCounts'])} = 19**.", '',
     'Owner baseline24 PASS /16 PENDING /5 BLOCKED and2 PASS /17 PENDING preserved. '
-    'New independent acceptances this continuation: original#3/#5/#12/#24/#25 and amendments#12/#16 and accepted#14; integrated continuation independently accepts software amendments#13/#17. '
+    'New independent acceptances this continuation: original#3/#5/#12/#24/#25 and amendments#12/#16 and accepted#14; integrated continuation independently accepts software amendments#13/#17. Post-publication continuation independently accepts original#18 software portfolio review. '
     'Work8 remains NO_GO; Work9 INACTIVE; Pillow NOT_BORN; commerce LOCKED.', '',
-    'Published source: `1ff047b32547f9e987ed6f6cd5d6634d49735ccb`; reviewed local source: '
-    '`06c6ae6517546359a8406d2568a6eebcb9a51503`; identical complete tree '
-    '`7f5422c918f5859ed620684369259ecee0e90d79`. '
-    'CI and later local engineering status are recorded in PUBLICATION-AND-CHECKPOINT.json. '
-    'No later descendant is covered by the frozen-source publication authority.', '']
+    'Published source: `8222dcf5bbf835cf5d9c131e57f3d4e4604970de`; reviewed local source: '
+    '`7b7b4ec40821da5d976cce1a7a5adbf6957a5514`; identical complete tree '
+    '`29bddc44ab41fa30c8db4c0b6f6144e9950f58d4`. '
+    'Published evidence: `657fd2a51b85b76d788060b28c825bfb7225b5fa`; reviewed local evidence '
+    '`d91770e4d6ff62590df85e02c09514112ed1badb`; identical complete tree '
+    '`05af001713ba9d58cc5abd0301ad345ffd4beeea`. '
+    'Publication and continuing CI are recorded in ../post-publication-20261012/PUBLICATION.json. '
+    'Later local descendants require independent review and fresh publication authority.', '']
 for group, title in [('original45', 'All 45 original requirements'), ('amendments19', 'All 19 owner amendments')]:
     lines += ['## ' + title, '', '| ID | Requirement | Status | Accepted evidence / preservation | Remaining action |',
               '|---|---|---|---|---|']

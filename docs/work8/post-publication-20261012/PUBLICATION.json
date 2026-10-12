@@ -1,0 +1,57 @@
+{
+  "time": "2026-10-12T14:37:43.617566+00:00",
+  "approvedEvidence": "d91770e4d6ff62590df85e02c09514112ed1badb",
+  "publishedEvidence": "657fd2a51b85b76d788060b28c825bfb7225b5fa",
+  "evidenceTree": "05af001713ba9d58cc5abd0301ad345ffd4beeea",
+  "approvedSource": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+  "publishedSource": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+  "sourceTree": "29bddc44ab41fa30c8db4c0b6f6144e9950f58d4",
+  "fullTreeEquality": true,
+  "method": "Git content-addressed complete root tree equality, verified create_tree and connector commit GET before leased ref update; includes unchanged inherited paths. No patch-only equality claim.",
+  "sequence": [
+    "evidence",
+    "verify evidence tree and branch",
+    "source",
+    "verify source tree and branch"
+  ],
+  "metadataRecreated": true,
+  "sourceModified": false,
+  "merge": false,
+  "productionDeploy": false,
+  "ci": {
+    "Product": 38264268740,
+    "Runtime": 38264268728,
+    "Semantic": 38264268729,
+    "IndependentAssurance": 38264268885,
+    "status": "in_progress",
+    "reruns": 0,
+    "results": {
+      "Product": "success",
+      "Semantic": "success",
+      "IndependentAssurance": "success",
+      "Runtime": "in_progress"
+    }
+  },
+  "counts": {
+    "PASS": 29,
+    "PENDING": 12,
+    "BLOCKED": 4
+  },
+  "amendments": {
+    "PASS": 7,
+    "PENDING": 12
+  },
+  "unpublishedNext": [
+    "recovery-operational SQLjs ownership successor",
+    "assurance-console inspector inbox c15fa78d",
+    "business-owner native health and stale acquisition investigation"
+  ],
+  "verifiedAt": "2026-10-12T14:52:04.984580+00:00",
+  "pr": {
+    "number": 113,
+    "draft": true,
+    "merged": false,
+    "mergeCommit": "b284990a9f9af765deb559c8d9115dd534ceebb2",
+    "mergeTree": "29bddc44ab41fa30c8db4c0b6f6144e9950f58d4"
+  }
+}

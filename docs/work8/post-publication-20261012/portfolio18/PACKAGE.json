@@ -1,0 +1,49 @@
+{
+  "backend": {
+    "commit": "2282f97ab3c21271197453baa2e1e701f082adab",
+    "tree": "a2ae3d46aa94e01395fd6081d99a238147d306bc",
+    "parent": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+    "integration": "Cherry-pick2282 only after cache8b3d; no frozen-source changes"
+  },
+  "frontend": {
+    "commit": "e7fd599a447a4e1b273363d7f664507194cd2ba1",
+    "tree": "f077bb0e7008663f64dac4e01c4e218e67e4222e",
+    "base": "858b1c99c5acd3ada160f2fe9c1448eb8e6beb09",
+    "commits": [
+      "dc605e8700a2d8ac00a966473c4691645dcc81c7",
+      "e7fd599a447a4e1b273363d7f664507194cd2ba1"
+    ],
+    "integration": "Fetch verified bundle into isolated review worktree; preserve deployment-linked branch; no deploy"
+  },
+  "scope": {
+    "backendTests": 6,
+    "frontendTests": 4,
+    "changedFileLint": "PASS",
+    "frontendTypecheck": "PASS",
+    "backendFocusedTypecheck": "PASS",
+    "nativeViewports": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    "noClaims": [
+      "actual paid inference",
+      "real owner acceptance",
+      "genuine commerce qualification",
+      "full cockpit HTTP browser flow"
+    ]
+  },
+  "privacy": {
+    "dataset": "LABELLED_SYNTHETIC_ONLY",
+    "providerCalls": 0,
+    "messagesSent": 0,
+    "secretsIncluded": false,
+    "redactions": [],
+    "retention": "Original technical IDs/hashes retained; synthetic IDs only in model package"
+  }
+}

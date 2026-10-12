@@ -1,0 +1,87 @@
+{
+  "at": "2026-10-12T05:33:20.049484+00:00",
+  "status": "PASS_READ_ONLY_INTEGRITY_OF_INTERRUPTED_STATE_NOT_ENDURANCE",
+  "originalTerminalReceipt": null,
+  "verifiedMonotonicLowerBoundMs": 555160.453419,
+  "start": "2026-10-12T05:21:09.139Z",
+  "lastObserverWallAt": "2026-10-12T05:30:24.303Z",
+  "lastWorkerWallAt": "2026-10-12T05:30:26.664Z",
+  "actualTerminationTime": null,
+  "terminationCause": "NOT_ESTABLISHED",
+  "counts": {
+    "admittedTasks": 2,
+    "tasksByStatus": {
+      "COMPLETE": 2
+    },
+    "canonicalReceipts": 38,
+    "orders": 2,
+    "financePlans": 2,
+    "financialEvents": 20,
+    "completedFinancialLifecycles": 0
+  },
+  "financial": [
+    {
+      "mission": "acceptance:elapsed-0",
+      "recordedEvents": 10,
+      "plannedEvents": 12,
+      "lifecycleComplete": false,
+      "payoutHeldMinor": 4640,
+      "bankReceiptMinor": 0,
+      "supplierPaidMinor": 2600,
+      "conservedAtRetainedStage": true
+    },
+    {
+      "mission": "acceptance:elapsed-1",
+      "recordedEvents": 10,
+      "plannedEvents": 12,
+      "lifecycleComplete": false,
+      "payoutHeldMinor": 4640,
+      "bankReceiptMinor": 0,
+      "supplierPaidMinor": 2600,
+      "conservedAtRetainedStage": true
+    }
+  ],
+  "totalsMinorSGD": {
+    "SALE": 16000,
+    "COGS": 3200,
+    "FREIGHT": 1200,
+    "FEE": 2720,
+    "DUTY": 800,
+    "DISCOUNT": 0,
+    "REFUND": 4000,
+    "SETTLEMENT": 9280,
+    "PAYOUT_HOLD": 9280,
+    "SUPPLIER_PAYMENT": 5200
+  },
+  "observedSamplesCountOnly": 112,
+  "fullSampleSeriesAvailable": false,
+  "originalEvidenceBytesUnchanged": true,
+  "sourceHashes": {
+    "commerce.sqlite-wal": "137c4c318dd80378aa2eeb6ce86fa9b2233167b0769fb66e7f47f2685082429d",
+    "commerce.sqlite": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf",
+    "control.json": "d52130e5950d3f7af4f22449de0cbd9196d7df43d6b39d42ac48b893fc20da08",
+    "commerce.sqlite.initialized": "fb10295358d1d0db2598ba04daee68c4847ac49fda83acfabaa4d3ee526d6880",
+    "observer-progress.json": "1eb3f6432f6385af2679396a2f4a3843209479821cbf720db3fda8a0eaf6d4b7",
+    "events.jsonl": "369ce1dd8a214da8633d2dad25ff1e32a536b4b8b428b7db0b270c0641ddb7c9",
+    "worker.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "worker-latest.json": "2d20253468808b32fbeb259b3aadb811f27b45b2acf9f2511304128c3274c5a6",
+    "intelligence.sqlite": "7081aa74876dc6279b3a9886716cd5f642beb464aa8a12f187ba5612a03632b5",
+    "assurance/assurance.sqlite": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf",
+    "assurance/assurance.sqlite-wal": "f1cfece5b293b2d453ed38f8edb939588c52932deeb27906e1de6343f721d34f"
+  },
+  "verifierSha256": "9b92f05ea75b6470d97cc9f135c00337819beb9fe860c0f3e5566c0ab1f53f50",
+  "unexecutedOrUnproven": [
+    "Ninth task",
+    "45-minute endpoint",
+    "Final settlement release/bank receipt",
+    "Cursor recovery stage",
+    "Application restart stage",
+    "Malformed provider stage",
+    "Integrated Redis interruption",
+    "Integrated rollback",
+    "Clean shutdown",
+    "Original end-of-run verifier"
+  ],
+  "externalEffects": 0,
+  "paidInference": 0
+}

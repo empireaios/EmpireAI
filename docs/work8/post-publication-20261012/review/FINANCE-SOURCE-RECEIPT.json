@@ -1,0 +1,16 @@
+{
+  "evidenceHead": "d91770e4d6ff62590df85e02c09514112ed1badb",
+  "evidenceTree": "05af001713ba9d58cc5abd0301ad345ffd4beeea",
+  "files": {
+    "resume-20261011/OWNER-HOLISTIC-DIRECTIVE.txt": "f38e8631df65d5dd2d6a554b70fe4731a3d056223b36be2fccdf74efcfc56887",
+    "revised-review-20261012/FULL-TRACKER.md": "c446c3b120afc13f575498964e34e89a8c1151a58ed8f672c5dcc221fb4ea91b",
+    "revised-review-20261012/review/REQUIREMENT-24-DECISION.md": "1e41355cbebc5ca0da573d35a094ba80df47f184ba41ae9aebf224857e6a2fc0",
+    "interrupted-recovery-20261012/review/REQUIREMENT-25-DECISION.md": "e607ad7c8d14f103eff4b9b1b0fb70811b8ca4c460824570a18bf1361cf764c8",
+    "owner-financial-readback.md": "adc89b7fc2f710d09f5a0257c2bcc296b70bdd7088b1a013b5e54d6ac89b3cc0",
+    "resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md": "9860778df5a0468dd7b5bb9dbe187b8514fed6c27ac8b1f764fb1f40f969c445"
+  },
+  "newTests": 0,
+  "paidCalls": 0,
+  "sourceChanges": 0,
+  "registerChanges": 0
+}

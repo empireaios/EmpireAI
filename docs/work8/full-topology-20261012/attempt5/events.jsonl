@@ -1,0 +1,4 @@
+{"event":"actual_observer_spawn","pid":34,"args":["backend/src/assurance/permanent-worker.mjs"]}
+{"event":"actual_observer_spawn","pid":35,"args":["backend/src/assurance/permanent-inspector.mjs"]}
+{"event":"assurance_process_exit","component":"permanent-inspector.mjs","code":0,"signal":null}
+{"event":"assurance_process_exit","component":"permanent-worker.mjs","code":0,"signal":null}

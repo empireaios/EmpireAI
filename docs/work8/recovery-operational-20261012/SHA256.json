@@ -1,0 +1,15 @@
+{
+  "ACCEPTANCE.json": "8dcf2d8b53bcea09bf1684a8f8d4a298b395dd62090ff1015662d3538625612c",
+  "INDEPENDENT-REVIEW.md": "132fa7a8a1edfca4b9242cf5a565dcc5d9381054146837b891d0f2198919beb9",
+  "SCOPE.md": "bedfc8d0aad2bf8cb106f31a1a3e0ce6af625e6223250215342879519236e958",
+  "coordinated-regression.tap": "3311109b0ed15dbdcbe930cb6c8755237b777afacea4876349dfc14fc3339470",
+  "persistence-regression.tap": "d736ae896552f0ab23f4105dfa0fed8523d1d3513f04902ae276a5c25cf49768",
+  "process-owner-final.tap": "2f380ba6f214ef21e15d9e91fa11fddaecb299597e7f647d1930887ed2ccbc1a",
+  "sqljs-alias-review.mts.txt": "e6b3de83604f7031c25e533b423ffccc3c8949ce0a888143d7fb09b2829e4589",
+  "sqljs-alias-review.txt": "4778587900292adb7f42d362d32ae1b84df49f4ac9286d3a86bb9d742956bf24",
+  "sqljs-alias-successor.txt": "a183e84560435192327373c613240320be3c76758eefe618943ba0cc23b7f2d9",
+  "sqljs-owner-failure-review.tap": "ccc7828e5bf19845d7a5f9897e3b1239c76ed0307601fdd2ea8f32073f5a9566",
+  "sqljs-owner-failure-review.test.ts.txt": "d26a20ba0c62a6e16102a6926828d947176eaa69664fdc9dec6086eb850c72f2",
+  "sqljs-release-review-matched.tap": "3e25225d9a71c478bb97a2c60ab6a4edd2cfe1d7075d5b0bca310b9d3c9623d8",
+  "sqljs-review-successor.tap": "e35d3d3d07bced8f59bb387a4e4d53faa0f9ce5131801215034ba4dda006d0a1"
+}

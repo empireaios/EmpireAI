@@ -1,0 +1,10 @@
+{
+  "READONLY-REPLAY-ACTUAL-RECEIPTS.json": "999e71f5b1199762aeccb9261a53e346e04516505c61aad6f8161407944e7b48",
+  "READONLY-REPLAY-RECEIPT.json": "fc525f176db4fdf3232accc5af3781ac1eb1dbdbdccc11cb9b0ea56919811456",
+  "readonly-replay-execution.sqlite": "03d5b6bbef3522fde0717576630c4ae76638823d15226ec239c02fff0c8a8830",
+  "readonly-replay-missions.sqlite": "2b625f15519aa8a8162a44bc3db16287c4df4591fb8ff6bb667fa7b7d6e49d28",
+  "IMPLEMENTATION-BOUNDARY.md": "0c408b909bceacc7336e9ea12e6e0379299a427867a445daa665809f82231b9a",
+  "integrated-brain.sqlite": "7587a4b86285e0b40b447c4487227692a3cc87ed40e77e88877477cbfc450bae",
+  "integrated-native-domain.sqlite": "4bdda1fd2eba02dfaf8d6dff5a41f69c3c532a7294b4f575c6867c776a743726",
+  "exam.tap": "4ca44d8d34726fd1c432d22630d3b84112757a67012f80ba056cec5b817f5391"
+}

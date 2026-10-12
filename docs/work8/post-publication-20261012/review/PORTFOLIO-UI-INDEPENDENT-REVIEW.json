@@ -1,0 +1,31 @@
+{
+  "decision": "PASS_SCOPED_NATIVE_PORTFOLIO_SOFTWARE_ADVISORY_UI",
+  "frontendCommit": "dc605e8700a2d8ac00a966473c4691645dcc81c7",
+  "frontendTree": "5db9f683e6891b1a2acc1fe39167e069c6324468",
+  "independentReviewer": "ux13 agent, not frontend implementation author",
+  "tests": {
+    "independentlyExecuted": "node --import tsx --test tests/work8/portfolio-health.test.mjs",
+    "passed": 3,
+    "failed": 0
+  },
+  "reviewed": [
+    "PortfolioHealth and actual TwinWorkspace products-path import",
+    "Retained browser harness: actual React component mounted with actual local authenticated-principal projection-function result; dialog and viewport assertions",
+    "Native mobile screenshot: readable labels and explicit unknown score, optional evidence details",
+    "Receipt-digest/mission binding, classification and no-authority check, unknown capital visibility, absent/stale observation refusal"
+  ],
+  "nativeScope": "Component browser examination at1440/390; not full cockpit HTTP-auth flow or personal owner acceptance",
+  "originalRequirement18": {
+    "decision": "PENDING",
+    "source": "MANDATE.txt sections4 and19",
+    "exactClause": "Pillow continually scores portfolio health and recommends retain, improve, observe, pause, retire or replace; retain historical reasons, decisions and performance.",
+    "interpretation": "Section19 allows realistic provider fakes. Genuine real sales outcomes or a new paid call are not necessarily prerequisites for software acceptance. However deterministic software adviser explicitly disclaims Pillow judgement; no portfolio-specific retained Pillow assessment binding/consumer is demonstrated. Do not substitute rule-based scoring for the explicit Pillow capability.",
+    "nextExecutableBoundary": "Existing governed retained-model assessment infrastructure can support a source/receipt-bound portfolio proposal consumer with labelled synthetic-response contract tests; no need to initiate paid inference merely to examine software."
+  },
+  "evidenceHashes": {
+    "actual-owner-projection.json": "5d22f20059eb8b19cd25a389c12955806cb47f7bf6b17470eb29c3bb160b16d1",
+    "native-visual-receipt.json": "7c04fe357b8938e5c98805a9ee7e5e2f2f9a361725b2a3c72b5d34d8ebdadbdf",
+    "mobile.png": "64724877f77f2f27d5480cb4945f3201746cce5b186a44583aa70d2853416578",
+    "desktop.png": "47df6d3f01ac05a603fc6781de2cd96d8af2b1109bcfca160ae773783eafece3"
+  }
+}

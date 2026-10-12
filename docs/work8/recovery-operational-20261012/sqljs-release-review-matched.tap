@@ -1,0 +1,11 @@
+{"level":30,"time":1791815905686,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1791815905698,"pid":12,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ ownership loss during snapshot refuses release and retains the write fence (49.906892ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 552.617848

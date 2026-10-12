@@ -1,0 +1,1022 @@
+{
+  "schema": "WORK8_TWIN_PROJECTION_V1",
+  "label": "DIGITAL TWIN — SIMULATED OPERATIONS",
+  "session": {
+    "schema": "WORK8_TWIN_V1",
+    "workspace": "ws",
+    "owner": "owner",
+    "sessionId": "s",
+    "twinWorkspace": "twin_12e621723ca9cecb4f154bbe7bca39f210c7998a64d3538b",
+    "id": "resume",
+    "version": 2,
+    "action": "RESUME",
+    "status": "ACTIVE",
+    "at": 1791806400000,
+    "previous": "1dec3608715693bb2cc62b984390a8b5a20cec1bcf6eebef95598506eb28ad8a",
+    "requestDigest": "68a9356f86b6d7ff5bd88ba0d6135c58eafda01b7f286183bbbd309815d4367d",
+    "classification": "SIMULATED_OPERATIONS",
+    "externalEffects": 0,
+    "digest": "ba069b4951819c785c9fba099e56f1a89b04aa671bb6d13bf57ddd4959caeb83"
+  },
+  "records": [
+    {
+      "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+      "receiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+      "version": 10,
+      "productId": "fixture-product-46006f3ef3751f5b8f8c",
+      "variantId": "fixture-variant-46006f3ef3751f5b8f8c",
+      "listing": {
+        "productId": "fixture-product-46006f3ef3751f5b8f8c",
+        "title": "Synthetic organiser 1",
+        "bullets": [
+          "Synthetic dimensions for acceptance only"
+        ],
+        "description": "Synthetic listing package, not intended for marketplace publication.",
+        "category": "HOME_STORAGE",
+        "attributes": {
+          "material": "fixture"
+        },
+        "variants": [
+          {
+            "sku": "FIXTURE-46006f3ef3751f5b8f8c",
+            "variantId": "fixture-variant-46006f3ef3751f5b8f8c",
+            "dimensions": "10x10x10 cm fixture"
+          }
+        ],
+        "images": [
+          {
+            "url": "https://example.invalid/fixture.png",
+            "license": "Synthetic acceptance image manifest; no actual media licensed",
+            "rightsEvidence": "evidence-QUALITY",
+            "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+          }
+        ],
+        "claims": [
+          {
+            "text": "Synthetic fixture",
+            "evidenceId": "evidence-QUALITY"
+          }
+        ],
+        "sourceEvidence": [
+          "evidence-DEMAND",
+          "evidence-COMPETITION",
+          "evidence-DIFFERENTIATION",
+          "evidence-QUALITY",
+          "evidence-COMPLIANCE",
+          "evidence-RETURNS",
+          "evidence-MARKETPLACE",
+          "evidence-PAYMENT"
+        ]
+      },
+      "publication": {
+        "capacity": {
+          "account": "isolated-fixture",
+          "marketplace": "SG",
+          "mode": "NEW_ASIN",
+          "asin": null,
+          "newAsinRemaining": 1000,
+          "unsoldRemaining": 1000,
+          "requestsPerSecond": 1,
+          "eligibility": "ELIGIBLE",
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-12T12:00:00.000Z",
+            "expiresAt": "2026-10-12T13:00:00.000Z",
+            "classification": "SYNTHETIC"
+          }
+        },
+        "status": "INTERCEPTED",
+        "receiptId": "4458347202561bff2caa4a4378a9f4d203655e3f5ccb47654b8d5a389094fe90",
+        "canonicalPublisher": "marketplace-publishing/services/amazon-listings-publish-executor"
+      },
+      "orders": {
+        "fixture-order-46006f3ef3751f5b8f8c": {
+          "order": {
+            "orderId": "fixture-order-46006f3ef3751f5b8f8c",
+            "workspaceId": "twin_12e621723ca9cecb4f154bbe7bca39f210c7998a64d3538b",
+            "storeId": "isolated",
+            "brandId": "fixture",
+            "supplierPlatform": "CJ_DROPSHIPPING",
+            "connectorId": "cj-interceptor",
+            "status": "DELIVERED",
+            "fulfillmentStatus": "DELIVERED",
+            "items": [
+              {
+                "itemId": "line-1",
+                "supplierSku": "FIXTURE-46006f3ef3751f5b8f8c",
+                "supplierProductId": "fixture-product-46006f3ef3751f5b8f8c",
+                "title": "Synthetic organiser 1",
+                "quantity": 2,
+                "unitCost": 8,
+                "currency": "SGD"
+              }
+            ],
+            "shippingAddress": {
+              "fullName": "Synthetic Recipient",
+              "addressLine1": "Fixture address",
+              "city": "Singapore",
+              "state": "Singapore",
+              "postalCode": "000000",
+              "countryCode": "SG",
+              "phone": "00000000"
+            },
+            "estimatedCost": 16,
+            "estimatedDeliveryDaysMin": 7,
+            "estimatedDeliveryDaysMax": 10,
+            "currency": "SGD",
+            "approval": null,
+            "supplierOrderId": null,
+            "trackingNumber": null,
+            "carrier": null,
+            "trackingEvents": [],
+            "integrationMode": "SANDBOX",
+            "createdAt": "2026-10-12T12:00:00.000Z",
+            "updatedAt": "2026-10-12T12:00:00.000Z"
+          },
+          "outcome": "DELIVERED",
+          "accepted": 2,
+          "shipped": 2,
+          "delivered": 2,
+          "tracking": [
+            "tracking-shipped",
+            "tracking-delivered"
+          ],
+          "lastTrackingAt": "2026-10-12T12:00:00.000Z",
+          "shipments": {
+            "fixture-shipment-46006f3ef3751f5b8f8c": {
+              "quantity": 2,
+              "delivered": true,
+              "carrier": "fixture-carrier",
+              "tracking": "fixture-tracking"
+            }
+          },
+          "remedies": [],
+          "intentId": "9a9721af7bf59ed5d62a694b5c68950af5833b03e2231e6376236c4564e5ee30",
+          "providerId": "cj-intercepted-receipt"
+        }
+      },
+      "financeReference": {
+        "workspace": "twin_12e621723ca9cecb4f154bbe7bca39f210c7998a64d3538b",
+        "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+        "sourceReceiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3"
+      },
+      "sourceClassification": "SYNTHETIC",
+      "media": {
+        "version": 0,
+        "original": [
+          {
+            "id": "original-0",
+            "url": "https://example.invalid/fixture.png",
+            "kind": "IMAGE",
+            "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f",
+            "sourceIdentity": "fixture-product-46006f3ef3751f5b8f8c",
+            "rightsEvidence": "evidence-QUALITY",
+            "rightsStatus": "UNVERIFIED",
+            "provenance": "Synthetic acceptance image manifest; no actual media licensed"
+          }
+        ],
+        "proposal": null,
+        "current": null,
+        "history": [],
+        "status": "ORIGINAL_ONLY",
+        "reminder": null,
+        "sourceBindingCurrent": false,
+        "externalStatus": "NOT_SUBMITTED",
+        "editingCapability": "CANVA_RUNTIME_NOT_CONFIGURED",
+        "classification": "SIMULATED_MEDIA_WORKFLOW",
+        "externalEffects": 0
+      },
+      "title": "Synthetic organiser 1",
+      "sku": "FIXTURE-46006f3ef3751f5b8f8c",
+      "phase": "APPROVED",
+      "qualification": {
+        "qualified": true,
+        "reasons": [],
+        "score": 87,
+        "confidence": 1,
+        "economics": {
+          "input": {
+            "productId": "fixture-product-46006f3ef3751f5b8f8c",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "gross": 27,
+          "contribution": 17.599999999999998,
+          "net": 16.599999999999998,
+          "breakEven": 20.000000000000004,
+          "minimumViablePrice": 20.000000000000004,
+          "marginPercent": 41.49999999999999,
+          "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "exposure": 25,
+        "available": 980,
+        "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+        "genuinelyProfitable": false
+      },
+      "decisions": [],
+      "finance": {
+        "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+        "lifecycleComplete": false,
+        "status": "IN_PROGRESS",
+        "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+        "sourceReceiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+        "planDigest": "3669b8f7b58835136b732f17eb0333b7f3b9ba3ad9c807fd43d340df8bf6acfd",
+        "assumptions": {
+          "classification": "SIMULATION_ASSUMPTIONS_NOT_ACTUAL_CHARGES",
+          "version": "SIM_FINANCE_V1",
+          "feeBasis": "CANDIDATE_FEE_PLUS_PAYMENT_PERCENT",
+          "dutyBasis": "CANDIDATE_DUTY_PLUS_TAX_PER_UNIT",
+          "payout": "SIMULATED_HOLD_ONE_DAY_THEN_BANK",
+          "supplierPayment": "SIMULATED_QUOTED_COST_FREIGHT_DUTY",
+          "actualCashMovement": 0
+        },
+        "recordedEvents": 3,
+        "totalEvents": 11,
+        "financial": {
+          "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+          "sourceReceiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+          "work5Reference": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9",
+          "eventDigest": "d760d7a61c22cd0a8bbbaa9de7d66f0cf1bd2a95dd5f1c69df94b8349c91645e",
+          "cutoffAt": "2026-10-12T12:05:00.000Z",
+          "orders": [
+            {
+              "orderId": "fixture-order-46006f3ef3751f5b8f8c",
+              "currency": "SGD",
+              "missing": [
+                "FEE",
+                "DUTY",
+                "DISCOUNT"
+              ],
+              "unknownIds": [],
+              "contributionMinor": null,
+              "realisedContributionMinor": null,
+              "receivableMinor": 8000,
+              "settlementMinor": 0,
+              "payoutHeldMinor": 0,
+              "bankMinor": 0,
+              "liabilityMinor": 2200,
+              "cashNeedMinor": 0,
+              "conserved": true,
+              "complete": false
+            }
+          ],
+          "duplicates": 0,
+          "pending": [],
+          "unknown": [],
+          "balanced": true,
+          "conserved": true,
+          "complete": false,
+          "actualCashMovement": 0,
+          "actualRevenue": null,
+          "actualProfit": null,
+          "technologyCosts": "EXCLUDED_SEPARATE_COST_CENTRE",
+          "fx": "NO_IMPLICIT_CONVERSION",
+          "sourceVerification": "CANONICAL_IMMUTABLE_HISTORY_READ",
+          "noncanonicalAmounts": "EXPLICIT_SIMULATION_ASSUMPTIONS_NOT_SOURCE_FACTS"
+        },
+        "actualCashMovement": 0,
+        "simulatedCharges": [
+          {
+            "orderId": "fixture-order-46006f3ef3751f5b8f8c",
+            "currency": "SGD",
+            "feeMinor": null,
+            "dutyAndTaxMinor": null,
+            "refundMinor": null
+          }
+        ],
+        "events": [
+          {
+            "id": "sim:8404dca6bd6dfd35c84636ddbf2fe748fd81b4480ad78217df8e75c1f1e28a25",
+            "orderId": "fixture-order-46006f3ef3751f5b8f8c",
+            "sourceReceiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+            "kind": "SALE",
+            "currency": "SGD",
+            "minor": 8000,
+            "at": "2026-10-12T12:00:00.000Z",
+            "classification": "SIMULATION",
+            "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+          },
+          {
+            "id": "sim:08cda7a9b0a9b65b160a57becabb0d64332ac4d36a96e3739bf357ca1c61ed76",
+            "orderId": "fixture-order-46006f3ef3751f5b8f8c",
+            "sourceReceiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+            "kind": "COGS",
+            "currency": "SGD",
+            "minor": 1600,
+            "at": "2026-10-12T12:00:01.000Z",
+            "classification": "SIMULATION",
+            "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+          },
+          {
+            "id": "sim:24f9c2289178b974d3f312d9a390e3d730d31539205faa473e1a594fcaa0a981",
+            "orderId": "fixture-order-46006f3ef3751f5b8f8c",
+            "sourceReceiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+            "kind": "FREIGHT",
+            "currency": "SGD",
+            "minor": 600,
+            "at": "2026-10-12T12:00:02.000Z",
+            "classification": "SIMULATION",
+            "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+          }
+        ]
+      }
+    },
+    {
+      "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+      "receiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+      "version": 10,
+      "productId": "fixture-product-5d131dca499c414e1817",
+      "variantId": "fixture-variant-5d131dca499c414e1817",
+      "listing": {
+        "productId": "fixture-product-5d131dca499c414e1817",
+        "title": "Synthetic organiser 2",
+        "bullets": [
+          "Synthetic dimensions for acceptance only"
+        ],
+        "description": "Synthetic listing package, not intended for marketplace publication.",
+        "category": "HOME_STORAGE",
+        "attributes": {
+          "material": "fixture"
+        },
+        "variants": [
+          {
+            "sku": "FIXTURE-5d131dca499c414e1817",
+            "variantId": "fixture-variant-5d131dca499c414e1817",
+            "dimensions": "10x10x10 cm fixture"
+          }
+        ],
+        "images": [
+          {
+            "url": "https://example.invalid/fixture.png",
+            "license": "Synthetic acceptance image manifest; no actual media licensed",
+            "rightsEvidence": "evidence-QUALITY",
+            "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+          }
+        ],
+        "claims": [
+          {
+            "text": "Synthetic fixture",
+            "evidenceId": "evidence-QUALITY"
+          }
+        ],
+        "sourceEvidence": [
+          "evidence-DEMAND",
+          "evidence-COMPETITION",
+          "evidence-DIFFERENTIATION",
+          "evidence-QUALITY",
+          "evidence-COMPLIANCE",
+          "evidence-RETURNS",
+          "evidence-MARKETPLACE",
+          "evidence-PAYMENT"
+        ]
+      },
+      "publication": {
+        "capacity": {
+          "account": "isolated-fixture",
+          "marketplace": "SG",
+          "mode": "NEW_ASIN",
+          "asin": null,
+          "newAsinRemaining": 1000,
+          "unsoldRemaining": 1000,
+          "requestsPerSecond": 1,
+          "eligibility": "ELIGIBLE",
+          "provenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-12T12:00:00.000Z",
+            "expiresAt": "2026-10-12T13:00:00.000Z",
+            "classification": "SYNTHETIC"
+          }
+        },
+        "status": "INTERCEPTED",
+        "receiptId": "0a299e3a87f4c3e42e06102bb181426de2af2d99f412a73fb0850eb972ff4577",
+        "canonicalPublisher": "marketplace-publishing/services/amazon-listings-publish-executor"
+      },
+      "orders": {
+        "fixture-order-5d131dca499c414e1817": {
+          "order": {
+            "orderId": "fixture-order-5d131dca499c414e1817",
+            "workspaceId": "twin_12e621723ca9cecb4f154bbe7bca39f210c7998a64d3538b",
+            "storeId": "isolated",
+            "brandId": "fixture",
+            "supplierPlatform": "CJ_DROPSHIPPING",
+            "connectorId": "cj-interceptor",
+            "status": "DELIVERED",
+            "fulfillmentStatus": "DELIVERED",
+            "items": [
+              {
+                "itemId": "line-1",
+                "supplierSku": "FIXTURE-5d131dca499c414e1817",
+                "supplierProductId": "fixture-product-5d131dca499c414e1817",
+                "title": "Synthetic organiser 2",
+                "quantity": 2,
+                "unitCost": 8,
+                "currency": "SGD"
+              }
+            ],
+            "shippingAddress": {
+              "fullName": "Synthetic Recipient",
+              "addressLine1": "Fixture address",
+              "city": "Singapore",
+              "state": "Singapore",
+              "postalCode": "000000",
+              "countryCode": "SG",
+              "phone": "00000000"
+            },
+            "estimatedCost": 16,
+            "estimatedDeliveryDaysMin": 7,
+            "estimatedDeliveryDaysMax": 10,
+            "currency": "SGD",
+            "approval": null,
+            "supplierOrderId": null,
+            "trackingNumber": null,
+            "carrier": null,
+            "trackingEvents": [],
+            "integrationMode": "SANDBOX",
+            "createdAt": "2026-10-12T12:00:00.000Z",
+            "updatedAt": "2026-10-12T12:00:00.000Z"
+          },
+          "outcome": "DELIVERED",
+          "accepted": 2,
+          "shipped": 2,
+          "delivered": 2,
+          "tracking": [
+            "tracking-shipped",
+            "tracking-delivered"
+          ],
+          "lastTrackingAt": "2026-10-12T12:00:00.000Z",
+          "shipments": {
+            "fixture-shipment-5d131dca499c414e1817": {
+              "quantity": 2,
+              "delivered": true,
+              "carrier": "fixture-carrier",
+              "tracking": "fixture-tracking"
+            }
+          },
+          "remedies": [],
+          "intentId": "4bcb4a42aaf8c31b461c4b8934c62fd25fe15e93a81d9203908da0288d3172d9",
+          "providerId": "cj-intercepted-receipt"
+        }
+      },
+      "financeReference": {
+        "workspace": "twin_12e621723ca9cecb4f154bbe7bca39f210c7998a64d3538b",
+        "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+        "sourceReceiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668"
+      },
+      "sourceClassification": "SYNTHETIC",
+      "media": {
+        "version": 0,
+        "original": [
+          {
+            "id": "original-0",
+            "url": "https://example.invalid/fixture.png",
+            "kind": "IMAGE",
+            "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f",
+            "sourceIdentity": "fixture-product-5d131dca499c414e1817",
+            "rightsEvidence": "evidence-QUALITY",
+            "rightsStatus": "UNVERIFIED",
+            "provenance": "Synthetic acceptance image manifest; no actual media licensed"
+          }
+        ],
+        "proposal": null,
+        "current": null,
+        "history": [],
+        "status": "ORIGINAL_ONLY",
+        "reminder": null,
+        "sourceBindingCurrent": false,
+        "externalStatus": "NOT_SUBMITTED",
+        "editingCapability": "CANVA_RUNTIME_NOT_CONFIGURED",
+        "classification": "SIMULATED_MEDIA_WORKFLOW",
+        "externalEffects": 0
+      },
+      "title": "Synthetic organiser 2",
+      "sku": "FIXTURE-5d131dca499c414e1817",
+      "phase": "APPROVED",
+      "qualification": {
+        "qualified": true,
+        "reasons": [],
+        "score": 87,
+        "confidence": 1,
+        "economics": {
+          "input": {
+            "productId": "fixture-product-5d131dca499c414e1817",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "gross": 27,
+          "contribution": 17.599999999999998,
+          "net": 16.599999999999998,
+          "breakEven": 20.000000000000004,
+          "minimumViablePrice": 20.000000000000004,
+          "marginPercent": 41.49999999999999,
+          "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "exposure": 25,
+        "available": 980,
+        "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+        "genuinelyProfitable": false
+      },
+      "decisions": [],
+      "finance": {
+        "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+        "lifecycleComplete": false,
+        "status": "IN_PROGRESS",
+        "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+        "sourceReceiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+        "planDigest": "ce01109a9fc5af98d0c89f2d9fa2854ffd1deb76804610e01af08b651b713656",
+        "assumptions": {
+          "classification": "SIMULATION_ASSUMPTIONS_NOT_ACTUAL_CHARGES",
+          "version": "SIM_FINANCE_V1",
+          "feeBasis": "CANDIDATE_FEE_PLUS_PAYMENT_PERCENT",
+          "dutyBasis": "CANDIDATE_DUTY_PLUS_TAX_PER_UNIT",
+          "payout": "SIMULATED_HOLD_ONE_DAY_THEN_BANK",
+          "supplierPayment": "SIMULATED_QUOTED_COST_FREIGHT_DUTY",
+          "actualCashMovement": 0
+        },
+        "recordedEvents": 3,
+        "totalEvents": 11,
+        "financial": {
+          "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+          "sourceReceiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+          "work5Reference": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9",
+          "eventDigest": "423e6dd2508360870764d09d0c939742dc45f4a354d4d8a1da544f5c17f8369d",
+          "cutoffAt": "2026-10-12T12:05:00.000Z",
+          "orders": [
+            {
+              "orderId": "fixture-order-5d131dca499c414e1817",
+              "currency": "SGD",
+              "missing": [
+                "FEE",
+                "DUTY",
+                "DISCOUNT"
+              ],
+              "unknownIds": [],
+              "contributionMinor": null,
+              "realisedContributionMinor": null,
+              "receivableMinor": 8000,
+              "settlementMinor": 0,
+              "payoutHeldMinor": 0,
+              "bankMinor": 0,
+              "liabilityMinor": 2200,
+              "cashNeedMinor": 0,
+              "conserved": true,
+              "complete": false
+            }
+          ],
+          "duplicates": 0,
+          "pending": [],
+          "unknown": [],
+          "balanced": true,
+          "conserved": true,
+          "complete": false,
+          "actualCashMovement": 0,
+          "actualRevenue": null,
+          "actualProfit": null,
+          "technologyCosts": "EXCLUDED_SEPARATE_COST_CENTRE",
+          "fx": "NO_IMPLICIT_CONVERSION",
+          "sourceVerification": "CANONICAL_IMMUTABLE_HISTORY_READ",
+          "noncanonicalAmounts": "EXPLICIT_SIMULATION_ASSUMPTIONS_NOT_SOURCE_FACTS"
+        },
+        "actualCashMovement": 0,
+        "simulatedCharges": [
+          {
+            "orderId": "fixture-order-5d131dca499c414e1817",
+            "currency": "SGD",
+            "feeMinor": null,
+            "dutyAndTaxMinor": null,
+            "refundMinor": null
+          }
+        ],
+        "events": [
+          {
+            "id": "sim:9da122353646fd7df1088685d3c6f574ecbb350f50a56d9add1dce029b470441",
+            "orderId": "fixture-order-5d131dca499c414e1817",
+            "sourceReceiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+            "kind": "SALE",
+            "currency": "SGD",
+            "minor": 8000,
+            "at": "2026-10-12T12:00:00.000Z",
+            "classification": "SIMULATION",
+            "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+          },
+          {
+            "id": "sim:55f2d597343435965da70a1ac794542fb64265d4709fddadee6efc7e5064cf70",
+            "orderId": "fixture-order-5d131dca499c414e1817",
+            "sourceReceiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+            "kind": "COGS",
+            "currency": "SGD",
+            "minor": 1600,
+            "at": "2026-10-12T12:00:01.000Z",
+            "classification": "SIMULATION",
+            "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+          },
+          {
+            "id": "sim:0159e0c6af4f9d827fcb2c0de49aba8be84a7fbb258171b0f63c42c9a8a69ec0",
+            "orderId": "fixture-order-5d131dca499c414e1817",
+            "sourceReceiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+            "kind": "FREIGHT",
+            "currency": "SGD",
+            "minor": 600,
+            "at": "2026-10-12T12:00:02.000Z",
+            "classification": "SIMULATION",
+            "assumptionRef": "synthetic:SIM_FINANCE_V1:5210db6ca85eb9fd8930b74236832b971f1798bc11cfdd1b6ff67ceb913526e6"
+          }
+        ]
+      }
+    }
+  ],
+  "next": null,
+  "coverage": "BOUNDED_PAGE",
+  "actualCashMovement": 0,
+  "liveCommerce": "LOCKED",
+  "birth": "NOT_BORN",
+  "recoveredAuthorityAudit": {
+    "classification": "HISTORICAL_ONLY_NO_AUTHORITY",
+    "histories": []
+  },
+  "preparationAuthority": [
+    {
+      "scope": "RESEARCH_REASONING",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "COMMERCIAL_PREPARATION",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "BACKEND_READ_ONLY",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "UX_CHANGE_PREPARATION",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    }
+  ],
+  "communications": [],
+  "authority": {
+    "grant": {
+      "workspace": "ws",
+      "owner": "owner",
+      "id": "all",
+      "sessionId": "s",
+      "version": 2,
+      "action": "GRANT",
+      "mode": "ONE_HOUR",
+      "at": 1791806400000,
+      "expiresAt": 1791810000000,
+      "requestDigest": "4b5e7117d079623033534f5022b96639e9ed1f9683b8a07395ae0e2f1164f15f",
+      "previous": "912ae52eba6332a914b394f5a3afeaffa490d43b93fd71abdf7a39a34da86daf",
+      "scope": "TWIN_SCHEDULER_ONLY",
+      "digest": "65cdac067dcd8f8f5d350bd4eafee8717b572a89c74d31a5d91dfba125ea9c2d"
+    },
+    "version": 2,
+    "status": "ACTIVE",
+    "scope": "TWIN_SCHEDULER_ONLY",
+    "externalEffects": 0
+  },
+  "tasks": [
+    {
+      "id": "twin-exam:5d131dca499c414e1817",
+      "mission": "acceptance:twin-exam:5d131dca499c414e1817",
+      "workspace": "twin_12e621723ca9cecb4f154bbe7bca39f210c7998a64d3538b",
+      "owner": "owner",
+      "createdAt": 1791806400000,
+      "cursor": 10,
+      "fence": 10,
+      "status": "COMPLETE",
+      "error": null,
+      "attempts": 0,
+      "maxSteps": 32,
+      "maxAttempts": 3,
+      "paidInference": 0,
+      "stepCount": 10
+    },
+    {
+      "id": "twin-exam:46006f3ef3751f5b8f8c",
+      "mission": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+      "workspace": "twin_12e621723ca9cecb4f154bbe7bca39f210c7998a64d3538b",
+      "owner": "owner",
+      "createdAt": 1791806400000,
+      "cursor": 10,
+      "fence": 10,
+      "status": "COMPLETE",
+      "error": null,
+      "attempts": 0,
+      "maxSteps": 32,
+      "maxAttempts": 3,
+      "paidInference": 0,
+      "stepCount": 10
+    }
+  ],
+  "assurance": {
+    "probes": [
+      {
+        "id": "work8-checkpoint:91f9e42adaf6e54b7a696d611c143cb4b17929ef1aa6c1e0b15039c3013cd097",
+        "capability": "commerce-checkpoint",
+        "classification": "COMMITTED_RECEIPT_CURSOR_GAP",
+        "severity": "HIGH",
+        "status": "HEALTHY",
+        "summary": "Saved task progress matches independently verified commerce receipts.",
+        "evidence": {
+          "taskId": "twin-exam:5d131dca499c414e1817",
+          "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+          "cursor": 10,
+          "fence": 10,
+          "prefixDigest": "03c608254ca2caf638778b876e1cd17178f3e3258b70010fba087df26962b751",
+          "receiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+          "observedAt": 1791806700000,
+          "externalEffects": 0
+        },
+        "runbookId": null
+      },
+      {
+        "id": "work8-checkpoint:45f4d6b9fba57bbacadd69803ae431252b72c260409ef6295ec06ce49e80138f",
+        "capability": "commerce-checkpoint",
+        "classification": "COMMITTED_RECEIPT_CURSOR_GAP",
+        "severity": "HIGH",
+        "status": "HEALTHY",
+        "summary": "Saved task progress matches independently verified commerce receipts.",
+        "evidence": {
+          "taskId": "twin-exam:46006f3ef3751f5b8f8c",
+          "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+          "cursor": 10,
+          "fence": 10,
+          "prefixDigest": "18870aaf8198d4962d8cd1e2d2005aa158c319d62145a33c2b60c7ba178e1aa4",
+          "receiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+          "observedAt": 1791806700000,
+          "externalEffects": 0
+        },
+        "runbookId": null
+      }
+    ],
+    "observations": [
+      {
+        "id": "aab8d6cc7bca27d3fcd45ac05c9e11fefee4c9f9d57d3c9c8b8944d262e3616e",
+        "kind": "PORTFOLIO_HEALTH_REVIEW",
+        "taskId": "twin-exam:5d131dca499c414e1817",
+        "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+        "receiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+        "evidenceIds": [],
+        "evaluationWindow": 5972689,
+        "health": {
+          "classification": "SOFTWARE_ADVISORY_ONLY",
+          "policy": "existing-outcome-checks-v1",
+          "score": null,
+          "scoreMeaning": "Percentage of known outcome checks passed; not a profit forecast",
+          "unknownChecks": 0,
+          "checks": [],
+          "recommendations": [
+            "OBSERVE"
+          ],
+          "grantsAuthority": false
+        },
+        "grantsAuthority": false,
+        "observedAt": 1791806700000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "8c977f9cf6e1a115a25d81e5fadf5af95d1571e6b487eeb567329165598193a8",
+        "kind": "PORTFOLIO_HEALTH_REVIEW",
+        "taskId": "twin-exam:46006f3ef3751f5b8f8c",
+        "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+        "receiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+        "evidenceIds": [],
+        "evaluationWindow": 5972689,
+        "health": {
+          "classification": "SOFTWARE_ADVISORY_ONLY",
+          "policy": "existing-outcome-checks-v1",
+          "score": null,
+          "scoreMeaning": "Percentage of known outcome checks passed; not a profit forecast",
+          "unknownChecks": 0,
+          "checks": [],
+          "recommendations": [
+            "OBSERVE"
+          ],
+          "grantsAuthority": false
+        },
+        "grantsAuthority": false,
+        "observedAt": 1791806700000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "3d0dd5b2e2c73ceee529b00de29c3b1a59321e405612a01c8f0b505165bdd5d5",
+        "kind": "PORTFOLIO_HEALTH_REVIEW",
+        "taskId": "twin-exam:5d131dca499c414e1817",
+        "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+        "receiptDigest": "0fd989f0228088f7b50fdab1473b1af50459825b497a8a0c32b01f3214f44668",
+        "evidenceIds": [],
+        "evaluationWindow": 5972688,
+        "health": {
+          "classification": "SOFTWARE_ADVISORY_ONLY",
+          "policy": "existing-outcome-checks-v1",
+          "score": null,
+          "scoreMeaning": "Percentage of known outcome checks passed; not a profit forecast",
+          "unknownChecks": 0,
+          "checks": [],
+          "recommendations": [
+            "OBSERVE"
+          ],
+          "grantsAuthority": false
+        },
+        "grantsAuthority": false,
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "37b37b49c5b7536ffd904babb3263f77d2be41f57320a6f5588b3d1573caba53",
+        "kind": "SCHEDULER_PROGRESS",
+        "taskId": "twin-exam:5d131dca499c414e1817",
+        "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+        "cursor": 10,
+        "status": "COMPLETE",
+        "error": null,
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "200696cca78fefbf5863f7fb25dba28ba11cdb91ca1c34963c0f6790c964af8d",
+        "kind": "SCHEDULER_PROGRESS",
+        "taskId": "twin-exam:5d131dca499c414e1817",
+        "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+        "cursor": 8,
+        "status": "RUNNING",
+        "error": null,
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "0e6ac7e95bc94ab6ff2d37d434c0f4c0f1d78ef2465e09b96c83a9288af6a43b",
+        "kind": "PORTFOLIO_HEALTH_REVIEW",
+        "taskId": "twin-exam:46006f3ef3751f5b8f8c",
+        "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+        "receiptDigest": "20788bd4619f0d86789cdb5435a8dd189a5a2da1c65294a2f1a7092c3b782ad3",
+        "evidenceIds": [],
+        "evaluationWindow": 5972688,
+        "health": {
+          "classification": "SOFTWARE_ADVISORY_ONLY",
+          "policy": "existing-outcome-checks-v1",
+          "score": null,
+          "scoreMeaning": "Percentage of known outcome checks passed; not a profit forecast",
+          "unknownChecks": 0,
+          "checks": [],
+          "recommendations": [
+            "OBSERVE"
+          ],
+          "grantsAuthority": false
+        },
+        "grantsAuthority": false,
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "22a132fea4931fdb281644707f2050ab3d0ebc0c1b31ebf3014d85659fdcb1a4",
+        "kind": "SCHEDULER_PROGRESS",
+        "taskId": "twin-exam:5d131dca499c414e1817",
+        "missionId": "acceptance:twin-exam:5d131dca499c414e1817",
+        "cursor": 4,
+        "status": "RUNNING",
+        "error": null,
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "06b116e4187e134276215e049adcfe3a26a2a19c3d17c299e35804b5a48973c7",
+        "kind": "AUTHORITY_PAUSED",
+        "reason": "TWIN_AUTHORITY_CONSUMED",
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "c5d29006782bb6763551e95960daa8bd9a1d0f041be1448bc82aaf5c234c1a59",
+        "kind": "SCHEDULER_PROGRESS",
+        "taskId": "twin-exam:46006f3ef3751f5b8f8c",
+        "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+        "cursor": 10,
+        "status": "COMPLETE",
+        "error": null,
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "327a66cd90722a5d4ff604804e6e05c9a0fddf5ed968e1f2e4f2ce385d293f0d",
+        "kind": "SCHEDULER_PROGRESS",
+        "taskId": "twin-exam:46006f3ef3751f5b8f8c",
+        "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+        "cursor": 8,
+        "status": "RUNNING",
+        "error": null,
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      },
+      {
+        "id": "a82ca9fe3e8849b4ef582845851ed38e8d0d1ec6da25f6952fea4443ee720348",
+        "kind": "SCHEDULER_PROGRESS",
+        "taskId": "twin-exam:46006f3ef3751f5b8f8c",
+        "missionId": "acceptance:twin-exam:46006f3ef3751f5b8f8c",
+        "cursor": 4,
+        "status": "RUNNING",
+        "error": null,
+        "observedAt": 1791806400000,
+        "classification": "SIMULATED_OPERATIONS",
+        "externalEffects": 0
+      }
+    ],
+    "coverage": "LATEST_100_OBSERVATIONS"
+  },
+  "scheduler": {
+    "mode": "BOUNDED_CANONICAL_WORKER",
+    "intervalMs": 5000
+  },
+  "sourceNotice": "Labelled test fixtures are not genuine supplier qualification. No actual money or goods move."
+}

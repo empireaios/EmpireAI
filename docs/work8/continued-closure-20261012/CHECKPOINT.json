@@ -1,0 +1,66 @@
+{
+  "schema": "WORK8_CONTINUED_CLOSURE_CHECKPOINT_V1",
+  "time": "2026-10-12T15:36:55.184580+00:00",
+  "sourceCommit": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+  "sourceTree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
+  "sourceBranch": "work8/continued-integration-20261012",
+  "sourceWorkspace": "/workspace/scratch/dc845312c8f5/integration",
+  "evidenceBranch": "work8/continued-evidence-20261012",
+  "evidenceWorkspace": "/workspace/scratch/dc845312c8f5/evidence",
+  "publishedSource": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+  "publishedEvidence": "657fd2a51b85b76d788060b28c825bfb7225b5fa",
+  "sourceBundle": "SOURCE-CANDIDATE.bundle",
+  "bundlePrerequisite": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+  "approvedBaseCommitObject": "APPROVED-BASE-COMMIT.txt",
+  "originalCounts": {
+    "PASS": 30,
+    "PENDING": 11,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "newlyAcceptedOriginalIds": [],
+  "newlyAcceptedAmendmentIds": [],
+  "decision": "NO_GO",
+  "Pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "Work9": "INACTIVE",
+  "safeguards": 15,
+  "deniedRoutes": 7,
+  "localNode": "24.19.0",
+  "hostedNode": "22.23.2 PENDING revised source CI",
+  "validation": {
+    "backendBuildSource": "2ea2613dc201997f1f7424efd4d013e9edc8da1f",
+    "backendBuildExit": 0,
+    "sourceSuccessorDelta": "workflow-only; no backend/pillow/deployment/scripts blob differences",
+    "focusedInitial": {
+      "pass": 20,
+      "fail": 1,
+      "cause": "inbox launcher precondition mismatch; retained unrelabelled"
+    },
+    "correctedListenOnly": {
+      "pass": 2,
+      "fail": 0,
+      "exit": 0
+    },
+    "uniquePassingChecks": 22,
+    "workflowPartitionFiles": 94,
+    "rerunEndurance": false,
+    "rerunRollback": false,
+    "rerunHostedCI": false
+  },
+  "publication": "Fresh approval required. Evidence first, verify exact tree, source second, verify exact tree; no merge/deploy. Recreated connector metadata must not alter content tree.",
+  "activeLocalExams": [],
+  "nextExecutable": "Publish exact approved batch only after bounded authority; run/observe resulting hosted CI against published exact tree, without restarting existing passed workflows. Complete true independent external oracle/runtime restore once custody/containment prerequisites available.",
+  "externalDependencies": [
+    "Current eligible matched supplier/market/freight dossier and permitted exact media",
+    "Source-bound separately authorized genuine Pillow assessment after dossier ready",
+    "Authenticated same-identity owner source-to-finance walkthrough",
+    "Independent operational push delivery/containment during host failure",
+    "Protected off-host copy with retention/deletion control and separate restore identity",
+    "Original224row canonical accounting snapshot",
+    "Applicable Keepa entitlement and exact permitted Canva consumer design/export"
+  ]
+}

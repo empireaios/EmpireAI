@@ -1,0 +1,52 @@
+{
+  "checkpointTime": "2026-10-12T14:53:31.755449+00:00",
+  "publication": "PUBLICATION.json",
+  "decision": "NO_GO",
+  "sourceWorkspace": "/workspace/scratch/ed471dff75f8/closure-integration",
+  "sourceHead": "cf545e50",
+  "evidenceWorkspace": "/workspace/scratch/ed471dff75f8/closure-evidence",
+  "acceptedCounts": {
+    "original": {
+      "PASS": 30,
+      "PENDING": 11,
+      "BLOCKED": 4
+    },
+    "amendments": {
+      "PASS": 8,
+      "PENDING": 11
+    }
+  },
+  "active": {
+    "observer": "compiled actual-runtime capture/restart/guarded restore harness; retain failed setup arms and actual isolation evidence",
+    "other_closures": "complete original18 retained Pillow recommendation, durable history, actual scheduler consumer, native owner UI",
+    "ux13": "independent full18 acceptance",
+    "cost17": "joined original26/34 real supervisor loss and canonical fault examination; original60s detection boundary",
+    "observer_review": "integration compatibility and independent full-runtime/fault review"
+  },
+  "independentScopedAcceptances": [
+    "SQLjs ownership351ba54c",
+    "inspector inboxc15fa78d",
+    "scheduled acquisition8b3d286c"
+  ],
+  "nextSourcePublication": "requires exact final independent review and fresh owner authority",
+  "prohibited": [
+    "merge",
+    "deployment",
+    "paid inference",
+    "new infrastructure",
+    "external communication",
+    "Work9 activation"
+  ],
+  "preserved": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "safeguards": 15,
+    "deniedRoutes": 7
+  },
+  "newClosures": [
+    18
+  ],
+  "newAmendmentClosures": [
+    18
+  ]
+}

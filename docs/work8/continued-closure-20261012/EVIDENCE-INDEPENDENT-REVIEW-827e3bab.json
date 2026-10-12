@@ -1,0 +1,65 @@
+{
+  "decision": "APPROVE_EXACT_EVIDENCE_CANDIDATE",
+  "evidenceCommit": "827e3babd191a9207d87f7e7e8a13d4f306cdd3d",
+  "evidenceTree": "79de5ee7404f3d4c60e16c396455db599b2c8acd",
+  "sourceCommit": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+  "sourceTree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
+  "checks": {
+    "all64RowsPresentSequential": true,
+    "originalCounts": {
+      "PASS": 30,
+      "PENDING": 11,
+      "BLOCKED": 4
+    },
+    "amendmentCounts": {
+      "PASS": 8,
+      "PENDING": 11
+    },
+    "statusesEqualPriorTracker": true,
+    "newFullClosures": 0,
+    "topManifest": {
+      "entries": 41,
+      "allExistTrackedAndSha256Match": true
+    },
+    "nestedRecoveryManifest": {
+      "entries": 8,
+      "allExistTrackedAndSha256Match": true,
+      "sqliteFiles": 4
+    },
+    "sourceBundle": {
+      "gitBundleVerify": "PASS",
+      "exactPrerequisite": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+      "exactHead": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+      "retainedRawCommitRecomputedHashMatchesPrerequisite": true
+    },
+    "frontendBundle": {
+      "tracked": true,
+      "gitBlob": "c1deb0b80b2219b5248dc4cf674050ffa1e98a57",
+      "matchesSourceWorkflowPin": true
+    },
+    "ciMetadata": {
+      "success": 3,
+      "cancelled": 1,
+      "publishedSource": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+      "reportTrackerAndRegisterAligned": true
+    },
+    "privacy": {
+      "standardProviderTokenPrivateKeyPatternsFound": 0,
+      "credentialVaultOauthConnectorTablesEmpty": true,
+      "syntheticSeedUsers": 2,
+      "seedPasswordHashesVerifiedAgainstPublicTestDefaults": true,
+      "businessReadbackStoredRecordsNotProviderCredentials": true
+    }
+  },
+  "substantiveBoundaryReview": [
+    "Report and tracker distinguish inspection-only source-dead Redis recovery from operational restoration and protected custody.",
+    "F27 timing and F02 parent-observer evidence accurately bounded; no full mandatory assertion promoted.",
+    "Combined20 successful assertions plus corrected2 tests reported; initial mislaunch and setup failure preserved. No full94-test hosted execution claimed.",
+    "Actual22-case corruption checks,17 writer checks and inherited topology acceptance retain separate scopes.",
+    "No genuine Pillow assessment, owner journey, live commerce or accounting snapshot invention.",
+    "Historical four-success receipts remain historical; current metadata truthfully records3success/1cancelled and candidate hosted22CI pending."
+  ],
+  "metadataBlockers": [],
+  "publicationCondition": "Requires fresh exact-tree publication authority; evidence first and verify tree, source second and verify tree. No merge/deploy/Birth/commerce/Work9 authority.",
+  "reviewFilePolicy": "Receipt written outside reviewed tree to avoid self-reference. If retained in evidence-only successor, review that exact delta and identity separately."
+}

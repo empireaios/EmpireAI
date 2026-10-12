@@ -1,0 +1,25 @@
+✖ registered joint Assurance cycle contains actual concurrent source finance supplier worker and observer faults (31843.519188ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35901.867397
+
+✖ failing tests:
+
+test at backend/src/validation/tests/work8-joined-assurance-review-negative.test.ts:1:1440
+✖ registered joint Assurance cycle contains actual concurrent source finance supplier worker and observer faults (31843.519188ms)
+  AssertionError [ERR_ASSERTION]: new incident observation required, old incident alone is insufficient
+      at TestContext.<anonymous> (/workspace/scratch/dc845312c8f5/ci-repair/backend/src/validation/tests/work8-joined-assurance-review-negative.test.ts:30:916)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

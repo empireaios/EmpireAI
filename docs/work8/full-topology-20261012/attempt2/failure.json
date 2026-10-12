@@ -1,0 +1,5 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'REFUSED'\n- 'SCOPED_INSPECTION_ONLY'\n",
+  "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'REFUSED'\n- 'SCOPED_INSPECTION_ONLY'\n\n    at /workspace/scratch/203606f92361/recovery-operational/scripts/work8/full-topology-exam.cjs:27:224\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "root": "/tmp/full-topology-Ce0o5l"
+}

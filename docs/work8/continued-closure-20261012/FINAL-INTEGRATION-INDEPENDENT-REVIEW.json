@@ -1,0 +1,293 @@
+{
+  "decision": "ACCEPT_STATIC_FINAL_INTEGRATION_CONDITIONAL_ON_ACTUAL_BUILD_AND_FOCUSED_GREEN",
+  "source": "2ea2613dc201997f1f7424efd4d013e9edc8da1f",
+  "tree": "b4fd6aabf320edeac36bed70a93646f81c15dc2a",
+  "reviewer": "acceptance agent independent of source implementers",
+  "blobChecks": [
+    {
+      "source": "8388bde99c5b0af7a73c04f3d456543a73260e38",
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "reviewedBlob": "b967fe31bfdaddc566d6488450c8f381dfc67631",
+      "integratedBlob": "b967fe31bfdaddc566d6488450c8f381dfc67631",
+      "equal": true
+    },
+    {
+      "source": "ee7fea92617a4e438e18c033e630b371cb074d81",
+      "path": "backend/src/validation/tests/work8-joined-assurance.test.ts",
+      "reviewedBlob": "61e12610ad25c58fc2c926642c4c0d09f8062824",
+      "integratedBlob": "61e12610ad25c58fc2c926642c4c0d09f8062824",
+      "equal": true
+    },
+    {
+      "source": "466c09896c21ef2cd8beceddf19a732aeda3aab4",
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "reviewedBlob": "a8f66cddbe338b785d4df932b64e3a3323d12bfb",
+      "integratedBlob": "a8f66cddbe338b785d4df932b64e3a3323d12bfb",
+      "equal": true
+    },
+    {
+      "source": "466c09896c21ef2cd8beceddf19a732aeda3aab4",
+      "path": "backend/src/validation/tests/capture-shared-brain-redis.test.ts",
+      "reviewedBlob": "fa0f43cb20aa28da91c1800c0190acf84f7faa14",
+      "integratedBlob": "fa0f43cb20aa28da91c1800c0190acf84f7faa14",
+      "equal": true
+    },
+    {
+      "source": "15a6f5e700e0669e6fa7f2e0f185e3f3f834dada",
+      "path": "backend/src/assurance/work8-queue-probe.ts",
+      "reviewedBlob": "7742b046547a213db1a4eadc112cdfe927d6959e",
+      "integratedBlob": "7742b046547a213db1a4eadc112cdfe927d6959e",
+      "equal": true
+    },
+    {
+      "source": "15a6f5e700e0669e6fa7f2e0f185e3f3f834dada",
+      "path": "backend/src/intelligence/store.ts",
+      "reviewedBlob": "d89b5179344dc34bc524f7d6e0c71d9cfd1db70c",
+      "integratedBlob": "d89b5179344dc34bc524f7d6e0c71d9cfd1db70c",
+      "equal": true
+    },
+    {
+      "source": "15a6f5e700e0669e6fa7f2e0f185e3f3f834dada",
+      "path": "backend/src/validation/tests/work8-queue-probe.test.ts",
+      "reviewedBlob": "939d4d1dd95951fd1228afdeb1ca2345eef79d94",
+      "integratedBlob": "939d4d1dd95951fd1228afdeb1ca2345eef79d94",
+      "equal": true
+    },
+    {
+      "source": "15a6f5e700e0669e6fa7f2e0f185e3f3f834dada",
+      "path": "backend/src/validation/tests/work8-scheduler-misfire.test.ts",
+      "reviewedBlob": "8c2e1605a58427a797b1279ac6c22ca4806e107a",
+      "integratedBlob": "8c2e1605a58427a797b1279ac6c22ca4806e107a",
+      "equal": true
+    },
+    {
+      "source": "15a6f5e700e0669e6fa7f2e0f185e3f3f834dada",
+      "path": "scripts/work8/scheduler-misfire-child.mts",
+      "reviewedBlob": "d915959815a8cf88f2762e5c70ca72efad08c870",
+      "integratedBlob": "d915959815a8cf88f2762e5c70ca72efad08c870",
+      "equal": true
+    },
+    {
+      "source": "15a6f5e700e0669e6fa7f2e0f185e3f3f834dada",
+      "path": "scripts/work8/scheduler-misfire-exam.mts",
+      "reviewedBlob": "32c9f264dd2bc200cb6f0e3db50fed69fd681a16",
+      "integratedBlob": "32c9f264dd2bc200cb6f0e3db50fed69fd681a16",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/brain/sqlite-database.ts",
+      "reviewedBlob": "87c7801afe1be12ecedda40c1d7b6a85195c379a",
+      "integratedBlob": "87c7801afe1be12ecedda40c1d7b6a85195c379a",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/brain/sqlite-process-owner.ts",
+      "reviewedBlob": "b57ec03195bd1b50cc58bd7017f737a98336eb44",
+      "integratedBlob": "b57ec03195bd1b50cc58bd7017f737a98336eb44",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/coordinated-sqlite-capture.test.ts",
+      "reviewedBlob": "4641a8d3af2b9aed527738e77085bf3c49219dc8",
+      "integratedBlob": "4641a8d3af2b9aed527738e77085bf3c49219dc8",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/fixtures/sqljs-process-owner-child.ts",
+      "reviewedBlob": "5ab25bb24b679295b7131162fbde748ae0279fcf",
+      "integratedBlob": "5ab25bb24b679295b7131162fbde748ae0279fcf",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/sqlite-persistence-boundary.test.ts",
+      "reviewedBlob": "0044f19a49eb81161658491573d695ca8eed8149",
+      "integratedBlob": "0044f19a49eb81161658491573d695ca8eed8149",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "backend/src/validation/tests/sqlite-process-owner.test.ts",
+      "reviewedBlob": "75c9c57b5c032fbaf56e1ef621864b773e807824",
+      "integratedBlob": "75c9c57b5c032fbaf56e1ef621864b773e807824",
+      "equal": true
+    },
+    {
+      "source": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "path": "docs/work8/recovery-operational-20261012/SCOPE.md",
+      "reviewedBlob": "543f081a91f564e8d26ddc8f3e2141ce720eb7c9",
+      "integratedBlob": "543f081a91f564e8d26ddc8f3e2141ce720eb7c9",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/assurance-inspector-ingestion.ts",
+      "reviewedBlob": "317f534518c000ca3a6c16f9f11aedfd0bfd4c35",
+      "integratedBlob": "317f534518c000ca3a6c16f9f11aedfd0bfd4c35",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/global-notification-service.ts",
+      "reviewedBlob": "18b955733d8b82bfdea40136158ba986223e4673",
+      "integratedBlob": "18b955733d8b82bfdea40136158ba986223e4673",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/global-notifications/services/notification-ingestion-service.ts",
+      "reviewedBlob": "89e66a40493d2a575a810d25aeab445920fc6fac",
+      "integratedBlob": "89e66a40493d2a575a810d25aeab445920fc6fac",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "backend/src/validation/tests/work8-inspector-inbox.test.ts",
+      "reviewedBlob": "0716d71c654989004c879f1d7c8474cd405f17e9",
+      "integratedBlob": "0716d71c654989004c879f1d7c8474cd405f17e9",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/BOUNDARY.md",
+      "reviewedBlob": "a3e4045e6813a9ef8ca5188fa82d3fdf4b6e7020",
+      "integratedBlob": "a3e4045e6813a9ef8ca5188fa82d3fdf4b6e7020",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/tests.tap",
+      "reviewedBlob": "3c7ceb3159f83117eac131b3ffa22571a2382532",
+      "integratedBlob": "3c7ceb3159f83117eac131b3ffa22571a2382532",
+      "equal": true
+    },
+    {
+      "source": "c15fa78d10134cf2500a18b8e0cd6f3d40c7494a",
+      "path": "docs/work8/assurance-inbox-20261013/typecheck.txt",
+      "reviewedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "backend/src/intelligence/runtime.ts",
+      "reviewedBlob": "e4dc9ebf80b0bbeab64e0cdd2f9ba9081b4a5956",
+      "integratedBlob": "e4dc9ebf80b0bbeab64e0cdd2f9ba9081b4a5956",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "backend/src/validation/tests/work8-scheduled-freshness.test.ts",
+      "reviewedBlob": "2b7e41e38ee2119059a7e278c749b664231dd6e7",
+      "integratedBlob": "2b7e41e38ee2119059a7e278c749b664231dd6e7",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-after.tap",
+      "reviewedBlob": "416fa99132488be0e61508505c6348c3aa3f2440",
+      "integratedBlob": "416fa99132488be0e61508505c6348c3aa3f2440",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-before.tap",
+      "reviewedBlob": "4b24adac3d9cb589580edfb55cfcd214baa155fa",
+      "integratedBlob": "4b24adac3d9cb589580edfb55cfcd214baa155fa",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/cache-typecheck.txt",
+      "reviewedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "equal": true
+    },
+    {
+      "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+      "path": "docs/work8/business-owner-20261013/current-business-readback.json",
+      "reviewedBlob": "e7fa7a1c933de00dadad77b6d5a821ede1b3d1aa",
+      "integratedBlob": "e7fa7a1c933de00dadad77b6d5a821ede1b3d1aa",
+      "equal": true
+    },
+    {
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "reviewedBlob": "7e72006d05cc1e5e0b745756ba2923f6562a4b90",
+      "integratedBlob": "7e72006d05cc1e5e0b745756ba2923f6562a4b90",
+      "equal": true
+    },
+    {
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-portfolio-model.ts",
+      "reviewedBlob": "228d3311471b31673b77196f83f5c91f1064c7f4",
+      "integratedBlob": "228d3311471b31673b77196f83f5c91f1064c7f4",
+      "equal": true
+    },
+    {
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts",
+      "reviewedBlob": "d7195efab70e5824abfe7f06b7fbe04710933b50",
+      "integratedBlob": "d7195efab70e5824abfe7f06b7fbe04710933b50",
+      "equal": true
+    },
+    {
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-twin-runtime.ts",
+      "reviewedBlob": "95875fb081a9b32580e0f9dc0fb45eaf3895307c",
+      "integratedBlob": "95875fb081a9b32580e0f9dc0fb45eaf3895307c",
+      "equal": true
+    },
+    {
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "path": "backend/src/validation/tests/work8-portfolio-model.test.ts",
+      "reviewedBlob": "344c88455bedc386f7271eb25cedf8b99b0571f8",
+      "integratedBlob": "344c88455bedc386f7271eb25cedf8b99b0571f8",
+      "equal": true
+    }
+  ],
+  "reviewReceipts": [
+    {
+      "path": "/workspace/scratch/dc845312c8f5/f27-independent-review.json",
+      "sha256": "04ca653e642e846fca5bc0626b74c652834a07511be7ee16d9f27693ff0d86f4"
+    },
+    {
+      "path": "/workspace/scratch/dc845312c8f5/f02-successor-independent-review.json",
+      "sha256": "248b96a9ebbaa02def3ea73067b6c332c0f373dbe8b472a8f59122093609a601"
+    },
+    {
+      "path": "/workspace/scratch/dc845312c8f5/recovery-evidence/INDEPENDENT-REVIEW.txt",
+      "sha256": "2f3fb4d250065f89e1525c59d7ff47268711c6c68eb3c22dc8575f9e78e6e4e0"
+    },
+    {
+      "path": "/workspace/scratch/dc845312c8f5/evidence/docs/work8/continued-closure-20261012/CI-REVIEW.md",
+      "sha256": "9a1efcf714e9971db6bf816f96e06f4dc1327306d5cf0e0bb5c085173ba6851b"
+    }
+  ],
+  "substantiveFindings": [
+    "No overlapping changed production files between F27 test-only addition, Redis inspection restore, and F02 schedule/probe correction. Inherited 25 scoped blobs remain exact reviewed content.",
+    "F02 due() persists missed admission metadata in the same transaction as bounded scheduling; failed enqueue cannot clear metadata; a later timely admission clears it. Independent probe validates present metadata, reports inconsistent data UNAVAILABLE, retains 120s queue bound and separate30s schedule bound. This complements inherited scheduled post-admission cache rule without bypassing it.",
+    "Recovery permits source-dead replacement only when caller supplies expected source and target identity. Lua checks target run_id and selects pinned database atomically before any write. Persistent inspection owner, empty-target check, explicit inspection-only mode, false bootAllowed and noExecutionAuthority remain. It does not authorize global restore or custody.",
+    "F27 adds scoped same-process examination only; no production lifecycle/timer override introduced. Independent review binds fresh exact incident observation and preserves adverse corruption/unknown supplier states.",
+    "CI splits unchanged generated commands into two required matrix members with fail-fast false; final aggregate requires generated/runtime/web/package success. It does not turn cancellation, skip or failure into PASS. Hosted execution still pending.",
+    "Product-path portfolio frontend bundle restoration unchanged; evidence must be published first with exact retained blob/commit/tree. Prior A18 remains scoped inherited topology evidence, not aggregate final-head runtime execution."
+  ],
+  "blockingSourceDefectsFound": [],
+  "buildObservation": "combined-build.log reaches postbuild copy successfully; root owns process exit confirmation",
+  "testObservation": "combined-focused.tap at review time has inspector-inbox precondition failure: actual WORK8_KERNEL_EGRESS DENIED, expected CONNECT_DENIED_LISTEN_ALLOWED. Not green; retain failed receipt and resolve actual launcher/precondition.",
+  "requiredBeforeFinalAcceptance": [
+    "Confirm exact-head combined backend build exit0.",
+    "Obtain actual focused suite green under correct isolation launcher; do not relabel failed attempt.",
+    "Keep local Node24.19 validation separate from hosted Node22 pending."
+  ],
+  "limits": [
+    "Review pins exact2ea2613d and excludes later mutations.",
+    "No exhaustive accepted examinations rerun.",
+    "No full F02/F27/F29 or original26/33/34/39 closure; no genuine owner journey, independent push, custody or Work8 certification.",
+    "No publication/deployment/production effects authorized by this review."
+  ]
+}

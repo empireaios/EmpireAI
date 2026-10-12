@@ -1,0 +1,19 @@
+{
+  "originCommit": "1eff32cf7c7ca2c7da04c27cd9a49457f5f53234",
+  "originTree": "dc3cd5913711a3c1ed696c684ad6b327ebbf0cda",
+  "purpose": "Restore referenced historical receipts omitted from later evidence branches. Original failures and obsolete counts retained verbatim, not current acceptance. No accepted endurance or rollback re-executed. Authoritative register remains revised-review-20261012/FIXED-REGISTERS.json.",
+  "files": [
+    {
+      "path": "docs/work8/recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json",
+      "sha256": "f4e39b681faeab9c7ec9b2fb822aa72648cab55082499fb030e68cbdecfe38b2"
+    },
+    {
+      "path": "docs/work8/recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json",
+      "sha256": "58dbebd557978e4eca102a30fe52b0b185847f3385506651c1d312b9b107f32d"
+    },
+    {
+      "path": "docs/work8/recovery-20261012/INCOMPLETE-ARMS.md",
+      "sha256": "e896527cc460fcb557bd5125fd2b4ff1796bbaaffff5eeab33a700475f8625f1"
+    }
+  ]
+}

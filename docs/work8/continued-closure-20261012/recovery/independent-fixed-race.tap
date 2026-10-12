@@ -1,0 +1,10 @@
+REVIEW_VERIFIED: Lua rejects changed runId without writes; concurrent SELECT db5 leaves db5 empty and restores pinned db4
+✔ concurrent runtime writers capture with actual pending missions then replay once while restored Redis stays fenced (27952.420041ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30071.041991

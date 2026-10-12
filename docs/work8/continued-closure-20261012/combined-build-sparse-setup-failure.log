@@ -1,0 +1,29 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @empireai/backend@0.1.0 prebuild
+> node ../scripts/sync-pillow-governance.mjs
+
+node:internal/modules/cjs/loader:1517
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module '../pillow/src/bootstrap/governance-bundle-manifest.ts'
+Require stack:
+- /workspace/scratch/dc845312c8f5/integration/scripts/sync-pillow-governance.ts
+    at node:internal/modules/cjs/loader:1517:15
+    at T._resolveFilename (file:///workspace/scratch/425cef48de17/backend/backend/node_modules/tsx/dist/register-CqMfTiWi.mjs:2:14889)
+    at nextResolveSimple (/workspace/scratch/425cef48de17/backend/backend/node_modules/tsx/dist/register-BOkp8V6j.cjs:10:1017)
+    at /workspace/scratch/425cef48de17/backend/backend/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:4388
+    at /workspace/scratch/425cef48de17/backend/backend/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3818
+    at resolveTsPaths (/workspace/scratch/425cef48de17/backend/backend/node_modules/tsx/dist/register-BOkp8V6j.cjs:10:770)
+    at Module._resolveFilename (/workspace/scratch/425cef48de17/backend/backend/node_modules/tsx/dist/register-BOkp8V6j.cjs:10:1155)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)
+    at defaultResolve (node:internal/modules/cjs/loader:1152:20) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/workspace/scratch/dc845312c8f5/integration/scripts/sync-pillow-governance.ts'
+  ]
+}
+
+Node.js v24.19.0

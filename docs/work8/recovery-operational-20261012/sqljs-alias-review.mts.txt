@@ -1,0 +1,8 @@
+import fs from 'node:fs'; import os from 'node:os';import path from 'node:path';import {fork} from 'node:child_process';import {EmpireDatabase} from '../../brain/sqlite-database.js';
+const root=fs.mkdtempSync(path.join(os.tmpdir(),'owner-alias-review-')),target=path.join(root,'target.db'),alias=path.join(root,'alias.db');
+const seed=new EmpireDatabase(target);seed.exec('CREATE TABLE events(id INTEGER);INSERT INTO events VALUES(1)');seed.close();fs.symlinkSync(target,alias);
+const owner=new EmpireDatabase(alias);owner.exec('INSERT INTO events VALUES(2)');await owner.requestCriticalPersist();
+console.log(JSON.stringify({symlinkAfterExport:fs.lstatSync(alias).isSymbolicLink()}));
+const c=fork(new URL('./fixtures/sqljs-process-owner-child.ts',import.meta.url),[alias],{stdio:['ignore','ignore','inherit','ipc']});
+await new Promise<void>((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('deadline')),10000);c.once('message',m=>{console.log(JSON.stringify({independentAliasOpener:m}));clearTimeout(timer);c.kill('SIGKILL');resolve();});});
+await new Promise<void>(r=>c.once('exit',()=>r()));owner.close();fs.rmSync(root,{recursive:true,force:true});

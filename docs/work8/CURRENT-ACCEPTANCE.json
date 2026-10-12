@@ -1,7 +1,7 @@
 {
   "authoritativeRegister": "revised-review-20261012/FIXED-REGISTERS.json",
   "humanTracker": "revised-review-20261012/FULL-TRACKER.md",
-  "currentCheckpoint": "integrated-acceptance-20261012/CONTINUATION.json",
+  "currentCheckpoint": "post-publication-20261012/CONTINUATION.json",
   "decision": "NO_GO",
   "historicalRegisters": "Retained unchanged as historical source-scoped evidence; do not add their counts together."
 }

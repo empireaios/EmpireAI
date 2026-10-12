@@ -1,0 +1,6 @@
+tree 29bddc44ab41fa30c8db4c0b6f6144e9950f58d4
+parent 83923b24b12000cc83b78e07faad89fa4040ab54
+author Codex <codex@openai.com> 1791814758 +0800
+committer Codex <codex@openai.com> 1791814758 +0800
+
+test(work8): type checked bounded preview mutation index

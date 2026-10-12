@@ -1,0 +1,5 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: {\"error\":\"Brain worker temporarily unavailable\",\"code\":\"BRAIN_WORKER_UNAVAILABLE\",\"tier0Isolation\":true,\"retryable\":true}\n\n503 !== 202\n",
+  "stack": "AssertionError [ERR_ASSERTION]: {\"error\":\"Brain worker temporarily unavailable\",\"code\":\"BRAIN_WORKER_UNAVAILABLE\",\"tier0Isolation\":true,\"retryable\":true}\n\n503 !== 202\n\n    at /workspace/scratch/203606f92361/recovery-operational/scripts/work8/full-topology-exam.cjs:26:229\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "root": "/tmp/full-topology-qmAxQ4"
+}

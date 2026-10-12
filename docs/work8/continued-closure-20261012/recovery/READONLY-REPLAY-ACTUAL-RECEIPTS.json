@@ -1,0 +1,119 @@
+{
+  "historical": {
+    "missionId": "msr-mission-1791818545289-1-9ab2de42-c800-4c56-834d-0bca73ccfc76",
+    "dispatchId": "msr-mission-1791818545289-1-9ab2de42-c800-4c56-834d-0bca73ccfc76-dispatch-1791818545298-6-15996397-de2a-4088-92e0-8a3ff1a8e4a1",
+    "workerId": "pillow-authority-reader-v1",
+    "action": "authority.snapshot.v1",
+    "scope": {
+      "workspaceId": "ws_empire_1",
+      "ownerEmail": "replay-owner@invalid.test"
+    },
+    "buildSha": "466c09896c21ef2cd8beceddf19a732aeda3aab4",
+    "inputHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "receiptId": "maer_d12e20e5455dbe1797a6bd44428ca13cac00fd2ed2f08523859b1e46438f3281",
+    "jobId": "mae_47d6beb8a9aeef9effce2a65c2267e3022e8117ddda595715365173664b7a49a",
+    "status": "completed",
+    "completedAt": "2026-10-12T15:22:25.310Z",
+    "outputHash": "807444b41559c63ce940c851d887e09a86607f5aac3d976fd789fa0390552751",
+    "output": {
+      "kind": "actual_readonly_authority_inspection",
+      "observedAt": "2026-10-12T15:22:25.310Z",
+      "authority": {
+        "birthStatus": "NOT_BORN",
+        "technicallyReady": false,
+        "commerceStatus": "LOCKED",
+        "realCommerceAuthorized": false,
+        "waveCredit": 0,
+        "independentCertification": "UNVERIFIED",
+        "certificationReceiptIngestion": "IMPLEMENTED_UNVERIFIED_ONLY",
+        "reason": "Unverified certification receipt intake is implemented. The owner-authorized replacement certification requirements (PILLOW-REPLACEMENT-CERTIFICATION-V1) remain unverified and certification acceptance is not implemented; legacy commissioning, engineering passes, prose and owner approval alone cannot authorise Birth or live commerce."
+      }
+    },
+    "certificationCredit": false
+  },
+  "continued": {
+    "missionId": "msr-mission-1791818545317-12-5eb868af-88c6-44d0-b592-508586ca0deb",
+    "dispatchId": "msr-mission-1791818545317-12-5eb868af-88c6-44d0-b592-508586ca0deb-dispatch-1791818545325-17-5eae47c3-f9c3-41a6-8c20-766641440634",
+    "workerId": "pillow-authority-reader-v1",
+    "action": "authority.snapshot.v1",
+    "scope": {
+      "workspaceId": "ws_empire_1",
+      "ownerEmail": "replay-owner@invalid.test"
+    },
+    "buildSha": "466c09896c21ef2cd8beceddf19a732aeda3aab4",
+    "inputHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "receiptId": "maer_29a0517cea83edfb08b1a93be72cd90cb773f887c9039486f1838468a3d3ec87",
+    "jobId": "mae_c528f185adf09df21819e88e1c9ecf95308752839ebbf57b0170cf7492863991",
+    "status": "completed",
+    "completedAt": "2026-10-12T15:22:28.920Z",
+    "outputHash": "3e4cacb7595a422325bd05d751088450d214151ce5a47f25352b71331a51387e",
+    "output": {
+      "kind": "actual_readonly_authority_inspection",
+      "observedAt": "2026-10-12T15:22:28.920Z",
+      "authority": {
+        "birthStatus": "NOT_BORN",
+        "technicallyReady": false,
+        "commerceStatus": "LOCKED",
+        "realCommerceAuthorized": false,
+        "waveCredit": 0,
+        "independentCertification": "UNVERIFIED",
+        "certificationReceiptIngestion": "IMPLEMENTED_UNVERIFIED_ONLY",
+        "reason": "Unverified certification receipt intake is implemented. The owner-authorized replacement certification requirements (PILLOW-REPLACEMENT-CERTIFICATION-V1) remain unverified and certification acceptance is not implemented; legacy commissioning, engineering passes, prose and owner approval alone cannot authorise Birth or live commerce."
+      }
+    },
+    "certificationCredit": false
+  },
+  "queuedPayload": {
+    "type": "tool.execute",
+    "workspaceId": "ws_empire_1",
+    "toolName": "authority.snapshot.v1",
+    "input": {
+      "executionJobId": "mae_c528f185adf09df21819e88e1c9ecf95308752839ebbf57b0170cf7492863991",
+      "examinationOnly": true
+    },
+    "correlationId": "readonly-recovery-exam"
+  },
+  "manifest": {
+    "schema": "WORK8_RUNTIME_RECOVERY_SET_V1",
+    "captureId": "1531ff09-e5c6-4400-8433-31b96bd39875",
+    "sourceCommit": "466c09896c21ef2cd8beceddf19a732aeda3aab4",
+    "frontendRevision": "466c09896c21ef2cd8beceddf19a732aeda3aab4",
+    "capturedAt": "2026-10-12T15:22:26.056Z",
+    "stores": {
+      "intelligence": "96f333e304b9f7fd39abe4cdf78686d4deda705603aed327c604738353c658c5",
+      "pillowMemory": "177ed186ffc8bbf7a6843896c24c453cd97aa81b6a4e303be7df311e3c171529",
+      "pillowRequests": "fd5980a9088c18be78ba42a5462795688f2ba31b35755a1010ef0a58ab0a3077",
+      "pillowReasoning": "f65eed06870bcbfd8b818272f85c7923d66c4410f26b0c98e854c9f64bc2b098",
+      "communications": "47546791c473a503af096bf68570cbf22bf52dc3afa8eab7d61725af5affa24b",
+      "liveCostCentre": "a733354eca1d4dfdea420572a190029376e4cab9d7a26ec2f9080a86c2fb986f",
+      "assurance": "b9fdfaab63ff4baa1342db233f99184a78134347ae4a1d15068d1333c8e46f55",
+      "financialEvidence": "cadb4908d5414347609754403b276dc89fe309705dc87e26ff7421994306e36d",
+      "commerce": "57cfc9526f7d54e242631130bb68dc899c1fbbbcc2e129f4bbf4e3df0ac12a9e",
+      "brain": "82be586d7ef7f02d575a908bb9097a4c01f01909600f75413a07d0b6038cd16e",
+      "missions": "ecbc215bf48ed4c2cdd7bbb1969f69a1793eaa7f585f3082060b1a12152efd74",
+      "execution": "6571e8ef337b5f4304032201627679e561312aa360684322e89b9d3ff2e741fa",
+      "shadow": "8312529ecd06d8535bb30a783cfb1164a6990e02c141e4d332253f7d4b335ba5"
+    },
+    "json": {
+      "authority": "c632c0e8b00d55da1b9a2c65771bc96f151d7c6afeb6cb919711f02d2ae0b2bd",
+      "requestOwners": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "redisDigest": "f150e417961d1bf932b9b1e25498a6e609b690e14d0c5dbd25606aa20c333c06",
+    "redisCapturedAt": 1791818546039,
+    "redisIdentity": {
+      "runId": "d9f0195698dde1837d08e08e9cc158c0d7a93cb3",
+      "db": 0,
+      "ownerKey": "bull:empireai-brain-tasks:capture-owner",
+      "owner": "35c562e9-1da7-44d1-894b-de33c91fedc8",
+      "metaKey": "bull:empireai-brain-tasks:meta"
+    },
+    "bootAllowed": false,
+    "completeLiveState": false,
+    "authority": "HISTORICAL_ONLY_DO_NOT_BOOT",
+    "remaining": [
+      "Redis producers outside Brain queue are not globally fenced",
+      "Executive watchdog and Amazon continuation coverage unproven",
+      "Protected independent custody and restoration unproven"
+    ]
+  }
+}

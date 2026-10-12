@@ -1,0 +1,338 @@
+{
+  "source": "GitHub connector live read",
+  "publishedSource": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+  "sourceTree": "29bddc44ab41fa30c8db4c0b6f6144e9950f58d4",
+  "publishedEvidence": "657fd2a51b85b76d788060b28c825bfb7225b5fa",
+  "evidenceTree": "05af001713ba9d58cc5abd0301ad345ffd4beeea",
+  "pr": 113,
+  "draft": true,
+  "merged": false,
+  "runs": [
+    {
+      "id": 38264268885,
+      "name": "Independent Assurance Core",
+      "head_sha": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "created_at": "2026-10-12T14:37:26Z",
+      "updated_at": "2026-10-12T14:37:51Z"
+    },
+    {
+      "id": 38264268740,
+      "name": "Product path CI",
+      "head_sha": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "created_at": "2026-10-12T14:37:26Z",
+      "updated_at": "2026-10-12T14:46:37Z"
+    },
+    {
+      "id": 38264268729,
+      "name": "Pillow semantic repair CI",
+      "head_sha": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "created_at": "2026-10-12T14:37:26Z",
+      "updated_at": "2026-10-12T14:41:17Z"
+    },
+    {
+      "id": 38264268728,
+      "name": "Pillow runtime repair CI",
+      "head_sha": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_attempt": 1,
+      "created_at": "2026-10-12T14:37:26Z",
+      "updated_at": "2026-10-12T15:07:53Z"
+    }
+  ],
+  "runtimeJobs": {
+    "jobs": [
+      {
+        "id": 114862331946,
+        "name": "Durable runtime — real Redis, restart, ownership and authorization",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "run_id": 38264268728,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Require offline certification, redeploy and collection evidence tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Install Redis binary for test-owned isolated AOF processes",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Clean install, typecheck and build Pillow",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Run mandatory Pillow observer and reasoning-only policy tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Clean install, verify, typecheck and build backend",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Verify bounded multi-provider inference and preserved authority",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Verify generated complete reasoning admission path with intercepted provider HTTP",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Verify response completion and frontend preservation safeguards",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Verify complete generated response delivery to owner UI",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Prove permanent locked runtime and complete enabled-store restore",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Retain pre-cutover closure evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Run mandatory isolated runtime and session tests",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "number": 15
+          },
+          {
+            "name": "Record exact tested revision and scope",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 16
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 31
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 32
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33
+          }
+        ]
+      },
+      {
+        "id": 114862332321,
+        "name": "Exact-source Railway Railpack image",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 38264268728,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout candidate source without merge or persisted credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Use the repository Node pin",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Build the effective root Railway configuration without deployment",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Preserve exact-source packaging receipt",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Post Use the repository Node pin",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Post Checkout candidate source without merge or persisted credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          }
+        ]
+      },
+      {
+        "id": 114862332441,
+        "name": "Durable web — receipt recovery, one submission, tests and build",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 38264268728,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Clean install and typecheck canonical Next.js web",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run web tests with mandatory durable-delivery coverage",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Build canonical Next.js web",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Record exact tested revision and scope",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          }
+        ]
+      },
+      {
+        "id": 114874825160,
+        "name": "Runtime repair result (no deployment)",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_id": 38264268728,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Require both mandatory repair gates to pass",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 2
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          }
+        ]
+      }
+    ]
+  },
+  "reruns": 0,
+  "reason": "30-minute job boundary reached before final runtime/session suite completed; no four-PASS claim."
+}

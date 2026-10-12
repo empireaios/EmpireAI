@@ -1,0 +1,118 @@
+{
+  "schema": "WORK8_WRITER_COVERAGE_INDEPENDENT_REVIEW_V1",
+  "sourceCommit": "8277718e03a0e5d9b612dbe1240bb4a005e56856",
+  "sourcePath": "/workspace/scratch/ed471dff75f8/closure-integration",
+  "decision": "NO_NEW_CODE_CHANGE_JUSTIFIED; SCOPED COVERAGE VERIFIED; GLOBAL CERTIFICATION PENDING",
+  "inventory": [
+    {
+      "writer": "Brain producers",
+      "path": "backend/src/brain/task-queue.ts",
+      "finding": "Persistent Redis producer tokens cover enqueue/scheduled creation and audit settlement; unknown failures retain tokens; active repeat schedulers refuse capture."
+    },
+    {
+      "writer": "Primary HTTP and local background",
+      "path": "backend/src/runtime/tier0-isolated-primary.ts",
+      "finding": "Primary capture composes supervised observer capture, HTTP admission and background drain."
+    },
+    {
+      "writer": "Assurance observer processes",
+      "path": "deployment/assurance-supervisor.cjs",
+      "finding": "Actual permanent worker and inspector participate; collector promises remain tracked after timeout; lost participants/requester cause containment."
+    },
+    {
+      "writer": "Amazon continuation timers",
+      "path": "backend/src/orchestration/reality-integration/live-commerce/services",
+      "finding": "Order, listing and seller inventory continuation bodies already wrapped in runCaptureAwareBackground."
+    },
+    {
+      "writer": "Durable reasoning",
+      "path": "backend/src/runtime/pillow-durable-reasoning-worker.ts",
+      "finding": "Background admission encloses Redis claim through settlement."
+    },
+    {
+      "writer": "Mission execution",
+      "path": "backend/src/orchestration/pillow-host/mission-execution/runner.ts",
+      "finding": "Background admission encloses claim, receipts and reconciliation."
+    },
+    {
+      "writer": "Intelligence/commerce/twin/local Assurance",
+      "path": "backend/src/runtime/work8-background-capture.ts",
+      "finding": "Registered loops participate in shared local background admission."
+    },
+    {
+      "writer": "Presale/executive automation/Pillow boot",
+      "path": "backend/src/app.ts",
+      "finding": "Pause and drain composed inside local admission before store capture."
+    },
+    {
+      "writer": "SQL.js",
+      "path": "backend/src/brain/sqlite-database.ts",
+      "finding": "Existing accepted process ownership and canonical-path protections present; temporary Shadow view opens after drains and closes inside exclusion."
+    },
+    {
+      "writer": "Pillow heartbeat and executive watchdog",
+      "path": "backend/src/runtime/executive-continuity-watchdog.ts",
+      "finding": "Pillow heartbeat mutates in-memory health; executive watchdog stays active and may terminate stalled runtime. No weakening proposed."
+    }
+  ],
+  "tests": [
+    {
+      "command": "node --test deployment/observer-capture.test.cjs",
+      "cwd": "/workspace/scratch/ed471dff75f8/closure-integration",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": 0,
+      "durationMs": 2833.65661,
+      "coverage": [
+        "late durable observer writes",
+        "wrong generation",
+        "drain timeout",
+        "requester disconnect",
+        "observer loss",
+        "watchdog progress semantics",
+        "actual launcher relay",
+        "collector timeout retains admission",
+        "supervised timeout containment"
+      ]
+    },
+    {
+      "command": "node --import tsx --test src/validation/tests/work8-background-capture.test.ts src/validation/tests/work8-primary-capture.test.ts src/validation/tests/work8-transport-capture.test.ts",
+      "cwd": "/workspace/scratch/ed471dff75f8/closure-integration/backend",
+      "exitCode": 0,
+      "passed": 8,
+      "failed": 0,
+      "durationMs": 4117.261979,
+      "coverage": [
+        "background drain and timer resume",
+        "drain refusal",
+        "actual child primary HTTP fence",
+        "participant refusal",
+        "callback failure release",
+        "IPC loss terminates requester",
+        "missing IPC refusal",
+        "reasoning admission before Redis claim"
+      ]
+    }
+  ],
+  "rawLogs": "Tool output retained in agent transcript; no raw log file was written. Counts and commands above transcribed from successful tool results.",
+  "limitations": [
+    "External Redis producers not globally excluded",
+    "Old/uncooperative binaries not excluded",
+    "Independent process/network exclusion unproven",
+    "Protected custody and globally authorized operational restore unproven"
+  ],
+  "requiredDisposition": {
+    "completeLiveState": false,
+    "bootAllowed": false,
+    "requirements33and39": "PENDING"
+  },
+  "actionsNotTaken": [
+    "code edits",
+    "publication",
+    "deployment",
+    "paid inference",
+    "production actions",
+    "endurance rerun",
+    "rollback rerun"
+  ]
+}

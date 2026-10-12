@@ -1,0 +1,65 @@
+{
+  "before": {
+    "missionId": "msr-mission-1791816907828-1-ddd704b6-6ad6-4b87-995b-2719bc093d7b",
+    "dispatchId": "msr-mission-1791816907828-1-ddd704b6-6ad6-4b87-995b-2719bc093d7b-dispatch-1791816907851-6-5eda4c22-241d-4760-b319-dfd568d2d90b",
+    "workerId": "pillow-authority-reader-v1",
+    "action": "authority.snapshot.v1",
+    "scope": {
+      "ownerEmail": "offline-owner@example.test",
+      "workspaceId": "ws_empire_1"
+    },
+    "buildSha": "272fae796af47003b5b1cb4105cbbc76f16416b0",
+    "inputHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "jobId": "mae_ddac93da42b4803ebb8c16618c159d29503fec96b4be0569ff6ca467727a34f7",
+    "status": "queued",
+    "attempts": 0,
+    "createdAt": "2026-10-12T14:55:07.854Z",
+    "leaseToken": null,
+    "leaseUntil": null,
+    "receipt": null,
+    "reconciled": false,
+    "lastError": null
+  },
+  "captured": {
+    "missionId": "msr-mission-1791816907828-1-ddd704b6-6ad6-4b87-995b-2719bc093d7b",
+    "dispatchId": "msr-mission-1791816907828-1-ddd704b6-6ad6-4b87-995b-2719bc093d7b-dispatch-1791816907851-6-5eda4c22-241d-4760-b319-dfd568d2d90b",
+    "workerId": "pillow-authority-reader-v1",
+    "action": "authority.snapshot.v1",
+    "scope": {
+      "ownerEmail": "offline-owner@example.test",
+      "workspaceId": "ws_empire_1"
+    },
+    "buildSha": "272fae796af47003b5b1cb4105cbbc76f16416b0",
+    "inputHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "jobId": "mae_ddac93da42b4803ebb8c16618c159d29503fec96b4be0569ff6ca467727a34f7",
+    "status": "queued",
+    "attempts": 0,
+    "createdAt": "2026-10-12T14:55:07.854Z",
+    "leaseToken": null,
+    "leaseUntil": null,
+    "receipt": null,
+    "reconciled": false,
+    "lastError": null
+  },
+  "afterColdCohortRestart": {
+    "missionId": "msr-mission-1791816907828-1-ddd704b6-6ad6-4b87-995b-2719bc093d7b",
+    "dispatchId": "msr-mission-1791816907828-1-ddd704b6-6ad6-4b87-995b-2719bc093d7b-dispatch-1791816907851-6-5eda4c22-241d-4760-b319-dfd568d2d90b",
+    "workerId": "pillow-authority-reader-v1",
+    "action": "authority.snapshot.v1",
+    "scope": {
+      "ownerEmail": "offline-owner@example.test",
+      "workspaceId": "ws_empire_1"
+    },
+    "buildSha": "272fae796af47003b5b1cb4105cbbc76f16416b0",
+    "inputHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "jobId": "mae_ddac93da42b4803ebb8c16618c159d29503fec96b4be0569ff6ca467727a34f7",
+    "status": "queued",
+    "attempts": 0,
+    "createdAt": "2026-10-12T14:55:07.854Z",
+    "leaseToken": null,
+    "leaseUntil": null,
+    "receipt": null,
+    "reconciled": false,
+    "lastError": null
+  }
+}

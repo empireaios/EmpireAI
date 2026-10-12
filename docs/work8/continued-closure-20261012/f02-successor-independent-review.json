@@ -1,0 +1,45 @@
+{
+  "schema": "WORK8_F02_INDEPENDENT_REVIEW_V1",
+  "candidate": "15a6f5e700e0669e6fa7f2e0f185e3f3f834dada",
+  "tree": "4d50721e824b52314461db1c35affd85dce25493",
+  "verdict": "ACCEPT_SCOPED_SOFTWARE_SUCCESSOR",
+  "priorRejection": "3a248c61 false healthy metadata gap preserved and corrected",
+  "sealHashes": "ALL_MATCH",
+  "independentTests": {
+    "passed": 4,
+    "failed": 0,
+    "exitCode": 0,
+    "log": "/workspace/scratch/dc845312c8f5/f02-successor-independent-contracts.tap",
+    "command": "WORK8_KERNEL_EGRESS=DENIED node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/work8-queue-probe.test.ts backend/src/validation/tests/work8-scheduler-misfire.test.ts"
+  },
+  "independentNegativeRetest": {
+    "path": "/workspace/scratch/dc845312c8f5/f02-successor-negative-results.json",
+    "retainedValidLate": "DEGRADED",
+    "removedMissedMarker": "UNAVAILABLE",
+    "malformedAdmission": "UNAVAILABLE"
+  },
+  "reviewedConstraints": [
+    "queue backlog120s unchanged",
+    "scheduled lateness30s",
+    "late committed admission retains fault",
+    "failed transaction cannot clear",
+    "only later timely committed admission clears",
+    "bounded admission/no catch-up flood",
+    "legacy absent metadata readable; present malformed/inconsistent metadata unavailable",
+    "22 persisted negative metadata cases passed",
+    "original clock and watchdog unchanged"
+  ],
+  "retainedRealTimerEvidence": {
+    "elapsedMs": 82103.4824,
+    "faultDetectionMs": 30855.984138,
+    "control": "one completed/no incident",
+    "fault": "one completed/one retained incident/DEGRADED",
+    "scope": "actual registered child30s scheduler; external parent250ms probe+control-plane observer; NOT full installed Assurance lifecycle",
+    "rerun": false
+  },
+  "limitations": [
+    "Original F02 not unconditionally closed",
+    "Combined exact-head typecheck and CI remain separate gates",
+    "No production effects/publication/inference performed"
+  ]
+}

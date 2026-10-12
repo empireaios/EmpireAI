@@ -1,0 +1,615 @@
+{
+  "schema": "WORK8_TWIN_PROJECTION_V1",
+  "label": "DIGITAL TWIN — SIMULATED OPERATIONS",
+  "session": {
+    "schema": "WORK8_TWIN_V1",
+    "workspace": "ws",
+    "owner": "owner",
+    "sessionId": "exam",
+    "twinWorkspace": "twin_b76b2d1f33e29323ce2bf4da28690ee36fff8d17f3ef88f9",
+    "id": "create",
+    "version": 1,
+    "action": "CREATE",
+    "status": "PAUSED",
+    "at": 1791676800000,
+    "previous": "",
+    "requestDigest": "0aa7e23e5d22d344808e1d5c045478b8a0c1b11e64e58745cbff7ac5dc63d903",
+    "classification": "SIMULATED_OPERATIONS",
+    "externalEffects": 0,
+    "digest": "42bb4be2e208d07dc05197c584a3a9645c8b93310221eff77fc3197cf2993ee5"
+  },
+  "records": [
+    {
+      "missionId": "fixture:product",
+      "receiptDigest": "8d4d1faffc5459d375fc2c42592cc6e51deeb977cf743af8fb1690cee2d5167c",
+      "version": 15,
+      "productId": "cj-product-fixture",
+      "variantId": "cj-variant-fixture",
+      "listing": {
+        "productId": "cj-product-fixture",
+        "title": "Synthetic storage organiser",
+        "bullets": [
+          "Synthetic dimensions for acceptance only"
+        ],
+        "description": "Synthetic listing package, not intended for marketplace publication.",
+        "category": "HOME_STORAGE",
+        "attributes": {
+          "material": "fixture"
+        },
+        "variants": [
+          {
+            "sku": "cj-sku-fixture",
+            "variantId": "cj-variant-fixture",
+            "dimensions": "10x10x10 cm fixture"
+          }
+        ],
+        "images": [
+          {
+            "url": "https://example.invalid/fixture.png",
+            "license": "Synthetic acceptance image manifest; no actual media licensed",
+            "rightsEvidence": "evidence-QUALITY",
+            "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f"
+          }
+        ],
+        "claims": [
+          {
+            "text": "Synthetic fixture",
+            "evidenceId": "evidence-QUALITY"
+          }
+        ],
+        "sourceEvidence": [
+          "evidence-DEMAND",
+          "evidence-COMPETITION",
+          "evidence-DIFFERENTIATION",
+          "evidence-QUALITY",
+          "evidence-COMPLIANCE",
+          "evidence-RETURNS",
+          "evidence-MARKETPLACE",
+          "evidence-PAYMENT"
+        ]
+      },
+      "publication": null,
+      "orders": {
+        "order-fixture": {
+          "order": {
+            "orderId": "order-fixture",
+            "workspaceId": "twin_b76b2d1f33e29323ce2bf4da28690ee36fff8d17f3ef88f9",
+            "storeId": "isolated",
+            "brandId": "fixture",
+            "supplierPlatform": "CJ_DROPSHIPPING",
+            "connectorId": "cj-interceptor",
+            "status": "DELIVERED",
+            "fulfillmentStatus": "DELIVERED",
+            "items": [
+              {
+                "itemId": "line-1",
+                "supplierSku": "cj-sku-fixture",
+                "supplierProductId": "cj-product-fixture",
+                "title": "Synthetic storage organiser",
+                "quantity": 2,
+                "unitCost": 8,
+                "currency": "SGD"
+              }
+            ],
+            "shippingAddress": {
+              "fullName": "Synthetic Recipient",
+              "addressLine1": "Fixture address",
+              "city": "Singapore",
+              "state": "Singapore",
+              "postalCode": "000000",
+              "countryCode": "SG",
+              "phone": "00000000"
+            },
+            "estimatedCost": 16,
+            "estimatedDeliveryDaysMin": 7,
+            "estimatedDeliveryDaysMax": 10,
+            "currency": "SGD",
+            "approval": null,
+            "supplierOrderId": null,
+            "trackingNumber": null,
+            "carrier": null,
+            "trackingEvents": [],
+            "integrationMode": "SANDBOX",
+            "createdAt": "2026-10-11T00:00:00.000Z",
+            "updatedAt": "2026-10-11T00:00:00.000Z"
+          },
+          "outcome": "DELIVERED",
+          "accepted": 2,
+          "shipped": 2,
+          "delivered": 2,
+          "tracking": [
+            "tracking-shipped",
+            "tracking-delivered"
+          ],
+          "lastTrackingAt": "2026-10-11T00:00:00.000Z",
+          "shipments": {
+            "shipment-fixture": {
+              "quantity": 2,
+              "delivered": true,
+              "carrier": "fixture-carrier",
+              "tracking": "fixture-tracking"
+            }
+          },
+          "remedies": [
+            {
+              "id": "return-fixture",
+              "kind": "RETURN",
+              "amount": 0,
+              "quantity": 1,
+              "financialClass": "SYNTHETIC_EXCLUDED_FROM_ACTUALS"
+            },
+            {
+              "id": "refund-fixture",
+              "kind": "REFUND",
+              "amount": 20,
+              "quantity": 1,
+              "financialClass": "SYNTHETIC_EXCLUDED_FROM_ACTUALS"
+            }
+          ],
+          "intentId": "4aa1b5efedc8649d92e953ce4f7e16559033009a6f531e26ba7c2275c357c304",
+          "providerId": "cj-intercepted-receipt"
+        }
+      },
+      "financeReference": {
+        "workspace": "twin_b76b2d1f33e29323ce2bf4da28690ee36fff8d17f3ef88f9",
+        "missionId": "fixture:product",
+        "sourceReceiptDigest": "8d4d1faffc5459d375fc2c42592cc6e51deeb977cf743af8fb1690cee2d5167c"
+      },
+      "sourceClassification": "SYNTHETIC",
+      "media": {
+        "version": 0,
+        "original": [
+          {
+            "id": "original-0",
+            "url": "https://example.invalid/fixture.png",
+            "kind": "IMAGE",
+            "sha256": "ecf5bc501c5a4b57073420da4f16b0abc7b0a5ca26e30494b3f911d68e0f024f",
+            "sourceIdentity": "cj-product-fixture",
+            "rightsEvidence": "evidence-QUALITY",
+            "rightsStatus": "UNVERIFIED",
+            "provenance": "Synthetic acceptance image manifest; no actual media licensed"
+          }
+        ],
+        "proposal": null,
+        "current": null,
+        "history": [],
+        "status": "ORIGINAL_ONLY",
+        "reminder": null,
+        "sourceBindingCurrent": false,
+        "externalStatus": "NOT_SUBMITTED",
+        "editingCapability": "CANVA_RUNTIME_NOT_CONFIGURED",
+        "classification": "SIMULATED_MEDIA_WORKFLOW",
+        "externalEffects": 0
+      },
+      "title": "Synthetic storage organiser",
+      "sku": "cj-sku-fixture",
+      "phase": "APPROVED",
+      "qualification": {
+        "qualified": true,
+        "reasons": [],
+        "score": 87,
+        "confidence": 1,
+        "economics": {
+          "input": {
+            "productId": "cj-product-fixture",
+            "supplierId": "CJ",
+            "channel": "AMAZON",
+            "country": "SG",
+            "currency": "SGD",
+            "sellingPrice": 40,
+            "productCost": 8,
+            "freight": 3,
+            "fulfilment": 1,
+            "feePercent": 15,
+            "paymentPercent": 2,
+            "advertising": 1,
+            "refundRate": 0.05,
+            "refundLoss": 12,
+            "duties": 1,
+            "tax": 1,
+            "overhead": 1,
+            "complete": true,
+            "evidenceRefs": [
+              "evidence-DEMAND",
+              "evidence-COMPETITION",
+              "evidence-DIFFERENTIATION",
+              "evidence-QUALITY",
+              "evidence-COMPLIANCE",
+              "evidence-RETURNS",
+              "evidence-MARKETPLACE",
+              "evidence-PAYMENT"
+            ],
+            "assumptions": "Entirely synthetic isolated acceptance; not actual sales or supplier quotes."
+          },
+          "gross": 27,
+          "contribution": 17.599999999999998,
+          "net": 16.599999999999998,
+          "breakEven": 20.000000000000004,
+          "minimumViablePrice": 20.000000000000004,
+          "marginPercent": 41.49999999999999,
+          "status": "EVIDENCED_SCENARIO_NOT_ACTUAL",
+          "genuinelyProfitable": false
+        },
+        "exposure": 25,
+        "available": 980,
+        "classification": "SYNTHETIC_OR_EVIDENCED_SCENARIO_NOT_ACTUAL",
+        "genuinelyProfitable": false
+      },
+      "decisions": [
+        {
+          "id": "seed-14",
+          "evidenceIds": [
+            "outcome-30",
+            "outcome-60",
+            "outcome-90"
+          ],
+          "actions": [
+            "VERIFY_DEMAND_BEFORE_SPEND",
+            "REVIEW_LISTING_AND_TARGETING",
+            "REQUALIFY_ECONOMICS",
+            "RESEARCH_ALTERNATIVE_SUPPLIER",
+            "REVIEW_FREIGHT_AND_REMEDIES",
+            "REVIEW_QUALITY_AND_RETURN_EXPOSURE",
+            "PRESERVE_CAPITAL",
+            "STOP_EXPANSION_REVIEW_PIVOT",
+            "REJECT_RESTRICTED_MARKET"
+          ],
+          "days": [
+            30,
+            60,
+            90
+          ],
+          "health": {
+            "classification": "SOFTWARE_ADVISORY_ONLY",
+            "policy": "existing-outcome-checks-v1",
+            "score": 8,
+            "scoreMeaning": "Percentage of known outcome checks passed; not a profit forecast",
+            "unknownChecks": 0,
+            "checks": [
+              {
+                "evidenceId": "outcome-30",
+                "check": "demand",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-30",
+                "check": "conversion",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-30",
+                "check": "economics",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-30",
+                "check": "stock",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-30",
+                "check": "delivery",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-30",
+                "check": "returns",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-30",
+                "check": "restriction",
+                "passed": true
+              },
+              {
+                "evidenceId": "outcome-30",
+                "check": "capital",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-60",
+                "check": "demand",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-60",
+                "check": "conversion",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-60",
+                "check": "economics",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-60",
+                "check": "stock",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-60",
+                "check": "delivery",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-60",
+                "check": "returns",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-60",
+                "check": "restriction",
+                "passed": true
+              },
+              {
+                "evidenceId": "outcome-60",
+                "check": "capital",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-90",
+                "check": "demand",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-90",
+                "check": "conversion",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-90",
+                "check": "economics",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-90",
+                "check": "stock",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-90",
+                "check": "delivery",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-90",
+                "check": "returns",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-90",
+                "check": "restriction",
+                "passed": false
+              },
+              {
+                "evidenceId": "outcome-90",
+                "check": "capital",
+                "passed": false
+              }
+            ],
+            "recommendations": [
+              "OBSERVE",
+              "IMPROVE",
+              "PAUSE",
+              "REPLACE",
+              "RETIRE"
+            ],
+            "grantsAuthority": false
+          }
+        }
+      ],
+      "finance": {
+        "missionId": "fixture:product",
+        "status": "NOT_STARTED",
+        "reason": null,
+        "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+        "actualCashMovement": 0,
+        "events": []
+      }
+    }
+  ],
+  "next": null,
+  "coverage": "BOUNDED_PAGE",
+  "actualCashMovement": 0,
+  "liveCommerce": "LOCKED",
+  "birth": "NOT_BORN",
+  "portfolioReviews": [
+    {
+      "workspace": "ws",
+      "owner": "owner",
+      "sessionId": "exam",
+      "scope": "RESEARCH_REASONING",
+      "id": "review",
+      "action": "CONSUME",
+      "version": 2,
+      "grantDigest": "71ac558e53a3bcadd224aaf269902d37cf5c94afb41f3ba18d0d779130c79fe8",
+      "at": 1791676800000,
+      "expiresAt": 1791680400000,
+      "previous": "71ac558e53a3bcadd224aaf269902d37cf5c94afb41f3ba18d0d779130c79fe8",
+      "requestDigest": "be35a3aa897703bdf4768acd3abc253846c74f9b477ac8ef6a8f4f993308cf80",
+      "result": {
+        "scope": "RESEARCH_REASONING",
+        "sessionId": "exam",
+        "classification": "LOCAL_PREPARATION_ONLY",
+        "paidInference": 0,
+        "externalEffects": 0,
+        "productionChange": false,
+        "coverage": "FIRST_20_CANONICAL_MISSIONS",
+        "missionReferences": [
+          {
+            "missionId": "fixture:product",
+            "receiptDigest": "8d4d1faffc5459d375fc2c42592cc6e51deeb977cf743af8fb1690cee2d5167c",
+            "productId": "cj-product-fixture",
+            "variantId": "cj-variant-fixture"
+          }
+        ],
+        "modelProposal": {
+          "kind": "PORTFOLIO_MODEL_REVIEW",
+          "requestId": "pcr_synthetic",
+          "chatSessionId": "chat",
+          "inputHash": "0ebc718deece887e4dd884726aec68df",
+          "contextDigest": "d82087ef01006becef99af2b47ed45e3b42c4077fdea3208ce34841997e8f596",
+          "responseDigest": "a14b4fd5b10934e409a31b819e3a38dc425d6f240c2e2aaf57d5a85a3fe9675c",
+          "commandDigest": "56dd92bb532ca26693dae69f22b7c794488d6a359f0213ffc6105174fe906f62",
+          "reference": {
+            "sessionId": "exam",
+            "missionId": "fixture:product",
+            "receiptDigest": "8d4d1faffc5459d375fc2c42592cc6e51deeb977cf743af8fb1690cee2d5167c"
+          },
+          "evidenceIds": [
+            "outcome-30",
+            "outcome-60",
+            "outcome-90"
+          ],
+          "score": 45,
+          "recommendation": "IMPROVE",
+          "rationale": "Labelled synthetic retained reply: score45 reflects documented operating risks; no actual model call.",
+          "classification": "RETAINED_PILLOW_RESPONSE_NOT_OWNER_APPROVAL",
+          "externalEffects": 0
+        },
+        "kind": "RESEARCH_BRIEF",
+        "modelAssessment": "RETAINED_REQUEST_CONSUMED",
+        "next": "Use separately authorised existing investigation and accounting controls; this grant does not authorise paid inference."
+      },
+      "digest": "ec3c022413750b4184a2ec4e56161b0f79a5426bea9ac53a50974f7bf4efdde3"
+    }
+  ],
+  "recoveredAuthorityAudit": {
+    "classification": "HISTORICAL_ONLY_NO_AUTHORITY",
+    "histories": []
+  },
+  "preparationAuthority": [
+    {
+      "scope": "RESEARCH_REASONING",
+      "latestPreparation": {
+        "workspace": "ws",
+        "owner": "owner",
+        "sessionId": "exam",
+        "scope": "RESEARCH_REASONING",
+        "id": "review",
+        "action": "CONSUME",
+        "version": 2,
+        "grantDigest": "71ac558e53a3bcadd224aaf269902d37cf5c94afb41f3ba18d0d779130c79fe8",
+        "at": 1791676800000,
+        "expiresAt": 1791680400000,
+        "previous": "71ac558e53a3bcadd224aaf269902d37cf5c94afb41f3ba18d0d779130c79fe8",
+        "requestDigest": "be35a3aa897703bdf4768acd3abc253846c74f9b477ac8ef6a8f4f993308cf80",
+        "result": {
+          "scope": "RESEARCH_REASONING",
+          "sessionId": "exam",
+          "classification": "LOCAL_PREPARATION_ONLY",
+          "paidInference": 0,
+          "externalEffects": 0,
+          "productionChange": false,
+          "coverage": "FIRST_20_CANONICAL_MISSIONS",
+          "missionReferences": [
+            {
+              "missionId": "fixture:product",
+              "receiptDigest": "8d4d1faffc5459d375fc2c42592cc6e51deeb977cf743af8fb1690cee2d5167c",
+              "productId": "cj-product-fixture",
+              "variantId": "cj-variant-fixture"
+            }
+          ],
+          "modelProposal": {
+            "kind": "PORTFOLIO_MODEL_REVIEW",
+            "requestId": "pcr_synthetic",
+            "chatSessionId": "chat",
+            "inputHash": "0ebc718deece887e4dd884726aec68df",
+            "contextDigest": "d82087ef01006becef99af2b47ed45e3b42c4077fdea3208ce34841997e8f596",
+            "responseDigest": "a14b4fd5b10934e409a31b819e3a38dc425d6f240c2e2aaf57d5a85a3fe9675c",
+            "commandDigest": "56dd92bb532ca26693dae69f22b7c794488d6a359f0213ffc6105174fe906f62",
+            "reference": {
+              "sessionId": "exam",
+              "missionId": "fixture:product",
+              "receiptDigest": "8d4d1faffc5459d375fc2c42592cc6e51deeb977cf743af8fb1690cee2d5167c"
+            },
+            "evidenceIds": [
+              "outcome-30",
+              "outcome-60",
+              "outcome-90"
+            ],
+            "score": 45,
+            "recommendation": "IMPROVE",
+            "rationale": "Labelled synthetic retained reply: score45 reflects documented operating risks; no actual model call.",
+            "classification": "RETAINED_PILLOW_RESPONSE_NOT_OWNER_APPROVAL",
+            "externalEffects": 0
+          },
+          "kind": "RESEARCH_BRIEF",
+          "modelAssessment": "RETAINED_REQUEST_CONSUMED",
+          "next": "Use separately authorised existing investigation and accounting controls; this grant does not authorise paid inference."
+        },
+        "digest": "ec3c022413750b4184a2ec4e56161b0f79a5426bea9ac53a50974f7bf4efdde3"
+      },
+      "latestApproval": null,
+      "version": 2,
+      "grant": {
+        "workspace": "ws",
+        "owner": "owner",
+        "sessionId": "exam",
+        "scope": "RESEARCH_REASONING",
+        "id": "grant",
+        "action": "GRANT",
+        "version": 1,
+        "at": 1791676800000,
+        "expiresAt": 1791680400000,
+        "previous": "",
+        "requestDigest": "400bdf0d5f807c441e0d945702ee2ef6a42970627dc94de776cb571599ddf87d",
+        "mode": "ONE_TASK",
+        "taskId": "review",
+        "digest": "71ac558e53a3bcadd224aaf269902d37cf5c94afb41f3ba18d0d779130c79fe8"
+      },
+      "status": "CONSUMED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "COMMERCIAL_PREPARATION",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "BACKEND_READ_ONLY",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    },
+    {
+      "scope": "UX_CHANGE_PREPARATION",
+      "latestPreparation": null,
+      "latestApproval": null,
+      "version": 0,
+      "grant": null,
+      "status": "NOT_GRANTED",
+      "paidInference": false,
+      "externalEffects": false
+    }
+  ],
+  "communications": [],
+  "authority": {
+    "grant": null,
+    "version": 0,
+    "status": "NOT_GRANTED",
+    "scope": "TWIN_SCHEDULER_ONLY",
+    "externalEffects": 0
+  },
+  "tasks": [],
+  "assurance": {
+    "probes": [],
+    "observations": [],
+    "coverage": "LATEST_100_OBSERVATIONS"
+  },
+  "scheduler": {
+    "mode": "BOUNDED_CANONICAL_WORKER",
+    "intervalMs": 5000
+  },
+  "sourceNotice": "Labelled test fixtures are not genuine supplier qualification. No actual money or goods move."
+}

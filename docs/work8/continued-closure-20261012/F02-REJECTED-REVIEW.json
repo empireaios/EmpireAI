@@ -1,0 +1,33 @@
+{
+  "schema": "WORK8_F02_INDEPENDENT_REVIEW_V1",
+  "candidate": "3a248c61b72b90b8bf84bfa9feac734be3fe50ba",
+  "tree": "393e302da8fba028a876fa857d6ff024260858c1",
+  "verdict": "REJECT_SOURCE_INTEGRITY_FALSE_HEALTHY",
+  "sourceEdited": false,
+  "positiveFindings": [
+    "120000ms queued backlog unchanged; scheduled admission threshold30000ms",
+    "Late successful admissions retain missedSlot; later timely successful admission clears it",
+    "Transactional enqueue failure preserves marker",
+    "No catch-up loop; one due admission per bounded schedule processing",
+    "All SEAL exactFiles SHA256 values matched",
+    "Actual examiner82.1034824seconds, control1completed/no incidents; fault1completed/1incident/DEGRADED; detection30855.984138ms",
+    "Examiner parent250ms polling explicitly limits evidence; full installed Assurance lifecycle not claimed; no82second rerun performed"
+  ],
+  "independentContracts": {
+    "command": "WORK8_KERNEL_EGRESS=DENIED node --import tsx --test src/validation/tests/work8-queue-probe.test.ts src/validation/tests/work8-scheduler-misfire.test.ts",
+    "passed": 3,
+    "failed": 0,
+    "exitCode": 0,
+    "log": "/workspace/scratch/dc845312c8f5/f02-independent-contracts.tap"
+  },
+  "blockingFinding": {
+    "path": "backend/src/assurance/work8-queue-probe.ts",
+    "description": "Optional metadata validation uses truthiness and fails to enforce late lastAdmission implies retained missedSlot. Removing missedSlot after valid late admission leaves trustworthy-looking late lastAdmission but probe reports HEALTHY. Setting lastAdmission:false also reports HEALTHY. Source corruption must not infer healthy progress.",
+    "reproducer": "/workspace/scratch/dc845312c8f5/f02-negative.mts",
+    "results": "/workspace/scratch/dc845312c8f5/f02-negative-results.json",
+    "expected": "UNAVAILABLE for malformed/inconsistent metadata, or DEGRADED derived from valid retained late admission",
+    "suggestedCorrection": "Validate metadata by field presence, strict object/integer checks, enforce marker/admission consistency in both directions (late admission requires marker); preserve valid absent metadata for legacy records."
+  },
+  "typecheck": "Author4GB success reported; default OOM preserved; independent reviewer did not repeat broad typecheck",
+  "originalF02": "Not closed; original historical clock not modified"
+}

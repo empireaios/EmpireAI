@@ -1,0 +1,74 @@
+[
+  {
+    "mode": "retained",
+    "probe": {
+      "id": "work8_read_queue_progress",
+      "capability": "work8_read_queue_progress",
+      "classification": "work8_read_queue_progress",
+      "severity": "HIGH",
+      "runbookId": null,
+      "status": "DEGRADED",
+      "summary": "Queued reads or scheduled admissions exceeded their progress bound; preserve unknown outcomes and escalate without resubmission.",
+      "evidence": {
+        "observedAt": 1791818874685,
+        "thresholdMs": 120000,
+        "scheduleThresholdMs": 30000,
+        "missedSlots": [
+          {
+            "id": "empire.state",
+            "dueAt": 1791818844684,
+            "admittedAt": 1791818874685
+          }
+        ],
+        "queued": 1,
+        "running": 0,
+        "oldQueuedIds": [],
+        "expiredLeaseIds": [],
+        "overdueScheduleIds": [
+          "empire.state"
+        ],
+        "oldestQueuedAgeMs": 0,
+        "sourceDigest": "7533d2dc02cdc22dd5d6745dc390cb88195c160c14c77b82d2a0367224262c4a",
+        "externalEffects": 0,
+        "inferenceCalls": 0,
+        "coverage": "ALL_ACTIVE_READ_JOBS_MAX_20_AND_SCHEDULES_MAX_32; HISTORICAL_FAILURES_RETAINED_ELSEWHERE"
+      }
+    }
+  },
+  {
+    "mode": "removed-missed-marker",
+    "probe": {
+      "id": "work8_read_queue_progress",
+      "capability": "work8_read_queue_progress",
+      "classification": "work8_read_queue_progress",
+      "severity": "HIGH",
+      "runbookId": null,
+      "status": "UNAVAILABLE",
+      "summary": "Read-queue source integrity or bounded coverage is unavailable; no healthy progress inferred.",
+      "evidence": {
+        "observedAt": 1791818874685,
+        "reason": "QUEUE_SOURCE_UNVERIFIED",
+        "externalEffects": 0,
+        "inferenceCalls": 0
+      }
+    }
+  },
+  {
+    "mode": "malformed-admission",
+    "probe": {
+      "id": "work8_read_queue_progress",
+      "capability": "work8_read_queue_progress",
+      "classification": "work8_read_queue_progress",
+      "severity": "HIGH",
+      "runbookId": null,
+      "status": "UNAVAILABLE",
+      "summary": "Read-queue source integrity or bounded coverage is unavailable; no healthy progress inferred.",
+      "evidence": {
+        "observedAt": 1791818874685,
+        "reason": "QUEUE_SOURCE_UNVERIFIED",
+        "externalEffects": 0,
+        "inferenceCalls": 0
+      }
+    }
+  }
+]

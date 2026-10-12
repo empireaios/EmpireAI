@@ -1,0 +1,10 @@
+{
+  "source": "8b3d286c10a874c6aa262f4fc93427ad49a88aea",
+  "tree": "df9d2c6b5ca87b0cff61b8eba94811b196c5a9c2",
+  "decision": "ACCEPT_SCOPED",
+  "files": {
+    "cache-freshness-independent.tap": "fb4e7c49808515bcd3c7a24254a9d6df6a075a18c096df23213fc82c480e02f6",
+    "cache-due-independent.mts": "6abdb4f9e6bc63f18fe7fb04df6581874c9e842dd1d33ae4208a32c70deb36ed",
+    "cache-due-independent.json": "b91fd2ea9dafbcc0b8d7a2b6f736d66a040f537cc9fda09260903f06dcfac141"
+  }
+}

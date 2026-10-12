@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-12T15:40:18.488Z",
+  "readOnly": true,
+  "inProgress": {
+    "status": "in_progress",
+    "total_count": 0,
+    "runs": []
+  },
+  "queued": {
+    "status": "queued",
+    "total_count": 0,
+    "runs": []
+  },
+  "publishedBranchesUnchanged": {
+    "source": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+    "evidence": "657fd2a51b85b76d788060b28c825bfb7225b5fa"
+  }
+}

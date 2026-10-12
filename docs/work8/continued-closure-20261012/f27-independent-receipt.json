@@ -1,0 +1,896 @@
+{
+  "runId": "joined-assurance-7g2c7B",
+  "injectionWall": 1791818363774,
+  "financialEvent": {
+    "seq": 24,
+    "at": 1791818389303,
+    "body": {
+      "incidentId": "inc_c1d503e9-63e8-490a-84a1-f2baa34520a7",
+      "probe": {
+        "id": "sim-finance:2ebf00dcfd287fb796c712844f08e22c95a488d86a21db6554504822c9044074",
+        "capability": "simulated-financial-reconciliation",
+        "classification": "SIMULATION_FINANCE",
+        "severity": "HIGH",
+        "runbookId": null,
+        "status": "BLOCKED",
+        "summary": "Simulated financial source or event reconciliation needs review.",
+        "evidence": {
+          "observedAt": 1791818389303,
+          "missionId": "acceptance:finance-task",
+          "status": "BLOCKED",
+          "reason": "SIM_FINANCE_EVENT_CORRUPT",
+          "sourceReceiptDigest": null,
+          "planDigest": null,
+          "externalEffects": 0
+        },
+        "observedAt": 1791818389303,
+        "revision": "8277718e"
+      }
+    }
+  },
+  "baselineFinance": {
+    "id": "sim-finance:2ebf00dcfd287fb796c712844f08e22c95a488d86a21db6554504822c9044074",
+    "capability": "simulated-financial-reconciliation",
+    "classification": "SIMULATION_FINANCE",
+    "severity": "HIGH",
+    "runbookId": null,
+    "status": "NOT_CHECKED",
+    "summary": "Durable simulated financial lifecycle is incomplete.",
+    "evidence": {
+      "observedAt": 1791818357903,
+      "missionId": "acceptance:finance-task",
+      "status": "WAITING_SIMULATED_PAYOUT_OR_EVENT",
+      "reason": null,
+      "sourceReceiptDigest": "a2d4533d597ed0e73303d23747c8933c7c92c7f053108382bf385bb98369e4d4",
+      "planDigest": "fcbf32cf68c5237ea9d770e4652d52308475151918d812ad6af5380f118133a1",
+      "externalEffects": 0
+    },
+    "observedAt": 1791818357903,
+    "revision": "8277718e"
+  },
+  "financialProbe": {
+    "id": "sim-finance:2ebf00dcfd287fb796c712844f08e22c95a488d86a21db6554504822c9044074",
+    "capability": "simulated-financial-reconciliation",
+    "classification": "SIMULATION_FINANCE",
+    "severity": "HIGH",
+    "runbookId": null,
+    "status": "BLOCKED",
+    "summary": "Simulated financial source or event reconciliation needs review.",
+    "evidence": {
+      "observedAt": 1791818389303,
+      "missionId": "acceptance:finance-task",
+      "status": "BLOCKED",
+      "reason": "SIM_FINANCE_EVENT_CORRUPT",
+      "sourceReceiptDigest": null,
+      "planDigest": null,
+      "externalEffects": 0
+    },
+    "observedAt": 1791818389303,
+    "revision": "8277718e"
+  },
+  "timer": "Fastify onReady installs actual capture-aware 30000ms Assurance cycle; examiner creates baseline runtime against same isolated stores; production observer children supervised separately; no intelligence or commerce worker timer installed",
+  "status": "PASS",
+  "scope": "JOINED_SOFTWARE_NOT_GENUINE_BUSINESS_ACCEPTANCE",
+  "scenarioId": "W8-F27-JOINED-20261013",
+  "seed": 8027,
+  "source": "8277718e",
+  "injectionMs": 5000,
+  "actualCycleIntervalMs": 30000,
+  "detectMs": 25593.301455999997,
+  "observerRestarts": 1,
+  "providerCalls": 1,
+  "providerTransport": "CONTROLLED_FAKE_NO_EXTERNAL_CONNECT",
+  "inferenceCalls": 0,
+  "externalEffects": 0,
+  "financialTime": "EXPLICIT_VIRTUAL_PREPARATION_ONLY",
+  "historyDigest": "e21c4c0a393764ea74e11bace3d42b6f2f39ee687e1ba81693c6a6a8a2044c55",
+  "unknownDigest": "6b8eb83e64a1c0d2f3ead5e09a81a010139ab510a1ef0051d5c3bb5d508ac077",
+  "badFinanceDigest": "0b64c96c3bcc60644913fa489dd48e293714e37f4d20fd62461e0a86c922b4da",
+  "sourceDigest": "226129a493daebaeee73fd1375f6f5a65bde7696d871351377ea26fb80c4ee81",
+  "incidents": [
+    {
+      "id": "inc_0c5c64bf-2067-4efb-9260-a86636090d5b",
+      "fingerprint": "f428ef50750752e63866a5586d0f04624a3c8a0353a6631f8d257723a02d1e11",
+      "probeId": "response_evidence_linkage",
+      "capability": "response_evidence_linkage",
+      "classification": "response_evidence_linkage",
+      "severity": "HIGH",
+      "summary": "Assessment, durable response or delivered evidence binding conflicts; preserve sources and escalate.",
+      "status": "RECOVERED",
+      "firstAt": 1791818389314,
+      "lastAt": 1791818389314,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 1,
+      "attempts": 0,
+      "synthetic": false,
+      "sourceClaimCoverage": "516d86c1b9ef0e92ee0996245c9ddbb54bf7cfe67ed1b6eaf5cff476b5ae2f79",
+      "limitation": "No permitted recovery runbook",
+      "verifiedAt": 1791818418863,
+      "closedAt": 1791818418863,
+      "verificationRevision": "8277718e"
+    },
+    {
+      "id": "inc_20136d2b-a6b4-432e-a533-dafc1fed1671",
+      "fingerprint": "bf0d077550f7625198230c8a44f5b5973761065d31666006e8286a0896b4ed59",
+      "probeId": "independent_inspector",
+      "capability": "independent_inspector",
+      "classification": "independent_inspector",
+      "severity": "HIGH",
+      "summary": "External inspector heartbeat unavailable",
+      "status": "RECOVERED",
+      "firstAt": 1791818357909,
+      "lastAt": 1791818357909,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 1,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook",
+      "verifiedAt": 1791818358750,
+      "closedAt": 1791818358750,
+      "verificationRevision": "8277718e"
+    },
+    {
+      "id": "inc_3b958feb-8182-418f-9529-9fb0a15422b5",
+      "fingerprint": "062961618afd1e7297682c3ac5729859df560daead577f6394cd4aa4af84fbd6",
+      "probeId": "work8-checkpoint:9246d95121f4693a7ffa0c5e656c227a4fb5de7c863d1b10ce9f5192d52580b2",
+      "capability": "commerce-checkpoint",
+      "classification": "COMMITTED_RECEIPT_CURSOR_GAP",
+      "severity": "HIGH",
+      "summary": "A saved commerce step completed before its progress checkpoint; safe replay can reconcile progress.",
+      "status": "RECOVERED",
+      "firstAt": 1791818389160,
+      "lastAt": 1791818389160,
+      "revision": "8277718e",
+      "runbookId": "work8_checkpoint_replay",
+      "recurrence": 1,
+      "attempts": 1,
+      "synthetic": false,
+      "lastAttemptAt": 1791818389320,
+      "closedAt": 1791818389352,
+      "verifiedAt": 1791818389352
+    },
+    {
+      "id": "inc_44fd5ce7-d7ba-444a-8aa8-0fd7fe28b3be",
+      "fingerprint": "a1738afb1591de2080d9967474cd19261079b18a1447526f684ac5f5ac1a1fd9",
+      "probeId": "reconciliation_view",
+      "capability": "reconciliation_view",
+      "classification": "reconciliation_view",
+      "severity": "HIGH",
+      "summary": "Derived operational evidence reconciliation",
+      "status": "RECOVERED",
+      "firstAt": 1791818357915,
+      "lastAt": 1791818357915,
+      "revision": "8277718e",
+      "runbookId": "rebuild_reconciliation",
+      "recurrence": 1,
+      "attempts": 1,
+      "synthetic": false,
+      "lastAttemptAt": 1791818357917,
+      "closedAt": 1791818357922,
+      "verifiedAt": 1791818357922
+    },
+    {
+      "id": "inc_4ed35947-d375-4746-969d-b76b84bdcabb",
+      "fingerprint": "7abb2c3991c7f1451d558eb944609239d6bcc75d73edb67d59482810a0de9e89",
+      "probeId": "four_eyes_scheduler",
+      "capability": "four_eyes_scheduler",
+      "classification": "four_eyes_scheduler",
+      "severity": "HIGH",
+      "summary": "Durable Four Eyes scheduler progress",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818357910,
+      "lastAt": 1791818418861,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 4,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    },
+    {
+      "id": "inc_5e8a1a67-879e-459a-9b7a-2ed3742ca9a2",
+      "fingerprint": "3ffdbd7f27c3855d8f141e0fd4523251095a02f327714c2b005e8efd14942176",
+      "probeId": "retained_product_discovery",
+      "capability": "retained_product_discovery",
+      "classification": "retained_product_discovery",
+      "severity": "HIGH",
+      "summary": "Retained product evidence scan; no new supplier read is implied",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818357893,
+      "lastAt": 1791818418849,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 4,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    },
+    {
+      "id": "inc_74bc8147-77f5-4170-8df0-7b5cd0e04228",
+      "fingerprint": "a1738afb1591de2080d9967474cd19261079b18a1447526f684ac5f5ac1a1fd9",
+      "probeId": "reconciliation_view",
+      "capability": "reconciliation_view",
+      "classification": "reconciliation_view",
+      "severity": "HIGH",
+      "summary": "Derived operational evidence reconciliation",
+      "status": "RECOVERED",
+      "firstAt": 1791818389318,
+      "lastAt": 1791818389318,
+      "revision": "8277718e",
+      "runbookId": "rebuild_reconciliation",
+      "recurrence": 1,
+      "attempts": 1,
+      "synthetic": false,
+      "lastAttemptAt": 1791818389352,
+      "closedAt": 1791818389360,
+      "verifiedAt": 1791818389360
+    },
+    {
+      "id": "inc_85e28f41-558a-4f5b-8a66-3475fa5e4d29",
+      "fingerprint": "ebfe98854c0fa520576bea17d4fbfcfc4283d0fd36c39b551b8a78cb8be0b259",
+      "probeId": "work8-fulfilment:f4742c48fbbc0b4d1a472f79c6edf63abe806a24043651294f309c40a5ca4d7c",
+      "capability": "commerce-fulfilment",
+      "classification": "SIMULATED_FULFILMENT_WINDOW",
+      "severity": "HIGH",
+      "summary": "Supplier outcome requires reconciliation; no autonomous retry is authorised.",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818389193,
+      "lastAt": 1791818418821,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 2,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    },
+    {
+      "id": "inc_c0fe59e6-25e1-44f5-8113-383dda7a503f",
+      "fingerprint": "baf27e7f0c45488f6302755f538d88cf0a58156425d1feb0dcf053d7e69265a2",
+      "probeId": "four_eyes_reads",
+      "capability": "four_eyes_reads",
+      "classification": "four_eyes_reads",
+      "severity": "HIGH",
+      "summary": "Per-capability saved reads distinguish failed, stale, missing and external evidence; no monitoring API calls",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818357911,
+      "lastAt": 1791818418862,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 4,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    },
+    {
+      "id": "inc_c1d503e9-63e8-490a-84a1-f2baa34520a7",
+      "fingerprint": "f3cc07cb6e753a844e4c170e5ca42bc575766c05ed3bf0c11b3c430e901846a7",
+      "probeId": "sim-finance:2ebf00dcfd287fb796c712844f08e22c95a488d86a21db6554504822c9044074",
+      "capability": "simulated-financial-reconciliation",
+      "classification": "SIMULATION_FINANCE",
+      "severity": "HIGH",
+      "summary": "Durable simulated financial lifecycle is incomplete.",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818357903,
+      "lastAt": 1791818418857,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 4,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    },
+    {
+      "id": "inc_d2aea67f-dd11-46b1-81d3-971e4c0141c7",
+      "fingerprint": "cc911e4cc4fbeb89f6ee5a7039e218159dbef94c64dbbe1b707e63b2d355bff3",
+      "probeId": "provider_configuration",
+      "capability": "provider_configuration",
+      "classification": "provider_configuration",
+      "severity": "HIGH",
+      "summary": "Functional provider receipt source unavailable",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818357908,
+      "lastAt": 1791818418861,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 4,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    },
+    {
+      "id": "inc_dd316bbc-26c0-46bf-bf81-2bfa7a83fea1",
+      "fingerprint": "e96c94ae3d6a47692c2fb28e95380c5f56a914c9d70cc81e06d52dde4153c21e",
+      "probeId": "financial_evidence",
+      "capability": "financial_evidence",
+      "classification": "financial_evidence",
+      "severity": "HIGH",
+      "summary": "Complete cash position is unknown; readable records do not establish financial health.",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818357904,
+      "lastAt": 1791818418857,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 4,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    },
+    {
+      "id": "inc_e28261a1-4a78-4045-9855-bc9990565b4b",
+      "fingerprint": "746dddb4eb7ce590e834931abaaa2aadce52fada0ffa637cf01fa21514c2026c",
+      "probeId": "work8-checkpoint:049a98d03bdb4b30b19c61bca954a139d0eef0b7c3cbf98ae9e1a37ec33787e4",
+      "capability": "commerce-checkpoint",
+      "classification": "COMMITTED_RECEIPT_CURSOR_GAP",
+      "severity": "HIGH",
+      "summary": "Commerce outcome or task remains unresolved; checkpoint repair cannot resolve it.",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818389159,
+      "lastAt": 1791818418810,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 2,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    },
+    {
+      "id": "inc_f70d8d14-6658-4df5-8093-6b1ec8a9382d",
+      "fingerprint": "a1738afb1591de2080d9967474cd19261079b18a1447526f684ac5f5ac1a1fd9",
+      "probeId": "reconciliation_view",
+      "capability": "reconciliation_view",
+      "classification": "reconciliation_view",
+      "severity": "HIGH",
+      "summary": "Derived operational evidence reconciliation",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818418864,
+      "lastAt": 1791818418864,
+      "revision": "8277718e",
+      "runbookId": "rebuild_reconciliation",
+      "recurrence": 1,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "Recurring recovery circuit open for this fault family (one-hour window)"
+    },
+    {
+      "id": "inc_f92ebdc9-5bc5-4342-a798-00d4be3c7f8f",
+      "fingerprint": "644352ccd84790cd5e008fc6ac3cdd67eca096c59bf3d5efaede78f0e458c6fc",
+      "probeId": "sim-finance-coverage",
+      "capability": "simulated-financial-reconciliation",
+      "classification": "SIMULATION_FINANCE_COVERAGE",
+      "severity": "HIGH",
+      "summary": "Bounded rotating slice of up to16 plans; no whole-workspace financial health inferred.",
+      "status": "UNRESOLVED",
+      "firstAt": 1791818357903,
+      "lastAt": 1791818418857,
+      "revision": "8277718e",
+      "runbookId": null,
+      "recurrence": 4,
+      "attempts": 0,
+      "synthetic": false,
+      "limitation": "No permitted recovery runbook"
+    }
+  ],
+  "recoveries": [
+    {
+      "id": "rec_43cba1b2-eaf5-4d57-b0d7-3d7deafcb2a2",
+      "incidentId": "inc_3b958feb-8182-418f-9529-9fb0a15422b5",
+      "runbookId": "work8_checkpoint_replay",
+      "runbookVersion": "work8-checkpoint-v1",
+      "authority": "A",
+      "revision": "8277718e",
+      "status": "VERIFIED",
+      "startedAt": 1791818389320,
+      "deadlineAt": 1791818391320,
+      "idempotencyKey": "c3fd70cc92fc494cb05662e97209839bcb6fc05e20c0b0e4f31091e5b9b80f86",
+      "actor": "assurance",
+      "ownerApprovalActor": null,
+      "approvalId": null,
+      "result": {
+        "probeId": "work8-checkpoint:9246d95121f4693a7ffa0c5e656c227a4fb5de7c863d1b10ce9f5192d52580b2",
+        "taskId": "gap-task",
+        "missionId": "acceptance:gap-task",
+        "cursor": 4,
+        "fence": 4,
+        "prefixDigest": "e21c4c0a393764ea74e11bace3d42b6f2f39ee687e1ba81693c6a6a8a2044c55",
+        "receiptDigest": "95d753d3aab3106f332dfa876d8b420cfebd09ab46bfa403f6e7d87305959beb",
+        "reconciledCursor": 5,
+        "reconciledFence": 5,
+        "externalEffects": 0
+      },
+      "verification": {
+        "healthy": true,
+        "observedAt": 1791818389351,
+        "taskId": "gap-task",
+        "missionId": "acceptance:gap-task",
+        "receiptDigest": "95d753d3aab3106f332dfa876d8b420cfebd09ab46bfa403f6e7d87305959beb",
+        "historyDigest": "e21c4c0a393764ea74e11bace3d42b6f2f39ee687e1ba81693c6a6a8a2044c55",
+        "externalEffects": 0
+      },
+      "completedAt": 1791818389352
+    },
+    {
+      "id": "rec_c5caf720-8108-4071-8428-edd1cd97ff1c",
+      "incidentId": "inc_44fd5ce7-d7ba-444a-8aa8-0fd7fe28b3be",
+      "runbookId": "rebuild_reconciliation",
+      "runbookVersion": "1",
+      "authority": "A",
+      "revision": "8277718e",
+      "status": "VERIFIED",
+      "startedAt": 1791818357917,
+      "deadlineAt": 1791818377917,
+      "idempotencyKey": "2cc24cba9ec4498e53d95985e64350c11e3cd420d0f3fcac55b6d7d974da6a17",
+      "actor": "assurance",
+      "ownerApprovalActor": null,
+      "approvalId": null,
+      "result": {
+        "status": "REBUILT",
+        "sha256": "946ee60b0fdbcfed6f90b683f285a480a2849feacc33ce20b439a2fc3d5b1d14",
+        "sourceDigest": "1beacb5080732ab51261127637ab006fe0f4c2452ff497856f16f087cb252a3a",
+        "revision": "8277718e"
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "healthy": true,
+        "sha256": "946ee60b0fdbcfed6f90b683f285a480a2849feacc33ce20b439a2fc3d5b1d14",
+        "value": {
+          "schema": "empire-reconciliation-v1",
+          "workspace": "ws_empire_1",
+          "sourceDigest": "1beacb5080732ab51261127637ab006fe0f4c2452ff497856f16f087cb252a3a",
+          "investigations": [
+            {
+              "missionId": "mock-investigation",
+              "requestId": "mock-assessment",
+              "predecessors": [],
+              "historicalMissionStatus": "ASSESSED_PENDING_ACCEPTANCE",
+              "resolution": null,
+              "commercial": {
+                "status": "ASSESSMENT_SPECIFIC_UNVERIFIED",
+                "assessmentSha256": "cabf0869328a815d9804a15d71a9147068e70e0f54cee7c6623932efcac3ed90",
+                "originalObservedAt": "2026-10-12T15:19:16.029Z",
+                "source": {
+                  "system": "PILLOW_ASSESSMENT",
+                  "id": "mock-assessment",
+                  "sha256": "b1101fbfe5c4bc9f6debf4a1894ba0f01f753187ee962560cf511616870b97cd",
+                  "observedAt": "2026-10-12T15:19:16.029Z",
+                  "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+                  "revision": null
+                },
+                "originalTextUnchanged": true
+              },
+              "technicalWorkflow": {
+                "status": "UNVERIFIED",
+                "acceptedAt": null,
+                "source": {
+                  "system": "MISSION_LEDGER",
+                  "id": "mock-investigation",
+                  "sha256": "1177c5339a5351cdaa266beb2808fb126a22792dfa4f397bd35593a4d58b91a4",
+                  "observedAt": "2026-10-12T15:19:15.867Z",
+                  "authority": "DURABLE_WORKFLOW_RECORD",
+                  "revision": null
+                }
+              },
+              "durableResponse": {
+                "status": "VERIFIED",
+                "requestId": "mock-assessment",
+                "sha256": "cabf0869328a815d9804a15d71a9147068e70e0f54cee7c6623932efcac3ed90"
+              },
+              "independentReadback": {
+                "status": "UNVERIFIED",
+                "at": null,
+                "attestedBy": null,
+                "scope": "Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read"
+              },
+              "internalAccounting": {
+                "status": "UNVERIFIED",
+                "callRecords": 0,
+                "reservedMicroUsd": 0,
+                "estimatedMicroUsd": null,
+                "receipts": []
+              },
+              "providerInvoices": {
+                "status": "UNVERIFIED",
+                "settledMicroUsd": null,
+                "reason": "Internal usage and reservation receipts are not independently available provider invoices"
+              },
+              "supersession": null,
+              "historicalQualification": "No verified superseding technical closure",
+              "evidence": [
+                {
+                  "system": "FOUR_EYES",
+                  "id": "ev_7f9daa19f396f6abfde8f76a2e191b6e897373a3",
+                  "sha256": "226129a493daebaeee73fd1375f6f5a65bde7696d871351377ea26fb80c4ee81",
+                  "observedAt": "2026-10-12T15:19:15.960Z",
+                  "authority": "LIVE_PROVIDER",
+                  "revision": null
+                }
+              ],
+              "memory": [],
+              "locks": {
+                "birth": "UNVERIFIED",
+                "commerce": "UNVERIFIED",
+                "historicalOnly": true
+              },
+              "grantsAuthority": false
+            }
+          ],
+          "sources": [
+            {
+              "system": "MISSION_LEDGER",
+              "id": "mock-investigation",
+              "sha256": "1177c5339a5351cdaa266beb2808fb126a22792dfa4f397bd35593a4d58b91a4",
+              "observedAt": "2026-10-12T15:19:15.867Z",
+              "authority": "DURABLE_WORKFLOW_RECORD",
+              "revision": null
+            },
+            {
+              "system": "PILLOW_ASSESSMENT",
+              "id": "mock-assessment",
+              "sha256": "b1101fbfe5c4bc9f6debf4a1894ba0f01f753187ee962560cf511616870b97cd",
+              "observedAt": "2026-10-12T15:19:16.029Z",
+              "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+              "revision": null
+            },
+            {
+              "system": "PILLOW_REQUEST",
+              "id": "mock-assessment",
+              "sha256": "bb96217d334d15781b591d1f25f90421c9eeaffa8b8a8107a1c3caf95dc5505f",
+              "observedAt": null,
+              "authority": "DURABLE_REQUEST_RECEIPT",
+              "revision": null
+            },
+            {
+              "system": "FOUR_EYES",
+              "id": "ev_7f9daa19f396f6abfde8f76a2e191b6e897373a3",
+              "sha256": "226129a493daebaeee73fd1375f6f5a65bde7696d871351377ea26fb80c4ee81",
+              "observedAt": "2026-10-12T15:19:15.960Z",
+              "authority": "LIVE_PROVIDER",
+              "revision": null
+            }
+          ],
+          "conflicts": [],
+          "readOnly": true,
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "materializedAt": "2026-10-12T15:19:17.919Z",
+          "revision": "8277718e"
+        },
+        "observedAt": 1791818357922
+      },
+      "completedAt": 1791818357922
+    },
+    {
+      "id": "rec_dc8ea7f2-9573-4a42-a0f3-119bd602cd6f",
+      "incidentId": "inc_74bc8147-77f5-4170-8df0-7b5cd0e04228",
+      "runbookId": "rebuild_reconciliation",
+      "runbookVersion": "1",
+      "authority": "A",
+      "revision": "8277718e",
+      "status": "VERIFIED",
+      "startedAt": 1791818389352,
+      "deadlineAt": 1791818409352,
+      "idempotencyKey": "ba65b08ea757fe16f6bf659e2dbd1ef59616945adb23161334cb61e743ff165c",
+      "actor": "assurance",
+      "ownerApprovalActor": null,
+      "approvalId": null,
+      "result": {
+        "status": "REBUILT",
+        "sha256": "fbdffae86066f628a8529873031cbb129f79d44297c8360ad8c8f669f25ccc9f",
+        "sourceDigest": "554fbb755b87b4d1d3de6284a1713e17b805af0abdd25997029933af5758baf0",
+        "revision": "8277718e"
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "healthy": true,
+        "sha256": "fbdffae86066f628a8529873031cbb129f79d44297c8360ad8c8f669f25ccc9f",
+        "value": {
+          "schema": "empire-reconciliation-v1",
+          "workspace": "ws_empire_1",
+          "sourceDigest": "554fbb755b87b4d1d3de6284a1713e17b805af0abdd25997029933af5758baf0",
+          "investigations": [
+            {
+              "missionId": "mock-investigation",
+              "requestId": "mock-assessment",
+              "predecessors": [],
+              "historicalMissionStatus": "ASSESSED_PENDING_ACCEPTANCE",
+              "resolution": null,
+              "commercial": {
+                "status": "ASSESSMENT_SPECIFIC_UNVERIFIED",
+                "assessmentSha256": "9b71f61aaf803d6547304c52ad943006fc40a0d3686b7df45e8cf294deaa4c91",
+                "originalObservedAt": "2026-10-12T15:19:23.823Z",
+                "source": {
+                  "system": "PILLOW_ASSESSMENT",
+                  "id": "mock-assessment",
+                  "sha256": "ce189483f53c75a1d8801c725f5ac11c2ff95d2329f5d3f70764c4461aae0ffe",
+                  "observedAt": "2026-10-12T15:19:23.823Z",
+                  "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+                  "revision": null
+                },
+                "originalTextUnchanged": true
+              },
+              "technicalWorkflow": {
+                "status": "UNVERIFIED",
+                "acceptedAt": null,
+                "source": {
+                  "system": "MISSION_LEDGER",
+                  "id": "mock-investigation",
+                  "sha256": "3830cfc549943df0d0508c4410fb3a6ab5d42581dd5438cd96be80012deb96ba",
+                  "observedAt": "2026-10-12T15:19:15.867Z",
+                  "authority": "DURABLE_WORKFLOW_RECORD",
+                  "revision": null
+                }
+              },
+              "durableResponse": {
+                "status": "VERIFIED",
+                "requestId": "mock-assessment",
+                "sha256": "9b71f61aaf803d6547304c52ad943006fc40a0d3686b7df45e8cf294deaa4c91"
+              },
+              "independentReadback": {
+                "status": "UNVERIFIED",
+                "at": null,
+                "attestedBy": null,
+                "scope": "Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read"
+              },
+              "internalAccounting": {
+                "status": "UNVERIFIED",
+                "callRecords": 0,
+                "reservedMicroUsd": 0,
+                "estimatedMicroUsd": null,
+                "receipts": []
+              },
+              "providerInvoices": {
+                "status": "UNVERIFIED",
+                "settledMicroUsd": null,
+                "reason": "Internal usage and reservation receipts are not independently available provider invoices"
+              },
+              "supersession": null,
+              "historicalQualification": "No verified superseding technical closure",
+              "evidence": [
+                {
+                  "system": "FOUR_EYES",
+                  "id": "ev_7f9daa19f396f6abfde8f76a2e191b6e897373a3",
+                  "sha256": "226129a493daebaeee73fd1375f6f5a65bde7696d871351377ea26fb80c4ee81",
+                  "observedAt": "2026-10-12T15:19:15.960Z",
+                  "authority": "LIVE_PROVIDER",
+                  "revision": null
+                }
+              ],
+              "memory": [],
+              "locks": {
+                "birth": "UNVERIFIED",
+                "commerce": "UNVERIFIED",
+                "historicalOnly": true
+              },
+              "grantsAuthority": false
+            }
+          ],
+          "sources": [
+            {
+              "system": "MISSION_LEDGER",
+              "id": "mock-investigation",
+              "sha256": "3830cfc549943df0d0508c4410fb3a6ab5d42581dd5438cd96be80012deb96ba",
+              "observedAt": "2026-10-12T15:19:15.867Z",
+              "authority": "DURABLE_WORKFLOW_RECORD",
+              "revision": null
+            },
+            {
+              "system": "PILLOW_ASSESSMENT",
+              "id": "mock-assessment",
+              "sha256": "ce189483f53c75a1d8801c725f5ac11c2ff95d2329f5d3f70764c4461aae0ffe",
+              "observedAt": "2026-10-12T15:19:23.823Z",
+              "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+              "revision": null
+            },
+            {
+              "system": "PILLOW_REQUEST",
+              "id": "mock-assessment",
+              "sha256": "5ec5380946137583b1bf46c2d14f1c2ae0c3c5730743bc3dd3572f5e5a18fc96",
+              "observedAt": null,
+              "authority": "DURABLE_REQUEST_RECEIPT",
+              "revision": null
+            },
+            {
+              "system": "FOUR_EYES",
+              "id": "ev_7f9daa19f396f6abfde8f76a2e191b6e897373a3",
+              "sha256": "226129a493daebaeee73fd1375f6f5a65bde7696d871351377ea26fb80c4ee81",
+              "observedAt": "2026-10-12T15:19:15.960Z",
+              "authority": "LIVE_PROVIDER",
+              "revision": null
+            }
+          ],
+          "conflicts": [],
+          "readOnly": true,
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "materializedAt": "2026-10-12T15:19:49.355Z",
+          "revision": "8277718e"
+        },
+        "observedAt": 1791818389359
+      },
+      "completedAt": 1791818389360
+    }
+  ],
+  "observerEvents": [
+    {
+      "event": "assurance_process_exit",
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null,
+      "elapsedMs": 2910.4169789999996
+    },
+    {
+      "event": "assurance_process_exit",
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null,
+      "elapsedMs": 4441.416380000001
+    },
+    {
+      "event": "assurance_process_exit",
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null,
+      "elapsedMs": 7027.310378999999
+    },
+    {
+      "event": "assurance_process_exit",
+      "component": "permanent-inspector.mjs",
+      "code": 0,
+      "signal": null,
+      "elapsedMs": 7967.978193999999
+    },
+    {
+      "event": "assurance_process_exit",
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null,
+      "elapsedMs": 11629.149742000001
+    },
+    {
+      "event": "assurance_process_exit",
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null,
+      "elapsedMs": 20119.430023
+    },
+    {
+      "event": "assurance_process_exit",
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null,
+      "elapsedMs": 36882.379408
+    },
+    {
+      "event": "assurance_restart_quarantined",
+      "component": "permanent-worker.mjs",
+      "attempts": 6,
+      "monitoringCoverage": "LOST",
+      "elapsedMs": 36882.496918
+    }
+  ],
+  "trace": [
+    {
+      "event": "CYCLE",
+      "elapsedMs": 2058.4374179999995,
+      "at": 1791818357930
+    },
+    {
+      "event": "CYCLE",
+      "elapsedMs": 2894.299648,
+      "at": 1791818358766
+    },
+    {
+      "event": "INSPECTOR_PROGRESS",
+      "elapsedMs": 2910.1195179999995,
+      "at": 1791818358782,
+      "pid": 38
+    },
+    {
+      "event": "assurance_process_exit",
+      "elapsedMs": 2910.426012,
+      "at": 1791818358782,
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null
+    },
+    {
+      "event": "assurance_process_exit",
+      "elapsedMs": 4441.423148,
+      "at": 1791818360313,
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null
+    },
+    {
+      "event": "assurance_process_exit",
+      "elapsedMs": 7027.3169640000015,
+      "at": 1791818362899,
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null
+    },
+    {
+      "event": "INJECTION_BEGIN",
+      "elapsedMs": 7902.425773999999,
+      "at": 1791818363774
+    },
+    {
+      "event": "INJECTION_COMPLETE",
+      "elapsedMs": 7957.6826,
+      "at": 1791818363830
+    },
+    {
+      "event": "assurance_process_exit",
+      "elapsedMs": 7967.982685999999,
+      "at": 1791818363840,
+      "component": "permanent-inspector.mjs",
+      "code": 0,
+      "signal": null
+    },
+    {
+      "event": "INSPECTOR_PROGRESS",
+      "elapsedMs": 9132.577409000001,
+      "at": 1791818365004,
+      "pid": 75
+    },
+    {
+      "event": "assurance_process_exit",
+      "elapsedMs": 11629.156768,
+      "at": 1791818367501,
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null
+    },
+    {
+      "event": "assurance_process_exit",
+      "elapsedMs": 20119.434077,
+      "at": 1791818375991,
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null
+    },
+    {
+      "event": "CYCLE",
+      "elapsedMs": 33495.271802,
+      "at": 1791818389367
+    },
+    {
+      "event": "COMPOUND_DETECTED",
+      "elapsedMs": 33556.423984,
+      "at": 1791818389428,
+      "detectMs": 25593.301455999997,
+      "semanticId": "inc_0c5c64bf-2067-4efb-9260-a86636090d5b",
+      "financialId": "inc_c1d503e9-63e8-490a-84a1-f2baa34520a7"
+    },
+    {
+      "event": "assurance_process_exit",
+      "elapsedMs": 36882.390508,
+      "at": 1791818392754,
+      "component": "permanent-worker.mjs",
+      "code": 1,
+      "signal": null
+    },
+    {
+      "event": "assurance_restart_quarantined",
+      "elapsedMs": 36882.500506,
+      "at": 1791818392754,
+      "component": "permanent-worker.mjs",
+      "attempts": 6,
+      "monitoringCoverage": "LOST"
+    },
+    {
+      "event": "INSPECTOR_PROGRESS",
+      "elapsedMs": 39423.45541,
+      "at": 1791818395295,
+      "pid": 75
+    },
+    {
+      "event": "CYCLE",
+      "elapsedMs": 62998.822979,
+      "at": 1791818418871
+    }
+  ]
+}
