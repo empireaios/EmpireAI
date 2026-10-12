@@ -1,0 +1,42 @@
+{
+  "schema": "WORK8_REQUIREMENT_38_ACCEPTANCE_V1",
+  "item": 38,
+  "status": "PASS",
+  "at": "2026-10-12T07:25:32.867757+00:00",
+  "scope": "Measured 45-minute coupled elapsed examination at exact accepted application revision; not programme certification, platform rollback or protected backup acceptance",
+  "scenarioId": "W8-F31-REMAINING-V1",
+  "seed": 8031,
+  "runId": 38213352530,
+  "application": "d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5",
+  "harness": "ee99a1d2bdfb2f4c23334fc20492d6620506dd05",
+  "artifactId": 11732324947,
+  "artifactSha256": "d6d2533d3f2051c98689453f0eae856ab270b4295dc21eaefd8361ae5f4b2ad8",
+  "wallSeconds": 2700.435,
+  "counts": {
+    "tasks": 9,
+    "receipts": 171,
+    "orders": 9,
+    "completeFinancialPlans": 9,
+    "financialEvents": 108
+  },
+  "verification": [
+    "Original CI separate Python read-only SQLite/integer-money oracle",
+    "Recovered artifact hash plus all67 inner files",
+    "Retained-copy re-execution and independent cross-trace/cadence/financial checks",
+    "Additional captured immutable-record prefix preservation"
+  ],
+  "verifierIndependence": "Separate verification processes and record-derived assertions, reviewed by this continuation; no claim of an independent human or final governance certification",
+  "sourceCriteria": "REQUIREMENT31 accepted prospective scenario design explicitly uses9 labelled simulated candidates, normal5s scheduler and separately logged virtual settlement; requirement39 operational rollback/restore remains separate",
+  "remainingRequirement38Criteria": [],
+  "broaderOpenRequirements": [
+    30,
+    33,
+    34,
+    39
+  ],
+  "captureCaveat": "Two SQLite-shm indexes differ from pre-validation capture hashes. All sealed manifest hashes and persistent captured files match; all captured immutable rows survive exactly. Strict first verifier failure retained. No evidence bytes repaired.",
+  "productionChanged": false,
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "NOT_ACTIVATED"
+}

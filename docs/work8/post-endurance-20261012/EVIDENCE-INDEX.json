@@ -1,0 +1,33 @@
+{
+  "schema": "WORK8_RETAINED_EVIDENCE_INDEX_V1",
+  "runId": 38213352530,
+  "artifactId": 11732324947,
+  "artifactSha256": "d6d2533d3f2051c98689453f0eae856ab270b4295dc21eaefd8361ae5f4b2ad8",
+  "originalFiles": 67,
+  "originalEvidenceAltered": false,
+  "checkpoint": "fbfe684e731a7806cd8e4048284a99fcfc148beb",
+  "files": {
+    "REQUIREMENT-38-ACCEPTANCE.json": "c1a2524c1df9d251a946f2d1063b1ad2609dccc133793fe615220cb2fa8fd0b8",
+    "INDEPENDENT-VERIFICATION.json": "f04634f8238d760470332ffa4bfa08f0098611910e0ff5ecbe76e2fbaf5cf80c",
+    "CAPTURE-PRESERVATION-VERIFICATION.json": "e56d6e78717911b0065e17e1379d6c1253ff7b866c458b931cdd9e1ef437be40",
+    "CAPTURE-VERIFIER-FIRST-RESULT.json": "c6a837ee3fc07329e68402ddec0b01ed9644ce58198269fd94183854c33a970c",
+    "REGISTER-45.json": "e1eadbbf45880de1238a2309b02f7746e40fef50ab090c13ec81895bccaa7784",
+    "AMENDMENTS-19.json": "71f5895167b76ab95dff3ccd676db45809747d671b08df33f3dbf68f32ca550a",
+    "ASSURANCE-READINESS-MATRIX.md": "968505ca841df6acb45b7ff19a6a3d162d33227d75b08791ec9186dd1a4ed61b",
+    "FINAL-VALIDATION.json": "6a2784d42ae90407e0a189319fa8793be001d66ea1d1dfb314a78ec501902ea1"
+  },
+  "failedRuns": [
+    {
+      "id": 38210491051,
+      "conclusion": "failure",
+      "scope": "Prior-reader prerequisite failure"
+    },
+    {
+      "id": 38211521264,
+      "conclusion": "failure",
+      "scope": "Five-minute settlement examination; 50/108 financial events, not endurance"
+    }
+  ],
+  "review": "Separate machine verification; no final independent human/governance certification",
+  "publicDisclosure": "Status, synthetic examination identity and hashes only; private accounting records and detailed operational evidence excluded"
+}

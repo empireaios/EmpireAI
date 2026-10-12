@@ -1,0 +1,243 @@
+{
+  "schema": "WORK8_PUBLIC_ACCEPTANCE_INDEX_V1",
+  "sourceCheckpoint": "fbfe684e731a7806cd8e4048284a99fcfc148beb",
+  "sourceTree": "9f1dd908d3324ddd7250477ef27eb2175711aa67",
+  "fullRegisterSha256": "e1eadbbf45880de1238a2309b02f7746e40fef50ab090c13ec81895bccaa7784",
+  "counts": {
+    "PASS": 11,
+    "BLOCKED": 5,
+    "PENDING": 29
+  },
+  "ownerAmendments": {
+    "PASS": 0,
+    "PENDING": 19
+  },
+  "items": [
+    {
+      "item": 1,
+      "requirement": "Work7 exact production/closure",
+      "status": "PASS"
+    },
+    {
+      "item": 2,
+      "requirement": "Financial and historical preservation",
+      "status": "BLOCKED"
+    },
+    {
+      "item": 3,
+      "requirement": "Approved UX and fifteen safety controls",
+      "status": "PENDING"
+    },
+    {
+      "item": 4,
+      "requirement": "Sandbox isolation and denied egress",
+      "status": "PENDING"
+    },
+    {
+      "item": 5,
+      "requirement": "Real-source connectivity and entitlements",
+      "status": "BLOCKED"
+    },
+    {
+      "item": 6,
+      "requirement": "Authentic source product records",
+      "status": "PENDING"
+    },
+    {
+      "item": 7,
+      "requirement": "Product images and usage rights",
+      "status": "BLOCKED"
+    },
+    {
+      "item": 8,
+      "requirement": "Observed supplier prices/currencies",
+      "status": "PENDING"
+    },
+    {
+      "item": 9,
+      "requirement": "Competitor and market evidence",
+      "status": "PENDING"
+    },
+    {
+      "item": 10,
+      "requirement": "Normalization identity and deduplication",
+      "status": "PASS"
+    },
+    {
+      "item": 11,
+      "requirement": "Freshness and quarantine",
+      "status": "PENDING"
+    },
+    {
+      "item": 12,
+      "requirement": "Software screening and economics",
+      "status": "PENDING"
+    },
+    {
+      "item": 13,
+      "requirement": "Actual Pillow assessment binding",
+      "status": "BLOCKED"
+    },
+    {
+      "item": 14,
+      "requirement": "Owner recommendations and decisions",
+      "status": "PENDING"
+    },
+    {
+      "item": 15,
+      "requirement": "Initial up-to-100 qualification",
+      "status": "PASS"
+    },
+    {
+      "item": 16,
+      "requirement": "Daily discovery and low-supply outcomes",
+      "status": "PENDING"
+    },
+    {
+      "item": 17,
+      "requirement": "Transactional active portfolio cap",
+      "status": "PASS"
+    },
+    {
+      "item": 18,
+      "requirement": "Portfolio review retirement/replacement",
+      "status": "PENDING"
+    },
+    {
+      "item": 19,
+      "requirement": "Simulated listing schema/media",
+      "status": "PENDING"
+    },
+    {
+      "item": 20,
+      "requirement": "Simulated orders and supplier intents",
+      "status": "PENDING"
+    },
+    {
+      "item": 21,
+      "requirement": "Partial shipments tracking/delivery",
+      "status": "PENDING"
+    },
+    {
+      "item": 22,
+      "requirement": "Refund returns and supplier credits",
+      "status": "PENDING"
+    },
+    {
+      "item": 23,
+      "requirement": "Settlement payout holds/bank receipts",
+      "status": "PENDING"
+    },
+    {
+      "item": 24,
+      "requirement": "Financial reconciliation and money conservation",
+      "status": "PENDING"
+    },
+    {
+      "item": 25,
+      "requirement": "Live Cost Centre separate accounting",
+      "status": "PENDING"
+    },
+    {
+      "item": 26,
+      "requirement": "Assurance detection/correlation",
+      "status": "PENDING"
+    },
+    {
+      "item": 27,
+      "requirement": "Bounded repair authority catalogue",
+      "status": "PASS"
+    },
+    {
+      "item": 28,
+      "requirement": "Fresh independent recovery verification",
+      "status": "PASS"
+    },
+    {
+      "item": 29,
+      "requirement": "Recurrence budget and circuit breaker",
+      "status": "PASS"
+    },
+    {
+      "item": 30,
+      "requirement": "Assurance watchdog/degraded operation",
+      "status": "PENDING"
+    },
+    {
+      "item": 31,
+      "requirement": "Scenario blueprint seeds and independent oracles",
+      "status": "PASS"
+    },
+    {
+      "item": 32,
+      "requirement": "Unit integration/contract and property exams",
+      "status": "PASS"
+    },
+    {
+      "item": 33,
+      "requirement": "Concurrency races and replay",
+      "status": "PENDING"
+    },
+    {
+      "item": 34,
+      "requirement": "Fault injection and compounded failures",
+      "status": "PENDING"
+    },
+    {
+      "item": 35,
+      "requirement": "Provider outage malformed output and correlation",
+      "status": "PENDING"
+    },
+    {
+      "item": 36,
+      "requirement": "All fifteen safety controls positive/negative exams",
+      "status": "PENDING"
+    },
+    {
+      "item": 37,
+      "requirement": "Multi-day virtual-time operations",
+      "status": "PASS"
+    },
+    {
+      "item": 38,
+      "requirement": "Measured elapsed endurance",
+      "status": "PASS"
+    },
+    {
+      "item": 39,
+      "requirement": "Cold restart rollback/migration/restore",
+      "status": "PENDING"
+    },
+    {
+      "item": 40,
+      "requirement": "Actual owner-view real-product walkthrough",
+      "status": "BLOCKED"
+    },
+    {
+      "item": 41,
+      "requirement": "Mobile desktop source-to-finance equality",
+      "status": "PENDING"
+    },
+    {
+      "item": 42,
+      "requirement": "Review exact-head CI and release authority",
+      "status": "PENDING"
+    },
+    {
+      "item": 43,
+      "requirement": "Independent Mission Ledger closure",
+      "status": "PENDING"
+    },
+    {
+      "item": 44,
+      "requirement": "GO/NO-GO residual risks",
+      "status": "PENDING"
+    },
+    {
+      "item": 45,
+      "requirement": "Work9 handoff without activation",
+      "status": "PENDING"
+    }
+  ],
+  "wholeProgrammeCertified": false
+}
