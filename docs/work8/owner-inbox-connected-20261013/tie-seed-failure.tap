@@ -1,0 +1,38 @@
+{"level":30,"time":1791820848624,"pid":13,"hostname":"7b7b0efbbb80","dbPath":"/tmp/work8-owner-notice-Zx3KaS/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1791820848627,"pid":13,"hostname":"7b7b0efbbb80","msg":"Auth routes registered"}
+{"level":30,"time":1791820852026,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✖ canonical Assurance incidents enter existing authenticated durable owner inbox; identity, history, failure and page scope stay explicit (5594.494089ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6146.76866
+
+✖ failing tests:
+
+test at backend/src/validation/tests/work8-assurance-notification.test.ts:1:332
+✖ canonical Assurance incidents enter existing authenticated durable owner inbox; identity, history, failure and page scope stay explicit (5594.494089ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'tie-a',
+  -   'tie-b',
+  -   'tie-c'
+  - ]
+  
+      at TestContext.<anonymous> (/workspace/scratch/dc845312c8f5/assurance-candidate/backend/src/validation/tests/work8-assurance-notification.test.ts:22:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'tie-a', 'tie-b', 'tie-c' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

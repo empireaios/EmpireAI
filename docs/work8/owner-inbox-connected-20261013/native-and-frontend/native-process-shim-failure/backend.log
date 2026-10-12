@@ -1,0 +1,3 @@
+{"level":30,"time":1791820838255,"pid":31,"hostname":"7b7b0efbbb80","dbPath":"/tmp/owner-inbox-native-Tj9nLv/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1791820838262,"pid":31,"hostname":"7b7b0efbbb80","msg":"Auth routes registered"}
+{"level":30,"time":1791820870710,"pid":31,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}

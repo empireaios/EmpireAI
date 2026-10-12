@@ -1,0 +1,62 @@
+{
+  "backendBase": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+  "frontendCommit": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4",
+  "frontendTree": "31a817093307b986ed97c870bab0ce5b5ba81e84",
+  "frontendBundleSha256": "1e867a8df34ebb0d881310ba5ee46c3894ad726df854e5fb29eb52be9e579118",
+  "backendFiles": {
+    "backend/src/global-notifications/models/global-notification.ts": "9185a25b06c2be1e9eb510221cc6b343f143ae5e9c4f8f563c45962a8366b744",
+    "backend/src/global-notifications/routes/global-notification-routes.ts": "856a7a06f6f60d5e929a7931524bd1751ecb86ba48451a4b5c8c7315a2a597a3",
+    "backend/src/global-notifications/services/global-notification-service.ts": "73b5087087175fbf16f9ebba5132e52648e987eb36cced180bcb5dfcb75f1666",
+    "backend/src/validation/tests/work8-assurance-notification.test.ts": "eb5002865f63e9eeed8b1982ba4a035c276836efeadb6629782cffea5bf9d9b1",
+    "scripts/work8/owner-inbox-browser-backend.mts": "5893bcf5c478cd8c9c2b75503ac15453da04aa03f9fee17c39ba4155b55ae070"
+  },
+  "frontendFiles": {
+    "empireai-web/app/api/owner/notifications/route.ts": "b997f045e6f8f2cc09972a1056e778efc0ffcbeca7a4e0586db1ff7399de928f",
+    "empireai-web/components/owner/OwnerAssurance.tsx": "d46e8996447c4565c9bfb32525a4d728518a6098100984641a9cb03cf121d99d",
+    "empireai-web/components/owner/OwnerNotifications.tsx": "e8cdec736ee99342e5855f72438a5e357e5d5649f994959efea657618be2aef8",
+    "empireai-web/lib/owner/notifications-handler.test.ts": "db0fd65d63e15f7147378ff64793139758b053261ae6d5358f3bd61a7ff19233",
+    "empireai-web/lib/owner/notifications-handler.ts": "7eb261b805a4c2620fd67e6878d7448c34a6fd21cbbeead574461f4788206441",
+    "empireai-web/scripts/owner-inbox-native.mts": "b9c83d692f568636f6517d6b2c18bc0b620c68f83762151a73837bf6129b0782"
+  },
+  "nativeBeforeFinalDotGuard": {
+    "empireai-web/components/owner/OwnerNotifications.tsx": {
+      "sha256": "e28f5754beead82eccb764a7658fed2074cc23090f0e68876aba4dfe85e3f7b1",
+      "finalDelta": "Only adds rejection of exact '.' and '..' keys. Independent final proxy negatives confirm400 and zero upstream calls."
+    },
+    "empireai-web/lib/owner/notifications-handler.ts": {
+      "sha256": "4d41278c718e2d904672198b18db413c0f75f46b515c550e9047f40a7c32ef0e",
+      "finalDelta": "Only adds rejection of exact '.' and '..' keys. Independent final proxy negatives confirm400 and zero upstream calls."
+    }
+  },
+  "artifacts": {
+    "backend-contract.tap": "b4a9dc4047931e91156d175e733f362441ec874be40eb565140e8963a6c57b80",
+    "BOUNDARY.md": "155fe6d3e799a097283c058f523f599bbd51e3bb93afee3379e946b2adbd4dcf",
+    "tie-seed-failure.tap": "af8908e612026634515628b47dde62c685479a8a7712d8812a3fc6846f885725",
+    "native-and-frontend/lint.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-and-frontend/proxy.tap": "3e605fe7b913cd41f964aede47f2a85546d7d794f341e067f2cc012186c0fedd",
+    "native-and-frontend/native-first-failure.log": "c1885918456561156e8fc2a4033557de5f2ac141e2ef72702d408a5fb21625f5",
+    "native-and-frontend/typecheck.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-and-frontend/native-initial-pass.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-and-frontend/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-and-frontend/typegen.txt": "adba4af9194e10e47dda75ff0fd0f8c2b756474896d0eba5612799c527ff372a",
+    "native-and-frontend/native-process-shim-failure.log": "bba4e302c94cf0f3a584e7e54667eee2b472a7e72bc3b63ac993ce6b62cee2d3",
+    "native-and-frontend/native/mobile-viewport.png": "6afb715c64c401790faa3d5ffb94c6a35ea05c1a3f65e3dc95ea662ae150eedf",
+    "native-and-frontend/native/desktop.png": "77a4aaa27fc3c479438137bc57347862d94d309130a7e060bf81e971d216275f",
+    "native-and-frontend/native/receipt.json": "f4345c4eac7a2f730d8098778f044e140cbbfddf4d1e01de7bd2319bbbf1563f",
+    "native-and-frontend/native/desktop-viewport.png": "c816354841c21fc28f6fbe3a77ab9ed7ab72aefa3da6c1806823399ec0b1070a",
+    "native-and-frontend/native/mobile.png": "564a2a97b4eeb73c7519b682660078404d18353a403e3cabbae8b44ae8f6635f",
+    "native-and-frontend/native/backend-errors.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-and-frontend/native/backend.log": "66e0951b2f1a6be6e250ab6e7fe0da950ba2a079e2d2f55e4fbfd1f3f8e4855c",
+    "native-and-frontend/native-first-failure/backend-errors.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-and-frontend/native-first-failure/backend.log": "b4a03d3816d1c622f30e671b9f8a04a302d01d30bde3c84635bc6bf27fc72235",
+    "native-and-frontend/native-initial-pass/desktop.png": "3587c95bc8e4629d298140fe9483515c2afc093cd61ef83b899b1d634f863868",
+    "native-and-frontend/native-initial-pass/receipt.json": "2f5303e1f71ab79fb112e9c4de72b78de9721ec619ffffdf4979efcd5b31b02b",
+    "native-and-frontend/native-initial-pass/mobile.png": "d3e1835c03bf73c2c9db8e89600bef11c264a5016494359a6ded2e0d629234ca",
+    "native-and-frontend/native-initial-pass/backend-errors.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-and-frontend/native-initial-pass/backend.log": "d0a488d06fd76dd24ee3c5138995c9c90f7cceeb9e2357d99f8c17d10ffed182",
+    "native-and-frontend/native-process-shim-failure/failure.json": "e477e4b1155a600e34f8942973a9a53804f406614407759742dc66aa0017c6be",
+    "native-and-frontend/native-process-shim-failure/failure.png": "e1f24776ac440995f81ea175a7c1392dc60670aec4a2e8ed876257db58cd908c",
+    "native-and-frontend/native-process-shim-failure/backend-errors.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-and-frontend/native-process-shim-failure/backend.log": "d5f2f2fb480b5950fca053960baa26ea09bfd957f0a7793417f253e5f4cc73c5"
+  }
+}

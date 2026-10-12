@@ -403,6 +403,13 @@ jobs:
           git checkout --detach e7fd599a447a4e1b273363d7f664507194cd2ba1
           test "$(git rev-parse HEAD)" = e7fd599a447a4e1b273363d7f664507194cd2ba1
           test "$(git rev-parse HEAD^{tree})" = f077bb0e7008663f64dac4e01c4e218e67e4222e
+          inbox=_work8_evidence/docs/work8/publication-closure-20261012/owner-inbox-frontend.bundle
+          test "$(git hash-object "$inbox")" = 46d9a524ccbb88270791742ffab7a1575cefb573
+          git bundle verify "$inbox"
+          git fetch "$inbox" HEAD
+          git checkout --detach ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4
+          test "$(git rev-parse HEAD)" = ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4
+          test "$(git rev-parse HEAD^{tree})" = 31a817093307b986ed97c870bab0ce5b5ba81e84
           rm -rf -- _work8_evidence
       - name: Use pinned Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020

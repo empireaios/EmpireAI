@@ -49,6 +49,7 @@ export type NotificationTimeGroup = z.infer<typeof NotificationTimeGroupSchema>;
 
 export const NotificationListQuerySchema = z.object({
   companyId: z.string().min(1),
+  after: z.string().regex(/^[A-Za-z0-9_.:-]{1,160}$/).optional(),
   q: z.string().optional(),
   type: GlobalNotificationTypeSchema.optional(),
   source: GlobalNotificationSourceSchema.optional(),

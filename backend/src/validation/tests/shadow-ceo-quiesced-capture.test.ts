@@ -7,11 +7,13 @@ import { openShadowCeoRepository, runVerticalSliceDemo } from "../../orchestrati
 
 test("running Shadow CEO SQLite handle saves its RAM records while its verified disk copy is fenced", async t => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "shadow-capture-"));
-  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   const source = path.join(dir, "shadow.db");
   const copy = path.join(dir, "shadow-copied.db");
   const repo = openShadowCeoRepository({ dbPath: source });
-  t.after(() => repo.close());
+  t.after(() => {
+    // The live owner lock must remain present through the final durable flush.
+    try { repo.close(); } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+  });
   const slice = runVerticalSliceDemo({ repo, workspaceId: "ws_capture", runKey: "before-capture" });
   const expected = repo.countByObjective(slice.objectiveId);
   assert.ok(expected >= 12);

@@ -12,7 +12,7 @@ import {
   acknowledgeNotification,
   buildGlobalNotificationDashboard,
   getUnreadNotificationCount,
-  listGlobalNotifications,
+  pageGlobalNotifications,
   listGroupedGlobalNotifications,
   markAllNotificationsRead,
   markNotificationRead,
@@ -50,10 +50,10 @@ export async function registerGlobalNotificationRoutes(
         unreadCount: getUnreadNotificationCount(user.workspaceId, query.companyId),
       });
     }
-    return reply.send({
-      notifications: listGlobalNotifications(user.workspaceId, query as Record<string, unknown>),
+    try{return reply.send({
+      ...pageGlobalNotifications(user.workspaceId, query as Record<string, unknown>),
       unreadCount: getUnreadNotificationCount(user.workspaceId, query.companyId),
-    });
+    });}catch(error){if(error instanceof Error&&error.message==='NOTIFICATION_CURSOR_UNAVAILABLE')return reply.code(409).send({error:'Notification page changed; refresh from the beginning.'});throw error;}
   });
 
   app.post("/global-notifications/sync", { preHandler: authenticate }, async (request, reply) => {

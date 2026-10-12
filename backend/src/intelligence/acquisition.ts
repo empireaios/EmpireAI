@@ -1,4 +1,5 @@
 import {normalizeKeepaHistory} from './keepa-history.js';
+import {amazonCatalogFacts} from './amazon-catalog-facts.js';
 import fs from 'node:fs';
 import {freightOrigin} from './freight-origin.js';
 import {DatabaseSync} from 'node:sqlite';
@@ -57,7 +58,7 @@ export class ReadAcquirer{
    }
    if(c.id==='amazon.analytics'&&!Array.isArray(data.reports))throw new ReadFailure('INVALID_PROVIDER_SHAPE');
    const lowest=data.payload?.Summary?.LowestPrices?.find((x:Row)=>x.condition==='new')?.LandedPrice;
-   facts={response:safe(data),...(typeof lowest?.Amount==='number'?{price:lowest.Amount,currency:lowest.CurrencyCode}:{}),marketplaceId:market.id,interpretation:c.id==='amazon.analytics'?'Report-list access only. Empty reports do not prove Brand Registry, SQP, Search Catalog or Search Terms eligibility.':'Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim.'};
+   facts={response:c.id==='amazon.catalog'?amazonCatalogFacts(data,market.id,safe):safe(data),...(typeof lowest?.Amount==='number'?{price:lowest.Amount,currency:lowest.CurrencyCode}:{}),marketplaceId:market.id,interpretation:c.id==='amazon.analytics'?'Report-list access only. Empty reports do not prove Brand Registry, SQP, Search Catalog or Search Terms eligibility.':'Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim.'};
   }else if(c.provider==='CJ'){
    const config={...loadCjConfig(),apiBaseUrl:'https://developers.cjdropshipping.com/api2.0/v1',integrationMode:'LIVE' as const,maxRetries:0,requestTimeoutMs:15000};
    // Reuse account-bound single-flight token handling, wrapping every auth request in the same durable request budget.

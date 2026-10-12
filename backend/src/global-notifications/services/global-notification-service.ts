@@ -42,6 +42,7 @@ function matchesQuery(notification: GlobalNotification, q: string | undefined): 
 function filterNotifications(
   notifications: GlobalNotification[],
   query: {
+    after?: string;
     q?: string;
     type?: GlobalNotificationType;
     source?: GlobalNotificationSource;
@@ -55,7 +56,8 @@ function filterNotifications(
   if (query.source) filtered = filtered.filter((n) => n.source === query.source);
   if (query.unreadOnly) filtered = filtered.filter((n) => !n.readAt);
   if (query.acknowledgedOnly) filtered = filtered.filter((n) => !!n.acknowledgedAt);
-  filtered.sort((a, b) => b.priority - a.priority || b.createdAt.localeCompare(a.createdAt));
+  filtered.sort((a, b) => b.priority - a.priority || b.createdAt.localeCompare(a.createdAt) || a.notificationId.localeCompare(b.notificationId));
+  if(query.after){const index=filtered.findIndex(n=>n.notificationId===query.after);if(index<0)throw Error('NOTIFICATION_CURSOR_UNAVAILABLE');filtered=filtered.slice(index+1);}
   return filtered.slice(0, query.limit ?? 100);
 }
 
@@ -93,6 +95,14 @@ export function listGlobalNotifications(
   const query = NotificationListQuerySchema.parse(rawQuery);
   const all = getGlobalNotificationRepository().list(workspaceId, query.companyId);
   return filterNotifications(all, query);
+}
+
+/** Stable bounded display cursor, distinct from Assurance ingestion continuation. */
+export function pageGlobalNotifications(workspaceId:string,rawQuery:Record<string,unknown>){
+ const query=NotificationListQuerySchema.parse(rawQuery),limit=query.limit??100;
+ const all=getGlobalNotificationRepository().list(workspaceId,query.companyId);
+ const rows=filterNotifications(all,{...query,limit:limit+1}),more=rows.length>limit,notifications=rows.slice(0,limit);
+ return {notifications,nextCursor:more?notifications.at(-1)!.notificationId:null,hasMore:more};
 }
 
 export function listGroupedGlobalNotifications(
