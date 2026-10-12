@@ -640,10 +640,14 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       if (value < 1) throw new Error("Local capture drain deadline elapsed; no snapshot taken");
       return value;
     };
-    return captureHttpAdmission.withDrainedAdmission(
-      () => brain.workerPool.withPausedProcessing(
-        () => pillowBootTask.withPausedExecution(
-          () => withLocalJsonAuthorityCapture(() => { remaining(); return capture(); }), remaining()), remaining()), timeoutMs);
+    // These commerce timers are separate from Pillow's boot task. Drain their
+    // admitted runs and hold delayed/interval admissions through capture.
+    return getPillowCommercePresaleAutomationServer().withPausedExecution(
+      () => getPillowExecutiveLoopAutomationServer().withPausedExecution(
+        () => captureHttpAdmission.withDrainedAdmission(
+          () => brain.workerPool.withPausedProcessing(
+            () => pillowBootTask.withPausedExecution(
+              () => withLocalJsonAuthorityCapture(() => { remaining(); return capture(); }), remaining()), remaining()), remaining()), remaining()), remaining());
   };
   const withDrainedLocalSqliteCapture = <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number): Promise<T> =>

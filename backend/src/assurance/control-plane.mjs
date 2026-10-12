@@ -79,6 +79,7 @@ export class AssuranceControlPlane {
     // across revisions. Preserve original incident identity and immutable events;
     // do not resolve an in-flight or unknown recovery outcome from probe health.
     for(const prior of this.list(w,'incident').filter(i=>i.probeId===p.id&&i.capability===p.capability&&i.classification===(p.classification??'UNKNOWN')&&!terminal.has(i.status))){
+     if(Object.hasOwn(prior,'sourceClaimCoverage')&&(prior.sourceClaimCoverageChanged||prior.sourceClaimCoverage!==(p.evidence?.semanticCoverageDigest??null))){this.event(w,'FUNCTION_VERIFICATION_REJECTED',{incidentId:prior.id,reason:'SOURCE_CLAIM_COVERAGE_CHANGED'});continue;}
      const sourceAt=p.sourceObservedAt??p.evidence?.observedAt;
      if(!Number.isSafeInteger(sourceAt)||sourceAt>this.now()||sourceAt<prior.lastAt||this.now()-sourceAt>180000){
       this.event(w,'FUNCTION_VERIFICATION_REJECTED',{incidentId:prior.id,reason:'FRESH_POST_FAULT_OBSERVATION_REQUIRED',sourceObservedAt:sourceAt??null,lastFaultObservedAt:prior.lastAt});continue;
@@ -90,6 +91,7 @@ export class AssuranceControlPlane {
    if(p.status==='NOT_INSTALLED')return probe;
    if(!incident){incident={id:'inc_'+randomUUID(),fingerprint,probeId:p.id,capability:p.capability,classification:p.classification??'UNKNOWN',severity:p.severity??'HIGH',summary:p.summary,status:'DETECTED',firstAt:this.now(),lastAt:this.now(),revision:this.revision,runbookId:p.runbookId??null,recurrence:1,attempts:0,synthetic:w.startsWith('synthetic:')};this.event(w,'INCIDENT_DETECTED',{incident,probe});}
    else{incident.lastAt=this.now();incident.recurrence++;this.event(w,'INCIDENT_OBSERVED',{incidentId:incident.id,probe});}
+   if(p.capability==='response_evidence_linkage'){const coverage=p.evidence?.semanticCoverageDigest??null;if(!Object.hasOwn(incident,'sourceClaimCoverage')){incident.sourceClaimCoverage=coverage;this.event(w,'SOURCE_CLAIM_COVERAGE_BOUND',{incidentId:incident.id,coverage});}else if(incident.sourceClaimCoverage!==coverage&&!incident.sourceClaimCoverageChanged){incident.sourceClaimCoverageChanged=true;this.event(w,'SOURCE_CLAIM_COVERAGE_CONFLICT',{incidentId:incident.id,originalCoverage:incident.sourceClaimCoverage,coverage});}}
    this.put(w,'incident',incident.id,incident);return incident;});
  }
  snapshot(w){

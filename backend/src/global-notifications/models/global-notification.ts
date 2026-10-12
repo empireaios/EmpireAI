@@ -13,6 +13,7 @@ export type GlobalNotificationType = z.infer<typeof GlobalNotificationTypeSchema
 
 /** GC-03 — Owning module for deep-link routing. */
 export const GlobalNotificationSourceSchema = z.enum([
+  "assurance",
   "executive-surveillance",
   "eye-series",
   "reality-integration",

@@ -40,13 +40,30 @@ export interface BrainTaskQueue {
 export class TaskQueue implements BrainTaskQueue {
   readonly queue: Queue<BrainTaskPayload, unknown, BrainTaskType>;
 
-  /** Cooperating producers refuse while the shared capture owner exists.
-   * A race with an already-started add is detected by the capture fingerprint.
-   */
-  private async assertProducerAdmission(): Promise<void> {
-    const client = await this.queue.client;
-    if (await client.get(this.queue.toKey("capture-owner"))) {
-      throw new Error("Shared Brain capture active; task production withheld");
+  /** Redis admission covers queue mutation AND local audit settlement. Tokens
+   * have no expiry: a crashed or uncertain producer must block capture rather
+   * than disappear while a delayed operation can still commit. */
+  private async withProducerAdmission<T>(produce: () => Promise<T>): Promise<T> {
+    const client = await this.queue.client as unknown as {
+      eval(script: string, keyCount: number, ...args: string[]): Promise<number>;
+    };
+    const token = randomUUID();
+    const producers = this.queue.toKey("capture-producers");
+    const admitted = await client.eval(
+      "if redis.call('exists', KEYS[1]) == 1 then return 0 end; redis.call('sadd', KEYS[2], ARGV[1]); return 1",
+      2, this.queue.toKey("capture-owner"), producers, token,
+    );
+    if (admitted !== 1) throw new Error("Shared Brain capture active; task production withheld");
+    let succeeded = false;
+    try {
+      const result = await produce();
+      succeeded = true;
+      return result;
+    } finally {
+      // Rejection does not cancel a Redis command: an unknown operation may
+      // commit later. Even validation/audit failures conservatively retain
+      // admission. Only observed success may retire this operation's token.
+      if (succeeded) await client.eval("return redis.call('srem', KEYS[1], ARGV[1])", 1, producers, token);
     }
   }
 
@@ -60,6 +77,7 @@ export class TaskQueue implements BrainTaskQueue {
     const client = await this.queue.client as unknown as {
       set(key: string, value: string, mode: "NX"): Promise<string | null>;
       get(key: string): Promise<string | null>;
+      scard(key: string): Promise<number>;
       eval(script: string, keyCount: number, key: string, owner: string): Promise<number>;
       xrevrange(key: string, end: string, start: string, count: string, limit: number): Promise<Array<[string, unknown]>>;
     };
@@ -85,11 +103,15 @@ export class TaskQueue implements BrainTaskQueue {
         await this.queue.getJobSchedulersCount() === 0;
       if (!await noSchedulers()) throw new Error("Shared Brain repeat schedulers require a separate producer fence; no snapshot taken");
       const deadline = Date.now() + timeoutMs;
-      while (await this.queue.getActiveCount() !== 0) {
-        if (Date.now() >= deadline) throw new Error("Shared Brain jobs did not drain; no snapshot taken");
+      while (await client.scard(this.queue.toKey("capture-producers")) !== 0 || await this.queue.getActiveCount() !== 0) {
+        if (Date.now() >= deadline) {
+          if (await client.scard(this.queue.toKey("capture-producers")) !== 0)
+            throw new Error("Shared Brain producers did not drain; no snapshot taken");
+          throw new Error("Shared Brain jobs did not drain; no snapshot taken");
+        }
         await new Promise<void>(resolve => setTimeout(resolve, Math.min(100, Math.max(1, deadline - Date.now()))));
       }
-      if (await client.get(key) !== owner || !await this.queue.isPaused() || !await noSchedulers()) {
+      if (await client.get(key) !== owner || await client.scard(this.queue.toKey("capture-producers")) !== 0 || !await this.queue.isPaused() || !await noSchedulers()) {
         throw new Error("Shared Brain capture ownership or pause changed");
       }
       const fingerprint = async () => JSON.stringify({
@@ -98,7 +120,7 @@ export class TaskQueue implements BrainTaskQueue {
       });
       const before = await fingerprint();
       const result = await capture();
-      if (await client.get(key) !== owner || !await this.queue.isPaused() ||
+      if (await client.get(key) !== owner || await client.scard(this.queue.toKey("capture-producers")) !== 0 || !await this.queue.isPaused() ||
           !await noSchedulers() || await fingerprint() !== before) {
         throw new Error("Shared Brain queue changed during capture; discard snapshot");
       }
@@ -143,43 +165,45 @@ export class TaskQueue implements BrainTaskQueue {
     },
     options?: JobsOptions,
   ): Promise<{ jobId: string; correlationId: string }> {
-    await this.assertProducerAdmission();
-    const correlationId = payload.correlationId ?? randomUUID();
-    const jobPayload: BrainTaskPayload = { ...payload, correlationId };
+    return this.withProducerAdmission(async () => {
+      const correlationId = payload.correlationId ?? randomUUID();
+      const jobPayload: BrainTaskPayload = { ...payload, correlationId };
 
-    const priority = payload.priority
-      ? PRIORITY_MAP[payload.priority]
-      : PRIORITY_MAP.normal;
+      const priority = payload.priority
+        ? PRIORITY_MAP[payload.priority]
+        : PRIORITY_MAP.normal;
 
-    const job = await this.queue.add(payload.type, jobPayload, {
-      ...options,
-      priority,
-      jobId: options?.jobId,
+      const job = await this.queue.add(payload.type, jobPayload, {
+        ...options,
+        priority,
+        jobId: options?.jobId,
+      });
+
+      this.auditLogger.write({
+        action: "task.enqueue",
+        actor: "task-queue",
+        workspaceId: payload.workspaceId,
+        companyId: payload.companyId,
+        agentId: payload.agentId,
+        correlationId,
+        metadata: { type: payload.type, jobId: job.id },
+      });
+
+      logger.info(
+        { jobId: job.id, type: payload.type, correlationId },
+        "Task enqueued",
+      );
+
+      return { jobId: job.id!, correlationId };
     });
-
-    this.auditLogger.write({
-      action: "task.enqueue",
-      actor: "task-queue",
-      workspaceId: payload.workspaceId,
-      companyId: payload.companyId,
-      agentId: payload.agentId,
-      correlationId,
-      metadata: { type: payload.type, jobId: job.id },
-    });
-
-    logger.info(
-      { jobId: job.id, type: payload.type, correlationId },
-      "Task enqueued",
-    );
-
-    return { jobId: job.id!, correlationId };
   }
 
   async registerScheduledJob(definition: ScheduledJobDefinition): Promise<void> {
-    await this.assertProducerAdmission();
-    await this.queue.add(definition.payload.type, definition.payload, {
-      repeat: { pattern: definition.cron },
-      jobId: `schedule:${definition.name}`,
+    return this.withProducerAdmission(async () => {
+      await this.queue.add(definition.payload.type, definition.payload, {
+        repeat: { pattern: definition.cron },
+        jobId: `schedule:${definition.name}`,
+      });
     });
   }
 

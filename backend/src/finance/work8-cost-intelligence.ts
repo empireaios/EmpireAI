@@ -16,11 +16,20 @@ const observationSchema=z.object({resource:resourceSchema,costs:z.array(z.object
   providerSummary:z.object({currency:z.string().regex(/^[A-Z]{3}$/),billed:z.string().regex(/^\d+(\.\d+)?$/),effective:z.string().regex(/^\d+(\.\d+)?$/),recordCount:z.number().int().nonnegative(),periodStart:timestamp,periodEnd:timestamp,qualification:z.literal('AGGREGATED_PROVIDER_READBACK_NOT_PAYMENT')}).strict().optional(),
   accountReadback:accountReadbackSchema.optional(),
   complete:z.boolean(),exceptions:z.array(z.string().min(1).max(500)).max(50)}).strict();
+// Existing hash-validated USAGE evidence carries optional unit metadata so older
+// journal and discovery readers can still read the unchanged record schema.
+export const usageUnitEvidenceSchema=z.object({schema:z.literal('WORK8_USAGE_UNIT_V1'),unit:z.string().min(1).max(80).refine(v=>v.trim().length>0)}).strict();
+function recordedUsageUnit(data:z.infer<typeof costSchema>){
+ const units:string[]=[];for(const evidence of data.evidence){if(evidence.kind!=='USAGE'||!evidence.content)continue;try{const parsed=usageUnitEvidenceSchema.safeParse(JSON.parse(evidence.content));if(parsed.success)units.push(parsed.data.unit);}catch{/* Non-unit source content stays unmodified and does not imply a unit. */}}
+ const unique=[...new Set(units)];return {unitName:unique.length===1?unique[0]!:null,unitQualification:unique.length===1?'RECORDED_UNIT_NO_CONVERSION':unique.length>1?'CONFLICTING_RECORDED_UNITS':'UNIT_NAME_NOT_RECORDED'};
+}
 type Observation=z.infer<typeof observationSchema>;
 export interface ReadOnlyBillingPort {provider:string;discover(signal:AbortSignal):Promise<unknown[]>;read(resource:unknown,signal:AbortSignal):Promise<unknown>}
+export const costCapabilitiesSchema=z.array(z.object({provider:id,configuration:z.enum(['CONFIGURED','INACTIVE','PROPOSED','UNKNOWN']),billingOwner:z.string().min(1).max(200).nullable(),access:z.enum(['REGISTERED_READ_ONLY','UNAVAILABLE']),reason:z.string().min(1).max(500)}).strict()).max(100).refine(rows=>new Set(rows.map(r=>r.provider)).size===rows.length);
+export type CostCapability=z.infer<typeof costCapabilitiesSchema>[number];
 async function bounded<T>(read:(signal:AbortSignal)=>Promise<T>){const abort=new AbortController();let timer:ReturnType<typeof setTimeout>|undefined;
  try{return await Promise.race([read(abort.signal),new Promise<never>((_,reject)=>{timer=setTimeout(()=>{abort.abort();reject(Error('BILLING_TIMEOUT'));},5000);})]);}finally{if(timer)clearTimeout(timer);}}
-const expectedProviders=['github','vercel','railway','openai','anthropic','gemini','cj','amazon','keepa','canva','domains','storage','databases','monitoring','research','other-integrations'];
+export const expectedProviders=['github','vercel','railway','openai','anthropic','gemini','cj','amazon','keepa','canva','domains','storage','databases','monitoring','research','other-integrations'];
 /** Bounded, injected read-only discovery. Production schedules and credentials are deliberately absent. */
 export class Work8CostIntelligence {
  constructor(private centre:FinancialCentre,private workspace:string,private owner:string,private clock=Date.now){
@@ -31,9 +40,10 @@ export class Work8CostIntelligence {
   if(old){if(old.digest!==digest)throw Error('OBSERVATION_IDENTITY_CONFLICT');return;}
   this.centre.db.prepare('INSERT INTO work8_cost_observations VALUES(?,?,?,?)').run(this.workspace,key,digest,JSON.stringify(record));}
  private history(){const records=this.centre.db.prepare('SELECT id,digest,record FROM work8_cost_observations WHERE workspace=? ORDER BY rowid LIMIT 10001').all(this.workspace);if(records.length>10000)throw Error('COST_HISTORY_REVIEW_REQUIRED');return records.map(r=>{if(String(r.record).length>8*1024*1024)throw Error('COST_EVIDENCE_BOUND');const value=JSON.parse(String(r.record));if(hash(value)!==r.digest||value.owner!==this.owner)throw Error('COST_EVIDENCE_INTEGRITY');return {id:String(r.id),payload:value.payload};});}
- async examine(runId:string,ports:ReadOnlyBillingPort[]){
+ async examine(runId:string,ports:ReadOnlyBillingPort[],capabilities?:CostCapability[]){
+  if(capabilities)capabilities=costCapabilitiesSchema.parse(capabilities);
   id.parse(runId);if(ports.length>20||new Set(ports.map(p=>p.provider)).size!==ports.length)throw Error('INVALID_PROVIDER_SET');
-  const requestDigest=hash(ports.map(p=>p.provider));
+  const requestDigest=hash(capabilities?{providers:ports.map(p=>p.provider),capabilities}:ports.map(p=>p.provider));
   const prior=this.history().find(r=>r.id==='run:'+runId);if(prior){if(prior.payload.requestDigest!==requestDigest)throw Error('DISCOVERY_RUN_IDENTITY_CONFLICT');return prior.payload;}
   const started=this.clock(),exceptions:Array<{provider:string;code:string}>=[],observations:Observation[]=[];
   const attempt=this.history().filter(r=>r.id.startsWith(runId+':attempt:')).length;
@@ -65,7 +75,7 @@ export class Work8CostIntelligence {
     }
    }catch{exceptions.push({provider:port.provider,code:'PROVIDER_UNAVAILABLE_OR_INVALID_DISCOVERY'});}
   }
-  const result={runId,requestDigest,providers:ports.map(p=>p.provider),started,completed:this.clock(),observations,exceptions,noPaidInference:true,noExecutionAuthority:true};this.persist('run:'+runId,result);return result;
+  const result={runId,requestDigest,...(capabilities?{capabilities}:{}),providers:ports.map(p=>p.provider),started,completed:this.clock(),observations,exceptions,noPaidInference:true,noExecutionAuthority:true};this.persist('run:'+runId,result);return result;
  }
  projection(){
   const history=this.history(),resources=new Map<string,Observation>(),alerts:Array<{provider:string;code:string;resource?:string}>=[];
@@ -111,7 +121,15 @@ export class Work8CostIntelligence {
    if(r.renewalAt&&Date.parse(r.renewalAt)<=this.clock()+7*86400000&&r.state==='ACTIVE')alerts.push({provider:r.provider,resource:r.id,code:'RENEWAL_DUE'});
    for(const code of exceptions)alerts.push({provider:r.provider,resource:r.id,code});
   }
-  return {schema:'WORK8_COST_INTELLIGENCE_V1',resources:[...resources.values()].map(o=>o.resource),providerSummaries:[...resources.values()].filter(o=>o.providerSummary).map(o=>({provider:o.resource.provider,...o.providerSummary})),accountReadbacks:[...resources.values()].filter(o=>o.accountReadback).map(o=>({provider:o.resource.provider,observedAt:o.resource.observedAt,...o.accountReadback})),totalsByCurrencyStageAuthenticity:totals,
+  // Read-only usage disclosure. Missing quantities/rates/unit names remain unknown;
+  // this never recalculates a charge or promotes discovered evidence into actuals.
+  const variableUsage=[...active.values()].filter(c=>c.data.classification==='VARIABLE').map(c=>({
+   entryId:c.id,provider:c.data.provider,service:c.data.service,stage:c.data.stage,authenticity:c.data.authenticity,
+   quantity:c.data.quantity??null,unitRateMicro:c.data.unitRateMicro??null,currency:c.data.currency,
+   amountMicro:c.data.amountMicro,periodStart:c.data.periodStart,periodEnd:c.data.periodEnd,
+   ...recordedUsageUnit(c.data),classification:'UNREVIEWED_DISCOVERED_USAGE_NOT_CONFIRMED_ACTUALS'
+  }));
+  return {schema:'WORK8_COST_INTELLIGENCE_V1',capabilities:history.filter(r=>r.id.startsWith('run:')&&r.payload.capabilities).at(-1)?.payload.capabilities??[],variableUsage,resources:[...resources.values()].map(o=>o.resource),providerSummaries:[...resources.values()].filter(o=>o.providerSummary).map(o=>({provider:o.resource.provider,...o.providerSummary})),accountReadbacks:[...resources.values()].filter(o=>o.accountReadback).map(o=>({provider:o.resource.provider,observedAt:o.resource.observedAt,...o.accountReadback})),totalsByCurrencyStageAuthenticity:totals,
    alerts,historicalExceptions,observationsDigest:hash(history),canonicalEntriesDigest:hash(this.centre.entries(this.workspace)),
    totalsQualification:'UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS',operationalProfitIncluded:false,continuousLiveActivation:false};
  }

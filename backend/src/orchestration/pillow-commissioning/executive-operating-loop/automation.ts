@@ -98,6 +98,11 @@ export class PillowExecutiveLoopAutomationServer {
     this.task.start(Number(process.env.PILLOW_EXECUTIVE_LOOP_BOOT_DELAY_MS ?? 180_000), 30 * 60 * 1000);
   }
 
+  /** Drain the actual delayed/interval task before local recovery capture. */
+  withPausedExecution<T>(capture: () => T | Promise<T>, timeoutMs = 30_000): Promise<T> {
+    return this.task.withPausedExecution(capture, timeoutMs);
+  }
+
   stop(): Promise<void> {
     return this.task.stop();
   }

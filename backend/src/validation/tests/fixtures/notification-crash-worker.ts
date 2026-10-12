@@ -1,0 +1,11 @@
+import fs from 'node:fs';import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+const {NotificationWorkerEngine}=await import(pathToFileURL(path.resolve(import.meta.dirname,'../../../../../pillow/src/notification-worker/engine.ts')).href);
+const [databasePath,effectFile]=process.argv.slice(2);if(!databasePath||!effectFile)throw Error('Missing isolated fixture paths');
+process.env.NODE_ENV='test';process.env.DATABASE_PATH=databasePath;
+const {createNotificationDeliveryLedger}=await import('../../../orchestration/pillow-host/notification-delivery-ledger.js');
+const {closeDatabase}=await import('../../../brain/database.js');
+const worker=new NotificationWorkerEngine({repositoryRoot:path.resolve(import.meta.dirname,'../../../../..')});worker.bindDeliveryLedger(createNotificationDeliveryLedger());
+worker.setTransport({send:()=>{fs.appendFileSync(effectFile,'synthetic effect\n');process.exit(73);}});
+const message=worker.enqueueNotification({messageId:'crash-dispatch',channel:'in_app',to:'synthetic-owner',body:'synthetic-only'});
+await worker.processQueue();console.log(JSON.stringify({status:message.status,attempts:message.attempts}));closeDatabase();

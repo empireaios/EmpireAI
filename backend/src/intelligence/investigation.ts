@@ -1,6 +1,7 @@
 import {latestQualificationReview} from './work8-qualification.js';
 import {qualificationDossier} from './work8-dossier.js';
 import type {Evidence} from './model.js';
+import {sourceClaimContract} from '../assurance/work8-source-claims.js';
 import {modelDraftContract} from './work8-model-draft.js';
 import {enrichmentBinding,verifyCandidateContextDelivery} from './work8-enrichment.js';
 import {z} from 'zod';
@@ -51,7 +52,7 @@ export class PillowInvestigation {
   const dossier=pinned?this.grant.candidateDossier:null;
   if(pinned){if(!dossier)throw Error('CANDIDATE_DOSSIER_NOT_PINNED');const {digest:hash,...body}=dossier;if(hash!==digest(body)||dossier.workspace!==this.workspace||digest(dossier.sourceBinding)!==digest(pinned))throw Error('CANDIDATE_DOSSIER_UNVERIFIED');}
   if(pinned){const row=this.store.get(this.workspace,'investigations',this.grant.id);if(!row||row.status!=='RUNNING'||typeof row.requestId!=='string'||row.requestId!==this.grant.requestId||digest(row.candidateBinding)!==digest(pinned))throw Error('CANDIDATE_CONTEXT_GRANT_UNVERIFIED');const body={requestId:row.requestId,owner:row.owner,bindingDigest:digest(pinned),evidenceIds:ids,snapshotDigest:pinned.snapshotDigest,dossierDigest:dossier!.digest,deliveredAt:new Date(this.store.now()).toISOString()};row.candidateContextDelivery={...body,digest:digest(body)};this.store.put(this.workspace,'investigations',row.id,row);}
-  return {missionId:this.grant.id,candidateBinding:pinned??null,qualificationDossier:dossier,toolContract:investigationToolContract,modelDraftContract:pinned?modelDraftContract:null,opportunities,evidence:delivered,capabilities:this.store.arsenal(this.workspace).map(c=>({id:c.id,eye:c.eye,implemented:c.implemented,status:c.availability,purpose:c.purpose,limitations:c.limitations})),bounds:{rounds:2,jobsPerRound:4,requestsPerRound:12,totalRequests:24,modelCalls:3},publicSourceIds:['amazon-analytics','cj-logistics','keepa-history','trends-access'],commercialQualification:'UNESTABLISHED'};
+  return {missionId:this.grant.id,candidateBinding:pinned??null,qualificationDossier:dossier,toolContract:investigationToolContract,modelDraftContract:pinned?modelDraftContract:null,sourceClaimContract:pinned?sourceClaimContract:null,opportunities,evidence:delivered,capabilities:this.store.arsenal(this.workspace).map(c=>({id:c.id,eye:c.eye,implemented:c.implemented,status:c.availability,purpose:c.purpose,limitations:c.limitations})),bounds:{rounds:2,jobsPerRound:4,requestsPerRound:12,totalRequests:24,modelCalls:3},publicSourceIds:['amazon-analytics','cj-logistics','keepa-history','trends-access'],commercialQualification:'UNESTABLISHED'};
  }
  private bound(items:unknown[]){const result:unknown[]=[];for(const item of items){if(JSON.stringify([...result,item]).length>42000)break;result.push(item);}return result;}
  observe(content:string,round:number,provenance:unknown){

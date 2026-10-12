@@ -1,4 +1,5 @@
 // @ts-nocheck
+import {createNotificationDeliveryLedger} from "./notification-delivery-ledger.js";
 import {attachPillowReconciliation} from '../../assurance/pillow-context.js';
 import {claimInvestigation,PillowInvestigation} from '../../intelligence/investigation.js';
 import {productionIntelligence} from '../../intelligence/store.js';
@@ -330,6 +331,7 @@ export class PillowHost {
                 dryRunRecoveryValidation: !pillowProductionMode,
                 dryRunSyncExecution: !pillowProductionMode,
             });
+            this.pillowSession.notificationWorker.bindDeliveryLedger(createNotificationDeliveryLedger());
             if (this.missionAuthorityAdapter) this.pillowSession.missionRuntime.bindIntegrations({ authorityMissionExecutor: this.missionAuthorityAdapter });
             const adapter = createBrainLLMAdapter(this.llmRouter);
             const artifactRegistry = createArtifactRegistry(this.repositoryRoot);

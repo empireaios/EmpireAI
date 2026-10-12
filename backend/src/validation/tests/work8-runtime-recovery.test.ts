@@ -47,3 +47,19 @@ test('complete runtime capture defaults to refusal instead of accepting a scoped
   assert.equal(fs.existsSync(f.args.destination),false);
  }finally{f.close();}
 });
+
+test('supervised observer sidecar is mandatory, bounded, independently hashed, and remains historical',async()=>{
+ const f=fixture();try{
+  const args={...f.args,captureObserverWatchdog:true};
+  await assert.rejects(recovery.captureRuntimeRecoverySet(args),/ENOENT/);assert.equal(fs.existsSync(args.destination),false);
+  const file=path.join(f.root,'commissioning/assurance.sqlite.watchdog');
+  fs.writeFileSync(file+'.tmp','{}');await assert.rejects(recovery.captureRuntimeRecoverySet(args),/OBSERVER_WATCHDOG_UNSETTLED/);fs.rmSync(file+'.tmp');
+  fs.symlinkSync(f.args.authorityFile,file);await assert.rejects(recovery.captureRuntimeRecoverySet(args));fs.rmSync(file);
+  fs.writeFileSync(file,'x'.repeat(65537));
+  await assert.rejects(recovery.captureRuntimeRecoverySet(args),/OBSERVER_WATCHDOG_SIZE/);assert.equal(fs.existsSync(path.join(args.destination,'runtime-recovery.json')),false);fs.rmSync(args.destination,{recursive:true,force:true});
+  fs.writeFileSync(file,JSON.stringify({observedAt:Date.now(),status:'NOT_CHECKED'}));
+  const result=await withExclusiveWork8DomainCapture(f.root,()=>recovery.captureRuntimeRecoverySet(args));recovery.finalizeRuntimeRecoverySet(result);
+  const manifest=recovery.verifyRuntimeRecoverySet(result);assert.equal(Object.keys(manifest.stores).length,13);assert.equal(manifest.bootAllowed,false);assert.ok(manifest.json.assuranceWatchdog);
+  fs.appendFileSync(path.join(result.directory,'assuranceWatchdog.json'),' ');assert.throws(()=>recovery.verifyRuntimeRecoverySet(result));
+ }finally{f.close();}
+});

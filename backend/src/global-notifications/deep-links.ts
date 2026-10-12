@@ -2,6 +2,7 @@ import type { GlobalNotificationSource } from "./models/global-notification.js";
 
 /** GC-03 — Deep-link targets for notification navigation. */
 export const DEEP_LINKS: Record<GlobalNotificationSource, string> = {
+  assurance: "/cockpit/assurance",
   "executive-surveillance": "/dashboard/command",
   "eye-series": "/dashboard/intelligence",
   "reality-integration": "/dashboard/infrastructure",

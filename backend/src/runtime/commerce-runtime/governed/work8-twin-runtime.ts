@@ -1,3 +1,4 @@
+import {portfolioHealth} from './work8-portfolio-health.js';
 import {runCaptureAwareBackground} from '../../work8-background-capture.js';
 import {readRecoveredAuthorityAudit} from './work8-twin-recovery.js';
 import {initializeSimulationEnrollments,verifySimulationEnrollment} from './work8-enrollment.js';
@@ -102,6 +103,20 @@ export class Work8TwinRuntime {
    this.store.db.prepare('INSERT INTO work8_twin_observations VALUES(?,?,?,?)').run(p.workspace,r.sessionId,token,JSON.stringify(record));return record;
   });
  }
+ /** Read-derived advisory only: never append commerce receipts or mutate admitted plans. */
+ private reviewPortfolio(p:{workspace:string;owner:string},sessionId:string,w:string){
+  const tasks=this.worker.list(w).filter(t=>t.status==='COMPLETE'&&t.owner===p.owner).sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
+  if(!tasks.length)return {status:'NO_COMPLETED_PRODUCTS'};
+  const key='portfolio:'+digest({workspace:p.workspace,sessionId}),cursor=String(this.store.db.prepare('SELECT cursor FROM work8_twin_scheduler WHERE id=?').get(key)?.cursor??'');
+  const task=tasks.find(t=>t.id>cursor)??tasks[0]!;
+  this.verifyPlan(p.workspace,sessionId,p.owner,task.id,w);
+  const receipt=this.store.history(w,task.mission).at(-1)!;const state=receipt.state as unknown as CommerceState;
+  this.store.db.prepare('INSERT INTO work8_twin_scheduler VALUES(?,?) ON CONFLICT(id) DO UPDATE SET cursor=excluded.cursor').run(key,task.id);
+  if(!state.publicationIntent||state.retirement)return {status:'NOT_ACTIVE'};
+  const now=this.worker.engine.clock(),outcomes=state.outcomes.filter(o=>o.verified&&!state.reversed.includes(o.id)&&Date.parse(o.provenance.observedAt)<=now&&Date.parse(o.provenance.expiresAt)>now&&Date.parse(o.provenance.expiresAt)>Date.parse(o.provenance.observedAt));
+  const review=this.observe(p.workspace,sessionId,{kind:'PORTFOLIO_HEALTH_REVIEW',taskId:task.id,missionId:task.mission,receiptDigest:receipt.digest,evidenceIds:outcomes.map(o=>o.id),evaluationWindow:Math.floor(now/300000),health:portfolioHealth(outcomes,state.qualification.exposure),grantsAuthority:false});
+  return {status:'ADVISORY_RECORDED',observationId:review.id};
+ }
  tick(rawPrincipal:unknown,sessionId:string,version:number){
   const p=principal.parse(rawPrincipal);
   return this.sessions.run(p,sessionId,version,w=>{
@@ -121,7 +136,8 @@ export class Work8TwinRuntime {
    const financial=authority.mode==='ONE_TASK'?{status:'SEPARATE_FINANCIAL_AUTHORITY_REQUIRED'}:this.finance.tick(w);
    if(progress?.status==='BLOCKED')this.observe(p.workspace,sessionId,{kind:'ASSURANCE_ESCALATION',taskId:progress.id,reason:progress.error});
    if(progress)this.observe(p.workspace,sessionId,{kind:'SCHEDULER_PROGRESS',taskId:progress.id,missionId:progress.mission,cursor:progress.cursor,status:progress.status,error:progress.error});
-   return {status:'TICKED',taskId:progress?.id??null,financial,externalEffects:0};
+   const portfolio=authority.mode==='ONE_TASK'?{status:'OUTSIDE_SINGLE_TASK_SCOPE'}:this.reviewPortfolio(p,sessionId,w);
+   return {status:'TICKED',taskId:progress?.id??null,financial,portfolio,externalEffects:0};
   });
  }
  /** One session per timer turn, rotating durably; errors cannot advance other sessions. */

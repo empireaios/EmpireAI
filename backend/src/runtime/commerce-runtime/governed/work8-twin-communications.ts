@@ -7,7 +7,7 @@ export const twinCommunicationRequest=z.object({id:key,reference,threadId:key,ex
  action:z.enum(['RECEIVE','PREPARE','ESCALATE','RESOLVE']),
  category:z.enum(['PRODUCT_INQUIRY','SHIPPING_QUESTION','COMPLAINT','RETURN_REFUND','HOSTILE_EXCHANGE','CHARGEBACK_DISPUTE','SELLER_PERFORMANCE','UNANSWERABLE']).optional(),
  message:z.string().trim().min(1).max(4000).optional(),deadlineAt:z.number().int().nonnegative().optional()}).strict();
-type Event={version:number;id:string;owner:string;workspace:string;sessionId:string;missionId:string;threadId:string;requestDigest:string;previous:string;digest:string;at:number;action:string;category:string;risk:'NORMAL'|'ELEVATED'|'HIGH';status:string;deadlineAt:number|null;message:string|null;draft:string|null;receiptDigest:string;classification:'SIMULATED_COMMUNICATION';externalEffects:0;modelAssessment:'NOT_REQUESTED'};
+type Event={version:number;id:string;owner:string;workspace:string;sessionId:string;missionId:string;threadId:string;requestDigest:string;previous:string;digest:string;at:number;action:string;category:string;risk:'NORMAL'|'ELEVATED'|'HIGH';status:string;deadlineAt:number|null;message:string|null;draft:string|null;receiptDigest:string;classification:'SIMULATED_COMMUNICATION';externalEffects:0;modelAssessment:'NOT_REQUESTED'|'RETAINED_REQUEST_CONSUMED';modelProposal?:Record<string,unknown>};
 /** Simulated communication intake and evidence-bound response preparation.
  * No send adapter, refund authority or model inference is present. */
 export class Work8TwinCommunications{
@@ -22,8 +22,8 @@ export class Work8TwinCommunications{
  this.runtime.sessions.read(p,session);const ids=this.runtime.store.db.prepare('SELECT DISTINCT thread FROM work8_twin_communications WHERE workspace=? AND session=? ORDER BY thread LIMIT 101').all(p.workspace,session);if(ids.length>100)throw Error('COMMUNICATION_THREAD_BOUND');
  return ids.map(x=>{const history=this.history(p,session,String(x.thread)),latest=history.at(-1)!;return {...latest,overdue:latest.status!=='RESOLVED'&&latest.deadlineAt!==null&&this.runtime.worker.engine.clock()>latest.deadlineAt,history};}).sort((a,b)=>Number(b.overdue)-Number(a.overdue)||({HIGH:0,ELEVATED:1,NORMAL:2}[a.risk]-{HIGH:0,ELEVATED:1,NORMAL:2}[b.risk])||(a.deadlineAt??Infinity)-(b.deadlineAt??Infinity));
  }
- command(p:{workspace:string;owner:string},raw:unknown){const r=twinCommunicationRequest.parse(raw);return this.runtime.store.transaction(()=>{
- const context=this.runtime.context(p,r.reference),history=this.history(p,r.reference.sessionId,r.threadId),last=history.at(-1),requestDigest=digest({p,r});
+ command(p:{workspace:string;owner:string},raw:unknown,prepared?:{draft:string;proposal:Record<string,unknown>}){const r=twinCommunicationRequest.parse(raw);return this.runtime.store.transaction(()=>{
+ const context=this.runtime.context(p,r.reference),history=this.history(p,r.reference.sessionId,r.threadId),last=history.at(-1),requestDigest=digest(prepared?{p,r,prepared}:{p,r});
  const prior=this.runtime.store.db.prepare('SELECT record FROM work8_twin_communications WHERE workspace=? AND id=?').get(p.workspace,r.id);if(prior){const e=JSON.parse(String(prior.record)) as Event;if(e.requestDigest!==requestDigest||!history.some(h=>h.digest===e.digest))throw Error('COMMUNICATION_IDEMPOTENCY_CONFLICT');return e;}
  if((last?.version??0)!==r.expectedVersion||history.length>=1000)throw Error('COMMUNICATION_VERSION_CONFLICT');
  if(last&&last.missionId!==r.reference.missionId)throw Error('COMMUNICATION_PRODUCT_MISMATCH');
@@ -41,9 +41,10 @@ export class Work8TwinCommunications{
  const escalation=high||risk==='HIGH'||overdue||unresolved&&last.status==='OWNER_ESCALATION';
  const session=this.runtime.sessions.read(p,r.reference.sessionId),receipt=this.runtime.store.history(session.twinWorkspace,r.reference.missionId).at(-1)!;
  const state=receipt.state as {orders?:Record<string,{outcome?:string}>};
- const draft=r.action==='PREPARE'?`Prepared for owner review — simulated communication. Product: ${context.label}. ${category==='SHIPPING_QUESTION'?Object.values(state.orders??{}).map(o=>'Recorded order status: '+String(o.outcome??'unverified')).join('; '):'Question requires review against the attached product evidence.'} No delivery date, compensation, refund or policy exception has been authorised.`:null;
+ if(prepared&&r.action!=='PREPARE')throw Error('COMMUNICATION_ACTION_FIELDS');
+ const draft=prepared?.draft??(r.action==='PREPARE'?`Prepared for owner review — simulated communication. Product: ${context.label}. ${category==='SHIPPING_QUESTION'?Object.values(state.orders??{}).map(o=>'Recorded order status: '+String(o.outcome??'unverified')).join('; '):'Question requires review against the attached product evidence.'} No delivery date, compensation, refund or policy exception has been authorised.`:null);
  const body={version:r.expectedVersion+1,id:r.id,owner:p.owner,workspace:p.workspace,sessionId:r.reference.sessionId,missionId:r.reference.missionId,threadId:r.threadId,requestDigest,previous:last?.digest??'',at:this.runtime.worker.engine.clock(),action:r.action,category,risk,
- status:r.action==='RESOLVE'?'RESOLVED':r.action==='ESCALATE'||escalation?'OWNER_ESCALATION':r.action==='PREPARE'?'DRAFT_FOR_OWNER_REVIEW':'ASSESSMENT_REQUIRED',deadlineAt,message:r.message??null,draft,receiptDigest:receipt.digest,classification:'SIMULATED_COMMUNICATION' as const,externalEffects:0 as const,modelAssessment:'NOT_REQUESTED' as const};
+ status:r.action==='RESOLVE'?'RESOLVED':r.action==='ESCALATE'||escalation?'OWNER_ESCALATION':r.action==='PREPARE'?'DRAFT_FOR_OWNER_REVIEW':'ASSESSMENT_REQUIRED',deadlineAt,message:r.message??null,draft,receiptDigest:receipt.digest,classification:'SIMULATED_COMMUNICATION' as const,externalEffects:0 as const,modelAssessment:prepared?'RETAINED_REQUEST_CONSUMED' as const:'NOT_REQUESTED' as const,...(prepared?{modelProposal:prepared.proposal}:{})};
  const event={...body,digest:digest(body)};this.runtime.store.db.prepare('INSERT INTO work8_twin_communications VALUES(?,?,?,?,?,?)').run(p.workspace,r.reference.sessionId,r.threadId,event.version,r.id,JSON.stringify(event));return event;
  });}
 }

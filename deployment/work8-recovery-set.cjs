@@ -52,14 +52,15 @@ module.exports={createRecoverySet,verifyRecoverySet,selectRecoveryPoint};
 // Integrated runtime inventory uses the existing checkpoint verifier. The caller
 // holds application fences; this format deliberately does NOT attest global quiescence.
 const RUNTIME_IDS=[...Object.keys(require('./work8-system-vault.cjs').STORES),'brain','missions','execution','shadow'];
-async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityFile,requestOwnersFile,destination,sourceCommit,frontendRevision,captureId,captureRedis}) {
+async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityFile,requestOwnersFile,destination,sourceCommit,frontendRevision,captureId,captureRedis,captureRedisIdentity,captureObserverWatchdog=false}) {
  canonical(root); canonical(path.dirname(destination));
  assert.equal(path.resolve(destination),destination);assert.ok(!destination.startsWith(root+path.sep));
  assert.match(sourceCommit,/^[a-f0-9]{40}$/);assert.match(frontendRevision,/^[a-f0-9]{40}$/);assert.match(captureId,/^[a-f0-9-]{36}$/);
  const inventory={...Object.fromEntries(Object.entries(require('./work8-system-vault.cjs').STORES).map(([id,relative])=>[id,path.join(root,relative)])),brain:primaryPath,missions:primaryPath+'.missions.sqlite',execution:primaryPath+'.mission-execution.sqlite',shadow:shadowPath};
  const json={authority:authorityFile,requestOwners:requestOwnersFile};
+ if(captureObserverWatchdog){json.assuranceWatchdog=path.join(root,'commissioning/assurance.sqlite.watchdog');assert.ok(!fs.existsSync(json.assuranceWatchdog+'.tmp'),'OBSERVER_WATCHDOG_UNSETTLED');}
  for(const file of [...Object.values(inventory),...Object.values(json)]) {canonical(file);const s=fs.lstatSync(file);assert.ok(s.isFile()&&s.nlink===1,'MANDATORY_STORE_UNSAFE');}
- assert.equal(new Set([...Object.values(inventory),...Object.values(json)]).size,15,'ALIASED_STORE');
+ assert.equal(new Set([...Object.values(inventory),...Object.values(json)]).size,captureObserverWatchdog?16:15,'ALIASED_STORE');
  fs.mkdirSync(destination,{mode:0o700});
  const staging=path.join(destination,'staging');fs.mkdirSync(staging,{mode:0o700});
  const stores={};
@@ -79,11 +80,13 @@ async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityF
    stores[id]=require('./legacy-checkpoint-capture.cjs').captureCheckpoint({source:copy,destination:path.join(destination,id),sourceCommit}).manifestSha256;
   }
   const jsonDigests={};
-  for(const [id,file] of Object.entries(json)){const bytes=fs.readFileSync(file);const value=JSON.parse(bytes);assert.ok(value&&typeof value==='object'&&!Array.isArray(value));fs.writeFileSync(path.join(destination,id+'.json'),bytes,{flag:'wx',mode:0o600});jsonDigests[id]=sha(bytes);}
-  const redis=await captureRedis();assert.ok(Array.isArray(redis));
+  for(const [id,file] of Object.entries(json)){const size=fs.statSync(file).size;if(id==='assuranceWatchdog')assert.ok(size>0&&size<=65536,'OBSERVER_WATCHDOG_SIZE');const bytes=fs.readFileSync(file);const value=JSON.parse(bytes);if(id==='assuranceWatchdog')assert.ok(Number.isSafeInteger(value.observedAt)&&value.observedAt>0&&typeof value.status==='string','OBSERVER_WATCHDOG_SCHEMA');assert.ok(value&&typeof value==='object'&&!Array.isArray(value));fs.writeFileSync(path.join(destination,id+'.json'),bytes,{flag:'wx',mode:0o600});jsonDigests[id]=sha(bytes);}
+  const redisIdentity=captureRedisIdentity?await captureRedisIdentity():undefined;
+  const redisCapturedAt=Date.now();const redis=await captureRedis();assert.ok(Array.isArray(redis));
+  if(captureRedisIdentity)assert.deepEqual(await captureRedisIdentity(),redisIdentity);
   const redisBytes=JSON.stringify(redis);fs.writeFileSync(path.join(destination,'redis.json'),redisBytes,{flag:'wx',mode:0o600});
   fs.rmSync(staging,{recursive:true});
-  const manifest={schema:'WORK8_RUNTIME_RECOVERY_SET_V1',captureId,sourceCommit,frontendRevision,capturedAt:new Date().toISOString(),stores,json:jsonDigests,redisDigest:sha(redisBytes),bootAllowed:false,completeLiveState:false,authority:'HISTORICAL_ONLY_DO_NOT_BOOT',remaining:['Redis producers outside Brain queue are not globally fenced','Executive watchdog and Amazon continuation coverage unproven','Protected independent custody and restoration unproven']};
+  const manifest={schema:'WORK8_RUNTIME_RECOVERY_SET_V1',captureId,sourceCommit,frontendRevision,capturedAt:new Date().toISOString(),stores,json:jsonDigests,redisDigest:sha(redisBytes),redisCapturedAt,...(redisIdentity?{redisIdentity}:{}),bootAllowed:false,completeLiveState:false,authority:'HISTORICAL_ONLY_DO_NOT_BOOT',remaining:['Redis producers outside Brain queue are not globally fenced','Executive watchdog and Amazon continuation coverage unproven','Protected independent custody and restoration unproven']};
   fs.writeFileSync(path.join(destination,'runtime-recovery.pending.json'),JSON.stringify(manifest),{flag:'wx',mode:0o600});durableTree(destination);
   const result={directory:destination,digest:sha(JSON.stringify(manifest)),manifest};verifyRuntimeRecoverySet(result,true);return result;
  } catch(error){fs.rmSync(path.join(destination,'runtime-recovery.json'),{force:true});throw error;}
@@ -92,10 +95,11 @@ function verifyRuntimeRecoverySet({directory,digest},allowProvisional=false) {
  canonical(directory);assert.match(digest,/^[a-f0-9]{64}$/);const manifestName=allowProvisional?'runtime-recovery.pending.json':'runtime-recovery.json';const manifestFile=path.join(directory,manifestName);canonical(manifestFile);assert.ok(fs.statSync(manifestFile).size<=65536);const bytes=fs.readFileSync(manifestFile);assert.equal(sha(bytes),digest);
  const m=JSON.parse(bytes);assert.equal(m.schema,'WORK8_RUNTIME_RECOVERY_SET_V1');assert.match(m.sourceCommit,/^[a-f0-9]{40}$/);assert.match(m.frontendRevision,/^[a-f0-9]{40}$/);assert.match(m.captureId,/^[a-f0-9-]{36}$/);assert.equal(m.bootAllowed,false);assert.equal(m.completeLiveState,false);assert.equal(m.authority,'HISTORICAL_ONLY_DO_NOT_BOOT');
  assert.deepEqual(Object.keys(m.stores).sort(),[...RUNTIME_IDS].sort());
- assert.deepEqual(fs.readdirSync(directory).sort(),[...RUNTIME_IDS,'authority.json','requestOwners.json','redis.json',manifestName].sort());
+ assert.deepEqual(fs.readdirSync(directory).sort(),[...RUNTIME_IDS,'authority.json','requestOwners.json',...(Object.hasOwn(m.json,'assuranceWatchdog')?['assuranceWatchdog.json']:[]),'redis.json',manifestName].sort());
  for(const id of RUNTIME_IDS){verifyCheckpoint({directory:path.join(directory,id),manifestSha256:m.stores[id]});const part=read(path.join(directory,id,'manifest.json'));assert.equal(part.source.commit,m.sourceCommit);}
- assert.deepEqual(Object.keys(m.json).sort(),['authority','requestOwners']);
- for(const id of ['authority','requestOwners']){const file=path.join(directory,id+'.json');canonical(file);assert.equal(sha(fs.readFileSync(file)),m.json[id]);JSON.parse(fs.readFileSync(file,'utf8'));}
+ const jsonIds=Object.hasOwn(m.json,'assuranceWatchdog')?['assuranceWatchdog','authority','requestOwners']:['authority','requestOwners'];
+ assert.deepEqual(Object.keys(m.json).sort(),jsonIds);
+ for(const id of jsonIds){const file=path.join(directory,id+'.json');canonical(file);if(id==='assuranceWatchdog')assert.ok(fs.statSync(file).size>0&&fs.statSync(file).size<=65536,'OBSERVER_WATCHDOG_SIZE');assert.equal(sha(fs.readFileSync(file)),m.json[id]);JSON.parse(fs.readFileSync(file,'utf8'));}
  const redisFile=path.join(directory,'redis.json');canonical(redisFile);assert.equal(sha(fs.readFileSync(redisFile)),m.redisDigest);const rows=JSON.parse(fs.readFileSync(redisFile,'utf8'));assert.ok(Array.isArray(rows));
  const keys=new Set();for(const row of rows){assert.equal(typeof row.key,'string');assert.equal(typeof row.dump,'string');assert.ok(Number.isSafeInteger(row.ttl)&&row.ttl>=-1);assert.ok(!keys.has(row.key));keys.add(row.key);}
  return m;

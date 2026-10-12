@@ -136,6 +136,11 @@ export class PillowCommercePresaleAutomationServer {
     this.task.start(Number(process.env.PILLOW_COMMERCE_PRESALE_BOOT_DELAY_MS ?? 240_000), 4 * 60 * 60 * 1000);
   }
 
+  /** Drain the actual delayed/interval task before local recovery capture. */
+  withPausedExecution<T>(capture: () => T | Promise<T>, timeoutMs = 30_000): Promise<T> {
+    return this.task.withPausedExecution(capture, timeoutMs);
+  }
+
   stop(): Promise<void> {
     return this.task.stop();
   }

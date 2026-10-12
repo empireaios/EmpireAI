@@ -7,6 +7,7 @@ const require=createRequire(import.meta.url);
 const root=process.env.RAILWAY_VOLUME_MOUNT_PATH!;
 const base=path.dirname(root);
 let shutdown:(()=>Promise<void>)|undefined;
+const restoreAutomations:Array<()=>Promise<void>>=[];
 try{
  const {buildApp}=await import('../../../app.js');
  const {getDatabase}=await import('../../../brain/database.js');
@@ -40,12 +41,32 @@ try{
    try{await commitSignal;writer.prepare('INSERT INTO accepted_business_record VALUES(@id)').run({id:writerId});}
    finally{writer.close();}return {committed:true};
   });
+  const {getPillowCommercePresaleAutomationServer}=await import('../../../orchestration/pillow-commerce-presale/automation/pillow-commerce-presale-automation.js');
+  const {getPillowExecutiveLoopAutomationServer}=await import('../../../orchestration/pillow-commissioning/executive-operating-loop/automation.js');
+  getDatabase().exec('CREATE TABLE automation_capture_fixture(kind TEXT,phase TEXT)');
+  const finishAutomation:Array<()=>void>=[];const automationStarted:Array<Promise<void>>=[];
+  for(const [kind,server,delayEnv] of [
+   ['presale',getPillowCommercePresaleAutomationServer(),'PILLOW_COMMERCE_PRESALE_BOOT_DELAY_MS'],
+   ['executive',getPillowExecutiveLoopAutomationServer(),'PILLOW_EXECUTIVE_LOOP_BOOT_DELAY_MS']
+  ] as const){
+   // Replace only the business body in this isolated fixture. Run the actual
+   // singleton timer/lifecycle that buildApp's capture must pause and drain.
+   const task=(server as unknown as {task:{options:{run:()=>Promise<unknown>|unknown}}}).task;
+   const original=task.options.run;let began!:()=>void,finish!:()=>void;
+   automationStarted.push(new Promise<void>(resolve=>{began=resolve;}));const gate=new Promise<void>(resolve=>{finish=resolve;});finishAutomation.push(finish);
+   task.options.run=async()=>{getDatabase().prepare('INSERT INTO automation_capture_fixture VALUES(@kind,@phase)').run({kind,phase:'admitted'});began();await gate;getDatabase().prepare('INSERT INTO automation_capture_fixture VALUES(@kind,@phase)').run({kind,phase:'committed'});};
+   restoreAutomations.push(async()=>{finish();await server.stop();task.options.run=original;});
+   process.env[delayEnv]='0';process.env.EMPIRE_ENGINEERING_TEST_MODE='false';server.start();
+  }
+  await Promise.all(automationStarted);process.env.EMPIRE_ENGINEERING_TEST_MODE='true';
   const inflight=app.app.inject({method:'GET',url:'/fixture/admitted-shadow-writer'});
   await admittedSignal;
   let settled=false;
   const capture=app.captureWork8Recovery({...request,requireComplete:false}).finally(()=>{settled=true;});
   await new Promise(resolve=>setTimeout(resolve,100));assert.equal(settled,false);
   allowCommit();assert.equal((await inflight).statusCode,200);
+  await new Promise(resolve=>setTimeout(resolve,30));assert.equal(settled,false,'capture must drain both autonomous timer writers');
+  for(const finish of finishAutomation)finish();
   const result=await capture;
   assert.equal(count(shadowPath),1);assert.equal(count(path.join(result.directory,'shadow','checkpoint.db')),1);
   const after=new EmpireDatabase(shadowPath);after.exec("INSERT INTO accepted_business_record VALUES('after-release')");after.close();
@@ -53,7 +74,7 @@ try{
   const recovery=require('../../../../../deployment/work8-recovery-set.cjs');const manifest=recovery.verifyRuntimeRecoverySet(result);
   assert.equal(manifest.completeLiveState,false);assert.equal(Object.keys(manifest.stores).length,13);
   assert.equal(fs.existsSync(path.join(result.directory,'runtime-recovery.pending.json')),false);
-  const copied=new DatabaseSync(path.join(result.directory,'brain','checkpoint.db'),{readOnly:true});try{assert.equal(copied.prepare('SELECT value FROM recovery_app_fixture').get()!.value,'retained');}finally{copied.close();}
+  const copied=new DatabaseSync(path.join(result.directory,'brain','checkpoint.db'),{readOnly:true});try{assert.equal(copied.prepare('SELECT value FROM recovery_app_fixture').get()!.value,'retained');assert.equal(copied.prepare('SELECT count(*) n FROM automation_capture_fixture').get()!.n,4);}finally{copied.close();}
   const missing=path.join(root,stores.liveCostCentre!);fs.renameSync(missing,missing+'.retained');
   admittedSignal=new Promise<void>(resolve=>{admitted=resolve;});commitSignal=new Promise<void>(resolve=>{allowCommit=resolve;});writerId='accepted-before-refusal';
   const inflightRefusal=app.app.inject({method:'GET',url:'/fixture/admitted-shadow-writer'});await admittedSignal;
@@ -64,7 +85,7 @@ try{
   try{await assert.rejects(app.captureWork8Recovery({...request,destination:path.join(base,'alias-refusal'),requireComplete:false}),/independently opened SQL.js handle/);assert.deepEqual(fs.readFileSync(shadowPath),beforeAlias);assert.equal(alias.prepare('SELECT count(*) n FROM accepted_business_record').get()!.n,4);}finally{alias.close();}
   assert.equal(count(shadowPath),4);
   assert.equal(fs.existsSync(path.join(base,'missing-capture','runtime-recovery.json')),false);
-  process.send!({event:'result',result:{digest:result.digest,stores:13,completeLiveState:false,bootAllowed:false,sourceRecord:'retained',missingStoreRefused:true,concurrentShadowPreserved:true,postReleaseWritePreserved:true,aliasRefusalPreserved:true}});
+  process.send!({event:'result',result:{digest:result.digest,stores:13,completeLiveState:false,bootAllowed:false,sourceRecord:'retained',missingStoreRefused:true,concurrentShadowPreserved:true,postReleaseWritePreserved:true,aliasRefusalPreserved:true,automationWritersDrained:true}});
  }
 }catch(error){process.send?.({event:'error',error:error instanceof Error?error.stack:String(error)});process.exitCode=1;}
-finally{await shutdown?.();process.disconnect();}
+finally{process.env.EMPIRE_ENGINEERING_TEST_MODE='true';for(const restore of restoreAutomations)await restore();await shutdown?.();process.disconnect();}

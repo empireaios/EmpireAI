@@ -358,6 +358,27 @@ jobs:
           git checkout --detach 960d6167206e5fc9994adfe89c63d4ce83dd1123
           test "$(git rev-parse HEAD)" = 960d6167206e5fc9994adfe89c63d4ce83dd1123
           test "$(git rev-parse HEAD^{tree})" = a956c4f2235ac48d745d8e51a170fe5909bb3427
+          communication=_work8_evidence/docs/work8/interrupted-recovery-20261012/bundles/FRONTEND-COMMUNICATION.bundle
+          test "$(git hash-object "$communication")" = a4a4609a6a2e324d62730cc530642f7532c2525e
+          git bundle verify "$communication"
+          git fetch "$communication" refs/heads/work8/communication-ui-20261012
+          git checkout --detach 900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a
+          test "$(git rev-parse HEAD)" = 900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a
+          test "$(git rev-parse HEAD^{tree})" = 79d458316ebb7407aa9aad45a4bab3f6f26c4f91
+          usage=_work8_evidence/docs/work8/revised-review-20261012/business-finance/cost-intelligence17/FRONTEND-900ee-to-5276.bundle
+          test "$(git hash-object "$usage")" = 05a7bc977a276f6af1402fe026c444e9ad65f007
+          git bundle verify "$usage"
+          git fetch "$usage" refs/heads/work8/cost-usage-ui-20261012
+          git checkout --detach 5276c8dc7b58cc8602c1801f8db676f896db29d7
+          test "$(git rev-parse HEAD)" = 5276c8dc7b58cc8602c1801f8db676f896db29d7
+          test "$(git rev-parse HEAD^{tree})" = 94fd9dde528fe900e635671d91ce2586650d09a3
+          preview=_work8_evidence/docs/work8/resumed-execution-20261012/pillow-preview/frontend-858b1c99.bundle
+          test "$(git hash-object "$preview")" = b5c40b1eb0a4bc97bf7e3cba347585f01b4c758c
+          git bundle verify "$preview"
+          git fetch "$preview" HEAD
+          git checkout --detach 858b1c99c5acd3ada160f2fe9c1448eb8e6beb09
+          test "$(git rev-parse HEAD)" = 858b1c99c5acd3ada160f2fe9c1448eb8e6beb09
+          test "$(git rev-parse HEAD^{tree})" = c268a1083fcf9b6364f1b000e4aa3ee7337c5ec4
           rm -rf -- _work8_evidence
       - name: Use pinned Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020

@@ -1,0 +1,21 @@
+import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from 'node:sqlite';import {createHash} from 'node:crypto';
+import type {GlobalNotification} from '../models/global-notification.js';import {inferTypeFromSignalPriority,priorityForType} from '../models/global-notification.js';import {getGlobalNotificationRepository} from '../repositories/sqlite-global-notification-repository.js';
+const hash=(v:unknown)=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+/** Existing authenticated notification sync calls this workspace-scoped, bounded, read-only source bridge.
+ * Materialising an inbox notice is not independent push delivery or incident resolution. */
+export function ingestAssuranceNotifications(workspaceId:string,companyId:string,root=process.env.RAILWAY_VOLUME_MOUNT_PATH,after=''){
+ if(!root)return [];
+ if(!/^[A-Za-z0-9_.:-]{1,160}$/.test(workspaceId)||!companyId||companyId.length>160||(after&&!/^[A-Za-z0-9_.:-]{1,160}$/.test(after)))throw Error('ASSURANCE_NOTIFICATION_SCOPE');
+ const repo=getGlobalNotificationRepository();
+ const save=(sourceRef:string,title:string,body:string,type:GlobalNotification['type'],metadata:Record<string,unknown>)=>{const old=repo.getBySourceRef(workspaceId,companyId,sourceRef);return repo.upsert({notificationId:old?.notificationId??repo.createId(),workspaceId,companyId,source:'assurance',sourceRef,title,body,type,priority:priorityForType(type),deepLink:'/cockpit/assurance',readAt:old?.readAt??null,acknowledgedAt:old?.acknowledgedAt??null,createdAt:old?.createdAt??new Date().toISOString(),metadata:{...metadata,deliveryScope:'AUTHENTICATED_OWNER_PULL_INBOX',independentPushDelivered:false,grantsAuthority:false,acknowledgementScope:'NOTICE_ONLY_NOT_INCIDENT_RESOLUTION'}});};
+ let rows:Array<{id:string;body:string}>;
+ try{
+  const file=path.join(root,'commissioning','assurance.sqlite');if(!path.isAbsolute(root)||fs.realpathSync(root)!==root||fs.realpathSync(file)!==file||!fs.lstatSync(file).isFile())throw Error('SOURCE_PATH');
+  const db=new DatabaseSync(file,{readOnly:true,allowExtension:false,timeout:1000});try{db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; BEGIN');const sizes=db.prepare("SELECT length(CAST(body AS BLOB)) bytes FROM cp_records WHERE workspace=? AND kind='incident' AND id>? ORDER BY id LIMIT 101").all(workspaceId,after);if(sizes.reduce((n,r)=>n+Number(r.bytes),0)>1048576)throw Error('SOURCE_BOUND');rows=db.prepare("SELECT id,body FROM cp_records WHERE workspace=? AND kind='incident' AND id>? ORDER BY id LIMIT 101").all(workspaceId,after) as unknown as Array<{id:string;body:string}>;}finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}
+  const more=rows.length>100;const parsed=rows.slice(0,100).map(row=>{const v=JSON.parse(row.body);if(!v||v.id!==row.id||typeof v.status!=='string'||typeof v.summary!=='string'||v.summary.length>1000||!Number.isFinite(v.lastAt))throw Error('SOURCE_INVALID');return v;});
+  const notifications=parsed.map(v=>save('assurance:incident:'+v.id+':'+hash({status:v.status,summary:v.summary,severity:v.severity,revision:v.revision,runbookId:v.runbookId,limitation:v.limitation,verifiedAt:v.verifiedAt}),'Assurance incident '+v.status,v.summary+` Status: ${v.status}. Review the canonical incident before acting.`,['CLOSED','RECOVERED'].includes(v.status)?'information':inferTypeFromSignalPriority(v.severity),{incidentId:v.id,status:v.status,sourceDigest:hash(v),sourceObservedAt:v.lastAt,sourceRevision:v.revision,severity:v.severity,capability:v.capability,runbookId:v.runbookId??null,attempts:v.attempts,sourceScope:'WORKSPACE_WIDE',coverageAfter:after}));
+  if(more)notifications.push(save('assurance:continuation:'+hash(after),'More Assurance incident notices remain','This source window is incomplete. Continue the authenticated sync with the recorded assuranceAfter cursor.','warning',{sourceStatus:'INCOMPLETE_WINDOW',after,nextCursor:parsed.at(-1)?.id,unconsumedContinuation:true}));return notifications;
+ }catch{
+  return [save('assurance:notification-source-unavailable','Assurance notification source unavailable','Current incident coverage could not be verified. Existing notices are retained; no delivery or recovery is inferred.','warning',{sourceStatus:'UNAVAILABLE_OR_BOUND',sourceScope:'WORKSPACE_WIDE'})];
+ }
+}

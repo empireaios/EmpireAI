@@ -71,13 +71,15 @@ export function buildGlobalNotificationDashboard(workspaceId: string, companyId:
   };
 }
 
-export function syncGlobalNotifications(workspaceId: string, companyId: string): {
+export function syncGlobalNotifications(workspaceId: string, companyId: string, assuranceAfter=''): {
   ingested: number;
   notifications: GlobalNotification[];
+  assuranceCoverage: {after:string;status:string;nextCursor:unknown};
 } {
-  const ingested = ingestNotificationsFromSources(workspaceId, companyId);
+  const ingested = ingestNotificationsFromSources(workspaceId, companyId,assuranceAfter);
   return {
     ingested: ingested.length,
+    assuranceCoverage:{after:assuranceAfter,status:!process.env.RAILWAY_VOLUME_MOUNT_PATH?'NOT_CONFIGURED':ingested.some(n=>n.source==='assurance'&&n.metadata?.sourceStatus==='UNAVAILABLE_OR_BOUND')?'UNAVAILABLE':ingested.some(n=>n.source==='assurance'&&n.metadata?.unconsumedContinuation)?'INCOMPLETE_WINDOW':'WINDOW_COMPLETE',nextCursor:ingested.find(n=>n.source==='assurance'&&n.metadata?.unconsumedContinuation)?.metadata?.nextCursor??null},
     notifications: listGlobalNotifications(workspaceId, { companyId }),
   };
 }

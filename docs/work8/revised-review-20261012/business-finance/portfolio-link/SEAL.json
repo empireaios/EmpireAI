@@ -1,0 +1,13 @@
+{
+  "base": "06c6ae65",
+  "files": {
+    "docs/work8/revised-review-20261012/business-finance/portfolio-link/RESULT.md": "2383c7391916faec8e78fbdaeab4e49ba08653fe5a9d3439752db910f68f6792",
+    "docs/work8/revised-review-20261012/business-finance/portfolio-link/typecheck.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/work8/revised-review-20261012/business-finance/portfolio-link/regression.tap": "41ff9edc2a53c6ced6feec33f40f35b001c87a0b241d0fc50cd2e665d1d9fe92",
+    "docs/work8/revised-review-20261012/business-finance/portfolio-link/exam.tap": "8db1bea82437ce86bc57a73076c22da95bbb399ac2f8131773a410203d3ba0d9",
+    "backend/src/runtime/commerce-runtime/governed/contracts.ts": "338d24fb0b469f5c32d3eece7c72a48471a7268033da3f1194824c3a0718b331",
+    "backend/src/runtime/commerce-runtime/governed/engine.ts": "46c6d127d501289e7ed390946eb52e6540c4e73aa6610ee0fb96b85014dfac56",
+    "backend/src/runtime/commerce-runtime/governed/work8-finance.ts": "6d82a9a9dde2ac1a2e63f977fc3d33a366764147c8c4e07e69776becb32d6b4c",
+    "backend/src/validation/tests/work8-portfolio-review-link.test.ts": "17088aef555c580a89fc867cd43528528e0218e8f173461f31d96fd5c37d6e82"
+  }
+}

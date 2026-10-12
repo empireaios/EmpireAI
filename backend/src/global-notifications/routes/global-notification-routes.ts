@@ -58,8 +58,8 @@ export async function registerGlobalNotificationRoutes(
 
   app.post("/global-notifications/sync", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
-    const body = z.object({ companyId: z.string().min(1) }).parse(request.body);
-    const result = syncGlobalNotifications(user.workspaceId, body.companyId);
+    const body = z.object({ companyId: z.string().min(1),assuranceAfter:z.string().regex(/^[A-Za-z0-9_.:-]{1,160}$/).optional() }).parse(request.body);
+    const result = syncGlobalNotifications(user.workspaceId, body.companyId,body.assuranceAfter);
 
     auditLogger.write({
       action: "global_notifications.sync",

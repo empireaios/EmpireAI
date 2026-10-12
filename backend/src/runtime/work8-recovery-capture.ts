@@ -1,5 +1,6 @@
 import {createRequire} from 'node:module';
-import {randomUUID} from 'node:crypto';
+import type {Redis} from 'ioredis';
+import {createHash,randomUUID} from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import type {TaskQueue} from '../brain/task-queue.js';
@@ -35,12 +36,72 @@ export async function captureRedisInventory(queue:TaskQueue) {
 }
 export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string},queue:TaskQueue):Promise<Work8RecoveryResult>{
  if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN: Redis producers, watchdog, continuation and protected custody remain uncovered; only explicit scoped inspection is available");
- return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,captureId:randomUUID(),
+ return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,captureId:randomUUID(),captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
   authorityFile:path.join(resolveShadowCeoAuthorityDir(),'authority-store.json'),
   requestOwnersFile:path.join(resolveShadowCeoDataRoot(),'shadow-ceo-request-owners.json'),
-  captureRedis:()=>captureRedisInventory(queue)});
+  captureRedis:()=>captureRedisInventory(queue),captureRedisIdentity:async()=>{
+   const client=await queue.queue.client as unknown as Redis;
+   const identity=await redisIdentity(client);
+   const ownerKey=queue.queue.toKey('capture-owner'),owner=await client.get(ownerKey);
+   if(!owner||!await queue.queue.isPaused())throw new Error('REDIS_CAPTURE_OWNER_REQUIRED');
+   return {...identity,ownerKey,owner,metaKey:queue.queue.toKey('meta')};
+  }});
 }
 export function verifyWork8RecoveryInventory(result:Work8RecoveryResult){return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).verifyRuntimeRecoverySet(result);}
 export function invalidateWork8RecoveryInventory(destination:string){fs.rmSync(path.join(destination,'runtime-recovery.json'),{force:true});}
 
 export function finalizeWork8RecoveryInventory(result:Work8RecoveryResult){return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).finalizeRuntimeRecoverySet(result);}
+
+
+async function redisIdentity(client:Redis){
+ const runId=(await client.info('server')).match(/^run_id:([a-f0-9]{40})\r?$/m)?.[1];
+ const db=Number(String(await client.call('CLIENT','INFO')).match(/(?:^| )db=(\d+)(?: |$)/)?.[1]);
+ if(!runId||!Number.isSafeInteger(db)||db<0)throw new Error('REDIS_IDENTITY_UNAVAILABLE');
+ return {runId,db};
+}
+
+/** Inspection staging only. Never resumes BullMQ or clears producer admission.
+ * Source shutdown/quarantine is an operator precondition, not established here.
+ * This API cannot authorize operational restoration or global writer exclusion.
+ */
+export async function restoreWork8RedisInspection(request:{directory:string;digest:string;mode?:'inspection-only';expectedCaptureOwner:string},target:Redis){
+ if(request.mode!=='inspection-only')throw new Error('INSPECTION_ONLY_EXPLICIT_MODE_REQUIRED');
+ if(!['127.0.0.1','::1'].includes(target.options.host??'')||target.options.path)throw new Error('ISOLATED_LOOPBACK_TARGET_REQUIRED');
+ const manifest=(require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).verifyRuntimeRecoverySet(request) as {redisDigest:string;redisCapturedAt?:number;redisIdentity?:{runId:string;db:number;ownerKey:string;owner:string;metaKey:string}};
+ const source=manifest.redisIdentity;
+ if(!Number.isSafeInteger(manifest.redisCapturedAt)||manifest.redisCapturedAt!<=0||manifest.redisCapturedAt!>Date.now())throw new Error('REDIS_CAPTURE_TIME_REQUIRED');
+ if(!source||!/^[a-f0-9]{40}$/.test(source.runId)||!Number.isSafeInteger(source.db)||!source.ownerKey||!source.metaKey||!source.owner)throw new Error('CAPTURE_REDIS_IDENTITY_REQUIRED');
+ if(request.expectedCaptureOwner!==source.owner)throw new Error('STALE_CAPTURE_OWNER');
+ const observed=await redisIdentity(target);
+ if(observed.runId!==source.runId)throw new Error('SOURCE_REDIS_IDENTITY_CHANGED');
+ if(observed.db===source.db)throw new Error('SOURCE_TARGET_REDIS_ALIAS');
+ const bytes=fs.readFileSync(path.join(request.directory,'redis.json'));
+ if(createHash('sha256').update(bytes).digest('hex')!==manifest.redisDigest)throw new Error('REDIS_INVENTORY_CHANGED');
+ const rows=JSON.parse(bytes.toString()) as Array<{key:string;dump:string;ttl:number}>;
+ const owner=rows.find(row=>Buffer.from(row.key,'base64').equals(Buffer.from(source.ownerKey)));
+ const meta=rows.find(row=>Buffer.from(row.key,'base64').equals(Buffer.from(source.metaKey)));
+ if(!owner||owner.ttl!==-1||!meta||meta.ttl!==-1)throw new Error('PERSISTENT_CAPTURE_FENCE_REQUIRED');
+ const inspectionOwner=JSON.stringify({mode:'inspection-only',captureDigest:request.digest,noExecutionAuthority:true});
+ // Lua is atomic against competing clients. Errors do not roll back Redis writes:
+ // keep a persistent admission owner BEFORE any subsequent row can fail.
+ const script=`
+ if redis.call('DBSIZE') ~= 0 then return redis.error_reply('INSPECTION_TARGET_NOT_EMPTY') end
+ redis.call('SET',KEYS[1],ARGV[1])
+ local restored=redis.pcall('RESTORE',KEYS[1],0,ARGV[2],'REPLACE')
+ if type(restored)=='table' and restored.err then redis.call('SET',KEYS[1],ARGV[1]); return redis.error_reply('OWNER_DUMP_INVALID') end
+ local matches=redis.call('GET',KEYS[1])==ARGV[3]
+ redis.call('SET',KEYS[1],ARGV[1])
+ if not matches then return redis.error_reply('CAPTURE_OWNER_MISMATCH') end
+ redis.call('RESTORE',KEYS[2],0,ARGV[4])
+ if redis.call('HGET',KEYS[2],'paused') ~= '1' then return redis.error_reply('CAPTURE_PAUSE_REQUIRED') end
+ local clock=redis.call('TIME'); local now=tonumber(clock[1])*1000+math.floor(tonumber(clock[2])/1000)
+ for i=5,#ARGV,3 do
+  local expiry=tonumber(ARGV[i+1])
+  if expiry==0 or expiry>now then redis.call('RESTORE',ARGV[i],expiry,ARGV[i+2],'ABSTTL') end
+ end
+ return 1`;
+ const args:Array<string|number|Buffer>=[inspectionOwner,Buffer.from(owner.dump,'base64'),source.owner,Buffer.from(meta.dump,'base64')];
+ for(const row of rows)if(row!==owner&&row!==meta)args.push(Buffer.from(row.key,'base64'),row.ttl===-1?0:manifest.redisCapturedAt!+row.ttl,Buffer.from(row.dump,'base64'));
+ await target.eval(script,2,source.ownerKey,source.metaKey,...args);
+ return {mode:'inspection-only' as const,digest:request.digest,source, target:observed,owner:inspectionOwner,bootAllowed:false as const,noExecutionAuthority:true as const};
+}

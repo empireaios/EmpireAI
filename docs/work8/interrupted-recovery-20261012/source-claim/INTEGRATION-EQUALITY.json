@@ -1,0 +1,44 @@
+{
+  "reviewed": "0ee9eae695694b728b1a75f3311e94ec5fc011a4",
+  "reviewedTree": "63e9618c883a4875304d6aa067f0be9b670ea458",
+  "integration": "b1fdce2c5067e4808cc2cb283ecadf5193eac16c",
+  "integrationHead": "4bcdbba430800637b9d8b90ae6843344980730e6",
+  "files": [
+    {
+      "path": "backend/src/assurance/control-plane.mjs",
+      "sha256": "ce7d4e862a3b3f28cb485fe9dbd4b2cba1d572eda46d611048f783828229d107",
+      "equal": true
+    },
+    {
+      "path": "backend/src/assurance/work8-response-binding.ts",
+      "sha256": "f1b34cd89efdba66df47f8d365ff72c67b24d1a597274f4c5d3293e68b7bde85",
+      "equal": true
+    },
+    {
+      "path": "backend/src/assurance/work8-source-claims.ts",
+      "sha256": "edec2b180055af1a18422174d7250fde2768b1b936454ee3990224cebde348f9",
+      "equal": true
+    },
+    {
+      "path": "backend/src/intelligence/investigation.ts",
+      "sha256": "753edd99783d22d4cac1f9c8a45af53727f062c38831100d1d6ab2c32b869647",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/fixtures/work8-genuine-source-readback.json",
+      "sha256": "c2da4490c91fb0becfbc18978fcb41feb41d1e22a1d21def4cce8429c1aef431",
+      "equal": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-source-claims.test.ts",
+      "sha256": "42203e7f8e5a2fdcc04de7f8d1421f97c6f44e1f061d8e0327d0a8080be31d1b",
+      "equal": true
+    }
+  ],
+  "allEqual": true,
+  "retainedSealVerified": {
+    "matched": 12,
+    "total": 12
+  },
+  "testsRepeated": false
+}

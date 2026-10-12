@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import {createHash} from "node:crypto";
 import os from "node:os";
 import { DatabaseSync } from "node:sqlite";
 import { once } from "node:events";
@@ -179,6 +180,173 @@ test('actual app recovery entrypoint composes inherited primary IPC, local fence
   child.stdout!.on('data',chunk=>{childOutput=(childOutput+String(chunk)).slice(-6000);});child.stderr!.on('data',chunk=>{childOutput=(childOutput+String(chunk)).slice(-6000);});
   remove=installPrimaryCaptureParticipant(child,async held=>{fences++;await held();});
   const result=await new Promise<any>((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Worker result timeout: '+childOutput)),150000);child!.on('message',(v:any)=>{if(v?.event==='result'){clearTimeout(timer);resolve(v.result);}if(v?.event==='error'){clearTimeout(timer);reject(Error(v.error));}});child!.once('error',error=>{clearTimeout(timer);reject(error);});child!.once('exit',code=>{clearTimeout(timer);reject(Error('Worker exited '+code+' before result: '+childOutput));});});
-  assert.equal(result.stores,13);assert.equal(result.completeLiveState,false);assert.equal(result.missingStoreRefused,true);assert.equal(result.sourceRecord,'retained');assert.equal(result.concurrentShadowPreserved,true);assert.equal(result.postReleaseWritePreserved,true);assert.equal(result.aliasRefusalPreserved,true);assert.equal(fences,3);
+  assert.equal(result.stores,13);assert.equal(result.completeLiveState,false);assert.equal(result.missingStoreRefused,true);assert.equal(result.sourceRecord,'retained');assert.equal(result.concurrentShadowPreserved,true);assert.equal(result.postReleaseWritePreserved,true);assert.equal(result.aliasRefusalPreserved,true);assert.equal(result.automationWritersDrained,true);assert.equal(fences,3);
  }finally{remove?.();for(const process of [child,server]){if(process&&process.exitCode===null&&process.signalCode===null){const done=once(process,'exit');process.kill('SIGKILL');await done;}}fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+test('concurrent runtime writers capture with actual pending missions then replay once while restored Redis stays fenced',{timeout:180000},async()=>{
+ const {restoreWork8RedisInspection}=await import('../../runtime/work8-recovery-capture.js');
+ const {installPrimaryCaptureParticipant}=await import('../../runtime/work8-primary-capture.js');
+ const {createMissionRuntime}=await import('@empireai/pillow');
+ const {PillowHost}=await import('../../orchestration/pillow-host/pillow-host.js');
+ const {createMissionExecutionService}=await import('../../orchestration/pillow-host/mission-execution/service.js');
+ const {ExecutionConflict}=await import('../../orchestration/pillow-host/mission-execution/contract.js');
+ const require=createRequire(import.meta.url),recovery=require('../../../../deployment/work8-recovery-set.cjs');
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'pending-replay-')),root=path.join(dir,'volume');fs.mkdirSync(root);
+ const port=await new Promise<number>((resolve,reject)=>{const listener=createServer();listener.once('error',reject);listener.listen(0,'127.0.0.1',()=>{const address=listener.address();if(!address||typeof address==='string')return reject(Error('Missing port'));listener.close(()=>resolve(address.port));});});
+ let server=spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',dir,'--save','','--appendonly','no'],{stdio:['ignore','pipe','pipe']});
+ let child:ChildProcess|undefined,remove:(()=>void)|undefined,target:Redis|undefined,targetQueue:TaskQueue|undefined,stopMission:(()=>Promise<void>)|undefined;let output='';
+ try{
+  await new Promise<void>((resolve,reject)=>{let log='';const timer=setTimeout(()=>reject(Error('Redis timeout')),5000);server.once('error',reject);server.once('exit',code=>{clearTimeout(timer);reject(Error('Redis exited '+code+': '+log));});server.stdout!.on('data',chunk=>{log+=String(chunk);if(log.toLowerCase().includes('ready to accept connections')){clearTimeout(timer);resolve();}});});
+  const revision=spawnSync('git',['rev-parse','HEAD'],{cwd:path.resolve(import.meta.dirname,'../../../..'),encoding:'utf8'});assert.equal(revision.status,0);const sourceSha=revision.stdout.trim();assert.match(sourceSha,/^[a-f0-9]{40}$/);
+  child=childProcess.fork(new URL('./fixtures/work8-replay-capture-child.ts',import.meta.url),[],{execArgv:['--import','tsx'],stdio:['ignore','pipe','pipe','ipc'],env:{...process.env,NODE_OPTIONS:'--max-old-space-size=8192',NODE_ENV:'test',EMPIRE_ROLE:'brain-worker',EMPIRE_ENGINEERING_TEST_MODE:'true',DATABASE_PATH:path.join(root,'brain.db'),RAILWAY_VOLUME_MOUNT_PATH:root,SHADOW_CEO_DATA_DIR:path.join(root,'shadow'),REDIS_URL:`redis://127.0.0.1:${port}/0`,WORK8_RECOVERY_EXAMINATION:'false',WORK8_REPLAY_SOURCE_SHA:sourceSha,OPENAI_API_KEY:'',ANTHROPIC_API_KEY:'',GOOGLE_API_KEY:'',GEMINI_API_KEY:''}});
+  child.stdout!.on('data',chunk=>{output=(output+String(chunk)).slice(-7000);});child.stderr!.on('data',chunk=>{output=(output+String(chunk)).slice(-7000);});remove=installPrimaryCaptureParticipant(child,async held=>{await held();});
+  const result=await new Promise<any>((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Worker result timeout: '+output)),140000);child!.on('message',(v:any)=>{if(v?.event==='result'){clearTimeout(timer);resolve(v.result);}if(v?.event==='error'){clearTimeout(timer);reject(Error(v.error));}});child!.once('error',error=>{clearTimeout(timer);reject(error);});child!.once('exit',code=>{clearTimeout(timer);reject(Error('Worker exited '+code+': '+output));});});
+  // Stop the source completely before reading/restoring. No source root is used
+  // by the restored component; preserve it under a quarantined diagnostic name.
+  if(child.exitCode===null&&child.signalCode===null){const exited=once(child,'exit');child.kill('SIGKILL');await exited;}remove();remove=undefined;fs.renameSync(root,path.join(dir,'quarantined-source'));
+  const manifest=recovery.verifyRuntimeRecoverySet(result);assert.equal(manifest.bootAllowed,false);assert.equal(manifest.completeLiveState,false);
+  const staged=recovery.stageRuntimeRecoveryInspection({...result,destination:path.join(dir,'inspection')});assert.equal(staged.bootAllowed,false);
+  const isolated=path.join(dir,'isolated-readonly-replay');fs.mkdirSync(isolated);const primary=path.join(isolated,'restored.db');
+  fs.copyFileSync(path.join(staged.directory,'sealed-evidence','missions','checkpoint.db'),primary+'.missions.sqlite');fs.copyFileSync(path.join(staged.directory,'sealed-evidence','execution','checkpoint.db'),primary+'.mission-execution.sqlite');
+  target=new Redis({host:'127.0.0.1',port,db:1});await target.ping();assert.equal(await target.dbsize(),0);
+  const redisRows=JSON.parse(fs.readFileSync(path.join(staged.directory,'sealed-evidence','redis.json'),'utf8')) as Array<{key:string;dump:string;ttl:number}>;
+  const restoreRequest={directory:result.directory,digest:result.digest,expectedCaptureOwner:manifest.redisIdentity.owner,mode:'inspection-only' as const};
+  await assert.rejects(restoreWork8RedisInspection({...restoreRequest,mode:undefined},target),/EXPLICIT_MODE/);
+  await assert.rejects(restoreWork8RedisInspection({...restoreRequest,digest:'0'.repeat(64)},target));
+  await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedCaptureOwner:'stale-owner'},target),/STALE_CAPTURE_OWNER/);
+  const sourceClient=new Redis({host:'127.0.0.1',port,db:0});try{await sourceClient.ping();await assert.rejects(restoreWork8RedisInspection(restoreRequest,sourceClient),/SOURCE_TARGET_REDIS_ALIAS/);}finally{sourceClient.disconnect();}
+  await target.set('preexisting','must-survive');await assert.rejects(restoreWork8RedisInspection(restoreRequest,target),/TARGET_NOT_EMPTY/);assert.equal(await target.get('preexisting'),'must-survive');await target.del('preexisting');
+  const failureTarget=new Redis({host:'127.0.0.1',port,db:2});
+  try{
+   await failureTarget.ping();await failureTarget.select(0);await assert.rejects(restoreWork8RedisInspection(restoreRequest,failureTarget),/SOURCE_TARGET_REDIS_ALIAS/);await failureTarget.select(2);
+   const mismatched=path.join(dir,'mismatched-owner');fs.cpSync(result.directory,mismatched,{recursive:true});
+   for(const identity of [undefined,{...manifest.redisIdentity,runId:'0'.repeat(40)}]){
+    const changed=JSON.stringify({...manifest,redisIdentity:identity});fs.writeFileSync(path.join(mismatched,'runtime-recovery.json'),changed);
+    await assert.rejects(restoreWork8RedisInspection({...restoreRequest,directory:mismatched,digest:createHash('sha256').update(changed).digest('hex')},failureTarget),/CAPTURE_REDIS_IDENTITY_REQUIRED|SOURCE_REDIS_IDENTITY_CHANGED/);assert.equal(await failureTarget.dbsize(),0);
+   }
+   const altered={...manifest,redisIdentity:{...manifest.redisIdentity,owner:'incorrect-captured-owner'}};
+   const encoded=JSON.stringify(altered),digest=createHash('sha256').update(encoded).digest('hex');fs.writeFileSync(path.join(mismatched,'runtime-recovery.json'),encoded);
+   await assert.rejects(restoreWork8RedisInspection({directory:mismatched,digest,mode:'inspection-only',expectedCaptureOwner:altered.redisIdentity.owner},failureTarget),/CAPTURE_OWNER_MISMATCH/);
+   assert.ok((await failureTarget.get(manifest.redisIdentity.ownerKey))?.includes('inspection-only'));
+   await assert.rejects(restoreWork8RedisInspection(restoreRequest,failureTarget),/TARGET_NOT_EMPTY/);
+   await failureTarget.select(3);
+   const corruptDirectory=path.join(dir,'corrupt-late-dump');fs.cpSync(result.directory,corruptDirectory,{recursive:true});
+   const corruptedRows=redisRows.map(row=>({...row}));corruptedRows.push({key:Buffer.from('zz-invalid-late-dump').toString('base64'),dump:Buffer.from('invalid-dump').toString('base64'),ttl:-1});
+   const corruptedBytes=JSON.stringify(corruptedRows);fs.writeFileSync(path.join(corruptDirectory,'redis.json'),corruptedBytes);
+   const corruptManifest=JSON.stringify({...manifest,redisDigest:createHash('sha256').update(corruptedBytes).digest('hex')});fs.writeFileSync(path.join(corruptDirectory,'runtime-recovery.json'),corruptManifest);
+   const corruptRequest={...restoreRequest,directory:corruptDirectory,digest:createHash('sha256').update(corruptManifest).digest('hex')};
+   await assert.rejects(restoreWork8RedisInspection(corruptRequest,failureTarget),/DUMP|checksum|version/i);
+   assert.ok((await failureTarget.get(manifest.redisIdentity.ownerKey))?.includes('inspection-only'));assert.equal(await failureTarget.pttl(manifest.redisIdentity.ownerKey),-1);assert.equal(await failureTarget.hget(manifest.redisIdentity.metaKey,'paused'),'1');
+   await assert.rejects(restoreWork8RedisInspection(restoreRequest,failureTarget),/TARGET_NOT_EMPTY/);
+  }finally{failureTarget.disconnect();}
+  await new Promise(resolve=>setTimeout(resolve,60));
+  const inspection=await restoreWork8RedisInspection(restoreRequest,target);assert.equal(inspection.bootAllowed,false);assert.equal(inspection.noExecutionAuthority,true);
+  await assert.rejects(restoreWork8RedisInspection(restoreRequest,target),/TARGET_NOT_EMPTY/);
+  assert.equal(await target.get(manifest.redisIdentity.ownerKey),inspection.owner);
+  const capturedExpiry=redisRows.find(row=>Buffer.from(row.key,'base64').toString()==='inspection-expiring-fixture')!;assert.ok(capturedExpiry.ttl>0);assert.ok(await target.pttl('inspection-expiring-fixture')<=capturedExpiry.ttl-50);
+  await target.save();target.disconnect();const stopped=once(server,'exit');server.kill('SIGTERM');await stopped;
+  server=spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',dir,'--save','','--appendonly','no'],{stdio:['ignore','pipe','pipe']});
+  await new Promise<void>((resolve,reject)=>{let log='';const timer=setTimeout(()=>reject(Error('Redis restart timeout')),5000);server.once('error',reject);server.stdout!.on('data',chunk=>{log+=String(chunk);if(log.toLowerCase().includes('ready to accept connections')){clearTimeout(timer);resolve();}});});
+  target=new Redis({host:'127.0.0.1',port,db:1});await target.ping();assert.equal(await target.get(manifest.redisIdentity.ownerKey),inspection.owner);
+
+  targetQueue=new TaskQueue({host:'127.0.0.1',port,db:1},{write(){assert.fail('restored queue must not admit new work');}} as any);
+  assert.equal(await targetQueue.queue.isPaused(),true);assert.ok(await target.get(targetQueue.queue.toKey('capture-owner')));
+  const restoredJob=await targetQueue.queue.getJob(result.queueJobId);assert.ok(restoredJob);assert.deepEqual(restoredJob.data,result.payload);
+  await assert.rejects(targetQueue.enqueue(result.payload,{jobId:'unauthorized-restored-admission'}),/production withheld/);
+  const restoredNative=new DatabaseSync(path.join(staged.directory,'sealed-evidence','liveCostCentre','checkpoint.db'),{readOnly:true});try{assert.equal(restoredNative.prepare('SELECT phase FROM integrated_capture_writer WHERE kind=?').get('native-background')!.phase,'committed');}finally{restoredNative.close();}
+  const engine=createMissionRuntime({repositoryRoot:path.resolve(import.meta.dirname,'../../../..')} as any,{persistenceFile:primary+'.missions.sqlite',persistenceScope:result.scope});await engine.initialize();
+  const host=new PillowHost();host.lifecycle='running';host.pillowSession={missionRuntime:engine,contextBuilder:{}} as any;
+  const service=createMissionExecutionService({databasePath:primary,scope:result.scope,buildSha:result.buildSha,host});stopMission=()=>service.runner.stop();
+  assert.deepEqual(service.getTrustedReceipt(result.completed.jobId),result.completed.receipt);assert.equal(service.get(result.pending.jobId)!.status,'queued');
+  service.runner.resume();await service.runner.tick();await service.runner.stop();
+  const continued=service.get(result.pending.jobId)!;assert.equal(continued.status,'completed');assert.equal(continued.attempts,1);assert.equal(continued.reconciled,true);
+  assert.equal(continued.receipt!.output.authority.birthStatus,'NOT_BORN');assert.equal(continued.receipt!.output.authority.commerceStatus,'LOCKED');assert.equal(continued.receipt!.certificationCredit,false);
+  assert.deepEqual(service.getTrustedReceipt(result.completed.jobId),result.completed.receipt);
+  const receipt=continued.receipt;service.runner.resume();await service.runner.tick();await service.runner.tick();await service.runner.stop();assert.deepEqual(service.getTrustedReceipt(result.pending.jobId),receipt);
+  const replay=service.enqueue(result.pending.missionId,result.pending.dispatchId);assert.equal(replay.created,false);assert.equal(replay.job.attempts,1);
+  assert.throws(()=>service.enqueue(result.pending.missionId,'forged-dispatch'),ExecutionConflict);
+  const db=new DatabaseSync(primary+'.mission-execution.sqlite',{readOnly:true});let outputs:number;try{outputs=Number(db.prepare("SELECT count(*) n FROM execution_events WHERE event='readonly_output_and_receipt_committed'").get()!.n);assert.equal(outputs,2);}finally{db.close();}
+  assert.equal(await targetQueue.queue.isPaused(),true);assert.ok(await target.get(targetQueue.queue.toKey('capture-owner')));
+  const receiptSummary={integratedWriterClasses:['http','native-background','presale-timer','executive-timer'],sourceSha,captureDigest:result.digest,stores:Object.keys(manifest.stores).length,sourceQuarantined:true,restoredQueuePaused:true,restoredProducerRefused:true,completedReceiptByteEquivalent:true,pendingContinuedOnce:true,pendingReconciled:true,committedOutputEvents:outputs,duplicateReadSuppressed:true,changedDispatchRefused:true,birth:'NOT_BORN',commerce:'LOCKED',fullRuntimeRestored:false,protectedCustody:false,inspectionOwnerBoundToManifest:true,redisRestartFencePreserved:true,defaultAndStaleAndWrongManifestAndSourceAndNonemptyRefused:true,remaining:'Inspection ownership transferred; queue transport remains fenced. No operational release or full-runtime restore claimed'};
+  if(process.env.WORK8_REPLAY_EVIDENCE_DIRECTORY){
+   const evidence=process.env.WORK8_REPLAY_EVIDENCE_DIRECTORY;
+   fs.writeFileSync(path.join(evidence,'READONLY-REPLAY-RECEIPT.json'),JSON.stringify(receiptSummary,null,2)+'\n',{mode:0o600});
+   fs.writeFileSync(path.join(evidence,'READONLY-REPLAY-ACTUAL-RECEIPTS.json'),JSON.stringify({historical:result.completed.receipt,continued:receipt,queuedPayload:result.payload,manifest},null,2)+'\n',{mode:0o600});
+   fs.copyFileSync(primary+'.mission-execution.sqlite',path.join(evidence,'readonly-replay-execution.sqlite'));
+   fs.copyFileSync(path.join(staged.directory,'sealed-evidence','brain','checkpoint.db'),path.join(evidence,'integrated-brain.sqlite'));
+   fs.copyFileSync(path.join(staged.directory,'sealed-evidence','liveCostCentre','checkpoint.db'),path.join(evidence,'integrated-native-domain.sqlite'));
+   fs.copyFileSync(primary+'.missions.sqlite',path.join(evidence,'readonly-replay-missions.sqlite'));
+  }
+ }finally{await stopMission?.();await targetQueue?.close();target?.disconnect();remove?.();for(const process of [child,server])if(process&&process.exitCode===null&&process.signalCode===null){const done=once(process,'exit');process.kill('SIGKILL');await done;}fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+async function producerFenceFixture(){
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'producer-capture-'));
+ const port=await new Promise<number>((resolve,reject)=>{const listener=createServer();listener.once('error',reject);listener.listen(0,'127.0.0.1',()=>{const address=listener.address();if(!address||typeof address==='string')return reject(Error('Missing port'));listener.close(()=>resolve(address.port));});});
+ const server=spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',dir,'--save','','--appendonly','no'],{stdio:['ignore','pipe','pipe']});
+ await new Promise<void>((resolve,reject)=>{let log='';const timer=setTimeout(()=>reject(Error('Redis timeout: '+log)),5000);server.once('error',reject);server.stdout!.on('data',chunk=>{log+=String(chunk);if(log.toLowerCase().includes('ready to accept connections')){clearTimeout(timer);resolve();}});});
+ const reader=new Redis({host:'127.0.0.1',port});await reader.ping();const owner=new TaskQueue({host:'127.0.0.1',port},{write(){}} as any);await owner.queue.waitUntilReady();
+ const file=path.join(dir,'producer-audit.sqlite');
+ const child=childProcess.fork(new URL('./fixtures/work8-producer-capture-child.ts',import.meta.url),[],{execArgv:['--import','tsx'],stdio:['ignore','ignore','pipe','ipc'],env:{...process.env,WORK8_REDIS_PORT:String(port),WORK8_PRODUCER_AUDIT:file}});
+ await new Promise<void>((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Producer did not reach admission')),10000);child.on('message',(message:any)=>{if(message?.event==='admitted-before-add'){clearTimeout(timer);resolve();}else if(message?.event==='failed'){clearTimeout(timer);reject(Error(message.error));}});child.once('error',reject);});
+ return {dir,port,reader,owner,child,file,async close(){if(child.connected)child.send({action:'release'});if(child.exitCode===null&&child.signalCode===null){const exited=once(child,'exit');child.kill('SIGKILL');await exited;}await owner.close();reader.disconnect();if(server.exitCode===null&&server.signalCode===null){const exited=once(server,'exit');server.kill('SIGKILL');await exited;}fs.rmSync(dir,{recursive:true,force:true});}};
+}
+
+test('shared capture waits for cross-process producer admission through queue and audit settlement',async()=>{
+ const f=await producerFenceFixture();let attempt:Promise<void>|undefined;
+ try{
+  let entered=false;
+  attempt=f.owner.withPausedSharedProcessing(async()=>{entered=true;assert.ok(await f.owner.queue.getJob('admitted-job'));const db=new DatabaseSync(f.file,{readOnly:true});try{assert.equal(db.prepare('SELECT count(*) n FROM audit').get()!.n,1);}finally{db.close();}},2000);
+  void attempt.catch(()=>{});
+  await new Promise(resolve=>setTimeout(resolve,80));assert.equal(entered,false,'capture escaped a producer admitted before its queue mutation');
+  await assert.rejects(f.owner.enqueue({type:'tool.execute',workspaceId:'isolated-producer',toolName:'fixture-no-consumer',input:{}}),/production withheld/);
+  const exited=once(f.child,'exit');f.child.send({action:'release'});await attempt;await exited;assert.equal(entered,true);
+  assert.equal(await f.reader.scard(f.owner.queue.toKey('capture-producers')),0);
+ }finally{await attempt?.catch(()=>{});await f.close();}
+});
+
+test('shared capture refuses crashed producer admission and uncertain failures retain every admission',async()=>{
+ const f=await producerFenceFixture();
+ try{
+  const exited=once(f.child,'exit');f.child.kill('SIGKILL');await exited;
+  assert.equal(await f.reader.scard(f.owner.queue.toKey('capture-producers')),1);
+  assert.equal(await f.reader.pttl(f.owner.queue.toKey('capture-producers')),-1);
+  let entered=false;await assert.rejects(f.owner.withPausedSharedProcessing(()=>{entered=true;},30),/producers did not drain/);assert.equal(entered,false);
+  const original=f.owner.queue.add.bind(f.owner.queue);
+  let expectedAdmissions=2;
+  f.owner.queue.add=async()=>{assert.equal(await f.reader.scard(f.owner.queue.toKey('capture-producers')),expectedAdmissions++);throw Error('injected add failure');};
+  await assert.rejects(f.owner.enqueue({type:'tool.execute',workspaceId:'isolated-producer',toolName:'fixture-no-consumer',input:{}}),/injected add failure/);
+  await assert.rejects(f.owner.registerScheduledJob({name:'fixture',cron:'* * * * *',payload:{type:'tool.execute',workspaceId:'isolated-producer',toolName:'fixture-no-consumer',input:{},correlationId:'schedule'}}),/injected add failure/);
+  f.owner.queue.add=original;
+  assert.equal(await f.reader.scard(f.owner.queue.toKey('capture-producers')),3,'failed operations retain admission and cannot retire a crashed sibling');
+  await assert.rejects(f.owner.withPausedSharedProcessing(()=>assert.fail('crashed producer allowed capture'),30),/producers did not drain/);
+  const client=await f.owner.queue.client as unknown as {eval:(...args:any[])=>Promise<any>};const evalOriginal=client.eval.bind(client);
+  client.eval=async(...args:any[])=>{if(String(args[0]).includes('srem'))throw Error('producer release uncertain');return evalOriginal(...args);};
+  try{await assert.rejects(f.owner.enqueue({type:'tool.execute',workspaceId:'isolated-producer',toolName:'fixture-no-consumer',input:{}},{jobId:'release-unknown'}),/release uncertain/);}finally{client.eval=evalOriginal;}
+  assert.ok(await f.owner.queue.getJob('release-unknown'));assert.equal(await f.reader.scard(f.owner.queue.toKey('capture-producers')),4);
+  await assert.rejects(f.owner.withPausedSharedProcessing(()=>assert.fail('uncertain release allowed capture'),30),/producers did not drain/);
+  const auditFailure=new TaskQueue({host:'127.0.0.1',port:f.port},{write(){throw Error('audit write failed');}} as any);
+  try{await assert.rejects(auditFailure.enqueue({type:'tool.execute',workspaceId:'isolated-producer',toolName:'fixture-no-consumer',input:{}},{jobId:'audit-unknown'}),/audit write failed/);}finally{await auditFailure.close();}
+  assert.ok(await f.owner.queue.getJob('audit-unknown'));assert.equal(await f.reader.scard(f.owner.queue.toKey('capture-producers')),5);
+  await assert.rejects(f.owner.withPausedSharedProcessing(()=>assert.fail('failed audit admitted capture'),30),/producers did not drain/);
+
+
+ }finally{await f.close();}
+});
+
+test('shared capture refuses a rejected producer whose real Redis command can still commit later',async()=>{
+ const f=await producerFenceFixture();let release!:()=>void,late:Promise<unknown>|undefined;
+ try{
+  const exited=once(f.child,'exit');f.child.send({action:'release'});await exited;
+  const original=f.owner.queue.add.bind(f.owner.queue);const unresolved=new Promise<void>(resolve=>{release=resolve;});
+  // Fault-injected transport contract: rejected promise does not cancel the
+  // separately pending real Redis mutation. This is not a production trace.
+  f.owner.queue.add=async(...args:Parameters<typeof original>)=>{late=unresolved.then(()=>original(...args));throw Error('reply lost; operation outcome unknown');};
+  await assert.rejects(f.owner.enqueue({type:'tool.execute',workspaceId:'isolated-producer',toolName:'fixture-no-consumer',input:{}},{jobId:'late-unknown'}),/outcome unknown/);
+  let entered=false;await assert.rejects(f.owner.withPausedSharedProcessing(()=>{entered=true;},30),/producers did not drain/);assert.equal(entered,false);
+  assert.equal(await f.reader.scard(f.owner.queue.toKey('capture-producers')),1);
+  release();await late;assert.ok(await f.owner.queue.getJob('late-unknown'));
+  await assert.rejects(f.owner.withPausedSharedProcessing(()=>assert.fail('unknown outcome admitted capture'),30),/producers did not drain/);
+ }finally{release?.();await late?.catch(()=>{});await f.close();}
 });

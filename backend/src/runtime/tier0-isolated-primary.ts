@@ -1,3 +1,4 @@
+import { withSupervisedObserverCapture } from './work8-observer-capture.js';
 import { installPrimaryCaptureParticipant } from './work8-primary-capture.js';
 import { installCaptureHttpAdmission } from './capture-http-admission.js';
 import { withDrainedWork8Background } from './work8-background-capture.js';
@@ -801,7 +802,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
       });
       workerState.child = child;
       const disposeCapture = installPrimaryCaptureParticipant(child, held =>
-        captureAdmission.withDrainedAdmission(() => withDrainedWork8Background(held)));
+        withSupervisedObserverCapture(() => captureAdmission.withDrainedAdmission(() => withDrainedWork8Background(held))));
       child.once("exit", disposeCapture);
       logger.info(
         { workerPort: workerState.port, pid: child.pid },

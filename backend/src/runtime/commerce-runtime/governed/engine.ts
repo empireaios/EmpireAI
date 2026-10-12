@@ -1,3 +1,4 @@
+import {portfolioHealth} from './work8-portfolio-health.js';
 import {activePortfolio, portfolioIdentity} from './work8-portfolio.js';
 import {committedSimulatedStock} from './work8-stock.js';
 import {projectEntities} from './entities.js';
@@ -9,7 +10,7 @@ import {actorSchema,envelopeSchema,type Actor,type Candidate,type Listing,type C
 import {digest,GovernedCommerceStore,type Receipt} from './store.js';
 
 type ManagedOrder={order:CanonicalOrder;intentId?:string;providerId?:string;outcome:'RECEIVED'|'PREPARED'|'ACCEPTED'|'UNKNOWN'|'REJECTED'|'PARTIAL'|'SHIPPED'|'DELIVERED'|'CANCELLED'|'RECONCILIATION_REQUIRED';accepted:number;shipped:number;delivered:number;tracking:string[];lastTrackingAt:string|null;shipments:Record<string,{quantity:number;delivered:boolean;carrier:string;tracking:string}>;remedies:Array<{id:string;kind:string;amount:number;quantity:number;financialClass:'SYNTHETIC_EXCLUDED_FROM_ACTUALS'}>};
-export type CommerceState={retirement?:{actor:string;at:string;reason:string};publicationIntent?:{capacity:unknown;status:'INTERCEPTED';receiptId:string;canonicalPublisher:string};phase:'RESEARCHED'|'QUALIFIED'|'REJECTED'|'REVIEWED'|'APPROVED'|'PREPARED';candidate:Candidate;candidateDigest:string;qualification:ReturnType<typeof qualify>;proposer:string;review?:{actor:string;digest:string;decision:string};approval?:{actor:string;digest:string;expiresAt:string;maxExposure:number;revoked:boolean};listing?:Listing;listingDigest?:string;orders:Record<string,ManagedOrder>;outcomes:Outcome[];reversed:string[];decisions:Array<{id:string;evidenceIds:string[];actions:string[];days:number[]}>;paidInference:0;externalEffects:0};
+export type CommerceState={retirement?:{actor:string;at:string;reason:string;reviewDecisionId?:string};publicationIntent?:{capacity:unknown;status:'INTERCEPTED';receiptId:string;canonicalPublisher:string};phase:'RESEARCHED'|'QUALIFIED'|'REJECTED'|'REVIEWED'|'APPROVED'|'PREPARED';candidate:Candidate;candidateDigest:string;qualification:ReturnType<typeof qualify>;proposer:string;review?:{actor:string;digest:string;decision:string};approval?:{actor:string;digest:string;expiresAt:string;maxExposure:number;revoked:boolean};listing?:Listing;listingDigest?:string;orders:Record<string,ManagedOrder>;outcomes:Outcome[];reversed:string[];decisions:Array<{id:string;evidenceIds:string[];actions:string[];days:number[];health?:ReturnType<typeof portfolioHealth>}>;paidInference:0;externalEffects:0};
 const fail=(code:string):never=>{throw Error(code);};
 const sumQuantity=(o:CanonicalOrder)=>o.items.reduce((n,item)=>n+item.quantity,0);
 function fresh(p:{observedAt:string;expiresAt:string},now:number){return Date.parse(p.observedAt)<=now&&Date.parse(p.expiresAt)>now&&Date.parse(p.expiresAt)>Date.parse(p.observedAt);}
@@ -89,7 +90,13 @@ export class GovernedCommerceEngine {
       if(actor.role!=='OWNER'||s.approval?.actor!==actor.id)fail('PORTFOLIO_OWNER_REQUIRED');
       if(!s.publicationIntent||s.retirement)fail('ACTIVE_PRODUCT_REQUIRED');
       if(Object.values(s.orders).some(o=>!['DELIVERED','CANCELLED','REJECTED'].includes(o.outcome)))fail('OPEN_ORDERS_REQUIRE_RESOLUTION');
-      s.retirement={actor:actor.id,at,reason:cmd.reason};emit('StrategyDecision','retirement');break;
+      // Optional historical linkage records the owner's stated basis; it grants no authority.
+      if(cmd.reviewDecisionId){
+       const review=s.decisions.find(d=>d.id===cmd.reviewDecisionId);
+       if(!review)fail('PORTFOLIO_REVIEW_DECISION_NOT_FOUND');
+       if(!review!.evidenceIds.length||review!.evidenceIds.some(id=>!s.outcomes.some(o=>o.id===id&&o.verified&&!s.reversed.includes(id)&&fresh(o.provenance,now))))fail('PORTFOLIO_REVIEW_EVIDENCE_INVALID');
+      }
+      s.retirement={actor:actor.id,at,reason:cmd.reason,...(cmd.reviewDecisionId?{reviewDecisionId:cmd.reviewDecisionId}:{})};emit('StrategyDecision','retirement');break;
      }
      case 'listing':{
       if(actor.role!=='PROPOSER'||actor.id!==s.proposer||Object.keys(s.orders).length)fail('LISTING_PROPOSER_OR_STATE_INVALID');const l=cmd.listing;
@@ -182,7 +189,7 @@ export class GovernedCommerceEngine {
       const outcomes=s.outcomes.filter(x=>x.verified&&!s.reversed.includes(x.id)&&fresh(x.provenance,now));const actions=new Set<string>();
       for(const x of outcomes){if(x.sales===0)actions.add(x.days>=90?'STOP_EXPANSION_REVIEW_PIVOT':'VERIFY_DEMAND_BEFORE_SPEND');if(x.conversion<0.01)actions.add('REVIEW_LISTING_AND_TARGETING');if(x.margin<=0)actions.add('REQUALIFY_ECONOMICS');if(x.stockouts)actions.add('RESEARCH_ALTERNATIVE_SUPPLIER');if(x.deliveryFailures)actions.add('REVIEW_FREIGHT_AND_REMEDIES');if(x.returns)actions.add('REVIEW_QUALITY_AND_RETURN_EXPOSURE');if(x.restricted)actions.add('REJECT_RESTRICTED_MARKET');if(x.cash===null||x.cash<s.qualification.exposure)actions.add('PRESERVE_CAPITAL');}
       if(!outcomes.length)actions.add('INSUFFICIENT_VERIFIED_OUTCOMES');
-      s.decisions.push({id:e.id,evidenceIds:outcomes.map(x=>x.id),actions:[...actions],days:outcomes.map(x=>x.days)});emit('StrategyDecision',e.id);break;
+      s.decisions.push({id:e.id,evidenceIds:outcomes.map(x=>x.id),actions:[...actions],days:outcomes.map(x=>x.days),health:portfolioHealth(outcomes,s.qualification.exposure)});emit('StrategyDecision',e.id);break;
      }
     }
    }

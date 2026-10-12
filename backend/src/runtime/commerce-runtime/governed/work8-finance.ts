@@ -18,8 +18,10 @@ export function canonicalFinanceSource(store:GovernedCommerceStore,workspace:str
  if(latest?.command.type!=='retire')return latest;
  const prior=history.at(-2);if(!prior)throw Error('FINANCE_RETIREMENT_SOURCE_INVALID');
  const {retirement,...state}=latest.state;
- const expected={actor:latest.actor.id,at:latest.at,reason:latest.command.reason};
+ const reviewDecisionId=latest.command.reviewDecisionId;
+ const expected={actor:latest.actor.id,at:latest.at,reason:latest.command.reason,...(reviewDecisionId?{reviewDecisionId:reviewDecisionId}:{})};
  if(latest.actor.role!=='OWNER'||(prior.state.approval as CommerceState['approval'])?.actor!==latest.actor.id||
+    (reviewDecisionId&&!(prior.state.decisions as CommerceState['decisions']).some(d=>d.id===reviewDecisionId))||
     digest(retirement)!==digest(expected)||digest(state)!==digest(prior.state))throw Error('FINANCE_RETIREMENT_SOURCE_INVALID');
  return prior;
 }
