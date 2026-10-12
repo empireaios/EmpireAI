@@ -1,0 +1,45 @@
+{
+  "schema": "WORK8_POST_ENDURANCE_TERMINAL_V1",
+  "acceptedEndurance": {
+    "run": 38213352530,
+    "status": "SUCCESS",
+    "seconds": 2700.435,
+    "requirement38": "PASS",
+    "repeated": false
+  },
+  "monitoring": {
+    "failedHarnessRun": 38219250129,
+    "passedRun": 38219463429,
+    "artifact": 11733537737,
+    "sha256": "443f9d284d677c83ffe0adf787eabfca41cf1dfea797fd312684f120a9f5f367",
+    "sealedFiles": 30,
+    "status": "PASS_SCOPED",
+    "independentRetainedVerification": "PASS",
+    "requirement30Closed": false
+  },
+  "compound": {
+    "run": 38219918800,
+    "artifact": 11734235223,
+    "sha256": "8ab28c9bb75eaed75ef323046d946717143d3d43b911990a52134cd4a64f9e6a",
+    "sealedFiles": 13,
+    "status": "PASS_SCOPED",
+    "seconds": 5.053186631,
+    "independentRetainedVerification": "PASS",
+    "requirement34Closed": false
+  },
+  "counts": {
+    "PASS": 11,
+    "PENDING": 29,
+    "BLOCKED": 5
+  },
+  "amendments": {
+    "PASS": 0,
+    "PENDING": 19
+  },
+  "productionChanged": false,
+  "paidInference": 0,
+  "externalCommerce": 0,
+  "work9Activated": false,
+  "decision": "NO_GO",
+  "originalArtifactsUnchanged": true
+}

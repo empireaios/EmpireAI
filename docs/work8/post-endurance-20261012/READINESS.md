@@ -28,3 +28,7 @@ An incident stored in a database is not proof of alert delivery. A same-host res
 The existing handoff retains: independent monitoring; continuous Assurance; bounded automatic recovery; financial reconciliation; protected backups; periodic restoration examinations; safe upgrades and rollback; incident escalation and independently delivered owner alerts; recurrence prevention; ongoing operational verification and owner-visible exceptions.
 
 Production unchanged. Pillow NOT_BORN. Commerce LOCKED. All 15 safeguards and seven denied live-effect routes remain required. No production merge, deployment, paid inference, new infrastructure or commercial effect is authorised here.
+
+## Terminal post-endurance results
+
+Monitoring run [38219463429](https://github.com/empireaios/EmpireAI/actions/runs/38219463429) passed two scoped simultaneous-loss cases and a separate oracle. Its first attempt38219250129 failed in harness setup and remains preserved. Compounded run [38219918800](https://github.com/empireaios/EmpireAI/actions/runs/38219918800) passed the simultaneous four-fault scope and a separate oracle. Artifact digests and precise limits are in TERMINAL-SUMMARY.json. Neither result closes the broader monitoring or compounded-fault requirement. Counts remain11/29/5 and0/19. All listed runs are terminal; resume from their evidence, do not dispatch duplicates.
