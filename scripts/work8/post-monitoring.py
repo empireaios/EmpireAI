@@ -18,7 +18,7 @@ for mode in ['observers','launcher-guard']:
    assert time.monotonic()-start<720,'Execution deadline'
    if mode=='launcher-guard' and not injected and (out/'identity.json').exists() and (out/'writer.jsonl').exists():
     before=(out/'writer.jsonl').read_bytes()
-    b.command(['docker','exec',cid,'node','scripts/work8/post-monitoring.cjs','kill-pair'])
+    b.command(['docker','exec',cid,'python3','scripts/work8/ci-isolated-unix.py','node','scripts/work8/post-monitoring.cjs','kill-pair'])
     injected=True;fault=time.monotonic()
     # Host controller independently observes launcher/guard process loss.
     top=b.command(['docker','top',cid,'-eo','pid,ppid,args']).stdout

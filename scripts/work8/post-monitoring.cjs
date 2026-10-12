@@ -6,7 +6,7 @@ const {performance}=require('node:perf_hooks');
 const root='/evidence', mode=process.argv[2];
 assert.equal(process.env.WORK8_KERNEL_EGRESS,'AF_UNIX_ONLY');
 const event=x=>fs.appendFileSync(root+'/events.jsonl',JSON.stringify({at:new Date().toISOString(),ms:performance.now(),...x})+'\n');
-const env={PATH:process.env.PATH,RAILWAY_VOLUME_MOUNT_PATH:root,RAILWAY_GIT_COMMIT_SHA:'d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5',ASSURANCE_RUNTIME_ORIGIN:'https://work8-isolated.invalid',REDIS_URL:'redis://127.0.0.1:1'};
+const env={WORK8_KERNEL_EGRESS:process.env.WORK8_KERNEL_EGRESS,PATH:process.env.PATH,RAILWAY_VOLUME_MOUNT_PATH:root,RAILWAY_GIT_COMMIT_SHA:'d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5',ASSURANCE_RUNTIME_ORIGIN:'https://work8-isolated.invalid',REDIS_URL:'redis://127.0.0.1:1'};
 if(mode==='writer'){
  let n=0; fs.writeFileSync(root+'/writer-pid.json',JSON.stringify({pid:process.pid}));
  setInterval(()=>fs.appendFileSync(root+'/writer.jsonl',JSON.stringify({n:++n,at:Date.now()})+'\n'),100);
