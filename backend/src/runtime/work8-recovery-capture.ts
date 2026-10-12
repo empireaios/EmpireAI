@@ -64,7 +64,7 @@ async function redisIdentity(client:Redis){
  * Source shutdown/quarantine is an operator precondition, not established here.
  * This API cannot authorize operational restoration or global writer exclusion.
  */
-export async function restoreWork8RedisInspection(request:{directory:string;digest:string;mode?:'inspection-only';expectedCaptureOwner:string},target:Redis){
+export async function restoreWork8RedisInspection(request:{directory:string;digest:string;mode?:'inspection-only';expectedCaptureOwner:string;expectedSource?:{runId:string;db:number};expectedTarget?:{runId:string;db:number}},target:Redis){
  if(request.mode!=='inspection-only')throw new Error('INSPECTION_ONLY_EXPLICIT_MODE_REQUIRED');
  if(!['127.0.0.1','::1'].includes(target.options.host??'')||target.options.path)throw new Error('ISOLATED_LOOPBACK_TARGET_REQUIRED');
  const manifest=(require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).verifyRuntimeRecoverySet(request) as {redisDigest:string;redisCapturedAt?:number;redisIdentity?:{runId:string;db:number;ownerKey:string;owner:string;metaKey:string}};
@@ -73,8 +73,13 @@ export async function restoreWork8RedisInspection(request:{directory:string;dige
  if(!source||!/^[a-f0-9]{40}$/.test(source.runId)||!Number.isSafeInteger(source.db)||!source.ownerKey||!source.metaKey||!source.owner)throw new Error('CAPTURE_REDIS_IDENTITY_REQUIRED');
  if(request.expectedCaptureOwner!==source.owner)throw new Error('STALE_CAPTURE_OWNER');
  const observed=await redisIdentity(target);
- if(observed.runId!==source.runId)throw new Error('SOURCE_REDIS_IDENTITY_CHANGED');
- if(observed.db===source.db)throw new Error('SOURCE_TARGET_REDIS_ALIAS');
+ if(observed.runId===source.runId&&observed.db===source.db)throw new Error('SOURCE_TARGET_REDIS_ALIAS');
+ // A pinned source identity authenticates lineage without requiring the source
+ // process to survive. The caller separately pins the replacement endpoint.
+ if(request.expectedSource&&(request.expectedSource.runId!==source.runId||request.expectedSource.db!==source.db))throw new Error('SOURCE_REDIS_IDENTITY_CHANGED');
+ if(observed.runId!==source.runId&&!request.expectedSource)throw new Error('SOURCE_REDIS_IDENTITY_CHANGED');
+ if(observed.runId!==source.runId&&!request.expectedTarget)throw new Error('REPLACEMENT_TARGET_IDENTITY_REQUIRED');
+ if(request.expectedTarget&&(request.expectedTarget.runId!==observed.runId||request.expectedTarget.db!==observed.db))throw new Error('TARGET_REDIS_IDENTITY_CHANGED');
  const bytes=fs.readFileSync(path.join(request.directory,'redis.json'));
  if(createHash('sha256').update(bytes).digest('hex')!==manifest.redisDigest)throw new Error('REDIS_INVENTORY_CHANGED');
  const rows=JSON.parse(bytes.toString()) as Array<{key:string;dump:string;ttl:number}>;
@@ -85,6 +90,10 @@ export async function restoreWork8RedisInspection(request:{directory:string;dige
  // Lua is atomic against competing clients. Errors do not roll back Redis writes:
  // keep a persistent admission owner BEFORE any subsequent row can fail.
  const script=`
+ local runId=string.match(redis.call('INFO','server'),'run_id:([a-f0-9]+)')
+ if runId ~= ARGV[1] then return redis.error_reply('TARGET_REDIS_IDENTITY_CHANGED') end
+ redis.call('SELECT',tonumber(ARGV[2]))
+ table.remove(ARGV,1); table.remove(ARGV,1)
  if redis.call('DBSIZE') ~= 0 then return redis.error_reply('INSPECTION_TARGET_NOT_EMPTY') end
  redis.call('SET',KEYS[1],ARGV[1])
  local restored=redis.pcall('RESTORE',KEYS[1],0,ARGV[2],'REPLACE')
@@ -100,7 +109,7 @@ export async function restoreWork8RedisInspection(request:{directory:string;dige
   if expiry==0 or expiry>now then redis.call('RESTORE',ARGV[i],expiry,ARGV[i+2],'ABSTTL') end
  end
  return 1`;
- const args:Array<string|number|Buffer>=[inspectionOwner,Buffer.from(owner.dump,'base64'),source.owner,Buffer.from(meta.dump,'base64')];
+ const args:Array<string|number|Buffer>=[observed.runId,observed.db,inspectionOwner,Buffer.from(owner.dump,'base64'),source.owner,Buffer.from(meta.dump,'base64')];
  for(const row of rows)if(row!==owner&&row!==meta)args.push(Buffer.from(row.key,'base64'),row.ttl===-1?0:manifest.redisCapturedAt!+row.ttl,Buffer.from(row.dump,'base64'));
  await target.eval(script,2,source.ownerKey,source.metaKey,...args);
  return {mode:'inspection-only' as const,digest:request.digest,source, target:observed,owner:inspectionOwner,bootAllowed:false as const,noExecutionAuthority:true as const};

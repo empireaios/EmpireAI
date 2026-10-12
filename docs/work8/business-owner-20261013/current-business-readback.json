@@ -1,0 +1,402 @@
+{
+  "retrievedAt": "2026-10-12T14:31:19.646Z",
+  "locks": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED"
+  },
+  "scheduler": {
+    "id": "health",
+    "heartbeatAt": "2026-10-12T14:31:17.226Z",
+    "status": "RUNNING",
+    "intervalMs": 30000,
+    "inferenceCalls": 0,
+    "fresh": true,
+    "disabled": false
+  },
+  "scheduledExternalJobs": [
+    {
+      "id": "scheduled_cj.catalog_29863479",
+      "status": "COMPLETED",
+      "failures": [],
+      "createdAt": "2026-10-12T12:39:16.783Z",
+      "evidence": [
+        "ev_ec0cb451533138fd2742305e492291cd257c1bf8"
+      ],
+      "requestsUsed": 0
+    },
+    {
+      "id": "scheduled_amazon.catalog_29863479",
+      "status": "COMPLETED",
+      "failures": [],
+      "createdAt": "2026-10-12T12:39:16.773Z",
+      "evidence": [
+        "ev_7252f1ead09873a99257c021f139829b4618b143"
+      ],
+      "requestsUsed": 0
+    }
+  ],
+  "currentCapabilities": [
+    {
+      "id": "amazon.account",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-12T00:37:16.493Z",
+      "currentFailure": null
+    },
+    {
+      "id": "amazon.catalog",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-12T06:39:17.700Z",
+      "currentFailure": null
+    },
+    {
+      "id": "amazon.offers",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-12T06:39:19.736Z",
+      "currentFailure": null
+    },
+    {
+      "id": "amazon.fees",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-09T08:48:36.740Z",
+      "currentFailure": null
+    },
+    {
+      "id": "amazon.analytics",
+      "availability": "DEGRADED",
+      "lastVerifiedRead": null,
+      "currentFailure": "HTTP_403"
+    },
+    {
+      "id": "amazon.restrictions",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-09T08:49:40.152Z",
+      "currentFailure": null
+    },
+    {
+      "id": "amazon.requirements",
+      "availability": "UNVERIFIED",
+      "lastVerifiedRead": null,
+      "currentFailure": null
+    },
+    {
+      "id": "amazon.orders",
+      "availability": "UNVERIFIED",
+      "lastVerifiedRead": null,
+      "currentFailure": null
+    },
+    {
+      "id": "amazon.advertising",
+      "availability": "UNAVAILABLE",
+      "lastVerifiedRead": null,
+      "currentFailure": null
+    },
+    {
+      "id": "amazon.opportunity",
+      "availability": "UNAVAILABLE",
+      "lastVerifiedRead": null,
+      "currentFailure": null
+    },
+    {
+      "id": "cj.catalog",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-12T06:39:18.859Z",
+      "currentFailure": null
+    },
+    {
+      "id": "cj.detail",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-12T06:39:20.497Z",
+      "currentFailure": null
+    },
+    {
+      "id": "cj.stock",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-12T06:39:48.017Z",
+      "currentFailure": null
+    },
+    {
+      "id": "cj.freight",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-12T06:39:48.950Z",
+      "currentFailure": null
+    },
+    {
+      "id": "keepa.history",
+      "availability": "UNAVAILABLE",
+      "lastVerifiedRead": null,
+      "currentFailure": null
+    },
+    {
+      "id": "internet.research",
+      "availability": "STALE",
+      "lastVerifiedRead": "2026-10-08T13:06:16.134Z",
+      "currentFailure": null
+    },
+    {
+      "id": "internet.safety",
+      "availability": "DEGRADED",
+      "lastVerifiedRead": "2026-10-11T00:37:15.988Z",
+      "currentFailure": "ACQUISITION_FAILED"
+    },
+    {
+      "id": "internet.trends",
+      "availability": "UNAVAILABLE",
+      "lastVerifiedRead": null,
+      "currentFailure": null
+    },
+    {
+      "id": "internet.reviews",
+      "availability": "UNAVAILABLE",
+      "lastVerifiedRead": null,
+      "currentFailure": null
+    },
+    {
+      "id": "empire.state",
+      "availability": "AVAILABLE",
+      "lastVerifiedRead": "2026-10-12T12:52:46.818Z",
+      "currentFailure": null
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "op_20bfbd8b69123c9f0825d0c3016d3e6400b3",
+      "subject": {
+        "id": "2610100523081617500",
+        "variant": "2610100523081618500",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_a279b1fab19976d4c126871c015169f1afae",
+      "subject": {
+        "id": "2610110734491616400",
+        "marketplace": "US"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_0d7c617e964c53beae488a8b333749897e4a",
+      "subject": {
+        "id": "2610110734491616400",
+        "variant": "2610110734491617500",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_18e3a2b62d9e0e87759269f9dfd9a69fd4c2",
+      "subject": {
+        "id": "research",
+        "marketplace": "US",
+        "query": "desk organizer"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_1998e79e28784f267f2e4f1ddef07a86606b",
+      "subject": {
+        "id": "2610110805301627100",
+        "marketplace": "US"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_cc0adfa4c16657fd165e091394b0a3df0e6a",
+      "subject": {
+        "id": "2610110805301627100",
+        "variant": "2610110805301628000",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_cdc77afa44550837745888b0be9dff493284",
+      "subject": {
+        "id": "organizer",
+        "marketplace": "US",
+        "query": "desk organizer"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_d5f70655bcb0d2e5c360e8d7625c11bf89c7",
+      "subject": {
+        "id": "B0GN1TZZ9W",
+        "marketplace": "US"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_f79a65fa20cfd276f37b67dbd0aa3686af5b",
+      "subject": {
+        "id": "2610111119571636000",
+        "marketplace": "US"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    },
+    {
+      "id": "op_2186e24a4354c99775ee5243e61f9cd1c148",
+      "subject": {
+        "id": "2610111119571636000",
+        "variant": "2610111119571637000",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "status": "INCOMPLETE",
+      "evidenceCompleteness": "0/8",
+      "missing": [
+        "demand",
+        "competition",
+        "supply",
+        "shipping",
+        "customer_problem",
+        "rank_growth",
+        "restriction_risk",
+        "economics_inputs"
+      ],
+      "matching": {
+        "confidence": "UNMATCHED",
+        "reason": "Stable IDs retained; name similarity is insufficient"
+      }
+    }
+  ]
+}

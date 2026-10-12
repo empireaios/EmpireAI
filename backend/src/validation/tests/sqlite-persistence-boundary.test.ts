@@ -132,7 +132,7 @@ test("file sync failure rejects without replacing a prior valid snapshot", async
   db.exec("INSERT INTO events VALUES (1)");
   await assert.rejects(db.requestCriticalPersist(), /test file sync failed/);
   assert.deepEqual(readDiskIds(filename), []);
-  assert.deepEqual(fs.readdirSync(dir), ["state.db"]);
+  assert.deepEqual(fs.readdirSync(dir).filter(name => !name.startsWith("state.db.sqljs-owner.sqlite")), ["state.db"]);
   assert.equal(getSqlitePersistStats().pending, true);
 });
 

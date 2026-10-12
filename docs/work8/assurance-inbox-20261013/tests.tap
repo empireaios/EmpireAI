@@ -1,0 +1,21 @@
+TAP version 13
+# {"level":30,"time":1791815729762,"pid":13,"hostname":"7b7b0efbbb80","dbPath":"/tmp/inspector-inbox-XB3dSO/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+# {"level":30,"time":1791815729767,"pid":13,"hostname":"7b7b0efbbb80","msg":"Auth routes registered"}
+# {"level":30,"time":1791815732853,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# {"level":30,"time":1791815732874,"pid":13,"hostname":"7b7b0efbbb80","dbPath":"/tmp/inspector-inbox-XB3dSO/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+# {"level":30,"time":1791815734705,"pid":13,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+# Subtest: independent domain and monitor failures reach authenticated inbox without primary control plane; ack isolation, restart and recovery
+ok 1 - independent domain and monitor failures reach authenticated inbox without primary control plane; ack isolation, restart and recovery
+  ---
+  duration_ms: 6810.527807
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7907.390543

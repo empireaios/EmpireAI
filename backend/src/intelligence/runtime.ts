@@ -11,7 +11,12 @@ let workerActive=false;
 export async function runIntelligenceJob(store:IntelligenceStore,workspace:string,acquirer=new ReadAcquirer(store),jobId?:string,followups=true){
  const job=store.claim(workspace,jobId);if(!job)return null;
  for(const id of job.capabilities){
-  const c=capabilities.find(c=>c.id===id)!;const cached=store.cached(workspace,id,job.subject);if(cached){job.evidence.push(cached.id);job.cacheHits=(job.cacheHits??0)+1;continue;}
+  const c=capabilities.find(c=>c.id===id)!;const cached=store.cached(workspace,id,job.subject);
+  // Scheduled work promises a new observation for this admission, not merely
+  // a cache entry that will expire seconds after the next slot is advanced.
+  // Evidence acquired after admission remains reusable after queue delay.
+  const usableCache=cached&&(job.requester!=='SCHEDULER'||Date.parse(cached.observedAt)>=Date.parse(job.createdAt));
+  if(usableCache){job.evidence.push(cached.id);job.cacheHits=(job.cacheHits??0)+1;continue;}
   try{const e=await acquirer.acquire(workspace,job,id);store.evidence(workspace,e);job.evidence.push(e.id);try{if(followups&&!job.requester.startsWith('PILLOW:')&&!job.requester.startsWith('WORK8_DISCOVERY:')&&!job.requester.startsWith('WORK8_ENRICHMENT:'))discoverNext(store,workspace,e);}catch{job.followupGap='FOLLOWUP_BOUND_OR_SCHEMA';}store.put(workspace,'health',id,{id,lastGoodAt:e.observedAt,lastAttemptAt:e.retrievedAt,authenticatedAt:c.credentials.length?e.observedAt:null,endpoint:e.endpoint,evidenceId:e.id,failure:null,retryAt:null});}
   catch(err){const old=store.get(workspace,'health',id);const failure=err instanceof ReadFailure?err.code:'ACQUISITION_FAILED';const delay=err instanceof ReadFailure?err.retryAfterMs:3600000;job.failures.push({capability:id,code:failure});if(failure==='BACKOFF_ACTIVE'){store.saveJob(workspace,job);continue;}store.put(workspace,'health',id,{...old,id,lastAttemptAt:new Date(store.now()).toISOString(),failure,retryAt:new Date(store.now()+delay).toISOString()});}
   store.saveJob(workspace,job);

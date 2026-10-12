@@ -1,0 +1,74 @@
+{
+  "examinedBaseCommit": "ee7fea92617a4e438e18c033e630b371cb074d81",
+  "examinedBaseTree": "38b30765e75c17317f34613ec8b11a20830c91bf",
+  "workingTreeDeltaExamined": true,
+  "sourceChangedAfterExecution": "Only explanatory queue threshold doc comment, no executable byte change",
+  "queueProbeExaminedSha256": "44d15a1575dd969b7a6a7d1a49503db8d7b327b1e15379fa197c96d6da75c630",
+  "typecheck": "PASS tsc --noEmit, Node max-old-space-size4096; initial default heap OOM retained",
+  "exactFiles": {
+    "backend/src/assurance/work8-queue-probe.ts": {
+      "sha256": "c79e5c43e7e896e1f3412fe2c40bbbd442ee3ecf1d5adaf5442fcc0722b4c83b",
+      "gitBlob": "f110ddb40bc45f576b47d1b83f7e5b185533f58e"
+    },
+    "backend/src/intelligence/store.ts": {
+      "sha256": "ffcf8f74eaf5f51b4743141969c04928f340e0871e7c08799b6d386154e14465",
+      "gitBlob": "d89b5179344dc34bc524f7d6e0c71d9cfd1db70c"
+    },
+    "backend/src/validation/tests/work8-queue-probe.test.ts": {
+      "sha256": "f14c7c8ddfb67134cb10d43b3c34cbb80728a54d1c13c7d719da8747005ae1a8",
+      "gitBlob": "939d4d1dd95951fd1228afdeb1ca2345eef79d94"
+    },
+    "backend/src/validation/tests/work8-scheduler-misfire.test.ts": {
+      "sha256": "998ff0661b0b79c2b43078f96f70f9a2a99b4869d0159dec7928b67b53b391ad",
+      "gitBlob": "544c5065e423540959ed14016132176caeb09377"
+    },
+    "scripts/work8/scheduler-misfire-child.mts": {
+      "sha256": "6c23b42017e26daf703d8421adbe8a5f9e2dadd1698e365617b545012bd09994",
+      "gitBlob": "d915959815a8cf88f2762e5c70ca72efad08c870"
+    },
+    "scripts/work8/scheduler-misfire-exam.mts": {
+      "sha256": "a80f02f1f44ea2e5a3d542fd6a68b60b2fdb483c80cefc008b0379b2cfc582e2",
+      "gitBlob": "32c9f264dd2bc200cb6f0e3db50fed69fd681a16"
+    },
+    "docs/work8/scheduler-successor-20261013/typecheck-default-heap-oom.txt": {
+      "sha256": "cc22f08fa7326f70a19b2045d5a54697b941e672588299722f4095e9500ffc2f",
+      "gitBlob": "642b2d4f2e7fc23abde0b0a4ccc1c3c09cd0f7ad"
+    },
+    "docs/work8/scheduler-successor-20261013/prior-namespace-failure.json": {
+      "sha256": "c8517cc0ed8f4c6ea1b35ea20bb39371796fb13f401d1ac9814349f9856235d4",
+      "gitBlob": "7e414e8a941d32494f80ed0221ab576564846353"
+    },
+    "docs/work8/scheduler-successor-20261013/contracts.tap": {
+      "sha256": "279e17da260e7cddd6775f4c6bc497d911099b994a5278d561e3c141b66c0848",
+      "gitBlob": "27eaee78bc1e34177e104f9c6dea7bc6d3e30191"
+    },
+    "docs/work8/scheduler-successor-20261013/BOUNDARY.md": {
+      "sha256": "41d485c46baad8192e446fc007c7498c9d917a75527bfad2b598636768a35ef9",
+      "gitBlob": "1398bcd76e112681523b0aadaad3edfbfd2290eb"
+    },
+    "docs/work8/scheduler-successor-20261013/typecheck.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/work8/scheduler-successor-20261013/examination.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/work8/scheduler-successor-20261013/actual/control-child.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/work8/scheduler-successor-20261013/actual/fault-child.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/work8/scheduler-successor-20261013/actual/receipt.json": {
+      "sha256": "b4bd19b3204115bc1237e6b9a12aee793713d58fc50731053603d085e57e3560",
+      "gitBlob": "c706d3f668a405742bca7b3901c56e2fa70ad692"
+    },
+    "docs/work8/scheduler-successor-20261013/actual/trace.jsonl": {
+      "sha256": "d44b789424b2e12333eb7f471f86df44812d78956ad1e473676e3a0c2a66e413",
+      "gitBlob": "ef6955ffe4562c84ea4561cd933ae862530fc700"
+    }
+  }
+}

@@ -191,12 +191,8 @@ jobs:
           npm run build --prefix backend
       - name: Verify bounded multi-provider inference and preserved authority
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/advisor-gateway.test.ts backend/src/validation/tests/advisor-pillow-readback.test.ts backend/src/validation/tests/provider-receipt-readback.test.ts backend/src/validation/tests/answer-gate-diagnostics.test.ts backend/src/validation/tests/owner-commissioning-readback.test.ts backend/src/validation/tests/locked-inference.test.ts backend/src/validation/tests/locked-provider-orchestration.test.ts backend/src/validation/tests/locked-reasoning-integration.test.ts
-      - name: Verify generated complete reasoning admission path with intercepted provider HTTP
-        run: node --import ./backend/node_modules/tsx/dist/loader.mjs backend/scripts/reasoning-admission-full-path.mjs "$RUNNER_TEMP/reasoning-admission-full-path.json"
       - name: Verify response completion and frontend preservation safeguards
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/executive-response-completion.test.ts empireai-web/lib/pillow/confirmed-reasoning.test.ts empireai-web/lib/pillow/durable-delivery.test.ts empireai-web/lib/pillow/bff-chat-sanitize.test.ts
-      - name: Verify complete generated response delivery to owner UI
-        run: node --import ./backend/node_modules/tsx/dist/loader.mjs backend/scripts/response-delivery-full-path.mjs "$RUNNER_TEMP/response-delivery-full-path.json"
       - name: Prove permanent locked runtime and complete enabled-store restore
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
@@ -345,6 +341,73 @@ jobs:
             echo 'No deployment, live commerce, independent Birth certification or production readiness is claimed.'
           } >> "$GITHUB_STEP_SUMMARY"
 
+  generated-full-path:
+    # The two complete intercepted-provider corpora previously consumed ~25 minutes
+    # before the runtime/session suite could start. Give each its own bounded job;
+    # every corpus and the runtime suite remain mandatory in the final gate.
+    name: Generated full path — ${{ matrix.corpus }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        corpus: [reasoning-admission, response-delivery]
+    env:
+      NODE_ENV: test
+      PILLOW_TEST_REDIS_SERVER: /usr/bin/redis-server
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Use Node.js 22 with npm cache
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+          cache-dependency-path: |
+            pillow/package-lock.json
+            backend/package-lock.json
+      - name: Install Redis binary for test-owned isolated AOF processes
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes redis-server
+          test -x "$PILLOW_TEST_REDIS_SERVER"
+          "$PILLOW_TEST_REDIS_SERVER" --version
+          # The mandatory integration suite owns its loopback port, data directory,
+          # AOF persistence and process restarts. No hosted Redis credentials are used.
+      - name: Clean install, typecheck and build Pillow
+        run: |
+          npm ci --prefix pillow
+          npm run typecheck --prefix pillow
+          npm run build --prefix pillow
+      - name: Clean install, verify, typecheck and build backend
+        run: |
+          npm ci --prefix backend
+          npm run verify:env --prefix backend
+          npm run typecheck --prefix backend
+          npm run build --prefix backend
+      - name: Verify complete generated corpus with intercepted provider HTTP
+        env:
+          CORPUS: ${{ matrix.corpus }}
+        run: node --import ./backend/node_modules/tsx/dist/loader.mjs "backend/scripts/$CORPUS-full-path.mjs" "$RUNNER_TEMP/$CORPUS-full-path.json"
+      - name: Retain generated full-path receipt and exact source identity
+        if: always()
+        env:
+          CORPUS: ${{ matrix.corpus }}
+        run: git rev-parse HEAD > "$RUNNER_TEMP/$CORPUS-source-sha.txt"
+      - name: Upload generated full-path evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: generated-full-path-${{ matrix.corpus }}
+          path: |
+            ${{ runner.temp }}/${{ matrix.corpus }}-full-path.json
+            ${{ runner.temp }}/${{ matrix.corpus }}-source-sha.txt
+          retention-days: 14
+          if-no-files-found: error
+
   durable-web:
     name: Durable web — receipt recovery, one submission, tests and build
     runs-on: ubuntu-latest
@@ -406,16 +469,18 @@ jobs:
   runtime-repair-result:
     name: Runtime repair result (no deployment)
     if: ${{ always() }}
-    needs: [durable-runtime, durable-web, locked-railway-package]
+    needs: [durable-runtime, durable-web, locked-railway-package, generated-full-path]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Require both mandatory repair gates to pass
+      - name: Require every mandatory repair gate to pass
         env:
+          GENERATED_RESULT: ${{ needs.generated-full-path.result }}
           RUNTIME_RESULT: ${{ needs.durable-runtime.result }}
           WEB_RESULT: ${{ needs.durable-web.result }}
           PACKAGE_RESULT: ${{ needs.locked-railway-package.result }}
         run: |
+          test "$GENERATED_RESULT" = success
           test "$RUNTIME_RESULT" = success
           test "$WEB_RESULT" = success
           test "$PACKAGE_RESULT" = success

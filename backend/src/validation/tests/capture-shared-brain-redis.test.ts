@@ -195,7 +195,7 @@ test('concurrent runtime writers capture with actual pending missions then repla
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'pending-replay-')),root=path.join(dir,'volume');fs.mkdirSync(root);
  const port=await new Promise<number>((resolve,reject)=>{const listener=createServer();listener.once('error',reject);listener.listen(0,'127.0.0.1',()=>{const address=listener.address();if(!address||typeof address==='string')return reject(Error('Missing port'));listener.close(()=>resolve(address.port));});});
  let server=spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',dir,'--save','','--appendonly','no'],{stdio:['ignore','pipe','pipe']});
- let child:ChildProcess|undefined,remove:(()=>void)|undefined,target:Redis|undefined,targetQueue:TaskQueue|undefined,stopMission:(()=>Promise<void>)|undefined;let output='';
+ let replacement:ChildProcess|undefined;let child:ChildProcess|undefined,remove:(()=>void)|undefined,target:Redis|undefined,targetQueue:TaskQueue|undefined,stopMission:(()=>Promise<void>)|undefined;let output='';
  try{
   await new Promise<void>((resolve,reject)=>{let log='';const timer=setTimeout(()=>reject(Error('Redis timeout')),5000);server.once('error',reject);server.once('exit',code=>{clearTimeout(timer);reject(Error('Redis exited '+code+': '+log));});server.stdout!.on('data',chunk=>{log+=String(chunk);if(log.toLowerCase().includes('ready to accept connections')){clearTimeout(timer);resolve();}});});
   const revision=spawnSync('git',['rev-parse','HEAD'],{cwd:path.resolve(import.meta.dirname,'../../../..'),encoding:'utf8'});assert.equal(revision.status,0);const sourceSha=revision.stdout.trim();assert.match(sourceSha,/^[a-f0-9]{40}$/);
@@ -209,14 +209,19 @@ test('concurrent runtime writers capture with actual pending missions then repla
   const staged=recovery.stageRuntimeRecoveryInspection({...result,destination:path.join(dir,'inspection')});assert.equal(staged.bootAllowed,false);
   const isolated=path.join(dir,'isolated-readonly-replay');fs.mkdirSync(isolated);const primary=path.join(isolated,'restored.db');
   fs.copyFileSync(path.join(staged.directory,'sealed-evidence','missions','checkpoint.db'),primary+'.missions.sqlite');fs.copyFileSync(path.join(staged.directory,'sealed-evidence','execution','checkpoint.db'),primary+'.mission-execution.sqlite');
-  target=new Redis({host:'127.0.0.1',port,db:1});await target.ping();assert.equal(await target.dbsize(),0);
+  const targetPort=await new Promise<number>((resolve,reject)=>{const listener=createServer();listener.once('error',reject);listener.listen(0,'127.0.0.1',()=>{const address=listener.address();if(!address||typeof address==='string')return reject(Error('Missing port'));listener.close(()=>resolve(address.port));});});
+  const targetRoot=path.join(dir,'replacement');fs.mkdirSync(targetRoot);const password='isolated-examination-only';
+  const startReplacement=async()=>{replacement=spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(targetPort),'--dir',targetRoot,'--save','','--appendonly','yes','--appendfsync','always','--requirepass',password],{stdio:['ignore','pipe','pipe']});await new Promise<void>((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Replacement timeout')),5000);replacement!.once('error',reject);replacement!.stdout!.on('data',chunk=>{if(String(chunk).toLowerCase().includes('ready to accept connections')){clearTimeout(timer);resolve();}});});};
+  await startReplacement();target=new Redis({host:'127.0.0.1',port:targetPort,db:0,password});await target.ping();assert.equal(await target.dbsize(),0);
+  const targetRunId=(await target.info('server')).match(/^run_id:([a-f0-9]{40})\r?$/m)![1]!;assert.notEqual(targetRunId,manifest.redisIdentity.runId);
+  const unauthorized=new Redis({host:'127.0.0.1',port:targetPort,lazyConnect:true,enableReadyCheck:false,retryStrategy:()=>null});unauthorized.on('error',()=>{});try{await assert.rejects(unauthorized.ping(),/NOAUTH/);}finally{unauthorized.disconnect();}
   const redisRows=JSON.parse(fs.readFileSync(path.join(staged.directory,'sealed-evidence','redis.json'),'utf8')) as Array<{key:string;dump:string;ttl:number}>;
-  const restoreRequest={directory:result.directory,digest:result.digest,expectedCaptureOwner:manifest.redisIdentity.owner,mode:'inspection-only' as const};
+  const restoreRequest={expectedSource:{runId:manifest.redisIdentity.runId,db:manifest.redisIdentity.db},directory:result.directory,digest:result.digest,expectedCaptureOwner:manifest.redisIdentity.owner,mode:'inspection-only' as const};
   await assert.rejects(restoreWork8RedisInspection({...restoreRequest,mode:undefined},target),/EXPLICIT_MODE/);
   await assert.rejects(restoreWork8RedisInspection({...restoreRequest,digest:'0'.repeat(64)},target));
   await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedCaptureOwner:'stale-owner'},target),/STALE_CAPTURE_OWNER/);
   const sourceClient=new Redis({host:'127.0.0.1',port,db:0});try{await sourceClient.ping();await assert.rejects(restoreWork8RedisInspection(restoreRequest,sourceClient),/SOURCE_TARGET_REDIS_ALIAS/);}finally{sourceClient.disconnect();}
-  await target.set('preexisting','must-survive');await assert.rejects(restoreWork8RedisInspection(restoreRequest,target),/TARGET_NOT_EMPTY/);assert.equal(await target.get('preexisting'),'must-survive');await target.del('preexisting');
+  await target.set('preexisting','must-survive');await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target),/TARGET_NOT_EMPTY/);assert.equal(await target.get('preexisting'),'must-survive');await target.del('preexisting');
   const failureTarget=new Redis({host:'127.0.0.1',port,db:2});
   try{
    await failureTarget.ping();await failureTarget.select(0);await assert.rejects(restoreWork8RedisInspection(restoreRequest,failureTarget),/SOURCE_TARGET_REDIS_ALIAS/);await failureTarget.select(2);
@@ -241,16 +246,38 @@ test('concurrent runtime writers capture with actual pending missions then repla
    await assert.rejects(restoreWork8RedisInspection(restoreRequest,failureTarget),/TARGET_NOT_EMPTY/);
   }finally{failureTarget.disconnect();}
   await new Promise(resolve=>setTimeout(resolve,60));
-  const inspection=await restoreWork8RedisInspection(restoreRequest,target);assert.equal(inspection.bootAllowed,false);assert.equal(inspection.noExecutionAuthority,true);
-  await assert.rejects(restoreWork8RedisInspection(restoreRequest,target),/TARGET_NOT_EMPTY/);
+  await assert.rejects(restoreWork8RedisInspection(restoreRequest,target),/REPLACEMENT_TARGET_IDENTITY_REQUIRED/);
+  await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:'0'.repeat(40),db:0}},target),/TARGET_REDIS_IDENTITY_CHANGED/);
+  const canonical=async(client:Redis,key:Buffer)=>{const type=await client.type(key);switch(type){
+   case 'string':return [type,(await client.getBuffer(key))!.toString('base64')];
+   case 'hash':{const pairs=await client.hgetallBuffer(key);return [type,Object.entries(pairs).map(([k,v])=>[k,v.toString('base64')]).sort((a,b)=>a[0]!.localeCompare(b[0]!))];}
+   case 'list':return [type,(await client.lrangeBuffer(key,0,-1)).map(v=>v.toString('base64'))];
+   case 'set':return [type,(await client.smembersBuffer(key)).map(v=>v.toString('base64')).sort()];
+   case 'zset':return [type,(await client.zrangeBuffer(key,0,-1,'WITHSCORES')).map(v=>v.toString('base64'))];
+   case 'stream':return [type,await client.xrange(key,'-','+')];
+   default:throw Error('Unsupported captured type '+type);
+  }};
+  const oracle=new Redis({host:'127.0.0.1',port,db:4}),expected=new Map<string,unknown>();
+  try{await oracle.ping();assert.equal(await oracle.dbsize(),0);for(const row of redisRows){const key=Buffer.from(row.key,'base64');await oracle.restore(key,0,Buffer.from(row.dump,'base64'));expected.set(row.key,await canonical(oracle,key));}}finally{oracle.disconnect();}
+  const sourceStopped=once(server,'exit');server.kill('SIGKILL');await sourceStopped;
+  const realEval=target.eval.bind(target);
+  (target as any).eval=async(...args:any[])=>{args[4]='0'.repeat(40);return (realEval as any)(...args);};
+  await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target),/TARGET_REDIS_IDENTITY_CHANGED/);assert.equal(await target.dbsize(),0);
+  (target as any).eval=async(...args:any[])=>{await target!.select(1);return (realEval as any)(...args);};
+  const inspection=await restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target);
+  (target as any).eval=realEval;await target.select(1);assert.equal(await target.dbsize(),0);await target.select(0);assert.equal(inspection.bootAllowed,false);assert.equal(inspection.noExecutionAuthority,true);
+  await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target),/TARGET_NOT_EMPTY/);
   assert.equal(await target.get(manifest.redisIdentity.ownerKey),inspection.owner);
+  const verifyCompleteInventory=async()=>{for(const row of redisRows){const key=Buffer.from(row.key,'base64');if(key.toString()===manifest.redisIdentity.ownerKey)continue;
+   if(row.ttl!==-1&&manifest.redisCapturedAt+row.ttl<=Date.now())continue;
+   assert.deepEqual(await canonical(target!,key),expected.get(row.key),'changed captured key '+key.toString());
+  }};await verifyCompleteInventory();
   const capturedExpiry=redisRows.find(row=>Buffer.from(row.key,'base64').toString()==='inspection-expiring-fixture')!;assert.ok(capturedExpiry.ttl>0);assert.ok(await target.pttl('inspection-expiring-fixture')<=capturedExpiry.ttl-50);
-  await target.save();target.disconnect();const stopped=once(server,'exit');server.kill('SIGTERM');await stopped;
-  server=spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',dir,'--save','','--appendonly','no'],{stdio:['ignore','pipe','pipe']});
-  await new Promise<void>((resolve,reject)=>{let log='';const timer=setTimeout(()=>reject(Error('Redis restart timeout')),5000);server.once('error',reject);server.stdout!.on('data',chunk=>{log+=String(chunk);if(log.toLowerCase().includes('ready to accept connections')){clearTimeout(timer);resolve();}});});
-  target=new Redis({host:'127.0.0.1',port,db:1});await target.ping();assert.equal(await target.get(manifest.redisIdentity.ownerKey),inspection.owner);
+  target.disconnect();const stopped=once(replacement!,'exit');replacement!.kill('SIGKILL');await stopped;
+  await startReplacement();target=new Redis({host:'127.0.0.1',port:targetPort,db:0,password});await target.ping();assert.equal(await target.get(manifest.redisIdentity.ownerKey),inspection.owner);assert.equal(fs.existsSync(path.join(targetRoot,'dump.rdb')),false);await verifyCompleteInventory();
+  const restartedUnauthorized=new Redis({host:'127.0.0.1',port:targetPort,lazyConnect:true,enableReadyCheck:false,retryStrategy:()=>null});restartedUnauthorized.on('error',()=>{});try{await assert.rejects(restartedUnauthorized.ping(),/NOAUTH/);}finally{restartedUnauthorized.disconnect();}
 
-  targetQueue=new TaskQueue({host:'127.0.0.1',port,db:1},{write(){assert.fail('restored queue must not admit new work');}} as any);
+  targetQueue=new TaskQueue({host:'127.0.0.1',port:targetPort,db:0,password},{write(){assert.fail('restored queue must not admit new work');}} as any);
   assert.equal(await targetQueue.queue.isPaused(),true);assert.ok(await target.get(targetQueue.queue.toKey('capture-owner')));
   const restoredJob=await targetQueue.queue.getJob(result.queueJobId);assert.ok(restoredJob);assert.deepEqual(restoredJob.data,result.payload);
   await assert.rejects(targetQueue.enqueue(result.payload,{jobId:'unauthorized-restored-admission'}),/production withheld/);
@@ -268,7 +295,7 @@ test('concurrent runtime writers capture with actual pending missions then repla
   assert.throws(()=>service.enqueue(result.pending.missionId,'forged-dispatch'),ExecutionConflict);
   const db=new DatabaseSync(primary+'.mission-execution.sqlite',{readOnly:true});let outputs:number;try{outputs=Number(db.prepare("SELECT count(*) n FROM execution_events WHERE event='readonly_output_and_receipt_committed'").get()!.n);assert.equal(outputs,2);}finally{db.close();}
   assert.equal(await targetQueue.queue.isPaused(),true);assert.ok(await target.get(targetQueue.queue.toKey('capture-owner')));
-  const receiptSummary={integratedWriterClasses:['http','native-background','presale-timer','executive-timer'],sourceSha,captureDigest:result.digest,stores:Object.keys(manifest.stores).length,sourceQuarantined:true,restoredQueuePaused:true,restoredProducerRefused:true,completedReceiptByteEquivalent:true,pendingContinuedOnce:true,pendingReconciled:true,committedOutputEvents:outputs,duplicateReadSuppressed:true,changedDispatchRefused:true,birth:'NOT_BORN',commerce:'LOCKED',fullRuntimeRestored:false,protectedCustody:false,inspectionOwnerBoundToManifest:true,redisRestartFencePreserved:true,defaultAndStaleAndWrongManifestAndSourceAndNonemptyRefused:true,remaining:'Inspection ownership transferred; queue transport remains fenced. No operational release or full-runtime restore claimed'};
+  const receiptSummary={integratedWriterClasses:['http','native-background','presale-timer','executive-timer'],sourceSha,captureDigest:result.digest,stores:Object.keys(manifest.stores).length,sourceQuarantined:true,restoredQueuePaused:true,restoredProducerRefused:true,completedReceiptByteEquivalent:true,pendingContinuedOnce:true,pendingReconciled:true,committedOutputEvents:outputs,duplicateReadSuppressed:true,changedDispatchRefused:true,birth:'NOT_BORN',commerce:'LOCKED',fullRuntimeRestored:false,protectedCustody:false,inspectionOwnerBoundToManifest:true,redisRestartFencePreserved:true,distinctReplacementInstance:true,sourceRedisStoppedBeforeRestore:true,completeSurvivingRedisInventoryValueEquivalent:true,passwordAuthenticationRequired:true,aofOnlyCrashRecovery:true,defaultAndStaleAndWrongManifestAndSourceAndNonemptyRefused:true,remaining:'Inspection ownership transferred; queue transport remains fenced. No operational release or full-runtime restore claimed'};
   if(process.env.WORK8_REPLAY_EVIDENCE_DIRECTORY){
    const evidence=process.env.WORK8_REPLAY_EVIDENCE_DIRECTORY;
    fs.writeFileSync(path.join(evidence,'READONLY-REPLAY-RECEIPT.json'),JSON.stringify(receiptSummary,null,2)+'\n',{mode:0o600});
@@ -278,7 +305,7 @@ test('concurrent runtime writers capture with actual pending missions then repla
    fs.copyFileSync(path.join(staged.directory,'sealed-evidence','liveCostCentre','checkpoint.db'),path.join(evidence,'integrated-native-domain.sqlite'));
    fs.copyFileSync(primary+'.missions.sqlite',path.join(evidence,'readonly-replay-missions.sqlite'));
   }
- }finally{await stopMission?.();await targetQueue?.close();target?.disconnect();remove?.();for(const process of [child,server])if(process&&process.exitCode===null&&process.signalCode===null){const done=once(process,'exit');process.kill('SIGKILL');await done;}fs.rmSync(dir,{recursive:true,force:true});}
+ }finally{await stopMission?.();await targetQueue?.close();target?.disconnect();remove?.();for(const process of [child,server,replacement])if(process&&process.exitCode===null&&process.signalCode===null){const done=once(process,'exit');process.kill('SIGKILL');await done;}fs.rmSync(dir,{recursive:true,force:true});}
 });
 
 async function producerFenceFixture(){

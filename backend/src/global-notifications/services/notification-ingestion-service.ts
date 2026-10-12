@@ -1,3 +1,4 @@
+import {ingestInspectorNotifications} from './assurance-inspector-ingestion.js';
 import {ingestAssuranceNotifications} from './assurance-notification-ingestion.js';
 import { buildExecutiveHeadquartersDashboard } from "../../executive-council/services/executive-headquarters-service.js";
 import { listActiveSignals } from "../../executive-surveillance/services/signal-engine-service.js";
@@ -381,6 +382,7 @@ function ingestUxMissionHome(workspaceId: string, companyId: string): GlobalNoti
 export function ingestNotificationsFromSources(workspaceId: string, companyId: string, assuranceAfter=''): GlobalNotification[] {
   return [
     ...ingestAssuranceNotifications(workspaceId, companyId,undefined,assuranceAfter),
+    ...ingestInspectorNotifications(workspaceId, companyId),
     ...ingestEss(workspaceId, companyId),
     ...ingestEyeSeries(workspaceId, companyId),
     ...ingestRealModules(workspaceId, companyId),

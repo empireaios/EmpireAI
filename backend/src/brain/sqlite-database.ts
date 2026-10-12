@@ -1,3 +1,4 @@
+import {acquireSqliteProcessOwner} from "./sqlite-process-owner.js";
 import fs from "node:fs";
 import { randomUUID } from "node:crypto";
 import path from "node:path";
@@ -219,6 +220,7 @@ export class EmpireDatabase {
   private closed = false;
   private captureWriteFence = false;
   private readonly captureIdentity: string | null;
+  private processOwner?: ReturnType<typeof acquireSqliteProcessOwner>;
 
   constructor(private readonly filePath: string, private readonly captureReadOnly = false) {
     this.inMemory = isInMemoryDatabasePath(filePath);
@@ -226,11 +228,16 @@ export class EmpireDatabase {
       throw new Error("Capture read-only SQLite requires an existing disk database");
     }
     this.captureIdentity = this.inMemory ? null : captureFileIdentity(filePath);
+    // Export through the same canonical pathname that owns the lock. A symlink
+    // pathname must never become a second independent database on rename.
+    if (this.captureIdentity) { filePath = this.captureIdentity; this.filePath = filePath; }
     if (this.captureIdentity && [...openSqlJsHandles.values()].flatMap(handles => [...handles])
       .some(handle => handle.captureWriteFence &&
         (handle.captureIdentity === this.captureIdentity || sameExistingSqliteFile(handle.filePath, filePath)))) {
       throw new Error("SQLite capture active; another SQL.js handle cannot open this file");
     }
+    if (this.captureIdentity) this.processOwner = acquireSqliteProcessOwner(this.captureIdentity);
+    try {
     lastOpenRecovery = { recovered: false, quarantinedPath: null, reason: null };
 
     if (!this.inMemory && fs.existsSync(filePath)) {
@@ -274,6 +281,7 @@ export class EmpireDatabase {
       handles.add(this);
       openSqlJsHandles.set(this.captureIdentity, handles);
     }
+    } catch (error) { this.processOwner?.release(); throw error; }
   }
 
   exec(sql: string): void {
@@ -368,6 +376,7 @@ export class EmpireDatabase {
     }
     this.db.close();
     this.closed = true;
+    this.processOwner?.release();
     if (this.captureIdentity) {
       const handles = openSqlJsHandles.get(this.captureIdentity);
       handles?.delete(this);
@@ -382,6 +391,7 @@ export class EmpireDatabase {
    */
   holdWritesForCapture(): () => void {
     if (this.closed || this.captureWriteFence) throw new Error("SQLite capture fence unavailable");
+    this.processOwner?.assertOwned();
     if (this.captureIdentity && [...openSqlJsHandles.values()].some(handles => [...handles].some(handle =>
       handle !== this && !handle.closed &&
       (handle.captureIdentity === this.captureIdentity || sameExistingSqliteFile(handle.filePath, this.filePath))))) {
@@ -391,6 +401,7 @@ export class EmpireDatabase {
     let released = false;
     return () => {
       if (released) throw new Error("SQLite capture fence already released");
+      this.processOwner?.assertOwned();
       released = true;
       this.captureWriteFence = false;
     };
@@ -398,6 +409,7 @@ export class EmpireDatabase {
 
   private assertCaptureWritesAllowed(): void {
     if (this.captureReadOnly) throw new Error("Capture read-only SQLite refuses writes");
+    this.processOwner?.assertOwned();
     if (this.captureWriteFence) throw new Error("SQLite writes quiesced for capture");
   }
 
@@ -593,6 +605,7 @@ export class EmpireDatabase {
           if (this.closed || generation !== this.persistGeneration) return;
           // Keep the generation check + rename in one JS turn. An awaited rename
           // could finish after synchronous close and overwrite its newer export.
+          this.processOwner?.assertOwned();
           fs.renameSync(tempPath, this.filePath);
           syncParentDirectory(this.filePath);
         } finally {
@@ -683,6 +696,7 @@ export class EmpireDatabase {
       } finally {
         fs.closeSync(fd);
       }
+      this.processOwner?.assertOwned();
       fs.renameSync(tempPath, this.filePath);
       syncParentDirectory(this.filePath);
     } finally {

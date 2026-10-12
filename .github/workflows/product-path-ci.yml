@@ -201,7 +201,24 @@ jobs:
           test -f backend/dist/runtime/native-store-capture-lock.cjs
       - name: Work8 bounded integrated exams with kernel network denial
         working-directory: backend
-        run: python3 ../scripts/work8/isolated-exec.py node --import tsx --test --test-concurrency=1 src/validation/tests/work8-*.test.ts src/validation/tests/work8-*.test.mjs src/validation/tests/work6-commerce-routes.test.ts ../scripts/work8/autonomous-locks.test.ts ../scripts/work8/shared-store-days.test.ts
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Preserve the complete discovered suite. Only these authenticated
+          # in-process HTTP examinations require socket creation; outbound
+          # connect/send syscalls remain denied by the existing launcher.
+          denied=()
+          listen_only=()
+          for test_file in src/validation/tests/work8-*.test.ts src/validation/tests/work8-*.test.mjs src/validation/tests/work6-commerce-routes.test.ts ../scripts/work8/autonomous-locks.test.ts ../scripts/work8/shared-store-days.test.ts; do
+            case "$test_file" in
+              src/validation/tests/work8-inspector-inbox.test.ts|src/validation/tests/work8-joined-assurance.test.ts)
+                listen_only+=("$test_file") ;;
+              *) denied+=("$test_file") ;;
+            esac
+          done
+          test "${#listen_only[@]}" -eq 2
+          python3 ../scripts/work8/isolated-exec.py node --import tsx --test --test-concurrency=1 "${denied[@]}"
+          python3 ../scripts/work8/isolated-exec.py --listen-only node --import tsx --test --test-concurrency=1 "${listen_only[@]}"
       - name: Verify isolated SQL.js and HTTP capture admission, save and readback
         working-directory: backend
         env:
@@ -379,6 +396,13 @@ jobs:
           git checkout --detach 858b1c99c5acd3ada160f2fe9c1448eb8e6beb09
           test "$(git rev-parse HEAD)" = 858b1c99c5acd3ada160f2fe9c1448eb8e6beb09
           test "$(git rev-parse HEAD^{tree})" = c268a1083fcf9b6364f1b000e4aa3ee7337c5ec4
+          portfolio=_work8_evidence/docs/work8/post-publication-20261012/portfolio18/frontend-858b-to-e7fd.bundle
+          test "$(git hash-object "$portfolio")" = c1deb0b80b2219b5248dc4cf674050ffa1e98a57
+          git bundle verify "$portfolio"
+          git fetch "$portfolio" HEAD
+          git checkout --detach e7fd599a447a4e1b273363d7f664507194cd2ba1
+          test "$(git rev-parse HEAD)" = e7fd599a447a4e1b273363d7f664507194cd2ba1
+          test "$(git rev-parse HEAD^{tree})" = f077bb0e7008663f64dac4e01c4e218e67e4222e
           rm -rf -- _work8_evidence
       - name: Use pinned Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020

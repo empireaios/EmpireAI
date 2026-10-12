@@ -4,7 +4,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {randomUUID} from 'node:crypto';
 import {capabilities,digest,jobSchema,key,defaultStrategy,type Evidence,type JobInput} from './model.js';
 export type Row=Record<string,any>;
-export type IntelligenceSchedule={id:string;enabled:boolean;intervalMs:number;subject:JobInput['subject'];failures:number;timezone:string;lastQueuedAt?:string;lastJobId?:string;nextAt:string};
+export type IntelligenceSchedule={id:string;enabled:boolean;intervalMs:number;subject:JobInput['subject'];failures:number;timezone:string;lastQueuedAt?:string;lastJobId?:string;lastAdmission?:{dueAt:number;admittedAt:number};missedSlot?:{dueAt:number;admittedAt:number};nextAt:string};
 const decode=(r:any):Row|null=>r?JSON.parse(r.body):null;
 function acquisitionLedger(db:DatabaseSync,workspace:string):Row[]{
  const rows=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='work8_acquisition_admission' ORDER BY CAST(json_extract(body,'$.sequence') AS INTEGER) LIMIT 10001").all(workspace);if(rows.length>10000)throw Error('ACQUISITION_HISTORY_BOUND');
@@ -121,11 +121,15 @@ export class IntelligenceStore{
  /** Claim a due slot and enqueue its bounded read atomically. No provider call
   * occurs in this transaction and there is no unbounded missed-slot catch-up. */
  due(workspace:string){return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{
-  const now=this.now(),rows=db.prepare('SELECT id,body FROM schedules WHERE workspace=? AND next_at<=? LIMIT 8').all(workspace,now),result:Row[]=[];
+  const now=this.now(),rows=db.prepare('SELECT id,body,next_at FROM schedules WHERE workspace=? AND next_at<=? LIMIT 8').all(workspace,now),result:Row[]=[];
   for(const r of rows){const s=decode(r)!;if(!s.enabled)continue;const c=capabilities.find(c=>c.id===s.id)!;
    if(c.credentials.length&&!c.credentials.every(k=>process.env[k])){db.prepare('UPDATE schedules SET next_at=? WHERE workspace=? AND id=?').run(now+s.intervalMs,workspace,String(r.id));continue;}
    const job=this.enqueueWithin(db,workspace,'SCHEDULER',{id:'scheduled_'+s.id+'_'+Math.floor(now/60000),objective:'Scheduled bounded '+s.id+' observation',capabilities:[s.id],subject:s.subject,requestLimit:4});
    s.lastQueuedAt=new Date(now).toISOString();s.lastJobId=job.id;
+   // A late successful enqueue must not erase a missed scheduler slot before
+   // independent Assurance observes it. Only a later on-time admission clears it.
+   s.lastAdmission={dueAt:Number(r.next_at),admittedAt:now};
+   if(now-Number(r.next_at)>=30000)s.missedSlot={...s.lastAdmission};else delete s.missedSlot;
    db.prepare('UPDATE schedules SET next_at=?,body=? WHERE workspace=? AND id=?').run(now+s.intervalMs,JSON.stringify(s),workspace,String(r.id));result.push(s);
   }
   db.exec('COMMIT');return result;
