@@ -114,7 +114,9 @@ def main():
                     captured=True
                 time.sleep(5)
         state=inspect(cid)['State'];receipt['containerExit']=state['ExitCode']
-        (output/'coupled-console.log').write_text(command(['docker','logs',cid]).stdout)
+        logs=command(['docker','logs',cid])
+        (output/'coupled-console.log').write_text(logs.stdout)
+        (output/'coupled-console.stderr.log').write_text(logs.stderr)
         assert state['ExitCode']==0, 'Coupled prerequisite failed; inspect original run receipt'
         assert captured
         verification=command(['python3',str(source/'scripts/work8/ci-verify.py'),str(runroot/'run')])
