@@ -1,4 +1,4 @@
-name: Work8 existing-runner prerequisite only
+name: Work8 authorised 45-minute examination
 
 # Publication of this isolated patch is a separate owner decision. No PR,
 # deployment-linked branch, historical accounting export or old evidence push.
@@ -21,8 +21,7 @@ jobs:
   prerequisite:
     if: github.repository == 'empireaios/EmpireAI'
     runs-on: ubuntu-24.04
-    # Above 45 minutes without changing existing accepted CI jobs. The only
-    # execution here is the bounded prerequisite; no long-run trigger exists.
+    # One authorised elapsed examination, bounded independently of the Work chat.
     timeout-minutes: 75
     steps:
       - name: Checkout exact probe revision without credentials
@@ -47,12 +46,12 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git -C candidate rev-parse HEAD)" = d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5
-          node --test control/scripts/work8/ci-clock.test.mjs
+          python3 control/scripts/work8/ci-schedule.py
           npm ci --prefix candidate/backend --ignore-scripts
           cp control/scripts/work8/ci-* candidate/scripts/work8/
           docker build --file control/scripts/work8/ci.Dockerfile --tag work8-prerequisite:${GITHUB_RUN_ID} control/scripts/work8
-      - name: Prove environment and coupled short workload before any long run
-        timeout-minutes: 12
+      - name: Run one authorised 45-minute elapsed examination
+        timeout-minutes: 55
         shell: bash
         run: |
           set -euo pipefail
@@ -76,7 +75,7 @@ jobs:
                   for name in manifest:archive.add(root/name,arcname=name,recursive=False)
           result={'runId':os.environ['GITHUB_RUN_ID'],'workflowSha':os.environ['GITHUB_SHA'],
               'applicationSha':'d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5','files':manifest,
-              'longRunStarted':False,'classification':'PREREQUISITE_ONLY_NO_CERTIFICATION'}
+              'longRunStarted':(root/'RUN-IDENTITY.json').exists(),'classification':'SCOPED_ENDURANCE_NOT_WORK8_CERTIFICATION'}
           (out/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
           total=sum(f.stat().st_size for f in out.iterdir() if f.is_file())
           if total>19*1024*1024:
@@ -85,7 +84,7 @@ jobs:
               (out/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
               raise SystemExit('Evidence exceeds approved 20MiB bound; long execution remains blocked')
           PY
-      - name: Retain prerequisite artifacts for seven days
+      - name: Retain elapsed examination artifacts for seven days
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:

@@ -64,7 +64,7 @@ for mission, raw_plan, plan_digest in db.execute('SELECT mission,record,digest F
     assert view['financial']['conserved'] is True
     assert sum(o['contributionMinor'] for o in view['financial']['orders']) == contribution
     financial.append({'mission': mission, 'eventCount': len(rows), 'currency': 'SGD', 'bankMinor': net, 'supplierMinor': supply, 'contributionMinor': contribution})
-assert len(financial) == 9 and len(event_ids) == len(set(event_ids))
+assert len(financial) == 9 and len(event_ids) == len(set(event_ids)) == 108
 db.close()
 events = [json.loads(line) for line in (root / 'events.jsonl').read_text().splitlines()]
 assert not any(e['kind'] == 'CRITICAL_FAILURE' for e in events)
@@ -79,6 +79,16 @@ assurance = sqlite3.connect('file:' + str(root / 'assurance/assurance.sqlite') +
 assert assurance.execute('PRAGMA quick_check').fetchone()[0] == 'ok'
 recoveries = [json.loads(x[0]) for x in assurance.execute("SELECT body FROM cp_records WHERE kind='recovery'")]
 assert len(recoveries) == 1
+recurrence = next(e for e in events if e['kind']=='RECURRENCE_CIRCUIT_REFUSED')
+assert recurrence['status']=='CIRCUIT_OPEN'
+assert recurrence['incident'] != recurrence['priorIncident']
+replay = next(e for e in events if e['kind']=='BROKER_REDELIVERY_AFTER_AOF')
+assert replay['attemptsAfter']==replay['attemptsBefore']+1
+broker = next(e for e in events if e['kind']=='FINAL_BROKER_COUNTS')
+assert broker['authority']=='NOT_BORN/LOCKED' and broker['counts']['completed']==9
+assert all(broker['counts'][k]==0 for k in ['active','waiting','delayed','failed'])
+margin = next(e for e in events if e['kind']=='SETTLEMENT_SCHEDULE_MARGIN')
+assert margin['availableMs']>=margin['requiredMs']
 recovery = recoveries[0]
 assert recovery['status'] == 'VERIFIED' and recovery['verification']['healthy'] is True
 assert recovery['startedAt'] <= recovery['verification']['observedAt'] <= recovery['completedAt'] <= recovery['deadlineAt']
@@ -97,6 +107,6 @@ first = sorted(s['rss'] for s in samples if s['elapsedMs'] < (60000 if phase == 
 last = sorted(s['rss'] for s in samples if s['elapsedMs'] >= minimum_ms - (60000 if phase == 'preflight' else 300000))
 growth = last[len(last) // 2] - first[len(first) // 2]
 assert growth == receipt['medianRssGrowth'] and growth <= 134217728
-result = {'status': 'PASS_INDEPENDENT_PREFLIGHT_NOT_ENDURANCE' if phase == 'preflight' else 'PASS_INDEPENDENT_COUPLED_ELAPSED_ORACLE', 'phase': phase, 'at': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'wallElapsedSeconds': wall, 'monotonicElapsedMs': receipt['elapsedMs'], 'sqliteIntegrity': 'ok', 'tasks': len(tasks), 'canonicalReceipts': len(all_receipts), 'uniqueFinancialEvents': len(event_ids), 'financial': financial, 'assurance': {'incident': incident['id'], 'recovery': recovery['id'], 'freshVerification': True, 'recoveryMs': recovery['completedAt'] - recovery['startedAt'], 'releaseLeases': 0}, 'peakObservedWorkerRss': max(s['rss'] for s in samples), 'medianRssGrowth': growth, 'maximumSampleGapMs': max_gap, 'samples': len(samples), 'sourceReceiptSha256': sha((root / 'receipt.json').read_bytes()), 'independence': 'Separate Python process, read-only SQLite and integer-money equations; not independent human/governance certification', 'scope': 'Preflight is NOT endurance. Endurance verifies coupled recorded stages only; full platform and off-host certification remain separate.', 'realCommerce': False, 'paidInference': 0}
+result = {'status': 'PASS_INDEPENDENT_PREFLIGHT_NOT_ENDURANCE' if phase == 'preflight' else 'PASS_INDEPENDENT_COUPLED_ELAPSED_ORACLE', 'phase': phase, 'at': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'wallElapsedSeconds': wall, 'monotonicElapsedMs': receipt['elapsedMs'], 'sqliteIntegrity': 'ok', 'tasks': len(tasks), 'canonicalReceipts': len(all_receipts), 'uniqueFinancialEvents': len(event_ids), 'financial': financial, 'assurance': {'incident': incident['id'], 'recovery': recovery['id'], 'freshVerification': True, 'recoveryMs': recovery['completedAt'] - recovery['startedAt'], 'releaseLeases': 0}, 'peakObservedWorkerRss': max(s['rss'] for s in samples), 'medianRssGrowth': growth, 'maximumSampleGapMs': max_gap, 'samples': len(samples), 'sourceReceiptSha256': sha((root / 'receipt.json').read_bytes()), 'independence': 'Separate Python process, read-only SQLite and integer-money equations; not independent human/governance certification', 'scope': 'Preflight is NOT endurance. Endurance verifies coupled recorded stages only; full platform and off-host certification remain separate.', 'integratedRecurrenceCircuit': recurrence, 'brokerRedelivery': replay, 'finalBroker': broker, 'settlementMargin': margin, 'realCommerce': False, 'paidInference': 0}
 (root / 'independent-verification.json').write_text(json.dumps(result, indent=2) + '\n')
 print(json.dumps(result))
