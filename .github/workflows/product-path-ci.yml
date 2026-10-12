@@ -410,6 +410,13 @@ jobs:
           git checkout --detach ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4
           test "$(git rev-parse HEAD)" = ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4
           test "$(git rev-parse HEAD^{tree})" = 31a817093307b986ed97c870bab0ce5b5ba81e84
+          comparables=_work8_evidence/docs/work8/o9-console-20261013/frontend.bundle
+          test "$(git hash-object "$comparables")" = 5a05b10f3dbbdb611d9a9f5ee70c6946cee69bef
+          git bundle verify "$comparables"
+          git fetch "$comparables" HEAD
+          git checkout --detach c6b698c4a98073789b6d6729c642a0882ad43b3f
+          test "$(git rev-parse HEAD)" = c6b698c4a98073789b6d6729c642a0882ad43b3f
+          test "$(git rev-parse HEAD^{tree})" = c6234ccc85b1a7600ee21952f90010de44f125a4
           rm -rf -- _work8_evidence
       - name: Use pinned Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020

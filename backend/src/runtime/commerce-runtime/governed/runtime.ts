@@ -28,6 +28,7 @@ import {safetyPaths} from '../../../institutional-memory/safety.js';
 import {enforceOwnerSafety} from './safety-admission.js';
 import {readOwnerPortfolio} from './owner-portfolio.js';
 import {projectWork8MarketContext} from './work8-market-context.js';
+import {registerWork8ComparableRoutes} from './work8-comparable-routes.js';
 import {RetainedDiscoveryWorker} from './work8-source-discovery.js';
 import {projectWork8Sources} from './work8-source-projection.js';
 import type {Evidence} from '../../../intelligence/model.js';
@@ -82,6 +83,7 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
  app.addHook('onRequest',async(req,reply)=>{if(!['POST','PUT','PATCH','DELETE'].includes(req.method))return;const route=req.url.split('?')[0];const kind=(Object.keys(safetyPaths) as Array<keyof typeof safetyPaths>).find(k=>(safetyPaths[k] as readonly string[]).includes(route!));if(!kind)return;try{const policy=productionMemory()?.safetyPolicy('ws_empire_1');if(policy?.breakers[kind])return reply.code(423).send({error:'OWNER_SAFETY_PAUSE',path:kind,policyVersion:policy.version,birth:'NOT_BORN',commerce:'LOCKED'});}catch{return reply.code(423).send({error:'SAFETY_POLICY_UNAVAILABLE',birth:'NOT_BORN',commerce:'LOCKED'});}});
  const owner=async(req:FastifyRequest,reply:FastifyReply)=>{reply.header('cache-control','private, no-store');const u=req.user;if(!u||u.role!=='founder'||u.workspaceId!=='ws_empire_1'||u.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase())return reply.code(403).send({error:'Owner access required'});};
  registerWork8TwinRoutes(app,{authenticate,owner,sessions:()=>productionCommerce().twin,context:(p,r)=>productionCommerce().twinRuntime.context(p,r),projection:(p,s,a,l)=>productionCommerce().twinRuntime.projection(p,s,a,l)});
+ registerWork8ComparableRoutes(app,{authenticate,owner,intelligence:productionIntelligence});
  app.get('/api/owner/commerce/portfolio',{preHandler:[authenticate,owner]},async(req,reply)=>{
   try{
    const workspace=req.user!.workspaceId;
