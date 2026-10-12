@@ -1,0 +1,44 @@
+{
+  "status": "PASS_CONNECTED_CANONICAL_COMPARABLES",
+  "actualComponent": true,
+  "actualProxyRoute": true,
+  "authenticatedBackend": true,
+  "genuineRetainedReceipts": true,
+  "anonymous401": true,
+  "owner200": true,
+  "desktop": [
+    1365,
+    900
+  ],
+  "mobile": [
+    390,
+    844
+  ],
+  "horizontalOverflow": false,
+  "externalEffects": 0,
+  "modelCalls": 0,
+  "requests": [
+    {
+      "method": "GET",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "limitations": [
+    "Native component/proxy examination; not production deployment or owner personal acceptance."
+  ],
+  "frontendCommit": "c6b698c4a98073789b6d6729c642a0882ad43b3f",
+  "frontendTree": "c6234ccc85b1a7600ee21952f90010de44f125a4",
+  "backendCommit": "4c012674bff6b9d577be6ecf2b304483dd3737ef",
+  "examinationClock": "2026-10-12T17:12:00Z",
+  "genuineReceiptFileSha256": "1b807f0d8c42aab7d66fa0ba12d4fdc79a7fc66b5f9a2e5398cfc5b0c69ca9f4",
+  "nodeVersion": "v24.19.0",
+  "validation": {
+    "scopedEslint": "PASS",
+    "nextTypegen": "PASS",
+    "fullTscNoEmit": "PASS"
+  }
+}

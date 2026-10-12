@@ -1,0 +1,69 @@
+{
+  "schema": "WORK8_O9_CONTINUATION_CHECKPOINT_V1",
+  "currentOriginalCounts": {
+    "PASS": 31,
+    "PENDING": 10,
+    "BLOCKED": 4
+  },
+  "currentAmendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "newAcceptedOriginalIds": [
+    9
+  ],
+  "newAcceptedAmendmentIds": [],
+  "published": {
+    "time": "2026-10-12T17:21:23.135Z",
+    "approvedEvidence": "c08418c4b4ba565d709115f294d56eac5310afc7",
+    "publishedEvidence": "7450ad59fa2e81e99d90cd462192f6c48055d2b9",
+    "evidenceTree": "4ee5959fdc5e47e4b12b96e27b0703c8c33d906f",
+    "approvedSource": "e5165a266702f1c63caf6a5577226a5600b7b8a0",
+    "publishedSource": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
+    "sourceTree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+    "completeTreeEquality": true,
+    "fileModesIncluded": true,
+    "sequence": "evidence verified before source ref moved",
+    "pr": {
+      "number": 113,
+      "draft": true,
+      "merged": false,
+      "head": "19863fa5d4babdee5cccb4c894b64e44abfb0014"
+    },
+    "noDeployment": true
+  },
+  "candidateSource": {
+    "commit": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+    "tree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
+    "branch": "work8/o9-console-integrated-20261013",
+    "workspace": "/workspace/scratch/798050748e67/o9-integration",
+    "scope": "accepted O9 backend/real evidence examination plus exact frontend CI pin and catalog test selection wrapper",
+    "published": false
+  },
+  "candidateFrontend": {
+    "commit": "c6b698c4a98073789b6d6729c642a0882ad43b3f",
+    "tree": "c6234ccc85b1a7600ee21952f90010de44f125a4",
+    "bundle": "docs/work8/o9-console-20261013/frontend.bundle",
+    "blob": "5a05b10f3dbbdb611d9a9f5ee70c6946cee69bef",
+    "prerequisite": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4"
+  },
+  "review": "O9-INDEPENDENT-ACCEPTANCE.json",
+  "queue": "CLOSURE-QUEUE.json",
+  "tracker": "../revised-review-20261012/FULL-TRACKER.md",
+  "register": "../revised-review-20261012/FIXED-REGISTERS.json",
+  "ci": "HOSTED-CI-TERMINAL-REVIEW.json",
+  "remainingActions": [
+    "After exact future batch authorization, publish reviewed O9 evidence tree first and integrated source tree second, verify equality, inspect only automatically triggered affected CI",
+    "Do not retest or demote original9 because broader Pillow/full owner journey remains blocked",
+    "No paid Pillow examination before eligible genuine same-product dossier and applicable commissioning authority",
+    "Recovery requires permitted restoration scope plus actual protected independent custody/external writer exclusion; no retried blocked operation",
+    "Independent host-loss alert/containment endpoint, media rights, existing Keepa entitlement and original224-row custodian remain unavailable dependencies"
+  ],
+  "Work8": "NO_GO",
+  "Work9": "INACTIVE",
+  "Pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "productionDeployment": false,
+  "hostedCi": "PASS_ALL_FOUR",
+  "hostedCiReceipt": "HOSTED-CI-TERMINAL-REVIEW.json"
+}

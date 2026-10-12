@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-12T17:21:23.135Z",
+  "approvedEvidence": "c08418c4b4ba565d709115f294d56eac5310afc7",
+  "publishedEvidence": "7450ad59fa2e81e99d90cd462192f6c48055d2b9",
+  "evidenceTree": "4ee5959fdc5e47e4b12b96e27b0703c8c33d906f",
+  "approvedSource": "e5165a266702f1c63caf6a5577226a5600b7b8a0",
+  "publishedSource": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
+  "sourceTree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+  "completeTreeEquality": true,
+  "fileModesIncluded": true,
+  "sequence": "evidence verified before source ref moved",
+  "pr": {
+    "number": 113,
+    "draft": true,
+    "merged": false,
+    "head": "19863fa5d4babdee5cccb4c894b64e44abfb0014"
+  },
+  "noDeployment": true
+}

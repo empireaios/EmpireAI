@@ -1,0 +1,42 @@
+Comparable marketplace products
+
+Functional comparisons support screening. Product identity, qualification and owner approval remain separate.
+
+Functional comparable only · magnetic card storage
+
+Both source titles describe magnetic storage for cards. This supports a functional price comparison only.
+
+Supplier: Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer
+
+Product identity: 2610111119571636000 · observed 2026-10-12T06:39:20.497Z · Historical observation
+
+Inspect supplier variant dimensions and identities
+Amazon: POCREATION Magnetic Card Deck Storage Box, 4.1 X 3.3 X .1in (Black Red)
+
+ASIN B0HGNRNC8M · Amazon US
+
+14.00 USD · observed lowest new landed offer
+
+Observed 2026-10-12T17:02:48.797Z · validity ends 2026-10-12T23:02:48.076Z · Within recorded source validity
+
+Catalogue reference: ev_4ab6088cb03516f954073daf0c0a95abe398e0c9 · offer reference: ev_5a16ad30c77d6155567f2fb91f76e43e679e3434
+
+Supplier product and Amazon ASIN are distinct identities; no common manufacturer or GTIN is verified.
+Dimensions, capacity and material equivalence are unverified. Compare the original titles and variant descriptions below; differing measurements must not be treated as identical.
+The marketplace landed offer includes marketplace shipping, not EmpireAI supplier acquisition, freight, fees, duties or returns.
+
+Demand: unknown · unit sales and sales velocity unknown.
+
+No verified unit demand or comparable sales velocity is available in these retained observations. A catalogue rank, if recorded elsewhere, is only a proxy.
+
+Deferred for evidence
+exact product equivalence unverified
+variant and current supply require verification
+complete economics and restrictions unverified
+supplier observation historical
+
+Verify the specific variant, current supply and complete costs before commercial qualification. This comparison is not a Pillow recommendation or an owner approval.
+
+Inspect comparison source references and digests
+
+Read-only saved evidence. Freshness is evaluated on load; refresh to recheck. No source refresh or paid assessment is triggered.

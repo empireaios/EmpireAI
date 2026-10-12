@@ -1,0 +1,27 @@
+{
+  "source": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
+  "observed": "2026-10-12T17:21:41.738Z",
+  "runs": [
+    {
+      "id": 38283619872,
+      "name": "Semantic",
+      "status": "in_progress"
+    },
+    {
+      "id": 38283619758,
+      "name": "Independent Assurance",
+      "status": "in_progress"
+    },
+    {
+      "id": 38283619756,
+      "name": "Product",
+      "status": "in_progress"
+    },
+    {
+      "id": 38283619727,
+      "name": "Runtime",
+      "status": "in_progress"
+    }
+  ],
+  "dispatch": "automatic pull_request; no duplicate dispatch"
+}

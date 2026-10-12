@@ -3,15 +3,15 @@
   "baselineEvidenceCommit": "3fd2bec774016ff184141ccf21cb55e63a637933",
   "baselineLocalCheckpoint": "9b80eeb680df05cd205768d7b0ae0c06efae6abf",
   "counts": {
-    "PASS": 30,
-    "PENDING": 11,
+    "PASS": 31,
+    "PENDING": 10,
     "BLOCKED": 4
   },
   "amendmentCounts": {
     "PASS": 8,
     "PENDING": 11
   },
-  "additionalRequirementsClosed": 6,
+  "additionalRequirementsClosed": 7,
   "additionalAmendmentsClosed": 6,
   "acceptedOriginalIds": [
     1,
@@ -20,6 +20,7 @@
     5,
     6,
     8,
+    9,
     10,
     11,
     12,
@@ -183,16 +184,16 @@
       "group": "original45",
       "id": 9,
       "name": "Competitor and market evidence",
-      "status": "PENDING",
-      "category": "EXAMINATION_AND_GENUINE_INPUTS",
-      "unsatisfiedAssertionOrPreservation": "Complete attributable exact or explicitly comparable marketplace identity, price and demand evidence; do not label a comparable product an exact match.",
-      "nextAction": "Complete attributable exact or explicitly comparable marketplace identity, price and demand evidence; do not label a comparable product an exact match.",
-      "acceptedEvidence": "source-marketplace-projection.json; resume-20261011/CURRENT-CANDIDATE-READBACK.json; CURRENT-CANDIDATE-DOSSIER.json",
-      "newProgrammeAcceptance": false,
-      "sharedDependency": "B/D \u2014 current genuine dossier, rights, authorised assessment and authenticated journey",
-      "classification": "EXTERNAL_EVIDENCE_OR_AUTHORITY_DEPENDENCY",
-      "authority": "Existing permitted read sources; exact source-bound paid inference/media operation needs valid bounded authority",
-      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+      "status": "PASS",
+      "category": "ACCEPTED",
+      "unsatisfiedAssertionOrPreservation": "Preserve independent original Section4/R1 acceptance: genuine attributable functional comparable in authenticated canonical Console; unknown demand allowed. Production rollout and full owner/Pillow journey remain separate.",
+      "nextAction": "Preserve O9 acceptance. Publish reviewed successor after exact batch authorization; hosted Node22 verification remains separate O42.",
+      "acceptedEvidence": "o9-console-20261013/O9-INDEPENDENT-ACCEPTANCE.json; backend4c012674/frontendc6b698c4; integrationb332d9a5; genuine native desktop/mobile and independent auth/workspace boundary verification",
+      "newProgrammeAcceptance": true,
+      "sharedDependency": "None for original9; wider genuine qualification remains separate",
+      "classification": "NEWLY_INDEPENDENTLY_ACCEPTED",
+      "authority": "No production deployment inferred",
+      "independentAcceptanceOracle": "O9-INDEPENDENT-ACCEPTANCE.json against original MANDATE Section4/R1"
     },
     {
       "group": "original45",
@@ -447,8 +448,8 @@
       "status": "PENDING",
       "category": "ENGINEERING_AND_EXAMINATION",
       "unsatisfiedAssertionOrPreservation": "Corrected F27 fresh event/incident/mission binding and authenticated owner-pull inbox independently accepted as bounded software. Genuine acquisition/assessment correlation and full coupled-runtime monitoring remain.",
-      "nextAction": "Corrected F27 fresh event/incident/mission binding and authenticated owner-pull inbox independently accepted as bounded software. Genuine acquisition/assessment correlation and full coupled-runtime monitoring remain. Independently accepted canonical saved-inbox connection/pagination/error preservation is a reviewed unpublished successor; external push and genuine operating acceptance remain separate.",
-      "acceptedEvidence": "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, unpublished successor)",
+      "nextAction": "Corrected F27 fresh event/incident/mission binding and authenticated owner-pull inbox independently accepted as bounded software. Genuine acquisition/assessment correlation and full coupled-runtime monitoring remain. Independently accepted canonical saved-inbox connection/pagination/error preservation is published in reviewed source19863fa5 and evidence bundle7450ad59; reviewed frontend hosted CI passed. Production rollout not performed; external push and genuine operating acceptance remain separate.",
+      "acceptedEvidence": "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, published source/bundle; production rollout not performed)",
       "newProgrammeAcceptance": false,
       "sharedDependency": "D \u2014 source truth, full writer containment, delivered alerts and native UX",
       "classification": "EXTERNAL_EVIDENCE_OR_AUTHORITY_DEPENDENCY",
@@ -507,8 +508,8 @@
       "status": "PENDING",
       "category": "ENGINEERING_AND_EXAMINATION",
       "unsatisfiedAssertionOrPreservation": "Preserve accepted UNKNOWN restart safety and inspector-to-inbox path. Confirm independent operational escalation during primary/host failure; owner-pull is not independent external push.",
-      "nextAction": "Preserve accepted UNKNOWN restart safety and inspector-to-inbox path. Confirm independent operational escalation during primary/host failure; owner-pull is not independent external push. Independently accepted canonical saved-inbox connection/pagination/error preservation is a reviewed unpublished successor; external push and genuine operating acceptance remain separate.",
-      "acceptedEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, unpublished successor)",
+      "nextAction": "Preserve accepted UNKNOWN restart safety and inspector-to-inbox path. Confirm independent operational escalation during primary/host failure; owner-pull is not independent external push. Independently accepted canonical saved-inbox connection/pagination/error preservation is published in reviewed source19863fa5 and evidence bundle7450ad59; reviewed frontend hosted CI passed. Production rollout not performed; external push and genuine operating acceptance remain separate.",
+      "acceptedEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, published source/bundle; production rollout not performed)",
       "newProgrammeAcceptance": false,
       "sharedDependency": "D \u2014 source truth, full writer containment, delivered alerts and native UX",
       "classification": "EXECUTABLE_ENGINEERING_OR_EXAMINATION",
@@ -691,15 +692,16 @@
       "name": "Review exact-head CI and release authority",
       "status": "PENDING",
       "category": "GOVERNANCE",
-      "unsatisfiedAssertionOrPreservation": "Published8222dcf5: Product38264268740, Semantic38264268729, Assurance38264268885 SUCCESS; Runtime38264268728 CANCELLED at30minute job deadline. Reviewed local workflow split preserves all1950/1381 cases and mandatory final gate; fresh exact evidence/source publication then hosted Node22 CI remains. No merge/deploy authority.",
-      "nextAction": "Published45f32655 exact reviewed treec0af8ce7: Semantic38273853534 and Assurance38273853575 SUCCESS; Product38273853502 and Runtime38273853504 FAILURE from three obsolete ownership-sidecar test assumptions. Both unlimited generated corpora1950/1381 now completeSUCCESS; no timeout cancellation. Independently accepted tests-only correctioned73d106 awaits coherent reviewed successor publication and hosted Node22 verification. Full42 also retains genuine owner acceptance/final certification.",
+      "unsatisfiedAssertionOrPreservation": "All four automatic workflows passed on published source 19863fa5d4babdee5cccb4c894b64e44abfb0014, tree a7b9773f904558bd1768bb84f40ae1ca6fd8b603. Complete remaining programme acceptance and final owner/certification gates; hosted CI alone does not close requirement 42. New O9 successor remains unpublished and has no hosted result.",
+      "nextAction": "All four automatic workflows passed on published source 19863fa5d4babdee5cccb4c894b64e44abfb0014, tree a7b9773f904558bd1768bb84f40ae1ca6fd8b603. Complete remaining programme acceptance and final owner/certification gates; hosted CI alone does not close requirement 42. New O9 successor remains unpublished and has no hosted result.",
       "acceptedEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json; resume-20261012/EXACT-HEAD-CI.json (four SUCCESS, no reruns); resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey); continued-closure-20261012 scoped independent receipts (no new full closure); publication-closure-20261012/PUBLICATION-RECEIPT.json; publication-closure-20261012/EXACT-SOURCE-CI.json; publication-closure-20261012/REQUIREMENT42-CONDITIONAL-ACCEPTANCE.json",
       "newProgrammeAcceptance": false,
       "continuationEvidence": "connector-publication-20261012/PUBLICATION.json; FULL-TREE-VERIFICATION.json; CI-RESULT.json; revised-publication-20261012/REVIEW.md",
       "sharedDependency": "E \u2014 exact-source independent review and final mandatory gates",
       "classification": "EXECUTABLE_ENGINEERING_OR_EXAMINATION",
       "authority": "Existing local noncommercial engineering authority; new exact-source independent review/publication needs bounded approval",
-      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence",
+      "latestCiEvidence": "../o9-console-20261013/HOSTED-CI-TERMINAL-REVIEW.json"
     },
     {
       "group": "original45",
@@ -1041,19 +1043,23 @@
   "work8": "NO_GO",
   "work9": "INACTIVE",
   "independentCertification": "BATCH_AND_SCOPED_ROWS_ONLY_NOT_PROGRAMME",
-  "publication": "CANDIDATE_UNPUBLISHED_PRIOR_PUBLISHED_BASE_PRESERVED",
-  "newlyAcceptedItems": [],
+  "publication": "APPROVED_C084_E516_BATCH_PUBLISHED_EXACT_TREES; O9_SUCCESSOR_UNPUBLISHED",
+  "newlyAcceptedItems": [
+    9
+  ],
   "newlyAcceptedAmendments": [],
-  "publicationAuthorised": false,
-  "publishedCommit": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
-  "publishedTree": "29bddc44ab41fa30c8db4c0b6f6144e9950f58d4",
+  "publicationAuthorised": "Prior c084/e516 only; O9 successor requires exact batch approval",
+  "publishedCommit": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
+  "publishedTree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
   "createdAt": "2026-10-12T11:21:07.798233+00:00",
   "preservedPublishedCommit": "9eb1e282d4c088167556c0b34d81ae3006a8e29d",
   "preservedPublishedTree": "8bf582e6dfa3f8a7205e8ed80bcf993839fc71b8",
-  "sourceCandidate": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
-  "sourceTree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
-  "reviewVerdict": "ACCEPT_SCOPED_FINAL_INTEGRATION",
-  "newlyAcceptedOriginalIds": [],
+  "sourceCandidate": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+  "sourceTree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
+  "reviewVerdict": "ACCEPT_ORIGINAL_REQUIREMENT_9_AND_BOUNDED_INTEGRATION",
+  "newlyAcceptedOriginalIds": [
+    9
+  ],
   "newlyAcceptedAmendmentIds": [],
   "baselineCounts": {
     "PASS": 24,
@@ -1064,42 +1070,57 @@
     "PASS": 2,
     "PENDING": 17
   },
-  "updatedAt": "2026-10-12T15:36:55.180907+00:00",
-  "ci": "THREE_SUCCESS_ONE_CANCELLED",
-  "ciEvidence": "../continued-closure-20261012/RECOVERED-CI.json",
-  "ciSource": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
-  "candidateCi": "NOT_PUBLISHED",
-  "newClosuresThisContinuation": 0,
-  "newAmendmentClosuresThisContinuation": 0,
+  "updatedAt": "2026-10-12T17:27:33.419318+00:00",
+  "ci": "PASS_ALL_FOUR_AUTOMATIC_WORKFLOWS",
+  "ciEvidence": "../o9-console-20261013/HOSTED-CI-TERMINAL-REVIEW.json",
+  "ciSource": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
+  "candidateCi": "O9_SUCCESSOR_NOT_PUBLISHED",
+  "newClosuresThisContinuation": [
+    9
+  ],
+  "newAmendmentClosuresThisContinuation": [],
   "latestPublication": {
-    "sourceCommit": "45f326558ac8594636d7e4e29154c0cb5c7cc354",
-    "sourceTree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
-    "reviewedSource": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
-    "evidenceCommit": "5e2574cbc1abceacd433f75c6db25167392cfcfc",
-    "evidenceTree": "b4c65de1fab417381cd8e46434e5fd1eb5c66667",
-    "reviewedEvidence": "9bf611c7bf4f61714af25b1b89808bbc9b7df3b1",
-    "treeEquality": true,
-    "evidenceFirst": true,
-    "CI": "TERMINAL: ProductFAILURE;RuntimeFAILURE;SemanticSUCCESS;IndependentAssuranceSUCCESS. BothgeneratedcorporaSUCCESS1950/1381.",
-    "runs": [
-      38273853502,
-      38273853504,
-      38273853534,
-      38273853575
-    ]
+    "time": "2026-10-12T17:21:23.135Z",
+    "approvedEvidence": "c08418c4b4ba565d709115f294d56eac5310afc7",
+    "publishedEvidence": "7450ad59fa2e81e99d90cd462192f6c48055d2b9",
+    "evidenceTree": "4ee5959fdc5e47e4b12b96e27b0703c8c33d906f",
+    "approvedSource": "e5165a266702f1c63caf6a5577226a5600b7b8a0",
+    "publishedSource": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
+    "sourceTree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+    "completeTreeEquality": true,
+    "fileModesIncluded": true,
+    "sequence": "evidence verified before source ref moved",
+    "pr": {
+      "number": 113,
+      "draft": true,
+      "merged": false,
+      "head": "19863fa5d4babdee5cccb4c894b64e44abfb0014"
+    },
+    "noDeployment": true
   },
   "newlyAcceptedOriginalIdsThisPublication": [],
   "newlyAcceptedAmendmentIdsThisPublication": [],
   "latestReviewedUnpublishedSource": {
-    "commit": "ac1afbb8d86be844ec428f29dd745d167768fe0a",
-    "tree": "29f1d17b3f9312d77d21a1a24f0ce3e54ee6de93",
-    "frontendCommit": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4",
-    "frontendTree": "31a817093307b986ed97c870bab0ce5b5ba81e84",
-    "scope": "CI tests-only compatibility correction and connected canonical owner-pull inbox; no recovery activation change"
+    "commit": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+    "tree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
+    "review": "o9-console-20261013/O9-INDEPENDENT-ACCEPTANCE.json",
+    "publication": "PENDING_EXACT_BATCH_APPROVAL"
   },
   "unacceptedRecoveryCandidate": {
     "commit": "f7428efe3d79a258939bb46cad3ff87b495f86a7",
     "tree": "0e19a226ada5cd87595450b43ecc5e9e1c7b9bbb",
     "reason": "Exact final independent review interrupted by automated security flag; not integrated or published; no full33/39 acceptance"
+  },
+  "supersededPublicationMetadataBeforeO9": {
+    "sourceCandidate": "ba3eef87195b698a045cc832a23d01d4a6b22bb7",
+    "sourceTree": "c0af8ce7086e1cde447101c7e50300ecde9b1e47",
+    "publishedCommit": "8222dcf5bbf835cf5d9c131e57f3d4e4604970de",
+    "publishedTree": "29bddc44ab41fa30c8db4c0b6f6144e9950f58d4",
+    "publication": "CANDIDATE_UNPUBLISHED_PRIOR_PUBLISHED_BASE_PRESERVED",
+    "candidateCi": "NOT_PUBLISHED",
+    "reviewVerdict": "ACCEPT_SCOPED_FINAL_INTEGRATION",
+    "publicationAuthorised": false,
+    "newlyAcceptedItems": [],
+    "newlyAcceptedAmendments": []
   }
 }

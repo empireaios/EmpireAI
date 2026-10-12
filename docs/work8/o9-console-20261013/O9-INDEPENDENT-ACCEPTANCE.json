@@ -1,0 +1,78 @@
+{
+  "verdict": "ACCEPT_ORIGINAL_REQUIREMENT_9",
+  "governingOriginal": "MANDATE.txt Section4 and R1",
+  "interpretation": "R1 explicitly permits observed competitor prices and market evidence where obtainable and requires unknown/stale/unavailable fields labelled. Known demand, exact same-product match, paid Pillow and personal full-journey acceptance are not added to O9.",
+  "backend": {
+    "commit": "4c012674bff6b9d577be6ecf2b304483dd3737ef",
+    "tree": "8e9a373c10a5cbca3f85a1b6d9599490c9e8ba78",
+    "parent": "e5165a266702f1c63caf6a5577226a5600b7b8a0"
+  },
+  "frontend": {
+    "commit": "c6b698c4a98073789b6d6729c642a0882ad43b3f",
+    "tree": "c6234ccc85b1a7600ee21952f90010de44f125a4",
+    "parent": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4"
+  },
+  "originalAssertions": {
+    "attributableRealEvidence": "Exact retained supplier receipt independently fetched at17:25:26.863Z matches examination fixture byte values; current market receipt lineage previously independently read. No synthetic product cards.",
+    "identity": "CJ2610111119571636000 references observed variants; Amazon B0HGNRNC8M explicit functional magnetic-card-storage comparable only. Distinct brand/GTIN/dimensions/material/capacity uncertainty disclosed.",
+    "marketPrice": "USD14 lowest new landed marketplace offer, time2026-10-12T17:02:48.797Z, sourceev_5a16ad30c77d6155567f2fb91f76e43e679e3434, catalogueev_4ab6088cb03516f954073daf0c0a95abe398e0c9. Not supplier landed acquisition cost.",
+    "freshness": "Historical supplier observation marked; marketplace validity shown; fixed examination clock17:12Z disclosed. Production route computes current Date.now freshness.",
+    "unknownAndScreening": "Demand/unit sales/velocity unknown; qualification0, exact matches0, deferred evidence and original dimensions accessible; unrelated fresh snowcover not paired.",
+    "consumer": "Canonical Portfolio wired to actual native read-only backend and Next proxy. Actual ObservedCandidates component examined with authenticated backend and genuine stored records; desktop/mobile visible content independently inspected.",
+    "authority": "No model call, provider refresh, live commerce or approval inferred. Authenticating middleware remains canonical; GET only, no-store, unsupported query refused."
+  },
+  "independentVerification": {
+    "runtime": "Node24.19.0",
+    "focusedProjectionTests": {
+      "pass": 2,
+      "fail": 0
+    },
+    "newIndependentRouteTest": {
+      "pass": 1,
+      "fail": 0,
+      "checks": "Anonymous401, foreign403, caller-query400 before store, authenticated200 workspace scoping/no-store, unavailable503"
+    },
+    "nativeReceiptReviewed": "Anonymous401 and owner200, actual canonical component and proxy, browser390x844/1365x900, no horizontal overflow",
+    "visualReview": "Reviewed actual mobile.png and desktop.png and source-bound visible.txt",
+    "priorRankRepair": "Preserved 4 independent adversarial and1 acquisition/store/reopen passing tests; no duplicate rerun"
+  },
+  "limits": [
+    "No full Next page shell served in native component exam; canonical Portfolio integration source reviewed and frontend typechecked",
+    "No production deployment or merge",
+    "No personal owner full-operating-journey acceptance",
+    "No eligible genuine dossier, actual Pillow assessment, demand fact, exact product match, media rights or commercial profitability inferred",
+    "No hosted Node22 CI claim"
+  ],
+  "statusTransition": {
+    "original9": "PENDING -> PASS",
+    "originalCounts": "31 PASS / 10 PENDING / 4 BLOCKED =45",
+    "amendmentCounts": "8 PASS /11 PENDING =19",
+    "other63Rows": "UNCHANGED",
+    "programme": "NO_GO; Work9 INACTIVE; Pillow NOT_BORN; commerce LOCKED"
+  },
+  "sha256": {
+    "/workspace/scratch/798050748e67/business-source/backend/src/runtime/commerce-runtime/governed/work8-comparable-context.ts": "c9278e61bb79847f5e36c61d620feb8e2bd213c3dd1b7468f46c4bef63f91980",
+    "/workspace/scratch/798050748e67/business-source/backend/src/runtime/commerce-runtime/governed/work8-comparable-routes.ts": "970cad9b2ab293bd18dbaec3a8681e335b9ab5ea3c1724b67d4543c7f2aa23ff",
+    "/workspace/scratch/798050748e67/business-source/backend/src/validation/fixtures/work8-o9-genuine.json": "1b807f0d8c42aab7d66fa0ba12d4fdc79a7fc66b5f9a2e5398cfc5b0c69ca9f4",
+    "/dev/shm/work8-o9-frontend/empireai-web/components/owner/work7/ObservedCandidates.tsx": "a063996176867ca940b41d6646620e117eac602b0507f81cffa5d20854d7e0e5",
+    "/dev/shm/work8-o9-frontend/empireai-web/components/owner/work7/OwnerJourneys.tsx": "d1a0d0db4e45e5e523226371d99750a57d36e12671537b50e83acd07abc34e36",
+    "/dev/shm/work8-o9-frontend/empireai-web/app/api/owner/commerce/comparables/route.ts": "b878dbc330b2009b8d109fd93f78b1f6ed381d83359b85ec7e7e9ba718e2fc3e",
+    "/workspace/scratch/798050748e67/o9-frontend-exam/receipt.json": "989b4751f82d371152ab8c961e2a19ea551abbf8898fe78675eaa61b36207566",
+    "/workspace/scratch/798050748e67/o9-frontend-exam/desktop.png": "39f704c0066eb2047c93a191f1d17f9f43ffb33f9066fef173e1f517515633d5",
+    "/workspace/scratch/798050748e67/o9-frontend-exam/mobile.png": "2b9e3b327612f7cb62c307aeda542942eff9f473170123095b9c7ab75115d570",
+    "/workspace/scratch/798050748e67/o9-frontend-exam/visible.txt": "1e06e6e16e32ec0ed222e17204586c1c61d29f5d6d7d681d16df4bc538d2a69b",
+    "/workspace/scratch/798050748e67/closure-lane/O9-SUPPLIER-INDEPENDENT-READBACK.json": "3bb5fccb797ff30f496be17b757c77d1444c5bf485a10d84a57eee8a95d8f666"
+  },
+  "boundedIntegration": {
+    "verdict": "ACCEPT_UNCHANGED_O9_CODE_AND_PINNED_FRONTEND_INTEGRATION",
+    "source": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+    "tree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
+    "parent": "4c012674bff6b9d577be6ecf2b304483dd3737ef",
+    "delta": "Exactly7 added lines in .github/workflows/product-path-ci.yml; existing restored ad5 frontend then verified O9 bundle fetched and detached c6b698/treec623 checked before existing CI",
+    "bundleGitBlob": "5a05b10f3dbbdb611d9a9f5ee70c6946cee69bef",
+    "bundleVerified": true,
+    "bundlePrerequisite": "ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4",
+    "codeTestsRepeated": false,
+    "hostedCI": "Not yet claimed"
+  }
+}
