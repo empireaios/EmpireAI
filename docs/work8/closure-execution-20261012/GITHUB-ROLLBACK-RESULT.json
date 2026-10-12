@@ -1,0 +1,22 @@
+{
+  "runId": 38226997080,
+  "status": "completed",
+  "conclusion": "success",
+  "workflowSha": "8999be3973a22d0bbf65366220008f818b22d1b6",
+  "startedAt": "2026-10-12T08:59:32Z",
+  "updatedAt": "2026-10-12T09:02:48Z",
+  "artifactId": 11736188494,
+  "artifactSha256": "2dbecd0c09428630075b8982590f4f50d757fe7c1256f9fd68fd16f4c1eeeb79",
+  "sealedFiles": 10,
+  "retainedOracle": "PASS_RETAINED_OPERATING_ROLLBACK_ORACLE",
+  "tasks": 6,
+  "receipts": 114,
+  "financialEvents": 25,
+  "fullSettlementClaim": false,
+  "stageElapsedMs": [
+    30277.706238000002,
+    30508.005299,
+    91652.987221
+  ],
+  "scope": "Old/current/old real commerce worker and continuing finance. Not complete nine-store runtime or protected independent restoration."
+}
