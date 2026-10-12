@@ -1,0 +1,38 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {spawn} from 'node:child_process';import {performance} from 'node:perf_hooks';
+import {GovernedCommerceStore,digest} from '../../backend/src/runtime/commerce-runtime/governed/store.ts';
+import {GovernedCommerceEngine} from '../../backend/src/runtime/commerce-runtime/governed/engine.ts';
+import {CommerceWorker} from '../../backend/src/runtime/commerce-runtime/governed/worker.ts';
+import {projectWork8Finance} from '../../backend/src/runtime/commerce-runtime/governed/work8-finance.ts';
+import {makeWork8CommerceRecovery} from '../../backend/src/assurance/work8-commerce-recovery.ts';
+import {AssuranceControlPlane} from '../../backend/src/assurance/control-plane.mjs';
+assert.equal(process.env.WORK8_KERNEL_EGRESS,'AF_UNIX_ONLY');
+const root=process.argv[2];assert.ok(path.isAbsolute(root));fs.mkdirSync(root,{recursive:false});fs.mkdirSync(root+'/commissioning');fs.mkdirSync(root+'/control');
+const begin=performance.now(),workspace='synthetic:work8:compound:8027';const events=[];const trace=(kind,data={})=>{const e={kind,elapsedMs:performance.now()-begin,...data};events.push(e);fs.appendFileSync(root+'/events.jsonl',JSON.stringify(e)+'\n');};
+const store=new GovernedCommerceStore(root+'/commerce.sqlite'),engine=new GovernedCommerceEngine(store),worker=new CommerceWorker(engine);
+const gap=worker.enqueue(workspace,'synthetic-owner','gap-8027');worker.runBounded(workspace,gap.id,4);
+const unknown=worker.enqueue(workspace,'synthetic-owner','unknown-8027');const step=unknown.steps.find(s=>s.command.type==='intercept');step.command.result='TIMEOUT';step.command.acceptedQuantity=0;
+store.transaction(()=>store.db.prepare('UPDATE commerce_runtime_tasks SET record=? WHERE workspace=? AND id=? AND version=0').run(JSON.stringify(unknown),workspace,unknown.id));worker.runBounded(workspace,unknown.id,4);for(let i=0;i<2;i++)worker.tick(workspace,unknown.id,worker.get(workspace,unknown.id).fence);
+const rec=makeWork8CommerceRecovery({store,worker});const cp=new AssuranceControlPlane({root:root+'/control',revision:'d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5',runbooks:{work8_checkpoint_replay:rec.runbook}});
+const observer=spawn(process.execPath,['backend/src/assurance/permanent-inspector.mjs'],{cwd:process.cwd(),env:{PATH:process.env.PATH,RAILWAY_VOLUME_MOUNT_PATH:root,RAILWAY_GIT_COMMIT_SHA:'d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5'},stdio:['ignore','ignore','ignore','ipc'],detached:true});
+const observerDeadline=setTimeout(()=>observer.kill('SIGKILL'),110000);
+try{
+ await new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('OBSERVER_NO_INITIAL_PROGRESS')),15000);observer.once('message',m=>{clearTimeout(t);assert.equal(m.type,'assurance_progress');resolve();});observer.once('error',reject);});trace('OBSERVER_INITIAL_PROGRESS',{pid:observer.pid});
+ await new Promise(r=>setTimeout(r,Math.max(0,5000-(performance.now()-begin))));
+ observer.kill('SIGSTOP');const task=worker.get(workspace,gap.id);engine.execute(task.steps[4].actor,{id:digest({task:gap.id,step:4}),missionId:gap.mission,expectedVersion:4,command:task.steps[4].command});
+ const u=worker.tick(workspace,unknown.id,worker.get(workspace,unknown.id).fence);const source=store.history(workspace,unknown.mission).at(-1);assert.equal(source.state.orders['order-fixture'].outcome,'UNKNOWN');
+ const refund={id:'refund-mismatch-8027',orderId:'order-fixture',sourceReceiptDigest:source.digest,kind:'REFUND',minor:1,currency:'SGD',classification:'SIMULATION',at:new Date().toISOString()};let detector='';try{projectWork8Finance(store,workspace,unknown.mission,[refund],new Date().toISOString());}catch(e){detector=e.message;}assert.equal(detector,'FINANCE_CANONICAL_AMOUNT_MISMATCH');
+ const status=fs.readFileSync('/proc/'+observer.pid+'/status','utf8').match(/^State:\s+(\S+)/m)?.[1];assert.equal(status,'T');
+ const prefix=store.history(workspace,gap.mission);const supplierBefore=digest({history:store.history(workspace,unknown.mission),task:u});
+ assert.equal(prefix.length,5);assert.equal(worker.get(workspace,gap.id).cursor,4);
+ trace('COMBINED_FAULTS_ACTIVE',{observerPid:observer.pid,observerState:status,gapReceipts:5,gapCursor:4,supplierOutcome:'UNKNOWN',refundDetector:detector});
+ const gp=rec.probes(workspace,gap.id)[0],up=rec.probes(workspace,unknown.id)[0];assert.equal(gp.status,'FAILED');assert.equal(up.status,'BLOCKED');
+ const gi=cp.observe(workspace,{...gp,synthetic:true});const ui=cp.observe(workspace,{...up,synthetic:true});
+ const fi=cp.observe(workspace,{id:'refund-mismatch',capability:'financial-integrity',status:'FAILED',synthetic:true,summary:'Combined isolated refund mismatch',evidence:{detector,sourceReceiptDigest:source.digest}});
+ const oi=cp.observe(workspace,{id:'observer-stop',capability:'monitoring',status:'FAILED',synthetic:true,summary:'External examination observer detected stopped inspector',evidence:{pid:observer.pid,state:status,detector:'EXAMINATION_PROC_STATE_READ'}});
+ const repaired=await cp.recover(workspace,gi.id);assert.equal(repaired.status,'VERIFIED');assert.equal(digest(store.history(workspace,gap.mission)),digest(prefix));assert.equal(worker.get(workspace,gap.id).cursor,5);
+ await cp.recover(workspace,gi.id);assert.equal(cp.list(workspace,'recovery').length,1);
+ for(const i of [ui,fi,oi])assert.equal((await cp.recover(workspace,i.id)).status,'NO_RUNBOOK');
+ assert.equal(digest({history:store.history(workspace,unknown.mission),task:worker.get(workspace,unknown.id)}),supplierBefore);
+ const receipt={status:'PASS_SCOPED_COMBINED_FOUR_FAULTS',seed:8027,elapsedMs:performance.now()-begin,application:'d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5',events,incidents:cp.list(workspace,'incident'),recoveries:cp.list(workspace,'recovery'),gapPrefix:prefix,gapTask:worker.get(workspace,gap.id),supplierHistory:store.history(workspace,unknown.mission),supplierTask:worker.get(workspace,unknown.id),refundInput:refund,externalEffects:0,paidInference:0,limitations:['Observer stop detected by external examination /proc reader, not deployed alert channel','Real timers unchanged; automatic stale-monitor detection not accelerated or certified','Isolated same-host process boundary; not platform certification','No full requirement34 closure']};
+ fs.writeFileSync(root+'/receipt.json',JSON.stringify(receipt,null,2));trace('TERMINAL',{status:receipt.status});console.log(JSON.stringify({status:receipt.status,elapsedMs:receipt.elapsedMs}));
+}finally{clearTimeout(observerDeadline);observer.kill('SIGKILL');cp.close();store.close();}
