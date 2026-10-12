@@ -220,8 +220,11 @@ export class EmpireDatabase {
   private captureWriteFence = false;
   private readonly captureIdentity: string | null;
 
-  constructor(private readonly filePath: string) {
+  constructor(private readonly filePath: string, private readonly captureReadOnly = false) {
     this.inMemory = isInMemoryDatabasePath(filePath);
+    if (captureReadOnly && (this.inMemory || !fs.existsSync(filePath))) {
+      throw new Error("Capture read-only SQLite requires an existing disk database");
+    }
     this.captureIdentity = this.inMemory ? null : captureFileIdentity(filePath);
     if (this.captureIdentity && [...openSqlJsHandles.values()].flatMap(handles => [...handles])
       .some(handle => handle.captureWriteFence &&
@@ -238,7 +241,7 @@ export class EmpireDatabase {
         // A production startup must not replace a damaged business database with
         // an empty one: the service could look healthy while durable state is missing.
         // Keep the original file in place for an explicit, reviewed restore.
-        if (process.env.NODE_ENV === "production" || Boolean(
+        if (this.captureReadOnly || process.env.NODE_ENV === "production" || Boolean(
           process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME ||
           process.env.RAILWAY_SERVICE_NAME || process.env.RAILWAY_DEPLOYMENT_ID
         )) {
@@ -265,6 +268,7 @@ export class EmpireDatabase {
     } else {
       this.db = new SQL.Database();
     }
+    if (this.captureReadOnly) this.db.exec("PRAGMA query_only=ON");
     if (this.captureIdentity) {
       const handles = openSqlJsHandles.get(this.captureIdentity) ?? new Set<EmpireDatabase>();
       handles.add(this);
@@ -279,6 +283,9 @@ export class EmpireDatabase {
   }
 
   pragma(name: string, options?: { simple?: boolean }): unknown {
+    if (this.captureReadOnly && !["query_only","integrity_check","quick_check","schema_version","user_version","application_id","page_count","freelist_count"].includes(name.toLowerCase())) {
+      throw new Error("Capture read-only SQLite refuses mutating or unsupported PRAGMA");
+    }
     if (name.includes("=")) {
       this.assertCaptureWritesAllowed();
       this.db.run(`PRAGMA ${name}`);
@@ -296,6 +303,11 @@ export class EmpireDatabase {
   }
 
   prepare(sql: string) {
+    // Recovery views expose SELECT-only prepared reads. Prevent query helpers
+    // from disabling SQLite query_only or executing DML through get()/all().
+    if (this.captureReadOnly && !/^\s*SELECT\b/i.test(sql)) {
+      throw new Error("Capture read-only SQLite permits SELECT reads only");
+    }
     return {
       run: (params?: Record<string, unknown>): RunResult => {
         this.assertCaptureWritesAllowed();
@@ -334,7 +346,7 @@ export class EmpireDatabase {
 
   close(): void {
     if (this.closed) return;
-    this.assertCaptureWritesAllowed();
+    if (this.captureWriteFence) throw new Error("SQLite writes quiesced for capture");
     // Invalidate an older async export before writing the final snapshot. Its
     // pending file I/O may complete, but it must never replace this snapshot.
     this.persistGeneration += 1;
@@ -343,7 +355,7 @@ export class EmpireDatabase {
       this.persistTimer = null;
     }
     try {
-      this.flushPersistSync();
+      if (!this.captureReadOnly) this.flushPersistSync();
     } catch (error) {
       this.persistDirty = true;
       persistStats = {
@@ -385,6 +397,7 @@ export class EmpireDatabase {
   }
 
   private assertCaptureWritesAllowed(): void {
+    if (this.captureReadOnly) throw new Error("Capture read-only SQLite refuses writes");
     if (this.captureWriteFence) throw new Error("SQLite writes quiesced for capture");
   }
 
@@ -399,7 +412,7 @@ export class EmpireDatabase {
    */
   requestCriticalPersist(): Promise<void> {
     if (this.closed) throw new Error("Database is closed");
-    if (this.inMemory) {
+    if (this.inMemory || this.captureReadOnly) {
       return Promise.resolve();
     }
     persistStats = {

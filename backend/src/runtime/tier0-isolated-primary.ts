@@ -1,3 +1,6 @@
+import { installPrimaryCaptureParticipant } from './work8-primary-capture.js';
+import { installCaptureHttpAdmission } from './capture-http-admission.js';
+import { withDrainedWork8Background } from './work8-background-capture.js';
 import {retainProductionFinance} from '../finance/financial-centre.js';
 import {registerGovernedCommerce,productionCommerce} from './commerce-runtime/governed/runtime.js';
 import {registerFinancialCentre} from '../finance/runtime.js';
@@ -515,6 +518,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     requestTimeout: 300_000,
     bodyLimit: 25 * 1024 * 1024,
   });
+  const captureAdmission = installCaptureHttpAdmission(app);
   installLockedCommissioning(app);
   let stopSweeper: () => Promise<void> = async () => {};
   const releaseFinance = retainProductionFinance();
@@ -792,10 +796,13 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     try {
       const child = spawn(process.execPath, [workerEntryPath()], {
         env: childEnv,
-        stdio: "inherit",
+        stdio: ["inherit", "inherit", "inherit", "ipc"],
         detached: false,
       });
       workerState.child = child;
+      const disposeCapture = installPrimaryCaptureParticipant(child, held =>
+        captureAdmission.withDrainedAdmission(() => withDrainedWork8Background(held)));
+      child.once("exit", disposeCapture);
       logger.info(
         { workerPort: workerState.port, pid: child.pid },
         "Tier-0 primary spawned Brain worker",

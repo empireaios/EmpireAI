@@ -1,3 +1,7 @@
+import { registerWork8RecoveryRoutes } from './runtime/work8-recovery-routes.js';
+import { resolveShadowCeoDbPath } from './orchestration/shadow-ceo-integration/durable-paths.js';
+import {withPrimaryCaptureFence} from './runtime/work8-primary-capture.js';
+import {captureWork8RecoveryInventory,finalizeWork8RecoveryInventory,verifyWork8RecoveryInventory,invalidateWork8RecoveryInventory,type Work8RecoveryRequest,type Work8RecoveryResult} from './runtime/work8-recovery-capture.js';
 import {retainProductionFinance} from './finance/financial-centre.js';
 import { withDrainedWork8Background } from './runtime/work8-background-capture.js';
 import { runLegacyBusinessBootstrap } from "./runtime/startup-bootstrap-policy.js";
@@ -15,7 +19,7 @@ import { getRecentEventLoopLagMs } from "./runtime/event-loop-cooperative.js";
 import { getAdmissionStats } from "./runtime/production-admission-control.js";
 import { installCaptureHttpAdmission } from "./runtime/capture-http-admission.js";
 import { withLocalJsonAuthorityCapture } from "./orchestration/shadow-ceo-integration/local-json-capture.js";
-import { withQuiescedBrainAndShadowCapture } from "./orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js";
+import { withExistingShadowCapture, withQuiescedBrainAndShadowCapture } from "./orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js";
 import type { SqliteShadowCeoRepository } from "./orchestration/shadow-ceo/repository.js";
 import { getDatabase } from "./brain/database.js";
 import { getActiveDatabasePath } from "./brain/database.js";
@@ -279,6 +283,7 @@ export type EmpireApp = {
    */
   withDrainedWork8LocalCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
+  captureWork8Recovery: (request:Work8RecoveryRequest)=>Promise<Work8RecoveryResult>;
   finishRouteRegistration?: () => Promise<void>;
 };
 
@@ -670,6 +675,34 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     }, timeoutMs);
   };
 
+  const captureWork8Recovery = async (request:Work8RecoveryRequest):Promise<Work8RecoveryResult> => {
+    if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN");
+    if (!(brain.taskQueue instanceof TaskQueue)) throw new Error("Recovery requires connected Redis");
+    const queue=brain.taskQueue;
+    const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+    if (!root) throw new Error("Recovery requires explicit volume root");
+    let staged=false;
+    try {
+      // Load the temporary Shadow view only after every applicable admission
+      // drain. Its read-only close happens inside those same boundaries on both
+      // success and refusal; no stale SQL.js snapshot can flush after reopening.
+      const result=await withPrimaryCaptureFence(()=>withDrainedWork8Background(()=>
+        queue.withPausedSharedProcessing(()=>withDrainedLocalAdmission(()=>
+          withExistingShadowCapture(getDatabase(),resolveShadowCeoDbPath(),shadow=>
+            withExclusiveNativeMissionCapture(getActiveDatabasePath(),()=>
+              withExclusiveWork8DomainCapture(root,async()=> {
+                const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath},queue);
+                staged=true;return captured;
+              })))))));
+      finalizeWork8RecoveryInventory(result);
+      verifyWork8RecoveryInventory(result);
+      return result;
+    } catch(error) {if(staged) invalidateWork8RecoveryInventory(request.destination);throw error;}
+  };
+
+  registerWork8RecoveryRoutes(app, {authenticate, founderEmail:env.FOUNDER_EMAIL,
+    capture:captureWork8Recovery});
+
   if (earlyListen) {
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
     // Full REAL-module surface remains deferred behind finishRouteRegistration.
@@ -686,6 +719,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       withDrainedLocalNativeCapture,
       withDrainedSharedBrainNativeCapture,
       withDrainedWork8LocalCapture,
+      captureWork8Recovery,
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -704,6 +738,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     withDrainedLocalNativeCapture,
     withDrainedSharedBrainNativeCapture,
     withDrainedWork8LocalCapture,
+    captureWork8Recovery,
   };
 }
 

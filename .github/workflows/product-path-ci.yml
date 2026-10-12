@@ -349,6 +349,15 @@ jobs:
           git checkout --detach 7dff79a6b712972b08add445d19e30cb664f69e0
           test "$(git rev-parse HEAD)" = 7dff79a6b712972b08add445d19e30cb664f69e0
           test "$(git rev-parse HEAD^{tree})" = 03e55a6cea520a6cb1d1a752b51d3c9781290c65
+          # Review the bounded mobile Finance correction without updating the
+          # deployment-linked frontend branch. Retain the original source pin.
+          correction=_work8_evidence/docs/work8/remediation-20261012/assurance-console/frontend-mobile-finance.bundle
+          test "$(git hash-object "$correction")" = 7b81f4069aef77823770cd1d26338c32a0e88838
+          git bundle verify "$correction"
+          git fetch "$correction" HEAD
+          git checkout --detach 960d6167206e5fc9994adfe89c63d4ce83dd1123
+          test "$(git rev-parse HEAD)" = 960d6167206e5fc9994adfe89c63d4ce83dd1123
+          test "$(git rev-parse HEAD^{tree})" = a956c4f2235ac48d745d8e51a170fe5909bb3427
           rm -rf -- _work8_evidence
       - name: Use pinned Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020

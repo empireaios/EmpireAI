@@ -1,3 +1,4 @@
+import { runCaptureAwareBackground } from '../../../../runtime/work8-background-capture.js';
 /**
  * Read-only continuation of owner-started Amazon Orders pagination.
  * One page is attempted per tick; a provider/credential failure pauses the
@@ -49,7 +50,7 @@ export function startAmazonOrderImportContinuation(): () => Promise<void> {
     timer = setTimeout(() => {
       flight = (async () => {
         try {
-          await continueOneAmazonOrderImport();
+          await runCaptureAwareBackground(continueOneAmazonOrderImport);
         } catch (error) {
           logger.error({
             name: error instanceof Error ? error.name : "unknown",

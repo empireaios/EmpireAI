@@ -146,3 +146,39 @@ test('Redis loss during nine-domain capture refuses success and retains shared o
   for(const db of x.dbs)assert.equal(db.prepare('SELECT count(*) n FROM evidence').get()?.n,1);
  }finally{reader?.disconnect();await queue?.close();if(server&&server.exitCode===null&&server.signalCode===null){const stopped=once(server,'exit');server.kill('SIGKILL');await stopped;}x.close();}
 });
+
+test('runtime recovery Redis inventory preserves binary keys, values and expiry and refuses disconnected source',async()=>{
+ const {captureRedisInventory}=await import('../../runtime/work8-recovery-capture.js');
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'recovery-redis-inventory-'));
+ const port=await new Promise<number>((resolve,reject)=>{const listener=createServer();listener.once('error',reject);listener.listen(0,'127.0.0.1',()=>{const address=listener.address();if(!address||typeof address==='string')return reject(Error('Missing port'));listener.close(()=>resolve(address.port));});});
+ const server=spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',dir,'--save','','--appendonly','no'],{stdio:['ignore','pipe','pipe']});
+ let source:Redis|undefined,target:Redis|undefined;
+ try{
+  await new Promise<void>((resolve,reject)=>{let output='';const timeout=setTimeout(()=>reject(Error('Redis startup timeout: '+output.slice(-500))),5000);server.once('error',error=>{clearTimeout(timeout);reject(error);});server.once('exit',code=>{clearTimeout(timeout);reject(Error('Redis exited '+code+': '+output.slice(-500)));});server.stdout!.on('data',chunk=>{output+=String(chunk);if(output.toLowerCase().includes('ready to accept connections')){clearTimeout(timeout);resolve();}});});
+  source=new Redis({host:'127.0.0.1',port,db:0,maxRetriesPerRequest:0,enableOfflineQueue:false});target=new Redis({host:'127.0.0.1',port,db:1});
+  await until(async()=>source!.status==='ready'&&target!.status==='ready','Redis clients not ready');
+  const key=Buffer.from([0,255,17]),value=Buffer.from([255,0,123]);await source.set(key,value);await source.set('expires','value','PX',60000);await source.hset('pending','job','retained');
+  const owner={queue:{client:Promise.resolve(source)}} as unknown as TaskQueue;
+  const rows=await captureRedisInventory(owner);assert.equal(rows.length,3);assert.ok(rows.some(row=>row.ttl>0));
+  assert.equal(await target.dbsize(),0);
+  for(const row of rows)await target.restore(Buffer.from(row.key,'base64'),row.ttl===-1?0:row.ttl,Buffer.from(row.dump,'base64'));
+  assert.deepEqual(await target.getBuffer(key),value);assert.equal(await target.hget('pending','job'),'retained');assert.ok((await target.pttl('expires'))>0);
+  source.disconnect();await assert.rejects(captureRedisInventory(owner));
+ }finally{source?.disconnect();target?.disconnect();if(server.exitCode===null){const done=once(server,'exit');server.kill('SIGKILL');await done;}fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+test('actual app recovery entrypoint composes inherited primary IPC, local fences and real Redis', {timeout:180000},async()=>{
+ const {installPrimaryCaptureParticipant}=await import('../../runtime/work8-primary-capture.js');
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'app-recovery-integration-'));const root=path.join(dir,'volume');fs.mkdirSync(root);
+ const port=await new Promise<number>((resolve,reject)=>{const listener=createServer();listener.once('error',reject);listener.listen(0,'127.0.0.1',()=>{const address=listener.address();if(!address||typeof address==='string')return reject(Error('Missing port'));listener.close(()=>resolve(address.port));});});
+ const server=spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',dir,'--save','','--appendonly','no'],{stdio:['ignore','pipe','pipe']});
+ let child:ChildProcess|undefined;let remove:(()=>void)|undefined;let fences=0;let childOutput='';
+ try{
+  await new Promise<void>((resolve,reject)=>{let output='';const timer=setTimeout(()=>reject(Error('Redis timeout')),5000);server.once('error',reject);server.once('exit',code=>{clearTimeout(timer);reject(Error('Redis exited '+code+': '+output));});server.stdout!.on('data',chunk=>{output+=String(chunk);if(output.toLowerCase().includes('ready to accept connections')){clearTimeout(timer);resolve();}});});
+  child=childProcess.fork(new URL('./fixtures/work8-app-recovery-child.ts',import.meta.url),[],{execArgv:['--import','tsx'],stdio:['ignore','pipe','pipe','ipc'],env:{...process.env,NODE_OPTIONS:'--max-old-space-size=8192',NODE_ENV:'test',EMPIRE_ROLE:'brain-worker',EMPIRE_ENGINEERING_TEST_MODE:'true',DATABASE_PATH:path.join(root,'brain.db'),RAILWAY_VOLUME_MOUNT_PATH:root,SHADOW_CEO_DATA_DIR:path.join(root,'shadow'),REDIS_URL:`redis://127.0.0.1:${port}`,WORK8_RECOVERY_EXAMINATION:'false',OPENAI_API_KEY:'',ANTHROPIC_API_KEY:'',GOOGLE_API_KEY:'',GEMINI_API_KEY:''}});
+  child.stdout!.on('data',chunk=>{childOutput=(childOutput+String(chunk)).slice(-6000);});child.stderr!.on('data',chunk=>{childOutput=(childOutput+String(chunk)).slice(-6000);});
+  remove=installPrimaryCaptureParticipant(child,async held=>{fences++;await held();});
+  const result=await new Promise<any>((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Worker result timeout: '+childOutput)),150000);child!.on('message',(v:any)=>{if(v?.event==='result'){clearTimeout(timer);resolve(v.result);}if(v?.event==='error'){clearTimeout(timer);reject(Error(v.error));}});child!.once('error',error=>{clearTimeout(timer);reject(error);});child!.once('exit',code=>{clearTimeout(timer);reject(Error('Worker exited '+code+' before result: '+childOutput));});});
+  assert.equal(result.stores,13);assert.equal(result.completeLiveState,false);assert.equal(result.missingStoreRefused,true);assert.equal(result.sourceRecord,'retained');assert.equal(result.concurrentShadowPreserved,true);assert.equal(result.postReleaseWritePreserved,true);assert.equal(result.aliasRefusalPreserved,true);assert.equal(fences,3);
+ }finally{remove?.();for(const process of [child,server]){if(process&&process.exitCode===null&&process.signalCode===null){const done=once(process,'exit');process.kill('SIGKILL');await done;}}fs.rmSync(dir,{recursive:true,force:true});}
+});

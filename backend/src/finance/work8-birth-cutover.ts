@@ -56,13 +56,15 @@ export function projectBirthPeriod(source:Entry[],raw:BirthCutover,asOf:string) 
   for(const a of allocation){const key=[a.currency,a.stage,a.category].join(':');const t=totals[key]??={archiveMicro:0,liveMicro:0,futureMicro:0,totalMicro:0};
     for(const [k,v] of Object.entries({archiveMicro:a.preLaunchMicro,liveMicro:a.liveMicro,futureMicro:a.futureMicro,totalMicro:a.totalMicro}))t[k as keyof typeof t]=safe(BigInt(t[k as keyof typeof t])+BigInt(v));totals[key]=t;}
   const openingCash=new Map<string,Entry>();
-  for(const e of entries)if(e.type==='cash'&&reviewed(e.id)&&!reversed(e.id)&&Date.parse(e.data.asOf)<=cutoff){
+  for(const e of entries)if(e.type==='cash'&&reviewed(e.id)&&Date.parse(e.data.asOf)<=cutoff){
     const old=openingCash.get(e.data.account);if(!old||old.type==='cash'&&e.data.asOf>old.data.asOf)openingCash.set(e.data.account,e);}
   const positions=[...active.values()].filter(e=>['LIABILITY','RECEIVABLE','CAPITAL'].includes(e.data.category)||['INVOICED','ACCRUED_UNBILLED','COMMITTED'].includes(e.data.stage)||Date.parse(e.data.periodEnd)>cutoff);
   return {schema:'WORK8_FINANCIAL_BIRTH_V1',config,configDigest:hash(config),asOf,
     label:'Isolated launch-period rehearsal',liveActivation:false,noExecutionAuthority:true,
     archive:{label:'Pre-launch archive',entries,digest:hash(entries)},allocation,totals,
-    openingPosition:{cash:[...openingCash.values()],obligationsReceivablesPrepayments:positions,complete:false,
+    // Select the latest observation before excluding reversals, as the canonical
+    // FinancialCentre does. A withdrawn balance must not revive an older one.
+    openingPosition:{cash:[...openingCash.values()].filter(e=>!reversed(e.id)),obligationsReceivablesPrepayments:positions,complete:false,
       note:'Original records retained; these references are not an independently certified opening balance sheet.'},
     excludedSimulatedIds:entries.filter(e=>e.type==='cost'&&e.data.authenticity!=='REAL').map(e=>e.id),
     conservation:allocation.every(a=>a.preLaunchMicro+a.liveMicro+a.futureMicro===a.totalMicro),
