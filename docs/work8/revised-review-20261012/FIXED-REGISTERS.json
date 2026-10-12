@@ -692,8 +692,8 @@
       "name": "Review exact-head CI and release authority",
       "status": "PENDING",
       "category": "GOVERNANCE",
-      "unsatisfiedAssertionOrPreservation": "All four automatic workflows passed on published source 19863fa5d4babdee5cccb4c894b64e44abfb0014, tree a7b9773f904558bd1768bb84f40ae1ca6fd8b603. Complete remaining programme acceptance and final owner/certification gates; hosted CI alone does not close requirement 42. New O9 successor remains unpublished and has no hosted result.",
-      "nextAction": "All four automatic workflows passed on published source 19863fa5d4babdee5cccb4c894b64e44abfb0014, tree a7b9773f904558bd1768bb84f40ae1ca6fd8b603. Complete remaining programme acceptance and final owner/certification gates; hosted CI alone does not close requirement 42. New O9 successor remains unpublished and has no hosted result.",
+      "unsatisfiedAssertionOrPreservation": "Approved O9 source8e9bc32efdabc3edf86e250270d77d79519b938f/tree6773c016316d17db0a70b8b08e6b27b9240230ae passed all four automatic workflows; Node22 catalog/comparator regression execution verified. Full original requirement retains remaining integrated operating/certification gates. F29 code-ready successor remains unpublished and unexecuted; no CI-only full closure.",
+      "nextAction": "Approved O9 source8e9bc32efdabc3edf86e250270d77d79519b938f/tree6773c016316d17db0a70b8b08e6b27b9240230ae passed all four automatic workflows; Node22 catalog/comparator regression execution verified. Full original requirement retains remaining integrated operating/certification gates. F29 code-ready successor remains unpublished and unexecuted; no CI-only full closure.",
       "acceptedEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json; resume-20261012/EXACT-HEAD-CI.json (four SUCCESS, no reruns); resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey); continued-closure-20261012 scoped independent receipts (no new full closure); publication-closure-20261012/PUBLICATION-RECEIPT.json; publication-closure-20261012/EXACT-SOURCE-CI.json; publication-closure-20261012/REQUIREMENT42-CONDITIONAL-ACCEPTANCE.json",
       "newProgrammeAcceptance": false,
       "continuationEvidence": "connector-publication-20261012/PUBLICATION.json; FULL-TREE-VERIFICATION.json; CI-RESULT.json; revised-publication-20261012/REVIEW.md",
@@ -701,7 +701,7 @@
       "classification": "EXECUTABLE_ENGINEERING_OR_EXAMINATION",
       "authority": "Existing local noncommercial engineering authority; new exact-source independent review/publication needs bounded approval",
       "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence",
-      "latestCiEvidence": "../o9-console-20261013/HOSTED-CI-TERMINAL-REVIEW.json"
+      "latestCiEvidence": "../remaining25-20261013/O9-PUBLICATION-CI-TERMINAL.json"
     },
     {
       "group": "original45",
@@ -1043,23 +1043,19 @@
   "work8": "NO_GO",
   "work9": "INACTIVE",
   "independentCertification": "BATCH_AND_SCOPED_ROWS_ONLY_NOT_PROGRAMME",
-  "publication": "APPROVED_C084_E516_BATCH_PUBLISHED_EXACT_TREES; O9_SUCCESSOR_UNPUBLISHED",
-  "newlyAcceptedItems": [
-    9
-  ],
+  "publication": "Owner-approved O9 evidence/source published with complete tree equality including paths/modes; PR113 draft/unmerged",
+  "newlyAcceptedItems": [],
   "newlyAcceptedAmendments": [],
-  "publicationAuthorised": "Prior c084/e516 only; O9 successor requires exact batch approval",
-  "publishedCommit": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
-  "publishedTree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+  "publicationAuthorised": "Exact65a6ee82/b332d9a5 batch authorized and published",
+  "publishedCommit": "8e9bc32efdabc3edf86e250270d77d79519b938f",
+  "publishedTree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
   "createdAt": "2026-10-12T11:21:07.798233+00:00",
   "preservedPublishedCommit": "9eb1e282d4c088167556c0b34d81ae3006a8e29d",
   "preservedPublishedTree": "8bf582e6dfa3f8a7205e8ed80bcf993839fc71b8",
-  "sourceCandidate": "b332d9a5d3eac08288097d418da6927c701b8ed7",
-  "sourceTree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
-  "reviewVerdict": "ACCEPT_ORIGINAL_REQUIREMENT_9_AND_BOUNDED_INTEGRATION",
-  "newlyAcceptedOriginalIds": [
-    9
-  ],
+  "sourceCandidate": "e2a50ed19352a6a7181f4581cc327751bfced0e6",
+  "sourceTree": "00d95aeb9578b7d213fad55fe1f0c5d5d6fddbd9",
+  "reviewVerdict": "O9_ORIGINAL_ACCEPTANCE_PRESERVED; F29_CODE_READINESS_ONLY",
+  "newlyAcceptedOriginalIds": [],
   "newlyAcceptedAmendmentIds": [],
   "baselineCounts": {
     "PASS": 24,
@@ -1071,40 +1067,39 @@
     "PENDING": 17
   },
   "updatedAt": "2026-10-12T17:27:33.419318+00:00",
-  "ci": "PASS_ALL_FOUR_AUTOMATIC_WORKFLOWS",
-  "ciEvidence": "../o9-console-20261013/HOSTED-CI-TERMINAL-REVIEW.json",
-  "ciSource": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
-  "candidateCi": "O9_SUCCESSOR_NOT_PUBLISHED",
-  "newClosuresThisContinuation": [
-    9
-  ],
+  "ci": "PASS_ALL_FOUR_O9_AUTOMATIC_WORKFLOWS",
+  "ciEvidence": "../remaining25-20261013/O9-PUBLICATION-CI-TERMINAL.json",
+  "ciSource": "8e9bc32efdabc3edf86e250270d77d79519b938f",
+  "candidateCi": "F29_NOT_PUBLISHED_NOT_EXECUTED",
+  "newClosuresThisContinuation": [],
   "newAmendmentClosuresThisContinuation": [],
   "latestPublication": {
-    "time": "2026-10-12T17:21:23.135Z",
-    "approvedEvidence": "c08418c4b4ba565d709115f294d56eac5310afc7",
-    "publishedEvidence": "7450ad59fa2e81e99d90cd462192f6c48055d2b9",
-    "evidenceTree": "4ee5959fdc5e47e4b12b96e27b0703c8c33d906f",
-    "approvedSource": "e5165a266702f1c63caf6a5577226a5600b7b8a0",
-    "publishedSource": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
-    "sourceTree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+    "observedAt": "2026-10-12T17:46:51.568Z",
+    "reviewedEvidence": "65a6ee828ba36bcbec9b21dacd9bc4a4f81cedc2",
+    "publishedEvidence": "c131c5ee9c0898f8c3c919f7661edb38acae0bc2",
+    "evidenceTree": "60e7192178c7ba765f86ac58650c96da95c03a03",
+    "reviewedSource": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+    "publishedSource": "8e9bc32efdabc3edf86e250270d77d79519b938f",
+    "sourceTree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
     "completeTreeEquality": true,
-    "fileModesIncluded": true,
-    "sequence": "evidence verified before source ref moved",
+    "pathsAndFileModesIncluded": true,
+    "sequence": "Evidence verified before source branch mutation",
     "pr": {
       "number": 113,
       "draft": true,
       "merged": false,
-      "head": "19863fa5d4babdee5cccb4c894b64e44abfb0014"
+      "head": "8e9bc32efdabc3edf86e250270d77d79519b938f"
     },
     "noDeployment": true
   },
   "newlyAcceptedOriginalIdsThisPublication": [],
   "newlyAcceptedAmendmentIdsThisPublication": [],
   "latestReviewedUnpublishedSource": {
-    "commit": "b332d9a5d3eac08288097d418da6927c701b8ed7",
-    "tree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
-    "review": "o9-console-20261013/O9-INDEPENDENT-ACCEPTANCE.json",
-    "publication": "PENDING_EXACT_BATCH_APPROVAL"
+    "commit": "e2a50ed19352a6a7181f4581cc327751bfced0e6",
+    "tree": "00d95aeb9578b7d213fad55fe1f0c5d5d6fddbd9",
+    "review": "../remaining25-20261013/F29-CODE-INDEPENDENT-REVIEW.json",
+    "decision": "CODE_READINESS_ONLY",
+    "published": false
   },
   "unacceptedRecoveryCandidate": {
     "commit": "f7428efe3d79a258939bb46cad3ff87b495f86a7",
@@ -1122,5 +1117,15 @@
     "publicationAuthorised": false,
     "newlyAcceptedItems": [],
     "newlyAcceptedAmendments": []
+  },
+  "priorAcceptedPublicationBeforeO9": {
+    "publishedCommit": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
+    "publishedTree": "a7b9773f904558bd1768bb84f40ae1ca6fd8b603",
+    "ci": "PASS_ALL_FOUR_AUTOMATIC_WORKFLOWS",
+    "ciSource": "19863fa5d4babdee5cccb4c894b64e44abfb0014",
+    "ciEvidence": "../o9-console-20261013/HOSTED-CI-TERMINAL-REVIEW.json",
+    "publication": "APPROVED_C084_E516_BATCH_PUBLISHED_EXACT_TREES; O9_SUCCESSOR_UNPUBLISHED",
+    "sourceCandidate": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+    "sourceTree": "6773c016316d17db0a70b8b08e6b27b9240230ae"
   }
 }

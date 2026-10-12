@@ -1,0 +1,38 @@
+{
+  "originalCounts": {
+    "PASS": 31,
+    "PENDING": 10,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "publishedSource": "8e9bc32efdabc3edf86e250270d77d79519b938f",
+  "sourceTree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
+  "publishedEvidence": "c131c5ee9c0898f8c3c919f7661edb38acae0bc2",
+  "evidenceTree": "60e7192178c7ba765f86ac58650c96da95c03a03",
+  "ciRuns": {
+    "Product": 38286424381,
+    "Runtime": 38286422969,
+    "Semantic": 38286423017,
+    "Assurance": 38286422971
+  },
+  "ci": "ALL_FOUR_TERMINAL_SUCCESS",
+  "engineering": "F29 two missing pair-loss arms code independently accepted; next exact publication batch required. No positive execution or complete row acceptance inferred.",
+  "newWholeRowAcceptances": [],
+  "governance": "PR113 draft unmerged; no deploy; NOT_BORN; LOCKED; Work9 INACTIVE",
+  "candidateSource": {
+    "commit": "e2a50ed19352a6a7181f4581cc327751bfced0e6",
+    "tree": "00d95aeb9578b7d213fad55fe1f0c5d5d6fddbd9",
+    "base": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+    "workspace": "/workspace/scratch/798050748e67/f29-integration",
+    "branch": "work8/f29-reviewed-20261013",
+    "review": "F29-CODE-INDEPENDENT-REVIEW.json",
+    "codeReadinessAccepted": true,
+    "positiveHostedExecution": "PENDING_PUBLICATION_APPROVAL",
+    "newRequirementsClosed": []
+  },
+  "ciReceipt": "O9-PUBLICATION-CI-TERMINAL.json",
+  "nextAction": "Approve next exact F29 evidence/source batch, publish evidence first/source second, verify complete trees, inspect only automatically triggered existing CI. No F29 operating acceptance until independent actual result review."
+}

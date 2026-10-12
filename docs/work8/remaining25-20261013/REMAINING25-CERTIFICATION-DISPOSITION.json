@@ -1,0 +1,132 @@
+{
+  "scope": "Remaining25 independent finance/certification decision; original assertions reviewed without duplicate examinations",
+  "baseline": {
+    "original": "31 PASS /10 PENDING /4 BLOCKED",
+    "amendments": "8 PASS /11 PENDING",
+    "newFullAcceptances": []
+  },
+  "decisions": [
+    {
+      "id": "O2",
+      "status": "BLOCKED",
+      "originalClause": "MANDATE section2: preserve historical data, journals, immutable evidence, approvals and audit trails",
+      "shortestPath": "Provide attributable original224 snapshot or credible new retained custody lead, then exact ID/immutable-content comparison against preserved227 calls/219 providers. No repeated historical search without lead.",
+      "alternative": "If owner explicitly changes the mandate for irretrievable history, independently evaluate that new acceptance standard; absence report alone cannot prove preservation.",
+      "executableNow": false
+    },
+    {
+      "id": "O42",
+      "status": "PENDING",
+      "originalClause": "MANDATE section12: required tests and independent Assurance gates pass exact commits; section25: all mandatory critical operating/healing loops independently pass and legitimate closure receipts",
+      "shortestPath": "Preserve independently accepted exact candidate reviews. Observe current published exact-source hosted CI once, repair only demonstrated changed-boundary failures. Accept CI/publication subgate when terminal success; full row waits original integrated/certification dependencies.",
+      "executableNow": "Hosted CI observation/root integration, not a ready full acceptance",
+      "notRequired": "Merge/deploy absent separate authority; repeat endurance/rollback absent changed boundary"
+    },
+    {
+      "id": "O43",
+      "status": "PENDING",
+      "originalClause": "MANDATE section13I requires Mission Ledger/Advisor independent readback; sections14/25 prohibit COMPLETE while mandatory critical gates fail",
+      "shortestPath": "After all mandatory remaining acceptance, assemble exact source/evidence/CI certificate and governed authoritative Mission Ledger completion, then independent readback. Repository JSON closure alone insufficient.",
+      "executableNow": false
+    }
+  ],
+  "financePreservation": {
+    "accepted": [
+      "O20",
+      "O21",
+      "O22",
+      "O23",
+      "O24",
+      "O25",
+      "A16",
+      "A17"
+    ],
+    "additionalSoftwareAcceptanceReady": false,
+    "historySearches": 0,
+    "duplicateExams": 0
+  },
+  "remainingOriginal": [
+    2,
+    7,
+    13,
+    14,
+    19,
+    26,
+    30,
+    33,
+    34,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "remainingAmendments": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    15,
+    19
+  ],
+  "parallelShortestPaths": [
+    {
+      "package": "Eligible authentic dossier and connected operating journey",
+      "rows": [
+        "O13",
+        "O14",
+        "O40",
+        "O41",
+        "A6",
+        "A8",
+        "A19"
+      ],
+      "next": "Fresh exact variant/stock/freight/fees/economics/restrictions evidence; eligibility; separately authorised source-bound assessment; durable owner decision; same-identity source/simulatedfinance/Assurance Console journey. O9 comparator acceptance does not establish eligibility."
+    },
+    {
+      "package": "Permitted media",
+      "rows": [
+        "O7",
+        "O19",
+        "A9",
+        "A10",
+        "A11"
+      ],
+      "next": "Exact current asset rights/uses and permitted design; genuine authenticated media gallery/internal-external approval distinction; consumer export only with entitlement. No fake rights or unsent routine correspondence requirement."
+    },
+    {
+      "package": "Recovery and custody",
+      "rows": [
+        "O33",
+        "O39",
+        "A1",
+        "A2",
+        "A3",
+        "A5"
+      ],
+      "next": "Resolve actual original security-review boundary, then allowed independent positive whole-runtime restore; old-writer exclusion; genuine protected separate-identity custody. Existing candidate scoped replay is not full closure."
+    },
+    {
+      "package": "Assurance compounded failure",
+      "rows": [
+        "O26",
+        "O30",
+        "O34"
+      ],
+      "next": "Use current independent lane to close actual coupled-runtime/source correlation and independently delivered escalation/containment assertions at original deadlines; local self-cleanup is not external oracle."
+    },
+    {
+      "package": "Market entitlement",
+      "rows": [
+        "A15"
+      ],
+      "next": "Validate available existing Keepa entitlement and deferred Helium10 readiness without purchase/activation."
+    }
+  ],
+  "governance": "NOT_BORN; LOCKED; Work9 INACTIVE; no status/authority changes"
+}

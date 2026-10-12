@@ -1,0 +1,43 @@
+{
+  "verdict": "ACCEPT_CODE_READINESS_FOR_EXISTING_HOSTED_F29_PAIR_EXAMINATION_ONLY",
+  "commit": "e2a50ed19352a6a7181f4581cc327751bfced0e6",
+  "tree": "00d95aeb9578b7d213fad55fe1f0c5d5d6fddbd9",
+  "base": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+  "originalOracle": "docs/work8/resume-20261011/REMAINING-SCENARIO-DESIGN.json W8-F29-REMAINING-V1 seed8029",
+  "reviewedAssertions": [
+    "Actual compiled primary/worker with actual launcher/guard and two identified permanent observer components",
+    "Existing exact-built Railpack image, network none/cap-drop/no-new-privileges, independent host controller outside container cgroup",
+    "Independent monitor active before separate injector; both specific observer roles or launcher+guard killed; conservative injector-start timing and confirmed-kill time recorded",
+    "Real controller autonomous stop is outside finally cleanup; durable incident precedes containment; no false recovery claim",
+    "Before+fault host cohort PID/starttime/cgroup and postcontainment same-identity non-zombie absence checked",
+    "Original660000ms detector and720000ms fault bounds preserved;600000ms accepted workerSIGSTOP not rerun",
+    "Explicit65min existing-job limit =30min build+32min sequential exam+3min artifacts; two180s startup+720s arms plus2min exam margin",
+    "Failure artifacts retained withFAILED_NOT_ACCEPTED; no source/provider/Pillow/production mutation"
+  ],
+  "reviewCorrections": [
+    "Original30min build+26min exam total budget contradiction fixed",
+    "Timing basis clarified as conservative pre-injection plus confirmed completion",
+    "Added independent post-fault host process identity membership verification",
+    "Replaced last-two observer spawn selection with latest separate permanent-worker and permanent-inspector roles"
+  ],
+  "validation": {
+    "node": "24.19.0",
+    "syntaxChecks": "Both scripts PASS",
+    "gitDiffCheck": "PASS",
+    "dockerExecution": "NOT_EXECUTED_LOCAL_DOCKER_UNAVAILABLE",
+    "hostedResult": "PENDING"
+  },
+  "acceptanceLimits": [
+    "No original requirement or amendment promoted",
+    "No full F29 operating PASS until exact-source hosted results independently examined",
+    "Sentinel only immutable preservation; no full business/financial preservation claim",
+    "Whole-host failure and permanently independent delivered owner alerts untested",
+    "No fullO30/O34/O39 acceptance from this candidate",
+    "No publication or dispatch performed by reviewer"
+  ],
+  "sha256": {
+    ".github/workflows/pillow-runtime-repair-ci.yml": "8038081dea6d7477bdd452a70a60465ef9e630ae2999608f44854ebb075a6992",
+    "scripts/work8/f29-contained-runtime.cjs": "cbfa6c3aeacf1b19a9230466db97f98f0506137a96c96b6ed308c89199c6e206",
+    "scripts/work8/f29-outer-controller.cjs": "b82c645c1bfd843a9df37bb6c87480a2a64d42e2f75d94ef0e89a6970f660ffe"
+  }
+}

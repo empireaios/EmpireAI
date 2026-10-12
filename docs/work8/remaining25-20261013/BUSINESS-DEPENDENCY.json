@@ -1,0 +1,14 @@
+{
+  "newAcceptances": [],
+  "sourceChanges": [],
+  "observedKeepaAt": "2026-10-12T17:46:18Z",
+  "Keepa": {
+    "credentialPresent": false,
+    "state": "NOT_CONFIGURED",
+    "verifiedRead": false
+  },
+  "business": "Exact retained CJ card-box identity known; current exact stock/freight/applicable media permission missing. Fresh snow-cover cannot support cardbox. No eligible dossier inferred.",
+  "Canva": "Two read-only owned-design searches returned no results because combined tool call hung453.7s and was aborted. No writes or pending run IDs. No licence inferred.",
+  "nextBoundary": "Exact card-box stock/freight through authorized interface; applicable image-rights instrument; configured existing licensed Keepa access. No refresh/purchase/inference performed.",
+  "source": "Business lane final independent findings this continuation"
+}

@@ -1,0 +1,19 @@
+{
+  "observedAt": "2026-10-12T17:46:51.568Z",
+  "reviewedEvidence": "65a6ee828ba36bcbec9b21dacd9bc4a4f81cedc2",
+  "publishedEvidence": "c131c5ee9c0898f8c3c919f7661edb38acae0bc2",
+  "evidenceTree": "60e7192178c7ba765f86ac58650c96da95c03a03",
+  "reviewedSource": "b332d9a5d3eac08288097d418da6927c701b8ed7",
+  "publishedSource": "8e9bc32efdabc3edf86e250270d77d79519b938f",
+  "sourceTree": "6773c016316d17db0a70b8b08e6b27b9240230ae",
+  "completeTreeEquality": true,
+  "pathsAndFileModesIncluded": true,
+  "sequence": "Evidence verified before source branch mutation",
+  "pr": {
+    "number": 113,
+    "draft": true,
+    "merged": false,
+    "head": "8e9bc32efdabc3edf86e250270d77d79519b938f"
+  },
+  "noDeployment": true
+}
