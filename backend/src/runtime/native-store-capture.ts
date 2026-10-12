@@ -9,7 +9,19 @@ const holderPath = fileURLToPath(new URL("./native-store-capture-lock.cjs", impo
  */
 export async function withExclusiveNativeMissionCapture<T>(primaryPath: string,
   captureAndVerify: () => T | Promise<T>): Promise<T> {
-  const child = fork(holderPath, [primaryPath], { execArgv: [], stdio: ["ignore", "ignore", "ignore", "ipc"] });
+  return withNativeCaptureLocks([primaryPath], captureAndVerify);
+}
+
+/** Nine named Work8 SQLite domains only. Callers must drain application writers
+ * first; this does not fence Redis, SQL.js RAM, JSON or another process admission.
+ * WAL files must be captured with a SQLite-aware reader, never a main-file copy. */
+export async function withExclusiveWork8DomainCapture<T>(root: string,
+  captureAndVerify: () => T | Promise<T>): Promise<T> {
+  return withNativeCaptureLocks([root, "work8-domains"], captureAndVerify);
+}
+
+async function withNativeCaptureLocks<T>(args: string[], captureAndVerify: () => T | Promise<T>): Promise<T> {
+  const child = fork(holderPath, args, { execArgv: [], stdio: ["ignore", "ignore", "ignore", "ipc"] });
   let alive = true;
   let finished = false;
   const exited = new Promise<number | null>(resolve => child.once("exit", code => { alive = false; resolve(code); }));

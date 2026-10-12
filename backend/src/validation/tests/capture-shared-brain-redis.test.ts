@@ -1,5 +1,11 @@
+import fs from "node:fs";
+import os from "node:os";
+import { DatabaseSync } from "node:sqlite";
+import { once } from "node:events";
+import { createRequire } from "node:module";
+import { withExclusiveWork8DomainCapture } from "../../runtime/native-store-capture.js";
 import assert from "node:assert/strict";
-import { spawn, type ChildProcess } from "node:child_process";
+import childProcess, { spawn, spawnSync, type ChildProcess } from "node:child_process";
 import { mkdtemp, rm } from "node:fs/promises";
 import { createServer } from "node:net";
 import { tmpdir } from "node:os";
@@ -97,4 +103,46 @@ test("real Redis shared Brain pause drains independent BullMQ worker and refuses
   await assert.rejects(owner.withPausedSharedProcessing(() => { copiedWithScheduler = true; }), /repeat schedulers/);
   assert.equal(copiedWithScheduler, false);
   assert.equal(await queue.isPaused(), false);
+});
+
+// Compound Redis/domain coverage requires the Redis-enabled CI lane.
+const require=createRequire(import.meta.url);
+const {STORES}=require('../../../../deployment/work8-system-vault.cjs') as {STORES:Record<string,string>};
+const write=(file:string)=>spawnSync(process.execPath,['-e',`
+const {DatabaseSync}=require('node:sqlite');const db=new DatabaseSync(process.argv[1],{timeout:0});
+try {db.exec("BEGIN IMMEDIATE; INSERT INTO evidence VALUES('later',2); COMMIT");}
+catch(e){process.stderr.write(String(e));process.exitCode=7;}finally{db.close();}`,file],{encoding:'utf8',timeout:5000});
+function setup(mode:'wal'|'delete'){
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'domain-capture-'));const dbs:DatabaseSync[]=[];
+ for(const relative of Object.values(STORES)){const file=path.join(root,relative);fs.mkdirSync(path.dirname(file),{recursive:true});const db=new DatabaseSync(file);db.exec(`PRAGMA journal_mode=${mode}; CREATE TABLE evidence(id TEXT PRIMARY KEY,n INTEGER); INSERT INTO evidence VALUES('original',1)`);dbs.push(db);}
+ return {root,dbs,close(){for(const db of dbs)db.close();fs.rmSync(root,{recursive:true,force:true});}};
+}
+
+test('Redis loss during nine-domain capture refuses success and retains shared owner after AOF restart',async()=>{
+ const {Queue}=await import('bullmq');const {Redis}=await import('ioredis');const {TaskQueue,BRAIN_QUEUE_NAME}=await import('../../brain/task-queue.js');
+ const {createServer}=await import('node:net');
+ const x=setup('wal');const redisDir=path.join(x.root,'redis');fs.mkdirSync(redisDir);
+ const port=await new Promise<number>((resolve,reject)=>{const listener=createServer();listener.on('error',reject);listener.listen(0,'127.0.0.1',()=>{const a=listener.address();if(!a||typeof a==='string')return reject(Error('port'));listener.close(()=>resolve(a.port));});});
+ let server:ChildProcess|undefined;let queue:InstanceType<typeof Queue>|undefined;let reader:InstanceType<typeof Redis>|undefined;
+ const start=async()=>{server=childProcess.spawn(process.env.PILLOW_TEST_REDIS_SERVER??'redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',redisDir,'--save','','--appendonly','yes','--appendfsync','always'],{stdio:['ignore','pipe','pipe']});
+  await new Promise<void>((resolve,reject)=>{let text='';const timeout=setTimeout(()=>reject(Error('Redis startup timeout')),5000);server!.once('error',e=>{clearTimeout(timeout);reject(e);});server!.stdout!.on('data',d=>{text+=String(d);if(text.includes('Ready to accept connections')){clearTimeout(timeout);resolve();}});});};
+ try{
+  await start();const connection={host:'127.0.0.1',port,maxRetriesPerRequest:0,enableOfflineQueue:false,retryStrategy:()=>null};
+  queue=new Queue(BRAIN_QUEUE_NAME,{connection});queue.on('error',()=>{});await queue.waitUntilReady();
+  const owner=Object.assign(Object.create(TaskQueue.prototype),{queue}) as InstanceType<typeof TaskQueue>;
+  const job=await queue.add('retained',{kind:'synthetic'},{jobId:'one-durable-job'});assert.ok(job.id);
+  let entered=false;
+  await assert.rejects(owner.withPausedSharedProcessing(()=>withExclusiveWork8DomainCapture(x.root,async()=>{
+   entered=true;const stopped=once(server!,'exit');server!.kill('SIGKILL');await stopped;
+   assert.equal(write(path.join(x.root,STORES.commerce!)).status,7,'SQLite lock remains held despite broker death');
+  })),/closed|connect|retries|ECONN|Socket/i);
+  assert.equal(entered,true);await queue.close();queue=undefined;
+  await start();reader=new Redis({host:'127.0.0.1',port});reader.on('error',()=>{});await once(reader,'ready');
+  queue=new Queue(BRAIN_QUEUE_NAME,{connection:{host:'127.0.0.1',port}});queue.on('error',()=>{});await queue.waitUntilReady();
+  assert.ok(await reader.get(queue.toKey('capture-owner')),'uncertain capture owner is not silently removed');assert.equal(await queue.isPaused(),true);
+  assert.equal((await queue.getJob('one-durable-job'))?.id,'one-durable-job');
+  const later=Object.assign(Object.create(TaskQueue.prototype),{queue}) as InstanceType<typeof TaskQueue>;
+  await assert.rejects(later.withPausedSharedProcessing(()=>assert.fail('uncertain capture resumed')),/already owned/);
+  for(const db of x.dbs)assert.equal(db.prepare('SELECT count(*) n FROM evidence').get()?.n,1);
+ }finally{reader?.disconnect();await queue?.close();if(server&&server.exitCode===null&&server.signalCode===null){const stopped=once(server,'exit');server.kill('SIGKILL');await stopped;}x.close();}
 });

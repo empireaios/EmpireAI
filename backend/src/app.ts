@@ -19,7 +19,7 @@ import { withQuiescedBrainAndShadowCapture } from "./orchestration/shadow-ceo-in
 import type { SqliteShadowCeoRepository } from "./orchestration/shadow-ceo/repository.js";
 import { getDatabase } from "./brain/database.js";
 import { getActiveDatabasePath } from "./brain/database.js";
-import { withExclusiveNativeMissionCapture } from "./runtime/native-store-capture.js";
+import { withExclusiveNativeMissionCapture, withExclusiveWork8DomainCapture } from "./runtime/native-store-capture.js";
 import { getSqlitePersistStats } from "./brain/sqlite-database.js";
 import { createBrain, type EmpireBrain } from "./brain/index.js";
 import { TaskQueue } from "./brain/task-queue.js";
@@ -274,7 +274,8 @@ export type EmpireApp = {
   withDrainedSharedBrainNativeCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
   /** Also drains the registered local intelligence, commerce, twin and Assurance timers.
-   * Other replicas, Redis producers and durable reasoning remain outside this boundary.
+   * Also holds nine domain SQLite writer locks. Other processes and Redis producers
+   * remain outside; WAL domains require SQLite-aware capture, not raw main-file copies.
    */
   withDrainedWork8LocalCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
@@ -662,7 +663,10 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     return withDrainedWork8Background(() => {
       const remaining = Math.floor(deadline - performance.now());
       if (remaining < 1) throw new Error("Work8 local capture drain deadline elapsed; no snapshot taken");
-      return withDrainedSharedBrainNativeCapture(shadow, captureAndVerify, remaining);
+      const root = process.env.RAILWAY_VOLUME_MOUNT_PATH;
+      if (!root) throw new Error("Work8 domain capture requires explicit volume root");
+      return withDrainedSharedBrainNativeCapture(shadow,
+        () => withExclusiveWork8DomainCapture(root, captureAndVerify), remaining);
     }, timeoutMs);
   };
 

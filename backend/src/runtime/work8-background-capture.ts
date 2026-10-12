@@ -1,6 +1,6 @@
 import {CaptureHttpAdmission} from './capture-http-admission.js';
-// Reuse the established admission/drain implementation for the four registered
-// local background loops. Other processes, durable reasoning and Redis producers
+// Reuse the established admission/drain implementation for registered local loops,
+// including durable reasoning and mission execution. Other processes and Redis producers
 // remain outside this boundary; this is not a global live-snapshot attestation.
 const background=new CaptureHttpAdmission();
 export async function runCaptureAwareBackground<T>(job:()=>T|Promise<T>):Promise<T|undefined>{
