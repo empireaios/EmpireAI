@@ -1,0 +1,102 @@
+name: Work8 closure execution campaign
+
+# Owner-authorised scoped examinations; accepted endurance is not rerun.
+on:
+  push:
+    branches: ['work8/examination-evidence-20261011']
+    paths:
+      - '.github/workflows/work8-closure-execution.yml'
+      - 'scripts/work8/finish-*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: work8-closure-execution
+  cancel-in-progress: false
+
+jobs:
+  prerequisite:
+    if: github.repository == 'empireaios/EmpireAI'
+    runs-on: ubuntu-24.04
+    # Remaining scoped monitoring examinations, bounded independently of the Work chat.
+    timeout-minutes: 25
+    steps:
+      - name: Checkout exact probe revision without credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: control
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Checkout accepted application source separately
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: candidate
+          ref: d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5
+          persist-credentials: false
+      - name: Checkout compatible prior application without credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: candidate/old-source
+          ref: 04c8621ae23f554fe27bee10306905321b027af8
+          persist-credentials: false
+      - name: Use exact application Node version without cache writes
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: candidate/.node-version
+      - name: Prepare bounded probe dependencies and exact harness
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C candidate rev-parse HEAD)" = d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5
+          test "$(git -C candidate/old-source rev-parse HEAD)" = 04c8621ae23f554fe27bee10306905321b027af8
+          git -C candidate rev-parse HEAD > candidate/SOURCE
+          git -C candidate/old-source rev-parse HEAD > candidate/old-source/SOURCE
+          npm ci --prefix candidate/backend --ignore-scripts
+          ln -s ../../backend/node_modules candidate/old-source/backend/node_modules
+          cp control/scripts/work8/ci-* control/scripts/work8/finish-* candidate/scripts/work8/
+          docker build --file control/scripts/work8/ci.Dockerfile --tag work8-prerequisite:${GITHUB_RUN_ID} control/scripts/work8
+      - name: Run remaining monitoring-loss cases and separate oracle
+        timeout-minutes: 10
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 control/scripts/work8/finish-campaign.py "$PWD/candidate" "$RUNNER_TEMP/work8-prerequisite" "work8-prerequisite:${GITHUB_RUN_ID}"
+          python3 control/scripts/work8/finish-verify.py "$RUNNER_TEMP/work8-prerequisite" > "$RUNNER_TEMP/work8-prerequisite/independent-verification.json"
+      - name: Seal bounded synthetic-only evidence on success or failure
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/work8-export"
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,tarfile
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'work8-export'
+          root=out.parent/'work8-prerequisite'
+          manifest={}
+          if root.exists():
+              for f in sorted(root.rglob('*')):
+                  if f.is_file() and not f.is_symlink():
+                      manifest[str(f.relative_to(root))]=hashlib.sha256(f.read_bytes()).hexdigest()
+              with tarfile.open(out/'synthetic-prerequisite.tar.gz','w:gz') as archive:
+                  for name in manifest:archive.add(root/name,arcname=name,recursive=False)
+          result={'runId':os.environ['GITHUB_RUN_ID'],'workflowSha':os.environ['GITHUB_SHA'],
+              'applicationSha':'d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5','files':manifest,
+              'examinationStarted':root.exists(),'classification':'OPERATING_ROLLBACK_NOT_FULL_CERTIFICATION'}
+          (out/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
+          total=sum(f.stat().st_size for f in out.iterdir() if f.is_file())
+          if total>19*1024*1024:
+              (out/'synthetic-prerequisite.tar.gz').unlink(missing_ok=True)
+              result['artifactLimitFailure']=True
+              (out/'manifest.json').write_text(json.dumps(result,indent=2)+'\n')
+              raise SystemExit('Evidence exceeds approved 20MiB bound; long execution remains blocked')
+          PY
+      - name: Retain scoped examination artifacts for seven days
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-closure-execution-${{ github.run_id }}
+          path: ${{ runner.temp }}/work8-export/
+          retention-days: 7
+          if-no-files-found: error
