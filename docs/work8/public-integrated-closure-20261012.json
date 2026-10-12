@@ -1,0 +1,62 @@
+{
+  "schema": "WORK8_SCOPED_CONTINUATION_V1",
+  "application": "d69fe8aaa2bb1801aa3561e9db4beabc8eb614b5",
+  "frontend": "7dff79a6b712972b08add445d19e30cb664f69e0",
+  "runId": 38223126332,
+  "harness": "9fd7ef7198e7d9ddc6884f4fea2a30aaac9fe110",
+  "conclusion": "SUCCESS_SCOPED_AUTOMATIC_PID1_CONTAINMENT",
+  "automaticContainmentMs": 131.67512,
+  "elapsedSeconds": 16.981444829,
+  "canonicalReceipts": 2,
+  "noWriteObservationSeconds": 6,
+  "artifactId": 11735291510,
+  "artifactSHA256": "771aeee576b68596ca1e8721b55ac36d0772da5edd97ca7ae7da55c1ba1edb47",
+  "sealedFiles": 18,
+  "retainedOracle": "PASS",
+  "humanGovernanceCertification": false,
+  "localScopedEvidence": {
+    "lockedRoutesDuringRecovery": {
+      "deniedRequests": 28,
+      "executedHandlers": 0,
+      "preservedCanonicalReceipts": 5,
+      "receiptSHA256": "f6013de7d8c4461be135ff2d556224d04e969cf45a7a0588d68b7406bccd81e8"
+    },
+    "mobileShortcuts": {
+      "widths": [
+        320,
+        360,
+        390,
+        430
+      ],
+      "touchKeyboardGeometry": "PASS_SCOPED",
+      "nonzeroSafeArea": "UNVERIFIED",
+      "developmentOverlayHidden": true,
+      "businessJourneyCertified": false
+    }
+  },
+  "requirements": {
+    "PASS": 11,
+    "PENDING": 29,
+    "BLOCKED": 5,
+    "total": 45
+  },
+  "amendments": {
+    "PASS": 0,
+    "PENDING": 19,
+    "total": 19
+  },
+  "newFullClosures": [],
+  "limitations": [
+    "Isolated CI platform boundary; not all runtime writers or transports",
+    "No independently delivered owner alert",
+    "Protected distinct-failure-domain restoration unverified",
+    "Genuine journey and final independent governance remain incomplete",
+    "Additional technical examination work remains"
+  ],
+  "work8": "NO_GO",
+  "work9": "NOT_ACTIVATED",
+  "productionChanged": false,
+  "commerce": "LOCKED",
+  "pillow": "NOT_BORN",
+  "paidInference": 0
+}
