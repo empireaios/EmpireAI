@@ -1,0 +1,35 @@
+{
+  "classification": "NEW_SOURCE_CANDIDATE_NOT_RECOVERED_WIP",
+  "baseSource": "3db0b6fe083a3f3d23ebbf5475116b91866c694e",
+  "files": {
+    "backend/src/runtime/work8-recovery-capture.ts": {
+      "baseSha256": "3d5fca2cdea0dce837c12de0bdbe858747fddf809ee0d930143c0d2679ef7d26",
+      "newSha256": "9c04f5e0a308cabf66aab352760462a4b03ac53d733a0c55ee382b319d1094f7"
+    },
+    "deployment/work8-recovery-set.cjs": {
+      "baseSha256": "de06655dba9c986fde449fda82787320a72a41d4b13502d24be9e7fb33a3b6a4",
+      "newSha256": "7539df2162e6cbe38641e2dab951f8e44a249291636c9b4fe9183508cd826c71"
+    },
+    "deployment/work8-lifecycle-markers.cjs": {
+      "baseSha256": null,
+      "newSha256": "66e040e5b2070b689d264ecd5f0f5aca2b2246fc40b35bea438422378a335968"
+    }
+  },
+  "change": "Actual coordinated capture opts into preserving both original repository lifecycle markers; verifier binds exact marker bytes and rejects missing/tampered/aliased markers. Old manifests retain read compatibility.",
+  "meaningfulVerification": {
+    "tests": 4,
+    "pass": 4,
+    "scope": "Real new temporary-file lifecycle capture/integrity/alias/missing-source boundaries only",
+    "receipt": "RECOVERY-CHANGED-BOUNDARY.tap"
+  },
+  "limitations": [
+    "Full source tree/dependency compilation not available; no complete application capture executed",
+    "Independent source review pending",
+    "No activation or restoration implemented",
+    "No original33/39 acceptance or protected custody claim"
+  ],
+  "newAcceptedIds": [],
+  "publication": false,
+  "productionChanged": false,
+  "publicationScope": "Separate local engineering candidate; NOT included in reviewed F29 source tree9f81 and NOT approved for publication."
+}

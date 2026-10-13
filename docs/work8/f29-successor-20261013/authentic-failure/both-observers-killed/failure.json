@@ -1,0 +1,8 @@
+{
+  "source": "3db0b6fe083a3f3d23ebbf5475116b91866c694e",
+  "mode": "both-observers-killed",
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "Error: Actual runtime startup failed",
+  "containedByExternalController": false,
+  "hostLossTested": false
+}

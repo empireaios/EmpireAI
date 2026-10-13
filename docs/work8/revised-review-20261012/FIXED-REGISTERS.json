@@ -552,8 +552,8 @@
       "name": "Concurrency races and replay",
       "status": "PENDING",
       "category": "ENGINEERING_AND_EXAMINATION",
-      "unsatisfiedAssertionOrPreservation": "Independent writer inventory verifies cooperating producers, observers, continuation timers, mission/reasoning workers and SQL.js. Distinct Redis replacement race corrected and independently verified. Global exclusion of arbitrary external/old writers and complete authorized operational business/money/authority replay remain unproven.",
-      "nextAction": "Independent writer inventory verifies cooperating producers, observers, continuation timers, mission/reasoning workers and SQL.js. Distinct Redis replacement race corrected and independently verified. Global exclusion of arbitrary external/old writers and complete authorized operational business/money/authority replay remain unproven.",
+      "unsatisfiedAssertionOrPreservation": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in the declared runtime topology, including still-active prior instances. Arbitrary privileged host attackers are not an added criterion. Lifecycle-marker candidate is separate local engineering, unintegrated and not full recovery acceptance.",
+      "nextAction": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in the declared runtime topology, including still-active prior instances. Arbitrary privileged host attackers are not an added criterion. Lifecycle-marker candidate is separate local engineering, unintegrated and not full recovery acceptance.",
       "acceptedEvidence": "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)",
       "newProgrammeAcceptance": false,
       "continuationEvidence": "REVIEW.md; CI-REPRODUCTION.txt; REVISED-CANDIDATE.json; REVISED-FOCUSED.log; REVISED-OFFLINE.log",
@@ -569,8 +569,8 @@
       "name": "Fault injection and compounded failures",
       "status": "PENDING",
       "category": "ENGINEERING_AND_EXAMINATION",
-      "unsatisfiedAssertionOrPreservation": "F27 independently detected in 25.593s against unchanged60s; wrong-incident oracle rejected. F02 actual scheduler pause and durable missed-slot marker examined; corrupt metadata successor independently accepted. Full outside-process-tree oracle, genuine source/assessment and coupled-runtime arms remain; F29 simultaneous launcher/guard external containment unavailable.",
-      "nextAction": "F27 independently detected in 25.593s against unchanged60s; wrong-incident oracle rejected. F02 actual scheduler pause and durable missed-slot marker examined; corrupt metadata successor independently accepted. Full outside-process-tree oracle, genuine source/assessment and coupled-runtime arms remain; F29 simultaneous launcher/guard external containment unavailable.",
+      "unsatisfiedAssertionOrPreservation": "Preserve accepted F27 deadline/binding and F02 scheduler evidence. F29 run38288789918 failed180s startup before injection; both paired-fault arms remain unaccepted. Reviewed diagnostic/financial source tree9f81 remains unexecuted. Complete original coupled-runtime/source/assessment criteria; external controller outside affected process group, not mandatory physical host destruction.",
+      "nextAction": "Preserve accepted F27 deadline/binding and F02 scheduler evidence. F29 run38288789918 failed180s startup before injection; both paired-fault arms remain unaccepted. Reviewed diagnostic/financial source tree9f81 remains unexecuted. Complete original coupled-runtime/source/assessment criteria; external controller outside affected process group, not mandatory physical host destruction.",
       "acceptedEvidence": "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)",
       "newProgrammeAcceptance": false,
       "continuationEvidence": "REVIEW.md; CI-REPRODUCTION.txt; REVISED-CANDIDATE.json; REVISED-FOCUSED.log; REVISED-OFFLINE.log",
@@ -1127,5 +1127,18 @@
     "publication": "APPROVED_C084_E516_BATCH_PUBLISHED_EXACT_TREES; O9_SUCCESSOR_UNPUBLISHED",
     "sourceCandidate": "b332d9a5d3eac08288097d418da6927c701b8ed7",
     "sourceTree": "6773c016316d17db0a70b8b08e6b27b9240230ae"
+  },
+  "successorEvidence": {
+    "path": "docs/work8/f29-successor-20261013",
+    "retiredEvidenceCommit": "c45f4361b894e6aee98a702b58f1b1003c880097",
+    "sourceReviewedCommit": "0857dead2a3e91a56ee3c183a65c03be9803788f",
+    "sourceTree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+    "status": "NEW_LOCAL_SUCCESSOR_REVIEW_PENDING_NOT_PUBLICATION_READY",
+    "latestExecutedSource": "3db0b6fe083a3f3d23ebbf5475116b91866c694e",
+    "latestRuntimeRun": 38288789918,
+    "runtimeResult": "FAIL_STARTUP_BEFORE_FAULT_INJECTION",
+    "newAcceptedOriginalIds": [],
+    "newAcceptedAmendmentIds": [],
+    "precedingTopLevelMetadata": "Retained historical metadata, not successor publication authority."
   }
 }

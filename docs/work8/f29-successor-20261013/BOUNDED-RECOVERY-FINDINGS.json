@@ -1,0 +1,201 @@
+{
+  "schema": "WORK8_BOUNDED_EXACT_EVIDENCE_RECOVERY_FINDINGS_V1",
+  "kind": "NEW_RECOVERY_FINDINGS_NOT_ORIGINAL_APPROVED_EVIDENCE",
+  "approvedEvidenceCommit": "c45f4361b894e6aee98a702b58f1b1003c880097",
+  "approvedEvidenceTree": "fc15ffb42d5dfabfff728b90ee3fa9e63a6ad646",
+  "result": "EXACT_APPROVED_EVIDENCE_BATCH_NOT_RECOVERED",
+  "sourceRecovery": "Approved source tree9f81cef990efb1a22a4828dfcf08f962f41a90c7 independently verified separately; insufficient for evidence-first publication",
+  "githubScope": {
+    "runs": [
+      38288789918,
+      38288789819,
+      38288789817,
+      38288789862
+    ],
+    "artifactCounts": [
+      4,
+      3,
+      0,
+      0
+    ],
+    "artifactIds": [
+      11765295069,
+      11765215891,
+      11764891152,
+      11764845573,
+      11764900601,
+      11764800261,
+      11764033824
+    ],
+    "finding": "All seven are published-source test receipts/screenshots, no evidence/source candidate archive. All head3db0b6fe and created18:07–18:18 before final review18:26.",
+    "f29BranchSearchCount": 0,
+    "evidenceBranchSearchComplete": true,
+    "evidenceBranches": [
+      "fix/stage2-assurance-evidence-20261003",
+      "work7/completion-evidence-20261011",
+      "work7/scheduled-evidence-cache-20261010",
+      "work8/examination-evidence-20261011",
+      "work8/owner-operating-evidence-20261011"
+    ],
+    "otherWork8EvidenceBranchHead": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+    "repositoryWideArtifactInventory": "No usable inventory returned by connector; no exhaustive repository-wide archive absence claim"
+  },
+  "libraryFindingAttribution": "Parent reports bounded Library search returned report only after failure timestamp and no candidate archive; this reviewer did not repeat Library search.",
+  "deltaPaths": [
+    {
+      "path": "docs/work8/f29-execution-20261013/BUSINESS-FOLLOWON-BOUNDED-STATUS.json",
+      "availability": "FULL_RETAINED_TEXT_RECONSTRUCTION_ONLY",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": "91602905352a296e8528cfc86a4cde1f119f279b",
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/CHECKPOINT.json",
+      "availability": "FULL_RETAINED_READ_TEXT",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/CLOSURE-QUEUE.json",
+      "availability": "EXACT_BYTES_MISSING",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-ACTIVE-RUNS.json",
+      "availability": "ORIGINAL_DYNAMIC_TIMESTAMP_MISSING",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-DIAGNOSTICS-INDEPENDENT-REVIEW.json",
+      "availability": "FULL_REPORT_AND_RETAINED_TEXT",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-FAILURE-INDEPENDENT-RECEIPT.json",
+      "availability": "STATIC_CREATION_CALL_REPLAY_RECOVERED",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": "ee06844c2297f4d2750abf4df4ccd755e2da7cc1",
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-FINAL-BATCH-REVIEW.json",
+      "availability": "ORIGINAL_DYNAMIC_TIMESTAMP_NOT_RETAINED_HERE",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-FINANCE-INDEPENDENT-REVIEW.json",
+      "availability": "FULL_REPORT_AND_RETAINED_TEXT",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-HOSTED-FAILURE.json",
+      "availability": "EXACT_BYTES_MISSING",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-PUBLICATION-CI-TERMINAL.json",
+      "availability": "ORIGINAL_TIMESTAMP_AND_FULL_JOB_STEP_OBJECTS_MISSING",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-PUBLICATION-RECEIPT.json",
+      "availability": "FULL_REPORT_JSON",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/F29-RUN38288789918-INDEPENDENT-DECISION.json",
+      "availability": "FULL_REPORT_JSON",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/NEW-STATE-WIP-INDEPENDENT-DISPOSITION.json",
+      "availability": "FULL_RETAINED_TEXT_RECONSTRUCTION_ONLY",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": "6911863bf0948b26ee1201137e5991edb454ac45",
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/ORIGINAL-SCOPE-CLARIFICATION.json",
+      "availability": "FULL_REPORT_JSON",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/f29-execution-20261013/RECOVERY-WIP-CHECKPOINT.md",
+      "availability": "EXACT_FULL_BYTES_NOT_RETAINED_HERE",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/FIXED-REGISTERS.json",
+      "availability": "LATEST_EXACT_JSON_MISSING_REPORT_ROWS_INSUFFICIENT",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    },
+    {
+      "path": "docs/work8/revised-review-20261012/FULL-TRACKER.md",
+      "availability": "LATEST_EXACT_MARKDOWN_MISSING_REPORT_NOT_EXACT_FILE",
+      "originalBlobId": null,
+      "originalBlobIdStatus": "UNKNOWN_NOT_RECORDED",
+      "reconstructedBlobId": null,
+      "reconstructedBlobIndependentlyVerifiedAgainstOriginal": false
+    }
+  ],
+  "originalKnownBlobIds": [],
+  "missingExactBytes": [
+    "docs/work8/f29-execution-20261013/CLOSURE-QUEUE.json",
+    "docs/work8/f29-execution-20261013/F29-ACTIVE-RUNS.json",
+    "docs/work8/f29-execution-20261013/F29-FINAL-BATCH-REVIEW.json",
+    "docs/work8/f29-execution-20261013/F29-HOSTED-FAILURE.json",
+    "docs/work8/f29-execution-20261013/F29-PUBLICATION-CI-TERMINAL.json",
+    "docs/work8/f29-execution-20261013/RECOVERY-WIP-CHECKPOINT.md",
+    "docs/work8/revised-review-20261012/FIXED-REGISTERS.json",
+    "docs/work8/revised-review-20261012/FULL-TRACKER.md"
+  ],
+  "limits": [
+    "Full retained JSON text does not independently establish original blob identity, trailing bytes or approved complete tree.",
+    "Reconstructed blob IDs identify recovery outputs only; never substitute them for recorded original IDs.",
+    "No broad rerun, repeated exact-object404 check, local object scan, publication or CI dispatch during this bounded pass.",
+    "This findings file is a new recovery artifact, not a replacement for approved evidence."
+  ],
+  "publicationAllowed": false,
+  "newCiAllowed": false
+}

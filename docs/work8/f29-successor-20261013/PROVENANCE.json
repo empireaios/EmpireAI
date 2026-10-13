@@ -1,0 +1,35 @@
+{
+  "recordType": "NEW_ATTRIBUTION_NOT_RECREATED_LOST_RECEIPTS",
+  "retainedReviewIndex": {
+    "file": "Work8-Campaign-Report.txt",
+    "libraryFileId": "libfile_9b6b5c96d6a08191ba0638c3830e94c6",
+    "version": 6,
+    "use": "Surviving review text and accepted-status index; not claimed as original missing evidence files."
+  },
+  "authenticOriginalBytes": "authentic-artifact-11765295069.zip and extracted authentic-failure files",
+  "newStatusRecords": [
+    "RETIREMENT.json",
+    "BOUNDED-RECOVERY-FINDINGS.json",
+    "SOURCE-TREE-RECOVERY.json",
+    "NEW-F29-STATUS.json",
+    "BUSINESS-FINANCE.json",
+    "CONSOLE-CERTIFICATION.json",
+    "PROVENANCE.json",
+    "RECOVERY-INTEGRATION-CONTRACT.json",
+    "RECOVERY-LIFECYCLE-CANDIDATE.json",
+    "RECOVERY-CHANGED-BOUNDARY.tap",
+    "INDEPENDENT-CONTENT-REVIEW.json",
+    "RECOVERY-INDEPENDENT-DISPOSITION.json"
+  ],
+  "immutablePublishedBase": {
+    "commit": "f7c09aa27c7e1aae8390725b5872ef0690c51630",
+    "tree": "a14c3682cb2e50dd4f1a081cc67cbacb5669d75f"
+  },
+  "independentF29Acceptance": "NOT_ACCEPTED_NO_NEW_HOSTED_RUN",
+  "work8": "NO_GO",
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "INACTIVE",
+  "recoveryEngineeringSource": "Excluded; independent review withheld integrated publication readiness pending actual initializer and adapter compatibility evidence.",
+  "independentContentReview": "ACCEPT_SUCCESSOR_CONTENT_NOT_PUBLICATION_OR_PROGRAMME_ACCEPTANCE"
+}

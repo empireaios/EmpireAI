@@ -1,0 +1,12 @@
+✔ exact existing bytes survive capture; originals unchanged and duplicate target refused (5.843614ms)
+✔ missing source marker refuses rather than fabricating initialization history (0.895417ms)
+✔ post-copy source mutation and staged-marker tampering are independently refused (2.295625ms)
+✔ symlink/hardlink markers and incomplete manifest coverage are refused (3.275234ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 101.043543

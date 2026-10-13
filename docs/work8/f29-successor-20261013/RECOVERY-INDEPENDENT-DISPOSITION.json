@@ -1,0 +1,53 @@
+{
+  "schema": "WORK8_NEW_LIFECYCLE_CAPTURE_INDEPENDENT_REVIEW_V1",
+  "decision": "WITHHOLD_INTEGRATED_PUBLICATION_READINESS_PENDING_NARROW_INTEGRATION_EVIDENCE",
+  "scope": "Three new candidate source files and patch against supplied published base; four retained changed-boundary tests reviewed without rerun; no full source audit",
+  "sourceBase": "3db0b6fe083a3f3d23ebbf5475116b91866c694e",
+  "hashesVerified": true,
+  "positiveFindings": [
+    "Capture helper copies actual bytes with exclusive0600 destination creation; never fabricates or changes source markers.",
+    "Source and captured marker digests are checked; source rechecked after asynchronous Redis capture.",
+    "Canonical-path, O_NOFOLLOW, regularfile/singlelink/nonempty/64KiB bounds reject direct alias and malformed marker cases.",
+    "Manifest legacy branch remains optional in static code; added marker mode preserves bootAllowedfalse,completeLiveStatefalse,HISTORICAL_ONLY_DO_NOT_BOOT.",
+    "No changes to activation, Redis inspectionowner, app coordinator fencing, deployment or live authority."
+  ],
+  "tests": {
+    "retainedTests": 4,
+    "retainedPass": 4,
+    "repeated": 0,
+    "coverage": "Meaningful helper filesystem tests: exact bytes/duplicate target, missing marker, post-copy mutation/tampering, symlink/hardlink/incomplete digest coverage",
+    "limitation": "Does not execute actual captureRuntimeRecoverySet/finalize/verify with old/new manifest or compiled TypeScript wrapper"
+  },
+  "unresolvedAssertions": [
+    {
+      "id": "LC1",
+      "severity": "PUBLICATION_READINESS",
+      "issue": "TypeScript wrapper now unconditionally opts into both nonempty marker files. Existing successful scoped capture may now refuse if valid admitted store topology does not produce either marker or supports historical initialized data without one.",
+      "required": "Inspect actual pinned repository initializer/path policy and prove bothmarkers mandatory for this existing capture scope, or explicitly retain compatible opt-in behavior. No fabrication of missing markers."
+    },
+    {
+      "id": "LC2",
+      "severity": "PUBLICATION_READINESS",
+      "issue": "New helper optional-manifest branch is only helper-tested; real adapter/finalizer layout verification and historical manifest acceptance unexercised.",
+      "required": "Narrow actual adapter new-format capture/finalize/verify plus prior-format readback using canonical source fixtures; run only after necessary dependencies are available. No broad programme rerun."
+    },
+    {
+      "id": "LC3",
+      "severity": "DOCUMENTATION",
+      "issue": "NEW-INTEGRATION-CONTRACT and OUTCOME still say coordinator/source absent, noimplementationedited/sourceChangesempty; NEW-LIFECYCLE-CANDIDATE now documents changed existing wrapper and adapter.",
+      "required": "Label those documents historical or update current status to capture-only candidate; retain noactivation/restoration claims."
+    }
+  ],
+  "compileStatus": "Full application dependency compilation unavailable; no compilePASS inferred",
+  "scopeLimits": [
+    "No original33/39 or amendment acceptance.",
+    "No global prior-instance writer exclusion, lifecycle semantic validation, operational restore, protected custody, or positive-runtime examination established.",
+    "Unmarked boot unaffected statically because no app.ts/startup hook delta; existing explicitcapture behavior changes as LC1 notes."
+  ],
+  "authorActions": {
+    "testsRerun": 0,
+    "candidateEdits": 0,
+    "publication": 0
+  },
+  "reviewPath": "Outside candidate: lane-recovery-independent-review.json"
+}

@@ -1,0 +1,60 @@
+{
+  "recordType": "NEW_INDEPENDENT_SUCCESSOR_CONTENT_REVIEW",
+  "createdAt": "2026-10-13T02:36:07.405778+00:00",
+  "decision": "ACCEPT_SUCCESSOR_CONTENT_NOT_PUBLICATION_OR_PROGRAMME_ACCEPTANCE",
+  "reviewedFileSha256": {
+    "docs/work8/f29-successor-20261013/BOUNDED-RECOVERY-FINDINGS.json": "144fc94218056471cd82fdfa050e0e8e6d7743f9e73c7fc3991d381502985962",
+    "docs/work8/f29-successor-20261013/BUSINESS-FINANCE.json": "23361181cc19a577e65465876eb7b46e54ca0969da4c04d4084ed24f8ba00a2b",
+    "docs/work8/f29-successor-20261013/CONSOLE-CERTIFICATION.json": "a147e13044ab07192a2f85a2489608f2f443235049d26849964f604b578cdc2b",
+    "docs/work8/f29-successor-20261013/NEW-F29-STATUS.json": "c6afdcdec6282b0d0119807cd1576c9a2f227f770e08092d96bb645341738366",
+    "docs/work8/f29-successor-20261013/PROVENANCE.json": "a4d4d5ac7beb98ee4a0bb6c70c470291d07b874c2770d3403e68c82dc874ccc0",
+    "docs/work8/f29-successor-20261013/RECOVERY-CHANGED-BOUNDARY.tap": "c517c6aa50a3ae841f445a118e65293d1bd57a6b75b890594fea91a8dfbf60d8",
+    "docs/work8/f29-successor-20261013/RECOVERY-INTEGRATION-CONTRACT.json": "baeb2add85d4c1bb1da2fe5dea8bb9112b9d273789a797687d3ee468ae002da0",
+    "docs/work8/f29-successor-20261013/RECOVERY-LIFECYCLE-CANDIDATE.json": "52b6152ef680b157550ef65d49d2c4fcf5ce1a68c3e339c310467fcfc64111a7",
+    "docs/work8/f29-successor-20261013/RETIREMENT.json": "0df4ac1eed69eb09ba65a3180845f7e173bab29cb04ec1f8346d894f2b549beb",
+    "docs/work8/f29-successor-20261013/SOURCE-TREE-RECOVERY.json": "dbc2a1135671486c8aec72161a14156455c9526be8134e1bbb0a6e32b69ea93b",
+    "docs/work8/f29-successor-20261013/authentic-artifact-11765295069.zip": "35674c52786f5c34aed8e17d792aa6dff994a3eb7e0515b123575f49964a0608",
+    "docs/work8/f29-successor-20261013/authentic-failure/both-observers-killed/container.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/work8/f29-successor-20261013/authentic-failure/both-observers-killed/failure.json": "7f480e61d7f3a562150624d32c4e76cf2e9c3f836fd35d310ece4f608d00c58b",
+    "docs/work8/f29-successor-20261013/authentic-failure/both-observers-killed/immutable-sentinel.txt": "479d47fc8c84441e57feb22fd2db94c927ca2cbab4a7ece7a3c7e1f8056bf62f",
+    "docs/work8/revised-review-20261012/FIXED-REGISTERS.json": "1c89e459bda099d5c01b72014317c466ac1a7e677a639d738b61a45a17a65195",
+    "docs/work8/revised-review-20261012/FULL-TRACKER.md": "291da41fedfa7c98fcd9b64360bc930e35717d0795f884fc9edd3adccb9ad1fb"
+  },
+  "findings": {
+    "authenticFailureZipAndExtractedBytes": "VERIFIED against retained SHA256; all three extracted members exactly equal ZIP bytes",
+    "retirementAndLineage": "CLEAR successor does not claim lost c45/fc15 identity; eight missing exact files and unknown original blob IDs preserved",
+    "originalCounts": "31PASS/10PENDING/4BLOCKED",
+    "amendmentCounts": "8PASS/11PENDING",
+    "F29Decision": "NOT_ACCEPTED; startup failure before either missing fault arm; no new hosted run",
+    "scope": "Physical GitHub-host destruction explicitly not required for F29; actual external owner alert remains distinct O30 dependency",
+    "approvedSource": "9f81cef990efb1a22a4828dfcf08f962f41a90c7 preserved; source tree recovery receipt names recoveredRoot correctly",
+    "recoveryEngineering": "Three new scoped status/design/test records do not claim original33/39 acceptance; unreviewed recovery source explicitly excluded from F29 tree",
+    "historicalCanonicalMetadata": "Preserved published-base metadata explicitly contextualised as historical; successor does not inherit old publication authority"
+  },
+  "remainingCorrections": [],
+  "durabilityAcceptance": false,
+  "publicationAuthorityGranted": false,
+  "programmeAcceptanceGranted": false,
+  "originalRequirementsClosed": [],
+  "amendmentsClosed": [],
+  "testsRepeated": 0,
+  "limits": [
+    "Content review only; final exact evidence tree not yet pinned.",
+    "No durable remote staging or independent retrieval verified.",
+    "Recovery implementation source not reviewed here; changed-boundary receipt is scoped evidence only.",
+    "No source run or fault execution inferred from review."
+  ],
+  "traceabilityCorrectionsVerified": {
+    "packagedReceipt": "RECOVERY-CHANGED-BOUNDARY.tap",
+    "designStageOutcome": "Contract concretely specifies package. No implementation edited because actual current coordinator source is absent from available recovered subset. No repeated searches,tests or source recreation.",
+    "chronology": "Earlier planning-stage contract. Its no-source-edits currentOutcome is superseded only by the separate lifecycle-marker engineering candidate; no full recovery implementation exists. See RECOVERY-LIFECYCLE-CANDIDATE.json. Recovery code excluded from F29 source."
+  },
+  "pendingRecoverySourceReview": "Separate review not included in this decision; no acceptance of recovery source.",
+  "canonicalRegisterAmendmentReview": {
+    "O33": "Correct original declared/admitted writer scope, including prior-instance writers; arbitrary privileged-host attacker excluded.",
+    "O34": "Accurate startup failure and unexecuted9f source; F29 controller process-group separation preserved without physical-host destruction requirement.",
+    "newMarkdown": "All64 headings/IDs/statuses/names match register; explicitly labelled new status document, not original lost Markdown.",
+    "statusPromotion": false
+  },
+  "manifestScope": "Publication payload under docs/ only; Git internals excluded."
+}

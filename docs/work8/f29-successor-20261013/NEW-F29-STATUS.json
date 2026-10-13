@@ -1,0 +1,107 @@
+{
+  "schema": "WORK8_NEW_SUCCESSOR_F29_STATUS_V1",
+  "recordType": "NEW_ATTRIBUTED_STATUS_NOT_RECREATED_LOST_RECEIPT",
+  "observedAt": "2026-10-13T02:29:53.749Z",
+  "previousRun": {
+    "source": "3db0b6fe083a3f3d23ebbf5475116b91866c694e",
+    "tree": "00d95aeb9578b7d213fad55fe1f0c5d5d6fddbd9",
+    "run": 38288789918,
+    "job": 114943514765,
+    "decision": "STARTUP_FAILURE_BEFORE_FIRST_PAIR_PROOF"
+  },
+  "authenticArtifact": {
+    "id": 11765295069,
+    "name": "work8-f29-pair-containment",
+    "zip": "authentic-artifact-11765295069.zip",
+    "sha256": "35674c52786f5c34aed8e17d792aa6dff994a3eb7e0515b123575f49964a0608",
+    "download": "Existing GitHub download_workflow_artifact connector; returned authorized file URL",
+    "metadata": "Existing runtime run artifacts endpoint; digest matches downloaded bytes; unexpired",
+    "extractedDirectory": "authentic-failure",
+    "files": [
+      {
+        "path": "both-observers-killed/failure.json",
+        "bytes": 248,
+        "sha256": "7f480e61d7f3a562150624d32c4e76cf2e9c3f836fd35d310ece4f608d00c58b"
+      },
+      {
+        "path": "both-observers-killed/immutable-sentinel.txt",
+        "bytes": 61,
+        "sha256": "479d47fc8c84441e57feb22fd2db94c927ca2cbab4a7ece7a3c7e1f8056bf62f"
+      },
+      {
+        "path": "both-observers-killed/container.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "deadlines": {
+    "attribution": "Preserved original oracle and verified unchanged recovered source constants",
+    "startupPerArmMs": 180000,
+    "pairDetectionMs": 660000,
+    "completeArmIncludingFinancialVerificationMs": 720000,
+    "existingHostedJobMaxMinutes": 65,
+    "buildStepMaxMinutes": 30,
+    "pairStepMaxMinutes": 32
+  },
+  "unresolvedAssertions": [
+    {
+      "assertion": "Actual locked runtime readiness",
+      "status": "FAILED_PREVIOUS_RUN",
+      "evidence": "Authentic failure.json; empty stdout container.log; root cause unconfirmed"
+    },
+    {
+      "assertion": "Both identified permanent observer roles killed and externally detected",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "assertion": "Launcher and guard killed and externally detected",
+      "status": "NOT_EXAMINED_NO_RECEIPT"
+    },
+    {
+      "assertion": "Detector660000ms and full arm720000ms",
+      "status": "NOT_MEASURED_AFTER_INJECTION"
+    },
+    {
+      "assertion": "Independent outside-process-group controller and host PID/starttime/cgroup membership",
+      "status": "NO_EXECUTED_PROOF"
+    },
+    {
+      "assertion": "Durable incident before autonomous containment and no surviving same-identity processes",
+      "status": "NO_EXECUTED_PROOF"
+    },
+    {
+      "assertion": "Canonical labelled simulation financial and authority pre/post integrity",
+      "status": "SUCCESSOR_CODE_READY_ONLY_NOT_EXECUTED"
+    }
+  ],
+  "startupExecutionBoundary": {
+    "dockerExecutableFound": false,
+    "podmanExecutableFound": false,
+    "check": "command -v docker; command -v podman returned no executable",
+    "localImageExecution": "UNAVAILABLE_NO_EXECUTION_ATTEMPT",
+    "recoveredSourceTree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+    "startupCause": "UNCONFIRMED",
+    "diagnosticScope": "Code preserves Docker stderr and startup milestones; neither successful boot nor fix asserted",
+    "next": "New reviewed evidence successor plus exact-source review and applicable publication/examination authority required before hosted run; no dispatch in this lane"
+  },
+  "preservation": {
+    "oldWorkerSIGSTOP": "Prior accepted600000ms evidence preserved separately; not rerun",
+    "newRequirementOrAmendmentPasses": [],
+    "unacceptedRecoveryExcluded": true
+  },
+  "actions": {
+    "dispatches": 0,
+    "publications": 0,
+    "testsRerun": 0,
+    "originalMissingReceiptsRegenerated": 0,
+    "localRuntimeStarts": 0
+  },
+  "independentReview": "PENDING",
+  "separateExternalDependency": {
+    "requirement": "O30",
+    "assertion": "Actual independent external owner-alert delivery",
+    "status": "NOT_PROVEN_BY_OWNER_PULL_OR_CI_ARTIFACT",
+    "scope": "Physical destruction of the GitHub host is not an F29 acceptance requirement. F29 controller must operate outside the affected process group."
+  }
+}

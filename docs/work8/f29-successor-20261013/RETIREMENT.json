@@ -1,0 +1,17 @@
+{
+  "schema": "WORK8_EVIDENCE_RETIREMENT_V1",
+  "recordType": "NEW_SUCCESSOR_RECORD",
+  "createdAt": "2026-10-13T02:31:59.050194+00:00",
+  "retiredCommit": "c45f4361b894e6aee98a702b58f1b1003c880097",
+  "retiredTree": "fc15ffb42d5dfabfff728b90ee3fa9e63a6ad646",
+  "reason": "Exact bytes unavailable after completed bounded recovery; searches permanently stopped absent a newly supplied original artifact.",
+  "originalApprovalPreserved": true,
+  "historicalRecordsDeleted": false,
+  "replacementClaimsOriginalIdentity": false,
+  "sourceReviewedCommit": "0857dead2a3e91a56ee3c183a65c03be9803788f",
+  "sourceTree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+  "sourceCodeChanged": false,
+  "newPublicationAuthority": "REQUIRED",
+  "durability": "LOCAL_CANDIDATE_ONLY_REMOTE_STAGING_AUTHORITY_REQUIRED",
+  "newAcceptances": []
+}

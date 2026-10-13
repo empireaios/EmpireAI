@@ -1,0 +1,123 @@
+{
+  "schema": "WORK8_RECOVERY_NEW_INTEGRATION_CONTRACT_V1",
+  "classification": "NEW_CONTRACT_NOT_RECOVERED_WIP",
+  "status": "DESIGN_ONLY_NO_EXECUTION_NO_ACCEPTANCE",
+  "targets": [
+    "O33"
+  ],
+  "preservedSeparateTargets": [
+    "O39",
+    "A3 protected custody"
+  ],
+  "sourceIdentity": {
+    "publishedSourceFromRetainedReport": "3db0b6fe083a3f3d23ebbf5475116b91866c694e",
+    "publishedTreeFromRetainedReport": "00d95aeb9578b7d213fad55fe1f0c5d5d6fddbd9",
+    "coordinatorFilesAvailableInCurrentRecoveredSubset": false,
+    "lostWipRecovered": false
+  },
+  "boundary": {
+    "state": "Only new unpredictable empty root created by external controller before any fixture exists",
+    "authority": "Ephemeral signer/provenance never derived from retained input; independent code review before positive execution",
+    "runtime": "Actual compiled primary/Brain/observers and realRedis, networknone/capdropALL/newprivdeny; read-only source; private fresh writable volume",
+    "oldWriters": "All admitted current/prior-instance writers in declared topology; no invented privilegedhostattacker criterion",
+    "forbidden": [
+      "Retained or production store import",
+      "Clearing or relabelling inspection owner",
+      "Production startup/deployment",
+      "Paid inference or provider effects",
+      "Claiming custody from samehost examination"
+    ]
+  },
+  "inventory": {
+    "sqliteStores": {
+      "intelligence": "commissioning/intelligence.sqlite",
+      "institutional": "commissioning/pillow-institutional.sqlite",
+      "requests": "commissioning/pillow-request-receipts.sqlite",
+      "reasoning": "commissioning/pillow-reasoning.sqlite",
+      "communications": "commissioning/communications.sqlite",
+      "costCentre": "commissioning/openai-october-2026.sqlite",
+      "assurance": "commissioning/assurance.sqlite",
+      "financialEvidence": "finance/evidence.sqlite",
+      "commerce": "commerce/runtime.sqlite",
+      "brain": "commissioning/empireai-brain.db",
+      "missions": "commissioning/empireai-brain.db.missions.sqlite",
+      "execution": "commissioning/empireai-brain.db.mission-execution.sqlite",
+      "shadow": "shadow/shadow-ceo.db"
+    },
+    "jsonDomains": [
+      "shadow/shadow-ceo-authority/authority-store.json",
+      "shadow/shadow-ceo-request-owners.json",
+      "commissioning/assurance.sqlite.watchdog"
+    ],
+    "lifecycleMarkers": [
+      "commissioning/openai-october-2026.sqlite.initialized",
+      "finance/evidence.sqlite.initialized"
+    ],
+    "fileCount": 18,
+    "redis": [
+      "Exact runID+DB identity",
+      "Binary DUMP/PTTL bounded inventory",
+      "BullMQ producers/active/waiting/paused/delayed/schedulers",
+      "Authenticated fixture sessions/TTL",
+      "Durable request indexes and pending work"
+    ],
+    "inventoryRule": "Real initializers and actual participating writers, no filler tables. Refuse undeclared mutable state or missing mandatory files."
+  },
+  "transitions": [
+    {
+      "from": "EMPTY_CREATED",
+      "to": "SOURCE_READY",
+      "action": "Start actual initialized source topology with isolated current fixture identity; seed canonical labelled pending committed work.",
+      "oracle": "External controller pins source/image/container/mount/process-start identities and Redis runID; domain table/file inventory complete."
+    },
+    {
+      "from": "SOURCE_READY",
+      "to": "HELD_SEALED",
+      "action": "Existing primary/observer/background/queue/SQLjs/native coordinator drains all admissions; new examination-only handoff seals capture and lifecycle markers before any release.",
+      "oracle": "Same held epoch binds13DB+3JSON+2marker digests,Redis binary state,source revision,run provenance; source cannot return successfully into ordinary release."
+    },
+    {
+      "from": "HELD_SEALED",
+      "to": "SOURCE_CLOSED",
+      "action": "External controller terminates complete app+Redis cohorts within bounded held epoch; verifies no stillauthorized oldwriter retains process/network/mount access.",
+      "oracle": "Controller outside bothgroups verifies PID startticks,cgroup/mount/network state,helddeadline,no invalidation receipt; old endpoints unavailable."
+    },
+    {
+      "from": "SOURCE_CLOSED",
+      "to": "REPLACEMENT_STAGED",
+      "action": "Stage exact generated capture into new empty replacement with differentRedis identity and OWN newstate admission latch; existing inspection APIs untouched.",
+      "oracle": "All18files exact digest plus source/target identity,emptytarget,sourceclosure proof,currentfixture authority; incomplete stage remains blocked."
+    },
+    {
+      "from": "REPLACEMENT_STAGED",
+      "to": "REPLAY_ACTIVE",
+      "action": "Verify isolated restored owner session/currentfixture authority; issue separate oneuse activation bound to permit/capture/Redis/sourceclosure; canonical queue transition consumes only OWN newstate admission.",
+      "oracle": "No inherited live grants or stale permissions; no inspectionowner deletion; uncertainty stays visibly blocked."
+    },
+    {
+      "from": "REPLAY_ACTIVE",
+      "to": "INDEPENDENTLY_VERIFIED",
+      "action": "Replay actual pending committed work,repeat same identities,coldrestart actual replacement; independently reconcile canonical history,money,authority and sessions.",
+      "oracle": "No duplicate receipts/charges/lost history; exact identity lineage; financial conservation; actual/SIM separation; all original declared domains inspected; fresh independent result."
+    }
+  ],
+  "negativeAcceptance": [
+    "retainedroot or nonemptytarget import",
+    "forged/reused/crossrun capability",
+    "wrong revision/digest/domain/Redis ID",
+    "source alive or held epoch released/expired",
+    "stale fixture owner/authority",
+    "inspectionowner presented for activation",
+    "external credentials/routes or deployment identity",
+    "missing lifecycle marker or unexpected mutable domain"
+  ],
+  "smallestSourceChange": {
+    "location": "Existing capture callback inside backend/src/app.ts complete coordinator",
+    "change": "Examination-only awaited held handoff after capture before existing fences release; no successful return; normal inspection behavior unchanged.",
+    "prerequisite": "Read actual current coordinator and adapter source, pin exact blobs; review all changed paths before execution.",
+    "notEnoughAlone": "Needs generated provenance,externalcohortcontroller,distinctboot/Redisactivation and actual integrated runner/oracle; no isolated validator accepted as original33."
+  },
+  "currentOutcome": "Contract concretely specifies package. No implementation edited because actual current coordinator source is absent from available recovered subset. No repeated searches,tests or source recreation.",
+  "newAcceptedIds": [],
+  "chronology": "Earlier planning-stage contract. Its no-source-edits currentOutcome is superseded only by the separate lifecycle-marker engineering candidate; no full recovery implementation exists. See RECOVERY-LIFECYCLE-CANDIDATE.json. Recovery code excluded from F29 source."
+}
