@@ -34,6 +34,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+          fetch-depth: 2
       - name: Use the repository Node pin
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
@@ -89,7 +90,23 @@ jobs:
           git rev-parse HEAD > "$RUNNER_TEMP/locked-package-evidence/source-sha.txt"
           cp railway.toml railpack.json "$RUNNER_TEMP/locked-package-evidence/"
           cat "$RUNNER_TEMP/locked-package-evidence/source-sha.txt" "$RUNNER_TEMP/locked-package-evidence/runtime.json" >> "$GITHUB_STEP_SUMMARY"
+      - name: Reuse accepted F29 only for the reviewed F27-only boundary
+        id: f29-boundary
+        run: node scripts/work8/f27-change-boundary.cjs >> "$GITHUB_OUTPUT"
+      - name: Examine F27 simultaneous faults with independent external oracle
+        timeout-minutes: 5
+        run: |
+          node scripts/work8/f27-outer-controller.cjs empireai-locked:ci "$RUNNER_TEMP/f27-external-evidence"
+      - name: Preserve F27 external observations and protected containment
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: work8-f27-external-compound
+          path: ${{ runner.temp }}/f27-external-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: Examine remaining F29 supervision pair loss in isolated exact image
+        if: steps.f29-boundary.outputs.run_f29 != 'false'
         timeout-minutes: 32
         run: |
           node scripts/work8/f29-outer-controller.cjs empireai-locked:ci "$RUNNER_TEMP/f29-pair-evidence"
@@ -204,6 +221,45 @@ jobs:
           npm run verify:env --prefix backend
           npm run typecheck --prefix backend
           npm run build --prefix backend
+      # Insert into durable-runtime immediately after backend build; not the F29 job.
+      # Exact held app/helper + HH3 scripts must be present in this candidate revision.
+      - name: Build compiled coordinator examination image
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          test -f backend/dist/runtime/work8-generated-capture-hold.js
+          docker build --file scripts/work8/hh3.Dockerfile --tag work8-hh3:ci .
+          mkdir -p "$RUNNER_TEMP/hh3-evidence"
+          chmod 0777 "$RUNNER_TEMP/hh3-evidence"
+          docker image inspect work8-hh3:ci > "$RUNNER_TEMP/hh3-evidence/image.json"
+          git rev-parse HEAD > "$RUNNER_TEMP/hh3-evidence/source-sha.txt"
+      - name: Examine actual compiled coordinator timeout and error paths
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          container="work8-hh3-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          trap 'docker rm --force "$container" >/dev/null 2>&1 || true' EXIT
+          docker create --name "$container" --read-only --network none \
+            --cap-drop ALL --security-opt no-new-privileges --pids-limit 256 \
+            --memory 5g --cpus 2 --tmpfs /tmp:rw,nosuid,nodev,size=2g \
+            --mount "type=bind,source=$RUNNER_TEMP/hh3-evidence,target=/evidence" \
+            -e NODE_ENV=test -e EMPIRE_ENGINEERING_TEST_MODE=true \
+            -e HH3_SOURCE="$(git rev-parse HEAD)" work8-hh3:ci
+          docker inspect "$container" > "$RUNNER_TEMP/hh3-evidence/container-before.json"
+          timeout --signal=TERM --kill-after=10s 480s docker start --attach "$container"
+          docker inspect "$container" > "$RUNNER_TEMP/hh3-evidence/container-after.json"
+          test "$(docker inspect --format '{{.State.ExitCode}}' "$container")" = 0
+          test -f "$RUNNER_TEMP/hh3-evidence/timeout/receipt.json"
+          test -f "$RUNNER_TEMP/hh3-evidence/observer-error/receipt.json"
+          test -f "$RUNNER_TEMP/hh3-evidence/invalidate-error/receipt.json"
+      - name: Preserve compiled coordinator examination receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-hh3-compiled-coordinator
+          path: ${{ runner.temp }}/hh3-evidence
+          if-no-files-found: error
+          retention-days: 30
       - name: Verify bounded multi-provider inference and preserved authority
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/advisor-gateway.test.ts backend/src/validation/tests/advisor-pillow-readback.test.ts backend/src/validation/tests/provider-receipt-readback.test.ts backend/src/validation/tests/answer-gate-diagnostics.test.ts backend/src/validation/tests/owner-commissioning-readback.test.ts backend/src/validation/tests/locked-inference.test.ts backend/src/validation/tests/locked-provider-orchestration.test.ts backend/src/validation/tests/locked-reasoning-integration.test.ts
       - name: Verify response completion and frontend preservation safeguards

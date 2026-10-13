@@ -1,3 +1,4 @@
+import {assertGeneratedCaptureScope,holdGeneratedCapture,type GeneratedCaptureScope} from './runtime/work8-generated-capture-hold.js';
 import { registerWork8RecoveryRoutes } from './runtime/work8-recovery-routes.js';
 import { resolveShadowCeoDbPath } from './orchestration/shadow-ceo-integration/durable-paths.js';
 import {withPrimaryCaptureFence} from './runtime/work8-primary-capture.js';
@@ -283,7 +284,7 @@ export type EmpireApp = {
    */
   withDrainedWork8LocalCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
-  captureWork8Recovery: (request:Work8RecoveryRequest)=>Promise<Work8RecoveryResult>;
+  captureWork8Recovery: (request:Work8RecoveryRequest,scope?:GeneratedCaptureScope)=>Promise<Work8RecoveryResult>;
   finishRouteRegistration?: () => Promise<void>;
 };
 
@@ -679,12 +680,13 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     }, timeoutMs);
   };
 
-  const captureWork8Recovery = async (request:Work8RecoveryRequest):Promise<Work8RecoveryResult> => {
+  const captureWork8Recovery = async (request:Work8RecoveryRequest,scope?:GeneratedCaptureScope):Promise<Work8RecoveryResult> => {
     if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN");
     if (!(brain.taskQueue instanceof TaskQueue)) throw new Error("Recovery requires connected Redis");
     const queue=brain.taskQueue;
     const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
     if (!root) throw new Error("Recovery requires explicit volume root");
+    if(scope)assertGeneratedCaptureScope(scope,request,root);
     let staged=false;
     try {
       // Load the temporary Shadow view only after every applicable admission
@@ -696,7 +698,9 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
             withExclusiveNativeMissionCapture(getActiveDatabasePath(),()=>
               withExclusiveWork8DomainCapture(root,async()=> {
                 const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath},queue);
-                staged=true;return captured;
+                staged=true;
+                if(scope)await holdGeneratedCapture(scope,captured,{seal:finalizeWork8RecoveryInventory,verify:verifyWork8RecoveryInventory,invalidate:invalidateWork8RecoveryInventory});
+                return captured;
               })))))));
       finalizeWork8RecoveryInventory(result);
       verifyWork8RecoveryInventory(result);
@@ -705,7 +709,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
   };
 
   registerWork8RecoveryRoutes(app, {authenticate, founderEmail:env.FOUNDER_EMAIL,
-    capture:captureWork8Recovery});
+    capture:request=>captureWork8Recovery(request)});
 
   if (earlyListen) {
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
