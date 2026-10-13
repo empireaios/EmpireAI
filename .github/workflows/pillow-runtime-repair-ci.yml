@@ -90,9 +90,12 @@ jobs:
           git rev-parse HEAD > "$RUNNER_TEMP/locked-package-evidence/source-sha.txt"
           cp railway.toml railpack.json "$RUNNER_TEMP/locked-package-evidence/"
           cat "$RUNNER_TEMP/locked-package-evidence/source-sha.txt" "$RUNNER_TEMP/locked-package-evidence/runtime.json" >> "$GITHUB_STEP_SUMMARY"
-      - name: Reuse accepted F29 only for the reviewed F27-only boundary
+      - name: Assess exact accepted-source examination-only reuse boundary
         id: f29-boundary
         run: node scripts/work8/f27-change-boundary.cjs >> "$GITHUB_OUTPUT"
+      - name: Preserve explicitly retained F29 receipt
+        if: steps.f29-boundary.outputs.run_f29 == 'false'
+        run: node scripts/work8/f27-change-boundary.cjs --receipt f29 "$RUNNER_TEMP/locked-package-evidence/retained-f29.json" >> "$GITHUB_STEP_SUMMARY"
       - name: Examine F27 simultaneous faults with independent external oracle
         timeout-minutes: 5
         run: |
@@ -221,6 +224,10 @@ jobs:
           npm run verify:env --prefix backend
           npm run typecheck --prefix backend
           npm run build --prefix backend
+      - name: Verify changed examination boundaries
+        run: |
+          node --test scripts/work8/tests/f27-change-boundary.test.cjs scripts/work8/tests/f27-clock-origin.test.cjs
+          node --experimental-vm-modules scripts/work8/tests/hh3-owned-process-group.test.mjs
       # Insert into durable-runtime immediately after backend build; not the F29 job.
       # Exact held app/helper + HH3 scripts must be present in this candidate revision.
       - name: Build compiled coordinator examination image
@@ -432,7 +439,17 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+          fetch-depth: 2
+      - name: Assess accepted corpus reuse at exact unchanged runtime boundary
+        id: corpus-boundary
+        run: node scripts/work8/f27-change-boundary.cjs >> "$GITHUB_OUTPUT"
+      - name: Record retained corpus evidence without claiming new execution
+        if: steps.corpus-boundary.outputs.run_corpora == 'false'
+        env:
+          CORPUS: ${{ matrix.corpus }}
+        run: node scripts/work8/f27-change-boundary.cjs --receipt "$CORPUS" "$RUNNER_TEMP/$CORPUS-retained.json" >> "$GITHUB_STEP_SUMMARY"
       - name: Use Node.js 22 with npm cache
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: '.node-version'
@@ -441,6 +458,7 @@ jobs:
             pillow/package-lock.json
             backend/package-lock.json
       - name: Install Redis binary for test-owned isolated AOF processes
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
         run: |
           sudo apt-get update
           sudo apt-get install --yes redis-server
@@ -449,21 +467,24 @@ jobs:
           # The mandatory integration suite owns its loopback port, data directory,
           # AOF persistence and process restarts. No hosted Redis credentials are used.
       - name: Clean install, typecheck and build Pillow
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
         run: |
           npm ci --prefix pillow
           npm run typecheck --prefix pillow
           npm run build --prefix pillow
       - name: Clean install, verify, typecheck and build backend
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
         run: |
           npm ci --prefix backend
           npm run verify:env --prefix backend
           npm run typecheck --prefix backend
           npm run build --prefix backend
       - name: Verify complete generated corpus with intercepted provider HTTP
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
         env:
           CORPUS: ${{ matrix.corpus }}
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs "backend/scripts/$CORPUS-full-path.mjs" "$RUNNER_TEMP/$CORPUS-full-path.json"
-      - name: Retain generated full-path receipt and exact source identity
+      - name: Record current checkout identity separately from retained tested source
         if: always()
         env:
           CORPUS: ${{ matrix.corpus }}
@@ -476,6 +497,7 @@ jobs:
           path: |
             ${{ runner.temp }}/${{ matrix.corpus }}-full-path.json
             ${{ runner.temp }}/${{ matrix.corpus }}-source-sha.txt
+            ${{ runner.temp }}/${{ matrix.corpus }}-retained.json
           retention-days: 14
           if-no-files-found: error
 

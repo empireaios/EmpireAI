@@ -3,7 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {fork,spawnSync} from 'node:child_process';
 import {createRequire} from 'node:module';
-import {once} from 'node:events';
+import {ownProcessGroup,terminateOwnedProcessGroup} from './hh3-owned-process-group.mjs';
 const require=createRequire(new URL('../../backend/package.json',import.meta.url));
 const Redis=require('ioredis');
 const {installPrimaryCaptureParticipant}=await import('../../backend/dist/runtime/work8-primary-capture.js');
@@ -12,7 +12,8 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const writeProbe=file=>spawnSync(process.execPath,['-e',`const {DatabaseSync}=require('node:sqlite');const db=new DatabaseSync(process.argv[1],{timeout:0});try{db.exec('BEGIN IMMEDIATE;ROLLBACK');}catch(e){if(!/locked|busy/i.test(String(e)))throw e;process.exitCode=7;}finally{db.close();}`,file],{encoding:'utf8',timeout:1500});
 for(const mode of ['timeout','observer-error','invalidate-error']){
  const events=[];let held,settled,failure,reader,active=0,entered=0;const out=path.join(evidence,mode);fs.mkdirSync(out,{recursive:true});
- const child=fork(new URL('./hh3-compiled-child.mjs',import.meta.url),[mode],{execArgv:[],stdio:['ignore','pipe','pipe','ipc'],env:{PATH:process.env.PATH,NODE_ENV:'test',EMPIRE_ENGINEERING_TEST_MODE:'true',HH3_SOURCE:process.env.HH3_SOURCE,HOME:'/tmp',TMPDIR:'/tmp'}});
+ const child=fork(new URL('./hh3-compiled-child.mjs',import.meta.url),[mode],{detached:true,execArgv:[],stdio:['ignore','pipe','pipe','ipc'],env:{PATH:process.env.PATH,NODE_ENV:'test',EMPIRE_ENGINEERING_TEST_MODE:'true',HH3_SOURCE:process.env.HH3_SOURCE,HOME:'/tmp',TMPDIR:'/tmp'}});
+ const ownedGroup=ownProcessGroup(child);
  const log=fs.createWriteStream(path.join(out,'child.log'));child.stdout.pipe(log,{end:false});child.stderr.pipe(log,{end:false});
  const remove=installPrimaryCaptureParticipant(child,async hold=>{active++;entered++;events.push('primary-enter');try{await hold();}finally{active--;events.push('primary-release');}});
  child.on('message',message=>{events.push(message.event);if(message.event==='held')held=message;if(message.event==='settled')settled=message;if(message.event==='failed')failure=message;});
@@ -39,5 +40,5 @@ for(const mode of ['timeout','observer-error','invalidate-error']){
    child.send({action:'cleanup'});await until(()=>!child.connected,'cleanup',15000);
   }
  }catch(error){fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({source:process.env.HH3_SOURCE,mode,error:String(error),events}));throw error;}
- finally{reader?.disconnect();remove();if(child.exitCode===null&&child.signalCode===null){const exited=once(child,'exit');child.kill('SIGKILL');await exited;}log.end();}
+ finally{reader?.disconnect();remove();const cleanup=await terminateOwnedProcessGroup(ownedGroup);fs.writeFileSync(path.join(out,'process-cleanup.json'),JSON.stringify({source:process.env.HH3_SOURCE,mode,...cleanup},null,2));log.end();}
 }

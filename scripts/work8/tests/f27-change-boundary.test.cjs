@@ -1,2 +1,11 @@
-'use strict';const test=require('node:test'),assert=require('node:assert/strict'),{mayReuse}=require('../f27-change-boundary.cjs');const sha='c54b36e473a600b4c5b80942007879ed9bc8897412e74d81c6f1bb5eb7c58f25';
-test('accepted F29 is reused only for exact reviewed workflow and F27-only paths',()=>{assert.equal(mayReuse(['scripts/work8/f27-outer-controller.cjs'],sha),true);for(const paths of [null,[],['backend/src/app.ts'],['scripts/work8/f29-outer-controller.cjs'],['railway.toml'],['deployment/locked-runtime.cjs'],['unknown']])assert.equal(mayReuse(paths,sha),false);assert.equal(mayReuse(['scripts/work8/f27-outer-controller.cjs'],'wrong'),false);});
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const {mayReuse,baselineTree,workflowDigest}=require('../f27-change-boundary.cjs');
+const p='scripts/work8/f27-outer-controller.cjs';
+test('retained examinations require exact known base, ancestry, workflow and regular examination-only paths',()=>{
+ const check=(paths=[p],digest=workflowDigest,tree=baselineTree,ancestor=true,modes={[p]:'100644'})=>mayReuse(paths,digest,tree,ancestor,modes);
+ assert.equal(check(),true);
+ for(const paths of [null,[],['backend/src/app.ts'],['backend/src/runtime/work8-generated-capture-hold.ts'],['pillow/package-lock.json'],['scripts/work8/f29-outer-controller.cjs'],['railway.toml'],['deployment/locked-runtime.cjs'],['unknown'],[p,'backend/src/app.ts']])assert.equal(check(paths),false);
+ assert.equal(check(undefined,'wrong'),false);assert.equal(check(undefined,undefined,'unknown'),false);assert.equal(check(undefined,undefined,undefined,false),false);
+ for(const mode of ['120000','100755','160000','',undefined])assert.equal(check(undefined,undefined,undefined,undefined,{[p]:mode}),false);
+});
