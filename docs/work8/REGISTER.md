@@ -1,77 +1,401 @@
-# Work8 authoritative progress
+# Work 8 current complete 45+19 tracker
 
-Original requirements:10 PASS /30 PENDING /5 BLOCKED =45. Separate amendments:0 PASS /19 PENDING /0 BLOCKED =19. Independent scoped review supports no additional closure.
+Original requirements: **31 PASS / 10 PENDING / 4 BLOCKED = 45**.
+Owner amendments: **8 PASS / 11 PENDING = 19**.
 
-Approved evidence8ae8edb7fa882f62b34e0e6d1222d42400c01aa6 published FIRST, source76206d799412a57bea17df1bc476fba33aa04637 SECOND; exact approved trees, zero full-tree differences. Deployment frontend unchanged. Current CI attribution is in EXACT-HEAD-CI-76206D79.json. New pinned frontend679f901d typecheck,215+2 tests and build passed. Earlier223/391 and whole-volume evidence remain unchanged. No new source repair needed.
+F29 two missing pair arms independently accepted; no complete original requirement or amendment newly closed.
 
-Four external inputs remain in OWNER-DECISION-CURRENT.md. No complete genuine journey or hosted acceptance claimed. Pillow NOT_BORN; commerce LOCKED; Work8 NO_GO.
+Published evidence `b4fbf00fbe3afed65082a9cfa01c076ac1c5ba8b`, tree `f36f91ef44764437565e596e7dbded46ff90ee0f`.
+Published source `b3c775c676f35fa5a8009bde7384839997116b16`, tree `9f81cef990efb1a22a4828dfcf08f962f41a90c7`.
+All four exact-source automatic CI workflows PASS. PR113 draft/unmerged; no production deployment.
 
-| # | Original requirement | Completed engineering | Examination evidence | Remaining requirement | Official status | Exact next action |
-|---|---|---|---|---|---|---|
-| 1 | Work7 exact production/closure | Approved baseline retained | PASS — baseline only | None for Work7 | PASS | Preserve baseline; do not rerun Work7 campaign |
-| 2 | Financial and historical preservation | Separate ledgers preserved; extractor ready | BLOCKED — 224→227 attribution unresolved | Read-only canonical call/provider rows and original224 snapshot; join recovered request keys to actual added rows | BLOCKED | Extract one snapshot; compare identities and immutable original subset; join canonical correlation |
-| 3 | Approved UX and fifteen safety controls | Work7 UX retained; candidate guards intact; local retained Pillow proposal-to-preview consumer and Console controls integrated | PENDING — 15 guard pairs passed locally; new UX 4/4 and independent scoped review PASS | Authenticated integrated owner acceptance of candidate; original Work7 UX retained; original proposal integration now published. | PENDING | Carry guard results into remaining genuine-source flows without bypass |
-| 4 | Sandbox isolation and denied egress | Kernel network denial and isolated stores implemented; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance | PENDING — local egress checks passed | Full filesystem/operating isolation proof | PENDING | Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance |
-| 5 | Real-source connectivity and entitlements | Retained readers and bounded acquisition implemented; existing Keepa history adapter now rejects mismatched ASIN/domain, ambiguous products and malformed histories | BLOCKED — fresh acquisition not exercised; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred | Supported bounded fresh-read execution, exact market-match and remaining provider entitlements; current stored fresh CJ receipts recovered, not a new tool-triggered refresh. | BLOCKED | Use existing authorized acquisition route or targeted provider receipts; current Advisor surface cannot execute reads/assessment. |
-| 6 | Authentic source product records | Genuine identities retained | PENDING — 10 parents/10 variants; zero qualified; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred | Fresh complete product dossiers | PENDING | Select exact destination freight quote and complete market match and qualification inputs; documented USD field meaning retained. |
-| 7 | Product images and usage rights | Unverified imagery withheld | BLOCKED — 0/19 assets licensed for display | Applicable supplier/rightsholder permission | BLOCKED | Attach permission covering exact URLs/use/validity; then render those assets |
-| 8 | Observed supplier prices/currencies | Text-only QUALIFIED/DEFERRED/REJECTED evaluator implemented; immutable owner evidence review, canonical forecast/source-FX/cash binding; media permissions remain separate downstream gate; published exact retained freight-option selection and existing Console evidence-review form now implemented | 24 scoped tests PASS; complete injected fixture qualifies; ten retained genuine CJ observations individually defer for missing mandatory evidence; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred;13 affected dossier/qualification tests and backend/frontend typechecks/lint PASS; scoped independent review clear | Choose exact retained shipping service; complete reviewed costs/FX. CJ logisticPrice USD meaning now documented; selected genuine quote remains absent. | PENDING | Use authorised acquisition access to complete genuine cited findings, exact freight, canonical economics/FX/cash and source-bound assessment; then authenticated owner decision. |
-| 9 | Competitor and market evidence | Separate authentic market projection; existing Keepa history adapter now rejects mismatched ASIN/domain, ambiguous products and malformed histories | PENDING — 10 ASINs, one USD18.99 offer, zero matches; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred | Verified product match and demand evidence | PENDING | Establish identity match before using any market price or demand claim |
-| 10 | Normalization identity and deduplication | Durable identity/deduplication implemented; existing Keepa history adapter now rejects mismatched ASIN/domain, ambiguous products and malformed histories; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance | PASS — current-tree source identity, contradictory variant/currency refusal, durable cross-process and next-day deduplication tests | None within independently accepted component scope; fresh acquisition and owner journey remain separate | PASS | Preserve accepted scope; continue genuine source/assessment and owner-visible acceptance |
-| 11 | Freshness and quarantine | Expiry/contradiction refusal implemented; existing Keepa history adapter now rejects mismatched ASIN/domain, ambiguous products and malformed histories | PENDING — adversarial cases passed; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred | Genuine refresh after expiry | PENDING | Verify fresh replacement generation and preservation of old receipts |
-| 12 | Software screening and economics | Text-only QUALIFIED/DEFERRED/REJECTED evaluator implemented; immutable owner evidence review, canonical forecast/source-FX/cash binding; media permissions remain separate downstream gate; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; published exact retained freight-option selection and existing Console evidence-review form now implemented | PENDING — 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted; current CJ exact variant 2610110805301628000 screened DEFERRED; no genuine qualification or Amazon match inferred;13 affected dossier/qualification tests and backend/frontend typechecks/lint PASS; scoped independent review clear | Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance | PENDING | Use authorised acquisition access to complete genuine cited findings, exact freight, canonical economics/FX/cash and source-bound assessment; then authenticated owner decision. |
-| 13 | Actual Pillow assessment binding | Context/request/owner linkage and strict draft contract implemented; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; repaired host-schema omission of verified product context; added bounded2–4 product comparison and prompt-compaction regression | PENDING — 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted | Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance | BLOCKED | Complete actual source/permission evidence and authorized assessment, then authenticated owner preparation/approval/authorization and canonical simulated finance walkthrough |
-| 14 | Owner recommendations and decisions | Dossier delivered in candidate-bound Pillow context; owner proposal/recommendation display and immutable authenticated review decisions implemented; immutable reviewed dossier pinned in investigation grant; delivery, request and owner bound; current dossier rechecked by owner projection and enrollment; Owner Console displays evaluated text qualification/rejection, qualified net estimate, cash and missing financial evidence; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; repaired host-schema omission of verified product context; added bounded2–4 product comparison and prompt-compaction regression; published exact retained freight-option selection and existing Console evidence-review form now implemented | PENDING — 31 distinct focused commercial tests pass with explicitly injected source/assessment fixtures; no genuine journey accepted;13 affected dossier/qualification tests and backend/frontend typechecks/lint PASS; scoped independent review clear | Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance | PENDING | Use authorised acquisition access to complete genuine cited findings, exact freight, canonical economics/FX/cash and source-bound assessment; then authenticated owner decision. |
-| 15 | Initial up-to-100 qualification | Truthful initial qualification pipeline with distinct genuine/synthetic counts and persisted outcomes | PASS — ten retained genuine candidates individually DEFERRED; separately labelled synthetic100 initial exercise; no genuine qualification minimum invented | None within independently accepted component scope; fresh acquisition and owner journey remain separate | PASS | Preserve accepted scope; continue genuine source/assessment and owner-visible acceptance |
-| 16 | Daily discovery and low-supply outcomes | Bounded daily jobs/generations and truthful deferrals | PENDING — local admission cases passed | Fresh daily source cohorts | PENDING | Verify daily bounds and genuine low-supply outcomes; do not inflate throughput |
-| 17 | Transactional active portfolio cap | Canonical publication admission counts distinct product identities inside the SQLite command transaction; retirement and replacement preserve history. | PASS — retained 999/1000/1001 boundaries, two actual SQLite contenders, duplicate variants, reopen and retirement/replacement. | None for this isolated portfolio-cap requirement. Genuine product acceptance remains in requirements 5–16 and 40. | PASS | Preserve cap; rerun only if its implementation or transaction boundary changes. |
-| 18 | Portfolio review retirement/replacement | Retirement preserves historical financial source and plan; new composed three-day fixture examination added.; retirement preserves historical settled finance pins | 11 isolated tests pass; independent scoped review found no blocker.; ten-day synthetic pipeline and nine replacements PASS | Genuine outcome review; synthetic daily pipeline accepted under requirement37. | PENDING | Bind genuine outcome evidence to retirement/replacement; preserve accepted synthetic pipeline. |
-| 19 | Simulated listing schema/media | Versioned media, separate internal/publication approval, closed Archive and image/video import form implemented. Rejection invalidates current selection and submitted status. Exact-request Canva design-export proposal consumer added locally; default runtime blocked. | Rejection/restore regressions pass; frontend typecheck and changed-file lint pass. Four intercepted export tests PASS, full backend typecheck PASS. | Exact product-asset rights, chosen Canva connection/design, server-owned export/download authority or approved external editing workflow, and native acceptance. | PENDING | Use discovered connector editing transaction only for an authorised product design and licensed assets; preview/approve before save, then import without approvals. |
-| 20 | Simulated orders and supplier intents | Prepared qualified simulation enrollments now run through the canonical twin scheduler with explicit temporary authority and immutable source/preparation/assessment lineage. | PREPARED-SCHEDULER-FINAL.tap:3 PASS; labelled injected qualification/assessment, no real product claim. | Genuine qualification, authorised inference and native owner acceptance. | PENDING | Bind fresh genuine sources and approved assessment to the existing prepared enrollment path. |
-| 21 | Partial shipments tracking/delivery | Bounded monitoring and escalation retained; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance | Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending | Real-product simulation linkage | PENDING | Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance |
-| 22 | Refund returns and supplier credits | Simulation remedies and financial events retained | PENDING — scoped remedy/conservation cases passed | Full linked real-product simulated lifecycle | PENDING | Reconcile refund/credit events after genuine-candidate simulation enrollment |
-| 23 | Settlement payout holds/bank receipts | Enrolled missions can enter durable simulated settlement/hold/release/bank lifecycle with enrollment/dossier/assessment lineage; server-owned immutable mission preparation, exact source/rights/assessment lineage, separate product approval and owner simulation authorization now integrated with existing engine; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance | Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending | Fresh genuine qualified dossier, authentic image permission normalization, genuinely authorized completed assessment and owner browser acceptance; accounting row lineage additionally required for finance acceptance | PENDING | Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance |
-| 24 | Financial reconciliation and money conservation | Settled simulated finance remains pinned across verified owner retirement; other source advances still blocked. | 11 isolated tests pass, including three settled orders and two replacements with source/plan conservation. | Genuine linked lifecycle and actual financial lineage remain. | PENDING | Preserve published retirement/finance repair; bind genuine lifecycle and actual financial lineage when accessible. |
-| 25 | Live Cost Centre separate accounting | Isolated immutable Birth periods, archival history, exact integer service allocation, preserved position references; bounded cost discovery reuses existing evidence journal; owner rehearsal view added. Cached successful provider reads now retain a current outage until fresh successful evidence arrives; decision survives restart. Atomic multi-charge ingestion and reversal-aware totals implemented. Authorised Railway UI account adapter preserves plan/usage/history separately from actual charges. | 30 financial integration tests PASS; six final cost tests PASS; independent cross-module finance review; two financial view SSR tests PASS. Invoice/payment and continuous provider access not inferred. | Actual224/227 row lineage; full provider billing/FX/allocation; independent opening balance certification; native acceptance. | PENDING | Reconcile actual invoice/payment/usage rows when accessible; certify opening balances and authenticated view against exact candidate. |
-| 26 | Assurance detection/correlation | New passive queue/schedule probe registered; owner closure repaired; collector now fails closed for missing evidenceId; runtime exception invalidates prior four-eyes health and scheduler; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance; local dual-observer loss containment added; observer progress deadlines, independent launcher-loss guard and failed Redis cleanup repair implemented locally; recovery completion now requires an observation from the current verification invocation (local fcafa3e1) | Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending;29 targeted tests PASS, actual fixture observer deaths and audit-failure containment;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected | Joint genuine-source/assessment/accounting and hosted acceptance prerequisites from accepted fixed31 design; no uncovered currently executable local assertion identified | PENDING | Obtain consolidated external inputs; execute only remaining designed joint acceptance arms, preserving local passes |
-| 27 | Bounded repair authority catalogue | Four bounded registered repairs; authority, preconditions, budgets, verification and containment mapped to published source. | Independent catalogue acceptance PASS; retained positive/negative receipt hashes verified. | None within bounded repair catalogue scope; full fault and runtime acceptance remain separate. | PASS | Preserve catalogue acceptance; re-review only changed entries or authority boundaries. |
-| 28 | Fresh independent recovery verification | Fresh active/passive verification published with exact trees; original49 and successor46 scoped passes preserved. | PASS — exact-head Assurance38139483272; retained Product/Runtime/Semantic implementation coverage; fresh runbook and passive closure positive/negative evidence | None for fresh independent recovery verification scope | PASS | Preserve acceptance; broader recurrence, platform and programme certification remain separate |
-| 29 | Recurrence budget and circuit breaker | Fault-family retry/circuit limits retained; observer progress deadlines, independent launcher-loss guard and failed Redis cleanup repair implemented locally; recovery completion now requires an observation from the current verification invocation (local fcafa3e1) | Retained generic budget cases plus actual registered-runtime recurrence PASS: two verified repairs, restart, third refused, source/events retained; independent scoped review PASS | None within recurrence budget/circuit-breaker scope | PASS | Preserve accepted recurrence evidence; hosted joint fault gates remain separate |
-| 30 | Assurance watchdog/degraded operation | Actual observer IPC shutdown repaired after reproduced SIGTERM hang; launcher exits naturally after cleanup. | 2 pre-repair failures;4 observer passes and1 actual supervised-launcher pass.; published52338 Runtime and Semantic confirm actual observer IPC/launcher clean stop | Hosted platform containment, coupled loss and final-candidate endurance; exact published runtime CI now passed | PENDING | Preserve current CI results; execute coupled process-tree containment and final-candidate endurance only on separately authorised isolated host |
-| 31 | Scenario blueprint seeds and independent oracles | Existing seeded blueprint completed with31 prospective fault designs, deterministic inputs, independent oracles and measurement rules. | Independent design acceptance PASS; no remaining execution inferred. | None for blueprint/design scope. Execution gates32–41 remain separate. | PASS | Preserve accepted design; execute only missing authorised cases with sealed exact inputs and retain results. |
-| 32 | Unit integration/contract and property exams | Clean locked dependencies restore broader declarations; full backend/Pillow typecheck and build verified; fresh-route CI fixture repaired. | PASS — current Product215/215, Runtime391/391, capture regression, retained contracts/properties, clean builds and four successful workflows; exact tested tree verified; latest published Product223/223 and Runtime391/391 PASS, merge checkout complete tree matches source; no successor hosted result inferred. | None within unit/integration/contract/property scope; owner journeys and wider recovery remain separate | PASS | Preserve accepted Level1 examinations; rerun only affected boundaries if implementation changes |
-| 33 | Concurrency races and replay | Stock/cap atomicity and replay fences retained; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance; same-host cross-process canonical checkpoint writer exclusion and in-flight cursor replay examined without engine changes; final all-root backup inventory revalidation now refuses demonstrated later cross-store mutation | Isolated fixture vertical PASS: 3 products/orders, real timer, settlement, fault recovery, restart, HTTP and shared Console rendering; full requirement acceptance pending Retained CI ac9583c proves real shared Brain pause/drain, Redis AOF crash recovery and stale settlement fencing.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; child finance writer during Redis copy: before failure retained, corrected refusal and stable restore 2 tests PASS | Wider transport/concurrency matrix | PENDING | Prove enforced global shutdown/consistent capture and protected off-host restore on separately authorised isolated runtime; published capture correction retained |
-| 34 | Fault injection and compounded failures | Queue+schedule compound examination added; local dual-observer loss containment added; observer progress deadlines, independent launcher-loss guard and failed Redis cleanup repair implemented locally; recovery completion now requires an observation from the current verification invocation (local fcafa3e1) | PENDING — full20 queue drains21 admitted jobs; fresh closure;29 targeted tests PASS, actual fixture observer deaths and audit-failure containment;35 targeted tests PASS, actual observer disconnect and launcher kill/stall examinations; 32 control +17 registered-runtime/finance integration tests pass; missing/stale/future/pre-verification affirmative receipts rejected | Joint genuine-source/assessment/accounting and hosted acceptance prerequisites from accepted fixed31 design; no uncovered currently executable local assertion identified | PENDING | Obtain consolidated external inputs; execute only remaining designed joint acceptance arms, preserving local passes |
-| 35 | Provider outage malformed output and correlation | 429/503/schema handling and strict model draft rejection | PENDING — injected cases passed | Genuine authorised provider/assessment evidence | PENDING | Validate factual claims against sources; keep proposal verification false meanwhile |
-| 36 | All fifteen safety controls positive/negative exams | All15 controls and seven live locks retained; new admission rejects incomplete proofs and stale authority | 15 safety tests passed alongside new enrollment/finance tests | Full integrated genuine acceptance | PENDING | Retain changed-boundary refusals and verify genuine path once qualified; do not weaken guards |
-| 37 | Multi-day virtual-time operations | Shared persistent Intelligence and commerce stores; initial100 and ten daily100 cohorts; settlement and retirement finance preserved | 7 focused tests PASS;1100 identities,10 settlements,9 replacements,qualification outcomes and cold reopen;retained cap1000 concurrent race PASS | None for synthetic virtual-time scope | PASS | Preserve scoped acceptance; genuine-source and elapsed-endurance obligations remain separate |
-| 38 | Measured elapsed endurance | Normal five-second twin timer examined for600342ms; two delivered fixture orders and22 financial events; restart equality. | Ten-minute bounded elapsed run PASS; virtual settlement time is separate; later preparation/context delta covered separately. | Broader full-business elapsed endurance, final-candidate scope and genuine source cohort. | PENDING | Run only missing final-candidate endurance coverage after remaining integration. |
-| 39 | Cold restart rollback/migration/restore | Whole isolated volume captures finance and commerce; retained restoration and compatibility machinery preserved.; same-host cross-process canonical checkpoint writer exclusion and in-flight cursor replay examined without engine changes; final all-root backup inventory revalidation now refuses demonstrated later cross-store mutation | b68e42b runtime run38129976823 SUCCESS; whole-volume stopped bundle test PASS; runtime391 tests pass.;1 new independent-reviewed isolated replica test PASS: blocked writer, later commit, no duplicate receipt, no restored authority; exact52338 runtime38137758734 SUCCESS: complete enabled-store/whole-volume restoration and financial/Redis continuity receipt retained; child finance writer during Redis copy: before failure retained, corrected refusal and stable restore 2 tests PASS; exact e3e8500a runtime38139483205 SUCCESS; whole-volume/finance/Redis continuity artifact11702567419 independently hash-verified; current a3cd82a1 Runtime38142058061 SUCCESS; whole-volume/finance/Redis continuity artifact11703737345 hash-verified | Global arbitrary-writer coordination, protected off-host retention and authenticated restore acceptance remain. | PENDING | Prove enforced global shutdown/consistent capture and protected off-host restore on separately authorised isolated runtime; published capture correction retained |
-| 40 | Actual owner-view real-product walkthrough | Seven Console projections wired to durable session; product-context links and Systems authority implemented; Approved five mobile tabs; versioned media and communications integrated into existing twin views. | Frontend typecheck/lint passed; no native browser claim. | Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority. | BLOCKED | Authenticated desktop/mobile acceptance, genuine products/rights/assessment, separate hosting authority. |
-| 41 | Mobile desktop source-to-finance equality | Financial rehearsal tab renders actual backend period and cost projection; existing mobile navigation and owner UX retained. Qualified Railway account cards added to existing financial view. | Two backend-service-generated SSR tests PASS; changed component lint PASS; exact frontend review CI newly pinned in backend workflow. Current Product phone browser OFFLINE_FIXTURE PASS; actual tested merge tree equals published tree; no genuine native owner walkthrough inferred. Pinned frontend679f901d restored and verified in hosted CI; typecheck,215+2 tests and build PASS; no native genuine acceptance inferred. | Native desktop/mobile authenticated journey and source-to-finance equality. | PENDING | Use existing browser harness once an authorised browser environment is available. |
-| 42 | Review exact-head CI and release authority | Evidence8ae8edb7 published before source76206d79; complete approved trees equal; frontend deployment branch held. | Current CI in EXACT-HEAD-CI-76206D79.json; pinned frontend679f901d verified, typecheck/215+2 tests/build PASS; prior four successes retained. | Remaining current-head CI conclusions plus genuine hosted owner acceptance and final independent certification. | PENDING | Read existing runs38148890763/38148890816/38148890772/38148890773; do not restart passing runs. Resolve consolidated access/rights/accounting/hosting inputs. |
-| 43 | Independent Mission Ledger closure | Closure withheld | PENDING — no Work8 COMPLETE | Mandatory acceptance gates and independent closure | PENDING | Issue no COMPLETE receipt until evidence supports every required gate |
-| 44 | GO/NO-GO residual risks | Explicit NO-GO retained | PENDING — full certification denied | Remaining implementation, examinations and blocked inputs | PENDING | Reassess only against new genuine evidence; preserve residual-risk record |
-| 45 | Work9 handoff without activation | Conditional handoff retained; persistent twin lifecycle and canonical shared projection foundation implemented; authenticated routes, real scheduler and shared Console projection implemented; persistent twin vertical integration now connects canonical scheduler, intercepted commerce, finance and Assurance | PENDING — Work9 not activated | Legitimate Work8 closure | PENDING | Separately authorise isolated hosting and preview rebuild; finish native owner acceptance, genuine-source prerequisites and broader elapsed endurance |
+Work8 NO_GO; Work9 INACTIVE; Pillow NOT_BORN; Commerce LOCKED.
 
-| # | Owner amendment | Completed engineering | Acceptance evidence | Remaining requirement | Official status | Exact next action |
-|---|---|---|---|---|---|---|
-| 1 | Persistent autonomous digital twin | Existing canonical twin retained; media and communications added | Retained original scoped examination receipts; native owner acceptance not yet granted | Hosted cross-store/global writer consistency and genuine operating acceptance; existing persistent engine and adapters preserved. | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 2 | Whole-system twin | Existing canonical twin retained; media and communications added | Retained original scoped examination receipts; native owner acceptance not yet granted | Hosted cross-store/global writer consistency and genuine operating acceptance; existing persistent engine and adapters preserved. | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 3 | Protected backup vault | V3 prepared-mission/enrollment snapshots, V1/V2 migration, independently verified chain and atomic point-in-time restore; inert authority/preview history survives without restoring grants. Nine-store offline vault inventory and financial WAL immutable verification added. | Runtime38142058061 verified whole-volume, finance and Redis continuity; prior sealed snapshot/replay evidence retained | Global writer coordination, protected off-host retention and authenticated independent restore; current whole-volume/Redis/financial continuity already passed | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 4 | Future-state workspace | New empty recovery stores; divergent experiment replay refused | Retained original scoped examination receipts; native owner acceptance not yet granted | Authenticated future-state workspace lifecycle and isolated runtime acceptance; no new dashboard required. | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 5 | Seamless upgrades and rollback | Old/new/old separate process test preserved 4 orders and44 financial events | Retained original scoped examination receipts; native owner acceptance not yet granted | Hosted upgrade, zero-downtime evidence and operational controls remain | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 6 | Owner-visible autonomous dry run | Seven existing views plus media/communication extensions | Retained original scoped examination receipts; native owner acceptance not yet granted | Authenticated native acceptance and genuine source journey remain | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 7 | Five mobile shortcuts | CEO/Intelligence/Products/Orders/Finance; Home preserved; typecheck/lint passed | Retained original scoped examination receipts; native owner acceptance not yet granted | Native phone touch, geometry and keyboard acceptance remain | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 8 | Product-linked Pillow Chat | Single and2–4 comparison references server-validated; product binding survives prompt schema and conversation compaction; removable chips and Orders links added. | Retained original scoped examination receipts; native owner acceptance not yet granted | Native browser acceptance and authorised genuine assessment. | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 9 | Product image/video management | Image/video import form now records batch source, rights, checksum, editing provenance and instructions; existing proposal/approval endpoint reused. Native details element closed by default; original revisions retained | Retained original scoped examination receipts; native owner acceptance not yet granted | Native observation, independently verified media bytes/rights and authorised Canva execution remain. Native browser verification remains | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 10 | Canva-assisted editing | Exact edit-request/version/source-bound Canva export consumer implemented locally; immutable attempt prevents blind retry; proposal receives no approvals. Canva connector editing transactions are available separately from runtime adapter. | 4 intercepted export tests PASS; full backend typecheck PASS; safe default route reviewed. | Exact licensed product asset/design and account choice; runtime server authority/download policy or approved external editing workflow; native acceptance. | PENDING | Approve specific product design/asset workflow; preserve draft preview and separate save/internal/external decisions. |
-| 11 | Separate internal/external media approval | Individual/batch internal selection, exact-version intercepted external step tested Rejected approved batches now lose selected/submitted status; regression passes. | Retained original scoped examination receipts; native owner acceptance not yet granted | Native acceptance and genuine rights evidence remain | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 12 | Temporary Systems authority | Four independent preparation/inspection scopes, one-task/timed grants, expiry/revoke, durable consumption and safe local consumers implemented; scheduler authority separate. Recovered grant/preview history is retained separately as inert audit evidence and exposed in collapsed Systems details. | Retained original scoped examination receipts; native owner acceptance not yet granted | Genuine authorised model consumer and authenticated native grant/expiry/revocation acceptance; local retained-proposal integration reviewed. | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 13 | Conversational UX changes | Owner/request/context-bound retained Pillow proposal now feeds existing isolated preview and separate approval; canonical request hash reused. | 4 focused tests PASS; frontend/backend typechecks and changed-file lint PASS; independent scoped review clear after hash repair. | Genuine authorised retained proposal and native owner acceptance; original integration source is now published. | PENDING | Consume exact authorised retained reply in existing Systems flow and verify authenticated native owner acceptance. |
-| 14 | Human-interaction risk management | Eight-category risk/deadline/escalation workflow now prevents silent unresolved downgrade and deadline postponement; restart and recovery tested. Existing preparation is explicitly rule-based (modelAssessment NOT_REQUESTED), allowed while inference is unauthorised. | Retained original scoped examination receipts; native owner acceptance not yet granted | Native risk/escalation acceptance; genuine model-prepared draft only through separately authorised inference. | PENDING | Demonstrate truthful rule-based preparation and escalation in the shared owner journey; do not label it AI-written. |
-| 15 | Keepa and Helium 10 readiness | Existing validation and disabled adapter preserved | Retained original scoped examination receipts; native owner acceptance not yet granted | Licensing/entitlement verification remains; Jungle Scout excluded | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 16 | Financial Birth Cutover | Immutable isolated Birth identity, service-period allocations, preserved archive/position references, backup/restore and existing authenticated owner route/view implemented. | Retained original scoped examination receipts; native owner acceptance not yet granted | Genuine complete financial inputs, independent opening-position review and native owner acceptance; live cutover forbidden. | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 17 | Autonomous Cost Intelligence | Bounded read-only adapter ports, durable evidence/exceptions, existing-journal invoice reconciliation, Vercel aggregate adapter and owner view implemented. Published freshness repair ac9583c: cached reads cannot clear current outage; restart retains unresolved state. Three scoped tests and strict TypeScript PASS. | Retained original scoped examination receipts; native owner acceptance not yet granted | Additional authorised provider interfaces, subscription/invoice/payment detail, exact accounting rows, continuous activation reserved Work9. | PENDING | Complete the applicable step in the same genuine-product owner journey; preserve existing passes |
-| 18 | Isolated hosted twin | Existing hosting proposal and billing inspection preserved; no runtime provisioned | Read-only inventory: canary has zero services, volumes and buckets; same production billing workspace. Prior billing inspection retained. | Identify isolated capacity, enforceable total exposure, protected retention and separate deployment authority | PENDING | Identify alternative approved isolated capacity or separately priced billing/retention option; no production workspace cap. |
-| 19 | Integrated owner acceptance | Existing Console projections and persistent lifecycle retained Published qualification review form joins exact freight and seven cited findings to canonical financial/source snapshots. | Pinned frontend679f901d hosted typecheck,215 web+2 finance tests and build PASS; offline fixture evidence retained; no genuine native owner acceptance. | Same genuine product/mission/order/finance/Assurance records on desktop and mobile | PENDING | Join source/assessment, rights, accounting and hosted inputs |
+## Original 45 requirements
+
+### 1 — PASS — Work7 exact production/closure
+
+Accepted evidence: baseline.json; recovery-receipt.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 2 — BLOCKED — Financial and historical preservation
+
+Accepted evidence: resume-20261011/ACCOUNTING.md; resume-20261011/ACCOUNTING-REQUEST-CORRELATION.json; resume-20261012/ACCOUNTING-INTEGRITY.json (current227/219 recovered, original224 absent)
+
+Remaining assertion / preservation: Recover the actual original 224-row canonical snapshot from its custodian or an attributable retained backup; compare IDs and immutable contents against privately preserved current 227 calls/219 providers. Three exact joins do not establish the delta.
+
+### 3 — PASS — Approved UX and fifteen safety controls
+
+Accepted evidence: revised-review-20261012/review/REQUIREMENT-3-DECISION.md; review/PRESERVATION.json; accepted safety36, A7/A12/A16 and genuine consumer6/8/11/12/24 evidence
+
+Remaining assertion / preservation: Complete original preservation/safety row independently accepted: Work7 exact public assets/cockpit route trees/navigation/presentation and11destination order preserved; approved Home/art/mobilechat and scoped actualconsumers retained. No fullgenuinejourney or historicalfinancial certification inferred.
+
+### 4 — PASS — Sandbox isolation and denied egress
+
+Accepted evidence: examination-ledger.json; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 5 — PASS — Real-source connectivity and entitlements
+
+Accepted evidence: revised-review-20261012/review/SOURCE-AND-RELEASE-DECISIONS.md; business-finance/MARKET-AND-ENTITLEMENT-CRITERIA.md; business-finance/SEAL.json
+
+Remaining assertion / preservation: Original connectivity and availability-boundary criteria independently accepted: actual CJ/Amazon reads; four capability levels; explicit unavailable403/stale/Keepa unknown. No optional paid activation or source entitlement inferred.
+
+### 6 — PASS — Authentic source product records
+
+Accepted evidence: business-finance/CRITERIA-MATRIX.md; R4-ONE-VARIANT-COUNTS.json; REQUIREMENT-11-DECISION.md; freshness-receipt.json; assurance-console/genuine-and-finance/receipt.json; ACCEPTANCE-RECONCILIATION.md
+
+Remaining assertion / preservation: PASS: authentic retained CJ records, exact source identity/provenance and denominated cohort verified; actual authenticated application consumer displayed genuine records on desktop1440/mobile390. Unknown supplier/media/market fields remain explicit. No qualification/Pillow/owner decision inferred.
+
+### 7 — BLOCKED — Product images and usage rights
+
+Accepted evidence: source-image-rights-review.json
+
+Remaining assertion / preservation: Apply documented existing supplier/platform media permissions for exact selected assets; record unknown permission without asserting a licence or routine correspondence.
+
+### 8 — PASS — Observed supplier prices/currencies
+
+Accepted evidence: business-finance/CRITERIA-MATRIX.md; R4-ONE-VARIANT-COUNTS.json; REQUIREMENT-11-DECISION.md; freshness-receipt.json; assurance-console/genuine-and-finance/receipt.json; ACCEPTANCE-RECONCILIATION.md
+
+Remaining assertion / preservation: PASS: exact observed CJ variant USD2.76 and source currency contract/time/reference displayed on desktop/mobile; parent currency remains explicitly unknown. Freight selection and profitable qualification belong to12, not observed-price acceptance.
+
+### 9 — PASS — Competitor and market evidence
+
+Accepted evidence: o9-console-20261013/O9-INDEPENDENT-ACCEPTANCE.json; backend4c012674/frontendc6b698c4; integrationb332d9a5; genuine native desktop/mobile and independent auth/workspace boundary verification
+
+Remaining assertion / preservation: Preserve independently accepted original marketplace-evidence presentation, including truthful unknown demand. Approved F29 successor is now published with exact tree equality and all four CI workflows PASS; no reopening of O9.
+
+### 10 — PASS — Normalization identity and deduplication
+
+Accepted evidence: source-discovery-worker.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/REQUIREMENT-10-ACCEPTANCE.json; resume-20261011/PRODUCT-A3CD82A1-ATTRIBUTION.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 11 — PASS — Freshness and quarantine
+
+Accepted evidence: business-finance/CRITERIA-MATRIX.md; R4-ONE-VARIANT-COUNTS.json; REQUIREMENT-11-DECISION.md; freshness-receipt.json; assurance-console/genuine-and-finance/receipt.json; ACCEPTANCE-RECONCILIATION.md
+
+Remaining assertion / preservation: PASS: original freshness/quarantine criterion met by retained scanner expiry/contradiction/envelope tests, genuine exact-expiry and pinned-source tamper refusal, and truthful consumer freshness labels. No genuine provider refresh or Assurance recovery claim inferred.
+
+### 12 — PASS — Software screening and economics
+
+Accepted evidence: revised-review-20261012/review/REQUIREMENT-12-DECISION.md; business-finance/SEAL.json; review/positive-owner-render.json
+
+Remaining assertion / preservation: Original software screening/economics criteria independently accepted: genuine persisted deferral and owner unknowns; labelled positive canonical economics equals actual component. No genuine qualification or Pillow inference asserted.
+
+### 13 — BLOCKED — Actual Pillow assessment binding
+
+Accepted evidence: resume-20261011/targeted-tests.tap; owner-assessment-excerpt.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; HOLISTIC-product-context-tests.tap
+
+Remaining assertion / preservation: Use a complete eligible dossier and valid source-bound commissioning authority for actual Pillow inference; absent those, preserve refusal and request one bounded provider examination only when its inputs and cost can be specified.
+
+### 14 — PENDING — Owner recommendations and decisions
+
+Accepted evidence: resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; HOLISTIC-product-context-tests.tap
+
+Remaining assertion / preservation: Bind an authentic eligible Pillow recommendation to an authenticated persisted owner decision; technical UI fixtures do not supply genuine reasoning.
+
+### 15 — PASS — Initial up-to-100 qualification
+
+Accepted evidence: register.json; source-authentic-projection.json; resume-20261011/REQUIREMENT-15-ACCEPTANCE.json; resume-20261011/PRODUCT-A3CD82A1-ATTRIBUTION.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 16 — PASS — Daily discovery and low-supply outcomes
+
+Accepted evidence: source-discovery-worker.md; examination-ledger.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 17 — PASS — Transactional active portfolio cap
+
+Accepted evidence: backend/src/validation/tests/work8-portfolio-concurrency.test.ts
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 18 — PASS — Portfolio review retirement/replacement
+
+Accepted evidence: backend/src/validation/tests/work8-portfolio.test.ts; integrated-acceptance-20261012/review/portfolio-scheduler-independent-review.json; post-publication-20261012/review/PORTFOLIO18-INDEPENDENT-ACCEPTANCE.json (full original software contract; backend2282f97a/frontende7fd599a;6+4 independent tests and native owner projection)
+
+Remaining assertion / preservation: Retirement/replacement, cap and immutable finance tests retained. Implement and independently examine outcome-driven health review with evidence-linked recommendation; genuine live sales are not an original prerequisite. Separate descendant in progress.
+
+### 19 — PENDING — Simulated listing schema/media
+
+Accepted evidence: resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json
+
+Remaining assertion / preservation: Complete permitted exact-asset media/listing examination and authenticated approval separation; authorised Canva export only for a specified permitted design.
+
+### 20 — PASS — Simulated orders and supplier intents
+
+Accepted evidence: resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 21 — PASS — Partial shipments tracking/delivery
+
+Accepted evidence: fulfilment-adverse-review.md; independent-candidate-review.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 22 — PASS — Refund returns and supplier credits
+
+Accepted evidence: finance-examination.md; finance-boundary-exam-evidence.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 23 — PASS — Settlement payout holds/bank receipts
+
+Accepted evidence: resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 24 — PASS — Financial reconciliation and money conservation
+
+Accepted evidence: revised-review-20261012/review/REQUIREMENT-24-DECISION.md; review/FINANCE24-ORACLE.json; business-finance/finance24/SEAL.json
+
+Remaining assertion / preservation: Complete original independent financial-reconciliation row accepted: retained canonical/adversarial/FX/retirement evidence plus authenticated actual browser equality. Held payout remains null; completed simulated contribution2040minor equals events/journal/API/display; source unchanged.
+
+### 25 — PASS — Live Cost Centre separate accounting
+
+Accepted evidence: interrupted-recovery-20261012/review/REQUIREMENT-25-DECISION.md; review/COST-VERIFIED-SEAL.json; cost-contract-20261012/SEAL.json; isolated native desktop/mobile and real-process crash/concurrency receipts
+
+Remaining assertion / preservation: Preserve isolated full section22 Cost Centre software acceptance. Actual historical224 preservation and real invoice/payment/cash attestation remain separate2/A17; no actual financial evidence is fabricated.
+
+### 26 — PENDING — Assurance detection/correlation
+
+Accepted evidence: resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, published source/bundle; production rollout not performed)
+
+Remaining assertion / preservation: Complete independent integrated causalclassification/correlation oracle shared with externalF27. Existing sourceclaim semanticdetector andaccepted nineclass tests retained; no paidgenuinePillow prerequisite for mocksoftwaregate.
+
+### 27 — PASS — Bounded repair authority catalogue
+
+Accepted evidence: assurance-examinations.md; resume-20261011/AMENDMENTS.json; HOLISTIC-final-focused.tap; resume-20261011/REQUIREMENT-27-CATALOGUE-REVIEW.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 28 — PASS — Fresh independent recovery verification
+
+Accepted evidence: resume-20261011/CHANGES.md; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/REQUIREMENT-28-ACCEPTANCE.json; resume-20261011/ASSURANCE-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 29 — PASS — Recurrence budget and circuit breaker
+
+Accepted evidence: assurance-examinations.md; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; resume-20261011/REGISTERED-RECURRENCE-PLAN.json; resume-20261011/REGISTERED-RECURRENCE.tap; resume-20261011/REGISTERED-RECURRENCE-REVIEW.json; resume-20261011/REQUIREMENT-29-ACCEPTANCE.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 30 — PENDING — Assurance watchdog/degraded operation
+
+Accepted evidence: assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, published source/bundle; production rollout not performed)
+
+Remaining assertion / preservation: F29 two missing pair arms independently accepted; retained worker-stall and notification/inbox/restart evidence preserved. Remaining: actual independent external owner-alert delivery and original owner escalation; no added physical-host destruction criterion.
+
+### 31 — PASS — Scenario blueprint seeds and independent oracles
+
+Accepted evidence: examination-blueprint.json; assurance-fault-coverage.json; resume-20261011/REMAINING-SCENARIO-DESIGN.json; resume-20261011/REQUIREMENT-31-BLUEPRINT-REVIEW.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 32 — PASS — Unit integration/contract and property exams
+
+Accepted evidence: resume-20261011/targeted-tests.tap; recovery-receipt.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/REQUIREMENT-32-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 33 — PENDING — Concurrency races and replay
+
+Accepted evidence: examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)
+
+Remaining assertion / preservation: Complete exclusion and coordinated capture/replay for every admitted writer/transport in declared runtime topology, including still-active prior instances. Preserve scoped reviewed lifecycle-marker and held-handoff corrections; neither establishes operational replay or full topology. Arbitrary privileged host attackers are not an added criterion.
+
+### 34 — PENDING — Fault injection and compounded failures
+
+Accepted evidence: resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)
+
+Remaining assertion / preservation: F27 simultaneous receiptgap+unknownsupplier+refundmismatch+observerloss under outsideprocessgroup independent oracle. Accepted sameprocessF27 andnewF29 do not substitute for coupledproof. No blanket genuine paid Pillow dependency for simulated fault acceptance.
+
+### 35 — PASS — Provider outage malformed output and correlation
+
+Accepted evidence: assurance-fault-coverage.json; resume-20261011/CHANGES.md
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 36 — PASS — All fifteen safety controls positive/negative exams
+
+Accepted evidence: resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 37 — PASS — Multi-day virtual-time operations
+
+Accepted evidence: resume-20261011/REQUIREMENT-37-ACCEPTANCE.json; resume-20261011/FULL-COHORT-EXAM.tap; examination-ledger.json
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 38 — PASS — Measured elapsed endurance
+
+Accepted evidence: post-endurance-20261012/ACCEPTED-ENDURANCE.json (F31 run38213352530; applicationd69fe8aa;2700.435seconds;9complete financial plans108events; accepted independent oracle and retained artifact verification). Earlier RUN3/RUN4 failures remain historical and are not the acceptance basis.
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 39 — PENDING — Cold restart rollback/migration/restore
+
+Accepted evidence: resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/RUNTIME-38142058061-receipt.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure)
+
+Remaining assertion / preservation: Distinct password-protected Redis replacement after original shutdown, atomic target identity, AOF-only crash recovery, paused fence and once-only labelled pending continuation independently pass. Full authorized application restoration, owner-session restoration into replacement topology and protected independently authenticated off-host custody remain.
+
+### 40 — BLOCKED — Actual owner-view real-product walkthrough
+
+Accepted evidence: resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey)
+
+Remaining assertion / preservation: Complete the existing authenticated desktop/mobile genuine-product walkthrough with source, actual authorised Pillow assessment and linked simulated finance/Assurance. A separately purchased visual host is no longer required by the current owner directive; genuine visual evidence is still mandatory.
+
+### 41 — PENDING — Mobile desktop source-to-finance equality
+
+Accepted evidence: owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/browser-a3cd82a1/attribution.json; resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey)
+
+Remaining assertion / preservation: Preserve accepted source/price desktop-mobile display and five-shortcut evidence. Complete genuine same-identity full source/Pillow/owner/simulated finance/Assurance walkthrough; no physical-device certificate is required by the directive.
+
+### 42 — PENDING — Review exact-head CI and release authority
+
+Accepted evidence: resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json; resume-20261012/EXACT-HEAD-CI.json (four SUCCESS, no reruns); resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey); continued-closure-20261012 scoped independent receipts (no new full closure); publication-closure-20261012/PUBLICATION-RECEIPT.json; publication-closure-20261012/EXACT-SOURCE-CI.json; publication-closure-20261012/REQUIREMENT42-CONDITIONAL-ACCEPTANCE.json
+
+Remaining assertion / preservation: Exact approved evidence/source trees published. Product38338899337, Runtime38338899372, Semantic38338899409, IndependentAssurance38338899414 all PASS on sourceb3c775c/tree9f81. Node22 and retained1950/1381corpora preserved. Complete original integrated/certification/release-authority gates remain; CI alone does not close row.
+
+### 43 — PENDING — Independent Mission Ledger closure
+
+Accepted evidence: register.json; checkpoint.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md
+
+Remaining assertion / preservation: Independent Mission Ledger closure awaits complete mandatory operating, fault, recovery and owner-acceptance gates. No production mission_complete, merge or release authority.
+
+### 44 — PASS — GO/NO-GO residual risks
+
+Accepted evidence: resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+### 45 — PASS — Work9 handoff without activation
+
+Accepted evidence: checkpoint.json; resume-20261011/NEXT.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log
+
+Remaining assertion / preservation: Preserve accepted scope; no repeat or status change.
+
+## Owner 19 amendments
+
+### 1 — PENDING — Persistent autonomous digital twin
+
+Accepted evidence: Retained original scoped examination receipts; native owner acceptance not yet granted
+
+Remaining assertion / preservation: Complete global capture/replay and genuine operating acceptance through the existing twin and Console; preserve new scoped integration and accepted isolated capability.
+
+### 2 — PENDING — Whole-system twin
+
+Accepted evidence: Retained original scoped examination receipts; native owner acceptance not yet granted; continued-closure-20261012 scoped independent receipts (no new full closure)
+
+Remaining assertion / preservation: Cooperating writer coverage and distinct Redis inspection replacement verified; global exclusion and complete whole-system operational restoration remain. completeLiveState=false and bootAllowed=false preserved.
+
+### 3 — PENDING — Protected backup vault
+
+Accepted evidence: Runtime38142058061 verified whole-volume, finance and Redis continuity; prior sealed snapshot/replay evidence retained; continued-closure-20261012 scoped independent receipts (no new full closure)
+
+Remaining assertion / preservation: Current Railway read-only inventory: both accessible projects have only production environment; zero buckets. Primary volumes application/Redis-mounted in sfo, canary empty. Missing protected off-host copy, retention/deletion protection, separate restore identity and actual independently protected restore.
+
+### 4 — PASS — Future-state workspace
+
+Accepted evidence: closure-execution-20261012/SECONDARY-ACCEPTANCE-ORACLE.json; future-workspace-corrected/receipt.json
+
+Remaining assertion / preservation: None for isolated future-state workspace foundation. Protected backup custody and live whole-system synchronization remain amendments3/2.
+
+### 5 — PENDING — Seamless upgrades and rollback
+
+Accepted evidence: Old/current/old operating commerce38226997080:6completed tasks114receipts25financial events; no complete-settlement claim; continued-closure-20261012 scoped independent receipts (no new full closure)
+
+Remaining assertion / preservation: Preserve accepted operating rollback. Complete whole-application consistency and authorized restore across all domains; paused inspection recovery is not complete application rollback.
+
+### 6 — PENDING — Owner-visible autonomous dry run
+
+Accepted evidence: Retained original scoped examination receipts; native owner acceptance not yet granted
+
+Remaining assertion / preservation: Provide authenticated visual same-identity genuine source-to-owner-to-simulated-results evidence using existing Console. No separately purchased visual host or waiver of genuine evidence is required.
+
+### 7 — PASS — Five mobile shortcuts
+
+Accepted evidence: retained mobile-attempt4/receipt.json; assurance-console/SAFE-AREA-SEAL.json; native-safe-area-focused/receipt.json; ACCEPTANCE-RECONCILIATION.md
+
+Remaining assertion / preservation: Five required shortcuts, Home/logo, artwork preservation, readability/touch/keyboard/narrow geometry and native34px safe-area verified on exact retained Work8 frontend7dff79a6. Isolated acceptance; deployment-linked branch is unchanged.
+
+### 8 — PENDING — Product-linked Pillow Chat
+
+Accepted evidence: Retained original scoped examination receipts; native owner acceptance not yet granted
+
+Remaining assertion / preservation: Verify genuine source-bound assessment and authenticated product-linked chat; no unauthorised inference.
+
+### 9 — PENDING — Product image/video management
+
+Accepted evidence: Retained original scoped examination receipts; native owner acceptance not yet granted
+
+Remaining assertion / preservation: Complete exact permitted media-byte/version and authenticated gallery/archive acceptance; preserve existing management workflow.
+
+### 10 — PENDING — Canva-assisted editing
+
+Accepted evidence: 4 intercepted export tests PASS; full backend typecheck PASS; safe default route reviewed.
+
+Remaining assertion / preservation: Provide the exact authorised permitted asset/design and editing/export operation through existing Canva consumer; no runtime entitlement inferred from ChatGPT connector.
+
+### 11 — PENDING — Separate internal/external media approval
+
+Accepted evidence: Retained original scoped examination receipts; native owner acceptance not yet granted
+
+Remaining assertion / preservation: Complete authentic media permission and authenticated internal/external approval separation; no live publication.
+
+### 12 — PASS — Temporary Systems authority
+
+Accepted evidence: revised-review-20261012/review/A12-DECISION.md; assurance-console/A12-SEAL.json; assurance-console/A12-RESULT.md
+
+Remaining assertion / preservation: Complete original temporary Systems authority criteria independently accepted: four preparation scopes, one-task/timed/expiry/revocation, owner/scope binding, durable native state and bounded saved-request preview. No actual new inference or live authority.
+
+### 13 — PASS — Conversational UX changes
+
+Accepted evidence: integrated-acceptance-20261012/review/ux13-independent-acceptance.json
+
+Remaining assertion / preservation: Preserve independently accepted isolated conversational preview software; personal King acceptance, arbitrary app-wide changes and deployment remain separate.
+
+### 14 — PASS — Human-interaction risk management
+
+Accepted evidence: interrupted-recovery-20261012/review/A14-SUCCESSOR-DECISION.md; review/A14-EVIDENCE-SEAL.json; frontend900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a/backend71aa461beed38b6f4a20240a6233a19682d3d0ee
+
+Remaining assertion / preservation: Preserve complete isolated simulated communication acceptance; actual model judgement, real sending and genuine integrated business journey remain separate.
+
+### 15 — PENDING — Keepa and Helium 10 readiness
+
+Accepted evidence: Retained original scoped examination receipts; native owner acceptance not yet granted
+
+Remaining assertion / preservation: Verify applicable Keepa entitlement and preserve deferred Helium10 readiness; no subscription or activation.
+
+### 16 — PASS — Financial Birth Cutover
+
+Accepted evidence: revised-review-20261012/review/REVIEW.md; review/VERDICT.json; review/cutover-oracle.json; remediation-20261012/assurance-console/FINANCE-FIX-SEAL.json
+
+Remaining assertion / preservation: All ten original isolated cutover assertions independently accepted. Archive/identity/conservation and actual prior-code/checkpoint compatibility retained; mobile Finance fixed. No actual financial Birth.
+
+### 17 — PASS — Autonomous Cost Intelligence
+
+Accepted evidence: integrated-acceptance-20261012/review/cost17/SUCCESSOR-ACCEPTANCE.md
+
+Remaining assertion / preservation: Preserve full Work8 software acceptance with authenticated governed discovery and truthful unavailable access; continuous live billing remains Work9, not activated.
+
+### 18 — PASS — Isolated hosted twin
+
+Accepted evidence: post-publication-20261012/review/A18-INDEPENDENT-DECISION.md; full-topology-20261012/ACCEPTANCE-BOUNDARY.md; independent actual supervised runtime13store capture and cold restart, exact hashes, authenticated session and pending work preserved
+
+Remaining assertion / preservation: Owner direction already removes separately purchased demonstration hosting. Verify equivalent isolated technical capability and full required runtime scope; protected custody remains mandatory under amendment3.
+
+### 19 — PENDING — Integrated owner acceptance
+
+Accepted evidence: Pinned frontend679f901d hosted typecheck,215 web+2 finance tests and build PASS; offline fixture evidence retained; no genuine native owner acceptance.
+
+Remaining assertion / preservation: Use existing authenticated Console to verify identical genuine product/mission/order/finance/Assurance records on desktop and mobile; owner must be able to inspect them. No additional purchase-method approval required.
+

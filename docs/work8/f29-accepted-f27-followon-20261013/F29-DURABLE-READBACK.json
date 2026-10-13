@@ -1,0 +1,207 @@
+{
+  "recordType": "INDEPENDENT_REMOTE_STAGING_READBACK",
+  "createdAt": "2026-10-13T02:50:46.631603+00:00",
+  "decision": "PASS_EXACT_TREE_AND_COMPLETE_CHANGED_PAYLOAD_REMOTE_RETRIEVABILITY",
+  "evidence": {
+    "commit": "b4fbf00fbe3afed65082a9cfa01c076ac1c5ba8b",
+    "tree": "f36f91ef44764437565e596e7dbded46ff90ee0f",
+    "ref": "work8/staged-f29-evidence-20261013"
+  },
+  "source": {
+    "commit": "b3c775c676f35fa5a8009bde7384839997116b16",
+    "tree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+    "ref": "work8/staged-f29-source-20261013"
+  },
+  "completeReviewedTreeEquality": true,
+  "fileModesPathsContentsVerified": true,
+  "remoteTreeObjectsIndependentlyRehashed": 12,
+  "remoteBlobsIndependentlyRehashed": 22,
+  "checked": [
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/BOUNDED-RECOVERY-FINDINGS.json",
+      "mode": "100644",
+      "blob": "4db1e191d07a49343fa4f5dd555b61007300e549",
+      "bytes": 8801,
+      "sha256": "144fc94218056471cd82fdfa050e0e8e6d7743f9e73c7fc3991d381502985962"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/BUSINESS-FINANCE.json",
+      "mode": "100644",
+      "blob": "4ada62f59001d0113a2629593f840120d0045f11",
+      "bytes": 6686,
+      "sha256": "23361181cc19a577e65465876eb7b46e54ca0969da4c04d4084ed24f8ba00a2b"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/CONSOLE-CERTIFICATION.json",
+      "mode": "100644",
+      "blob": "65007ea4c7a6bbaf41228b9a11c652b1e91519fe",
+      "bytes": 20610,
+      "sha256": "a147e13044ab07192a2f85a2489608f2f443235049d26849964f604b578cdc2b"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/INDEPENDENT-CONTENT-REVIEW.json",
+      "mode": "100644",
+      "blob": "2eb36b4288a908924cadf9e67a9e5784418c48b2",
+      "bytes": 5469,
+      "sha256": "3c5c8c75924a872736dba211ccab43e5806e0cb7952a6dff075caddf63459170"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/NEW-F29-STATUS.json",
+      "mode": "100644",
+      "blob": "3b2bed6e3d0c894186adbc8cc510cc614a04a775",
+      "bytes": 4271,
+      "sha256": "c6afdcdec6282b0d0119807cd1576c9a2f227f770e08092d96bb645341738366"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/PROVENANCE.json",
+      "mode": "100644",
+      "blob": "74b6fdbf32fa5eaeefc649adf6023ba90cbbf1e7",
+      "bytes": 1444,
+      "sha256": "80caa6f17fb66861b21f016b9249dc2659c898f749a38f97d414689155d0f304"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/RECOVERY-CHANGED-BOUNDARY.tap",
+      "mode": "100644",
+      "blob": "cee19e4d2f3a957f421e20fccf27269754e98c23",
+      "bytes": 497,
+      "sha256": "c517c6aa50a3ae841f445a118e65293d1bd57a6b75b890594fea91a8dfbf60d8"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/RECOVERY-INDEPENDENT-DISPOSITION.json",
+      "mode": "100644",
+      "blob": "99b6f9c11eb45cda5ca61f84cb6d5aa53adb309b",
+      "bytes": 3599,
+      "sha256": "024d9baf939e762a3f04145606bd39c3ae3e3f72a3442fe8be37bdc0083a15b8"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/RECOVERY-INTEGRATION-CONTRACT.json",
+      "mode": "100644",
+      "blob": "dd2a4504f9a90284afc8ca90a77071dba8b4cabe",
+      "bytes": 7054,
+      "sha256": "baeb2add85d4c1bb1da2fe5dea8bb9112b9d273789a797687d3ee468ae002da0"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/RECOVERY-LIFECYCLE-CANDIDATE.json",
+      "mode": "100644",
+      "blob": "f7d2f9a2261ff3cb34ab689113af3d2e5e9e6d3a",
+      "bytes": 1712,
+      "sha256": "52b6152ef680b157550ef65d49d2c4fcf5ce1a68c3e339c310467fcfc64111a7"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/RETIREMENT.json",
+      "mode": "100644",
+      "blob": "6722747ff12f4751e9549e5f88698777eacb9e39",
+      "bytes": 826,
+      "sha256": "0df4ac1eed69eb09ba65a3180845f7e173bab29cb04ec1f8346d894f2b549beb"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/SOURCE-TREE-RECOVERY.json",
+      "mode": "100644",
+      "blob": "62931efeb1eb7b4ce5576f8202ca79161e1b4b83",
+      "bytes": 878,
+      "sha256": "dbc2a1135671486c8aec72161a14156455c9526be8134e1bbb0a6e32b69ea93b"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/authentic-artifact-11765295069.zip",
+      "mode": "100644",
+      "blob": "8c23263d392bb5b5b36d24ed31b3eb206059245e",
+      "bytes": 775,
+      "sha256": "35674c52786f5c34aed8e17d792aa6dff994a3eb7e0515b123575f49964a0608"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/authentic-failure/both-observers-killed/container.log",
+      "mode": "100644",
+      "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/authentic-failure/both-observers-killed/failure.json",
+      "mode": "100644",
+      "blob": "224d44edb7803980dcb81a6c819f67b69ecbcdc6",
+      "bytes": 248,
+      "sha256": "7f480e61d7f3a562150624d32c4e76cf2e9c3f836fd35d310ece4f608d00c58b"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-successor-20261013/authentic-failure/both-observers-killed/immutable-sentinel.txt",
+      "mode": "100644",
+      "blob": "184874d916e1c43ac2bd9146db9a433f760a7251",
+      "bytes": 61,
+      "sha256": "479d47fc8c84441e57feb22fd2db94c927ca2cbab4a7ece7a3c7e1f8056bf62f"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/revised-review-20261012/FIXED-REGISTERS.json",
+      "mode": "100644",
+      "blob": "9d2b817bd7f455a28eccc077969a0a10ce2cd20a",
+      "bytes": 88684,
+      "sha256": "1c89e459bda099d5c01b72014317c466ac1a7e677a639d738b61a45a17a65195"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/revised-review-20261012/FULL-TRACKER.md",
+      "mode": "100644",
+      "blob": "b5b3798cc58990497b7fa767cce137f38b6af6d6",
+      "bytes": 33366,
+      "sha256": "291da41fedfa7c98fcd9b64360bc930e35717d0795f884fc9edd3adccb9ad1fb"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/f29-contained-runtime.cjs",
+      "mode": "100644",
+      "blob": "a87a8adcab853e40520ed362ff09e54a6e113394",
+      "bytes": 4497,
+      "sha256": "c829686a358447f7a3441a55c954be6a0d89de0f0342b9daba2aafbd7d895960"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/f29-outer-controller.cjs",
+      "mode": "100644",
+      "blob": "62824b8c4b86fec2abd71cb25e9395f92886eb33",
+      "bytes": 10898,
+      "sha256": "469f5b400eceb1bf7c58eb0541d666d91a036682ee2ea87a3bec319d77865a14"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/f29-financial-proof.cjs",
+      "mode": "100644",
+      "blob": "12379e9f7d3439dab69e13f93945098972949d48",
+      "bytes": 5953,
+      "sha256": "64581fdbb632cf796821bd246eb765d3e6d744a548c294f2f011ccb410a0eb91"
+    },
+    {
+      "kind": "source",
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "blob": "096be0641c79a915d7bd6225f5141391a781a846",
+      "bytes": 28101,
+      "sha256": "b946de2741230b94ea1f2066ef723544bda73ebaed1587136cc582d37a78348e"
+    }
+  ],
+  "freshDirectory": "/workspace/scratch/798050748e67/independent-remote-readback/retrieved",
+  "localCandidateBytesReused": false,
+  "binaryBlobMethod": "GitHub connector rejects binary repository blob UTF8 decoding. Independently downloaded authentic original artifact11765295069 through binary artifact connector; actual ZIP Gitblob hash matches staged treeentry8c23263d392bb5b5b36d24ed31b3eb206059245e and SHA25635674c52786f5c34aed8e17d792aa6dff994a3eb7e0515b123575f49964a0608. ZIP bytes never copied from local candidate.",
+  "completeTreeMethod": "Remote root and every changed ancestor independently serialized/hashed to exact reviewed roots. Unchanged subtree identities included in hashed roots; existing immutable objects remain GitHub-backed. All22changed/new files independently retrieved, hash-checked and materialized with approved modes.",
+  "scopeLimits": [
+    "No CI or fault PASS inferred.",
+    "No original requirement or amendment newly closed.",
+    "No protected backup custody certification; staging refs are ordinary GitHub refs.",
+    "Readback does not independently grant publication authority."
+  ]
+}

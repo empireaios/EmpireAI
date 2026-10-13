@@ -1,0 +1,46 @@
+{
+  "recordType": "NEW_O26_EXISTING_EVIDENCE_RECONCILIATION",
+  "createdAt": "2026-10-13T03:07:39.948635+00:00",
+  "supersedes": "O26-CLASSIFICATION-MATRIX.json false inference of absent semantic boundary",
+  "correction": "Older fault-map/responsebinding index omitted later already implemented and independently accepted work8-source-claims boundary. No new semantic repair or test is needed.",
+  "originalRegisterScope": {
+    "item": 26,
+    "requirement": "Assurance detection/correlation",
+    "mandateSections": "7,18,20",
+    "source": "docs/work8/register.json at evidenceb4fbf00fbe3afed65082a9cfa01c076ac1c5ba8b"
+  },
+  "existingSemanticBoundary": {
+    "source": "backend/src/assurance/work8-source-claims.ts",
+    "test": "backend/src/validation/tests/work8-source-claims.test.ts",
+    "currentSource": "b3c775c676f35fa5a8009bde7384839997116b16",
+    "verifiedByCodeReview": [
+      "Retained genuine CJprice2.76 vs injected0.01, otherwise valid candidate/source/request/delivery/answer digests",
+      "Actual readWork8ResponseBinding + AssuranceControlPlane durable incident/no-runbook/unresolved",
+      "Stale affirmative observation cannot clear incident",
+      "Unrelated/expanded claimcoverage cannot clear oldpriceincident",
+      "Fresh correctedsamecoverage observation recovers while immutable incident trail remains",
+      "Wrong candidate/subject/source, stale/null/unsafe paths, unstructured prose, malformed wrappers stayfailed/unverified",
+      "No qualification or authority granted by observation match"
+    ],
+    "priorIndependentAcceptanceAttribution": {
+      "path": "docs/work8/interrupted-recovery-20261012/ASSURANCE-READINESS-MATRIX.md",
+      "statement": "Source-claim recovery reviewed0ee9; six integrated files equal; original false-price negative oracle retained",
+      "support": "COMBINED-SOURCE-DECISION.md retains accepted sourceclaim correction and separately pending genuinewholeloop proof"
+    },
+    "sourceHashes": {
+      "lane-o26-claim/work8-source-claims.ts": "edec2b180055af1a18422174d7250fde2768b1b936454ee3990224cebde348f9",
+      "lane-o26-claim/work8-source-claims.test.ts": "42203e7f8e5a2fdcc04de7f8d1421f97c6f44e1f061d8e0327d0a8080be31d1b"
+    }
+  },
+  "remainingExactGate": {
+    "decision": "O26_PENDING_COMPLETE_JOINT_ORACLE_NOT_SEMANTIC_IMPLEMENTATION",
+    "basis": "Original\u00a718 jointly examines commercial andAssurance loops; original\u00a720 independentoracle; retained F27 reviewer explicitly limits same-process examiner.",
+    "sharedWithO34": "New external F27 simultaneous vector and independent causalcorrelation/containment/invariants proof; reuse allaccepted nineclassification receipts and sourceclaim boundary.",
+    "paidGenuineInference": "Not required for this mocksoftware gate; genuine product/assessment/ownerjourney remain separatelyO13/O14/O40/O41.",
+    "notAdded": "Do not demand synchronous semantic gating inside investigation.complete solely to close detection/correlationO26; actual ownerevaluation/qualification gate is separatelygoverned."
+  },
+  "nextDecision": "When F27 external proof independently passes, reconcile complete \u00a7\u00a77/18/20 detection/classification/correlation with retained nineclass/incidentprojection receipts. Do not rerun semantic tests or invent new datarequirements.",
+  "newTests": 0,
+  "sourceChanges": 0,
+  "newAcceptedIds": []
+}

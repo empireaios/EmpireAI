@@ -1,0 +1,18 @@
+✔ accepted F29 is reused only for exact reviewed workflow and F27-only paths (0.951803ms)
+✔ new outside oracle accepts labelled simultaneous fixture and exact fresh financial linkage (3.759499ms)
+✔ outside oracle rejects wrong financial incident identity (1.794982ms)
+✔ outside oracle rejects stale financial observation (1.121879ms)
+✔ outside oracle rejects financial repair without authority (1.30899ms)
+✔ outside oracle rejects cursor not repaired (1.783294ms)
+✔ outside oracle rejects duplicate cursor repair (0.742467ms)
+✔ outside oracle rejects unknown supplier history changed (0.593203ms)
+✔ outside oracle rejects unsafe authority tamper (1.219405ms)
+✔ independent reader opens actual SQLite readonly and checks complete financial set and fresh exact recovery binding (22.249076ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 152.680564

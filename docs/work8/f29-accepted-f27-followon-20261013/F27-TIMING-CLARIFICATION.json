@@ -1,0 +1,8 @@
+{
+  "originalInjectionDelayMs": 5000,
+  "originalChildDetectorMs": 60000,
+  "originalFullArmMs": 120000,
+  "externalClock": "Starts before releasing five-second schedule; external60s/120s guards are intentionally stricter (~55s/~115s after injection, less IPC delay).",
+  "interpretation": "A pass establishes original maximums. A stricter guard rejection alone is inconclusive for violating the original post-injection deadline; retain actual timing and diagnose rather than relabel original criteria.",
+  "sourceFixRequired": false
+}

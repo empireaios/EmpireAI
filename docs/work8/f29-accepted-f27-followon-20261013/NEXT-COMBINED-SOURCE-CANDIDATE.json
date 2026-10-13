@@ -1,0 +1,114 @@
+{
+  "recordType": "NEW_LOCAL_CANDIDATE_NOT_PUBLISHED",
+  "commit": "fed1f1b37ccc77ed130ec3fd4ae73e7a90205a5e",
+  "tree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "parent": "b3c775c676f35fa5a8009bde7384839997116b16",
+  "baseTree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+  "files": [
+    {
+      "path": "scripts/work8/f27-outer-controller.cjs",
+      "mode": "100644",
+      "blob": "2b3d8928d60c1111295fbdb1bc74519d28608657",
+      "sha256": "7bab74327eec82adb6ebfbb572888b822a335442463ae84936e1cf3a2265b82d"
+    },
+    {
+      "path": "scripts/work8/f27-change-boundary.cjs",
+      "mode": "100644",
+      "blob": "daa2363113fe91d4da9341dfb2f027c7bba378c5",
+      "sha256": "b804a97aeeddc42fb6345cab5284c54f5e294c780d5a1884701b929cc1c617f6"
+    },
+    {
+      "path": "scripts/work8/hh3.Dockerfile.dockerignore",
+      "mode": "100644",
+      "blob": "66967be0e7a589dba33abf0cf8df506cb8194e31",
+      "sha256": "d495f29a76eaa85997fa050be9b7fa8ef2a6311fd7c7ae8e50e12a02843f02f1"
+    },
+    {
+      "path": "scripts/work8/f27-external-oracle.cjs",
+      "mode": "100644",
+      "blob": "8e7811acb80d7ebe8a9ceb7fe1f71a04ff5f2ea0",
+      "sha256": "2aafe22a8b12a7127e4876be27ead3377bbfa7367a43d56cd014776b848d81fe"
+    },
+    {
+      "path": "scripts/work8/hh3.Dockerfile",
+      "mode": "100644",
+      "blob": "e0198a1cc19e707761d61d52dfd0eb2ee009648a",
+      "sha256": "50a4a3716d0a0837d4c78ce5c776370fb73f24fb1ff077e59faea7457282f244"
+    },
+    {
+      "path": "scripts/work8/hh3-compiled-coordinator.mjs",
+      "mode": "100644",
+      "blob": "fe009fe33380e1550b32961004df5e4e273c41e6",
+      "sha256": "6a63a8b4af784c99e9ebe2747fe54d6c832aa0589eb3aa9a26350d573eadcf8f"
+    },
+    {
+      "path": "scripts/work8/hh3-compiled-child.mjs",
+      "mode": "100644",
+      "blob": "5d6026adf10b0761bf0d26102bf7aeef9319bff5",
+      "sha256": "1293c97642ae772c5de2c47bd8552cc8b2db107bf15089f99e184e39a1dd5606"
+    },
+    {
+      "path": "scripts/work8/tests/f27-change-boundary.test.cjs",
+      "mode": "100644",
+      "blob": "aa63d99137e824e4e9459164ecce00d9d9279bdb",
+      "sha256": "cd82d405e26a5c9a2f04f3a5309542a4fd9d3c605731f6bb09eed6824325104d"
+    },
+    {
+      "path": "scripts/work8/tests/f27-fixture.cjs",
+      "mode": "100644",
+      "blob": "304a501f420cef910d91a11f61f524e271eaf32f",
+      "sha256": "afbc586b6360e4f016a0e53e3756f332abd946d387ac106264e7af5e0e826a01"
+    },
+    {
+      "path": "scripts/work8/tests/f27-external-oracle.test.cjs",
+      "mode": "100644",
+      "blob": "73c5b9bb890636e6d61e87b988830d7d74b7a575",
+      "sha256": "db69690a78547a458a56e1524989375645058d94f1771ed0c800a6bff28f05a4"
+    },
+    {
+      "path": "scripts/work8/tests/f27-sqlite-boundary.test.cjs",
+      "mode": "100644",
+      "blob": "f8a5aff34c30b315602a8b8a0f6f9d98cd22ec6e",
+      "sha256": "0d920940dd311d7eb907986b6a2a7f62a6712e41dbf28a3d9e5af1a89189c18a"
+    },
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "blob": "1da82201813cc47289f9b49e635635cc83c1d1de",
+      "sha256": "8d22ebddf983f2ea5e107a0cc919b31f915d84a17a9f275c6993fddc68f1d96c"
+    },
+    {
+      "path": "backend/src/app.ts",
+      "mode": "100644",
+      "blob": "0c8a04f5598c9458d54ed8637a503c71581b4e65",
+      "sha256": "fd8daf3ec22c838e1be870e644ca98107f3125bc786925ad165ac4654a0164a2"
+    },
+    {
+      "path": "backend/src/runtime/work8-generated-capture-hold.ts",
+      "mode": "100644",
+      "blob": "c75c7bbe7762b7cb09b236dc6c3400db525cddca",
+      "sha256": "af1b640300dfe208e333c6245e79cf8dd440876f1c1b6788cb4ce9b2b19e4ff0"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-joined-assurance.test.ts",
+      "mode": "100644",
+      "blob": "dea215f093d008f0546f51fb20078ffc856ab214",
+      "sha256": "b434c8598ee5c3da2e590f41b49340e033d8fe22bcd5bdf240fc785df68f7f67"
+    }
+  ],
+  "trees": {
+    "backend/src/validation/tests": "5cd11d6124689c6c095a7372fc3b37ffa8fcdb1f",
+    "scripts/work8/tests": "4f545772becd8ad8dd5bceffd2dd67d6ffc1a73d",
+    "backend/src/validation": "7fca3cbcef7e58dc49f81200c501b9ce6cafee1e",
+    "backend/src/runtime": "7674f8d7410d3abab7074ef60cacb27a05c9a53f",
+    "scripts/work8": "eb10322d66eb0ccfd7823c460971e64c8cc3af9e",
+    "backend/src": "e21b32917654c16183794b42daf149407b3c3bba",
+    ".github/workflows": "f3a37d3da4abf3481cd30eda7799d89abd60d6da",
+    "scripts": "4dacd6992ca00147cd270abbcfd35741aab21c05",
+    ".github": "4e0181341d8b1ff86f19c1c41b900d2afcfe73ec",
+    "backend": "03f988f8367069185629478a1beb6aa567b8b95b",
+    "baseRoot": "3940745ad47fc7498e5a3217ce8ed0d55381592b"
+  },
+  "durability": "NOT_STAGED_OWNER_APPROVAL_REQUIRED",
+  "independentReview": "PENDING"
+}

@@ -1,0 +1,43 @@
+{
+  "classification": "NEW_UNPUBLISHED_HH3_HOSTED_CANDIDATE",
+  "baseSource": "b3c775c676f35fa5a8009bde7384839997116b16",
+  "baseTree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+  "baseAppVerifiedByteEqualTo3db": true,
+  "fixtureProvenance": {
+    "path": "backend/src/validation/tests/fixtures/work8-app-recovery-child.ts",
+    "blob": "9d5e64d9955fa156a9e3dc6ef6893840063c1742",
+    "scope": "Existing synthetic initializer only; old tests not rerun"
+  },
+  "files": {
+    "backend/src/app.ts": "fd8daf3ec22c838e1be870e644ca98107f3125bc786925ad165ac4654a0164a2",
+    "backend/src/runtime/work8-generated-capture-hold.ts": "af1b640300dfe208e333c6245e79cf8dd440876f1c1b6788cb4ce9b2b19e4ff0",
+    "scripts/work8/hh3-compiled-child.mjs": "1293c97642ae772c5de2c47bd8552cc8b2db107bf15089f99e184e39a1dd5606",
+    "scripts/work8/hh3-compiled-coordinator.mjs": "6a63a8b4af784c99e9ebe2747fe54d6c832aa0589eb3aa9a26350d573eadcf8f",
+    "scripts/work8/hh3.Dockerfile": "50a4a3716d0a0837d4c78ce5c776370fb73f24fb1ff077e59faea7457282f244",
+    "scripts/work8/hh3.Dockerfile.dockerignore": "d495f29a76eaa85997fa050be9b7fa8ef2a6311fd7c7ae8e50e12a02843f02f1"
+  },
+  "workflowScope": "WORKFLOW-STEP-SCOPE.yml; root integrates after backend build in durable-runtime; no F29 job modification",
+  "assertions": [
+    "HH3 actual compiled buildApp and all nested coordinator fences entered with real Redis/native stores",
+    "timeout and observer error invalidate manifest before normal release of primary IPC/Redis/native exclusion",
+    "invalidation failure retains sealed copy and primary IPC/Redis/native exclusion past hold timeout until external termination"
+  ],
+  "oracle": "Separate parent participant and Redis client, independent SQLite BEGIN IMMEDIATE probe, on-disk manifest state; actual child capture function, no coordinator mocks",
+  "limits": [
+    "Synthetic schema inventory, not actual13-domain initialization acceptance",
+    "Pillow disabled and workers/scheduler disabled as existing fixture; no full writer cohort coverage",
+    "Primary IPC participant callback is examination-owned; not full primary process",
+    "No restoration/activation/replay/protected custody",
+    "No marker candidate integration",
+    "No production or retained source state"
+  ],
+  "verification": {
+    "nodeSyntaxChecks": 2,
+    "passed": 2,
+    "compiledOrHostedExecution": "NOT_EXECUTED",
+    "localFullRepoDependenciesAndDocker": "ABSENT",
+    "independentReview": "PENDING"
+  },
+  "newAcceptedIds": [],
+  "publication": false
+}

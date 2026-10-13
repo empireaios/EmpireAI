@@ -1,0 +1,34 @@
+{
+  "recordType": "NEW_HELD_HANDOFF_CORRECTION_INDEPENDENT_REVIEW",
+  "createdAt": "2026-10-13T02:56:23.277078+00:00",
+  "decision": "ACCEPT_HH1_HH2_SCOPED_CORRECTIONS_NOT_FULL_RECOVERY_ACCEPTANCE",
+  "sourceBase": "3db0b6fe083a3f3d23ebbf5475116b91866c694e",
+  "sourceSha256": {
+    "backend/src/app.ts": "fd8daf3ec22c838e1be870e644ca98107f3125bc786925ad165ac4654a0164a2",
+    "backend/src/runtime/work8-generated-capture-hold.ts": "af1b640300dfe208e333c6245e79cf8dd440876f1c1b6788cb4ce9b2b19e4ff0"
+  },
+  "closedReviewFindings": {
+    "HH1": "Actual app capture function calls scope assertion before staged flag, all fences and capture side effects. Real function-extraction test verifies forged token refusal before any fence/capture; original helper covers wrong-root/destination/inode boundaries.",
+    "HH2": "Invalidator exception enters nonsettling keepalive path, so local held function cannot reject/resolve and unwind enclosing awaited fences. New actual function-extraction test verifies surviving manifest, seven entered mocked fences, zero releases and unsettled promise on invalidation error."
+  },
+  "testsReviewed": {
+    "originalRetained": 3,
+    "newChangedBoundary": 2,
+    "newPass": 2,
+    "reviewerTestsRepeated": 0,
+    "receipt": "lane-recovery/held-step/review-boundary.tap",
+    "methodLimits": "Actual app function extracted unchanged and actual new TypeScript module executed, but seven fence implementations, store capture/seal/verify/invalidate and keepalive timer are injected. This proves local control flow, not real distributed writers or process termination."
+  },
+  "remainingMandatoryAssertions": [
+    "HH3: full compiled application/dependencies and actual nested coordinator timeout/error behavior not executed.",
+    "Actual full admitted writer/transport topology including still-active prior instances not proven.",
+    "Independent external controller must enforce deadlines/terminate cohort; event-loop timer cannot preempt blocked synchronous callback.",
+    "No operational replacement activation, replay, restoration, canonical whole-application conservation or protected custody proof."
+  ],
+  "authorityAssessment": "Opaque WeakMap scope and unary HTTP wrapper preserved; no new activation, restoration or live authority.",
+  "programmeAcceptance": false,
+  "original33or39Pass": false,
+  "newAcceptedIds": [],
+  "publicationAuthority": false,
+  "integrationScope": "Two-file scoped candidate only, requires integration owner to preserve other approved source deltas and obtain exact combined-tree review before publication."
+}

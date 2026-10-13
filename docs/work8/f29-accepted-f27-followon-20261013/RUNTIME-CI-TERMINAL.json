@@ -1,0 +1,87 @@
+{
+  "source": "b3c775c676f35fa5a8009bde7384839997116b16",
+  "tree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+  "run": 38338899372,
+  "status": "completed",
+  "conclusion": "success",
+  "attempt": 1,
+  "event": "pull_request",
+  "started": "2026-10-13T02:51:33Z",
+  "updated": "2026-10-13T03:04:11Z",
+  "node": "22.23.2",
+  "jobs": [
+    {
+      "id": 115105212931,
+      "name": "Exact image and F29 pairs",
+      "conclusion": "success"
+    },
+    {
+      "id": 115105212959,
+      "name": "Durable runtime",
+      "conclusion": "success",
+      "tests": 403
+    },
+    {
+      "id": 115105212979,
+      "name": "Durable web",
+      "conclusion": "success"
+    },
+    {
+      "id": 115105212904,
+      "name": "Response corpus",
+      "conclusion": "success",
+      "cases": 1381
+    },
+    {
+      "id": 115105212635,
+      "name": "Reasoning corpus",
+      "conclusion": "success",
+      "cases": 1950
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11786661525,
+      "name": "work8-f29-pair-containment",
+      "digest": "sha256:7f9cd27846f5a9fec01a7957f3e093b5430aa9a5bfc5f0e3b98659823648a8c6",
+      "size": 106190,
+      "expires_at": "2026-11-12T02:55:20Z"
+    },
+    {
+      "id": 11786377322,
+      "name": "generated-full-path-response-delivery",
+      "digest": "sha256:2c78d5530d5c07e4db4b788c42f41910f58525f5481440dd2378a7810278df2e",
+      "size": 906,
+      "expires_at": "2026-10-27T02:57:46Z"
+    },
+    {
+      "id": 11786256225,
+      "name": "precutover-closure",
+      "digest": "sha256:abff4a715fecd4967d27204902893359ef26ca5b06e9f7d9164867c3793735b3",
+      "size": 5480,
+      "expires_at": "2026-10-27T02:55:24Z"
+    },
+    {
+      "id": 11786197044,
+      "name": "locked-railway-package",
+      "digest": "sha256:8c9fbbba5b1abee3749e6eeb4f18993213c4c0cb7395e912679146e2a9719a5a",
+      "size": 3457,
+      "expires_at": "2027-01-11T02:51:34Z"
+    },
+    {
+      "id": 11785958729,
+      "name": "generated-full-path-reasoning-admission",
+      "digest": "sha256:1736b8761a37b03eab5dd5165df5b93aef3c7066932ff48cdd2cb6cac22fe1b7",
+      "size": 779,
+      "expires_at": "2026-10-27T03:04:02Z"
+    }
+  ],
+  "f29AssertionReview": "F29-ASSERTION-REVIEW.json",
+  "manualDispatch": false,
+  "rerun": false,
+  "limits": [
+    "CI and labelled generated exams only; no production deployment, paid inference or restored-system acceptance",
+    "Other CI workflows monitored independently by root",
+    "No claim about historical failed startup cause"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "recordType": "FINAL_INDEPENDENT_F29_ORIGINAL_SCOPE_ACCEPTANCE",
+  "createdAt": "2026-10-13T03:10:22.240064+00:00",
+  "decision": "ACCEPT_TWO_PREVIOUSLY_MISSING_F29_PAIR_ARMS",
+  "scenario": "W8-F29-REMAINING-V1",
+  "source": "b3c775c676f35fa5a8009bde7384839997116b16",
+  "tree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+  "run": 38338899372,
+  "job": 115105212931,
+  "artifactId": 11786661525,
+  "artifactSha256": "7f9cd27846f5a9fec01a7957f3e093b5430aa9a5bfc5f0e3b98659823648a8c6",
+  "arms": [
+    {
+      "mode": "both-observers-killed",
+      "decision": "ACCEPT_ACTUAL_PAIR_CONTAINMENT",
+      "detectionMs": 185.25205099999948,
+      "verifiedElapsedMs": 321.9107789999998,
+      "freshIncident": true,
+      "externalController": true,
+      "postContainmentVerified": true,
+      "financialCanonicalPreservation": true,
+      "source": "b3c775c676f35fa5a8009bde7384839997116b16"
+    },
+    {
+      "mode": "launcher-and-guard-killed",
+      "decision": "ACCEPT_ACTUAL_PAIR_CONTAINMENT",
+      "detectionMs": 187.7048990000003,
+      "verifiedElapsedMs": 327.24427300000025,
+      "freshIncident": true,
+      "externalController": true,
+      "postContainmentVerified": true,
+      "financialCanonicalPreservation": true,
+      "source": "b3c775c676f35fa5a8009bde7384839997116b16"
+    }
+  ],
+  "originalOracle": "Original scenario external outside-tested-processgroup observation, genuine pair injection,660000msdetector/720sarm, independent fresh containment, zero effects and canonical financial/authority preservation. Read-only reviewer confirms actual receipts/preinjection/processmembership/incidenthash and independent artifactreview; no rerun.",
+  "historicalWorkerSIGSTOP": "Previously accepted600000ms productiondeadline evidence preserved, not reexecuted or relabelled as new.",
+  "startup": "Both actual containers started and reached readiness. Earlier180s startup failure/rootcause remains historical and unconfirmed.",
+  "remainingOriginals": {
+    "O26": "Complete independent integrated causalclassification/correlation oracle shared with externalF27. Existing sourceclaim semanticdetector andaccepted nineclass tests retained; no paidgenuinePillow prerequisite for mocksoftwaregate.",
+    "O30": "Actual independent externalowner-alert delivery; ownerpull andCIartifact alone insufficient.",
+    "O34": "F27 simultaneous receiptgap+unknownsupplier+refundmismatch+observerloss under outsideprocessgroup independent oracle. Accepted sameprocessF27 andnewF29 do not substitute for coupledproof."
+  },
+  "newAcceptedRequirementIds": [],
+  "newAcceptedAmendmentIds": [],
+  "notClaimed": [
+    "CompleteWork8",
+    "O33/O39 restoration or custody",
+    "Physicalwholehost loss",
+    "Actualexternalowner-delivery",
+    "GenuinePilloworcommerce"
+  ],
+  "testsRepeated": 0
+}

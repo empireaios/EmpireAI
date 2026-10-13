@@ -1,0 +1,41 @@
+{
+  "recordType": "NEW_HH3_INDEPENDENT_STATIC_CANDIDATE_REVIEW",
+  "createdAt": "2026-10-13T03:18:49.651599+00:00",
+  "decision": "ACCEPT_SCOPED_HH3_CANDIDATE_FOR_INTEGRATION_REVIEW_AND_AUTHORISED_HOSTED_EXAMINATION",
+  "baseSource": "b3c775c676f35fa5a8009bde7384839997116b16",
+  "baseTree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+  "manifestFilesVerified": {
+    "backend/src/app.ts": "fd8daf3ec22c838e1be870e644ca98107f3125bc786925ad165ac4654a0164a2",
+    "backend/src/runtime/work8-generated-capture-hold.ts": "af1b640300dfe208e333c6245e79cf8dd440876f1c1b6788cb4ce9b2b19e4ff0",
+    "scripts/work8/hh3-compiled-child.mjs": "1293c97642ae772c5de2c47bd8552cc8b2db107bf15089f99e184e39a1dd5606",
+    "scripts/work8/hh3-compiled-coordinator.mjs": "6a63a8b4af784c99e9ebe2747fe54d6c832aa0589eb3aa9a26350d573eadcf8f",
+    "scripts/work8/hh3.Dockerfile": "50a4a3716d0a0837d4c78ce5c776370fb73f24fb1ff077e59faea7457282f244",
+    "scripts/work8/hh3.Dockerfile.dockerignore": "d495f29a76eaa85997fa050be9b7fa8ef2a6311fd7c7ae8e50e12a02843f02f1"
+  },
+  "workflowStepSha256": "60194c60c3f9687457ae12ac48f30f604bad27c6d0202a4ad7aa8d442e408100",
+  "approvedScope": "Actual compiled buildApp capture callback with realRedis/nativeSQLite and separate primaryIPC participant; helper5s timeout, observererror and invalidationerror paths. Staticcode readiness only, not executedHH3 acceptance.",
+  "reviewFindings": [
+    "CorrectedHH1 preflight andHH2 invalidationfailclosed exactfiles preserved.",
+    "Freshprocess-local roots and stripped childenvironment; no retainedstate import or serialized capability.",
+    "Docker networknone/read-only/capdrop/no-new-privileges/tmpfs/explicitboundedresources andexternal480s timeout plusforcecleanup.",
+    "Realcompiledapp capture enters actual nestedcoordinator; three faultmodes independently inspect primary participantactive, Redisowner/pause and nativeSQLite writerrefusal plusmanifest state.",
+    "Normal timeout/observererror require manifestabsent before recorded releasechecks; invalidatorerror requires survivingcopy, unsettledoperation and exclusions after5500ms thenexternaltermination.",
+    "Actual pinned primaryfence awaitscallback even after29s deadlineflag; parent30s timeout killsrequester beforeprimaryrelease. Redis30s budget governsdrain, notrace againstheldcallback. No hiddencallback unwind found in these examinedboundaries.",
+    "Wrappercaptureswatchdog onlywhenWORK8_SUPERVISED_OBSERVERS=1; childenvomitsit andscope explicitly excludes realobservercohort; notmissingmandatoryfixturefile.",
+    "Workflowadded aftercompiledbackendbuild, isolated fromunchangedF29job; currentapprovedF29 trees not modified by review."
+  ],
+  "explicitLimitations": [
+    "No Docker/compiled/hosted execution yet; Node syntaxchecks alone are not a PASS.",
+    "5500ms observation covers helper5000ms holdboundary, not a full30s primary-loss or allwriter deadlineexamination.",
+    "Primary participant callback is examination-owned, not actualfullprimary service admissions.",
+    "Workers/scheduler/Pillow disabled andsyntheticstoreinventory; doesnotprove actual13domain initialization or fulladmittedwriter topology.",
+    "No restoration, activation, replay, protectedcustody orO33/O39 closure.",
+    "Combined workflow/source exacttree requires integrationowner review and freshownerpublicationauthority."
+  ],
+  "blockingCorrections": [],
+  "sourceOrTestsEditedByReviewer": false,
+  "testsRepeated": 0,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "publicationAuthorityGranted": false
+}

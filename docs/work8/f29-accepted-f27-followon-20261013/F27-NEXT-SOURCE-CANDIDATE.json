@@ -1,0 +1,86 @@
+{
+  "recordType": "NEW_LOCAL_F27_CANDIDATE_NOT_PUBLISHED",
+  "commit": "190fe094ce8365cb53778ec6a35011954649a6af",
+  "tree": "b2a094acc2a03e4c42fba86328204d26f9d4ec40",
+  "parent": "b3c775c676f35fa5a8009bde7384839997116b16",
+  "baseTree": "9f81cef990efb1a22a4828dfcf08f962f41a90c7",
+  "files": [
+    {
+      "path": "backend/src/validation/tests/work8-joined-assurance.test.ts",
+      "mode": "100644",
+      "blob": "dea215f093d008f0546f51fb20078ffc856ab214",
+      "sha256": "b434c8598ee5c3da2e590f41b49340e033d8fe22bcd5bdf240fc785df68f7f67",
+      "bytes": 17655
+    },
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "blob": "2bacf2fdcf192d528e8b84ba3971641f93ada55f",
+      "sha256": "c54b36e473a600b4c5b80942007879ed9bc8897412e74d81c6f1bb5eb7c58f25",
+      "bytes": 28951
+    },
+    {
+      "path": "scripts/work8/f27-outer-controller.cjs",
+      "mode": "100644",
+      "blob": "2b3d8928d60c1111295fbdb1bc74519d28608657",
+      "sha256": "7bab74327eec82adb6ebfbb572888b822a335442463ae84936e1cf3a2265b82d",
+      "bytes": 8286
+    },
+    {
+      "path": "scripts/work8/f27-change-boundary.cjs",
+      "mode": "100644",
+      "blob": "daa2363113fe91d4da9341dfb2f027c7bba378c5",
+      "sha256": "b804a97aeeddc42fb6345cab5284c54f5e294c780d5a1884701b929cc1c617f6",
+      "bytes": 1344
+    },
+    {
+      "path": "scripts/work8/f27-external-oracle.cjs",
+      "mode": "100644",
+      "blob": "8e7811acb80d7ebe8a9ceb7fe1f71a04ff5f2ea0",
+      "sha256": "2aafe22a8b12a7127e4876be27ead3377bbfa7367a43d56cd014776b848d81fe",
+      "bytes": 7169
+    },
+    {
+      "path": "scripts/work8/tests/f27-change-boundary.test.cjs",
+      "mode": "100644",
+      "blob": "aa63d99137e824e4e9459164ecce00d9d9279bdb",
+      "sha256": "cd82d405e26a5c9a2f04f3a5309542a4fd9d3c605731f6bb09eed6824325104d",
+      "bytes": 655
+    },
+    {
+      "path": "scripts/work8/tests/f27-fixture.cjs",
+      "mode": "100644",
+      "blob": "304a501f420cef910d91a11f61f524e271eaf32f",
+      "sha256": "afbc586b6360e4f016a0e53e3756f332abd946d387ac106264e7af5e0e826a01",
+      "bytes": 3016
+    },
+    {
+      "path": "scripts/work8/tests/f27-external-oracle.test.cjs",
+      "mode": "100644",
+      "blob": "73c5b9bb890636e6d61e87b988830d7d74b7a575",
+      "sha256": "db69690a78547a458a56e1524989375645058d94f1771ed0c800a6bff28f05a4",
+      "bytes": 1295
+    },
+    {
+      "path": "scripts/work8/tests/f27-sqlite-boundary.test.cjs",
+      "mode": "100644",
+      "blob": "f8a5aff34c30b315602a8b8a0f6f9d98cd22ec6e",
+      "sha256": "0d920940dd311d7eb907986b6a2a7f62a6712e41dbf28a3d9e5af1a89189c18a",
+      "bytes": 3064
+    }
+  ],
+  "trees": {
+    "backend/src/validation/tests": "5cd11d6124689c6c095a7372fc3b37ffa8fcdb1f",
+    "backend/src/validation": "7fca3cbcef7e58dc49f81200c501b9ce6cafee1e",
+    "scripts/work8/tests": "4f545772becd8ad8dd5bceffd2dd67d6ffc1a73d",
+    ".github/workflows": "e2fbb1a5e4508d42fedd3ffadde990670a8b9aef",
+    "backend/src": "546aa07ca219a90d7b4a68f60a69df97370edfe7",
+    "scripts/work8": "c586e36a3e84a0007faba3ff4bdfa81b37240d4b",
+    ".github": "09ac534e7e4f2a91d13a72d5cc0218881a622f7f",
+    "scripts": "7e5e3f20e6b99aa433ba78335c834ba660e93a6c",
+    "backend": "2d26485516aad3b6d2022a4328c60c3c6cbc7945",
+    "baseRoot": "b2a094acc2a03e4c42fba86328204d26f9d4ec40"
+  },
+  "durability": "NOT_STAGED_OWNER_APPROVAL_REQUIRED",
+  "independentReview": "PENDING"
+}
