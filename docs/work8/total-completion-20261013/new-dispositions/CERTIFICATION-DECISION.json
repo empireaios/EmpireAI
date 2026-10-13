@@ -1,0 +1,47 @@
+{
+  "schema": "WORK8_INDEPENDENT_CERTIFICATION_BOUNDARY_V1",
+  "createdAt": "2026-10-13T10:06:38.639019+00:00",
+  "decision": "NO_GO",
+  "work8Complete": false,
+  "productionLedgerWritten": false,
+  "currentSource": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "currentSourceTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "currentEvidence": "6681add01c6fe73a0911d2b06314efd4151cf65d",
+  "currentEvidenceTree": "adb4eb0f4235550aa31a3e2b61611acebd299d93",
+  "counts": {
+    "original": {
+      "PASS": 33,
+      "PENDING": 8,
+      "BLOCKED": 4
+    },
+    "amendments": {
+      "PASS": 8,
+      "PENDING": 11
+    }
+  },
+  "mandatoryUnresolvedClasses": [
+    "Authentic original224/3journal/7historical preservation or attributable audited changed-count lineage O2.",
+    "Exact permitted media and original licensed provider readiness O7/A9/A10/A11/A15.",
+    "Genuine source-bound assessment/recommendation under O13/O14 and coherent connected ownerjourney O19/O40/O41/A6/A19; honest rejected candidates and conclusions where legitimately available permitted in R1/R5, not automatic full R2 acceptance. Original A8 standalone contract evaluated separately.",
+    "Independent external owner-alert delivery/escalation O30.",
+    "Complete cooperating-writer exclusion, operational restoration/replay and protected independent custody O33/O39/A1/A2/A3/A5.",
+    "Complete independent source/dossier certification O42 and Mission Ledger closure O43."
+  ],
+  "notMandatoryForWork8": [
+    "Production deployment without separate authority",
+    "Commerce unlock or Pillow Birth",
+    "Work9 live operational synchronisation",
+    "New purchased hosting when existing infrastructure can prove original boundaries",
+    "Repeat accepted unchanged tests"
+  ],
+  "newOriginalAcceptances": [],
+  "newAmendmentAcceptances": [],
+  "reviewStatus": "BOUNDARY_RECONCILIATION_COMPLETE_PENDING_CURRENT_LANE_EVIDENCE",
+  "governingReferences": [
+    "lane-total-business/MANDATE.txt \u00a712/25",
+    "lane-total-business/OWNER-HOLISTIC-DIRECTIVE.txt \u00a74/5/8/12",
+    "lane-total-business/OWNER-BUSINESS-ACTIVATION-DIRECTIVE.txt \u00a75/6",
+    "lane-next-acceptance/O42-CONDITIONAL-DECISION.json"
+  ],
+  "noGoMeaning": "Unresolved mandatory criteria remain; no finding that all local executable work is exhausted."
+}

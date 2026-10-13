@@ -1,0 +1,75 @@
+{
+  "schema": "work8-finance-console-disposition-v1",
+  "date": "2026-10-13",
+  "reviewBasis": {
+    "path": "lane-total-business/MANDATE.txt",
+    "gitBlob": "31159fa291a342d9f71a09bfa05d8f9147050512",
+    "sha256": "537a4a73d616902ac340f5531cbb936c940c67abe79447cf7aaaf987831355ad",
+    "sections": [
+      "16 baseline preservation",
+      "11 owner usability",
+      "R1-R5 real-product addendum",
+      "25 final certification"
+    ]
+  },
+  "source": {
+    "published": "9080fece4da947f1bf1f2e91568e33e94b287686",
+    "tree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+    "evidence": "6681add01c6fe73a0911d2b06314efd4151cf65d"
+  },
+  "O2": {
+    "decision": "BLOCKED",
+    "allowedAlternative": "Legitimately changed counts supported by audited lineage, not fixed historical count forever",
+    "missing": "Actual original224-row canonical contents or attributable audit lineage sufficient to prove preserved IDs and immutable contents against current227 calls/219 provider records; preserve3journal/7historical records too",
+    "knownOriginalDigest": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+    "governanceDisposition": "Truthful documented NO_GO permitted; no substitute PASS or implicit waiver. A scope change requires explicit owner mandate amendment.",
+    "searchesRepeated": 0,
+    "newCredibleLead": false
+  },
+  "ownerConsole": {
+    "requirements": [
+      "O40",
+      "O41",
+      "A6",
+      "A19"
+    ],
+    "decision": "NO_NEW_FULL_ACCEPTANCE",
+    "scopeClarification": "R1/R5 condition actual Pillow conclusions on authorized completion/legitimate availability. Do not require positive commercial qualification merely to display a rejected genuine candidate truthfully. R2 and full autonomous loop still require coherent cross-stage evidence; isolated accepted display, finance and inbox receipts cannot be concatenated into one executed journey.",
+    "existingAccepted": [
+      "O6 genuine records",
+      "O8 supplier price",
+      "O9 marketplace evidence",
+      "O11 freshness",
+      "O12 screening",
+      "O18 portfolio",
+      "O24 finance equality",
+      "O25 Cost Centre",
+      "A7 mobile shortcuts",
+      "A12 temporary authority",
+      "A13 conversational UX",
+      "A14 communications",
+      "A16 Financial Birth software",
+      "A17 Cost Intelligence"
+    ],
+    "currentCapability": "Advisor tools documented stored-state read only, no inference/external refresh. Two bounded search calls returned no owner-console domain and one historical Pillow transcript; neither yields linked current product/mission/order/finance/incident identities. No provider calls, browser login guesses, paid tools or repeat accepted tests.",
+    "harnessFinding": "Existing owner-comparables-browser-backend.mts uses genuine retained source receipts but isolated fixture login and frozen2026-10-12 clock. It is accepted scoped O9 evidence, not current connected full application or personal owner acceptance.",
+    "historicalReadback": "2026-10-12T14:31:19.646Z current-business-readback.json retains candidate INCOMPLETE0/8 and UNMATCHED observations; treated historical only, no present-day eligibility inference.",
+    "personalOwnerAcceptance": "One bounded authenticated review after executable same-identity journey exists; no current request to approve empty or disconnected screens."
+  },
+  "preserveFinance": [
+    "O20",
+    "O21",
+    "O22",
+    "O23",
+    "O24",
+    "O25",
+    "A16",
+    "A17"
+  ],
+  "newAcceptedOriginals": [],
+  "newAcceptedAmendments": [],
+  "registerMutation": false,
+  "productionMutation": false,
+  "paidInference": 0,
+  "status": "Reviewer-ready disposition, not independent certification"
+}

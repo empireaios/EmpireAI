@@ -1,0 +1,119 @@
+{
+  "schema": "WORK8_FULL_RECOVERY_SHORTEST_CLOSURE_PATH_V1",
+  "status": "IMPLEMENTATION_BOUNDARIES_IDENTIFIED_NOT_ACCEPTANCE",
+  "approvedIntegrationCandidate": "dabd8d8 / tree f0ecc0c (parent supplied abbreviated identities; no invented expansion)",
+  "reviewed16FileCandidateUnchanged": true,
+  "knownSourceFindings": [
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "assertion": "Only explicit requireComplete:false inventory is permitted. restoreWork8RedisInspection preserves an inspection-only Redis owner and does not authorize queue resume."
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "assertion": "Sealed manifest bootAllowed:false,completeLiveState:false,HISTORICAL_ONLY_DO_NOT_BOOT. Existing stageRuntimeRecoveryInspection already copies and verifies complete archive."
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "assertion": "Actual application domain initialization is real, but mission is deliberately unapproved; no authorized queued replay job and no authenticated owner-session lifecycle are seeded."
+    },
+    {
+      "path": "scripts/work8/hh4-outer-cohort.mjs",
+      "assertion": "Current generated primary starts directly, outside the production locked launcher/guard supervision topology. Full watchdog/continuation writer coverage is not established."
+    }
+  ],
+  "shortestOrderedPackages": [
+    {
+      "step": 1,
+      "type": "software+hosted",
+      "finish": "Execute reviewed HH4 actual boot/capture first; repair authentic failures without repeating accepted HH3 unless changed boundary. This gives real snapshot bytes and cohort death evidence, not full restoration."
+    },
+    {
+      "step": 2,
+      "type": "software",
+      "finish": "Extend trusted generated initialization with one completed and one pending authorized read-only mission using actual app singleton, plus owner session and Redis expiring/nonexpiring records. Seal exact public-reader expected results and source job IDs before capture; no second MissionRuntime or provider calls."
+    },
+    {
+      "step": 3,
+      "type": "software",
+      "finish": "Integrate actual launcher/guard/inspector cohort with trusted generated worker adoption and independent watchdog capture. Observe every relevant writer and old cohort termination rather than relabel direct-primary capture as full runtime."
+    },
+    {
+      "step": 4,
+      "type": "software+review",
+      "finish": "Add separate opaque one-use restoration capability minted by trusted new-target factory after verifying original snapshot, exact source/schema, old cohort containment and fresh target identities. Keep existing inspection API and historical manifest semantics unchanged. Runtime paths or serialized token alone never confer activation."
+    },
+    {
+      "step": 5,
+      "type": "software+hosted",
+      "finish": "Restore all application SQLite/JSON/lifecycle domains and Redis into fresh target with persistent admission fence. Compare independent canonical records before activation; explicitly distinguish historical approval/session data from active grants. Activate only scoped synthetic read-only pending work, preserve financial history, verify completed work never repeats."
+    },
+    {
+      "step": 6,
+      "type": "hosted",
+      "finish": "Verify pending authorized work executes exactly once; duplicate request, repeated restoration attempt and cold restart cannot duplicate effects. Prove owner session expiry/ownership and financial/record conservation through the real application."
+    },
+    {
+      "step": 7,
+      "type": "external custody + hosted",
+      "finish": "Retain actual full snapshot in existing authorized GitHub storage with protection against tested runtime deletion/mutation. Independently authenticated fresh readback verifies bytes/manifest, corrupt copy is refused, separate good copy restored to fresh target. No new vendor or infrastructure inherently required."
+    }
+  ],
+  "notLegitimateShortcuts": [
+    "Copying archive into paths does not confer operational activation",
+    "Removing inspection-owner or bootAllowed:false without independently reviewed activation protocol",
+    "Calling fixture replay proof full application recovery",
+    "Treating ordinary Git branch existence as protected independent custody",
+    "Adding new generic snapshot-copy tests duplicates already accepted inspection staging"
+  ],
+  "externalGates": [
+    "Existing GitHub Node22 Docker hosted execution after exact-tree review/publication approval",
+    "Protected retention and independent authenticated custody readback of actual full state"
+  ],
+  "softwareGates": [
+    "Full supervision writer cohort",
+    "Actual pending/completed read-only job and owner-session preparation",
+    "Fresh-target activation capability and restoration integration",
+    "Public canonical/financial/session verification",
+    "Exactly-once replay and cold restart"
+  ],
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": [],
+  "remoteActions": [],
+  "exactRetainedOriginalClauses": [
+    {
+      "id": 33,
+      "name": "Concurrency races and replay",
+      "unsatisfiedAssertionOrPreservation": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in declared runtime topology, including still-active prior instances. Preserve scoped reviewed lifecycle-marker and held-handoff corrections; neither establishes operational replay or full topology. Arbitrary privileged host attackers are not an added criterion.",
+      "authority": "Existing local noncommercial engineering authority; new exact-source independent review/publication needs bounded approval",
+      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence",
+      "unacceptedEvidence": "New isolated operational replacement candidate f7428efe examination retained separately; exact final review interrupted by automated security flag. No status promotion or integration."
+    },
+    {
+      "id": 39,
+      "name": "Cold restart rollback/migration/restore",
+      "unsatisfiedAssertionOrPreservation": "Distinct password-protected Redis replacement after original shutdown, atomic target identity, AOF-only crash recovery, paused fence and once-only labelled pending continuation independently pass. Full authorized application restoration, owner-session restoration into replacement topology and protected independently authenticated off-host custody remain.",
+      "authority": "Existing local noncommercial engineering authority; new exact-source independent review/publication needs bounded approval",
+      "independentAcceptanceOracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence",
+      "unacceptedEvidence": "New isolated operational replacement candidate f7428efe examination retained separately; exact final review interrupted by automated security flag. No status promotion or integration."
+    }
+  ],
+  "exactF30Contract": {
+    "source": "lane-console-certification/governing-1.txt scenario W8-F30-REMAINING-V1",
+    "injection": "Corrupt one exported protected snapshot and restore a separately verified good copy into fresh target.",
+    "expectedOutcome": "Bad copy refused; good copy restores exact retained state; damaged source and audit history preserved.",
+    "independentOracle": "Independent manifest hashes, off-host readback and canonical data equality; no active authority replay."
+  },
+  "softwarePossibleBeforeHosted": [
+    "Read and independently specify existing actual singleton public mission APIs and owner session reader oracle; source implementation can be prepared without claiming positive behavior.",
+    "Specify full supervised cohort adapter against existing launcher/guard/inspector code. No new blanket safety exemption.",
+    "Prepare independent canonical snapshot comparison using current real domain expected records; do not duplicate accepted generic checkpoint verification."
+  ],
+  "actualHostedEvidenceNeededBeforeTrustingActivation": [
+    "First real compiled application boot with current initializer and scopes (not yet proved).",
+    "Actual complete held snapshot schema/record inventory and sourcecohort membership/death evidence.",
+    "Actual session/queue status and watchdog freshness obtained at held epoch; cannot infer from configured filecount."
+  ],
+  "activationAuthorityDisposition": "Do not mint activation capability or lift historical-only/inspection guards in this candidate. Existing f7428efe unaccepted and earlier new-state recovery WIP explicitly prohibited from execution/publication pending independent disposition; do not silently recreate/bypass it.",
+  "safePendingJobDisposition": "Existing actual host API can create a read-only mission but triggering confirmation/approval introduces actualexecutionrunner behavior before capture. Require deliberate runner admission control and pre-capture oracle design first; current initializer unapproved mission is intentional, not a missing boolean to flip.",
+  "currentCandidateChange": "NONE: independently reviewed16files left unchanged; no speculative restoration appended."
+}

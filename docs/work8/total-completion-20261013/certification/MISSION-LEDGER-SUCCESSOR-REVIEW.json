@@ -1,0 +1,29 @@
+{
+  "schema": "WORK8_LEDGER_PRESERVATION_SUCCESSOR_REVIEW_V1",
+  "decision": "ACCEPT_SCOPED_LEDGER_RECONCILIATION_PENDING_FINAL_RECEIPT_LINKS",
+  "candidateSha256": "1baa2759c3583353a70fd7723f93b29cd7739be4f35e4ef6aff0f62ba7667f84",
+  "baseBlob": "eb5c7b143eb18a0a7f4edb6ca3c0ee88bf14fa24",
+  "correctedFindings": [
+    "LEDGER-H1",
+    "LEDGER-H2"
+  ],
+  "preservedCounts": {
+    "original": {
+      "PASS": 33,
+      "PENDING": 8,
+      "BLOCKED": 4
+    },
+    "amendment": {
+      "PASS": 8,
+      "PENDING": 11
+    }
+  },
+  "newAcceptances": [],
+  "programmeDecision": "NO_GO",
+  "finalizationRemaining": [
+    "Actualincludedreceiptpaths",
+    "Finalreviewedcandidateidentity",
+    "FinalmandatorylaneNO_GO reconciliation"
+  ],
+  "productionMutation": false
+}

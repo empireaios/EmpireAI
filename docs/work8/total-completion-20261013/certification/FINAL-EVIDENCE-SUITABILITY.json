@@ -1,0 +1,382 @@
+{
+  "recordType": "FINAL_TOTAL_COMPLETION_EVIDENCE_PUBLICATION_SUITABILITY",
+  "createdAt": "2026-10-13T10:54:47.055694+00:00",
+  "reviewer": "assurance_alerting",
+  "decision": "SUITABLE_FOR_EXACT_EVIDENCE_STAGING_AND_APPROVED_PUBLICATION",
+  "candidateRoot": "lane-total-integration/evidence-candidate",
+  "reviewedFileCount": 56,
+  "reviewedTextFiles": 51,
+  "reviewedArchiveCount": 5,
+  "files": [
+    {
+      "path": "docs/work8/CURRENT-CONTINUATION.json",
+      "sha256": "11701620cf7f181f506d310c3ac2357c82ec020d7b66ef038331c20c6bac96ff",
+      "bytes": 345,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/mission-ledger.json",
+      "sha256": "b82c38bc0b5b84dcbe41f1dfe24337185e904cd69e607dc2f17b6611779da18a",
+      "bytes": 11450,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/CONTINUATION.json",
+      "sha256": "717419b16ff117eff2e71a3c2f725e1cb65b5ee54f5e2e6ac6aab9b1c3c15306",
+      "bytes": 2248,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/CURRENT-CI-TERMINAL.json",
+      "sha256": "77492a07bb453757b3ca03e1083d1ef6fd6d0614d0cf28b06fa128c6defc0a68",
+      "bytes": 750,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/CURRENT-REGISTER.json",
+      "sha256": "e3c95a2fe5102a252ca6736008acc5ff7a53acf26dbb7193a07cb871730dae37",
+      "bytes": 113732,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/CURRENT-TRACKER.md",
+      "sha256": "fe7933d631b16ee1c9cdeaeb7e59a6fb09fd3533faf6af95a254072b5cc9000c",
+      "bytes": 46674,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/README.md",
+      "sha256": "62f1e0d4925f8224038e5def36d41d43d9d1efa03bfeccdb0913c2c59275e716",
+      "bytes": 1684,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/CURRENT-BASELINE-ZIP-SUITABILITY.json",
+      "sha256": "e5635639be7aac6f5525a0095ddb015a92c1fe374b7b8cacc68feeb28431a326",
+      "bytes": 20380,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/F27-CLOCK-INDEPENDENT-HOSTED-ACCEPTANCE.json",
+      "sha256": "335a83721202db89beb3ce1daad6e05ef01827cf2e03b7fa8fa0270c57d70176",
+      "bytes": 1901,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/HH3-INDEPENDENT-HOSTED-ACCEPTANCE.json",
+      "sha256": "90904250899ff90fae538dcf19e36eb8b29b631c687f28188aa08e7fa79b5866",
+      "bytes": 7484,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/HH3-SUCCESSOR-CI-TERMINAL.json",
+      "sha256": "f74136afe292feb59bc9420f5acab58ecc73847978df5eb08a14c2b8ddcd32b3",
+      "bytes": 1437,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/READBACK-RECEIPT.json",
+      "sha256": "b730d0e3c91e79c1e9a580f7601d360273a7e1351d783899580029354a25bebc",
+      "bytes": 14371,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/RUNTIME-NODE22-REUSE-INDEPENDENT-ACCEPTANCE.json",
+      "sha256": "b25b49997721d55252f72b12e34549535e2e0c2092801fd1f4794b57f90cc89c",
+      "bytes": 5407,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/TRACKER-CLOSURE-GATE-INDEPENDENT-REVIEW.json",
+      "sha256": "287a288b361ead21a347b5e0e9b8d80f43eb55fafbb347cdca729127f06a28d2",
+      "bytes": 2038,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/artifact-11801004789.zip",
+      "sha256": "6338edc96381004d3ed58628200bd45b8c8431159dd9cfca5fc8bf605f8e9d51",
+      "bytes": 1046,
+      "kind": "original_zip_hash_verified_against_prior_review"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/artifact-11801893390.zip",
+      "sha256": "429a70ff54e538a851bf8628a1251ce9492e1a68aea2ac6f056dce2a5472c4e4",
+      "bytes": 14072,
+      "kind": "original_zip_hash_verified_against_prior_review"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/artifact-11802086626.zip",
+      "sha256": "d06de4a712149e0779f3024ed6f7480862ec3dccae5d45fd078f9b0cd21efce9",
+      "bytes": 377191,
+      "kind": "original_zip_hash_verified_against_prior_review"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/artifact-11802195066.zip",
+      "sha256": "e1b0564b8323851b68099a3d41d9ab42c8cc93bd5a5fa0060d733cd174d2df12",
+      "bytes": 1054,
+      "kind": "original_zip_hash_verified_against_prior_review"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/accepted-current-baseline/artifact-11802225685.zip",
+      "sha256": "3e9e110ca4f5d08df5c0956ce8d7d02f06b82420504fe14b1587546b1e59dee6",
+      "bytes": 4258,
+      "kind": "original_zip_hash_verified_against_prior_review"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/certification/A8-BACKEND-FIVE-PATH-REVIEW.json",
+      "sha256": "4e902eb3362a12eee415425e5a21b369f7536187bdedfbe131822f7372fac0ab",
+      "bytes": 2960,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/certification/A8-COMPLETE-FRONTEND-TREE-REVIEW.json",
+      "sha256": "04876a789b454601ed8d891eb68fae70360715da13fd14040d8cb7caafc07bd4",
+      "bytes": 3513,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/certification/A8-FINAL-FRONTEND-REVIEW.json",
+      "sha256": "f66681a286a7b94b5e78e382b42fe4ecd912d06f0214d2f538cbc30538309cfc",
+      "bytes": 5634,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/certification/CERTIFICATION-DECISION.json",
+      "sha256": "92d2c43769b382f15305c80be513baf8ac0f5532180a0a13461dea02f33de9d5",
+      "bytes": 3664,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/certification/MISSION-LEDGER-SUCCESSOR-REVIEW.json",
+      "sha256": "8fda4ff7b27719840628925ba3498d861b09216e67615b0d8530f41960e1d66e",
+      "bytes": 765,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/console/A8-SOURCE-DOSSIER-CANDIDATE.json",
+      "sha256": "15f0d3ea4c16e9987ae5afdd69778bd9689a5ccdd6c9728b32bdec9bb7bca24e",
+      "bytes": 6525,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/console/ACTUAL-TIER0-ADMISSION.json",
+      "sha256": "a592d696dff7f5c6a7f592ecdc76e02f60766b2fb6d5a3040ffe789860bf83ca",
+      "bytes": 431,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/console/BACKEND-HTTP-BOUNDARIES.json",
+      "sha256": "8a531888af8749d5ef5fa3ddc8919def0ca829cb177d6c11ac7fd4037b333a5a",
+      "bytes": 400,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/console/FRONTEND-BASELINE-READBACK.json",
+      "sha256": "3fd93caa2173068973f22b6b591473041c89e8c9d41028c5786388680e0be575",
+      "bytes": 251,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/console/OWNER-WALKTHROUGH.md",
+      "sha256": "e45b0f9c6def3af4d0f03b94b13e5b2017f88387b58502d89ea08534a7b58cd0",
+      "bytes": 3571,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/console/product-context-test.tap",
+      "sha256": "17881a2aa83d146105b386edd81bbf67246cfa0e7ffdb76ea5791bfaf5a6a793",
+      "bytes": 224,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/console/source-context-test.tap",
+      "sha256": "c7a1370949889f4c06cbeb6816cbd4df95a955c0529740a91c7268da63f0a75d",
+      "bytes": 247,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/integration/BACKEND-CANDIDATE.json",
+      "sha256": "90fe97ed7fcdf68cd50bbdd605145acf99b46b0306d076ea0bc885db5ea2eba2",
+      "bytes": 7596,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/integration/BACKEND-COMPILE-ATTRIBUTION.json",
+      "sha256": "83711abaf0d0fd364a2524bbb1a0e47f3c77182a97528d009e91c6fa8607f27e",
+      "bytes": 956,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/integration/BACKEND-INDEPENDENT-TREE-REVIEW.json",
+      "sha256": "0718eea6a4063bf2d6ef0e01862e3bc137421205da33380725554a1f2605895e",
+      "bytes": 309719,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/integration/FRONTEND-CANDIDATE.json",
+      "sha256": "7f057078b0ad8e4600d9db0f252fb3713ffef1c7f11a9a8e98830f0da411cf8a",
+      "bytes": 6499,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/CERTIFICATION-DECISION.json",
+      "sha256": "e2d77e029825dba5cde2882c547f748bfada66cce7a19c8e276b2edf7332281f",
+      "bytes": 2311,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/DEPENDENCY-QUEUE.json",
+      "sha256": "e994ee9a17b5d764d882b81daded46f88773e35637996b4dc42958483ce08194",
+      "bytes": 24659,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/FINANCE-CONSOLE-DISPOSITION.json",
+      "sha256": "2df3257d1fff47b07646b348a8fa1b96b5095075db90c3f1ac63988cc058d87e",
+      "bytes": 3688,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/FINANCE-CONSOLE-INDEPENDENT-REVIEW.json",
+      "sha256": "faf0dd4197edb8415ad73c25f4236fdceda593b58f7e2b38ecd65bfff64d817e",
+      "bytes": 876,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/MINIMAL-DELIVERY-INTEGRATION.md",
+      "sha256": "4234983cd0e954fdba58d4f351d140b5ff0d4d45ada6198ad038ac6c5cf7889e",
+      "bytes": 3867,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/O30-DELIVERY-GATE.json",
+      "sha256": "6cd415056178f9c33b27f7f44e2f014760f32ce108e5ac0595bd56568362a77c",
+      "bytes": 7609,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/O30-IMPLEMENTATION-BINDING-DECISION.json",
+      "sha256": "e490af5f2b551526f76b6a23676f0bdff393f043735f02389e8514b2a2b5999c",
+      "bytes": 3900,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/O30-INDEPENDENT-DISPOSITION.json",
+      "sha256": "8199e8a9dc2f78ac6374b737316d43ac49891e01d16244770a931f4942a141f6",
+      "bytes": 761,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/O39-LIBRARY-CUSTODY-SCOPE-REVIEW.json",
+      "sha256": "13475efd93e10abda47ae6fd03e673921db119f1542bf32e2d69a78bb5e5efbe",
+      "bytes": 4597,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-dispositions/ORIGINAL-CONTRACT-DISPOSITION.json",
+      "sha256": "b9611393f28ce03f72e2685a9a4ac95f4aaec9ebef0e044b28858ca3669a877b",
+      "bytes": 6641,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-recovery/CANDIDATE.json",
+      "sha256": "c7742df734a0327d577198e0e702fdaf92f474d089b4e4f629b6da10e5a0c78a",
+      "bytes": 3121,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-recovery/EXECUTION-STATUS.json",
+      "sha256": "ed24eb4428dcacf32edbf93f80f71347813873d70a43eb35b5b24c59645180ac",
+      "bytes": 2397,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-recovery/HH4-INDEPENDENT-SOURCE-REVIEW.json",
+      "sha256": "42c9378831cf15965dba4e2171faf282ca0949b73c414464d2b4ce0585c21168",
+      "bytes": 9589,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-recovery/HH4-OUTER-CANDIDATE.json",
+      "sha256": "0cb35764cea9089e4acd4ff0db5ea42108040a3ea0d6a8cb3dfec6b96608f030",
+      "bytes": 2043,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-recovery/SOURCE-CANDIDATE.json",
+      "sha256": "3302b050db6c9fc03bcc279fc4cbddfa96927e9675e6bb137ed146ff0f845c83",
+      "bytes": 4287,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/new-recovery/SOURCE-INDEPENDENT-TREE-REVIEW.json",
+      "sha256": "18ac25274ce581de82ce165b236f0591f8597aa3c36791300b82e2e0b9c11404",
+      "bytes": 71690,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/recovery/FULL-RECOVERY-CLOSURE-PATH.json",
+      "sha256": "90b85817d1393c4592e5e97639a26842acb9d2817883a80f4627ce25a8889ed8",
+      "bytes": 9348,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/recovery/INDEPENDENT-CLOSURE-PATH-REVIEW.json",
+      "sha256": "9986785ad7bd67d14ff5da5818b803e25a0c3bce8fad278e61c7bed70a6d3b00",
+      "bytes": 3639,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/recovery/INSPECTION-CANDIDATE.json",
+      "sha256": "ac65ecd8481550d1810fc72ec3e2c5e1ad8964ecc61d7319b9806a0666b824b9",
+      "bytes": 1103,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/recovery/INSPECTION-INDEPENDENT-SOURCE-REVIEW.json",
+      "sha256": "c86ae8eae9819cd728aa10d7bcf63558e0dee87585c1c8cd5faa95060503b7b7",
+      "bytes": 4286,
+      "kind": "text"
+    },
+    {
+      "path": "docs/work8/total-completion-20261013/recovery/inspection-reader-tests.tap",
+      "sha256": "5b552a63b240dbc289e6fbcff13a32cf9ff7990cd39a434826dedeb5edfd97be",
+      "bytes": 429,
+      "kind": "text"
+    }
+  ],
+  "focusFindings": {
+    "actualTier0": "ACTUAL-TIER0-ADMISSION.json contains classification/status202/forged409 and input/expected hashes only, no sessionToken. Explicit intercepted queue/no inference/no Redis durability scope.",
+    "httpBoundaries": "BACKEND-HTTP-BOUNDARIES.json contains outcome flags/counts only; no cookie, bearer or account credential. BrowserExecuted false retained.",
+    "consoleLogs": "Two TAP logs contain test names/counts/timing only. No session or request payloads.",
+    "financial": "Disposition and register summaries only; no private224/227-call accounting rows. Prior separately reviewed F27 archive contains intentional simulation financial events.",
+    "identity": "Backend a1602727d0689d28683c8bb7fa10376d08f240a1/e668d9b61851b70b5ef3cc97f816520cde6105fc and frontend ab2e1eb9f3af764ff3e3e465cff32f0b2d5f1d48/587adf376276133507cb1fa10d8f5ab02da01dcf recorded as unpublished candidates; frontend staging-only constraint explicit.",
+    "scopes": "Latest README distinguishes superseded intermediate recovery receipts, actual current baseline receipts, unexecuted new candidate and NO_GO."
+  },
+  "zipReview": "Five unchanged SHA256s match CURRENT-BASELINE-ZIP-SUITABILITY.json; archive payload review not repeated. Exact bytes retained.",
+  "credentialScreen": "No private key, provider token, bearer value or assigned session/access/refresh/password secret detected in candidate text. No sourcecode, environment dump or private accounting export added.",
+  "acceptanceTestsRepeated": 0,
+  "sourceOrRegisterMutations": 0,
+  "limitations": "Publication suitability only; not fresh Git tree equality, hosted acceptance or source publication permission. Receipt covers enumerated exact bytes; later changed/new files require delta review. No new complete requirements/amendments accepted.",
+  "boundedDeltaReview": {
+    "at": "2026-10-13T10:55:49.274701+00:00",
+    "files": [
+      {
+        "path": "docs/work8/total-completion-20261013/CURRENT-REGISTER.json",
+        "previousSha256": "252070989c42c738cec427b4cf8138c1644ba350207999b2eee7432949b236fd",
+        "sha256": "e3c95a2fe5102a252ca6736008acc5ff7a53acf26dbb7193a07cb871730dae37",
+        "bytes": 113732
+      },
+      {
+        "path": "docs/work8/total-completion-20261013/CURRENT-TRACKER.md",
+        "previousSha256": "e342dcff56cc8d95de64ef7d8cbce6a6a3674b92e9062940f5abd104471be176",
+        "sha256": "fe7933d631b16ee1c9cdeaeb7e59a6fb09fd3533faf6af95a254072b5cc9000c",
+        "bytes": 46674
+      }
+    ],
+    "decision": "SUITABLE_O40_DISPLAY_SCOPE_WORDING_ONLY",
+    "inspection": "Read corrected O40 register row and matching tracker section: truthful rejected/deferred presentation permitted; original genuine assessment separately mandatory; O40 still BLOCKED/newProgrammeAcceptance false. No account/session/financial payload added. No full-package reread.",
+    "baselineCounts": "33 PASS / 8 PENDING / 4 BLOCKED originals; 8 PASS / 11 PENDING amendments preserved per independent final ledger/register scope review",
+    "additionalReceipt": "Root may append FINAL-LEDGER-REGISTER-SCOPE-REVIEW.json (hashes/decisions only); it is not part of this original56-file enumeration."
+  }
+}

@@ -3,8 +3,8 @@
   "missionStatus": "IN_PROGRESS",
   "decision": "NO_GO",
   "counts": {
-    "PASS": 30,
-    "PENDING": 11,
+    "PASS": 33,
+    "PENDING": 8,
     "BLOCKED": 4
   },
   "requirementDecisions": [
@@ -100,10 +100,12 @@
   "commerce": "LOCKED",
   "work9": "NOT_ACTIVATED",
   "latestPublication": {
-    "source": "1ff047b32547f9e987ed6f6cd5d6634d49735ccb",
-    "evidence": "073a2220f554d8c31459b7ce96bc278108335205",
+    "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+    "sourceTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+    "evidence": "6681add01c6fe73a0911d2b06314efd4151cf65d",
+    "evidenceTree": "adb4eb0f4235550aa31a3e2b61611acebd299d93",
     "frontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
-    "currentSessionPublished": false
+    "newCampaignPublication": false
   },
   "latestScopedReview": {
     "source": "a83c95eb8870a893c93920353c5da94351b5c34f",
@@ -124,8 +126,8 @@
     "verdict": "SCOPED_PASS_TEST_ONLY_CONTINUATION",
     "receipt": "resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json"
   },
-  "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-76206D79.json",
-  "latestLocalContinuation": "integrated-acceptance-20261012/CONTINUATION.json",
+  "currentCiReceipt": "total-completion-20261013/CURRENT-CI-TERMINAL.json",
+  "latestLocalContinuation": "total-completion-20261013/CONTINUATION.json",
   "ownerAmendments": {
     "register": "resume-20261011/OWNER-AMENDMENTS-19.json",
     "legacyIdsPreserved": true,
@@ -134,30 +136,50 @@
       "PENDING": 19,
       "BLOCKED": 0
     },
-    "currentRegister": "revised-review-20261012/FIXED-REGISTERS.json",
+    "currentRegister": "total-completion-20261013/CURRENT-REGISTER.json",
     "counts": {
-      "PASS": 7,
-      "PENDING": 12
+      "PASS": 8,
+      "PENDING": 11
     }
   },
   "latestScopedClosureCheck": {
-    "newClosures": [
-      "A13",
-      "A17"
-    ],
-    "receipt": "integrated-acceptance-20261012/REPORT.md",
-    "remainingFullRequirements": [
-      18,
+    "newClosures": [],
+    "decision": "NO_GO",
+    "originalOutstanding": [
+      2,
+      7,
+      13,
+      14,
+      19,
+      30,
       33,
-      39
-    ]
+      39,
+      40,
+      41,
+      42,
+      43
+    ],
+    "amendmentOutstanding": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      15,
+      19
+    ],
+    "receipt": "total-completion-20261013/certification/CERTIFICATION-DECISION.json"
   },
   "amendmentCounts": {
     "PASS": 8,
     "PENDING": 11
   },
-  "authoritativeRegister": "revised-review-20261012/FIXED-REGISTERS.json",
-  "sourceCandidate": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+  "authoritativeRegister": "total-completion-20261013/CURRENT-REGISTER.json",
+  "sourceCandidate": "a1602727d0689d28683c8bb7fa10376d08f240a1",
   "productionMissionComplete": false,
   "amendmentDecisions": [
     {
@@ -191,5 +213,77 @@
       "independentVerifier": "/root/observer_review"
     }
   ],
-  "sourceCandidateReview": "APPROVE_EXACT_SOURCE_FOR_BOUNDED_PUBLICATION_REQUEST"
+  "sourceCandidateReview": "PASS_SOURCE_AND_TREE_LOCAL_COMPILE_HOSTED_PENDING_PUBLICATION_AUTHORITY",
+  "historicalCheckpointBeforeTotalCampaign": {
+    "counts": {
+      "PASS": 30,
+      "PENDING": 11,
+      "BLOCKED": 4
+    },
+    "latestPublication": {
+      "source": "1ff047b32547f9e987ed6f6cd5d6634d49735ccb",
+      "evidence": "073a2220f554d8c31459b7ce96bc278108335205",
+      "frontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+      "currentSessionPublished": false
+    },
+    "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-76206D79.json",
+    "authoritativeRegister": "revised-review-20261012/FIXED-REGISTERS.json",
+    "sourceCandidate": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+    "sourceCandidateReview": "APPROVE_EXACT_SOURCE_FOR_BOUNDED_PUBLICATION_REQUEST",
+    "ownerAmendments": {
+      "register": "resume-20261011/OWNER-AMENDMENTS-19.json",
+      "legacyIdsPreserved": true,
+      "historicalCounts": {
+        "PASS": 0,
+        "PENDING": 19,
+        "BLOCKED": 0
+      },
+      "currentRegister": "revised-review-20261012/FIXED-REGISTERS.json",
+      "counts": {
+        "PASS": 7,
+        "PENDING": 12
+      }
+    },
+    "latestScopedClosureCheck": {
+      "newClosures": [
+        "A13",
+        "A17"
+      ],
+      "receipt": "integrated-acceptance-20261012/REPORT.md",
+      "remainingFullRequirements": [
+        18,
+        33,
+        39
+      ]
+    },
+    "latestLocalContinuation": "integrated-acceptance-20261012/CONTINUATION.json"
+  },
+  "preservedLaterAcceptances": [
+    {
+      "item": 9,
+      "status": "PASS",
+      "newCampaignAcceptance": false,
+      "receipt": "o9-console-20261013/O9-INDEPENDENT-ACCEPTANCE.json; backend4c012674/frontendc6b698c4; integrationb332d9a5; genuine native desktop/mobile and independent auth/workspace boundary verification"
+    },
+    {
+      "item": 26,
+      "status": "PASS",
+      "newCampaignAcceptance": false,
+      "receipt": "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, published source/bundle; production rollout not performed); lane-console-certification/O26-O34-COMPLETE-INDEPENDENT-ACCEPTANCE.json; published-f27-hh3-ci/F27-INDEPENDENT-ACTUAL-ASSERTIONS.json"
+    },
+    {
+      "item": 34,
+      "status": "PASS",
+      "newCampaignAcceptance": false,
+      "receipt": "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); lane-console-certification/O26-O34-COMPLETE-INDEPENDENT-ACCEPTANCE.json; published-f27-hh3-ci/F27-INDEPENDENT-ACTUAL-ASSERTIONS.json"
+    }
+  ],
+  "priorLedgerBlob": "eb5c7b143eb18a0a7f4edb6ca3c0ee88bf14fa24",
+  "updatedAt": "2026-10-13T10:32:43.907985+00:00",
+  "sourceCandidateTree": "e668d9b61851b70b5ef3cc97f816520cde6105fc",
+  "frontendCandidate": {
+    "commit": "ab2e1eb9f3af764ff3e3e465cff32f0b2d5f1d48",
+    "tree": "587adf376276133507cb1fa10d8f5ab02da01dcf",
+    "disposition": "DURABLE_STAGING_ONLY_PUBLICATION_WITHHELD"
+  }
 }

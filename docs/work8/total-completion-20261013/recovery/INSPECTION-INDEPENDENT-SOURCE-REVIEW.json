@@ -1,0 +1,77 @@
+{
+  "recordType": "HH4_INDEPENDENT_OFFLINE_INSPECTION_SOURCE_REVIEW",
+  "createdAt": "2026-10-13T10:36:50.797114+00:00",
+  "reviewer": "recovery_review",
+  "verdict": "PASS_SCOPED_SOURCE_AND_CHANGED_BOUNDARIES_NOT_OPERATIONAL_ACCEPTANCE",
+  "baseReviewedCommit": "dabd8d8c114b64ff388f29615646b61e92ad5a16",
+  "baseReviewedTree": "f0ecc0c0231c38e9b5d15da88c0881c992396475",
+  "candidateManifestSha256": "ac65ecd8481550d1810fc72ec3e2c5e1ad8964ecc61d7319b9806a0666b824b9",
+  "files": {
+    "scripts/work8/hh4-inspection-restoration.test.mjs": {
+      "sha256": "fd27d8be03f1eff03f0672cad29ddc600595dc77b1b2ad9a6529cfd6fc92c177",
+      "mode": "100644",
+      "gitBlob": "f3495d770881d57eb5b3792c7b0b8f8d61e8c9a5",
+      "size": 2927,
+      "verified": true
+    },
+    "scripts/work8/hh4-inspection-restoration.mjs": {
+      "sha256": "ea9716dcb0be547e606efa98d924e139e65e5935699528cbff648fda2d1a2137",
+      "mode": "100644",
+      "gitBlob": "7d6bc5fe4fbc2326d8012f02d0e0e9e13ae5578e",
+      "size": 6354,
+      "verified": true
+    },
+    ".github/workflows/pillow-runtime-repair-ci.yml": {
+      "sha256": "186d29d00bcf4ccac2ef223a6aca526b965f8495750b6ff9947789fe6470bda7",
+      "mode": "100644",
+      "gitBlob": "a0c8d9d7ff82b16b2c78e71e4efc603da29780ab",
+      "size": 34323,
+      "verified": true
+    }
+  },
+  "originalSixteenFilesUnchanged": true,
+  "reviewedAssertions": [
+    "Existing verifier binds source,digest,exact archive inventory and historical-only flags before staging.",
+    "Existing guarded inspection staging creates fresh target and INSPECTION_ONLY marker; no application boot, Redis command or queue replay.",
+    "Every captured database opened immutable/readOnly with extensions disabled; lossless typed NULL,BigInt integer,BLOB,text,finiteREAL and negativezero canonical values.",
+    "Schema,user_version,application_id,ordinary table rows,physical rowid lineage,generated columns and sqlite_sequence retained.",
+    "table_xinfo prevents generated-column alias collision; nullprototype map preserves __proto__ table; unsupported virtual/shadow/nonfiniteREAL fail closed.",
+    "JSON exact byte digests plus values, Redis opaque key/DUMP/TTL and actual empireai:session: prefix, lifecycle marker bytes retained.",
+    "Database hashes before/after read and original whole archive verification after staging preserve source bytes.",
+    "Workflow invokes tests and actual captured digest/current source inspection after successful HH4 containment, within same five-minute step and existing always artifact retention."
+  ],
+  "correctedDefects": [
+    "table_info omitted generated-column names and could hide rowid via JS result key collision; corrected to table_xinfo with regression.",
+    "Plain table map could lose __proto__ table; corrected nullprototype map with regression."
+  ],
+  "tests": {
+    "status": "PASS",
+    "count": 3,
+    "runtime": "Node24.19.0 reported by implementer",
+    "receipt": "lane-recovery-completion/inspection-reader-tests.tap",
+    "receiptSha256": "5b552a63b240dbc289e6fbcff13a32cf9ff7990cd39a434826dedeb5edfd97be",
+    "reviewerRepeatedTests": false,
+    "scope": [
+      "Finance-style DDL int64/BLOB/REAL/sequence/rowid mutation",
+      "Generated alias and __proto__ table preservation",
+      "Finance/JSON/RedisTTL/marker canonical mismatch refusal"
+    ]
+  },
+  "disclosures": [
+    "No actual hosted HH4 archive executed yet. Reader tests do not establish full restoration.",
+    "Equality proves captured snapshot versus fresh inspection copy, not original complete-writer capture truth.",
+    "SQL public readers used; application-domain service readers not booted.",
+    "Redis DUMP opaque; semantic session owner/expiry restoration not verified.",
+    "Filesystem ACL/ownership/timestamps not canonical-record assertions; existing archive path safeguards reused.",
+    "Virtual/shadow tables and nonfiniteREAL explicitly unsupported; no silent exclusions.",
+    "No new F30 corruption or protected custody acceptance."
+  ],
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": [],
+  "operationalRestoration": false,
+  "replay": false,
+  "protectedCustody": false,
+  "hostedExecution": false,
+  "publicationPerformed": false,
+  "completeIntegratedTreeVerification": "PENDING_ROOT_SUCCESSOR_ASSEMBLY"
+}

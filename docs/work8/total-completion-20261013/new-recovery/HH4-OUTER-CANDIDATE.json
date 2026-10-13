@@ -1,0 +1,53 @@
+{
+  "recordType": "HH4_EXTERNAL_HELD_CAPTURE_CANDIDATE_NOT_HOSTED_ACCEPTANCE",
+  "createdAt": "2026-10-13T10:13:41.525141+00:00",
+  "files": [
+    {
+      "path": "scripts/work8/hh4-held-capture-controller.mjs",
+      "sha256": "97c406486c39257d2aa427c1b0d604c17d726a558e55ec5dcf75272dc7eac2d0",
+      "bytes": 7621,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/work8/hh4-held-capture-controller.test.mjs",
+      "sha256": "88d663398e8c00690ec2a6eb3ff5d47fe133bb2f76f4c973472e8713c3f6c42b",
+      "bytes": 1967,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/work8/hh4-outer-cohort.mjs",
+      "sha256": "17f6ac6c8bf7a3631284d38d968a08945b0f53140cacf41df064178eacf16c17",
+      "bytes": 7895,
+      "mode": "100644"
+    }
+  ],
+  "changedBoundary": "New outside-cohort fixed primary signal + live held capture + pre-original-expiry containment; helper records wall and monotonic containment completion before diagnostics",
+  "validation": {
+    "nodeSyntax": "PASS",
+    "boundaryTests": 3,
+    "boundaryFailures": 0,
+    "hosted": "NOT_RUN",
+    "docker": "UNAVAILABLE_IN_LOCAL_EXECUTOR",
+    "independentReview": {
+      "reviewer": "/root/recovery_review",
+      "decision": "ACCEPT_SCOPED_SOURCE_ONLY",
+      "scope": "PASS_HELD_CAPTURE_AND_CONTAINMENT_ONLY when actual hosted examination passes; currently NOT_RUN",
+      "findings": "Corrected require path; actual verifier returns manifest; exact process identity, original hold wall/monotonic deadline and post-containment retainedcopy verification coherent"
+    }
+  },
+  "unchangedDeadlines": {
+    "startupMs": 180000,
+    "captureResponseMs": 30000,
+    "originalHoldMaximumMs": 5000,
+    "cohortContainmentMs": 5000
+  },
+  "acceptanceLimits": [
+    "Held capture only",
+    "No operational restoration",
+    "No replay",
+    "No protected custody",
+    "No O33/O39 complete acceptance"
+  ],
+  "integration": "Merge these3files only after independent review; primary/worker IPC source remains owned by recovery_complete",
+  "publication": "NOT_PUBLISHED"
+}

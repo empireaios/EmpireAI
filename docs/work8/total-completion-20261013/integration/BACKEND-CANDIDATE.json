@@ -1,0 +1,169 @@
+{
+  "recordType": "LOCAL_EXACT_CANDIDATE_PENDING_PUBLICATION_AUTHORITY",
+  "commit": "a1602727d0689d28683c8bb7fa10376d08f240a1",
+  "tree": "e668d9b61851b70b5ef3cc97f816520cde6105fc",
+  "parent": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "baseTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "files": [
+    {
+      "path": "scripts/work8/hh4-generated-primary.mjs",
+      "mode": "100644",
+      "blob": "a476b9449064924bc85b50e683521fd55038941a",
+      "sha256": "1a73583290d88d4c3d840ef339474b633860cf9d2b542363e85067fdbf2d82d3",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-generated-worker.mjs",
+      "mode": "100644",
+      "blob": "148d224b0e2981e7591b8441aaeade7a421ae304",
+      "sha256": "b21b690da7d3ac9d5f210023a1db61f0ccb13f09c64aa3edd71fc157ff91c74e",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "backend/src/index.ts",
+      "mode": "100644",
+      "blob": "130c75eab38017d7ebb853cdfc9af8398217cd0c",
+      "sha256": "980baa79a9961464bf6a405d94c5582bfb0dd35deec8e1310b414252669187bf",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "backend/src/runtime/tier0-isolated-primary.ts",
+      "mode": "100644",
+      "blob": "44965c8b3404b76e479b8dfba6453bef8f36e23d",
+      "sha256": "6ee6b55f5c17dc6bfe9f41a74e2fbbb76c0db467c7204753cc996735bd188790",
+      "review": "lane-total-certification/A8-BACKEND-FIVE-PATH-REVIEW.json"
+    },
+    {
+      "path": "backend/src/runtime/work8-generated-worker-adoption.ts",
+      "mode": "100644",
+      "blob": "a011d4bf6278cd603394f9e4f6513318d96771d2",
+      "sha256": "0af6e2e10350481aa9883b18c07452f6314e658c1a18ad6045f35a2b404a84f8",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "backend/src/runtime/work8-generated-worker-lifecycle.ts",
+      "mode": "100644",
+      "blob": "e297b8de391d690f7874fb551dab70177b039b96",
+      "sha256": "ff7598e07e5f7dee8133df2447e838cedc20496014780469463e704453ef342b",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "deployment/work8-lifecycle-markers.cjs",
+      "mode": "100644",
+      "blob": "dbf1da06bbc7f30a46d9e66cac866580c8f8adfa",
+      "sha256": "6af81d6a24972aa0b4aef4797ead55de5961de2e37f578c4733b2461fcb6c7f0",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "mode": "100644",
+      "blob": "da630dc38ddd6e736458a56b48fc12732cf907cf",
+      "sha256": "87e516e5f1fa35db6bd41615c1dbb0b2b1639c7385ed9e2c0b65e86f72b32943",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-readiness-controller.mjs",
+      "mode": "100644",
+      "blob": "0f87536e7f9b0db7b4e25ae8e77dd8e4331e12e9",
+      "sha256": "273bd303ad0b9dfa431d93ede665225f9230204d06033830457ce12001122056",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-outer-cohort.mjs",
+      "mode": "100644",
+      "blob": "0c0656a0443fc8dc7046589ae66baa5f09191775",
+      "sha256": "17f6ac6c8bf7a3631284d38d968a08945b0f53140cacf41df064178eacf16c17",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-outer-cohort.test.mjs",
+      "mode": "100644",
+      "blob": "35cd44b0f8994d1aa49f5b3b3bd9c27925a88382",
+      "sha256": "a82918b92a967d51765467cf3bb81a2726ef272bbbfd4cec6aaed378715ef6a7",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "mode": "100644",
+      "blob": "e2f486052d472867c5ef2f2c6ee5cc4fa6ae0c83",
+      "sha256": "dd8e814ef8748eaa8c303e10ff674b24a2ed9eeaee3eccaddb640cce8f6c1387",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "mode": "100644",
+      "blob": "417cf1b6f0720af328130e755b8eb4b87d79f000",
+      "sha256": "7539df2162e6cbe38641e2dab951f8e44a249291636c9b4fe9183508cd826c71",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "blob": "a0c8d9d7ff82b16b2c78e71e4efc603da29780ab",
+      "sha256": "186d29d00bcf4ccac2ef223a6aca526b965f8495750b6ff9947789fe6470bda7",
+      "review": "lane-recovery-completion/INSPECTION-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-held-capture-controller.mjs",
+      "mode": "100644",
+      "blob": "cfa4fe875146a0c54a85c3b64c0c5f7be65ce9d3",
+      "sha256": "97c406486c39257d2aa427c1b0d604c17d726a558e55ec5dcf75272dc7eac2d0",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-held-capture-controller.test.mjs",
+      "mode": "100644",
+      "blob": "ec648494cf45809e5e72329e7f832fdda7aeeabd",
+      "sha256": "88d663398e8c00690ec2a6eb3ff5d47fe133bb2f76f4c973472e8713c3f6c42b",
+      "review": "lane-recovery-completion/HH4-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-inspection-restoration.test.mjs",
+      "mode": "100644",
+      "blob": "f3495d770881d57eb5b3792c7b0b8f8d61e8c9a5",
+      "sha256": "fd27d8be03f1eff03f0672cad29ddc600595dc77b1b2ad9a6529cfd6fc92c177",
+      "review": "lane-recovery-completion/INSPECTION-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "scripts/work8/hh4-inspection-restoration.mjs",
+      "mode": "100644",
+      "blob": "7d6bc5fe4fbc2326d8012f02d0e0e9e13ae5578e",
+      "sha256": "ea9716dcb0be547e606efa98d924e139e65e5935699528cbff648fda2d1a2137",
+      "review": "lane-recovery-completion/INSPECTION-INDEPENDENT-SOURCE-REVIEW.json"
+    },
+    {
+      "path": "backend/src/intelligence/work8-product-context.ts",
+      "mode": "100644",
+      "blob": "1932ae6f5943dbd45a5f8e6f33af848249817118",
+      "sha256": "589ea222566b7652841225dca7fbd96497aa558bf47b01c5581164f227a01e38",
+      "review": "lane-total-certification/A8-BACKEND-FIVE-PATH-REVIEW.json"
+    },
+    {
+      "path": "backend/src/orchestration/pillow-host/workspace-context.ts",
+      "mode": "100644",
+      "blob": "eb7df048b6c718f4cd3853d8b5e306cbbd62a6dd",
+      "sha256": "d1c2f5404ea75389516ee72d88e76ebf8febb982563f047ce84575d183c7a307",
+      "review": "lane-total-certification/A8-BACKEND-FIVE-PATH-REVIEW.json"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "mode": "100644",
+      "blob": "59ce43edc11ba490a59540800cd9452b7c18a6fc",
+      "sha256": "172bb8c88398f77c28fd09f4d1f0e21f363692dab1b83761aced0f0875c5ce23",
+      "review": "lane-total-certification/A8-BACKEND-FIVE-PATH-REVIEW.json"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-source-product-context.test.ts",
+      "mode": "100644",
+      "blob": "fa4c9fa092a2d62633924059d2ebc7ba03c5be1a",
+      "sha256": "c4bfc7a6e7d2a3f9d5d55db6da5ee86e3aaaf6bf3a3ec97722ab7a4a6b0151ef",
+      "review": "lane-total-certification/A8-BACKEND-FIVE-PATH-REVIEW.json"
+    }
+  ],
+  "changedPaths": 22,
+  "review": "PASS_COMPLETE_TREE",
+  "publication": false,
+  "hosted": "NOT_EXECUTED",
+  "reviewReceipt": "BACKEND-INDEPENDENT-TREE-REVIEW.json",
+  "durability": "LOCAL_NEW_OBJECTS_NOT_DURABLY_STAGED_REQUIRES_AUTHORITY"
+}

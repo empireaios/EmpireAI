@@ -1,0 +1,11 @@
+✔ actual finance schema readback retains row order lineage, integer precision, blobs and internal sequence (5.748352ms)
+✔ canonical comparison refuses finance, session TTL, marker or JSON changes without normalization (1.422581ms)
+✔ generated rowid-alias columns cannot hide physical row lineage (1.700198ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89.163324

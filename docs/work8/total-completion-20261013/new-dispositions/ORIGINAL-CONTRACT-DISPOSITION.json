@@ -1,0 +1,129 @@
+{
+  "recordType": "ORIGINAL_CONTRACT_BUSINESS_DISPOSITION",
+  "createdAt": "2026-10-13T10:06:17.136025+00:00",
+  "baseline": {
+    "original": [
+      33,
+      8,
+      4
+    ],
+    "amendments": [
+      8,
+      11
+    ]
+  },
+  "sources": [
+    {
+      "path": "lane-total-business/MANDATE.txt",
+      "sha256": "537a4a73d616902ac340f5531cbb936c940c67abe79447cf7aaaf987831355ad",
+      "localGitBlob": "e2865b42f06781794c7d2a60e8f01c832faed3df"
+    },
+    {
+      "path": "lane-total-business/OWNER-HOLISTIC-DIRECTIVE.txt",
+      "sha256": "e28084eee05bfafa64f8facc1d9302d8d10bb66408d419106568bc15b67166b8",
+      "localGitBlob": "5536bde1b94a946c373fbd554defc18fc7666c30"
+    },
+    {
+      "path": "lane-total-business/OWNER-BUSINESS-ACTIVATION-DIRECTIVE.txt",
+      "sha256": "7455733bb2f47ce42508b317dcbc95a70e5ad5e31484b0186d851d506933bc30",
+      "localGitBlob": "6cf39a5efbd9347f996f69b96fb94f5d980d1469"
+    },
+    {
+      "path": "lane-total-business/OWNER-AMENDMENTS-19.json",
+      "sha256": "1ee4022270202db5ecf689c7c5a89be251318b550ec98fa3fa9e6c65f77da0c8",
+      "localGitBlob": "f98133cd5485226fd5826b1f8000d2b27793c91a"
+    },
+    {
+      "path": "lane-total-business/source-image-rights-review.json",
+      "sha256": "e6229a5b987932f8b52c3a7d3030bd9a2fdeaa4470334b88cc92f1346ef71584",
+      "localGitBlob": "79a878723dcc8365f8676ef82258a2115ab29125"
+    }
+  ],
+  "sourceRead": "Existing governed GitHub connector, evidence branch work8/examination-evidence-20261011; original bytes retained locally, CRLF directive payloads normalized by connector/apply_patch and not claimed exact Git reproduction",
+  "originalGitObjects": {
+    "MANDATE.txt": "31159fa291a342d9f71a09bfa05d8f9147050512",
+    "OWNER-HOLISTIC-DIRECTIVE.txt": "a52f165df3eb7453a05e07aa2fc7e79c682dfbe4",
+    "OWNER-BUSINESS-ACTIVATION-DIRECTIVE.txt": "bc35c5a434f39845206ae31b9f9919dd41137f44",
+    "OWNER-AMENDMENTS-19.json": "893f3d64d0ba78f9e2403413b776be1a887d951f",
+    "source-image-rights-review.json": "d1fe3d6ebe299ff47d675fb9913b6c9c331a2068"
+  },
+  "decisions": [
+    {
+      "ids": [
+        "O7"
+      ],
+      "governing": "MANDATE R1/R3/R5; HOLISTIC \u00a713; BUSINESS-ACTIVATION \u00a74B",
+      "assertion": "Genuine image exact-source permission applicable to private prebirth display; unavailable rights are truthful NO_GO, not verified permission. Only displayed selected assets need permission.",
+      "evidence": "Retained review 10 products/19 assets/0 verified. No new rights record. Public CJ terms research explicitly forbidden to repeat.",
+      "decision": "BLOCKED_PRESERVE"
+    },
+    {
+      "ids": [
+        "O13",
+        "O14"
+      ],
+      "governing": "MANDATE \u00a74 and R1-R7; HOLISTIC \u00a713; BUSINESS-ACTIVATION \u00a74A/\u00a76",
+      "assertion": "One exact genuinely qualified product, stock/freight/currency/eligibility/rights/financial assumptions, actual authorised assessment and saved owner recommendation/decision.",
+      "deferredMeaning": "Correct negative screening behavior, not replacement for explicit actual assessment and connected same-product journey. Do not reopen accepted screening or marketplace #9.",
+      "decision": "NO_NEW_COMPLETE_ACCEPTANCE"
+    },
+    {
+      "ids": [
+        "O19",
+        "A9",
+        "A10",
+        "A11"
+      ],
+      "governing": "MANDATE \u00a75; HOLISTIC \u00a79; BUSINESS-ACTIVATION \u00a74B/\u00a75/\u00a76",
+      "assertion": "Full intended image/video gallery; product/media-bound editing; original/proposed comparison; version, source, instructions, provenance and rights; individual/batch internal approval; separately bound external simulated approval; later edits invalidate; truthful six-state presentation; collapsed archive retains previous/replaced/rejected versions without changing selection.",
+      "canvaBoundary": "Preferred where available and permitted; exact gap and authorised alternative allowed. Tool availability alone neither rights nor actual editing receipt.",
+      "missing": "Applicable exact-asset permissions/bytes, actual permitted editing result and native version/approval/archive acceptance.",
+      "decision": "PENDING_PRESERVE"
+    },
+    {
+      "ids": [
+        "A8"
+      ],
+      "governing": "HOLISTIC \u00a78 standalone; \u00a713 broader genuine journey",
+      "assertion": "Small per-product/listing/order icon to existing Chat; exact authenticated identity/variant/source/evidence/listing/mission/workspace; removable chip; follow-up persistence; remove/switch/multiple comparison; stale/missing/forged/cross-owner rejection; compaction binding; no unauthorised inference.",
+      "scopeCorrection": "Standalone \u00a78 does not require paid inference or a positive commercially eligible recommendation; avoid making those unnecessary dependencies if native context and server binding evidence fully satisfy this amendment. Broader O13/O14/owner journey remain separate.",
+      "decision": "REFER_TO_CONSOLE_INDEPENDENT_ACCEPTANCE_ORACLE_NO_PASS_CLAIM"
+    },
+    {
+      "ids": [
+        "A15"
+      ],
+      "governing": "HOLISTIC \u00a712",
+      "assertion": "Preserve Keepa adapter/ASIN-marketplace validation AND verify licensing/data provenance/readiness; disabled future Helium10; subscription deferred until profitability; JungleScout excluded.",
+      "evidence": "Keepa last known NOT_CONFIGURED/auth+readUNVERIFIED; no current entitlement evidence.",
+      "decision": "PENDING_PRESERVE"
+    }
+  ],
+  "capabilityDelta": {
+    "metadataInspected": true,
+    "newCJStockFreightOrKeepaEntitlementReadInterface": false,
+    "providerCalls": 0,
+    "interpretation": "No newly available applicable interface observed; not assertion providers themselves unavailable."
+  },
+  "businessDependency": {
+    "product": "2610111119571636000",
+    "variant": "2610111119571637000",
+    "sku": "CJYD324508601AZ",
+    "missing": [
+      "current exact-variant warehouse stock timestamp and provider reference",
+      "destination+quantity freight service cost currency timestamp",
+      "exact supplier-marketplace matching",
+      "applicable selected media permission",
+      "complete eligible dossier before bounded actual assessment"
+    ],
+    "alternativeCandidateLead": null
+  },
+  "newAcceptedOriginal": [],
+  "newAcceptedAmendments": [],
+  "repeatedTests": 0,
+  "paidInference": 0,
+  "externalCommunications": 0,
+  "providerWrites": 0,
+  "officialRegisterMutations": 0,
+  "next": "Console verifier may examine A8 standalone scope from original \u00a78. Resume genuine acquisition only on new permitted capability or attributable missing evidence; no repeated generic provider/terms probes."
+}

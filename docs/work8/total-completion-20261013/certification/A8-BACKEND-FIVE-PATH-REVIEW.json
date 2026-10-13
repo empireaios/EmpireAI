@@ -1,0 +1,49 @@
+{
+  "schema": "WORK8_A8_BACKEND_FIVE_PATH_INDEPENDENT_REVIEW_V1",
+  "decision": "ACCEPT_EXACT_FIVE_BACKEND_PATHS_FOR_INTEGRATION_REVIEW_NOT_FULL_A8_ACCEPTANCE",
+  "files": [
+    {
+      "path": "backend/src/intelligence/work8-product-context.ts",
+      "mode": "100644",
+      "sha256": "589ea222566b7652841225dca7fbd96497aa558bf47b01c5581164f227a01e38",
+      "gitBlob": "1932ae6f5943dbd45a5f8e6f33af848249817118"
+    },
+    {
+      "path": "backend/src/orchestration/pillow-host/workspace-context.ts",
+      "mode": "100644",
+      "sha256": "d1c2f5404ea75389516ee72d88e76ebf8febb982563f047ce84575d183c7a307",
+      "gitBlob": "eb7df048b6c718f4cd3853d8b5e306cbbd62a6dd"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "mode": "100644",
+      "sha256": "172bb8c88398f77c28fd09f4d1f0e21f363692dab1b83761aced0f0875c5ce23",
+      "gitBlob": "59ce43edc11ba490a59540800cd9452b7c18a6fc"
+    },
+    {
+      "path": "backend/src/runtime/tier0-isolated-primary.ts",
+      "mode": "100644",
+      "sha256": "6ee6b55f5c17dc6bfe9f41a74e2fbbb76c0db467c7204753cc996735bd188790",
+      "gitBlob": "44965c8b3404b76e479b8dfba6453bef8f36e23d"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-source-product-context.test.ts",
+      "mode": "100644",
+      "sha256": "c4bfc7a6e7d2a3f9d5d55db6da5ee86e3aaaf6bf3a3ec97722ab7a4a6b0151ef",
+      "gitBlob": "fa4c9fa092a2d62633924059d2ebc7ba03c5be1a"
+    }
+  ],
+  "deltaAccepted": "Source-dossier qualification facts now include server-derived ownerId,workspaceId,missionId:null before contextDigest. Exact context is owner/workspace pinned and actual admission/formatter test asserts these fields survive truncation.",
+  "criteriaReviewed": [
+    "Authenticated principal selects canonical workspace; raw owner/workspace disallowed by strict reference schema.",
+    "Pinned facts digest and existing source evidence integrity/freshness validation; missing/stale/tampered references fail.",
+    "Unknown stock/freight/variant metadata remain truthful; no authority/qualification/mission fabricated.",
+    "Actual Tier0 changes replace context with canonical resolve before durable request acceptance; existing admission remains.",
+    "Comparison2to4, duplicate and mixedscope rejection; source/mission distinction preserved.",
+    "Formatter marks evidence untrusted and retains pinnedcontext ahead of truncated history."
+  ],
+  "verification": "Independent code inspection and manifest Gitblob/SHA256 recomputation; author tests/typechecks retained, no duplicate execution.",
+  "integrationBoundary": "tier0-isolated-primary.ts also contains reviewed recovery overlay; root must verify exact merged candidate against both lane manifests and full compilation.",
+  "remaining": "Native hosted actual Tier0 durable path and exact fulltree independent review; no model inference needed. A8 PENDING until original full assertion evidence reconciled.",
+  "newAcceptance": false
+}

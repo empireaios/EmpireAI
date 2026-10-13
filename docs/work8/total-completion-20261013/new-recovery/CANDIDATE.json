@@ -1,0 +1,81 @@
+{
+  "sourceBase": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "baseTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "classification": "LOCAL_UNPUBLISHED_CANDIDATE",
+  "files": {
+    "scripts/work8/hh4-generated-primary.mjs": {
+      "sha256": "1a73583290d88d4c3d840ef339474b633860cf9d2b542363e85067fdbf2d82d3",
+      "mode": "100644"
+    },
+    "scripts/work8/hh4-generated-worker.mjs": {
+      "sha256": "b21b690da7d3ac9d5f210023a1db61f0ccb13f09c64aa3edd71fc157ff91c74e",
+      "mode": "100644"
+    },
+    "backend/src/index.ts": {
+      "sha256": "980baa79a9961464bf6a405d94c5582bfb0dd35deec8e1310b414252669187bf",
+      "mode": "100644"
+    },
+    "backend/src/runtime/tier0-isolated-primary.ts": {
+      "sha256": "8544362a5b5ba2ecba5139ef58e28c13926ffbca1e6f2aaf45fafdfa398315af",
+      "mode": "100644"
+    },
+    "backend/src/runtime/work8-generated-worker-adoption.ts": {
+      "sha256": "0af6e2e10350481aa9883b18c07452f6314e658c1a18ad6045f35a2b404a84f8",
+      "mode": "100644"
+    },
+    "backend/src/runtime/work8-generated-worker-lifecycle.ts": {
+      "sha256": "ff7598e07e5f7dee8133df2447e838cedc20496014780469463e704453ef342b",
+      "mode": "100644"
+    },
+    "deployment/work8-lifecycle-markers.cjs": {
+      "sha256": "6af81d6a24972aa0b4aef4797ead55de5961de2e37f578c4733b2461fcb6c7f0",
+      "mode": "100644"
+    },
+    "scripts/work8/hh4-domain-state.mjs": {
+      "sha256": "87e516e5f1fa35db6bd41615c1dbb0b2b1639c7385ed9e2c0b65e86f72b32943",
+      "mode": "100644"
+    },
+    "scripts/work8/hh4-readiness-controller.mjs": {
+      "sha256": "273bd303ad0b9dfa431d93ede665225f9230204d06033830457ce12001122056",
+      "mode": "100644"
+    },
+    "scripts/work8/hh4-outer-cohort.mjs": {
+      "sha256": "17f6ac6c8bf7a3631284d38d968a08945b0f53140cacf41df064178eacf16c17",
+      "mode": "100644"
+    },
+    "scripts/work8/hh4-outer-cohort.test.mjs": {
+      "sha256": "a82918b92a967d51765467cf3bb81a2726ef272bbbfd4cec6aaed378715ef6a7",
+      "mode": "100644"
+    },
+    "backend/src/runtime/work8-recovery-capture.ts": {
+      "sha256": "dd8e814ef8748eaa8c303e10ff674b24a2ed9eeaee3eccaddb640cce8f6c1387",
+      "mode": "100644"
+    },
+    "deployment/work8-recovery-set.cjs": {
+      "sha256": "7539df2162e6cbe38641e2dab951f8e44a249291636c9b4fe9183508cd826c71",
+      "mode": "100644"
+    },
+    ".github/workflows/pillow-runtime-repair-ci.yml": {
+      "sha256": "4b629089cb1e5c1b336e87f1c9e7877cf12e9571881f6c59b3ac7938d92f159b",
+      "mode": "100644"
+    },
+    "scripts/work8/hh4-held-capture-controller.mjs": {
+      "sha256": "97c406486c39257d2aa427c1b0d604c17d726a558e55ec5dcf75272dc7eac2d0",
+      "mode": "100644"
+    },
+    "scripts/work8/hh4-held-capture-controller.test.mjs": {
+      "sha256": "88d663398e8c00690ec2a6eb3ff5d47fe133bb2f76f4c973472e8713c3f6c42b",
+      "mode": "100644"
+    }
+  },
+  "acceptedRequirements": [],
+  "fullRuntimeRestoration": false,
+  "protectedCustody": false,
+  "fullTypeScriptCompile": {
+    "pillow": "PASS",
+    "backend": "PASS",
+    "node": "24.19.0",
+    "backendLog": "backend-reviewed-final-compile.log",
+    "postCompileAll16HashesEqual": true
+  }
+}

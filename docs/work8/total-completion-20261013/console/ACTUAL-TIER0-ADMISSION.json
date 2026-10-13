@@ -1,0 +1,9 @@
+{
+  "classification": "ACTUAL_TIER0_HTTP_HANDLER_INTERCEPTED_QUEUE_NO_INFERENCE",
+  "status": "PASS",
+  "acceptedStatus": 202,
+  "forgedPinStatus": 409,
+  "inputHash": "f23a2933f2d76ebd0322040e4fb36ffb",
+  "expectedInputHash": "f23a2933f2d76ebd0322040e4fb36ffb",
+  "scope": "Actual HTTP authentication, server resolution and exact queue input bytes/hash through injected queue adapter; no Redis durability or model answer claim."
+}

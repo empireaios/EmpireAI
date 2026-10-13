@@ -1,7 +1,14 @@
 {
-  "authoritativeRegister": "revised-review-20261012/FIXED-REGISTERS.json",
-  "humanTracker": "revised-review-20261012/FULL-TRACKER.md",
-  "currentCheckpoint": "publication-closure-20261012/CHECKPOINT.json",
+  "authoritativeRegister": "register.json",
+  "humanTracker": "REGISTER.md",
+  "currentCheckpoint": "total-completion-20261013/CONTINUATION.json",
   "decision": "NO_GO",
-  "historicalRegisters": "Retained unchanged as historical source-scoped evidence; do not add their counts together."
+  "historicalRegisters": "Retained unchanged as historical source-scoped evidence; do not add their counts together.",
+  "previousPointer": {
+    "authoritativeRegister": "revised-review-20261012/FIXED-REGISTERS.json",
+    "humanTracker": "revised-review-20261012/FULL-TRACKER.md",
+    "currentCheckpoint": "publication-closure-20261012/CHECKPOINT.json",
+    "decision": "NO_GO",
+    "historicalRegisters": "Retained unchanged as historical source-scoped evidence; do not add their counts together."
+  }
 }

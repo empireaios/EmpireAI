@@ -1,0 +1,140 @@
+{
+  "status": "INDEPENDENT_REVIEW_PENDING_UNPUBLISHED",
+  "baseFrontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "backendBase": "copied full lane-recovery-completion/source/backend, includes16recoverychanges; A8overlay5backendpaths",
+  "files": [
+    {
+      "path": ".github/workflows/assurance-owner-browser.yml",
+      "mode": "100644",
+      "sha256": "23e68cbed94b6672e21e9a80cb65f4a3fe5f359a86f6b173c58b9f6061a6257a",
+      "gitBlob": "0d563e41fac3dee0685e145c2a847eb99905dccf"
+    },
+    {
+      "path": "backend/src/intelligence/work8-product-context.ts",
+      "mode": "100644",
+      "sha256": "589ea222566b7652841225dca7fbd96497aa558bf47b01c5581164f227a01e38",
+      "gitBlob": "1932ae6f5943dbd45a5f8e6f33af848249817118"
+    },
+    {
+      "path": "backend/src/orchestration/pillow-host/workspace-context.ts",
+      "mode": "100644",
+      "sha256": "d1c2f5404ea75389516ee72d88e76ebf8febb982563f047ce84575d183c7a307",
+      "gitBlob": "eb7df048b6c718f4cd3853d8b5e306cbbd62a6dd"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "mode": "100644",
+      "sha256": "172bb8c88398f77c28fd09f4d1f0e21f363692dab1b83761aced0f0875c5ce23",
+      "gitBlob": "59ce43edc11ba490a59540800cd9452b7c18a6fc"
+    },
+    {
+      "path": "backend/src/runtime/tier0-isolated-primary.ts",
+      "mode": "100644",
+      "sha256": "6ee6b55f5c17dc6bfe9f41a74e2fbbb76c0db467c7204753cc996735bd188790",
+      "gitBlob": "44965c8b3404b76e479b8dfba6453bef8f36e23d"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-source-product-context.test.ts",
+      "mode": "100644",
+      "sha256": "c4bfc7a6e7d2a3f9d5d55db6da5ee86e3aaaf6bf3a3ec97722ab7a4a6b0151ef",
+      "gitBlob": "fa4c9fa092a2d62633924059d2ebc7ba03c5be1a"
+    },
+    {
+      "path": "empireai-web/app/api/owner/commerce/twin/context/route.ts",
+      "mode": "100644",
+      "sha256": "b3cf0b2617837f2f39ac245ecaecc892fe4597d6888be43e2d7feef6d25d8e8f",
+      "gitBlob": "c5733755d73f1e09399081efc5cff6ce5eb4cfc4"
+    },
+    {
+      "path": "empireai-web/components/cockpit/executive/PillowConversationWorkspace.tsx",
+      "mode": "100644",
+      "sha256": "b56e65a23a945d1c40bfa2c328c678525875e7b4c0795724008b5a428fb14645",
+      "gitBlob": "df934bf25f33765d9ba6f2a1c0fd90687314a614"
+    },
+    {
+      "path": "empireai-web/components/owner/GovernedCommerce.tsx",
+      "mode": "100644",
+      "sha256": "76ae93a9434aa2faca55cd441406426116d537119eb09a64cf9c9ca105d277e2",
+      "gitBlob": "588078e6a5e432955a456358f3796e04826b0570"
+    },
+    {
+      "path": "empireai-web/components/owner/ProductChatActions.tsx",
+      "mode": "100644",
+      "sha256": "ce17e77a3209e92e4e944170c60114c0788457fc193bd09352f0670dd3a36260",
+      "gitBlob": "3734e86b06f9d2f6c03174c01f5513c3294f75e5"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/ListingCatalogue.tsx",
+      "mode": "100644",
+      "sha256": "649a68620da18e634d0937a48f15aeb51ba349c6ca6d6d07d300be226bd75994",
+      "gitBlob": "0dc8d17c33629045c9c718c4c827232e73a6bc9b"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/OrderRegister.tsx",
+      "mode": "100644",
+      "sha256": "fc0495542bf30efd3ef21067a60ef9fd10c907dfc5a23d42743a4d2d3221215f",
+      "gitBlob": "6f00004e17143c7fe29ea876d0513dbed2049f54"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "mode": "100644",
+      "sha256": "32dfd2d86ac9b4862f145899aa81ad0e24d3261be3afa9f6efda9aca6d9e991b",
+      "gitBlob": "fbc9996dd415180f762efc761eec048f7db82869"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/QualificationDossier.tsx",
+      "mode": "100644",
+      "sha256": "1b64cfa499ebd6e6096e1a929a1464b7b4024e18b6f30316fe3197fd03078a00",
+      "gitBlob": "bcb0032e82c17e1bba9681982d0fbdea07531ae1"
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-backend.mts",
+      "mode": "100644",
+      "sha256": "4b34b3ca061f12489720ebaab13850a3028bba9484de826fd5922c3856369781",
+      "gitBlob": "d9701f3b668ddbb61e577a03349a7c8b23598c27"
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-native.mjs",
+      "mode": "100644",
+      "sha256": "efc9cd60c833ef963ba29896ba4bbb2d96a838c663debc2bb8c36675531a2dbe",
+      "gitBlob": "cf012c67fb5a9cc1ba0e61ecc6023c808efdc6cc"
+    },
+    {
+      "path": "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+      "mode": "100644",
+      "sha256": "a59c9edb5aa07b7e98df857685c6deb5afd8f074d4ae548998588fcdf514981a",
+      "gitBlob": "9de364f61cf3542cbb15daeb106dd9213bdc07bd"
+    },
+    {
+      "path": "empireai-web/lib/pillow/pending-receipts.ts",
+      "mode": "100644",
+      "sha256": "02b9abaee74a22777b26829690baad86728a61b2f59caf4d59b94809ea00964b",
+      "gitBlob": "04846649a7d16a1c336960a997c7fb9507547a0d"
+    },
+    {
+      "path": "empireai-web/lib/pillow/product-context.test.ts",
+      "mode": "100644",
+      "sha256": "d71ffad1f36101ebc9b496e3cf7ca9ca76a5b0189cfb41500f63661648a15e7f",
+      "gitBlob": "0a5e633570eb891ab879483dccad032f81ab643e"
+    },
+    {
+      "path": "empireai-web/lib/pillow/product-context.ts",
+      "mode": "100644",
+      "sha256": "dec1218fc29f96ffdf0efbb76d32574be18d088fb6709844b0642d550667d1ec",
+      "gitBlob": "890cdf325299724357ecf43fabf9c9b677d256c8"
+    }
+  ],
+  "actualHTTP": "BACKEND-HTTP-BOUNDARIES.json PASS",
+  "genuineBoundary": "source-context-test.tap PASS; exact retained sourcefacts, historical clock, unknownstock/freightnull; no commercial qualification or actual model answer",
+  "browser": "NOT_EXECUTED_LOCALLY Chromium unavailable. Hostedactualbrowserjob prepared existingassurance-owner-browser.yml with rootmustpinbackendtree placeholder.",
+  "fullFrontendBaseline": "914exacttextfiles; onePNG unavailable fromconnector (emptycontent), unchangedremoteobject preserved in eventualtree",
+  "workflowPinRequired": "INTEGRATION_OWNER_MUST_PIN_REVIEWED_BACKEND_TREE",
+  "compile": "Backend full tsc --noEmit with4GB PASS; frontend full tsc --noEmit PASS. Failed2GB OOM and twoimplicitany diagnostics preserved separately.",
+  "backendFrozen": true,
+  "limitations": [
+    "Hosted native browser execution remains pending.",
+    "Actual Tier0 HTTP handler authenticates/resolves and hands exact bytes to injected queue adapter; not Redis durability or model answer.",
+    "Browser custom endpoint remains resolver/request delivery scope; independently reconciled with real handler examination."
+  ],
+  "backendTreePin": "e668d9b61851b70b5ef3cc97f816520cde6105fc"
+}

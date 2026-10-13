@@ -1,0 +1,312 @@
+{
+  "decision": "PASS_INDEPENDENT_REMOTE_ONLY_READBACK",
+  "branches": [
+    {
+      "kind": "evidence",
+      "approvedCommit": "cfc1f488a3cdcbeb07f6089644562f526958b42c",
+      "stagingCommit": "6681add01c6fe73a0911d2b06314efd4151cf65d",
+      "tree": "adb4eb0f4235550aa31a3e2b61611acebd299d93",
+      "changedFiles": [
+        {
+          "path": "docs/work8/REGISTER.md",
+          "mode": "100644",
+          "blob": "bcb60b2dcd644320d7a6b8d747da071eff7ec6e7",
+          "sha256": "e302a57f22641839f1df7f4fd9c9d40d98b7aafe73fa6684144a7b796ae69809",
+          "bytes": 44859,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/register.json",
+          "mode": "100644",
+          "blob": "4d27a543c0d15168154909c37c99835713f7f256",
+          "sha256": "1ee7272fefb5d0ba849ab95b9cd78d47990ed669bf272e4afe3ed5e076dce693",
+          "bytes": 90354,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/O39-CUSTODY-SCOPE-REVIEW.json",
+          "mode": "100644",
+          "blob": "9893147e9eeb34d9d687b3f9777f05735117c1b7",
+          "sha256": "a8542e60ca63e144cabca6eda512ad8e87df5508983bbdee7091421d80824f83",
+          "bytes": 2036,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/original-artifact-11787397943.zip",
+          "mode": "100644",
+          "blob": "37086b6f9b952f7ae25723c0fe347e76029bdc41",
+          "sha256": "af95b409e98c3a9b07d809fe30032d6397b68cddd548d9e39c8a1130e07ca70e",
+          "bytes": 104038,
+          "source": "staged GitHub file connector base64"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/original-artifact-11787268583.zip",
+          "mode": "100644",
+          "blob": "c6c15a23f0fadd54ac8e75ce26e37bf1977ef07c",
+          "sha256": "67d32707d386372118550ab004bc41340f78286e2d48719c56a01345134db5bf",
+          "bytes": 906,
+          "source": "staged GitHub file connector base64"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/CI-REUSE-INDEPENDENT-REVIEW.json",
+          "mode": "100644",
+          "blob": "02e43d4bef5744d56fb2e9e8b3a7145a8b08a5c8",
+          "sha256": "8054ab05acd52167ee5095fcde942136f6bccba044dd0df6755f5f0d977b42bf",
+          "bytes": 2196,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/HELD-TOPOLOGY-WIP-CHECKPOINT.json",
+          "mode": "100644",
+          "blob": "86e0e86662392f126d2103c43ab91e16e196968a",
+          "sha256": "1f8b257ffdf4a71b030f16201eefca0b235f00ccdaf2e0a15e76d9788bd69057",
+          "bytes": 4255,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/HH3-ORIGINAL-DIAGNOSIS.json",
+          "mode": "100644",
+          "blob": "100988f869088ba2fa6b9aa4582080d5676ba1d5",
+          "sha256": "377d7ea1acdfdefca0f0d99515360832083f7b3b33f2711ac94c20ddf09fd643",
+          "bytes": 2939,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/F27-HH3-PUBLICATION.json",
+          "mode": "100644",
+          "blob": "73ce57db23ae0fd56e3ed90f77961a325b05237b",
+          "sha256": "0433b37dd41058004a80133b92a6e7b2198b743fe8230bf11ee171b542496947",
+          "bytes": 755,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/ARCHIVE-PRESERVATION-REVIEW.json",
+          "mode": "100644",
+          "blob": "39912b084d1826446f57f9de3f93a44968d59d45",
+          "sha256": "45a1211f96566f321e47bec9e6201dca7073b87322facbcd9ce5f5ed3008512b",
+          "bytes": 3358,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/F27-HH3-REMOTE-READBACK.json",
+          "mode": "100644",
+          "blob": "f5e90087fc09f02a026781712ed026f6e668d518",
+          "sha256": "c9c4a71c0706c82782f365ed9954a65d78a4acb45a1450c420ae90b9a3bc5e33",
+          "bytes": 11495,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/original-artifact-11787412781.zip",
+          "mode": "100644",
+          "blob": "0516548541a22034558eccb0692c6d1fdc15a070",
+          "sha256": "92de22336236f13ab652ac36a0415850f4781a3b5ae4be6415a679f9a9068490",
+          "bytes": 373073,
+          "source": "staged GitHub file connector base64"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/CI-TERMINAL.json",
+          "mode": "100644",
+          "blob": "2051cf18ea1e8c92205ecc5a59dcc540547c8269",
+          "sha256": "1d6df2bc280dd6848a768219566441b0ee535be86985be1f26a7d39fff9aad49",
+          "bytes": 967,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/original-artifact-11787204240.zip",
+          "mode": "100644",
+          "blob": "a096715213bb9230fa1b238bd62d42d7fa043cff",
+          "sha256": "962d6f34603042dc7a437b400f8e524ec863960b53abf38d5a82331588cebd47",
+          "bytes": 779,
+          "source": "staged GitHub file connector base64"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/RUNTIME-CI-TERMINAL.json",
+          "mode": "100644",
+          "blob": "5cfd43c90c4cba166827d3d8e625bdd617f8db3c",
+          "sha256": "ecd09304eb4a569fee00f95a7028cc1e6ddeb90eb1a9058ed756ddffef66e973",
+          "bytes": 3497,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/SOURCE-CANDIDATE.json",
+          "mode": "100644",
+          "blob": "321fed3c1a90ca91a78cad7c4340076a66e18814",
+          "sha256": "13e57e8b8527e7742bde8fbf8b43c129e2dcf2f6fbd6d6d29f801dbf32ec4195",
+          "bytes": 2702,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/SOURCE-INDEPENDENT-REVIEW.json",
+          "mode": "100644",
+          "blob": "dfe13560bca60aeb3a2f09ce7c64709e34b940e0",
+          "sha256": "eb5c55712fd6a1c2cb0ebd565b36e4b8f18072b27ccd8ffa343ffeb447de87d6",
+          "bytes": 1169,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/BATCH-DECISION.txt",
+          "mode": "100644",
+          "blob": "96de0d65a8f5d194927c1379bf1220feacaed7d5",
+          "sha256": "456042473a0039a5b7ba32abcc57cdcb2e3ec40a87d87b6f5b93948619f98f4f",
+          "bytes": 1023,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/original-artifact-11787966227.zip",
+          "mode": "100644",
+          "blob": "d38bed3f44a74c9fe8b8422081ee9fa3a01e1509",
+          "sha256": "3f6dd27ace96d4cf74d0725d9a30329bf91c816ced353f62bc2f5ffe0bdc1a70",
+          "bytes": 10301,
+          "source": "staged GitHub file connector base64"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/CLOCK-ORIGINAL-SCOPE-REVIEW.json",
+          "mode": "100644",
+          "blob": "8f25fb8a9c5c1c10a228ef3dca496cd0ddab448c",
+          "sha256": "cf46c4cdf58fb8377a8228917325833b3e3d7f4efc2f1fa7e9bf1af27cc34cdf",
+          "bytes": 2513,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/F27-INDEPENDENT-ACTUAL-ASSERTIONS.json",
+          "mode": "100644",
+          "blob": "9d2f571841b3a5367ebaf0c95dcf9804b2aa5f73",
+          "sha256": "b00a84b1e4fb8e7eb69cc2754dff4745881d9e8111feb34a938caa2df326ce49",
+          "bytes": 2523,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/HH3-CLEANUP-INDEPENDENT-REVIEW.json",
+          "mode": "100644",
+          "blob": "1ce925dfcdb81bc593dce99e78ee1c05693a8cbf",
+          "sha256": "018c9de5ae389bee6a08db37c21e457b727f998ecffabf3f22eefcbf5af2fa8b",
+          "bytes": 2208,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/CLOCK-CORRECTION-INDEPENDENT-REVIEW.json",
+          "mode": "100644",
+          "blob": "ab8b6e8831dfa2651718a4742b45a5a754da8c30",
+          "sha256": "8ea2ba25af6f84f6f48cb7760706490223cfc882a31ad399270ebe44905b99fe",
+          "bytes": 1614,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/O26-O34-COMPLETE-INDEPENDENT-ACCEPTANCE.json",
+          "mode": "100644",
+          "blob": "19a5b2ac6feed4cd1d22a78c4522a9193a94a01a",
+          "sha256": "b04282aa27bcf4a60b80465add06f9dfe4d32fd3926095114471fbd35239d24a",
+          "bytes": 14323,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "docs/work8/f27-accepted-hh3-cleanup-20261013/F29-CHANGED-RUNTIME-ASSERTIONS.json",
+          "mode": "100644",
+          "blob": "ce86030eb8f0a5151ac6c1bcf880b6f4f4c31fcb",
+          "sha256": "e6f33aa56a163d8df674844803c08ea96fd3d595ce5c0d10b656cfc3b4891555",
+          "bytes": 1036,
+          "source": "fresh GitHub Git data text blob API"
+        }
+      ],
+      "ancestorTrees": {
+        "docs/work8/f27-accepted-hh3-cleanup-20261013": "d91a7cc8dee949a2bdb5c1709f2c5f30694f4554",
+        "docs/work8": "65f54baafac8585d1acf080e2f238d0834821394",
+        "docs": "6c2a7970c15100a6bcb3a7c188a00d73b141c98f",
+        "": "adb4eb0f4235550aa31a3e2b61611acebd299d93"
+      },
+      "unchangedEntriesPreserved": true
+    },
+    {
+      "kind": "source",
+      "approvedCommit": "d6b9afda4c6b81b0631133de8423e7ea80566baf",
+      "stagingCommit": "9080fece4da947f1bf1f2e91568e33e94b287686",
+      "tree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+      "changedFiles": [
+        {
+          "path": "scripts/work8/f27-outer-controller.cjs",
+          "mode": "100644",
+          "blob": "8fd700f0e8a392b84faf94282f2b975697614c9c",
+          "sha256": "ca6004849b54be462eefd55a40f7c1f0cbc0b43a9c0efa4994e327edb7220ee3",
+          "bytes": 8901,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "scripts/work8/f27-change-boundary.cjs",
+          "mode": "100644",
+          "blob": "c547af658a0041464ab516637274f41523d69784",
+          "sha256": "8c8572447f2714b8952c2c6e8af0e3e2a8fa35a1ef96636f80ff222517414468",
+          "bytes": 3223,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "scripts/work8/hh3-owned-process-group.mjs",
+          "mode": "100644",
+          "blob": "d698db128bb2203a838151094a506987fc74db6b",
+          "sha256": "9eac4569c8fa50487bff3d30dbbbfbfe2bfbfadb976ab10fbb9cc7a30dc3148c",
+          "bytes": 2394,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "scripts/work8/hh3-compiled-coordinator.mjs",
+          "mode": "100644",
+          "blob": "f4e523d4d9684697fc42b466285d54100aebd7fd",
+          "sha256": "d9c907b54fc047b70758aba7f7d9d6904621f67fc2106f3735ae9480d9e5c384",
+          "bytes": 5114,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "scripts/work8/tests/f27-change-boundary.test.cjs",
+          "mode": "100644",
+          "blob": "d178b673fd4082942d434086cedee48c52bde75e",
+          "sha256": "570a367ef111f91b958558259552dd7337cf8567c5407d660733af30e5b6979d",
+          "bytes": 1121,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "scripts/work8/tests/f27-clock-origin.test.cjs",
+          "mode": "100644",
+          "blob": "42cac1aebb56101c24d8abeb46eca65ede19479e",
+          "sha256": "19a57077389899558751beef73351b4221ccab7a8e62bee091323f752fea2213",
+          "bytes": 581,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": "scripts/work8/tests/hh3-owned-process-group.test.mjs",
+          "mode": "100644",
+          "blob": "5e51be3be6955de95359fc49cc24b0a5d9a4ca70",
+          "sha256": "6f929426b7438e6361ad0c5ace5b354b72e82f5d24b676f3895da12cd670e1a9",
+          "bytes": 2355,
+          "source": "fresh GitHub Git data text blob API"
+        },
+        {
+          "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+          "mode": "100644",
+          "blob": "2f223359cdb89526017d78e9995e0e5ea2951aaf",
+          "sha256": "cd70b7d75b6ca22e8b8dc8b2b47b7bb4dd3149ee631cc00c9f3711dc16d654b4",
+          "bytes": 32787,
+          "source": "fresh GitHub Git data text blob API"
+        }
+      ],
+      "ancestorTrees": {
+        "scripts/work8/tests": "dabaf83a718f704b11ff5a1d4956ef56489b7836",
+        "scripts/work8": "c58b287ed02f9cda6a926abcfc0153c3b24a184d",
+        ".github/workflows": "71a4ca57cd0ebff5cc882cdd027ba79521cabdd5",
+        "scripts": "c60867b44b44b47fb6e07efd9071794884ffdd2d",
+        ".github": "2bb349eee0df0e6cc3f548bea13d84351c264b0a",
+        "": "b331cc6d8ce53c8f371a035ca80e525ca7b73060"
+      },
+      "unchangedEntriesPreserved": true
+    }
+  ],
+  "scope": "Complete tree identity with all changed blobs retrieved remotely and all affected ancestry reserialized; unchanged sibling identities preserved.",
+  "binaryRetrieval": {
+    "route": "github_fetch_file",
+    "encoding": "base64",
+    "ref": "6681add01c6fe73a0911d2b06314efd4151cf65d",
+    "files": 5,
+    "directStagedBytes": true,
+    "artifactSubstitution": false,
+    "genericFetchLimitation": "Generic Git data and contents routes rejected binary with400 UTF-8-only. Purpose-built fetch_file supports binary base64 and succeeded."
+  },
+  "freshExecutionContext": "New independent-hh3-successor-readback directory; no candidate bytes copied. Approved local manifests supplied expected identities only. All reconstructed bytes came from GitHub connector."
+}

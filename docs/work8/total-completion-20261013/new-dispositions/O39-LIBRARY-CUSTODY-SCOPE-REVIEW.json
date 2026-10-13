@@ -1,0 +1,54 @@
+{
+  "recordType": "INDEPENDENT_NARROW_O39_LIBRARY_CUSTODY_SCOPE_DECISION",
+  "createdAt": "2026-10-13T10:18:19.335660+00:00",
+  "reviewer": "business_amendments independent lane",
+  "governing": [
+    {
+      "path": "lane-console-certification/governing-1.txt",
+      "sha256": "1d2c78958a44112441a887fc402278796c6c9ea7787bb14034e319ab1da3829c"
+    },
+    {
+      "path": "lane-console-certification/governing-2.txt",
+      "sha256": "e896527cc460fcb557bd5125fd2b4ff1796bbaaffff5eeab33a700475f8625f1"
+    },
+    {
+      "path": "lane-console-certification/O39-CUSTODY-SCOPE-REVIEW.json",
+      "sha256": "a8542e60ca63e144cabca6eda512ad8e87df5508983bbdee7091421d80824f83"
+    }
+  ],
+  "decision": "CONDITIONALLY_SUITABLE_EXISTING_LIBRARY_DATA_CUSTODY_NOT_ACTUAL_ACCEPTANCE",
+  "originalRequired": "Protected retention with established failure-domain independence and independently authenticated restore; independent hashes/off-host readback, corrupt-copy refusal, good-copy exact fresh-target restoration, preserve damaged source/audit, no active authority replay.",
+  "notRequiredByOriginal": [
+    "GitHub immutable branch ruleset specifically",
+    "WORM storage specifically",
+    "separate vendor",
+    "separate human administrator",
+    "new infrastructure"
+  ],
+  "interpretation": "Protection is an evidenced property against the declared original tested failure and credential boundary, not a prescribed GitHub administration mechanism. Runtime credential exclusion plus protected retained independent copy can suffice; version labels alone or successful roundtrip cannot. No evidence in cited F30 text requires resistance to every legitimately authorised owner/custodian deleting a copy. Do not silently expand fault model to malicious storage administrator.",
+  "libraryAlternative": {
+    "payload": "Complete application DATA snapshot and sealed manifest, not duplicate Git-backed source repository",
+    "conditionalSuitability": "Existing authorised remote Library can act as off-host independent data custody if its retained data archive is outside tested runtime failure and deletion authority and can actually be recovered by a fresh authenticated context.",
+    "mustProve": [
+      "Exact complete snapshot source/run/capture/cohort identity, all paths, modes and digests, immutable canonical history and audit inventory",
+      "Actual retained remote Library file/version identity and retrieval instructions; stated retention horizon covering the recovery examination and required continuation horizon; verify those versions remain retrievable",
+      "Externally observed tested runtime network denial, no Library or storage upload/delete credentials, no accessible credential proxy, no writable retained-copy mount, no host control escape; include admitted writers and relevant controller credentials in declared boundary",
+      "Fresh independent authenticated readback unavailable to tested cohort; verify whole archive and entry contents/paths/modes against sealed original manifest",
+      "Actual corruption refusal before target writes and verified-good-copy full application restoration into fresh isolated target, canonical financial/session/pending-work preservation and inactive authorities",
+      "Original F30 60s detection, 120s execution and 180s verification freshness retained; timestamp readback and restore scope accurately"
+    ],
+    "limitations": [
+      "This review did not inspect Library service retention policy or execute Library save/readback. Availability of versioning is not proof of guaranteed retained recovery horizon.",
+      "networknone and missing Library credentials are premises for a future observed receipt, not facts newly examined here.",
+      "Prior Library capsule roundtrip remains scoped evidence only; it does not close protected custody/full restoration.",
+      "If desired protection includes compromise of authorised Library custodian or deletion of Library account, this design has not established that stronger boundary. Such expansion is not found in cited original criteria."
+    ]
+  },
+  "recommendedNext": "Complete actual consistent capture first. If Library is already authorised, document real retention/version and credential/failure exclusion evidence, independently retrieve exact data, then run existing F30 restore oracle. Do not request new repository rulesets/infrastructure merely because the evidence branch lacks protection.",
+  "newAcceptedOriginal": [],
+  "newAcceptedAmendments": [],
+  "remoteMutations": 0,
+  "testsRepeated": 0,
+  "fullCapturePerformed": false,
+  "restorePerformed": false
+}

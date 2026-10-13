@@ -1,0 +1,110 @@
+{
+  "recordType": "LOCAL_EXACT_CANDIDATE_PENDING_PUBLICATION_AUTHORITY",
+  "commit": "dabd8d8c114b64ff388f29615646b61e92ad5a16",
+  "tree": "f0ecc0c0231c38e9b5d15da88c0881c992396475",
+  "parent": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "baseTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "files": [
+    {
+      "path": "scripts/work8/hh4-generated-primary.mjs",
+      "mode": "100644",
+      "blob": "a476b9449064924bc85b50e683521fd55038941a",
+      "sha256": "1a73583290d88d4c3d840ef339474b633860cf9d2b542363e85067fdbf2d82d3"
+    },
+    {
+      "path": "scripts/work8/hh4-generated-worker.mjs",
+      "mode": "100644",
+      "blob": "148d224b0e2981e7591b8441aaeade7a421ae304",
+      "sha256": "b21b690da7d3ac9d5f210023a1db61f0ccb13f09c64aa3edd71fc157ff91c74e"
+    },
+    {
+      "path": "backend/src/index.ts",
+      "mode": "100644",
+      "blob": "130c75eab38017d7ebb853cdfc9af8398217cd0c",
+      "sha256": "980baa79a9961464bf6a405d94c5582bfb0dd35deec8e1310b414252669187bf"
+    },
+    {
+      "path": "backend/src/runtime/tier0-isolated-primary.ts",
+      "mode": "100644",
+      "blob": "ae8e338e322a7bcdc04a90e4031380041868db42",
+      "sha256": "8544362a5b5ba2ecba5139ef58e28c13926ffbca1e6f2aaf45fafdfa398315af"
+    },
+    {
+      "path": "backend/src/runtime/work8-generated-worker-adoption.ts",
+      "mode": "100644",
+      "blob": "a011d4bf6278cd603394f9e4f6513318d96771d2",
+      "sha256": "0af6e2e10350481aa9883b18c07452f6314e658c1a18ad6045f35a2b404a84f8"
+    },
+    {
+      "path": "backend/src/runtime/work8-generated-worker-lifecycle.ts",
+      "mode": "100644",
+      "blob": "e297b8de391d690f7874fb551dab70177b039b96",
+      "sha256": "ff7598e07e5f7dee8133df2447e838cedc20496014780469463e704453ef342b"
+    },
+    {
+      "path": "deployment/work8-lifecycle-markers.cjs",
+      "mode": "100644",
+      "blob": "dbf1da06bbc7f30a46d9e66cac866580c8f8adfa",
+      "sha256": "6af81d6a24972aa0b4aef4797ead55de5961de2e37f578c4733b2461fcb6c7f0"
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "mode": "100644",
+      "blob": "da630dc38ddd6e736458a56b48fc12732cf907cf",
+      "sha256": "87e516e5f1fa35db6bd41615c1dbb0b2b1639c7385ed9e2c0b65e86f72b32943"
+    },
+    {
+      "path": "scripts/work8/hh4-readiness-controller.mjs",
+      "mode": "100644",
+      "blob": "0f87536e7f9b0db7b4e25ae8e77dd8e4331e12e9",
+      "sha256": "273bd303ad0b9dfa431d93ede665225f9230204d06033830457ce12001122056"
+    },
+    {
+      "path": "scripts/work8/hh4-outer-cohort.mjs",
+      "mode": "100644",
+      "blob": "0c0656a0443fc8dc7046589ae66baa5f09191775",
+      "sha256": "17f6ac6c8bf7a3631284d38d968a08945b0f53140cacf41df064178eacf16c17"
+    },
+    {
+      "path": "scripts/work8/hh4-outer-cohort.test.mjs",
+      "mode": "100644",
+      "blob": "35cd44b0f8994d1aa49f5b3b3bd9c27925a88382",
+      "sha256": "a82918b92a967d51765467cf3bb81a2726ef272bbbfd4cec6aaed378715ef6a7"
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "mode": "100644",
+      "blob": "e2f486052d472867c5ef2f2c6ee5cc4fa6ae0c83",
+      "sha256": "dd8e814ef8748eaa8c303e10ff674b24a2ed9eeaee3eccaddb640cce8f6c1387"
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "mode": "100644",
+      "blob": "417cf1b6f0720af328130e755b8eb4b87d79f000",
+      "sha256": "7539df2162e6cbe38641e2dab951f8e44a249291636c9b4fe9183508cd826c71"
+    },
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "blob": "d26da86eb483a8eebbe0a38ddba792afd94d0ffa",
+      "sha256": "4b629089cb1e5c1b336e87f1c9e7877cf12e9571881f6c59b3ac7938d92f159b"
+    },
+    {
+      "path": "scripts/work8/hh4-held-capture-controller.mjs",
+      "mode": "100644",
+      "blob": "cfa4fe875146a0c54a85c3b64c0c5f7be65ce9d3",
+      "sha256": "97c406486c39257d2aa427c1b0d604c17d726a558e55ec5dcf75272dc7eac2d0"
+    },
+    {
+      "path": "scripts/work8/hh4-held-capture-controller.test.mjs",
+      "mode": "100644",
+      "blob": "ec648494cf45809e5e72329e7f832fdda7aeeabd",
+      "sha256": "88d663398e8c00690ec2a6eb3ff5d47fe133bb2f76f4c973472e8713c3f6c42b"
+    }
+  ],
+  "changedPaths": 16,
+  "review": "PASS_EXACT_REVIEWED_SOURCE_TREE",
+  "hosted": "NOT_EXECUTED",
+  "publication": false,
+  "reviewReceipt": "SOURCE-INDEPENDENT-TREE-REVIEW.json"
+}

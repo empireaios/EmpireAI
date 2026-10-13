@@ -1,0 +1,20 @@
+{
+  "recordType": "ACTUAL_INTEGRATED_BACKEND_TYPECHECK_SOURCE_ATTRIBUTION",
+  "source": "a1602727d0689d28683c8bb7fa10376d08f240a1",
+  "tree": "e668d9b61851b70b5ef3cc97f816520cde6105fc",
+  "node": "24.19.0",
+  "command": "NODE_OPTIONS=--max-old-space-size=6144 node node_modules/typescript/bin/tsc -p backend/tsconfig.json --noEmit",
+  "verifiedTypeScriptAndBuildFiles": 4590,
+  "beforeMismatches": [],
+  "afterMismatches": [],
+  "inputManifestSHA256": "8691a52bc7e7985a29ae8ee894a6ac66b72fdbde2b6f09034f1a5f147ebc1b40",
+  "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "completedAt": "2026-10-13T10:46:53.216708+00:00",
+  "limitations": [
+    "Local Node24 compile; not hosted Node22 execution",
+    "Reused exact prior Pillow declarations and existing dependencies",
+    "No operational recovery or native browser acceptance inferred"
+  ],
+  "exitCode": 0,
+  "result": "PASS_LOCAL_EXACT_INTEGRATED_BACKEND_TYPECHECK"
+}

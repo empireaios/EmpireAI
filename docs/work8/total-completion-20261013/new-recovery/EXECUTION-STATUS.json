@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-13T10:15:09.173355+00:00",
+  "baselineSource": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "baselineTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "sourceRecovery": "Full17102-file retainedGitcheckout; plainisolatedcopy used because tracked worktreefiles reverted betweenexec calls",
+  "dependencies": "Retained backend/pillow node_modules; no install or spending",
+  "pillowCompile": "PASS Node24.19.0",
+  "actual13OverlayCompile": "PASS with SHA256 pre/postidentity",
+  "final16FileCompile": "PASS Node24.19.0; all16 sourcehashes unchanged",
+  "localActualBoot": {
+    "status": "BLOCKED_BEFORE_ADMISSION",
+    "diagnostic": "ENOENT /proc/14/stat at trustedchildidentity check",
+    "node": "24.19.0",
+    "evidence": "local-boot-attempt.log",
+    "sourceIdentity": "Publishedbase plus explicit local16fileoverlay; not exactpublishedcandidate",
+    "guardsWeakened": false,
+    "redisStarted": false,
+    "applicationReady": false
+  },
+  "sourceChanges": [
+    "Bound factory capability one-shot captureIPC",
+    "Actual-ready SIGUSR2 registration before readinessreceipt",
+    "5-second original sealedhold unchanged; separate30-second capture-response limit",
+    "Three lifecycle markers included in capture",
+    "Fresh external controller retains source/mode/deadline/termination checks",
+    "Existing Node22/Docker CI automatically runs HH4 after approval; no dispatchperformed"
+  ],
+  "originalCriteria": {
+    "O33": [
+      "Actual fullruntimewriter exclusion",
+      "Completeoperationalrestoration",
+      "Pendingauthorizedreplay once acrossrepeat andcoldrestart",
+      "Canonical/financial/sessionpreservation withoutrestoringunsafeauthority"
+    ],
+    "O39": [
+      "Corruptprotected snapshot refused",
+      "Independentgoodcopy restoredfresh",
+      "Offhost manifestreadback andcanonicaldataequality",
+      "Protectedretention runtimecannotmutate/delete",
+      "Noactiveauthorityreplay"
+    ]
+  },
+  "currentScope": "Compiled source and hosted-ready heldcapture examination only; no fullrestoration/replay/custody acceptance",
+  "remaining": [
+    "Actual Node22 hostedHH4startup andheldcapture",
+    "Actual supervisionwatchdog capture (notfabricated)",
+    "Fulloperationalreplacement/replay",
+    "Protectedindependentcustody andrestoration"
+  ],
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": [],
+  "publication": false
+}

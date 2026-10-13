@@ -1,0 +1,115 @@
+{
+  "decision": "PASS_CURRENT_SOURCE_NODE22_RUNTIME_AND_NARROW_REUSE",
+  "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "run": 38377517598,
+  "runtimeJob": 115229518066,
+  "node": "22.23.2",
+  "mandatoryRuntimeTests": {
+    "executed": 403,
+    "passed": 403,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 138191.549879
+  },
+  "logSha256": "cab5fa9d9afe396e2a64e33dfae10b3c56f579327dc64ba0e5500ae8aaa1d7ea",
+  "reuse": [
+    {
+      "newReceiptArtifact": 11802225685,
+      "sha256": "3e9e110ca4f5d08df5c0956ce8d7d02f06b82420504fe14b1587546b1e59dee6",
+      "retained": {
+        "recordType": "RETAINED_ACCEPTED_EXAMINATION_NOT_NEW_EXECUTION",
+        "kind": "f29",
+        "testedSource": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+        "testedTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+        "run": 38342212050,
+        "node": "22.23.2",
+        "artifact": 11787397943,
+        "sha256": "af95b409e98c3a9b07d809fe30032d6397b68cddd548d9e39c8a1130e07ca70e",
+        "accepted": "both required pair fault assertions",
+        "currentBoundary": {
+          "reuse": true,
+          "paths": [
+            ".github/workflows/pillow-runtime-repair-ci.yml",
+            "scripts/work8/f27-change-boundary.cjs",
+            "scripts/work8/f27-outer-controller.cjs",
+            "scripts/work8/hh3-compiled-coordinator.mjs",
+            "scripts/work8/hh3-owned-process-group.mjs",
+            "scripts/work8/tests/f27-change-boundary.test.cjs",
+            "scripts/work8/tests/f27-clock-origin.test.cjs",
+            "scripts/work8/tests/hh3-owned-process-group.test.mjs"
+          ],
+          "workflowDigest": "cd70b7d75b6ca22e8b8dc8b2b47b7bb4dd3149ee631cc00c9f3711dc16d654b4",
+          "baselineTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+          "currentSource": "9080fece4da947f1bf1f2e91568e33e94b287686"
+        },
+        "scope": "Only accepted F29 and corpora retained. F27, HH3 and mandatory runtime suite must execute; prior run overall failure is not reused as success."
+      }
+    },
+    {
+      "newReceiptArtifact": 11802195066,
+      "sha256": "e1b0564b8323851b68099a3d41d9ab42c8cc93bd5a5fa0060d733cd174d2df12",
+      "retained": {
+        "recordType": "RETAINED_ACCEPTED_EXAMINATION_NOT_NEW_EXECUTION",
+        "kind": "reasoning-admission",
+        "testedSource": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+        "testedTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+        "run": 38342212050,
+        "node": "22.23.2",
+        "artifact": 11787204240,
+        "sha256": "962d6f34603042dc7a437b400f8e524ec863960b53abf38d5a82331588cebd47",
+        "passed": 1950,
+        "currentBoundary": {
+          "reuse": true,
+          "paths": [
+            ".github/workflows/pillow-runtime-repair-ci.yml",
+            "scripts/work8/f27-change-boundary.cjs",
+            "scripts/work8/f27-outer-controller.cjs",
+            "scripts/work8/hh3-compiled-coordinator.mjs",
+            "scripts/work8/hh3-owned-process-group.mjs",
+            "scripts/work8/tests/f27-change-boundary.test.cjs",
+            "scripts/work8/tests/f27-clock-origin.test.cjs",
+            "scripts/work8/tests/hh3-owned-process-group.test.mjs"
+          ],
+          "workflowDigest": "cd70b7d75b6ca22e8b8dc8b2b47b7bb4dd3149ee631cc00c9f3711dc16d654b4",
+          "baselineTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+          "currentSource": "9080fece4da947f1bf1f2e91568e33e94b287686"
+        },
+        "scope": "Only accepted F29 and corpora retained. F27, HH3 and mandatory runtime suite must execute; prior run overall failure is not reused as success."
+      }
+    },
+    {
+      "newReceiptArtifact": 11801004789,
+      "sha256": "6338edc96381004d3ed58628200bd45b8c8431159dd9cfca5fc8bf605f8e9d51",
+      "retained": {
+        "recordType": "RETAINED_ACCEPTED_EXAMINATION_NOT_NEW_EXECUTION",
+        "kind": "response-delivery",
+        "testedSource": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+        "testedTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+        "run": 38342212050,
+        "node": "22.23.2",
+        "artifact": 11787268583,
+        "sha256": "67d32707d386372118550ab004bc41340f78286e2d48719c56a01345134db5bf",
+        "passed": 1381,
+        "currentBoundary": {
+          "reuse": true,
+          "paths": [
+            ".github/workflows/pillow-runtime-repair-ci.yml",
+            "scripts/work8/f27-change-boundary.cjs",
+            "scripts/work8/f27-outer-controller.cjs",
+            "scripts/work8/hh3-compiled-coordinator.mjs",
+            "scripts/work8/hh3-owned-process-group.mjs",
+            "scripts/work8/tests/f27-change-boundary.test.cjs",
+            "scripts/work8/tests/f27-clock-origin.test.cjs",
+            "scripts/work8/tests/hh3-owned-process-group.test.mjs"
+          ],
+          "workflowDigest": "cd70b7d75b6ca22e8b8dc8b2b47b7bb4dd3149ee631cc00c9f3711dc16d654b4",
+          "baselineTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+          "currentSource": "9080fece4da947f1bf1f2e91568e33e94b287686"
+        },
+        "scope": "Only accepted F29 and corpora retained. F27, HH3 and mandatory runtime suite must execute; prior run overall failure is not reused as success."
+      }
+    }
+  ],
+  "scope": "F29 and generated1950/1381 corpora retained by exact boundary guard; not rerun or misrepresented as current-source execution. HH3/F27 and403 actualruntime executed."
+}

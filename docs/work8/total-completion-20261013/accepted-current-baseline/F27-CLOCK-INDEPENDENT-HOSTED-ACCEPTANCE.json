@@ -1,0 +1,36 @@
+{
+  "decision": "PASS_CHANGED_F27_CLOCK_BOUNDARY_WITH_ORIGINAL_FAULT_ASSERTIONS_PRESERVED",
+  "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "run": 38377517598,
+  "job": 115229517750,
+  "artifact": 11802086626,
+  "artifactSha256": "d06de4a712149e0779f3024ed6f7480862ec3dccae5d45fd078f9b0cd21efce9",
+  "clockOriginMonotonicMs": 17.982309,
+  "dockerPreflightOffsetMs": 2.5204179999999994,
+  "faultWindowOffsetMs": 1722.59879,
+  "externalDetectionMs": 29981.765964000002,
+  "fullArmMs": 61799.00817,
+  "originalDeadlines": {
+    "detector": 60000,
+    "fullArm": 120000
+  },
+  "verification": [
+    "Exact changed controller starts single continuous monotonic origin first inmain before Dockerpreflight. Positivepreflightoffset precedesfaultwindowoffset; no clockreset.",
+    "Host pre-injection handshake faultwindow remains originaldeadline basis, not totalpreflight-inclusive60s.",
+    "Independently re-read downloadedSQLite databases and reran read-only originalexternaloracle against retained simultaneous/baseline snapshots; refundexactmutation, receiptchains, unknownsupplierretention, incident/probe/event24, cursorrepair and postcontainmentdigest allpass.",
+    "Independentcontrollercgroup differs from testedcontainer; observedinspectorstopped, containmentno survivors, canonicalpostdigest matches recomputed4630a488ac84321f59747ed93d436d61510eb4de30021a969f9dd304be65c9bd."
+  ],
+  "result": {
+    "financialIncident": "inc_13951d69-9977-41f1-86c0-f2be9b51c7e6",
+    "financialEvent": 24,
+    "cursorRepairs": 1,
+    "financialRepairs": 0,
+    "unknownSupplierRetained": true,
+    "financialUnresolved": true
+  },
+  "newFullOriginalRequirements": [],
+  "limits": [
+    "Retains accepted26/34; does not independently prove externalowner-alertdelivery or genuinebusinessqualification.",
+    "Read-only artifact verification uses localNode, not a repeat of hostedfaultinjection."
+  ]
+}

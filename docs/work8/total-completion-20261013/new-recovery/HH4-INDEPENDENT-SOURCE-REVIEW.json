@@ -1,0 +1,198 @@
+{
+  "recordType": "HH4_INDEPENDENT_SCOPED_SOURCE_REVIEW",
+  "createdAt": "2026-10-13T10:16:25.517548+00:00",
+  "reviewer": "recovery_review",
+  "verdict": "ACCEPTED_FOR_INTEGRATION_AND_HOSTED_EXAMINATION_ONLY",
+  "sourceBase": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "baseTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "candidateManifestSha256": "c7742df734a0327d577198e0e702fdaf92f474d089b4e4f629b6da10e5a0c78a",
+  "completeGitTreeVerification": "PENDING_INTEGRATION_OWNER_COMPLETE_CANDIDATE",
+  "files": {
+    "scripts/work8/hh4-generated-primary.mjs": {
+      "sha256": "1a73583290d88d4c3d840ef339474b633860cf9d2b542363e85067fdbf2d82d3",
+      "mode": "100644",
+      "gitBlob": "a476b9449064924bc85b50e683521fd55038941a",
+      "size": 1758,
+      "verified": true
+    },
+    "scripts/work8/hh4-generated-worker.mjs": {
+      "sha256": "b21b690da7d3ac9d5f210023a1db61f0ccb13f09c64aa3edd71fc157ff91c74e",
+      "mode": "100644",
+      "gitBlob": "148d224b0e2981e7591b8441aaeade7a421ae304",
+      "size": 2685,
+      "verified": true
+    },
+    "backend/src/index.ts": {
+      "sha256": "980baa79a9961464bf6a405d94c5582bfb0dd35deec8e1310b414252669187bf",
+      "mode": "100644",
+      "gitBlob": "130c75eab38017d7ebb853cdfc9af8398217cd0c",
+      "size": 5618,
+      "verified": true
+    },
+    "backend/src/runtime/tier0-isolated-primary.ts": {
+      "sha256": "8544362a5b5ba2ecba5139ef58e28c13926ffbca1e6f2aaf45fafdfa398315af",
+      "mode": "100644",
+      "gitBlob": "ae8e338e322a7bcdc04a90e4031380041868db42",
+      "size": 35952,
+      "verified": true
+    },
+    "backend/src/runtime/work8-generated-worker-adoption.ts": {
+      "sha256": "0af6e2e10350481aa9883b18c07452f6314e658c1a18ad6045f35a2b404a84f8",
+      "mode": "100644",
+      "gitBlob": "a011d4bf6278cd603394f9e4f6513318d96771d2",
+      "size": 9265,
+      "verified": true
+    },
+    "backend/src/runtime/work8-generated-worker-lifecycle.ts": {
+      "sha256": "ff7598e07e5f7dee8133df2447e838cedc20496014780469463e704453ef342b",
+      "mode": "100644",
+      "gitBlob": "e297b8de391d690f7874fb551dab70177b039b96",
+      "size": 2516,
+      "verified": true
+    },
+    "deployment/work8-lifecycle-markers.cjs": {
+      "sha256": "6af81d6a24972aa0b4aef4797ead55de5961de2e37f578c4733b2461fcb6c7f0",
+      "mode": "100644",
+      "gitBlob": "dbf1da06bbc7f30a46d9e66cac866580c8f8adfa",
+      "size": 1880,
+      "verified": true
+    },
+    "scripts/work8/hh4-domain-state.mjs": {
+      "sha256": "87e516e5f1fa35db6bd41615c1dbb0b2b1639c7385ed9e2c0b65e86f72b32943",
+      "mode": "100644",
+      "gitBlob": "da630dc38ddd6e736458a56b48fc12732cf907cf",
+      "size": 12992,
+      "verified": true
+    },
+    "scripts/work8/hh4-readiness-controller.mjs": {
+      "sha256": "273bd303ad0b9dfa431d93ede665225f9230204d06033830457ce12001122056",
+      "mode": "100644",
+      "gitBlob": "0f87536e7f9b0db7b4e25ae8e77dd8e4331e12e9",
+      "size": 2823,
+      "verified": true
+    },
+    "scripts/work8/hh4-outer-cohort.mjs": {
+      "sha256": "17f6ac6c8bf7a3631284d38d968a08945b0f53140cacf41df064178eacf16c17",
+      "mode": "100644",
+      "gitBlob": "0c0656a0443fc8dc7046589ae66baa5f09191775",
+      "size": 7895,
+      "verified": true
+    },
+    "scripts/work8/hh4-outer-cohort.test.mjs": {
+      "sha256": "a82918b92a967d51765467cf3bb81a2726ef272bbbfd4cec6aaed378715ef6a7",
+      "mode": "100644",
+      "gitBlob": "35cd44b0f8994d1aa49f5b3b3bd9c27925a88382",
+      "size": 3102,
+      "verified": true
+    },
+    "backend/src/runtime/work8-recovery-capture.ts": {
+      "sha256": "dd8e814ef8748eaa8c303e10ff674b24a2ed9eeaee3eccaddb640cce8f6c1387",
+      "mode": "100644",
+      "gitBlob": "e2f486052d472867c5ef2f2c6ee5cc4fa6ae0c83",
+      "size": 9277,
+      "verified": true
+    },
+    "deployment/work8-recovery-set.cjs": {
+      "sha256": "7539df2162e6cbe38641e2dab951f8e44a249291636c9b4fe9183508cd826c71",
+      "mode": "100644",
+      "gitBlob": "417cf1b6f0720af328130e755b8eb4b87d79f000",
+      "size": 14665,
+      "verified": true
+    },
+    ".github/workflows/pillow-runtime-repair-ci.yml": {
+      "sha256": "4b629089cb1e5c1b336e87f1c9e7877cf12e9571881f6c59b3ac7938d92f159b",
+      "mode": "100644",
+      "gitBlob": "d26da86eb483a8eebbe0a38ddba792afd94d0ffa",
+      "size": 33609,
+      "verified": true
+    },
+    "scripts/work8/hh4-held-capture-controller.mjs": {
+      "sha256": "97c406486c39257d2aa427c1b0d604c17d726a558e55ec5dcf75272dc7eac2d0",
+      "mode": "100644",
+      "gitBlob": "cfa4fe875146a0c54a85c3b64c0c5f7be65ce9d3",
+      "size": 7621,
+      "verified": true
+    },
+    "scripts/work8/hh4-held-capture-controller.test.mjs": {
+      "sha256": "88d663398e8c00690ec2a6eb3ff5d47fe133bb2f76f4c973472e8713c3f6c42b",
+      "mode": "100644",
+      "gitBlob": "ec648494cf45809e5e72329e7f832fdda7aeeabd",
+      "size": 1967,
+      "verified": true
+    }
+  },
+  "reviewedAssertions": [
+    "Factory-only WeakMap capability bound to actual ChildProcess, PID/start ticks and generated root device/inode; no caller-selected roots or serialized capability",
+    "Actual primary capture participant installed before worker admission; adopted exit/error/disconnect terminal and ordinary respawn disabled",
+    "Readiness published after actual index final startup; SIGUSR2 handler installed before ready receipt",
+    "Capture request one-shot and bound to worker run/source; resolver installed before send; failure/error/disconnect/timeout reject fail closed",
+    "Distinct scopeRunId retained alongside worker runId; fixed capture directory, digest, false boot/complete flags and original expiry checked",
+    "Original five-second sealed hold unchanged; separate thirty-second request-to-held admission timeout explicit",
+    "Capture repository lifecycle markers included through typed request path",
+    "Exact image/container/cgroup and namespace primary/worker entry/start identity externally verified; controller outside affected cohort",
+    "Retained capture copied while held; complete cohort stopped and no live survivors verified before original expiry using host wall and monotonic time",
+    "Archive verification occurs after containment; normal application startup path unchanged absent minted examination registration"
+  ],
+  "correctedDefects": [
+    "Readiness receipt preceded SIGUSR2 handler, creating signal race; ordering corrected",
+    "Inner generated scope run ID overwritten by wrapper; retained as scopeRunId",
+    "Controller deployment verifier require path climbed one directory too far; corrected to ../../deployment",
+    "Tracked overlay absent during initial claimed compile; attribution withdrawn, plain copy reapplied and exact source reverified"
+  ],
+  "compileAttribution": {
+    "status": "PASS_REPORTED_BY_IMPLEMENTER_WITH_REVIEWER_SOURCE_HASH_VERIFICATION",
+    "backendLog": "lane-recovery-completion/backend-reviewed-final-compile.log",
+    "backendLogBytes": 0,
+    "backendLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exitCode": 0,
+    "exitCodeEvidence": "recovery_complete final completion message, independently inspected empty diagnostic log; reviewer did not rerun compiler",
+    "postCompileManifestHashes": "All sixteen independently recomputed and equal",
+    "priorInvalidAttribution": "Initial git worktree compile was not accepted as overlay proof; plain-copy final source supersedes it",
+    "pillowCompile": "PASS reported by implementer"
+  },
+  "workflow": {
+    "file": ".github/workflows/pillow-runtime-repair-ci.yml",
+    "actualWiring": "HH4 step follows actual compiled HH3 examination in durable-runtime; uses same Docker image ID, current git HEAD, five-minute step maximum; existing original HH3 480-second limit unchanged",
+    "examinationCommand": "node scripts/work8/hh4-held-capture-controller.mjs \"$image_id\" \"$(git rev-parse HEAD)\" \"$RUNNER_TEMP/hh4-evidence\"",
+    "changedBoundaryCommand": "node --test scripts/work8/hh4-held-capture-controller.test.mjs",
+    "artifact": "work8-hh4-held-capture",
+    "artifactAlways": true,
+    "retentionDays": 30,
+    "hostedExecution": "NOT_EXECUTED"
+  },
+  "boundaryTests": {
+    "outerController": "Three changed-boundary tests PASS reported by assurance_alerting; source assertions inspected; no rerun by reviewer",
+    "acceptedF27F29HH3": "Not rerun by reviewer"
+  },
+  "localBoot": {
+    "status": "BLOCKED_FAIL_CLOSED",
+    "reason": "Actual namespace PID unavailable under /proc; no identity guard weakened",
+    "positiveRuntimeAcceptance": false
+  },
+  "limits": {
+    "fullWriterExclusion": "NOT_ACCEPTED",
+    "operationalRestoration": "NOT_ACCEPTED",
+    "replay": "NOT_ACCEPTED",
+    "protectedIndependentCustody": "NOT_ACCEPTED",
+    "remainingO33": [
+      "Full declared writer cohort exclusion with actual canonical held-state readback",
+      "Guarded operational replacement with fresh run/latch/authentication",
+      "Only pending authorized work replayed once; repeat and cold-restart preserve completed and financial history without live grants"
+    ],
+    "remainingO39": [
+      "Runtime unable to alter/delete independently retained backup with protected retention",
+      "Fresh independently authenticated off-host readback and manifest hashes",
+      "Independent complete-state restoration and canonical equality without active authority replay"
+    ]
+  },
+  "acceptedRequirements": [],
+  "acceptedAmendments": [],
+  "publicationPerformed": false,
+  "governance": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "productionDeployment": false,
+    "paidInference": false,
+    "Work9": "INACTIVE"
+  }
+}

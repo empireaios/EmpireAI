@@ -1,0 +1,318 @@
+{
+  "schema": "WORK8_23_OUTSTANDING_DEPENDENCY_QUEUE_V1",
+  "createdAt": "2026-10-13T10:05:46.241124+00:00",
+  "registerSha256": "5615601dc37e0859233aff62d3df4522bb8cd4077d032ad3463455d4659fd4c1",
+  "originalCounts": {
+    "PASS": 33,
+    "PENDING": 8,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "integrationOwner": "/root",
+  "items": [
+    {
+      "key": "O2",
+      "name": "Financial and historical preservation",
+      "status": "BLOCKED",
+      "missingAssertion": "Original224 immutable financial baseline or attributable audited lineage explaining legitimate changed counts; preserve3journal/7historical and authoritative digests. No arbitrary historicalcount freeze or missingproof waiver.",
+      "dependencies": [],
+      "existingEvidence": "resume-20261011/ACCOUNTING.md; resume-20261011/ACCOUNTING-REQUEST-CORRELATION.json; resume-20261012/ACCOUNTING-INTEGRITY.json (current227/219 recovered, original224 absent)",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O7",
+      "name": "Product images and usage rights",
+      "status": "BLOCKED",
+      "missingAssertion": "Apply documented existing supplier/platform media permissions for exact selected assets; record unknown permission without asserting a licence or routine correspondence.",
+      "dependencies": [],
+      "existingEvidence": "source-image-rights-review.json",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O13",
+      "name": "Actual Pillow assessment binding",
+      "status": "BLOCKED",
+      "missingAssertion": "Use a complete eligible dossier and valid source-bound commissioning authority for actual Pillow inference; absent those, preserve refusal and request one bounded provider examination only when its inputs and cost can be specified.",
+      "dependencies": [
+        "genuine_eligible_dossier",
+        "bounded_inference_authority"
+      ],
+      "existingEvidence": "resume-20261011/targeted-tests.tap; owner-assessment-excerpt.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; HOLISTIC-product-context-tests.tap",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O14",
+      "name": "Owner recommendations and decisions",
+      "status": "PENDING",
+      "missingAssertion": "Bind an authentic eligible Pillow recommendation to an authenticated persisted owner decision; technical UI fixtures do not supply genuine reasoning.",
+      "dependencies": [
+        "O13",
+        "authenticated_owner_decision"
+      ],
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; HOLISTIC-product-context-tests.tap",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O19",
+      "name": "Simulated listing schema/media",
+      "status": "PENDING",
+      "missingAssertion": "Complete permitted exact-asset media/listing examination and authenticated approval separation; authorised Canva export only for a specified permitted design.",
+      "dependencies": [
+        "O7",
+        "A11"
+      ],
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/assessment-binding-unit.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O30",
+      "name": "Assurance watchdog/degraded operation",
+      "status": "PENDING",
+      "missingAssertion": "F29 two missing pair arms independently accepted; retained worker-stall and notification/inbox/restart evidence preserved. Remaining: actual independent external owner-alert delivery and original owner escalation; no added physical-host destruction criterion.",
+      "dependencies": [
+        "independent_relay_transport_integration",
+        "verified_owner_destination",
+        "message_authority",
+        "actual_correlated_delivery_evidence"
+      ],
+      "existingEvidence": "assurance-fault-coverage.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, published source/bundle; production rollout not performed)",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O33",
+      "name": "Concurrency races and replay",
+      "status": "PENDING",
+      "missingAssertion": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in declared runtime topology, including still-active prior instances. Preserve scoped reviewed lifecycle-marker and held-handoff corrections; neither establishes operational replay or full topology. Arbitrary privileged host attackers are not an added criterion.",
+      "dependencies": [
+        "full_cooperating_runtime_exclusion",
+        "operational_pending_replay"
+      ],
+      "existingEvidence": "examination-ledger.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); HH3 successor source9080fece4da947f1bf1f2e91568e33e94b287686/run38377517598/artifact11801893390: complete compiled-coordinator scoped acceptance,24.530682s, no full-domain restore or custody credit",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O39",
+      "name": "Cold restart rollback/migration/restore",
+      "status": "PENDING",
+      "missingAssertion": "Distinct password-protected Redis replacement after original shutdown, atomic target identity, AOF-only crash recovery, paused fence and once-only labelled pending continuation independently pass. Full authorized application restoration, owner-session restoration into replacement topology and protected independently authenticated off-host custody remain.",
+      "dependencies": [
+        "O33",
+        "full_application_restoration",
+        "protected_independent_custody"
+      ],
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/RECOVERY-V2.tap; resume-20261011/MEDIA-REJECTION.tap; resume-20261011/ACCELERATED-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json; resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/RUNTIME-38142058061-receipt.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); HH3 successor source9080fece4da947f1bf1f2e91568e33e94b287686/run38377517598/artifact11801893390: complete compiled-coordinator scoped acceptance,24.530682s, no full-domain restore or custody credit",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O40",
+      "name": "Actual owner-view real-product walkthrough",
+      "status": "BLOCKED",
+      "missingAssertion": "Complete the existing authenticated desktop/mobile genuine-product walkthrough with source, actual authorised Pillow assessment and linked simulated finance/Assurance. A separately purchased visual host is no longer required by the current owner directive; genuine visual evidence is still mandatory.",
+      "dependencies": [
+        "genuine_traceable_source_cohort",
+        "coherent_connected_downstream_simulation",
+        "linked_Pillow_conclusions_where_legitimately_available",
+        "connected_owner_observation"
+      ],
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey)",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O41",
+      "name": "Mobile desktop source-to-finance equality",
+      "status": "PENDING",
+      "missingAssertion": "Preserve accepted source/price desktop-mobile display and five-shortcut evidence. Complete genuine same-identity full source/Pillow/owner/simulated finance/Assurance walkthrough; no physical-device certificate is required by the directive.",
+      "dependencies": [
+        "O40",
+        "same_identity_mobile_desktop_readback"
+      ],
+      "existingEvidence": "owner-financial-readback.md; independent-candidate-review.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/AMENDMENTS.json; resume-20261011/TWIN-FOUNDATION.json; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/browser-a3cd82a1/attribution.json; resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey)",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O42",
+      "name": "Review exact-head CI and release authority",
+      "status": "PENDING",
+      "missingAssertion": "Exact approved evidence6681/source9080 complete trees independently staged/read back/published. All4current workflows38377517595/38377517719/38377517598/38377517613 PASS; Node22.23.2 current403/403; accepted F29 and1950/1381corpora retained with exact attribution. Full integrated owner/operational preservation and final independent certification remain. No production merge/deployment is required without separate authority.",
+      "dependencies": [
+        "O33",
+        "O39",
+        "O40",
+        "O41",
+        "final_exact_source_dossier"
+      ],
+      "existingEvidence": "resume-20261011/COMMERCIAL-CONTINUATION.json; resume-20261011/PROGRESS.md; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/HOLISTIC-CHECKPOINT.json; resume-20261011/CLOSURE-CHANGES.md; resume-20261011/PASSIVE-CLOSURE-ACCEPTANCE.json; resume-20261011/EXACT-HEAD-CI-E3E8500A.json; resume-20261011/EXACT-HEAD-CI-A3CD82A1.json; resume-20261012/EXACT-HEAD-CI.json (four SUCCESS, no reruns); resume-20261012/browser/receipt.json (scoped desktop/mobile viewport replay, not full journey); continued-closure-20261012 scoped independent receipts (no new full closure); publication-closure-20261012/PUBLICATION-RECEIPT.json; publication-closure-20261012/EXACT-SOURCE-CI.json; publication-closure-20261012/REQUIREMENT42-CONDITIONAL-ACCEPTANCE.json; HH3-SUCCESSOR-CI-TERMINAL.json; independent-hh3-successor-readback/RUNTIME-NODE22-REUSE-INDEPENDENT-ACCEPTANCE.json; lane-next-acceptance/O42-CONDITIONAL-DECISION.json",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "O43",
+      "name": "Independent Mission Ledger closure",
+      "status": "PENDING",
+      "missingAssertion": "Independent Mission Ledger closure awaits complete mandatory operating, fault, recovery and owner-acceptance gates. No production mission_complete, merge or release authority.",
+      "dependencies": [
+        "all_mandatory_originals_except_O43",
+        "all_mandatory_amendments"
+      ],
+      "existingEvidence": "register.json; checkpoint.json; resume-20261011/INTEGRATED-CONTINUATION.json; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A1",
+      "name": "Persistent autonomous digital twin",
+      "status": "PENDING",
+      "missingAssertion": "Complete global capture/replay and genuine operating acceptance through the existing twin and Console; preserve new scoped integration and accepted isolated capability.",
+      "dependencies": [
+        "O33",
+        "O39",
+        "A6"
+      ],
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A2",
+      "name": "Whole-system twin",
+      "status": "PENDING",
+      "missingAssertion": "Cooperating writer coverage and distinct Redis inspection replacement verified; global exclusion and complete whole-system operational restoration remain. completeLiveState=false and bootAllowed=false preserved.",
+      "dependencies": [
+        "O33",
+        "O39"
+      ],
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A3",
+      "name": "Protected backup vault",
+      "status": "PENDING",
+      "missingAssertion": "Prove complete consistent snapshot, runtime credential exclusion from alteration/deletion, protected retention, independently authenticated off-host readback and complete fresh-target application restoration with canonical/session/pending-work invariants and no authority replay.",
+      "dependencies": [
+        "O39"
+      ],
+      "existingEvidence": "Runtime38142058061 verified whole-volume, finance and Redis continuity; prior sealed snapshot/replay evidence retained; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A5",
+      "name": "Seamless upgrades and rollback",
+      "status": "PENDING",
+      "missingAssertion": "Preserve accepted operating rollback. Complete whole-application consistency and authorized restore across all domains; paused inspection recovery is not complete application rollback.",
+      "dependencies": [
+        "O39"
+      ],
+      "existingEvidence": "Old/current/old operating commerce38226997080:6completed tasks114receipts25financial events; no complete-settlement claim; continued-closure-20261012 scoped independent receipts (no new full closure)",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A6",
+      "name": "Owner-visible autonomous dry run",
+      "status": "PENDING",
+      "missingAssertion": "Provide authenticated visual same-identity genuine source-to-owner-to-simulated-results evidence using existing Console. No separately purchased visual host or waiver of genuine evidence is required.",
+      "dependencies": [
+        "O40",
+        "O41"
+      ],
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A8",
+      "name": "Product-linked Pillow Chat",
+      "status": "PENDING",
+      "missingAssertion": "Actual authenticated compact icon/context-chip, followup, remove/switch/comparison evidence plus exact source binding and stale/missing/forged/crossowner/truncation protections. Positive paid assessment is not an independent prerequisite of original holistic\u00a78.",
+      "dependencies": [
+        "authenticated_product_context_native_observation",
+        "server_binding_and_truncation_protection"
+      ],
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A9",
+      "name": "Product image/video management",
+      "status": "PENDING",
+      "missingAssertion": "Complete exact permitted media-byte/version and authenticated gallery/archive acceptance; preserve existing management workflow.",
+      "dependencies": [
+        "O7",
+        "authenticated_exact_media_management"
+      ],
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A10",
+      "name": "Canva-assisted editing",
+      "status": "PENDING",
+      "missingAssertion": "Provide the exact authorised permitted asset/design and editing/export operation through existing Canva consumer; no runtime entitlement inferred from ChatGPT connector.",
+      "dependencies": [
+        "O7",
+        "authorised_exact_design_export"
+      ],
+      "existingEvidence": "4 intercepted export tests PASS; full backend typecheck PASS; safe default route reviewed.",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A11",
+      "name": "Separate internal/external media approval",
+      "status": "PENDING",
+      "missingAssertion": "Complete authentic media permission and authenticated internal/external approval separation; no live publication.",
+      "dependencies": [
+        "O7",
+        "separate_media_approval_observation"
+      ],
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A15",
+      "name": "Keepa and Helium 10 readiness",
+      "status": "PENDING",
+      "missingAssertion": "Verify applicable Keepa entitlement and preserve deferred Helium10 readiness; no subscription or activation.",
+      "dependencies": [
+        "verified_licensing",
+        "data_provenance",
+        "readiness_and_disabled_Helium10"
+      ],
+      "existingEvidence": "Retained original scoped examination receipts; native owner acceptance not yet granted",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    },
+    {
+      "key": "A19",
+      "name": "Integrated owner acceptance",
+      "status": "PENDING",
+      "missingAssertion": "Use existing authenticated Console to verify identical genuine product/mission/order/finance/Assurance records on desktop and mobile; owner must be able to inspect them. No additional purchase-method approval required.",
+      "dependencies": [
+        "O40",
+        "O41",
+        "owner_acceptance"
+      ],
+      "existingEvidence": "Pinned frontend679f901d hosted typecheck,215 web+2 finance tests and build PASS; offline fixture evidence retained; no genuine native owner acceptance.",
+      "oracle": "Full original mandate/addendum criteria; independently verify canonical records and source attribution; no promotion from fixture-only or scoped evidence"
+    }
+  ],
+  "priority": [
+    "Recovery O33/O39 unlocks A1/A2/A3/A5; compile existing13file candidate, no reconstruction.",
+    "Genuine dossier+media rights unlock O7/O13/O14/O19/O40/O41 and A6/A8/A9/A10/A11/A19; preserve unknown demand and lawful deferrals.",
+    "Independent external delivery O30 is separate, must not stop recovery/business.",
+    "O2 needs original224 authentic lineage; no search without newlead.",
+    "A15 exact original readiness contract required before entitlement dependency can be removed.",
+    "O42 final dossier then O43 independent certification; no production merge/Birth/live transition prerequisite."
+  ],
+  "liveActivationScopeCorrection": [
+    "Work9 activation never required for current software acceptance.",
+    "Persistent twin explicitly moved into Work8 by owner amendment; cannot defer fulltwin restoration to Work9.",
+    "Production deployment only if separately authorised and necessary.",
+    "Genuine positive assessment/ownerjourney cannot be replaced by synthetic refusal where originalcontract requires positive evidence.",
+    "A8 standalone product-linked context is not inherently gated by positive paid assessment. Actual native binding acceptance remains necessary; no automatic closure.",
+    "Original R1/R5 permit rejected genuine candidates and Pillow conclusions where legitimately available; do not insist commercial qualification for truthful display. Original R2 coherent cross-stage walkthrough remains mandatory."
+  ],
+  "newAcceptances": [],
+  "governingExactBlobs": {
+    "holistic": "a52f165df3eb7453a05e07aa2fc7e79c682dfbe4",
+    "laterBusinessActivation": "bc35c5a434f39845206ae31b9f9919dd41137f44",
+    "amendmentCrosswalk": "893f3d64d0ba78f9e2403413b776be1a887d951f"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "WORK8_FINAL_LEDGER_REGISTER_ACCEPTANCE_SCOPE_REVIEW_V1",
+  "decision": "ACCEPT_PRESERVATION_COUNTS_NO_GO_AND_RESOLVED_LINKS_NOT_PROGRAMME_PASS",
+  "reviewedFiles": [
+    {
+      "path": "lane-total-integration/evidence-candidate/docs/work8/mission-ledger.json",
+      "sha256": "b82c38bc0b5b84dcbe41f1dfe24337185e904cd69e607dc2f17b6611779da18a"
+    },
+    {
+      "path": "lane-total-integration/evidence-candidate/docs/work8/total-completion-20261013/CURRENT-REGISTER.json",
+      "sha256": "e3c95a2fe5102a252ca6736008acc5ff7a53acf26dbb7193a07cb871730dae37"
+    },
+    {
+      "path": "lane-total-integration/evidence-candidate/docs/work8/total-completion-20261013/README.md",
+      "sha256": "62f1e0d4925f8224038e5def36d41d43d9d1efa03bfeccdb0913c2c59275e716"
+    },
+    {
+      "path": "lane-total-integration/evidence-candidate/docs/work8/total-completion-20261013/CONTINUATION.json",
+      "sha256": "717419b16ff117eff2e71a3c2f725e1cb65b5ee54f5e2e6ac6aab9b1c3c15306"
+    }
+  ],
+  "checks": {
+    "all64UniqueIdsPreserved": true,
+    "allStatusesUnchanged": true,
+    "originalCounts": {
+      "PASS": 33,
+      "BLOCKED": 4,
+      "PENDING": 8
+    },
+    "amendmentCounts": {
+      "PENDING": 11,
+      "PASS": 8
+    },
+    "historicalDecisionsUnchanged": true,
+    "historicalAmendmentCountsAndContinuationExact": true,
+    "currentEvidenceLinksResolve": true,
+    "newProgrammePasses": 0,
+    "productionLedgerMutation": false
+  },
+  "scopeFindings": [
+    "Current4CI attributedpublished9080, notunexecutedbackendcandidate.",
+    "Earlier16filecandidate explicitlysupersededbycombined22filecandidate; source/tree/compiler scopes distinguished.",
+    "Frontend stagingonly pendingacceptedUIlineage; nofullpreservationclaim.",
+    "Localcompile andinterceptedcontext tests donotimplyhostednative/recovery/fullbusinessacceptance."
+  ],
+  "advisory": "Resolved: O40 wording now preserves truthful rejected/deferred R1/R5 presentation and conclusions where available, while separate O13/R2 mandatory genuine assessment/journey remains. No status changes.",
+  "newOriginalAcceptances": [],
+  "newAmendmentAcceptances": [],
+  "programmeDecision": "NO_GO"
+}

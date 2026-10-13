@@ -1,0 +1,43 @@
+{
+  "decision": "PASS_CHANGED_BOUNDARY_TRACKER_AND_O42_SUBGATE_RECONCILIATION",
+  "registerSha256": "a982c68fda1eb037166268d59ccf14ca6f882cb9f2d025b4cbb828bac5ec457b",
+  "trackerSha256": "1d4030b5e13c30b162fe7783b25e3296225e35c9813906fe57065a6ebc84cc70",
+  "counts": {
+    "PASS": 33,
+    "PENDING": 8,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "statusChangesFromApprovedEvidenceRegister": [],
+  "checks": [
+    "All64unique rows and orderedMarkdown rows reconcile; statuses unchanged from independently retrieved approved evidence register.",
+    "Original26/34 remainPASS;33/39/42remainPENDING; fullfinance/canonicalrestore/custody explicitly unproven.",
+    "Exact approved and connector publication identities/trees match independent readback. All4terminalworkflows independently re-read exact9080headSUCCESS.",
+    "CurrentNode22.23.2 runtime403passes accurately distinguished from retained4c00F29/1950/1381priorartifact evidence.",
+    "Work8NO_GO,Work9INACTIVE,NOT_BORN,LOCKED,draftunmerged and nodeployment preserved."
+  ],
+  "O42": {
+    "publicationAndChangedBoundaryCISubgate": "PASS_CONDITIONS_NOW_MET",
+    "evidence": [
+      "READBACK-RECEIPT.json",
+      "terminal-runs-independent.json",
+      "HH3-INDEPENDENT-HOSTED-ACCEPTANCE.json",
+      "F27-CLOCK-INDEPENDENT-HOSTED-ACCEPTANCE.json",
+      "RUNTIME-NODE22-REUSE-INDEPENDENT-ACCEPTANCE.json"
+    ],
+    "fullRequirement": "PENDING",
+    "remaining": [
+      "Genuine integrated owner/operational acceptance",
+      "Full runtime operational restoration and protected independent custody",
+      "Final originalsection25 certification dossier"
+    ],
+    "productionDeploymentRequired": false
+  },
+  "newFullOriginalRequirements": [],
+  "newFullAmendments": [],
+  "metadataNote": "newAcceptedOriginalIds[26,34] is retained historical campaign metadata, not new closures in thisHH3successor. Markdown explicitly says previous acceptance; recommend explicit current-batch arrays for machine consumers.",
+  "testsRepeated": 0
+}

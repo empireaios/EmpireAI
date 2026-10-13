@@ -1,0 +1,586 @@
+{
+  "recordType": "CURRENT_BASELINE_ORIGINAL_ZIP_PUBLICATION_SUITABILITY_REVIEW",
+  "createdAt": "2026-10-13T10:32:07.779801+00:00",
+  "reviewer": "assurance_alerting",
+  "decision": "SUITABLE_EXACT_ORIGINAL_BYTES",
+  "scope": "Targeted publication-suitability inspection only, not repeated acceptance examination",
+  "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "evidenceParent": "6681add01c6fe73a0911d2b06314efd4151cf65d",
+  "archives": [
+    {
+      "path": "independent-hh3-successor-readback/artifact-11801004789.zip",
+      "sha256": "6338edc96381004d3ed58628200bd45b8c8431159dd9cfca5fc8bf605f8e9d51",
+      "gitBlob": "e27c14fd47bc24c3f3a78d210dbb844ea3ba7b41",
+      "bytes": 1046,
+      "members": [
+        {
+          "path": "response-delivery-source-sha.txt",
+          "bytes": 41,
+          "sha256": "d03a8bd5acec8427e58a71658b3e0a8e39f6349169f6a70ec027c390826997d1"
+        },
+        {
+          "path": "response-delivery-retained.json",
+          "bytes": 1263,
+          "sha256": "e67be8e50f204c84c21f6e7bd21642f497671b7c43f10b11943e8de2c847c060"
+        }
+      ],
+      "decision": "SUITABLE_EXACT_ORIGINAL_ARCHIVE_FOR_AUTHORISED_EVIDENCE_BRANCH",
+      "privacyFindings": {
+        "credentialPatterns": 0,
+        "emailFinding": "None",
+        "sourceModification": "None; exact ZIP bytes unchanged"
+      }
+    },
+    {
+      "path": "independent-hh3-successor-readback/artifact-11801893390.zip",
+      "sha256": "429a70ff54e538a851bf8628a1251ce9492e1a68aea2ac6f056dce2a5472c4e4",
+      "gitBlob": "1f11a7a7c7e929a2869203aef5339cbe296a9f92",
+      "bytes": 14072,
+      "members": [
+        {
+          "path": "container-after.json",
+          "bytes": 8814,
+          "sha256": "888a964ea5dce4d6f5e1b53dee25f67bf5088ef67812fe2cf91d9abb9c8187da"
+        },
+        {
+          "path": "image.json",
+          "bytes": 3160,
+          "sha256": "99a840e476a52a4944d57b6044fba2b39c555d19abb11cb8220a4b2e65f38512"
+        },
+        {
+          "path": "container-before.json",
+          "bytes": 8253,
+          "sha256": "e5f5ff6362f19112299863285738033a14a78a428159f4ae2a27cc173e078477"
+        },
+        {
+          "path": "invalidate-error/child.log",
+          "bytes": 4734,
+          "sha256": "d6c016f9d97f844a5feaa008f58da13b584bf1fd742369767eec22b9dbaec527"
+        },
+        {
+          "path": "invalidate-error/process-cleanup.json",
+          "bytes": 723,
+          "sha256": "fb8a4856676f6361d7f2991413e898dd70f2bca5cb868eb754ae401043ffd4ed"
+        },
+        {
+          "path": "invalidate-error/receipt.json",
+          "bytes": 378,
+          "sha256": "73c79f9026c7838dcad48dbb490a98672dc02054f694943a35135a60f30283eb"
+        },
+        {
+          "path": "observer-error/child.log",
+          "bytes": 4984,
+          "sha256": "3828217c7e620efc72e0ab938f82745eccf022b6f3ba40e20ed433393c6db463"
+        },
+        {
+          "path": "observer-error/process-cleanup.json",
+          "bytes": 369,
+          "sha256": "81185ba26fd2c68aa1f2d33a7f409118c9894e2127aa9fee4f0d5eded52c613f"
+        },
+        {
+          "path": "observer-error/receipt.json",
+          "bytes": 459,
+          "sha256": "bd65d2ac466ff45b2935dfebb4b4b204bbd8f54a218a8f1b02d2d85a0dea81de"
+        },
+        {
+          "path": "source-sha.txt",
+          "bytes": 41,
+          "sha256": "d03a8bd5acec8427e58a71658b3e0a8e39f6349169f6a70ec027c390826997d1"
+        },
+        {
+          "path": "timeout/child.log",
+          "bytes": 4984,
+          "sha256": "7880d36522a12423a2b4191a168f043c57cf91c85fa9cb9c159ba93b493799ac"
+        },
+        {
+          "path": "timeout/process-cleanup.json",
+          "bytes": 362,
+          "sha256": "7a34fae9e969f4a192f61b538eaec572969f3a23e4865e61bb23cad2d194952c"
+        },
+        {
+          "path": "timeout/receipt.json",
+          "bytes": 459,
+          "sha256": "f2034e3ce729db17cdeb6bda6a91d6ac78af268da0f770750dd55d32128c4e24"
+        }
+      ],
+      "decision": "SUITABLE_EXACT_ORIGINAL_ARCHIVE_FOR_AUTHORISED_EVIDENCE_BRANCH",
+      "privacyFindings": {
+        "credentialPatterns": 0,
+        "emailFinding": "Only two generic bootstrap role addresses in HH3 seeded-account log; not an owner destination or personal recipient",
+        "sourceModification": "None; exact ZIP bytes unchanged"
+      }
+    },
+    {
+      "path": "independent-hh3-successor-readback/artifact-11802086626.zip",
+      "sha256": "d06de4a712149e0779f3024ed6f7480862ec3dccae5d45fd078f9b0cd21efce9",
+      "gitBlob": "2a1e404b853c30fa862b8701688753f35b32b56a",
+      "bytes": 377191,
+      "members": [
+        {
+          "path": "child-complete.json",
+          "bytes": 31251,
+          "sha256": "00d595535eeaa7e6fd7d063b86b545977deb0ada17704688ad1bde179b50196c"
+        },
+        {
+          "path": "container-inspect.json",
+          "bytes": 11526,
+          "sha256": "b73ec660cafea70942526d6871a6b152e6ff59b930d9a783442db50f216592b6"
+        },
+        {
+          "path": "external-baseline.json",
+          "bytes": 656016,
+          "sha256": "6ec52b1bed9bb7c2a246807693f1674913183d27a3558992618ebf9aba03938b"
+        },
+        {
+          "path": "external-detection.json",
+          "bytes": 657,
+          "sha256": "1c806262770fc819d935b7ab8901029e1898c1404df6ef9f356ca55518aee19e"
+        },
+        {
+          "path": "external-injection-observation.json",
+          "bytes": 705527,
+          "sha256": "7643626bd4b70f2ccf1bf39c9269a7cc353f93b4969a385db4958f395d431695"
+        },
+        {
+          "path": "external-receipt.json",
+          "bytes": 1526,
+          "sha256": "d741348bb910558a5c15c803d52e17d3e3f0e8a32ce4c1a278c06b76560b2ff2"
+        },
+        {
+          "path": "injected.json",
+          "bytes": 1572,
+          "sha256": "32fc5905d073bb4cffa8d039b5ea7283f96c40889ce8e57cc7ca6cf5cd21ecdd"
+        },
+        {
+          "path": "outer-start.json",
+          "bytes": 153,
+          "sha256": "d8d0e0ba58742178f2e6115cd4b22b474e2a21f2f4e78607213425d4960c8b27"
+        },
+        {
+          "path": "ready.json",
+          "bytes": 829,
+          "sha256": "61dacbcd1a3814695716c6c51731e8a389b20a61a06a4d1f467f712789f3a100"
+        },
+        {
+          "path": "startup-preflight.json",
+          "bytes": 237,
+          "sha256": "ca266536e4ac3295b9a11281f83ed057f5d7ca24bd5e24f604657ca81b4c0d53"
+        },
+        {
+          "path": "stderr.log",
+          "bytes": 411,
+          "sha256": "bcb1eef1e76e8489d58a6996598c54f7362e4a15206dc98cf555f14a75ffb600"
+        },
+        {
+          "path": "stdout.log",
+          "bytes": 350,
+          "sha256": "ccac0eb6c35fac81c2d3aa2922c54af8d3d673923a5c7f99e4dbcf2468ad9fbf"
+        },
+        {
+          "path": "volume/brain.sqlite.sqljs-owner.sqlite",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "volume/brain.sqlite.sqljs-owner.sqlite-journal",
+          "bytes": 512,
+          "sha256": "8013329665ae9032cdb05cba268acf07c84452a8af213e08bbf97cb58460a00a"
+        },
+        {
+          "path": "volume/commerce/runtime.sqlite",
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        {
+          "path": "volume/commerce/runtime.sqlite-shm",
+          "bytes": 32768,
+          "sha256": "268056d17e331845c9dfa61df1f27fb801bff7401235853e6a8d68add0855962"
+        },
+        {
+          "path": "volume/commerce/runtime.sqlite-wal",
+          "bytes": 2167152,
+          "sha256": "8a8c6c15765f1aa6fa1ddf459fdc8eef649e0c8b17c8d1805086dc8b6c9d06f4"
+        },
+        {
+          "path": "volume/commerce/runtime.sqlite.initialized",
+          "bytes": 39,
+          "sha256": "fb10295358d1d0db2598ba04daee68c4847ac49fda83acfabaa4d3ee526d6880"
+        },
+        {
+          "path": "volume/commissioning/assurance-discrepancy-proof-v1.json",
+          "bytes": 704,
+          "sha256": "8820a6ed789a3d41a27890378f60e2a2c3859a78959d31cc4fb7bc3582fb8009"
+        },
+        {
+          "path": "volume/commissioning/assurance-probe-af32a203-c1de-4e8d-9ec7-188bb3593343.sqlite",
+          "bytes": 16384,
+          "sha256": "533795032de61f052fae0251c41ec753e6069847d5c8a03e9c3e4068bfd92365"
+        },
+        {
+          "path": "volume/commissioning/assurance-probe-af32a203-c1de-4e8d-9ec7-188bb3593343.sqlite-shm",
+          "bytes": 32768,
+          "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+        },
+        {
+          "path": "volume/commissioning/assurance-probe-af32a203-c1de-4e8d-9ec7-188bb3593343.sqlite-wal",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "volume/commissioning/assurance.sqlite",
+          "bytes": 16384,
+          "sha256": "63a6c2be299cb167b954032994e745094a1420fb394d52e2c1c738de8930a5f9"
+        },
+        {
+          "path": "volume/commissioning/assurance.sqlite-shm",
+          "bytes": 32768,
+          "sha256": "6049db05bd8c54202276c39a2fd0219592e2f79f5e724a5b66db5f1b25e7f796"
+        },
+        {
+          "path": "volume/commissioning/assurance.sqlite-wal",
+          "bytes": 1660392,
+          "sha256": "8cbab2639c90c613c6e9b297bea53b4f68141f7cb33edfe3cd15f83d8c12404d"
+        },
+        {
+          "path": "volume/commissioning/assurance.sqlite.watchdog",
+          "bytes": 57,
+          "sha256": "056fdfa3e980bff28e09bcb7a915530f5e7a01b06dfc874c75d2b6c2b4a0db26"
+        },
+        {
+          "path": "volume/commissioning/communications.sqlite",
+          "bytes": 61440,
+          "sha256": "0d7318fa42c7ee19a9d24b2bb3908fd5144f3294a5c26dd6429f264261bbca0c"
+        },
+        {
+          "path": "volume/commissioning/intelligence.sqlite",
+          "bytes": 57344,
+          "sha256": "7d6caca84fc6a5672bbbebfc8903af28cfc727cb02a2f213e48fe5ded7361221"
+        },
+        {
+          "path": "volume/commissioning/pillow-institutional.sqlite",
+          "bytes": 8192,
+          "sha256": "895ef0b02679312214d9113e667e4c50fd5bd6bc7197914f12a204b22dbfa43c"
+        },
+        {
+          "path": "volume/commissioning/pillow-request-receipts.sqlite",
+          "bytes": 8192,
+          "sha256": "a9347360169e6ac0e02c53ffe56758ef6eedb8b1469f6dca3cecead9b6c74a55"
+        },
+        {
+          "path": "volume/commissioning/reconciliation-ws_empire_1.json",
+          "bytes": 3351,
+          "sha256": "b411f3eec71e7ad082e01950c10a40ef62e0090154309bb13b8141dd87d8f1e1"
+        },
+        {
+          "path": "volume/finance/evidence.sqlite",
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        {
+          "path": "volume/finance/evidence.sqlite-shm",
+          "bytes": 32768,
+          "sha256": "80f948907b1eb6046674fc063b9ab74d897d224965ff241c2a25f0c4bb213278"
+        },
+        {
+          "path": "volume/finance/evidence.sqlite-wal",
+          "bytes": 12392,
+          "sha256": "6ba97d828509fea10dbcd5cb0d47b5ba8b6612a10992cf1bc95328cdfb1a8a03"
+        },
+        {
+          "path": "volume/finance/evidence.sqlite.initialized",
+          "bytes": 43,
+          "sha256": "4e6daa1f09fa384fa33090c09ccfc5860e3c2003abf7b6ca9e92c4c70929cac4"
+        }
+      ],
+      "decision": "SUITABLE_EXACT_ORIGINAL_ARCHIVE_FOR_AUTHORISED_EVIDENCE_BRANCH",
+      "privacyFindings": {
+        "credentialPatterns": 0,
+        "emailFinding": "None",
+        "sourceModification": "None; exact ZIP bytes unchanged"
+      }
+    },
+    {
+      "path": "independent-hh3-successor-readback/artifact-11802195066.zip",
+      "sha256": "e1b0564b8323851b68099a3d41d9ab42c8cc93bd5a5fa0060d733cd174d2df12",
+      "gitBlob": "7ce66bfc17d7da4b7b2a6cfa69ae29afff1e117d",
+      "bytes": 1054,
+      "members": [
+        {
+          "path": "reasoning-admission-source-sha.txt",
+          "bytes": 41,
+          "sha256": "d03a8bd5acec8427e58a71658b3e0a8e39f6349169f6a70ec027c390826997d1"
+        },
+        {
+          "path": "reasoning-admission-retained.json",
+          "bytes": 1265,
+          "sha256": "2ef68131f6db9e038ad75bde92af97ea85d0ca08e7659bc7bba847bb63e9527f"
+        }
+      ],
+      "decision": "SUITABLE_EXACT_ORIGINAL_ARCHIVE_FOR_AUTHORISED_EVIDENCE_BRANCH",
+      "privacyFindings": {
+        "credentialPatterns": 0,
+        "emailFinding": "None",
+        "sourceModification": "None; exact ZIP bytes unchanged"
+      }
+    },
+    {
+      "path": "independent-hh3-successor-readback/artifact-11802225685.zip",
+      "sha256": "3e9e110ca4f5d08df5c0956ce8d7d02f06b82420504fe14b1587546b1e59dee6",
+      "gitBlob": "d4b44124d8b1f239d283db68743d1d91d31cc1b2",
+      "bytes": 4258,
+      "members": [
+        {
+          "path": "image.json",
+          "bytes": 5224,
+          "sha256": "fb7924621582b829f4dc8a328232e9e0320d50e8e5d8eb1b5cf6f47db387b8ca"
+        },
+        {
+          "path": "railway.toml",
+          "bytes": 941,
+          "sha256": "072898f7ae2d1e4f9a4f97d8221d7b7114358953bfd073bdba5ed50f23ebd47b"
+        },
+        {
+          "path": "railpack.json",
+          "bytes": 240,
+          "sha256": "67db9b9fe7c7a8d79c5b5018286ffd10a73dcbabebc506c72668c65dae6ddd7a"
+        },
+        {
+          "path": "retained-f29.json",
+          "bytes": 1284,
+          "sha256": "2480acd463d2b7b4014e670972b48af543d7178b162814c198dae3510e32c606"
+        },
+        {
+          "path": "runtime.json",
+          "bytes": 129,
+          "sha256": "76c26bf5a7d2e438abe6b83c93211845afd8975f507db983ea877ef158e4af16"
+        },
+        {
+          "path": "source-sha.txt",
+          "bytes": 41,
+          "sha256": "d03a8bd5acec8427e58a71658b3e0a8e39f6349169f6a70ec027c390826997d1"
+        }
+      ],
+      "decision": "SUITABLE_EXACT_ORIGINAL_ARCHIVE_FOR_AUTHORISED_EVIDENCE_BRANCH",
+      "privacyFindings": {
+        "credentialPatterns": 0,
+        "emailFinding": "None",
+        "sourceModification": "None; exact ZIP bytes unchanged"
+      }
+    }
+  ],
+  "databaseInventory": [
+    {
+      "path": "volume/finance/evidence.sqlite",
+      "table": "financial_evidence",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "commerce_runtime_receipts",
+      "rows": 31
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "commerce_runtime_tasks",
+      "rows": 3
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_twin_events",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_mission_preparations",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_simulation_enrollments",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_sim_finance_plans",
+      "rows": 1
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_sim_finance_events",
+      "rows": 10
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_sim_finance_admission",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_sim_finance_cursor",
+      "rows": 3
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_preparation_authority",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_twin_media",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_twin_communications",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_twin_authority",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_twin_admissions",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_twin_observations",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_twin_scheduler",
+      "rows": 0
+    },
+    {
+      "path": "volume/commerce/runtime.sqlite",
+      "table": "work8_fulfilment_scan",
+      "rows": 1
+    },
+    {
+      "path": "volume/commissioning/communications.sqlite",
+      "table": "communications",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/communications.sqlite",
+      "table": "access_audit",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/communications.sqlite",
+      "table": "oauth_clients",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/communications.sqlite",
+      "table": "oauth_codes",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/communications.sqlite",
+      "table": "oauth_tokens",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/communications.sqlite",
+      "table": "advisor_tasks",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/communications.sqlite",
+      "table": "advisor_task_events",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/pillow-request-receipts.sqlite",
+      "table": "receipts",
+      "rows": 1
+    },
+    {
+      "path": "volume/commissioning/pillow-institutional.sqlite",
+      "table": "records",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/assurance-probe-af32a203-c1de-4e8d-9ec7-188bb3593343.sqlite",
+      "table": "assurance_cycles",
+      "rows": 2
+    },
+    {
+      "path": "volume/commissioning/assurance.sqlite",
+      "table": "assurance_cycles",
+      "rows": 2
+    },
+    {
+      "path": "volume/commissioning/assurance.sqlite",
+      "table": "cp_records",
+      "rows": 45
+    },
+    {
+      "path": "volume/commissioning/assurance.sqlite",
+      "table": "cp_events",
+      "rows": 47
+    },
+    {
+      "path": "volume/commissioning/assurance.sqlite",
+      "table": "sqlite_sequence",
+      "rows": 1
+    },
+    {
+      "path": "volume/commissioning/assurance.sqlite",
+      "table": "assurance_demo_source",
+      "rows": 1
+    },
+    {
+      "path": "volume/commissioning/assurance.sqlite",
+      "table": "assurance_demo_observations",
+      "rows": 1
+    },
+    {
+      "path": "volume/commissioning/assurance.sqlite",
+      "table": "assurance_findings",
+      "rows": 7
+    },
+    {
+      "path": "volume/commissioning/assurance.sqlite",
+      "table": "assurance_ledger_baseline",
+      "rows": 0
+    },
+    {
+      "path": "volume/commissioning/intelligence.sqlite",
+      "table": "objects",
+      "rows": 23
+    },
+    {
+      "path": "volume/commissioning/intelligence.sqlite",
+      "table": "jobs",
+      "rows": 1
+    },
+    {
+      "path": "volume/commissioning/intelligence.sqlite",
+      "table": "schedules",
+      "rows": 5
+    },
+    {
+      "path": "volume/commissioning/intelligence.sqlite",
+      "table": "quotas",
+      "rows": 1
+    }
+  ],
+  "basis": [
+    "All ZIP filenames and payloads inspected; no path traversal, private key or provider token formats found.",
+    "HH3 inspected container/image environment contains only test/source/runtime configuration; no provider credentials. Only evidence bind mount. Child logs contain two generic seeded role-account addresses; no passwords or personal recipient address.",
+    "F27 inspected environment has runtime/build flags, no provider credentials; networknone and evidence-only bind. Controlled fake provider, zero inference and external effects.",
+    "F27 finance events explicitly SIMULATION with synthetic assumptionRef; financial_evidence table0, communications/OAuth tables0. Retained real-world224/227-call accounting snapshot not present.",
+    "Intelligence, assurance and receipt stores belong to isolated synthetic examination; raw WALs retained as exact original bytes.",
+    "Two corpus reuse archives and runtime/F29 reuse archive contain hashes/run/source references and build configuration, not private request transcripts."
+  ],
+  "bytesChanged": false,
+  "archivesRegenerated": false,
+  "acceptanceTestsRepeated": 0,
+  "requiredPreservation": "Add all five exact original ZIPs to proposed durable evidence tree alongside compact current acceptance receipts. Hashes alone are insufficient preservation.",
+  "limits": "No redaction applied; seeded generic role addresses explicitly disclosed in this suitability decision. This receipt establishes publication suitability of these exact archives only."
+}

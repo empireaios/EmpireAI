@@ -1,0 +1,122 @@
+{
+  "recordType": "LOCAL_EXACT_CANDIDATE_PENDING_PUBLICATION_AUTHORITY",
+  "commit": "ab2e1eb9f3af764ff3e3e465cff32f0b2d5f1d48",
+  "tree": "587adf376276133507cb1fa10d8f5ab02da01dcf",
+  "parent": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "baseTree": "8fb6f986618bb950fa424a37f721a2156098f963",
+  "files": [
+    {
+      "path": ".github/workflows/assurance-owner-browser.yml",
+      "mode": "100644",
+      "blob": "0d563e41fac3dee0685e145c2a847eb99905dccf",
+      "sha256": "23e68cbed94b6672e21e9a80cb65f4a3fe5f359a86f6b173c58b9f6061a6257a",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/app/api/owner/commerce/twin/context/route.ts",
+      "mode": "100644",
+      "blob": "c5733755d73f1e09399081efc5cff6ce5eb4cfc4",
+      "sha256": "b3cf0b2617837f2f39ac245ecaecc892fe4597d6888be43e2d7feef6d25d8e8f",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/components/cockpit/executive/PillowConversationWorkspace.tsx",
+      "mode": "100644",
+      "blob": "df934bf25f33765d9ba6f2a1c0fd90687314a614",
+      "sha256": "b56e65a23a945d1c40bfa2c328c678525875e7b4c0795724008b5a428fb14645",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/components/owner/GovernedCommerce.tsx",
+      "mode": "100644",
+      "blob": "588078e6a5e432955a456358f3796e04826b0570",
+      "sha256": "76ae93a9434aa2faca55cd441406426116d537119eb09a64cf9c9ca105d277e2",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/components/owner/ProductChatActions.tsx",
+      "mode": "100644",
+      "blob": "3734e86b06f9d2f6c03174c01f5513c3294f75e5",
+      "sha256": "ce17e77a3209e92e4e944170c60114c0788457fc193bd09352f0670dd3a36260",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/ListingCatalogue.tsx",
+      "mode": "100644",
+      "blob": "0dc8d17c33629045c9c718c4c827232e73a6bc9b",
+      "sha256": "649a68620da18e634d0937a48f15aeb51ba349c6ca6d6d07d300be226bd75994",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/OrderRegister.tsx",
+      "mode": "100644",
+      "blob": "6f00004e17143c7fe29ea876d0513dbed2049f54",
+      "sha256": "fc0495542bf30efd3ef21067a60ef9fd10c907dfc5a23d42743a4d2d3221215f",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "mode": "100644",
+      "blob": "fbc9996dd415180f762efc761eec048f7db82869",
+      "sha256": "32dfd2d86ac9b4862f145899aa81ad0e24d3261be3afa9f6efda9aca6d9e991b",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/QualificationDossier.tsx",
+      "mode": "100644",
+      "blob": "bcb0032e82c17e1bba9681982d0fbdea07531ae1",
+      "sha256": "1b64cfa499ebd6e6096e1a929a1464b7b4024e18b6f30316fe3197fd03078a00",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-backend.mts",
+      "mode": "100644",
+      "blob": "d9701f3b668ddbb61e577a03349a7c8b23598c27",
+      "sha256": "4b34b3ca061f12489720ebaab13850a3028bba9484de826fd5922c3856369781",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-native.mjs",
+      "mode": "100644",
+      "blob": "cf012c67fb5a9cc1ba0e61ecc6023c808efdc6cc",
+      "sha256": "efc9cd60c833ef963ba29896ba4bbb2d96a838c663debc2bb8c36675531a2dbe",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+      "mode": "100644",
+      "blob": "9de364f61cf3542cbb15daeb106dd9213bdc07bd",
+      "sha256": "a59c9edb5aa07b7e98df857685c6deb5afd8f074d4ae548998588fcdf514981a",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/lib/pillow/pending-receipts.ts",
+      "mode": "100644",
+      "blob": "04846649a7d16a1c336960a997c7fb9507547a0d",
+      "sha256": "02b9abaee74a22777b26829690baad86728a61b2f59caf4d59b94809ea00964b",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/lib/pillow/product-context.test.ts",
+      "mode": "100644",
+      "blob": "0a5e633570eb891ab879483dccad032f81ab643e",
+      "sha256": "d71ffad1f36101ebc9b496e3cf7ca9ca76a5b0189cfb41500f63661648a15e7f",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    },
+    {
+      "path": "empireai-web/lib/pillow/product-context.ts",
+      "mode": "100644",
+      "blob": "890cdf325299724357ecf43fabf9c9b677d256c8",
+      "sha256": "dec1218fc29f96ffdf0efbb76d32574be18d088fb6709844b0642d550667d1ec",
+      "review": "lane-total-certification/A8-FINAL-FRONTEND-REVIEW.json (staging-only; prior accepted source reconciliation required)"
+    }
+  ],
+  "changedPaths": 15,
+  "review": "PASS_COMPLETE_TREE",
+  "publication": false,
+  "hosted": "NOT_EXECUTED",
+  "reviewReceipt": "../lane-total-certification/A8-COMPLETE-FRONTEND-TREE-REVIEW.json",
+  "durability": "LOCAL_NEW_OBJECTS_NOT_DURABLY_STAGED_REQUIRES_AUTHORITY",
+  "publicationDisposition": "WITHHELD_PENDING_ACCEPTED_FRONTEND_SOURCE_PRESERVATION",
+  "requestedAuthority": "DURABLE_STAGING_ONLY"
+}

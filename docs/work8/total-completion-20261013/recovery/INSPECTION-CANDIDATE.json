@@ -1,0 +1,30 @@
+{
+  "schema": "HH4_INSPECTION_RESTORATION_CANDIDATE",
+  "status": "INDEPENDENT_REVIEW_PENDING",
+  "base": "reviewed16fileHH4candidate",
+  "files": {
+    "scripts/work8/hh4-inspection-restoration.test.mjs": {
+      "sha256": "fd27d8be03f1eff03f0672cad29ddc600595dc77b1b2ad9a6529cfd6fc92c177",
+      "mode": "100644"
+    },
+    "scripts/work8/hh4-inspection-restoration.mjs": {
+      "sha256": "ea9716dcb0be547e606efa98d924e139e65e5935699528cbff648fda2d1a2137",
+      "mode": "100644"
+    },
+    ".github/workflows/pillow-runtime-repair-ci.yml": {
+      "sha256": "186d29d00bcf4ccac2ef223a6aca526b965f8495750b6ff9947789fe6470bda7",
+      "mode": "100644"
+    }
+  },
+  "tests": "3PASS_Node24.19.0_changedreaderboundaries_only",
+  "actualHostedArchive": "NOT_EXECUTED",
+  "scope": "Fresh historicalinspectioncopy+losslesscanonicalallstore equality; nooperationalrestore/replay/custody/sessionsemanticacceptance",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": [],
+  "publication": false,
+  "unsupportedSqliteTypes": [
+    "virtual tables",
+    "shadow tables",
+    "nonfinite REAL values"
+  ]
+}

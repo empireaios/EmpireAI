@@ -1,0 +1,112 @@
+{
+  "schema": "WORK8_A8_COMPLETE_FRONTEND_TREE_RECOMPUTATION_V1",
+  "decision": "EXACT_TREE_VERIFIED",
+  "commit": "ab2e1eb9f3af764ff3e3e465cff32f0b2d5f1d48",
+  "tree": "587adf376276133507cb1fa10d8f5ab02da01dcf",
+  "parent": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+  "baseTree": "8fb6f986618bb950fa424a37f721a2156098f963",
+  "verifiedChangedFiles": 15,
+  "touchedTrees": [
+    {
+      "path": ".github/workflows/",
+      "tree": "c29002f942b9ccb9e18939cedbec21e06e5d7488",
+      "untouchedEntries": 4
+    },
+    {
+      "path": ".github/",
+      "tree": "f853614ad314565307a3a654d299ea72b4cc5183",
+      "untouchedEntries": 0
+    },
+    {
+      "path": "empireai-web/app/api/owner/commerce/twin/context/",
+      "tree": "cd7a7ec6e07a2a6a723e8bf573247bfeea2a5a2b",
+      "untouchedEntries": 0
+    },
+    {
+      "path": "empireai-web/app/api/owner/commerce/twin/",
+      "tree": "eed64b1fb2ef18bc1204fafac5f802b4031da7e6",
+      "untouchedEntries": 0
+    },
+    {
+      "path": "empireai-web/app/api/owner/commerce/",
+      "tree": "dea99dea509e329105d17934fd733a3c8e2dd2b2",
+      "untouchedEntries": 2
+    },
+    {
+      "path": "empireai-web/app/api/owner/",
+      "tree": "97139138eb00568260bda78b8b686c73d908f508",
+      "untouchedEntries": 6
+    },
+    {
+      "path": "empireai-web/app/api/",
+      "tree": "9d3d9350637e1677cba09068c639539b09edd9c5",
+      "untouchedEntries": 8
+    },
+    {
+      "path": "empireai-web/app/",
+      "tree": "41db35df5c620d2fad7350bd0f9be47327bd132e",
+      "untouchedEntries": 8
+    },
+    {
+      "path": "empireai-web/components/cockpit/executive/",
+      "tree": "d88fbcf8d4cdc6af6f925accf58063727108b3b4",
+      "untouchedEntries": 18
+    },
+    {
+      "path": "empireai-web/components/cockpit/",
+      "tree": "50ca3c3ccdf96f155fe1a58c3127423508e2df3e",
+      "untouchedEntries": 107
+    },
+    {
+      "path": "empireai-web/components/owner/work7/",
+      "tree": "8d8ecf0f74a321e75c63ca38fb994d41860882e1",
+      "untouchedEntries": 17
+    },
+    {
+      "path": "empireai-web/components/owner/",
+      "tree": "cb4a670b27ba201856b79c8a2c1db5b57f51fd70",
+      "untouchedEntries": 9
+    },
+    {
+      "path": "empireai-web/components/",
+      "tree": "454d861ffa7f7f43c6bdcc2e99f5b4bdd1cab08f",
+      "untouchedEntries": 3
+    },
+    {
+      "path": "empireai-web/e2e/",
+      "tree": "1cd9fb9eb51ed94b32c83ebd59668c1be6856005",
+      "untouchedEntries": 16
+    },
+    {
+      "path": "empireai-web/lib/cockpit/global-assistant/",
+      "tree": "803bcf9f541917e76689a6cc447deefa5ba9ece2",
+      "untouchedEntries": 1
+    },
+    {
+      "path": "empireai-web/lib/cockpit/",
+      "tree": "94b23afdf7e363449accfa90b88e5cb40ed3386a",
+      "untouchedEntries": 17
+    },
+    {
+      "path": "empireai-web/lib/pillow/",
+      "tree": "28a4eb302f7d07b1be522887dd326fc6d37df1c3",
+      "untouchedEntries": 17
+    },
+    {
+      "path": "empireai-web/lib/",
+      "tree": "3bea099f933a9333dab777cae8658dcdf2fa1ae6",
+      "untouchedEntries": 101
+    },
+    {
+      "path": "empireai-web/",
+      "tree": "01cd472ab32b5c9a0b41f5c196af43b714d588e1",
+      "untouchedEntries": 16
+    },
+    {
+      "path": "/",
+      "tree": "587adf376276133507cb1fa10d8f5ab02da01dcf",
+      "untouchedEntries": 145
+    }
+  ],
+  "method": "Independently parsed/rehashed raw Git base trees, overlaid reviewed exact blob bytes/modes, Git-sorted/rehashed every touched directory; untouched entries preserved by equality. Candidate rawcommit recomputed. No remote stagedreadback claimed."
+}

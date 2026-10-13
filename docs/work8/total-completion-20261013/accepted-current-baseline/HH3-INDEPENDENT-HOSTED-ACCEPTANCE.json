@@ -1,0 +1,208 @@
+{
+  "decision": "PASS_COMPLETE_ORIGINAL_HH3_COMPILED_COORDINATOR_EXAMINATION_SCOPE",
+  "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "tree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "run": 38377517598,
+  "job": 115229518066,
+  "artifact": 11801893390,
+  "artifactSha256": "429a70ff54e538a851bf8628a1251ce9492e1a68aea2ac6f056dce2a5472c4e4",
+  "node": "22.23.2",
+  "image": "sha256:44a4526a80b65782c352613432c0ccaadefe6fca3a726b671f1b51879c0bf62b",
+  "container": "0124558660d37c1e3c27b271e22104eb378ded5be4c00b4c35f9d007f8e20820",
+  "durationSeconds": 24.530682,
+  "originalLimitSeconds": 480,
+  "assertions": [
+    {
+      "criterion": "Actual compiled application coordinator with source-bound generated capture scope and primary callback",
+      "decision": "PASS",
+      "evidence": "Published coordinator imports compiled primary participant; exact-image child imports compiled buildApp and capture scope. Scope object remains process-local; all receipts source9080."
+    },
+    {
+      "criterion": "Timeout and observer callback error invalidate manifest before releasing primary, Redis ownership/pause and native writer exclusion",
+      "decision": "PASS",
+      "evidence": "Both receipts and actual compiled coordinator native/Redis probes passed; ordered held/release/settled trace."
+    },
+    {
+      "criterion": "Invalidation error never releases exclusion or falsely settles",
+      "decision": "PASS",
+      "evidence": "After5.5s original5s hold boundary, primary/Redis/native remain held and retained manifest exists; external termination required."
+    },
+    {
+      "criterion": "Bounded cleanup, independent controller and no live process-group survivors",
+      "decision": "PASS",
+      "evidence": "3 distinct owned groups versuscontroller1; observed start identities; zero live and observed identity survivors; container exits0 withoutrestart in24.530681s."
+    },
+    {
+      "criterion": "Original480s termination limit and complete examination evidence retention",
+      "decision": "PASS",
+      "evidence": "Original limit unchanged; all3 receipts/logs/cleanup, before/after/image/source records retained in exact hashed GitHubartifact."
+    },
+    {
+      "criterion": "No unauthorised operational restart",
+      "decision": "PASS_SCOPED",
+      "evidence": "Container restartcount0, restartpolicy no, no network; startWorkers/startScheduler false and Pillowdisabled in child; fullDomainRecoveryfalse/bootAllowedfalse asserted. No restored operational runtime exercised."
+    },
+    {
+      "criterion": "No financial or canonical-record loss across whole-application restoration",
+      "decision": "UNPROVEN_OUTSIDE_HH3_SCOPE",
+      "evidence": "HH3 uses explicitly synthetic recovery_fixture inventory with requireCompletefalse, not full domain constructors. Artifact retains receipts, not full before/after canonical stores or actual financial histories. Accepted earlier conservation is preserved but not re-proved as full restoration."
+    }
+  ],
+  "receipts": [
+    {
+      "mode": "timeout",
+      "receipt": {
+        "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+        "mode": "timeout",
+        "scope": "HH3_COMPILED_COORDINATOR_ONLY",
+        "manifestInvalidated": true,
+        "primaryReleased": true,
+        "redisReleased": true,
+        "nativeReleased": true,
+        "error": "Error: GENERATED_CAPTURE_HELD_EPOCH_EXPIRED",
+        "fullDomainRecovery": false,
+        "protectedCustody": false,
+        "events": [
+          "primary-enter",
+          null,
+          "held",
+          null,
+          "primary-release",
+          "settled"
+        ]
+      },
+      "processCleanup": {
+        "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+        "mode": "timeout",
+        "group": 14,
+        "controllerGroup": 1,
+        "signal": "SIGKILL",
+        "observed": [
+          {
+            "pid": 14,
+            "state": "R",
+            "group": 14,
+            "session": 14,
+            "start": "62595"
+          }
+        ],
+        "remainingLive": 0,
+        "observedIdentitySurvivors": 0,
+        "zombiesAreTerminated": true
+      }
+    },
+    {
+      "mode": "observer-error",
+      "receipt": {
+        "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+        "mode": "observer-error",
+        "scope": "HH3_COMPILED_COORDINATOR_ONLY",
+        "manifestInvalidated": true,
+        "primaryReleased": true,
+        "redisReleased": true,
+        "nativeReleased": true,
+        "error": "Error: HH3_LABELLED_OBSERVER_FAILURE",
+        "fullDomainRecovery": false,
+        "protectedCustody": false,
+        "events": [
+          "primary-enter",
+          null,
+          "held",
+          null,
+          "primary-release",
+          "settled"
+        ]
+      },
+      "processCleanup": {
+        "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+        "mode": "observer-error",
+        "group": 63,
+        "controllerGroup": 1,
+        "signal": "SIGKILL",
+        "observed": [
+          {
+            "pid": 63,
+            "state": "S",
+            "group": 63,
+            "session": 63,
+            "start": "63558"
+          }
+        ],
+        "remainingLive": 0,
+        "observedIdentitySurvivors": 0,
+        "zombiesAreTerminated": true
+      }
+    },
+    {
+      "mode": "invalidate-error",
+      "receipt": {
+        "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+        "mode": "invalidate-error",
+        "scope": "HH3_COMPILED_COORDINATOR_ONLY",
+        "primaryHeld": true,
+        "redisHeld": true,
+        "nativeHeld": true,
+        "settled": false,
+        "requiresExternalTermination": true,
+        "fullDomainRecovery": false,
+        "protectedCustody": false,
+        "events": [
+          "primary-enter",
+          null,
+          "held"
+        ]
+      },
+      "processCleanup": {
+        "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+        "mode": "invalidate-error",
+        "group": 108,
+        "controllerGroup": 1,
+        "signal": "SIGKILL",
+        "observed": [
+          {
+            "pid": 108,
+            "state": "S",
+            "group": 108,
+            "session": 108,
+            "start": "64018"
+          },
+          {
+            "pid": 115,
+            "state": "S",
+            "group": 108,
+            "session": 108,
+            "start": "64023"
+          },
+          {
+            "pid": 125,
+            "state": "S",
+            "group": 108,
+            "session": 108,
+            "start": "64452"
+          },
+          {
+            "pid": 132,
+            "state": "S",
+            "group": 108,
+            "session": 108,
+            "start": "64455"
+          }
+        ],
+        "remainingLive": 0,
+        "observedIdentitySurvivors": 0,
+        "zombiesAreTerminated": true
+      }
+    }
+  ],
+  "originalRequirementClosure": {
+    "O33": "PENDING: full runtime writer cohort, complete operational restoration/replay and canonical domain equality remain unproven",
+    "O39": "PENDING: protected independent complete-state custody and independent restoration remain unproven"
+  },
+  "newFullOriginalRequirements": [],
+  "newFullAmendments": [],
+  "limits": [
+    "Successful HH3 is a complete scoped examination acceptance, not full recovery certification.",
+    "No off-host custody or genuine financial/business-state proof inferred from synthetic fixture records.",
+    "Existing original26/34 acceptance retained independently of changed clock verification."
+  ]
+}

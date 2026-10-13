@@ -1,0 +1,2382 @@
+{
+  "recordType": "HH4_COMPLETE_CANDIDATE_INDEPENDENT_GIT_TREE_VERIFICATION",
+  "createdAt": "2026-10-13T10:17:20.465442+00:00",
+  "reviewer": "recovery_review",
+  "verdict": "PASS_EXACT_REVIEWED_SOURCE_TREE",
+  "commit": "dabd8d8c114b64ff388f29615646b61e92ad5a16",
+  "tree": "f0ecc0c0231c38e9b5d15da88c0881c992396475",
+  "parent": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "baseTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "rawCommitIdentityRecomputed": true,
+  "singleParentVerified": true,
+  "changedFilesExactlyReviewed": true,
+  "verifiedFileCount": 16,
+  "verifiedPaths": [
+    ".github/workflows/pillow-runtime-repair-ci.yml",
+    "backend/src/index.ts",
+    "backend/src/runtime/tier0-isolated-primary.ts",
+    "backend/src/runtime/work8-generated-worker-adoption.ts",
+    "backend/src/runtime/work8-generated-worker-lifecycle.ts",
+    "backend/src/runtime/work8-recovery-capture.ts",
+    "deployment/work8-lifecycle-markers.cjs",
+    "deployment/work8-recovery-set.cjs",
+    "scripts/work8/hh4-domain-state.mjs",
+    "scripts/work8/hh4-generated-primary.mjs",
+    "scripts/work8/hh4-generated-worker.mjs",
+    "scripts/work8/hh4-held-capture-controller.mjs",
+    "scripts/work8/hh4-held-capture-controller.test.mjs",
+    "scripts/work8/hh4-outer-cohort.mjs",
+    "scripts/work8/hh4-outer-cohort.test.mjs",
+    "scripts/work8/hh4-readiness-controller.mjs"
+  ],
+  "changedAncestorTrees": [
+    {
+      "path": "scripts/work8/",
+      "tree": "606831eb8793ade718a2e98d768051c6758b5e7e",
+      "recomputed": true
+    },
+    {
+      "path": "scripts/",
+      "tree": "7a01a23df0ee2731d46234b2c7fadbea6b596975",
+      "recomputed": true
+    },
+    {
+      "path": "backend/src/runtime/",
+      "tree": "951907c1b249207f8733f5f47d2282a2bbeffa50",
+      "recomputed": true
+    },
+    {
+      "path": "backend/src/",
+      "tree": "38244ac191a7ff4bbb549d4d499626fe28d49a94",
+      "recomputed": true
+    },
+    {
+      "path": "backend/",
+      "tree": "086336123636f1e5a321979669e28d0e1909ad87",
+      "recomputed": true
+    },
+    {
+      "path": ".github/workflows/",
+      "tree": "75fd10fcce5c2d53ac0ef2aae37f0ce46afeb0b0",
+      "recomputed": true
+    },
+    {
+      "path": ".github/",
+      "tree": "257c0d50f39b42f9dff5c777dd66cff1a1b8bf27",
+      "recomputed": true
+    },
+    {
+      "path": "deployment/",
+      "tree": "37bcf2ad38ad840779e301d9c628b7a1201b39bf",
+      "recomputed": true
+    },
+    {
+      "path": "/",
+      "tree": "f0ecc0c0231c38e9b5d15da88c0881c992396475",
+      "recomputed": true
+    }
+  ],
+  "unchangedEntries": [
+    {
+      "path": "EMPIREAI_ARCHITECT_REPORT.md",
+      "mode": "100644",
+      "object": "986c895b91c2f4883406009b4a5ded31e2b5c926"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_MANAGED_DEPLOYMENT_SYNCHRONIZATION.md",
+      "mode": "100644",
+      "object": "9f8039c90514d4f168b9e758eaef45fc132bdcaf"
+    },
+    {
+      "path": "BL-C.md",
+      "mode": "100644",
+      "object": "81bea78f5254b5df8a7663abea76d86fb7d3bf6e"
+    },
+    {
+      "path": "scripts/sync-pillow-governance.mjs",
+      "mode": "100644",
+      "object": "0a2d19f4c13987644014a3c7aa20064ebe8156b4"
+    },
+    {
+      "path": "scripts/gen-supplier-product-sync.mjs",
+      "mode": "100644",
+      "object": "7caee737261b6b7e6e44003743a1964ac6ee8ea1"
+    },
+    {
+      "path": "scripts/append-bridge-return-types.mjs",
+      "mode": "100644",
+      "object": "a51185f2beaee78c896b036010a88255eedddde9"
+    },
+    {
+      "path": "scripts/evaluate-certification-evidence.test.mjs",
+      "mode": "100644",
+      "object": "c6d32acf45fecbb8333179c04f65c0e4f761d3d6"
+    },
+    {
+      "path": "scripts/verify-product-path-ci.mjs",
+      "mode": "100644",
+      "object": "79ff680dc26d3abcecd6ee9b3e25f0fe5a78bb73"
+    },
+    {
+      "path": "scripts/generate-build-bible-pdf.py",
+      "mode": "100644",
+      "object": "ad41fb910bbc2c4f34640d6effc5494d41074f77"
+    },
+    {
+      "path": "scripts/verify-build-runtime.test.mjs",
+      "mode": "100644",
+      "object": "ea45555c3e9de93cb153431b2d5c9546bdb19148"
+    },
+    {
+      "path": "scripts/certification-harnesses",
+      "mode": "40000",
+      "object": "239f0154cacf5ff593f1e0b41b8c0b42fcd4befe"
+    },
+    {
+      "path": "scripts/evaluate-certification-evidence.mjs",
+      "mode": "100644",
+      "object": "a7d92fdaee475350a089785045f28509078166fa"
+    },
+    {
+      "path": "scripts/sync-pillow-governance.ts",
+      "mode": "100644",
+      "object": "7dae013980b84ca01038c5f6e61f48348a6b0eb6"
+    },
+    {
+      "path": "scripts/analyze-pillow-exports.mjs",
+      "mode": "100644",
+      "object": "f47ef7263ad4f1df6666c75db9efb66e54389095"
+    },
+    {
+      "path": "scripts/collect-economics-held-cases.test.mjs",
+      "mode": "100644",
+      "object": "a74950aab1a8538ffa01440a7b3cfe6a711af3d4"
+    },
+    {
+      "path": "scripts/old-source-preservation-fixture.mjs",
+      "mode": "100644",
+      "object": "2d56b920b08e44b48214890b60cb023c2f361fcf"
+    },
+    {
+      "path": "scripts/collect-economics-held-cases.mjs",
+      "mode": "100644",
+      "object": "16d31f0b63e8ccf2278edcf7089ac5f1ccca4cda"
+    },
+    {
+      "path": "scripts/generate-bridge-exports.mjs",
+      "mode": "100644",
+      "object": "f0b447bbb4a20ac331c46730aa1bbeeba4f64155"
+    },
+    {
+      "path": "scripts/CERTIFICATION_EVIDENCE_EVALUATOR.md",
+      "mode": "100644",
+      "object": "ce2f805d4ba1f392c25e89ca6a41ff9dea9e788f"
+    },
+    {
+      "path": "scripts/verify-build-runtime.mjs",
+      "mode": "100644",
+      "object": "7a08fcf905ee7d43ee61f29fa36c892f130724c1"
+    },
+    {
+      "path": "scripts/fix-1688-module.mjs",
+      "mode": "100644",
+      "object": "c8909e6dd470c7f8dd10c779f176866b33fec262"
+    },
+    {
+      "path": "scripts/append-pillow-exports.mjs",
+      "mode": "100644",
+      "object": "de8d5e4f4377a681c55e4e35b83a6453cf0a89c1"
+    },
+    {
+      "path": "scripts/work8/hh3-compiled-child.mjs",
+      "mode": "100644",
+      "object": "5d6026adf10b0761bf0d26102bf7aeef9319bff5"
+    },
+    {
+      "path": "scripts/work8/tests",
+      "mode": "40000",
+      "object": "dabaf83a718f704b11ff5a1d4956ef56489b7836"
+    },
+    {
+      "path": "scripts/work8/f27-external-oracle.cjs",
+      "mode": "100644",
+      "object": "8e7811acb80d7ebe8a9ceb7fe1f71a04ff5f2ea0"
+    },
+    {
+      "path": "scripts/work8/autonomous-locks.test.ts",
+      "mode": "100644",
+      "object": "89d0ab097177821cea34d4bccddf3539a0e5cc46"
+    },
+    {
+      "path": "scripts/work8/hh3-compiled-coordinator.mjs",
+      "mode": "100644",
+      "object": "f4e523d4d9684697fc42b466285d54100aebd7fd"
+    },
+    {
+      "path": "scripts/work8/incoming-only-exec.py",
+      "mode": "100644",
+      "object": "383e369b731677e1959107b93558096e54d2e27f"
+    },
+    {
+      "path": "scripts/work8/f29-contained-runtime.cjs",
+      "mode": "100644",
+      "object": "a87a8adcab853e40520ed362ff09e54a6e113394"
+    },
+    {
+      "path": "scripts/work8/hh3-owned-process-group.mjs",
+      "mode": "100644",
+      "object": "d698db128bb2203a838151094a506987fc74db6b"
+    },
+    {
+      "path": "scripts/work8/isolated-exec.py",
+      "mode": "100644",
+      "object": "eafdcf2543c41d3a632a8d16a7db025e5bea8a36"
+    },
+    {
+      "path": "scripts/work8/run-simulated-fx.ts",
+      "mode": "100644",
+      "object": "951f6959b35efc9acc71caec627d05828c9e8e1e"
+    },
+    {
+      "path": "scripts/work8/full-topology-exam.cjs",
+      "mode": "100644",
+      "object": "1c94d1a3e2f8bbff102cfaa2ca96d0f7ac8e0574"
+    },
+    {
+      "path": "scripts/work8/scheduler-misfire-exam.mts",
+      "mode": "100644",
+      "object": "32c9f264dd2bc200cb6f0e3db50fed69fd681a16"
+    },
+    {
+      "path": "scripts/work8/f29-outer-controller.cjs",
+      "mode": "100644",
+      "object": "62824b8c4b86fec2abd71cb25e9395f92886eb33"
+    },
+    {
+      "path": "scripts/work8/resource-soak.mjs",
+      "mode": "100644",
+      "object": "aa22c0fdae897357b4636e7cf5d5f0ffdbdea10a"
+    },
+    {
+      "path": "scripts/work8/twin-wallclock.ts",
+      "mode": "100644",
+      "object": "7c7add4ec96859a4b52b09506775d61394c7711b"
+    },
+    {
+      "path": "scripts/work8/owner-comparables-browser-backend.mts",
+      "mode": "100644",
+      "object": "00d6b17917cb94a04bbe6a836253805aa2d279ea"
+    },
+    {
+      "path": "scripts/work8/shared-store-days.test.ts",
+      "mode": "100644",
+      "object": "9cdb8420120c5817866687f06c6d94f180bdcd07"
+    },
+    {
+      "path": "scripts/work8/owner-inbox-browser-backend.mts",
+      "mode": "100644",
+      "object": "125949e099addcbbdefc634ed4e52801932f7fcd"
+    },
+    {
+      "path": "scripts/work8/scheduler-misfire-child.mts",
+      "mode": "100644",
+      "object": "d915959815a8cf88f2762e5c70ca72efad08c870"
+    },
+    {
+      "path": "scripts/work8/f29-financial-proof.cjs",
+      "mode": "100644",
+      "object": "12379e9f7d3439dab69e13f93945098972949d48"
+    },
+    {
+      "path": "scripts/work8/f27-change-boundary.cjs",
+      "mode": "100644",
+      "object": "c547af658a0041464ab516637274f41523d69784"
+    },
+    {
+      "path": "scripts/work8/hh3.Dockerfile.dockerignore",
+      "mode": "100644",
+      "object": "66967be0e7a589dba33abf0cf8df506cb8194e31"
+    },
+    {
+      "path": "scripts/work8/soak.mjs",
+      "mode": "100644",
+      "object": "a50c5a677ddf9dd20c05e0153cc59def2e5f8b21"
+    },
+    {
+      "path": "scripts/work8/upgrade-rollback.ts",
+      "mode": "100644",
+      "object": "117bd9ce3b8ef1d7425b7766bd26b84dd6d19671"
+    },
+    {
+      "path": "scripts/work8/shared-runtime-soak.mjs",
+      "mode": "100644",
+      "object": "7dc0608fd1b74e06fa5bb3ebc873e6c304c09da3"
+    },
+    {
+      "path": "scripts/work8/hh3.Dockerfile",
+      "mode": "100644",
+      "object": "e0198a1cc19e707761d61d52dfd0eb2ee009648a"
+    },
+    {
+      "path": "scripts/work8/f27-outer-controller.cjs",
+      "mode": "100644",
+      "object": "8fd700f0e8a392b84faf94282f2b975697614c9c"
+    },
+    {
+      "path": "scripts/work8/retained-freshness-readback.ts",
+      "mode": "100644",
+      "object": "2b23247475c69df4af83dda79ae3929757ca8277"
+    },
+    {
+      "path": "scripts/gen-1688-from-aliexpress.mjs",
+      "mode": "100644",
+      "object": "08191985c08696a40712376a1edc3f17fe7f0505"
+    },
+    {
+      "path": "scripts/gen-aliexpress-from-cj.mjs",
+      "mode": "100644",
+      "object": "61d9fa639201c63a7918ed8a5f2abf4f2fe5e4c8"
+    },
+    {
+      "path": "EMPIREAI_COMMERCIAL_BUSINESS_DOCTRINE_CBD.md",
+      "mode": "100644",
+      "object": "db9bf6faf3eea177f24c19ab529aa1d71bd2dacf"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_V1_OPERATIONAL_ACTIVATION.md",
+      "mode": "100644",
+      "object": "56e03c3a77b5bd35952d103ea43d6de0c104a09d"
+    },
+    {
+      "path": "UX_IMPLEMENTATION_CONTRACT.md",
+      "mode": "100644",
+      "object": "069f45947abcf9bbc841d30c61234d2a11387191"
+    },
+    {
+      "path": "config",
+      "mode": "40000",
+      "object": "ca5a1ee0e5c35d574f5befe71f32cf0fff34dccf"
+    },
+    {
+      "path": "pillow",
+      "mode": "40000",
+      "object": "a1e24e3d7e9fedee356190bf2f10a9dc5c08b0af"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-036-050.md",
+      "mode": "100644",
+      "object": "7ce72e343489398d1f9410d1db0e54a456ee4299"
+    },
+    {
+      "path": "EMPIREAI_DEPENDENCY_REPORT.md",
+      "mode": "100644",
+      "object": "1096b8a7fa7c8364b8cc4ab580d230d6c40beab6"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-019-025.md",
+      "mode": "100644",
+      "object": "eb1945a0b0850caf6487db7ab1bbfc736c08a47f"
+    },
+    {
+      "path": "EMPIREAI_CURSOR_RECOVERY_DOCTRINE.md",
+      "mode": "100644",
+      "object": "5e0c87af89746004cb58e9054146661afe2b7f3a"
+    },
+    {
+      "path": "gkr-test-output.txt",
+      "mode": "100644",
+      "object": "b4c6a4856f2a79b96baeb7c2068e7c1ca84c1b54"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_VERSION_1_CERTIFICATION_MODE_ACTIVATION.md",
+      "mode": "100644",
+      "object": "d2e18baef32dbfd59986061ce62566d33b7aea56"
+    },
+    {
+      "path": "EMPIREAI_PILLOW_ARCHITECTURE.md",
+      "mode": "100644",
+      "object": "267377a50a540fddd438b82e66e0c602c787c1a4"
+    },
+    {
+      "path": "EMPIREAI_DIGITAL_SOUL_CONSTITUTION_V2.md",
+      "mode": "100644",
+      "object": "088d7e072b6067b958528cdc47986c2dc4751114"
+    },
+    {
+      "path": "SA-001_EXECUTIVE_SCORECARD.md",
+      "mode": "100644",
+      "object": "574db07053a14a470b619829e988dcf580ba04c8"
+    },
+    {
+      "path": "frontend",
+      "mode": "40000",
+      "object": "80be94d98da72c603979e854f9cc66bbb84cb7a4"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_V1_OPERATIONAL_TOTALITY.md",
+      "mode": "100644",
+      "object": "6978fda3fcb07cd26a819e5c64130d30b319b62e"
+    },
+    {
+      "path": "docker-compose.yml",
+      "mode": "100644",
+      "object": "127230e895a5df1544307fc242bcb21328c59209"
+    },
+    {
+      "path": "BL-A_SYNCHRONIZATION_REPORT.md",
+      "mode": "100644",
+      "object": "9e9e439e6adc9f47be9e223c2d54da51341e6401"
+    },
+    {
+      "path": "EMPIREAI_VISION.md",
+      "mode": "100644",
+      "object": "4a43b717df46be170d4d598ea47824e5e11e1eed"
+    },
+    {
+      "path": "JOURNEY_AUDIT.md",
+      "mode": "100644",
+      "object": "90903e5146b4879e95d19a2b8b065fe17da7b11a"
+    },
+    {
+      "path": "MARKETPLACE_OS_VISION.md",
+      "mode": "100644",
+      "object": "322f9efdcd35438c8e5146f501babe9f719cbf2c"
+    },
+    {
+      "path": "EMPIREAI_GLOBAL_PRODUCT_INTELLIGENCE_ARCHITECTURE.md",
+      "mode": "100644",
+      "object": "c9841e55946ddd0344ac604bfddd4cfaa9743c33"
+    },
+    {
+      "path": "EMPIREAI_PILLOW_CONSTITUTION.md",
+      "mode": "100644",
+      "object": "ae52bd43578365e2ce45297e1c694f876cee6a01"
+    },
+    {
+      "path": "MASTER_COMPLETION_LEDGER.md",
+      "mode": "100644",
+      "object": "fe6293bdefd926b8d67c6ba4367182c8fbb87003"
+    },
+    {
+      "path": "SA-001_OPERATIONAL_READINESS.md",
+      "mode": "100644",
+      "object": "9d6f778fd3f5097134125569c29273e717b0a832"
+    },
+    {
+      "path": "EMPIREAI_GOVERNANCE_DOCTRINE_GVD.md",
+      "mode": "100644",
+      "object": "74f0c51c0af2e00f39cc2f52fea385412934620e"
+    },
+    {
+      "path": "PILLOW_ROADMAP.md",
+      "mode": "100644",
+      "object": "7d522f3b78e5b6f1681dcb542fa3a32ea50e242b"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_ACD-001-030.md",
+      "mode": "100644",
+      "object": "a8cf8e76cc8907229b9d2ed930b81a24fdea9529"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "object": "b950940d0fef9428b91d1896c969161c15a157c3"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_PRODUCT_INTEGRATION_MASTER_PLAN.md",
+      "mode": "100644",
+      "object": "da1cddd59dc503e1159a4aefed1fea64980671d7"
+    },
+    {
+      "path": "EMPIREAI_PILLOW_EXECUTIVE_INTELLIGENCE_CONSTITUTION.md",
+      "mode": "100644",
+      "object": "2fbc9660157ff0f7170ac5434c336c696db7e1b0"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_CONSTITUTIONAL_LAWS_FINALIZATION.md",
+      "mode": "100644",
+      "object": "cf129da3cabff3e0fee20f2856556fa87235604d"
+    },
+    {
+      "path": "BL-B_REPOSITORY_DIFFERENCE_REPORT.md",
+      "mode": "100644",
+      "object": "9b4f0fe755ffdfe2d9cb4c7e3c089d504a97a346"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_EXECUTIVE_COMPANION.md",
+      "mode": "100644",
+      "object": "0c8609c2d883086d669261bcd19752b1a1a69f84"
+    },
+    {
+      "path": "JOURNEY.md",
+      "mode": "100644",
+      "object": "87951f006d0f5b96b215d72c623f74544e06ca2f"
+    },
+    {
+      "path": "EMPIREAI_GRAND_KINGS_REVENUE_ENGINE.md",
+      "mode": "100644",
+      "object": "c6bd306f655ea2d02a3fedd785dde8bee074c769"
+    },
+    {
+      "path": "EMPIREAI_DECISIONS.md",
+      "mode": "100644",
+      "object": "850a4176351965c4ee8cee9d2b094719469fbe9b"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_020_COMMERCE_INTELLIGENCE_OPERATING_SYSTEM.md",
+      "mode": "100644",
+      "object": "dcdc7f95d27cd3c605819c3b209b7af70b4c89fd"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_VERSION_1_DELIVERY_MODE.md",
+      "mode": "100644",
+      "object": "728ccea5821c7980e6ccee6a46e6a2b2d33b4e16"
+    },
+    {
+      "path": "EMPIREAI_UX_IDENTITY_DOCTRINE_UID.md",
+      "mode": "100644",
+      "object": "1f5a8e552c74fbdefd0fbd33a00fc9f17286ef5b"
+    },
+    {
+      "path": "EMPIREAI_COMMERCE_CANON.md",
+      "mode": "100644",
+      "object": "fdb864c40b35d93a425af7604d52c12553073843"
+    },
+    {
+      "path": "EMPIREAI_COST_REPORT.md",
+      "mode": "100644",
+      "object": "c7714137a3431464bb00cb2e7b8b6c91d7af94bb"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_MARKETPLACE_AUTONOMY_DOCTRINE.md",
+      "mode": "100644",
+      "object": "58e7742938038ad01317ee732e6b56c203ac2845"
+    },
+    {
+      "path": "EXECUTIVE_AUDIT_REAL072_FRONTEND_PRODUCTION_BUILD_RECOVERY.md",
+      "mode": "100644",
+      "object": "0f3b82475f8316a6e5f4d902be55570748dab538"
+    },
+    {
+      "path": "BL-A_VALIDATION_REPORT.md",
+      "mode": "100644",
+      "object": "c44882b75b38a600fcf461a96853e5b370e24460"
+    },
+    {
+      "path": "EMPIREAI_CONTINUOUS_ARTIFACT_GENERATION_WORKFLOW.md",
+      "mode": "100644",
+      "object": "72bd15fb361a852d17ddba39fa2ba640d825190a"
+    },
+    {
+      "path": "EMPIREAI_STATUS.md",
+      "mode": "100644",
+      "object": "971210a2b93ff0d4692b927804b65ecc05a0e687"
+    },
+    {
+      "path": "EMPIREAI_CONSTITUTION.md",
+      "mode": "100644",
+      "object": "ad578c64df6c0d992298b64e3f49a425ac319927"
+    },
+    {
+      "path": "EMPIREAI_BL_C_CONTINUOUS_IMPROVEMENT_CONSTITUTION.md",
+      "mode": "100644",
+      "object": "6aa14631670b0f130cd721f503194a5a5d097523"
+    },
+    {
+      "path": "EMPIREAI_REPOSITORY_MASTER_INDEX.md",
+      "mode": "100644",
+      "object": "6a7a08bfd8cd119cda09a084813f266700e658af"
+    },
+    {
+      "path": "EMPIREAI_CURSOR_OUTPUT_STANDARD.md",
+      "mode": "100644",
+      "object": "b51810ed3e6888cfb449347ca927c39145d09eea"
+    },
+    {
+      "path": "docs",
+      "mode": "40000",
+      "object": "4f861d5b14c3a078dfa1aab34591bc6180ada80d"
+    },
+    {
+      "path": "ai-agents",
+      "mode": "40000",
+      "object": "afb6349325e684120522688e91f3bcbbeeb7ac9e"
+    },
+    {
+      "path": "BUSINESS_COMPLETION_LEDGER.md",
+      "mode": "100644",
+      "object": "541f071c8db5fa40454a509d7203d9dc73ac4204"
+    },
+    {
+      "path": "EMPIREAI_REPOSITORY_FIRST_DOCTRINE.md",
+      "mode": "100644",
+      "object": "09d8c79cbc4407fd849260a4d162ee8a6979a361"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_EXECUTIVE_PERSPECTIVES_REFINEMENT.md",
+      "mode": "100644",
+      "object": "228341978aa587ef9f3b9cbad44a8b39344b72d2"
+    },
+    {
+      "path": "EMPIREAI_EYE_ARCHITECTURE.md",
+      "mode": "100644",
+      "object": "479b6d8c6f9cbe32ad5c7fad551c699b575c7eec"
+    },
+    {
+      "path": "CURSOR_PROGRESS_REPORT.md",
+      "mode": "100644",
+      "object": "a5e50ecdee8fda7d8ca8fb4a4692219ec8214642"
+    },
+    {
+      "path": "CANONICAL_EKLS_SPECIFICATION.md",
+      "mode": "100644",
+      "object": "c54f681011d4f6bdaff0fd08110bfc802c35bd1e"
+    },
+    {
+      "path": "PILLOW_RUNTIME_INTEGRATION_PLAN.md",
+      "mode": "100644",
+      "object": "1fd9efac368ca42f180e36f1abe2e20e2faae607"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-003-007.md",
+      "mode": "100644",
+      "object": "28389e4bcc6a59729f9ab5bb127fa33a1238a8ad"
+    },
+    {
+      "path": "nixpacks.toml",
+      "mode": "100644",
+      "object": "e83720ed46f0667b9b36984ca54428dabbb62092"
+    },
+    {
+      "path": "EMPIREAI_EXECUTIVE_AUDIT_STANDARD.md",
+      "mode": "100644",
+      "object": "1d1d2c40aa4832499143b61b69a27bd4b198f901"
+    },
+    {
+      "path": "BL-A_REPOSITORY_DIFFERENCE_REPORT.md",
+      "mode": "100644",
+      "object": "4cb4def73332ee732649d1a85e6b24cc18e04684"
+    },
+    {
+      "path": "ARCHIVED_R002_README.md",
+      "mode": "100644",
+      "object": "c08130270aa4b74d35a9bc061c07fbabb32359c8"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_GC-03.md",
+      "mode": "100644",
+      "object": "c8e55e6bdf89d936d3165b3b97fe466822a9c063"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "object": "df28a62d2bfd832570d7d531b71e68df1f4c3eb0"
+    },
+    {
+      "path": "marketing",
+      "mode": "40000",
+      "object": "0fad206071393173ae99baeb0d1756c910788639"
+    },
+    {
+      "path": "EMPIREAI_BACKLOG_RELEASE_GOVERNANCE.md",
+      "mode": "100644",
+      "object": "4041e302815e664fe4d8939317c13ad80cafde5f"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-051-070.md",
+      "mode": "100644",
+      "object": "c20e53fc130cd603a2b7f2df51e117c85c3a61c5"
+    },
+    {
+      "path": "railway.toml",
+      "mode": "100644",
+      "object": "b9255a575b99b1af356a49f912c3d3addc5914a6"
+    },
+    {
+      "path": "tests",
+      "mode": "40000",
+      "object": "f3ebcc4ee8060bf9b4aa4e382aee30e55827083c"
+    },
+    {
+      "path": "REVENUE_MISSION_LEDGER.md",
+      "mode": "100644",
+      "object": "dd514040bef7ed388098f4d0dc6e78cbd54c55c0"
+    },
+    {
+      "path": "BL-B.md",
+      "mode": "100644",
+      "object": "f78b63a73cb0ccbeda081c09e957ab100b7b2bfb"
+    },
+    {
+      "path": "UX_BLUEPRINT_VALIDATION.md",
+      "mode": "100644",
+      "object": "19e51804d0754f4e304e25dbdbe7e9fe2e1789b7"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_EXECUTIVE_COUNCIL.md",
+      "mode": "100644",
+      "object": "2058c94ebb6f4ce3f5c7475021ebe8863f2a0352"
+    },
+    {
+      "path": "EMPIREAI_ROADMAP.md",
+      "mode": "100644",
+      "object": "d336f19ec63f909902d5d9ebf050361f9588131c"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_MANAGED_PRODUCTION_DEPLOYMENT.md",
+      "mode": "100644",
+      "object": "1cbb2ba005c32e100bbe36bb666c11683536743a"
+    },
+    {
+      "path": "CURSOR_PROGRESS_REPORT_REAL-002A.md",
+      "mode": "100644",
+      "object": "f5b56f22912844946bb218928b122646c14c0b48"
+    },
+    {
+      "path": "railpack.json",
+      "mode": "100644",
+      "object": "7928fa1e483e2527dba14f345ba0d7919a956be5"
+    },
+    {
+      "path": "SUPPLIER_READINESS_REPORT.md",
+      "mode": "100644",
+      "object": "ce70ba31557729f6696da35dcac7ba296d0fa5c7"
+    },
+    {
+      "path": "GO-002_GRAND_KING_OPERATIONAL_MASTER_PLAN.md",
+      "mode": "100644",
+      "object": "ada910a0e04661e801f251c6eb7809ba1484562f"
+    },
+    {
+      "path": "EMPIREAI_TOTAL_VIEW_REPORT.md",
+      "mode": "100644",
+      "object": "9b8a6f5dea6205be453f56ca2be50657a64573a3"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_GVD-001-030.md",
+      "mode": "100644",
+      "object": "132540fd16c7b25038624b420cfaa40b11cbaee3"
+    },
+    {
+      "path": "DEPLOYMENT_ROOT_CAUSE_REPORT.md",
+      "mode": "100644",
+      "object": "91e7809f2485a1bc8f2c9a0598b9b53734824067"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-071-100.md",
+      "mode": "100644",
+      "object": "c44c5b7db0365a72e12ac2501cb817674f5a77e0"
+    },
+    {
+      "path": "JOURNEY_SYNCHRONIZATION_REPORT.md",
+      "mode": "100644",
+      "object": "a405cf9a82a168083fee5e05bbac3a1c7839e8fc"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_V1_EXECUTIVE_CERTIFICATION_GAP_ANALYSIS.md",
+      "mode": "100644",
+      "object": "347b69f9d1c2dda01d91461837ad270135de196a"
+    },
+    {
+      "path": "railway.worker.toml",
+      "mode": "100644",
+      "object": "b5f4b93abf57e37c1ffecbbc7044151702a1e0ee"
+    },
+    {
+      "path": ".vercelignore",
+      "mode": "100644",
+      "object": "b53732634d33ea77875e08f7566077bc9e4dcc98"
+    },
+    {
+      "path": "EMPIREAI_ARCHITECTURE_CONSTRAINTS_ACD.md",
+      "mode": "100644",
+      "object": "39f9808ee926622f0bfa8c447a2cc48b3c7f4850"
+    },
+    {
+      "path": "DEVELOPMENT_ENVIRONMENT_REPORT.md",
+      "mode": "100644",
+      "object": "3ef1b33958ccffa1b9bb5f02538652a87ee181a0"
+    },
+    {
+      "path": "SA-001_IMPLEMENTATION_PRIORITY.md",
+      "mode": "100644",
+      "object": "752135580a31afdea320c06d85c9201dd287afd9"
+    },
+    {
+      "path": "backend/mission021r-fix.txt",
+      "mode": "100644",
+      "object": "5025c5662e101668c90e530bbf78bc1295f2d826"
+    },
+    {
+      "path": "backend/src/executive-council",
+      "mode": "40000",
+      "object": "21f7731cc56c4b63ab901042558d31fb30e53ef9"
+    },
+    {
+      "path": "backend/src/registry",
+      "mode": "40000",
+      "object": "f31fffda2082498d76975a2ae90bd848a1abae55"
+    },
+    {
+      "path": "backend/src/retention",
+      "mode": "40000",
+      "object": "80d9d4e3171ce885fc12d79b1d6fc3f7c735a921"
+    },
+    {
+      "path": "backend/src/orchestration",
+      "mode": "40000",
+      "object": "fec5488a22dc08eea35d1d3f9fc00137f03dfc15"
+    },
+    {
+      "path": "backend/src/supplier-intelligence",
+      "mode": "40000",
+      "object": "6dfc858851c69113bb1e1fc8ba6476ef6955be9f"
+    },
+    {
+      "path": "backend/src/config",
+      "mode": "40000",
+      "object": "e7f2e43b00569212c00d772b85a39bff2d5f71fe"
+    },
+    {
+      "path": "backend/src/institutional-memory",
+      "mode": "40000",
+      "object": "f7a59a73becd94c7b87f7c0468708e676a7fa76d"
+    },
+    {
+      "path": "backend/src/eye",
+      "mode": "40000",
+      "object": "05042acd243ce09f36ffe85671a356e639a8ef38"
+    },
+    {
+      "path": "backend/src/auth",
+      "mode": "40000",
+      "object": "3f8fcfbc05b59e0e298bdb692842491c39f8638c"
+    },
+    {
+      "path": "backend/src/operational-access",
+      "mode": "40000",
+      "object": "a00ed6f34bd744bd1fe1f65946c0a902d2b89816"
+    },
+    {
+      "path": "backend/src/client",
+      "mode": "40000",
+      "object": "bc4db82e498013bcbd3c117254fb69081dbea7e4"
+    },
+    {
+      "path": "backend/src/connectors",
+      "mode": "40000",
+      "object": "8d760dc70b0810263387362cc5f00ffbe0cd3927"
+    },
+    {
+      "path": "backend/src/fulfillment",
+      "mode": "40000",
+      "object": "79b49208851d64d6b0646e3b36f80f15d3b1f2b8"
+    },
+    {
+      "path": "backend/src/suppliers",
+      "mode": "40000",
+      "object": "419a0802b0b5910b3ae334624416b7f1a259514c"
+    },
+    {
+      "path": "backend/src/observability",
+      "mode": "40000",
+      "object": "2a677d816f3be1e2fec93b2eaa9f207e3b9c0628"
+    },
+    {
+      "path": "backend/src/revenue",
+      "mode": "40000",
+      "object": "2057dad1d4b2859dd250551db3fcc7c26238bd87"
+    },
+    {
+      "path": "backend/src/orders",
+      "mode": "40000",
+      "object": "ebbe056464ca8688b45e623cbfb719c4f51bc0ed"
+    },
+    {
+      "path": "backend/src/brain",
+      "mode": "40000",
+      "object": "d01b60f8e30839f960e0094c7070ac8034dded4c"
+    },
+    {
+      "path": "backend/src/cost",
+      "mode": "40000",
+      "object": "2097f009317e573bd46a762ae57e14cb1dc41e6d"
+    },
+    {
+      "path": "backend/src/app.ts",
+      "mode": "100644",
+      "object": "0c8a04f5598c9458d54ed8637a503c71581b4e65"
+    },
+    {
+      "path": "backend/src/grand-king",
+      "mode": "40000",
+      "object": "d5171273a6a4a44e87088dc104f07fcdb59e8e00"
+    },
+    {
+      "path": "backend/src/execution",
+      "mode": "40000",
+      "object": "5893fa37ee82bf36ad107b767e183441a0ee79dc"
+    },
+    {
+      "path": "backend/src/global-assistant",
+      "mode": "40000",
+      "object": "b9d1644d75e3e1f4b8ab2eddea6b1b0aea93eaf2"
+    },
+    {
+      "path": "backend/src/intelligence",
+      "mode": "40000",
+      "object": "c1ff97cc569a383d04cf4d5b38e78ef1b862dcb2"
+    },
+    {
+      "path": "backend/src/runtime/version-1-governance-review",
+      "mode": "40000",
+      "object": "c486b89a7834a052a5ce139528d509119ab6f86c"
+    },
+    {
+      "path": "backend/src/runtime/commercial-memory-engine",
+      "mode": "40000",
+      "object": "474f86dc76832f5c935a38522dd2496e614fb0c7"
+    },
+    {
+      "path": "backend/src/runtime/global-commerce-infrastructure",
+      "mode": "40000",
+      "object": "d002eaa5104dafe3fba89916a478d26add27a3d7"
+    },
+    {
+      "path": "backend/src/runtime/version-1-lockdown",
+      "mode": "40000",
+      "object": "c45745c4b9f891a299b6b5ea2898f018194f119d"
+    },
+    {
+      "path": "backend/src/runtime/worker-redis-binding.ts",
+      "mode": "100644",
+      "object": "03ec8ad0da51c64f2b3884e9f02c6307d2c41079"
+    },
+    {
+      "path": "backend/src/runtime/unified-grand-king-headquarters",
+      "mode": "40000",
+      "object": "ab1af5326b40518997c29b8af2abff82a71755f5"
+    },
+    {
+      "path": "backend/src/runtime/global-execution-timeline",
+      "mode": "40000",
+      "object": "43833feb084b2f0f28d80e1f3445430d375b04f6"
+    },
+    {
+      "path": "backend/src/runtime/pillow-durable-reasoning-worker.ts",
+      "mode": "100644",
+      "object": "29e1dc9f51ba3085b46762bed7d2adfea63ef962"
+    },
+    {
+      "path": "backend/src/runtime/pillow-chat-request-store.ts",
+      "mode": "100644",
+      "object": "e57c03b8c89c9eb3ef78293ed103280de08998ff"
+    },
+    {
+      "path": "backend/src/runtime/production-persistence-gate.ts",
+      "mode": "100644",
+      "object": "a2ea1452f63d9eb730623dbc14f57ad828869c9f"
+    },
+    {
+      "path": "backend/src/runtime/primary-shutdown.ts",
+      "mode": "100644",
+      "object": "88b81c1fa263e463ff59edef7e3cff5e0795e54d"
+    },
+    {
+      "path": "backend/src/runtime/global-expansion-score",
+      "mode": "40000",
+      "object": "76d7fc100e720333b031e318142aeed9ff27617a"
+    },
+    {
+      "path": "backend/src/runtime/work8-observer-capture.ts",
+      "mode": "100644",
+      "object": "6b456ca11dddbad0a5344d5809342492875c79f8"
+    },
+    {
+      "path": "backend/src/runtime/global-command-center",
+      "mode": "40000",
+      "object": "0fdce303dc5cae60407d880fee0f7b5943df4f6d"
+    },
+    {
+      "path": "backend/src/runtime/founder-automation",
+      "mode": "40000",
+      "object": "5de68cd1f82321fd514ca6b9e7257e0b627abd31"
+    },
+    {
+      "path": "backend/src/runtime/executive-product-optimization",
+      "mode": "40000",
+      "object": "89bcb0418e803d4aacfe00f31b8a57e5a7d773bf"
+    },
+    {
+      "path": "backend/src/runtime/commercial-simulation-engine",
+      "mode": "40000",
+      "object": "930c840d5c31d2a7b891da10682da412b827e1c8"
+    },
+    {
+      "path": "backend/src/runtime/global-order-intelligence",
+      "mode": "40000",
+      "object": "cb53cea1d2bffa233314807e221974547021421b"
+    },
+    {
+      "path": "backend/src/runtime/held-case-budget-ledger.ts",
+      "mode": "100644",
+      "object": "05b80eefe1cdba7b18ae48591e9240e150ee35d1"
+    },
+    {
+      "path": "backend/src/runtime/production-admission-control.ts",
+      "mode": "100644",
+      "object": "03ae719d3153800841409a9f61d11a4c5b5b83d9"
+    },
+    {
+      "path": "backend/src/runtime/volume-reclaim.ts",
+      "mode": "100644",
+      "object": "9d5faa621be235a0e370530749a925bceb45ae56"
+    },
+    {
+      "path": "backend/src/runtime/founder-platform-preparation",
+      "mode": "40000",
+      "object": "adbefa2ed1db1982a7b4a7ab1504a2592b8dbf6a"
+    },
+    {
+      "path": "backend/src/runtime/global-supplier-market",
+      "mode": "40000",
+      "object": "44116da9ab7ece6421b246a885051bea4784b401"
+    },
+    {
+      "path": "backend/src/runtime/marketplace-difference-engine",
+      "mode": "40000",
+      "object": "c36e4338bf2dd821c61b545806940981a976e911"
+    },
+    {
+      "path": "backend/src/runtime/pillow-delivery-forensics.ts",
+      "mode": "100644",
+      "object": "81647bf9c539925c82b8d3e3d87c891a03e9330a"
+    },
+    {
+      "path": "backend/src/runtime/performance-review",
+      "mode": "40000",
+      "object": "de6bdeb74942a3261dee7d0ebacc05ad0967e9ea"
+    },
+    {
+      "path": "backend/src/runtime/global-marketplace-operations",
+      "mode": "40000",
+      "object": "a74260b21fda4257649c1f67f593968d175bb902"
+    },
+    {
+      "path": "backend/src/runtime/country-difference-engine",
+      "mode": "40000",
+      "object": "2b1421ac59b5e36fa0b7da3f5f5b670bfaf1f9a5"
+    },
+    {
+      "path": "backend/src/runtime/customer-intelligence",
+      "mode": "40000",
+      "object": "d5d678a097e323599a474974a05aec497e7d710a"
+    },
+    {
+      "path": "backend/src/runtime/engineering-test-mode.ts",
+      "mode": "100644",
+      "object": "201b898d86eb333ece72ae89525a8a958bd150b9"
+    },
+    {
+      "path": "backend/src/runtime/pillow-accepted-request-recovery.ts",
+      "mode": "100644",
+      "object": "89a39beaa0e0f4ab59ca29758b34534e2a8d7711"
+    },
+    {
+      "path": "backend/src/runtime/revenue-improvement-engine",
+      "mode": "40000",
+      "object": "54cd5d42df396c4b30c6e5fb9be4049f51e1241f"
+    },
+    {
+      "path": "backend/src/runtime/command-center-polish",
+      "mode": "40000",
+      "object": "07ffdaffb79ca383d667bddee5206ddbae30c388"
+    },
+    {
+      "path": "backend/src/runtime/global-marketplace-adapter-framework",
+      "mode": "40000",
+      "object": "cb1d64d26dc335e0e0ab4105d1c90fe4f6b1e1f8"
+    },
+    {
+      "path": "backend/src/runtime/king-decision-history",
+      "mode": "40000",
+      "object": "9c2957f1becbaa9c45191052a406eeb1b6fd2064"
+    },
+    {
+      "path": "backend/src/runtime/post-launch-commander",
+      "mode": "40000",
+      "object": "143cc7a943775934c51e17c45cb44e70853ceba5"
+    },
+    {
+      "path": "backend/src/runtime/global-category-expansion-engine",
+      "mode": "40000",
+      "object": "3bba5a04fe834db9568ada13eab9bce9858a190a"
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-routes.ts",
+      "mode": "100644",
+      "object": "ee8f4bb1c904ea2ea4242db7c7b70061b36f8dab"
+    },
+    {
+      "path": "backend/src/runtime/ai-strategic-memory",
+      "mode": "40000",
+      "object": "364aebc9322054cfa9f946dd609bf1231094722a"
+    },
+    {
+      "path": "backend/src/runtime/commissioning-access-audit.ts",
+      "mode": "100644",
+      "object": "28568afd20434015203f763f5e62ffc3801a8bc0"
+    },
+    {
+      "path": "backend/src/runtime/executive-continuity-watchdog.ts",
+      "mode": "100644",
+      "object": "a6390afd14214e9828d04a8a4be3ac6e4e6d9bcd"
+    },
+    {
+      "path": "backend/src/runtime/global-expansion-command",
+      "mode": "40000",
+      "object": "205cf7603168fb6fb5c6419a1a283a2775f14d80"
+    },
+    {
+      "path": "backend/src/runtime/world-operations-map",
+      "mode": "40000",
+      "object": "fbaf2246d403cae415c682fa18993800d07b8825"
+    },
+    {
+      "path": "backend/src/runtime/global-knowledge-evolution",
+      "mode": "40000",
+      "object": "26900a24d28163990e1b4cd8f6787a30ec881c1c"
+    },
+    {
+      "path": "backend/src/runtime/empire-priority-engine",
+      "mode": "40000",
+      "object": "4439c39622e12f09002a822a26910615f5fc252b"
+    },
+    {
+      "path": "backend/src/runtime/global-advertising-intelligence",
+      "mode": "40000",
+      "object": "aa9b784c5545cc7c652be08b49f099aa9ced52a6"
+    },
+    {
+      "path": "backend/src/runtime/work8-background-capture.ts",
+      "mode": "100644",
+      "object": "0e465d988af82395dacfae9ee3b8ba1f4d30cd7e"
+    },
+    {
+      "path": "backend/src/runtime/commerce-intelligence-studio",
+      "mode": "40000",
+      "object": "4230c2371ae9b66600efac86844a1ec35d7aff05"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime",
+      "mode": "40000",
+      "object": "90d5554c248c7292afb79d24b0ca5e88889cc5aa"
+    },
+    {
+      "path": "backend/src/runtime/product-launch-commander",
+      "mode": "40000",
+      "object": "23fdfd87533ff33f49d301fcded882b98e881871"
+    },
+    {
+      "path": "backend/src/runtime/plugins",
+      "mode": "40000",
+      "object": "fa5ff7365633e2d51949d027cc1eeb588ad1429f"
+    },
+    {
+      "path": "backend/src/runtime/customer-psychology-engine",
+      "mode": "40000",
+      "object": "8dbb3b64d9eb03c0e59755bbc1c07532eb54c001"
+    },
+    {
+      "path": "backend/src/runtime/product-scale-engine",
+      "mode": "40000",
+      "object": "11a653e0754d451c6c414d34b1b31e2a55f263b8"
+    },
+    {
+      "path": "backend/src/runtime/amazon-global-seller",
+      "mode": "40000",
+      "object": "84ba97e7624eab04813af0bb02a0b8c7f6c6bbfa"
+    },
+    {
+      "path": "backend/src/runtime/ai-chief-of-customer",
+      "mode": "40000",
+      "object": "66bed510779a8fa90f2d80add71158a1cd049559"
+    },
+    {
+      "path": "backend/src/runtime/pillow-request-receipts.ts",
+      "mode": "100644",
+      "object": "3a69ab50472b1c650c9128cbdd310af050eef373"
+    },
+    {
+      "path": "backend/src/runtime/global-risk-command",
+      "mode": "40000",
+      "object": "5e47d3b62a12fe44ee1db20d8d51552eabca2806"
+    },
+    {
+      "path": "backend/src/runtime/shipping-intelligence",
+      "mode": "40000",
+      "object": "a2c4952c8cabd0cf7b4d4fb7ff2398dfa9172db9"
+    },
+    {
+      "path": "backend/src/runtime/version-1-release-candidate",
+      "mode": "40000",
+      "object": "d491a722e4397f770ecbcb48237caffcf96f6552"
+    },
+    {
+      "path": "backend/src/runtime/answer-gate-diagnostics.ts",
+      "mode": "100644",
+      "object": "40aedc900447003b78193ad02611a5c745d42754"
+    },
+    {
+      "path": "backend/src/runtime/empire-revenue-forecast",
+      "mode": "40000",
+      "object": "5de2038589d80c75eed7bf33c7a3eeb7ae746cb3"
+    },
+    {
+      "path": "backend/src/runtime/ux-review-preparation",
+      "mode": "40000",
+      "object": "586c00379671df02d7e59d7473a31c8cc099e47d"
+    },
+    {
+      "path": "backend/src/runtime/managed-background-task.ts",
+      "mode": "100644",
+      "object": "73400a6738eb9857c773980cc8d7f6f7d68c1f98"
+    },
+    {
+      "path": "backend/src/runtime/product-media",
+      "mode": "40000",
+      "object": "30cce4400c83cc96a29f5489301ccd5c4748d2d0"
+    },
+    {
+      "path": "backend/src/runtime/product-retirement-engine",
+      "mode": "40000",
+      "object": "27a61f58947c01234c906abb7094293f51d31903"
+    },
+    {
+      "path": "backend/src/runtime/ai-self-improvement-engine",
+      "mode": "40000",
+      "object": "e6c077ac5f7c4c23c785642daf79fb80d9de2a18"
+    },
+    {
+      "path": "backend/src/runtime/executive-strategy-room",
+      "mode": "40000",
+      "object": "ba6005dd74af4ff71ddd023d9d9d73a54c5e7022"
+    },
+    {
+      "path": "backend/src/runtime/event-loop-cooperative.ts",
+      "mode": "100644",
+      "object": "0fe90bff0bda03d266a48a95f19b82361bad584d"
+    },
+    {
+      "path": "backend/src/runtime/global-business-health-engine",
+      "mode": "40000",
+      "object": "44b884b40a1ac1937e7dfa4a18e0737250e7ec9d"
+    },
+    {
+      "path": "backend/src/runtime/empire-pattern-library",
+      "mode": "40000",
+      "object": "d3f448093b4e8c2ded2c9fce693742a5c2eee16d"
+    },
+    {
+      "path": "backend/src/runtime/reasoning-only-policy.ts",
+      "mode": "100644",
+      "object": "ae91f79fb2f0fbdd08d412559b3ffa5e6ab3785b"
+    },
+    {
+      "path": "backend/src/runtime/global-revenue-simulation",
+      "mode": "40000",
+      "object": "3ff5e103070653ccc6869ba782cf15cfd6b1da96"
+    },
+    {
+      "path": "backend/src/runtime/version-1-go-live-approval",
+      "mode": "40000",
+      "object": "00b6c492fe5cd9115bffd8a27042c520a98adea7"
+    },
+    {
+      "path": "backend/src/runtime/native-store-capture.ts",
+      "mode": "100644",
+      "object": "d29ba2758548498dbe383d669fbd9ba7b6219522"
+    },
+    {
+      "path": "backend/src/runtime/executive-visual-debate",
+      "mode": "40000",
+      "object": "a53057fbacc42c6b161ef890546c529385711ffd"
+    },
+    {
+      "path": "backend/src/runtime/success-001-command-center",
+      "mode": "40000",
+      "object": "c14aba6fcc7865f6290cf97e7f2ab5f21203ed94"
+    },
+    {
+      "path": "backend/src/runtime/global-opportunity-board",
+      "mode": "40000",
+      "object": "e6ac3991253c06f63d0bf5e7c2f2533830dc4ada"
+    },
+    {
+      "path": "backend/src/runtime/locked-commissioning.ts",
+      "mode": "100644",
+      "object": "d93a8faa2c005aaf7fb51a77430cb431554c4b0e"
+    },
+    {
+      "path": "backend/src/runtime/security-review",
+      "mode": "40000",
+      "object": "fa8836b5b3398e4cc7eee3cab6412bb81e20b300"
+    },
+    {
+      "path": "backend/src/runtime/tier0-redis.ts",
+      "mode": "100644",
+      "object": "632f462b15b4b592182ffb9f4bb1f9bb1c3a9d56"
+    },
+    {
+      "path": "backend/src/runtime/live-commercial-investigations",
+      "mode": "40000",
+      "object": "322c7c1ebff7d3ce738cd10b3fbda6659f08ff6d"
+    },
+    {
+      "path": "backend/src/runtime/version-1-acceptance-test",
+      "mode": "40000",
+      "object": "27884009a33e44fe7406d1a7625db949039679c9"
+    },
+    {
+      "path": "backend/src/runtime/success-001-readiness-review",
+      "mode": "40000",
+      "object": "d83e6272a82ab5e3586eb991f5c34981084ca5f6"
+    },
+    {
+      "path": "backend/src/runtime/grand-king-live-operations-mode",
+      "mode": "40000",
+      "object": "25bbb23a18d778b13916f19221c69548a3e98f0c"
+    },
+    {
+      "path": "backend/src/runtime/grand-king-financial-command-center",
+      "mode": "40000",
+      "object": "0ff611fb197d36d7fd99c292ebc7411edb579aaf"
+    },
+    {
+      "path": "backend/src/runtime/global-opportunity-engine",
+      "mode": "40000",
+      "object": "48424be66fcb9e41f7fa618218e27e21eafc8ea5"
+    },
+    {
+      "path": "backend/src/runtime/executive-continuity-watchdog-worker.ts",
+      "mode": "100644",
+      "object": "be6137eb29a75aaee3115c25727b03e583e6d8f7"
+    },
+    {
+      "path": "backend/src/runtime/held-case-dispatch.ts",
+      "mode": "100644",
+      "object": "ce9af1e8750437450357b04272c1b41f4dbf7a11"
+    },
+    {
+      "path": "backend/src/runtime/mission-command-engine",
+      "mode": "40000",
+      "object": "1eb32f14c96ff330d2bad9b8855efd2ba7f2bb60"
+    },
+    {
+      "path": "backend/src/runtime/work8-generated-capture-hold.ts",
+      "mode": "100644",
+      "object": "c75c7bbe7762b7cb09b236dc6c3400db525cddca"
+    },
+    {
+      "path": "backend/src/runtime/capture-http-admission.ts",
+      "mode": "100644",
+      "object": "6552dc1f2a90de75b9a4196a600561d644aee121"
+    },
+    {
+      "path": "backend/src/runtime/empire-strategic-center",
+      "mode": "40000",
+      "object": "90762e1d41b1e7756cacecdf5276d782e4f29871"
+    },
+    {
+      "path": "backend/src/runtime/version-1-completion",
+      "mode": "40000",
+      "object": "eacbc8a77b0edfadf6bf8cb63c09bae71656019b"
+    },
+    {
+      "path": "backend/src/runtime/soul-decision-chamber",
+      "mode": "40000",
+      "object": "97393bb62c3cb5eb3e48aa50e2b31e7ac725835c"
+    },
+    {
+      "path": "backend/src/runtime/application-readiness.ts",
+      "mode": "100644",
+      "object": "b7bbc2aa0d34ebdc6e537ab2dbd46034850b68e6"
+    },
+    {
+      "path": "backend/src/runtime/commercial-review",
+      "mode": "40000",
+      "object": "2fadd3bbde82dfdea8c85f9e47e51fc931e53e16"
+    },
+    {
+      "path": "backend/src/runtime/global-market-share-engine",
+      "mode": "40000",
+      "object": "fbdfcd3ebf106a6d4107543618ac92bdffedf694"
+    },
+    {
+      "path": "backend/src/runtime/marketplace-publishing",
+      "mode": "40000",
+      "object": "e31d6f5bfa73eb946966a391c0c9cb5c67d7d2e9"
+    },
+    {
+      "path": "backend/src/runtime/competitor-intelligence",
+      "mode": "40000",
+      "object": "a853c46cec9583a5349e44a233ec9ea7cdce80a0"
+    },
+    {
+      "path": "backend/src/runtime/executive-war-room",
+      "mode": "40000",
+      "object": "7ec2b84a94ea86517910cc4c60159acf6183458b"
+    },
+    {
+      "path": "backend/src/runtime/empire-economics",
+      "mode": "40000",
+      "object": "c2f2424429731abe70a00ce132b94346a96998ac"
+    },
+    {
+      "path": "backend/src/runtime/version-1-readiness-audit",
+      "mode": "40000",
+      "object": "b5694a1f63a14600ddee0efec8d472f83c4e8ebd"
+    },
+    {
+      "path": "backend/src/runtime/work8-primary-capture.ts",
+      "mode": "100644",
+      "object": "6bd6fcfc313c05dd43c4c5e247591a15323f2de5"
+    },
+    {
+      "path": "backend/src/runtime/commerce-execution-pipeline",
+      "mode": "40000",
+      "object": "55725c14fa5fb03e222ff8fa77b4d43d1351debb"
+    },
+    {
+      "path": "backend/src/runtime/empire-knowledge",
+      "mode": "40000",
+      "object": "fbc9a02a68cf196c9387ab76f581ade7cafa5f33"
+    },
+    {
+      "path": "backend/src/runtime/production-hardening",
+      "mode": "40000",
+      "object": "ad11dfd8bc26c2a1343fd27f3cb2abb25605d248"
+    },
+    {
+      "path": "backend/src/runtime/reasoning-failure.ts",
+      "mode": "100644",
+      "object": "484b6208edefe2f1c4e5a9f8191b54112a0185c5"
+    },
+    {
+      "path": "backend/src/runtime/version-2-backlog-engine",
+      "mode": "40000",
+      "object": "01b9c93d36daa3a75be030948e1ae26a48be5f73"
+    },
+    {
+      "path": "backend/src/runtime/tier0-control-plane.ts",
+      "mode": "100644",
+      "object": "c69bcd63147641b35f40a1511ee6853fa681d5de"
+    },
+    {
+      "path": "backend/src/runtime/empire-investment-engine",
+      "mode": "40000",
+      "object": "9f3bf16fa96f509de291843ca6df8823ae4b189d"
+    },
+    {
+      "path": "backend/src/runtime/held-case-dispatch.test.ts",
+      "mode": "100644",
+      "object": "5799a01f11fa741ffbd8114bc456cb830428006a"
+    },
+    {
+      "path": "backend/src/runtime/product-portfolio-command",
+      "mode": "40000",
+      "object": "648efefc4c3146b8781efddd81b4eef558efbb99"
+    },
+    {
+      "path": "backend/src/runtime/empire-playbook-engine",
+      "mode": "40000",
+      "object": "c52604c6ad75e64ec3e7d09d1371f7eb1bddbc5c"
+    },
+    {
+      "path": "backend/src/runtime/architecture-review",
+      "mode": "40000",
+      "object": "e72f338287e9db990674f8f5019e89f426048c18"
+    },
+    {
+      "path": "backend/src/runtime/soul-learning-review",
+      "mode": "40000",
+      "object": "3386a2aaca87d46336f0625ddd23e4508972c702"
+    },
+    {
+      "path": "backend/src/runtime/worker-http-proxy.ts",
+      "mode": "100644",
+      "object": "8e201c217a5a0ee09697efdf87ca255e7e2a084c"
+    },
+    {
+      "path": "backend/src/runtime/volume-disk-reclaim.ts",
+      "mode": "100644",
+      "object": "fa8bc2d028fbc50b9bcf5273b2513f4873032586"
+    },
+    {
+      "path": "backend/src/runtime/grand-king-go-live-checklist",
+      "mode": "40000",
+      "object": "9ca6284587032f65c1698b4b0d16336d5100ed5f"
+    },
+    {
+      "path": "backend/src/runtime/provider-receipt-readback.ts",
+      "mode": "100644",
+      "object": "be03e2d1d0e9b32b75760cc49a5ee84cef62f69b"
+    },
+    {
+      "path": "backend/src/runtime/version-1-freeze-review",
+      "mode": "40000",
+      "object": "0304a375528995601583df042668c5e7248948b0"
+    },
+    {
+      "path": "backend/src/runtime/version-1-gold-master",
+      "mode": "40000",
+      "object": "a901256735ebad46b66a67f8b2fee2e9b91f39d1"
+    },
+    {
+      "path": "backend/src/runtime/ai-chief-of-commerce",
+      "mode": "40000",
+      "object": "0258a8d0df95f321cd2311d4abf41c344091f810"
+    },
+    {
+      "path": "backend/src/runtime/reasoning-certification-readback.ts",
+      "mode": "100644",
+      "object": "89fa7cc160f3eb1861d385bb1c0417ec850ac2bb"
+    },
+    {
+      "path": "backend/src/runtime/global-commerce",
+      "mode": "40000",
+      "object": "57c795b7ce800eb6bf2056e6ebe9cdb7e4bd1681"
+    },
+    {
+      "path": "backend/src/runtime/global-operational-command-center",
+      "mode": "40000",
+      "object": "ab5667ae50e6f5255c9cadad3382e6160d6c97b7"
+    },
+    {
+      "path": "backend/src/runtime/empire-cashflow-engine",
+      "mode": "40000",
+      "object": "2c7b2256d3d795f3c94b108a1bc17162567ee0c8"
+    },
+    {
+      "path": "backend/src/runtime/version-1-executive-sign-off",
+      "mode": "40000",
+      "object": "793cd4eecd266e7344c372c681ed2eec914a7f94"
+    },
+    {
+      "path": "backend/src/runtime/autonomous-analysis-engine",
+      "mode": "40000",
+      "object": "7282c6242437ec384b06203db20ef94eb2c322e8"
+    },
+    {
+      "path": "backend/src/runtime/post-purchase-intelligence",
+      "mode": "40000",
+      "object": "5f628d72aa04154f074e7015ddfbd7591ef823ae"
+    },
+    {
+      "path": "backend/src/runtime/commercial-explorer",
+      "mode": "40000",
+      "object": "8d5d2707915e8ca0c47fc8b815d9f81bb1c37cc0"
+    },
+    {
+      "path": "backend/src/runtime/global-commerce-intelligence",
+      "mode": "40000",
+      "object": "b8773db686ea5a00edf2857bb5a5dc9b5ca13cf8"
+    },
+    {
+      "path": "backend/src/runtime/listing-intelligence",
+      "mode": "40000",
+      "object": "1d91b67a8effacc031b9395966681832fed45f46"
+    },
+    {
+      "path": "backend/src/runtime/empire-kpi-engine",
+      "mode": "40000",
+      "object": "5a415ae72e7057b7eaa2580d62de43c1c12e3c0f"
+    },
+    {
+      "path": "backend/src/runtime/supplier-intelligence-loop",
+      "mode": "40000",
+      "object": "2a2fd784092e729dc52277788690538901d2f6f1"
+    },
+    {
+      "path": "backend/src/runtime/global-price-intelligence",
+      "mode": "40000",
+      "object": "84553de2dba6a226f10d1fd3429e8286ba6332b8"
+    },
+    {
+      "path": "backend/src/runtime/continuity-heartbeat.ts",
+      "mode": "100644",
+      "object": "e5a41235d04e3718b28430af30021a99945461af"
+    },
+    {
+      "path": "backend/src/runtime/startup-bootstrap-policy.ts",
+      "mode": "100644",
+      "object": "f0667f675254ddec1625e8e8e5130a5bb92aebac"
+    },
+    {
+      "path": "backend/src/runtime/ai-chief-of-growth",
+      "mode": "40000",
+      "object": "d79b7113d06ef0b9942f1ef448472cee088deb66"
+    },
+    {
+      "path": "backend/src/runtime/founder-platform-readiness",
+      "mode": "40000",
+      "object": "664e0ea652a27156077af7a3282cd2513936d383"
+    },
+    {
+      "path": "backend/src/runtime/owner-commissioning-readback.ts",
+      "mode": "100644",
+      "object": "815e5da78e74ac6dce647d8c7e1d8ea9d0629f21"
+    },
+    {
+      "path": "backend/src/runtime/first-order-operations",
+      "mode": "40000",
+      "object": "a73dec2b326c67678a565c4499d7308ece669c12"
+    },
+    {
+      "path": "backend/src/runtime/global-strategy-engine",
+      "mode": "40000",
+      "object": "7db43c96acb6c0fe8a55b6697359073101fd9d84"
+    },
+    {
+      "path": "backend/src/runtime/live-product-intelligence",
+      "mode": "40000",
+      "object": "e753e2145a4227ea112af2cbc099c31ad08b1a9c"
+    },
+    {
+      "path": "backend/src/runtime/native-store-capture-lock.cjs",
+      "mode": "100644",
+      "object": "b0e9f4442585bdfe58d9e2de7d2fe739078ce7c7"
+    },
+    {
+      "path": "backend/src/reporting",
+      "mode": "40000",
+      "object": "392a197c9c3251551235ab8d4430802579602396"
+    },
+    {
+      "path": "backend/src/.gitkeep",
+      "mode": "100644",
+      "object": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "backend/src/foundation",
+      "mode": "40000",
+      "object": "1fbfc6c428c6ceeabc1c2bb57a76cfaec2c63154"
+    },
+    {
+      "path": "backend/src/guardian",
+      "mode": "40000",
+      "object": "6e5a4b4840052ddf7d12ad2628d839bc82c10aa7"
+    },
+    {
+      "path": "backend/src/finance",
+      "mode": "40000",
+      "object": "063e75489292a0b8b25cb0e3c22fc7a0c71eb95d"
+    },
+    {
+      "path": "backend/src/operation-first-dollar",
+      "mode": "40000",
+      "object": "018934a8d38366af4c4fa124136db1f180145120"
+    },
+    {
+      "path": "backend/src/global-notifications",
+      "mode": "40000",
+      "object": "430640236c9b85f82bf297c62be38fdf77da8c61"
+    },
+    {
+      "path": "backend/src/advisor",
+      "mode": "40000",
+      "object": "ce4717e2b7fbdbaf5bac72ff2e760decb3e20b64"
+    },
+    {
+      "path": "backend/src/payments",
+      "mode": "40000",
+      "object": "d1d869b4384e0faad26937d8e7ae45e86dbcd57a"
+    },
+    {
+      "path": "backend/src/executive-surveillance",
+      "mode": "40000",
+      "object": "15ee87b40c44c1ce4152be2c2ea6b2edf37702b1"
+    },
+    {
+      "path": "backend/src/grand-king-revenue-pipeline",
+      "mode": "40000",
+      "object": "abc9ec14b1b6cb954c4b229409f8c83228b9928e"
+    },
+    {
+      "path": "backend/src/validation",
+      "mode": "40000",
+      "object": "7fca3cbcef7e58dc49f81200c501b9ce6cafee1e"
+    },
+    {
+      "path": "backend/src/treasury",
+      "mode": "40000",
+      "object": "7b760ee0f15b6787d01708d06886b269702c80f6"
+    },
+    {
+      "path": "backend/src/assurance",
+      "mode": "40000",
+      "object": "ec5dbea3290aa58e74c83feeea36a7adc2cf4476"
+    },
+    {
+      "path": "backend/src/domain",
+      "mode": "40000",
+      "object": "6d0cee1dec33608c4609f85b16ec05912ff3b7ad"
+    },
+    {
+      "path": "backend/src/workforce",
+      "mode": "40000",
+      "object": "804a0037eb2e5312d85bf22367eec8969882c8c3"
+    },
+    {
+      "path": "backend/src/worker.ts",
+      "mode": "100644",
+      "object": "b1e1556df2939af292e96004c555702f8a92273a"
+    },
+    {
+      "path": "backend/src/agents",
+      "mode": "40000",
+      "object": "264acd0ad035c851ff02562c46cc690a926b4675"
+    },
+    {
+      "path": "backend/g-phase-test-output2.txt",
+      "mode": "100644",
+      "object": "f899bf58dbdcb26e0113120f14b1e732b0cc2765"
+    },
+    {
+      "path": "backend/scripts",
+      "mode": "40000",
+      "object": "0440e3293611a2f9cba29c5e4db0d016d7747c34"
+    },
+    {
+      "path": "backend/Dockerfile",
+      "mode": "100644",
+      "object": "5644cdc302b1c389d56ed29e285ae791224040e3"
+    },
+    {
+      "path": "backend/config",
+      "mode": "40000",
+      "object": "d564d0bc3dd917926892c55e3706cc116d5b165e"
+    },
+    {
+      "path": "backend/README.md",
+      "mode": "100644",
+      "object": "2f872ce2f8016138cc070fb2dc5f8e1b20a74566"
+    },
+    {
+      "path": "backend/g-phase-test-output.txt",
+      "mode": "100644",
+      "object": "789096ea024c58db94fb5e70999d4ac41c31f959"
+    },
+    {
+      "path": "backend/.env.example",
+      "mode": "100644",
+      "object": "b6d37b277149d51f8bbded60e3957264a121cce2"
+    },
+    {
+      "path": "backend/archive",
+      "mode": "40000",
+      "object": "ecea8d5f1cc9c1b46aebc39ca9a7541d276d2648"
+    },
+    {
+      "path": "backend/tsconfig.json",
+      "mode": "100644",
+      "object": "81cc6e5bb12174e5e41c49cd80e274bb619707e0"
+    },
+    {
+      "path": "backend/package.json",
+      "mode": "100644",
+      "object": "e4b633ddacac24821251dfc4adfd497e4240e502"
+    },
+    {
+      "path": "backend/package-lock.json",
+      "mode": "100644",
+      "object": "b890be83361c7b1214a7dd18c1be9fc9b5a093bd"
+    },
+    {
+      "path": "backend/MISSION_CONTROL_BUILD_BIBLE.md",
+      "mode": "100644",
+      "object": "2231711577a296d07d5b797264ce5e970f9f9ec3"
+    },
+    {
+      "path": "backend/.gitignore",
+      "mode": "100644",
+      "object": "c456d39a7c38cbb80e4620449472c84ead3b99e9"
+    },
+    {
+      "path": "automation",
+      "mode": "40000",
+      "object": "8bfc2aa713bc69fd38a73b058fa368df8540c06a"
+    },
+    {
+      "path": "BL-B_VALIDATION_REPORT.md",
+      "mode": "100644",
+      "object": "3909e89cfbba1df8823ad409e78bc810c57f869d"
+    },
+    {
+      "path": "database",
+      "mode": "40000",
+      "object": "15ac8dcf6d2678b30fc2b15914f69042f44503e0"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_EXECUTIVE_UX_LAYER_ARCHITECTURE.md",
+      "mode": "100644",
+      "object": "96a7a7960a958b5b2ac80d1fbf65d938d9a227fd"
+    },
+    {
+      "path": "COMMERCE_OS_BLUEPRINT.md",
+      "mode": "100644",
+      "object": "33cd7a5b4ada1430707a3b9c1c4309ca9a1a3782"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_V1_PRODUCTION_DEPLOYMENT.md",
+      "mode": "100644",
+      "object": "c2a100ffb6a93596a43321bab0066e7e9533baad"
+    },
+    {
+      "path": "EMPIREAI_PILLOW_MEMORY_DOCTRINE.md",
+      "mode": "100644",
+      "object": "b3ee430aacededce04469b98f60ab27dd3b99b06"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-026-035.md",
+      "mode": "100644",
+      "object": "a2213c662a32478b10e47fb6925416323e002442"
+    },
+    {
+      "path": "artifacts",
+      "mode": "40000",
+      "object": "bf9b1390cea2cbf4817ba93cb394da6af0cb0a03"
+    },
+    {
+      "path": "EMPIREAI_EMPIRE_RECOVERY_DOCTRINE.md",
+      "mode": "100644",
+      "object": "b2bcd419e7eb0c786bf2f635192704fc2af7a780"
+    },
+    {
+      "path": "EMPIREAI_UX_MASTER_BLUEPRINT.md",
+      "mode": "100644",
+      "object": "0f9eea556161fce1d84b6e8663e56dc923e9e1e3"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_EXECUTIVE_LEARNING_ENGINE.md",
+      "mode": "100644",
+      "object": "67fd9845e5ef85c3d9616d528f74b30726e3bda2"
+    },
+    {
+      "path": "EMPIREAI_STRENGTH_REPORT.md",
+      "mode": "100644",
+      "object": "d7639a4d86090746a220cb4942124e8a121ec09a"
+    },
+    {
+      "path": "GRAND_KING_OPERATION_SIMULATION.md",
+      "mode": "100644",
+      "object": "ae114603f756a81e68b8171c2fbdc55d0b71c9fc"
+    },
+    {
+      "path": "api",
+      "mode": "40000",
+      "object": "b26857c8078cdccb0fb79c6e00300dddf7735ff2"
+    },
+    {
+      "path": "EMPIREAI_REALITY_V1.md",
+      "mode": "100644",
+      "object": "bedb25e4e976d19532447049a56ef273f0323cc6"
+    },
+    {
+      "path": ".github/workflows/provider-readback.yml",
+      "mode": "100644",
+      "object": "2d9d4a29c8f1c445c26905ba87cfb2a4713ce7d1"
+    },
+    {
+      "path": ".github/workflows/product-path-ci.yml",
+      "mode": "100644",
+      "object": "5051ba46783d6a10e3e27ee9f2ee56886e2d3688"
+    },
+    {
+      "path": ".github/workflows/independent-assurance.yml",
+      "mode": "100644",
+      "object": "f9d2157121895c70145bae7c850752df242d885f"
+    },
+    {
+      "path": ".github/workflows/pillow-semantic-repair-ci.yml",
+      "mode": "100644",
+      "object": "a3ddb52587c8b50378c8094bbd5d91ac735838ba"
+    },
+    {
+      "path": "EMPIREAI_JOURNEY_FIRST_DOCTRINE.md",
+      "mode": "100644",
+      "object": "741568a4d1ffeb3f37173436a1f6d33dea84f235"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_CONSTITUTION_UPDATE.md",
+      "mode": "100644",
+      "object": "c39f6f5ea6dfce0b2424c67bb5966622b377a27b"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_UID-001-020.md",
+      "mode": "100644",
+      "object": "b6705bd2e97d50823ec9df84409ba5c1ff532edc"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_UX-001-023.md",
+      "mode": "100644",
+      "object": "fc8ca7a4829def9004b332f8eb075d7e3cec5e2c"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "object": "7793f25455ca2701a8aa8f31a92d8764172a754d"
+    },
+    {
+      "path": "EMPIREAI_CORE_CONSTITUTION_CTD.md",
+      "mode": "100644",
+      "object": "a0e79b0a18741b6e2798945105658e5e9b2e9dff"
+    },
+    {
+      "path": "EMPIREAI_SOUL.md",
+      "mode": "100644",
+      "object": "ca194e17336c064ce1cd13f3e371ffba20324fbb"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL061_BACKEND_COMPILE_RECOVERY.md",
+      "mode": "100644",
+      "object": "27fd93b2966aac7653a72f3e4b08bee03b30b1c7"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_CBD-001-020.md",
+      "mode": "100644",
+      "object": "770d911af090b930d2ef7e25329d4f401b9d009b"
+    },
+    {
+      "path": "PILLOW_MISSION_STATE.md",
+      "mode": "100644",
+      "object": "daf09c6b6caf7455f7d22cf3cc6a4fd24a6b11e0"
+    },
+    {
+      "path": "SA-001_ARCHITECTS_FINAL_RECOMMENDATIONS.md",
+      "mode": "100644",
+      "object": "74a61cfe92425f40474ab6dedc1ad1eb6f3b2d94"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-008-012.md",
+      "mode": "100644",
+      "object": "4bcd81a17863eceb6cf34b1a96ad87cae2a11c9e"
+    },
+    {
+      "path": "PRODUCTION_ENVIRONMENT_CERTIFICATION.md",
+      "mode": "100644",
+      "object": "569f76034a2b63a34102b4b40f2e55e1159c8911"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_CTD-001-040.md",
+      "mode": "100644",
+      "object": "bacc120af16f42dc585581bacdc059650fba67d8"
+    },
+    {
+      "path": "SA-001_SUPREME_EXECUTIVE_AUDIT.md",
+      "mode": "100644",
+      "object": "2d76eb0db5d7cbfe73dcd7d8fc810879e6781696"
+    },
+    {
+      "path": "GO-001_OPERATIONAL_READINESS_REPORT.md",
+      "mode": "100644",
+      "object": "c970ffc00f0e01f007aaf481307113042be05f29"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_OWNED_COMMERCE_INTELLIGENCE_CORE.md",
+      "mode": "100644",
+      "object": "a14670d4e901d43d7584d9fb1dff6ee84fb61080"
+    },
+    {
+      "path": "vercel.json",
+      "mode": "100644",
+      "object": "f2911108b1b87d33d77fba4c385ebed01a92b7b6"
+    },
+    {
+      "path": "PILLOW_ARCHITECTURE_CONTRACT.md",
+      "mode": "100644",
+      "object": "bde310f1b43eb0f137e0eca7d4ecb8a3e702cb1f"
+    },
+    {
+      "path": "EMPIREAI_ARCHITECTURE.md",
+      "mode": "100644",
+      "object": "5523467f5cd274b95bcdb4e810b4e588dc8eb86e"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-013-018.md",
+      "mode": "100644",
+      "object": "1ffc5134cf2d70f25259e293e22ef06a6a119136"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_INTEGRATIONS_HUB.md",
+      "mode": "100644",
+      "object": "a52a5d6fe3d781908d8223da2dcb6ba496beb5f1"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_GC-05.md",
+      "mode": "100644",
+      "object": "9c7dcd43d9bf314d4fe53499b0641877053604a5"
+    },
+    {
+      "path": "OPERATIONAL_ACCESS_REPORT.md",
+      "mode": "100644",
+      "object": "53a2e9577ebb49143317834d821f944f641ad858"
+    },
+    {
+      "path": "empireai-web",
+      "mode": "40000",
+      "object": "872573397ab51804272c1a85c2bf8e69d7901aeb"
+    },
+    {
+      "path": "EMPIRE_RETURN_PACKAGE.md",
+      "mode": "100644",
+      "object": "2f48f69f6b4a066850ad9ab44366914df6cee248"
+    },
+    {
+      "path": ".node-version",
+      "mode": "100644",
+      "object": "c94711948a665d304dfc7016e1bebc497162b451"
+    },
+    {
+      "path": "COMBINED_EXECUTIVE_AUDIT_REAL-002B.md",
+      "mode": "100644",
+      "object": "4e994a52f672fb5e6a02a71855dcf7022daaea38"
+    },
+    {
+      "path": "EMPIREAI_GENESIS.md",
+      "mode": "100644",
+      "object": "b9f3dc1012781170b4579c163de429ed2ce22b24"
+    },
+    {
+      "path": "deployment/railway-production.env.template",
+      "mode": "100644",
+      "object": "1a2cbb9cc8b16b863849f850658c2b50bca918de"
+    },
+    {
+      "path": "deployment/kubernetes",
+      "mode": "40000",
+      "object": "d564d0bc3dd917926892c55e3706cc116d5b165e"
+    },
+    {
+      "path": "deployment/cj-screening-rejections.json",
+      "mode": "100644",
+      "object": "149b81ea68a691d93d91bdc9a802d72b52c4469e"
+    },
+    {
+      "path": "deployment/locked-observer-shutdown.test.cjs",
+      "mode": "100644",
+      "object": "60efe0cd00dbb22cc7935396fd9166adbe15eefe"
+    },
+    {
+      "path": "deployment/cj-stock-discovery.mjs",
+      "mode": "100644",
+      "object": "e484e19101e17ea2b8456f6e02ba8800b99885a1"
+    },
+    {
+      "path": "deployment/cj-eligibility-screen.mjs",
+      "mode": "100644",
+      "object": "c80c6cd2cc5fe0a489304129aceaac6e5709199b"
+    },
+    {
+      "path": "deployment/legacy-critical-save-proof.mjs",
+      "mode": "100644",
+      "object": "1183db450ea57a3735a77849bb970bd0392e3759"
+    },
+    {
+      "path": "deployment/legacy-checkpoint-capture.test.cjs",
+      "mode": "100644",
+      "object": "c1debc4fff9f6c4f7bc83cf96cd94cc1f14aeb04"
+    },
+    {
+      "path": "deployment/docker",
+      "mode": "40000",
+      "object": "d564d0bc3dd917926892c55e3706cc116d5b165e"
+    },
+    {
+      "path": "deployment/legacy-shadow-state-capture.md",
+      "mode": "100644",
+      "object": "cb814c47d44b341ab822d152aab482754b9f93fb"
+    },
+    {
+      "path": "deployment/assurance-supervisor.cjs",
+      "mode": "100644",
+      "object": "f564e02b43b41ba9ae42de258af69e3485fa7f9b"
+    },
+    {
+      "path": "deployment/redis-canary.md",
+      "mode": "100644",
+      "object": "b80b37412869121ff27e90983bb6fb446e9ce262"
+    },
+    {
+      "path": "deployment/observer-capture.cjs",
+      "mode": "100644",
+      "object": "7577f4ba86edc65181fc62bd89b9c372f708a73a"
+    },
+    {
+      "path": "deployment/precutover-closure.cjs",
+      "mode": "100644",
+      "object": "9c399c52e28c039a537ee295cff093bd231e2a17"
+    },
+    {
+      "path": "deployment/railway.redis-canary.toml",
+      "mode": "100644",
+      "object": "7ded9fc8da9c6667f696aa0fd4d28a9e974abe8a"
+    },
+    {
+      "path": "deployment/vercel-cockpit.env.template",
+      "mode": "100644",
+      "object": "560d6941e4311b963a79cc536c47279e0c7ee6cb"
+    },
+    {
+      "path": "deployment/provider-readback.test.mjs",
+      "mode": "100644",
+      "object": "a57bfad39d40498806463d359ab6d452caab32b1"
+    },
+    {
+      "path": "deployment/legacy-checkpoint-capture.cjs",
+      "mode": "100644",
+      "object": "639af32743a6d0ef49745eeb4e885c83ca4797a4"
+    },
+    {
+      "path": "deployment/legacy-shadow-state-capture.test.cjs",
+      "mode": "100644",
+      "object": "d32d885b893933d8ad6cddf9d0f61ee9722f3ecd"
+    },
+    {
+      "path": "deployment/redis-canary-image.test.cjs",
+      "mode": "100644",
+      "object": "e32fe4789b461ad33edb1362145c3b680ba6b378"
+    },
+    {
+      "path": "deployment/redis-canary-launcher.test.cjs",
+      "mode": "100644",
+      "object": "9bf5dc7e8d9c54a3c348d9d5b2694339d14da4b0"
+    },
+    {
+      "path": "deployment/process-state.test-support.cjs",
+      "mode": "100644",
+      "object": "59080a19520b2b0d49f360a0783049733fd2d606"
+    },
+    {
+      "path": "deployment/vercel.md",
+      "mode": "100644",
+      "object": "7f6605f579f3a4dd3c99c5cdb13f04cebd50ad8a"
+    },
+    {
+      "path": "deployment/cj-supplier-readback.mjs",
+      "mode": "100644",
+      "object": "e68d0da695773563aa9416e0070dcfeca7d95129"
+    },
+    {
+      "path": "deployment/build-runtime.md",
+      "mode": "100644",
+      "object": "f98764d6d833449308a7f14bcd1d2283744d74e1"
+    },
+    {
+      "path": "deployment/locked-state-bundle.cjs",
+      "mode": "100644",
+      "object": "1fb7ccee3ecddabf7708e44cefef6f4d956f4fc8"
+    },
+    {
+      "path": "deployment/cj-stock-discovery.test.mjs",
+      "mode": "100644",
+      "object": "e86e257f64ddd03bd9dace9f29b72440d3a60449"
+    },
+    {
+      "path": "deployment/offline-state-bundle.md",
+      "mode": "100644",
+      "object": "5bd190bc8c37f409bb2dcb078b461e7487aefd50"
+    },
+    {
+      "path": "deployment/fixtures",
+      "mode": "40000",
+      "object": "4e7f855d4cad6f649b8cb46211fd7a279f09b8df"
+    },
+    {
+      "path": "deployment/railway.md",
+      "mode": "100644",
+      "object": "9bd1bb7f2c9db41f0044b11c14e05a507ceb8502"
+    },
+    {
+      "path": "deployment/railway.locked.toml",
+      "mode": "100644",
+      "object": "0366b6bdfe8808c3b1893310608021a0e732dece"
+    },
+    {
+      "path": "deployment/redis-canary-launcher.cjs",
+      "mode": "100644",
+      "object": "20594e7c9e462000eb4f3702263f14e9468e0b37"
+    },
+    {
+      "path": "deployment/runtime-revision.cjs",
+      "mode": "100644",
+      "object": "a3f511c36d8d80593d5a3c8c4ba653ca2e76a86a"
+    },
+    {
+      "path": "deployment/containment-audit.cjs",
+      "mode": "100644",
+      "object": "c5afdc8cd43d1804dcd1efbc33ce179adc150edd"
+    },
+    {
+      "path": "deployment/canary-launcher.test.cjs",
+      "mode": "100644",
+      "object": "d4830e1222ef6ef5f9944fd0b605cac04ae2f14a"
+    },
+    {
+      "path": "deployment/canary-launcher.cjs",
+      "mode": "100644",
+      "object": "21dc7c226ed1f1583f0ec900f4ce57c3ed4c0e9c"
+    },
+    {
+      "path": "deployment/legacy-shadow-state-capture.cjs",
+      "mode": "100644",
+      "object": "10dc46bcc82fe497347ed275e14860ec6085032f"
+    },
+    {
+      "path": "deployment/locked-supervision.cjs",
+      "mode": "100644",
+      "object": "8d471fa11622bae36c8357ab614af936efa45b5a"
+    },
+    {
+      "path": "deployment/legacy-checkpoint-capture.md",
+      "mode": "100644",
+      "object": "c77b3d92e66f06d3093ccc36605c19ae3ab80eb6"
+    },
+    {
+      "path": "deployment/supabase.md",
+      "mode": "100644",
+      "object": "e807636b1510a5661b9cb6828493f1e6896a721a"
+    },
+    {
+      "path": "deployment/work8-system-vault.cjs",
+      "mode": "100644",
+      "object": "18f7e167077617f4f308d5b20a4d07303b8c09a5"
+    },
+    {
+      "path": "deployment/canary-runtime-probe.cjs",
+      "mode": "100644",
+      "object": "2f85818ccb0827cb4b21f612b8f075ddfc5bf355"
+    },
+    {
+      "path": "deployment/railway-canary.md",
+      "mode": "100644",
+      "object": "2190b3f0b657a7882696e090143d32bbee69739a"
+    },
+    {
+      "path": "deployment/build-owner-evidence.mjs",
+      "mode": "100644",
+      "object": "c3860c0f417289d472f4ebfeb654fcf472768279"
+    },
+    {
+      "path": "deployment/provider-readback.mjs",
+      "mode": "100644",
+      "object": "363b6bf697b4d965ef5a6767cff2d4885de5430f"
+    },
+    {
+      "path": "deployment/README.md",
+      "mode": "100644",
+      "object": "bec823e3242e0b2bf2584216884b11a1b03b8792"
+    },
+    {
+      "path": "deployment/runtime-revision.test.cjs",
+      "mode": "100644",
+      "object": "fb78a1dbfa3ecb23e5dde3f10f80e569843ddd22"
+    },
+    {
+      "path": "deployment/MANAGED_DEPLOYMENT.md",
+      "mode": "100644",
+      "object": "4132d20b1c0af0e8d6b0c73c49ce61fa59c7d720"
+    },
+    {
+      "path": "deployment/offline-state-bundle.cjs",
+      "mode": "100644",
+      "object": "caedea1ac7427fbd107f3acc5fa390e635869d20"
+    },
+    {
+      "path": "deployment/upstash.md",
+      "mode": "100644",
+      "object": "a749f2dc842f7acea765a3cc2014bbf885ec8145"
+    },
+    {
+      "path": "deployment/redis-canary.Dockerfile",
+      "mode": "100644",
+      "object": "098c7de368f334e29c72a76f4d2613ff6c5e70eb"
+    },
+    {
+      "path": "deployment/launcher-loss-guard.test.cjs",
+      "mode": "100644",
+      "object": "33a2f5b9e62af022f52d3372932a64c079451ec9"
+    },
+    {
+      "path": "deployment/infrastructure",
+      "mode": "40000",
+      "object": "d564d0bc3dd917926892c55e3706cc116d5b165e"
+    },
+    {
+      "path": "deployment/launcher-loss-guard.cjs",
+      "mode": "100644",
+      "object": "07a66aabb31f3980c73f4cfe5bcdb4a1f685554e"
+    },
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "mode": "100644",
+      "object": "11eac0815510fe644e2dadf447e35b2cfef9762e"
+    },
+    {
+      "path": "deployment/verify-recovered-commissioning.py",
+      "mode": "100644",
+      "object": "52d2310a7fa6c3c24cd3f6892b9ca0cf38120f22"
+    },
+    {
+      "path": "deployment/locked-supervision.test.cjs",
+      "mode": "100644",
+      "object": "c29097327a8dd3608d2875f384f8b2cd6557f01b"
+    },
+    {
+      "path": "deployment/locked-runtime.test.cjs",
+      "mode": "100644",
+      "object": "8b477750ab207cb9a316e3e6713d4380f7595d7a"
+    },
+    {
+      "path": "deployment/canary-runtime-probe.test.cjs",
+      "mode": "100644",
+      "object": "32aff9a35edcac64e487df41e1cf06a939be512b"
+    },
+    {
+      "path": "deployment/railway.canary.toml",
+      "mode": "100644",
+      "object": "ac0e839a0b8338454f943efebaddf6131764178c"
+    },
+    {
+      "path": "deployment/rehearse-cutover-recovery.cjs",
+      "mode": "100644",
+      "object": "e000405e652302c48929d332eab2c7a52a443e11"
+    },
+    {
+      "path": "deployment/cj-supplier-readback.test.mjs",
+      "mode": "100644",
+      "object": "16cc3acecbd2037d9c77f7e60e59a8855dba6aeb"
+    },
+    {
+      "path": "deployment/observer-capture.test.cjs",
+      "mode": "100644",
+      "object": "80158707cf338cd3b4a99c7d61d6421d4dbd49fb"
+    },
+    {
+      "path": "EMPIRE_REVIEW_PACKAGE.md",
+      "mode": "100644",
+      "object": "e960fd220ffc8ba7dc1042c4a00dcbcc45d5f506"
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "object": "fbd0c81a86377a4209e45a60ffac5590aed2dd3b"
+    }
+  ],
+  "verificationMethod": "Read bare Git objects independently; recompute each reviewed blob Git SHA1/SHA256; compare all path/mode identities to signed-off scoped source manifest; reconstruct changed trees from exact base entries with only sixteen reviewed replacements; preserve every untouched entry; recompute tree roots and raw commit SHA1. Untouched subtrees preserved by exact object identity, not regenerated.",
+  "remoteFreshReadback": "NOT_PERFORMED_LOCAL_CANDIDATE_ONLY",
+  "publicationPerformed": false,
+  "hostedHH4Acceptance": false,
+  "acceptedRequirements": [],
+  "acceptedAmendments": []
+}

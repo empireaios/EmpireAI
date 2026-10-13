@@ -1,0 +1,44 @@
+{
+  "source": {
+    "branch": "work8/autonomous-examination-20261011",
+    "commit": "9080fece4da947f1bf1f2e91568e33e94b287686",
+    "tree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+    "approvedCommit": "d6b9afda4c6b81b0631133de8423e7ea80566baf"
+  },
+  "runs": [
+    {
+      "id": 38377517613,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success",
+      "head": "9080fece4da947f1bf1f2e91568e33e94b287686",
+      "url": "https://github.com/empireaios/EmpireAI/actions/runs/38377517613"
+    },
+    {
+      "id": 38377517719,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "head": "9080fece4da947f1bf1f2e91568e33e94b287686",
+      "url": "https://github.com/empireaios/EmpireAI/actions/runs/38377517719"
+    },
+    {
+      "id": 38377517598,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "head": "9080fece4da947f1bf1f2e91568e33e94b287686",
+      "url": "https://github.com/empireaios/EmpireAI/actions/runs/38377517598"
+    },
+    {
+      "id": 38377517595,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "success",
+      "head": "9080fece4da947f1bf1f2e91568e33e94b287686",
+      "url": "https://github.com/empireaios/EmpireAI/actions/runs/38377517595"
+    }
+  ],
+  "dispatches": 0,
+  "verifiedAt": "2026-10-13T09:48:23.700Z"
+}

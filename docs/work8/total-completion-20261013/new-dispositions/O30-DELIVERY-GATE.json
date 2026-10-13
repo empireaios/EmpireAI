@@ -1,0 +1,124 @@
+{
+  "recordType": "O30_EXACT_SOURCE_DELIVERY_GATE_NOT_ACCEPTANCE",
+  "createdAt": "2026-10-13T10:06:27.806869+00:00",
+  "requirement": "O30",
+  "status": "PENDING",
+  "sourceCommit": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "sourceTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "criteriaBasis": {
+    "original": "lane-console-certification/original-assurance-criteria-reconciliation.json original sections7/19; exact retained O30 register row",
+    "latest": "upload/Pasted text(20261013-100128).txt Lane C",
+    "readBoundary": "Targeted retained governing reconciliation and full latest Lane C; not a new full original-contract audit"
+  },
+  "assertions": [
+    {
+      "criterion": "Independent detection, attribution, containment, incident persistence, recovery correlation and no unsafe authority restoration",
+      "decision": "PRESERVE accepted O26/O34 F27/F29 scopes; no repeated examinations"
+    },
+    {
+      "criterion": "Notification uncertainty and restart",
+      "decision": "PRESERVE existing accepted durable reservation/restart evidence; source stores UNKNOWN before effect, prevents resend on uncertain result, binds identical message identity and scope; no new test run"
+    },
+    {
+      "criterion": "Independent external owner delivery during primary host unavailability and owner escalation",
+      "decision": "NOT PROVEN; authenticated inbox explicitly independentPushDelivered:false; default external transport returns success:false No notification transport configured"
+    },
+    {
+      "criterion": "Physical whole-host destruction",
+      "decision": "Not an original mandatory examination; no new destructive criterion imposed"
+    }
+  ],
+  "sourceInspection": {
+    "defaultTransport": "pillow/src/notification-worker/provider-adapters.ts",
+    "worker": "pillow/src/notification-worker/engine.ts",
+    "ledger": "backend/src/orchestration/pillow-host/notification-delivery-ledger.ts",
+    "acceptedBoundaryTest": "backend/src/validation/tests/work8-notification-restart.test.ts",
+    "inbox": "backend/src/global-notifications/services/assurance-notification-ingestion.ts",
+    "binding": "retained lane-recovery-continuation/prerequisites/pillow-host.ts binds ledger at line334; targeted source no configured setTransport"
+  },
+  "missingIntegratedFunctionality": [
+    "Existing authorised independently hosted delivery transport and recipient binding",
+    "External detector/incident reference available while primary is unavailable",
+    "Provider-attributable delivery result bound to same incident, escalation and owner destination",
+    "Uncertain send reconciliation with no blind replay; independent recovery proof does not resolve UNKNOWN delivery by inference"
+  ],
+  "independentOracle": [
+    "Verify actual independent external delivery receipt with message/incident identity and destination binding, not merely queued or provider accepted unless delivery semantics justify that claim",
+    "Prove primary unavailability while independently hosted observer/transport still operates; no physical host destruction needed",
+    "Correlate original detection/containment/escalation schedule and durable history, notification uncertainty and independent recovery without authority replay"
+  ],
+  "minimumOwnerDecision": {
+    "request": "Identify an already-authorised external notification channel/provider and existing independently hosted execution location, confirm the owner destination, and authorise one clearly labelled Work8 fault-examination alert plus its correlated recovery notice if needed by the original escalation contract. Supply access through normal secure connector/configuration, never paste credentials.",
+    "ifAbsent": "No new infrastructure/provider activation/subscription inferred; owner must separately authorise any such change after concrete scope/cost review.",
+    "notRequestedNow": "No repeated authority request for local work; integration owner consolidates only if indispensable."
+  },
+  "capabilityBoundary": "Current exposed EmpireAI connector is read-only stored state, no transport activation or send. No credentials searched, recipient guessed, live message sent, provider activated or paid inference.",
+  "newAcceptedOriginal": [],
+  "newAcceptedAmendments": [],
+  "testsRepeated": 0,
+  "sourceModifications": 0,
+  "remoteMutations": 0,
+  "files": [
+    {
+      "path": "lane-total-assurance/source/assurance-notification-ingestion.ts",
+      "sha256": "10e0a5ffb4d67de21d36dfc1531f23a18c39c70570e4d3c9f64c2023e2b9daa6",
+      "gitBlob": "891dc47fe79101772bad76c50bd291a01faa5397",
+      "bytes": 4301
+    },
+    {
+      "path": "lane-total-assurance/source/engine.ts",
+      "sha256": "c9a0037b56692b2bf516eef23953d70c8640b37dbbd3a139f69dfc6396ebecde",
+      "gitBlob": "00ed5c8f432195b3b21e178642111d5340d14b84",
+      "bytes": 17824
+    },
+    {
+      "path": "lane-total-assurance/source/global-notification-service.ts",
+      "sha256": "d465612f1cfc59845f7a1089765ea68bce1f4d00a587c7be293b1a74c52164d2",
+      "gitBlob": "d613fdd6e4e084ea4a6504c3838769af575ac188",
+      "bytes": 8704
+    },
+    {
+      "path": "lane-total-assurance/source/notification-delivery-ledger.ts",
+      "sha256": "554b1279abfc3b45649ead8017242b781c177ea0befdf29294938383cc40c71e",
+      "gitBlob": "06fac1b90938d29e7dd7a4123a24dc42d9514e17",
+      "bytes": 2351
+    },
+    {
+      "path": "lane-total-assurance/source/notification-ingestion-service.ts",
+      "sha256": "63aabe99b1d0e8454d78a3fcd27bc8c757d6441268a073723a1f796dfa3def95",
+      "gitBlob": "ee3b09186c0669d35f0649dc3d6aeb502d2e706b",
+      "bytes": 14625
+    },
+    {
+      "path": "lane-total-assurance/source/provider-adapters.ts",
+      "sha256": "aacfdaef54264fbd3c346cb09d5ff1d0ea367c199a6e57b633118259104fbba3",
+      "gitBlob": "8ca24b8e0a517cf4637ce85d5b105ac8097c636e",
+      "bytes": 205
+    },
+    {
+      "path": "lane-total-assurance/source/work8-notification-restart.test.ts",
+      "sha256": "e1f4a1479a2eeaf013b5424073b1770239853bc2222c1257ae2f5093930b714f",
+      "gitBlob": "b6e9b4e40004f597f361b6fa146c2550a076a5ef",
+      "bytes": 4700
+    }
+  ],
+  "durability": "Local separate-lane receipt for central owner to checkpoint; not independently durable publication",
+  "technicalReadiness": "NOT_IMPLEMENTED_COMPLETE: production worker has injectable transport seam and durable attempt ledger; published provider-adapters.ts only returns explicit no-transport failure. Autonomous independently hosted incident relay/provider adapter and delivery receipt acquisition are missing, not merely credentials.",
+  "availableCapabilityOptions": [
+    {
+      "option": "Gmail connector send_email/send_draft",
+      "available": "Metadata only; no account or recipient inspected",
+      "limit": "Can support expressly authorised single bounded external examination message from independent agent, but manual connector sending alone does not establish autonomous runtime alerting, host-loss monitor, durable relay or delivery receipt."
+    },
+    {
+      "option": "Railway project webhook tools",
+      "available": "Metadata exposes list/create/test/update webhook",
+      "limit": "No established pre-existing configured receiver or source event binding. New activation/provisioning not authorised; generic deployment events do not establish applicable Assurance incident semantics."
+    },
+    {
+      "option": "ChatGPT Automations",
+      "available": "Metadata exposes scheduling/event sources",
+      "limit": "Not selected or created. A reminder is not proof of EmpireAI original watchdog delivery or incident correlation."
+    }
+  ]
+}

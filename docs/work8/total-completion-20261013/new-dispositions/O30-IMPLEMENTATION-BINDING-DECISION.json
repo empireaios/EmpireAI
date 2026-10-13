@@ -1,0 +1,47 @@
+{
+  "recordType": "O30_PROVIDER_INDEPENDENT_IMPLEMENTATION_DECISION",
+  "createdAt": "2026-10-13T10:29:26.447490+00:00",
+  "decision": "NO_DUPLICATE_GENERIC_ADAPTER_IMPLEMENTED_PENDING_CONCRETE_INDEPENDENT_BINDING",
+  "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+  "existingProviderIndependentSoftware": {
+    "transportSeam": "NotificationWorkerEngine.setTransport(NotificationTransport)",
+    "boundedDispatch": "Existing timeout and UNKNOWN handling; no blind resend after uncertainty",
+    "durableAttemptLedger": "createNotificationDeliveryLedger bound to primary Brain database",
+    "incidentProjection": "ingestAssuranceNotifications reads primary RAILWAY_VOLUME_MOUNT_PATH/commissioning/assurance.sqlite and materialises owner-pull records",
+    "retainedTests": "Existing notification restart, crash-after-dispatch, competing reservation and hung persistence checks already accepted; no rerun"
+  },
+  "whyMoreGenericCodeDoesNotCloseBoundary": [
+    "A second injectable disabled send wrapper would duplicate setTransport and add no delivered-host-loss evidence.",
+    "Existing attempt persistence and incident ingestion depend on the primary volume/database. Moving their execution to an independent process without selecting independent storage/incident availability does not survive host loss.",
+    "A new generic webhook receiver would require an ingress trust scheme, endpoint/receiver, durable store and deployment location not established by current authorised interfaces. Choosing these silently would invent an architecture/provider contract.",
+    "Provider acceptance, delivery, idempotency and status-query semantics differ. Mapping arbitrary success:true to delivered would weaken the original required receipt."
+  ],
+  "minimumConcreteBindings": [
+    {
+      "binding": "Existing independent execution location and durable incident/attempt store",
+      "neededToImplement": "Determine how an observer independent of primary obtains authentic incident/heartbeat state and retains attempt identity when primary disappears. Existing GitHub runner can execute a bounded test, but no continuous production relay or independent store is established.",
+      "ownerInput": "Name an already authorised location/receiver or confirm a concrete bounded proposal; no new infrastructure automatically."
+    },
+    {
+      "binding": "Existing provider/channel with precise API receipt semantics",
+      "neededToImplement": "Implement the one transport adapter and delivery-status reconciliation; keep UNKNOWN on ambiguous dispatch, status mismatch or transport loss.",
+      "ownerInput": "Identify existing authorised channel/provider via normal secure connector/configuration; no credential disclosure."
+    },
+    {
+      "binding": "Confirmed owner destination and exact labelled examination-message authority",
+      "neededToImplement": "Bind stable destination identifier to incident/message identity and verify delivery to intended owner.",
+      "ownerInput": "Confirm destination and permit only the fault alert and required recovery notice."
+    }
+  ],
+  "executableAfterBindings": [
+    "Implement chosen adapter behind existing seam, default disabled until exact configuration and authority match.",
+    "Implement independent relay using established host/storage/ingress rather than a second unbound generic state machine.",
+    "Run changed-boundary intercepted transport tests: provider acceptance not delivery, conflicting receipt identity, late success after timeout remains unknown absent attributable reconciliation, restart after dispatch never blindly resends, primary unavailable while independent state and observer survive.",
+    "Run one authorised real delivery examination and independent original O30 reconciliation."
+  ],
+  "noCodeChange": true,
+  "testsRepeated": 0,
+  "externalMessages": 0,
+  "newInfrastructure": 0,
+  "newAcceptance": false
+}
