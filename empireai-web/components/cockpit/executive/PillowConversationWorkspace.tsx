@@ -9,6 +9,7 @@ import { ExecutiveChatMarkdown } from "@/components/cockpit/executive/ExecutiveC
 import { CopyPillowAnswer } from "@/components/cockpit/executive/CopyPillowAnswer";
 import layout from "./PillowConversationLayout.module.css";
 import Link from "next/link";
+import {referenceIdentity} from "@/lib/pillow/product-context";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
@@ -47,6 +48,7 @@ export function PillowConversationWorkspace({
   const [windowSize, setWindowSize] = useState(PAGE_SIZE);
   const [historySelection, setHistorySelection] = useState("");
   const {
+    attachedProducts,removeProduct,
     loading,
     conversation,
     queryDraft,
@@ -323,6 +325,7 @@ export function PillowConversationWorkspace({
         </div>
       )}
 
+      {attachedProducts.length>0&&<div aria-label="Attached products" className="flex flex-wrap gap-2 px-4 py-2">{attachedProducts.map(product=><span key={referenceIdentity(product.reference)} className="max-w-full rounded-full border border-gold/20 px-3 py-1 text-xs text-[#d4af37]"><span className="break-words">{product.label}</span><button type="button" aria-label={`Remove ${product.label}`} disabled={loading} onClick={()=>removeProduct(referenceIdentity(product.reference))} className="ml-2 min-h-11 min-w-11">×</button></span>)}</div>}
       <footer data-testid="pillow-composer-footer" className="shrink-0 border-t border-gold/10 bg-[#0a0a0a] px-4 py-3 sm:px-5">
         <form
           className="mx-auto flex max-w-3xl items-end gap-2 lg:max-w-[56rem] lg:gap-3"
@@ -379,3 +382,4 @@ export function PillowConversationWorkspace({
     </section>
   );
 }
+

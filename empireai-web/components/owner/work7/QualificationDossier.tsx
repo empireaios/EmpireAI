@@ -1,4 +1,5 @@
 'use client';
+import {ProductChatActions} from '../ProductChatActions';
 import {useRef,useState} from 'react';
 import {SimulationAuthorization} from './SimulationAuthorization';
 import s from './journeys.module.css';
@@ -23,7 +24,7 @@ export function QualificationDossier({candidate}:{candidate:Row}){
  }
  if(!available)return <p role="status">Qualification dossier unavailable. Source evidence must be recovered before a review decision can be recorded.</p>;
  return <section aria-label="Product qualification dossier" className={s.details}>
-  <h4 className={s.rowTitle}>Qualification dossier · {eligibility.status==='QUALIFIED'?'qualified for internal text screening':eligibility.status==='REJECTED'?'rejected':'deferred'}</h4>
+  <ProductChatActions sourceCandidateId={text(dossier.candidateId,'')}/><h4 className={s.rowTitle}>Qualification dossier · {eligibility.status==='QUALIFIED'?'qualified for internal text screening':eligibility.status==='REJECTED'?'rejected':'deferred'}</h4>
   <dl className={s.facts}><div><dt>Supplier product / variant</dt><dd>{text(supplier.productId)} / {text(supplier.variantId)}</dd></div><div><dt>Supplier unit price</dt><dd>{number(supplier.price)} {text(supplier.currency,'currency unknown')}</dd></div><div><dt>Observed stock</dt><dd>{number(supplier.stock)}</dd></div><div><dt>Freight to {text(supplier.destination)}</dt><dd>{number(freight.amount)} {text(freight.currency,'currency unknown')} · {text(freight.leadTime,'delivery time unknown')}</dd></div></dl>
   <p className={s.note}>Product images are withheld until usage permission is verified. Supplier observations do not establish commercial eligibility.</p>
   <details className={s.details}><summary>Source identity and freshness</summary>{sources.map(source=><p key={text(source.id)}>{text(source.capability)} · {source.freshness==='FRESH'?'Fresh':'Historical'} · observed {text(source.observedAt)} · expires {text(source.expiresAt)}<br/>Evidence: {text(source.id)}</p>)}</details>

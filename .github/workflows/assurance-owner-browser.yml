@@ -53,3 +53,55 @@ jobs:
         with:
           name: work7-owner-rendered-fixtures
           path: ${{ runner.temp }}/work7-owner-screenshots
+
+
+  work8-source-context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: work8/autonomous-examination-20261011
+          path: a8-backend
+          persist-credentials: false
+      - name: Verify reviewed backend tree
+        run: test "$(git -C a8-backend rev-parse HEAD^{tree})" = 'e668d9b61851b70b5ef3cc97f816520cde6105fc'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Install locked backend dependencies
+        working-directory: a8-backend/backend
+        run: npm ci
+      - name: Install locked browser dependencies
+        working-directory: empireai-web
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Verify source binding and Pillow compaction boundary
+        working-directory: a8-backend/backend
+        run: |
+          mkdir -p "${{ runner.temp }}/work8-source-context"
+          node --import tsx --test src/validation/tests/work8-source-product-context.test.ts > "${{ runner.temp }}/work8-source-context/source-product-context.tap" 2>&1
+      - name: Verify product context client boundary
+        working-directory: empireai-web
+        run: node --import tsx --test lib/pillow/product-context.test.ts > "${{ runner.temp }}/work8-source-context/product-context-client.tap" 2>&1
+      - name: Build exact owner interface
+        working-directory: empireai-web
+        run: npm run build
+      - name: Verify genuine source context in actual connected browser
+        working-directory: empireai-web
+        env:
+          WORK8_A8_BACKEND_ROOT: ${{ github.workspace }}/a8-backend/backend
+          WORK8_A8_OUT: ${{ runner.temp }}/work8-source-context
+        run: node e2e/work8-source-context-native.mjs
+      - name: Preserve context examination evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-source-context
+          path: ${{ runner.temp }}/work8-source-context
+          if-no-files-found: error

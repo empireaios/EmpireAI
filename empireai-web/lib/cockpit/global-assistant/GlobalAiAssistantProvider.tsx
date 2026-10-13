@@ -59,6 +59,7 @@ import {
 } from "@/lib/pillow-ux";
 import { useFounderShellOptional } from "@/lib/founder-shell/FounderShellProvider";
 import { useAuth } from "@/lib/auth/context";
+import {readProductContext,referenceIdentity,selectProduct,type AttachedProduct,type ProductReference} from "@/lib/pillow/product-context";
 
 type GlobalAiAssistantState = {
   expanded: boolean;
@@ -84,6 +85,9 @@ type GlobalAiAssistantState = {
 };
 
 type GlobalAiAssistantContextValue = GlobalAiAssistantState & {
+  attachedProducts: AttachedProduct[];
+  attachProduct: (reference:ProductReference,compare?:boolean)=>Promise<void>;
+  removeProduct: (missionId:string)=>void;
   expand: () => void;
   collapse: () => void;
   toggle: () => void;
@@ -112,7 +116,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
   const { user } = useAuth();
   // Remount on identity change: never render the previous owner's transcript,
   // context, active request or session for even one frame of the next account.
-  return <GlobalAiAssistantSession key={user?.id ?? "anonymous"}>{children}</GlobalAiAssistantSession>;
+  return <GlobalAiAssistantSession key={user ? `${user.id}:${user.workspaceId}` : "anonymous"}>{children}</GlobalAiAssistantSession>;
 }
 
 function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
@@ -494,11 +498,30 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     };
   }, [user, state.executiveReady, state.readinessPhase, ensureHostSession, markStarting]);
 
+  const [attachedProducts,setAttachedProducts]=useState<AttachedProduct[]>([]);
+  const productSelectionVersion=useRef(0);
+  const attachedProductsRef=useRef<AttachedProduct[]>([]);
+  const attachProduct=useCallback(async(reference:ProductReference,compare=false)=>{
+    if(state.loading)throw Error("Wait for the current message before changing product context.");
+    const version=++productSelectionVersion.current, owner=activeOwnerId.current;
+    const product=await readProductContext(reference);
+    if(version!==productSelectionVersion.current||owner!==activeOwnerId.current)throw Error("Product selection changed before verification completed.");
+    const next=selectProduct(attachedProductsRef.current,product,compare);
+    attachedProductsRef.current=next;setAttachedProducts(next);
+  },[state.loading]);
+  const removeProduct=useCallback((missionId:string)=>{
+    if(state.loading)return;
+    productSelectionVersion.current++;
+    const next=attachedProductsRef.current.filter(p=>referenceIdentity(p.reference)!==missionId);
+    attachedProductsRef.current=next;setAttachedProducts(next);
+  },[state.loading]);
+
   const sendViaPillow = useCallback(
     async (
       query: string,
       target?: GlobalAssistantTarget,
     ): Promise<boolean> => {
+      productSelectionVersion.current++;
       const buildContextWithContinuity = (): Record<string, unknown> => {
         const base = buildWorkspaceContext(state.context, state.pageOverride);
         const turns = (loadPillowSession(user?.id)?.turns ?? [])
@@ -514,13 +537,16 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
         return {
           ...base,
           recentConversationTurns: turns,
+          ...(attachedProducts.length?{productContext:attachedProducts.length===1?attachedProducts[0].reference:attachedProducts.map(p=>p.reference)}:{}),
         };
       };
 
+      const productContextKey=JSON.stringify({workspace:user?.workspaceId,refs:attachedProducts.map(p=>p.reference)});
       const attemptChat = async (sessionId: string): Promise<boolean> => {
         const priorReceipt = user
           ? loadPendingPillowReceipts(user.id).find((row) => row.query === query)
           : undefined;
+        if(priorReceipt && (priorReceipt.productContextKey===undefined?attachedProducts.length>0:priorReceipt.productContextKey!==productContextKey))throw Error("An earlier request with this message is still pending under different product context. Inspect that saved request before sending again.");
         const chatResult: PillowChatResult & { reboundSessionId?: string } = priorReceipt
           ? await retrievePillowChat(priorReceipt)
           : await sendPillowChat({
@@ -529,7 +555,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
             workspaceContext: buildContextWithContinuity(),
           }, {
             onAccepted: (receipt) => {
-              if (user) savePendingPillowReceipt(user.id, { ...receipt, query });
+              if (user) savePendingPillowReceipt(user.id, { ...receipt, query, productContextKey });
             },
           });
         if (!user || activeOwnerId.current !== user.id) return true;
@@ -572,6 +598,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       ensureHostSession,
       markStarting,
       presentChatResult,
+      attachedProducts,
       state.context,
       state.pageOverride,
       user,
@@ -738,6 +765,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       ...state,
+      attachedProducts,attachProduct,removeProduct,
       expand: () => {
         // Mark panel expanded only. Do NOT auto-dispatch the Pillow focus event —
         // Executive Home mounts expand() and that was yanking page scroll into Pillow.
@@ -765,6 +793,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     }),
     [
       state,
+      attachedProducts,attachProduct,removeProduct,
       ensureHostSession,
       setPageOverride,
       refreshContext,
@@ -799,3 +828,4 @@ export function usePillowPageContext() {
     pageOverride: ctx?.pageOverride ?? null,
   };
 }
+
