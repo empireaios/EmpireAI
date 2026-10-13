@@ -11,7 +11,7 @@ type RecoveryAdapter = {
  verifyRuntimeRecoverySet(args:{directory:string;digest:string}):unknown;
  finalizeRuntimeRecoverySet(args:Work8RecoveryResult):Work8RecoveryResult;
 };
-export type Work8RecoveryRequest={destination:string;sourceCommit:string;frontendRevision:string;requireComplete?:boolean};
+export type Work8RecoveryRequest={destination:string;sourceCommit:string;frontendRevision:string;requireComplete?:boolean;captureRepositoryLifecycle?:boolean};
 export type Work8RecoveryResult={directory:string;digest:string;manifest:{completeLiveState:false;bootAllowed:false;[key:string]:unknown}};
 // Atomic database inventory includes pending jobs, sessions and TTLs; it does
 // not establish exclusion of remote producers before or after this command.
@@ -36,7 +36,7 @@ export async function captureRedisInventory(queue:TaskQueue) {
 }
 export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string},queue:TaskQueue):Promise<Work8RecoveryResult>{
  if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN: Redis producers, watchdog, continuation and protected custody remain uncovered; only explicit scoped inspection is available");
- return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,captureId:randomUUID(),captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
+ return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,captureId:randomUUID(),captureRepositoryLifecycle:request.captureRepositoryLifecycle===true,captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
   authorityFile:path.join(resolveShadowCeoAuthorityDir(),'authority-store.json'),
   requestOwnersFile:path.join(resolveShadowCeoDataRoot(),'shadow-ceo-request-owners.json'),
   captureRedis:()=>captureRedisInventory(queue),captureRedisIdentity:async()=>{

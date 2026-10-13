@@ -1,3 +1,4 @@
+import {initializeGeneratedWorkerIfRegistered,publishGeneratedWorkerReadyIfRegistered} from './runtime/work8-generated-worker-lifecycle.js';
 import { env } from "./config/env.js";
 import { logger } from "./config/logger.js";
 import { logCaughtError } from "./config/log-caught-error.js";
@@ -64,11 +65,14 @@ async function main() {
   // Only the Brain worker/monolith loads the full application graph. The
   // isolated primary must keep authentication independent of that graph.
   const { buildApp } = await import("./app.js");
-  const { app, shutdown, finishRouteRegistration } = await buildApp({
+  const application = await buildApp({
     startWorkers: !productionEarlyListen,
     startScheduler: !productionEarlyListen,
     earlyListen: productionEarlyListen,
   });
+
+  const {app,shutdown,finishRouteRegistration}=application;
+  await initializeGeneratedWorkerIfRegistered(application);
 
   shutdownAction = async () => {
     await stopAmazonOrderImport?.();
@@ -129,6 +133,7 @@ async function main() {
       "Skipping REAL module HTTP route registration in production (Cockpit-critical routes only)",
     );
   }
+  publishGeneratedWorkerReadyIfRegistered();
 }
 
 main().catch((error) => {

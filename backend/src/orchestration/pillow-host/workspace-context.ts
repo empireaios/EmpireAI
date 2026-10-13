@@ -4,13 +4,21 @@ import {
   conversationalResponsePolicy,
 } from "../../domain/services/executive-conversational-routing.js";
 
-const boundProductContextSchema=z.object({
+const canonicalProductContextSchema=z.object({
  reference:z.object({sessionId:z.string().max(100).optional(),missionId:z.string().max(160),receiptDigest:z.string().regex(/^[a-f0-9]{64}$/)}).strict(),
  label:z.string().max(180),productId:z.string().max(160),variantId:z.string().max(160),sku:z.string().max(160),
  phase:z.string().max(100),classification:z.string().max(100),sourceClassification:z.string().max(100),
  source:z.literal('VERIFIED_CANONICAL_RECEIPT'),grantsAuthority:z.literal(false),rule:z.string().max(500),
  qualification:z.unknown().optional(),
 }).strict();
+
+const sourceDossierContextSchema=z.object({
+ reference:z.object({kind:z.literal('SOURCE_DOSSIER'),candidateId:z.string().min(1).max(160),contextDigest:z.string().regex(/^[a-f0-9]{64}$/)}).strict(),
+ label:z.string().max(180),productId:z.string().max(160),variantId:z.string().max(160).nullable(),sku:z.string().max(160).nullable(),
+ phase:z.string().max(100),classification:z.string().max(100),sourceClassification:z.literal('REAL_READ_ONLY'),
+ source:z.literal('VERIFIED_SOURCE_DOSSIER'),grantsAuthority:z.literal(false),rule:z.string().max(500),qualification:z.unknown(),
+}).strict();
+const boundProductContextSchema=z.union([canonicalProductContextSchema,sourceDossierContextSchema]);
 
 /** PILLOW-019 — Structured workspace context from Executive Companion (session-scoped). */
 export const pillowWorkspaceContextSchema = z.object({

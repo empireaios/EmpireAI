@@ -1,3 +1,5 @@
+import {resolveWork8ProductContext} from './commerce-runtime/governed/runtime.js';
+import {consumeGeneratedWorker,type GeneratedWorkerAdoption} from './work8-generated-worker-adoption.js';
 import { withSupervisedObserverCapture } from './work8-observer-capture.js';
 import { installPrimaryCaptureParticipant } from './work8-primary-capture.js';
 import { installCaptureHttpAdmission } from './capture-http-admission.js';
@@ -405,7 +407,7 @@ export async function handleDurablePillowChat(
   const suppliedContext=input.workspaceContext as Record<string,unknown>|undefined;
   if(suppliedContext?.productContext){
     if(request.user.role!=='founder'||request.user.workspaceId!=='ws_empire_1'||request.user.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase())return reply.code(403).send({code:'PRODUCT_CONTEXT_OWNER_REQUIRED'});
-    try{input.workspaceContext={...suppliedContext,productContext:Array.isArray(suppliedContext.productContext)?productionCommerce().twinRuntime.comparisonContext({workspace:request.user.workspaceId,owner:request.user.id},suppliedContext.productContext):productionCommerce().twinRuntime.context({workspace:request.user.workspaceId,owner:request.user.id},suppliedContext.productContext)};}
+    try{input.workspaceContext={...suppliedContext,productContext:resolveWork8ProductContext({workspace:request.user.workspaceId,owner:request.user.id},suppliedContext.productContext)};}
     catch{return reply.code(409).send({code:'PRODUCT_CONTEXT_STALE_OR_UNAVAILABLE',error:'Return to the product and reopen its current context before sending.'});}
   }
   const claim = await acceptDurableChatRequestClaim({
@@ -496,7 +498,8 @@ export function registerTier0LoginRoute(
 
 }
 
-export async function startTier0IsolatedPrimary(): Promise<void> {
+export async function startTier0IsolatedPrimary(examination?:GeneratedWorkerAdoption): Promise<void> {
+  const adopted=examination?consumeGeneratedWorker(examination):undefined;
   const workerPort = Number(process.env.EMPIRE_BRAIN_WORKER_PORT ?? env.PORT + 1);
   const workerState: WorkerState = {
     child: null,
@@ -520,6 +523,15 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     bodyLimit: 25 * 1024 * 1024,
   });
   const captureAdmission = installCaptureHttpAdmission(app);
+  if(adopted){
+    workerState.child=adopted.child;
+    const dispose=installPrimaryCaptureParticipant(adopted.child,held=>
+      withSupervisedObserverCapture(()=>captureAdmission.withDrainedAdmission(()=>withDrainedWork8Background(held))));
+    adopted.child.once('exit',()=>{dispose();adopted.terminal('EXAM_WORKER_EXIT');});
+    adopted.child.once('error',error=>adopted.terminal(error));
+    adopted.child.once('disconnect',()=>adopted.terminal('EXAM_IPC_DISCONNECTED')); 
+  }
+
   installLockedCommissioning(app);
   let stopSweeper: () => Promise<void> = async () => {};
   const releaseFinance = retainProductionFinance();
@@ -785,6 +797,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
   });
 
   function spawnWorker(): void {
+    if(adopted)return; // Examination child never falls through ordinary index.js respawn.
     if (lifecycle.isStopping() || workerState.starting || workerState.child) return;
     workerState.starting = true;
     const childEnv = {
@@ -859,5 +872,6 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   // Spawn heavy sql.js worker AFTER public Tier-0 is accepting traffic so
   // Railway healthchecks and Grand King auth survive worker boot/OOM/flush.
-  lifecycle.schedule(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
+  if(adopted)adopted.admit();
+  else lifecycle.schedule(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
 }

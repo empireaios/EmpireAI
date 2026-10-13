@@ -267,6 +267,31 @@ jobs:
           path: ${{ runner.temp }}/hh3-evidence
           if-no-files-found: error
           retention-days: 30
+      - name: Examine generated application held capture and external containment
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/hh4-evidence"
+          image_id=$(docker image inspect --format '{{.Id}}' work8-hh3:ci)
+          node --test scripts/work8/hh4-held-capture-controller.test.mjs
+          node scripts/work8/hh4-held-capture-controller.mjs "$image_id" "$(git rev-parse HEAD)" "$RUNNER_TEMP/hh4-evidence"
+          node --test scripts/work8/hh4-inspection-restoration.test.mjs
+          node --input-type=module - "$RUNNER_TEMP/hh4-evidence" "$(git rev-parse HEAD)" <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import {examineInspectionRestoration} from './scripts/work8/hh4-inspection-restoration.mjs';
+          const [root,source]=process.argv.slice(2);
+          const held=JSON.parse(fs.readFileSync(path.join(root,'container-evidence/hh4-held.json'),'utf8'));
+          examineInspectionRestoration({directory:path.join(root,'container-evidence/held-capture'),digest:held.digest,source,destination:path.join(root,'fresh-inspection-restoration')});
+          NODE
+      - name: Preserve actual generated application startup and held capture evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-hh4-held-capture
+          path: ${{ runner.temp }}/hh4-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: Verify bounded multi-provider inference and preserved authority
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/advisor-gateway.test.ts backend/src/validation/tests/advisor-pillow-readback.test.ts backend/src/validation/tests/provider-receipt-readback.test.ts backend/src/validation/tests/answer-gate-diagnostics.test.ts backend/src/validation/tests/owner-commissioning-readback.test.ts backend/src/validation/tests/locked-inference.test.ts backend/src/validation/tests/locked-provider-orchestration.test.ts backend/src/validation/tests/locked-reasoning-integration.test.ts
       - name: Verify response completion and frontend preservation safeguards
