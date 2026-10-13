@@ -1,0 +1,36 @@
+{
+  "recordType": "INDEPENDENT_ORIGINAL_CRITERIA_VS_OWNER_ORDERING_RECONCILIATION",
+  "createdAt": "2026-10-13T03:36:21.629094+00:00",
+  "sourceFileSha256": {
+    "lane-f27-external/scripts/work8/f27-outer-controller.cjs": "7bab74327eec82adb6ebfbb572888b822a335442463ae84936e1cf3a2265b82d",
+    "lane-f27-external/backend/src/validation/tests/work8-joined-assurance.test.ts": "b434c8598ee5c3da2e590f41b49340e033d8fe22bcd5bdf240fc785df68f7f67"
+  },
+  "observedOrder": [
+    "Docker container startup and child readiness",
+    "Docker identity, process/cgroup, inspector identity and egress preflight",
+    "Host monotonic waitingAt starts; outer-start.json written",
+    "Child observes outer-start then waits original 5000ms before injection",
+    "Host detector deadline uses waitingAt; fresh external verification and containment share 120000ms bound"
+  ],
+  "originalCriterion": {
+    "reference": "governing-1.txt measurementProtocol.latency and W8-F27-REMAINING-V1",
+    "latency": "External monotonic clock: t0 confirmed injection activation; tDetect first durable matching event; tVerify fresh independent confirmation.",
+    "detectorDeadlineMs": 60000,
+    "fullArmMs": 120000,
+    "finding": "A host clock begun before the gated injection is conservative relative to original injection-to-detection deadline. Original criterion does not require detection-clock commencement before Docker preflight. Hosted proof remains required; source ordering alone is not acceptance."
+  },
+  "newOwnerLiteralAssertion": {
+    "requirement": "Detection-clock commencement before scheduled injection and Docker preflight",
+    "decision": "NOT_SATISFIED_BEFORE_DOCKER_PREFLIGHT",
+    "satisfiedPart": "Clock begins before scheduled injection, enforced by handshake and original five-second delay.",
+    "unsatisfiedPart": "Clock begins only after Docker startup, identity and egress preflight. Do not label before-preflight ordering PASS."
+  },
+  "originalRowConsequence": "Original O26/O34 may close if all their original mandatory assertions are independently evidenced; the separately reported new literal ordering assertion must remain unresolved. Do not add this new ordering to original criteria or pretend it was met.",
+  "constraints": [
+    "Approved bytes unchanged",
+    "No test rerun",
+    "No workflow status used as certification",
+    "No original requirement or amendment accepted by this static note"
+  ],
+  "pending": "Exact hosted source/tree/artifact and actual independent F27 evidence review"
+}

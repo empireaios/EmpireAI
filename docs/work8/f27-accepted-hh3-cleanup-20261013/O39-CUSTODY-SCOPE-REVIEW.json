@@ -1,0 +1,32 @@
+{
+  "recordType": "ORIGINAL_O39_CUSTODY_SCOPE_RECONCILIATION",
+  "createdAt": "2026-10-13T03:41:18.911727+00:00",
+  "sources": [
+    "Original mandate sections 2,8,19 Level5,20",
+    "governing-1.txt W8-F30-REMAINING-V1",
+    "governing-2.txt retained F30 acceptance gap"
+  ],
+  "originalCriteria": [
+    "Protected retained snapshot and damaged-source/audit preservation",
+    "Corrupted copy refused; separately verified good copy restores exact canonical state in a fresh target",
+    "Independent manifest hashes and off-host readback",
+    "No active authority replay",
+    "Full application restoration and safe pending-work/session behaviour within original O39 scope"
+  ],
+  "notRequiredByCitedOriginals": [
+    "Different commercial storage provider",
+    "Independent human administrator",
+    "New infrastructure purchase"
+  ],
+  "existingGitHubCustodyAssessment": "Potentially suitable existing off-host custody if actual runtime/worker credentials cannot overwrite/delete the retained copy, readback is independently authenticated, retention is protected for the required recovery horizon, and complete application snapshot bytes are restored and canonically verified in a fresh authorized target. These facts require evidence; Git immutability and a remote ref alone do not prove retention or restoration.",
+  "minimumRemainingOracle": [
+    "Bind complete consistent capture manifest to exact runtime/source and declared admitted writer cohort",
+    "Record remote snapshot identity and protected retention/credential separation from tested runtime",
+    "Fresh independent authenticated download with complete hash/path/mode verification",
+    "Refuse damaged copy, restore verified good copy into fresh isolated replacement; verify actual public application state/session/pending-work invariants and no authority replay",
+    "Preserve original failed source and audit lineage"
+  ],
+  "decision": "PENDING_ACTUAL_CAPTURE_CUSTODY_RESTORE_PROOF_NO_NEW_PROVIDER_DEPENDENCY",
+  "testsRepeated": 0,
+  "newAcceptedIds": []
+}

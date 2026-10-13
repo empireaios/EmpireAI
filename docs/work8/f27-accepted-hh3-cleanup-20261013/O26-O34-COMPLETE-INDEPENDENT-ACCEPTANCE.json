@@ -1,0 +1,243 @@
+{
+  "recordType": "INDEPENDENT_COMPLETE_ORIGINAL_O26_O34_ACCEPTANCE",
+  "createdAt": "2026-10-13T03:44:07.996356+00:00",
+  "decision": "PASS_ORIGINAL_O26_AND_O34",
+  "newAcceptedOriginalIds": [
+    26,
+    34
+  ],
+  "newAcceptedAmendmentIds": [],
+  "governing": "Original mandate sections7,18,19Levels2/4,20; stable original requirement register; preregistered scenario vector/deadlines; realistic provider fakes expressly permitted",
+  "hosted": {
+    "decision": "ACCEPT_ORIGINAL_F27_FOUR_FAULT_EXTERNAL_ASSERTIONS_ONLY",
+    "source": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+    "tree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+    "run": 38342212050,
+    "job": 115115512755,
+    "artifact": 11787412781,
+    "artifactSha256": "92de22336236f13ab652ac36a0415850f4781a3b5ae4be6415a679f9a9068490",
+    "node": "22.23.2",
+    "verification": "Independent Python readonly SQLite review on disposable copy of authenticated artifact; original bytes retained. No runtime test reexecution.",
+    "assertions": {
+      "simultaneousVector": [
+        "cursor4 with5receipts",
+        "unknown supplier",
+        "exact refund2000to2001 only",
+        "actual inspector49 gone"
+      ],
+      "financialEventSetCount": 10,
+      "canonicalReceiptChainsValid": true,
+      "exactTaskMissionRecoveryOnce": true,
+      "cursor4to5": true,
+      "unknownSupplierRecordsUnchanged": true,
+      "financialMismatchNotRepaired": true,
+      "freshFinancialIncident": "inc_7fae77ec-97a0-41db-b7b5-831934874d44",
+      "freshFinancialEvent": 24,
+      "financialProbeReason": "SIM_FINANCE_EVENT_CORRUPT",
+      "externalCgroupDistinct": true,
+      "networkNoneAndEnetunreach": true,
+      "containerStoppedPidZero": true,
+      "reportedSurvivingSameIdentities": [],
+      "postContainmentDatabaseDigestIndependentlyRecomputed": "16bf0ec923b29b1791deb9c4f30a5b685027079b8e37d486723a167db9a8c536"
+    },
+    "timing": {
+      "injectionDelayMs": 5000,
+      "independentDetectionMsFromPreInjectionHandshake": 29914.022302,
+      "childDetectionMsAfterInjection": 24847.883856,
+      "completeVerifiedMsFromPreInjectionHandshake": 62504.472024,
+      "originalDetectorMaxMs": 60000,
+      "originalArmMaxMs": 120000,
+      "freshnessMaxMs": 180000,
+      "originalCriteria": "PASS",
+      "latestOwnerLiteralClockBeforeDockerPreflight": "NOT_SATISFIED_BY_THIS_RUN",
+      "reason": "Published implementation starts external timer after Docker preflight but before handshake-controlled injection. Original deadline proof remains valid; latest literal ordering is separate and requires corrected source examination."
+    },
+    "scopeLimits": [
+      "No independent external semantic-oracle claim; retained same-process sourceclaim assertions separate",
+      "No permanent external owner-alert delivery",
+      "No genuine business/Pillow acceptance, restoration, custody, or O33/O39 promotion",
+      "Full O26/O34 reconciliation owned by console criteria reviewer; this receipt accepts original F27 assertions only"
+    ],
+    "newAcceptedRequirementIds": [],
+    "rerun": false
+  },
+  "independentRawEvidenceReview": {
+    "path": "published-f27-hh3-ci/F27-INDEPENDENT-ACTUAL-ASSERTIONS.json",
+    "sha256": "b00a84b1e4fb8e7eb69cc2754dff4745881d9e8111feb34a938caa2df326ce49"
+  },
+  "O26": {
+    "decision": "PASS",
+    "completeCriteria": [
+      "Nine required fault classifications with durable source/mission/request/task correlation",
+      "Realistic combined commercial/Assurance runtime with production30000ms cycle",
+      "Fresh matching incident evidence and independently checked causal financial state",
+      "Bounded safe repair or justified unresolved containment, no false closure or unsafe authority",
+      "Retained owner incident projection, identity/exposure/permissions/budget/freshness and audit evidence"
+    ],
+    "nineClassRetainedProof": [
+      {
+        "classification": "application defect",
+        "evidence": [
+          {
+            "faultId": "F04",
+            "references": "work8-joint-exams.test.ts",
+            "retainedScope": "Actual receipt/cursor gap + reopened store + Assurance independently verified worker recovery"
+          },
+          {
+            "faultId": "F05",
+            "references": "work6-scale.test.ts; work8-assurance-adversity-followup.test.ts: full queue drain/restart; work8-queue-probe.test.ts; work8-assurance-runtime-cycle.test.ts; resume-20261011/targeted-tests.tap",
+            "retainedScope": "Actual20-job pressure opens registered passive incident; actual four-job drain independently closes it. Aged queued work/expired leases escalate without replay, oversized/unknown metadata fail closed. No remote broker or hosted drain-latency claim."
+          }
+        ],
+        "scopeDecision": "accepted scoped crash/backlog and F27 exactincident/task correlation",
+        "newTestRequired": false
+      },
+      {
+        "classification": "stale evidence",
+        "evidence": [
+          {
+            "faultId": "F01",
+            "references": "assurance-operating-scope.test.mjs; work8-assurance-recovery.test.mjs: stale-closure; work8-enrichment.test.ts; work8-response-binding.test.ts",
+            "retainedScope": "Exact pinned-source expiry and durable context/assessment chronology fail closed. Historical technical response health explicitly does not certify current product freshness. Real authorized stale-source refresh plus genuine assessment remains unavailable."
+          }
+        ],
+        "scopeDecision": "accepted exactsource expiry/context chronology; live supplier refresh is separate business evidence",
+        "newTestRequired": false
+      },
+      {
+        "classification": "provider outage",
+        "evidence": [
+          {
+            "faultId": "F08",
+            "references": "work8-model-session-faults.test.ts: actual completeLockedRouted injected429/503, passive provider health and Assurance; work8-acquisition.test.ts; work8-enrichment.test.ts",
+            "retainedScope": "Actual CJ adapter429 injects failed-page shortfall/deferral without automatic same-day retry. Model router429/503 uncertainty and passive closure retained. Real provider outage/failover or paid model repair is not claimed."
+          }
+        ],
+        "scopeDecision": "actual routed429/503 intercepted protocol and passivehealth incident",
+        "newTestRequired": false
+      },
+      {
+        "classification": "incorrect model claim",
+        "evidence": [
+          {
+            "faultId": "F11",
+            "references": "work8-source-claims.ts; work8-source-claims.test.ts; interrupted-recovery-20261012/ASSURANCE-READINESS-MATRIX.md; review/COMBINED-SOURCE-DECISION.md",
+            "retainedScope": "Previously independently accepted exact retained CJ2.76 versus forged0.01 with valid full delivery identity; actual durable unresolved incident, no-runbook, stale/foreign correction refusal, fresh samecoverage correction and retained historical incident."
+          }
+        ],
+        "scopeDecision": "ACCEPT retained semantic classification and causal identity proof; corrected omission from old matrix",
+        "newTestRequired": false
+      },
+      {
+        "classification": "unsafe authority request",
+        "evidence": [
+          {
+            "faultId": "F22",
+            "references": "work8-assurance-recovery.test.mjs: expired-approval; assurance-control-plane.test.mjs",
+            "retainedScope": "Actual stored approval expiry refused; zero repair executions"
+          },
+          {
+            "faultId": "F23",
+            "references": "work8-assurance-recovery.test.mjs: forbidden-financial-repair; work6-commerce.test.ts: forged roles",
+            "retainedScope": "C repair denied and exact actor separation checked; 15 live protections require separate scope evidence"
+          }
+        ],
+        "scopeDecision": "expired/forged authority and forbiddenrepair refusal; acceptedO27/O36 preserved",
+        "newTestRequired": false
+      },
+      {
+        "classification": "financial discrepancy",
+        "evidence": [
+          {
+            "faultId": "F14",
+            "references": "work8-finance.test.ts: missing order; work8-finance-escalation.test.ts: missing-order-reference",
+            "retainedScope": "Actual durable SIM refund event referencing absent order first meets immutable-write denial; controlled corruption with recomputed row digest then fails canonical plan reconciliation and opens unresolved CP incident. Zero financial repair/canonical receipt mutation; no real payment-provider missing-order reconciliation."
+          },
+          {
+            "faultId": "F21",
+            "references": "work8-finance.test.ts: canonical refund mismatch; work6-commerce.test.ts: refund exposure; work8-finance-escalation.test.ts: refund-discrepancy",
+            "retainedScope": "Actual durable refund amount mutation with recomputed row digest is rejected against canonical plan; registered probe opens unresolved CP incident and refuses repair. No real refund or autonomous financial correction."
+          }
+        ],
+        "scopeDecision": "canonical refund/order discrepancy incident remainsunresolved; financialrepair refused",
+        "newTestRequired": false
+      },
+      {
+        "classification": "data corruption",
+        "evidence": [
+          {
+            "faultId": "F13",
+            "references": "work8-joint-exams.test.ts; work8-assurance-finance-boundary.test.ts",
+            "retainedScope": "Finance event conflict detected and C repair refused; actual each-row corruption fails canonical history read"
+          }
+        ],
+        "scopeDecision": "actual canonical row corruption rejected; immutablehistory not rewritten",
+        "newTestRequired": false
+      },
+      {
+        "classification": "transient timeout",
+        "evidence": [
+          {
+            "faultId": "F06",
+            "references": "work8-sqlite-queue-containment.test.ts: real secondSQLitewriter timeout",
+            "retainedScope": "Actual BEGIN IMMEDIATE lock contention hits configured1second timeout with zero partial receipts; fresh read after test-controller lock release and exact command retry closes incident. No arbitrary database repair or real provider-network failover."
+          }
+        ],
+        "scopeDecision": "actualSQLite locktimeout and freshread/retry closure",
+        "newTestRequired": false
+      },
+      {
+        "classification": "unknown outcome",
+        "evidence": [
+          {
+            "faultId": "F28",
+            "references": "work8-assurance-late-effect.test.ts; work8-assurance-recovery.test.mjs: recurring-failure",
+            "retainedScope": "Canonical TIMEOUT remains blocked; late exact-provider ACCEPTED reconcile commits once, wrongprovider/resubmit/duplicateack denied, stock remains held. Actual fulfilment probes/controlplane retain overdue incident until freshdelivery. No real remote supplier transport or delayed real-world sideeffect is claimed."
+          }
+        ],
+        "scopeDecision": "supplierTIMEOUT retainsheldstock; exactprovider lateack reconcilesonce without duplicateeffect",
+        "newTestRequired": false
+      }
+    ],
+    "newGapClosed": "Actual outside-process-group F27 oracle independently reconstructed canonical records; closes previously explicit joint independent causal-correlation gap. Existing semantic and nine-class accepted examinations are reused without reexecution.",
+    "ownerEvidence": "Retained owner-inbox-connected-20261013/SEAL.json and publication-closure-20261012/review/owner-inbox-independent-review.json. Delivered external host-loss alert remains separate originalO30."
+  },
+  "O34": {
+    "decision": "PASS",
+    "completeCriteria": [
+      "Retained isolated, delayed, recurring and compounded fault examinations remain accepted for original scope",
+      "Accepted F02 scheduler and other component/adversity/endurance receipts retained",
+      "F29 original600s worker stall receipt plus independently accepted both-observer and launcher/guard simultaneous-loss arms retained",
+      "F27 exact receiptgap+unknownsupplier+refundmismatch+observerloss now independently evidenced simultaneously under outside-process-group oracle",
+      "Original detection/freshness/full-arm deadlines preserved; safe containment, no silent repair, immutable history and authority invariants verified"
+    ],
+    "newGapClosed": "Independent external F27 four-fault proof, not a combination of unrelated separate faults. One cursor recovery, zero financial repair, unknown supplier unchanged, fresh exact financial incident24, stopped container and equal independently reconstructed post-containment digest.",
+    "retainedReferences": [
+      "assurance-fault-coverage.json with subsequent accepted scoped receipts",
+      "resume-20261011/targeted-tests.tap",
+      "resume-20261011/TWIN-MULTIDAY.log",
+      "resume-20261011/DUAL-OBSERVER-CONTAINMENT.json",
+      "resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json",
+      "resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json",
+      "recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json",
+      "recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json",
+      "lane-console-certification/F29-FINAL-ACCEPTANCE.json",
+      "lane-console-certification/f27-independent-review.json"
+    ]
+  },
+  "separateUnresolvedGates": {
+    "latestOwnerClockOrdering": "NOT_SATISFIED: hosted clock starts after Docker preflight but before handshake-controlled scheduled injection; original deadline remains valid. New clock-origin correction statically reviewed, not hosted.",
+    "O30": "Independent external owner-alert delivery",
+    "O33_O39": "Full runtime writer capture/replay/restoration and protected independent custody",
+    "business_ownerJourney": "Genuine product/Pillow and connected complete owner business journey remain their separately governed requirements",
+    "certification": "No Work8 COMPLETE, Mission Ledger certification, production release or Work9 activation"
+  },
+  "notClaimed": [
+    "Physical whole-host destruction",
+    "Independent external semantic oracle replacing retained accepted semantic tests",
+    "A passing CI status alone establishes any requirement",
+    "Any new owner amendment PASS"
+  ],
+  "testsRepeated": 0,
+  "newEngineeringByReviewer": false
+}

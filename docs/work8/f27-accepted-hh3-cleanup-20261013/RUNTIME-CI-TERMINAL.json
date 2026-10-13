@@ -1,0 +1,114 @@
+{
+  "source": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "tree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "run": 38342212050,
+  "conclusion": "failure",
+  "attempt": 1,
+  "updated": "2026-10-13T03:45:53Z",
+  "node": "22.23.2",
+  "jobs": [
+    {
+      "id": 115115512485,
+      "name": "Durable web — receipt recovery, one submission, tests and build",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "id": 115115512631,
+      "name": "Durable runtime — real Redis, restart, ownership and authorization",
+      "conclusion": "failure",
+      "failedSteps": [
+        "Examine actual compiled coordinator timeout and error paths"
+      ]
+    },
+    {
+      "id": 115115512674,
+      "name": "Generated full path — response-delivery",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "id": 115115512731,
+      "name": "Generated full path — reasoning-admission",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "id": 115115512755,
+      "name": "Exact-source Railway Railpack image",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "id": 115118685249,
+      "name": "Runtime repair result (no deployment)",
+      "conclusion": "failure",
+      "failedSteps": [
+        "Require every mandatory repair gate to pass"
+      ]
+    }
+  ],
+  "corpora": {
+    "response": {
+      "cases": 1381,
+      "result": "PASS",
+      "artifact": 11787268583
+    },
+    "reasoning": {
+      "cases": 1950,
+      "result": "PASS",
+      "artifact": 11787204240
+    }
+  },
+  "artifacts": [
+    {
+      "id": 11787966227,
+      "name": "work8-hh3-compiled-coordinator",
+      "digest": "sha256:3f6dd27ace96d4cf74d0725d9a30329bf91c816ced353f62bc2f5ffe0bdc1a70",
+      "size": 10301,
+      "expires_at": "2026-11-12T03:44:32Z"
+    },
+    {
+      "id": 11787412781,
+      "name": "work8-f27-external-compound",
+      "digest": "sha256:92de22336236f13ab652ac36a0415850f4781a3b5ae4be6415a679f9a9068490",
+      "size": 373073,
+      "expires_at": "2026-11-12T03:38:12Z"
+    },
+    {
+      "id": 11787397943,
+      "name": "work8-f29-pair-containment",
+      "digest": "sha256:af95b409e98c3a9b07d809fe30032d6397b68cddd548d9e39c8a1130e07ca70e",
+      "size": 104038,
+      "expires_at": "2026-11-12T03:38:30Z"
+    },
+    {
+      "id": 11787387983,
+      "name": "locked-railway-package",
+      "digest": "sha256:c030755e3755637f9a1e180dc0da6b15d2f2cfdf39374f7fdb708f3fd5aad85e",
+      "size": 3451,
+      "expires_at": "2027-01-11T03:32:42Z"
+    },
+    {
+      "id": 11787268583,
+      "name": "generated-full-path-response-delivery",
+      "digest": "sha256:67d32707d386372118550ab004bc41340f78286e2d48719c56a01345134db5bf",
+      "size": 906,
+      "expires_at": "2026-10-27T03:41:12Z"
+    },
+    {
+      "id": 11787204240,
+      "name": "generated-full-path-reasoning-admission",
+      "digest": "sha256:962d6f34603042dc7a437b400f8e524ec863960b53abf38d5a82331588cebd47",
+      "size": 779,
+      "expires_at": "2026-10-27T03:45:43Z"
+    }
+  ],
+  "f27Review": "F27-INDEPENDENT-ACTUAL-ASSERTIONS.json",
+  "f29Review": "F29-CHANGED-RUNTIME-ASSERTIONS.json",
+  "hh3": "Actual examination failed; author diagnosing authentic retained artifact. No HH3 acceptance inferred.",
+  "literalPreflightClock": "Unmet by published run; correction independently code-ready but unexecuted",
+  "dispatch": false,
+  "rerun": false,
+  "scope": "Current automatic changed-boundary CI; no blanket programme status promotion."
+}

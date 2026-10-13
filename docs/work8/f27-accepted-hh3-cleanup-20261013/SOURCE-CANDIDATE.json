@@ -1,0 +1,67 @@
+{
+  "recordType": "NEW_LOCAL_CANDIDATE_NOT_PUBLISHED",
+  "commit": "d6b9afda4c6b81b0631133de8423e7ea80566baf",
+  "tree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "parent": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "baseTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "files": [
+    {
+      "path": "scripts/work8/f27-outer-controller.cjs",
+      "mode": "100644",
+      "blob": "8fd700f0e8a392b84faf94282f2b975697614c9c",
+      "sha256": "ca6004849b54be462eefd55a40f7c1f0cbc0b43a9c0efa4994e327edb7220ee3"
+    },
+    {
+      "path": "scripts/work8/f27-change-boundary.cjs",
+      "mode": "100644",
+      "blob": "c547af658a0041464ab516637274f41523d69784",
+      "sha256": "8c8572447f2714b8952c2c6e8af0e3e2a8fa35a1ef96636f80ff222517414468"
+    },
+    {
+      "path": "scripts/work8/hh3-owned-process-group.mjs",
+      "mode": "100644",
+      "blob": "d698db128bb2203a838151094a506987fc74db6b",
+      "sha256": "9eac4569c8fa50487bff3d30dbbbfbfe2bfbfadb976ab10fbb9cc7a30dc3148c"
+    },
+    {
+      "path": "scripts/work8/hh3-compiled-coordinator.mjs",
+      "mode": "100644",
+      "blob": "f4e523d4d9684697fc42b466285d54100aebd7fd",
+      "sha256": "d9c907b54fc047b70758aba7f7d9d6904621f67fc2106f3735ae9480d9e5c384"
+    },
+    {
+      "path": "scripts/work8/tests/f27-change-boundary.test.cjs",
+      "mode": "100644",
+      "blob": "d178b673fd4082942d434086cedee48c52bde75e",
+      "sha256": "570a367ef111f91b958558259552dd7337cf8567c5407d660733af30e5b6979d"
+    },
+    {
+      "path": "scripts/work8/tests/f27-clock-origin.test.cjs",
+      "mode": "100644",
+      "blob": "42cac1aebb56101c24d8abeb46eca65ede19479e",
+      "sha256": "19a57077389899558751beef73351b4221ccab7a8e62bee091323f752fea2213"
+    },
+    {
+      "path": "scripts/work8/tests/hh3-owned-process-group.test.mjs",
+      "mode": "100644",
+      "blob": "5e51be3be6955de95359fc49cc24b0a5d9a4ca70",
+      "sha256": "6f929426b7438e6361ad0c5ace5b354b72e82f5d24b676f3895da12cd670e1a9"
+    },
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "blob": "2f223359cdb89526017d78e9995e0e5ea2951aaf",
+      "sha256": "cd70b7d75b6ca22e8b8dc8b2b47b7bb4dd3149ee631cc00c9f3711dc16d654b4"
+    }
+  ],
+  "trees": {
+    "scripts/work8/tests": "dabaf83a718f704b11ff5a1d4956ef56489b7836",
+    "scripts/work8": "c58b287ed02f9cda6a926abcfc0153c3b24a184d",
+    ".github/workflows": "71a4ca57cd0ebff5cc882cdd027ba79521cabdd5",
+    "scripts": "c60867b44b44b47fb6e07efd9071794884ffdd2d",
+    ".github": "2bb349eee0df0e6cc3f548bea13d84351c264b0a",
+    "baseRoot": "b331cc6d8ce53c8f371a035ca80e525ca7b73060"
+  },
+  "durability": "NOT_STAGED_OWNER_APPROVAL_REQUIRED",
+  "independentReview": "PENDING"
+}

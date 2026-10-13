@@ -1,0 +1,35 @@
+{
+  "decision": "ACCEPT_SCOPED_CLOCK_ORIGIN_SOURCE_CORRECTION_HOSTED_PROOF_PENDING",
+  "baseCommit": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "baseTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "files": [
+    {
+      "path": "scripts/work8/f27-outer-controller.cjs",
+      "mode": "100644",
+      "blob": "8fd700f0e8a392b84faf94282f2b975697614c9c",
+      "sha256": "ca6004849b54be462eefd55a40f7c1f0cbc0b43a9c0efa4994e327edb7220ee3",
+      "bytes": 8901
+    },
+    {
+      "path": "scripts/work8/tests/f27-clock-origin.test.cjs",
+      "mode": "100644",
+      "blob": "42cac1aebb56101c24d8abeb46eca65ede19479e",
+      "sha256": "19a57077389899558751beef73351b4221ccab7a8e62bee091323f752fea2213",
+      "bytes": 581
+    }
+  ],
+  "findings": [
+    "createClock invoked as first main operation before Docker construction/preflight; single immutable origin retained.",
+    "Wait/detection/full-arm intervals use elapsed offsets from that continuous origin; 5s injection schedule and60s/120s fault-window constraints unchanged.",
+    "Receipts record preflight/fault/detection offsets; no claim that60s includes preflight.",
+    "Original oracle assertions and containment logic unchanged."
+  ],
+  "retainedChangedBoundaryTest": "1 PASS inspected; no rerun",
+  "limits": [
+    "Current hosted artifact proves original F27 but not latest literal before-preflight ordering.",
+    "This correction has not been executed hosted; code readiness is not ordering acceptance.",
+    "Exact integrated tree/workflow/publication review remains root responsibility."
+  ],
+  "publication": false,
+  "newAcceptedIds": []
+}

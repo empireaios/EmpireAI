@@ -1,0 +1,81 @@
+{
+  "decision": "ACCEPT_THREE_SCOPED_COORDINATOR_RECEIPTS_WITHHOLD_COMPLETE_HH3",
+  "source": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "tree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "runtimeRun": 38342212050,
+  "artifact": 11787966227,
+  "artifactSha256": "3f6dd27ace96d4cf74d0725d9a30329bf91c816ced353f62bc2f5ffe0bdc1a70",
+  "terminal": "FAIL_EXIT_124_AFTER_480_SECONDS",
+  "receipts": {
+    "timeout": {
+      "source": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+      "mode": "timeout",
+      "scope": "HH3_COMPILED_COORDINATOR_ONLY",
+      "manifestInvalidated": true,
+      "primaryReleased": true,
+      "redisReleased": true,
+      "nativeReleased": true,
+      "error": "Error: GENERATED_CAPTURE_HELD_EPOCH_EXPIRED",
+      "fullDomainRecovery": false,
+      "protectedCustody": false,
+      "events": [
+        "primary-enter",
+        null,
+        "held",
+        null,
+        "primary-release",
+        "settled"
+      ]
+    },
+    "observer-error": {
+      "source": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+      "mode": "observer-error",
+      "scope": "HH3_COMPILED_COORDINATOR_ONLY",
+      "manifestInvalidated": true,
+      "primaryReleased": true,
+      "redisReleased": true,
+      "nativeReleased": true,
+      "error": "Error: HH3_LABELLED_OBSERVER_FAILURE",
+      "fullDomainRecovery": false,
+      "protectedCustody": false,
+      "events": [
+        "primary-enter",
+        null,
+        "held",
+        null,
+        "primary-release",
+        "settled"
+      ]
+    },
+    "invalidate-error": {
+      "source": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+      "mode": "invalidate-error",
+      "scope": "HH3_COMPILED_COORDINATOR_ONLY",
+      "primaryHeld": true,
+      "redisHeld": true,
+      "nativeHeld": true,
+      "settled": false,
+      "requiresExternalTermination": true,
+      "fullDomainRecovery": false,
+      "protectedCustody": false,
+      "events": [
+        "primary-enter",
+        null,
+        "held"
+      ]
+    }
+  },
+  "diagnosis": {
+    "observed": "All three receipts precede timeout; no container-after or post-termination cohort inventory. Coordinator finally signals only fork leader. Invalidation failure intentionally holds capture forever and bypasses child finally that would stop Redis.",
+    "inference": "A surviving Redis descendant and inherited stdout/stderr can keep coordinator pipes/event loop active. Historical artifact cannot establish exact remaining process identities."
+  },
+  "requiredCorrection": [
+    "Dedicated child process group separated from coordinator",
+    "PID/starttime and owned descendant/group identity tracking",
+    "Bounded termination and post-termination verification including leader already exited",
+    "No signal to unrelated process or reused identity",
+    "Preserve capture assertions and original scope; no full-domain or protected custody credit"
+  ],
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

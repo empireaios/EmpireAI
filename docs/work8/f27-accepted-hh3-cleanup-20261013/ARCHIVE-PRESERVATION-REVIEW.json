@@ -1,0 +1,65 @@
+{
+  "decision": "SUITABLE_FOR_OWNER_REVIEWED_EXACT_ARCHIVE_PRESERVATION_IN_EXISTING_AUTHORISED_REPOSITORY",
+  "archives": [
+    {
+      "artifact": "11787412781",
+      "path": "published-f27-hh3-ci/artifact-11787412781.zip",
+      "sha256": "92de22336236f13ab652ac36a0415850f4781a3b5ae4be6415a679f9a9068490",
+      "bytes": 373073,
+      "entries": 35,
+      "classification": "AUTHENTIC_ISOLATED_GENERATED_EXAMINATION_ARTIFACT",
+      "exclusions": []
+    },
+    {
+      "artifact": "11787966227",
+      "path": "published-f27-hh3-ci/artifact-11787966227.zip",
+      "sha256": "3f6dd27ace96d4cf74d0725d9a30329bf91c816ced353f62bc2f5ffe0bdc1a70",
+      "bytes": 10301,
+      "entries": 9,
+      "classification": "AUTHENTIC_ISOLATED_GENERATED_EXAMINATION_ARTIFACT",
+      "exclusions": []
+    },
+    {
+      "artifact": "11787204240",
+      "path": "published-f27-hh3-ci/artifact-11787204240.zip",
+      "sha256": "962d6f34603042dc7a437b400f8e524ec863960b53abf38d5a82331588cebd47",
+      "bytes": 779,
+      "entries": 2,
+      "classification": "AUTHENTIC_ISOLATED_GENERATED_EXAMINATION_ARTIFACT",
+      "exclusions": []
+    },
+    {
+      "artifact": "11787268583",
+      "path": "published-f27-hh3-ci/artifact-11787268583.zip",
+      "sha256": "67d32707d386372118550ab004bc41340f78286e2d48719c56a01345134db5bf",
+      "bytes": 906,
+      "entries": 2,
+      "classification": "AUTHENTIC_ISOLATED_GENERATED_EXAMINATION_ARTIFACT",
+      "exclusions": []
+    },
+    {
+      "artifact": "11787397943",
+      "path": "published-f27-hh3-ci/artifact-11787397943.zip",
+      "sha256": "af95b409e98c3a9b07d809fe30032d6397b68cddd548d9e39c8a1130e07ca70e",
+      "bytes": 104038,
+      "entries": 58,
+      "classification": "AUTHENTIC_ISOLATED_GENERATED_EXAMINATION_ARTIFACT",
+      "exclusions": []
+    }
+  ],
+  "basis": [
+    "Both container inspections show network none and evidence-only bind mount; no production volume attached.",
+    "Container/image environment inspected: no provider credentials or production secrets present.",
+    "F27 external baseline explicitly identifies synthetic fixture products, synthetic provenance and labelled financial acceptance transactions.",
+    "HH3 archive contains nine files: source, image/container metadata, three child logs and three scoped receipts; no database payload. Logs show test bootstrap fixture accounts rather than external owner records.",
+    "F2735-file archive includes generated SQLite/WAL fixture evidence and original external observations. Preserve exact original bytes; not genuine commercial or historical accounting evidence.",
+    "Reasoning and response corpus archives each contain only aggregate generated-test result JSON and source SHA; inspected exact original bytes.",
+    "Changed-runtime F29 archive has two isolated pair-scenario directories with labelled financial fixture records; preserved raw original bytes and previous assertion review, not real commercial evidence."
+  ],
+  "scope": "Bounded provenance/classification review of specified authentic artifacts and metadata, not exhaustive unrelated database audit.",
+  "requiredLabelling": [
+    "F27 prior hosted examination accepted within recorded scope; clock-origin follow-on still pending.",
+    "HH3 failed overall after480s despite three valid scoped receipts; do not label archive PASS."
+  ],
+  "publication": false
+}

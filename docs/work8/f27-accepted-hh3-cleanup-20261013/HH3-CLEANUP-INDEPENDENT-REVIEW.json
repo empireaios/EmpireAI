@@ -1,0 +1,37 @@
+{
+  "decision": "ACCEPT_SCOPED_HH3_CLEANUP_SOURCE_CORRECTION_HOSTED_PROOF_PENDING",
+  "baseSource": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "baseTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "files": [
+    {
+      "path": "scripts/work8/hh3-compiled-coordinator.mjs",
+      "mode": "100644",
+      "blob": "f4e523d4d9684697fc42b466285d54100aebd7fd",
+      "sha256": "d9c907b54fc047b70758aba7f7d9d6904621f67fc2106f3735ae9480d9e5c384"
+    },
+    {
+      "path": "scripts/work8/hh3-owned-process-group.mjs",
+      "mode": "100644",
+      "blob": "d698db128bb2203a838151094a506987fc74db6b",
+      "sha256": "9eac4569c8fa50487bff3d30dbbbfbfe2bfbfadb976ab10fbb9cc7a30dc3148c"
+    }
+  ],
+  "findings": [
+    "Coordinator fork now detached into separate session/group; controller identity verified outside it.",
+    "Leader PID/starttime retained; PID reuse and controller-group authority refused before signal.",
+    "Termination scans and SIGKILLs owned group even when child leader already exited. Bounded live group and observed-identity checks prevent successful receipt with survivors. Zombies explicitly classified terminated, not reaped.",
+    "Timeout, observer-error, invalidation-error assertions and deadlines unchanged. No application runtime authority code changed.",
+    "Dockerfile COPY . includes new helper; Docker-specific ignore has no helper exclusion.",
+    "Four retained exact-helper VM boundary checks inspected, not rerun. Actual local process examination blocked by PID namespace mismatch, explicitly not credited."
+  ],
+  "limits": [
+    "Hosted Node22 Docker execution pending; no complete HH3 or O33/O39 acceptance.",
+    "Tracks same-group descendants present at termination. Does not establish historical custody of arbitrary previously escaped descendants.",
+    "Original artifact diagnosis supports descendant cleanup defect; exact historical process inventory unavailable.",
+    "Integration must include both files and exact modes; full candidate tree/publication are root responsibility."
+  ],
+  "originalEvidence": "lane-hh3-cleanup/ORIGINAL-HH3-INDEPENDENT-DIAGNOSIS.json",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": [],
+  "publication": false
+}

@@ -1,0 +1,21 @@
+{
+  "decision": "ACCEPT_EXACT_INTEGRATED_SOURCE_CANDIDATE_HOSTED_ACCEPTANCE_PENDING",
+  "commit": "d6b9afda4c6b81b0631133de8423e7ea80566baf",
+  "tree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+  "parent": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "baseTree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "changedPaths": 8,
+  "verification": [
+    "Independently reserialized all supplied base ancestor tree objects; original hashes match.",
+    "Independently hashed all8changed blobs and matched separate review receipts.",
+    "Applied only8reviewed path/mode/blob updates to base ancestor trees and recomputed exact rootb331cc6d8ce53c8f371a035ca80e525ca7b73060. Unchanged entries preserved.",
+    "Raw commit hash/tree/parent verified.",
+    "Workflow digest matches reuse guard; all8paths regular100644 and allowlisted. F27/HH3/403 remain mandatory; accepted F29/corpora retained only with boundary guard."
+  ],
+  "testsRerun": 0,
+  "limits": [
+    "Local exact candidate; durable staging, fresh remote readback and publication require owner approval.",
+    "No hosted HH3 or F27 clock correction acceptance claimed."
+  ],
+  "newAcceptedRequirements": []
+}

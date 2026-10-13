@@ -1,0 +1,18 @@
+{
+  "evidence": {
+    "reviewedCommit": "08e7e60082b8d615b98747e57263806c90c4ba05",
+    "stagedCommit": "c075818093dc3eb3e4b4c7f4a7fa7df4f2319c7d",
+    "tree": "2ef16ddd1675d49d23919b54a5039f92af217088",
+    "ref": "work8/staged-f27-hh3-evidence-20261013"
+  },
+  "source": {
+    "reviewedCommit": "fed1f1b37ccc77ed130ec3fd4ae73e7a90205a5e",
+    "stagedCommit": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+    "tree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+    "ref": "work8/staged-f27-hh3-source-20261013"
+  },
+  "independentReadback": "PASS_ALL34BLOBS_AND15TREES_FRESH_REMOTE",
+  "publication": "EVIDENCE_FIRST_SOURCE_SECOND_COMPLETE",
+  "postPublicationTreeEquality": true,
+  "reviewReceipt": "independent-f27-hh3-readback/READBACK-RECEIPT.json"
+}

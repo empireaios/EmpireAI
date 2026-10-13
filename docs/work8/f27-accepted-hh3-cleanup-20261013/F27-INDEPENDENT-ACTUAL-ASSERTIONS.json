@@ -1,0 +1,53 @@
+{
+  "decision": "ACCEPT_ORIGINAL_F27_FOUR_FAULT_EXTERNAL_ASSERTIONS_ONLY",
+  "source": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "tree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "run": 38342212050,
+  "job": 115115512755,
+  "artifact": 11787412781,
+  "artifactSha256": "92de22336236f13ab652ac36a0415850f4781a3b5ae4be6415a679f9a9068490",
+  "node": "22.23.2",
+  "verification": "Independent Python readonly SQLite review on disposable copy of authenticated artifact; original bytes retained. No runtime test reexecution.",
+  "assertions": {
+    "simultaneousVector": [
+      "cursor4 with5receipts",
+      "unknown supplier",
+      "exact refund2000to2001 only",
+      "actual inspector49 gone"
+    ],
+    "financialEventSetCount": 10,
+    "canonicalReceiptChainsValid": true,
+    "exactTaskMissionRecoveryOnce": true,
+    "cursor4to5": true,
+    "unknownSupplierRecordsUnchanged": true,
+    "financialMismatchNotRepaired": true,
+    "freshFinancialIncident": "inc_7fae77ec-97a0-41db-b7b5-831934874d44",
+    "freshFinancialEvent": 24,
+    "financialProbeReason": "SIM_FINANCE_EVENT_CORRUPT",
+    "externalCgroupDistinct": true,
+    "networkNoneAndEnetunreach": true,
+    "containerStoppedPidZero": true,
+    "reportedSurvivingSameIdentities": [],
+    "postContainmentDatabaseDigestIndependentlyRecomputed": "16bf0ec923b29b1791deb9c4f30a5b685027079b8e37d486723a167db9a8c536"
+  },
+  "timing": {
+    "injectionDelayMs": 5000,
+    "independentDetectionMsFromPreInjectionHandshake": 29914.022302,
+    "childDetectionMsAfterInjection": 24847.883856,
+    "completeVerifiedMsFromPreInjectionHandshake": 62504.472024,
+    "originalDetectorMaxMs": 60000,
+    "originalArmMaxMs": 120000,
+    "freshnessMaxMs": 180000,
+    "originalCriteria": "PASS",
+    "latestOwnerLiteralClockBeforeDockerPreflight": "NOT_SATISFIED_BY_THIS_RUN",
+    "reason": "Published implementation starts external timer after Docker preflight but before handshake-controlled injection. Original deadline proof remains valid; latest literal ordering is separate and requires corrected source examination."
+  },
+  "scopeLimits": [
+    "No independent external semantic-oracle claim; retained same-process sourceclaim assertions separate",
+    "No permanent external owner-alert delivery",
+    "No genuine business/Pillow acceptance, restoration, custody, or O33/O39 promotion",
+    "Full O26/O34 reconciliation owned by console criteria reviewer; this receipt accepts original F27 assertions only"
+  ],
+  "newAcceptedRequirementIds": [],
+  "rerun": false
+}

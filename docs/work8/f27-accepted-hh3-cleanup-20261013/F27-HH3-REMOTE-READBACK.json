@@ -1,0 +1,302 @@
+{
+  "recordType": "INDEPENDENT_FRESH_REMOTE_COMPLETE_CHANGED_PAYLOAD_READBACK",
+  "decision": "PASS_EXACT_APPROVED_TREES_MODES_PATHS_CONTENT_AND_BASE_PRESERVATION",
+  "createdAt": "2026-10-13T03:31:56.073840+00:00",
+  "evidence": {
+    "commit": "c075818093dc3eb3e4b4c7f4a7fa7df4f2319c7d",
+    "tree": "2ef16ddd1675d49d23919b54a5039f92af217088",
+    "ref": "work8/staged-f27-hh3-evidence-20261013"
+  },
+  "source": {
+    "commit": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+    "tree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+    "ref": "work8/staged-f27-hh3-source-20261013"
+  },
+  "remoteBlobsIndependentlyRetrievedAndRehashed": 34,
+  "remoteTreesIndependentlyRetrievedAndRehashed": 15,
+  "remoteCommitsRead": 2,
+  "completeReviewedTreeEquality": true,
+  "unchangedBaseSiblingModesAndHashesVerified": true,
+  "freshDirectory": "/workspace/scratch/798050748e67/independent-f27-hh3-readback/retrieved",
+  "localCandidateBytesReused": false,
+  "transport": "GitHub connector blob and Git tree/commit read endpoints only",
+  "checked": [
+    {
+      "kind": "evidence",
+      "path": "docs/work8/REGISTER.md",
+      "mode": "100644",
+      "blob": "9d76398e91665d6ccf2591847daad5a9baf9b14b",
+      "sha256": "31cf7b93cfec80580f9a5516bff8e659e849dc1170a4ad1da893d7bb15007db9",
+      "bytes": 33526
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/register.json",
+      "mode": "100644",
+      "blob": "6a3952c175f1cebc1920c8c16c4319b37801ff06",
+      "sha256": "f9c657b18c6f7713f2a78654a3e4dc602368369760afa6e1631b3fa0a8816c82",
+      "bytes": 88475
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/TRACKER.md",
+      "mode": "100644",
+      "blob": "9d76398e91665d6ccf2591847daad5a9baf9b14b",
+      "sha256": "31cf7b93cfec80580f9a5516bff8e659e849dc1170a4ad1da893d7bb15007db9",
+      "bytes": 33526
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/F27-NEXT-SOURCE-CANDIDATE.json",
+      "mode": "100644",
+      "blob": "32428865b2eb57ecf39474416879ed10f9bdfb75",
+      "sha256": "d22730b3526917344d44e4889472b24a3707c2f56b988eb5462544ab5e41ce6f",
+      "bytes": 3415
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/HH3-CANDIDATE-SCOPE.json",
+      "mode": "100644",
+      "blob": "ef501fb42e6f21abf57b5d7ebf999319fe65e617",
+      "sha256": "f6cb61c4eca85f5cf7f9a0b1182456c4b3c1dfe95a94496d6281e83a3f91ed15",
+      "bytes": 2520
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/O26-EXISTING-EVIDENCE-RECONCILIATION.json",
+      "mode": "100644",
+      "blob": "ae4d3a2b317925a31c58352a4ecb5aff51c2e18a",
+      "sha256": "f77f873739492a427d0d17e16c1cf9cb57eee6f44ca6d61472d0dfaa9714c077",
+      "bytes": 3370
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/F29-FINAL-ACCEPTANCE.json",
+      "mode": "100644",
+      "blob": "b13172118b33e7b7d027453bac904debab51a5a9",
+      "sha256": "9bd2984c24f98209ac714e621fe7f12e4302285fa7289f0a70460ab07d74c5bb",
+      "bytes": 2799
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/NEXT-COMBINED-SOURCE-CANDIDATE.json",
+      "mode": "100644",
+      "blob": "78bba9daad8a9f446f637ac18b18945655139395",
+      "sha256": "c9cde4a367f175f00d8a91382844f41282879357e78e382035b2953c1bcd973e",
+      "bytes": 4684
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/F27-TIMING-CLARIFICATION.json",
+      "mode": "100644",
+      "blob": "e56b02c259c3008f2bb320270631865f78d47121",
+      "sha256": "fb414fe4b6f353824a852490cda52eb82cfff5b9f6384e54148513bfba3aa531",
+      "bytes": 536
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/F27-CANDIDATE-MANIFEST.json",
+      "mode": "100644",
+      "blob": "12e617d2eb4289ade344329a2ae4ab43a49287b3",
+      "sha256": "1516222c8317df5f9cb6bcbc1becb08451df1f9729dc9fd2e7f0a6c8a4bdfb82",
+      "bytes": 3326
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/NEXT-COMBINED-SOURCE-INDEPENDENT-REVIEW.json",
+      "mode": "100644",
+      "blob": "59750071a33c2bbff0894e25e552e61fa6e1dba0",
+      "sha256": "9e04f5c84bc956a0935bfb2f601eb74e6334ecb37a898fc5015c8ca01f874822",
+      "bytes": 5894
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/F27-FINAL-INDEPENDENT-REVIEW.json",
+      "mode": "100644",
+      "blob": "ae201c8835dcf10d8a70be0c96bff8d077803188",
+      "sha256": "68eb65e9943a8a70070ecae952df23d632a0a525aed2372109a5f21b07056acd",
+      "bytes": 4634
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/RUNTIME-CI-TERMINAL.json",
+      "mode": "100644",
+      "blob": "27410a3fbb01dfad870abf39f89623eb5ded330c",
+      "sha256": "285d70cc26d60f0f2e9f308620f847101f232a42a8ff02b8659747123080ebd1",
+      "bytes": 2477
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/F29-CI-TERMINAL.json",
+      "mode": "100644",
+      "blob": "8ccb4c2c0c789427435123beff50e5e67ec98b49",
+      "sha256": "3d113cf1b478b111c87eaf7d50bd96a413b1d9aaee19301af137fa6cf8a8bb69",
+      "bytes": 1307
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/F27-NEW-BOUNDARY-TESTS.tap",
+      "mode": "100644",
+      "blob": "45e210e09b9b431ea48d90446bb5853034f79176",
+      "sha256": "bf634043fe4696e6d47545baa97d23026dc10c4a15d0829cc6bf3ce1dfa1775b",
+      "bytes": 927
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/BATCH-DECISION.txt",
+      "mode": "100644",
+      "blob": "f5d4674d20f31e6b32f00e84135e2a9cb5d01896",
+      "sha256": "d35e5ed24bb83aeaffa49e4b852afa8163153148948a27f916f913c52ac636e7",
+      "bytes": 745
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/F29-DURABLE-READBACK.json",
+      "mode": "100644",
+      "blob": "f0f2e9693f064626f99f1a49395be6e6593709c0",
+      "sha256": "813c7c40d49f20d29eb3b666a9fde50280da0a67ec5b0e8c7b2d214dffb8da0d",
+      "bytes": 8533
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/HELD-HANDOFF-CORRECTION-REVIEW.json",
+      "mode": "100644",
+      "blob": "446edc52f7d7036ddbffe9a4332e6c04739d3d85",
+      "sha256": "7e61e8642177bea06bb32cc89457a24c884a16a3726081ce45f94c7d7a0c70dd",
+      "bytes": 2579
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/work8/f29-accepted-f27-followon-20261013/HH3-INDEPENDENT-STATIC-REVIEW.json",
+      "mode": "100644",
+      "blob": "a8ee050847bc11a02cc5ec2f94eb5858da8309af",
+      "sha256": "9f888c18e1a36ead1bde2e4dec3042d6d8a46b159437060ccb0849f6ea6f3cca",
+      "bytes": 3551
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/f27-outer-controller.cjs",
+      "mode": "100644",
+      "blob": "2b3d8928d60c1111295fbdb1bc74519d28608657",
+      "sha256": "7bab74327eec82adb6ebfbb572888b822a335442463ae84936e1cf3a2265b82d",
+      "bytes": 8286
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/f27-change-boundary.cjs",
+      "mode": "100644",
+      "blob": "daa2363113fe91d4da9341dfb2f027c7bba378c5",
+      "sha256": "b804a97aeeddc42fb6345cab5284c54f5e294c780d5a1884701b929cc1c617f6",
+      "bytes": 1344
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/hh3.Dockerfile.dockerignore",
+      "mode": "100644",
+      "blob": "66967be0e7a589dba33abf0cf8df506cb8194e31",
+      "sha256": "d495f29a76eaa85997fa050be9b7fa8ef2a6311fd7c7ae8e50e12a02843f02f1",
+      "bytes": 41
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/f27-external-oracle.cjs",
+      "mode": "100644",
+      "blob": "8e7811acb80d7ebe8a9ceb7fe1f71a04ff5f2ea0",
+      "sha256": "2aafe22a8b12a7127e4876be27ead3377bbfa7367a43d56cd014776b848d81fe",
+      "bytes": 7169
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/hh3.Dockerfile",
+      "mode": "100644",
+      "blob": "e0198a1cc19e707761d61d52dfd0eb2ee009648a",
+      "sha256": "50a4a3716d0a0837d4c78ce5c776370fb73f24fb1ff077e59faea7457282f244",
+      "bytes": 268
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/hh3-compiled-coordinator.mjs",
+      "mode": "100644",
+      "blob": "fe009fe33380e1550b32961004df5e4e273c41e6",
+      "sha256": "6a63a8b4af784c99e9ebe2747fe54d6c832aa0589eb3aa9a26350d573eadcf8f",
+      "bytes": 4935
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/hh3-compiled-child.mjs",
+      "mode": "100644",
+      "blob": "5d6026adf10b0761bf0d26102bf7aeef9319bff5",
+      "sha256": "1293c97642ae772c5de2c47bd8552cc8b2db107bf15089f99e184e39a1dd5606",
+      "bytes": 5011
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/tests/f27-change-boundary.test.cjs",
+      "mode": "100644",
+      "blob": "aa63d99137e824e4e9459164ecce00d9d9279bdb",
+      "sha256": "cd82d405e26a5c9a2f04f3a5309542a4fd9d3c605731f6bb09eed6824325104d",
+      "bytes": 655
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/tests/f27-fixture.cjs",
+      "mode": "100644",
+      "blob": "304a501f420cef910d91a11f61f524e271eaf32f",
+      "sha256": "afbc586b6360e4f016a0e53e3756f332abd946d387ac106264e7af5e0e826a01",
+      "bytes": 3016
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/tests/f27-external-oracle.test.cjs",
+      "mode": "100644",
+      "blob": "73c5b9bb890636e6d61e87b988830d7d74b7a575",
+      "sha256": "db69690a78547a458a56e1524989375645058d94f1771ed0c800a6bff28f05a4",
+      "bytes": 1295
+    },
+    {
+      "kind": "source",
+      "path": "scripts/work8/tests/f27-sqlite-boundary.test.cjs",
+      "mode": "100644",
+      "blob": "f8a5aff34c30b315602a8b8a0f6f9d98cd22ec6e",
+      "sha256": "0d920940dd311d7eb907986b6a2a7f62a6712e41dbf28a3d9e5af1a89189c18a",
+      "bytes": 3064
+    },
+    {
+      "kind": "source",
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "blob": "1da82201813cc47289f9b49e635635cc83c1d1de",
+      "sha256": "8d22ebddf983f2ea5e107a0cc919b31f915d84a17a9f275c6993fddc68f1d96c",
+      "bytes": 31298
+    },
+    {
+      "kind": "source",
+      "path": "backend/src/app.ts",
+      "mode": "100644",
+      "blob": "0c8a04f5598c9458d54ed8637a503c71581b4e65",
+      "sha256": "fd8daf3ec22c838e1be870e644ca98107f3125bc786925ad165ac4654a0164a2",
+      "bytes": 74670
+    },
+    {
+      "kind": "source",
+      "path": "backend/src/runtime/work8-generated-capture-hold.ts",
+      "mode": "100644",
+      "blob": "c75c7bbe7762b7cb09b236dc6c3400db525cddca",
+      "sha256": "af1b640300dfe208e333c6245e79cf8dd440876f1c1b6788cb4ce9b2b19e4ff0",
+      "bytes": 5795
+    },
+    {
+      "kind": "source",
+      "path": "backend/src/validation/tests/work8-joined-assurance.test.ts",
+      "mode": "100644",
+      "blob": "dea215f093d008f0546f51fb20078ffc856ab214",
+      "sha256": "b434c8598ee5c3da2e590f41b49340e033d8fe22bcd5bdf240fc785df68f7f67",
+      "bytes": 17655
+    }
+  ],
+  "scopeLimits": [
+    "Readback proves durable retrievability and exact approved content; no deployment or examination result inferred.",
+    "No new publication, test run or CI dispatch performed by reviewer.",
+    "Owner exact batch approval managed by root; evidence-first/source-second publication remains root operation."
+  ]
+}

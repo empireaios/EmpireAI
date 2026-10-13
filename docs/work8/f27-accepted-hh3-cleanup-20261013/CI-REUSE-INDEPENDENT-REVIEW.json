@@ -1,0 +1,44 @@
+{
+  "decision": "ACCEPT_SCOPED_EXAMINATION_REUSE_WITH_EXPLICIT_RETAINED_RECEIPTS",
+  "baseSource": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "files": [
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "sha256": "cd70b7d75b6ca22e8b8dc8b2b47b7bb4dd3149ee631cc00c9f3711dc16d654b4",
+      "blob": "2f223359cdb89526017d78e9995e0e5ea2951aaf"
+    },
+    {
+      "path": "scripts/work8/f27-change-boundary.cjs",
+      "mode": "100644",
+      "sha256": "8c8572447f2714b8952c2c6e8af0e3e2a8fa35a1ef96636f80ff222517414468",
+      "blob": "c547af658a0041464ab516637274f41523d69784"
+    },
+    {
+      "path": "scripts/work8/tests/f27-change-boundary.test.cjs",
+      "mode": "100644",
+      "sha256": "570a367ef111f91b958558259552dd7337cf8567c5407d660733af30e5b6979d",
+      "blob": "d178b673fd4082942d434086cedee48c52bde75e"
+    },
+    {
+      "path": "scripts/work8/tests/hh3-owned-process-group.test.mjs",
+      "mode": "100644",
+      "sha256": "6f929426b7438e6361ad0c5ace5b354b72e82f5d24b676f3895da12cd670e1a9",
+      "blob": "5e51be3be6955de95359fc49cc24b0a5d9a4ca70"
+    }
+  ],
+  "findings": [
+    "Exact baseline tree and ancestry required; changed paths confined to regular100644 examination-only allowlist; exact reviewed workflow hash required.",
+    "Missing baseline, git errors, unknown/runtime/dependency paths or modes deny reuse and cause F29/corpora execution.",
+    "Artifacts digests independently matched retained local original ZIP bytes. Prior Runtime overall failure is explicitly not reused as success.",
+    "Receipts distinguish tested baseline source from current source. F27, HH3 and403 runtime examinations remain unconditional.",
+    "Workflow changes limited to reuse gates, retained receipts and changed-boundary tests; aggregate unchanged.",
+    "HH3 helper test copied with relative import adjusted; no new original acceptance credited."
+  ],
+  "limits": [
+    "Code review only; integrated exact tree review/publication root responsibility.",
+    "Successful retained jobs are evidence reuse, not fresh corpus/F29 execution.",
+    "Future runtime-path changes invalidate reuse."
+  ],
+  "newAcceptedRequirements": []
+}

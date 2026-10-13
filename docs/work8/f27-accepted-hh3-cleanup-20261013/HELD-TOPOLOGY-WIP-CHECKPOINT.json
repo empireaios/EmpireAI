@@ -1,0 +1,51 @@
+{
+  "recordType": "RESUMED_FULL_TOPOLOGY_WIP_CHECKPOINT",
+  "createdAt": "2026-10-13T09:04:15.806764+00:00",
+  "decision": "WITHHOLD_UNCOMPILED_INCOMPLETE_BOOTSTRAP_NO_PUBLICATION",
+  "files": {
+    "backend/src/index.ts": "980baa79a9961464bf6a405d94c5582bfb0dd35deec8e1310b414252669187bf",
+    "backend/src/runtime/tier0-isolated-primary.ts": "8544362a5b5ba2ecba5139ef58e28c13926ffbca1e6f2aaf45fafdfa398315af",
+    "backend/src/runtime/work8-generated-worker-adoption.ts": "359549481a7d612db8b504290f9445a46bfec0a6650425aec5133074d0222247",
+    "backend/src/runtime/work8-generated-worker-lifecycle.ts": "9df597d7131d7357620654d66c74b409b75558493c6b02a51ff32e07e84d0d10",
+    "scripts/work8/hh4-generated-primary.mjs": "76b097b0c0d07e8aba2b55b788457ee2b99d7373bad8d056535ed7c93fb8ac93",
+    "scripts/work8/hh4-generated-worker.mjs": "e506d0fd9a66aff4f34d05d30c4524bbd7e1111a91d882f0eb4f0468e3317e3a"
+  },
+  "reviewedPriorReceipts": [
+    "lane-console-certification/BOOTSTRAP-EARLY-DESIGN-REVIEW.json",
+    "lane-console-certification/ADOPTION-WIP-EARLY-REVIEW.json",
+    "lane-console-certification/O39-CUSTODY-SCOPE-REVIEW.json"
+  ],
+  "corrections": {
+    "AD1": {
+      "status": "SOURCE_CORRECTION_PRESENT_NOT_EXECUTION_ACCEPTED",
+      "evidence": "tier0-isolated-primary.ts registers adopted child disconnect terminal handler; hh4-generated-worker.mjs registers parent disconnect handler terminating owned Redis then worker. Requires outer cohort verification; directly killing a worker does not prove descendant cleanup."
+    },
+    "AD2": {
+      "status": "MISSING_EXTERNAL_COHORT_CLEANUP",
+      "evidence": "hh4-generated-primary.mjs catch still kills only process.pid. Worker owns Redis; worker SIGKILL can bypass disconnect cleanup. No external controller or Docker cohort inventory is present in this WIP. Do not claim complete cohort termination."
+    },
+    "AD3": {
+      "status": "SOURCE_CORRECTION_PRESENT_NOT_EXECUTION_ACCEPTED",
+      "evidence": "initializeGeneratedWorkerIfRegistered runs after buildApp; publishGeneratedWorkerReadyIfRegistered is final main startup call after listen, monitors and declared continuation/route decisions. Capture IPC registration now happens only in final publish function."
+    }
+  },
+  "immediateMissingDependency": {
+    "path": "scripts/work8/hh4-domain-state.mjs",
+    "requiredExport": "initializeActualGeneratedDomains",
+    "status": "MISSING",
+    "effect": "Current generated worker cannot complete initialization; no positive HH4 execution is legitimate until actual domain public constructors/readers exist."
+  },
+  "shortestNextIntegratedDeliverable": [
+    "Implement actual domain initializer/readback module using existing mapped constructors, retaining 13-domain/18-file plus Redis, sessions, pending-work and actual-vs-SIM financial distinctions. No filler tables.",
+    "Bind fixed generated primary/worker and actual launcher/guard/inspector topology to an independent external controller, with terminal cleanup in outer finally on every startup/admission/capture failure; stop container and inspect complete process identities/transport authority independently.",
+    "Compile exact integrated source and run only new startup-failure/disconnect/readiness boundaries before positive held-capture topology examination.",
+    "Prove every admitted writer is blocked/drained at consistent capture, terminate old cohort externally before replacement, restore operational state and replay only authorized pending work once, verify cold restart and completed history/session authority."
+  ],
+  "O39": "Existing authorized GitHub artifact storage can satisfy off-host custody with proven runtime credential separation, protected retention, independently authenticated complete-byte readback and corrupted-copy refusal/fresh good-copy restoration. No separate provider or new infrastructure is inherently required. Full application capture/restore still missing.",
+  "acceptedRequirements": [],
+  "testsRepeated": 0,
+  "newTestsRun": 0,
+  "sourceModified": false,
+  "publication": false,
+  "integrationInstruction": "Do not bundle this incomplete topology bootstrap with the reviewed F27/HH3 correction. Preserve separately; no default startup behavior or accepted source changed."
+}

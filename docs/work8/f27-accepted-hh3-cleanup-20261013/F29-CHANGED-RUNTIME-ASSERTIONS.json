@@ -1,0 +1,28 @@
+{
+  "source": "4c00e533a278eae92ccfbd9ac4378ee656f0d222",
+  "tree": "3940745ad47fc7498e5a3217ce8ed0d55381592b",
+  "run": 38342212050,
+  "artifact": 11787397943,
+  "artifactSha256": "af95b409e98c3a9b07d809fe30032d6397b68cddd548d9e39c8a1130e07ca70e",
+  "arms": [
+    {
+      "mode": "launcher-and-guard-killed",
+      "detectionMs": 187.40480000000025,
+      "verifiedElapsedMs": 321.9915250000013,
+      "status": "PASS_RETAINED_PAIR_ASSERTIONS",
+      "financialEqual": true,
+      "survivingSameIdentities": []
+    },
+    {
+      "mode": "both-observers-killed",
+      "detectionMs": 183.3436189999993,
+      "verifiedElapsedMs": 309.4782519999999,
+      "status": "PASS_RETAINED_PAIR_ASSERTIONS",
+      "financialEqual": true,
+      "survivingSameIdentities": []
+    }
+  ],
+  "scope": "Changed-runtime automatic regression; previous original acceptance preserved. Readonly authentic artifact consistency review only; no manual rerun.",
+  "original600sWorker": "Previously accepted, not repeated",
+  "noNewProgrammeAcceptance": true
+}
