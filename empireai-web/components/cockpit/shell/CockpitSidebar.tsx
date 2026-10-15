@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import layout from "./PillowDesktopLayout.module.css";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import { COCKPIT_BASE } from "@/lib/cockpit/types";
 import { COCKPIT_UX_NAVIGATION } from "@/lib/cockpit-ux/navigation";
 import { isCockpitNavActive } from "./cockpitNavUtils";
@@ -11,22 +11,12 @@ import { isCockpitNavActive } from "./cockpitNavUtils";
  * Grand King active navigation — operational Centres only.
  * Legacy department IA destinations are not shown until each is proven real.
  */
-export function CockpitSidebar() {
+export function CockpitSidebar({ collapsed, onToggle, inFlow = false }: {
+  inFlow?: boolean;
+  collapsed: boolean;
+  onToggle: () => void;
+}) {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
-
-  const toggleCollapsed = () => {
-    setCollapsed((current) => {
-      const next = !current;
-      try {
-        localStorage.setItem("empireai.cockpit.sidebarCollapsed", next ? "1" : "0");
-      } catch {
-        /* ignore */
-      }
-      window.dispatchEvent(new Event("empireai:sidebar-collapsed"));
-      return next;
-    });
-  };
 
   const primaryNav = COCKPIT_UX_NAVIGATION.filter((item) => item.group === "primary");
   const operationsNav = COCKPIT_UX_NAVIGATION.filter((item) => item.group === "operations");
@@ -101,8 +91,10 @@ export function CockpitSidebar() {
   return (
     <aside
       aria-label="Cockpit navigation"
-      className={`fixed inset-y-0 left-0 z-50 hidden h-dvh flex-col border-r border-gold/10 bg-[#050505] pointer-events-auto transition-all duration-500 lg:flex ${
-        collapsed ? "w-[72px]" : "w-64"
+      data-sidebar-state={collapsed ? "collapsed" : "expanded"}
+      style={inFlow ? { width: collapsed ? 72 : 256 } : undefined}
+      className={`fixed inset-y-0 left-0 z-50 hidden h-dvh flex-col border-r border-gold/10 bg-[#050505] pointer-events-auto lg:flex ${
+        inFlow ? layout.sidebar : collapsed ? "w-[72px]" : "w-64"
       }`}
     >
       <div className="flex items-center justify-between border-b border-gold/10 px-4 py-5">
@@ -116,7 +108,7 @@ export function CockpitSidebar() {
         )}
         <button
           type="button"
-          onClick={toggleCollapsed}
+          onClick={onToggle}
           className="flex h-8 w-8 items-center justify-center rounded-lg border border-gold/15 text-[#d4af37] transition-colors hover:bg-gold/10"
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >

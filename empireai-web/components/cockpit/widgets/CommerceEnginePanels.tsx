@@ -2,6 +2,7 @@
 
 import { DataTable, Panel, StatCard } from "@/components/platform/ui/PlatformPrimitives";
 import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
+import { LegacyReadUnavailable } from "./LegacyReadUnavailable";
 import { StatusBadge } from "@/components/cockpit/widgets/shared/statusBadges";
 import { EngineCenterPanel, EnginePanelFrame } from "@/components/cockpit/widgets/EnginePanelFrame";
 import type { EnginePanelView } from "@/lib/cockpit/panel-types";
@@ -33,11 +34,7 @@ export function CommerceMarketingPanel() {
       <EngineCenterPanel engineId="advertising" />
       {loading && <Panel title="Marketing Campaigns">Loading…</Panel>}
       {error && (
-        <Panel title="Marketing Campaigns">
-          <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-            Retry
-          </button>
-        </Panel>
+        <LegacyReadUnavailable title="Marketing Campaigns" error={error} href="/cockpit/listings" onRetry={()=>void reload()} />
       )}
       {data && (
         <>
@@ -79,11 +76,7 @@ export function AdvertisingIntelligenceOverviewPanel() {
 
   if (engine.error || !engine.data) {
     return (
-      <Panel title="Advertising Intelligence">
-        <button type="button" className="text-sm text-[#d4af37]" onClick={() => void engine.reload()}>
-          Retry
-        </button>
-      </Panel>
+      <LegacyReadUnavailable title="Advertising Intelligence" error={engine.error} href="/cockpit/eyes" onRetry={()=>void engine.reload()} />
     );
   }
 
@@ -103,11 +96,7 @@ export function CommerceAdsPanel() {
       <EngineCenterPanel engineId="advertising" />
       {loading && <Panel title="Ad Channels">Loading…</Panel>}
       {error && (
-        <Panel title="Ad Channels">
-          <button type="button" className="text-sm text-[#d4af37]" onClick={() => void reload()}>
-            Retry
-          </button>
-        </Panel>
+        <LegacyReadUnavailable title="Ad Channels" error={error} href="/cockpit/listings" onRetry={()=>void reload()} />
       )}
       {data && (
         <>

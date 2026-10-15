@@ -501,6 +501,26 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify real phone browser login BFF backend and disk transaction
         run: node empireai-web/scripts/verify-commerce-browser.mjs
+      - name: Build exact integrated frontend for source-context examination
+        if: ${{ !cancelled() }}
+        run: npm run build --prefix empireai-web
+      - name: Examine authenticated source-context delivery on mobile and desktop
+        if: ${{ !cancelled() }}
+        working-directory: empireai-web
+        env:
+          WORK8_A8_BACKEND_ROOT: ${{ github.workspace }}/backend
+          WORK8_A8_OUT: ${{ github.workspace }}/work8-source-context-evidence
+        run: node e2e/work8-source-context-native.mjs
+      - name: Preserve scoped source-context examination evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-source-context-evidence
+          path: work8-source-context-evidence
+          retention-days: 14
+      - name: Examine Work8 two-stage media approval without live effects
+        if: ${{ !cancelled() }}
+        run: node empireai-web/e2e/work8-media-native.mjs
       - name: Preserve browser receipt screenshot and bounded server logs
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

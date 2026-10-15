@@ -1,0 +1,20 @@
+'use client';
+import {CommunicationModelDraft} from './CommunicationModelDraft';
+import {useState,useRef} from 'react';
+type Row=Record<string,unknown>;
+const text=(v:unknown)=>typeof v==='string'?v:'';
+const categories=['PRODUCT_INQUIRY','SHIPPING_QUESTION','COMPLAINT','RETURN_REFUND','HOSTILE_EXCHANGE','CHARGEBACK_DISPUTE','SELLER_PERFORMANCE','UNANSWERABLE'];
+export function TwinCommunications({sessionId,records,threads,authority={}}:{sessionId:string;records:Row[];threads:Row[];authority?:Row}){
+ const [mission,setMission]=useState(''),[category,setCategory]=useState('PRODUCT_INQUIRY'),[message,setMessage]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false);const lock=useRef(false);
+ async function command(action:string,thread?:Row){
+ if(lock.current)return;const product=records.find(r=>r.missionId===(thread?.missionId??mission));if(!product){setError('Select the product from this page of saved records.');return;}
+ lock.current=true;setBusy(true);setError('');
+ try{const response=await fetch('/api/owner/commerce',{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({action:'twin_communication',communication:{id:crypto.randomUUID(),reference:{sessionId,missionId:product.missionId,receiptDigest:product.receiptDigest},threadId:thread?.threadId??crypto.randomUUID(),expectedVersion:thread?.version??0,action,...(action==='RECEIVE'?{category,message}:{})}})});if(!response.ok)throw Error('The communication was not confirmed. Refresh saved records before retrying.');if(action==='RECEIVE')setMessage('');}catch(e){setError(e instanceof Error?e.message:'Communication unavailable');}finally{lock.current=false;setBusy(false);}}
+ return <section aria-label="Simulated customer communications"><h2>Customer communications · simulation</h2><p>Incoming questions and concerns are assessed individually. Drafts require owner review; nothing is sent.</p>
+ <label>Product <select value={mission} onChange={e=>setMission(e.target.value)}><option value="">Choose product</option>{records.map(r=><option key={text(r.missionId)} value={text(r.missionId)}>{text(r.title)}</option>)}</select></label>
+ <label>Interaction <select value={category} onChange={e=>setCategory(e.target.value)}>{categories.map(c=><option key={c} value={c}>{c.toLowerCase().replaceAll('_',' ')}</option>)}</select></label>
+ <label>Simulated incoming message <textarea maxLength={4000} value={message} onChange={e=>setMessage(e.target.value)}/></label><button disabled={busy||!mission||!message.trim()} onClick={()=>void command('RECEIVE')}>Record simulated message</button>
+ {error&&<p role="alert">{error}</p>}
+ {threads.map(t=><article key={text(t.threadId)}><h3>{text(t.category).toLowerCase().replaceAll('_',' ')}</h3><p>{text(t.risk)} priority · {text(t.status).toLowerCase().replaceAll('_',' ')}{t.overdue?' · Overdue':''}</p><p>{t.deadlineAt?new Date(Number(t.deadlineAt)).toLocaleString('en-SG'):'Response deadline not recorded'}</p>{Array.isArray(t.history)&&t.history.map((h:Row)=><div key={Number(h.version)}>{h.message?<p>{text(h.message)}</p>:null}{h.draft?<blockquote>{text(h.draft)}</blockquote>:null}</div>)}<p>{t.modelAssessment==='RETAINED_REQUEST_CONSUMED'?'Saved model reply consumed for this draft. Owner review remains required.':'AI assessment not requested for the current entry. Template preparation uses recorded evidence.'}</p>{records.some(r=>r.missionId===t.missionId)&&<CommunicationModelDraft key={text(t.threadId)+':'+String(t.version)} sessionId={sessionId} product={records.find(r=>r.missionId===t.missionId)!} thread={t} authority={authority}/>}<button disabled={busy||t.status==='RESOLVED'} onClick={()=>void command('PREPARE',t)}>Prepare template draft</button><button disabled={busy||t.status==='RESOLVED'} onClick={()=>void command('ESCALATE',t)}>Escalate to owner</button><button disabled={busy||t.status==='RESOLVED'} onClick={()=>void command('RESOLVE',t)}>Mark reviewed and resolved</button></article>)}
+ </section>;
+}

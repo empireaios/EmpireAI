@@ -272,9 +272,34 @@ test('concurrent runtime writers capture with actual pending missions then repla
    if(row.ttl!==-1&&manifest.redisCapturedAt+row.ttl<=Date.now())continue;
    assert.deepEqual(await canonical(target!,key),expected.get(row.key),'changed captured key '+key.toString());
   }};await verifyCompleteInventory();
+  // Restore the original authenticated principal, not a newly minted session.
+  // This replacement HTTP app uses the production auth middleware/SessionStore;
+  // the historical archive retains its inspection fence and grants no execution.
+  const {default:Fastify}=await import('fastify');
+  const {default:cookie}=await import('@fastify/cookie');
+  const {SessionStore}=await import('../../auth/session-store.js');
+  const {createAuthMiddleware}=await import('../../auth/middleware.js');
+  const verifyOriginalSession=async()=>{
+   const store=new SessionStore(target!);const recovered=await store.get(result.originalSession.token);
+   assert.deepEqual(recovered,result.originalSession,'original token/principal/workspace/expiry changed');
+   const app=Fastify();await app.register(cookie);
+   app.get('/auth/me',{preHandler:createAuthMiddleware(store)},async request=>({user:request.user}));
+   try{
+    for(const headers of [{authorization:'Bearer '+result.originalSession.token},{cookie:'empireai_session='+result.originalSession.token}]){
+     const reply=await app.inject({method:'GET',url:'/auth/me',headers});assert.equal(reply.statusCode,200);
+     const {token,expiresAt,createdAt,...user}=result.originalSession;assert.deepEqual(reply.json().user,user);
+    }
+    assert.equal((await app.inject({method:'GET',url:'/auth/me',headers:{authorization:'Bearer forged-'+result.originalSession.token}})).statusCode,401);
+    assert.equal((await app.inject({method:'GET',url:'/auth/me'})).statusCode,401);
+    const key='empireai:session:'+result.originalSession.token;
+    const ttl=await target!.pttl(key);assert.ok(ttl>0);assert.ok(ttl<=Date.parse(result.originalSession.expiresAt)-Date.now()+1000,'restoration extended session lifetime');
+    assert.equal(await target!.get(manifest.redisIdentity.ownerKey),inspection.owner,'authentication released inspection fence');
+   }finally{await app.close();}
+  };
+  await verifyOriginalSession();
   const capturedExpiry=redisRows.find(row=>Buffer.from(row.key,'base64').toString()==='inspection-expiring-fixture')!;assert.ok(capturedExpiry.ttl>0);assert.ok(await target.pttl('inspection-expiring-fixture')<=capturedExpiry.ttl-50);
   target.disconnect();const stopped=once(replacement!,'exit');replacement!.kill('SIGKILL');await stopped;
-  await startReplacement();target=new Redis({host:'127.0.0.1',port:targetPort,db:0,password});await target.ping();assert.equal(await target.get(manifest.redisIdentity.ownerKey),inspection.owner);assert.equal(fs.existsSync(path.join(targetRoot,'dump.rdb')),false);await verifyCompleteInventory();
+  await startReplacement();target=new Redis({host:'127.0.0.1',port:targetPort,db:0,password});await target.ping();assert.equal(await target.get(manifest.redisIdentity.ownerKey),inspection.owner);assert.equal(fs.existsSync(path.join(targetRoot,'dump.rdb')),false);await verifyCompleteInventory();await verifyOriginalSession();
   const restartedUnauthorized=new Redis({host:'127.0.0.1',port:targetPort,lazyConnect:true,enableReadyCheck:false,retryStrategy:()=>null});restartedUnauthorized.on('error',()=>{});try{await assert.rejects(restartedUnauthorized.ping(),/NOAUTH/);}finally{restartedUnauthorized.disconnect();}
 
   targetQueue=new TaskQueue({host:'127.0.0.1',port:targetPort,db:0,password},{write(){assert.fail('restored queue must not admit new work');}} as any);
@@ -295,7 +320,7 @@ test('concurrent runtime writers capture with actual pending missions then repla
   assert.throws(()=>service.enqueue(result.pending.missionId,'forged-dispatch'),ExecutionConflict);
   const db=new DatabaseSync(primary+'.mission-execution.sqlite',{readOnly:true});let outputs:number;try{outputs=Number(db.prepare("SELECT count(*) n FROM execution_events WHERE event='readonly_output_and_receipt_committed'").get()!.n);assert.equal(outputs,2);}finally{db.close();}
   assert.equal(await targetQueue.queue.isPaused(),true);assert.ok(await target.get(targetQueue.queue.toKey('capture-owner')));
-  const receiptSummary={integratedWriterClasses:['http','native-background','presale-timer','executive-timer'],sourceSha,captureDigest:result.digest,stores:Object.keys(manifest.stores).length,sourceQuarantined:true,restoredQueuePaused:true,restoredProducerRefused:true,completedReceiptByteEquivalent:true,pendingContinuedOnce:true,pendingReconciled:true,committedOutputEvents:outputs,duplicateReadSuppressed:true,changedDispatchRefused:true,birth:'NOT_BORN',commerce:'LOCKED',fullRuntimeRestored:false,protectedCustody:false,inspectionOwnerBoundToManifest:true,redisRestartFencePreserved:true,distinctReplacementInstance:true,sourceRedisStoppedBeforeRestore:true,completeSurvivingRedisInventoryValueEquivalent:true,passwordAuthenticationRequired:true,aofOnlyCrashRecovery:true,defaultAndStaleAndWrongManifestAndSourceAndNonemptyRefused:true,remaining:'Inspection ownership transferred; queue transport remains fenced. No operational release or full-runtime restore claimed'};
+  const receiptSummary={integratedWriterClasses:['http','native-background','presale-timer','executive-timer'],sourceSha,captureDigest:result.digest,stores:Object.keys(manifest.stores).length,sourceQuarantined:true,restoredQueuePaused:true,restoredProducerRefused:true,completedReceiptByteEquivalent:true,pendingContinuedOnce:true,pendingReconciled:true,committedOutputEvents:outputs,duplicateReadSuppressed:true,changedDispatchRefused:true,birth:'NOT_BORN',commerce:'LOCKED',fullRuntimeRestored:false,protectedCustody:false,inspectionOwnerBoundToManifest:true,redisRestartFencePreserved:true,distinctReplacementInstance:true,sourceRedisStoppedBeforeRestore:true,completeSurvivingRedisInventoryValueEquivalent:true,passwordAuthenticationRequired:true,originalSessionPrincipalAndExpiryPreserved:true,originalBearerAndCookieAuthenticateAfterReplacementAndAofRestart:true,forgedAndAbsentSessionsDenied:true,aofOnlyCrashRecovery:true,defaultAndStaleAndWrongManifestAndSourceAndNonemptyRefused:true,remaining:'Inspection ownership transferred; queue transport remains fenced. No operational release or full-runtime restore claimed'};
   if(process.env.WORK8_REPLAY_EVIDENCE_DIRECTORY){
    const evidence=process.env.WORK8_REPLAY_EVIDENCE_DIRECTORY;
    fs.writeFileSync(path.join(evidence,'READONLY-REPLAY-RECEIPT.json'),JSON.stringify(receiptSummary,null,2)+'\n',{mode:0o600});

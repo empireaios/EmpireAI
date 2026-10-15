@@ -21,6 +21,8 @@ export interface ConversationTurn {
   timestamp: string;
   requestId?: string;
   provider?: BrainLLMProviderName;
+  /** Original server-resolved product evidence; historical attribution, never authority. */
+  productContext?: PillowWorkspaceContext["productContext"];
 }
 
 export interface TokenUsageSummary {

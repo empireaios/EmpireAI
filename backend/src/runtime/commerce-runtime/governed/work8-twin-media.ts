@@ -23,15 +23,16 @@ export class Work8TwinMedia{
  const context=this.runtime.context(p,reference),session=this.runtime.sessions.read(p,reference.sessionId),state=this.runtime.store.history(session.twinWorkspace,reference.missionId).at(-1)!.state as unknown as CommerceState;
  const original=(state.listing?.images??[]).map((a,i)=>({id:'original-'+i,url:a.url,kind:'IMAGE' as const,sha256:a.sha256,sourceIdentity:context.productId,rightsEvidence:a.rightsEvidence,rightsStatus:'UNVERIFIED' as const,provenance:a.license}));
  const history=this.history(p,reference.sessionId,reference.missionId),proposal=history.filter(e=>e.action==='PROPOSE').at(-1)??null;
- const approval=history.filter(e=>e.action==='APPROVE_INTERNAL').at(-1)??null;
+ const lastEdit=history.filter(e=>e.action==='REQUEST_EDIT').at(-1);
+ const approval=history.filter(e=>e.action==='APPROVE_INTERNAL'&&e.version>(proposal?.version??0)&&e.version>(lastEdit?.version??0)&&e.receiptDigest===reference.receiptDigest&&e.batchDigest===proposal?.batchDigest).at(-1)??null;
  const rejected=history.some(e=>e.action==='REJECT'&&e.batchDigest===approval?.batchDigest);
  const current=approval&&!rejected?{batchDigest:approval.batchDigest,assets:approval.assets.filter(a=>approval.selectedIds.includes(a.id))}:null;
  const last=history.at(-1),external=history.filter(e=>e.action==='APPROVE_EXTERNAL').at(-1)??null;
- return {version:last?.version??0,original,proposal,current,history,status:last?.status??'ORIGINAL_ONLY',reminder:current&&(!external||external.batchDigest!==current.batchDigest||external.version<(approval?.version??0))?'Approved internally; separate publication approval is outstanding.':null,sourceBindingCurrent:proposal?.receiptDigest===reference.receiptDigest,externalStatus:!rejected&&external&&external.receiptDigest===reference.receiptDigest&&external.version>(proposal?.version??0)&&external.version>(approval?.version??0)?'SIMULATED_SUBMISSION_INTERCEPTED':'NOT_SUBMITTED',editingCapability:'CANVA_RUNTIME_NOT_CONFIGURED',classification:'SIMULATED_MEDIA_WORKFLOW',externalEffects:0};
+ return {version:last?.version??0,original,proposal,current,history,status:last?.status??'ORIGINAL_ONLY',reminder:current&&(!external||external.batchDigest!==current.batchDigest||external.version<(approval?.version??0))?'Approved internally; separate publication approval is outstanding.':null,sourceBindingCurrent:proposal?.receiptDigest===reference.receiptDigest,externalStatus:!!current&&!rejected&&external&&external.batchDigest===current.batchDigest&&digest(external.selectedIds.slice().sort())===digest(approval!.selectedIds.slice().sort())&&external.receiptDigest===reference.receiptDigest&&external.version>(proposal?.version??0)&&external.version>(approval?.version??0)?'SIMULATED_SUBMISSION_INTERCEPTED':'NOT_SUBMITTED',editingCapability:'CANVA_RUNTIME_NOT_CONFIGURED',classification:'SIMULATED_MEDIA_WORKFLOW',externalEffects:0};
  }
  command(p:{workspace:string;owner:string},raw:unknown){const r=twinMediaRequest.parse(raw);return this.runtime.store.transaction(()=>{
  const view=this.read(p,r.reference),history=view.history,last=history.at(-1),requestDigest=digest({p,r});const prior=this.runtime.store.db.prepare('SELECT record FROM work8_twin_media WHERE workspace=? AND id=?').get(p.workspace,r.id);
- if(prior){const e=JSON.parse(String(prior.record)) as Event;if(e.requestDigest!==requestDigest||!history.some(h=>h.digest===e.digest))throw Error('MEDIA_IDEMPOTENCY_CONFLICT');return e;}
+ if(prior){const e=JSON.parse(String(prior.record)) as Event;if(e.requestDigest!==requestDigest||!history.some(h=>h.digest===e.digest))throw Error('MEDIA_IDEMPOTENCY_CONFLICT');if(r.action==='APPROVE_INTERNAL'||r.action==='APPROVE_EXTERNAL')throw Error('MEDIA_APPROVAL_REPLAY_STALE');return e;}
  if(view.version!==r.expectedVersion||history.length>=500)throw Error('MEDIA_VERSION_CONFLICT');
  let assets:Asset[]=[],selectedIds:string[]=[],batchDigest:string|null=null,status='';
  if(r.action==='REQUEST_EDIT'){
@@ -39,12 +40,13 @@ export class Work8TwinMedia{
  }else if(r.action==='PROPOSE'){
  if(new Set(r.assets.map(a=>a.id)).size!==r.assets.length)throw Error('MEDIA_DUPLICATE_ASSET');assets=r.assets;batchDigest=digest({assets,instructions:r.instructions,editingReceipt:r.editingReceipt,reference:r.reference});status='PROPOSED_OWNER_EVIDENCE_NOT_INDEPENDENTLY_VERIFIED';
  }else{
- const proposal=view.proposal;if(!proposal||proposal.receiptDigest!==r.reference.receiptDigest||proposal.batchDigest!==r.batchDigest||history.some(e=>e.action==='REJECT'&&e.batchDigest===r.batchDigest))throw Error('MEDIA_PROPOSAL_STALE');
+ const proposal=view.proposal;if(!proposal||(r.action!=='REJECT'&&history.some(e=>e.action==='REQUEST_EDIT'&&e.version>proposal.version))||proposal.receiptDigest!==r.reference.receiptDigest||proposal.batchDigest!==r.batchDigest||history.some(e=>e.action==='REJECT'&&e.batchDigest===r.batchDigest))throw Error('MEDIA_PROPOSAL_STALE');
  assets=proposal.assets;batchDigest=proposal.batchDigest;selectedIds=r.assetIds??assets.map(a=>a.id);if(new Set(selectedIds).size!==selectedIds.length||selectedIds.some(id=>!assets.some(a=>a.id===id)))throw Error('MEDIA_ASSET_NOT_FOUND');
  if(r.action==='APPROVE_INTERNAL'){
  if(assets.filter(a=>selectedIds.includes(a.id)).some(a=>a.rightsStatus!=='OWNER_REVIEWED'))throw Error('MEDIA_RIGHTS_REVIEW_REQUIRED');status='APPROVED_INTERNALLY';
  }else if(r.action==='APPROVE_EXTERNAL'){
- const approval=history.filter(e=>e.action==='APPROVE_INTERNAL').at(-1);if(!approval||approval.batchDigest!==r.batchDigest||approval.version<proposal.version||digest(selectedIds.slice().sort())!==digest(approval.selectedIds.slice().sort()))throw Error('MEDIA_INTERNAL_APPROVAL_REQUIRED');
+ const approval=history.filter(e=>e.action==='APPROVE_INTERNAL').at(-1);if(!view.current||!approval||approval.receiptDigest!==r.reference.receiptDigest||approval.batchDigest!==r.batchDigest||approval.version<proposal.version||digest(selectedIds.slice().sort())!==digest(approval.selectedIds.slice().sort()))throw Error('MEDIA_INTERNAL_APPROVAL_REQUIRED');
+ if(history.some(e=>e.action==='APPROVE_EXTERNAL'&&e.version>approval.version))throw Error('MEDIA_APPROVAL_REPLAY_STALE');
  status='SIMULATED_SUBMISSION_INTERCEPTED';
  }else status='REJECTED';
  }
