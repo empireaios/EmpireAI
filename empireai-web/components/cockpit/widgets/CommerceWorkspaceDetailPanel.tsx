@@ -1,94 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ActionButton,
-  Badge,
-  Panel,
-  StatCard,
-} from "@/components/platform/ui/PlatformPrimitives";
-import { StatusBadge } from "@/components/cockpit/widgets/shared/statusBadges";
-import {
-  COMMERCE_WORKSPACE_DETAIL_MILESTONES,
-  getCommerceWorkspaceCompany,
-} from "@/components/cockpit/widgets/commerce/commerceWorkspaceDemoData";
-import { COCKPIT_BASE } from "@/lib/cockpit/types";
+import { Panel, StatCard } from "@/components/platform/ui/PlatformPrimitives";
+import { StatusBadge } from "./shared/statusBadges";
+import { LegacyReadUnavailable } from "./LegacyReadUnavailable";
+import { useBrainModule } from "@/lib/brain/hooks/useBrainModule";
 
-type CommerceWorkspaceDetailPanelProps = {
-  companyId: string;
-};
+type Company = { id: string; name: string; category: string; status: string; revenue: string; margin: string; agents: number };
 
-/** SCR-204 detail — Business workspace company view (presentation-only demo). */
-export function CommerceWorkspaceDetailPanel({ companyId }: CommerceWorkspaceDetailPanelProps) {
-  const company = getCommerceWorkspaceCompany(companyId);
-
-  if (!company) {
-    return (
-      <div className="rounded-xl border border-gold/10 bg-white/[0.02] px-6 py-8">
-        <p className="text-sm text-[#8a847a]">Company not found in demo portfolio.</p>
-        <Link
-          href={`${COCKPIT_BASE}/commerce/workspace`}
-          className="mt-4 inline-block text-sm text-[#d4af37] hover:underline"
-        >
-          ← Back to workspace
-        </Link>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-6">
-      <Link
-        href={`${COCKPIT_BASE}/commerce/workspace`}
-        className="text-xs uppercase tracking-[0.15em] text-[#6f6a60] hover:text-[#d4af37]"
-      >
-        ← Business Workspace
-      </Link>
-
-      <div className="rounded-xl border border-gold/20 bg-white/[0.02] p-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <Badge variant="gold">{company.niche}</Badge>
-            <h2 className="mt-2 font-display text-2xl text-[#f0d78c]">{company.name}</h2>
-            <p className="text-sm text-[#8a847a]">{company.agent} · demo presentation mode</p>
-          </div>
-          <StatusBadge status={company.status} />
-        </div>
+/** Resolve only records returned to the authenticated session, never the demo catalogue. */
+export function CommerceWorkspaceDetailPanel({ companyId }: { companyId: string }) {
+  const { data, loading, error, reload } = useBrainModule<{ companies: Company[] }>("store");
+  if (loading) return <Panel title="Business workspace">Loading saved workspace…</Panel>;
+  // Do not retain a previously visible record after an access denial.
+  if (error) return <LegacyReadUnavailable title="Business workspace" error={error} href="/cockpit/commerce/workspace" onRetry={()=>void reload()} />;
+  const company = data?.companies.find(item => item.id === companyId);
+  return <div className="space-y-6">
+    <Link href="/cockpit/commerce/workspace" className="inline-block underline">← Back to workspace</Link>
+    {!company ? <Panel title="Workspace unavailable"><p>No matching workspace was returned for this session. No record or business state is inferred.</p></Panel> : <>
+      <Panel title={company.name} subtitle="Saved workspace · read-only">
+        <p>{company.category}</p><StatusBadge status={company.status} />
+        <p className="mt-3">These are saved portfolio observations, not independent proof of current sales or completion.</p>
         <div className="mt-4 flex flex-wrap gap-2">
-          <ActionButton variant="secondary" disabled>
-            Open store
-          </ActionButton>
-          <ActionButton variant="secondary" disabled>
-            Launch centre
-          </ActionButton>
-          <ActionButton disabled>Approve next gate</ActionButton>
+          <button disabled>Open store</button><button disabled>Launch centre</button><button disabled>Approve next gate</button>
         </div>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-3">
-        <StatCard label="Revenue" value={company.revenue} change="Demo ledger" trend="neutral" />
-        <StatCard label="Build progress" value={`${company.buildProgress}%`} change="Manufacturing" trend="up" />
-        <StatCard label="Workspace ID" value={company.id} change="Detail route" trend="neutral" />
-      </div>
-
-      <Panel title="Company Milestones" subtitle="Discovery → Build → Launch → Live">
-        <div className="space-y-4">
-          {COMMERCE_WORKSPACE_DETAIL_MILESTONES.map((step) => (
-            <div key={step.label}>
-              <div className="mb-2 flex items-center justify-between text-sm">
-                <span className="text-[#c8c0b0]">{step.label}</span>
-                <StatusBadge status={step.status} />
-              </div>
-              <div className="h-2 overflow-hidden rounded-full bg-white/[0.05]">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#b8922a] to-[#d4af37]"
-                  style={{ width: `${step.progress}%` }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+        <p>Operational actions are unavailable in this read-only workspace. Commerce remains locked.</p>
       </Panel>
-    </div>
-  );
+      <div className="grid gap-4 sm:grid-cols-3">
+        <StatCard label="Recorded revenue" value={company.revenue || "—"} change="Saved observation" trend="neutral" />
+        <StatCard label="Recorded margin" value={company.margin || "—"} change="Saved observation" trend="neutral" />
+        <StatCard label="Assigned agents" value={Number.isFinite(company.agents)?String(company.agents):"—"} change="Saved observation" trend="neutral" />
+      </div>
+      <details><summary>Workspace record</summary><p>Workspace ID: {company.id}</p><p>No dated milestone evidence is supplied by this record.</p></details>
+    </>}
+  </div>;
 }

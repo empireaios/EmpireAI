@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import { DataTable, Panel } from "@/components/platform/ui/PlatformPrimitives";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
@@ -54,11 +56,7 @@ export function DevelopmentSupervisorSystemPanel() {
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-    const interval = setInterval(() => void load(), 30_000);
-    return () => clearInterval(interval);
-  }, [load]);
+  useEffect(() => subscribeRead(load, 30_000), [load]);
 
   if (loading) {
     return <Panel title="Supervisor">Loading supervision state…</Panel>;

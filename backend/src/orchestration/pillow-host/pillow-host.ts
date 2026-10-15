@@ -29706,6 +29706,7 @@ export class PillowHost {
             content: input.message,
             timestamp: new Date().toISOString(),
             requestId,
+            ...(input.workspaceContext?.productContext ? { productContext: structuredClone(input.workspaceContext.productContext) } : {}),
         };
         session.conversationHistory.push(userTurn);
         const llmUserMessage = input.workspaceContext
