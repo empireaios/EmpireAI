@@ -5,7 +5,7 @@ import {resultFromDurableRecord} from './durable-delivery';
 import {decideBffChatSurface,buildShellTraceFromDecision} from './bff-chat-sanitize';
 import {mapPillowChatToAssistantResponse} from './map-response';
 import {isConfirmedReasoning} from './confirmed-reasoning';
-import {reconcilePillowHistory} from './reconcile-history';
+import {reconcilePillowHistory,serverPillowHistory} from './reconcile-history';
 import type {PillowConversationTurn} from '../cockpit/pillow/pillow-session-store';
 const receipt={requestId:'pcr_synthetic_integration',sessionId:'synthetic_owner_session'};
 const completed=(message:string)=>({...receipt,kind:'llm',message,brainCompleted:true,semanticSuccess:true,transportContractPassed:true,degradedUsed:false});
@@ -49,7 +49,11 @@ test('HTTP failure cannot be certified by completion flags',()=>{
 });
 test('production hydration and provenance retain PR41 implementation contracts',()=>{
  const source=readFileSync(new URL('../cockpit/global-assistant/GlobalAiAssistantProvider.tsx',import.meta.url),'utf8');
- assert.match(source,/content: turn\.content,/);
+ assert.match(source,/serverPillowHistory\(history\.session\.conversationHistory, pathname\)/);
+ const content='Original exact content\nwith source text: worker proxy timed out.';
+ const hydrated=serverPillowHistory([{role:'user',content,timestamp:'2026-10-15T00:00:00.000Z',requestId:'original-history'}],'/cockpit/products');
+ assert.equal(hydrated.length,1);assert.equal(hydrated[0]!.content,content);
+ assert.equal(hydrated[0]!.requestId,'original-history');assert.equal(hydrated[0]!.source,'server_persisted_transcript');
  assert.match(source,/reconcilePillowHistory\(serverTurns, archiveTurns\)/);
  assert.match(source,/preservePillowLocalArchive\(previous, turns, historyOwnerId\)/);
  assert.match(source,/filter\(t => t\.source === "server_persisted_transcript"\)/);
