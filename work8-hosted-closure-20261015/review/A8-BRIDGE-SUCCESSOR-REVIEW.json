@@ -1,0 +1,18 @@
+{
+  "decision": "PASS_SCOPED_A8_HOST_HISTORY_BRIDGE_SOURCE_AND_TERMINAL_SMOKE_NOT_NATIVE_ACCEPTANCE",
+  "supersedes": "A8-BRIDGE-EXCLUSION-REVIEW.json as local successor readiness only; published753 tree remains unchanged and excludes bridge",
+  "files": {
+    "work8-source-context-backend.mts": "3c41db64ba6678bb42b3988b3c7ff3301256603c87bf3a2d6ac17ae200362b30",
+    "work8-source-context-native.mjs": "da44b29a9b64f5e9349b175861d19386cf1504d870327c62a15250b45a33d132"
+  },
+  "validation": "Implementing lane terminal fresh-directory HTTP smoke PASSexit0; reviewer independently read smoke source and compared persisted user-turn productContext deep equality against actual delivery bound snapshot in retained artifact.",
+  "exactSnapshotEquality": true,
+  "auth": "Authenticated owner session and actual authenticated history handler; unauthenticated history401 verified by smoke.",
+  "cleanup": "Native runner bounded TERM wait thenKILL; backend closes fixture and actual host; no new production source changes.",
+  "scope": "Actual Tier0 handler intercepted queue -> initialized actual host intercepted provider -> durableSQLite -> fresh store actual history endpoint. No actual provider, Redis durability, process restart, native browser, or owner acceptance claimed.",
+  "priorFailuresPreserved": true,
+  "publication": "NEW_TREE_OWNER_AUTHORITY_REQUIRED",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "nativeReadinessDelta": "Independently inspected response waits registered before initial navigation and synthetic-toggle click; asserts200/nonempty canonical .items and selected button state. Original required Discuss action remains. Failure captures DOM/screenshot/API path+status without headers. Diagnosed root cause not claimed; native still unexecuted on successor."
+}

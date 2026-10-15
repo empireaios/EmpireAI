@@ -1,0 +1,13 @@
+{
+  "approvedSourceCommit": "9186d1143c2fa1840be73e8c9fcf204ce9a343b2",
+  "sourceTree": "7537581cc9970176a2a1b51d905817be919e575d",
+  "publicationSourceCommit": "393825f149deb332b3b2710b83b582eb44649237",
+  "sourceStageCommit": "10b9d5e04e8f58060c5cc15223078970e39fe387",
+  "approvedEvidenceCommit": "2ef02eb96b39493b6516ac5b397a007e66b9d9b5",
+  "evidenceTree": "a83d05dbb690fef9c4c91a88d1eb16cd224b3477",
+  "publicationEvidenceCommit": "d9e2053f154f6adf95810a9c791466d871aa602c",
+  "metadataExplanation": "GitHub connector recreates commit metadata; complete approved trees and published parents are unchanged.",
+  "published": true,
+  "sequence": "evidence first, verified ref, then source; both leased fast-forward",
+  "review": "review/REMOTE-STAGING-REVIEW.json"
+}

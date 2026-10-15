@@ -1,0 +1,282 @@
+{
+  "recordType": "LOCAL_CONSOLIDATED_HOSTED_CLOSURE_EVIDENCE_NOT_NEW_ACCEPTANCE",
+  "baseTree": "a83d05dbb690fef9c4c91a88d1eb16cd224b3477",
+  "baseCommit": "d9e2053f154f6adf95810a9c791466d871aa602c",
+  "addedRootDirectory": "work8-hosted-closure-20261015",
+  "preservation": "All existing root entries retained exactly; single new directory only",
+  "sourceSuccessor": {
+    "tree": "ff20a1d3607994e731e90a3901d378447f4b4f3f",
+    "publicationCandidate": "1c7e135dca4ea68033f76b53728254add01267af",
+    "stagedCommit": "908504f4183c03236790c34a32d2c8b161e75b36"
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "payloadFiles": 33,
+  "payloadBytes": 289887,
+  "entries": [
+    {
+      "path": "work8-hosted-closure-20261015/frontend-lane/HOSTED-A8-DECISION.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "ea06e321bd25f0f92f69a03444d01e35dc54f4b0",
+      "sha256": "4bd7296ff5539559300587905b377f5c68608ebfd8a2ceea055eceb97982666f",
+      "bytes": 1389
+    },
+    {
+      "path": "work8-hosted-closure-20261015/frontend-lane/bridge-http-smoke-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "29bb6f7419d2703e5886f58751e78994f185c5da",
+      "sha256": "0bebf91c5b9c57e0fb0d5f70405b16d7f4898e87f27349578a136c9cc89275a9",
+      "bytes": 503
+    },
+    {
+      "path": "work8-hosted-closure-20261015/frontend-lane/bridge-validation.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "b9df9ebe8197c25b76e8d86106fda4ad0feced9f",
+      "sha256": "716784ee690ea0a272e71df5dced25bc4c5bb450c870460f356bedb3ab550ca3",
+      "bytes": 1756
+    },
+    {
+      "path": "work8-hosted-closure-20261015/media-a11/HOSTED-MEDIA-393825-RESULT.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "7557cacaa7d7accf49983ddd0b705ace2fb97ae2",
+      "sha256": "df7f533e681559bbe0d8d93b17d15708b7e098ea23ab3cbc5534a4d3d715e345",
+      "bytes": 1311
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/CI-RUNS.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "0b427fc03cf8c68b9830191c2a55f1f504e79443",
+      "sha256": "49760d03cddfafb975ef43a32fed5b5dc71bc4cf85e01b42f0c8b9abf84ba1bf",
+      "bytes": 238
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/PUBLISHED-IDENTITIES.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "ccbed8df32c164dbf9cbe7e25958073477935592",
+      "sha256": "9971b617b183a89a1e5a8259c497e2aa832bd2822b33cbc505f64d225b71a2a6",
+      "bytes": 770
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/RUNTIME-TERMINAL.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "ddffdd065b4aa7901119ad4fab1fcceaaf9e9683",
+      "sha256": "4352c787e9102cc410b972e247b01bff895b0843b3b0877116bac8ee2287334d",
+      "bytes": 16671
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/SUCCESSOR-IDENTITIES.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "4768edf589b912e1c4486985e0de60c240a1618b",
+      "sha256": "74db4892db7be901149fc28abcff987e304d5e12716a9accf1930ba3a4a9458c",
+      "bytes": 361
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/SUCCESSOR-SOURCE-MANIFEST.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "20607ba89eb0107cb708872e6ac473a4f8b42f38",
+      "sha256": "9acf2c55b2cd0c56c81936a0a2805fe5aae01500a75f2516b6f1eed97283a44b",
+      "bytes": 2945
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/SUCCESSOR-SOURCE.patch",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "988e25059568dd1f17093929e0261b52be8aba02",
+      "sha256": "373297fa864ee0217d2937dbd78232388efc88b5046ef511318b59d973362602",
+      "bytes": 49730
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/ACCEPTANCE-CRITERIA.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "f464122fa7dc9e9ad46b59375dcc8bf63274b615",
+      "sha256": "23330886071f5289230bbe46068436b3b1d30921583d0ba19b37ac5afcd85793",
+      "bytes": 2629
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/CONNECTED-READONLY-OBSERVATION.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "a80e70a5a9b5f403f3bb2ebb0d93b25c6e4c8bb7",
+      "sha256": "f416e0477ca08a99ec89cd58fa76de0851d9f9536dc97f01ec4bec000f570043",
+      "bytes": 3828
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/CONTRACT-SOURCE-INDEX.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "afa33fb0f3061ef2285c7d21f89cb439b8c2749c",
+      "sha256": "998c4649d2edbbfbcd5d1ca0f3c4dd33202275e4ee7f4116e088cd16ef90e3e9",
+      "bytes": 1685
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/CURRENT-REGISTER.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "15da0644cfb7762a7ec37986e92c141e02083fa4",
+      "sha256": "4970401c669c67877f4c58d3bc4b29dff73892d4100b240a51301212f65d3859",
+      "bytes": 125404
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/DEPENDENCY-QUEUE.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "517b9af4f88f6bfb2bb17e236a2e312fd0bb0f4a",
+      "sha256": "76b7762fabaa1d9c18936b8948f6b541b678eef0cff345faf0be0897945ee367",
+      "bytes": 3853
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/FULL-TRACKER.md",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "21ce11d6b18edb1d230200ab3ff01ac3571a6a7f",
+      "sha256": "575368bb3303cd71d006ef586412b7108f482dd0a4f8c0dedab8791404997e31",
+      "bytes": 16260
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/MISSION-LEDGER.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "b467906699931e5183239570fabaea6401e47d41",
+      "sha256": "46d4c05fbadef6d8d6759f95f602de88c0712a5604c8329e2eca614d0bf4bf3f",
+      "bytes": 21480
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/OWNER-BUSINESS-ACTIVATION-DIRECTIVE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "6cf39a5efbd9347f996f69b96fb94f5d980d1469",
+      "sha256": "7455733bb2f47ce42508b317dcbc95a70e5ad5e31484b0186d851d506933bc30",
+      "bytes": 10729
+    },
+    {
+      "path": "work8-hosted-closure-20261015/publication/certification/PUBLICATION-EXAMINATION-STATE.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "0ed5737d6acbecd585f5e445ee6efbc4c53559a9",
+      "sha256": "75c37e9246dd46f41e283be6f3e1b34244f235722d5bb0c496778f184d3faa59",
+      "bytes": 3590
+    },
+    {
+      "path": "work8-hosted-closure-20261015/recovery-review/DOMAIN-REHYDRATION-INDEPENDENT-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "3f0b242bd0263da099b0e6666305a2f4baa8e094",
+      "sha256": "dace7094a8585985e0085a0823f4031ec1eefde12dab1dc3bce6b58c9ff7688f",
+      "bytes": 3299
+    },
+    {
+      "path": "work8-hosted-closure-20261015/recovery-review/HH4-CANONICAL-AUTHORITY-INDEPENDENT-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "eadfbde58421bcc376e266c2cc9100b96a2203b4",
+      "sha256": "060ae0bbc0fec0c8ce218f24d1e61c0652707a416859f1164698a5f2a9947a2b",
+      "bytes": 2417
+    },
+    {
+      "path": "work8-hosted-closure-20261015/recovery-successor/RECOVERY-SUCCESSOR-MANIFEST.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "0ed45dfd46635068a53ef2aabdb301f64755b494",
+      "sha256": "2ef23e4ce54ebec8fdb9b89834b7b8d13f074ef8e848378437fcd1f6e88eac02",
+      "bytes": 3317
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/A11-HOSTED-PARTIAL-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "dcb03f391bfef5297a47dff51d9db8a1be8ff9b9",
+      "sha256": "6601101247a7c249bc21a189285f092c8bdab856a7de9c0a678276086e023a6c",
+      "bytes": 1443
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/A8-BRIDGE-EXCLUSION-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "cc5e8349e8b728e0854cf1f894b5beb35891a016",
+      "sha256": "9a306285b0f90786556db081b7c0cb8f5b8d0f2d2d5a45c89e6f020184a80486",
+      "bytes": 980
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/A8-BRIDGE-SUCCESSOR-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "17621e54f88c64a62cfcecedd44889565140973c",
+      "sha256": "a151855342e55fc9a570ac54f144898636bfee770211f89f34d7e5dec506a6cb",
+      "bytes": 1806
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/CERTIFICATION-AND-RECOVERY-SCOPE-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "0871381357fe29e53e2b30ecca0f1f2373c90fa9",
+      "sha256": "5e6e76894c6e4a940880dbe1b36060b1d7580efa511b42657d2928f68b03e943",
+      "bytes": 1401
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/EIGHT-PATH-SUCCESSOR-TREE-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "4556f8763baeff356e8dd0a158ff862a6e9dc88e",
+      "sha256": "7e0e69e3b8dddbda7fac184729edd17d419beb187fce1f7d6d47f3828ebe292b",
+      "bytes": 1337
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/FINAL-MISSION-LEDGER-DECISION.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "8066fdb5c928a2ab9f91afb1722c52248290867d",
+      "sha256": "4ff46da3a123fa236bca9bfbc8ad54714c2ba15de4832788a9c2096624833880",
+      "bytes": 2369
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/HYDRATION-TEST-SUCCESSOR-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "ba26f471e7372bf2e27baf88a3db5b3c39daa62d",
+      "sha256": "0c04a1e5541c2784fa0b5adb2cbf879b91e59bd27a2d43bd41fb408a7f3a0137",
+      "bytes": 1208
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/MEDIA-NATIVE-SUCCESSOR-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "901c3966d20c90c9d8f5c3903932176d58529d0b",
+      "sha256": "f9a24afaae35d1891af412a25841bc30aef867e0faca9c898364dac81877a54f",
+      "bytes": 1390
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/PUBLISHED-READBACK-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "42e42eedd38262762a8500d68143b1d5ed567231",
+      "sha256": "343c4f97656dc6bc8d2e495bd4d37417d50663796e812bc51c1d3f64a1f6ec6b",
+      "bytes": 606
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/SUCCESSOR-CHANGED-BOUNDARY-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "304c5e9ac84c9893cf06831d6e4a7ead77d7cd3a",
+      "sha256": "bd395683dab6d5a8f25985b55f55c633c8bc6b967e148d5f8bc7ab4f194aeb08",
+      "bytes": 2459
+    },
+    {
+      "path": "work8-hosted-closure-20261015/review/SUCCESSOR-REMOTE-REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "329daf46a532534ecf63ddcb4a24c028c3677b77",
+      "sha256": "ab8d921af60aab3516ed81597d7954746796b060423a21dcb9f3fda293bb2906",
+      "bytes": 723
+    }
+  ]
+}

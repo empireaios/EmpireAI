@@ -1,0 +1,14 @@
+{
+  "decision": "PASS_REMOTE_SUCCESSOR_EXACT_TREE_AND_EIGHT_BLOBS_NOT_PUBLICATION_AUTHORITY",
+  "tree": "ff20a1d3607994e731e90a3901d378447f4b4f3f",
+  "stagedCommit": "908504f4183c03236790c34a32d2c8b161e75b36",
+  "publicationCandidate": "1c7e135dca4ea68033f76b53728254add01267af",
+  "parent": "393825f149deb332b3b2710b83b582eb44649237",
+  "rootEntriesVerified": 147,
+  "allEightChangedBlobsFreshlyRetrievedRehashedAndByteCompared": true,
+  "completeRootPathsModesAndSubtreeIdentitiesMatchReviewedLocalTree": true,
+  "localCompleteDescendantReview": "EIGHT-PATH-SUCCESSOR-TREE-REVIEW.json",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "publication": "NOT_AUTHORIZED_FOR_SUCCESSOR; reviewer GET only"
+}

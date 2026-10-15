@@ -1,0 +1,25 @@
+{
+  "recordType": "CURRENT_CONTRACT_SOURCE_INDEX_NOT_ACCEPTANCE",
+  "originalMandate": {
+    "path": "/workspace/scratch/e235d347250e/reconstruction/integration/repo/docs/work8/MANDATE.txt",
+    "sha256": "d2f92dd405e64950be7c275e30addf4658477b46e7e97233f1eddc50cab91308",
+    "applicableSections": {
+      "O19": "section4 line40 simulated corridor schema/variant media and rights; addendum lines283-295 genuine asset evidence and permissions",
+      "O40_O41_A19": "section12 line69 full owner-visible source through recovery journey"
+    }
+  },
+  "historicalAmendmentCrosswalk": {
+    "path": "/workspace/scratch/798050748e67/certification-OWNER-AMENDMENTS-19.json",
+    "authorityFilename": "OWNER-BUSINESS-ACTIVATION-DIRECTIVE.txt",
+    "warning": "Historical statuses superseded; original directive recovered as recorded below."
+  },
+  "A11": "Current owner directive explicitly defines exact media identity/version, edit invalidation, fresh internal approval, separate external stage, stale/replay/mismatch rejection, durable history and authenticated desktop/mobile with intercepted publication.",
+  "completeContractReceipts": [],
+  "recoveredAmendmentAuthority": {
+    "path": "OWNER-BUSINESS-ACTIVATION-DIRECTIVE.txt",
+    "repositoryPath": "docs/work8/resume-20261011/OWNER-BUSINESS-ACTIVATION-DIRECTIVE.txt",
+    "gitBlob": "bc35c5a434f39845206ae31b9f9919dd41137f44",
+    "sha256": "7455733bb2f47ce42508b317dcbc95a70e5ad5e31484b0186d851d506933bc30",
+    "interpretation": "Original directive recovered; no missing-authority blocker. Section5 enumerates19 titles and incorporates earlier capabilities; full A9 coverage still requires image/video/archive assertions."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "decision": "PASS_STATIC_MEDIA_NATIVE_SUCCESSOR_REVIEW_NOT_EXECUTION_OR_A9_ACCEPTANCE",
+  "path": "empireai-web/e2e/work8-media-native.mjs",
+  "sha256": "7b1c3c6201896af8e4934f7fe5a2e1cac392e371ec9e2717b89bb9b284fb30f4",
+  "blob": "69828c596dd628a8f1a32cdf65f4228ce8289b46",
+  "review": [
+    "Import image/video through actual authenticated UI with exact rights/provenance/hash fields; inspect persisted canonical URL/type/hash and retrieved fixture bytes.",
+    "Video metadata assertion tests actual embedded clip decoding; both desktop/mobile required.",
+    "No external effects: browser media domain intercepted; backend kernel-egress guard retained.",
+    "Internal approval distinct from external submission; archive open/close and reload preserve canonical state.",
+    "Existing A11 assertion set retained.",
+    "Cleanup checks both exitCode and signalCode; bounded TERM thenKILL waits; checks/failures persisted before cleanup and cleanup failures retained in final receipt."
+  ],
+  "validation": "Independent node --checkPASS; independently executed extracted actual stop() function across4real-child boundaries PASS. Native not executed.",
+  "limitations": [
+    "No supplier licence or actual Canva export.",
+    "No full A9 or A11 acceptance.",
+    "Durable reload is not process-restart evidence."
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

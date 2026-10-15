@@ -1,0 +1,322 @@
+# EMPIREAI — WORK 8 CRITICAL-PATH CLOSURE & OWNER-VISIBLE BUSINESS ACTIVATION
+
+**GRAND KING — SUPERSEDING OWNER DIRECTIVE**
+
+**OBJECTIVE: COMPLETE WORK 8 AS ONE FUNCTIONING, OWNER-VISIBLE AUTONOMOUS BUSINESS SYSTEM.**
+
+This directive incorporates the existing Work 8 Master Execution Mandate, all binding addenda, the 45 original requirements, the 19 owner amendments, and the latest verified checkpoint.
+
+**DO NOT RESTART, REDESIGN, EXPAND SCOPE OR REPEAT COMPLETED ENGINEERING.**
+
+## 1. Recover the exact current state
+
+Repository: `empireaios/EmpireAI`
+
+Latest verified published replacements:
+
+- Backend source: `a3cd82a1`
+- Evidence: `9c67f51b`
+- Unpublished post-publication evidence: `4102f5da6d36ebd4bb9d6f939366496275ff8c57`
+
+Recover the complete SHAs and branch identities.
+
+Preserve the four passing CI workflows:
+
+- Assurance `38142058029`
+- Semantic `38142058040`
+- Product `38142058048` — 215/215 Work 8 tests
+- Runtime `38142058061` — 391/391 runtime tests
+
+Preserve exact-tree verification, whole-volume restoration, financial continuity, Redis continuity and all accepted evidence.
+
+Do not restart successful examinations.
+
+## 2. Close completed requirements first
+
+The official register is:
+
+**10 PASS / 30 PENDING / 5 BLOCKED = 45.**
+
+Accepted requirements:
+
+**#1, #10, #15, #17, #27, #28, #29, #31, #32 and #37.**
+
+Preserve these decisions.
+
+Publish the outstanding closure evidence only after obtaining any required bounded GitHub publication approval.
+
+Perform one short acceptance check against the remaining original requirements.
+
+Close only requirements whose complete criteria are already satisfied.
+
+Do not conduct another broad audit.
+
+Do not keep requirements pending merely because their historical classifications were never updated.
+
+## 3. Change the execution strategy — work backwards from the complete business
+
+The owner does not want another series of disconnected engineering examinations.
+
+The required Work 8 outcome is:
+
+**Genuine product evidence → Pillow assessment → Owner approval → Simulated listing → Simulated order → Supplier fulfilment → Financial reconciliation → Assurance recovery.**
+
+This entire journey must be visible through the existing Owner Console.
+
+The owner must be able to inspect the same canonical product, mission, listing, order, financial and Assurance records.
+
+Use the existing seven Console destinations.
+
+Do not create a separate demonstration application, second commerce engine or competing dashboard.
+
+## 4. Resolve the four shared external dependencies
+
+### A. Genuine product and Pillow assessment
+
+Identify the exact authorised CJ/Amazon read surfaces already available.
+
+Use one genuinely evidenced product for the first complete demonstration.
+
+The governing addendum does not require 100 genuinely qualified products before the walkthrough.
+
+For the selected product, obtain:
+
+- Exact supplier and variant identity.
+- Current price, currency and stock.
+- Freight and destination evidence.
+- Marketplace match and competitor observations.
+- Verified product eligibility.
+- Source-bound financial assessment.
+- Genuine Pillow assessment through existing authorised commissioning controls.
+
+Do not fabricate source evidence or submit unauthorised paid inference.
+
+If the required source or assessment authority is unavailable, state the exact permission or capability needed.
+
+### B. Product-image rights
+
+The existing rights review examined 19 assets and found no applicable verified permission.
+
+Do not repeat CJ's public-terms research.
+
+Determine whether the intended private pre-birth demonstration is permitted for the exact selected asset.
+
+Only the images actually displayed need to satisfy the applicable rights requirements for that walkthrough.
+
+Obtain and retain the exact account/supplier permission where necessary.
+
+Do not assume a supplier image is licensed merely because it is publicly visible.
+
+### C. Canonical accounting evidence
+
+The historical accounting position remains:
+
+- Original baseline: 224 records.
+- Current records: 227.
+- Three historical Pillow request correlations independently matched.
+
+These correlations do not establish that the three additional records are legitimate.
+
+Use authorised read-only access to obtain the original and current row-level snapshots.
+
+Verify that all original records are preserved unchanged.
+
+Identify the three additional rows and their actual lineage.
+
+Do not infer attribution from timestamps or modify accounting history.
+
+If the reader cannot expose the necessary records, identify the exact access capability needed.
+
+### D. Isolated hosted digital twin
+
+Recover the existing consolidated hosting decision.
+
+Do not repeat Railway billing inspection.
+
+Evaluate the two existing options:
+
+1. Reuse genuinely isolated, already approved capacity.
+2. Provision a separately authorised isolated runtime.
+
+The proposed runtime must provide:
+
+- Strict production isolation.
+- No live commercial effects.
+- Owner authentication.
+- Protected storage and retention.
+- Recovery and rollback.
+- Bounded resource consumption.
+- Verified billing scope and spending controls.
+- No shared workspace limit that could shut down production.
+
+The retained US$20–43.05 monthly estimate is not an enforceable spending ceiling and excludes tax and retention.
+
+Do not provision or deploy without separate authority.
+
+**Present one consolidated owner decision, not repeated fragmented approval requests.**
+
+## 5. Complete the existing 19 owner amendments
+
+Preserve and complete the approved capabilities:
+
+1. Persistent autonomous digital twin.
+2. Whole-system twin.
+3. Protected backup vault.
+4. Future-state workspace.
+5. Seamless upgrades and rollback.
+6. Owner-visible autonomous dry run.
+7. Five mobile shortcuts.
+8. Product-linked Pillow Chat.
+9. Product image/video management.
+10. Canva-assisted editing.
+11. Separate internal/external media approval.
+12. Temporary Systems authority.
+13. Conversational UX changes.
+14. Human-interaction risk management.
+15. Keepa and Helium 10 readiness.
+16. Financial Birth Cutover.
+17. Autonomous Cost Intelligence.
+18. Isolated hosted twin.
+19. Integrated owner acceptance.
+
+Do not rebuild implemented components.
+
+Verify the actual owner-visible behaviour and close each amendment only when its acceptance is satisfied.
+
+## 6. Complete the owner-visible examination
+
+After obtaining necessary authority, conduct one connected demonstration.
+
+The owner should see:
+
+**Home:** Autonomous business activity and status.
+
+**Intelligence:** Genuine product discovery, supplier evidence and Pillow assessment.
+
+**Products & Approvals:** Images, economics, recommendations and owner decisions.
+
+**Pillow Chat:** Compact product-linked context and follow-up discussion.
+
+**Listings:** Realistic simulated Amazon listing and media versions.
+
+**Orders & Fulfilment:** Simulated order, supplier processing, shipment and tracking.
+
+**Finance:** Sales, costs, fees, settlement and reconciled profit.
+
+**Assurance:** A controlled fault, authorised recovery and independent verification.
+
+**Systems:** Temporary permissions, expiry and revocation.
+
+**Live Cost Centre:** Financial Birth rehearsal and discovered infrastructure costs.
+
+Use the same durable records throughout.
+
+Clearly distinguish real observations from simulated commercial transactions.
+
+Verify desktop and mobile.
+
+Do not claim acceptance from fixture-only screenshots.
+
+## 7. Finish only remaining mandatory examinations
+
+Preserve the existing 215 Product and 391 Runtime passes.
+
+Complete only genuinely uncovered:
+
+- Hosted isolation.
+- Global recovery consistency.
+- Protected off-host retention.
+- Platform containment.
+- Genuine-source financial conservation.
+- Remaining fixed fault scenarios.
+- Final-candidate endurance.
+- Authenticated desktop/mobile equality.
+- Independent programme certification.
+
+Do not repeat previously accepted synthetic examinations.
+
+Do not expand the programme through speculative improvements.
+
+## 8. Publication and execution discipline
+
+Use the established GitHub connector publication method.
+
+Preserve exact Git tree identities and all historical evidence.
+
+Do not assume unlimited publication authority.
+
+Consolidate related changes into reviewed batches.
+
+When a bounded approval is required, request it once with exact commit identities and scope.
+
+Do not stop after publication, CI or a single passing test when authorised work remains.
+
+If a dependency is blocked, continue other independent work.
+
+If no independently executable work remains, state that precisely and present the consolidated owner decision.
+
+## 9. Fixed reporting
+
+Maintain:
+
+- The original 45-item Work 8 register.
+- The separate 19-item owner amendment register.
+
+Each progress report must show both complete numbered tables.
+
+For every item, state:
+
+- Completed engineering.
+- Acceptance evidence.
+- Exact remaining requirement.
+- Official status.
+- Next action.
+
+Totals must reconcile.
+
+Do not substitute passing test counts for requirement completion.
+
+## 10. Governance
+
+Production unchanged without separate authority.
+
+Pillow **NOT_BORN**.
+
+Commerce **LOCKED**.
+
+All 15 safety protections and seven denied live-effect routes remain enforced.
+
+No real supplier purchases, marketplace publication, payments, refunds or financial transfers.
+
+No unauthorised paid inference.
+
+No unapproved subscriptions, infrastructure or deployments.
+
+No production merge or release lease without separate authority.
+
+No digital-twin experiment may overwrite production records.
+
+## REQUIRED SESSION RESULT
+
+1. Recover the verified published checkpoint.
+2. Preserve all ten accepted requirements.
+3. Obtain publication authority for outstanding evidence if necessary.
+4. Identify the exact owner permissions needed for the four external dependencies.
+5. Complete any remaining independent engineering.
+6. Present one consolidated owner decision with cost, security and operational consequences.
+7. After approval, activate the isolated Work 8 twin.
+8. Demonstrate one genuinely evidenced product through the complete simulated business.
+9. Finish hosted recovery, financial and Assurance acceptance.
+10. Reconcile all 45 requirements and 19 amendments.
+11. Obtain legitimate Work 8 GO/NO-GO and independent closure receipts.
+12. Prepare the Work 9 handoff without activating live commerce.
+
+**GRAND KING'S INSTRUCTION**
+
+Stop treating Work 8 as 45 unrelated engineering projects.
+
+Treat it as **one autonomous business system with 45 acceptance requirements and 19 owner-approved amendments**.
+
+**CLOSE WHAT IS ALREADY COMPLETE. RESOLVE THE FOUR SHARED DEPENDENCIES. SHOW ME THE OPERATING BUSINESS. FINISH WORK 8.**
+
+Do not return to another audit–patch–stop cycle.

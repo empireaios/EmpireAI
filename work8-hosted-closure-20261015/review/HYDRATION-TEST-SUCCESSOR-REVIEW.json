@@ -1,0 +1,28 @@
+{
+  "decision": "PASS_MINIMAL_STALE_SOURCE_ASSERTION_CORRECTION_NOT_NEW_ACCEPTANCE",
+  "files": {
+    "empireai-web/lib/pillow/durable-delivery.test.ts": {
+      "sha256": "4942ea8aba2d03a2960e44f3510fe72de11065b5005a15e8c479d0e1d0062a29",
+      "blob": "649104dff3bbc6a33a68c42eae3598d974188a0b"
+    },
+    "empireai-web/lib/pillow/production-delivery-integration.test.ts": {
+      "sha256": "2319d380f9012b7ff9b86ac889e3dae082bdbfb3eb701b3937c4065110d5e042",
+      "blob": "71897aaebde6cbf6f0e83535a0312ef0a40ebc77"
+    }
+  },
+  "changes": [
+    "Session key assertion requires exact owner+workspace isolation expression; no weaker key permitted.",
+    "Hydration assertion follows extracted serverPillowHistory helper and executes exact original-content/requestId/server provenance preservation; existing archive/filter assertions retained."
+  ],
+  "independentExecution": {
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "scope": "Only two previous failing assertions examined; no full accepted suite repeated. Production source unchanged.",
+  "publication": "New exact tree requires authority",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

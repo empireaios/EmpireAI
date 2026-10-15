@@ -1,0 +1,38 @@
+{
+  "decision": "PASS_CHANGED_SOURCE_AND_CI_WIRING_REVIEW_NOT_COMPLETE_A8_OR_A11_ACCEPTANCE",
+  "reviewer": "independent_review_current_continuation",
+  "files": {
+    "/workspace/scratch/7952261165b1/media-a11/backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts": {
+      "sha256": "b08969c12a5d40e38f834e21f476b1d504a838693eaa0da6694ed82575c35a1e",
+      "gitBlob": "32ee033c8f5e9c41307615ed48b1187768505e44"
+    },
+    "/workspace/scratch/7952261165b1/media-a11/backend/src/validation/tests/work8-media-approval-invalidation.test.ts": {
+      "sha256": "8500f69e2c040bfd0b6b6056e4e2232d2387dcd1bdbacc1974daafedbe4b1cc9",
+      "gitBlob": "ad69fff0697e6b1c029d16f2a326f5ff87725232"
+    },
+    "/workspace/scratch/7952261165b1/frontend-lane/product-path-ci.yml": {
+      "sha256": "0abe424998cb321b2f4a028a39e57fa972ad8972d55ada1c6d0fc0a2b3c97d69",
+      "gitBlob": "eaa3042ee6e670202209b916374977339d680600"
+    }
+  },
+  "a11": [
+    "Original failing REQUEST_EDIT reproduction retained by implementing lane.",
+    "Independent changed-boundary execution: 1 pass, 0 fail, 0 skipped.",
+    "Approval selection binds current receipt, proposal batch and post-edit version. External submission requires current approval and exact selected IDs. Prior approval ID replay rejected after later events.",
+    "Same bytes proposed at newer event version invalidate approval. Audit events retained and restart readback checked. No publication code added.",
+    "Final test independently rerun: edit-to-reject withdrawal remains permitted, rejected reapproval refused, 10 durable audit events retained; 1 pass zero failures/skips.",
+    "Strict replay successor: both approval actions reject even latest identical request replay. Nonapproval idempotency preserved. Final independently executed test1/1PASS no failures/skips."
+  ],
+  "a8": [
+    "Only 17 workflow lines inserted, no existing gate removed.",
+    "Correct frontend working directory and absolute backend/evidence paths match preserved harness. Build precedes harness; evidence upload always runs.",
+    "Harness explicitly limits result to intercepted inference request delivery; no full chat/native acceptance inferred."
+  ],
+  "limitations": [
+    "Hosted CI not executed on successor.",
+    "Native authenticated desktop/mobile A11 not executed.",
+    "Full integrated exact-tree review pending controller candidate."
+  ],
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

@@ -1,0 +1,15 @@
+{
+  "decision": "PASS_PUBLICATION_BRANCH_AND_DRAFT_PR_READBACK",
+  "sourceCommit": "393825f149deb332b3b2710b83b582eb44649237",
+  "sourceTree": "7537581cc9970176a2a1b51d905817be919e575d",
+  "evidenceCommit": "d9e2053f154f6adf95810a9c791466d871aa602c",
+  "evidenceTree": "a83d05dbb690fef9c4c91a88d1eb16cd224b3477",
+  "pr": 113,
+  "draft": true,
+  "state": "open",
+  "merged": false,
+  "sourceTreeVerification": "Fresh commit/tree verified in REMOTE-STAGING-REVIEW.json; postpublication branch SHA unchanged",
+  "productionDeployment": false,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

@@ -1,0 +1,30 @@
+{
+  "decision": "PASS_COMPLETE_EIGHT_PATH_SUCCESSOR_TREE_REVIEW_NOT_ACCEPTANCE",
+  "baseTree": "7537581cc9970176a2a1b51d905817be919e575d",
+  "successorTree": "ff20a1d3607994e731e90a3901d378447f4b4f3f",
+  "baseEntries": 17266,
+  "successorEntries": 17267,
+  "changedPaths": [
+    ".github/workflows/pillow-runtime-repair-ci.yml",
+    "empireai-web/e2e/work8-media-native.mjs",
+    "empireai-web/e2e/work8-source-context-backend.mts",
+    "empireai-web/e2e/work8-source-context-native.mjs",
+    "empireai-web/lib/pillow/durable-delivery.test.ts",
+    "empireai-web/lib/pillow/production-delivery-integration.test.ts",
+    "scripts/work8/hh4-domain-rehydration.mjs",
+    "scripts/work8/hh4-domain-state.mjs"
+  ],
+  "allChangedModes": "100644",
+  "changedBytesEqualReviewedFiles": true,
+  "allOtherPathsBlobsModesUnchanged": true,
+  "priorIndependentReviews": [
+    "HH4-CANONICAL-AUTHORITY-INDEPENDENT-REVIEW.json",
+    "A8-BRIDGE-SUCCESSOR-REVIEW.json",
+    "HYDRATION-TEST-SUCCESSOR-REVIEW.json",
+    "MEDIA-NATIVE-SUCCESSOR-REVIEW.json"
+  ],
+  "scope": "Examination and test harness corrections only; production implementation unchanged versus published753. Hosted successor unexecuted.",
+  "requiredDecision": "Exact-tree owner publication authority for new successor",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

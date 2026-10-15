@@ -1,0 +1,17 @@
+{
+  "status": "PASS_SCOPED_HTTP_BRIDGE_NATIVE_NOT_EXECUTED_PENDING_REVIEW",
+  "nativeSyntax": "PASS",
+  "nativeBrowser": "NOT_EXECUTED",
+  "firstStartup": "FAIL_CLOSED_MISSING_REDIS; isolated fixture REDIS_OPTIONAL=true added; production unchanged",
+  "secondStartup": "READY",
+  "initialHttpProbe": "ECONNREFUSED across distinct execution network namespaces; same-command orchestrator adopted",
+  "firstSameNamespaceSmoke": "409 unpinned product reference correctly denied; not overall PASS",
+  "finalSmoke": "HTTP500 Durable reasoning volume unavailable; terminal exit1; no further retry",
+  "scope": "Actual Tier0 intercepted queue -> actual host with intercepted provider -> durable SQLite -> fresh-store actual authenticated history -> native assertions prepared. No Redis durability, OS process restart, genuine model answer, owner acceptance or A8 complete claim.",
+  "exactDependency": "productionReasoningState requires DATABASE_PATH == path.join(RAILWAY_VOLUME_MOUNT_PATH,'commissioning','empireai-brain.db'); inherited original native fixture uses root/brain.sqlite. Full host bridge needs isolated fixture database identity corrected and fresh bounded examination; source remains frozen unaccepted.",
+  "authorizedOneLineCorrection": "DATABASE_PATH changed to root/commissioning/empireai-brain.db; existing mkdir before build",
+  "postCorrectionSmoke": "STARTUP_TIMEOUT after70sec bound; exit1. No pass or further retry.",
+  "noContentionSmoke": "BACKEND_EXIT_1 IDEMPOTENCY_CONFLICT while seeding reused smoke-root; native harness uses mkdtemp and does not share this runner defect.",
+  "freshUniqueRootSmoke": "Terminal exit0 BRIDGE_HTTP_SMOKE_PASS; kernel outbound connect denial retained.",
+  "resultFile": "bridge-http-smoke-result.json"
+}

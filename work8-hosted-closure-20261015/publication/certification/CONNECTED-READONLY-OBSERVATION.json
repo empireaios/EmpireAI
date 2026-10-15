@@ -1,0 +1,26 @@
+{
+  "changes": {
+    "id": "changes",
+    "title": "EmpireAI changes",
+    "text": "{\"retrievedAt\":\"2026-10-15T09:35:54.295Z\",\"readOnly\":true,\"inferenceCalls\":0,\"externalRefresh\":false,\"workspace\":\"ws_empire_1\",\"domain\":\"changes\",\"grantsAuthority\":false,\"status\":\"STALE\",\"observedAt\":\"2026-10-13T11:11:05.088Z\",\"source\":\"existing activity events only; not a complete changelog for all subsystems\",\"data\":[],\"coverage\":{\"limit\":20,\"after\":\"\",\"since\":\"previous 24 hours\",\"complete\":false,\"providerAccessVerified\":false,\"businessAuthenticity\":\"UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce\",\"missingFields\":\"Not stored or not exposed; do not infer approval, execution or complete economics\"}}",
+    "url": "https://empire-ai.co/cockpit/advisor?record=changes"
+  },
+  "integrations": {
+    "id": "integrations",
+    "title": "EmpireAI integrations",
+    "text": "{\"retrievedAt\":\"2026-10-15T09:35:52.985Z\",\"readOnly\":true,\"inferenceCalls\":0,\"externalRefresh\":false,\"workspace\":\"ws_empire_1\",\"domain\":\"integrations\",\"grantsAuthority\":false,\"status\":\"STALE\",\"observedAt\":\"2026-10-13T11:11:05.088Z\",\"source\":\"durable business database snapshot; timestamp is file persistence time, not external observation\",\"data\":[{\"id\":\"ws_empire_1__meta-ads\",\"name\":\"Meta Ads\",\"status\":\"Connected\"},{\"id\":\"ws_empire_1__shopify\",\"name\":\"Shopify\",\"status\":\"Connected\"},{\"id\":\"ws_empire_1__stripe\",\"name\":\"Stripe\",\"status\":\"Connected\"}],\"coverage\":{\"limit\":20,\"after\":\"\",\"since\":null,\"complete\":false,\"providerAccessVerified\":false,\"businessAuthenticity\":\"UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce\",\"missingFields\":\"Not stored or not exposed; do not infer approval, execution or complete economics\"}}",
+    "url": "https://empire-ai.co/cockpit/advisor?record=integrations"
+  },
+  "products": {
+    "id": "products",
+    "title": "EmpireAI products",
+    "text": "{\"retrievedAt\":\"2026-10-15T09:35:53.936Z\",\"readOnly\":true,\"inferenceCalls\":0,\"externalRefresh\":false,\"workspace\":\"ws_empire_1\",\"domain\":\"products\",\"grantsAuthority\":false,\"status\":\"STALE\",\"observedAt\":\"2026-10-13T11:11:05.088Z\",\"source\":\"durable business database snapshot; timestamp is file persistence time, not external observation\",\"data\":[{\"id\":\"ws_empire_1__p1\",\"name\":\"ProFlex Wireless Earbuds\",\"score\":94,\"demand\":\"High\",\"margin_cents\":2840,\"trend\":\"Meta trending +42%\"},{\"id\":\"ws_empire_1__p2\",\"name\":\"EcoBlend Protein Kit\",\"score\":91,\"demand\":\"High\",\"margin_cents\":1980,\"trend\":\"Seasonal peak in 3 weeks\"},{\"id\":\"ws_empire_1__p3\",\"name\":\"SmartDesk Organizer Pro\",\"score\":87,\"demand\":\"Medium\",\"margin_cents\":1420,\"trend\":\"Stable demand\"}],\"coverage\":{\"limit\":20,\"after\":\"\",\"since\":null,\"complete\":false,\"providerAccessVerified\":false,\"businessAuthenticity\":\"UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce\",\"missingFields\":\"Not stored or not exposed; do not infer approval, execution or complete economics\"}}",
+    "url": "https://empire-ai.co/cockpit/advisor?record=products"
+  },
+  "assurance": {
+    "id": "assurance",
+    "title": "EmpireAI assurance",
+    "text": "{\"retrievedAt\":\"2026-10-15T09:35:52.378Z\",\"readOnly\":true,\"inferenceCalls\":0,\"externalRefresh\":false,\"workspace\":\"ws_empire_1\",\"domain\":\"assurance\",\"grantsAuthority\":false,\"status\":\"UNAVAILABLE\",\"observedAt\":null,\"data\":null,\"reason\":\"Stored source unavailable or unreadable; no live refresh attempted\"}",
+    "url": "https://empire-ai.co/cockpit/advisor?record=assurance"
+  }
+}

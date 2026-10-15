@@ -1,0 +1,36 @@
+{
+  "recordType": "INDEPENDENT_HH4_CANONICAL_SYNTHETIC_AUTHORITY_CORRECTION_REVIEW",
+  "decision": "PASS_SOURCE_CORRECTION_REQUIRES_HOSTED_REEXAMINATION",
+  "reviewer": "review_recovery",
+  "files": {
+    "recovery-successor/HH4-STARTUP-AND-REHYDRATION.patch": "225d7a2dbe71578b09c448cdf1e83f90d807bcd40150e5c5ecd5c9f2b5c276ce",
+    "recovery-successor/scripts/work8/hh4-domain-state.mjs": "c56cafb0c9c0f7fe8fb382c9ac7e5f6614a64c9ce1818ba448a1dcab93aa2406",
+    "recovery-successor/scripts/work8/hh4-domain-rehydration.mjs": "e408cfe8eee389611944a88f5f294eee125a22bef6a0572e943bf9d79f229199",
+    "recovery-review/hh4-11963727336/container-logs.txt": "8f1d09f47660bdfde24c82120f5b1523958adafab3a7f4933fac8ac4cc7d4948"
+  },
+  "hostedEvidence": "Artifact log shows Redis connected and Brain initialized; initialization then rejects true !== false at hh4-domain-state.mjs:91. Not complete HH4 pass.",
+  "semanticJustification": "Production emptyAuthorityStore calls createInitialLoopState(), whose canonical initial state is running:true, mode:SYNTHETIC, null stop fields. Running synthetic loop is not live authority. Owner contract requires no unauthorized business and preserved fences; it does not require fabricated owner STOP on new synthetic fixture.",
+  "independentFocusedExamination": {
+    "exitCode": 0,
+    "originalFalseAssumptionReproduced": true,
+    "literalCanonicalStateVerified": true,
+    "sixLiveSideEffectKindsBlockedWithExpectedReason": true,
+    "liveModeRejected": true,
+    "stoppedLoopRejected": true,
+    "fabricatedStopMetadataRejected": true,
+    "stateWrites": false
+  },
+  "diffReview": [
+    "Exact canonical loop equality replaces incorrect single boolean assumption",
+    "Zero approvals assertion retained",
+    "All production LIVE_SIDE_EFFECT_KINDS require BLOCKED and LIVE_SIDE_EFFECT_FORBIDDEN",
+    "No authority mutation beyond existing save of unchanged prior state; no stopOperatingLoop invocation",
+    "Production code and business admission unchanged",
+    "Workflow uses same image ID and exact source; readonly root and evidence, network none, caps dropped, private tmpfs",
+    "Existing five-minute HH4 step timeout and archive no-boot constraints unchanged",
+    "Four-adapter result remains scoped and does not establish complete restoration/replay/custody"
+  ],
+  "newAcceptedOriginals": [],
+  "newAcceptedAmendments": [],
+  "publicationAuthorizedByReview": false
+}

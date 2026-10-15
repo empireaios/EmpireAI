@@ -1,0 +1,58 @@
+{
+  "recordType": "PRE_EXAMINATION_CRITERIA_RECONCILIATION_NOT_ACCEPTANCE",
+  "baseline": {
+    "original": {
+      "PASS": 33,
+      "PENDING": 8,
+      "BLOCKED": 4
+    },
+    "amendments": {
+      "PASS": 8,
+      "PENDING": 11
+    }
+  },
+  "O33": [
+    "Every admitted writer and transport in declared topology, including prior instances, excluded during coherent capture",
+    "Canonical domain/financial identities preserved and replay exactly once with no duplicates",
+    "Operational application restoration and pending replay; scoped coordinator success insufficient"
+  ],
+  "O39": [
+    "Actual cold restart and prior/current compatibility under original assertions",
+    "Authenticated session restored into replacement topology",
+    "Whole-domain financial/canonical state equality",
+    "Protected independently authenticated custody and actual fresh-target restore; file presence alone insufficient"
+  ],
+  "A8": [
+    "Authenticated desktop/mobile icon/context chip and followup/remove/switch/comparison",
+    "Exact source-product/version/context binding with stale/missing/forged/crossworkspace/truncation rejection",
+    "Durable context/history preserves exact chronology across refresh/session restoration",
+    "A7/O3/O9 complete accepted frontend lineage preserved",
+    "No paid inference prerequisite for standalone software criterion"
+  ],
+  "A11": [
+    "Authentic permitted owner-created test media bytes and exact version binding",
+    "Authenticated individual/batch internal approval selection separated from external approval",
+    "Intercepted external publication only after separately authorised exact version/subset",
+    "Rejected/revoked/stale/forged/crossworkspace states do not inherit approval",
+    "Native desktop/mobile gallery/approval observation and durable event chain",
+    "No real supplier rights, personal owner actions or actual publication inferred from fixture",
+    "Any material edit/version change invalidates earlier internal approval and blocks external approval until fresh internal approval.",
+    "Both stages bind exact media identity/version; stale, replayed or mismatched approval must be rejected."
+  ],
+  "finance": {
+    "preserveAccepted": [
+      "O24",
+      "O25",
+      "A16",
+      "A17"
+    ],
+    "O2": "BLOCKED original224 immutable baseline or attributable audited delta lineage; no unsupported repeated snapshot search"
+  },
+  "testsToAvoid": [
+    "Accepted unchanged F27/F29",
+    "Accepted unchanged generated corpora",
+    "Accepted finance suites absent changed boundary"
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

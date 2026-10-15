@@ -1,0 +1,57 @@
+{
+  "recordType": "INDEPENDENT_SCOPED_DOMAIN_REHYDRATION_REVIEW",
+  "reviewer": "review_recovery",
+  "decision": "PASS_NARROW_SYNTHETIC_HARNESS_SCOPE_ONLY",
+  "files": {
+    "recovery-successor/scripts/work8/hh4-domain-rehydration.mjs": "e408cfe8eee389611944a88f5f294eee125a22bef6a0572e943bf9d79f229199",
+    "recovery-successor/domain-rehydration-smoke.mjs": "10e6892ad335b7d2f3569ecbf83388da4b7d2895f6d27001ae9761835acf1b15",
+    "recovery-successor/domain-rehydration-smoke.log": "17857ce1f370aeb9bc2f5df6f109d89a479683bfac1c0a18377bc960afa99d6d"
+  },
+  "reviewedAdapters": [
+    "IntelligenceStore.get",
+    "ReasoningState.load",
+    "FinancialCentre.entries",
+    "GovernedCommerceStore.history"
+  ],
+  "independentExecution": {
+    "command": "node recovery-successor/domain-rehydration-smoke.mjs",
+    "exitCode": 0,
+    "fourDomainReadbacks": "PASS",
+    "oracleDigestMismatchRejected": "PASS",
+    "selfConsistentButWrongOracleRejected": "PASS",
+    "archiveDigest": "1aab86344693969197bb1806c444ceba926dd2ea3490f81b5e259093311c6995",
+    "source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "revisionSmokeLog": "recovery-review/domain-rehydration-independent-smoke.log",
+    "revisionSmokeLogSha256": "50ea5944d053d88bd7ae15923dd8cca3e12f901f68ba3c7514074cd5be91fea4",
+    "revisionSmokeExitCode": 0,
+    "missingCompiledRevisionMarkerRejected": "PASS",
+    "invalidModeRejected": "PASS"
+  },
+  "invariants": [
+    "Disposable private-directory copies only; original verified archive is not booted",
+    "Readback compared to oracle and oracle digest checked",
+    "Full per-store canonical schema/rows/rowid/user-version/application-id unchanged after adapter readback",
+    "Original database canonical equality and final recovery manifest verification retained",
+    "Intelligence/reasoning adapters close per call; finance/commerce closed before canonical readback",
+    "Temporary directory removed in finally",
+    "Finance and commerce lifecycle initialized markers required and copied alongside disposable DB",
+    "Default HELD_CAPTURE requires matching runtime revision marker; local smoke explicitly labelled unbound",
+    "Receipt explicitly requires caller verification of exact-source compiled image association; revision marker not build attestation"
+  ],
+  "limitations": [
+    "Smoke uses recovered local backend/dist, not independently proven exact published build",
+    "Synthetic reasoning session equals first turn requestId by fixture convention; not generic application-session restoration",
+    "No Redis, SQL.js Brain, topology writer exclusion, operational replay, protected custody or application boot tested",
+    "No actual hosted held-capture artifact examined by this review",
+    "Final receipt-label/comment-only adjustment reviewed statically following successful revised smoke; no third full smoke rerun"
+  ],
+  "requiredForHostedUse": [
+    "Verify held archive and independently bind original oracle to captured source",
+    "Use verified source-matched compiled adapters",
+    "Keep scoped result distinct from HH4 and full recovery acceptance; preserve false authority flags"
+  ],
+  "newAcceptedOriginals": [],
+  "newAcceptedAmendments": [],
+  "productionEffects": false,
+  "revision": "Reviewed lifecycle-marker and explicit-mode successor"
+}

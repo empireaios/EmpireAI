@@ -1,0 +1,49 @@
+{
+  "decision": "INDEPENDENT_MISSION_LEDGER_IN_PROGRESS_NO_GO",
+  "all64StatusesPreserved": true,
+  "counts": {
+    "original": {
+      "PASS": 33,
+      "PENDING": 8,
+      "BLOCKED": 4
+    },
+    "amendments": {
+      "PASS": 8,
+      "PENDING": 11
+    },
+    "accepted": 41,
+    "outstanding": 23
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "priorityDecisions": {
+    "HH4": "PENDING: hosted fails canonical synthetic-state fixture assertion after Redis/Brain initialization; source-reviewed harness correction unexecuted hosted. Full restoration/replay/custody not established.",
+    "A8": "PENDING: hosted native fails required listing Discuss action. Scoped actual-handler-to-host-persisted-history HTTP successor passes; native guard successor unexecuted. No complete authenticated product-linked conversation native proof.",
+    "A11": "PENDING: positive native internal/external event history and screenshots retained. Cleanup exit13 lost accumulated assertion receipt; caught failures cannot be inferred absent. Strict replay/source tests pass. Corrected native cleanup harness unexecuted hosted."
+  },
+  "terminalRuns": {
+    "Product38718357713": "FAILURE",
+    "Runtime38718357780": "FAILURE",
+    "Semantic38718358039": "SUCCESS",
+    "Assurance38718357810": "SUCCESS"
+  },
+  "engineeringStillExecutableAfterAuthority": [
+    "Hosted examination of reviewed8path successor",
+    "Full application restoration/capture/writer-exclusion and once-only replay engineering remains incomplete",
+    "A9 native gallery/import/archive evidence successor requires execution"
+  ],
+  "externalDependenciesRemain": [
+    "Genuine eligible product stock/freight and rights evidence",
+    "Independently authenticated protected custody destination/access",
+    "Independently operated owner alert destination and permitted exact message",
+    "Applicable Canva operation permission and Keepa entitlement",
+    "Original historical financial lineage where unavailable"
+  ],
+  "governance": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "productionMissionComplete": false
+  },
+  "certificationRule": "Partial source review, compilation, positive final state or passing unrelated CI cannot substitute for complete independent criterion evidence. Remaining engineering is not relabelled entirely external."
+}

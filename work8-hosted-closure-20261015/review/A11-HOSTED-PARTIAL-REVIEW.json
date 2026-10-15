@@ -1,0 +1,16 @@
+{
+  "decision": "A11_PENDING_NATIVE_ASSERTION_RECEIPT_INCOMPLETE_NOT_PRODUCT_FAILURE_INFERRED",
+  "source": "393825f149deb332b3b2710b83b582eb44649237",
+  "job": 116366677499,
+  "verifiedPositiveEvidence": [
+    "Native mobile screenshot independently viewed: proposed and selected versions, separate internal and external controls, intercepted submission label.",
+    "Final durable media history contains9events: propose,internal(single),external(single),internal(two),external(two),revised proposal,internal,edit,reject.",
+    "Final externalStatus NOT_SUBMITTED and current null; no external effects."
+  ],
+  "criticalMissingEvidence": "check() catches each failed assertion into failures[] and continues. final-media and screenshots occur even if assertions fail. Sole checks/failures receipt write occurs after cleanup; exit13 prevents this write. Therefore no complete native assertion result can be inferred.",
+  "acceptanceRule": "Green whole workflow is not required, but every exact A11 criterion needs direct evidence. Missing refusal/forged-version/viewport assertions cannot be treated as passing from final-state alone.",
+  "next": "Run bounded corrected native harness preserving pre-cleanup checks/failures receipt; accepted local strict replay/durable tests retained.",
+  "finalMediaSha256": "af40190b17d35445f4fe904d6ea86a3f7b353cfc66160984bcafb2c80dc80c43",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

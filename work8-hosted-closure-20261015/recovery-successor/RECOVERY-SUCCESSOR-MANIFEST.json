@@ -1,0 +1,67 @@
+{
+  "classification": "UNPUBLISHED_BOUNDED_RECOVERY_SUCCESSOR",
+  "purpose": "Actual adapter rehydration of disposable verified HH4 archive copies, preserving canonical records and initializer markers",
+  "scope": [
+    "intelligence",
+    "reasoning",
+    "financialEvidence",
+    "commerce"
+  ],
+  "notClaimed": [
+    "fullApplicationRestoration",
+    "globalWriterExclusion",
+    "pendingWorkReplay",
+    "protectedCustody",
+    "wholeRequirementAcceptance"
+  ],
+  "initialFailure": "Smoke finance fixture used equal billing period endpoints; preserved original error log and corrected fixture",
+  "verification": "Actual adapter/capture integration smoke exit0 plus oracle digest and public readback mismatch rejection; independent review pending final receipt",
+  "hostedApplication": "Requires actual held archive plus pre-capture inventory, exact compiled image/source association and image revision marker. Default HELD_CAPTURE rejects missing revision marker. LOCAL_ADAPTER_SMOKE explicitly has no source-bound hosted acceptance.",
+  "files": {
+    "scripts/work8/hh4-domain-rehydration.mjs": {
+      "sha256": "e408cfe8eee389611944a88f5f294eee125a22bef6a0572e943bf9d79f229199",
+      "bytes": 5213
+    },
+    "domain-rehydration-smoke.mjs": {
+      "sha256": "10e6892ad335b7d2f3569ecbf83388da4b7d2895f6d27001ae9761835acf1b15",
+      "bytes": 5482
+    },
+    "domain-rehydration-smoke.log": {
+      "sha256": "17857ce1f370aeb9bc2f5df6f109d89a479683bfac1c0a18377bc960afa99d6d",
+      "bytes": 1931
+    },
+    "domain-rehydration-smoke-initial.log": {
+      "sha256": "69b5113834cb1e1126e36cea0e17744cb65a7256c3d667662bb52defdee24c25",
+      "bytes": 783
+    },
+    "scripts/work8/hh4-domain-state.mjs": {
+      "sha256": "c56cafb0c9c0f7fe8fb382c9ac7e5f6614a64c9ce1818ba448a1dcab93aa2406",
+      "bytes": 13708
+    },
+    ".github/workflows/pillow-runtime-repair-ci.yml": {
+      "sha256": "96089188afd49a9b8f6493c18afa2660ffea112ddf798eee9f349e850732f584",
+      "bytes": 35729
+    },
+    "HH4-STARTUP-AND-REHYDRATION.patch": {
+      "sha256": "225d7a2dbe71578b09c448cdf1e83f90d807bcd40150e5c5ecd5c9f2b5c276ce",
+      "bytes": 4339
+    },
+    "hh4-initial-authority-focused.log": {
+      "sha256": "4b93959672c712bdcda7d8c8f9d33319e1572a23bffeb7bbd40e72a8a0931e3b",
+      "bytes": 386
+    }
+  },
+  "publishedSourceBeingObserved": "393825f149deb332b3b2710b83b582eb44649237",
+  "runtimeRun": 38718357780,
+  "runtimeJob": 116366486785,
+  "hostedStatus": "FAIL_HH4_STARTUP_CANONICAL_SYNTHETIC_LOOP_ASSERTION",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": [],
+  "hostedFailureArtifact": {
+    "id": 11963727336,
+    "sha256": "a77f7048e14489cc3b3228b62df71f9b70544ae4c51ce08a7e4ab405832b3259",
+    "result": "worker reached connected Brain startup; hh4-domain-state:91 expected false but canonical synthetic initial loop is true; held archive not captured; downstream session tests skipped"
+  },
+  "successorCorrection": "Examination-only canonical synthetic initial loop and live-kind gate denial assertions replace impossible stopped-loop assumption. No actual stop/grant or production mutation.",
+  "hostedWiring": "Existing HH4 step retains5min timeout and exact image; post-capture scoped adapter check uses network-none readonly container with temporary copies and read-only archive mount."
+}

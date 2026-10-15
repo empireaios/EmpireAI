@@ -1,0 +1,62 @@
+{
+  "baseTree": "7537581cc9970176a2a1b51d905817be919e575d",
+  "tree": "ff20a1d3607994e731e90a3901d378447f4b4f3f",
+  "files": [
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "local": "/workspace/scratch/7952261165b1/recovery-successor/.github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "blob": "ae6a11e0c648b5a19eb6e5a2146b2e4781397030",
+      "sha256": "96089188afd49a9b8f6493c18afa2660ffea112ddf798eee9f349e850732f584"
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "local": "/workspace/scratch/7952261165b1/recovery-successor/scripts/work8/hh4-domain-state.mjs",
+      "mode": "100644",
+      "blob": "0189a0d4b79fd91f2355226eb5629edfc999caf1",
+      "sha256": "c56cafb0c9c0f7fe8fb382c9ac7e5f6614a64c9ce1818ba448a1dcab93aa2406"
+    },
+    {
+      "path": "scripts/work8/hh4-domain-rehydration.mjs",
+      "local": "/workspace/scratch/7952261165b1/recovery-successor/scripts/work8/hh4-domain-rehydration.mjs",
+      "mode": "100644",
+      "blob": "92c7af6dcb71f978a6742f1b38ab98bc9c05a36e",
+      "sha256": "e408cfe8eee389611944a88f5f294eee125a22bef6a0572e943bf9d79f229199"
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-backend.mts",
+      "local": "/workspace/scratch/7952261165b1/frontend-lane/work8-source-context-backend.mts",
+      "mode": "100644",
+      "blob": "57b3acaa90e34dcd804a262a5cf182b7b9ca5ce5",
+      "sha256": "3c41db64ba6678bb42b3988b3c7ff3301256603c87bf3a2d6ac17ae200362b30"
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-native.mjs",
+      "local": "/workspace/scratch/7952261165b1/frontend-lane/work8-source-context-native.mjs",
+      "mode": "100644",
+      "blob": "d42d39e90802458c3551ffbb2279f88f99c07897",
+      "sha256": "da44b29a9b64f5e9349b175861d19386cf1504d870327c62a15250b45a33d132"
+    },
+    {
+      "path": "empireai-web/lib/pillow/durable-delivery.test.ts",
+      "local": "/workspace/scratch/7952261165b1/frontend-lane/test-successor/lib/pillow/durable-delivery.test.ts",
+      "mode": "100644",
+      "blob": "649104dff3bbc6a33a68c42eae3598d974188a0b",
+      "sha256": "4942ea8aba2d03a2960e44f3510fe72de11065b5005a15e8c479d0e1d0062a29"
+    },
+    {
+      "path": "empireai-web/lib/pillow/production-delivery-integration.test.ts",
+      "local": "/workspace/scratch/7952261165b1/frontend-lane/test-successor/lib/pillow/production-delivery-integration.test.ts",
+      "mode": "100644",
+      "blob": "71897aaebde6cbf6f0e83535a0312ef0a40ebc77",
+      "sha256": "2319d380f9012b7ff9b86ac889e3dae082bdbfb3eb701b3937c4065110d5e042"
+    },
+    {
+      "path": "empireai-web/e2e/work8-media-native.mjs",
+      "local": "/workspace/scratch/7952261165b1/media-a11/successor/empireai-web/e2e/work8-media-native.mjs",
+      "mode": "100644",
+      "blob": "69828c596dd628a8f1a32cdf65f4228ce8289b46",
+      "sha256": "7b1c3c6201896af8e4934f7fe5a2e1cac392e371ec9e2717b89bb9b284fb30f4"
+    }
+  ]
+}

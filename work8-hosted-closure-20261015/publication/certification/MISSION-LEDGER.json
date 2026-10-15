@@ -1,0 +1,506 @@
+{
+  "scope": "Repository Work8 acceptance ledger; not a production control-plane mission_complete receipt",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "counts": {
+    "PASS": 33,
+    "PENDING": 8,
+    "BLOCKED": 4
+  },
+  "requirementDecisions": [
+    {
+      "item": 37,
+      "status": "PASS",
+      "receipt": "resume-20261011/REQUIREMENT-37-ACCEPTANCE.json",
+      "source": "3b5c4cc2ea9e821b62eb9f431aad2696e84cedd6",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 27,
+      "status": "PASS",
+      "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+      "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+      "receipt": "resume-20261011/REQUIREMENT-27-CATALOGUE-REVIEW.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 31,
+      "status": "PASS",
+      "source": "52338bd01a7269d9fa4328fe606312729565c1ff",
+      "tree": "df335b6fcd7e3a7d39610bb3c451799da1d34c27",
+      "receipt": "resume-20261011/REQUIREMENT-31-BLUEPRINT-REVIEW.json",
+      "independentVerifier": "/root/review_retirement_finance",
+      "scope": "Prospective blueprint only, no execution acceptance"
+    },
+    {
+      "item": 28,
+      "status": "PASS",
+      "source": "e3e8500a5ae7c8bd0d556d1d37a24238619d84fb",
+      "tree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
+      "receipt": "resume-20261011/REQUIREMENT-28-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 29,
+      "status": "PASS",
+      "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+      "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+      "receipt": "resume-20261011/REQUIREMENT-29-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 10,
+      "status": "PASS",
+      "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+      "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+      "receipt": "resume-20261011/REQUIREMENT-10-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 15,
+      "status": "PASS",
+      "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+      "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+      "receipt": "resume-20261011/REQUIREMENT-15-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 32,
+      "status": "PASS",
+      "source": "a3cd82a1e3d31b06ac7f19233f95ad6d353d83bb",
+      "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+      "receipt": "resume-20261011/REQUIREMENT-32-ACCEPTANCE.json",
+      "independentVerifier": "/root/review_retirement_finance"
+    },
+    {
+      "item": 25,
+      "status": "PASS",
+      "receipt": "interrupted-recovery-20261012/review/REQUIREMENT-25-DECISION.md",
+      "source": "97f44e7ce156cb622b5a680cb69cd6bf4b5d04fa",
+      "scope": "Original section22 isolated software; actual historical224 and financial attestation separate."
+    },
+    {
+      "item": 18,
+      "status": "PASS",
+      "scope": "Requirement18 portfolio review retirement/replacement software acceptance; not genuine business acceptance or whole Work8",
+      "source": "2282f97ab3c21271197453baa2e1e701f082adab",
+      "tree": "a2ae3d46aa94e01395fd6081d99a238147d306bc",
+      "frontend": "e7fd599a447a4e1b273363d7f664507194cd2ba1",
+      "frontendTree": "f077bb0e7008663f64dac4e01c4e218e67e4222e",
+      "receipt": "post-publication-20261012/review/PORTFOLIO18-INDEPENDENT-ACCEPTANCE.json",
+      "independentVerifier": "/root/ux13",
+      "publication": "local successor; fresh publication authority required"
+    }
+  ],
+  "preservedPasses": [
+    1,
+    17
+  ],
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "NOT_ACTIVATED",
+  "latestPublication": {
+    "source": "9080fece4da947f1bf1f2e91568e33e94b287686",
+    "sourceTree": "b331cc6d8ce53c8f371a035ca80e525ca7b73060",
+    "evidence": "6681add01c6fe73a0911d2b06314efd4151cf65d",
+    "evidenceTree": "adb4eb0f4235550aa31a3e2b61611acebd299d93",
+    "frontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+    "newCampaignPublication": false
+  },
+  "latestScopedReview": {
+    "source": "a83c95eb8870a893c93920353c5da94351b5c34f",
+    "tree": "a802c0fef2a2f58ddc13a3815f066b46396fd3d1",
+    "verdict": "SCOPED_PASS_PUBLISHED_EXACT_TREE",
+    "receipts": [
+      "resume-20261011/REGISTERED-RECURRENCE-REVIEW.json",
+      "resume-20261011/CROSS-STORE-CAPTURE-REVIEW.json"
+    ],
+    "newAcceptanceNotGranted": [
+      33,
+      39
+    ]
+  },
+  "priorScopedReview": {
+    "source": "85a1437f65bbeddc08e712187a9d5372bc28999f",
+    "tree": "9875e38e73ec54c9fe8dfb7478ecff2447d3e356",
+    "verdict": "SCOPED_PASS_TEST_ONLY_CONTINUATION",
+    "receipt": "resume-20261011/REPLICA-AND-CATALOGUE-ACCEPTANCE.json"
+  },
+  "currentCiReceipt": "total-completion-20261013/CURRENT-CI-TERMINAL.json",
+  "latestLocalContinuation": "total-completion-20261013/CONTINUATION.json",
+  "ownerAmendments": {
+    "register": "resume-20261011/OWNER-AMENDMENTS-19.json",
+    "legacyIdsPreserved": true,
+    "historicalCounts": {
+      "PASS": 0,
+      "PENDING": 19,
+      "BLOCKED": 0
+    },
+    "currentRegister": "total-completion-20261013/CURRENT-REGISTER.json",
+    "counts": {
+      "PASS": 8,
+      "PENDING": 11
+    }
+  },
+  "latestScopedClosureCheck": {
+    "newClosures": [],
+    "decision": "NO_GO",
+    "originalOutstanding": [
+      2,
+      7,
+      13,
+      14,
+      19,
+      30,
+      33,
+      39,
+      40,
+      41,
+      42,
+      43
+    ],
+    "amendmentOutstanding": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      15,
+      19
+    ],
+    "receipt": "total-completion-20261013/certification/CERTIFICATION-DECISION.json"
+  },
+  "amendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "authoritativeRegister": "total-completion-20261013/CURRENT-REGISTER.json",
+  "sourceCandidate": "a1602727d0689d28683c8bb7fa10376d08f240a1",
+  "productionMissionComplete": false,
+  "amendmentDecisions": [
+    {
+      "item": 14,
+      "status": "PASS",
+      "receipt": "interrupted-recovery-20261012/review/A14-SUCCESSOR-DECISION.md",
+      "backend": "71aa461beed38b6f4a20240a6233a19682d3d0ee",
+      "frontend": "900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a",
+      "scope": "Complete original simulated communication risk software criterion; no actual send or inference."
+    },
+    {
+      "item": 13,
+      "status": "PASS",
+      "receipt": "integrated-acceptance-20261012/review/ux13-independent-acceptance.json",
+      "scope": "Preserve independently accepted isolated conversational preview software; personal King acceptance, arbitrary app-wide changes and deployment remain separate."
+    },
+    {
+      "item": 17,
+      "status": "PASS",
+      "receipt": "integrated-acceptance-20261012/review/cost17/SUCCESSOR-ACCEPTANCE.md",
+      "scope": "Preserve full Work8 software acceptance with authenticated governed discovery and truthful unavailable access; continuous live billing remains Work9, not activated."
+    },
+    {
+      "item": 18,
+      "status": "PASS",
+      "scope": "Equivalent isolated runtime software and minimal proposal, not always-on service or protected custody",
+      "source": "272fae796af47003b5b1cb4105cbbc76f16416b0",
+      "runtimeEquivalent": "351ba54cac52e1872d16fab7a1bb353a9bda57cd",
+      "harnessAndClarification": "d2fbce46f849ea3876c1622960d44ca38b90a134",
+      "receipt": "post-publication-20261012/review/A18-INDEPENDENT-DECISION.md",
+      "independentVerifier": "/root/observer_review"
+    }
+  ],
+  "sourceCandidateReview": "PASS_SOURCE_AND_TREE_LOCAL_COMPILE_HOSTED_PENDING_PUBLICATION_AUTHORITY",
+  "historicalCheckpointBeforeTotalCampaign": {
+    "counts": {
+      "PASS": 30,
+      "PENDING": 11,
+      "BLOCKED": 4
+    },
+    "latestPublication": {
+      "source": "1ff047b32547f9e987ed6f6cd5d6634d49735ccb",
+      "evidence": "073a2220f554d8c31459b7ce96bc278108335205",
+      "frontend": "bc83ca6a63ae8f0eb32fa3cb475b1125f6e3ddce",
+      "currentSessionPublished": false
+    },
+    "currentCiReceipt": "resume-20261011/EXACT-HEAD-CI-76206D79.json",
+    "authoritativeRegister": "revised-review-20261012/FIXED-REGISTERS.json",
+    "sourceCandidate": "7b7b4ec40821da5d976cce1a7a5adbf6957a5514",
+    "sourceCandidateReview": "APPROVE_EXACT_SOURCE_FOR_BOUNDED_PUBLICATION_REQUEST",
+    "ownerAmendments": {
+      "register": "resume-20261011/OWNER-AMENDMENTS-19.json",
+      "legacyIdsPreserved": true,
+      "historicalCounts": {
+        "PASS": 0,
+        "PENDING": 19,
+        "BLOCKED": 0
+      },
+      "currentRegister": "revised-review-20261012/FIXED-REGISTERS.json",
+      "counts": {
+        "PASS": 7,
+        "PENDING": 12
+      }
+    },
+    "latestScopedClosureCheck": {
+      "newClosures": [
+        "A13",
+        "A17"
+      ],
+      "receipt": "integrated-acceptance-20261012/REPORT.md",
+      "remainingFullRequirements": [
+        18,
+        33,
+        39
+      ]
+    },
+    "latestLocalContinuation": "integrated-acceptance-20261012/CONTINUATION.json"
+  },
+  "preservedLaterAcceptances": [
+    {
+      "item": 9,
+      "status": "PASS",
+      "newCampaignAcceptance": false,
+      "receipt": "o9-console-20261013/O9-INDEPENDENT-ACCEPTANCE.json; backend4c012674/frontendc6b698c4; integrationb332d9a5; genuine native desktop/mobile and independent auth/workspace boundary verification"
+    },
+    {
+      "item": 26,
+      "status": "PASS",
+      "newCampaignAcceptance": false,
+      "receipt": "resume-20261011/targeted-tests.tap; resume-20261011/INDEPENDENT-INTEGRATION-REVIEW.md; resume-20261011/TWIN-VERTICAL.json; resume-20261011/TWIN-VERIFICATION.log; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; continued-closure-20261012 scoped independent receipts (no new full closure); owner-inbox-connected-20261013/SEAL.json; publication-closure-20261012/review/owner-inbox-independent-review.json (scoped canonical connected saved-inbox, native labelled fixture, published source/bundle; production rollout not performed); lane-console-certification/O26-O34-COMPLETE-INDEPENDENT-ACCEPTANCE.json; published-f27-hh3-ci/F27-INDEPENDENT-ACTUAL-ASSERTIONS.json"
+    },
+    {
+      "item": 34,
+      "status": "PASS",
+      "newCampaignAcceptance": false,
+      "receipt": "resume-20261011/targeted-tests.tap; assurance-fault-coverage.json; resume-20261011/TWIN-MULTIDAY.log; resume-20261011/DUAL-OBSERVER-CONTAINMENT.json; resume-20261011/OBSERVER-LAUNCHER-ACCEPTANCE.json; resume-20261011/RECOVERY-FRESHNESS-ACCEPTANCE.json; recovery-20261012/RUN3-INDEPENDENT-VERIFICATION-v2.json; recovery-20261012/RUN4-INDEPENDENT-VERIFICATION.json; recovery-20261012/INCOMPLETE-ARMS.md; continued-closure-20261012 scoped independent receipts (no new full closure); lane-console-certification/O26-O34-COMPLETE-INDEPENDENT-ACCEPTANCE.json; published-f27-hh3-ci/F27-INDEPENDENT-ACTUAL-ASSERTIONS.json"
+    }
+  ],
+  "priorLedgerBlob": "eb5c7b143eb18a0a7f4edb6ca3c0ee88bf14fa24",
+  "updatedAt": "2026-10-15T10:26:26.681650+00:00",
+  "sourceCandidateTree": "e668d9b61851b70b5ef3cc97f816520cde6105fc",
+  "frontendCandidate": {
+    "commit": "ab2e1eb9f3af764ff3e3e465cff32f0b2d5f1d48",
+    "tree": "587adf376276133507cb1fa10d8f5ab02da01dcf",
+    "disposition": "DURABLE_STAGING_ONLY_PUBLICATION_WITHHELD"
+  },
+  "reconstruction20261015": {
+    "recordType": "RECONSTRUCTION_ENGINEERING_PROGRESS_NOT_NEW_ACCEPTANCE",
+    "updatedAt": "2026-10-15T09:12:35.216298+00:00",
+    "originalCounts": {
+      "PASS": 33,
+      "PENDING": 8,
+      "BLOCKED": 4
+    },
+    "amendmentCounts": {
+      "PASS": 8,
+      "PENDING": 11
+    },
+    "accepted": 41,
+    "outstanding": 23,
+    "backendPublished": {
+      "commit": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+      "tree": "e668d9b61851b70b5ef3cc97f816520cde6105fc"
+    },
+    "frontendStaged": {
+      "commit": "5c0283c4d13016724cf51ce5b4fff05d9b119c67",
+      "tree": "ea92cdc0763267fc873a23cc439853a51be2f3c1",
+      "localExaminedCommit": "74c098ea6115ec4f1b72371de944064e7b9facc4",
+      "filesAndModesVerified": 949,
+      "acceptedLineageFiles": 944,
+      "targetedTests": "6/6 PASS",
+      "typecheck": "PASS",
+      "productionBuild": "PASS",
+      "native": "NOT_EXECUTED_BROWSER_UNAVAILABLE",
+      "fullA8Acceptance": "PENDING"
+    },
+    "integratedCandidate": {
+      "commit": "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+      "tree": "5d1f5b32ee598225b87912c43351307504431c1a",
+      "branch": "work8/staged-reconstructed-verified-20261015-5d1f5b32",
+      "status": "STAGED_INDEPENDENT_SOURCE_REVIEW_COMPILE_REMOTE_READBACK_PASS_NOT_ACCEPTANCE",
+      "compileSession": 48782,
+      "compile": "PASS_EXIT_0",
+      "remoteFinalReadback": "PASS_INDEPENDENT_VERIFIED_SOURCE_REMOTE_REVIEW",
+      "hostedCI": "NOT_EXECUTED",
+      "frontendFilesAndModes": 950,
+      "compileLog": "integration/repo/backend-compile-complete.log",
+      "localNode": "24.19.0",
+      "hostedPinnedNode": "22.23.2_PENDING",
+      "remoteReviewReceipt": "independent-review/VERIFIED-SOURCE-REMOTE-REVIEW.json"
+    },
+    "currentPublishedCI": {
+      "Product": {
+        "run": 38390068828,
+        "result": "PASS"
+      },
+      "Semantic": {
+        "run": 38390068830,
+        "result": "PASS"
+      },
+      "Assurance": {
+        "run": 38390068824,
+        "result": "PASS"
+      },
+      "Runtime": {
+        "run": 38390068837,
+        "result": "FAIL_HH4_STARTUP"
+      },
+      "later403Tests": "SKIPPED_NOT_PASS"
+    },
+    "A11": {
+      "status": "PENDING",
+      "sourceFinding": "REQUEST_EDIT does not invalidate existing approval; later external approval can proceed without renewed internal approval",
+      "newHarness": "Portable focused native examination prepared and syntax checked; intentionally asserts this gap, not executed",
+      "repairAuthority": "Beyond the three authorised reconstruction changes; no repair or waiver inferred"
+    },
+    "newOriginalAcceptances": [],
+    "newAmendmentAcceptances": [],
+    "certification": "IN_PROGRESS_NO_GO",
+    "productionMissionComplete": false,
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "externalBlockers": [
+      "O2 original224 immutable accounting baseline or attributable audited changed-count lineage; no repeated unsupported search",
+      "O7 selected supplier/media asset usage permissions",
+      "O13/O14 exact eligible genuine product dossier: current variant stock and destination/quantity freight, applicable match and valid bounded inference authority",
+      "O30 independently operated alert delivery channel with verified owner destination, durable attempt evidence and explicit exact-message authority; tuple not yet known",
+      "O39/A3 protected independently authenticated complete-state custody and actual fresh-target restoration proof",
+      "A10 exact authorised permitted Canva design/edit/export operation",
+      "A15 applicable Keepa entitlement/licensing; Helium10 deferred",
+      "Native authenticated desktop/mobile examination environment unavailable in this executor; existing browser access failure not bypassed"
+    ],
+    "scopeBlockedEngineering": [
+      "A11 pending-edit approval invalidation repair outside current three-change authority"
+    ],
+    "notExternalBlockers": [
+      "Hosted HH4 and integrated operating/native acceptance remain outstanding engineering/examination; exact source compilation and independent review passed.",
+      "A8 full native product-linked Chat acceptance pending",
+      "No additional supplier qualification prerequisite for standaloneA11 owner-created test media"
+    ],
+    "changedBoundaryTests": {
+      "hh4StartupProtocol": "3 PASS; unchanged production boundary from prior targeted run",
+      "durableProductHistory": "2 PASS; unchanged production boundary from prior targeted run",
+      "actualHostFreshHistory": {
+        "result": "PASS",
+        "tests": 1,
+        "exitCode": 0,
+        "log": "integration/repo/actual-host-history-complete.log",
+        "scope": "Actual host with intercepted provider, durable history and fresh-session authenticated history route; not HTTP chat admission or native end-to-end"
+      },
+      "priorTargetedRun": "5/6 passed; existing host test failed cleanup, corrected and re-executed independently to terminal PASS; do not call original run6/6",
+      "authenticatedRedisSessionRestore": "NOT_EXECUTED",
+      "hostedHH4": "NOT_EXECUTED",
+      "nativeDesktopMobile": "NOT_EXECUTED"
+    },
+    "supersededCandidate": {
+      "commit": "0ada49934eb66ec4b0c8547d3dec3c1fe03a408e",
+      "tree": "b968bb5ac36bba86abd6f54d6f23c0b84535a20d",
+      "compile": "PASS_ON_PRIOR_TREE_NOT_FINAL_SUCCESSOR"
+    },
+    "publicationTargets": {
+      "source": "work8/autonomous-examination-20261011",
+      "evidence": "work8/examination-evidence-20261011",
+      "frontendPR112": "UNCHANGED_NO_SEPARATE_PUBLICATION_REQUIRED_FOR_COHERENT_PR113_PRODUCT_CI",
+      "productionDeployment": false
+    }
+  },
+  "continuation20261015": {
+    "recordType": "PRESERVED_FULL_TRACKER_NO_NEW_ACCEPTANCE",
+    "authorityUpdate": "A11 repair authorised; obsolete three-change limitation superseded only for specified media repair.",
+    "connectedEvidence": "CONNECTED-READONLY-OBSERVATION.json",
+    "connectedConclusion": "Assurance unavailable; other sources stale and authenticity/provider access unverified. Does not establish genuine product eligibility or independent external delivery.",
+    "newAcceptedOriginalIds": [],
+    "newAcceptedAmendmentIds": []
+  },
+  "currentPublicationExamination20261015": {
+    "recordType": "PUBLISHED_EXAMINATION_RESULTS_NO_NEW_ACCEPTANCE",
+    "updatedAt": "2026-10-15T10:26:26.681650+00:00",
+    "publication": {
+      "approvedSourceCommit": "9186d1143c2fa1840be73e8c9fcf204ce9a343b2",
+      "sourceTree": "7537581cc9970176a2a1b51d905817be919e575d",
+      "publicationSourceCommit": "393825f149deb332b3b2710b83b582eb44649237",
+      "sourceStageCommit": "10b9d5e04e8f58060c5cc15223078970e39fe387",
+      "approvedEvidenceCommit": "2ef02eb96b39493b6516ac5b397a007e66b9d9b5",
+      "evidenceTree": "a83d05dbb690fef9c4c91a88d1eb16cd224b3477",
+      "publicationEvidenceCommit": "d9e2053f154f6adf95810a9c791466d871aa602c",
+      "metadataExplanation": "GitHub connector recreates commit metadata; complete approved trees and published parents are unchanged.",
+      "published": true,
+      "sequence": "evidence first, verified ref, then source; both leased fast-forward",
+      "review": "review/REMOTE-STAGING-REVIEW.json"
+    },
+    "ci": {
+      "Semantic": {
+        "run": 38718358039,
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      "Assurance": {
+        "run": 38718357810,
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS"
+      },
+      "Product": {
+        "run": 38718357713,
+        "status": "COMPLETED",
+        "conclusion": "FAILURE"
+      },
+      "Runtime": {
+        "run": 38718357780,
+        "status": "COMPLETED",
+        "conclusion": "FAILURE",
+        "knownFailedJobs": [
+          "HH4",
+          "web tests216/218; two obsolete regex assertions"
+        ],
+        "updatedAt": "2026-10-15T10:24:25Z"
+      }
+    },
+    "decisions": {
+      "HH4": {
+        "status": "PENDING",
+        "observed": "Redis infrastructure connected and Brain initialised; failed incorrect prior.loop.running=false fixture assertion. Canonical SYNTHETIC state running=true is not live execution authority.",
+        "independentReceipt": "recovery-review/HH4-CANONICAL-AUTHORITY-INDEPENDENT-REVIEW.json",
+        "sessionRestoration": "SKIPPED_NOT_PASS"
+      },
+      "A8": {
+        "status": "PENDING",
+        "observed": "Native button lookup timed out. Actual intercepted Tier0 handler202 and forged-version409 scoped checks passed; no complete native acceptance."
+      },
+      "A11": {
+        "status": "PENDING",
+        "observed": "Native media reached durable9event history and screenshots but cleanup exit13 prevented checks/failures receipt. Incomplete evidence, not inferred product failure.",
+        "independentReceipt": "review/A11-HOSTED-PARTIAL-REVIEW.json"
+      }
+    },
+    "successor": {
+      "tree": "ff20a1d3607994e731e90a3901d378447f4b4f3f",
+      "changedPaths": [
+        ".github/workflows/pillow-runtime-repair-ci.yml",
+        "empireai-web/e2e/work8-media-native.mjs",
+        "empireai-web/e2e/work8-source-context-backend.mts",
+        "empireai-web/e2e/work8-source-context-native.mjs",
+        "empireai-web/lib/pillow/durable-delivery.test.ts",
+        "empireai-web/lib/pillow/production-delivery-integration.test.ts",
+        "scripts/work8/hh4-domain-rehydration.mjs",
+        "scripts/work8/hh4-domain-state.mjs"
+      ],
+      "independentReview": "PASS_COMPLETE_EIGHT_PATH_SUCCESSOR_TREE_REVIEW_NOT_ACCEPTANCE",
+      "receipt": "review/EIGHT-PATH-SUCCESSOR-TREE-REVIEW.json",
+      "published": false,
+      "hosted": "NOT_EXECUTED",
+      "scope": "Examination and test harness corrections only; production implementation unchanged versus published753. Hosted successor unexecuted."
+    },
+    "accepted": 41,
+    "outstanding": 23,
+    "newAcceptedOriginalIds": [],
+    "newAcceptedAmendmentIds": [],
+    "missionStatus": "IN_PROGRESS",
+    "decision": "NO_GO",
+    "productionMissionComplete": false,
+    "frozen": true
+  }
+}

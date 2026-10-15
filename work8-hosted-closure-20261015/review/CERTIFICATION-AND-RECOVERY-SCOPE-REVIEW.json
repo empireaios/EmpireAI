@@ -1,0 +1,32 @@
+{
+  "decision": "PASS_PRESERVED_64_STATUSES_AND_NO_FALSE_ACCEPTANCE_NO_GO",
+  "baseline": "/workspace/scratch/e235d347250e/reconstruction/certification/CURRENT-REGISTER.json",
+  "all64StatusesExactlyEqual": true,
+  "originalCounts": {
+    "PASS": 33,
+    "PENDING": 8,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 8,
+    "PENDING": 11
+  },
+  "accepted": 41,
+  "outstanding": 23,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "recoveryIndependentSourceCheck": "Complete-state capture explicitly refuses FULL_RUNTIME_CAPTURE_UNPROVEN; HH4 output operationalRestoration/replay/protectedCustody false; inspection archives bootAllowed/completeLiveState false. Hosted HH4 cannot establish full recovery.",
+  "sourceFilesRead": [
+    "backend/src/runtime/work8-recovery-capture.ts",
+    "deployment/work8-recovery-set.cjs",
+    "scripts/work8/hh4-held-capture-controller.mjs",
+    "scripts/work8/hh4-inspection-restoration.mjs"
+  ],
+  "ledgerDecision": "IN_PROGRESS_NO_GO",
+  "productionMissionComplete": false,
+  "limitations": [
+    "Historical fields retain prior sourceCandidate and prior A11 authority restriction; current continuation supersedes authority, final controller should append exact final candidate identities.",
+    "No independent hosted/native acceptance received.",
+    "Protected custody and actual complete operational restoration remain unmet."
+  ]
+}

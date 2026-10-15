@@ -1,0 +1,87 @@
+{
+  "recordType": "PUBLISHED_EXAMINATION_RESULTS_NO_NEW_ACCEPTANCE",
+  "updatedAt": "2026-10-15T10:26:26.681650+00:00",
+  "publication": {
+    "approvedSourceCommit": "9186d1143c2fa1840be73e8c9fcf204ce9a343b2",
+    "sourceTree": "7537581cc9970176a2a1b51d905817be919e575d",
+    "publicationSourceCommit": "393825f149deb332b3b2710b83b582eb44649237",
+    "sourceStageCommit": "10b9d5e04e8f58060c5cc15223078970e39fe387",
+    "approvedEvidenceCommit": "2ef02eb96b39493b6516ac5b397a007e66b9d9b5",
+    "evidenceTree": "a83d05dbb690fef9c4c91a88d1eb16cd224b3477",
+    "publicationEvidenceCommit": "d9e2053f154f6adf95810a9c791466d871aa602c",
+    "metadataExplanation": "GitHub connector recreates commit metadata; complete approved trees and published parents are unchanged.",
+    "published": true,
+    "sequence": "evidence first, verified ref, then source; both leased fast-forward",
+    "review": "review/REMOTE-STAGING-REVIEW.json"
+  },
+  "ci": {
+    "Semantic": {
+      "run": 38718358039,
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    "Assurance": {
+      "run": 38718357810,
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS"
+    },
+    "Product": {
+      "run": 38718357713,
+      "status": "COMPLETED",
+      "conclusion": "FAILURE"
+    },
+    "Runtime": {
+      "run": 38718357780,
+      "status": "COMPLETED",
+      "conclusion": "FAILURE",
+      "knownFailedJobs": [
+        "HH4",
+        "web tests216/218; two obsolete regex assertions"
+      ],
+      "updatedAt": "2026-10-15T10:24:25Z"
+    }
+  },
+  "decisions": {
+    "HH4": {
+      "status": "PENDING",
+      "observed": "Redis infrastructure connected and Brain initialised; failed incorrect prior.loop.running=false fixture assertion. Canonical SYNTHETIC state running=true is not live execution authority.",
+      "independentReceipt": "recovery-review/HH4-CANONICAL-AUTHORITY-INDEPENDENT-REVIEW.json",
+      "sessionRestoration": "SKIPPED_NOT_PASS"
+    },
+    "A8": {
+      "status": "PENDING",
+      "observed": "Native button lookup timed out. Actual intercepted Tier0 handler202 and forged-version409 scoped checks passed; no complete native acceptance."
+    },
+    "A11": {
+      "status": "PENDING",
+      "observed": "Native media reached durable9event history and screenshots but cleanup exit13 prevented checks/failures receipt. Incomplete evidence, not inferred product failure.",
+      "independentReceipt": "review/A11-HOSTED-PARTIAL-REVIEW.json"
+    }
+  },
+  "successor": {
+    "tree": "ff20a1d3607994e731e90a3901d378447f4b4f3f",
+    "changedPaths": [
+      ".github/workflows/pillow-runtime-repair-ci.yml",
+      "empireai-web/e2e/work8-media-native.mjs",
+      "empireai-web/e2e/work8-source-context-backend.mts",
+      "empireai-web/e2e/work8-source-context-native.mjs",
+      "empireai-web/lib/pillow/durable-delivery.test.ts",
+      "empireai-web/lib/pillow/production-delivery-integration.test.ts",
+      "scripts/work8/hh4-domain-rehydration.mjs",
+      "scripts/work8/hh4-domain-state.mjs"
+    ],
+    "independentReview": "PASS_COMPLETE_EIGHT_PATH_SUCCESSOR_TREE_REVIEW_NOT_ACCEPTANCE",
+    "receipt": "review/EIGHT-PATH-SUCCESSOR-TREE-REVIEW.json",
+    "published": false,
+    "hosted": "NOT_EXECUTED",
+    "scope": "Examination and test harness corrections only; production implementation unchanged versus published753. Hosted successor unexecuted."
+  },
+  "accepted": 41,
+  "outstanding": 23,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "productionMissionComplete": false,
+  "frozen": true
+}

@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "393825f149deb332b3b2710b83b582eb44649237",
+  "executedCheckoutCommit": "d2a17429082a4fa65a3eb1a00d185d309674e45c",
+  "executedTree": "7537581cc9970176a2a1b51d905817be919e575d",
+  "run": 38718357713,
+  "job": 116366677499,
+  "node": "22.23.2",
+  "A8Decision": "PENDING_NATIVE_FAIL_NOT_ACCEPTED",
+  "failure": "First listing Discuss product with Pillow locator timed out30sec after Test examples click. No DOM or response capture existed; cause unconfirmed.",
+  "scopedBackend": "Hosted actualTier0 intercepted queue202 and forged pin409 PASS; no model/Redis durability",
+  "localDiagnostic": "Original fixture exact portfolio query returns200 with nonempty synthetic listing; does not establish browser correctness",
+  "ownerConsole": "Generic authenticated phone commerce stepPASS; no same-identity complete desktop/mobile source-to-finance/Assurance journey inferred",
+  "successors": [
+    "test-only hydration-contract-tests.patch scoped2/2PASS",
+    "a8-history-bridge.patch actualTier0/host/durable/fresh-store HTTP PASS; native syntaxPASS, browser execution not yet performed"
+  ],
+  "newAcceptedOriginals": [],
+  "newAcceptedAmendments": [],
+  "artifacts": {
+    "sourceContext": 11964396716,
+    "commerceBrowser": 11964231534
+  },
+  "rootCause": "UNKNOWN; observed-readiness guard and failure evidence added without product workaround or relaxed assertion"
+}

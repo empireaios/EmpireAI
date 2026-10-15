@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "393825f149deb332b3b2710b83b582eb44649237",
+  "testedMerge": "d2a17429082a4fa65a3eb1a00d185d309674e45c",
+  "runId": 38718357713,
+  "jobId": 116366677499,
+  "artifactId": 11964231534,
+  "nativeResult": "INCOMPLETE_RECEIPT_CLEANUP_FAILURE",
+  "exitCode": 13,
+  "failure": "Unsettled top-level await in stop(child); receipt written after cleanup was not reached",
+  "retainedEvidence": "frontend-lane/hosted-commerce-393825/work8-media",
+  "acceptance": "A11 remains pending; caught check failures array absent, final state/screenshots alone do not prove all checks passed",
+  "successorHarness": {
+    "path": "/workspace/scratch/7952261165b1/media-a11/successor/empireai-web/e2e/work8-media-native.mjs",
+    "sha256": "7b1c3c6201896af8e4934f7fe5a2e1cac392e371ec9e2717b89bb9b284fb30f4",
+    "syntax": "PASS",
+    "cleanupBoundary": "PASS4 scenarios: completed, already signaled, live TERM, stubborn KILL",
+    "newCoverage": "Owner-created image/video import, exact byte checks, decoded video, nonempty archive and reload on1440/390",
+    "status": "Independent review pending; no hosted PASS"
+  },
+  "A9": "PENDING native extended examination",
+  "A10": "PENDING exact authorized Canva design/operation; no operation performed",
+  "O19": "PENDING coherent listing schema and media journey"
+}
