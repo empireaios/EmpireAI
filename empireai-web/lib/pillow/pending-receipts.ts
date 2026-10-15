@@ -1,6 +1,6 @@
 import type { DurableReceipt } from "./durable-delivery";
 
-export type PendingPillowReceipt = DurableReceipt & { query: string; productContextKey?: string };
+export type PendingPillowReceipt = DurableReceipt & { query: string; contextKey?: string; productContextKey?: string };
 const keyFor = (ownerId: string) => `empireai:pillow:pending:v1:${encodeURIComponent(ownerId)}`;
 
 /** Only confirmed receipts, scoped to the signed-in owner; never credentials. */

@@ -32,6 +32,7 @@ import {
   type PillowConversationTurn,
   type PillowSessionSnapshot,
 } from "@/lib/cockpit/pillow/pillow-session-store";
+import {readTwinChatContext,setTwinChatContext,twinContextEvent} from '@/lib/owner/twin-chat-context';
 import { createPillowHostSession, fetchPillowHistory, retrievePillowChat, sendPillowChat } from "@/lib/pillow/client";
 import { reconcilePillowHistory } from "@/lib/pillow/reconcile-history";
 import { clearPendingPillowReceipt, loadPendingPillowReceipts, savePendingPillowReceipt } from "@/lib/pillow/pending-receipts";
@@ -501,12 +502,23 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
   const [attachedProducts,setAttachedProducts]=useState<AttachedProduct[]>([]);
   const productSelectionVersion=useRef(0);
   const attachedProductsRef=useRef<AttachedProduct[]>([]);
+  useEffect(()=>{
+    const clearAttached=()=>{
+      productSelectionVersion.current++;
+      attachedProductsRef.current=[];
+      setAttachedProducts([]);
+    };
+    clearAttached();
+    window.addEventListener(twinContextEvent,clearAttached);
+    return ()=>window.removeEventListener(twinContextEvent,clearAttached);
+  },[user?.id,user?.workspaceId]);
   const attachProduct=useCallback(async(reference:ProductReference,compare=false)=>{
     if(state.loading)throw Error("Wait for the current message before changing product context.");
     const version=++productSelectionVersion.current, owner=activeOwnerId.current;
     const product=await readProductContext(reference);
     if(version!==productSelectionVersion.current||owner!==activeOwnerId.current)throw Error("Product selection changed before verification completed.");
     const next=selectProduct(attachedProductsRef.current,product,compare);
+    if(owner)setTwinChatContext(owner,null);
     attachedProductsRef.current=next;setAttachedProducts(next);
   },[state.loading]);
   const removeProduct=useCallback((missionId:string)=>{
@@ -521,6 +533,8 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       query: string,
       target?: GlobalAssistantTarget,
     ): Promise<boolean> => {
+      const productContext=user?readTwinChatContext(user.id):null;
+      const contextKey=productContext?JSON.stringify(productContext):undefined;
       productSelectionVersion.current++;
       const buildContextWithContinuity = (): Record<string, unknown> => {
         const base = buildWorkspaceContext(state.context, state.pageOverride);
@@ -537,14 +551,14 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
         return {
           ...base,
           recentConversationTurns: turns,
-          ...(attachedProducts.length?{productContext:attachedProducts.length===1?attachedProducts[0].reference:attachedProducts.map(p=>p.reference)}:{}),
+          ...(attachedProducts.length?{productContext:attachedProducts.length===1?attachedProducts[0].reference:attachedProducts.map(p=>p.reference)}:(productContext?{productContext}:{})),
         };
       };
 
       const productContextKey=JSON.stringify({workspace:user?.workspaceId,refs:attachedProducts.map(p=>p.reference)});
       const attemptChat = async (sessionId: string): Promise<boolean> => {
         const priorReceipt = user
-          ? loadPendingPillowReceipts(user.id).find((row) => row.query === query)
+          ? loadPendingPillowReceipts(user.id).find((row) => row.query === query && row.contextKey === contextKey)
           : undefined;
         if(priorReceipt && (priorReceipt.productContextKey===undefined?attachedProducts.length>0:priorReceipt.productContextKey!==productContextKey))throw Error("An earlier request with this message is still pending under different product context. Inspect that saved request before sending again.");
         const chatResult: PillowChatResult & { reboundSessionId?: string } = priorReceipt
@@ -555,7 +569,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
             workspaceContext: buildContextWithContinuity(),
           }, {
             onAccepted: (receipt) => {
-              if (user) savePendingPillowReceipt(user.id, { ...receipt, query, productContextKey });
+              if (user) savePendingPillowReceipt(user.id, { ...receipt, query, contextKey, productContextKey });
             },
           });
         if (!user || activeOwnerId.current !== user.id) return true;

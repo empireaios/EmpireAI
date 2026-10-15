@@ -1,6 +1,7 @@
 'use client';
 import {ProductChatActions} from '../ProductChatActions';
 import {useRef,useState} from 'react';
+import {QualificationReview} from './QualificationReview';
 import {SimulationAuthorization} from './SimulationAuthorization';
 import s from './journeys.module.css';
 type Row=Record<string,unknown>;
@@ -31,6 +32,7 @@ export function QualificationDossier({candidate}:{candidate:Row}){
   <h4 className={s.rowTitle}>Reviewed financial inputs</h4><p>{financialQualification.status==='REVIEWED_SCENARIO_NOT_ACTUAL'?`Reviewed scenario: estimated net SGD ${number(financialQualification.netEstimate)}; exposure SGD ${number(financialQualification.exposure)}. These are estimates, not actual profit or spending authority.`:finance.status==='OWNER_REVIEWED_FORECAST_NOT_ACTUAL'?'A reviewed forecast exists, but source cost, FX or cash evidence is incomplete. No qualified net estimate is available.':'No reviewed exact-product financial forecast is available.'}</p>
   {financialQualification.cash?<dl className={s.facts}><div><dt>Reviewed cash · SGD</dt><dd>{number(cash.available)}</dd></div><div><dt>Liabilities / commitments · SGD</dt><dd>{number(cash.liabilities)} / {number(cash.committed)}</dd></div><div><dt>Internal scenario budget · SGD</dt><dd>{number(cash.budget)}</dd></div></dl>:<p>Complete current cash evidence is missing.</p>}
   <p className={s.note}>Text qualification does not authorize an image display, listing, model call or commercial event. Those approvals remain separate.</p>
+  <QualificationReview key={String(dossier.digest)} dossier={dossier}/>
   <h4 className={s.rowTitle}>Pillow proposal</h4>{proposalState.status==='AVAILABLE_UNREVIEWED'&&proposalState.verified===false?<><p>Unreviewed model proposal: {text(proposal.recommendation)}.</p><p style={{whiteSpace:'pre-wrap'}}>{text(proposal.rationale)}</p><p className={s.note}>Citations identify delivered evidence; they do not verify the proposal or grant approval.</p></>:<p>No valid source-bound model proposal is available.</p>}
   <h4 className={s.rowTitle}>Evidence still required</h4><ul>{(Array.isArray(eligibility.missing)?eligibility.missing:[]).map(m=><li key={String(m)}>{missingNames[String(m)]??String(m).toLowerCase().replaceAll('_',' ')}</li>)}</ul>
   {Array.isArray(eligibility.rejected)&&eligibility.rejected.length?<><h4 className={s.rowTitle}>Rejection reasons</h4><ul>{eligibility.rejected.map(reason=><li key={String(reason)}>{String(reason).toLowerCase().replaceAll('_',' ')}</li>)}</ul></>:null}

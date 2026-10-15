@@ -1,4 +1,5 @@
 'use client';
+import {OwnerNotifications} from './OwnerNotifications';
 import {SafetyCommand} from './work7/SafetyCommand';
 import {useState} from 'react';
 import Link from 'next/link';
@@ -40,6 +41,7 @@ export function OwnerAssurance(){
    ['Autonomy','Pillow claims, action receipts and measured outcomes','response_evidence_linkage','/cockpit/ceo#recommendations']
   ].map(([title,meaning,capability,href])=>{const source=cp?.components.find(c=>c.capability===capability);return <article className={panel} key={title}><h2 className="font-semibold">{title}</h2><p className="mt-2 text-sm">{meaning}</p><p className="mt-3 text-sm">Recorded probe: {source&&fresh?source.status:'UNVERIFIED'}</p><p className="mt-2 text-xs">{source?.summary??'Source-specific evidence not established.'}</p><p className="mt-2 text-xs">A healthy technical probe does not certify actual business truth or autonomous readiness.</p><Link href={href} className={button+' mt-3'}>Inspect evidence →</Link></article>;})}</section>
   <SafetyCommand/>
+  <OwnerNotifications/>
   <section className={panel} aria-label="Operational summary"><h2 className="text-xl font-semibold">{!fresh?'Current health is not established':cp!.summary.ownerActionRequired?'Your decision is needed':cp!.summary.activeIncidents?'Recovery and investigation in progress':'Monitoring your operations'}</h2>
    <p className="mt-2 text-slate-300">{!fresh?(error?'Evidence refresh failed. Saved observations remain below and may be out of date.':'Monitoring is overdue or the operational control plane is unavailable. Saved observations are not current health.'):'Assurance detects operational faults, applies authorised remedies and verifies restoration.'}</p>
    <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">{[['Active incidents',cp?.summary.activeIncidents],['Verified automatic recoveries',cp?.summary.automaticallyRecovered],['Owner decisions',cp?.summary.ownerActionRequired],['Monitoring',cp?.monitor.fresh?'Fresh':'Unverified']].map(([name,value])=><div key={name}><p className="text-sm text-slate-400">{name}</p><p className="mt-1 text-xl font-semibold">{value??'Unknown'}</p></div>)}</div>
