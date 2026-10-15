@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import { DataTable, Panel } from "@/components/platform/ui/PlatformPrimitives";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
@@ -57,11 +59,7 @@ export function DevelopmentAutonomousRecoveryPanel() {
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-    const interval = setInterval(() => void load(), 15_000);
-    return () => clearInterval(interval);
-  }, [load]);
+  useEffect(() => subscribeRead(load, 15_000), [load]);
 
   if (loading) {
     return <Panel title="Autonomous Recovery">Loading recovery status…</Panel>;

@@ -1,0 +1,170 @@
+{
+  "classification": "ISOLATED_SERVICE_PROJECTION_WITH_RETAINED_PROVIDER_AGGREGATE",
+  "productionWrites": 0,
+  "value": {
+    "workspace": "work8-twin:finance:e83b3e661ec6490d514de7ceb5492533",
+    "birth": {
+      "schema": "WORK8_FINANCIAL_BIRTH_V1",
+      "config": {
+        "periodId": "isolated-ui-exam",
+        "workspace": "work8-twin:finance:e83b3e661ec6490d514de7ceb5492533",
+        "ownerId": "owner",
+        "cutoff": "2026-01-01T00:00:00Z",
+        "mode": "ISOLATED_EXAMINATION",
+        "allocation": "ELAPSED_SERVICE_TIME_INTEGER_REMAINDER"
+      },
+      "configDigest": "01979ad6d591dd96bc4b4d573028c32ab2f09003f6ab29b77c20c7df1c9355ac",
+      "asOf": "2026-10-11T08:41:04.409Z",
+      "label": "Isolated launch-period rehearsal",
+      "liveActivation": false,
+      "noExecutionAuthority": true,
+      "archive": {
+        "label": "Pre-launch archive",
+        "entries": [],
+        "digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "allocation": [],
+      "totals": {},
+      "openingPosition": {
+        "cash": [],
+        "obligationsReceivablesPrepayments": [],
+        "complete": false,
+        "note": "Original records retained; these references are not an independently certified opening balance sheet."
+      },
+      "excludedSimulatedIds": [],
+      "conservation": true,
+      "revenueExpenseRule": "Service-period accrual, half-open intervals; arrival/payment time does not reclassify expense. Stage totals remain separate."
+    },
+    "costs": {
+      "schema": "WORK8_COST_INTELLIGENCE_V1",
+      "resources": [
+        {
+          "id": "team_gdcskAnaJteKW7BYtw8zlSWy",
+          "provider": "vercel",
+          "service": "Team billing aggregate",
+          "state": "ACTIVE",
+          "billingOwner": "team_gdcskAnaJteKW7BYtw8zlSWy",
+          "fixedAmountMicro": null,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "vercel:billing-charges:53c13f3fd35c124677b73a96752d27fa8b0203ece7e9182ed762f8f7412fb6ca",
+          "observedAt": "2026-10-11T08:41:04.409Z"
+        }
+      ],
+      "providerSummaries": [
+        {
+          "provider": "vercel",
+          "currency": "USD",
+          "billed": "0.140116843823",
+          "effective": "19.933990200364",
+          "recordCount": 7270,
+          "periodStart": "2026-09-30T07:00:00.000Z",
+          "periodEnd": "2026-10-10T07:00:00.000Z",
+          "qualification": "AGGREGATED_PROVIDER_READBACK_NOT_PAYMENT"
+        }
+      ],
+      "totalsByCurrencyStageAuthenticity": {},
+      "alerts": [
+        {
+          "provider": "github",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "railway",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "openai",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "anthropic",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "gemini",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "cj",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "amazon",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "keepa",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "canva",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "domains",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "storage",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "databases",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "monitoring",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "research",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "other-integrations",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "vercel",
+          "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "vercel",
+          "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "vercel",
+          "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+          "code": "SUBSCRIPTION_INVOICE_AND_PAYMENT_UNKNOWN"
+        },
+        {
+          "provider": "vercel",
+          "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+          "code": "EXACT_REQUESTED_PERIOD_ALIGNMENT_UNVERIFIED"
+        },
+        {
+          "provider": "vercel",
+          "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+          "code": "CHARGE_ROW_SAMPLE_INCOMPLETE"
+        },
+        {
+          "provider": "vercel",
+          "resource": "team_gdcskAnaJteKW7BYtw8zlSWy",
+          "code": "SERVICE_GROUPS_INCOMPLETE"
+        }
+      ],
+      "observationsDigest": "49428be7b4731ea7664241bf0891b5a1deb25384f12c169bccb1d7a48aa0483f",
+      "canonicalEntriesDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "totalsQualification": "UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS",
+      "operationalProfitIncluded": false,
+      "continuousLiveActivation": false
+    },
+    "liveActivation": false,
+    "label": "Isolated financial rehearsal"
+  }
+}

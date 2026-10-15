@@ -1,4 +1,4 @@
-import { isConfirmedReasoning } from "./confirmed-reasoning";
+import { hasReasoningFailure, isConfirmedReasoning } from "./confirmed-reasoning";
 /**
  * BFF chat sanitize + valid-answer preservation.
  * Infrastructure only — does not change Pillow reasoning.
@@ -18,10 +18,15 @@ import {
 
 /** Truthful terminal for genuine fatal exhaustion — durable pending is not this path. */
 export const DEGRADED_CHAT_MESSAGE = [
-  "I accepted your request, but a completed executive answer was not produced in this response window.",
+  "A completed Pillow answer is unavailable; request acceptance is not confirmed without a durable request id.",
   "This is a temporary production-shell / transport limit — not a judgment on your ask.",
-  "If a durable request id was issued, status and completed result remain retrievable; otherwise please retry the same ask.",
+  "If a durable request id was issued, status and completed result remain retrievable. Nothing has been resubmitted automatically.",
 ].join(" ");
+
+/** Preserve upstream denial/failure status; empty successful transport is a bad gateway. */
+export function terminalPillowHttpStatus(upstreamStatus: number): number {
+  return upstreamStatus >= 400 && upstreamStatus <= 599 ? upstreamStatus : 502;
+}
 
 /** @deprecated alias kept for tests expecting prior export name */
 export const LEGACY_INFRASTRUCTURE_BUDGET_PHRASE =
@@ -204,42 +209,19 @@ export function decideBffChatSurface(input: {
   // when it quotes one. Preserve its exact text and formatting.
   let result: unknown;
   try { result = JSON.parse(input.rawBody)?.result; } catch { /* legacy response */ }
+  if (!input.upstreamOk || ((result as {kind?:string} | undefined)?.kind !== 'durable_pending' && hasReasoningFailure(result))) return {
+    degrade:true, reason:input.upstreamOk ? 'upstream_tier0_terminal' : 'upstream_non_2xx',
+    failureClass:input.upstreamOk ? 'BRAIN_ERROR' : 'TRANSPORT_ERROR',
+    brainExtracted:'', deliveredMessage:extracted || DEGRADED_CHAT_MESSAGE,
+    stripped:false, deliveryClass:'DEGRADED_TERMINAL', brainToUserEquivalent:false,
+  };
   if (input.upstreamOk && isConfirmedReasoning(result)) return {
-    degrade:false, reason:null, failureClass:'NONE', brainExtracted:extracted,
+    degrade:false, reason:null, failureClass:'NONE', brainExtracted:(result as {message:string}).message,
     message:(result as {message:string}).message, stripped:false,
     deliveryClass:'BRAIN_ANSWER_UNCHANGED', brainToUserEquivalent:true,
     preservedOriginalBecauseStripEmpty:false,
   };
   const stripped = stripForbiddenInfraDecoration(extracted, input.userAsk);
-
-  if (!input.upstreamOk) {
-    // Prefer forwarding nonempty brain body even on odd status if present.
-    if (extracted.length > 0) {
-      const message = stripped.length > 0 ? stripped : extracted;
-      return {
-        degrade: false,
-        reason: null,
-        failureClass: "NONE",
-        brainExtracted: extracted,
-        message,
-        stripped: message !== extracted,
-        deliveryClass:
-          message === extracted ? "BRAIN_ANSWER_UNCHANGED" : "ALLOWED_FORMAT_TRANSFORM",
-        brainToUserEquivalent: true,
-        preservedOriginalBecauseStripEmpty: stripped.length === 0,
-      };
-    }
-    return {
-      degrade: true,
-      reason: "upstream_non_2xx",
-      failureClass: "TRANSPORT_ERROR",
-      brainExtracted: extracted,
-      deliveredMessage: DEGRADED_CHAT_MESSAGE,
-      stripped: false,
-      deliveryClass: "DEGRADED_TERMINAL",
-      brainToUserEquivalent: false,
-    };
-  }
 
   if (isTransportFailureMessage(extracted) && extracted.length < 120) {
     return {

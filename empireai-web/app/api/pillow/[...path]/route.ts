@@ -7,7 +7,7 @@ import {
 import {
   buildShellTraceFromDecision,
   decideBffChatSurface,
-  DEGRADED_CHAT_MESSAGE,
+  terminalPillowHttpStatus,
   isFailClosedPillowResponse,
 } from "@/lib/pillow/bff-chat-sanitize";
 import { shellDeliveryDashboard } from "@/lib/pillow/shell-delivery-observability";
@@ -201,7 +201,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
     const trace = buildShellTraceFromDecision({
       decision,
       upstreamStatus: upstream.status,
-      httpStatus: 200,
+      httpStatus: decision.degrade ? terminalPillowHttpStatus(upstream.status) : 200,
       sessionId,
       requestId,
       component: "bff.proxyPillow.chat",
@@ -242,7 +242,7 @@ async function proxyPillow(pathSegments: string[], request: Request, method: str
             resultRetrievable: Boolean(requestId),
           },
         },
-        { status: 200, headers: obsHeaders },
+        { status: terminalPillowHttpStatus(upstream.status), headers: obsHeaders },
       );
     }
 

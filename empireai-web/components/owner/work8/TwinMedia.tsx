@@ -1,0 +1,26 @@
+'use client';
+import {MediaImport,type MediaProposal} from './MediaImport';
+import {useState,useRef} from 'react';import Image from 'next/image';import {MessageCircle} from 'lucide-react';
+type Row=Record<string,unknown>;
+const row=(v:unknown):Row=>v&&typeof v==='object'?v as Row:{};
+const rows=(v:unknown):Row[]=>Array.isArray(v)?v.map(row):[];
+const text=(v:unknown)=>typeof v==='string'?v:'';
+function Assets({assets}:{assets:Row[]}){return <div style={{display:'flex',flexWrap:'wrap',gap:12}}>{assets.map(a=><figure key={text(a.id)} style={{margin:0,maxWidth:220}}>{a.rightsStatus==='OWNER_REVIEWED'&&/^https:\/\//.test(text(a.url))?(a.kind==='VIDEO'?<video src={text(a.url)} controls preload="none" style={{width:'100%'}}/>:<Image unoptimized width={220} height={220} src={text(a.url)} alt={text(a.id)} loading="lazy" referrerPolicy="no-referrer" style={{width:'100%',objectFit:'contain'}}/>):<p>Media withheld until usage rights are reviewed.</p>}<figcaption>{text(a.id)} · {text(a.kind)}<br/>{text(a.rightsEvidence)}<br/>{text(a.provenance)}</figcaption><details><summary>Content verification</summary><small>Recorded SHA-256: {text(a.sha256)}</small></details></figure>)}</div>;}
+export function TwinMedia({sessionId,record}:{sessionId:string;record:Row}){
+ const media=row(record.media),proposal=row(media.proposal),current=row(media.current),original=rows(media.original),assets=rows(proposal.assets),history=rows(media.history);
+ const [editing,setEditing]=useState(false),[instructions,setInstructions]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false);const lock=useRef(false);
+ async function command(action:string,assetId?:string,imported?:MediaProposal){if(lock.current)return false;lock.current=true;setBusy(true);setError('');try{
+ const body={id:crypto.randomUUID(),reference:{sessionId,missionId:record.missionId,receiptDigest:record.receiptDigest},expectedVersion:media.version,action,...(action==='PROPOSE'?imported:action==='REQUEST_EDIT'?{instructions,assetIds:(rows(current.assets).length?rows(current.assets):original).map(a=>a.id)}:{batchDigest:proposal.batchDigest,...(assetId?{assetIds:[assetId]}:action==='APPROVE_EXTERNAL'?{assetIds:rows(current.assets).map(a=>a.id)}:{})})};
+ const response=await fetch('/api/owner/commerce',{method:'POST',credentials:'include',headers:{'content-type':'application/json'},body:JSON.stringify({action:'twin_media',media:body})});if(!response.ok)throw Error('Media action not confirmed. Refresh saved records before retrying.');setEditing(false);return true;
+ }catch(e){setError(e instanceof Error?e.message:'Media unavailable');return false;}finally{lock.current=false;setBusy(false);}}
+ return <section aria-label="Product media versions"><h3>Product images and videos <button aria-label="Request Pillow-assisted media editing" aria-expanded={editing} onClick={()=>setEditing(v=>!v)}><MessageCircle size={18}/></button></h3>
+ <p>{text(media.status).toLowerCase().replaceAll('_',' ')} · {text(media.externalStatus).toLowerCase().replaceAll('_',' ')}</p>{media.reminder?<p>{text(media.reminder)}</p>:null}
+ {editing&&<div><label>Instructions for this product’s current media <textarea maxLength={3000} value={instructions} onChange={e=>setInstructions(e.target.value)}/></label><p>Canva execution is awaiting an authorised runtime connection. A saved request does not generate or change assets.</p><button disabled={busy||!instructions.trim()||!original.length&&!rows(current.assets).length} onClick={()=>void command('REQUEST_EDIT')}>Save editing request</button></div>}
+ <MediaImport busy={busy} onSave={proposal=>command('PROPOSE',undefined,proposal)}/>
+ <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,220px),1fr))',gap:16}}><div><h4>Original supplier batch</h4><Assets assets={original}/>{!original.length&&<p>No canonical original assets recorded.</p>}</div><div><h4>Proposed revised batch</h4><Assets assets={assets}/>{!assets.length&&<p>No revised assets recorded. No editing result is claimed.</p>}{assets.map(a=><button key={text(a.id)} disabled={busy||a.rightsStatus!=='OWNER_REVIEWED'} onClick={()=>void command('APPROVE_INTERNAL',text(a.id))}>Select and approve {text(a.id)}</button>)}</div></div>
+ {assets.length>0&&<><button disabled={busy||assets.some(a=>a.rightsStatus!=='OWNER_REVIEWED')} onClick={()=>void command('APPROVE_INTERNAL')}>Approve revised batch internally</button><button disabled={busy} onClick={()=>void command('REJECT')}>Reject proposed batch</button><button disabled={busy||current.batchDigest!==proposal.batchDigest} onClick={()=>void command('APPROVE_EXTERNAL')}>Authorise simulated submission of selected version</button></>}
+ {rows(current.assets).length>0&&<><h4>Selected internal version</h4><Assets assets={rows(current.assets)}/></>}
+ <details><summary>Archive</summary>{history.filter(e=>e.action==='PROPOSE'&&e.batchDigest!==proposal.batchDigest||e.action==='REJECT').map(e=><article key={Number(e.version)}><p>Version {Number(e.version)} · {text(e.status)}</p><Assets assets={rows(e.assets)}/><p>{text(e.instructions)}</p></article>)}{!history.length&&<p>No archived versions.</p>}</details>
+ {error&&<p role="alert">{error}</p>}
+ </section>;
+}
