@@ -31,6 +31,8 @@ try{
  for(const [id,relative] of Object.entries(stores)){const file=path.join(root,relative);fs.mkdirSync(path.dirname(file),{recursive:true});const db=new DatabaseSync(file);try{db.exec('CREATE TABLE IF NOT EXISTS replay_fixture(id TEXT PRIMARY KEY,value TEXT)');db.prepare('INSERT OR REPLACE INTO replay_fixture VALUES(?,?)').run('source',id);}finally{db.close();}}
  const authority=path.join(process.env.SHADOW_CEO_DATA_DIR!,'shadow-ceo-authority');fs.mkdirSync(authority,{recursive:true});fs.writeFileSync(path.join(authority,'authority-store.json'),JSON.stringify({approvals:[],blocked:[]}));fs.writeFileSync(path.join(process.env.SHADOW_CEO_DATA_DIR!,'shadow-ceo-request-owners.json'),'{}');
  assert.ok(app.brain.taskQueue instanceof TaskQueue);const queue=app.brain.taskQueue;
+ const {SessionStore}=await import('../../../auth/session-store.js');
+ const originalSession=await new SessionStore(await queue.queue.client as unknown as import('ioredis').Redis).create({id:'hh4-recovery-owner',email:'hh4-recovery-owner@example.test',name:'Synthetic recovery owner',role:'founder',workspaceId:scope.workspaceId});
  const payload={type:'tool.execute' as const,workspaceId:scope.workspaceId,toolName:'authority.snapshot.v1',input:{executionJobId:pending.jobId,examinationOnly:true},correlationId:'readonly-recovery-exam'};
  const first=await queue.enqueue(payload,{jobId:'readonly-pending-replay'}),second=await queue.enqueue(payload,{jobId:'readonly-pending-replay'});assert.equal(first.jobId,second.jobId);
  await (await queue.queue.client as unknown as import('ioredis').Redis).set('inspection-expiring-fixture','historical-only','PX',60000);
@@ -51,6 +53,7 @@ try{
   };
  };
  const httpWriter=writer('http');app.app.get('/fixture/integrated-writer',async()=>{await httpWriter();return {committed:true};});
+ const originalAuthentication=await app.app.inject({method:'GET',url:'/auth/me',headers:{authorization:'Bearer '+originalSession.token}});assert.equal(originalAuthentication.statusCode,200);
  const http=app.app.inject({method:'GET',url:'/fixture/integrated-writer'});
  const background=runCaptureAwareBackground(writer('native-background',true));
  for(const [kind,server,delay] of [
@@ -75,6 +78,6 @@ try{
  const nativeCopy=new DatabaseSync(path.join(captured.directory,'liveCostCentre','checkpoint.db'),{readOnly:true});
  try{assert.equal(nativeCopy.prepare('SELECT phase FROM integrated_capture_writer WHERE kind=?').get('native-background')!.phase,'committed');}finally{nativeCopy.close();}
 
- process.send!({event:'result',result:{directory:captured.directory,digest:captured.digest,completed,pending,scope,buildSha,queueJobId:first.jobId,payload}});
+ process.send!({event:'result',result:{directory:captured.directory,digest:captured.digest,completed,pending,scope,buildSha,queueJobId:first.jobId,payload,originalSession,originalAuthentication:originalAuthentication.json()}});
 }catch(error){process.send?.({event:'error',error:error instanceof Error?error.stack:String(error)});process.exitCode=1;}
 finally{process.env.EMPIRE_ENGINEERING_TEST_MODE='true';for(const release of releaseWriters)release();for(const restore of restoreAutomations)await restore();await stopMission?.();await shutdown?.();process.disconnect();}

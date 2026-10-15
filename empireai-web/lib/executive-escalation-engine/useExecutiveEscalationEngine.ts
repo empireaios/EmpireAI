@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import type { ExecutiveEscalationEngine } from "@/lib/executive-escalation-engine/types";
 
@@ -32,11 +34,7 @@ export function useExecutiveEscalationEngine() {
     }
   }, []);
 
-  useEffect(() => {
-    void reload();
-    const interval = setInterval(() => void reload(), POLL_MS);
-    return () => clearInterval(interval);
-  }, [reload]);
+  useEffect(() => subscribeRead(reload, POLL_MS), [reload]);
 
   return {
     data,

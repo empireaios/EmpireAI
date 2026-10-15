@@ -3,6 +3,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import type { WorkspaceSession, ConversationTurn } from './types.js';
+import { pillowWorkspaceContextSchema } from './workspace-context.js';
+
+/** Retain a complete historical snapshot; do not re-resolve it against newer evidence. */
+function productSnapshot(turn: ConversationTurn): ConversationTurn['productContext'] {
+  if (turn.productContext === undefined) return undefined;
+  if (turn.role !== 'user') throw Error('Product context must belong to its original user turn');
+  const snapshot = structuredClone(pillowWorkspaceContextSchema.shape.productContext.parse(turn.productContext));
+  if (Buffer.byteLength(JSON.stringify(snapshot)) > 64000) throw Error('Product history context exceeds bound');
+  return snapshot;
+}
 
 /** Separate from the cost ledger. Stores conversation evidence, never authority. */
 export class ReasoningState {
@@ -28,10 +38,11 @@ export class ReasoningState {
     const turns: ConversationTurn[]=[];
     for (const turn of session.conversationHistory.slice(-48).reverse()) {
       if (!['user','assistant'].includes(turn.role)) continue;
-      bytes += Buffer.byteLength(turn.content);
+      const productContext = productSnapshot(turn);
+      bytes += Buffer.byteLength(turn.content) + (productContext ? Buffer.byteLength(JSON.stringify(productContext)) : 0);
       // Preserve the newest complete answer; the history budget trims older turns only.
       if (bytes > 64000 && turns.length > 0) break;
-      turns.unshift({role:turn.role,content:turn.content,timestamp:turn.timestamp,requestId:turn.requestId,provider:turn.provider});
+      turns.unshift({role:turn.role,content:turn.content,timestamp:turn.timestamp,requestId:turn.requestId,provider:turn.provider,...(productContext ? {productContext} : {})});
     }
     this.use(db => {db.prepare('INSERT INTO transcripts VALUES(?,?,?,?) ON CONFLICT(workspace,session) DO UPDATE SET updated=excluded.updated, turns=excluded.turns').run(session.workspaceId,session.sessionId,new Date().toISOString(),JSON.stringify(turns));});
   }
@@ -84,6 +95,10 @@ export class ReasoningState {
       if (!row) return null;
       const turns=JSON.parse(String(row.turns)) as ConversationTurn[];
       if (!Array.isArray(turns) || turns.length>48 || turns.some(t=>!['user','assistant'].includes(t.role)||typeof t.content!=='string')) throw Error('Transcript invalid');
+      for (const turn of turns) {
+        const snapshot = productSnapshot(turn);
+        if (snapshot) turn.productContext = snapshot;
+      }
       return turns;
     });
   }

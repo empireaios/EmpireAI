@@ -1,4 +1,4 @@
-import { isConfirmedReasoning } from "./confirmed-reasoning";
+import { hasReasoningFailure, isConfirmedReasoning } from "./confirmed-reasoning";
 import type { PillowChatResult, PillowCompletedReasoningKind } from "./types";
 import { isTerminalInfrastructureSurface } from "./executive-surface";
 
@@ -42,7 +42,7 @@ export function resultFromDurableRecord(
   const constitutionalGate = result?.constitutionalGate as { allowed?: boolean } | undefined;
   const responseContract = result?.responseContract as { code?: string } | undefined;
   if (
-    !result || typeof result.message !== "string" || !result.message.trim() ||
+    !result || hasReasoningFailure(result) || typeof result.message !== "string" || !result.message.trim() ||
     !COMPLETED_REASONING_KINDS.has(String(result.kind)) ||
     constitutionalGate?.allowed === false || /blocked/i.test(responseContract?.code ?? "") ||
     result.degradedUsed === true || result.transportContractPassed === false ||

@@ -311,3 +311,18 @@ describe("Honest delivery state and receipt persistence", () => {
     assert.match(bff, /isFailClosedPillowResponse\(upstream.status, raw\)/);
   });
 });
+
+test('server history response hydrates the client contract without inventing an empty success', async(t)=>{
+ const {fetchPillowHistory}=await import('./client');
+ const turns=[{role:'user',content:'Existing owner exchange',timestamp:'2026-01-01T00:00:00.000Z'}];
+ transport(t,[()=>Response.json({sessionId:'canonical',history:turns,historicalArchive:[{id:'old',role:'assistant',content:'Unverified historical statement',timestamp:'2026-01-01T00:00:01.000Z'}]}),()=>Response.json({sessionId:'canonical',history:null})]);
+ const got=await fetchPillowHistory('canonical');assert.deepEqual(got.session.conversationHistory,turns);assert.equal(got.historicalArchive.length,1);
+ await assert.rejects(fetchPillowHistory('canonical'),/history unavailable/);
+});
+
+test('historical browser transfer requires server acknowledgement and never masks an old runtime',async(t)=>{
+ const cached=[{role:'assistant' as const,content:'Historical device text',timestamp:'2026-01-01T00:00:00.000Z'}];
+ transport(t,[()=>Response.json({session:{sessionId:'shared'},historicalArchiveAccepted:true}),()=>Response.json({session:{sessionId:'old'}})]);
+ assert.equal((await createPillowHostSession('workspace','king',cached)).sessionId,'shared');
+ await assert.rejects(createPillowHostSession('workspace','king',cached),/device history preserved/);
+});

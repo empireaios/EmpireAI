@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 
 import { Badge, DataTable, Panel, StatCard } from "@/components/platform/ui/PlatformPrimitives";
@@ -59,9 +61,7 @@ export function CommerceMarketplacePanel() {
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  useEffect(() => subscribeRead(load), [load]);
 
   if (loading) {
     return <Panel title="Marketplace Integration">Loading unified marketplace architecture…</Panel>;

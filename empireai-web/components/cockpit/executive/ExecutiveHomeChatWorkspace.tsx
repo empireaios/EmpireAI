@@ -1,11 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {TwinChatContext} from '@/components/owner/work8/TwinChatContext';
 import { usePathname } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
 import { ExecutiveChatArtifacts } from "@/components/cockpit/executive/ExecutiveChatArtifacts";
 import { ExecutiveChatMarkdown } from "@/components/cockpit/executive/ExecutiveChatMarkdown";
+import { CopyPillowAnswer } from "@/components/cockpit/executive/CopyPillowAnswer";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { PillowProactiveGuidance } from "@/components/cockpit/pillow/PillowProactiveGuidance";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
@@ -146,6 +148,7 @@ export function ExecutiveHomeChatWorkspace() {
       data-history-scroll="workspace-windowed"
       data-chat-shell="bounded"
     >
+      <TwinChatContext/>
       <header className="shrink-0 border-b border-gold/10 px-5 py-3">
         <div className="flex flex-wrap items-start justify-between gap-2">
           <div>
@@ -250,7 +253,12 @@ export function ExecutiveHomeChatWorkspace() {
                 {turn.role === "pillow" ? "Pillow" : "Grand King"}
               </span>
               <div className="mt-1.5 text-[#e8e0d0]">
-                <ExecutiveChatMarkdown content={turn.content} />
+                <p className="mb-2 text-xs text-[#8a847a]">
+                      Saved conversation · {Number.isFinite(Date.parse(turn.recordedAt)) ? new Date(turn.recordedAt).toISOString() : "Date unknown"}
+                      {" · Source runtime unverified. Historical conversation is not current operational evidence."}
+                    </p>
+                    <ExecutiveChatMarkdown content={turn.content} />
+                    {turn.role === "pillow" && <CopyPillowAnswer content={turn.content} />}
               </div>
               {turn.artifacts && turn.artifacts.length > 0 && (
                 <ExecutiveChatArtifacts artifacts={turn.artifacts} />
