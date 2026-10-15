@@ -1,0 +1,87 @@
+{
+  "scope": "A11 minimal approval invalidation correction",
+  "sourceReview": "Independent changed-boundary review approved; see review/SUCCESSOR-CHANGED-BOUNDARY-REVIEW.json",
+  "wholeA11Acceptance": "PENDING_HOSTED_AUTHENTICATED_NATIVE_EXAM",
+  "tests": {
+    "originalReproduction": {
+      "exitCode": 1,
+      "result": "FAIL Missing expected exception after REQUEST_EDIT"
+    },
+    "fixedFocused": {
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    "canvaAdjacentBoundary": {
+      "exitCode": 0,
+      "pass": 4,
+      "fail": 0
+    },
+    "independentFocused": {
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "status": "PASS final strict replay guard independently executed"
+    },
+    "typecheckDefaultHeap": {
+      "exitCode": 134,
+      "result": "Node default ~2GB heap exhausted"
+    },
+    "typecheck4GB": {
+      "exitCode": 2,
+      "diagnostics": [
+        "src/orchestration/pillow-host/brain-llm-adapter.ts(62,37): error TS2339: Property 'investigationPhase' does not exist on type 'BrainLLMCompleteRequest'.",
+        "src/orchestration/pillow-host/brain-llm-adapter.ts(78,9): error TS2353: Object literal may only specify known properties, and 'assistantPhase' does not exist in type 'BrainLLMCompleteResponse'.",
+        "src/validation/tests/pillow-investigation.test.ts(45,150): error TS2339: Property 'investigationPhase' does not exist on type 'BrainLLMCompleteRequest'."
+      ],
+      "result": "Dependency mismatch: borrowed node_modules resolved outdated f9131502d532/EmpireAI/pillow; exact integration Pillow declares missing fields. Not an established source defect."
+    },
+    "typecheckExactPillow": {
+      "status": "PASS",
+      "exitCode": 0,
+      "heapMB": 4096,
+      "diagnostics": [],
+      "resolvedPillow": "/workspace/scratch/e235d347250e/reconstruction/integration/repo/pillow",
+      "withinSixMinuteBound": true
+    }
+  },
+  "ciSelection": "product-path-ci.yml line 212 work8-*.test.ts glob selects new regression",
+  "native": "Existing work8-media-native.mjs hosted CI required; no native PASS claimed",
+  "externalEffects": 0,
+  "paidInference": 0,
+  "productionDeployments": 0,
+  "files": [
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts",
+      "sha256": "b08969c12a5d40e38f834e21f476b1d504a838693eaa0da6694ed82575c35a1e"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-media-approval-invalidation.test.ts",
+      "sha256": "8500f69e2c040bfd0b6b6056e4e2232d2387dcd1bdbacc1974daafedbe4b1cc9"
+    },
+    {
+      "path": "a11-original-failure.log",
+      "sha256": "d71b359263dbabebb4b9a48485cbb3c75d78ecdb0008a08bf411257db9353ac5"
+    },
+    {
+      "path": "a11-fixed.log",
+      "sha256": "7b1101ac0cdf2291942aa962eb9fe2a8bcb9ac5a03c816266b761455d7afedce"
+    },
+    {
+      "path": "a11-canva-boundary.log",
+      "sha256": "42d07b0fb0a2588064ad17ebc77d2967c69f117a50560ea27be03cf494602142"
+    },
+    {
+      "path": "a11-tsc.log",
+      "sha256": "c17c453655e0a36cd7130786d4c1eb4985f695f86974c257d32a09e014ac82ae"
+    },
+    {
+      "path": "a11-tsc-4gb.log",
+      "sha256": "d162722e2602af708150212547749c17aaaef163269982c16e40f166981a2fff"
+    },
+    {
+      "path": "a11-tsc-exact-pillow.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "reviewer": "independent_review",
+  "decision": "PASS_COHERENT_SOURCE_TREE_REVIEW_NOT_ACCEPTANCE",
+  "candidateTree": "b968bb5ac36bba86abd6f54d6f23c0b84535a20d",
+  "backendBase": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+  "acceptedFrontendBase": "c6b698c4a98073789b6d6729c642a0882ad43b3f",
+  "reviewedFrontendCandidate": "74c098ea6115ec4f1b72371de944064e7b9facc4",
+  "checks": {
+    "nonFrontendChangedPaths": 13,
+    "nonFrontendChangedBytesMatchIndex": true,
+    "frontendFilesIndependentlyRehashedWithModes": 950,
+    "frontendMismatchCount": 0,
+    "frontendDeltaFromReviewedCandidate": "Only empireai-web/e2e/work8-media-native.mjs added, blob f96191038620d9a1e27865f0ce1d7b56215d5958 mode100644",
+    "frontendChangedPathsFromAcceptedLineage": 18,
+    "completeRootChangedPathsFromBackendBase": 369,
+    "deletions": 0,
+    "modeChanges": 0,
+    "unintendedIndexChanges": 0
+  },
+  "additionalReview": [
+    "History-test qualification union narrowing changes no production behavior.",
+    "Runtime selector adds startup-protocol, product-history and locked-fresh-session examinations without removing existing assertions.",
+    "Product workflow adds separate !cancelled media examination step with existing always artifact retention.",
+    "New history host/persistence/authenticated route test and portable media examination reviewed in ADDITIONAL-EXAMINATION-REVIEW.json."
+  ],
+  "limitations": [
+    "Compilation and new test execution pending at review; later source changes require successor review.",
+    "Hosted HH4, original-session Redis restoration, native desktop/mobile and protected custody remain unverified.",
+    "A11 known pending-edit approval fence defect remains and is intentionally asserted by harness; no fourth production repair authorised.",
+    "Sparse worktree omissions are not candidate deletions; complete index retains unchanged inherited paths."
+  ],
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

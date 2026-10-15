@@ -1,0 +1,25 @@
+{
+  "reviewer": "independent_review",
+  "decision": "PASS_STAGED_CHECKPOINT_IDENTITY_AND_BYTES_NOT_FINAL_ACCEPTANCE",
+  "remoteCommit": "e83c29b7fc076858f3622d706dcdd26879595bc5",
+  "completeTree": "d82db39750d90de3beb3b3d78b55e504bc76158f",
+  "parent": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+  "branch": "work8/staged-reconstructed-final-20261015-d82db397",
+  "freshRemoteReads": ["commit", "root tree", "staging branch", "changed test blob"],
+  "verification": {
+    "branchHeadMatchesCommit": true,
+    "remoteCompleteTreeMatchesIndependentlyReviewedSuccessor": true,
+    "completeTreeIdentityIncludesFileModes": true,
+    "soleDeltaFromReviewedB968": "backend/src/validation/tests/locked-fresh-session.test.ts",
+    "changedBlob": "3b95cb5b2ca0230ef805ff5f82d342a26d29d388",
+    "mode": "100644",
+    "freshChangedBlobBytes": 12773,
+    "recomputedGitBlobHashMatches": true,
+    "freshBytesEqualExactLocalReviewedTreeBlob": true
+  },
+  "priorCompleteTreeReview": "COHERENT-TREE-REVIEW.json and INTEGRATED-REMOTE-CHECKPOINT-REVIEW.json; successor delta CLEANUP-SUCCESSOR-REVIEW.json",
+  "rawReadback": "FINAL-REMOTE-INPUTS.json",
+  "limits": "Checkpoint staging preservation only; not final passing source. Parent reports successor actual-host test reached new history assertions but failed existing inferenceFailure exact-object expectation because providerCompleted:false is present. A further test-only correction remains under review. No hosted HH4, native UI acceptance, complete recovery or new requirement/amendment acceptance inferred.",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

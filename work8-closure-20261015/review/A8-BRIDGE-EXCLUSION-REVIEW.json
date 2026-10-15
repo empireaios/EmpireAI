@@ -1,0 +1,14 @@
+{
+  "decision": "EXCLUDE_UNACCEPTED_A8_HISTORY_BRIDGE_FROM_PUBLICATION",
+  "sourceReview": "Auth mapping and intercepted actual host integration inspected; cleanup and exact historical context assertions improved after independent findings.",
+  "terminalValidation": "FAIL_STARTUP_TIMEOUT_70_SECONDS_AFTER_ONE_AUTHORIZED_DATABASE_PATH_FIX",
+  "nativeBrowser": "NOT_EXECUTED",
+  "hashes": {
+    "work8-source-context-backend.mts": "3c41db64ba6678bb42b3988b3c7ff3301256603c87bf3a2d6ac17ae200362b30",
+    "work8-source-context-native.mjs": "6ef154dd6c0e4ab6d476f6ca32971fb7235a2239af8ed6cfa3fbba1457cfb3e7"
+  },
+  "scope": "Preserve source separately for continuation. Existing reviewed CI wiring is unaffected, but original native harness establishes request delivery only; separate host history test does not establish combined native end-to-end.",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "priorFailure": "HTTP500_DURABLE_REASONING_VOLUME_UNAVAILABLE"
+}

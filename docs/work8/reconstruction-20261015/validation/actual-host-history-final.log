@@ -1,0 +1,59 @@
+{"level":30,"time":1792055029625,"pid":32,"hostname":"4a43dad59fa3","redisUrl":"redis://127.0.0.1:6379","clientKind":"probe","msg":"Creating ioredis client"}
+{"level":50,"time":1792055029644,"pid":32,"hostname":"4a43dad59fa3","host":"127.0.0.1","errorMessage":"connect ECONNREFUSED 127.0.0.1:6379","errorName":"Error","errorStack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16)","err":{"type":"Error","message":"connect ECONNREFUSED 127.0.0.1:6379","stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379},"msg":"Redis connection failed"}
+{"level":40,"time":1792055029645,"pid":32,"hostname":"4a43dad59fa3","msg":"Redis unavailable — running in local degraded mode (queue/events/sessions in-memory). Start Redis with: redis-server, Upstash REDIS_URL, or npm run dev:redis (optional Docker)"}
+{"level":30,"time":1792055030029,"pid":32,"hostname":"4a43dad59fa3","dbPath":"/tmp/authenticated-history-1eE2yt/commissioning/empireai-brain.db","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1792055030130,"pid":32,"hostname":"4a43dad59fa3","msg":"Event bus started (local in-memory mode)"}
+{"level":30,"time":1792055030130,"pid":32,"hostname":"4a43dad59fa3","agents":13,"tools":944,"llmProviders":[],"redisMode":"degraded","msg":"EmpireAI Brain initialized"}
+{"level":30,"time":1792055030741,"pid":32,"hostname":"4a43dad59fa3","email":"founder@empireai.com","role":"founder","msg":"Seeded bootstrap account"}
+{"level":30,"time":1792055031350,"pid":32,"hostname":"4a43dad59fa3","email":"admin@empireai.com","role":"admin","msg":"Seeded bootstrap account"}
+{"level":30,"time":1792055031352,"pid":32,"hostname":"4a43dad59fa3","msg":"Event stream hub started"}
+{"level":30,"time":1792055031647,"pid":32,"hostname":"4a43dad59fa3","msg":"Auth routes registered"}
+{"level":30,"time":1792055034880,"pid":32,"hostname":"4a43dad59fa3","workspaceId":"ws_empire_1","seeded":47,"total":47,"birthCreated":38,"msg":"Institutional memory bootstrap complete"}
+{"level":30,"time":1792055034881,"pid":32,"hostname":"4a43dad59fa3","seeded":{"seeded":47,"keys":["gk.directive.first_dollar_dropshipping","gk.directive.pillow_initiates_commerce","gk.directive.cursor_minimization","gk.directive.no_publish_without_approval","commerce.lesson.accepted_ne_buyable","commerce.lesson.anker_brand_gate","commerce.lesson.preflight_restrictions_mandatory","ops.lesson.eos_session_storm","collab.memory.ready","birth.lesson.estimate_ne_realised","birth.lesson.cooccurrence_ne_identity","birth.lesson.unknown_stays_local","birth.lesson.hypothetical_ne_current","birth.lesson.synthetic_isolation","birth.lesson.current_turn_intent","birth.lesson.partial_gate_ne_full_unlock","birth.lesson.eligibility_ne_preference","birth.lesson.observation_ne_causation","birth.lesson.canonical_proposition_authority","birth.lesson.compound_claim_all_components","birth.lesson.auth_ne_capability","birth.lesson.capability_ne_execution","birth.lesson.newer_owner_wins","birth.lesson.accepted_request_server_owned","birth.lesson.cumulative_exposure_propagates","birth.lesson.sibling_identity","birth.lesson.no_lifecycle_residue_on_evidence","birth.lesson.first_accepted_must_complete","birth.lesson.normal_response_no_recovery_residue","birth.lesson.certification_grades_visible_surface","birth.lesson.first_request_vs_retry","birth.lesson.http_success_ne_semantic_success","birth.lesson.later_outcome_ne_nonoccurrence","birth.lesson.explicit_claim_set_complete","birth.lesson.memory_transfers_principle_not_surface","birth.lesson.exact_section_contract","birth.lesson.middle_claim_cannot_drop","birth.lesson.cross_section_conclusion_reuse","birth.lesson.lesson_principle_not_dump","birth.lesson.source_domain_surface_purity","birth.lesson.registry_outranks_cooccurrence","birth.lesson.measured_subset_not_full_population","birth.lesson.section_headings_are_not_claims","birth.lesson.no_duplicate_post_answer_synthesis","birth.lesson.evidence_ne_authority_route","birth.lesson.temporal_supersession","birth.doctrine.grand_king_ultimate"]},"msg":"Institutional memory bootstrap seeded"}
+{"level":30,"time":1792055034881,"pid":32,"hostname":"4a43dad59fa3","msg":"Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)"}
+{"level":30,"time":1792055065183,"pid":32,"hostname":"4a43dad59fa3","repositoryRoot":"/workspace/scratch/e235d347250e/reconstruction/integration/repo","llmProviders":[],"msg":"Pillow host started (PILLOW-016)"}
+{"level":30,"time":1792055067277,"pid":32,"hostname":"4a43dad59fa3","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1792055067709,"pid":32,"hostname":"4a43dad59fa3","dbPath":"/tmp/authenticated-history-1eE2yt/host-reasoning/commissioning/empireai-brain.db","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1792055067905,"pid":32,"hostname":"4a43dad59fa3","requestId":"56c139dd-e820-4da1-9973-9829567b9f89","trace":{"digitalSoulGateMs":6,"responseContractMs":30,"shadowCeoAdmissionMs":0,"executiveReasoningMs":88,"executiveDeliberationMs":0,"executiveCouncilMs":675,"llmMs":23,"totalMs":827},"kind":"llm","provider":"openai","logResult":"success","retryUsed":false,"degradedUsed":false,"msg":"Pillow chat trace"}
+{"level":30,"time":1792055068001,"pid":32,"hostname":"4a43dad59fa3","requestId":"pcr_a8a8a8a8a8a8a8a8","trace":{"digitalSoulGateMs":0,"responseContractMs":1,"shadowCeoAdmissionMs":0,"executiveReasoningMs":7,"executiveDeliberationMs":0,"executiveCouncilMs":41,"llmMs":14,"totalMs":68},"kind":"llm","provider":"openai","logResult":"success","retryUsed":false,"degradedUsed":false,"msg":"Pillow chat trace"}
+{"level":30,"time":1792055068067,"pid":32,"hostname":"4a43dad59fa3","requestId":"c39e2d78-4f95-4543-8d00-ae5744e275d2","trace":{"digitalSoulGateMs":0,"responseContractMs":2,"shadowCeoAdmissionMs":0,"executiveReasoningMs":5,"executiveDeliberationMs":0,"executiveCouncilMs":35,"llmMs":3,"totalMs":46},"kind":"llm","provider":"openai","logResult":"success","retryUsed":false,"degradedUsed":false,"msg":"Pillow chat trace"}
+{"level":30,"time":1792055068111,"pid":32,"hostname":"4a43dad59fa3","requestId":"84f94f67-3344-4fab-a613-e0fa3d911760","trace":{"digitalSoulGateMs":0,"responseContractMs":0,"shadowCeoAdmissionMs":0,"executiveReasoningMs":3,"executiveDeliberationMs":0,"executiveCouncilMs":34,"llmMs":1,"totalMs":40},"kind":"degraded_useful","logResult":"degraded_after_llm_failure","retryUsed":false,"degradedUsed":true,"msg":"Pillow chat trace"}
+{"level":30,"time":1792055068151,"pid":32,"hostname":"4a43dad59fa3","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1792055068209,"pid":32,"hostname":"4a43dad59fa3","dbPath":"/tmp/authenticated-history-1eE2yt/commissioning/empireai-brain.db","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1792055068210,"pid":32,"hostname":"4a43dad59fa3","msg":"Pillow host stopped"}
+{"level":30,"time":1792055068322,"pid":32,"hostname":"4a43dad59fa3","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1792055068351,"pid":32,"hostname":"4a43dad59fa3","msg":"EmpireAI Brain shutdown complete"}
+✖ fresh authenticated conversation is allowed while Birth and commerce stay locked (38739.152523ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66747.319006
+
+✖ failing tests:
+
+test at src/validation/tests/locked-fresh-session.test.ts:1:801
+✖ fresh authenticated conversation is allowed while Birth and commerce stay locked (38739.152523ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      code: 'INFERENCE_FAILED',
+  +   providerCompleted: false,
+      retryable: false
+    }
+  
+      at TestContext.<anonymous> (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/validation/tests/locked-fresh-session.test.ts:130:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { code: 'INFERENCE_FAILED', retryable: false, providerCompleted: false },
+    expected: { code: 'INFERENCE_FAILED', retryable: false },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

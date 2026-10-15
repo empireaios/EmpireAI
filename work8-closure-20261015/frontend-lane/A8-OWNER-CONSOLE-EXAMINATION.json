@@ -1,0 +1,50 @@
+{
+  "status": "PENDING_NATIVE_AND_INTEGRATED_ACCEPTANCE",
+  "newAcceptedOriginals": [],
+  "newAcceptedAmendments": [],
+  "recoveredFrontend": {
+    "stagedCommit": "5c0283c4d13016724cf51ce5b4fff05d9b119c67",
+    "tree": "ea92cdc0763267fc873a23cc439853a51be2f3c1",
+    "filesAndModesIndependentlyVerified": 949,
+    "acceptedLineageFiles": 944,
+    "retainedChecks": "6 scoped tests / typecheck / production webpack build PASS; not repeated"
+  },
+  "localBrowser": "Chromium absent; no download or cloud bypass attempted",
+  "nativeCoveragePrepared": [
+    "authenticated BFF to actual source resolver",
+    "390/1440 viewport checks",
+    "listing and order product launch",
+    "retained genuine source identity",
+    "remove / switch / comparison / followup",
+    "stock and freight explicit null",
+    "cross-workspace rejection",
+    "actual Tier0 handler forged source-digest rejection using intercepted queue"
+  ],
+  "nativeMissing": [
+    "execution and independent complete decision",
+    "actual application process restart with authenticated conversation history and same source snapshot",
+    "integrated owner source-to-finance and Assurance walkthrough"
+  ],
+  "historyEvidence": "Retained actual host/intercepted provider, SQLite persistence, fresh session-store authenticated history test PASS; isolated frontend hydration test PASS. Not equivalent to process-restart native connected proof.",
+  "ownerConsole": {
+    "O14": "genuine eligible Pillow recommendation and persisted owner decision absent",
+    "O40": "coherent authenticated genuine desktop/mobile walkthrough absent",
+    "O41": "same-identity source/Pillow/owner/simulated finance/Assurance equality absent",
+    "A6": "same-identity owner-visible genuine dry-run journey absent",
+    "A19": "integrated owner inspectable console and same record identity absent"
+  },
+  "ciCorrection": {
+    "path": ".github/workflows/product-path-ci.yml",
+    "reason": "Existing source-context native harness was never invoked by hosted workflow. Minimal wiring uses existing browser installation and exact integrated production build.",
+    "validation": "YAML parse and structural invocation/env/output assertions PASS",
+    "publication": "Requires consolidated exact-tree approval before hosted execution",
+    "patchSHA256": "7ff169c17e68ee7e1949ab42fe64f9fda166639ec7b60c235b46d511d77cf4ed"
+  },
+  "authority": {
+    "NOT_BORN": true,
+    "commerce": "LOCKED",
+    "productionDeploy": false,
+    "paidInference": false,
+    "messagesSent": false
+  }
+}

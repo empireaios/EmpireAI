@@ -1,0 +1,12 @@
+✔ Canva export result binds exact edit request, source assets, rights and version; grants no approvals (1418.803157ms)
+✔ Canva refuses stale requests, unbound runtime authority and changed export identity without proposal (2174.558821ms)
+✔ Canva catches asynchronous version change and reserves unknown outcomes against retry (1194.692128ms)
+✔ Canva rechecks current authority after export and before consuming downloaded bytes (825.799165ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6828.0613

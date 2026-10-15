@@ -1,0 +1,19 @@
+{
+  "reviewer": "independent_review",
+  "decision": "PASS_TEST_SOURCE_REVIEW_WITH_KNOWN_A11_PRODUCT_BLOCKER",
+  "historyTest": {
+    "path": "reconstruction/frontend/locked-fresh-session.test.ts",
+    "review": "Actual retained source resolver -> actual host routePrompt with intercepted provider -> SQLite -> fresh PillowSessionStore -> authenticated actual history route. Original source snapshot equality, unknown stock/freight, no authority, absent authentication401 and foreign founder workspace403 are valid assertions. Login and history response shapes independently checked against source.",
+    "scope": "Does not establish HTTP chat admission or native desktop/mobile display. Provider transport is intercepted; no real inference claimed.",
+    "ci": "Add backend/src/validation/tests/locked-fresh-session.test.ts and work8-product-history.test.ts explicitly to existing serial Runtime test selection; neither was selected in inspected workflow."
+  },
+  "mediaTest": {
+    "path": "reconstruction/media/empireai-web/e2e/work8-media-native.mjs",
+    "review": "Portable actual Next/authenticated BFF/media-service UI examination at1440/390 with original owner-directed SVG bytes, exact selected versions and intercepted publication. Retains source manifest and failures without waiving pending-edit gate.",
+    "ci": "Existing Product commerce-browser dependency installation includes backend/web dependencies and Chromium. Add separate step node empireai-web/e2e/work8-media-native.mjs; existing always artifact commerce-browser-evidence includes output. Python3/kernel-isolation launcher required. Harness starts Next dev itself.",
+    "knownProductBlocker": "REQUEST_EDIT does not invalidate later APPROVE_EXTERNAL eligibility: current source checks internal approval batch/version/subset but ignores intervening edit request. Existing harness correctly requires denial and should fail this gate. No A11 acceptance or unauthorised fourth production correction."
+  },
+  "execution": "Source review only; new tests not executed by reviewer.",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

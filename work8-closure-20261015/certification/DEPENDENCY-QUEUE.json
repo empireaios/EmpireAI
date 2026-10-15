@@ -1,0 +1,117 @@
+{
+  "recordType": "DEPENDENCIES_NOT_NEW_ACCEPTANCE",
+  "external": [
+    {
+      "ids": [
+        "O2"
+      ],
+      "required": "Original immutable 224 accounting baseline or attributable audited changes explaining counts.",
+      "action": "No repeated unsupported historical search; preserve accepted financial controls."
+    },
+    {
+      "ids": [
+        "O7"
+      ],
+      "required": "Documented existing supplier/platform licence for exact selected product assets.",
+      "action": "Owner-created A11 media does not establish supplier-asset rights."
+    },
+    {
+      "ids": [
+        "O13",
+        "O14"
+      ],
+      "required": "Exact eligible source dossier including applicable current variant stock and destination/quantity freight, plus valid bounded commissioning authority for genuine assessment.",
+      "action": "Do not invent inputs or infer paid inference authority; not a blanket prerequisite to A8 software acceptance."
+    },
+    {
+      "ids": [
+        "O30"
+      ],
+      "required": "Independently operated delivery executor and incident/attempt custody, verified owner destination and provider availability, then exact-message authorisation and actual delivery receipt.",
+      "action": "Current Advisor cannot establish tuple. No hypothetical approval request or unauthorised message."
+    },
+    {
+      "ids": [
+        "O39",
+        "A3"
+      ],
+      "required": "Existing qualifying protected off-host custody identity, runtime credentials barred from modification/deletion, independently authenticated readback and fresh-target full-application restoration.",
+      "action": "Engineering and restoration assertions remain separate from custody configuration; no purchase."
+    },
+    {
+      "ids": [
+        "A10"
+      ],
+      "required": "Exact permitted Canva asset/design and bounded edit/export operation via existing consumer.",
+      "action": "Connector availability does not establish runtime entitlement or asset authority."
+    },
+    {
+      "ids": [
+        "A15"
+      ],
+      "required": "Applicable existing Keepa entitlement/licensing evidence.",
+      "action": "Helium10 remains deferred; no subscription activation."
+    },
+    {
+      "ids": [
+        "A19"
+      ],
+      "required": "Integrated same-identity genuine connected desktop/mobile evidence available for owner inspection and required owner acceptance.",
+      "action": "Do not substitute fixture browser checks for genuine owner acceptance."
+    }
+  ],
+  "executablePackages": [
+    {
+      "ids": [
+        "O33",
+        "O39",
+        "A1",
+        "A2",
+        "A5"
+      ],
+      "work": "Full admitted-writer coverage, consistent SQL.js/Redis capture, authenticated replacement restore and once-only pending replay."
+    },
+    {
+      "ids": [
+        "A8"
+      ],
+      "work": "Source-bound product chat native authenticated desktop/mobile full contract and restart history."
+    },
+    {
+      "ids": [
+        "A11",
+        "A9",
+        "O19"
+      ],
+      "work": "Authorised smallest approval invalidation repair; permitted exact-byte media, gallery/archive, separated approval and intercepted publication examination."
+    },
+    {
+      "ids": [
+        "O40",
+        "O41",
+        "A6",
+        "A19"
+      ],
+      "work": "Existing Console genuine connected walkthrough; truthful rejected/deferred products allowed where criteria permit."
+    },
+    {
+      "ids": [
+        "O42",
+        "O43"
+      ],
+      "work": "Exact-source review and hosted CI followed by full mandatory-gate independent certification."
+    }
+  ],
+  "governance": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "productionMissionComplete": false
+  },
+  "counts": {
+    "accepted": 41,
+    "outstanding": 23
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

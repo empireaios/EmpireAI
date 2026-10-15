@@ -1,0 +1,13 @@
+{
+  "reviewer": "independent_review",
+  "decision": "PASS_EXACT_TEST_EXPECTATION_CORRECTION_NOT_EXECUTION_ACCEPTANCE",
+  "previousTree": "d82db39750d90de3beb3b3d78b55e504bc76158f",
+  "successorTree": "569e288dcf864e023db7c9adf2d72d253db4d5f7",
+  "soleChangedPath": "backend/src/validation/tests/locked-fresh-session.test.ts",
+  "blob": "8e55a84de471b087d6ce59d529079a4ec1205193",
+  "mode": "100644",
+  "review": "Adds providerCompleted:false to exact deep-equality expected failure object. Independently inspected published d4a5 PillowHost: variable starts false, changes true only on successful provider completion, catch result already includes providerCompleted. This matches existing contract and strengthens explicit failed-provider assertion; production source and all other assertions unchanged.",
+  "execution": "Awaiting terminal actual-host successor examination. Prior failing runs remain attributed to their earlier trees.",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

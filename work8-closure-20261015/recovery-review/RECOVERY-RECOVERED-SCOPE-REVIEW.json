@@ -1,0 +1,101 @@
+{
+  "recordType": "RECOVERED_HH4_AND_RECOVERY_SCOPE_REVIEW_NOT_NEW_ACCEPTANCE",
+  "reviewedAt": "2026-10-15",
+  "sourceStagedCommit": "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+  "sourceTree": "5d1f5b32ee598225b87912c43351307504431c1a",
+  "preparedPublicationCommit": "f413d01f5266ae2340d6c02476e8549d67bc6eb1",
+  "liveHostedQueries": {
+    "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907": [],
+    "f413d01f5266ae2340d6c02476e8549d67bc6eb1": []
+  },
+  "retainedEvidence": {
+    "fullBackendCompilation": "PASS from existing final receipt; not rerun",
+    "startupProtocol": "3 PASS retained; not rerun",
+    "independentSourceReview": "PASS retained; not full acceptance"
+  },
+  "executableLimitations": [
+    "Neither redis-server nor docker available in PATH or standard binary locations",
+    "Exact staged/prepared candidates have no hosted workflow runs",
+    "Existing hosted workflow executes HH4 and real Redis tests after source publication; no dispatch performed",
+    "Protected custody credentials/destination and original full restore proof unavailable"
+  ],
+  "scopeFindings": [
+    "Two-phase startup prepares Redis before business admission with original combined15-second worker deadline; outer180-second startup deadline unchanged",
+    "Session restoration addition is authentic-session examination, not production mutation; bearer/cookie principal and absolute expiry compared before/after replacement and AOF restart",
+    "HH4 controller asserts only held capture, containment and historical inspection; operationalRestoration=false, replay=false, protectedCustody=false even on success",
+    "Inspection archive asserts bootAllowed=false and completeLiveState=false; cannot authorize full application boot",
+    "O33 full topology/prior-instance writer exclusion and operational once-only replay remain outstanding",
+    "O39/A1/A2/A3/A5 complete application restoration and protected independently authenticated custody cannot be certified from this HH4 package"
+  ],
+  "requiredNext": [
+    "Owner exact-tree publication approval for consolidated compatible changes",
+    "Terminal hosted HH4 and Redis session test receipts",
+    "Independent scoped HH4/session decision without upgrading complete recovery claims",
+    "Implement and examine full authorized restoration against declared topology and separately establish protected custody; no weakening inspection archive or accepted rollback checks"
+  ],
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": [],
+  "repeatedTests": [],
+  "sourceMutations": [],
+  "files": {
+    "backend/src/runtime/work8-generated-startup-protocol.ts": {
+      "sha256": "2b136919ede879cbab5197308b736e3a1d4aead68f1fb0b90ffb753973086122",
+      "bytes": 1407
+    },
+    "backend/src/runtime/work8-generated-worker-adoption.ts": {
+      "sha256": "e6214d72c16c4684de317a3e9438198b1a5bb01d3772b5c878916e81c2dbf0be",
+      "bytes": 11112
+    },
+    "scripts/work8/hh4-generated-worker.mjs": {
+      "sha256": "11e01376eca681e38d8bf2e3546e9e9c3bab1d1f1b31c3d233ae79c5d7b51037",
+      "bytes": 4354
+    },
+    "backend/src/validation/tests/capture-shared-brain-redis.test.ts": {
+      "sha256": "a56f5d4c7e7b92f1771c25fb50e00377c5051eef7afe3a42ed59323f951b19c7",
+      "bytes": 45022
+    },
+    "backend/src/validation/tests/fixtures/work8-replay-capture-child.ts": {
+      "sha256": "1911bdc440a06a5636ce90dd5130a6de55ff1d01eadaf1b7e9cac7be0fdd30bc",
+      "bytes": 8892
+    },
+    "backend-compile-complete.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "operationalRestorationFeasibility": {
+    "decision": "NOT_A_HARNESS_ONLY_GAP_COMPLETE_CAPTURE_AND_OPERATIONAL_RESTORE_CAPABILITY_ABSENT",
+    "inspectedFiles": [
+      "backend/src/runtime/work8-recovery-capture.ts",
+      "backend/src/runtime/work8-generated-worker-lifecycle.ts",
+      "deployment/work8-recovery-set.cjs",
+      "scripts/work8/hh4-held-capture-controller.mjs",
+      "scripts/work8/hh4-inspection-restoration.mjs",
+      "backend/src/validation/tests/capture-shared-brain-redis.test.ts"
+    ],
+    "concreteMissingCapabilities": [
+      {
+        "capability": "Complete runtime capture admission",
+        "evidence": "captureWork8RecoveryInventory rejects requireComplete!==false with FULL_RUNTIME_CAPTURE_UNPROVEN; generated lifecycle passes requireComplete:false",
+        "requiredWork": "Topology-wide producer and writer exclusion, including prior active instances and Redis clients outside Brain, with consistent SQL.js/native/JSON/Redis snapshot barrier"
+      },
+      {
+        "capability": "Authenticated operational restore and release",
+        "evidence": "restoreWork8RedisInspection only accepts inspection-only, fixes noExecutionAuthority:true and never clears capture-owner or resumes BullMQ",
+        "requiredWork": "Separate fail-closed source-bound complete-state contract, target cold bootstrap and canonical verification, owner/session retention, governed release and pending-work reconciliation; do not promote historical archive"
+      },
+      {
+        "capability": "Operational acceptance oracle",
+        "evidence": "HH4 outer cohort intentionally terminates generated app after held capture; inspection checker has no app imports or operational replay",
+        "requiredWork": "Fresh contained application topology with exact restored store routing and original sessions; immutable finance/mission comparison and once-only pending execution under allowed read-only contract"
+      },
+      {
+        "capability": "Protected independent custody",
+        "evidence": "Existing manifest and receipts explicitly declare protectedCustody:false",
+        "requiredWork": "Independently authenticated off-host custody with retention and runtime credential exclusion; requires real destination/access, cannot be fabricated by local harness"
+      }
+    ],
+    "minimalSafeImplementationAvailable": false,
+    "reason": "A test-only patch cannot establish absent complete-state capture, safe release and protected custody. Retained false flags and admission fences are intentional; changing them would weaken assertions. Existing focused session addition already covers executable original-session assertions once hosted CI runs."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "decision": "PENDING_EXTERNAL_INDEPENDENT_DELIVERY_NOT_ESTABLISHED",
+  "requirement": "O30",
+  "readOnlyObservations": {
+    "advisorIntegrations": {
+      "retrievedAt": "2026-10-15T08:26:37.304Z",
+      "status": "STALE",
+      "observedAt": "2026-10-13T11:11:05.088Z",
+      "source": "durable business database snapshot; not external observation",
+      "exposedNames": [
+        "Meta Ads",
+        "Shopify",
+        "Stripe"
+      ],
+      "providerAccessVerified": false,
+      "complete": false,
+      "alertChannelOrDestinationExposed": false
+    },
+    "advisorCommunications": {
+      "retrievedAt": "2026-10-15T08:26:12.475Z",
+      "source": "owner-imported Advisor artifacts and internal work-item results",
+      "complete": false,
+      "providerAccessVerified": false,
+      "interpretation": "Does not prove external delivery adapter or owner destination"
+    },
+    "source": {
+      "baseline": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+      "notificationWorkerBridge": "Safe offline snapshot: live:false; status:idle; providers:0; messages:0",
+      "deliveryLedger": "createNotificationDeliveryLedger calls Brain getDatabase; durable unknown before dispatch and idempotency exist but independent host-loss availability not established"
+    }
+  },
+  "exactRemaining": [
+    "Existing independently operated executor and incident/attempt custody available during primary loss",
+    "Verified recipient destination and actual provider adapter/credentials availability without exposing secrets",
+    "Exact examined source and fault/recovery incident binding",
+    "Explicit authority for two drafted test notices",
+    "Actual provider delivery/status and idempotency receipt, not merely local enqueue or personal email send"
+  ],
+  "ownerDecisionReady": false,
+  "reason": "No verified channel/destination/source tuple yet; do not interrupt owner with hypothetical send approval",
+  "externalMessages": 0,
+  "paidInference": 0,
+  "newAcceptance": false
+}

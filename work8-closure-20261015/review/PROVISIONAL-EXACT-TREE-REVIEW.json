@@ -1,0 +1,28 @@
+{
+  "decision": "PASS_COMPLETE_INDEX_TREE_PRESERVATION_AND_EXACT_CHANGED_BLOBS_NOT_ACCEPTANCE",
+  "baseTree": "5d1f5b32ee598225b87912c43351307504431c1a",
+  "candidateTree": "ff1051936fd1d2f8e30bbae2d71fef2654e00d4e",
+  "baseEntries": 17265,
+  "candidateEntries": 17266,
+  "changedEntries": {
+    "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts": [
+      "100644 blob 2ca1e4a2f0c878db8fe982acdbf9aa1c0546b8df",
+      "100644 blob 3bc9acb6686d60647ad7e277a954a40dbdf07481"
+    ],
+    "backend/src/validation/tests/work8-media-approval-invalidation.test.ts": [
+      null,
+      "100644 blob 2b6c48efca440ec1ee019577a2c56b0f880acaee"
+    ],
+    ".github/workflows/product-path-ci.yml": [
+      "100644 blob b1f60b80c4c8fc30fc22483abcc7000b891cca53",
+      "100644 blob eaa3042ee6e670202209b916374977339d680600"
+    ]
+  },
+  "allOtherEntriesAndModesIdentical": true,
+  "fullUnchangedBlobHydration": false,
+  "limitations": [
+    "Existing alternate object path warning; tree metadata complete and changed blobs verified, unchanged blob content not freshly rehydrated.",
+    "Provisional candidate; subsequent additions require separate delta review.",
+    "No hosted results or acceptance certification."
+  ]
+}

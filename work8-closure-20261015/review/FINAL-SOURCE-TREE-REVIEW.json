@@ -1,0 +1,33 @@
+{
+  "decision": "PASS_FINAL_COMPLETE_TREE_AND_CHANGED_BYTES_NOT_ACCEPTANCE",
+  "baseTree": "5d1f5b32ee598225b87912c43351307504431c1a",
+  "candidateTree": "7537581cc9970176a2a1b51d905817be919e575d",
+  "baseEntries": 17265,
+  "candidateEntries": 17266,
+  "onlyChangedPaths": [
+    "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts",
+    "backend/src/validation/tests/work8-media-approval-invalidation.test.ts",
+    ".github/workflows/product-path-ci.yml"
+  ],
+  "noOtherPathOrBlobOrModeChanges": true,
+  "changedBytesEqualIndependentlyReviewedFinalFiles": true,
+  "excludedBridgeIncluded": false,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "limitations": [
+    "Hosted HH4/nativeA8/nativeA11 remain pending.",
+    "Preserved inherited tree identities; unchanged blobs not all locally hydrated.",
+    "Publication requires exact owner tree authority."
+  ],
+  "compile": {
+    "decision": "PASS_REPORTED_TERMINAL_NOEMIT_EXACT_PILLOW",
+    "exitCode": 0,
+    "evidence": "media-a11/A11-RESULT.json",
+    "independence": "Reviewer read terminal execution report, did not rerun compiler; focused test independently executed."
+  },
+  "excludedBridgeHashes": {
+    "work8-source-context-backend.mts": "3c41db64ba6678bb42b3988b3c7ff3301256603c87bf3a2d6ac17ae200362b30",
+    "work8-source-context-native.mjs": "6ef154dd6c0e4ab6d476f6ca32971fb7235a2239af8ed6cfa3fbba1457cfb3e7"
+  },
+  "bridgeFinalResult": "FAIL_STARTUP_TIMEOUT_70_SECONDS_EXCLUDED"
+}
