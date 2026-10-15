@@ -345,6 +345,9 @@ jobs:
             src/validation/tests/offline-state-bundle.test.ts \
             src/validation/tests/reasoning-only-policy.test.ts \
             src/validation/tests/session-store-unavailable.test.ts \
+            src/validation/tests/work8-generated-startup-protocol.test.ts \
+            src/validation/tests/work8-product-history.test.ts \
+            src/validation/tests/locked-fresh-session.test.ts \
             src/validation/tests/sqlite-persistence-boundary.test.ts \
             src/validation/tests/sqlite-shutdown-boundary.test.ts \
             src/validation/tests/primary-shutdown.test.ts \

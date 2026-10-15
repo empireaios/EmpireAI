@@ -138,9 +138,9 @@ export function DevelopmentPillowExperience() {
   const { expand, ensureHostSession } = useGlobalAiAssistant();
   const searchParams = useSearchParams();
   const initialTab = (searchParams?.get("tab") as PillowTab | null) ?? "chat";
-  const [activeTab, setActiveTab] = useState<PillowTab>(
-    initialTab === "conversation" ? "chat" : initialTab,
-  );
+  const paramsKey = searchParams?.toString() ?? "";
+  const [selection, setSelection] = useState({paramsKey, tab: initialTab === "conversation" ? "chat" : initialTab});
+  const activeTab = selection.paramsKey === paramsKey ? selection.tab : (initialTab === "conversation" ? "chat" : initialTab);
   const activatedRef = useRef(false);
 
   useEffect(() => {
@@ -150,35 +150,14 @@ export function DevelopmentPillowExperience() {
     void ensureHostSession();
   }, [expand, ensureHostSession]);
 
-  useEffect(() => {
-    const tab = searchParams?.get("tab");
-    if (tab === "conversation" || tab === "chat") setActiveTab("chat");
-  }, [searchParams]);
 
-  const conversationMode = activeTab === "chat" || activeTab === "conversation";
-
-  return (
-    <div className="space-y-4">
-      <PlatformPageHeader
-        eyebrow="Pillow Centre"
-        title="Talk with Pillow"
-        description="Owner conversation workspace. Context stays with Pillow — not as a wall of metadata."
-      />
-
-      {conversationMode ? (
-        <PillowConversationWorkspace title="Pillow" autoFocus />
-      ) : null}
-
-      <details className="rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3">
-        <summary className="cursor-pointer text-xs text-[#8a847a]">
-          Engineering / development panels (not required for Grand King conversation)
-        </summary>
-        <div className="mt-3 flex flex-wrap gap-2 border-b border-gold/10 pb-4">
+  const conversationMode = activeTab === "chat";
+  const tools = (<div className="mt-3 flex flex-wrap gap-2 border-b border-gold/10 pb-4">
           {TABS.filter((t) => t.id !== "conversation").map((tab) => (
             <button
               key={tab.id}
               type="button"
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => setSelection({paramsKey, tab: tab.id})}
               className={`rounded-lg px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider ${
                 activeTab === tab.id
                   ? "bg-gold/10 text-[#f0d78c]"
@@ -188,7 +167,28 @@ export function DevelopmentPillowExperience() {
               {tab.label}
             </button>
           ))}
-        </div>
+        </div>);
+
+  return (
+    <div data-pillow-conversation-mode={conversationMode} className={conversationMode ? "flex h-full min-h-0 flex-col gap-2" : "h-full min-h-0 overflow-y-auto space-y-4"}>
+      <div className="hidden">
+      <PlatformPageHeader
+        eyebrow="Pillow Centre"
+        title="Talk with Pillow"
+        description="Owner conversation workspace. Context stays with Pillow — not as a wall of metadata."
+      />
+
+      </div>
+
+      {conversationMode ? (
+        <PillowConversationWorkspace title="Pillow" autoFocus tools={tools}/>
+      ) : null}
+
+      {!conversationMode&&<details className={`relative shrink-0 rounded-xl border border-gold/10 bg-white/[0.02] px-4 py-3 ${conversationMode ? "max-h-[35dvh] overflow-y-auto lg:hidden" : ""}`}>
+        <summary className="cursor-pointer text-xs text-[#8a847a]">
+          Development panels
+        </summary>
+        {tools}
         {!conversationMode ? (
           <div className="mt-4">
       {activeTab === "vision-sync" ? (
@@ -316,7 +316,7 @@ export function DevelopmentPillowExperience() {
       )}
           </div>
         ) : null}
-      </details>
+      </details>}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useExecutiveHome } from "@/lib/cockpit/hooks/useExecutiveHome";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
 

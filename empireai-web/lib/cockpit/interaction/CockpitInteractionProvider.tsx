@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import {
   createContext,
   useCallback,
@@ -66,9 +68,7 @@ export function CockpitInteractionProvider({ children }: { children: ReactNode }
     }
   }, [pathname]);
 
-  useEffect(() => {
-    void refreshContext();
-  }, [refreshContext]);
+  useEffect(() => subscribeRead(refreshContext), [refreshContext]);
 
   const ask = useCallback(
     async (intent: CockpitInteractionIntent, target?: CockpitInteractionTarget) => {
