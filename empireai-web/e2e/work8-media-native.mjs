@@ -89,7 +89,7 @@ try{
     await importer.locator('summary').click();
     const identities=[{kind:'IMAGE',url:'https://media.example.invalid/import-'+width+'.svg',bytes:svg},{kind:'VIDEO',url:'https://media.example.invalid/import-'+width+'.webm',bytes:video}];
     for(const a of identities){
-     await importer.getByLabel('Asset link',{exact:true}).fill(a.url);await importer.getByLabel('Media type',{exact:true}).selectOption(a.kind);
+     await importer.getByLabel('Asset link',{exact:true}).fill(a.url);await importer.getByRole('combobox',{name:/^Media type/}).selectOption(a.kind);
      await importer.getByLabel('Source or editing provider',{exact:true}).fill('Owner-created examination fixture');
      await importer.getByLabel('Usage-rights evidence',{exact:true}).fill('Original local test bytes under owner directive; no supplier licence claimed');
      await importer.getByLabel('I reviewed permission to use this exact asset.',{exact:true}).check();

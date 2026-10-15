@@ -117,6 +117,7 @@ export function buildSessionContinuityConfiguration(
       "SESSION_CONTINUITY_HISTORY_WINDOW",
       DEFAULT_SESSION_CONTINUITY_CONFIGURATION.recentHistoryWindow,
     ),
+    persistenceRoot: envString("SESSION_CONTINUITY_STORAGE_ROOT", fileConfig?.persistenceRoot ?? DEFAULT_SESSION_CONTINUITY_CONFIGURATION.persistenceRoot),
     persistSessionContext: envBool(
       "SESSION_CONTINUITY_PERSIST",
       DEFAULT_SESSION_CONTINUITY_CONFIGURATION.persistSessionContext,

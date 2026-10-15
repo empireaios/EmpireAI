@@ -26,15 +26,40 @@ export type AuthorityStoreFile = {
 
 let captureFenceHeld = false;
 
-/** Synchronous, local-process write fence. Other processes need a separate
- * shared admission protocol before this can support a complete snapshot.
- */
-export function acquireAuthorityJsonCaptureFence(): () => void {
+/** Stable shared exclusion for cooperating processes. A crashed owner leaves a
+ * fail-closed lock; never infer expiry or steal a possibly active capture. */
+function acquireSharedAuthorityExclusion(baseDir?: string): () => void {
+  const target = resolveStorePath(baseDir);
+  const parent = path.dirname(target);
+  if (fs.realpathSync(parent) !== path.resolve(parent)) throw new Error("AUTHORITY_JSON_LOCK_PATH_UNSAFE");
+  const lock = target + ".capture-write-lock";
+  try { fs.mkdirSync(lock, { mode: 0o700 }); }
+  catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new Error("AUTHORITY_JSON_SHARED_CAPTURE_BUSY");
+    throw error;
+  }
+  const identity = fs.lstatSync(lock);
+  let released = false;
+  return () => {
+    if (released) return;
+    const current = fs.lstatSync(lock);
+    if (!current.isDirectory() || current.isSymbolicLink() || current.dev !== identity.dev || current.ino !== identity.ino)
+      throw new Error("AUTHORITY_JSON_LOCK_IDENTITY_CHANGED");
+    fs.rmdirSync(lock);
+    released = true;
+  };
+}
+
+/** Captures and atomic saves use the same stable lock across updated processes.
+ * This does not fence older binaries or replace whole-topology exclusion. */
+export function acquireAuthorityJsonCaptureFence(baseDir?: string): () => void {
   if (captureFenceHeld) throw new Error("AUTHORITY_JSON_CAPTURE_BUSY");
+  const releaseShared = acquireSharedAuthorityExclusion(baseDir);
   captureFenceHeld = true;
   let released = false;
   return () => {
     if (released) return;
+    releaseShared();
     released = true;
     captureFenceHeld = false;
   };
@@ -81,6 +106,7 @@ export function saveAuthorityStore(
 ): void {
   if (captureFenceHeld) throw new Error("AUTHORITY_JSON_CAPTURE_FENCED");
   const p = resolveStorePath(baseDir);
+  const releaseShared = acquireSharedAuthorityExclusion(baseDir);
   const temp = `${p}.tmp-${process.pid}-${randomUUID()}`;
   try {
     const fd = fs.openSync(temp, "wx", 0o600);
@@ -96,7 +122,7 @@ export function saveAuthorityStore(
       try { fs.fsyncSync(parent); } finally { fs.closeSync(parent); }
     }
   } finally {
-    fs.rmSync(temp, { force: true });
+    try { fs.rmSync(temp, { force: true }); } finally { releaseShared(); }
   }
 }
 

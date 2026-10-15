@@ -518,6 +518,21 @@ jobs:
           name: work8-source-context-evidence
           path: work8-source-context-evidence
           retention-days: 14
+      - name: Examine preserved genuine historical owner readback on mobile and desktop
+        if: ${{ !cancelled() }}
+        working-directory: empireai-web
+        env:
+          WORK8_OWNER_BACKEND_ROOT: ${{ github.workspace }}/backend
+          WORK8_OWNER_RECORD: ${{ github.workspace }}/empireai-web/e2e/fixtures/genuine-historical-readback.json
+          WORK8_OWNER_OUT: ${{ github.workspace }}/work8-owner-history-evidence
+        run: node e2e/owner-history-native.mjs
+      - name: Preserve scoped historical owner readback evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-owner-history-evidence
+          path: work8-owner-history-evidence
+          retention-days: 14
       - name: Examine Work8 two-stage media approval without live effects
         if: ${{ !cancelled() }}
         run: node empireai-web/e2e/work8-media-native.mjs

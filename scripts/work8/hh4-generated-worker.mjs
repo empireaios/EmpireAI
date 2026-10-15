@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import path from 'node:path';
 import {createServer} from 'node:net';
 import {spawn} from 'node:child_process';
 import {randomUUID} from 'node:crypto';
@@ -21,6 +22,14 @@ process.send({event:'hh4-new-root',runId,source,volumeRoot:scope.volumeRoot,capt
 await prepare;stage='INFRASTRUCTURE_PREPARATION';
 const premature=()=>fail(Error('HH4_MESSAGE_DURING_INFRASTRUCTURE_PREPARATION'));process.on('message',premature);
 Object.assign(process.env,{RAILWAY_VOLUME_MOUNT_PATH:scope.volumeRoot,DATABASE_PATH:scope.volumeRoot+'/commissioning/empireai-brain.db',SHADOW_CEO_DATA_DIR:scope.volumeRoot+'/shadow',REDIS_URL:'redis://127.0.0.1:'+redisPort,REDIS_OPTIONAL:'false',EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',MISSION_AUTHORITY_EXECUTOR_ENABLED:'true',RAILWAY_GIT_COMMIT_SHA:source,EMPIRE_ROLE:'brain-worker',EMPIRE_TIER0_ISOLATION:'false',PORT:'4101',HOST:'127.0.0.1',FOUNDER_EMAIL:'hh4-owner@example.test',FOUNDER_PASSWORD:'generated-hh4-owner-password',ADMIN_EMAIL:'hh4-admin@example.test',ADMIN_PASSWORD:'generated-hh4-admin-password'});
+// Optional visual/session stores still initialize in headless mode. Bind their
+// persistent directories to this generated root without making the image writable.
+const repositoryRoot=path.resolve(import.meta.dirname,'../..');
+for(const [name,directory] of [['VISUAL_MEMORY_STORAGE_ROOT','pillow-visual-memory'],['SESSION_CONTINUITY_STORAGE_ROOT','pillow-session-continuity']]){
+ const destination=path.join(scope.volumeRoot,directory),relative=path.relative(repositoryRoot,destination);
+ assert.equal(path.join(repositoryRoot,relative),destination);
+ process.env[name]=relative;
+}
 fs.mkdirSync(scope.volumeRoot+'/commissioning');fs.mkdirSync(scope.volumeRoot+'/redis');
 const server=redisServer=spawn('/usr/bin/redis-server',['--bind','127.0.0.1','--port',String(redisPort),'--dir',scope.volumeRoot+'/redis','--save','','--appendonly','yes','--appendfsync','always'],{stdio:['ignore','pipe','inherit']});
 await new Promise((resolve,reject)=>{
