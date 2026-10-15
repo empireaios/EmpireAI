@@ -285,5 +285,127 @@
     "commit": "ab2e1eb9f3af764ff3e3e465cff32f0b2d5f1d48",
     "tree": "587adf376276133507cb1fa10d8f5ab02da01dcf",
     "disposition": "DURABLE_STAGING_ONLY_PUBLICATION_WITHHELD"
+  },
+  "reconstruction20261015": {
+    "recordType": "RECONSTRUCTION_ENGINEERING_PROGRESS_NOT_NEW_ACCEPTANCE",
+    "updatedAt": "2026-10-15T09:12:35.216298+00:00",
+    "originalCounts": {
+      "PASS": 33,
+      "PENDING": 8,
+      "BLOCKED": 4
+    },
+    "amendmentCounts": {
+      "PASS": 8,
+      "PENDING": 11
+    },
+    "accepted": 41,
+    "outstanding": 23,
+    "backendPublished": {
+      "commit": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+      "tree": "e668d9b61851b70b5ef3cc97f816520cde6105fc"
+    },
+    "frontendStaged": {
+      "commit": "5c0283c4d13016724cf51ce5b4fff05d9b119c67",
+      "tree": "ea92cdc0763267fc873a23cc439853a51be2f3c1",
+      "localExaminedCommit": "74c098ea6115ec4f1b72371de944064e7b9facc4",
+      "filesAndModesVerified": 949,
+      "acceptedLineageFiles": 944,
+      "targetedTests": "6/6 PASS",
+      "typecheck": "PASS",
+      "productionBuild": "PASS",
+      "native": "NOT_EXECUTED_BROWSER_UNAVAILABLE",
+      "fullA8Acceptance": "PENDING"
+    },
+    "integratedCandidate": {
+      "commit": "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+      "tree": "5d1f5b32ee598225b87912c43351307504431c1a",
+      "branch": "work8/staged-reconstructed-verified-20261015-5d1f5b32",
+      "status": "STAGED_INDEPENDENT_SOURCE_REVIEW_COMPILE_REMOTE_READBACK_PASS_NOT_ACCEPTANCE",
+      "compileSession": 48782,
+      "compile": "PASS_EXIT_0",
+      "remoteFinalReadback": "PASS_INDEPENDENT_VERIFIED_SOURCE_REMOTE_REVIEW",
+      "hostedCI": "NOT_EXECUTED",
+      "frontendFilesAndModes": 950,
+      "compileLog": "integration/repo/backend-compile-complete.log",
+      "localNode": "24.19.0",
+      "hostedPinnedNode": "22.23.2_PENDING",
+      "remoteReviewReceipt": "independent-review/VERIFIED-SOURCE-REMOTE-REVIEW.json"
+    },
+    "currentPublishedCI": {
+      "Product": {
+        "run": 38390068828,
+        "result": "PASS"
+      },
+      "Semantic": {
+        "run": 38390068830,
+        "result": "PASS"
+      },
+      "Assurance": {
+        "run": 38390068824,
+        "result": "PASS"
+      },
+      "Runtime": {
+        "run": 38390068837,
+        "result": "FAIL_HH4_STARTUP"
+      },
+      "later403Tests": "SKIPPED_NOT_PASS"
+    },
+    "A11": {
+      "status": "PENDING",
+      "sourceFinding": "REQUEST_EDIT does not invalidate existing approval; later external approval can proceed without renewed internal approval",
+      "newHarness": "Portable focused native examination prepared and syntax checked; intentionally asserts this gap, not executed",
+      "repairAuthority": "Beyond the three authorised reconstruction changes; no repair or waiver inferred"
+    },
+    "newOriginalAcceptances": [],
+    "newAmendmentAcceptances": [],
+    "certification": "IN_PROGRESS_NO_GO",
+    "productionMissionComplete": false,
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "externalBlockers": [
+      "O2 original224 immutable accounting baseline or attributable audited changed-count lineage; no repeated unsupported search",
+      "O7 selected supplier/media asset usage permissions",
+      "O13/O14 exact eligible genuine product dossier: current variant stock and destination/quantity freight, applicable match and valid bounded inference authority",
+      "O30 independently operated alert delivery channel with verified owner destination, durable attempt evidence and explicit exact-message authority; tuple not yet known",
+      "O39/A3 protected independently authenticated complete-state custody and actual fresh-target restoration proof",
+      "A10 exact authorised permitted Canva design/edit/export operation",
+      "A15 applicable Keepa entitlement/licensing; Helium10 deferred",
+      "Native authenticated desktop/mobile examination environment unavailable in this executor; existing browser access failure not bypassed"
+    ],
+    "scopeBlockedEngineering": [
+      "A11 pending-edit approval invalidation repair outside current three-change authority"
+    ],
+    "notExternalBlockers": [
+      "Hosted HH4 and integrated operating/native acceptance remain outstanding engineering/examination; exact source compilation and independent review passed.",
+      "A8 full native product-linked Chat acceptance pending",
+      "No additional supplier qualification prerequisite for standaloneA11 owner-created test media"
+    ],
+    "changedBoundaryTests": {
+      "hh4StartupProtocol": "3 PASS; unchanged production boundary from prior targeted run",
+      "durableProductHistory": "2 PASS; unchanged production boundary from prior targeted run",
+      "actualHostFreshHistory": {
+        "result": "PASS",
+        "tests": 1,
+        "exitCode": 0,
+        "log": "integration/repo/actual-host-history-complete.log",
+        "scope": "Actual host with intercepted provider, durable history and fresh-session authenticated history route; not HTTP chat admission or native end-to-end"
+      },
+      "priorTargetedRun": "5/6 passed; existing host test failed cleanup, corrected and re-executed independently to terminal PASS; do not call original run6/6",
+      "authenticatedRedisSessionRestore": "NOT_EXECUTED",
+      "hostedHH4": "NOT_EXECUTED",
+      "nativeDesktopMobile": "NOT_EXECUTED"
+    },
+    "supersededCandidate": {
+      "commit": "0ada49934eb66ec4b0c8547d3dec3c1fe03a408e",
+      "tree": "b968bb5ac36bba86abd6f54d6f23c0b84535a20d",
+      "compile": "PASS_ON_PRIOR_TREE_NOT_FINAL_SUCCESSOR"
+    },
+    "publicationTargets": {
+      "source": "work8/autonomous-examination-20261011",
+      "evidence": "work8/examination-evidence-20261011",
+      "frontendPR112": "UNCHANGED_NO_SEPARATE_PUBLICATION_REQUIRED_FOR_COHERENT_PR113_PRODUCT_CI",
+      "productionDeployment": false
+    }
   }
 }

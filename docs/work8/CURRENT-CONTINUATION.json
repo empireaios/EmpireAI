@@ -1,8 +1,12 @@
 {
-  "authoritativeRegister": "total-completion-20261013/CURRENT-REGISTER.json",
-  "fullTracker": "total-completion-20261013/CURRENT-TRACKER.md",
-  "continuation": "total-completion-20261013/CONTINUATION.json",
-  "certification": "total-completion-20261013/certification/CERTIFICATION-DECISION.json",
+  "authoritativeRegister": "reconstruction-20261015/CURRENT-REGISTER.json",
+  "fullTracker": "reconstruction-20261015/FULL-TRACKER.md",
+  "continuation": "reconstruction-20261015/VALIDATION-RECEIPT.json",
+  "certification": "reconstruction-20261015/RECONSTRUCTION-CERTIFICATION.json",
   "decision": "NO_GO",
-  "newClosures": []
+  "newClosures": [],
+  "previousEvidenceCommit": "740c6fbca69fe28aa16a5cede1c4c362109038cb",
+  "sourceCommit": "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+  "sourceTree": "5d1f5b32ee598225b87912c43351307504431c1a",
+  "hostedExamination": "PENDING_EXACT_TREE_PUBLICATION_AUTHORITY"
 }

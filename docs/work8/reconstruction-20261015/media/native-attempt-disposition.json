@@ -1,0 +1,86 @@
+{
+  "status": "BLOCKED_BEFORE_BROWSER_LAUNCH",
+  "A11": "PENDING",
+  "A9": "PENDING",
+  "A10": "PENDING",
+  "runtime": "Actual canonical backend READY; Next16.2.9 READY",
+  "failure": "Playwright browser executable missing /root/.cache/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-linux64/chrome-headless-shell",
+  "followup": "No installed browser found in bounded /opt/codex,/usr/lib,/root/.cache,/tmp inventory. Next later connection refused; no authenticated HTTP/native receipt",
+  "sourceChanges": [],
+  "priorAcceptedTestsRepeated": false,
+  "paidInference": 0,
+  "liveCommerce": 0,
+  "harness": "Actual original native UI and BFF/auth; synthetic owner-directed media bytes; external asset requests intercept local bytes; no business APIs mocked",
+  "files": [
+    {
+      "path": "server.mjs",
+      "sha256": "1c3261f198fafe8f2baf075071a6e0c1170ca63b0c21743bcd3890dd8789b603",
+      "bytes": 3232
+    },
+    {
+      "path": "empireai-web/e2e/media-native.mjs",
+      "sha256": "6a0c7176a1e56686bd3f90e5164241ca8f761113bc38beb486d493c28b964101",
+      "bytes": 4141
+    },
+    {
+      "path": "empireai-web/components/owner/work8/TwinMedia.tsx",
+      "sha256": "9d44550044dc091a3c111ba5a2e4b194d64cd98ef3693eef5273b876902ce332",
+      "bytes": 5219
+    },
+    {
+      "path": "empireai-web/components/owner/work8/TwinWorkspace.tsx",
+      "sha256": "19022bf021e1d40e68f0c7f9d89c63de0145d57fac3711ddce1749512bf86f04",
+      "bytes": 16978
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "sha256": "172bb8c88398f77c28fd09f4d1f0e21f363692dab1b83761aced0f0875c5ce23",
+      "bytes": 27088
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts",
+      "sha256": "a5b5063e645b393fddcf061285806c80a95859ac85c6131fe970789933926376",
+      "bytes": 8328
+    },
+    {
+      "path": "backend/src/auth/middleware.ts",
+      "sha256": "749b1f05b3bc8fbc7ce444351519342d283f499c0a2745d0af596689832af3de",
+      "bytes": 2058
+    },
+    {
+      "path": "backend.log",
+      "sha256": "3dfa3fb239f56c778a1e9b33eb31328349edd155a95806dac4378904e88527e5",
+      "bytes": 6
+    },
+    {
+      "path": "next.log",
+      "sha256": "1b5186b7b76940da2459f0823c9293741f4c96d47499a5df47d17d4185e30b64",
+      "bytes": 273
+    },
+    {
+      "path": "native.log",
+      "sha256": "4430ed236265e249125a72d46380828fc5e92f0b817e99888601f1b5ff1bffc8",
+      "bytes": 1206
+    }
+  ],
+  "browserInstallAttempt": {
+    "count": 1,
+    "outcome": "FAILED_TRUNCATED_OR_NONZIP_DOWNLOAD",
+    "error": "End of central directory record signature not found. Either not a zip file, or file is truncated.",
+    "url": "https://cdn.playwright.dev/builds/cft/151.0.7922.34/linux64/chrome-headless-shell-linux64.zip",
+    "termination": "Automatic same-URL retries interrupted Ctrl-C exit130",
+    "log": "browser-install.log",
+    "sha256": "ecb28993b49129c06fa65e1e70cb98b88a8cd1a7e438214ccc560f868a9b9204"
+  },
+  "cloudFallback": {
+    "status": "BLOCKED",
+    "source": "Parent direct observation and instruction",
+    "result": "Cloud attempt failed; browser policy explicitly rejected access. No workaround permitted or attempted.",
+    "localCrossExecProbe": "ECONNREFUSED despite separate exec server sessions reporting running; network namespace uncertainty, not product failure",
+    "serverSessionsStopped": [
+      28448,
+      50773
+    ],
+    "nativePass": false
+  }
+}

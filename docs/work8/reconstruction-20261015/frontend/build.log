@@ -1,0 +1,239 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> empireai-web@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.2.9 (webpack)
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 97s
+  Running TypeScript ...
+  Finished TypeScript in 95s ...
+  Collecting page data using 8 workers ...
+  Generating static pages using 8 workers (0/184) ...
+  Generating static pages using 8 workers (46/184) 
+  Generating static pages using 8 workers (92/184) 
+  Generating static pages using 8 workers (138/184) 
+✓ Generating static pages using 8 workers (184/184) in 4.4s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/brain/dispatch
+├ ƒ /api/brain/events
+├ ƒ /api/commerce/marketplace-integration
+├ ƒ /api/commerce/transactions
+├ ƒ /api/eos-bundle-stamp
+├ ƒ /api/integrations/canva/callback
+├ ƒ /api/owner/advisor/[...path]
+├ ƒ /api/owner/assurance
+├ ƒ /api/owner/assurance-demo/[action]
+├ ƒ /api/owner/assurance/control
+├ ƒ /api/owner/commerce
+├ ƒ /api/owner/commerce/comparables
+├ ƒ /api/owner/commerce/portfolio
+├ ƒ /api/owner/commerce/twin
+├ ƒ /api/owner/commerce/twin/context
+├ ƒ /api/owner/finance
+├ ƒ /api/owner/finance/calculate/[kind]
+├ ƒ /api/owner/notifications
+├ ƒ /api/owner/overview
+├ ƒ /api/owner/runtime
+├ ƒ /api/pillow-commissioning/[...path]
+├ ƒ /api/pillow/[...path]
+├ ƒ /api/shadow-ceo/[...path]
+├ ○ /cockpit
+├ ƒ /cockpit/advisor
+├ ƒ /cockpit/approvals
+├ ○ /cockpit/assurance
+├ ○ /cockpit/assurance/mobile-acceptance
+├ ○ /cockpit/calendar
+├ ○ /cockpit/ceo
+├ ○ /cockpit/command
+├ ○ /cockpit/commerce
+├ ○ /cockpit/commerce/ad-intelligence
+├ ○ /cockpit/commerce/ads
+├ ○ /cockpit/commerce/automation
+├ ○ /cockpit/commerce/factory
+├ ƒ /cockpit/commerce/governed
+├ ○ /cockpit/commerce/intelligence
+├ ○ /cockpit/commerce/launch
+├ ○ /cockpit/commerce/marketing
+├ ○ /cockpit/commerce/marketplace
+├ ○ /cockpit/commerce/operating
+├ ○ /cockpit/commerce/store
+├ ○ /cockpit/commerce/transactions
+├ ○ /cockpit/commerce/workspace
+├ ƒ /cockpit/commerce/workspace/[id]
+├ ○ /cockpit/cost-centre
+├ ○ /cockpit/development
+├ ○ /cockpit/development/approvals
+├ ○ /cockpit/development/inspection
+├ ○ /cockpit/development/learning
+├ ○ /cockpit/development/pillow
+├ ○ /cockpit/eyes
+├ ƒ /cockpit/finance
+├ ○ /cockpit/finance/billing
+├ ○ /cockpit/finance/costs
+├ ○ /cockpit/finance/intelligence
+├ ○ /cockpit/finance/mobile-acceptance
+├ ○ /cockpit/finance/pl
+├ ○ /cockpit/finance/profit
+├ ○ /cockpit/founder/ai-evolution
+├ ○ /cockpit/founder/architecture
+├ ○ /cockpit/founder/architecture-evolution
+├ ○ /cockpit/founder/autonomous-decision-monitor
+├ ○ /cockpit/founder/builder
+├ ○ /cockpit/founder/capital-allocation
+├ ○ /cockpit/founder/capital-risk
+├ ○ /cockpit/founder/cash-reserve
+├ ○ /cockpit/founder/competitor-intelligence
+├ ○ /cockpit/founder/conflict-resolution
+├ ○ /cockpit/founder/corporate-vision
+├ ○ /cockpit/founder/cost-optimization
+├ ○ /cockpit/founder/crisis-decisions
+├ ○ /cockpit/founder/cross-business-intelligence
+├ ○ /cockpit/founder/customer-behaviour
+├ ○ /cockpit/founder/decision-architecture
+├ ○ /cockpit/founder/decision-audit
+├ ○ /cockpit/founder/decision-simulation
+├ ○ /cockpit/founder/department-planning
+├ ○ /cockpit/founder/empire-evolution
+├ ○ /cockpit/founder/enterprise-audit-engine
+├ ○ /cockpit/founder/enterprise-constitutional-guardian
+├ ○ /cockpit/founder/enterprise-governance
+├ ○ /cockpit/founder/enterprise-pattern
+├ ○ /cockpit/founder/enterprise-risk-governance
+├ ○ /cockpit/founder/enterprise-valuation
+├ ○ /cockpit/founder/executive-accountability
+├ ○ /cockpit/founder/executive-advisory
+├ ○ /cockpit/founder/executive-approval
+├ ○ /cockpit/founder/executive-benchmark
+├ ○ /cockpit/founder/executive-budget
+├ ○ /cockpit/founder/executive-calendar
+├ ○ /cockpit/founder/executive-capital-strategy
+├ ○ /cockpit/founder/executive-compliance
+├ ○ /cockpit/founder/executive-confidence
+├ ○ /cockpit/founder/executive-consensus
+├ ○ /cockpit/founder/executive-constitutional-monitor
+├ ○ /cockpit/founder/executive-decision-certification
+├ ○ /cockpit/founder/executive-dependencies
+├ ○ /cockpit/founder/executive-escalations
+├ ○ /cockpit/founder/executive-ethics
+├ ○ /cockpit/founder/executive-exception-manager
+├ ○ /cockpit/founder/executive-finance
+├ ○ /cockpit/founder/executive-forecast
+├ ○ /cockpit/founder/executive-governance-certification
+├ ○ /cockpit/founder/executive-insight
+├ ○ /cockpit/founder/executive-intelligence-certification
+├ ○ /cockpit/founder/executive-knowledge-graph
+├ ○ /cockpit/founder/executive-kpi
+├ ○ /cockpit/founder/executive-performance
+├ ○ /cockpit/founder/executive-planning
+├ ○ /cockpit/founder/executive-planning-certification
+├ ○ /cockpit/founder/executive-policies
+├ ○ /cockpit/founder/executive-policy-evolution
+├ ○ /cockpit/founder/executive-prediction
+├ ○ /cockpit/founder/executive-recommendations
+├ ○ /cockpit/founder/executive-resilience-engine
+├ ○ /cockpit/founder/executive-review-board
+├ ○ /cockpit/founder/executive-roadmap
+├ ○ /cockpit/founder/executive-scenarios
+├ ○ /cockpit/founder/executive-transparency
+├ ○ /cockpit/founder/executive-trust-engine
+├ ○ /cockpit/founder/explainability
+├ ○ /cockpit/founder/financial-executive-certification
+├ ○ /cockpit/founder/financial-scenario
+├ ○ /cockpit/founder/grand-king
+├ ○ /cockpit/founder/grand-king-executive-cockpit
+├ ○ /cockpit/founder/guardian
+├ ○ /cockpit/founder/industry-intelligence
+├ ○ /cockpit/founder/initiative-portfolio
+├ ○ /cockpit/founder/innovation-intelligence
+├ ○ /cockpit/founder/investment-evaluation
+├ ○ /cockpit/founder/journey
+├ ○ /cockpit/founder/knowledge
+├ ○ /cockpit/founder/knowledge-evolution
+├ ○ /cockpit/founder/live-eta
+├ ○ /cockpit/founder/long-term-growth
+├ ○ /cockpit/founder/market-intelligence
+├ ○ /cockpit/founder/opportunity-discovery
+├ ○ /cockpit/founder/opportunity-prioritization
+├ ○ /cockpit/founder/priority-management
+├ ○ /cockpit/founder/production
+├ ○ /cockpit/founder/profit-optimization
+├ ○ /cockpit/founder/repository-evolution
+├ ○ /cockpit/founder/resource-allocation
+├ ○ /cockpit/founder/risk-assessment
+├ ○ /cockpit/founder/roi-intelligence
+├ ○ /cockpit/founder/shadow-ceo
+├ ○ /cockpit/founder/strategic-alignment
+├ ○ /cockpit/founder/strategic-objectives
+├ ○ /cockpit/founder/supervisor
+├ ○ /cockpit/founder/threat-detection
+├ ○ /cockpit/founder/trade-off-analysis
+├ ○ /cockpit/governance
+├ ○ /cockpit/governance/council
+├ ○ /cockpit/governance/decisions
+├ ○ /cockpit/governance/settings
+├ ○ /cockpit/governance/soul
+├ ○ /cockpit/governance/v1
+├ ○ /cockpit/infrastructure
+├ ○ /cockpit/infrastructure/admin
+├ ○ /cockpit/infrastructure/deployments
+├ ○ /cockpit/infrastructure/health
+├ ○ /cockpit/infrastructure/integrations
+├ ○ /cockpit/intelligence
+├ ○ /cockpit/intelligence/customers
+├ ○ /cockpit/intelligence/decisions
+├ ○ /cockpit/intelligence/discovery
+├ ○ /cockpit/intelligence/executive
+├ ○ /cockpit/intelligence/marketplace
+├ ○ /cockpit/intelligence/markets
+├ ○ /cockpit/intelligence/products
+├ ○ /cockpit/intelligence/risk
+├ ○ /cockpit/intelligence/suppliers
+├ ƒ /cockpit/listings
+├ ○ /cockpit/missions
+├ ○ /cockpit/operations
+├ ○ /cockpit/operations/authorizations
+├ ○ /cockpit/operations/automation
+├ ○ /cockpit/operations/fulfillment
+├ ○ /cockpit/operations/orders
+├ ○ /cockpit/operations/support
+├ ○ /cockpit/orders
+├ ○ /cockpit/products
+├ ƒ /cockpit/products/[id]
+├ ○ /cockpit/products/history
+├ ○ /cockpit/relationship
+├ ○ /cockpit/system
+├ ○ /cockpit/workforce
+├ ○ /cockpit/workforce/activity
+├ ○ /cockpit/workforce/audit
+├ ○ /login
+├ ○ /platform
+├ ○ /platform/admin
+├ ○ /platform/ads
+├ ○ /platform/ai-ceo
+├ ○ /platform/dashboard
+├ ○ /platform/finance
+├ ○ /platform/intelligence
+├ ○ /platform/marketing
+├ ○ /platform/orders
+├ ○ /platform/settings
+├ ○ /platform/store
+├ ○ /platform/suppliers
+└ ○ /platform/support
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -1,0 +1,1215 @@
+{
+  "commit": {
+    "sha": "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+    "node_id": "C_kwDOTA0IHNoAKDVjZjA3ZmQ0NzM4YzNlNTFjYWQ2Y2U4YWMxNjUwOWRkZDBiODI5MDc",
+    "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+    "html_url": "https://github.com/empireaios/EmpireAI/commit/5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+    "author": {
+      "name": "empireaios",
+      "email": "empireaiengine@gmail.com",
+      "date": "2026-10-15T09:09:31Z"
+    },
+    "committer": {
+      "name": "empireaios",
+      "email": "empireaiengine@gmail.com",
+      "date": "2026-10-15T09:09:31Z"
+    },
+    "tree": {
+      "sha": "5d1f5b32ee598225b87912c43351307504431c1a",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/5d1f5b32ee598225b87912c43351307504431c1a"
+    },
+    "message": "Stage Work8 limited reconstruction and recovered frontend; authentic history test passed; hosted gates pending [skip ci]",
+    "parents": [
+      {
+        "sha": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "root": {
+    "sha": "5d1f5b32ee598225b87912c43351307504431c1a",
+    "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/5d1f5b32ee598225b87912c43351307504431c1a",
+    "tree": [
+      {
+        "path": ".github",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "462f9a477558dec09706d50f925f6612649fcf87",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/462f9a477558dec09706d50f925f6612649fcf87"
+      },
+      {
+        "path": ".gitignore",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b950940d0fef9428b91d1896c969161c15a157c3",
+        "size": 777,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b950940d0fef9428b91d1896c969161c15a157c3"
+      },
+      {
+        "path": ".node-version",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c94711948a665d304dfc7016e1bebc497162b451",
+        "size": 8,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c94711948a665d304dfc7016e1bebc497162b451"
+      },
+      {
+        "path": ".vercelignore",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b53732634d33ea77875e08f7566077bc9e4dcc98",
+        "size": 453,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b53732634d33ea77875e08f7566077bc9e4dcc98"
+      },
+      {
+        "path": "ARCHIVED_R002_README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c08130270aa4b74d35a9bc061c07fbabb32359c8",
+        "size": 1922,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c08130270aa4b74d35a9bc061c07fbabb32359c8"
+      },
+      {
+        "path": "BL-A_REPOSITORY_DIFFERENCE_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4cb4def73332ee732649d1a85e6b24cc18e04684",
+        "size": 4898,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/4cb4def73332ee732649d1a85e6b24cc18e04684"
+      },
+      {
+        "path": "BL-A_SYNCHRONIZATION_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9e9e439e6adc9f47be9e223c2d54da51341e6401",
+        "size": 7414,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/9e9e439e6adc9f47be9e223c2d54da51341e6401"
+      },
+      {
+        "path": "BL-A_VALIDATION_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c44882b75b38a600fcf461a96853e5b370e24460",
+        "size": 4488,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c44882b75b38a600fcf461a96853e5b370e24460"
+      },
+      {
+        "path": "BL-B.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f78b63a73cb0ccbeda081c09e957ab100b7b2bfb",
+        "size": 13663,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/f78b63a73cb0ccbeda081c09e957ab100b7b2bfb"
+      },
+      {
+        "path": "BL-B_REPOSITORY_DIFFERENCE_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9b4f0fe755ffdfe2d9cb4c7e3c089d504a97a346",
+        "size": 2075,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/9b4f0fe755ffdfe2d9cb4c7e3c089d504a97a346"
+      },
+      {
+        "path": "BL-B_VALIDATION_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3909e89cfbba1df8823ad409e78bc810c57f869d",
+        "size": 2547,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/3909e89cfbba1df8823ad409e78bc810c57f869d"
+      },
+      {
+        "path": "BL-C.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "81bea78f5254b5df8a7663abea76d86fb7d3bf6e",
+        "size": 3923,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/81bea78f5254b5df8a7663abea76d86fb7d3bf6e"
+      },
+      {
+        "path": "BUSINESS_COMPLETION_LEDGER.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "541f071c8db5fa40454a509d7203d9dc73ac4204",
+        "size": 1712,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/541f071c8db5fa40454a509d7203d9dc73ac4204"
+      },
+      {
+        "path": "CANONICAL_EKLS_SPECIFICATION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c54f681011d4f6bdaff0fd08110bfc802c35bd1e",
+        "size": 10940,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c54f681011d4f6bdaff0fd08110bfc802c35bd1e"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_ACD-001-030.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a8cf8e76cc8907229b9d2ed930b81a24fdea9529",
+        "size": 7148,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/a8cf8e76cc8907229b9d2ed930b81a24fdea9529"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_CBD-001-020.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "770d911af090b930d2ef7e25329d4f401b9d009b",
+        "size": 5799,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/770d911af090b930d2ef7e25329d4f401b9d009b"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_CTD-001-040.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bacc120af16f42dc585581bacdc059650fba67d8",
+        "size": 5671,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/bacc120af16f42dc585581bacdc059650fba67d8"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_INTEGRATIONS_HUB.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a52a5d6fe3d781908d8223da2dcb6ba496beb5f1",
+        "size": 4640,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/a52a5d6fe3d781908d8223da2dcb6ba496beb5f1"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_V1_EXECUTIVE_CERTIFICATION_GAP_ANALYSIS.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "347b69f9d1c2dda01d91461837ad270135de196a",
+        "size": 12199,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/347b69f9d1c2dda01d91461837ad270135de196a"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_V1_OPERATIONAL_ACTIVATION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "56e03c3a77b5bd35952d103ea43d6de0c104a09d",
+        "size": 8343,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/56e03c3a77b5bd35952d103ea43d6de0c104a09d"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_V1_OPERATIONAL_TOTALITY.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6978fda3fcb07cd26a819e5c64130d30b319b62e",
+        "size": 13313,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/6978fda3fcb07cd26a819e5c64130d30b319b62e"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_EMPIREAI_V1_PRODUCTION_DEPLOYMENT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c2a100ffb6a93596a43321bab0066e7e9533baad",
+        "size": 13396,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c2a100ffb6a93596a43321bab0066e7e9533baad"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_EXECUTIVE_LEARNING_ENGINE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "67fd9845e5ef85c3d9616d528f74b30726e3bda2",
+        "size": 7446,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/67fd9845e5ef85c3d9616d528f74b30726e3bda2"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_EXECUTIVE_PERSPECTIVES_REFINEMENT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "228341978aa587ef9f3b9cbad44a8b39344b72d2",
+        "size": 7577,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/228341978aa587ef9f3b9cbad44a8b39344b72d2"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_EXECUTIVE_UX_LAYER_ARCHITECTURE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "96a7a7960a958b5b2ac80d1fbf65d938d9a227fd",
+        "size": 2825,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/96a7a7960a958b5b2ac80d1fbf65d938d9a227fd"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_GC-03.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c8e55e6bdf89d936d3165b3b97fe466822a9c063",
+        "size": 5277,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c8e55e6bdf89d936d3165b3b97fe466822a9c063"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_GC-05.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9c7dcd43d9bf314d4fe53499b0641877053604a5",
+        "size": 5415,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/9c7dcd43d9bf314d4fe53499b0641877053604a5"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_GVD-001-030.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "132540fd16c7b25038624b420cfaa40b11cbaee3",
+        "size": 7111,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/132540fd16c7b25038624b420cfaa40b11cbaee3"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_MANAGED_DEPLOYMENT_SYNCHRONIZATION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9f8039c90514d4f168b9e758eaef45fc132bdcaf",
+        "size": 9729,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/9f8039c90514d4f168b9e758eaef45fc132bdcaf"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_MANAGED_PRODUCTION_DEPLOYMENT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1cbb2ba005c32e100bbe36bb666c11683536743a",
+        "size": 9904,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/1cbb2ba005c32e100bbe36bb666c11683536743a"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_MARKETPLACE_AUTONOMY_DOCTRINE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "58e7742938038ad01317ee732e6b56c203ac2845",
+        "size": 6416,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/58e7742938038ad01317ee732e6b56c203ac2845"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_020_COMMERCE_INTELLIGENCE_OPERATING_SYSTEM.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "dcdc7f95d27cd3c605819c3b209b7af70b4c89fd",
+        "size": 8159,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/dcdc7f95d27cd3c605819c3b209b7af70b4c89fd"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_CONSTITUTIONAL_LAWS_FINALIZATION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cf129da3cabff3e0fee20f2856556fa87235604d",
+        "size": 6098,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/cf129da3cabff3e0fee20f2856556fa87235604d"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_CONSTITUTION_UPDATE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c39f6f5ea6dfce0b2424c67bb5966622b377a27b",
+        "size": 7582,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c39f6f5ea6dfce0b2424c67bb5966622b377a27b"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_EXECUTIVE_COMPANION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0c8609c2d883086d669261bcd19752b1a1a69f84",
+        "size": 3791,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/0c8609c2d883086d669261bcd19752b1a1a69f84"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_EXECUTIVE_COUNCIL.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2058c94ebb6f4ce3f5c7475021ebe8863f2a0352",
+        "size": 6563,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/2058c94ebb6f4ce3f5c7475021ebe8863f2a0352"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_OWNED_COMMERCE_INTELLIGENCE_CORE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a14670d4e901d43d7584d9fb1dff6ee84fb61080",
+        "size": 7071,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/a14670d4e901d43d7584d9fb1dff6ee84fb61080"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_PRODUCT_INTEGRATION_MASTER_PLAN.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "da1cddd59dc503e1159a4aefed1fea64980671d7",
+        "size": 3951,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/da1cddd59dc503e1159a4aefed1fea64980671d7"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_PILLOW_VERSION_1_DELIVERY_MODE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "728ccea5821c7980e6ccee6a46e6a2b2d33b4e16",
+        "size": 4419,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/728ccea5821c7980e6ccee6a46e6a2b2d33b4e16"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-002B.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4e994a52f672fb5e6a02a71855dcf7022daaea38",
+        "size": 4762,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/4e994a52f672fb5e6a02a71855dcf7022daaea38"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-003-007.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "28389e4bcc6a59729f9ab5bb127fa33a1238a8ad",
+        "size": 10908,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/28389e4bcc6a59729f9ab5bb127fa33a1238a8ad"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-008-012.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4bcd81a17863eceb6cf34b1a96ad87cae2a11c9e",
+        "size": 10275,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/4bcd81a17863eceb6cf34b1a96ad87cae2a11c9e"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-013-018.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1ffc5134cf2d70f25259e293e22ef06a6a119136",
+        "size": 11539,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/1ffc5134cf2d70f25259e293e22ef06a6a119136"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-019-025.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "eb1945a0b0850caf6487db7ab1bbfc736c08a47f",
+        "size": 12573,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/eb1945a0b0850caf6487db7ab1bbfc736c08a47f"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-026-035.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a2213c662a32478b10e47fb6925416323e002442",
+        "size": 9088,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/a2213c662a32478b10e47fb6925416323e002442"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-036-050.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7ce72e343489398d1f9410d1db0e54a456ee4299",
+        "size": 9258,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/7ce72e343489398d1f9410d1db0e54a456ee4299"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-051-070.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c20e53fc130cd603a2b7f2df51e117c85c3a61c5",
+        "size": 27398,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c20e53fc130cd603a2b7f2df51e117c85c3a61c5"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL-071-100.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c44c5b7db0365a72e12ac2501cb817674f5a77e0",
+        "size": 8806,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c44c5b7db0365a72e12ac2501cb817674f5a77e0"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_REAL061_BACKEND_COMPILE_RECOVERY.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "27fd93b2966aac7653a72f3e4b08bee03b30b1c7",
+        "size": 6818,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/27fd93b2966aac7653a72f3e4b08bee03b30b1c7"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_UID-001-020.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b6705bd2e97d50823ec9df84409ba5c1ff532edc",
+        "size": 5594,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b6705bd2e97d50823ec9df84409ba5c1ff532edc"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_UX-001-023.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fc8ca7a4829def9004b332f8eb075d7e3cec5e2c",
+        "size": 8574,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/fc8ca7a4829def9004b332f8eb075d7e3cec5e2c"
+      },
+      {
+        "path": "COMBINED_EXECUTIVE_AUDIT_VERSION_1_CERTIFICATION_MODE_ACTIVATION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d2e18baef32dbfd59986061ce62566d33b7aea56",
+        "size": 4036,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/d2e18baef32dbfd59986061ce62566d33b7aea56"
+      },
+      {
+        "path": "COMMERCE_OS_BLUEPRINT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "33cd7a5b4ada1430707a3b9c1c4309ca9a1a3782",
+        "size": 42997,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/33cd7a5b4ada1430707a3b9c1c4309ca9a1a3782"
+      },
+      {
+        "path": "CURSOR_PROGRESS_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a5e50ecdee8fda7d8ca8fb4a4692219ec8214642",
+        "size": 1259,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/a5e50ecdee8fda7d8ca8fb4a4692219ec8214642"
+      },
+      {
+        "path": "CURSOR_PROGRESS_REPORT_REAL-002A.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f5b56f22912844946bb218928b122646c14c0b48",
+        "size": 4954,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/f5b56f22912844946bb218928b122646c14c0b48"
+      },
+      {
+        "path": "DEPLOYMENT_ROOT_CAUSE_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "91e7809f2485a1bc8f2c9a0598b9b53734824067",
+        "size": 14601,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/91e7809f2485a1bc8f2c9a0598b9b53734824067"
+      },
+      {
+        "path": "DEVELOPMENT_ENVIRONMENT_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3ef1b33958ccffa1b9bb5f02538652a87ee181a0",
+        "size": 3597,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/3ef1b33958ccffa1b9bb5f02538652a87ee181a0"
+      },
+      {
+        "path": "EMPIREAI_ARCHITECTURE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5523467f5cd274b95bcdb4e810b4e588dc8eb86e",
+        "size": 2912,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/5523467f5cd274b95bcdb4e810b4e588dc8eb86e"
+      },
+      {
+        "path": "EMPIREAI_ARCHITECTURE_CONSTRAINTS_ACD.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "39f9808ee926622f0bfa8c447a2cc48b3c7f4850",
+        "size": 3463,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/39f9808ee926622f0bfa8c447a2cc48b3c7f4850"
+      },
+      {
+        "path": "EMPIREAI_ARCHITECT_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "986c895b91c2f4883406009b4a5ded31e2b5c926",
+        "size": 5738,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/986c895b91c2f4883406009b4a5ded31e2b5c926"
+      },
+      {
+        "path": "EMPIREAI_BACKLOG_RELEASE_GOVERNANCE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4041e302815e664fe4d8939317c13ad80cafde5f",
+        "size": 2410,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/4041e302815e664fe4d8939317c13ad80cafde5f"
+      },
+      {
+        "path": "EMPIREAI_BL_C_CONTINUOUS_IMPROVEMENT_CONSTITUTION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6aa14631670b0f130cd721f503194a5a5d097523",
+        "size": 10283,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/6aa14631670b0f130cd721f503194a5a5d097523"
+      },
+      {
+        "path": "EMPIREAI_COMMERCE_CANON.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fdb864c40b35d93a425af7604d52c12553073843",
+        "size": 29568,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/fdb864c40b35d93a425af7604d52c12553073843"
+      },
+      {
+        "path": "EMPIREAI_COMMERCIAL_BUSINESS_DOCTRINE_CBD.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "db9bf6faf3eea177f24c19ab529aa1d71bd2dacf",
+        "size": 4492,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/db9bf6faf3eea177f24c19ab529aa1d71bd2dacf"
+      },
+      {
+        "path": "EMPIREAI_CONSTITUTION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ad578c64df6c0d992298b64e3f49a425ac319927",
+        "size": 21211,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/ad578c64df6c0d992298b64e3f49a425ac319927"
+      },
+      {
+        "path": "EMPIREAI_CONTINUOUS_ARTIFACT_GENERATION_WORKFLOW.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "72bd15fb361a852d17ddba39fa2ba640d825190a",
+        "size": 8398,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/72bd15fb361a852d17ddba39fa2ba640d825190a"
+      },
+      {
+        "path": "EMPIREAI_CORE_CONSTITUTION_CTD.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a0e79b0a18741b6e2798945105658e5e9b2e9dff",
+        "size": 22999,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/a0e79b0a18741b6e2798945105658e5e9b2e9dff"
+      },
+      {
+        "path": "EMPIREAI_COST_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c7714137a3431464bb00cb2e7b8b6c91d7af94bb",
+        "size": 1206,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c7714137a3431464bb00cb2e7b8b6c91d7af94bb"
+      },
+      {
+        "path": "EMPIREAI_CURSOR_OUTPUT_STANDARD.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b51810ed3e6888cfb449347ca927c39145d09eea",
+        "size": 7457,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b51810ed3e6888cfb449347ca927c39145d09eea"
+      },
+      {
+        "path": "EMPIREAI_CURSOR_RECOVERY_DOCTRINE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5e0c87af89746004cb58e9054146661afe2b7f3a",
+        "size": 3928,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/5e0c87af89746004cb58e9054146661afe2b7f3a"
+      },
+      {
+        "path": "EMPIREAI_DECISIONS.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "850a4176351965c4ee8cee9d2b094719469fbe9b",
+        "size": 50139,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/850a4176351965c4ee8cee9d2b094719469fbe9b"
+      },
+      {
+        "path": "EMPIREAI_DEPENDENCY_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1096b8a7fa7c8364b8cc4ab580d230d6c40beab6",
+        "size": 1784,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/1096b8a7fa7c8364b8cc4ab580d230d6c40beab6"
+      },
+      {
+        "path": "EMPIREAI_DIGITAL_SOUL_CONSTITUTION_V2.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "088d7e072b6067b958528cdc47986c2dc4751114",
+        "size": 211305,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/088d7e072b6067b958528cdc47986c2dc4751114"
+      },
+      {
+        "path": "EMPIREAI_EMPIRE_RECOVERY_DOCTRINE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b2bcd419e7eb0c786bf2f635192704fc2af7a780",
+        "size": 2152,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b2bcd419e7eb0c786bf2f635192704fc2af7a780"
+      },
+      {
+        "path": "EMPIREAI_EXECUTIVE_AUDIT_STANDARD.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1d1d2c40aa4832499143b61b69a27bd4b198f901",
+        "size": 6168,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/1d1d2c40aa4832499143b61b69a27bd4b198f901"
+      },
+      {
+        "path": "EMPIREAI_EYE_ARCHITECTURE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "479b6d8c6f9cbe32ad5c7fad551c699b575c7eec",
+        "size": 53128,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/479b6d8c6f9cbe32ad5c7fad551c699b575c7eec"
+      },
+      {
+        "path": "EMPIREAI_GENESIS.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b9f3dc1012781170b4579c163de429ed2ce22b24",
+        "size": 1947,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b9f3dc1012781170b4579c163de429ed2ce22b24"
+      },
+      {
+        "path": "EMPIREAI_GLOBAL_PRODUCT_INTELLIGENCE_ARCHITECTURE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c9841e55946ddd0344ac604bfddd4cfaa9743c33",
+        "size": 32627,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c9841e55946ddd0344ac604bfddd4cfaa9743c33"
+      },
+      {
+        "path": "EMPIREAI_GOVERNANCE_DOCTRINE_GVD.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "74f0c51c0af2e00f39cc2f52fea385412934620e",
+        "size": 3693,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/74f0c51c0af2e00f39cc2f52fea385412934620e"
+      },
+      {
+        "path": "EMPIREAI_GRAND_KINGS_REVENUE_ENGINE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c6bd306f655ea2d02a3fedd785dde8bee074c769",
+        "size": 55416,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c6bd306f655ea2d02a3fedd785dde8bee074c769"
+      },
+      {
+        "path": "EMPIREAI_JOURNEY_FIRST_DOCTRINE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "741568a4d1ffeb3f37173436a1f6d33dea84f235",
+        "size": 1378,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/741568a4d1ffeb3f37173436a1f6d33dea84f235"
+      },
+      {
+        "path": "EMPIREAI_PILLOW_ARCHITECTURE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "267377a50a540fddd438b82e66e0c602c787c1a4",
+        "size": 5118,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/267377a50a540fddd438b82e66e0c602c787c1a4"
+      },
+      {
+        "path": "EMPIREAI_PILLOW_CONSTITUTION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ae52bd43578365e2ce45297e1c694f876cee6a01",
+        "size": 18644,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/ae52bd43578365e2ce45297e1c694f876cee6a01"
+      },
+      {
+        "path": "EMPIREAI_PILLOW_EXECUTIVE_INTELLIGENCE_CONSTITUTION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2fbc9660157ff0f7170ac5434c336c696db7e1b0",
+        "size": 23789,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/2fbc9660157ff0f7170ac5434c336c696db7e1b0"
+      },
+      {
+        "path": "EMPIREAI_PILLOW_MEMORY_DOCTRINE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b3ee430aacededce04469b98f60ab27dd3b99b06",
+        "size": 2279,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b3ee430aacededce04469b98f60ab27dd3b99b06"
+      },
+      {
+        "path": "EMPIREAI_REALITY_V1.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bedb25e4e976d19532447049a56ef273f0323cc6",
+        "size": 30261,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/bedb25e4e976d19532447049a56ef273f0323cc6"
+      },
+      {
+        "path": "EMPIREAI_REPOSITORY_FIRST_DOCTRINE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "09d8c79cbc4407fd849260a4d162ee8a6979a361",
+        "size": 1794,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/09d8c79cbc4407fd849260a4d162ee8a6979a361"
+      },
+      {
+        "path": "EMPIREAI_REPOSITORY_MASTER_INDEX.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6a7a08bfd8cd119cda09a084813f266700e658af",
+        "size": 59595,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/6a7a08bfd8cd119cda09a084813f266700e658af"
+      },
+      {
+        "path": "EMPIREAI_ROADMAP.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d336f19ec63f909902d5d9ebf050361f9588131c",
+        "size": 7799,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/d336f19ec63f909902d5d9ebf050361f9588131c"
+      },
+      {
+        "path": "EMPIREAI_SOUL.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ca194e17336c064ce1cd13f3e371ffba20324fbb",
+        "size": 27656,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/ca194e17336c064ce1cd13f3e371ffba20324fbb"
+      },
+      {
+        "path": "EMPIREAI_STATUS.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "971210a2b93ff0d4692b927804b65ecc05a0e687",
+        "size": 10212,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/971210a2b93ff0d4692b927804b65ecc05a0e687"
+      },
+      {
+        "path": "EMPIREAI_STRENGTH_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d7639a4d86090746a220cb4942124e8a121ec09a",
+        "size": 2089,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/d7639a4d86090746a220cb4942124e8a121ec09a"
+      },
+      {
+        "path": "EMPIREAI_TOTAL_VIEW_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9b8a6f5dea6205be453f56ca2be50657a64573a3",
+        "size": 3766,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/9b8a6f5dea6205be453f56ca2be50657a64573a3"
+      },
+      {
+        "path": "EMPIREAI_UX_IDENTITY_DOCTRINE_UID.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1f5a8e552c74fbdefd0fbd33a00fc9f17286ef5b",
+        "size": 3135,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/1f5a8e552c74fbdefd0fbd33a00fc9f17286ef5b"
+      },
+      {
+        "path": "EMPIREAI_UX_MASTER_BLUEPRINT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0f9eea556161fce1d84b6e8663e56dc923e9e1e3",
+        "size": 35868,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/0f9eea556161fce1d84b6e8663e56dc923e9e1e3"
+      },
+      {
+        "path": "EMPIREAI_VISION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4a43b717df46be170d4d598ea47824e5e11e1eed",
+        "size": 25580,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/4a43b717df46be170d4d598ea47824e5e11e1eed"
+      },
+      {
+        "path": "EMPIRE_RETURN_PACKAGE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2f48f69f6b4a066850ad9ab44366914df6cee248",
+        "size": 6723,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/2f48f69f6b4a066850ad9ab44366914df6cee248"
+      },
+      {
+        "path": "EMPIRE_REVIEW_PACKAGE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e960fd220ffc8ba7dc1042c4a00dcbcc45d5f506",
+        "size": 81270,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/e960fd220ffc8ba7dc1042c4a00dcbcc45d5f506"
+      },
+      {
+        "path": "EXECUTIVE_AUDIT_REAL072_FRONTEND_PRODUCTION_BUILD_RECOVERY.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0f3b82475f8316a6e5f4d902be55570748dab538",
+        "size": 5314,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/0f3b82475f8316a6e5f4d902be55570748dab538"
+      },
+      {
+        "path": "GO-001_OPERATIONAL_READINESS_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c970ffc00f0e01f007aaf481307113042be05f29",
+        "size": 24329,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/c970ffc00f0e01f007aaf481307113042be05f29"
+      },
+      {
+        "path": "GO-002_GRAND_KING_OPERATIONAL_MASTER_PLAN.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ada910a0e04661e801f251c6eb7809ba1484562f",
+        "size": 42885,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/ada910a0e04661e801f251c6eb7809ba1484562f"
+      },
+      {
+        "path": "GRAND_KING_OPERATION_SIMULATION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ae114603f756a81e68b8171c2fbdc55d0b71c9fc",
+        "size": 20281,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/ae114603f756a81e68b8171c2fbdc55d0b71c9fc"
+      },
+      {
+        "path": "JOURNEY.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "87951f006d0f5b96b215d72c623f74544e06ca2f",
+        "size": 44958,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/87951f006d0f5b96b215d72c623f74544e06ca2f"
+      },
+      {
+        "path": "JOURNEY_AUDIT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "90903e5146b4879e95d19a2b8b065fe17da7b11a",
+        "size": 111340,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/90903e5146b4879e95d19a2b8b065fe17da7b11a"
+      },
+      {
+        "path": "JOURNEY_SYNCHRONIZATION_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a405cf9a82a168083fee5e05bbac3a1c7839e8fc",
+        "size": 4087,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/a405cf9a82a168083fee5e05bbac3a1c7839e8fc"
+      },
+      {
+        "path": "MARKETPLACE_OS_VISION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "322f9efdcd35438c8e5146f501babe9f719cbf2c",
+        "size": 10599,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/322f9efdcd35438c8e5146f501babe9f719cbf2c"
+      },
+      {
+        "path": "MASTER_COMPLETION_LEDGER.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fe6293bdefd926b8d67c6ba4367182c8fbb87003",
+        "size": 16385,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/fe6293bdefd926b8d67c6ba4367182c8fbb87003"
+      },
+      {
+        "path": "OPERATIONAL_ACCESS_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "53a2e9577ebb49143317834d821f944f641ad858",
+        "size": 8072,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/53a2e9577ebb49143317834d821f944f641ad858"
+      },
+      {
+        "path": "PILLOW_ARCHITECTURE_CONTRACT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bde310f1b43eb0f137e0eca7d4ecb8a3e702cb1f",
+        "size": 54043,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/bde310f1b43eb0f137e0eca7d4ecb8a3e702cb1f"
+      },
+      {
+        "path": "PILLOW_MISSION_STATE.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "daf09c6b6caf7455f7d22cf3cc6a4fd24a6b11e0",
+        "size": 22799,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/daf09c6b6caf7455f7d22cf3cc6a4fd24a6b11e0"
+      },
+      {
+        "path": "PILLOW_ROADMAP.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7d522f3b78e5b6f1681dcb542fa3a32ea50e242b",
+        "size": 20389,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/7d522f3b78e5b6f1681dcb542fa3a32ea50e242b"
+      },
+      {
+        "path": "PILLOW_RUNTIME_INTEGRATION_PLAN.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1fd9efac368ca42f180e36f1abe2e20e2faae607",
+        "size": 31259,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/1fd9efac368ca42f180e36f1abe2e20e2faae607"
+      },
+      {
+        "path": "PRODUCTION_ENVIRONMENT_CERTIFICATION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "569f76034a2b63a34102b4b40f2e55e1159c8911",
+        "size": 12317,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/569f76034a2b63a34102b4b40f2e55e1159c8911"
+      },
+      {
+        "path": "README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7793f25455ca2701a8aa8f31a92d8764172a754d",
+        "size": 3058,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/7793f25455ca2701a8aa8f31a92d8764172a754d"
+      },
+      {
+        "path": "REVENUE_MISSION_LEDGER.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "dd514040bef7ed388098f4d0dc6e78cbd54c55c0",
+        "size": 1929,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/dd514040bef7ed388098f4d0dc6e78cbd54c55c0"
+      },
+      {
+        "path": "SA-001_ARCHITECTS_FINAL_RECOMMENDATIONS.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "74a61cfe92425f40474ab6dedc1ad1eb6f3b2d94",
+        "size": 9723,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/74a61cfe92425f40474ab6dedc1ad1eb6f3b2d94"
+      },
+      {
+        "path": "SA-001_EXECUTIVE_SCORECARD.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "574db07053a14a470b619829e988dcf580ba04c8",
+        "size": 8329,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/574db07053a14a470b619829e988dcf580ba04c8"
+      },
+      {
+        "path": "SA-001_IMPLEMENTATION_PRIORITY.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "752135580a31afdea320c06d85c9201dd287afd9",
+        "size": 6612,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/752135580a31afdea320c06d85c9201dd287afd9"
+      },
+      {
+        "path": "SA-001_OPERATIONAL_READINESS.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9d6f778fd3f5097134125569c29273e717b0a832",
+        "size": 7886,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/9d6f778fd3f5097134125569c29273e717b0a832"
+      },
+      {
+        "path": "SA-001_SUPREME_EXECUTIVE_AUDIT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2d76eb0db5d7cbfe73dcd7d8fc810879e6781696",
+        "size": 17701,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/2d76eb0db5d7cbfe73dcd7d8fc810879e6781696"
+      },
+      {
+        "path": "SUPPLIER_READINESS_REPORT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ce70ba31557729f6696da35dcac7ba296d0fa5c7",
+        "size": 4559,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/ce70ba31557729f6696da35dcac7ba296d0fa5c7"
+      },
+      {
+        "path": "UX_BLUEPRINT_VALIDATION.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "19e51804d0754f4e304e25dbdbe7e9fe2e1789b7",
+        "size": 13039,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/19e51804d0754f4e304e25dbdbe7e9fe2e1789b7"
+      },
+      {
+        "path": "UX_IMPLEMENTATION_CONTRACT.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "069f45947abcf9bbc841d30c61234d2a11387191",
+        "size": 16838,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/069f45947abcf9bbc841d30c61234d2a11387191"
+      },
+      {
+        "path": "ai-agents",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "afb6349325e684120522688e91f3bcbbeeb7ac9e",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/afb6349325e684120522688e91f3bcbbeeb7ac9e"
+      },
+      {
+        "path": "api",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "b26857c8078cdccb0fb79c6e00300dddf7735ff2",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/b26857c8078cdccb0fb79c6e00300dddf7735ff2"
+      },
+      {
+        "path": "artifacts",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "bf9b1390cea2cbf4817ba93cb394da6af0cb0a03",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/bf9b1390cea2cbf4817ba93cb394da6af0cb0a03"
+      },
+      {
+        "path": "automation",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "8bfc2aa713bc69fd38a73b058fa368df8540c06a",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/8bfc2aa713bc69fd38a73b058fa368df8540c06a"
+      },
+      {
+        "path": "backend",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "2a395ac9a28b5c51df774c1b614611ed3477ad04",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/2a395ac9a28b5c51df774c1b614611ed3477ad04"
+      },
+      {
+        "path": "config",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "ca5a1ee0e5c35d574f5befe71f32cf0fff34dccf",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/ca5a1ee0e5c35d574f5befe71f32cf0fff34dccf"
+      },
+      {
+        "path": "database",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "15ac8dcf6d2678b30fc2b15914f69042f44503e0",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/15ac8dcf6d2678b30fc2b15914f69042f44503e0"
+      },
+      {
+        "path": "deployment",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "37bcf2ad38ad840779e301d9c628b7a1201b39bf",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/37bcf2ad38ad840779e301d9c628b7a1201b39bf"
+      },
+      {
+        "path": "docker-compose.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "127230e895a5df1544307fc242bcb21328c59209",
+        "size": 911,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/127230e895a5df1544307fc242bcb21328c59209"
+      },
+      {
+        "path": "docs",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "4f861d5b14c3a078dfa1aab34591bc6180ada80d",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/4f861d5b14c3a078dfa1aab34591bc6180ada80d"
+      },
+      {
+        "path": "empireai-web",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "88ae84c2bf3415a003b24b4f9e7e4aa936d9f007",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/88ae84c2bf3415a003b24b4f9e7e4aa936d9f007"
+      },
+      {
+        "path": "frontend",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "80be94d98da72c603979e854f9cc66bbb84cb7a4",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/80be94d98da72c603979e854f9cc66bbb84cb7a4"
+      },
+      {
+        "path": "gkr-test-output.txt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b4c6a4856f2a79b96baeb7c2068e7c1ca84c1b54",
+        "size": 309614,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b4c6a4856f2a79b96baeb7c2068e7c1ca84c1b54"
+      },
+      {
+        "path": "marketing",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "0fad206071393173ae99baeb0d1756c910788639",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/0fad206071393173ae99baeb0d1756c910788639"
+      },
+      {
+        "path": "nixpacks.toml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e83720ed46f0667b9b36984ca54428dabbb62092",
+        "size": 404,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/e83720ed46f0667b9b36984ca54428dabbb62092"
+      },
+      {
+        "path": "package-lock.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fbd0c81a86377a4209e45a60ffac5590aed2dd3b",
+        "size": 68427,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/fbd0c81a86377a4209e45a60ffac5590aed2dd3b"
+      },
+      {
+        "path": "package.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "df28a62d2bfd832570d7d531b71e68df1f4c3eb0",
+        "size": 2729,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/df28a62d2bfd832570d7d531b71e68df1f4c3eb0"
+      },
+      {
+        "path": "pillow",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "a1e24e3d7e9fedee356190bf2f10a9dc5c08b0af",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/a1e24e3d7e9fedee356190bf2f10a9dc5c08b0af"
+      },
+      {
+        "path": "railpack.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7928fa1e483e2527dba14f345ba0d7919a956be5",
+        "size": 240,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/7928fa1e483e2527dba14f345ba0d7919a956be5"
+      },
+      {
+        "path": "railway.toml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b9255a575b99b1af356a49f912c3d3addc5914a6",
+        "size": 941,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b9255a575b99b1af356a49f912c3d3addc5914a6"
+      },
+      {
+        "path": "railway.worker.toml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b5f4b93abf57e37c1ffecbbc7044151702a1e0ee",
+        "size": 474,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/b5f4b93abf57e37c1ffecbbc7044151702a1e0ee"
+      },
+      {
+        "path": "scripts",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "0e1318e6075b3fae33589c58f87f923aff0e3c58",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/0e1318e6075b3fae33589c58f87f923aff0e3c58"
+      },
+      {
+        "path": "tests",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "f3ebcc4ee8060bf9b4aa4e382aee30e55827083c",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/f3ebcc4ee8060bf9b4aa4e382aee30e55827083c"
+      },
+      {
+        "path": "vercel.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f2911108b1b87d33d77fba4c385ebed01a92b7b6",
+        "size": 524,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs/f2911108b1b87d33d77fba4c385ebed01a92b7b6"
+      }
+    ],
+    "truncated": false
+  },
+  "branch": {
+    "ref": "refs/heads/work8/staged-reconstructed-verified-20261015-5d1f5b32",
+    "node_id": "REF_kwDOTA0IHNoAQHJlZnMvaGVhZHMvd29yazgvc3RhZ2VkLXJlY29uc3RydWN0ZWQtdmVyaWZpZWQtMjAyNjEwMTUtNWQxZjViMzI",
+    "url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs/heads/work8/staged-reconstructed-verified-20261015-5d1f5b32",
+    "object": {
+      "sha": "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+      "type": "commit",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/5cf07fd4738c3e51cad6ce8ac16509ddd0b82907"
+    }
+  },
+  "blobContent": "import fs from 'node:fs';\nimport os from 'node:os';\nimport path from 'node:path';\nimport { getPillowHost } from '../../orchestration/pillow-host/index.js';\nimport { PillowSessionStore } from '../../orchestration/pillow-host/session-store.js';\nimport { IntelligenceStore } from '../../intelligence/store.js';\nimport { digest } from '../../intelligence/model.js';\nimport { sourceProductContext } from '../../intelligence/work8-product-context.js';\nimport { ReasoningState } from '../../orchestration/pillow-host/reasoning-state.js';\nimport assert from 'node:assert/strict';\nimport { test } from 'node:test';\nimport { buildApp } from '../../app.js';\nimport { env } from '../../config/env.js';\nimport { configureValidationEnvironment } from '../harness.js';\n\ntest('fresh authenticated conversation is allowed while Birth and commerce stay locked', async () => {\n  configureValidationEnvironment();\n  const previous = process.env.EMPIRE_RUNTIME_PROFILE;\n  process.env.EMPIRE_RUNTIME_PROFILE = 'LOCKED_COMMISSIONING_V1';\n  process.env.EMPIRE_ENGINEERING_TEST_MODE = 'true';\n  const historyRoot=fs.mkdtempSync(path.join(os.tmpdir(),'authenticated-history-'));\n  fs.mkdirSync(path.join(historyRoot,'commissioning'));\n  const originalMount=process.env.RAILWAY_VOLUME_MOUNT_PATH,originalPath=process.env.DATABASE_PATH;\n  process.env.RAILWAY_VOLUME_MOUNT_PATH=historyRoot;\n  process.env.DATABASE_PATH=path.join(historyRoot,'commissioning','empireai-brain.db');\n  const empire = await buildApp({ startWorkers: false, startScheduler: false, pillowEnabled: true, earlyListen: true });\n  try {\n    const create = (cookie?: string, workspaceId?: string) => empire.app.inject({\n      method: 'POST', url: '/api/pillow/session',\n      headers: cookie ? { cookie } : {}, payload: { forceNew: true, ...(workspaceId ? { workspaceId } : {}) },\n    });\n    assert.equal((await create()).statusCode, 401);\n    const login = await empire.app.inject({ method: 'POST', url: '/auth/login',\n      payload: { email: env.FOUNDER_EMAIL, password: env.FOUNDER_PASSWORD } });\n    assert.equal(login.statusCode, 200);\n    const cookie = String(login.headers['set-cookie']);\n    assert.equal((await create(cookie, 'unauthorized-workspace')).statusCode, 403);\n    const session = await create(cookie);\n    assert.equal(session.statusCode, 201, session.body);\n    const sessionId = session.json().session.sessionId;\n    assert.ok(sessionId);\n    const history = await empire.app.inject({ method: 'GET', url: `/api/pillow/history?sessionId=${encodeURIComponent(sessionId)}`, headers: { cookie } });\n    assert.equal(history.statusCode, 200, history.body);\n    const phone = await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie},payload:{historicalBrowserTurns:[{role:'assistant',content:'Historical device statement, not verified inference',timestamp:'2026-01-01T00:00:00.000Z'}]}});\n    assert.equal(phone.statusCode,201,phone.body);assert.equal(phone.json().historicalArchiveAccepted,true);\n    const desktopLogin=await empire.app.inject({method:'POST',url:'/auth/login',payload:{email:env.FOUNDER_EMAIL,password:env.FOUNDER_PASSWORD}});\n    const desktopCookie=String(desktopLogin.headers['set-cookie']);\n    const desktop=await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie:desktopCookie},payload:{}});\n    assert.equal(desktop.statusCode,201,desktop.body);assert.equal(desktop.json().session.sessionId,phone.json().session.sessionId);\n    const shared=await empire.app.inject({method:'GET',url:`/api/pillow/history?sessionId=${desktop.json().session.sessionId}`,headers:{cookie:desktopCookie}});\n    assert.equal(shared.statusCode,200);assert.equal(shared.json().historicalArchive.length,1);assert.equal(shared.json().historicalArchive[0].verified,false);assert.equal(shared.json().history.length,0);\n    assert.equal((await empire.app.inject({method:'GET',url:`/api/pillow/history?sessionId=${desktop.json().session.sessionId}`})).statusCode,401);\n    for (const url of ['/pillow-commissioning/birth/authorise', '/api/pillow/mission-runtime/execute', '/brain/dispatch', '/marketplace-publishing/execute', '/amazon/inventory', '/amazon/price', '/live-cj-fulfillment/submit-live', '/payments', '/fulfilment', '/providers/write']) {\n      const denied = await empire.app.inject({ method: 'POST', url, headers: { cookie }, payload: { approved: true, force: true } });\n      assert.equal(denied.statusCode, 423, url);\n      assert.equal(denied.json().birth, 'NOT_BORN');\n      assert.equal(denied.json().commerce, 'LOCKED');\n    }\n    assert.equal((await empire.app.inject({ method: 'DELETE', url: `/api/pillow/session?sessionId=${encodeURIComponent(sessionId)}`, headers: { cookie } })).statusCode, 423);\n    // Exercise the actual host glue, substituting only paid inference transport.\n    const root=path.join(historyRoot,'host-reasoning');\n    fs.mkdirSync(path.join(root,'commissioning'),{recursive:true});\n    const savedPath=process.env.DATABASE_PATH,savedMount=process.env.RAILWAY_VOLUME_MOUNT_PATH;\n    const host:any=getPillowHost(),savedLayer=host.llmLayer;\n    try {\n      process.env.RAILWAY_VOLUME_MOUNT_PATH=root;\n      process.env.DATABASE_PATH=path.join(root,'commissioning','empireai-brain.db');\n      let captured:any;\n      host.llmLayer={listAvailableProviders:()=>['openai'],complete:async(input:any)=>{\n        captured=input;return {content:'The repository excerpt is historical evidence, not permission.',provider:'openai',model:'offline-fixture',mode:'general_intelligence',usage:{promptTokens:1,completionTokens:1,totalTokens:2}};\n      }};\n      const result=await host.routePrompt({workspaceId:session.json().session.workspaceId,sessionId,message:'Explain the repository architecture.',reasoningOnly:true,actor:env.FOUNDER_EMAIL,correlationId:'host-integration-fixture'});\n      assert.ok(captured,'actual host reached inference boundary');\n      assert.ok(captured.operationalContext.slices.length>0,'repository reads reached inference');\n      assert.match(captured.operationalContext.repositoryKnowledgeAnswer,/mission-runtime/);\n      assert.equal(typeof captured.executeReadOnlyCalls,'function');\n      assert.ok(result.readOnlyReceipts.length>=3);\n      const state=new ReasoningState(path.join(root,'commissioning','pillow-reasoning.sqlite'));\n      assert.equal(state.pending(session.json().session.workspaceId).length,1);\n      assert.ok(state.load(session.json().session.workspaceId,sessionId)?.some(t=>t.role==='assistant'));\n      // Exercise the existing host, actual SQLite persistence and authenticated history route.\n      // Only provider transport is intercepted. The source is a retained genuine observation\n      // replayed at its observation-era clock, never represented as current supplier evidence.\n      const retained=JSON.parse(fs.readFileSync(new URL('../../../../docs/work8/source-authentic-readback.json',import.meta.url),'utf8'));\n      const evidence=retained[0].data,observedAt=Date.parse('2026-10-10T18:40:00Z');\n      const intelligence=new IntelligenceStore(path.join(root,'history-source.sqlite'),()=>observedAt);\n      const principal={workspace:session.json().session.workspaceId,owner:login.json().user.id};\n      assert.equal(typeof principal.owner,'string');\n      intelligence.evidence(principal.workspace,evidence);\n      const sources=[{id:evidence.id,envelopeDigest:digest(evidence)}];\n      const sourceState={id:'cj:history-retained-variant',productId:evidence.subject.id,subject:{...evidence.subject,variant:evidence.facts.response.variants[0].vid,destination:'US'},status:'DEFERRED',sources,evidenceSnapshotDigest:digest(sources),jobs:[]};\n      const body={id:'enrichment:00000001',sequence:1,previous:null,state:sourceState,at:observedAt},receipt={...body,digest:digest(body)};\n      intelligence.put(principal.workspace,'work8_enrichment',sourceState.id,sourceState);\n      intelligence.put(principal.workspace,'work8_enrichment_receipt',body.id,receipt);\n      intelligence.put(principal.workspace,'work8_enrichment_head','head',{sequence:1,digest:receipt.digest});\n      const bound=sourceProductContext(intelligence,principal,{kind:'SOURCE_DOSSIER',candidateId:sourceState.id},true);\n      const expected=structuredClone(bound),productRequest='pcr_a8a8a8a8a8a8a8a8';\n      captured=undefined;\n      await host.routePrompt({workspaceId:principal.workspace,sessionId,message:'Explain this historical product and its unknown stock and freight.',reasoningOnly:true,actor:env.FOUNDER_EMAIL,correlationId:productRequest,workspaceContext:{screenPath:'/cockpit/products',screenId:'products',screenTitle:'Products',productContext:bound}});\n      assert.ok(captured,'actual host product request reached intercepted inference');\n      assert.ok(JSON.stringify(captured).includes(expected.reference.contextDigest),'original source pin reached inference input');\n      const originalStore=host.sessionStore;\n      try {\n        // Force actual history route through a fresh store reading persisted bytes.\n        host.sessionStore=new PillowSessionStore(()=>new ReasoningState(path.join(root,'commissioning','pillow-reasoning.sqlite')));\n        intelligence.put(principal.workspace,'evidence',evidence.id,{...evidence,subject:{...evidence.subject,id:'later-changed-source'}});\n        assert.throws(()=>sourceProductContext(intelligence,principal,expected.reference));\n        const restored=await empire.app.inject({method:'GET',url:`/api/pillow/history?sessionId=${encodeURIComponent(sessionId)}`,headers:{cookie}});\n        assert.equal(restored.statusCode,200,restored.body);\n        const turn=restored.json().history.find((item:any)=>item.requestId===productRequest&&item.role==='user');\n        assert.ok(turn,'original source-bound request retained after durable reload');\n        assert.deepEqual(turn.productContext,expected);\n        assert.equal(turn.productContext.qualification.supplier.stock,null);\n        assert.equal(turn.productContext.qualification.supplier.freight.amount,null);\n        assert.equal(turn.productContext.grantsAuthority,false);\n        assert.equal(restored.json().approvalState,'none');\n        assert.equal((await empire.app.inject({method:'GET',url:`/api/pillow/history?sessionId=${encodeURIComponent(sessionId)}`})).statusCode,401);\n        assert.equal((await empire.app.inject({method:'GET',url:`/api/pillow/history?sessionId=${encodeURIComponent(sessionId)}&workspaceId=foreign`,headers:{cookie}})).statusCode,403);\n      } finally { host.sessionStore=originalStore; }\n      const intent='Compare two maintenance windows and identify unknowns.';\n      const options={message:intent,capability:'critique',consultation:{providers:['anthropic','gemini'],justification:'Independent review of maintenance uncertainty'},calculations:[{operation:'multiply',left:'9.75',right:'4'}]};\n      await host.routePrompt({workspaceId:session.json().session.workspaceId,sessionId,message:'/pillow-request '+JSON.stringify(options),reasoningOnly:true,actor:env.FOUNDER_EMAIL,correlationId:'envelope-general-fixture'});\n      assert.equal(captured.reasoningPlan.message,intent);\n      assert.deepEqual(captured.reasoningPlan.consultation,options.consultation);\n      assert.ok(!captured.userMessage.includes('/pillow-request'));\n      let failedAttempts=0;\n      host.llmLayer={listAvailableProviders:()=>['anthropic'],complete:async()=>{failedAttempts++;throw Error('synthetic provider failure');}};\n      const failed=await host.routePrompt({workspaceId:session.json().session.workspaceId,sessionId,message:intent,reasoningOnly:true,actor:env.FOUNDER_EMAIL,correlationId:'failed-inference-fixture'});\n      assert.equal(failedAttempts,1);\n      assert.deepEqual(failed.reasoningFailure,{code:'INFERENCE_FAILED',retryable:false,providerCompleted:false});\n      assert.equal(failed.degradedUsed,true);\n      assert.equal(failed.message,'Pillow could not complete the provider inference. The original request and spending reservation are retained for investigation. No retry was submitted.');\n      assert.doesNotMatch(failed.message,/Recommended first moves|Unsupported as established fact|synthetic provider failure/);\n\n    } finally {\n      host.llmLayer=savedLayer;\n      if(savedPath===undefined)delete process.env.DATABASE_PATH;else process.env.DATABASE_PATH=savedPath;\n      if(savedMount===undefined)delete process.env.RAILWAY_VOLUME_MOUNT_PATH;else process.env.RAILWAY_VOLUME_MOUNT_PATH=savedMount;\n    }\n\n  } finally {\n    await empire.shutdown();\n    if(originalPath===undefined)delete process.env.DATABASE_PATH;else process.env.DATABASE_PATH=originalPath;\n    if(originalMount===undefined)delete process.env.RAILWAY_VOLUME_MOUNT_PATH;else process.env.RAILWAY_VOLUME_MOUNT_PATH=originalMount;\n    fs.rmSync(historyRoot,{recursive:true,force:true});\n    if (previous === undefined) delete process.env.EMPIRE_RUNTIME_PROFILE;\n    else process.env.EMPIRE_RUNTIME_PROFILE = previous;\n  }\n});\n"
+}

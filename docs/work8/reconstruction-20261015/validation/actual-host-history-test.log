@@ -1,0 +1,51 @@
+{"level":30,"time":1792054661901,"pid":10,"hostname":"4a43dad59fa3","redisUrl":"redis://127.0.0.1:6379","clientKind":"probe","msg":"Creating ioredis client"}
+{"level":50,"time":1792054661920,"pid":10,"hostname":"4a43dad59fa3","host":"127.0.0.1","errorMessage":"connect ECONNREFUSED 127.0.0.1:6379","errorName":"Error","errorStack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16)","err":{"type":"Error","message":"connect ECONNREFUSED 127.0.0.1:6379","stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379},"msg":"Redis connection failed"}
+{"level":40,"time":1792054661923,"pid":10,"hostname":"4a43dad59fa3","msg":"Redis unavailable — running in local degraded mode (queue/events/sessions in-memory). Start Redis with: redis-server, Upstash REDIS_URL, or npm run dev:redis (optional Docker)"}
+{"level":30,"time":1792054662263,"pid":10,"hostname":"4a43dad59fa3","dbPath":"/tmp/authenticated-history-BhtJvk/commissioning/empireai-brain.db","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1792054662344,"pid":10,"hostname":"4a43dad59fa3","msg":"Event bus started (local in-memory mode)"}
+{"level":30,"time":1792054662345,"pid":10,"hostname":"4a43dad59fa3","agents":13,"tools":944,"llmProviders":[],"redisMode":"degraded","msg":"EmpireAI Brain initialized"}
+{"level":30,"time":1792054662945,"pid":10,"hostname":"4a43dad59fa3","email":"founder@empireai.com","role":"founder","msg":"Seeded bootstrap account"}
+{"level":30,"time":1792054663591,"pid":10,"hostname":"4a43dad59fa3","email":"admin@empireai.com","role":"admin","msg":"Seeded bootstrap account"}
+{"level":30,"time":1792054663591,"pid":10,"hostname":"4a43dad59fa3","msg":"Event stream hub started"}
+{"level":30,"time":1792054663842,"pid":10,"hostname":"4a43dad59fa3","msg":"Auth routes registered"}
+{"level":30,"time":1792054666912,"pid":10,"hostname":"4a43dad59fa3","workspaceId":"ws_empire_1","seeded":47,"total":47,"birthCreated":38,"msg":"Institutional memory bootstrap complete"}
+{"level":30,"time":1792054666912,"pid":10,"hostname":"4a43dad59fa3","seeded":{"seeded":47,"keys":["gk.directive.first_dollar_dropshipping","gk.directive.pillow_initiates_commerce","gk.directive.cursor_minimization","gk.directive.no_publish_without_approval","commerce.lesson.accepted_ne_buyable","commerce.lesson.anker_brand_gate","commerce.lesson.preflight_restrictions_mandatory","ops.lesson.eos_session_storm","collab.memory.ready","birth.lesson.estimate_ne_realised","birth.lesson.cooccurrence_ne_identity","birth.lesson.unknown_stays_local","birth.lesson.hypothetical_ne_current","birth.lesson.synthetic_isolation","birth.lesson.current_turn_intent","birth.lesson.partial_gate_ne_full_unlock","birth.lesson.eligibility_ne_preference","birth.lesson.observation_ne_causation","birth.lesson.canonical_proposition_authority","birth.lesson.compound_claim_all_components","birth.lesson.auth_ne_capability","birth.lesson.capability_ne_execution","birth.lesson.newer_owner_wins","birth.lesson.accepted_request_server_owned","birth.lesson.cumulative_exposure_propagates","birth.lesson.sibling_identity","birth.lesson.no_lifecycle_residue_on_evidence","birth.lesson.first_accepted_must_complete","birth.lesson.normal_response_no_recovery_residue","birth.lesson.certification_grades_visible_surface","birth.lesson.first_request_vs_retry","birth.lesson.http_success_ne_semantic_success","birth.lesson.later_outcome_ne_nonoccurrence","birth.lesson.explicit_claim_set_complete","birth.lesson.memory_transfers_principle_not_surface","birth.lesson.exact_section_contract","birth.lesson.middle_claim_cannot_drop","birth.lesson.cross_section_conclusion_reuse","birth.lesson.lesson_principle_not_dump","birth.lesson.source_domain_surface_purity","birth.lesson.registry_outranks_cooccurrence","birth.lesson.measured_subset_not_full_population","birth.lesson.section_headings_are_not_claims","birth.lesson.no_duplicate_post_answer_synthesis","birth.lesson.evidence_ne_authority_route","birth.lesson.temporal_supersession","birth.doctrine.grand_king_ultimate"]},"msg":"Institutional memory bootstrap seeded"}
+{"level":30,"time":1792054666912,"pid":10,"hostname":"4a43dad59fa3","msg":"Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)"}
+{"level":30,"time":1792054672590,"pid":10,"hostname":"4a43dad59fa3","repositoryRoot":"/workspace/scratch/e235d347250e/reconstruction/integration/repo","llmProviders":[],"msg":"Pillow host started (PILLOW-016)"}
+{"level":30,"time":1792054673403,"pid":10,"hostname":"4a43dad59fa3","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✖ fresh authenticated conversation is allowed while Birth and commerce stay locked (12245.655539ms)
+{"level":30,"time":1792054673660,"pid":10,"hostname":"4a43dad59fa3","dbPath":"/tmp/host-reasoning-9UVk3s/commissioning/empireai-brain.db","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1792054673832,"pid":10,"hostname":"4a43dad59fa3","requestId":"f1851385-27f3-4177-bd07-13775eb9121f","trace":{"digitalSoulGateMs":2,"responseContractMs":21,"shadowCeoAdmissionMs":0,"executiveReasoningMs":19,"executiveDeliberationMs":0,"executiveCouncilMs":427,"llmMs":27,"totalMs":500},"kind":"llm","provider":"openai","logResult":"success","retryUsed":false,"degradedUsed":false,"msg":"Pillow chat trace"}
+{"level":30,"time":1792054673975,"pid":10,"hostname":"4a43dad59fa3","requestId":"pcr_a8a8a8a8a8a8a8a8","trace":{"digitalSoulGateMs":0,"responseContractMs":0,"shadowCeoAdmissionMs":0,"executiveReasoningMs":9,"executiveDeliberationMs":0,"executiveCouncilMs":66,"llmMs":12,"totalMs":93},"kind":"llm","provider":"openai","logResult":"success","retryUsed":false,"degradedUsed":false,"msg":"Pillow chat trace"}
+{"level":30,"time":1792054674051,"pid":10,"hostname":"4a43dad59fa3","requestId":"5525bfd5-b92d-40e9-9859-226175b77b42","trace":{"digitalSoulGateMs":0,"responseContractMs":0,"shadowCeoAdmissionMs":0,"executiveReasoningMs":5,"executiveDeliberationMs":0,"executiveCouncilMs":44,"llmMs":3,"totalMs":54},"kind":"llm","provider":"openai","logResult":"success","retryUsed":false,"degradedUsed":false,"msg":"Pillow chat trace"}
+{"level":30,"time":1792054674097,"pid":10,"hostname":"4a43dad59fa3","requestId":"9e66761a-a7fd-4e4f-bec3-796c01827fda","trace":{"digitalSoulGateMs":0,"responseContractMs":0,"shadowCeoAdmissionMs":0,"executiveReasoningMs":4,"executiveDeliberationMs":0,"executiveCouncilMs":35,"llmMs":1,"totalMs":41},"kind":"degraded_useful","logResult":"degraded_after_llm_failure","retryUsed":false,"degradedUsed":true,"msg":"Pillow chat trace"}
+{"level":30,"time":1792054674131,"pid":10,"hostname":"4a43dad59fa3","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35369.168038
+
+✖ failing tests:
+
+test at src/validation/tests/locked-fresh-session.test.ts:1:801
+✖ fresh authenticated conversation is allowed while Birth and commerce stay locked (12245.655539ms)
+  Error: ENOENT: no such file or directory, lstat '/tmp/host-reasoning-9UVk3s/commissioning/empireai-brain.db.sqljs-owner.sqlite'
+      at Object.lstatSync (node:fs:1771:25)
+      at Object.assertOwned (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/brain/sqlite-process-owner.ts:27:134)
+      at EmpireDatabase.flushPersistSync (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/brain/sqlite-database.ts:699:26)
+      at EmpireDatabase.close (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/brain/sqlite-database.ts:366:39)
+      at closeDatabase (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/brain/database.ts:2102:16)
+      at getDatabase (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/brain/database.ts:40:5)
+      at AuditLogger.write (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/brain/audit/audit-logger.ts:13:16)
+      at AuditLogger.auditLogger.write (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/foundation/soul-runtime/services/soul-runtime-engine.ts:39:22)
+      at PillowHost.stopPillow (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/orchestration/pillow-host/pillow-host.ts:393:27)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'lstat',
+    path: '/tmp/host-reasoning-9UVk3s/commissioning/empireai-brain.db.sqljs-owner.sqlite'
+  }

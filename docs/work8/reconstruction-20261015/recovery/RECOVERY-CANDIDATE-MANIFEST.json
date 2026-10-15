@@ -1,0 +1,72 @@
+{
+  "baseCommit": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+  "classification": "NEW_OWNER_AUTHORISED_RECONSTRUCTION_NOT_RECOVERED_LOST_BYTES",
+  "files": [
+    {
+      "path": "backend/src/runtime/work8-generated-startup-protocol.ts",
+      "mode": "100644",
+      "sha256": "2b136919ede879cbab5197308b736e3a1d4aead68f1fb0b90ffb753973086122",
+      "gitBlob": "765bf972f0969e9e6f8689c618876dfcc046e887",
+      "baseBlob": null,
+      "bytes": 1407
+    },
+    {
+      "path": "backend/src/runtime/work8-generated-worker-adoption.ts",
+      "mode": "100644",
+      "sha256": "e6214d72c16c4684de317a3e9438198b1a5bb01d3772b5c878916e81c2dbf0be",
+      "gitBlob": "7da637afec534243839b29208936ed6714182d3c",
+      "baseBlob": "a011d4bf6278cd603394f9e4f6513318d96771d2",
+      "bytes": 11112
+    },
+    {
+      "path": "scripts/work8/hh4-generated-worker.mjs",
+      "mode": "100644",
+      "sha256": "11e01376eca681e38d8bf2e3546e9e9c3bab1d1f1b31c3d233ae79c5d7b51037",
+      "gitBlob": "dabd6fd3aaebf69f21d41d1432300da99ca00083",
+      "baseBlob": "148d224b0e2981e7591b8441aaeade7a421ae304",
+      "bytes": 4354
+    },
+    {
+      "path": "backend/src/validation/tests/work8-generated-startup-protocol.test.ts",
+      "mode": "100644",
+      "sha256": "4d3b8fa8af913419f3368f7905079cdb5b8558a43502059132a6b8ac209ecad4",
+      "gitBlob": "225ea3dba3f6e330907a0dae4ad8bda83c3658c8",
+      "baseBlob": null,
+      "bytes": 1825
+    },
+    {
+      "path": "backend/src/validation/tests/capture-shared-brain-redis.test.ts",
+      "mode": "100644",
+      "sha256": "a56f5d4c7e7b92f1771c25fb50e00377c5051eef7afe3a42ed59323f951b19c7",
+      "gitBlob": "1173a414e2c553c2d13db77d93f21f3787fc6852",
+      "baseBlob": "fa0f43cb20aa28da91c1800c0190acf84f7faa14",
+      "bytes": 45022
+    },
+    {
+      "path": "backend/src/validation/tests/fixtures/work8-replay-capture-child.ts",
+      "mode": "100644",
+      "sha256": "1911bdc440a06a5636ce90dd5130a6de55ff1d01eadaf1b7e9cac7be0fdd30bc",
+      "gitBlob": "16ec4423652ef4e5aa088e6ccd9cb5a1b8d637ed",
+      "baseBlob": "a2ce34cbebcbfd674580a7d745ba7bd40f49ee62",
+      "bytes": 8892
+    },
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "sha256": "190b5ddd6d168a409e1971a9fcfd59748c4f04af2207cd75735f3b14a36a7199",
+      "gitBlob": "7289b76d4ba2136fa1128e0bcf77d967fb043da5",
+      "baseBlob": "a0c8d9d7ff82b16b2c78e71e4efc603da29780ab",
+      "bytes": 34399
+    }
+  ],
+  "tests": {
+    "protocol": "3 PASS",
+    "workerSyntax": "PASS",
+    "realRedisSession": "NOT_RUN_REDIS_BINARY_UNAVAILABLE",
+    "fullTypeScript": "Initial default2GB OOM; parent integrated4GB compile pending",
+    "hostedHH4": "PENDING_EXACT_TREE_PUBLICATION_AUTHORITY"
+  },
+  "sessionCorrection": "No production session restoration mutation needed: existing binary restore preserves token/identity/absolute expiration. Extended actual restoration examination to require original authenticated session before capture and same principal via bearer/cookie after distinct replacement and AOF restart. Full application operational restoration remains pending.",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

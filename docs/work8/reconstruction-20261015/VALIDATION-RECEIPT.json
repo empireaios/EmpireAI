@@ -1,0 +1,54 @@
+{
+  "sourceCommit": "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+  "sourceTree": "5d1f5b32ee598225b87912c43351307504431c1a",
+  "baseBackend": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+  "baseEvidence": "740c6fbca69fe28aa16a5cede1c4c362109038cb",
+  "localNode": "24.19.0",
+  "hostedRequiredNode": "22.23.2",
+  "backendCompile": {
+    "status": "PASS",
+    "exitCode": 0,
+    "session": 48782,
+    "command": "node --max-old-space-size=4096 node_modules/typescript/bin/tsc -p tsconfig.json --incremental --tsBuildInfoFile ../reconstruction-final.tsbuildinfo",
+    "log": "validation/backend-compile-complete.log"
+  },
+  "pillowCompile": "PASS",
+  "frontendTests": "6 PASS",
+  "frontendTypecheck": "PASS",
+  "frontendBuild": "PASS",
+  "startupProtocolTests": "3 PASS",
+  "durableHistoryTests": "2 PASS",
+  "actualHostHistory": {
+    "status": "PASS",
+    "tests": 1,
+    "fail": 0,
+    "skip": 0,
+    "exitCode": 0,
+    "session": 10245,
+    "log": "validation/actual-host-history-complete.log",
+    "limits": "Actual host/provider transport intercepted, SQLite fresh store and authenticated history route; not native browser or HTTP chat admission proof. Local Redis unavailable so this is not Redis session-restoration evidence."
+  },
+  "historyTestRepairs": [
+    "Keep fixture directory until application shutdown",
+    "Exact published providerCompleted:false contract expectation",
+    "Exact published failure-message equality, forbidden content assertions preserved"
+  ],
+  "authSessionRestoration": "Hosted Redis capture/replacement/AOF examination selected but not run locally",
+  "HH4Hosted": "NOT_RUN_ON_CANDIDATE",
+  "native": "NOT_EXECUTED_ENVIRONMENT_BLOCKED",
+  "A11": "PENDING_SOURCE_CONFIRMED_PENDING_EDIT_APPROVAL_INVALIDATION_GAP",
+  "newOriginalAcceptances": [],
+  "newAmendmentAcceptances": [],
+  "accepted": 41,
+  "outstanding": 23,
+  "governance": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "merge": false,
+    "productionDeployment": false,
+    "paidInference": 0,
+    "liveCommerce": 0
+  },
+  "sourceChanges": "Only authorized reconstructed startup/history production boundaries; existing authenticated session preservation retained and examination extended. Recovered accepted frontend lineage integrated. Test and CI wiring additive; no accepted assertions weakened."
+}

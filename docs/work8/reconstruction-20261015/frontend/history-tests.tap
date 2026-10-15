@@ -1,0 +1,14 @@
+✔ client refuses forged identity fields, scopes comparisons and requires exact server readback (26.576603ms)
+✔ one identity renders the authoritative answer even with different archived content (4.113536ms)
+✔ legacy host/transport IDs reconcile through unique matching owner interaction (12.899062ms)
+✔ same text in distinct interactions remains distinct (0.830832ms)
+✔ ambiguous legacy anchors and orphan archives are preserved (0.741553ms)
+✔ server product snapshot survives history hydration and wins over forged cached context (18.254168ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 655.668284

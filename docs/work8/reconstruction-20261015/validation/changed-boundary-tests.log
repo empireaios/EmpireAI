@@ -1,0 +1,53 @@
+{"level":30,"time":1792054536127,"pid":10,"hostname":"4a43dad59fa3","redisUrl":"redis://127.0.0.1:6379","clientKind":"probe","msg":"Creating ioredis client"}
+{"level":50,"time":1792054536179,"pid":10,"hostname":"4a43dad59fa3","host":"127.0.0.1","errorMessage":"connect ECONNREFUSED 127.0.0.1:6379","errorName":"Error","errorStack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16)","err":{"type":"Error","message":"connect ECONNREFUSED 127.0.0.1:6379","stack":"Error: connect ECONNREFUSED 127.0.0.1:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16)","errno":-111,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":6379},"msg":"Redis connection failed"}
+{"level":40,"time":1792054536187,"pid":10,"hostname":"4a43dad59fa3","msg":"Redis unavailable — running in local degraded mode (queue/events/sessions in-memory). Start Redis with: redis-server, Upstash REDIS_URL, or npm run dev:redis (optional Docker)"}
+{"level":30,"time":1792054536559,"pid":10,"hostname":"4a43dad59fa3","dbPath":"/tmp/authenticated-history-pDANZQ/commissioning/empireai-brain.db","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1792054536730,"pid":10,"hostname":"4a43dad59fa3","msg":"Event bus started (local in-memory mode)"}
+{"level":30,"time":1792054536730,"pid":10,"hostname":"4a43dad59fa3","agents":13,"tools":944,"llmProviders":[],"redisMode":"degraded","msg":"EmpireAI Brain initialized"}
+{"level":30,"time":1792054537361,"pid":10,"hostname":"4a43dad59fa3","email":"founder@empireai.com","role":"founder","msg":"Seeded bootstrap account"}
+{"level":30,"time":1792054538065,"pid":10,"hostname":"4a43dad59fa3","email":"admin@empireai.com","role":"admin","msg":"Seeded bootstrap account"}
+{"level":30,"time":1792054538067,"pid":10,"hostname":"4a43dad59fa3","msg":"Event stream hub started"}
+{"level":30,"time":1792054538335,"pid":10,"hostname":"4a43dad59fa3","msg":"Auth routes registered"}
+{"level":30,"time":1792054541133,"pid":10,"hostname":"4a43dad59fa3","workspaceId":"ws_empire_1","seeded":47,"total":47,"birthCreated":38,"msg":"Institutional memory bootstrap complete"}
+{"level":30,"time":1792054541134,"pid":10,"hostname":"4a43dad59fa3","seeded":{"seeded":47,"keys":["gk.directive.first_dollar_dropshipping","gk.directive.pillow_initiates_commerce","gk.directive.cursor_minimization","gk.directive.no_publish_without_approval","commerce.lesson.accepted_ne_buyable","commerce.lesson.anker_brand_gate","commerce.lesson.preflight_restrictions_mandatory","ops.lesson.eos_session_storm","collab.memory.ready","birth.lesson.estimate_ne_realised","birth.lesson.cooccurrence_ne_identity","birth.lesson.unknown_stays_local","birth.lesson.hypothetical_ne_current","birth.lesson.synthetic_isolation","birth.lesson.current_turn_intent","birth.lesson.partial_gate_ne_full_unlock","birth.lesson.eligibility_ne_preference","birth.lesson.observation_ne_causation","birth.lesson.canonical_proposition_authority","birth.lesson.compound_claim_all_components","birth.lesson.auth_ne_capability","birth.lesson.capability_ne_execution","birth.lesson.newer_owner_wins","birth.lesson.accepted_request_server_owned","birth.lesson.cumulative_exposure_propagates","birth.lesson.sibling_identity","birth.lesson.no_lifecycle_residue_on_evidence","birth.lesson.first_accepted_must_complete","birth.lesson.normal_response_no_recovery_residue","birth.lesson.certification_grades_visible_surface","birth.lesson.first_request_vs_retry","birth.lesson.http_success_ne_semantic_success","birth.lesson.later_outcome_ne_nonoccurrence","birth.lesson.explicit_claim_set_complete","birth.lesson.memory_transfers_principle_not_surface","birth.lesson.exact_section_contract","birth.lesson.middle_claim_cannot_drop","birth.lesson.cross_section_conclusion_reuse","birth.lesson.lesson_principle_not_dump","birth.lesson.source_domain_surface_purity","birth.lesson.registry_outranks_cooccurrence","birth.lesson.measured_subset_not_full_population","birth.lesson.section_headings_are_not_claims","birth.lesson.no_duplicate_post_answer_synthesis","birth.lesson.evidence_ne_authority_route","birth.lesson.temporal_supersession","birth.doctrine.grand_king_ultimate"]},"msg":"Institutional memory bootstrap seeded"}
+{"level":30,"time":1792054541134,"pid":10,"hostname":"4a43dad59fa3","msg":"Commerce-critical routes registered (Amazon / marketplace publish / V1 activation / Pillow pre-sale / Shadow CEO)"}
+{"level":50,"time":1792054542367,"pid":10,"hostname":"4a43dad59fa3","error":"Could not resolve EmpireAI repository root for Pillow. Set EMPIREAI_REPO_ROOT.","repositoryRoot":null,"governanceKnowledge":null,"msg":"Pillow host failed to start"}
+{"level":50,"time":1792054542367,"pid":10,"hostname":"4a43dad59fa3","error":"Could not resolve EmpireAI repository root for Pillow. Set EMPIREAI_REPO_ROOT.","msg":"Pillow host boot failed"}
+{"level":40,"time":1792054542367,"pid":10,"hostname":"4a43dad59fa3","lifecycle":"error","lastError":"Could not resolve EmpireAI repository root for Pillow. Set EMPIREAI_REPO_ROOT.","internalError":"Could not resolve EmpireAI repository root for Pillow. Set EMPIREAI_REPO_ROOT.","msg":"Pillow host not ready for request"}
+{"level":30,"time":1792054542383,"pid":10,"hostname":"4a43dad59fa3","msg":"Pillow host stopped"}
+{"level":30,"time":1792054542404,"pid":10,"hostname":"4a43dad59fa3","reason":"sql.js-db.export","msg":"Event-loop lag cleared after known synchronous block"}
+{"level":30,"time":1792054542413,"pid":10,"hostname":"4a43dad59fa3","msg":"EmpireAI Brain shutdown complete"}
+✖ fresh authenticated conversation is allowed while Birth and commerce stay locked (6295.025438ms)
+✔ HH4 permits infrastructure before final admission without resetting original deadline (12.214423ms)
+✔ HH4 refuses early admission, duplicate preparation and forged transition identity (4.647554ms)
+✔ HH4 original deadline cannot be extended by Redis readiness or delayed admission (2.826005ms)
+✔ complete product history survives new store/session instance; mutation and workspace isolation preserve original attribution and unknowns (27.722013ms)
+✔ UTF8 history budget drops complete older context turns rather than truncating attribution (6.681993ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60310.96994
+
+✖ failing tests:
+
+test at src/validation/tests/locked-fresh-session.test.ts:1:801
+✖ fresh authenticated conversation is allowed while Birth and commerce stay locked (6295.025438ms)
+  AssertionError [ERR_ASSERTION]: {"error":"Preparing Executive Intelligence…"}
+  
+  503 !== 201
+  
+      at TestContext.<anonymous> (/workspace/scratch/e235d347250e/reconstruction/integration/repo/backend/src/validation/tests/locked-fresh-session.test.ts:39:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

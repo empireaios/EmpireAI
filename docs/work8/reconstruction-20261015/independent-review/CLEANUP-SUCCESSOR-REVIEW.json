@@ -1,0 +1,14 @@
+{
+  "reviewer": "independent_review",
+  "decision": "PASS_EXACT_TEST_CLEANUP_DELTA_NOT_EXECUTION_ACCEPTANCE",
+  "previousTree": "b968bb5ac36bba86abd6f54d6f23c0b84535a20d",
+  "successorTree": "d82db39750d90de3beb3b3d78b55e504bc76158f",
+  "onlyChangedPath": "backend/src/validation/tests/locked-fresh-session.test.ts",
+  "newBlob": "3b95cb5b2ca0230ef805ff5f82d342a26d29d388",
+  "mode": "100644",
+  "review": "Moves nested reasoning fixture directory under outer historyRoot and removes premature inner deletion. Outer finalizer already shuts down empire before removing historyRoot. This preserves files needed during shutdown while retaining eventual cleanup. All test assertions and production source unchanged.",
+  "completeTreeDeltaVerified": true,
+  "execution": "Actual host examination and final compilation still running at review. Earlier cleanup failure is not retroactively passing.",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

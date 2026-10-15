@@ -1,0 +1,22 @@
+{
+  "reviewer": "independent_review",
+  "decision": "PASS_REMOTE_STAGING_TREE_AND_CHANGED_BYTES_READBACK_NOT_NATIVE_ACCEPTANCE",
+  "remoteCommit": "5c0283c4d13016724cf51ce5b4fff05d9b119c67",
+  "localReviewedCommit": "74c098ea6115ec4f1b72371de944064e7b9facc4",
+  "identicalCompleteTree": "ea92cdc0763267fc873a23cc439853a51be2f3c1",
+  "remoteCommitParent": "9fce1ff4381b070371d1fb342d1d39c9a6a1c511",
+  "frontendSubtree": "e8949aa792e9f165f7ba5627610f6f80691d4720",
+  "verification": {
+    "freshRemoteCommitRead": true,
+    "freshRemoteRootTreeRead": true,
+    "recursiveFrontendTreeTruncated": false,
+    "frontendBlobPathsAndModesComparedToLocal": 949,
+    "changedBlobContentsFreshlyRetrievedAndGitHashesRecomputed": 7,
+    "byteOrModeMismatches": 0
+  },
+  "validation": "Frontend agent reports production build and typecheck PASS plus six scoped tests PASS. Native desktop/mobile remains blocked by unavailable browser; no A8 acceptance inferred.",
+  "scope": "Staged candidate only. Reviewer performed GET reads and local evidence writes, no branch movement, workflow dispatch, publication or deployment.",
+  "inputs": "FRONTEND-REMOTE-VERIFIED-INPUTS.json",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}
