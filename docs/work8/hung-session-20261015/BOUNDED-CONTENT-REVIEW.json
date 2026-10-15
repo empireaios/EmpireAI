@@ -1,0 +1,29 @@
+{
+  "schema": "WORK8_BOUNDED_NEW_EVIDENCE_INDEPENDENT_REVIEW_V1",
+  "reviewer": "/root/recovery",
+  "decision": "CONTENT_REVIEW_PASS_NOT_FROZEN_FILE_MANIFEST",
+  "scope": "25 new checkpoint/evidence files inspected; no code publication or full requirement acceptance",
+  "reviewedDirectory": "resume-evidence-candidate/docs/work8/hung-session-20261015",
+  "counts": {
+    "original45": {
+      "PASS": 33,
+      "PENDING": 8,
+      "BLOCKED": 4
+    },
+    "amendments19": {
+      "PASS": 8,
+      "PENDING": 11
+    }
+  },
+  "registerRows": 64,
+  "rowsEqualAuthoritativeCopy": true,
+  "metadataDecision": "Copied register historical9080 metadata explicitly superseded for current execution attribution by CHECKPOINT.json and certification disposition. Current d4a5 Runtime failure/skipped403 preserved.",
+  "mediaDecision": "21 scoped checks; no actual owner signoff/Canva/native acceptance. Optional pending-edit policy excluded.",
+  "frontendDecision": "Staged9fce1ff4381b070371d1fb342d1d39c9a6a1c511 treea6fbf8a81c2d65b27afad75822f76c075284d9ea remote receipt records34blobs23trees root equality, unchanged siblings by identity. Uncompiled; no native acceptance. PR112/113 unchanged per independent receipt.",
+  "recoveryDecision": "Missing actual successor bytes and prior3 compiler errors disclosed. #33/#39 remain pending.",
+  "privacyDecision": "No production credentials or personal customer data identified; synthetic media principals/geometric fixtures. Narrow credential token scan found no matches, not comprehensive scanner claim.",
+  "newCompleteAcceptances": [],
+  "mission": "IN_PROGRESS_NO_GO",
+  "testsRepeated": false,
+  "limitation": "Filesystem tool disconnected before review hash manifest could be written. This content review is not a frozen exact-tree approval. Root must freeze and stage candidate bytes separately; no complete25-file hashes retained."
+}
