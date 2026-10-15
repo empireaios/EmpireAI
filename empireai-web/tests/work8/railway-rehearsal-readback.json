@@ -1,0 +1,247 @@
+{
+  "classification": "ISOLATED_ADAPTER_REPLAY_OF_AUTHORISED_BROWSER_READ",
+  "productionWrites": 0,
+  "value": {
+    "workspace": "work8-twin:finance:ea693fccca6b7ba397bd6d6e27534b97",
+    "birth": null,
+    "costs": {
+      "schema": "WORK8_COST_INTELLIGENCE_V1",
+      "resources": [
+        {
+          "id": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "provider": "railway",
+          "service": "Pro workspace",
+          "state": "ACTIVE",
+          "billingOwner": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "fixedAmountMicro": 20000000,
+          "currency": "USD",
+          "renewalAt": null,
+          "cancellationTerms": null,
+          "sharedAllocationBps": null,
+          "evidenceRef": "railway:account-readback:b38d8caf422262d7907d4d3d4d770fdcd11140db56e17c13dbc0358372241b4f",
+          "observedAt": "2026-10-11T09:43:07.558Z"
+        }
+      ],
+      "providerSummaries": [],
+      "accountReadbacks": [
+        {
+          "provider": "railway",
+          "observedAt": "2026-10-11T09:43:07.558Z",
+          "currency": "USD",
+          "plan": "Pro",
+          "planFeeMicro": 20000000,
+          "includedUsageMicro": 20000000,
+          "periodLabel": "Oct 5 - Nov 5",
+          "usageMicro": 3630000,
+          "historicalBills": [
+            {
+              "date": "2026-10-05",
+              "amountMicro": 43780000
+            },
+            {
+              "date": "2026-09-06",
+              "amountMicro": 14830000
+            },
+            {
+              "date": "2026-09-05",
+              "amountMicro": 40550000
+            },
+            {
+              "date": "2026-08-05",
+              "amountMicro": 22880000
+            },
+            {
+              "date": "2026-07-05",
+              "amountMicro": 5000000
+            }
+          ],
+          "computeHardLimitVerified": false,
+          "limitScope": "ENTIRE_WORKSPACE",
+          "qualification": "ACCOUNT_UI_READBACK_NOT_INVOICE_OR_PAYMENT"
+        }
+      ],
+      "totalsByCurrencyStageAuthenticity": {},
+      "alerts": [
+        {
+          "provider": "github",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "vercel",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "openai",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "anthropic",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "gemini",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "cj",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "amazon",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "keepa",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "canva",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "domains",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "storage",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "databases",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "monitoring",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "research",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "other-integrations",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "provider": "railway",
+          "resource": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "code": "UNKNOWN_ACTIVE_COST_OR_OWNER"
+        },
+        {
+          "provider": "railway",
+          "resource": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "code": "SHARED_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "railway",
+          "resource": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "code": "INVOICE_AND_PAYMENT_UNVERIFIED"
+        },
+        {
+          "provider": "railway",
+          "resource": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "code": "PROJECT_ALLOCATION_UNKNOWN"
+        },
+        {
+          "provider": "railway",
+          "resource": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "code": "INCLUDED_USAGE_IS_NOT_A_SECOND_CREDIT_ENTRY"
+        },
+        {
+          "provider": "railway",
+          "resource": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "code": "WORKSPACE_LIMIT_MAY_STOP_PRODUCTION"
+        },
+        {
+          "provider": "railway",
+          "resource": "a4962933-0870-4df7-bb46-3625ed800be1",
+          "code": "COMPUTE_HARD_LIMIT_UNVERIFIED"
+        }
+      ],
+      "historicalExceptions": [
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "github",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "vercel",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "openai",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "anthropic",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "gemini",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "cj",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "amazon",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "keepa",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "canva",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "domains",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "storage",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "databases",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "monitoring",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "research",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        },
+        {
+          "runId": "run:authorised-railway-readback",
+          "provider": "other-integrations",
+          "code": "BILLING_INTERFACE_UNAVAILABLE_AMOUNT_UNKNOWN"
+        }
+      ],
+      "observationsDigest": "f0ac3af3224e42d8d0dbd475f09f65e352a06628610d5342ef95f6f2b3e19423",
+      "canonicalEntriesDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "totalsQualification": "UNREVIEWED_DISCOVERED_EVIDENCE_NOT_CONFIRMED_ACTUALS",
+      "operationalProfitIncluded": false,
+      "continuousLiveActivation": false
+    },
+    "liveActivation": false,
+    "label": "Isolated financial rehearsal"
+  }
+}

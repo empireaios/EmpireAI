@@ -1,0 +1,313 @@
+{
+  "schema": "WORK8_F02_ACTUAL_REGISTERED_SCHEDULER_V1",
+  "historicalVector": "Original4–15second pause misses no actual30secondcallback; retained unchanged, not executed or relabelled.",
+  "examinedBase": "ee7fea92",
+  "detector": "external parent calls actual readWork8QueueProbe and control-plane observe every250ms; not full installed Assurance timer",
+  "registeredIntervalMs": 30000,
+  "vector": {
+    "dueAtMs": 30000,
+    "pauseAtMs": 29000,
+    "resumeAtMs": 71000
+  },
+  "detectionDeadlineMs": 60000,
+  "elapsedMs": 82103.4824,
+  "externalEffects": 0,
+  "inferenceCalls": 0,
+  "arms": [
+    {
+      "name": "control",
+      "jobs": [
+        {
+          "id": "scheduled_empire.state_29863638",
+          "objective": "Scheduled bounded empire.state observation",
+          "capabilities": [
+            "empire.state"
+          ],
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "synthetic:misfire-control",
+          "requester": "SCHEDULER",
+          "createdAt": "2026-10-12T15:18:41.009Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 0,
+          "evidence": [
+            "ev_34f1170795379ec8f6692a40c1c68e29b1266290"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-12T15:18:41.015Z",
+          "lease": "0c85a399-a8e5-459c-b9ef-003e6671be30",
+          "completedAt": "2026-10-12T15:18:41.021Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        }
+      ],
+      "schedules": [
+        {
+          "id": "amazon.account",
+          "enabled": false,
+          "intervalMs": 86400000,
+          "subject": {
+            "id": "account",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "nextAt": "2026-10-12T15:18:11.000Z"
+        },
+        {
+          "id": "amazon.catalog",
+          "enabled": false,
+          "intervalMs": 21600000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US",
+            "query": "desk organizer"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "nextAt": "2026-10-12T15:18:11.000Z"
+        },
+        {
+          "id": "cj.catalog",
+          "enabled": false,
+          "intervalMs": 21600000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US",
+            "query": "desk organizer"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "nextAt": "2026-10-12T15:18:11.000Z"
+        },
+        {
+          "id": "empire.state",
+          "enabled": true,
+          "intervalMs": 900000,
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "lastQueuedAt": "2026-10-12T15:18:41.007Z",
+          "lastJobId": "scheduled_empire.state_29863638",
+          "lastAdmission": {
+            "dueAt": 1791818321005,
+            "admittedAt": 1791818321007
+          },
+          "nextAt": "2026-10-12T15:33:41.007Z"
+        },
+        {
+          "id": "internet.safety",
+          "enabled": false,
+          "intervalMs": 86400000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "nextAt": "2026-10-12T15:18:11.000Z"
+        }
+      ],
+      "incidents": [],
+      "probe": {
+        "id": "work8_read_queue_progress",
+        "capability": "work8_read_queue_progress",
+        "classification": "work8_read_queue_progress",
+        "severity": "HIGH",
+        "runbookId": null,
+        "status": "HEALTHY",
+        "summary": "No overdue queued read or scheduled admission in this bounded snapshot.",
+        "evidence": {
+          "observedAt": 1791818371982,
+          "thresholdMs": 120000,
+          "scheduleThresholdMs": 30000,
+          "missedSlots": [],
+          "queued": 0,
+          "running": 0,
+          "oldQueuedIds": [],
+          "expiredLeaseIds": [],
+          "overdueScheduleIds": [],
+          "oldestQueuedAgeMs": null,
+          "sourceDigest": "56228d326ce7b38b69425d51b628ec501f42b2b4bc1db3eebb1139af7f52ba86",
+          "externalEffects": 0,
+          "inferenceCalls": 0,
+          "coverage": "ALL_ACTIVE_READ_JOBS_MAX_20_AND_SCHEDULES_MAX_32; HISTORICAL_FAILURES_RETAINED_ELSEWHERE"
+        }
+      },
+      "detectionMs": null
+    },
+    {
+      "name": "fault",
+      "jobs": [
+        {
+          "id": "scheduled_empire.state_29863639",
+          "objective": "Scheduled bounded empire.state observation",
+          "capabilities": [
+            "empire.state"
+          ],
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "requestLimit": 4,
+          "evidenceRefs": [],
+          "workspace": "synthetic:misfire-fault",
+          "requester": "SCHEDULER",
+          "createdAt": "2026-10-12T15:19:22.718Z",
+          "status": "COMPLETED",
+          "attempts": 1,
+          "requestsUsed": 0,
+          "evidence": [
+            "ev_5f32b673ddd198ac54a3ee6fc5c84f45451d746e"
+          ],
+          "failures": [],
+          "inferenceCalls": 0,
+          "commerceEffects": 0,
+          "grantsAuthority": false,
+          "startedAt": "2026-10-12T15:19:22.738Z",
+          "lease": "f68738c5-064e-4e1c-9f34-dbff48db46dc",
+          "completedAt": "2026-10-12T15:19:22.769Z",
+          "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+        }
+      ],
+      "schedules": [
+        {
+          "id": "amazon.account",
+          "enabled": false,
+          "intervalMs": 86400000,
+          "subject": {
+            "id": "account",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "nextAt": "2026-10-12T15:18:11.625Z"
+        },
+        {
+          "id": "amazon.catalog",
+          "enabled": false,
+          "intervalMs": 21600000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US",
+            "query": "desk organizer"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "nextAt": "2026-10-12T15:18:11.625Z"
+        },
+        {
+          "id": "cj.catalog",
+          "enabled": false,
+          "intervalMs": 21600000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US",
+            "query": "desk organizer"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "nextAt": "2026-10-12T15:18:11.625Z"
+        },
+        {
+          "id": "empire.state",
+          "enabled": true,
+          "intervalMs": 900000,
+          "subject": {
+            "id": "empire",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "lastQueuedAt": "2026-10-12T15:19:22.711Z",
+          "lastJobId": "scheduled_empire.state_29863639",
+          "lastAdmission": {
+            "dueAt": 1791818321630,
+            "admittedAt": 1791818362711
+          },
+          "missedSlot": {
+            "dueAt": 1791818321630,
+            "admittedAt": 1791818362711
+          },
+          "nextAt": "2026-10-12T15:34:22.711Z"
+        },
+        {
+          "id": "internet.safety",
+          "enabled": false,
+          "intervalMs": 86400000,
+          "subject": {
+            "id": "organizer",
+            "marketplace": "US"
+          },
+          "failures": 0,
+          "timezone": "UTC",
+          "nextAt": "2026-10-12T15:18:11.625Z"
+        }
+      ],
+      "incidents": [
+        {
+          "id": "inc_77f13066-4a4a-4227-8392-d80f83f023b4",
+          "fingerprint": "d0a4ec924cc64b7873aac64c11caaa601211f9d191a4a2752978aac6d7d5029e",
+          "probeId": "work8_read_queue_progress",
+          "capability": "work8_read_queue_progress",
+          "classification": "work8_read_queue_progress",
+          "severity": "HIGH",
+          "summary": "Queued reads or scheduled admissions exceeded their progress bound; preserve unknown outcomes and escalate without resubmission.",
+          "status": "DETECTED",
+          "firstAt": 1791818351734,
+          "lastAt": 1791818371724,
+          "revision": "actual-misfire",
+          "runbookId": null,
+          "recurrence": 79,
+          "attempts": 0,
+          "synthetic": true
+        }
+      ],
+      "probe": {
+        "id": "work8_read_queue_progress",
+        "capability": "work8_read_queue_progress",
+        "classification": "work8_read_queue_progress",
+        "severity": "HIGH",
+        "runbookId": null,
+        "status": "DEGRADED",
+        "summary": "Queued reads or scheduled admissions exceeded their progress bound; preserve unknown outcomes and escalate without resubmission.",
+        "evidence": {
+          "observedAt": 1791818371990,
+          "thresholdMs": 120000,
+          "scheduleThresholdMs": 30000,
+          "missedSlots": [
+            {
+              "id": "empire.state",
+              "dueAt": 1791818321630,
+              "admittedAt": 1791818362711
+            }
+          ],
+          "queued": 0,
+          "running": 0,
+          "oldQueuedIds": [],
+          "expiredLeaseIds": [],
+          "overdueScheduleIds": [
+            "empire.state"
+          ],
+          "oldestQueuedAgeMs": null,
+          "sourceDigest": "908b382d56cd61068b12134107977de1edb11b5972e4053284b8f2f37eaadaec",
+          "externalEffects": 0,
+          "inferenceCalls": 0,
+          "coverage": "ALL_ACTIVE_READ_JOBS_MAX_20_AND_SCHEDULES_MAX_32; HISTORICAL_FAILURES_RETAINED_ELSEWHERE"
+        }
+      },
+      "detectionMs": 30855.984138
+    }
+  ],
+  "status": "PASS_SOURCE_COMPATIBLE_F02_SOFTWARE"
+}

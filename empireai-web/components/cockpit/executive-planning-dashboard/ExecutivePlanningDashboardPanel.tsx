@@ -87,7 +87,7 @@ export function ExecutivePlanningDashboardPanel() {
           <Link href="/cockpit/founder/executive-planning-certification" className="text-xs text-[#d4af37] hover:underline">
             E1 Certification →
           </Link>
-          <Link href="/cockpit/founder" className="text-xs text-[#d4af37] hover:underline">
+          <Link href="/cockpit/founder/grand-king-executive-cockpit" className="text-xs text-[#d4af37] hover:underline">
             Executive Cockpit →
           </Link>
           <span className="text-xs text-[#6f6a60]">

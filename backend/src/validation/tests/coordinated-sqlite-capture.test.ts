@@ -80,12 +80,11 @@ test("application local drain saves both RAM-backed SQL handles before caller re
 
 test("both open SQL.js handles save RAM and refuse writes through one verified capture", async t => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "two-handle-capture-"));
-  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   const primaryFile = path.join(dir, "brain.db");
   const shadowFile = path.join(dir, "shadow.db");
   const primary = new EmpireDatabase(primaryFile);
   const shadow = openShadowCeoRepository({ dbPath: shadowFile });
-  t.after(() => { shadow.close(); primary.close(); });
+  t.after(() => { shadow.close(); primary.close(); fs.rmSync(dir, { recursive: true, force: true }); });
   primary.exec("CREATE TABLE checkpoint_evidence (value TEXT)");
   primary.prepare("INSERT INTO checkpoint_evidence VALUES ('RAM record')").run();
   const slice = runVerticalSliceDemo({ repo: shadow, workspaceId: "ws_two_handle", runKey: "ram-only" });
@@ -116,10 +115,9 @@ test("both open SQL.js handles save RAM and refuse writes through one verified c
 
 test("Shadow CEO writes are fenced before the first Brain save yields", async t => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-before-yield-"));
-  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   const primary = new EmpireDatabase(path.join(dir, "brain.db"));
   const shadow = openShadowCeoRepository({ dbPath: path.join(dir, "shadow.db") });
-  t.after(() => { shadow.close(); primary.close(); });
+  t.after(() => { shadow.close(); primary.close(); fs.rmSync(dir, { recursive: true, force: true }); });
   primary.exec("CREATE TABLE evidence (id INTEGER)");
   let entered!: () => void;
   let resume!: () => void;
@@ -146,13 +144,12 @@ test("Shadow CEO writes are fenced before the first Brain save yields", async t 
 
 test("capture refuses a second SQL.js handle and blocks a new alias until release", async t => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-sqljs-alias-"));
-  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   const file = path.join(dir, "brain.db");
   const first = new EmpireDatabase(file);
   first.exec("CREATE TABLE capture_identity (id INTEGER)");
   await first.requestCriticalPersist();
   const second = new EmpireDatabase(file);
-  t.after(() => { second.close(); first.close(); });
+  t.after(() => { second.close(); first.close(); fs.rmSync(dir, { recursive: true, force: true }); });
   assert.throws(() => first.holdWritesForCapture(), /independently opened SQL.js handle/);
   second.close();
   const release = first.holdWritesForCapture();
@@ -166,20 +163,18 @@ test("capture refuses a second SQL.js handle and blocks a new alias until releas
 
 test("a hard-link alias of a persisted Brain file cannot evade capture admission", async t => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "capture-sqljs-hardlink-"));
-  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   const file = path.join(dir, "brain.db");
   const alias = path.join(dir, "brain-alias.db");
   const primary = new EmpireDatabase(file);
-  t.after(() => primary.close());
+  t.after(() => { primary.close(); fs.rmSync(dir, { recursive: true, force: true }); });
   primary.exec("CREATE TABLE evidence (id INTEGER)");
   await primary.requestCriticalPersist();
   fs.linkSync(file, alias);
-  const competitor = new EmpireDatabase(alias);
-  assert.throws(() => primary.holdWritesForCapture(), /independently opened SQL.js handle/);
-  competitor.close();
+  assert.throws(() => new EmpireDatabase(alias), /ALIAS_UNSAFE/);
+  assert.throws(() => primary.holdWritesForCapture(), /ALIAS_UNSAFE/);
   fs.unlinkSync(alias);
-  fs.linkSync(file, alias);
   const release = primary.holdWritesForCapture();
+  fs.linkSync(file, alias);
   try { assert.throws(() => new EmpireDatabase(alias), /capture active/); }
-  finally { release(); }
+  finally { fs.unlinkSync(alias); release(); }
 });

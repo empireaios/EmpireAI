@@ -1,3 +1,10 @@
+import {qualificationReviewSchema,recordQualificationReview,latestQualificationReview} from './work8-qualification.js';
+import {dossierDecisionSchema,recordDossierDecision} from './work8-dossier-decisions.js';
+import {qualificationDossier} from './work8-dossier.js';
+import {enrichmentBinding} from './work8-enrichment.js';
+import {productionFinance} from '../finance/financial-centre.js';
+import type {Evidence} from './model.js';
+import {env} from '../config/env.js';
 import {authorizeInvestigation,investigationGrantSchema} from './investigation.js';
 import {readPillow} from '../advisor/pillow-read.js';
 import type {FastifyInstance,FastifyRequest,FastifyReply} from 'fastify';
@@ -7,6 +14,8 @@ import {startIntelligence,resourceSchema,seedResourceGaps} from './runtime.js';
 import {jobSchema,key,strategySchema,digest} from './model.js';
 import {rankDiagnosis} from './engines.js';
 const command=z.discriminatedUnion('action',[
+ z.object({action:z.literal('qualification_review'),review:qualificationReviewSchema}).strict(),
+ z.object({action:z.literal('dossier_decision'),decision:dossierDecisionSchema}).strict(),
  z.object({action:z.literal('investigation'),grant:investigationGrantSchema}).strict(),
  z.object({action:z.literal('close_investigation'),id:key,advisorRequestId:key,assessmentHash:z.string().length(64)}).strict(),
  z.object({action:z.literal('job'),job:jobSchema}).strict(),
@@ -19,12 +28,15 @@ const command=z.discriminatedUnion('action',[
 export function registerIntelligence(app:FastifyInstance,owner:(r:FastifyRequest,p:FastifyReply)=>Promise<unknown>){
  const s=productionIntelligence();if(!s)return;seedResourceGaps(s,'ws_empire_1');const stop=process.env.INTELLIGENCE_ENABLED==='true'?startIntelligence(s):async()=>{};app.addHook('onClose',async()=>{await stop();});
  app.post('/api/owner/advisor/intelligence',{preHandler:owner,bodyLimit:12000},async(r,reply)=>{try{
+  if(r.headers.origin&&r.headers.origin!==env.CORS_ORIGIN)return reply.code(403).send({error:'Origin denied'});
   const c=command.parse(r.body),w=r.user!.workspaceId;let result:unknown;
-  if(c.action==='investigation'){
+  if(c.action==='qualification_review'){result=recordQualificationReview(s,w,r.user!.id,c.review,()=>{const snapshot=productionFinance().snapshot(w);return {snapshot,dossier:qualificationDossier((ws,id)=>s.get(ws,'evidence',id) as Evidence|null,w,enrichmentBinding(s,w,c.review.candidateId),s.now(),snapshot)};});}
+  else if(c.action==='dossier_decision'){result=recordDossierDecision(s,w,r.user!.id,c.decision,candidateId=>qualificationDossier((ws,id)=>s.get(ws,'evidence',id) as Evidence|null,w,enrichmentBinding(s,w,candidateId),s.now(),productionFinance().snapshot(w),latestQualificationReview(s,w,candidateId)));}
+  else if(c.action==='investigation'){
    const predecessors=[];
    const failedRequests:string[]=[];
    for(const id of c.grant.predecessors){const read=await readPillow(process.env.RAILWAY_VOLUME_MOUNT_PATH!,w,id) as any;const prior=read.data?.requests?.find((x:any)=>x.requestId===id);if(!prior)throw Error('PREDECESSOR_UNAVAILABLE');if(prior.status==='FAILED_FATAL')failedRequests.push(id);predecessors.push({id,hash:digest({status:prior.status,failureClass:prior.failureClass,finalResult:prior.finalResult,responseText:prior.responseText})});}
-   result=authorizeInvestigation(s,w,r.user!.id,c.grant);s.put(w,'investigations',c.grant.id,{...result as object,predecessorProof:predecessors});
+   result=authorizeInvestigation(s,w,r.user!.id,c.grant,productionFinance().snapshot(w));s.put(w,'investigations',c.grant.id,{...result as object,predecessorProof:predecessors});
    // Reconcile a previously interrupted status only from its durable terminal request.
    // Never reset that request, grant, plan or accounting; the successor has its own ID.
    const recoveredMissionIds:string[]=[];

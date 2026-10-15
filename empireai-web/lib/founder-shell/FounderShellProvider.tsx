@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import {
   createContext,
   useCallback,
@@ -92,11 +94,7 @@ export function FounderShellProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  useEffect(() => {
-    void refresh();
-    const interval = setInterval(() => void refresh(), POLL_MS);
-    return () => clearInterval(interval);
-  }, [refresh]);
+  useEffect(() => subscribeRead(refresh, POLL_MS), [refresh]);
 
   const activeNavId = useMemo(() => resolveActiveNavId(pathname), [pathname]);
 

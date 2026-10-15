@@ -6,12 +6,33 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { DatabaseSync } from "node:sqlite";
 import { after, describe, test } from "node:test";
 import {
   EmpireDatabase,
   getLastSqliteOpenRecovery,
   quarantineSqliteFile,
 } from "../../brain/sqlite-database.js";
+
+// Refused opens preserve the corrupt business file and leave only the stable,
+// empty ownership database. Do not ignore arbitrary sidecars/quarantine copies.
+function assertRefusedOpenInventory(target: string) {
+  const name = path.basename(target);
+  const sidecar = target + ".sqljs-owner.sqlite";
+  assert.deepEqual(fs.readdirSync(path.dirname(target)).filter(entry => entry.startsWith(name)).sort(),
+    [name, name + ".sqljs-owner.sqlite"].sort());
+  const stat = fs.lstatSync(sidecar);
+  assert.equal(stat.isFile(), true);
+  assert.equal(stat.nlink, 1);
+  const lock = new DatabaseSync(sidecar, { timeout: 0, allowExtension: false });
+  try {
+    // Constructor refusal must release its ownership transaction.
+    lock.exec("BEGIN EXCLUSIVE");
+    assert.equal(lock.prepare("PRAGMA integrity_check").get()!.integrity_check, "ok");
+    assert.deepEqual(lock.prepare("SELECT name FROM sqlite_master WHERE name NOT LIKE 'sqlite_%'").all(), []);
+    lock.exec("ROLLBACK");
+  } finally { lock.close(); }
+}
 
 describe("SQLite corruption quarantine recovery", () => {
   const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "empire-sqlite-recover-"));
@@ -58,7 +79,7 @@ describe("SQLite corruption quarantine recovery", () => {
       assert.throws(() => new EmpireDatabase(target), /Production SQLite open refused; original file retained/);
       assert.equal(getLastSqliteOpenRecovery().recovered, false);
       assert.deepEqual(fs.readFileSync(target), original);
-      assert.deepEqual(fs.readdirSync(tmpRoot).filter(name => name.startsWith("production-corrupt.db")), ["production-corrupt.db"]);
+      assertRefusedOpenInventory(target);
     } finally {
       if (prior === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = prior;
     }
@@ -78,7 +99,7 @@ describe("SQLite corruption quarantine recovery", () => {
         assert.throws(() => new EmpireDatabase(target), /Production SQLite open refused; original file retained/);
         assert.equal(getLastSqliteOpenRecovery().recovered, false);
         assert.deepEqual(fs.readFileSync(target), original);
-        assert.deepEqual(fs.readdirSync(tmpRoot).filter(name => name.startsWith(path.basename(target))), [path.basename(target)]);
+        assertRefusedOpenInventory(target);
       }
     } finally {
       if (priorNodeEnv === undefined) delete process.env.NODE_ENV;

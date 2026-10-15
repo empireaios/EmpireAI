@@ -12,7 +12,7 @@ import {
   acknowledgeNotification,
   buildGlobalNotificationDashboard,
   getUnreadNotificationCount,
-  listGlobalNotifications,
+  pageGlobalNotifications,
   listGroupedGlobalNotifications,
   markAllNotificationsRead,
   markNotificationRead,
@@ -50,16 +50,16 @@ export async function registerGlobalNotificationRoutes(
         unreadCount: getUnreadNotificationCount(user.workspaceId, query.companyId),
       });
     }
-    return reply.send({
-      notifications: listGlobalNotifications(user.workspaceId, query as Record<string, unknown>),
+    try{return reply.send({
+      ...pageGlobalNotifications(user.workspaceId, query as Record<string, unknown>),
       unreadCount: getUnreadNotificationCount(user.workspaceId, query.companyId),
-    });
+    });}catch(error){if(error instanceof Error&&error.message==='NOTIFICATION_CURSOR_UNAVAILABLE')return reply.code(409).send({error:'Notification page changed; refresh from the beginning.'});throw error;}
   });
 
   app.post("/global-notifications/sync", { preHandler: authenticate }, async (request, reply) => {
     const user = request.user!;
-    const body = z.object({ companyId: z.string().min(1) }).parse(request.body);
-    const result = syncGlobalNotifications(user.workspaceId, body.companyId);
+    const body = z.object({ companyId: z.string().min(1),assuranceAfter:z.string().regex(/^[A-Za-z0-9_.:-]{1,160}$/).optional() }).parse(request.body);
+    const result = syncGlobalNotifications(user.workspaceId, body.companyId,body.assuranceAfter);
 
     auditLogger.write({
       action: "global_notifications.sync",

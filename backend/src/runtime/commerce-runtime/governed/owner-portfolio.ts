@@ -1,3 +1,4 @@
+import {activePortfolio} from './work8-portfolio.js';
 import {z} from 'zod';
 import type {GovernedCommerceStore,Receipt} from './store.js';
 import type {CommerceState} from './engine.js';
@@ -19,5 +20,5 @@ export function readOwnerPortfolio(store:GovernedCommerceStore,workspace:string,
   const s=verified.state as unknown as CommerceState,c=s.candidate,p=c.offer.provenance;
   return {missionId:r.missionId,receiptId:r.id,version:r.version,digest:r.digest,candidateDigest:s.candidateDigest,at:r.at,productId:c.productId,title:c.title,sku:c.offer.sku,category:c.category,classification:p.classification,executionClassification:r.classification,source:p,stale:Date.parse(p.expiresAt)<=now,phase:s.phase,qualified:s.qualification.qualified,reasons:s.qualification.reasons,offer:c.offer,economics:s.qualification.economics,economicsInputs:c.economics,listing:s.listing??null,media:s.listing?.images??[],listingDigest:s.listingDigest??null,approval:s.approval??null,decisions:s.decisions,evidence:c.evidence,competitorLow:null,competitorHigh:null,asin:null,buyable:null,sales:null,organicRank:null,limitations:['Competitor prices, ASIN buyability, sales and organic rank require provider observations; absent values are unknown','Listing media is prepared evidence, not proof of marketplace publication'],detailHref:`/cockpit/commerce/governed?mission=${encodeURIComponent(r.missionId)}`};
  });
- return {at:new Date(now).toISOString(),classification:q.classification,items,total,page:q.page,pageSize:q.pageSize,pages:Math.ceil(total/q.pageSize),activeCeiling:1000,activeCount:null,capacityStatus:'NOT_CONFIRMED',grantsAuthority:false,externalEffects:0};
+ return {at:new Date(now).toISOString(),classification:q.classification,items,total,page:q.page,pageSize:q.pageSize,pages:Math.ceil(total/q.pageSize),activeCeiling:1000,activeCount:null,capacityStatus:'NOT_CONFIRMED',simulatedPortfolio:{activeCount:activePortfolio(store,workspace).activeCount,ceiling:1000,classification:'SIMULATED_PORTFOLIO_ONLY'},grantsAuthority:false,externalEffects:0};
 }

@@ -1,4 +1,11 @@
-import {registerGovernedCommerce} from './commerce-runtime/governed/runtime.js';
+import {resolveWork8ProductContext} from './commerce-runtime/governed/runtime.js';
+import {consumeGeneratedWorker,type GeneratedWorkerAdoption} from './work8-generated-worker-adoption.js';
+import { withSupervisedObserverCapture } from './work8-observer-capture.js';
+import { installPrimaryCaptureParticipant } from './work8-primary-capture.js';
+import { installCaptureHttpAdmission } from './capture-http-admission.js';
+import { withDrainedWork8Background } from './work8-background-capture.js';
+import {retainProductionFinance} from '../finance/financial-centre.js';
+import {registerGovernedCommerce,productionCommerce} from './commerce-runtime/governed/runtime.js';
 import {registerFinancialCentre} from '../finance/runtime.js';
 import { installAssuranceRuntime, readAdvancedAssurance } from '../assurance/runtime.js';
 import { registerAdvisorRoutes } from "../advisor/routes.js";
@@ -397,6 +404,12 @@ export async function handleDurablePillowChat(
     return reply.code(403).send({ error: "Workspace access denied" });
   }
   input.workspaceId = request.user.workspaceId;
+  const suppliedContext=input.workspaceContext as Record<string,unknown>|undefined;
+  if(suppliedContext?.productContext){
+    if(request.user.role!=='founder'||request.user.workspaceId!=='ws_empire_1'||request.user.email.toLowerCase()!==env.FOUNDER_EMAIL.toLowerCase())return reply.code(403).send({code:'PRODUCT_CONTEXT_OWNER_REQUIRED'});
+    try{input.workspaceContext={...suppliedContext,productContext:resolveWork8ProductContext({workspace:request.user.workspaceId,owner:request.user.id},suppliedContext.productContext)};}
+    catch{return reply.code(409).send({code:'PRODUCT_CONTEXT_STALE_OR_UNAVAILABLE',error:'Return to the product and reopen its current context before sending.'});}
+  }
   const claim = await acceptDurableChatRequestClaim({
     sessionId: String(input.sessionId),
     message: String(input.message),
@@ -485,7 +498,8 @@ export function registerTier0LoginRoute(
 
 }
 
-export async function startTier0IsolatedPrimary(): Promise<void> {
+export async function startTier0IsolatedPrimary(examination?:GeneratedWorkerAdoption): Promise<void> {
+  const adopted=examination?consumeGeneratedWorker(examination):undefined;
   const workerPort = Number(process.env.EMPIRE_BRAIN_WORKER_PORT ?? env.PORT + 1);
   const workerState: WorkerState = {
     child: null,
@@ -508,13 +522,25 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     requestTimeout: 300_000,
     bodyLimit: 25 * 1024 * 1024,
   });
+  const captureAdmission = installCaptureHttpAdmission(app);
+  if(adopted){
+    workerState.child=adopted.child;
+    const dispose=installPrimaryCaptureParticipant(adopted.child,held=>
+      withSupervisedObserverCapture(()=>captureAdmission.withDrainedAdmission(()=>withDrainedWork8Background(held))));
+    adopted.child.once('exit',()=>{dispose();adopted.terminal('EXAM_WORKER_EXIT');});
+    adopted.child.once('error',error=>adopted.terminal(error));
+    adopted.child.once('disconnect',()=>adopted.terminal('EXAM_IPC_DISCONNECTED')); 
+  }
+
   installLockedCommissioning(app);
   let stopSweeper: () => Promise<void> = async () => {};
+  const releaseFinance = retainProductionFinance();
   const lifecycle = installPrimaryShutdown({
     getChild: () => workerState.child,
     stopBackground: () => stopSweeper(),
     closeServer: async () => { await app.close(); },
     disconnect: () => redisClient.disconnect(),
+    closeStores: releaseFinance,
     report: (event, error) => {
       if (error || event !== "primary_shutdown_complete") {
         logger.error({ error: error instanceof Error ? error.message : error }, event);
@@ -771,6 +797,7 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
   });
 
   function spawnWorker(): void {
+    if(adopted)return; // Examination child never falls through ordinary index.js respawn.
     if (lifecycle.isStopping() || workerState.starting || workerState.child) return;
     workerState.starting = true;
     const childEnv = {
@@ -783,10 +810,13 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
     try {
       const child = spawn(process.execPath, [workerEntryPath()], {
         env: childEnv,
-        stdio: "inherit",
+        stdio: ["inherit", "inherit", "inherit", "ipc"],
         detached: false,
       });
       workerState.child = child;
+      const disposeCapture = installPrimaryCaptureParticipant(child, held =>
+        withSupervisedObserverCapture(() => captureAdmission.withDrainedAdmission(() => withDrainedWork8Background(held))));
+      child.once("exit", disposeCapture);
       logger.info(
         { workerPort: workerState.port, pid: child.pid },
         "Tier-0 primary spawned Brain worker",
@@ -842,5 +872,6 @@ export async function startTier0IsolatedPrimary(): Promise<void> {
 
   // Spawn heavy sql.js worker AFTER public Tier-0 is accepting traffic so
   // Railway healthchecks and Grand King auth survive worker boot/OOM/flush.
-  lifecycle.schedule(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
+  if(adopted)adopted.admit();
+  else lifecycle.schedule(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
 }

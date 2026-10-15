@@ -3,10 +3,11 @@ import type {GovernedCommerceStore} from './store.js';
 import type {Actor,Command} from './contracts.js';
 import type {CommerceState} from './engine.js';
 /** Additional restrictions only. Original approval, idempotency and locked effect adapters still run. */
-export function enforceOwnerSafety(memory:InstitutionalMemory|null,store:GovernedCommerceStore,actor:Actor,command:Command,state:CommerceState|null,now=Date.now()){
+export function enforceOwnerSafety(memory:InstitutionalMemory|null,store:GovernedCommerceStore,actor:Actor,command:Command,state:CommerceState|null,now=Date.now(),policyWorkspace=actor.workspace){
  if(!['publication_intent','prepare','intercept'].includes(command.type))return;
  if(!memory)throw Error('SAFETY_POLICY_UNAVAILABLE');
- const policy=memory.safetyPolicy(actor.workspace);
+ // Isolated twin exposure stays in actor.workspace; only verified owner policy is inherited.
+ const policy=memory.safetyPolicy(policyWorkspace);
  // Legacy pre-Birth synthetic flows retain Work6 behavior until owner configures additional controls.
  if(!policy)return;
  if(command.type==='publication_intent'){if(policy.breakers.listingPublication)throw Error('OWNER_LISTING_PAUSED');return;}

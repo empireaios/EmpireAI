@@ -1,0 +1,81 @@
+[
+  {
+    "missionId": "acceptance:visual",
+    "sourceReceiptDigest": "2512cf5bf36b30822cbe1c279c7e518328482358f07178c903ae5599cc927a5f",
+    "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+    "status": "INCOMPLETE_FINANCIAL_EVIDENCE",
+    "orders": [
+      {
+        "orderId": "order-fixture",
+        "title": "Synthetic storage organiser",
+        "quantity": 2,
+        "currency": "SGD",
+        "minorUnitDigits": 2,
+        "status": "DELIVERED",
+        "classification": "SIMULATION_EXCLUDED_FROM_ACTUALS",
+        "quotedRevenueMinor": 8000,
+        "quotedCogsMinor": 1600,
+        "quotedFreightMinor": 600,
+        "refundIntentMinor": 2000,
+        "collectedRevenueMinor": null,
+        "chargedFeeMinor": null,
+        "dutyTaxMinor": null,
+        "supplierCreditMinor": null,
+        "settlementMinor": null,
+        "payoutHeldMinor": null,
+        "bankReceiptMinor": null,
+        "realisedContributionMinor": null,
+        "complete": false,
+        "summary": "Simulated delivery recorded. Settlement and profit remain unverified.",
+        "missing": [
+          "Collected customer payment",
+          "Charged marketplace fees",
+          "Assessed duty and tax",
+          "Supplier invoice or credit",
+          "Marketplace settlement",
+          "Payout or hold",
+          "Bank receipt"
+        ],
+        "source": {
+          "missionId": "acceptance:visual",
+          "receiptId": "6daae7ea26492f84c0348376d91257218d17e081e19ab4b3cee6887b14f181dd",
+          "receiptDigest": "2512cf5bf36b30822cbe1c279c7e518328482358f07178c903ae5599cc927a5f",
+          "receiptVersion": 19,
+          "orderCreatedAt": "2026-10-11T00:00:00.000Z",
+          "priceBasis": "CANONICAL_SIMULATION_ECONOMICS_NOT_COLLECTED_PAYMENT",
+          "supplierCostBasis": "CANONICAL_ORDER_LINE_AND_OFFER_QUOTE_NOT_INVOICE",
+          "offerProvenance": {
+            "source": "work6-deterministic-acceptance",
+            "reference": "synthetic:work6-fixture-not-provider-evidence",
+            "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+            "observedAt": "2026-10-11T00:00:00.000Z",
+            "expiresAt": "2026-10-11T01:00:00.000Z",
+            "classification": "SYNTHETIC"
+          },
+          "refundIntentIds": [
+            "refund-fixture"
+          ]
+        },
+        "assumptions": {
+          "classification": "FORECAST_ASSUMPTIONS_NOT_CHARGES",
+          "feePercent": 15,
+          "dutiesPerUnit": 1,
+          "taxPerUnit": 1
+        }
+      }
+    ],
+    "complete": false,
+    "actualRevenue": null,
+    "actualProfit": null,
+    "actualCashMovement": 0,
+    "financialReference": "158242368742f02ab890e810fba6dc3dc767dc66f5bd4865692fdcf8765c53a9",
+    "summary": "Quoted amounts and simulated refund intents are visible. Missing charges, settlement and bank evidence stay unknown.",
+    "technologyCosts": "SEPARATE_COST_CENTRE",
+    "grantsAuthority": false,
+    "limitations": [
+      "Quotes and refund intents are not collected revenue, settled charges or bank receipts",
+      "No financial scenario events are inferred from an order status",
+      "Currencies are not combined or converted"
+    ]
+  }
+]

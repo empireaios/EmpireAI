@@ -1,0 +1,1092 @@
+{
+  "status": "PASS_LOCAL_120_SECOND_COMPONENT_SOAK",
+  "started": "2026-10-10T21:55:39.841Z",
+  "node": "v22.23.2",
+  "elapsedMs": 120004.34257600001,
+  "runs": [
+    {
+      "seed": 800,
+      "elapsedMs": 62.044825,
+      "durationMs": 62.04921999999999,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-800",
+      "receiptCount": 7
+    },
+    {
+      "seed": 801,
+      "elapsedMs": 5056.201276,
+      "durationMs": 51.9539420000001,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-801",
+      "receiptCount": 7
+    },
+    {
+      "seed": 802,
+      "elapsedMs": 10074.127459,
+      "durationMs": 73.2031420000003,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-802",
+      "receiptCount": 7
+    },
+    {
+      "seed": 803,
+      "elapsedMs": 15067.456741,
+      "durationMs": 64.23580599999877,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-803",
+      "receiptCount": 7
+    },
+    {
+      "seed": 804,
+      "elapsedMs": 20051.073405000003,
+      "durationMs": 46.85823199999868,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-804",
+      "receiptCount": 7
+    },
+    {
+      "seed": 805,
+      "elapsedMs": 25056.694013,
+      "durationMs": 53.24180400000114,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-805",
+      "receiptCount": 7
+    },
+    {
+      "seed": 806,
+      "elapsedMs": 30069.008447,
+      "durationMs": 66.61086699999942,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-806",
+      "receiptCount": 7
+    },
+    {
+      "seed": 807,
+      "elapsedMs": 35052.78282,
+      "durationMs": 50.3884029999972,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-807",
+      "receiptCount": 7
+    },
+    {
+      "seed": 808,
+      "elapsedMs": 40056.724390999996,
+      "durationMs": 53.59297499999957,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-808",
+      "receiptCount": 7
+    },
+    {
+      "seed": 809,
+      "elapsedMs": 45055.30902,
+      "durationMs": 51.21703400000115,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-809",
+      "receiptCount": 7
+    },
+    {
+      "seed": 810,
+      "elapsedMs": 50047.977231,
+      "durationMs": 43.56125199999951,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-810",
+      "receiptCount": 7
+    },
+    {
+      "seed": 811,
+      "elapsedMs": 55048.377755,
+      "durationMs": 46.48554000000149,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-811",
+      "receiptCount": 7
+    },
+    {
+      "seed": 812,
+      "elapsedMs": 60050.563827,
+      "durationMs": 48.65794600000663,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-812",
+      "receiptCount": 7
+    },
+    {
+      "seed": 813,
+      "elapsedMs": 65049.930879,
+      "durationMs": 46.492340999997396,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-813",
+      "receiptCount": 7
+    },
+    {
+      "seed": 814,
+      "elapsedMs": 70057.97612800001,
+      "durationMs": 52.08661299999221,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-814",
+      "receiptCount": 7
+    },
+    {
+      "seed": 815,
+      "elapsedMs": 75048.936883,
+      "durationMs": 45.06653200001165,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-815",
+      "receiptCount": 7
+    },
+    {
+      "seed": 816,
+      "elapsedMs": 80050.560001,
+      "durationMs": 48.68407499999739,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-816",
+      "receiptCount": 7
+    },
+    {
+      "seed": 817,
+      "elapsedMs": 85054.088585,
+      "durationMs": 49.85667599999579,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-817",
+      "receiptCount": 7
+    },
+    {
+      "seed": 818,
+      "elapsedMs": 90049.64913,
+      "durationMs": 46.40187399998831,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-818",
+      "receiptCount": 7
+    },
+    {
+      "seed": 819,
+      "elapsedMs": 95065.59753700001,
+      "durationMs": 62.21435899999051,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-819",
+      "receiptCount": 7
+    },
+    {
+      "seed": 820,
+      "elapsedMs": 100051.38974500001,
+      "durationMs": 47.751980999993975,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-820",
+      "receiptCount": 7
+    },
+    {
+      "seed": 821,
+      "elapsedMs": 105055.620079,
+      "durationMs": 52.254226000004564,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-821",
+      "receiptCount": 7
+    },
+    {
+      "seed": 822,
+      "elapsedMs": 110047.67567200001,
+      "durationMs": 44.22584499999357,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-822",
+      "receiptCount": 7
+    },
+    {
+      "seed": 823,
+      "elapsedMs": 115051.498508,
+      "durationMs": 48.09521699999459,
+      "checks": [
+        {
+          "name": "real_receipt_cursor_gap",
+          "passed": true
+        },
+        {
+          "name": "actual_worker_recovered",
+          "passed": true
+        },
+        {
+          "name": "recovery_not_replayed",
+          "passed": true
+        },
+        {
+          "name": "actual_supplier_unknown",
+          "passed": true
+        },
+        {
+          "name": "unknown_supplier_contained",
+          "passed": true
+        },
+        {
+          "name": "financial_conflict_detected",
+          "passed": true
+        },
+        {
+          "name": "financial_repair_denied",
+          "passed": true
+        },
+        {
+          "name": "authority_effect_invariants",
+          "passed": true
+        },
+        {
+          "name": "shared_identity_audit",
+          "passed": true
+        }
+      ],
+      "missionId": "acceptance:joint-823",
+      "receiptCount": 7
+    }
+  ],
+  "paidCalls": 0,
+  "externalEffects": 0,
+  "kernelEgress": "DENIED",
+  "scope": "Actual wall-clock isolated joint commerce/Assurance sampling; no hosted or multi-day endurance claim"
+}

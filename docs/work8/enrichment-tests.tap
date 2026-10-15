@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: independent real SQLite admission race creates one page and one append-only admission
+ok 1 - independent real SQLite admission race creates one page and one append-only admission
+  ---
+  duration_ms: 336.841723
+  type: 'test'
+  ...
+# Subtest: direct admission independently rejects wrong-query evidence and old-day scheduler seed
+ok 2 - direct admission independently rejects wrong-query evidence and old-day scheduler seed
+  ---
+  duration_ms: 42.955324
+  type: 'test'
+  ...
+# Subtest: corrupted derived discovery checkpoint does not starve existing internal jobs and remains explicitly degraded
+ok 3 - corrupted derived discovery checkpoint does not starve existing internal jobs and remains explicitly degraded
+  ---
+  duration_ms: 55.703162
+  type: 'test'
+  ...
+# Subtest: append-only admission binds retained job request bytes before a later page can be admitted
+ok 4 - append-only admission binds retained job request bytes before a later page can be admitted
+  ---
+  duration_ms: 41.120579
+  type: 'test'
+  ...
+# Subtest: existing scheduled job -> actual CJ read adapter -> append-only discovery reaches100 distinct identities with no real transport
+ok 5 - existing scheduled job -> actual CJ read adapter -> append-only discovery reaches100 distinct identities with no real transport
+  ---
+  duration_ms: 358.25666
+  type: 'test'
+  ...
+# Subtest: repeated/empty pages, denied/429 and incorrect page echo report shortfall without automatic failed-page retry
+ok 6 - repeated/empty pages, denied/429 and incorrect page echo report shortfall without automatic failed-page retry
+  ---
+  duration_ms: 461.692878
+  type: 'test'
+  ...
+# Subtest: quota exhaustion is explicit and no unreserved provider request occurs
+ok 7 - quota exhaustion is explicit and no unreserved provider request occurs
+  ---
+  duration_ms: 38.463904
+  type: 'test'
+  ...
+# Subtest: atomic planner admission survives enqueue crash/reopen and simultaneous duplicate ticks
+ok 8 - atomic planner admission survives enqueue crash/reopen and simultaneous duplicate ticks
+  ---
+  duration_ms: 30.940002
+  type: 'test'
+  ...
+# Subtest: same-day late arrivals append after exhaustion and expired sources quarantine; next day preserves acquisition cursor
+ok 9 - same-day late arrivals append after exhaustion and expired sources quarantine; next day preserves acquisition cursor
+  ---
+  duration_ms: 68.141582
+  type: 'test'
+  ...
+# Subtest: actual adapter detail stock freight pinned deferral survives restart without recursive followups
+ok 10 - actual adapter detail stock freight pinned deferral survives restart without recursive followups
+  ---
+  duration_ms: 116.135402
+  type: 'test'
+  ...
+# Subtest: ambiguous variant missing destination wrong identity and denied provider defer without retry
+ok 11 - ambiguous variant missing destination wrong identity and denied provider defer without retry
+  ---
+  duration_ms: 156.101461
+  type: 'test'
+  ...
+# Subtest: quota interrupted lease expired source and state corruption fail closed
+ok 12 - quota interrupted lease expired source and state corruption fail closed
+  ---
+  duration_ms: 101.283643
+  type: 'test'
+  ...
+# Subtest: queue and receipt rollback together; restart duplicate tick creates no second job
+ok 13 - queue and receipt rollback together; restart duplicate tick creates no second job
+  ---
+  duration_ms: 24.749679
+  type: 'test'
+  ...
+# Subtest: owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+ok 14 - owner grant pins candidate context and completed proof links only explicit candidate binding without inference
+  ---
+  duration_ms: 79.997635
+  type: 'test'
+  ...
+# Subtest: later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+ok 15 - later fresh exact-parent evidence opens bounded generation without rewriting prior receipts
+  ---
+  duration_ms: 71.640637
+  type: 'test'
+  ...
+# Subtest: 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+ok 16 - 1001 retained deferred parents do not prevent the next authentic identity admission at zero active products
+  ---
+  duration_ms: 110.102737
+  type: 'test'
+  ...
+# Subtest: refresh selection resumes beyond its 32-parent page across restart
+ok 17 - refresh selection resumes beyond its 32-parent page across restart
+  ---
+  duration_ms: 41.000478
+  type: 'test'
+  ...
+# Subtest: two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+ok 18 - two independent SQLite connections cannot authorize ambiguous candidate grants with the same instruction
+  ---
+  duration_ms: 270.868229
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1259.942017

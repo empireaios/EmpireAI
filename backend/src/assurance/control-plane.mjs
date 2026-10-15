@@ -35,6 +35,13 @@ export class AssuranceControlPlane {
  observe(w,p){
   this.scope(w);if(!key(p.id)||!key(p.capability)||!statuses.has(p.status)||typeof p.summary!=='string'||p.summary.length>1000||JSON.stringify(p.evidence??null).length>12000)throw Error('PROBE_CONTRACT');
   if(p.synthetic===true&&!w.startsWith('synthetic:'))throw Error('SYNTHETIC_ISOLATION');
+  // A cached affirmative result must retain its source time. Receiving it now
+  // cannot make that evidence fresh or close an unresolved incident.
+  if(p.status==='HEALTHY'&&p.evidence&&Object.hasOwn(p.evidence,'observedAt')){
+   const sourceAt=p.evidence.observedAt;
+   if(!Number.isSafeInteger(sourceAt)||sourceAt>this.now()||this.now()-sourceAt>180000)p={...p,status:'STALE',summary:'Affirmative source evidence is stale or has an invalid observation time'};
+  }
+
   return this.tx(()=>{const probe={...safe(p),observedAt:this.now(),revision:this.revision};this.put(w,'probe',p.id,probe);
    const fingerprint=hash([p.capability,p.classification??'UNKNOWN',p.id,this.revision]);
    let incident=this.list(w,'incident').find(i=>i.fingerprint===fingerprint&&!terminal.has(i.status));
@@ -72,6 +79,11 @@ export class AssuranceControlPlane {
     // across revisions. Preserve original incident identity and immutable events;
     // do not resolve an in-flight or unknown recovery outcome from probe health.
     for(const prior of this.list(w,'incident').filter(i=>i.probeId===p.id&&i.capability===p.capability&&i.classification===(p.classification??'UNKNOWN')&&!terminal.has(i.status))){
+     if(Object.hasOwn(prior,'sourceClaimCoverage')&&(prior.sourceClaimCoverageChanged||prior.sourceClaimCoverage!==(p.evidence?.semanticCoverageDigest??null))){this.event(w,'FUNCTION_VERIFICATION_REJECTED',{incidentId:prior.id,reason:'SOURCE_CLAIM_COVERAGE_CHANGED'});continue;}
+     const sourceAt=p.sourceObservedAt??p.evidence?.observedAt;
+     if(!Number.isSafeInteger(sourceAt)||sourceAt>this.now()||sourceAt<prior.lastAt||this.now()-sourceAt>180000){
+      this.event(w,'FUNCTION_VERIFICATION_REJECTED',{incidentId:prior.id,reason:'FRESH_POST_FAULT_OBSERVATION_REQUIRED',sourceObservedAt:sourceAt??null,lastFaultObservedAt:prior.lastAt});continue;
+     }
      if(this.list(w,'recovery').some(r=>r.incidentId===prior.id&&['RUNNING','UNKNOWN'].includes(r.status)))continue;
      prior.status='RECOVERED';prior.verifiedAt=this.now();prior.closedAt=this.now();prior.verificationRevision=this.revision;this.put(w,'incident',prior.id,prior);this.event(w,'FUNCTION_VERIFIED',{incidentId:prior.id,probe});
     }return probe;
@@ -79,6 +91,7 @@ export class AssuranceControlPlane {
    if(p.status==='NOT_INSTALLED')return probe;
    if(!incident){incident={id:'inc_'+randomUUID(),fingerprint,probeId:p.id,capability:p.capability,classification:p.classification??'UNKNOWN',severity:p.severity??'HIGH',summary:p.summary,status:'DETECTED',firstAt:this.now(),lastAt:this.now(),revision:this.revision,runbookId:p.runbookId??null,recurrence:1,attempts:0,synthetic:w.startsWith('synthetic:')};this.event(w,'INCIDENT_DETECTED',{incident,probe});}
    else{incident.lastAt=this.now();incident.recurrence++;this.event(w,'INCIDENT_OBSERVED',{incidentId:incident.id,probe});}
+   if(p.capability==='response_evidence_linkage'){const coverage=p.evidence?.semanticCoverageDigest??null;if(!Object.hasOwn(incident,'sourceClaimCoverage')){incident.sourceClaimCoverage=coverage;this.event(w,'SOURCE_CLAIM_COVERAGE_BOUND',{incidentId:incident.id,coverage});}else if(incident.sourceClaimCoverage!==coverage&&!incident.sourceClaimCoverageChanged){incident.sourceClaimCoverageChanged=true;this.event(w,'SOURCE_CLAIM_COVERAGE_CONFLICT',{incidentId:incident.id,originalCoverage:incident.sourceClaimCoverage,coverage});}}
    this.put(w,'incident',incident.id,incident);return incident;});
  }
  snapshot(w){
@@ -115,6 +128,12 @@ export class AssuranceControlPlane {
    if(this.get(w,'setting','pause')?.paused)return 'PAUSED';
    const lease=this.get(w,'lease','production');if(lease&&lease.status==='ACTIVE'){if(incident.deferredLeaseId!==lease.id){incident.deploymentDeferredAt=this.now();incident.deferredLeaseId=lease.id;this.event(w,'DEPLOYMENT_RECOVERY_DEFERRED',{incidentId:id,leaseId:lease.id,fence:lease.fence,revision:this.revision});}incident.status='DEFERRED';this.put(w,'incident',id,incident);return lease.expiresAt<=this.now()?'LEASE_RECONCILIATION_REQUIRED':'DEPLOYMENT_CONFLICT';}
    if(incident.attempts>=runbook.maxAttempts){incident.status='UNRESOLVED';incident.limitation='Recovery attempt budget exhausted';this.put(w,'incident',id,incident);return 'CIRCUIT_OPEN';}
+   // Budget the same fault family across recovered/recreated incidents too.
+   // Otherwise each oscillation obtains a fresh per-incident repair allowance.
+   const familyIds=new Set(this.list(w,'incident').filter(i=>i.fingerprint===incident.fingerprint).map(i=>i.id));
+   const recentFamilyAttempts=this.list(w,'recovery').filter(r=>familyIds.has(r.incidentId)&&r.runbookVersion===runbook.version&&r.startedAt>this.now()-3600000&&r.startedAt<=this.now()).length;
+   if(recentFamilyAttempts>=runbook.maxAttempts){incident.status='UNRESOLVED';incident.limitation='Recurring recovery circuit open for this fault family (one-hour window)';this.put(w,'incident',id,incident);return 'CIRCUIT_OPEN';}
+
    if(incident.lastAttemptAt&&this.now()-incident.lastAttemptAt<runbook.cooldownMs)return 'COOLDOWN';
    let approval=null;
    if(runbook.authority==='B'){
@@ -136,8 +155,11 @@ export class AssuranceControlPlane {
     const result=await this.bounded(runbook.reconcile,context,runbook.timeoutMs);
     if(result?.completed!==true)throw Error('OUTCOME_UNKNOWN');operation.result=safe(result);
    }else operation.result=safe(await this.bounded(runbook.execute,context,runbook.timeoutMs));
+   const verificationStartedAt=this.now();
    const verified=await this.bounded(runbook.verify,{...context,result:operation.result},runbook.timeoutMs);
-   if(verified?.healthy!==true){operation.status='FAILED';operation.verification=safe(verified);incident.status='DEGRADED';}
+   const verificationCompletedAt=this.now();
+   const fresh=Number.isSafeInteger(verified?.observedAt)&&verified.observedAt>=verificationStartedAt&&verified.observedAt<=verificationCompletedAt;
+   if(verified?.healthy!==true||!fresh){operation.status='FAILED';operation.verification=safe(verified);operation.verificationFailure=verified?.healthy===true?'FRESH_OBSERVATION_REQUIRED':'RESOURCE_UNHEALTHY';incident.status='DEGRADED';}
    else{operation.status='VERIFIED';operation.verification=safe(verified);incident.status='RECOVERED';incident.closedAt=this.now();incident.verifiedAt=this.now();}
   }catch(e){operation.status='UNKNOWN';operation.error=e?.message==='OUTCOME_UNKNOWN'?'OUTCOME_UNKNOWN':'RUNBOOK_ERROR_OUTCOME_UNKNOWN';incident.status='UNRESOLVED';}
   operation.completedAt=this.now();this.tx(()=>{this.put(w,'recovery',operation.id,operation);this.put(w,'incident',id,incident);this.event(w,'RECOVERY_RESULT',operation);});return operation;
@@ -168,6 +190,6 @@ export class AssuranceControlPlane {
 /** Called only by the independently supervised inspector; never renews primary monitoring. */
 export function inspectControlPlaneMonitor(control,workspace='ws_empire_1'){
  const state=control.snapshot(workspace);
- const incident=control.observe(workspace,{id:'assurance-primary-monitor',capability:'assurance-monitor',status:state.monitor.fresh?'HEALTHY':'STALE',severity:'CRITICAL',classification:'MONITORING_COVERAGE_LOST',summary:state.monitor.fresh?'Primary Assurance monitor is current':'Primary Assurance monitor heartbeat is missing or stale',evidence:{heartbeat:state.monitor.heartbeat}});
+ const incident=control.observe(workspace,{id:'assurance-primary-monitor',capability:'assurance-monitor',status:state.monitor.fresh?'HEALTHY':'STALE',severity:'CRITICAL',classification:'MONITORING_COVERAGE_LOST',summary:state.monitor.fresh?'Primary Assurance monitor is current':'Primary Assurance monitor heartbeat is missing or stale',evidence:{heartbeat:state.monitor.heartbeat,observedAt:state.monitor.heartbeat?.at??null}});
  control.heartbeat(workspace,'watchdog');return {fresh:state.monitor.fresh,incident};
 }

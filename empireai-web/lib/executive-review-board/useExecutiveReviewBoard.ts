@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import type { ExecutiveReviewBoard } from "@/lib/executive-review-board/types";
 
@@ -31,11 +33,7 @@ export function useExecutiveReviewBoard() {
     }
   }, []);
 
-  useEffect(() => {
-    void reload();
-    const id = setInterval(() => void reload(), REFRESH_MS);
-    return () => clearInterval(id);
-  }, [reload]);
+  useEffect(() => subscribeRead(reload, REFRESH_MS), [reload]);
 
   const view = data?.executiveReviewBoard ?? null;
   const live = data?.live !== false;

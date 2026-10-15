@@ -1,0 +1,49 @@
+{
+  "schema": "work8-sqlite-queue-containment-v1",
+  "classification": "ACTUAL_ISOLATED_SQLITE_AND_CONTROL_PLANE_FAULTS",
+  "node": "v22.23.2",
+  "kernelEgress": "DENIED",
+  "testFile": "backend/src/validation/tests/work8-sqlite-queue-containment.test.ts",
+  "testSha256": "443651db18eab834b2e61ad46f1b764341d08f9a9890d014e75bfd6fb0e16b87",
+  "result": {
+    "passed": 3,
+    "failed": 0,
+    "durationMs": 1326.218439
+  },
+  "fixedFaultMap": [
+    {
+      "item": 6,
+      "fault": "Database/network timeout",
+      "proved": "Actual second SQLite connection BEGIN IMMEDIATE caused bounded admission lock timeout; no partialreceipt; controller releases lock; exact originalcommand committed once; fresh source read closes retainedincident; Assurance did not autorepair",
+      "remaining": "Network/remote database transport timeout separate scope"
+    },
+    {
+      "item": 3,
+      "fault": "Duplicate queue delivery",
+      "proved": "Actual durable canonical task fence rejects duplicate delivery; one receipt/cursoradvance. Concurrent duplicated Assurance recovery reconciles same existing committedgap once and verifies unchangedhistory",
+      "remaining": "Redis/BullMQ external queue delivery semantics separate scope"
+    }
+  ],
+  "cases": [
+    {
+      "name": "real second-connection SQLite lock times out with no partial receipt; release and exact safe retry close incident from fresh readback",
+      "durationMs": 1021.569182,
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate delivery of actual durable task is fenced without second receipt; fresh state closes retained incident",
+      "durationMs": 7.532105,
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate concurrent recovery deliveries reconcile a committed cursor gap once without another business step",
+      "durationMs": 35.480377,
+      "result": "PASS"
+    }
+  ],
+  "paidInference": 0,
+  "externalEffects": 0,
+  "runtimeCodeChanged": false,
+  "productionAcceptance": false,
+  "work8Complete": false
+}

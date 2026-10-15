@@ -1,3 +1,4 @@
+import { runCaptureAwareBackground } from '../../../../runtime/work8-background-capture.js';
 /** Continue only an owner-started, read-only Amazon US seller availability import. */
 import { logger } from "../../../../config/logger.js";
 import {
@@ -34,7 +35,7 @@ export function startAmazonSellerInventoryContinuation(): () => Promise<void> {
     if (stopped) return;
     timer = setTimeout(() => {
       flight = (async () => {
-        try { await continueOneAmazonSellerInventoryImport(); }
+        try { await runCaptureAwareBackground(continueOneAmazonSellerInventoryImport); }
         catch (error) {
           logger.error({ name: error instanceof Error ? error.name : "unknown" },
             "Amazon seller inventory continuation failed; cursor remains pending");

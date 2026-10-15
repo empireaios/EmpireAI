@@ -11,6 +11,7 @@ export function installPrimaryShutdown(options: {
   stopBackground: () => Promise<void>;
   closeServer: () => Promise<void>;
   disconnect: () => void;
+  closeStores?: () => void | Promise<void>;
   report: (event: string, error?: unknown) => void;
   timeoutMs?: number;
 }) {
@@ -62,6 +63,7 @@ export function installPrimaryShutdown(options: {
         }
         const closeError = await closeOutcome;
         if (closeError) throw closeError;
+        await options.closeStores?.();
         options.report("primary_shutdown_complete");
       } catch (error) {
         exitCode = 1;

@@ -1,0 +1,11 @@
+✔ independent SQLite worker connections race for 1000th slot; 1001st denied (41850.42873ms)
+✔ daily virtual cohorts reach 1000 active products; 1001 blocked after reopen, retirement permits one replacement (40637.266895ms)
+✔ duplicate product variants cannot consume multiple active slots; owner retirement cannot be forged; replay is unchanged (14.174284ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42064.199822

@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { pathToFileURL } = require('node:url');
 const assert = require('node:assert/strict');
 const { DatabaseSync } = require('node:sqlite');
 // Observed old-production persisted checkpoint is 572,035,072 bytes; stream it
@@ -40,7 +41,10 @@ function digestFile(filename) {
   } finally { fs.closeSync(fd); }
 }
 function integrity(filename) {
-  const db = new DatabaseSync(filename, { readOnly: true });
+  // This is a sealed copied file, hashed before and after this read. Immutable
+  // URI mode prevents SQLite from creating WAL/SHM files while inspecting a
+  // checkpoint whose persistent journal-mode flag is WAL. Never use for live DBs.
+  const db = new DatabaseSync(pathToFileURL(filename).href + '?immutable=1', { readOnly: true, allowExtension: false });
   try {
     const rows = db.prepare('PRAGMA integrity_check').all();
     assert.equal(rows.length, 1); assert.equal(Object.values(rows[0])[0], 'ok', 'SQLite integrity failed');

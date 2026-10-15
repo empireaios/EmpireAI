@@ -1,0 +1,6 @@
+import fs from 'node:fs';import path from 'node:path';import {IntelligenceStore} from '../../backend/src/intelligence/store.js';import {startIntelligence} from '../../backend/src/intelligence/runtime.js';
+const [root,workspace]=process.argv.slice(2);if(!root||!workspace||process.env.WORK8_KERNEL_EGRESS!=='DENIED')throw Error('ISOLATED_EXAM_REQUIRED');process.env.NODE_ENV='test';process.env.DATABASE_PATH=path.join(root,'brain.sqlite');process.env.RAILWAY_VOLUME_MOUNT_PATH=root;
+fs.mkdirSync(path.join(root,'commissioning'),{recursive:true});const store=new IntelligenceStore(path.join(root,'commissioning','intelligence.sqlite'));store.seed(workspace);for(const s of store.schedules(workspace))if(s.id!=='empire.state')store.setSchedule(workspace,s.id,false);
+const start=Date.now(),dueAt=start+30000;store.use(db=>db.prepare("UPDATE schedules SET next_at=? WHERE workspace=? AND id='empire.state'").run(dueAt,workspace));
+const stop=startIntelligence(store,workspace);process.send?.({type:'ready',pid:process.pid,start,dueAt,registeredIntervalMs:30000});
+const keep=setInterval(()=>process.send?.({type:'progress',at:Date.now()}),1000);process.on('message',async m=>{if(m==='stop'){clearInterval(keep);await stop();process.exit(0);}});

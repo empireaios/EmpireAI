@@ -114,3 +114,23 @@ body {
     transform: none !important;
   }
 }
+
+/* Work 7: shared owner palette, scoped to retain public-site identity. */
+[data-owner-theme="pastel"] main {color:#294363;overflow-wrap:anywhere}
+[data-owner-theme="pastel"] main [class*="text-slate-"],
+[data-owner-theme="pastel"] main [class*="text-amber-"],
+[data-owner-theme="pastel"] main [class*="text-white"] {color:#465f7e}
+[data-owner-theme="pastel"] main [class*="text-red-"] {color:#a52246}
+[data-owner-theme="pastel"] main [class*="text-emerald-"] {color:#087851}
+[data-owner-theme="pastel"] main [class*="border-white"],
+[data-owner-theme="pastel"] main [class*="border-amber"] {border-color:#c8dceb}
+[data-owner-theme="pastel"] main section[class*="border"],
+[data-owner-theme="pastel"] main details[class*="border"],
+[data-owner-theme="pastel"] main article[class*="border"] {background:#fcfeff;border-radius:15px}
+[data-owner-theme="pastel"] main input,
+[data-owner-theme="pastel"] main select,
+[data-owner-theme="pastel"] main textarea {color:#294363;background:#fff;border-color:#bacfde;max-width:100%}
+[data-owner-theme="pastel"] main button {min-height:44px}
+[data-owner-theme="pastel"] main button:disabled {cursor:not-allowed}
+[data-owner-theme="pastel"] main pre {max-width:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+[data-owner-theme="pastel"] main [data-legacy-workspace] {background:#09151c;color:#f5f0e6;border-radius:16px;padding:16px;min-width:0}

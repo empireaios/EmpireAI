@@ -1,3 +1,6 @@
+import {portfolioHealth} from './work8-portfolio-health.js';
+import {activePortfolio, portfolioIdentity} from './work8-portfolio.js';
+import {committedSimulatedStock} from './work8-stock.js';
 import {projectEntities} from './entities.js';
 import {PIE_EVALUATION_WEIGHTS} from '../../../intelligence/product-intelligence-engine/types.js';
 import {computeMarginScore,computeShippingScore} from '../../../intelligence/product-intelligence-engine/score-computers.js';
@@ -7,7 +10,7 @@ import {actorSchema,envelopeSchema,type Actor,type Candidate,type Listing,type C
 import {digest,GovernedCommerceStore,type Receipt} from './store.js';
 
 type ManagedOrder={order:CanonicalOrder;intentId?:string;providerId?:string;outcome:'RECEIVED'|'PREPARED'|'ACCEPTED'|'UNKNOWN'|'REJECTED'|'PARTIAL'|'SHIPPED'|'DELIVERED'|'CANCELLED'|'RECONCILIATION_REQUIRED';accepted:number;shipped:number;delivered:number;tracking:string[];lastTrackingAt:string|null;shipments:Record<string,{quantity:number;delivered:boolean;carrier:string;tracking:string}>;remedies:Array<{id:string;kind:string;amount:number;quantity:number;financialClass:'SYNTHETIC_EXCLUDED_FROM_ACTUALS'}>};
-export type CommerceState={publicationIntent?:{capacity:unknown;status:'INTERCEPTED';receiptId:string;canonicalPublisher:string};phase:'RESEARCHED'|'QUALIFIED'|'REJECTED'|'REVIEWED'|'APPROVED'|'PREPARED';candidate:Candidate;candidateDigest:string;qualification:ReturnType<typeof qualify>;proposer:string;review?:{actor:string;digest:string;decision:string};approval?:{actor:string;digest:string;expiresAt:string;maxExposure:number;revoked:boolean};listing?:Listing;listingDigest?:string;orders:Record<string,ManagedOrder>;outcomes:Outcome[];reversed:string[];decisions:Array<{id:string;evidenceIds:string[];actions:string[];days:number[]}>;paidInference:0;externalEffects:0};
+export type CommerceState={retirement?:{actor:string;at:string;reason:string;reviewDecisionId?:string};publicationIntent?:{capacity:unknown;status:'INTERCEPTED';receiptId:string;canonicalPublisher:string};phase:'RESEARCHED'|'QUALIFIED'|'REJECTED'|'REVIEWED'|'APPROVED'|'PREPARED';candidate:Candidate;candidateDigest:string;qualification:ReturnType<typeof qualify>;proposer:string;review?:{actor:string;digest:string;decision:string};approval?:{actor:string;digest:string;expiresAt:string;maxExposure:number;revoked:boolean};listing?:Listing;listingDigest?:string;orders:Record<string,ManagedOrder>;outcomes:Outcome[];reversed:string[];decisions:Array<{id:string;evidenceIds:string[];actions:string[];days:number[];health?:ReturnType<typeof portfolioHealth>}>;paidInference:0;externalEffects:0};
 const fail=(code:string):never=>{throw Error(code);};
 const sumQuantity=(o:CanonicalOrder)=>o.items.reduce((n,item)=>n+item.quantity,0);
 function fresh(p:{observedAt:string;expiresAt:string},now:number){return Date.parse(p.observedAt)<=now&&Date.parse(p.expiresAt)>now&&Date.parse(p.expiresAt)>Date.parse(p.observedAt);}
@@ -61,6 +64,7 @@ export class GovernedCommerceEngine {
     const s=state!;
     const order=(id:string):ManagedOrder=>s.orders[id]??fail('ORDER_NOT_FOUND');
     const approval=()=>{
+     if(s.retirement)fail('PRODUCT_RETIRED');
      const a=s.approval;
      if(!a||a.revoked||a.digest!==s.candidateDigest||Date.parse(a.expiresAt)<=now)fail('APPROVAL_INVALID_OR_EXPIRED');
      if(!s.review||s.review.decision!=='APPROVE'||s.review.digest!==s.candidateDigest||s.review.actor===s.proposer||a!.actor===s.proposer||a!.actor===s.review.actor)fail('FOUR_EYES_REQUIRED');
@@ -82,6 +86,18 @@ export class GovernedCommerceEngine {
       s.approval={actor:actor.id,digest:cmd.digest,expiresAt:cmd.expiresAt,maxExposure:cmd.maxExposure,revoked:false};s.phase='APPROVED';emit('Approval','approval');break;
      case 'revoke':
       if(actor.role!=='OWNER')fail('OWNER_REQUIRED');if(!s.approval)fail('APPROVAL_NOT_FOUND');s.approval!.revoked=true;emit('Approval','revocation');break;
+     case 'retire':{
+      if(actor.role!=='OWNER'||s.approval?.actor!==actor.id)fail('PORTFOLIO_OWNER_REQUIRED');
+      if(!s.publicationIntent||s.retirement)fail('ACTIVE_PRODUCT_REQUIRED');
+      if(Object.values(s.orders).some(o=>!['DELIVERED','CANCELLED','REJECTED'].includes(o.outcome)))fail('OPEN_ORDERS_REQUIRE_RESOLUTION');
+      // Optional historical linkage records the owner's stated basis; it grants no authority.
+      if(cmd.reviewDecisionId){
+       const review=s.decisions.find(d=>d.id===cmd.reviewDecisionId);
+       if(!review)fail('PORTFOLIO_REVIEW_DECISION_NOT_FOUND');
+       if(!review!.evidenceIds.length||review!.evidenceIds.some(id=>!s.outcomes.some(o=>o.id===id&&o.verified&&!s.reversed.includes(id)&&fresh(o.provenance,now))))fail('PORTFOLIO_REVIEW_EVIDENCE_INVALID');
+      }
+      s.retirement={actor:actor.id,at,reason:cmd.reason,...(cmd.reviewDecisionId?{reviewDecisionId:cmd.reviewDecisionId}:{})};emit('StrategyDecision','retirement');break;
+     }
      case 'listing':{
       if(actor.role!=='PROPOSER'||actor.id!==s.proposer||Object.keys(s.orders).length)fail('LISTING_PROPOSER_OR_STATE_INVALID');const l=cmd.listing;
       if(l.productId!==s.candidate.productId||l.category!==s.candidate.category||!l.variants.some(v=>v.sku===s.candidate.offer.sku&&v.variantId===s.candidate.offer.variantId))fail('LISTING_IDENTITY_MISMATCH');
@@ -101,6 +117,9 @@ export class GovernedCommerceEngine {
       if(capacity.mode==='NEW_ASIN'&&(capacity.asin||capacity.newAsinRemaining===null||capacity.newAsinRemaining<1))fail('NEW_ASIN_CAPACITY_UNKNOWN_OR_EXHAUSTED');
       if(capacity.unsoldRemaining===null||capacity.unsoldRemaining<1)fail('UNSOLD_CAPACITY_UNKNOWN_OR_EXHAUSTED');
       if(capacity.requestsPerSecond===null)fail('API_QUOTA_UNKNOWN');
+      const portfolio=activePortfolio(this.store,actor.workspace);
+      if(portfolio.identities.includes(portfolioIdentity(s)))fail('DUPLICATE_ACTIVE_PRODUCT');
+      if(portfolio.activeCount>=1000)fail('ACTIVE_PORTFOLIO_CAP');
       const receipt=interceptWrite({id:e.id,provider:'AMAZON',operation:'PUBLISH',approvalDigest:s.candidateDigest,payloadDigest:digest({listing:s.listing,offer:s.candidate.offer,capacity})});
       s.publicationIntent={capacity,status:'INTERCEPTED',receiptId:receipt.receiptId,canonicalPublisher:'marketplace-publishing/services/amazon-listings-publish-executor'};
       emit('MarketplaceIntent','publication-intent');break;
@@ -114,6 +133,7 @@ export class GovernedCommerceEngine {
       if(o.currency!==s.candidate.offer.currency||o.items.some(x=>x.currency!==o.currency||x.unitCost!==s.candidate.offer.price))fail('ORDER_PRICE_OR_CURRENCY_DRIFT');
       if(o.items.some(x=>x.supplierSku!==s.candidate.offer.sku||x.supplierProductId!==s.candidate.offer.productId))fail('VARIANT_MAPPING_MISMATCH');
       const quantity=sumQuantity(o);if(quantity>s.candidate.offer.stock)fail('STOCKOUT');
+      if(quantity+committedSimulatedStock(this.store,actor.workspace,s)>s.candidate.offer.stock)fail('STOCK_COMMITMENT_EXCEEDED');
       const committed=Object.values(s.orders).filter(x=>x.outcome!=='CANCELLED'&&x.outcome!=='REJECTED').reduce((n,x)=>n+sumQuantity(x.order)*s.qualification.exposure,0);
       if(quantity*s.qualification.exposure+committed>Math.min(s.approval!.maxExposure,s.candidate.cash.budget,s.qualification.available??0))fail('CAPITAL_COMMITMENT_EXCEEDED');
       s.orders[o.orderId]={order:o,outcome:'RECEIVED',accepted:0,shipped:0,delivered:0,tracking:[],lastTrackingAt:null,shipments:{},remedies:[]};emit('Order',o.orderId);o.items.forEach((_,i)=>emit('OrderLine',o.orderId+':'+i));break;
@@ -150,7 +170,7 @@ export class GovernedCommerceEngine {
      }
      case 'cancel':{
       approval();const o=order(cmd.orderId);if(o.delivered>0||o.outcome==='CANCELLED')fail('RETURN_REQUIRED_OR_ALREADY_CANCELLED');
-      if(['UNKNOWN','ACCEPTED','PARTIAL','SHIPPED'].includes(o.outcome)&&!cmd.confirmed){o.outcome='RECONCILIATION_REQUIRED';emit('ExceptionCase',cmd.orderId+':cancel-race');break;}
+      if(['UNKNOWN','ACCEPTED','PARTIAL','SHIPPED','RECONCILIATION_REQUIRED'].includes(o.outcome)&&!cmd.confirmed){o.outcome='RECONCILIATION_REQUIRED';emit('ExceptionCase',cmd.orderId+':cancel-race');break;}
       o.outcome='CANCELLED';o.order.status='CANCELLED';o.order.fulfillmentStatus='CANCELLED';emit('SupplierReceipt',cmd.orderId+':cancel');break;
      }
      case 'remedy':{
@@ -169,7 +189,7 @@ export class GovernedCommerceEngine {
       const outcomes=s.outcomes.filter(x=>x.verified&&!s.reversed.includes(x.id)&&fresh(x.provenance,now));const actions=new Set<string>();
       for(const x of outcomes){if(x.sales===0)actions.add(x.days>=90?'STOP_EXPANSION_REVIEW_PIVOT':'VERIFY_DEMAND_BEFORE_SPEND');if(x.conversion<0.01)actions.add('REVIEW_LISTING_AND_TARGETING');if(x.margin<=0)actions.add('REQUALIFY_ECONOMICS');if(x.stockouts)actions.add('RESEARCH_ALTERNATIVE_SUPPLIER');if(x.deliveryFailures)actions.add('REVIEW_FREIGHT_AND_REMEDIES');if(x.returns)actions.add('REVIEW_QUALITY_AND_RETURN_EXPOSURE');if(x.restricted)actions.add('REJECT_RESTRICTED_MARKET');if(x.cash===null||x.cash<s.qualification.exposure)actions.add('PRESERVE_CAPITAL');}
       if(!outcomes.length)actions.add('INSUFFICIENT_VERIFIED_OUTCOMES');
-      s.decisions.push({id:e.id,evidenceIds:outcomes.map(x=>x.id),actions:[...actions],days:outcomes.map(x=>x.days)});emit('StrategyDecision',e.id);break;
+      s.decisions.push({id:e.id,evidenceIds:outcomes.map(x=>x.id),actions:[...actions],days:outcomes.map(x=>x.days),health:portfolioHealth(outcomes,s.qualification.exposure)});emit('StrategyDecision',e.id);break;
      }
     }
    }

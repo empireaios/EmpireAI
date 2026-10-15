@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-notification-id]').first() to be visible[22m
+
+    at <anonymous> (/dev/shm/work8-notification-frontend/empireai-web/scripts/owner-inbox-native.mts:10:561) {
+  log: [
+    "  - waiting for locator('[data-notification-id]').first() to be visible"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

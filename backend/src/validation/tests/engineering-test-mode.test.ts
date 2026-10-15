@@ -73,6 +73,31 @@ describe("Bounded engineering deployment mode", () => {
       assert.equal(calls, 0);
     });
 
+    it(`${label}: capture drains admitted timer work, blocks ticks and resumes one pending tick`, async (t) => {
+      process.env.EMPIRE_ENGINEERING_TEST_MODE = "false";
+      t.mock.timers.enable({ apis: ["setTimeout", "setInterval"] });
+      const writes: string[] = []; let finish!: () => void, release!: () => void;
+      const active = new Promise<void>(resolve => { finish = resolve; });
+      const held = new Promise<void>(resolve => { release = resolve; });
+      const server = new Server(async () => { writes.push("start"); await active; writes.push("commit"); return {ok:true,detail:"fixture"}; });
+      server.start(); t.mock.timers.tick(300_000); await flush();
+      let entered=false;
+      const capture=server.withPausedExecution(async()=>{entered=true;assert.deepEqual(writes,["start","commit"]);await held;});
+      await flush(); assert.equal(entered,false); finish(); await flush(); assert.equal(entered,true);
+      t.mock.timers.tick(24*60*60*1000); await flush(); assert.deepEqual(writes,["start","commit"]);
+      release(); await capture; await flush(); assert.deepEqual(writes,["start","commit","start","commit"]);
+      await server.stop();
+    });
+
+    it(`${label}: capture refusal preserves delayed boot for one later execution`, async (t) => {
+      process.env.EMPIRE_ENGINEERING_TEST_MODE = "false";
+      t.mock.timers.enable({ apis: ["setTimeout", "setInterval"] });
+      let calls=0;const server=new Server(async()=>{calls++;return {ok:true,detail:"fixture"};});
+      server.start();
+      await assert.rejects(server.withPausedExecution(async()=>{t.mock.timers.tick(300_000);await flush();assert.equal(calls,0);throw Error("capture refused");}),/capture refused/);
+      await flush();assert.equal(calls,1);await server.stop();
+    });
+
     it(`${label}: stopping before boot cancels both boot and recurring callbacks`, async (t) => {
       process.env.EMPIRE_ENGINEERING_TEST_MODE = "false";
       t.mock.timers.enable({ apis: ["setTimeout", "setInterval"] });

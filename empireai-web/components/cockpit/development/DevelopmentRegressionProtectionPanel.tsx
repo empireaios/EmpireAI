@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import { DataTable, Panel } from "@/components/platform/ui/PlatformPrimitives";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
@@ -92,9 +94,7 @@ export function DevelopmentRegressionProtectionPanel() {
     }
   }, [load]);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  useEffect(() => subscribeRead(load), [load]);
 
   const snapshot = data?.regressionProtection;
   const report = snapshot?.latestReport;

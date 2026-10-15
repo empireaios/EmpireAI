@@ -34,6 +34,10 @@ try{
   proof={schema:'safe-live-assurance-probe-v2',at:new Date().toISOString(),revision:process.env.RAILWAY_GIT_COMMIT_SHA,isolatedSyntheticSource:true,productionRecordsMutated:0,pillowSelfReportUsed:false,inferenceCalls:0,commerceWrites:0,omitted,restored,scope:'Production-shaped Redis resultJson and separate transcript identity; isolated synthetic delivery, not proof of all operational domains'};
   proof.mismatched=mismatched;
   fs.writeFileSync(dir+'/assurance-live-probe-proof-v2.json',JSON.stringify(proof,null,2),{mode:0o600});console.log(JSON.stringify(proof));
-}finally{await redis.del(key);redis.disconnect();if(fs.existsSync(filename))fs.unlinkSync(filename);}
+}finally{
+  // Failed Redis cleanup must not orphan a retrying connection after the
+  // observer has been asked to stop. Preserve the failure, always disconnect.
+  try{await redis.del(key);}finally{redis.disconnect();if(fs.existsSync(filename))fs.unlinkSync(filename);}
+}
 
 }

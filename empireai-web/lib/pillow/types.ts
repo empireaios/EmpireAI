@@ -34,6 +34,8 @@ export type PillowTurn = {
   timestamp: string;
   requestId?: string;
   provider?: string;
+  /** Originally resolved server evidence; historical only, never authority. */
+  productContext?: Record<string, unknown>;
 };
 
 export type PillowChatArtifact = {

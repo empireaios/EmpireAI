@@ -1,3 +1,5 @@
+import {normalizeKeepaHistory} from './keepa-history.js';
+import {amazonCatalogFacts} from './amazon-catalog-facts.js';
 import fs from 'node:fs';
 import {freightOrigin} from './freight-origin.js';
 import {DatabaseSync} from 'node:sqlite';
@@ -23,8 +25,8 @@ export class ReadAcquirer{
   const c=capabilities.find(c=>c.id===capabilityId);if(!c?.implemented)throw new ReadFailure('CAPABILITY_GAP');
   if(c.credentials.some(k=>!process.env[k]))throw new ReadFailure('CREDENTIAL_UNAVAILABLE',86400000);
   const health=this.store.get(workspace,'health',c.id);if(health?.retryAt&&Date.parse(health.retryAt)>this.store.now())throw new ReadFailure('BACKOFF_ACTIVE');
-  const subject=job.subject as JobInput['subject'];let endpoint='',facts:Row={},authenticity:Evidence['authenticity']='LIVE_PROVIDER';
-  const request=async(url:string,init:RequestInit={},units=1)=>{if(job.requestsUsed>=job.requestLimit)throw new ReadFailure('JOB_REQUEST_BOUND');this.store.reserve(c.provider,units);job.requestsUsed++;this.store.saveJob(workspace,job);return boundedFetch(url,init,this.transport);};
+  const subject=job.subject as JobInput['subject'];if(subject.cataloguePage!==undefined&&c.id!=='cj.catalog')throw new ReadFailure('PAGINATION_SCOPE_INVALID');let endpoint='',facts:Row={},authenticity:Evidence['authenticity']='LIVE_PROVIDER';
+  const request=async(url:string,init:RequestInit={},units=1)=>{if(job.requestsUsed>=job.requestLimit)throw new ReadFailure('JOB_REQUEST_BOUND');try{this.store.reserve(c.provider,units);}catch(error){if(error instanceof Error&&error.message==='DAILY_PROVIDER_BOUND')throw new ReadFailure('DAILY_PROVIDER_BOUND',86400000-(this.store.now()%86400000));throw error;}job.requestsUsed++;this.store.saveJob(workspace,job);return boundedFetch(url,init,this.transport);};
   if(c.provider==='Amazon'){
    const market=markets[subject.marketplace];if(!market)throw new ReadFailure('MARKETPLACE_REQUIRED');
    if(!this.amazonToken||this.amazonToken.expires<this.store.now()){
@@ -56,14 +58,14 @@ export class ReadAcquirer{
    }
    if(c.id==='amazon.analytics'&&!Array.isArray(data.reports))throw new ReadFailure('INVALID_PROVIDER_SHAPE');
    const lowest=data.payload?.Summary?.LowestPrices?.find((x:Row)=>x.condition==='new')?.LandedPrice;
-   facts={response:safe(data),...(typeof lowest?.Amount==='number'?{price:lowest.Amount,currency:lowest.CurrencyCode}:{}),marketplaceId:market.id,interpretation:c.id==='amazon.analytics'?'Report-list access only. Empty reports do not prove Brand Registry, SQP, Search Catalog or Search Terms eligibility.':'Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim.'};
+   facts={response:c.id==='amazon.catalog'?amazonCatalogFacts(data,market.id,safe):safe(data),...(typeof lowest?.Amount==='number'?{price:lowest.Amount,currency:lowest.CurrencyCode}:{}),marketplaceId:market.id,interpretation:c.id==='amazon.analytics'?'Report-list access only. Empty reports do not prove Brand Registry, SQP, Search Catalog or Search Terms eligibility.':'Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim.'};
   }else if(c.provider==='CJ'){
    const config={...loadCjConfig(),apiBaseUrl:'https://developers.cjdropshipping.com/api2.0/v1',integrationMode:'LIVE' as const,maxRetries:0,requestTimeoutMs:15000};
    // Reuse account-bound single-flight token handling, wrapping every auth request in the same durable request budget.
    const authFetch:typeof fetch=async(url,init)=>{const u=String(url);if(!['/authentication/getAccessToken','/authentication/refreshAccessToken'].some(p=>u===config.apiBaseUrl+p))throw new ReadFailure('AUTH_DESTINATION_DENIED');const r=await request(u,init,0);return new Response(r.text,{status:r.status,headers:r.headers});};
    let token:string;try{token=await getCjAccessToken(config,authFetch);}catch(e){if(e instanceof ReadFailure)throw e;throw new ReadFailure('CJ_AUTH_FAILED',86400000);}
    const p=new URLSearchParams();let body:unknown;
-   if(c.id==='cj.catalog'){endpoint='/product/list';p.set('pageNum','1');p.set('pageSize','10');p.set('productNameEn',subject.query??subject.id);}
+   if(c.id==='cj.catalog'){endpoint='/product/list';p.set('pageNum',String(subject.cataloguePage??1));p.set('pageSize','10');p.set('productNameEn',subject.query??subject.id);}
    else if(c.id==='cj.detail'){endpoint='/product/query';p.set('pid',subject.id);}
    else if(c.id==='cj.stock'){if(!subject.variant)throw new ReadFailure('VARIANT_REQUIRED');endpoint='/product/stock/queryByVid';p.set('vid',subject.variant);}
    else if(c.id==='cj.freight'){
@@ -74,10 +76,11 @@ export class ReadAcquirer{
    const r=await request(config.apiBaseUrl+endpoint+(p.size?'?'+p:''),{method:body?'POST':'GET',headers:{'CJ-Access-Token':token,'content-type':'application/json'},...(body?{body:JSON.stringify(body)}:{})},c.cost.units);
    const data=obj(JSON.parse(r.text));if(data.result!==true||data.code!==200||data.data===undefined)throw new ReadFailure('CJ_PROVIDER_'+String(data.code??'INVALID').replace(/[^0-9]/g,'').slice(0,12),86400000);
    if(data.data===null||typeof data.data!=='object')throw new ReadFailure('INVALID_PROVIDER_SHAPE');
+   if(c.id==='cj.catalog'&&subject.cataloguePage!==undefined&&(data.data.pageNum!==subject.cataloguePage||data.data.pageSize!==10||!Array.isArray(data.data.list)||data.data.list.length>10||!Number.isSafeInteger(data.data.total)||data.data.total<0))throw new ReadFailure('CATALOGUE_PAGE_IDENTITY_INVALID');
    facts={response:safe(data.data),pointsInfo:safe(data.pointsInfo??null),request:body??Object.fromEntries(p),interpretation:c.id==='cj.freight'?'Freight and delivery estimates, not guarantees; quantity 1; duties/returns not established.':'Supplier evidence only; does not establish independent customer demand.'};
   }else if(c.provider==='Keepa'){
    const market=markets[subject.marketplace];if(!market?.keepa||!/^[A-Z0-9]{10}$/.test(subject.id))throw new ReadFailure('KEEPA_ASIN_MARKET_REQUIRED');
-   endpoint='/product';const p=new URLSearchParams({key:process.env.KEEPA_API_KEY!,domain:String(market.keepa),asin:subject.id,history:'1',days:'90'});const data=obj(JSON.parse((await request('https://api.keepa.com/product?'+p)).text));if(!Array.isArray(data.products)||!data.products.length)throw new ReadFailure('KEEPA_NO_DATA');const product=data.products[0];const history=(v:unknown)=>Array.isArray(v)?v.slice(-120):[];facts={response:{asin:product.asin,title:safe(product.title),domainId:product.domainId,priceHistory:history(product.csv?.[0]),salesRankHistory:history(product.csv?.[3]),timeUnit:'minutes since 2011-01-01 UTC',priceUnit:'marketplace minor currency units',sentinel:'Negative values mean unavailable, not negative prices',boundedPairs:60},tokensLeft:data.tokensLeft,tokensConsumed:data.tokensConsumed??null,interpretation:'Historical rank/price proxies; no search volume or unit-sales guarantee'};
+   endpoint='/product';const p=new URLSearchParams({key:process.env.KEEPA_API_KEY!,domain:String(market.keepa),asin:subject.id,history:'1',days:'90'});const data=obj(JSON.parse((await request('https://api.keepa.com/product?'+p)).text));let verified;try{verified=normalizeKeepaHistory(data,subject.id,market.keepa);}catch{throw new ReadFailure('KEEPA_HISTORY_UNVERIFIED');}const product=data.products[0];facts={response:{asin:product.asin,title:safe(product.title),domainId:product.domainId,priceHistory:verified.priceHistory,salesRankHistory:verified.salesRankHistory,timeUnit:'minutes since 2011-01-01 UTC',priceUnit:'marketplace minor currency units',sentinel:'Negative values mean unavailable, not negative prices',boundedPairs:60},tokensLeft:verified.tokensLeft,tokensConsumed:verified.tokensConsumed,interpretation:'Historical rank/price proxies; no search volume or unit-sales guarantee'};
   }else if(c.id==='internet.safety'){
    if(subject.marketplace!=='US')throw new ReadFailure('US_SAFETY_SCOPE_ONLY');
    endpoint='https://www.saferproducts.gov/RestWebServices/Recall';const p=new URLSearchParams({format:'json',ProductName:subject.query??subject.id,RecallDateStart:new Date(this.store.now()-365*86400000).toISOString().slice(0,10)});const data=JSON.parse((await request(endpoint+'?'+p)).text);if(!Array.isArray(data))throw new ReadFailure('INVALID_PROVIDER_SHAPE');facts={query:subject.query??subject.id,recalls:safe(data),sampleCount:Math.min(data.length,10),totalReturned:data.length,interpretation:'US official recall search, bounded to previous year. Possible matches require product/variant verification. No results do not establish safety, compliance or legal clearance.'};

@@ -1,0 +1,225 @@
+{
+  "schema": "work8-fault-coverage-v1",
+  "scope": "Fixed numbered mandatory fault map; levels indicate evidence granularity, not completion",
+  "verification": "Reuses exact scoped prior evidence without restarting completed campaigns. Includes actual SQLite lock/duplicate-task tests, pinned Work7/Work8 sidecar compatibility, bounded1000mission fulfilment scan, and600006.986ms local resource soak. No whole-programme or production certification.",
+  "verdict": "NO_GO_FULL_FAULT_PROGRAMME",
+  "items": [
+    {
+      "item": 1,
+      "fault": "Stale Four Eyes evidence/cache expiry",
+      "coverage": "PARTIAL",
+      "evidence": "assurance-operating-scope.test.mjs; work8-assurance-recovery.test.mjs: stale-closure",
+      "scopeAndGap": "Real source-time replay blocked in control plane; exact Four Eyes external-source stale\u2192refresh recovery not integrated"
+    },
+    {
+      "item": 2,
+      "fault": "Scheduled job misfire",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-assurance-adversity-followup.test.ts: atomic scheduled admission, reopen before/after commit",
+      "scopeAndGap": "Real SQLite enqueue abort leaves due slot intact; durable admission reopens exactly once. Hosted scheduler clock misfire/Assurance detection remains outside this local atomicity proof."
+    },
+    {
+      "item": 3,
+      "fault": "Duplicate queue delivery",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-sqlite-queue-containment.test.ts: duplicate durable delivery and concurrent recovery",
+      "scopeAndGap": "Actual stale-fence task delivery refused after single canonical commit; duplicate concurrent recovery reconciles cursor once. No external broker transport or broker restart is claimed."
+    },
+    {
+      "item": 4,
+      "fault": "Worker crash/restart",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-joint-exams.test.ts",
+      "scopeAndGap": "Actual receipt/cursor gap + reopened store + Assurance independently verified worker recovery"
+    },
+    {
+      "item": 5,
+      "fault": "Queue backlog",
+      "coverage": "PARTIAL",
+      "evidence": "work6-scale.test.ts; work8-assurance-adversity-followup.test.ts: full queue drain/restart",
+      "scopeAndGap": "Actual 20-job queue bound preserves due slot and real scheduler drains four before resumed admission; independent backlog alert lifecycle remains absent."
+    },
+    {
+      "item": 6,
+      "fault": "Database/network timeout",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-sqlite-queue-containment.test.ts: real secondSQLitewriter timeout",
+      "scopeAndGap": "Actual BEGIN IMMEDIATE lock contention hits configured1second timeout with zero partial receipts; fresh read after test-controller lock release and exact command retry closes incident. No arbitrary database repair or real provider-network failover."
+    },
+    {
+      "item": 7,
+      "fault": "Redis/session interruption",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-model-session-faults.test.ts: actual SessionStore/Fastify adapter failure and fresh-read recovery",
+      "scopeAndGap": "Injected Redis-compatible GET failure yields typed503 before protected handler; fresh successful GET drives independent Assurance recovery. No actual Redis daemon restart, persistence, network reconnect or host failover tested."
+    },
+    {
+      "item": 8,
+      "fault": "Model-provider 429/503",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-model-session-faults.test.ts: actual completeLockedRouted injected429/503, passive provider health and Assurance",
+      "scopeAndGap": "Each explicit-provider refusal admits one injected transport and retains uncertain reservation; replay blocked before/after cooldown. Fresh separately identified success recovers incident via passive ledger read. No real provider request, paid inference or autonomous provider repair."
+    },
+    {
+      "item": 9,
+      "fault": "Malformed provider output",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-model-session-faults.test.ts: negative usage protocol failure; work8-assurance-adversity-followup.test.ts: malformed research output",
+      "scopeAndGap": "Actual model router rejects malformed negative token usage, retains uncertain reservation and opens passive-health Assurance incident; new valid injected response permits recovery without rewriting failure. Semantic hallucination and arbitrary malformed Pillow assessment output remain outside this protocol test."
+    },
+    {
+      "item": 10,
+      "fault": "Partial/empty results",
+      "coverage": "PARTIAL",
+      "evidence": "work8-response-binding.test.ts; work6-commerce.test.ts; work8-source-projection.test.ts",
+      "scopeAndGap": "Empty assessment or missing delivered evidence cannot produce HEALTHY binding; partial supplier acceptance retained. Provider empty-output transport and substantive evidence-insufficiency judgment remain distinct obligations."
+    },
+    {
+      "item": 11,
+      "fault": "Hallucinated source claims",
+      "coverage": "PARTIAL",
+      "evidence": "work8-response-binding.test.ts; work8-source-projection.test.ts; work6-commerce.test.ts",
+      "scopeAndGap": "Altered assessment hash and unrelated evidence references rejected in actual investigation/Assurance loop. Matching model text still is not semantic source-claim verification; genuine candidate-specific hallucination exam remains outstanding."
+    },
+    {
+      "item": 12,
+      "fault": "Cross-provider correlation mismatch",
+      "coverage": "PARTIAL",
+      "evidence": "work8-response-binding.test.ts; assurance-historical-provider.test.mjs",
+      "scopeAndGap": "Actual request/assessment/delivered-evidence mismatch fails closed; fresh canonical completion closes stable incident. Existing exact provider correlation negatives retained; new multi-provider live operating trace remains untested."
+    },
+    {
+      "item": 13,
+      "fault": "Corrupted/duplicated journal event",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-joint-exams.test.ts; work8-assurance-finance-boundary.test.ts",
+      "scopeAndGap": "Finance event conflict detected and C repair refused; actual each-row corruption fails canonical history read"
+    },
+    {
+      "item": 14,
+      "fault": "Missing order",
+      "coverage": "PARTIAL",
+      "evidence": "work8-finance.test.ts: missing order",
+      "scopeAndGap": "Unknown order finance binding rejected; no real missing-order reconciliation incident loop"
+    },
+    {
+      "item": 15,
+      "fault": "Duplicate order",
+      "coverage": "PARTIAL",
+      "evidence": "work6-commerce.test.ts: duplicate intake",
+      "scopeAndGap": "Actual canonical intake duplicate denied; no queue-origin repeated order incident walkthrough"
+    },
+    {
+      "item": 16,
+      "fault": "Inventory race",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-stock-race.test.ts",
+      "scopeAndGap": "Two real SQLite connections race canonical stock3 against requests2+2; one wins. Same/cross-mission holds and repeated unconfirmed cancellation verified. No real supplier reservation or stock-refresh/replenishment proof."
+    },
+    {
+      "item": 17,
+      "fault": "Unprofitable price",
+      "coverage": "PARTIAL",
+      "evidence": "work6-commerce.test.ts: low selling price; work8-operating-exams.test.ts: LOSS",
+      "scopeAndGap": "Qualification refusal and loss scenario present; operational repricing incident/authority recovery absent"
+    },
+    {
+      "item": 18,
+      "fault": "Negative cash exposure",
+      "coverage": "PARTIAL",
+      "evidence": "work6-commerce.test.ts: low/unknown cash; work8-finance.test.ts",
+      "scopeAndGap": "Admission guards and negative-bank projection present; sustained cash-risk escalation loop absent"
+    },
+    {
+      "item": 19,
+      "fault": "Delayed shipment",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-assurance-fulfilment.test.ts; work8-assurance-runtime-cycle.test.ts; work8-assurance-fulfilment-scale.test.ts",
+      "scopeAndGap": "Actual canonical missing/partial/adverse tracking detection; predeadline LOST/DAMAGED fail and DELAYED degrades, terminal read closes. Durable256mission pages cover1000smallhistories in90virtualseconds. Not a livecarrier SLA or worstcase byte-limit performance proof."
+    },
+    {
+      "item": 20,
+      "fault": "Missing tracking",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-assurance-fulfilment.test.ts; work8-assurance-runtime-cycle.test.ts; work8-assurance-fulfilment-scale.test.ts",
+      "scopeAndGap": "Accepted order crosses explicitly simulated deadline; actual registered cycle escalates without runbook/newreceipt. Bounded sweep reports incomplete/stale/oversized coverage honestly; real carrier acquisition remains untested."
+    },
+    {
+      "item": 21,
+      "fault": "Refund discrepancy",
+      "coverage": "PARTIAL",
+      "evidence": "work8-finance.test.ts: canonical refund mismatch; work6-commerce.test.ts: refund exposure",
+      "scopeAndGap": "Monetary mismatch rejected; no complete refund discrepancy Assurance repair/escalation trace"
+    },
+    {
+      "item": 22,
+      "fault": "Expired approval",
+      "coverage": "LOCAL_CONTROL_PLANE",
+      "evidence": "work8-assurance-recovery.test.mjs: expired-approval; assurance-control-plane.test.mjs",
+      "scopeAndGap": "Actual stored approval expiry refused; zero repair executions"
+    },
+    {
+      "item": 23,
+      "fault": "Unauthorised action",
+      "coverage": "LOCAL_CONTROL_PLANE",
+      "evidence": "work8-assurance-recovery.test.mjs: forbidden-financial-repair; work6-commerce.test.ts: forged roles",
+      "scopeAndGap": "C repair denied and exact actor separation checked; 15 live protections require separate scope evidence"
+    },
+    {
+      "item": 24,
+      "fault": "Failed rollback",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-sidecar-compatibility.test.ts; work8-assurance-storage-recovery.test.ts",
+      "scopeAndGap": "Pinned actual Work7 source608f3f5 and current reader refuse incompatible version, missing schema and truncated database without replacing data. Cross-version additive sidecar read verified; production deployment rollback/failover remains untested."
+    },
+    {
+      "item": 25,
+      "fault": "Repeated failure",
+      "coverage": "LOCAL_CONTROL_PLANE",
+      "evidence": "work8-assurance-recovery.test.mjs: failed-repair",
+      "scopeAndGap": "Independent unhealthy resource read prevents forged success; attempt budget exhausted"
+    },
+    {
+      "item": 26,
+      "fault": "Recovery oscillation",
+      "coverage": "LOCAL_CONTROL_PLANE",
+      "evidence": "work8-assurance-recovery.test.mjs: recurring-failure",
+      "scopeAndGap": "Distinct recurring incidents share persisted family budget; third repair denied"
+    },
+    {
+      "item": 27,
+      "fault": "Compounded faults",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-joint-exams.test.ts; work8-assurance-storage-recovery.test.ts",
+      "scopeAndGap": "Receipt/cursor crash + supplier unknown + finance conflict; separately corrupt task step array + lost primary monitor"
+    },
+    {
+      "item": 28,
+      "fault": "Delayed/recurring after apparent repair",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-assurance-late-effect.test.ts; work8-assurance-recovery.test.mjs: recurring-failure",
+      "scopeAndGap": "Canonical TIMEOUT remains blocked; late exact-provider ACCEPTED reconcile commits once, wrongprovider/resubmit/duplicateack denied, stock remains held. Actual fulfilment probes/controlplane retain overdue incident until freshdelivery. No real remote supplier transport or delayed real-world sideeffect is claimed."
+    },
+    {
+      "item": 29,
+      "fault": "Assurance/watchdog failure",
+      "coverage": "PARTIAL",
+      "evidence": "assurance-supervisor.test.mjs; work8-assurance-storage-recovery.test.ts",
+      "scopeAndGap": "Real supervisor child restarts and heartbeat-loss detector; simultaneous failed independent supervisor requiring third-level containment absent"
+    },
+    {
+      "item": 30,
+      "fault": "Backup restoration/corrupt checkpoint",
+      "coverage": "INTEGRATED_LOCAL",
+      "evidence": "work8-assurance-storage-recovery.test.ts",
+      "scopeAndGap": "Actual file truncation detected; owner-approved isolated backup copy independently verified; original corrupt source retained"
+    },
+    {
+      "item": 31,
+      "fault": "Cold restart/rollback/migration/endurance",
+      "coverage": "PARTIAL",
+      "evidence": "work8-sidecar-compatibility.test.ts; work8-operating-exams.test.ts; resource-soak.json",
+      "scopeAndGap": "Exact pinnedWork7 writer\u2192Work8 resume and Work8 additive sidecar\u2192Work7 read preserve receipt/taskprefix. Local resource soak120samples/600006.986ms PASS with sourcebefore/after binding. No multi-day hostedendurance, fullproduction schema migration, or deploymentrollback certification."
+    }
+  ]
+}

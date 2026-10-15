@@ -1,0 +1,135 @@
+{
+  "schema": "work8-start-gate-v1",
+  "retrievedAt": "2026-10-10T21:31:39.195Z",
+  "backend": {
+    "backendSha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+    "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949",
+    "profile": "LOCKED_COMMISSIONING_V1",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "frontendIdentity": {
+      "status": "UNVERIFIED",
+      "reason": "Use direct Vercel evidence"
+    },
+    "domains": [
+      "governed_commerce",
+      "financial_centre",
+      "package_format",
+      "changes",
+      "state",
+      "capabilities",
+      "pillow",
+      "accounting",
+      "assurance",
+      "reconciliation",
+      "missions",
+      "communications",
+      "authority",
+      "commissioning",
+      "approvals",
+      "execution",
+      "products",
+      "orders",
+      "decisions",
+      "events",
+      "finance",
+      "integrations",
+      "memory",
+      "intelligence",
+      "arsenal",
+      "evidence",
+      "intelligence_jobs",
+      "opportunities",
+      "exceptions",
+      "resources",
+      "rank_growth",
+      "investigations"
+    ]
+  },
+  "frontend": {
+    "id": "dpl_FH2y8VBSN1QwLRq9smUzy3JNgHog",
+    "name": "empireai",
+    "url": "empireai-fioyznbgs-empireai-os.vercel.app",
+    "type": "LAMBDAS",
+    "state": "READY",
+    "createdAt": 1791666991129,
+    "creator": {
+      "uid": "OAKeaRWFPyDpeF3FGafAkliz",
+      "username": "empireaiengine-2061"
+    },
+    "project": {
+      "id": "prj_F4UZtqA8mIpIrRaIu2V6LOM664Kr",
+      "name": "empireai",
+      "framework": null
+    },
+    "meta": {
+      "githubCommitRef": "work2/frontend-release",
+      "githubCommitSha": "71f9414d6c534b4c35dbd22696b82a77fcf7c597",
+      "githubCommitMessage": "Merge PR #109: owner-approved Work 7 Owner Console\n\nWork 7: owner presentation and navigation preservation",
+      "githubRepo": "EmpireAI",
+      "githubOrg": "empireaios"
+    },
+    "alias": [
+      "empire-ai.co",
+      "www.empire-ai.co",
+      "empireai-five.vercel.app",
+      "empireai-empireai-os.vercel.app",
+      "empireai-git-work2-frontend-release-empireai-os.vercel.app"
+    ],
+    "target": "production",
+    "regions": [
+      "iad1"
+    ],
+    "buildingAt": 1791667057562,
+    "ready": 1791667178808,
+    "readyState": "READY",
+    "source": "redeploy",
+    "aliasError": null
+  },
+  "closure": {
+    "id": "WORK-7-PREMIUM-OWNER:UX-PR109",
+    "state": "COMPLETE",
+    "sha256": "76e6c7508f235febef45408b7c34c8197a24d1608b1fbf1bf487fefd51f44d2a"
+  },
+  "financial": {
+    "accounting": 224,
+    "accountingDigest": "1b51a5f806abc75c68904ec20dc46d6dcb286d5ced9ef7b24897876554fca39b",
+    "journal": 3,
+    "journalDigest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+    "historical": 7,
+    "historicalDigest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf"
+  },
+  "assurance": {
+    "status": "DEGRADED",
+    "summary": {
+      "activeIncidents": 0,
+      "automaticallyRecovered": 29,
+      "ownerActionRequired": 0
+    },
+    "lease": {
+      "id": "lease_9164f1af-feed-405f-b9d5-c3e9c2863580",
+      "ownerId": "usr_a91d007ebcebe18d",
+      "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+      "scope": [
+        "backend",
+        "frontend"
+      ],
+      "fence": 18,
+      "status": "FINISHED",
+      "createdAt": 1791666438699,
+      "heartbeatAt": 1791666438699,
+      "expiresAt": 1791670038699,
+      "finishedAt": 1791667352225
+    },
+    "reconciliation": {
+      "schema": "empire-reconciliation-v1",
+      "indexStatus": "VERIFIED",
+      "sourceDigest": "5921ffc8af5563d3e7333dda4a518d6f661e5ad4818a5a72a356eea9cd0dc6d2",
+      "derivedSha256": "0a1f144706519f2de24dfddfface8f9827d351961f9483549692ef902f21bf27",
+      "conflicts": 0,
+      "exactRead": "reconciliation"
+    }
+  },
+  "scope": "Fresh connector reads; retained Work7 safety/UX scope only; no Work8 examination pass inferred",
+  "inferenceCalls": 0
+}

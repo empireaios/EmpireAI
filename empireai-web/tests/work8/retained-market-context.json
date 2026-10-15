@@ -1,0 +1,35 @@
+{
+  "observations": [
+    {
+      "asin": "B0GN1TZZ9W",
+      "title": "WALI Desk File Organizer, 4 Tier Desktop Paper Letter Tray Organizer with Drawer and 2 Pen Holders, Office Desk Accessories & Workspace Organizers for Office, Home Supplies(DO005DH-B), 1 Pack, Black",
+      "brand": "WALI",
+      "price": 18.99,
+      "currency": "USD",
+      "priceBasis": "LOWEST_NEW_LANDED_OFFER_OBSERVATION",
+      "marketplace": "Amazon US",
+      "observedAt": "2026-10-10T18:39:09.158Z",
+      "expiresAt": "2026-10-11T00:39:07.981Z",
+      "freshness": "FRESH",
+      "comparisonScope": "BROAD_MARKET_CONTEXT_ONLY",
+      "verifiedCandidateMatch": false,
+      "unitSales": null,
+      "source": {
+        "catalogueEvidenceId": "ev_042a033c4d1739ea9e31f361bf4eb295b48ed39e",
+        "catalogueDigest": "90df87e4d4721b6a4f9398e12e824c924cc8e42d70ec0f1aeb852898faa463d3",
+        "offerEvidenceId": "ev_6b78ad4ee360cd4a38237a9b3f93508cc9ec33c1",
+        "offerDigest": "4c97de6cfd28d51c703113df00c711a5db2103cce13493b614b3203ef3be0c4b"
+      },
+      "images": []
+    }
+  ],
+  "rejected": [],
+  "counts": {
+    "catalogueProducts": 10,
+    "pricedProducts": 1,
+    "freshPricedProducts": 1
+  },
+  "classification": "BROAD_MARKET_CONTEXT_ONLY",
+  "verifiedCandidateMatches": 0,
+  "grantsAuthority": false
+}

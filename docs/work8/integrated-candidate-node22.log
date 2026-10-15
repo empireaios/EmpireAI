@@ -1,0 +1,709 @@
+TAP version 13
+# Subtest: authenticated owner API, origin protection, workspace isolation, durable scenario and all seven live effects denied
+ok 1 - authenticated owner API, origin protection, workspace isolation, durable scenario and all seven live effects denied
+  ---
+  duration_ms: 170.478279
+  type: 'test'
+  ...
+# Subtest: actual read adapter persists 429/503/schema failure, restart backoff and fresh recovery evidence
+ok 2 - actual read adapter persists 429/503/schema failure, restart backoff and fresh recovery evidence
+  ---
+  duration_ms: 148.653773
+  type: 'test'
+  ...
+# Subtest: actual expired provider read lease becomes INTERRUPTED on reopen and cannot silently replay
+ok 3 - actual expired provider read lease becomes INTERRUPTED on reopen and cannot silently replay
+  ---
+  duration_ms: 2.717877
+  type: 'test'
+  ...
+# Subtest: scheduled observation and due advancement commit atomically across failure and reopening
+ok 4 - scheduled observation and due advancement commit atomically across failure and reopening
+  ---
+  duration_ms: 6.822824
+  type: 'test'
+  ...
+# Subtest: full read queue cannot consume a due slot or create unbounded catch-up
+ok 5 - full read queue cannot consume a due slot or create unbounded catch-up
+  ---
+  duration_ms: 11.140693
+  type: 'test'
+  ...
+# Subtest: real scheduler drains a full queue before retrying atomic due admission
+ok 6 - real scheduler drains a full queue before retrying atomic due admission
+  ---
+  duration_ms: 162.68634
+  type: 'test'
+  ...
+# Subtest: candidate runbook repairs only real committed receipt checkpoint gap and independently preserves history
+ok 7 - candidate runbook repairs only real committed receipt checkpoint gap and independently preserves history
+  ---
+  duration_ms: 40.761753
+  type: 'test'
+  ...
+# Subtest: normal task with no committed gap cannot execute a fresh step through recovery
+ok 8 - normal task with no committed gap cannot execute a fresh step through recovery
+  ---
+  duration_ms: 2.258113
+  type: 'test'
+  ...
+# Subtest: altered committed step payload cannot be used as replay authority
+ok 9 - altered committed step payload cannot be used as replay authority
+  ---
+  duration_ms: 14.852638
+  type: 'test'
+  ...
+# Subtest: unknown supplier outcome cannot be relabelled as safe checkpoint recovery
+ok 10 - unknown supplier outcome cannot be relabelled as safe checkpoint recovery
+  ---
+  duration_ms: 22.550651
+  type: 'test'
+  ...
+# Subtest: fresh aligned observation closes a gap when normal worker wins race without extra recovery effect
+ok 11 - fresh aligned observation closes a gap when normal worker wins race without extra recovery effect
+  ---
+  duration_ms: 21.609413
+  type: 'test'
+  ...
+# Subtest: finance reads every historical digest, not only the final source receipt
+ok 12 - finance reads every historical digest, not only the final source receipt
+  ---
+  duration_ms: 55.117821
+  type: 'test'
+  ...
+# Subtest: finance rejects recomputed prior receipt digest when next receipt still links original history
+ok 13 - finance rejects recomputed prior receipt digest when next receipt still links original history
+  ---
+  duration_ms: 7.185482
+  type: 'test'
+  ...
+# Subtest: finance cannot select a receipt from a different workspace or mission
+ok 14 - finance cannot select a receipt from a different workspace or mission
+  ---
+  duration_ms: 7.05246
+  type: 'test'
+  ...
+# {"exam":"fulfilment1000","seedMs":42505.668678,"sliceMs":[368.9594520000028,486.47850300000573,624.2049559999941,710.9705620000022],"cpuMs":2411.562,"rssBefore":225357824,"peakRss":227848192,"virtualSweepMs":90000,"receipts":7000,"externalEffects":0}
+# Subtest: 1000 canonical accepted orders receive bounded fresh coverage at actual30second cadence
+ok 15 - 1000 canonical accepted orders receive bounded fresh coverage at actual30second cadence
+  ---
+  duration_ms: 44908.814909
+  type: 'test'
+  ...
+# Subtest: actual overdue missing tracking escalates without writes; fresh delivered observation closes
+ok 16 - actual overdue missing tracking escalates without writes; fresh delivered observation closes
+  ---
+  duration_ms: 33.288246
+  type: 'test'
+  ...
+# Subtest: partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment
+ok 17 - partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment
+  ---
+  duration_ms: 20.156867
+  type: 'test'
+  ...
+# Subtest: unknown supplier remains blocked and verified history corruption never produces healthy evidence
+ok 18 - unknown supplier remains blocked and verified history corruption never produces healthy evidence
+  ---
+  duration_ms: 13.061023
+  type: 'test'
+  ...
+# Subtest: bounded mission scan resumes from durable cursor and never clears skipped order incidents
+ok 19 - bounded mission scan resumes from durable cursor and never clears skipped order incidents
+  ---
+  duration_ms: 35.235782
+  type: 'test'
+  ...
+# Subtest: history bound fails closed without healthy order probes and stale sweep cannot claim coverage
+ok 20 - history bound fails closed without healthy order probes and stale sweep cannot claim coverage
+  ---
+  duration_ms: 18.118705
+  type: 'test'
+  ...
+# Subtest: new mission inserted behind durable cursor prevents false complete coverage
+ok 21 - new mission inserted behind durable cursor prevents false complete coverage
+  ---
+  duration_ms: 26.178271
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: cache-expiry
+ok 22 - Work8 real control-plane exam: cache-expiry
+  ---
+  duration_ms: 5.497755
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: duplicate-delivery
+ok 23 - Work8 real control-plane exam: duplicate-delivery
+  ---
+  duration_ms: 1.799572
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: failed-repair
+ok 24 - Work8 real control-plane exam: failed-repair
+  ---
+  duration_ms: 2.091912
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: unknown-outcome
+ok 25 - Work8 real control-plane exam: unknown-outcome
+  ---
+  duration_ms: 1.751119
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: expired-approval
+ok 26 - Work8 real control-plane exam: expired-approval
+  ---
+  duration_ms: 3.106021
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: forbidden-financial-repair
+ok 27 - Work8 real control-plane exam: forbidden-financial-repair
+  ---
+  duration_ms: 1.129933
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: watchdog-loss
+ok 28 - Work8 real control-plane exam: watchdog-loss
+  ---
+  duration_ms: 1.580953
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: compounded-cache-worker
+ok 29 - Work8 real control-plane exam: compounded-cache-worker
+  ---
+  duration_ms: 2.497173
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: restart-preservation
+ok 30 - Work8 real control-plane exam: restart-preservation
+  ---
+  duration_ms: 2.147997
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: recurring-failure
+ok 31 - Work8 real control-plane exam: recurring-failure
+  ---
+  duration_ms: 2.401669
+  type: 'test'
+  ...
+# Subtest: Work8 real control-plane exam: stale-closure
+ok 32 - Work8 real control-plane exam: stale-closure
+  ---
+  duration_ms: 1.123303
+  type: 'test'
+  ...
+# Subtest: unregistered scenarios and non-reproducible seeds rejected
+ok 33 - unregistered scenarios and non-reproducible seeds rejected
+  ---
+  duration_ms: 0.458131
+  type: 'test'
+  ...
+# Subtest: actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+ok 34 - actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+  ---
+  duration_ms: 147.320907
+  type: 'test'
+  ...
+# Subtest: real truncated journal is contained; explicitly approved isolated backup restoration preserves exact history
+ok 35 - real truncated journal is contained; explicitly approved isolated backup restoration preserves exact history
+  ---
+  duration_ms: 34.492872
+  type: 'test'
+  ...
+# Subtest: corrupt task checkpoint plus lost Assurance heartbeat require two distinct retained incidents
+ok 36 - corrupt task checkpoint plus lost Assurance heartbeat require two distinct retained incidents
+  ---
+  duration_ms: 20.575093
+  type: 'test'
+  ...
+# Subtest: revision rollback keeps new-revision approval fenced and preserves immutable history
+ok 37 - revision rollback keeps new-revision approval fenced and preserves immutable history
+  ---
+  duration_ms: 2.241808
+  type: 'test'
+  ...
+# Subtest: forged COMPLETE checkpoint with no receipts is rejected by execution and owner read projections
+ok 38 - forged COMPLETE checkpoint with no receipts is rejected by execution and owner read projections
+  ---
+  duration_ms: 2.260546
+  type: 'test'
+  ...
+# Subtest: task plan cannot be truncated after execution; altered committed payload is independently rejected
+ok 39 - task plan cannot be truncated after execution; altered committed payload is independently rejected
+  ---
+  duration_ms: 14.29329
+  type: 'test'
+  ...
+# Subtest: canonical chargeback, unknown fees, cutoff and cash traces pass; unsupported currency remains a gap
+ok 40 - canonical chargeback, unknown fees, cutoff and cash traces pass; unsupported currency remains a gap
+  ---
+  duration_ms: 24.776418
+  type: 'test'
+  ...
+# Subtest: canonical amounts and full settlement conserve source money
+ok 41 - canonical amounts and full settlement conserve source money
+  ---
+  duration_ms: 19.989135
+  type: 'test'
+  ...
+# Subtest: unknown costs and period cutoff remain explicit
+ok 42 - unknown costs and period cutoff remain explicit
+  ---
+  duration_ms: 9.794631
+  type: 'test'
+  ...
+# Subtest: forged amounts, state/receipt pairs, duplicate liabilities and unsourced assumptions rejected
+ok 43 - forged amounts, state/receipt pairs, duplicate liabilities and unsourced assumptions rejected
+  ---
+  duration_ms: 16.277891
+  type: 'test'
+  ...
+# Subtest: losses, negative cash and delayed payouts remain visible
+ok 44 - losses, negative cash and delayed payouts remain visible
+  ---
+  duration_ms: 6.159623
+  type: 'test'
+  ...
+# Subtest: 100 canonical integer scenarios satisfy independent conservation
+ok 45 - 100 canonical integer scenarios satisfy independent conservation
+  ---
+  duration_ms: 552.34358
+  type: 'test'
+  ...
+# Subtest: Commerce task, Assurance recovery and finance share real canonical identities and state
+ok 46 - Commerce task, Assurance recovery and finance share real canonical identities and state
+  ---
+  duration_ms: 64.544761
+  type: 'test'
+  ...
+# Subtest: actual Amazon evidence yields broad market context and no inferred supplier match
+ok 47 - actual Amazon evidence yields broad market context and no inferred supplier match
+  ---
+  duration_ms: 9.947404
+  type: 'test'
+  ...
+# Subtest: expired observation remains historical without refreshed source claim
+ok 48 - expired observation remains historical without refreshed source claim
+  ---
+  duration_ms: 1.423526
+  type: 'test'
+  ...
+# Subtest: malformed or contradictory prices cannot produce a market quote
+ok 49 - malformed or contradictory prices cannot produce a market quote
+  ---
+  duration_ms: 2.146305
+  type: 'test'
+  ...
+# Subtest: wrong ASIN, market identity, missing catalogue, or tampered facts refuses quote
+ok 50 - wrong ASIN, market identity, missing catalogue, or tampered facts refuses quote
+  ---
+  duration_ms: 1.521814
+  type: 'test'
+  ...
+# {"event":"locked_inference_route","requestKey":"f195d6baa647d8c134535cc9c18bb9a0150ac5055d658fbef23def17db4cc086","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"temporary_refusal","httpStatus":429}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"5292f8bc2b508a48ba2da5f8b4cef968e5f3ac57e728a2930f925fc657113530","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"a08fed32fcc6e7bef3d94de0a9e9a25abb76fa77e157819330063f821234c1d9","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"temporary_refusal","httpStatus":503}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"9bc30b853f23a963f0d0ac4311d35750295a8b3b4ccc62506c8dc965cce01392","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"8695edc1a2f18a2dea729e425ae4f50e3a419418fe7548b2f24fcd29c2c44402","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"failed_closed"}],"fallbackUsed":false}
+# {"event":"locked_inference_route","requestKey":"e033d49ec2584460fab35069f57cd85ee5e2cd142a90440ca321ddcee81dc59a","capability":"reasoning","attempts":[{"provider":"openai","model":"gpt-6.1-sol","outcome":"success"}],"fallbackUsed":false}
+# Subtest: actual locked router failures feed passive Assurance and require a new successful receipt to recover
+ok 51 - actual locked router failures feed passive Assurance and require a new successful receipt to recover
+  ---
+  duration_ms: 57.001241
+  type: 'test'
+  ...
+# {"level":50,"time":1791671077635,"pid":221,"hostname":"a15821d3130d","err":{"type":"SessionStoreUnavailableError","message":"Shared session store temporarily unavailable: INJECTED_REDIS_ADAPTER_UNAVAILABLE","stack":"SessionStoreUnavailableError: Shared session store temporarily unavailable\\n    at SessionStore.get (/workspace/scratch/e0a785458d28/backend/backend/src/auth/session-store.ts:76:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\\n    at async Object.authenticate (/workspace/scratch/e0a785458d28/backend/backend/src/auth/middleware.ts:31:17)\\ncaused by: Error: INJECTED_REDIS_ADAPTER_UNAVAILABLE\\n    at Object.get (/workspace/scratch/e0a785458d28/backend/backend/src/validation/tests/work8-model-session-faults.test.ts:48:139)\\n    at SessionStore.get (/workspace/scratch/e0a785458d28/backend/backend/src/auth/session-store.ts:69:36)\\n    at Object.authenticate (/workspace/scratch/e0a785458d28/backend/backend/src/auth/middleware.ts:31:36)\\n    at hookIterator (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/hooks.js:408:10)\\n    at next (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/hooks.js:242:18)\\n    at hookRunner (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/hooks.js:264:5)\\n    at validationCompleted (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/handleRequest.js:112:5)\\n    at preValidationCallback (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/handleRequest.js:96:5)\\n    at handler (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/handleRequest.js:73:7)\\n    at Object.handleRequest (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/handleRequest.js:29:5)","name":"SessionStoreUnavailableError"},"msg":"Session lookup failed"}
+# Subtest: actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers
+ok 52 - actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers
+  ---
+  duration_ms: 32.970979
+  type: 'test'
+  ...
+# {"level":50,"time":1791671077638,"pid":221,"hostname":"a15821d3130d","err":{"type":"SessionStoreUnavailableError","message":"Shared session store temporarily unavailable: INJECTED_REDIS_ADAPTER_UNAVAILABLE","stack":"SessionStoreUnavailableError: Shared session store temporarily unavailable\\n    at SessionStore.get (/workspace/scratch/e0a785458d28/backend/backend/src/auth/session-store.ts:76:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\\n    at async Object.authenticate (/workspace/scratch/e0a785458d28/backend/backend/src/auth/middleware.ts:31:17)\\ncaused by: Error: INJECTED_REDIS_ADAPTER_UNAVAILABLE\\n    at Object.get (/workspace/scratch/e0a785458d28/backend/backend/src/validation/tests/work8-model-session-faults.test.ts:48:139)\\n    at SessionStore.get (/workspace/scratch/e0a785458d28/backend/backend/src/auth/session-store.ts:69:36)\\n    at Object.authenticate (/workspace/scratch/e0a785458d28/backend/backend/src/auth/middleware.ts:31:36)\\n    at hookIterator (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/hooks.js:408:10)\\n    at next (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/hooks.js:242:18)\\n    at hookRunner (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/hooks.js:264:5)\\n    at validationCompleted (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/handleRequest.js:112:5)\\n    at preValidationCallback (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/handleRequest.js:96:5)\\n    at handler (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/handleRequest.js:73:7)\\n    at Object.handleRequest (/workspace/scratch/e0a785458d28/test-deps/node_modules/fastify/lib/handleRequest.js:29:5)","name":"SessionStoreUnavailableError"},"msg":"Session lookup failed"}
+# Subtest: seeded canonical commerce, cold crash replay and finance produce reproducible multi-order traces
+ok 53 - seeded canonical commerce, cold crash replay and finance produce reproducible multi-order traces
+  ---
+  duration_ms: 480.699932
+  type: 'test'
+  ...
+# Subtest: examination bounds prevent unbounded scenario or malformed seed requests
+ok 54 - examination bounds prevent unbounded scenario or malformed seed requests
+  ---
+  duration_ms: 0.322436
+  type: 'test'
+  ...
+# Subtest: owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+ok 55 - owner financial readback links actual canonical simulated order and leaves unobserved charges unknown
+  ---
+  duration_ms: 99.19366
+  type: 'test'
+  ...
+# Subtest: mission with research but no orders never fabricates zero revenue or complete finance
+ok 56 - mission with research but no orders never fabricates zero revenue or complete finance
+  ---
+  duration_ms: 3.571343
+  type: 'test'
+  ...
+# Subtest: independent SQLite worker connections race for 1000th slot; 1001st denied
+not ok 57 - independent SQLite worker connections race for 1000th slot; 1001st denied
+  ---
+  duration_ms: 42042.39397
+  type: 'test'
+  location: '/workspace/scratch/e0a785458d28/backend/backend/src/validation/tests/work8-portfolio-concurrency.test.ts:1:2386'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module 'tsx/cjs'
+    Require stack:
+    - /workspace/scratch/e0a785458d28/backend/[worker eval]
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1430:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1040:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1045:22)
+    Function._load (node:internal/modules/cjs/loader:1216:25)
+    wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    Module.require (node:internal/modules/cjs/loader:1527:12)
+    require (node:internal/modules/helpers:147:16)
+    [worker eval]:1:1
+    runScriptInThisContext (node:internal/vm:209:10)
+    node:internal/process/execution:446:12
+  ...
+# Subtest: daily virtual cohorts reach 1000 active products; 1001 blocked after reopen, retirement permits one replacement
+ok 58 - daily virtual cohorts reach 1000 active products; 1001 blocked after reopen, retirement permits one replacement
+  ---
+  duration_ms: 43113.052773
+  type: 'test'
+  ...
+# Subtest: duplicate product variants cannot consume multiple active slots; owner retirement cannot be forged; replay is unchanged
+ok 59 - duplicate product variants cannot consume multiple active slots; owner retirement cannot be forged; replay is unchanged
+  ---
+  duration_ms: 9.681574
+  type: 'test'
+  ...
+# Subtest: guard duplicate-orders positive and negative boundaries
+ok 60 - guard duplicate-orders positive and negative boundaries
+  ---
+  duration_ms: 21.331203
+  type: 'test'
+  ...
+# Subtest: guard order-reconciliation positive and negative boundaries
+ok 61 - guard order-reconciliation positive and negative boundaries
+  ---
+  duration_ms: 14.474958
+  type: 'test'
+  ...
+# Subtest: guard stock positive and negative boundaries
+ok 62 - guard stock positive and negative boundaries
+  ---
+  duration_ms: 0.454915
+  type: 'test'
+  ...
+# Subtest: guard profitability positive and negative boundaries
+ok 63 - guard profitability positive and negative boundaries
+  ---
+  duration_ms: 0.310107
+  type: 'test'
+  ...
+# Subtest: guard capital positive and negative boundaries
+ok 64 - guard capital positive and negative boundaries
+  ---
+  duration_ms: 0.340413
+  type: 'test'
+  ...
+# Subtest: guard delivery positive and negative boundaries
+ok 65 - guard delivery positive and negative boundaries
+  ---
+  duration_ms: 14.805406
+  type: 'test'
+  ...
+# Subtest: guard compliance positive and negative boundaries
+ok 66 - guard compliance positive and negative boundaries
+  ---
+  duration_ms: 0.470299
+  type: 'test'
+  ...
+# Subtest: guard supplier-reliability positive and negative boundaries
+ok 67 - guard supplier-reliability positive and negative boundaries
+  ---
+  duration_ms: 0.314223
+  type: 'test'
+  ...
+# Subtest: guard durability positive and negative boundaries
+ok 68 - guard durability positive and negative boundaries
+  ---
+  duration_ms: 5.861916
+  type: 'test'
+  ...
+# Subtest: guard safe-retry positive and negative boundaries
+ok 69 - guard safe-retry positive and negative boundaries
+  ---
+  duration_ms: 13.643008
+  type: 'test'
+  ...
+# Subtest: guard financial-reconciliation positive and negative boundaries
+ok 70 - guard financial-reconciliation positive and negative boundaries
+  ---
+  duration_ms: 10.167776
+  type: 'test'
+  ...
+# Subtest: guard monitoring positive and negative boundaries
+ok 71 - guard monitoring positive and negative boundaries
+  ---
+  duration_ms: 3.360906
+  type: 'test'
+  ...
+# Subtest: guard circuit-breakers positive and negative boundaries
+ok 72 - guard circuit-breakers positive and negative boundaries
+  ---
+  duration_ms: 3.941642
+  type: 'test'
+  ...
+# Subtest: guard owner-authority positive and negative boundaries
+ok 73 - guard owner-authority positive and negative boundaries
+  ---
+  duration_ms: 5.129521
+  type: 'test'
+  ...
+# Subtest: guard disaster-recovery positive and negative boundaries
+ok 74 - guard disaster-recovery positive and negative boundaries
+  ---
+  duration_ms: 6.908414
+  type: 'test'
+  ...
+# Subtest: exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact
+ok 75 - exact Work7 writer sidecar is read and resumed by Work8 with immutable receipt/task prefix intact
+  ---
+  duration_ms: 292.095229
+  type: 'test'
+  ...
+# Subtest: exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data
+ok 76 - exact Work7 reader opens Work8 additive task trigger and fulfilment cursor without mutating canonical data
+  ---
+  duration_ms: 156.447156
+  type: 'test'
+  ...
+# Subtest: both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation
+ok 77 - both exact Work7 and Work8 readers refuse incompatible version, missing required schema and truncation
+  ---
+  duration_ms: 111.390041
+  type: 'test'
+  ...
+# Subtest: explicit rational quote preserves separate canonical SGD and translated USD journals
+ok 78 - explicit rational quote preserves separate canonical SGD and translated USD journals
+  ---
+  duration_ms: 23.829249
+  type: 'test'
+  ...
+# Subtest: missing, forged, expired, wrong-currency and unsupported rounding/precision quotes fail closed
+ok 79 - missing, forged, expired, wrong-currency and unsupported rounding/precision quotes fail closed
+  ---
+  duration_ms: 13.982276
+  type: 'test'
+  ...
+# Subtest: unknown fee stays unknown after translation
+ok 80 - unknown fee stays unknown after translation
+  ---
+  duration_ms: 12.989049
+  type: 'test'
+  ...
+# Subtest: bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities
+not ok 81 - bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities
+  ---
+  duration_ms: 31.470746
+  type: 'test'
+  location: '/workspace/scratch/e0a785458d28/backend/backend/src/validation/tests/work8-source-discovery.test.ts:1:2253'
+  failureType: 'testCodeFailure'
+  error: |-
+    Command failed: /workspace/scratch/e0a785458d28/test-deps/node_modules/node/bin/node --import tsx --input-type=module -e import {IntelligenceStore} from "file:///workspace/scratch/e0a785458d28/backend/backend/src/intelligence/store.ts";import {RetainedDiscoveryWorker} from "file:///workspace/scratch/e0a785458d28/backend/backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts";const s=new IntelligenceStore("/tmp/work8-retained-gZnCxB/intelligence.sqlite",()=>1791668224269);console.log(JSON.stringify(new RetainedDiscoveryWorker(s).tick('w',"2026-10-11",0,1)));
+    node:internal/modules/package_json_reader:314
+      throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+            ^
+    
+    Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'tsx' imported from /workspace/scratch/e0a785458d28/backend/
+        at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+        at packageResolve (node:internal/modules/esm/resolve:768:81)
+        at moduleResolve (node:internal/modules/esm/resolve:855:18)
+        at defaultResolve (node:internal/modules/esm/resolve:985:11)
+        at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+        at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+        at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+        at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:680:36)
+        at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+        at ModuleLoader.import (node:internal/modules/esm/loader:679:21) {
+      code: 'ERR_MODULE_NOT_FOUND'
+    }
+    
+    Node.js v22.23.2
+    
+  code: 1
+  stack: |-
+    Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    packageResolve (node:internal/modules/esm/resolve:768:81)
+    moduleResolve (node:internal/modules/esm/resolve:855:18)
+    defaultResolve (node:internal/modules/esm/resolve:985:11)
+    #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)
+    onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:680:36)
+    TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    ModuleLoader.import (node:internal/modules/esm/loader:679:21) {
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    ChildProcess.exithandler (node:child_process:417:12)
+    ChildProcess.emit (node:events:519:28)
+    maybeClose (node:internal/child_process:1101:16)
+    ChildProcess._handle.onexit (node:internal/child_process:304:5)
+  ...
+# Subtest: authentic retained cohort has truthful under-supply and zero provider discovery
+ok 82 - authentic retained cohort has truthful under-supply and zero provider discovery
+  ---
+  duration_ms: 9.739871
+  type: 'test'
+  ...
+# Subtest: source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent
+ok 83 - source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent
+  ---
+  duration_ms: 6.615051
+  type: 'test'
+  ...
+# Subtest: source expiry and snapshot mutation cannot become fresh qualified candidates
+ok 84 - source expiry and snapshot mutation cannot become fresh qualified candidates
+  ---
+  duration_ms: 2.672418
+  type: 'test'
+  ...
+# Subtest: daily target is bounded at 100 and durable receipt tampering fails closed
+ok 85 - daily target is bounded at 100 and durable receipt tampering fails closed
+  ---
+  duration_ms: 21.295128
+  type: 'test'
+  ...
+# Subtest: changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor
+ok 86 - changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor
+  ---
+  duration_ms: 6.801872
+  type: 'test'
+  ...
+# Subtest: facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot
+ok 87 - facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot
+  ---
+  duration_ms: 15.69631
+  type: 'test'
+  ...
+# Subtest: deleted or mutated parent identity blocks read/retry/new day rather than recounting
+ok 88 - deleted or mutated parent identity blocks read/retry/new day rather than recounting
+  ---
+  duration_ms: 10.80016
+  type: 'test'
+  ...
+# Subtest: retained source projection preserves unknown currency and withholds unlicensed image
+ok 89 - retained source projection preserves unknown currency and withholds unlicensed image
+  ---
+  duration_ms: 1.746102
+  type: 'test'
+  ...
+# Subtest: reject forged authenticity, digest, identity, invalid dates and future observations
+ok 90 - reject forged authenticity, digest, identity, invalid dates and future observations
+  ---
+  duration_ms: 0.666064
+  type: 'test'
+  ...
+# Subtest: expired authentic source remains explicitly historical and deferred
+ok 91 - expired authentic source remains explicitly historical and deferred
+  ---
+  duration_ms: 0.282186
+  type: 'test'
+  ...
+# Subtest: variant is matched exactly and cannot inherit product price
+ok 92 - variant is matched exactly and cannot inherit product price
+  ---
+  duration_ms: 0.395686
+  type: 'test'
+  ...
+# Subtest: catalogue query is not confused with returned product identity, duplicates deduplicated
+ok 93 - catalogue query is not confused with returned product identity, duplicates deduplicated
+  ---
+  duration_ms: 0.235405
+  type: 'test'
+  ...
+# Subtest: workspace reader and absent provider shape cannot substitute fixtures
+ok 94 - workspace reader and absent provider shape cannot substitute fixtures
+  ---
+  duration_ms: 0.157938
+  type: 'test'
+  ...
+# Subtest: retained authenticated readback reproduces ten products without inventing rights or currency
+ok 95 - retained authenticated readback reproduces ten products without inventing rights or currency
+  ---
+  duration_ms: 8.839625
+  type: 'test'
+  ...
+# Subtest: only exact detail variant price receives documented USD unit; contradictory currency quarantined
+ok 96 - only exact detail variant price receives documented USD unit; contradictory currency quarantined
+  ---
+  duration_ms: 0.350288
+  type: 'test'
+  ...
+# Subtest: unselected observed variants reject contradictory parent and variant currencies
+ok 97 - unselected observed variants reject contradictory parent and variant currencies
+  ---
+  duration_ms: 0.348906
+  type: 'test'
+  ...
+# Subtest: real second-connection SQLite lock times out with no partial receipt; release and exact safe retry close incident from fresh readback
+ok 98 - real second-connection SQLite lock times out with no partial receipt; release and exact safe retry close incident from fresh readback
+  ---
+  duration_ms: 1018.353121
+  type: 'test'
+  ...
+# Subtest: duplicate delivery of actual durable task is fenced without second receipt; fresh state closes retained incident
+ok 99 - duplicate delivery of actual durable task is fenced without second receipt; fresh state closes retained incident
+  ---
+  duration_ms: 7.382509
+  type: 'test'
+  ...
+# Subtest: duplicate concurrent recovery deliveries reconcile a committed cursor gap once without another business step
+ok 100 - duplicate concurrent recovery deliveries reconcile a committed cursor gap once without another business step
+  ---
+  duration_ms: 34.33257
+  type: 'test'
+  ...
+# Subtest: same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases
+ok 101 - same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases
+  ---
+  duration_ms: 42.792743
+  type: 'test'
+  ...
+# Subtest: two real SQLite connections competing for3 units admit exactly one2-unit order
+not ok 102 - two real SQLite connections competing for3 units admit exactly one2-unit order
+  ---
+  duration_ms: 38.948918
+  type: 'test'
+  location: '/workspace/scratch/e0a785458d28/backend/backend/src/validation/tests/work8-stock-race.test.ts:1:3481'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module 'tsx/cjs'
+    Require stack:
+    - /workspace/scratch/e0a785458d28/backend/[worker eval]
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1430:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1040:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1045:22)
+    Function._load (node:internal/modules/cjs/loader:1216:25)
+    wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    Module.require (node:internal/modules/cjs/loader:1527:12)
+    require (node:internal/modules/helpers:147:16)
+    [worker eval]:1:1
+    runScriptInThisContext (node:internal/vm:209:10)
+    node:internal/process/execution:446:12
+  ...
+1..102
+# tests 102
+# suites 0
+# pass 99
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 140311.044221

@@ -1,0 +1,12 @@
+✔ compounded backlog and missed schedule alert closes only after actual bounded worker drain and rescheduled admission (1026.829412ms)
+✔ expired running lease is escalated without replay; corrupt schedule fails closed (18.659688ms)
+✔ late admitted slot remains degraded across reopen until genuinely timely later admission; failed admission cannot clear it (60.285833ms)
+✔ persisted scheduler metadata corruption cannot clear a late admission, while original legacy schedules remain readable (69.281864ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1814.815802

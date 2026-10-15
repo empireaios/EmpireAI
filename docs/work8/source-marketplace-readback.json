@@ -1,0 +1,1411 @@
+[
+  {
+    "retrievedAt": "2026-10-10T21:57:57.091Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "evidence",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+    "data": {
+      "id": "ev_6b78ad4ee360cd4a38237a9b3f93508cc9ec33c1",
+      "capabilityId": "amazon.offers",
+      "eye": "MARKET",
+      "provider": "Amazon",
+      "endpoint": "/products/pricing/v0/items/B0GN1TZZ9W/offers",
+      "subject": {
+        "id": "B0GN1TZZ9W",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-10T18:39:09.158Z",
+      "retrievedAt": "2026-10-10T18:39:09.158Z",
+      "staleAfter": "2026-10-11T00:39:09.158Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "4c97de6cfd28d51c703113df00c711a5db2103cce13493b614b3203ef3be0c4b",
+      "facts": {
+        "response": {
+          "payload": {
+            "ASIN": "B0GN1TZZ9W",
+            "status": "Success",
+            "ItemCondition": "New",
+            "Identifier": {
+              "MarketplaceId": "ATVPDKIKX0DER",
+              "ItemCondition": "New",
+              "ASIN": "B0GN1TZZ9W"
+            },
+            "Summary": {
+              "LowestPrices": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "LandedPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "ListingPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "Shipping": {
+                    "CurrencyCode": "USD",
+                    "Amount": 0
+                  }
+                }
+              ],
+              "BuyBoxPrices": [
+                {
+                  "condition": "New",
+                  "LandedPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "ListingPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "Shipping": {
+                    "CurrencyCode": "USD",
+                    "Amount": 0
+                  }
+                }
+              ],
+              "NumberOfOffers": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "OfferCount": 1
+                }
+              ],
+              "BuyBoxEligibleOffers": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "OfferCount": 1
+                }
+              ],
+              "SalesRankings": [
+                {
+                  "ProductCategoryId": "office_product_display_on_website",
+                  "Rank": 275
+                },
+                {
+                  "ProductCategoryId": "1069544",
+                  "Rank": 1
+                }
+              ],
+              "ListPrice": {
+                "CurrencyCode": "USD",
+                "Amount": 19.99
+              },
+              "TotalOfferCount": 1
+            },
+            "Offers": [
+              {
+                "Shipping": {
+                  "CurrencyCode": "USD",
+                  "Amount": 0
+                },
+                "ListingPrice": {
+                  "CurrencyCode": "USD",
+                  "Amount": 18.99
+                },
+                "ShippingTime": {
+                  "maximumHours": 0,
+                  "minimumHours": 0,
+                  "availabilityType": "NOW"
+                },
+                "SellerFeedbackRating": {
+                  "FeedbackCount": 66520,
+                  "SellerPositiveFeedbackRating": 99
+                },
+                "PrimeInformation": {
+                  "IsPrime": true,
+                  "IsNationalPrime": true
+                },
+                "SubCondition": "new",
+                "SellerId": "A2K3WARBVMJ9U9",
+                "IsFeaturedMerchant": true,
+                "IsBuyBoxWinner": true,
+                "IsFulfilledByAmazon": true
+              }
+            ],
+            "marketplaceId": "ATVPDKIKX0DER"
+          }
+        },
+        "price": 18.99,
+        "currency": "USD",
+        "marketplaceId": "ATVPDKIKX0DER",
+        "interpretation": "Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim."
+      },
+      "jobId": "follow_c2ba5d462cd663fe83475c3116a61a517383",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "Amazon:/products/pricing/v0/items/B0GN1TZZ9W/offers"
+      ],
+      "grantsAuthority": false
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  {
+    "retrievedAt": "2026-10-10T21:57:58.485Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "evidence",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+    "data": {
+      "id": "ev_042a033c4d1739ea9e31f361bf4eb295b48ed39e",
+      "capabilityId": "amazon.catalog",
+      "eye": "MARKET",
+      "provider": "Amazon",
+      "endpoint": "/catalog/2022-04-01/items",
+      "subject": {
+        "id": "B0GN1TZZ9W",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-10T18:39:07.980Z",
+      "retrievedAt": "2026-10-10T18:39:07.980Z",
+      "staleAfter": "2026-10-11T00:39:07.981Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "90df87e4d4721b6a4f9398e12e824c924cc8e42d70ec0f1aeb852898faa463d3",
+      "facts": {
+        "response": {
+          "asin": "B0GN1TZZ9W",
+          "dimensions": [
+            {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "item": {
+                "height": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "length": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "width": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                }
+              },
+              "package": {
+                "height": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "length": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "weight": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "width": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                }
+              }
+            }
+          ],
+          "identifiers": [
+            {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "identifiers": [
+                {
+                  "identifierType": "[DEPTH_BOUND]",
+                  "identifier": "[DEPTH_BOUND]"
+                },
+                {
+                  "identifierType": "[DEPTH_BOUND]",
+                  "identifier": "[DEPTH_BOUND]"
+                }
+              ]
+            }
+          ],
+          "salesRanks": [
+            {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "classificationRanks": [
+                {
+                  "classificationId": "[DEPTH_BOUND]",
+                  "title": "[DEPTH_BOUND]",
+                  "link": "[DEPTH_BOUND]",
+                  "rank": "[DEPTH_BOUND]"
+                }
+              ],
+              "displayGroupRanks": [
+                {
+                  "websiteDisplayGroup": "[DEPTH_BOUND]",
+                  "title": "[DEPTH_BOUND]",
+                  "link": "[DEPTH_BOUND]",
+                  "rank": "[DEPTH_BOUND]"
+                }
+              ]
+            }
+          ],
+          "summaries": [
+            {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "adultProduct": false,
+              "autographed": false,
+              "brand": "WALI",
+              "browseClassification": {
+                "displayName": "Letter Trays & Stacking Supports",
+                "classificationId": "1069544"
+              },
+              "color": "Black",
+              "itemClassification": "BASE_PRODUCT",
+              "itemName": "WALI Desk File Organizer, 4 Tier Desktop Paper Letter Tray Organizer with Drawer and 2 Pen Holders, Office Desk Accessories & Workspace Organizers for Office, Home Supplies(DO005DH-B), 1 Pack, Black",
+              "manufacturer": "WALI",
+              "memorabilia": false,
+              "modelNumber": "DO005DH-B",
+              "packageQuantity": 1,
+              "partNumber": "DO005DH-B",
+              "size": "4-Tier",
+              "style": "Modern",
+              "tradeInEligible": false,
+              "websiteDisplayGroup": "office_product_display_on_website",
+              "websiteDisplayGroupName": "Office Product"
+            }
+          ]
+        },
+        "interpretation": "Catalog rank proxy; not demand or profit"
+      },
+      "jobId": "scheduled_amazon.catalog_29860959",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "Amazon:/catalog/2022-04-01/items",
+        "ev_05c8e6e14b75bc69c657f104fe462d19f5115ad8"
+      ],
+      "grantsAuthority": false
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  {
+    "retrievedAt": "2026-10-10T21:57:59.678Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "evidence",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "durable Four Eyes evidence; provider scope, authenticity and freshness are record-specific",
+    "data": {
+      "id": "ev_05c8e6e14b75bc69c657f104fe462d19f5115ad8",
+      "capabilityId": "amazon.catalog",
+      "eye": "MARKET",
+      "provider": "Amazon",
+      "endpoint": "/catalog/2022-04-01/items",
+      "subject": {
+        "id": "organizer",
+        "marketplace": "US",
+        "query": "desk organizer"
+      },
+      "observedAt": "2026-10-10T18:39:07.980Z",
+      "retrievedAt": "2026-10-10T18:39:07.980Z",
+      "staleAfter": "2026-10-11T00:39:07.981Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "1ac502218c128cb5e3ca3594ddbea265589139a83fb36b5590cf65c4525ee490",
+      "facts": {
+        "response": {
+          "numberOfResults": 136116,
+          "pagination": {},
+          "refinements": {
+            "brands": [
+              {
+                "numberOfResults": 14068,
+                "brandName": "Generic"
+              },
+              {
+                "numberOfResults": 839,
+                "brandName": "PATIKIL"
+              },
+              {
+                "numberOfResults": 627,
+                "brandName": "uxcell"
+              },
+              {
+                "numberOfResults": 499,
+                "brandName": "SMEAD"
+              },
+              {
+                "numberOfResults": 284,
+                "brandName": "Marbrasse"
+              },
+              {
+                "numberOfResults": 265,
+                "brandName": "Furinno"
+              },
+              {
+                "numberOfResults": 246,
+                "brandName": "BTSKY"
+              },
+              {
+                "numberOfResults": 219,
+                "brandName": "Mind Reader"
+              },
+              {
+                "numberOfResults": 188,
+                "brandName": "DASITON"
+              },
+              {
+                "numberOfResults": 187,
+                "brandName": "MyGift"
+              }
+            ],
+            "classifications": [
+              {
+                "numberOfResults": 65691,
+                "displayName": "Office Products",
+                "classificationId": "1084128"
+              },
+              {
+                "numberOfResults": 63184,
+                "displayName": "Home & Kitchen",
+                "classificationId": "1063498"
+              },
+              {
+                "numberOfResults": 15526,
+                "displayName": "Electronics",
+                "classificationId": "493964"
+              },
+              {
+                "numberOfResults": 13987,
+                "displayName": "Industrial & Scientific",
+                "classificationId": "16310161"
+              },
+              {
+                "numberOfResults": 11153,
+                "displayName": "Tools & Home Improvement",
+                "classificationId": "468240"
+              },
+              {
+                "numberOfResults": 8233,
+                "displayName": "Arts, Crafts & Sewing",
+                "classificationId": "2617942011"
+              },
+              {
+                "numberOfResults": 6230,
+                "displayName": "Clothing, Shoes & Jewelry",
+                "classificationId": "7141124011"
+              },
+              {
+                "numberOfResults": 5655,
+                "displayName": "Beauty & Personal Care",
+                "classificationId": "11055981"
+              },
+              {
+                "numberOfResults": 2775,
+                "displayName": "Cell Phones & Accessories",
+                "classificationId": "2335753011"
+              },
+              {
+                "numberOfResults": 2122,
+                "displayName": "Baby Products",
+                "classificationId": "165797011"
+              }
+            ]
+          },
+          "items": [
+            {
+              "asin": "B0GN1TZZ9W",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": [
+                    {
+                      "identifierType": "[DEPTH_BOUND]",
+                      "identifier": "[DEPTH_BOUND]"
+                    },
+                    {
+                      "identifierType": "[DEPTH_BOUND]",
+                      "identifier": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": [
+                    {
+                      "websiteDisplayGroup": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "WALI",
+                  "browseClassification": {
+                    "displayName": "Letter Trays & Stacking Supports",
+                    "classificationId": "1069544"
+                  },
+                  "color": "Black",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "WALI Desk File Organizer, 4 Tier Desktop Paper Letter Tray Organizer with Drawer and 2 Pen Holders, Office Desk Accessories & Workspace Organizers for Office, Home Supplies(DO005DH-B), 1 Pack, Black",
+                  "manufacturer": "WALI",
+                  "memorabilia": false,
+                  "modelNumber": "DO005DH-B",
+                  "packageQuantity": 1,
+                  "partNumber": "DO005DH-B",
+                  "size": "4-Tier",
+                  "style": "Modern",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "office_product_display_on_website",
+                  "websiteDisplayGroupName": "Office Product"
+                }
+              ]
+            },
+            {
+              "asin": "B0BYDGF8DT",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": [
+                    {
+                      "identifierType": "[DEPTH_BOUND]",
+                      "identifier": "[DEPTH_BOUND]"
+                    },
+                    {
+                      "identifierType": "[DEPTH_BOUND]",
+                      "identifier": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": [
+                    {
+                      "websiteDisplayGroup": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "OPNICE",
+                  "browseClassification": {
+                    "displayName": "File Sorters",
+                    "classificationId": "1069614"
+                  },
+                  "color": "Black",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "OPNICE Desk Organizer, 4-Tier Desktop File Organizer with Drawer and Pen Holders, Office Desk Accessories, File Sorters, Workspace Organizers for Office Supplies(Black)",
+                  "manufacturer": "OPNICE",
+                  "memorabilia": false,
+                  "modelNumber": "Desk Organizer",
+                  "packageQuantity": 1,
+                  "partNumber": "Desk Organizer",
+                  "releaseDate": "2023-07-19",
+                  "size": "4T",
+                  "style": "Modern",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "office_product_display_on_website",
+                  "websiteDisplayGroupName": "Office Product"
+                }
+              ]
+            },
+            {
+              "asin": "B08KXKVT4K",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": [
+                    {
+                      "identifierType": "[DEPTH_BOUND]",
+                      "identifier": "[DEPTH_BOUND]"
+                    },
+                    {
+                      "identifierType": "[DEPTH_BOUND]",
+                      "identifier": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": [
+                    {
+                      "websiteDisplayGroup": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "Vtopmart",
+                  "browseClassification": {
+                    "displayName": "Drawer Organizers",
+                    "classificationId": "3744461"
+                  },
+                  "color": "Clear",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "Vtopmart 25 PCS Clear Plastic Drawer Organizers Set, 4-Size Versatile Bathroom and Vanity Drawer Organizer Trays, Storage Bins for Makeup, Bedroom, Kitchen Gadgets Utensils and Office",
+                  "manufacturer": "Vtopmart",
+                  "memorabilia": false,
+                  "modelNumber": "VM05015A",
+                  "packageQuantity": 25,
+                  "partNumber": "VM05015",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "home_improvement_display_on_website",
+                  "websiteDisplayGroupName": "Home Improvement"
+                }
+              ]
+            },
+            {
+              "asin": "B0G4ZN88X3",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": []
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": []
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "Simple Trending",
+                  "browseClassification": {
+                    "displayName": "Monitor Stands",
+                    "classificationId": "23572105011"
+                  },
+                  "color": "Black",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "Simple Trending Desk Organizer and Accessories, Monitor Stand Riser, Black",
+                  "manufacturer": "Simple Trending",
+                  "memorabilia": false,
+                  "partNumber": "ST18593",
+                  "size": "16\"W x 10\"D x 5.8\"H",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "home_display_on_website",
+                  "websiteDisplayGroupName": "Home"
+                }
+              ]
+            },
+            {
+              "asin": "B0DB8F7GDN",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": []
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": [
+                    {
+                      "websiteDisplayGroup": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "OPNICE",
+                  "browseClassification": {
+                    "displayName": "Computer Workstations",
+                    "classificationId": "1069234"
+                  },
+                  "color": "Black 1-Pack",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "OPNICE Desk Organizer and Accessories, 2-Tier Computer Monitor Stand Riser with Drawer and 2 Pen Holders, Laptop Stand, Office Desk Accessories for Office Supplies, Black",
+                  "manufacturer": "OPNICE",
+                  "memorabilia": false,
+                  "packageQuantity": 1,
+                  "partNumber": "Computer Monitor Stand",
+                  "size": "14\" x 9.1\" x 5.6\"",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "office_product_display_on_website",
+                  "websiteDisplayGroupName": "Office Product"
+                }
+              ]
+            },
+            {
+              "asin": "B0CF5D4Z1V",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": []
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": [
+                    {
+                      "websiteDisplayGroup": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "LEKETREE",
+                  "browseClassification": {
+                    "displayName": "Letter Trays & Stacking Supports",
+                    "classificationId": "1069544"
+                  },
+                  "color": "Black",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "LEKETREE Desk Organizers and Accessories, 5-Tier Paper Letter Tray Organizer with File Holder, Desktop Organizer for Office Supplies (Black)",
+                  "manufacturer": "LEKETREE",
+                  "memorabilia": false,
+                  "modelNumber": "5T",
+                  "packageQuantity": 1,
+                  "partNumber": "5T",
+                  "size": "12\" x 12\" x 12\"",
+                  "style": "Art Deco",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "kitchen_display_on_website",
+                  "websiteDisplayGroupName": "Kitchen"
+                }
+              ]
+            },
+            {
+              "asin": "B08PBFKGJG",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": [
+                    {
+                      "identifierType": "[DEPTH_BOUND]",
+                      "identifier": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": [
+                    {
+                      "websiteDisplayGroup": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "Marbrasse",
+                  "browseClassification": {
+                    "displayName": "Letter Trays & Stacking Supports",
+                    "classificationId": "1069544"
+                  },
+                  "color": "6 Tier - Black",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "Marbrasse 6 Tier Paper Organizer Letter Tray - Mesh Desk File Organizer with Handle, Paper Sorter Organizer for Letter/A4 Office File Folder Holder - Black",
+                  "manufacturer": "Marbrasse",
+                  "memorabilia": false,
+                  "modelNumber": "Mesh File Organizer-6C",
+                  "packageQuantity": 1,
+                  "partNumber": "Mesh File Organizer-6C",
+                  "size": "12.6\" x 9.1\" x 13.4\"",
+                  "style": "Classic",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "office_product_display_on_website",
+                  "websiteDisplayGroupName": "Office Product"
+                }
+              ]
+            },
+            {
+              "asin": "B0C9ZHWC9K",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": []
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": [
+                    {
+                      "websiteDisplayGroup": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "SKYDUE",
+                  "browseClassification": {
+                    "displayName": "Pencil Holders",
+                    "classificationId": "12901041"
+                  },
+                  "color": "Beige_1Pack",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "SKYDUE 360 Rotating Plastic Desk Pen Organizer with 5 Slots, Dual-Purpose Art Supply Pencil Cup for Office, School, Home",
+                  "manufacturer": "SKYDUE",
+                  "memorabilia": false,
+                  "modelNumber": "12250XZBT",
+                  "packageQuantity": 1,
+                  "partNumber": "12250XZBT",
+                  "size": "5.8*5.8*4.7 Inches",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "home_improvement_display_on_website",
+                  "websiteDisplayGroupName": "Home Improvement"
+                }
+              ]
+            },
+            {
+              "asin": "B0FCMCNS7D",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": []
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": [
+                    {
+                      "websiteDisplayGroup": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ]
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "gianotter",
+                  "browseClassification": {
+                    "displayName": "File Sorters",
+                    "classificationId": "1069614"
+                  },
+                  "color": "Wood",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "Wood Desk Organizers and Accessories with File Holder & Catalog Racks",
+                  "manufacturer": "gianotter",
+                  "memorabilia": false,
+                  "modelNumber": "4TW",
+                  "packageQuantity": 1,
+                  "partNumber": "4TW",
+                  "releaseDate": "2025-07-27",
+                  "size": "9.25 x 13.2 x 9.4 inches",
+                  "style": "Modern",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "home_improvement_display_on_website",
+                  "websiteDisplayGroupName": "Home Improvement"
+                }
+              ]
+            },
+            {
+              "asin": "B0D8HYFZSW",
+              "dimensions": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "item": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  },
+                  "package": {
+                    "height": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "length": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "weight": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    },
+                    "width": {
+                      "unit": "[DEPTH_BOUND]",
+                      "value": "[DEPTH_BOUND]"
+                    }
+                  }
+                }
+              ],
+              "identifiers": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "identifiers": []
+                }
+              ],
+              "salesRanks": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "classificationRanks": [
+                    {
+                      "classificationId": "[DEPTH_BOUND]",
+                      "title": "[DEPTH_BOUND]",
+                      "link": "[DEPTH_BOUND]",
+                      "rank": "[DEPTH_BOUND]"
+                    }
+                  ],
+                  "displayGroupRanks": []
+                }
+              ],
+              "summaries": [
+                {
+                  "marketplaceId": "ATVPDKIKX0DER",
+                  "adultProduct": false,
+                  "autographed": false,
+                  "brand": "gianotter",
+                  "browseClassification": {
+                    "displayName": "Monitor Stands",
+                    "classificationId": "23572105011"
+                  },
+                  "color": "Wood",
+                  "itemClassification": "BASE_PRODUCT",
+                  "itemName": "gianotter Desk Organizers and Accessories, Monitor Stand with Drawer and 2 Pen Holder, Desktop Organizer Suitable for Offices and Dormitories (Wood)",
+                  "manufacturer": "gianotter",
+                  "memorabilia": false,
+                  "modelNumber": "D3-2",
+                  "packageQuantity": 1,
+                  "partNumber": "D-3-2",
+                  "size": "17.7\" x 9.64\" x 5.31\"",
+                  "tradeInEligible": false,
+                  "websiteDisplayGroup": "home_display_on_website",
+                  "websiteDisplayGroupName": "Home"
+                }
+              ]
+            }
+          ]
+        },
+        "marketplaceId": "ATVPDKIKX0DER",
+        "interpretation": "Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim."
+      },
+      "jobId": "scheduled_amazon.catalog_29860959",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "Amazon:/catalog/2022-04-01/items"
+      ],
+      "grantsAuthority": false
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  }
+]

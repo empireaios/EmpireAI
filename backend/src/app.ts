@@ -1,3 +1,10 @@
+import {assertGeneratedCaptureScope,holdGeneratedCapture,type GeneratedCaptureScope} from './runtime/work8-generated-capture-hold.js';
+import { registerWork8RecoveryRoutes } from './runtime/work8-recovery-routes.js';
+import { resolveShadowCeoDbPath } from './orchestration/shadow-ceo-integration/durable-paths.js';
+import {withPrimaryCaptureFence} from './runtime/work8-primary-capture.js';
+import {captureWork8RecoveryInventory,finalizeWork8RecoveryInventory,verifyWork8RecoveryInventory,invalidateWork8RecoveryInventory,type Work8RecoveryRequest,type Work8RecoveryResult} from './runtime/work8-recovery-capture.js';
+import {retainProductionFinance} from './finance/financial-centre.js';
+import { withDrainedWork8Background } from './runtime/work8-background-capture.js';
 import { runLegacyBusinessBootstrap } from "./runtime/startup-bootstrap-policy.js";
 import { installLockedCommissioning } from "./runtime/locked-commissioning.js";
 import { backgroundExecutionPolicy } from "./runtime/engineering-test-mode.js";
@@ -13,11 +20,11 @@ import { getRecentEventLoopLagMs } from "./runtime/event-loop-cooperative.js";
 import { getAdmissionStats } from "./runtime/production-admission-control.js";
 import { installCaptureHttpAdmission } from "./runtime/capture-http-admission.js";
 import { withLocalJsonAuthorityCapture } from "./orchestration/shadow-ceo-integration/local-json-capture.js";
-import { withQuiescedBrainAndShadowCapture } from "./orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js";
+import { withExistingShadowCapture, withQuiescedBrainAndShadowCapture } from "./orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js";
 import type { SqliteShadowCeoRepository } from "./orchestration/shadow-ceo/repository.js";
 import { getDatabase } from "./brain/database.js";
 import { getActiveDatabasePath } from "./brain/database.js";
-import { withExclusiveNativeMissionCapture } from "./runtime/native-store-capture.js";
+import { withExclusiveNativeMissionCapture, withExclusiveWork8DomainCapture } from "./runtime/native-store-capture.js";
 import { getSqlitePersistStats } from "./brain/sqlite-database.js";
 import { createBrain, type EmpireBrain } from "./brain/index.js";
 import { TaskQueue } from "./brain/task-queue.js";
@@ -271,6 +278,13 @@ export type EmpireApp = {
    */
   withDrainedSharedBrainNativeCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
+  /** Also drains the registered local intelligence, commerce, twin and Assurance timers.
+   * Also holds nine domain SQLite writer locks. Other processes and Redis producers
+   * remain outside; WAL domains require SQLite-aware capture, not raw main-file copies.
+   */
+  withDrainedWork8LocalCapture: <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
+  captureWork8Recovery: (request:Work8RecoveryRequest,scope?:GeneratedCaptureScope)=>Promise<Work8RecoveryResult>;
   finishRouteRegistration?: () => Promise<void>;
 };
 
@@ -627,10 +641,14 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       if (value < 1) throw new Error("Local capture drain deadline elapsed; no snapshot taken");
       return value;
     };
-    return captureHttpAdmission.withDrainedAdmission(
-      () => brain.workerPool.withPausedProcessing(
-        () => pillowBootTask.withPausedExecution(
-          () => withLocalJsonAuthorityCapture(() => { remaining(); return capture(); }), remaining()), remaining()), timeoutMs);
+    // These commerce timers are separate from Pillow's boot task. Drain their
+    // admitted runs and hold delayed/interval admissions through capture.
+    return getPillowCommercePresaleAutomationServer().withPausedExecution(
+      () => getPillowExecutiveLoopAutomationServer().withPausedExecution(
+        () => captureHttpAdmission.withDrainedAdmission(
+          () => brain.workerPool.withPausedProcessing(
+            () => pillowBootTask.withPausedExecution(
+              () => withLocalJsonAuthorityCapture(() => { remaining(); return capture(); }), remaining()), remaining()), remaining()), remaining()), remaining());
   };
   const withDrainedLocalSqliteCapture = <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number): Promise<T> =>
@@ -649,6 +667,50 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       () => withDrainedLocalNativeCapture(shadow, captureAndVerify, timeoutMs), timeoutMs);
   };
 
+  const withDrainedWork8LocalCapture = <T>(shadow: SqliteShadowCeoRepository,
+    captureAndVerify: () => T | Promise<T>, timeoutMs = 30_000): Promise<T> => {
+    const deadline = performance.now() + timeoutMs;
+    return withDrainedWork8Background(() => {
+      const remaining = Math.floor(deadline - performance.now());
+      if (remaining < 1) throw new Error("Work8 local capture drain deadline elapsed; no snapshot taken");
+      const root = process.env.RAILWAY_VOLUME_MOUNT_PATH;
+      if (!root) throw new Error("Work8 domain capture requires explicit volume root");
+      return withDrainedSharedBrainNativeCapture(shadow,
+        () => withExclusiveWork8DomainCapture(root, captureAndVerify), remaining);
+    }, timeoutMs);
+  };
+
+  const captureWork8Recovery = async (request:Work8RecoveryRequest,scope?:GeneratedCaptureScope):Promise<Work8RecoveryResult> => {
+    if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN");
+    if (!(brain.taskQueue instanceof TaskQueue)) throw new Error("Recovery requires connected Redis");
+    const queue=brain.taskQueue;
+    const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+    if (!root) throw new Error("Recovery requires explicit volume root");
+    if(scope)assertGeneratedCaptureScope(scope,request,root);
+    let staged=false;
+    try {
+      // Load the temporary Shadow view only after every applicable admission
+      // drain. Its read-only close happens inside those same boundaries on both
+      // success and refusal; no stale SQL.js snapshot can flush after reopening.
+      const result=await withPrimaryCaptureFence(()=>withDrainedWork8Background(()=>
+        queue.withPausedSharedProcessing(()=>withDrainedLocalAdmission(()=>
+          withExistingShadowCapture(getDatabase(),resolveShadowCeoDbPath(),shadow=>
+            withExclusiveNativeMissionCapture(getActiveDatabasePath(),()=>
+              withExclusiveWork8DomainCapture(root,async()=> {
+                const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath},queue);
+                staged=true;
+                if(scope)await holdGeneratedCapture(scope,captured,{seal:finalizeWork8RecoveryInventory,verify:verifyWork8RecoveryInventory,invalidate:invalidateWork8RecoveryInventory});
+                return captured;
+              })))))));
+      finalizeWork8RecoveryInventory(result);
+      verifyWork8RecoveryInventory(result);
+      return result;
+    } catch(error) {if(staged) invalidateWork8RecoveryInventory(request.destination);throw error;}
+  };
+
+  registerWork8RecoveryRoutes(app, {authenticate, founderEmail:env.FOUNDER_EMAIL,
+    capture:request=>captureWork8Recovery(request)});
+
   if (earlyListen) {
     // Commerce proof path must be available without EMPIRE_ENABLE_EXTENSION_ROUTES.
     // Full REAL-module surface remains deferred behind finishRouteRegistration.
@@ -664,6 +726,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
       withDrainedLocalSqliteCapture,
       withDrainedLocalNativeCapture,
       withDrainedSharedBrainNativeCapture,
+      withDrainedWork8LocalCapture,
+      captureWork8Recovery,
       finishRouteRegistration: () => registerEmpireExtensionRoutes(routeDeps),
     };
   }
@@ -681,6 +745,8 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     withDrainedLocalSqliteCapture,
     withDrainedLocalNativeCapture,
     withDrainedSharedBrainNativeCapture,
+    withDrainedWork8LocalCapture,
+    captureWork8Recovery,
   };
 }
 
@@ -702,6 +768,7 @@ function createEmpireShutdown(deps: {
   eventStream: EventStreamHub;
   stopBackgroundWork: () => Promise<void>;
 }) {
+  const releaseFinance = retainProductionFinance();
   let shutdown: Promise<void> | undefined;
   return () => shutdown ??= (async () => {
     deps.eventStream.stop();
@@ -711,6 +778,7 @@ function createEmpireShutdown(deps: {
       await shutdownPillowHost();
     }
     await deps.brain.shutdown();
+    releaseFinance();
   })();
 }
 

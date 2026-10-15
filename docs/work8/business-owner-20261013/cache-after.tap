@@ -1,0 +1,12 @@
+✔ scheduled admission cannot use pre-admission near-expiry cache while ordinary reads still can (89.408079ms)
+✔ scheduled refresh failure/backoff remains truthful rather than completing from old cache (49.356124ms)
+✔ scheduled refresh retains provider quota and interrupted jobs never automatically replay (27.503636ms)
+✔ delayed scheduled job may reuse a genuinely newer observation without another request (29.165449ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1254.157703

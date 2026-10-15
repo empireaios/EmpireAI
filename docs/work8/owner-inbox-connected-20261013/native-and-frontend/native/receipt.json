@@ -1,0 +1,112 @@
+{
+  "status": "PASS_CONNECTED_CANONICAL_INBOX_LABELLED_FIXTURE",
+  "actualComponent": true,
+  "actualProxy": true,
+  "authenticatedBackend": true,
+  "canonicalIncidents": 205,
+  "sourceContinuationConsumed": true,
+  "displayContinuation": true,
+  "malformedInspectorRetainsView": true,
+  "malformedAckRetainsView": true,
+  "failedRefreshRetainsView": true,
+  "ackLeavesIncidentsUnchanged": true,
+  "desktop": [
+    1365,
+    900
+  ],
+  "mobile": [
+    390,
+    844
+  ],
+  "horizontalOverflow": false,
+  "externalPush": false,
+  "externalEffects": 0,
+  "modelCalls": 0,
+  "requests": [
+    {
+      "method": "POST",
+      "url": "/api/owner/notifications",
+      "body": {
+        "action": "sync"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/owner/notifications",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "/api/owner/notifications?after=44d2bd99-5e30-4304-9009-6d2e1a226c26",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "/api/owner/notifications",
+      "body": {
+        "action": "sync",
+        "assuranceAfter": "inc_7b46cc3d-cc59-4e17-9863-f7c981706fd3"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/owner/notifications",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "/api/owner/notifications",
+      "body": {
+        "action": "sync",
+        "assuranceAfter": "inc_fa226418-c1dc-4685-82ca-75c58c85214a"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/owner/notifications",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "/api/owner/notifications",
+      "body": {
+        "action": "acknowledge",
+        "notificationId": "04189e2e-fa55-418b-8ae9-f390d75f0d4e"
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/owner/notifications",
+      "body": {
+        "action": "acknowledge",
+        "notificationId": "04189e2e-fa55-418b-8ae9-f390d75f0d4e"
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/owner/notifications",
+      "body": {
+        "action": "sync"
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/owner/notifications",
+      "body": {
+        "action": "sync"
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/owner/notifications",
+      "body": {
+        "action": "sync"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "/api/owner/notifications",
+      "body": null
+    }
+  ]
+}

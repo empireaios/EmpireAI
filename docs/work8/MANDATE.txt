@@ -1,0 +1,429 @@
+EMPIREAI — WORK 8 MASTER EXECUTION MANDATE
+AUTONOMOUS OPERATING SYSTEM BUILD + AUTONOMOUS ASSURANCE SELF-HEALING + COMPREHENSIVE MOCK EXAMINATIONS AND DRY RUN
+GRAND KING — OWNER DIRECTIVE
+Prepared 11 October 2026
+
+READ THIS ENTIRE MANDATE BEFORE EXECUTION. THIS IS ONE INTEGRATED WORK STREAM, NOT SEPARATE BUILD AND TEST MISSIONS.
+
+0. START CONDITIONS AND AUTHORITIES
+
+Work 8 follows independently verified Work 7 completion and its governed production release. Until then, perform only authorised planning, inventory, and read-only preparation; do not claim Work 8 execution has started or weaken Work 7 gates. Recover the Work 7 completion receipt, approved UI and design, preserved financial baselines, current production identities, Mission Ledger, owner directives, existing safety UX addendum, 15 commerce protections, Work 8/9 handoff, and relevant engineering/CI evidence. Historical references include frontend PR #109 and backend PRs #110 and #111; none is assumed deployed or closed. Recover their actual status and the Work 7 closure receipt. Re-read actual GitHub/Railway/Vercel state at execution time. Never rely on stale SHA assumptions.
+
+Pillow remains NOT_BORN and commerce LOCKED throughout Work 8. No real marketplace publication, orders, supplier purchases, payments, refunds, live writes, irreversible provider actions, or paid inference outside specifically approved commissioning boundaries. Use intercepted providers, synthetic data and isolated sandboxes with explicit labeling and strong network egress controls. No approval or unlock is implied by this mandate. Do not create a second authority path, bypass a guard, or weaken an existing control. Owner's approval is mandatory for any change to real commerce policy, financial exposure, protected configuration, irreversible action, theme/design, or launch authority.
+
+1. MISSION AND DEFINITION OF DONE
+
+Build, integrate and prove EmpireAI's complete pre-birth autonomous operating capability: software-led discovery and screening, Pillow-led evaluation and decisions/recommendations, governed owner approvals, simulated product/listing/order/fulfilment/finance operations, and continuous autonomous Assurance that detects, diagnoses, contains, repairs, verifies and learns from faults within authorised boundaries. Work 8 includes BOTH implementation and examination. A passing unit test or visual mockup is not completion.
+
+Deliver a defensible GO/NO-GO recommendation for Work 9 (digital twin and safe live transition), backed by comprehensive scenario evidence, recovery receipts, financial reconciliation, coverage, residual risks and owner-readable operational dashboards. Do not launch live commerce in Work 8.
+
+2. PRESERVATION AND SCOPE CONTROL
+
+Preserve Work 7's approved Home, family artwork, theme, layout identity, routes, owner controls, finance semantics, products, listings, orders, Pillow Chat and history, and all functioning integrations. Preserve historical data, journals, immutable evidence, approvals, audit trails, provider quota/backoff, rate limits, authority boundaries and rollback paths. Do not remove legacy functionality or silently rearrange interfaces. Only fix defects necessary for the Work 8 operating capability or verified testing. UX redesigns or owner-facing changes outside the already approved design require explicit owner approval; do not invent a redesign mission.
+
+Assurance is a PERMANENT CROSS-CUTTING SYSTEM, not a separate Work phase. Work 7 owns Owner Console UX and governed release; Work 8 owns autonomous build, end-to-end dry run, fault injection and self-healing proof; Work 9 owns digital twin, production parity, controlled go-live and safe live-change workflow. Record any uncovered Work 9 dependency without silently implementing live activation.
+
+3. RECOVER THE SYSTEM, THEN CREATE ONE EXECUTION REGISTER
+
+Inspect actual repositories, branches, release identities, schema, queues, workers, connectors, integrations, APIs, route graph, accounting, finance, product/order lifecycles, tests, evidence and operational safeguards. Classify every existing capability as VERIFIED IMPLEMENTED, IMPLEMENTED BUT UNVERIFIED, MISSING, DEFECTIVE, EXTERNAL DEPENDENCY or DEFERRED TO WORK 9. Avoid duplicate engineering and do not replay passed acceptance prompts. Build one stable numbered requirement-to-code-to-test-to-evidence-to-release matrix and a dependency graph with critical path, owners, safe parallelism and exact pass criteria. Preserve previous Work 7 evidence for its actual scope. Do not interpret 100-item tracker statuses as a weighted completion percentage.
+
+4. AUTONOMOUS PRODUCT DISCOVERY AND FUNNEL
+
+Implement/test a software-first collection and preliminary screening pipeline using permitted supplier/marketplace data. Software—not Pillow—collects, normalises, deduplicates, verifies source freshness, checks product identity and variants, screens marketplace eligibility, media rights, supplier reliability, stock/lead time, shipping, landed costs, fees, margin, competitive price ranges, risks and evidence completeness. Quarantine stale, contradictory, unlicensed, missing or ineligible evidence. Record every funnel stage and reason for rejection/deferment, including candidate counts and source references.
+
+Only qualified, traceable candidates progress to Pillow. Pillow compares options, narrows them, explains expected economics, confidence, competition, supplier/fulfilment constraints, downside, evidence gaps and why each candidate is recommended, deferred or rejected. Show Grand King concise actionable recommendations, full rationale on demand and explicit approval boundaries. Do not make up revenue, margins, Amazon demand or customer evidence.
+
+Operational design: initial goal UP TO 100 qualified products, then sustained software discovery/qualification throughput targeted at approximately 100 NEW CANDIDATES per day, subject to evidence quality and actual viable supply. This is NOT a guaranteed 100 publications/day. Maximum ACTIVE portfolio = 1,000 products; enforce cap transactionally under concurrent retries, imports and replacements. Pillow continually scores portfolio health and recommends retain, improve, observe, pause, retire or replace; retain historical reasons, decisions and performance. Test low supply, all-rejected days, duplicates, cap at 999/1000/1001, stale feeds, conflicting variants and replacement without cap breaches. Before birth, publication and buying are simulated/blocked.
+
+5. END-TO-END SIMULATED BUSINESS OPERATIONS
+
+Use an isolated, realistic simulated CJ-to-Amazon US corridor (or existing authorised corridor) with coherent product identities, listing attributes, SKU/ASIN mapping, variant media/rights, price/fee schedules, tax/duty assumptions where applicable, inventory freshness, orders, supplier purchase intents, idempotency, packages/partial shipments, tracking, delivery, refunds/returns, supplier credits, settlement, payout holds and bank receipts. Distinguish mock facts from actual financial records in every UI and report. Validate state transitions, reconciliation, event ordering, retries, cancellations, duplicate messages, delayed webhooks and outcome-unknown effects. Do not create real orders or publish listings.
+
+6. FINANCIAL TRUTH AND OWNER ECONOMICS
+
+Reconcile revenue, COGS, freight, marketplace fees, discounts, refunds, liabilities, cash needs, reserves, supplier credits, receivables, settlement/payout and realised versus unsettled/forecast contribution. Keep technology/infrastructure costs separate from commercial P&L. Verify source-to-ledger-to-UI equality, currency conversions, period cutoffs, accounting journals, immutable history and conservation of money. Unknown inputs stay unknown, never converted to zero or fabricated profit. Simulate positive, loss-making, negative cashflow, payout delay, chargeback, refund, multi-currency and missing-fee cases. Confirm owner dashboards display correct values, labels, evidence and exposure.
+
+7. AUTONOMOUS ASSURANCE AND SELF-HEALING — CENTRAL WORK 8 REQUIREMENT
+
+This is as important as product autonomy. Build and independently verify a closed-loop Assurance lifecycle:
+OBSERVE -> DETECT -> CLASSIFY -> CORRELATE -> CONTAIN -> DIAGNOSE -> PLAN -> CHECK AUTHORITY -> EXECUTE SAFE REPAIR -> VERIFY RECOVERY -> RECONCILE -> RECORD EVIDENCE -> LEARN / PREVENT RECURRENCE.
+
+Assurance must distinguish an application defect, stale evidence, provider outage, incorrect model claim, unsafe authority request, financial discrepancy, data corruption, transient timeout and unknown outcome. For each incident show severity, affected identities, financial/operational exposure, source freshness, evidence, proposed repair, action permissions, attempt budget, next check and owner notification. Automatic repair is allowed ONLY for pre-authorised, reversible, bounded, idempotent actions with verified preconditions, limited retries, circuit breakers, rollback and postconditions. Anything involving financial exposure, privileged access, uncertain external effects, data deletion, authority changes, publication, purchases or policy changes must stop safely and request owner approval. No unrestricted code-writing/deployment by Assurance; self-healing means bounded, auditable recovery, not self-granted production powers.
+
+Required healing examinations include: stale Four Eyes evidence/cache expiry, scheduled job misfire, duplicate queue delivery, worker crash/restart, queue backlog, database/network timeout, Redis/session interruption, model-provider 429/503, malformed provider output, partial/empty results, hallucinated source claims, cross-provider correlation mismatch, corrupted/duplicated journal event, missing order, duplicate order, inventory race, unprofitable price, negative cash exposure, delayed shipment, missing tracking, refund discrepancy, expired approval, unauthorised action, failed rollback, repeated failure and recovery oscillation. Include compounded faults, delayed faults and faults that recur after apparent repair.
+
+For each mock exam prove: (a) defect genuinely injected; (b) detector fired in bounded time; (c) no unsafe external action occurred; (d) accurate classification and evidence; (e) correct autonomous recovery OR justified escalation; (f) recovery independently verified from fresh evidence; (g) no false success or erased incident; (h) financial/authority invariants held; (i) durable audit receipt; (j) repeat occurrence prevented or bounded. If self-healing cannot safely act, PASS means truthful containment and escalation, not invented repair. Test Assurance itself failing, with independent watchdog and safe degraded operation.
+
+8. MOCK EXAMINATION PROGRAMME — PRELIMINARY EXAM, NOT A DEMO
+
+Design a complete examination blueprint before executing: baseline functional tests; isolated unit/integration/contract; realistic end-to-end journeys; property-based and generative scenarios; adversarial and malformed inputs; concurrency/race; fault injection/chaos; recovery and rollback; security/authority; financial invariants; UI owner usability; data truth; provider degradation; long-duration endurance; and preservation. Cover success, failure, boundary, repeated, delayed, contradictory and compounded scenarios. Generate a reproducible seeded corpus with scenario ID, seed, environment, expected invariant, observed trace, evidence, result, severity, repair and retest link. Reuse existing 1,950-case assurance evidence only where exact code/contract coverage remains valid; don't claim it proves Work 8 new capabilities. Expand scenario count based on risk and coverage, not an arbitrary headline number. Every high-risk state transition and safety control must have explicit positive and negative tests.
+
+Run at least: (1) cold start and empty system; (2) initial 100-product simulated qualification cycle; (3) multi-day 100-candidate/day throughput simulation until 1,000 active cap, with rejects and replacements; (4) multiple simulated complete order lifecycles; (5) reconciliation and owner approvals; (6) Assurance fault injection and recovery; (7) prolonged simulated operating periods with varying provider failures; (8) rollback/restart and preservation after interruption. Use virtual time where safe to accelerate days/weeks without pretending real-time endurance was measured. Separate virtual-time proof from actual elapsed soak testing.
+
+9. NON-NEGOTIABLE GATES AND EXAM GRADING
+
+Pre-register pass/fail rules and measurable coverage: no unsafe external effects; no authority bypass; no financial invariant breach; no portfolio cap breach; no loss of immutable history; no silent duplicate purchase; no false freshness/incident closure; no unauthorised paid inference; correct owner-visible evidence; all critical workflows complete; all critical injected faults safely contained or recovered. Report throughput, latency, retry counts, recovery time, stale-data age, detection delay, resource/cost budget and error rates with exact measurement method. No fabricated percentages or blanket PASS from fixture-only evidence. A critical failure blocks GO and must be repaired, tested and rerun only for affected coverage plus mandatory regression. Noncritical limitations must have explicit risk acceptance or remediation plan; do not silently defer critical requirements to Work 9.
+
+10. WORK 8 OWNER CONSOLE AND HUMAN ACCEPTANCE
+
+Verify Grand King can follow software funnel -> Pillow recommendation -> owner decision -> simulated listing/order -> financial consequences -> Assurance incident -> autonomous recovery receipt. Use existing approved design. Provide concise owner-facing status, readable mobile/desktop tables, plain-language reasons and accessible evidence details. Do not introduce fake placeholders, dense diagnostic prose, invisible actions or new owner authority. Automated testing should carry the workload. Consolidate indispensable owner-only acceptance into ONE bounded checklist; never request serial recordings for already proven states.
+
+11. EXECUTION CONTINUITY AND RESOURCE DISCIPLINE
+
+One continuous mission, resumable across sessions. After each stage, automatically advance to the next eligible task. Never stop merely because a PR, CI, checkpoint, preview, local test or subtask completed. Save machine-readable checkpoint and human-readable progress after every meaningful stage, with exact SHAs, run IDs, completed work, failures, blockers, next executable task, lease/fence, evidence locations and costs. On restart, recover checkpoint first and do not replay successful expensive tests unless changed code or invalid evidence requires it. Use bounded test budgets, concurrency limits, provider quotas and no paid production inference outside commissioning authorisation. Parallelise independent safe work; serialise stateful releases and financial/authority operations. No unbounded loops, repeated failed browser workarounds or unnecessary broad CI reruns.
+
+If a platform/credential/owner approval genuinely blocks one track, finish ALL other authorised work; report one precise, indispensable action with alternatives that respect security. Never bypass credential protection, export private session cookies, request password disclosure or fabricate acceptance. A session ending because of product limits cannot be overridden by prose; the checkpoint must make the next session resume deterministically.
+
+12. GOVERNED ENGINEERING AND RELEASE
+
+Make narrow, reviewed PRs against the correct backend/frontend branches; preserve existing release lineages. Enforce source-level and live-effect protections. Required tests and independent Assurance gates must pass on exact commits. Do not merge or deploy until approvals and current release lease/fence are valid. Do not reuse finished fences. Use preview and isolated environments for mock exams; no real commerce unlock. Where an approved noncommercial Work 8 release is necessary, coordinate it through the established governed release with rollback, exact deployment identity and post-release readback. Do not equate preview readiness with production readiness.
+
+13. WORK 8 DELIVERABLES
+
+A. Fixed numbered Work 8 requirement/architecture/implementation/examination matrix with exact status and evidence links.
+B. Implemented autonomous software discovery, preliminary screening and full product funnel with Pillow narrowing and owner approval presentation, or explicit NO-GO for missing critical functionality.
+C. Simulated listing/order/fulfilment/settlement/finance end-to-end receipts.
+D. Autonomous Assurance self-healing architecture, authorised repair catalogue, escalation catalogue, incident audit trail and independent recovery evidence.
+E. Complete reproducible mock-exam question bank, test harness, seeds, traces, failures, fixes, reruns and coverage report.
+F. Throughput/cap/endurance and economic reconciliation reports with actual measured values and separated simulations.
+G. Security, authority, provider, financial, historical-data and safety-preservation attestations.
+H. Owner-readable UX acceptance and one consolidated outstanding-action list, if needed.
+I. Reviewed PRs, exact CI/release receipts, checkpoint archive and Mission Ledger/King's Advisor independent readback.
+J. Work 9 handoff: digital twin parity requirements, safe change/rollback contract, GO/NO-GO verdict, residual risks, dependencies and explicit owner decisions needed before live activation.
+
+14. CLOSURE AND WORK 9 HANDOFF
+
+Work 8 COMPLETE requires independently verifiable evidence for the full autonomous operating loop AND autonomous Assurance healing loop, successful mock examinations, protected records, authority invariants, reviewed releases if authorised, owner-readable receipts and a reasoned GO/NO-GO for Work 9. Do not claim COMPLETE if a critical exam or safety invariant fails. A NO-GO can be a valid truthful examination outcome, but it is not Work 8 COMPLETE until the agreed critical remediation/acceptance criteria are satisfied or the owner explicitly changes the mandate.
+
+Work 9 is a separate mission. Do not build the digital twin or activate commerce as a hidden part of Work 8. Prepare a precise Work 9 implementation package, preserving the owner's intention to make governed, reversible changes after going live. No live activation without a separate explicit Grand King decision.
+
+15. REPORTING FORMAT
+
+At every major checkpoint provide ONE continuous numbered table from Item 1 through fixed Item N, not disconnected fragments. Use 🟢 PASS, 🟠 PENDING/IN PROGRESS, 🔴 FAIL/BLOCKED. Show counts and a clearly defined percentage ONLY if computed from an explicit denominator and weighting; never invent an 88% estimate. Include new defects, responsible subsystem, owner action (usually NONE), next automatic step and release state. Keep owner summary short; put deep technical evidence in linked files. Explicitly separate implementation complete, examination passed, production release complete and Work 9 readiness.
+
+GRAND KING'S EXECUTION DIRECTIVE
+
+Implement and examine Work 8 as ONE coherent autonomous system. The software screens; Pillow evaluates and recommends; Grand King governs; Assurance continuously detects, contains, safely self-heals, verifies and learns. Subject the whole system to rigorous preliminary examinations and realistic dry runs before Work 9. Preserve the approved experience, financial truth and safety. Resume automatically from evidence and checkpoints, avoid unnecessary owner back-and-forth, and never manufacture a completion receipt. Begin execution only after Work 7's legitimate closure gates are satisfied.
+
+======================================================================
+2026-10-11 REVISION — BINDING WORK 8 EXECUTION ADDENDUM
+This addendum strengthens the entire original mandate above. All original
+sections 0–15 remain operative unless explicitly clarified below.
+======================================================================
+
+16. VERIFIED WORK 7 HANDOFF — NO STALE ASSUMPTIONS
+Work 8 starts only after legitimate Work 7 production closure, including
+owner-approved UX, separately authorised release, production readback and
+independent Mission Ledger receipt. At drafting time, Work 7 UX had been
+owner-approved and its PR #109 and category backend PR #111 were being
+prepared for governed release; do NOT infer either was deployed. PR #110
+is a separate Four Eyes lineage, not an automatic prerequisite. At start,
+verify actual production SHAs, backend/frontend compatibility, migrations,
+current incident dispositions, Work 7 original 100 requirements and 45 UX
+amendments, 50 control groups, approved Home and Android evidence, and
+current category-management capability. Recover all exact receipts and
+preserve 224 accounting / 3 journal / 7 historical baseline records and
+their authoritative digests, or explain any legitimately changed counts
+with audited lineage. Never treat historic counts as eternal constants.
+
+17. BUSINESS-OWNER EXPERIENCE AND POST-LAUNCH UX RIGHTS
+Preserve the approved sequence: Home -> Intelligence -> Pillow (CEO) ->
+Products & Approvals -> Listings -> Orders & Fulfilment -> Operational
+Finance -> Live Cost Centre, with Assurance, Calendar and System available.
+Business flow: Intelligence -> Products & Approvals -> Listings -> Orders
+& Fulfilment -> Operational Finance; Live Cost Centre is separately
+infrastructure-only. Keep the approved family artwork and visual identity,
+compact executive summaries, optional technical evidence dialogs, clear
+financial exceptions and the accepted mobile chat behaviour. Do not put
+raw JSON, hashes, source logs, internal IDs or repeated disclaimers into
+normal owner views. Provide owner-meaningful, timely actions, reasons,
+risks, prices and verified status. Preserve owner authority to request
+minor UX refinements after release through targeted, governed changes;
+material authority, architecture and accounting changes require their
+own review. Work 8 must not silently reopen Work 7 design acceptance.
+
+18. TWO AUTONOMOUS LOOPS — JOINT EXAMINATION
+A. Commercial loop: collect -> normalise -> deduplicate -> screen ->
+verify -> Pillow assess -> recommend -> owner authorise where required ->
+SIMULATED prepare/list -> SIMULATED purchase/fulfil -> reconcile -> learn.
+B. Assurance loop: observe -> detect -> classify -> correlate -> contain
+-> diagnose -> select bounded repair -> check authority -> repair or
+escalate -> verify independently -> reconcile -> log -> prevent recurrence.
+Test them together under realistic loads and compounded faults, not as
+separate demos. No unsafe action becomes permissible merely because it is
+part of a simulation or an autonomous healing attempt. A refusal can be
+the correct PASS if safe action is impossible. Require explicit identity,
+causal evidence and financial traceability from discovery to outcome.
+
+19. EXAMINATION LADDER AND GRADUATION
+Level 0: provenance/baseline recovery, safety boundary inventory and
+noncommercial sandbox isolation, with egress denial tested.
+Level 1: component contracts, property tests, negative authority tests,
+financial invariants, source identity and idempotency.
+Level 2: integrated full business and Assurance loops, with realistic
+provider fakes, coherent records and owner-facing UI verification.
+Level 3: 100-product initial qualification exercise; successive virtual
+days at ~100 NEW candidates/day, including rejection and replacement,
+until the active portfolio cap is reached and held under concurrent work.
+Do not assume 100/day are qualified or published; report raw discoveries,
+qualified candidates, recommended, approved and simulated published
+separately.
+Level 4: adversity: transient, sustained, delayed, repeated, concurrent
+and compounded failures, plus deliberate Assurance/watchdog failures.
+Level 5: endurance, rollback, cold restart, migration, recovery and
+financial/authority preservation. Separate accelerated virtual-time
+runs from measured wall-clock soak. Establish risk-based minimums and
+explicit pass thresholds before executing each level. Critical failure
+means NO-GO and targeted repair/retest, not blanket pass or endless rerun.
+
+20. INDEPENDENT ORACLES AND EXAM HONESTY
+Each exam has an immutable scenario ID, deterministic seed, preconditions,
+expected outcomes, permitted effects, cost cap, execution trace, source
+identities, independent oracle, financial reconciliation, authority check,
+result and retest lineage. Test both positive and negative cases.
+Measure false-positive and false-negative detection, time-to-detect,
+time-to-contain, time-to-recover, recurrence, escalation correctness,
+resource/cost use, data freshness, throughput and tail latency. Never
+claim a success rate without a disclosed denominator and independent
+result evidence. Verify that a failed repair stays visibly failed, that
+incident closure cannot be forged by cached evidence, and that an
+independent watchdog can detect an Assurance failure. Verify no silent
+replay, duplicate charges, stale approval or cross-identity access.
+
+21. SOURCE REALISM AND EXTERNAL CAPABILITY GATES
+Separate four statuses for each supplier, marketplace, model, research,
+browser and financial integration: mocked; contract-tested; authenticated
+read verified; authorised live-effect verified. The fourth status is
+normally prohibited during Work 8. A simulated Amazon/CJ purchase or
+listing is not a real provider receipt. Verify rate limits, outages,
+quotas, payload/schema drift, unavailable permissions, freshness and
+provider identity. Missing real read capability must be visible as a
+specific Work 9 dependency, not fabricated success. Do not attempt
+production commerce to fill a mock-test evidence gap.
+
+22. FINANCIAL, SECURITY AND DATA CONSERVATION
+Work 8 must test the owner-visible Operational Finance formula and
+separate Live Cost Centre infrastructure economics without mixing them.
+Include reservations, actual inference costs, failed/incomplete calls,
+commitments, accrued unbilled usage, invoices, payments, shared-team
+allocation, FX uncertainty and vendor/category persistence. Reconcile
+source -> journal -> report -> owner UI, without double counting or
+inventing settled charges. Include journal replay, crash at commit,
+rollback, corruption, concurrency and multi-currency cutoffs. Verify all
+15 commerce protections and the seven locked live-effect routes in both
+ordinary operation and attempted autonomous self-repair.
+
+23. NO UNENFORCEABLE SPEND / CANARY TRAP
+Use no-cost intercepted providers and isolated runtimes by default.
+Before any billable environment or API use, obtain separate owner
+approval with an actual enforceable cumulative spending ceiling and
+verified isolation across all charges. Alerts or shared-workspace
+budgets are NOT hard caps. If an enforceable cap cannot be demonstrated,
+do not provision; complete other no-cost work and report the narrow
+missing evidence. Do not hold the entire mission hostage to a paid
+canary that is neither authorised nor mandatory.
+
+24. EXECUTION WITHOUT AN AUDIT LOOP
+Perform ONE initial recovery and requirement crosswalk. Then build,
+integrate, examine, repair and re-examine the relevant scope. Do not
+produce successive read-only audits as substitutes for engineering.
+Never stop just because a PR, CI, preview, checkpoint or one exam level
+passes. Save resumable exact-head receipts and a precise next executable
+action. Use targeted retests and mandatory exact-head gates; never
+repeat expensive passing campaigns without changed coverage. If blocked
+on one track, advance every independent authorised track. Never claim
+continuous background execution after the session ends; preserve a
+checkpoint for seamless resumption. A genuine external blocker must be
+reported once with the controlling requirement and safe alternatives.
+
+25. FINAL WORK 8 CERTIFICATION AND WORK 9 HANDOFF
+Present one fixed numbered matrix, one full mock-examination ledger,
+coverage and failure maps, independent Assurance recovery receipts,
+end-to-end financial conservation, provider capability matrix, actual
+resource usage, remaining risks, and owner-readable evidence. Distinguish
+ENGINEERING BUILT, INTEGRATED, EXAMINED, INDEPENDENTLY VERIFIED,
+RELEASED (if separately authorised), and WORK 9 READY. A Work 8 COMPLETE
+claim requires all mandatory critical operating and healing loops to
+pass independently, safe preservation and legitimate closure receipts.
+If the exams yield NO-GO, fix the mandatory defects or request an
+explicit owner scope decision; do not relabel failure as complete.
+Work 9 receives digital-twin parity, controlled live-transition plan,
+rollback and owner-authority gates; it does not inherit silent commerce
+activation. Pillow remains NOT_BORN and commerce LOCKED until separate
+Work 9 authority.
+
+END OF REVISED WORK 8 MASTER EXECUTION MANDATE
+
+
+
+======================================================================
+MANDATORY ADDENDUM — REAL PRODUCT VISIBILITY DURING WORK 8 DRY RUN
+OWNER CLARIFICATION — 11 OCTOBER 2026
+This addendum is integral to the Work 8 mandate and overrides any
+interpretation that synthetic-only product displays suffice.
+======================================================================
+
+R1. MANDATORY OWNER-VISIBLE REAL PRODUCT PIPELINE
+
+During Work 8, Grand King must be able to visually inspect genuine
+product candidates originating from actual, lawfully accessible supplier
+and marketplace information in the approved Owner Console. The real-data
+portion of the dry run must not consist solely of hard-coded product
+names, artificial stock photographs, invented suppliers, synthetic
+prices or pre-recorded fixture cards.
+
+Use approved, read-only supplier/marketplace data sources where
+connectivity and permissions permit. Real-product observation is not
+authorisation for live commerce, purchasing, listing publication,
+supplier writes or any other live effect.
+
+The interface must show, for each genuine candidate when actually
+available:
+- Source-derived product name, variant and category.
+- Genuine product image(s) with verified source and permitted usage.
+- Supplier identity, product reference and observed supplier price.
+- Currency, observation time, source URL/reference and freshness.
+- Verified supplier stock/lead-time/shipping facts where obtainable.
+- Observed competitor prices and market evidence where obtainable.
+- Clearly identified unknown, stale, estimated or unavailable fields.
+- Screening status and exact reason for qualification/rejection.
+- Pillow's ACTUAL saved assessment, when authorised and completed.
+- Owner decision stage and next permitted action.
+
+Do not invent a supplier price, demand indicator, margin, marketplace
+receipt, review count or sales figure to make the dashboard look full.
+Do not represent a generic image as a genuine supplier image.
+
+R2. VISIBLE END-TO-END EXAMINATION
+
+Provide an owner-viewable, coherent walkthrough using a traceable
+candidate or cohort of real observed products:
+
+REAL READ-ONLY SOURCE -> SOFTWARE DISCOVERY -> DEDUPLICATION ->
+ELIGIBILITY AND ECONOMIC SCREENING -> PILLOW ASSESSMENT ->
+PRODUCTS & APPROVALS -> SIMULATED PREPARED LISTING ->
+SIMULATED ORDER/FULFILMENT -> SIMULATED OPERATIONAL FINANCE ->
+ASSURANCE DETECTION/REPAIR/ESCALATION RECEIPTS.
+
+At every stage retain stable cross-stage identifiers and links to
+underlying evidence. Use the approved Work 7 navigation, business
+language, compact rows, images, drilldowns and financial separation.
+
+A product may have REAL sourced identity and price while its downstream
+listing, order, delivery, customer payment and financial results are
+SIMULATED. Label these dimensions separately and persistently. Never
+suggest that a simulated order was actually placed or paid.
+
+R3. DATA AVAILABILITY AND ACCESS GATE
+
+First inspect actual approved read capabilities and entitlements for
+CJ, Amazon and other authorised sources. Establish whether product
+identity, images, price, variants and market evidence can actually be
+read without commerce activation or unapproved expense.
+
+If a source is unavailable, 401/403, stale, rate-limited, missing
+rights or restricted under NOT_BORN/LOCKED, report that exact condition
+and do not bypass it. Use already retained authentic, provenance-linked
+read evidence when fresh enough for the stated test, marking historical
+observations as historical. Isolated synthetic fixtures may still be
+used to test downstream safety and throughput, but cannot count as
+acceptance of genuine live-source product discovery.
+
+Where genuine supplier data is indispensable and unavailable, continue
+all independent mock examinations, preserve the exact dependency and
+issue a truthful NO-GO on the real-source acceptance gate. Request only
+the specific lawful permission or source access required. Never
+substitute a paid canary or fabricated data.
+
+R4. QUANTITATIVE ACCEPTANCE
+
+Report distinct counts for:
+(a) actual source products read,
+(b) valid images,
+(c) source-identity matches,
+(d) software screened,
+(e) qualified candidates,
+(f) Pillow assessments genuinely performed,
+(g) owner recommendations saved,
+(h) simulated listings,
+(i) simulated orders,
+(j) reconciled simulated financial outcomes.
+
+Report source coverage, data freshness, rejection reasons, price
+coverage and image-rights coverage. Denominators must be explicit.
+The initial up-to-100 and ongoing approximately 100 candidates/day
+objectives remain targets conditional on evidence and access, not
+minimum guaranteed real-source counts and not publication quotas.
+
+Use seeded synthetic cohorts for 1,000-active-product cap, concurrency,
+rare faults and stress exams, with clear labels. Never add synthetic
+cohorts to real-source discovery totals.
+
+R5. REAL PRODUCT OWNER ACCEPTANCE
+
+Before declaring Work 8 COMPLETE, present the owner with an
+authenticated, visual demonstration of genuine sourced products
+flowing through discovery and screening, with actual image/price/source
+details where verified, Pillow's linked conclusions where legitimately
+available, and unmistakably simulated downstream commerce.
+
+The owner must be able to inspect the real product cards and their
+source evidence, the reasons for rejection or recommendation, and the
+corresponding simulated listing/order/finance and Assurance outcomes.
+Provide concise desktop and mobile examples, without rebuilding the
+Work 7 UX or requiring repeated accepted Work 7 tests.
+
+If genuine source data is not available, do not claim this visual gate
+passed. Complete all other permitted examinations and identify the
+remaining dependency precisely.
+
+R6. WORK 7 / WORK 8 / WORK 9 BOUNDARY AND UX FLEXIBILITY
+
+Use the exact Work 7 independently verified production baseline at
+the time Work 8 starts, including the approved Owner Console and any
+later governed minor UX refinements. Historical PR numbers or SHAs
+(including #109, #110 and #111) are references only; inspect current
+merged/deployed state. Do not assume PR #111 category functionality
+has deployed merely because isolated tests passed.
+
+Preserve the owner's permanent ability to request governed minor UX
+refinements after go-live. Work 8 may make necessary presentation
+corrections to make the real product examination understandable, but
+must not launch a wholesale Work 7 redesign or alter protected
+business/financial/authority semantics without approval.
+
+Work 8 remains a single integrated autonomous build plus mock-exam
+programme. Assurance self-healing is a central, separately measurable
+part of the same end-to-end exam. Work 9 remains the separate digital
+twin, controlled live transition and go-live authority programme.
+
+R7. EXAMINATION COMPLETENESS AND STOP RULE
+
+A mock exam that only renders synthetic products does not pass the
+real-source product-visibility gate. Conversely, a real-source product
+gallery alone does not pass autonomy, finance, safe self-healing or
+endurance. Require BOTH:
+1) genuine read-only product evidence visible and traceable in the
+   owner experience, when approved source access exists; and
+2) rigorous simulated end-to-end operational and Assurance examinations
+   with independent receipts, safety, finance and rollback invariants.
+
+If a critical gate cannot be met, record a NO-GO and the precise
+missing evidence; never invent completion, weaken NOT_BORN/LOCKED or
+turn an unapproved live effect into a test.
+
+R8. REQUIRED WORK 8 OWNER REPORT
+
+The continuous numbered tracker must include explicit independent
+rows for real-source connectivity, authentic product records, product
+images/rights, observed supplier prices, market comparisons, software
+screening, Pillow assessments, visual owner walkthrough, simulated
+commerce, financial reconciliation, Assurance autonomous recovery and
+Work 9 handoff. Record evidence, status, responsible component and
+next action for each.
+
+Do not repeatedly stop at audits or checkpoint reports while
+independent implementation/testing work remains authorised. Preserve
+resumable exact state and complete the integrated Work 8 mission.
+
+END OF MANDATORY REAL-PRODUCT VISIBILITY ADDENDUM

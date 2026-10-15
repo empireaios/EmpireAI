@@ -1,5 +1,5 @@
 import type { CHANNELS } from "./paths.js";
-export type Channel=(typeof CHANNELS)[number]; export type DeliveryStatus="queued"|"sending"|"sent"|"failed"|"retrying"|"scheduled";
+export type Channel=(typeof CHANNELS)[number]; export type DeliveryStatus="queued"|"sending"|"sent"|"failed"|"retrying"|"scheduled"|"unknown";
 export type ProviderRegistration={providerId:string;name:string;channel:Channel;validated:boolean;credentialRef?:CredentialRef;createdAt:string};
 export type CredentialRef={credentialRefId:string;providerId:string;createdAt:string};
 export type NotificationTemplate={templateId:string;name:string;channel:Channel;subject?:string;body:string;validated:boolean;createdAt:string};

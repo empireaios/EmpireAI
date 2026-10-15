@@ -116,12 +116,7 @@ test('actual child receives TERM and finishes its save before the absolute deadl
   } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 });
 
-function running(pid) {
-  try {
-    // A reaped-or-pending-reap zombie cannot execute work or retain open files.
-    return fs.readFileSync(`/proc/${pid}/stat`, 'utf8').split(') ')[1][0] !== 'Z';
-  } catch (error) { if (error.code === 'ENOENT') return false; throw error; }
-}
+const {running}=require('./process-state.test-support.cjs');
 
 test('actual stubborn descendant is killed when its parent exits', async () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'canary-group-'));
@@ -129,9 +124,11 @@ test('actual stubborn descendant is killed when its parent exits', async () => {
   try {
     const result = await runBounded({ command: process.execPath, args: ['-e', `
       const {spawn}=require('node:child_process');
-      const child=spawn(process.execPath,['-e',"process.on('SIGTERM',()=>{});setInterval(()=>{},1000)"],{stdio:'ignore'});
-      require('node:fs').writeFileSync(process.argv[1],String(child.pid));
-      setTimeout(()=>process.exit(7),100);
+      const child=spawn(process.execPath,['-e',"process.on('SIGTERM',()=>{});console.log('READY');setInterval(()=>{},1000)"],{stdio:['ignore','pipe','ignore']});
+      child.stdout.once('data',()=>{
+        require('node:fs').writeFileSync(process.argv[1],String(child.pid));
+        process.exit(7);
+      });
     `, receipt], expiresAt: Date.now() + 3_000, graceMs: 150, stdio: 'ignore' });
     const pid = Number(fs.readFileSync(receipt, 'utf8'));
     assert.equal(result.code, 7);

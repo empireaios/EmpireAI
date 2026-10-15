@@ -17,6 +17,8 @@ export async function fetchWithTimeout(
   init?: FetchWithRetryOptions,
 ): Promise<Response> {
   const { timeoutMs = BRAIN_FETCH_TIMEOUT_MS, retries: _retries, ...rest } = init ?? {};
+  // Strip the compatibility retry option; this function performs one request.
+  void _retries;
   return fetch(input, {
     ...rest,
     signal: rest.signal ?? AbortSignal.timeout(timeoutMs),

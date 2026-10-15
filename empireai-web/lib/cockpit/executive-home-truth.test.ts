@@ -89,7 +89,7 @@ describe("executive home truth + nav reality", () => {
     assert.match(chat, /data-testid="pillow-composer"/);
     assert.match(chat, /Context ▸|Context/);
     assert.match(chat, /Show earlier messages|windowSize/i);
-    assert.ok(/min-h-\[560px\]|h-\[min\(85vh/.test(chat), "conversation uses majority height");
+    assert.match(chat, /min-h-0 w-full flex-1 flex-col/, "conversation fills bounded parent; desktop/mobile geometry is verified by work7-chat-owner.test.mjs");
     assert.ok(!/max-h-\[62vh\]/.test(chat), "62vh history prison removed");
     assert.ok(!/Load earlier messages \(\d+ hidden\)/.test(chat));
   });
@@ -184,11 +184,16 @@ describe("executive home truth + nav reality", () => {
       join(root, "components/cockpit/shell/CockpitShell.tsx"),
       "utf8",
     );
-    assert.match(shell, /lg:pl-64|lg:pl-\[72px\]/);
-    // overflow-x-hidden computes overflow-y:auto (CSS) and creates a rival scroller.
-    assert.match(shell, /overflow-x-clip/);
-    assert.ok(!/overflow-x-hidden/.test(shell));
-    assert.match(shell, /data-scroll-owner="page"/);
+    assert.match(shell, /<OwnerShell>/);
+    const ownerShell = readFileSync(join(root, "components/owner/OwnerShell.tsx"), "utf8");
+    const ownerCss = readFileSync(join(root, "components/owner/work7/shell.module.css"), "utf8");
+    assert.match(ownerShell, /<aside className=\{s.sidebar\}/);
+    assert.match(ownerShell, /<main id="owner-main"/);
+    assert.match(ownerCss, /\.sidebar\{position:fixed;/);
+    assert.match(ownerCss, /\.workspace\{margin-left:198px;min-width:0\}/);
+    // The document owns content scrolling; only the fixed sidebar scrolls independently.
+    assert.ok(!/\.workspace\{[^}]*overflow/.test(ownerCss));
+    assert.match(ownerCss, /\.bottomNav\{display:flex;position:fixed;bottom:0/);
   });
 
   it("secondary polls use fetch budget and do not stack", () => {

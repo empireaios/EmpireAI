@@ -1,22 +1,28 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useGlobalAiAssistant } from "@/lib/cockpit/global-assistant/GlobalAiAssistantProvider";
 import { speakPillowResponse, usePillowVoice } from "@/lib/cockpit/pillow/use-pillow-voice";
 import { ExecutiveChatArtifacts } from "@/components/cockpit/executive/ExecutiveChatArtifacts";
 import { ExecutiveChatMarkdown } from "@/components/cockpit/executive/ExecutiveChatMarkdown";
+import { CopyPillowAnswer } from "@/components/cockpit/executive/CopyPillowAnswer";
+import layout from "./PillowConversationLayout.module.css";
+import Link from "next/link";
+import {referenceIdentity} from "@/lib/pillow/product-context";
 import { PillowContextPanel } from "@/components/cockpit/pillow/PillowContextPanel";
 import { resolveCockpitScreenContext } from "@/lib/pillow-ux";
 import { EXECUTIVE_STARTING_LABEL } from "@/lib/pillow/executive-surface";
 import { scrubMachineLanguage } from "@/lib/cockpit/executive/executive-presentation";
+import { MobileConversationPicker } from "./MobileConversationPicker";
+import { PillowVerificationStatus } from "./PillowVerificationStatus";
 
 const PAGE_SIZE = 40;
 
 function autosize(el: HTMLTextAreaElement | null) {
   if (!el) return;
-  el.style.height = "auto";
-  el.style.height = `${Math.min(Math.max(el.scrollHeight, 72), 240)}px`;
+  el.style.height = "0px";
+  el.style.height = `${Math.min(Math.max(el.scrollHeight + 2, 44), 192)}px`;
 }
 
 /**
@@ -26,17 +32,23 @@ function autosize(el: HTMLTextAreaElement | null) {
 export function PillowConversationWorkspace({
   title = "Pillow",
   autoFocus = false,
+  tools,
 }: {
   title?: string;
   autoFocus?: boolean;
+  tools?: ReactNode;
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const historyRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLTextAreaElement>(null);
-  const seenLen = useRef<number | null>(null);
+  const followLatest = useRef(true);
+  const earlierAnchor = useRef<{ height: number; top: number } | null>(null);
+  const [showLatest, setShowLatest] = useState(false);
   const [windowSize, setWindowSize] = useState(PAGE_SIZE);
+  const [historySelection, setHistorySelection] = useState("");
   const {
+    attachedProducts,removeProduct,
     loading,
     conversation,
     queryDraft,
@@ -51,7 +63,32 @@ export function PillowConversationWorkspace({
     executiveSnapshot,
   } = useGlobalAiAssistant();
 
+  const selectHistory = (id: string) => {
+    followLatest.current = false;
+    setWindowSize(conversation.length);
+    setHistorySelection(id);
+    // Selecting the same exchange again must also restore its scroll position.
+    requestAnimationFrame(() => {
+      const pane = historyRef.current;
+      const turn = pane?.querySelector(`[data-history-id="${CSS.escape(id)}"]`);
+      if (pane && turn instanceof HTMLElement) {
+        pane.scrollTop += turn.getBoundingClientRect().top - pane.getBoundingClientRect().top;
+        followLatest.current = false;
+        setShowLatest(true);
+      }
+    });
+  };
   const canSend = !loading && Boolean(queryDraft.trim());
+  useLayoutEffect(() => {
+    if (!historySelection) return;
+    const pane = historyRef.current;
+    const selected = pane?.querySelector(`[data-history-id="${CSS.escape(historySelection)}"]`);
+    if (pane && selected instanceof HTMLElement) {
+      pane.scrollTop += selected.getBoundingClientRect().top - pane.getBoundingClientRect().top;
+      followLatest.current = false;
+      setShowLatest(true);
+    }
+  }, [historySelection, windowSize]);
   const voice = usePillowVoice((transcript) => {
     void ask(transcript);
   });
@@ -73,7 +110,7 @@ export function PillowConversationWorkspace({
   }, [searchParams, setQueryDraft, ask]);
 
   useEffect(() => {
-    if (!autoFocus) return;
+    if (!autoFocus || window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 700) return;
     window.requestAnimationFrame(() => composerRef.current?.focus({ preventScroll: true }));
   }, [autoFocus]);
 
@@ -88,19 +125,23 @@ export function PillowConversationWorkspace({
     }
   }, [conversation, voiceEnabled]);
 
-  useEffect(() => {
-    const prev = seenLen.current;
-    const next = conversation.length;
-    if (prev === null) {
-      seenLen.current = next;
-      return;
+  useLayoutEffect(() => {
+    const pane = historyRef.current;
+    if (!pane) return;
+    if (earlierAnchor.current) {
+      pane.scrollTop = earlierAnchor.current.top + pane.scrollHeight - earlierAnchor.current.height;
+      earlierAnchor.current = null;
+    } else if (followLatest.current) {
+      pane.scrollTop = pane.scrollHeight;
     }
-    if (next > prev) {
-      const pane = historyRef.current;
-      if (pane) pane.scrollTop = pane.scrollHeight;
-    }
-    seenLen.current = next;
-  }, [conversation.length]);
+  }, [conversation, windowSize, loading]);
+
+  const goToLatest = () => {
+    followLatest.current = true;
+    setShowLatest(false);
+    const pane = historyRef.current;
+    if (pane) pane.scrollTop = pane.scrollHeight;
+  };
 
   const hiddenCount = Math.max(0, conversation.length - windowSize);
   const visibleTurns = useMemo(
@@ -111,6 +152,8 @@ export function PillowConversationWorkspace({
 
   const onSend = useCallback(() => {
     if (!canSend) return;
+    followLatest.current = true;
+    setShowLatest(false);
     void ask(queryDraft.trim());
   }, [ask, canSend, queryDraft]);
 
@@ -119,14 +162,18 @@ export function PillowConversationWorkspace({
       id="pillow-conversation-workspace"
       data-testid="pillow-conversation-workspace"
       aria-label="Pillow conversation"
-      className="flex h-[min(85vh,920px)] min-h-[560px] w-full flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a]"
+      className={`relative flex min-h-0 w-full flex-1 flex-col overflow-hidden rounded-2xl border border-gold/20 bg-[#0a0a0a] lg:h-full lg:min-h-0 lg:flex-1 ${layout.workspace}`}
     >
-      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-gold/10 px-5 py-3">
+      <header className={`flex shrink-0 items-center justify-between gap-3 border-b border-gold/10 px-5 py-3 ${layout.header}`}>
         <div>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37]">Conversation</p>
-          <h2 className="font-display text-xl text-[#f0d78c]">{title}</h2>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-[#d4af37] lg:hidden">Conversation</p>
+          <div className="flex items-center gap-4"><a href="/cockpit" aria-label="Back to Executive Home" className="rounded-lg px-2 py-1 text-sm text-[#d4af37] focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold">← Back</a><h2 className="font-display text-xl text-[#f0d78c]">{title}</h2></div>
         </div>
-        <div className="flex items-center gap-2">
+      <details className={layout.context}>
+        <summary className="cursor-pointer text-xs text-[#b6a987]">Status &amp; evidence</summary>
+        <div className={layout.contextBody}>
+          <Link href="/cockpit">Back to Home</Link>
+        <div className={`flex items-center gap-2 `}>
           <span
             className={`rounded-full px-2.5 py-1 text-[10px] ${
               executiveReady
@@ -134,8 +181,9 @@ export function PillowConversationWorkspace({
                 : "bg-amber-500/15 text-amber-200"
             }`}
           >
-            {executiveReady ? "Available" : scrubMachineLanguage(readinessLabel || "Starting")}
+            {executiveReady ? "Chat available" : scrubMachineLanguage(readinessLabel || "Starting")}
           </span>
+          <span className="text-[10px] text-amber-200">NOT_BORN · Commerce locked</span>
           <button
             type="button"
             className="rounded-lg border border-gold/15 px-2.5 py-1 text-[10px] text-[#8a847a] hover:border-gold/30"
@@ -147,26 +195,54 @@ export function PillowConversationWorkspace({
             New message
           </button>
         </div>
-      </header>
 
-      <details className="shrink-0 border-b border-gold/10 px-5 py-2">
-        <summary className="cursor-pointer text-xs text-[#6f6a60]">Context ▸</summary>
-        <div className="mt-2 max-h-40 overflow-y-auto">
+          <p>NOT_BORN · Commerce locked</p>
           {executiveSnapshot ? (
             <PillowContextPanel snapshot={executiveSnapshot} screenTitle={screen.screenTitle} />
           ) : (
             <p className="text-xs text-[#6f6a60]">
-              Pillow uses current screen and business state automatically. Details stay hidden unless
-              you open this.
+              Current screen context is unavailable. This is not evidence of current business state.
             </p>
           )}
+        <label className="mx-auto mt-2 flex max-w-3xl lg:max-w-[56rem] items-center gap-2 text-[10px] text-[#6f6a60]">
+          <input
+            type="checkbox"
+            checked={voiceEnabled}
+            onChange={(e) => setVoiceEnabled(e.target.checked)}
+          />
+          Spoken summaries
+        </label>
+          {tools&&<details><summary>Additional Pillow tools</summary>{tools}</details>}
+          <PillowVerificationStatus />
+          <p className="mt-2 text-xs text-[#8a847a]">The legacy command dashboard uses a dispatch endpoint denied in this locked runtime; it is not Pillow’s authoritative reasoning-context source. Retrying cannot unlock it.</p>
+          <Link href="/cockpit/command" className="mt-2 block text-xs text-[#d4af37]">Open command dashboard</Link>
         </div>
       </details>
 
+      </header>
+      <div className={layout.historyPicker}><label className={layout.desktopHistory}><span>Conversation history</span>
+        <select aria-label="Conversation history" value={historySelection} onChange={event => selectHistory(event.target.value)}>
+          <option value="">Choose a saved exchange</option>
+          {conversation.filter(turn => turn.role === "grand-king").map(turn => <option key={turn.id} value={turn.id}>
+            {new Date(turn.recordedAt).toLocaleDateString('en-SG')} · {turn.content.slice(0,100)}
+          </option>)}
+        </select>
+      </label>
+        <MobileConversationPicker exchanges={conversation.filter(turn => turn.role === "grand-king")}
+          selected={historySelection} onSelect={selectHistory} />
+      </div>
       <div
         ref={historyRef}
         data-testid="pillow-message-history"
-        className="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6"
+        tabIndex={0}
+        aria-label="Saved Pillow conversation"
+        onScroll={(event) => {
+          const pane = event.currentTarget;
+          const nearBottom = pane.scrollHeight - pane.scrollTop - pane.clientHeight < 96;
+          followLatest.current = nearBottom;
+          setShowLatest(!nearBottom);
+        }}
+        className="min-h-0 flex-1 overflow-y-auto overscroll-contain [overflow-anchor:none] px-4 py-5 sm:px-6 lg:px-10 lg:py-8"
       >
         {!executiveReady && (
           <p className="mb-4 rounded-lg border border-gold/15 bg-gold/5 px-3 py-2 text-xs text-[#f0d78c]">
@@ -188,33 +264,51 @@ export function PillowConversationWorkspace({
             <button
               type="button"
               className="text-xs text-[#d4af37] hover:underline"
-              onClick={() => setWindowSize((n) => n + PAGE_SIZE)}
+              onClick={() => {
+                const pane = historyRef.current;
+                if (pane) earlierAnchor.current = { height: pane.scrollHeight, top: pane.scrollTop };
+                setWindowSize((n) => n + PAGE_SIZE);
+              }}
             >
               Show earlier messages ({hiddenCount})
             </button>
           </div>
         )}
 
-        <ul className="mx-auto flex max-w-3xl flex-col gap-4">
+        <ul className="mx-auto flex max-w-3xl flex-col gap-4 lg:max-w-[56rem] lg:gap-6">
           {visibleTurns.map((turn) => {
             const mine = turn.role !== "pillow";
             return (
               <li
+                data-history-id={turn.id}
                 key={turn.id}
                 className={`flex ${mine ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[min(42rem,92%)] rounded-2xl px-4 py-3.5 sm:px-5 ${
+                  className={`min-w-0 break-words max-w-[min(42rem,92%)] rounded-2xl px-4 py-3.5 sm:px-5 ${
                     mine
-                      ? "bg-[#d4af37]/15 text-[#f0d78c]"
-                      : "border border-gold/10 bg-white/[0.03] text-[#e8e0d0]"
+                      ? "bg-[#d4af37]/15 text-[#f0d78c] lg:max-w-[80%]"
+                      : "border border-gold/10 bg-white/[0.03] text-[#e8e0d0] lg:w-full lg:max-w-full"
                   }`}
                 >
-                  <p className="text-[10px] uppercase tracking-wider text-[#6f6a60]">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-[#b6a987]">
                     {mine ? "Grand King" : "Pillow"}
                   </p>
                   <div className="mt-2 text-[#e8e0d0]">
+                    <details className="mb-3 text-xs text-[#8a847a]">
+                      <summary className="cursor-pointer">Saved history · {turn.source === "server_persisted_transcript" ? "Server record" : "Unverified browser archive"}</summary>
+                      <p className="mt-1 leading-relaxed">
+                        {Number.isFinite(Date.parse(turn.recordedAt)) ? new Date(turn.recordedAt).toISOString() : "Date unknown"}
+                        {turn.source === "server_persisted_transcript" ? " · Server-persisted conversation; historical, not current operational evidence." : " · Historical browser record; original source unverified, not current operational evidence."}
+                      </p>
+                    </details>
+                    {turn.source === "server_persisted_transcript" && turn.productContext && <details className="mb-3 text-xs text-[#8a847a]" data-historical-product-context>
+                      <summary className="min-h-11 cursor-pointer py-3">Product evidence saved with this message</summary>
+                      <p>Historical snapshot only. Reopen the product to check its current evidence before a new request.</p>
+                      <pre className="mt-2 max-h-64 overflow-auto whitespace-pre-wrap break-all">{JSON.stringify(turn.productContext, null, 2)}</pre>
+                    </details>}
                     <ExecutiveChatMarkdown content={turn.content} />
+                    {turn.role === "pillow" && <CopyPillowAnswer content={turn.content} />}
                   </div>
                   {turn.artifacts && turn.artifacts.length > 0 && (
                     <ExecutiveChatArtifacts artifacts={turn.artifacts} />
@@ -230,9 +324,16 @@ export function PillowConversationWorkspace({
         )}
       </div>
 
-      <footer className="shrink-0 border-t border-gold/10 bg-[#0a0a0a] px-4 py-3 sm:px-5">
+      {showLatest && (
+        <div className={layout.jump}>
+          <button type="button" onClick={goToLatest} className="px-4 py-2 text-xs text-[#d4af37]">Jump to latest</button>
+        </div>
+      )}
+
+      {attachedProducts.length>0&&<div aria-label="Attached products" className="flex flex-wrap gap-2 px-4 py-2">{attachedProducts.map(product=><span key={referenceIdentity(product.reference)} className="max-w-full rounded-full border border-gold/20 px-3 py-1 text-xs text-[#d4af37]"><span className="break-words">{product.label}</span><button type="button" aria-label={`Remove ${product.label}`} disabled={loading} onClick={()=>removeProduct(referenceIdentity(product.reference))} className="ml-2 min-h-11 min-w-11">×</button></span>)}</div>}
+      <footer data-testid="pillow-composer-footer" className="shrink-0 border-t border-gold/10 bg-[#0a0a0a] px-4 py-3 sm:px-5">
         <form
-          className="mx-auto flex max-w-3xl items-end gap-2"
+          className="mx-auto flex max-w-3xl items-end gap-2 lg:max-w-[56rem] lg:gap-3"
           onSubmit={(e) => {
             e.preventDefault();
             onSend();
@@ -249,14 +350,14 @@ export function PillowConversationWorkspace({
             }}
             onKeyDown={(e) => {
               // Enter sends; Shift+Enter inserts newline (standard chat).
-              if (e.key === "Enter" && !e.shiftKey) {
+              if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
                 e.preventDefault();
                 onSend();
               }
             }}
-            rows={3}
+            rows={1}
             placeholder="Message Pillow…"
-            className="min-h-[72px] max-h-[240px] flex-1 resize-none rounded-xl border border-gold/20 bg-black/50 px-4 py-3 text-[15px] leading-relaxed text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/40 focus:outline-none"
+            className="min-h-[44px] max-h-[192px] overflow-y-auto flex-1 resize-none rounded-xl border border-gold/20 bg-black/50 px-4 py-2 text-[15px] leading-relaxed text-[#e8e0d0] placeholder:text-[#6f6a60] focus:border-gold/40 focus:outline-none"
           />
           {voice.supported && (
             <button
@@ -280,15 +381,10 @@ export function PillowConversationWorkspace({
             Send
           </button>
         </form>
-        <label className="mx-auto mt-2 flex max-w-3xl items-center gap-2 text-[10px] text-[#6f6a60]">
-          <input
-            type="checkbox"
-            checked={voiceEnabled}
-            onChange={(e) => setVoiceEnabled(e.target.checked)}
-          />
-          Spoken summaries
-        </label>
+
+
       </footer>
     </section>
   );
 }
+

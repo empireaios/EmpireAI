@@ -1,0 +1,535 @@
+{
+  "retrievedAt": "2026-10-12T11:36:07.916Z",
+  "readOnly": true,
+  "externalRefresh": false,
+  "inferenceCalls": 0,
+  "sources": [
+    {
+      "id": "ev_322d5bba8afed3b6e979f2951ded24c43190698b",
+      "capabilityId": "cj.detail",
+      "eye": "SUPPLIER",
+      "provider": "CJ",
+      "endpoint": "/product/query",
+      "subject": {
+        "id": "2610111119571636000",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-12T06:39:20.497Z",
+      "retrievedAt": "2026-10-12T06:39:20.497Z",
+      "staleAfter": "2026-10-12T12:39:20.497Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "cf3deebc4ceb3ebd7c1dffbca47c82d2446f82e83f5c545a029a7628efa78517",
+      "facts": {
+        "response": {
+          "pid": "2610111119571636000",
+          "productName": "[\"\u5b9d\u53ef\u68a6\u5361\u724c\u76d2 \u6a2a\u6b3ePU\u6536\u7eb3\u76d2 \u8de8\u5883\u4e13\u4f9b \u78c1\u5438\u786c\u76d2 MTG\u6e38\u620f\u5361\u6536\u7eb3\u76d2\",\"\u5b9d\u53ef\u68a6\u5361\u724c\u76d2\u6a2a\u6b3epu\",\"\u6536\u7eb3\u76d2\u8de8\u5883\u4e13\u4f9b\u78c1\"]",
+          "productNameSet": [
+            "\u5b9d\u53ef\u68a6\u5361\u724c\u76d2 \u6a2a\u6b3ePU\u6536\u7eb3\u76d2 \u8de8\u5883\u4e13\u4f9b \u78c1\u5438\u786c\u76d2 MTG\u6e38\u620f\u5361\u6536\u7eb3\u76d2",
+            "\u5b9d\u53ef\u68a6\u5361\u724c\u76d2\u6a2a\u6b3epu",
+            "\u6536\u7eb3\u76d2\u8de8\u5883\u4e13\u4f9b\u78c1"
+          ],
+          "productNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer",
+          "productSku": "CJYD3245086",
+          "bigImage": "https://cf.cjdropshipping.com/quick/product/5064543f-845b-4a9c-af37-7fe02b26cdcc.jpg",
+          "productImage": "[\"https://cf.cjdropshipping.com/quick/product/5064543f-845b-4a9c-af37-7fe02b26cdcc.jpg\",\"https://cf.cjdropshipping.com/quick/product/b97877a0-d922-45ae-9e04-bc9acc180dd2.jpg\",\"https://cf.cjdropshipping.com/quick/product/9428194b-b05b-495f-b8ff-cda0c093d913.jpg\",\"https://cf.cjdropshipping.com/quick/product/0fb7526c-82a2-4ab5-b8b4-ca6a0462dfce.jpg\",\"https://cf.cjdropshipping.com/quick/product/6a38e0fb-6e13-4513-afbf-19ca26c145fa.jpg\",\"https://cf.cjdropshipping.com/quick/product/efa410b5-667b-4e0f-8707-ccc373076b97.jpg\",\"https://cf.cjdropshipping.com/quick/product/8c3d40af-b8c9-4209-b64c-c3bf6dc1b160.jpg\",\"https://cf.cjdropshipping.com/quick/product/f88bf49e-8216-48b5-8405-7a96e0c11acd.jpg\",\"https://cf.cjdropshipping.com/quick/product/8cff31da-5e1f-41b8-8e1e-edc9a7919a27.jpg\",\"https://cf.cjdropshipping.com/quick/product/919379ed-fded-440f-b729-ca9bf7f9b30a.jpg\",\"https://cf.cjdropshipping.com/quick/product/f8d830df-db82-40c5-bbed-1318cfe128af.jpg\",\"https://cf.cjdropshipping.com/quick/product/3d2954fe-013b-4509-b156-a108a1bf875b.jpg\",\"https://cf.cjdropshipping.com/quick/product/89ddf51d-d21b-4ebd-80f2-9627fa82d2ad.jpg\",\"https://cf.cjdropshipping.com/quick/product/ab3b5c3a-8fd7-4184-a746-e46ed473c6fa.jpg\",\"https://cf.cjdropshipping.com/quick/product/068a4395-cad6-4a58-822d-a150bb8e8a5e.jpg\",\"https://cf.cjdropshipping.com/quick/product/f778acce-0cdd-4fbe-971b-9a5bfad1447a.jpg\",\"https://cf.cjdropshipping.com/quick/product/311c7579-0be4-41ae-a1be-20a21abb386b.jpg\"]",
+          "productImageSet": [
+            "https://cf.cjdropshipping.com/quick/product/311c7579-0be4-41ae-a1be-20a21abb386b.jpg",
+            "https://cf.cjdropshipping.com/quick/product/3d2954fe-013b-4509-b156-a108a1bf875b.jpg",
+            "https://cf.cjdropshipping.com/quick/product/068a4395-cad6-4a58-822d-a150bb8e8a5e.jpg",
+            "https://cf.cjdropshipping.com/quick/product/f88bf49e-8216-48b5-8405-7a96e0c11acd.jpg",
+            "https://cf.cjdropshipping.com/quick/product/b97877a0-d922-45ae-9e04-bc9acc180dd2.jpg",
+            "https://cf.cjdropshipping.com/quick/product/efa410b5-667b-4e0f-8707-ccc373076b97.jpg",
+            "https://cf.cjdropshipping.com/quick/product/5064543f-845b-4a9c-af37-7fe02b26cdcc.jpg",
+            "https://cf.cjdropshipping.com/quick/product/6a38e0fb-6e13-4513-afbf-19ca26c145fa.jpg",
+            "https://cf.cjdropshipping.com/quick/product/8c3d40af-b8c9-4209-b64c-c3bf6dc1b160.jpg",
+            "https://cf.cjdropshipping.com/quick/product/ab3b5c3a-8fd7-4184-a746-e46ed473c6fa.jpg"
+          ],
+          "productWeight": "151.00",
+          "productUnit": null,
+          "productType": "ORDINARY_PRODUCT",
+          "categoryId": "2502140315331600200",
+          "categoryName": "Home, Garden & Furniture > Home Storage > Storage Bags & Cases & Boxes",
+          "entryCode": "3924100000",
+          "entryName": "\u4eba\u9020\u76ae\u9769\u6536\u7eb3\u76d2",
+          "entryNameEn": "Synthetic Leather Storage Box",
+          "materialName": "[\"\u5176\u4ed6\",\"\u76ae\"]",
+          "materialNameSet": [
+            "\u5176\u4ed6",
+            "\u76ae"
+          ],
+          "materialNameEn": "[\"Others\",\"Leather\"]",
+          "materialNameEnSet": [
+            "Others",
+            "Leather"
+          ],
+          "materialKey": "[\"MATERIAL\",\"LEATHER\"]",
+          "materialKeySet": [
+            "MATERIAL",
+            "LEATHER"
+          ],
+          "packingWeight": "171.00",
+          "packingName": "[\"\u5851\u6599\u888b\"]",
+          "packingNameSet": [
+            "\u5851\u6599\u888b"
+          ],
+          "packingNameEn": "[\"Plastic bags\"]",
+          "packingNameEnSet": [
+            "Plastic bags"
+          ],
+          "packingKey": "[\"PLASTIC_BAG\"]",
+          "packingKeySet": [
+            "PLASTIC_BAG"
+          ],
+          "productKey": "[\"Color\",\"Size\"]",
+          "productKeySet": [
+            "Color",
+            "Size"
+          ],
+          "productKeyEn": "Color-Size",
+          "productKeyEnSet": [
+            "Color",
+            "Size"
+          ],
+          "productPro": "[\"\u666e\u8d27\"]",
+          "productProSet": [
+            "\u666e\u8d27"
+          ],
+          "productProEn": "[\"COMMON\"]",
+          "productProEnSet": [
+            "COMMON"
+          ],
+          "sellPrice": "2.76",
+          "sourceFrom": 18,
+          "description": "<p><b>Product information:</b><br>Pattern: Solid color<br>Lining material: Polyester<br>Applicable scene: Home storage<br>Color: Black and red, black and purple, black and blue, black and gray, navy blue, blue and yellow, red, black and green, white, green and purple, dark green, purple, pink, yellow, orange-red, rose red, peacock blue, beige, gray<br>Thickness: 0.5<br>Applicable gender: Unisex / Suitable for both men and women<br>Size: 10.5\u20149\u20148<br>Trendy elements: Plush, stitched seams, plaid, diamond pattern<br>Style: Urban minimalist<br>Packaging: OPP bag<br>Shape: Rectangular<br></p> \n<br> \n<b>Packing list: </b> \n<br>Storage Box x 1pc \n<br> \n<p></p> \n<b>Product Image:</b> \n<br> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/11/e413a7be-ca40-4ec6-918c-4cfcd4812a02_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/11/ffa28143-226d-46fd-899c-055d505f19d1_trans.jpeg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/11/b5896b4d-b79f-4ca3-b8bb-9236c0b8c598_trans.jpeg\"> \n<img src=\"https://cf.cjdropshipping.com/quick/product/4ea59d6e-dec7-4b85-bdd9-3933fd649530.jpg\"> \n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/10/11/11/fb0384d3-ccbd-4f16-b2f9-43ec3c3716f7_trans.jpeg\"> \n<img src=\"https://cf.cjdropshipping.com/quick/product/4e14d844-6bed-448a-bc63-93c59b9b7031.jpg\">",
+          "variants": [
+            {
+              "vid": "2610111119571637000",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Black And Red 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/6a38e0fb-6e13-4513-afbf-19ca26c145fa.jpg",
+              "variantSku": "CJYD324508601AZ",
+              "barcode": "1600017117069",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Black And Red-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637001",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Black And Purple 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/efa410b5-667b-4e0f-8707-ccc373076b97.jpg",
+              "variantSku": "CJYD324508602BY",
+              "barcode": "1600017117070",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Black And Purple-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637002",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Black And Blue 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/8c3d40af-b8c9-4209-b64c-c3bf6dc1b160.jpg",
+              "variantSku": "CJYD324508603CX",
+              "barcode": "1600017117071",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Black And Blue-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637003",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Black And Gray 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/f88bf49e-8216-48b5-8405-7a96e0c11acd.jpg",
+              "variantSku": "CJYD324508604DW",
+              "barcode": "1600017117072",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Black And Gray-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637004",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Navy Blue 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/8cff31da-5e1f-41b8-8e1e-edc9a7919a27.jpg",
+              "variantSku": "CJYD324508605EV",
+              "barcode": "1600017117073",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Navy Blue-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637005",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Blue And Yellow 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/919379ed-fded-440f-b729-ca9bf7f9b30a.jpg",
+              "variantSku": "CJYD324508606FU",
+              "barcode": "1600017117074",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Blue And Yellow-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637006",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Red 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/f8d830df-db82-40c5-bbed-1318cfe128af.jpg",
+              "variantSku": "CJYD324508607GT",
+              "barcode": "1600017117075",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Red-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637007",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Black And Green 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/3d2954fe-013b-4509-b156-a108a1bf875b.jpg",
+              "variantSku": "CJYD324508608HS",
+              "barcode": "1600017117076",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Black And Green-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637008",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer White 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/89ddf51d-d21b-4ebd-80f2-9627fa82d2ad.jpg",
+              "variantSku": "CJYD324508609IR",
+              "barcode": "1600017117077",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "White-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            },
+            {
+              "vid": "2610111119571637009",
+              "pid": "2610111119571636000",
+              "variantName": null,
+              "variantNameEn": "Horizontal PU Storage Box Magnetic Hard Case MTG Trading Card Organizer Green Purple 10.5x9x8cm",
+              "variantImage": "https://cf.cjdropshipping.com/quick/product/ab3b5c3a-8fd7-4184-a746-e46ed473c6fa.jpg",
+              "variantSku": "CJYD324508610JQ",
+              "barcode": "1600017117078",
+              "variantUnit": "\u4e2a",
+              "variantProperty": null,
+              "variantKey": "Green Purple-10.5x9x8cm",
+              "variantLength": 125,
+              "variantWidth": 110,
+              "variantHeight": 100,
+              "variantVolume": 1375000,
+              "variantWeight": 171,
+              "variantSellPrice": 2.76,
+              "createTime": 1791717597000,
+              "variantStandard": "long=125,width=110,height=100",
+              "variantSugSellPrice": 15.76,
+              "combineNum": null,
+              "inventoryNum": null,
+              "combineVariants": null,
+              "inventories": null
+            }
+          ],
+          "addMarkStatus": 0,
+          "createrTime": "2026-10-11T11:19:57+08:00",
+          "productVideo": null,
+          "status": "3",
+          "suggestSellPrice": "15.76",
+          "listedNum": 0,
+          "supplierName": null,
+          "supplierId": null,
+          "customizationVersion": null,
+          "customizationJson1": null,
+          "customizationJson2": null,
+          "customizationJson3": null,
+          "customizationJson4": null,
+          "isTestProduct": false
+        },
+        "pointsInfo": {
+          "total": 50000,
+          "usedToday": 140,
+          "remaining": 50000
+        },
+        "request": {
+          "pid": "2610111119571636000"
+        },
+        "interpretation": "Supplier evidence only; does not establish independent customer demand."
+      },
+      "jobId": "follow_856796268a0491b15ea9d58c415e4b410d14",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "CJ:/product/query"
+      ],
+      "grantsAuthority": false
+    },
+    {
+      "id": "ev_0dd472f9d3cbfca11b78ed5326c9df1530273cdc",
+      "capabilityId": "amazon.offers",
+      "eye": "MARKET",
+      "provider": "Amazon",
+      "endpoint": "/products/pricing/v0/items/B0GN1TZZ9W/offers",
+      "subject": {
+        "id": "B0GN1TZZ9W",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-12T06:39:19.736Z",
+      "retrievedAt": "2026-10-12T06:39:19.736Z",
+      "staleAfter": "2026-10-12T12:39:19.736Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "871dd22c6426d3062c6bdbd6076eb16e1baabbe4e923faefb2fc4c2657884352",
+      "facts": {
+        "response": {
+          "payload": {
+            "ASIN": "B0GN1TZZ9W",
+            "status": "Success",
+            "ItemCondition": "New",
+            "Identifier": {
+              "MarketplaceId": "ATVPDKIKX0DER",
+              "ItemCondition": "New",
+              "ASIN": "B0GN1TZZ9W"
+            },
+            "Summary": {
+              "LowestPrices": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "LandedPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "ListingPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "Shipping": {
+                    "CurrencyCode": "USD",
+                    "Amount": 0
+                  }
+                }
+              ],
+              "BuyBoxPrices": [
+                {
+                  "condition": "New",
+                  "LandedPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "ListingPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "Shipping": {
+                    "CurrencyCode": "USD",
+                    "Amount": 0
+                  }
+                }
+              ],
+              "NumberOfOffers": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "OfferCount": 1
+                }
+              ],
+              "BuyBoxEligibleOffers": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "OfferCount": 1
+                }
+              ],
+              "SalesRankings": [
+                {
+                  "ProductCategoryId": "office_product_display_on_website",
+                  "Rank": 340
+                },
+                {
+                  "ProductCategoryId": "1069544",
+                  "Rank": 1
+                }
+              ],
+              "ListPrice": {
+                "CurrencyCode": "USD",
+                "Amount": 19.99
+              },
+              "TotalOfferCount": 1
+            },
+            "Offers": [
+              {
+                "Shipping": {
+                  "CurrencyCode": "USD",
+                  "Amount": 0
+                },
+                "ListingPrice": {
+                  "CurrencyCode": "USD",
+                  "Amount": 18.99
+                },
+                "ShippingTime": {
+                  "maximumHours": 0,
+                  "minimumHours": 0,
+                  "availabilityType": "NOW"
+                },
+                "SellerFeedbackRating": {
+                  "FeedbackCount": 66523,
+                  "SellerPositiveFeedbackRating": 99
+                },
+                "PrimeInformation": {
+                  "IsPrime": true,
+                  "IsNationalPrime": true
+                },
+                "SubCondition": "new",
+                "SellerId": "A2K3WARBVMJ9U9",
+                "IsFeaturedMerchant": true,
+                "IsBuyBoxWinner": true,
+                "IsFulfilledByAmazon": true
+              }
+            ],
+            "marketplaceId": "ATVPDKIKX0DER"
+          }
+        },
+        "price": 18.99,
+        "currency": "USD",
+        "marketplaceId": "ATVPDKIKX0DER",
+        "interpretation": "Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim."
+      },
+      "jobId": "follow_78c485c0e34f034836da004df908c8106f9e",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "Amazon:/products/pricing/v0/items/B0GN1TZZ9W/offers"
+      ],
+      "grantsAuthority": false
+    }
+  ],
+  "fixtureScope": "EXACT_CJ_DETAIL_AND_AMAZON_COMPARISON_ENVELOPES_ONLY; selected from retained genuine readback, no envelope edits"
+}

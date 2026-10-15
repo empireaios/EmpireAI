@@ -1,3 +1,4 @@
+import {acquireSqliteProcessOwner} from "./sqlite-process-owner.js";
 import fs from "node:fs";
 import { randomUUID } from "node:crypto";
 import path from "node:path";
@@ -219,15 +220,24 @@ export class EmpireDatabase {
   private closed = false;
   private captureWriteFence = false;
   private readonly captureIdentity: string | null;
+  private processOwner?: ReturnType<typeof acquireSqliteProcessOwner>;
 
-  constructor(private readonly filePath: string) {
+  constructor(private readonly filePath: string, private readonly captureReadOnly = false) {
     this.inMemory = isInMemoryDatabasePath(filePath);
+    if (captureReadOnly && (this.inMemory || !fs.existsSync(filePath))) {
+      throw new Error("Capture read-only SQLite requires an existing disk database");
+    }
     this.captureIdentity = this.inMemory ? null : captureFileIdentity(filePath);
+    // Export through the same canonical pathname that owns the lock. A symlink
+    // pathname must never become a second independent database on rename.
+    if (this.captureIdentity) { filePath = this.captureIdentity; this.filePath = filePath; }
     if (this.captureIdentity && [...openSqlJsHandles.values()].flatMap(handles => [...handles])
       .some(handle => handle.captureWriteFence &&
         (handle.captureIdentity === this.captureIdentity || sameExistingSqliteFile(handle.filePath, filePath)))) {
       throw new Error("SQLite capture active; another SQL.js handle cannot open this file");
     }
+    if (this.captureIdentity) this.processOwner = acquireSqliteProcessOwner(this.captureIdentity);
+    try {
     lastOpenRecovery = { recovered: false, quarantinedPath: null, reason: null };
 
     if (!this.inMemory && fs.existsSync(filePath)) {
@@ -238,7 +248,7 @@ export class EmpireDatabase {
         // A production startup must not replace a damaged business database with
         // an empty one: the service could look healthy while durable state is missing.
         // Keep the original file in place for an explicit, reviewed restore.
-        if (process.env.NODE_ENV === "production" || Boolean(
+        if (this.captureReadOnly || process.env.NODE_ENV === "production" || Boolean(
           process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME ||
           process.env.RAILWAY_SERVICE_NAME || process.env.RAILWAY_DEPLOYMENT_ID
         )) {
@@ -265,11 +275,13 @@ export class EmpireDatabase {
     } else {
       this.db = new SQL.Database();
     }
+    if (this.captureReadOnly) this.db.exec("PRAGMA query_only=ON");
     if (this.captureIdentity) {
       const handles = openSqlJsHandles.get(this.captureIdentity) ?? new Set<EmpireDatabase>();
       handles.add(this);
       openSqlJsHandles.set(this.captureIdentity, handles);
     }
+    } catch (error) { this.processOwner?.release(); throw error; }
   }
 
   exec(sql: string): void {
@@ -279,6 +291,9 @@ export class EmpireDatabase {
   }
 
   pragma(name: string, options?: { simple?: boolean }): unknown {
+    if (this.captureReadOnly && !["query_only","integrity_check","quick_check","schema_version","user_version","application_id","page_count","freelist_count"].includes(name.toLowerCase())) {
+      throw new Error("Capture read-only SQLite refuses mutating or unsupported PRAGMA");
+    }
     if (name.includes("=")) {
       this.assertCaptureWritesAllowed();
       this.db.run(`PRAGMA ${name}`);
@@ -296,6 +311,11 @@ export class EmpireDatabase {
   }
 
   prepare(sql: string) {
+    // Recovery views expose SELECT-only prepared reads. Prevent query helpers
+    // from disabling SQLite query_only or executing DML through get()/all().
+    if (this.captureReadOnly && !/^\s*SELECT\b/i.test(sql)) {
+      throw new Error("Capture read-only SQLite permits SELECT reads only");
+    }
     return {
       run: (params?: Record<string, unknown>): RunResult => {
         this.assertCaptureWritesAllowed();
@@ -334,7 +354,7 @@ export class EmpireDatabase {
 
   close(): void {
     if (this.closed) return;
-    this.assertCaptureWritesAllowed();
+    if (this.captureWriteFence) throw new Error("SQLite writes quiesced for capture");
     // Invalidate an older async export before writing the final snapshot. Its
     // pending file I/O may complete, but it must never replace this snapshot.
     this.persistGeneration += 1;
@@ -343,7 +363,7 @@ export class EmpireDatabase {
       this.persistTimer = null;
     }
     try {
-      this.flushPersistSync();
+      if (!this.captureReadOnly) this.flushPersistSync();
     } catch (error) {
       this.persistDirty = true;
       persistStats = {
@@ -356,6 +376,7 @@ export class EmpireDatabase {
     }
     this.db.close();
     this.closed = true;
+    this.processOwner?.release();
     if (this.captureIdentity) {
       const handles = openSqlJsHandles.get(this.captureIdentity);
       handles?.delete(this);
@@ -370,6 +391,7 @@ export class EmpireDatabase {
    */
   holdWritesForCapture(): () => void {
     if (this.closed || this.captureWriteFence) throw new Error("SQLite capture fence unavailable");
+    this.processOwner?.assertOwned();
     if (this.captureIdentity && [...openSqlJsHandles.values()].some(handles => [...handles].some(handle =>
       handle !== this && !handle.closed &&
       (handle.captureIdentity === this.captureIdentity || sameExistingSqliteFile(handle.filePath, this.filePath))))) {
@@ -379,12 +401,15 @@ export class EmpireDatabase {
     let released = false;
     return () => {
       if (released) throw new Error("SQLite capture fence already released");
+      this.processOwner?.assertOwned();
       released = true;
       this.captureWriteFence = false;
     };
   }
 
   private assertCaptureWritesAllowed(): void {
+    if (this.captureReadOnly) throw new Error("Capture read-only SQLite refuses writes");
+    this.processOwner?.assertOwned();
     if (this.captureWriteFence) throw new Error("SQLite writes quiesced for capture");
   }
 
@@ -399,7 +424,7 @@ export class EmpireDatabase {
    */
   requestCriticalPersist(): Promise<void> {
     if (this.closed) throw new Error("Database is closed");
-    if (this.inMemory) {
+    if (this.inMemory || this.captureReadOnly) {
       return Promise.resolve();
     }
     persistStats = {
@@ -580,6 +605,7 @@ export class EmpireDatabase {
           if (this.closed || generation !== this.persistGeneration) return;
           // Keep the generation check + rename in one JS turn. An awaited rename
           // could finish after synchronous close and overwrite its newer export.
+          this.processOwner?.assertOwned();
           fs.renameSync(tempPath, this.filePath);
           syncParentDirectory(this.filePath);
         } finally {
@@ -670,6 +696,7 @@ export class EmpireDatabase {
       } finally {
         fs.closeSync(fd);
       }
+      this.processOwner?.assertOwned();
       fs.renameSync(tempPath, this.filePath);
       syncParentDirectory(this.filePath);
     } finally {
