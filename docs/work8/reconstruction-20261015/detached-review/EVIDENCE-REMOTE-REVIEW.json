@@ -1,0 +1,28 @@
+{
+  "reviewer": "independent_review",
+  "decision": "PASS_EXACT_SOURCE_AND_EVIDENCE_IDENTITIES_READY_FOR_OWNER_PUBLICATION_DECISION_NOT_ACCEPTANCE",
+  "evidenceCommit": "7bc009f10be9f63b2dae3aa7da82645bb4e54b12",
+  "evidenceTree": "344f5fd0ba14d8c976e5116cdd6ef39411dd4abc",
+  "evidenceParent": "740c6fbca69fe28aa16a5cede1c4c362109038cb",
+  "evidenceStagingBranch": "work8/staged-reconstruction-evidence-20261015-344f5fd0",
+  "sourcePublicationCommit": "f413d01f5266ae2340d6c02476e8549d67bc6eb1",
+  "sourceTree": "5d1f5b32ee598225b87912c43351307504431c1a",
+  "sourceParent": "d4a5c53fdfd7df1fe575a71357dcbb4e65825aa7",
+  "sourceDurableStagingCommit": "5cf07fd4738c3e51cad6ce8ac16509ddd0b82907",
+  "independentRemoteChecks": {
+    "evidenceCommitBranchParentVerified": true,
+    "sourcePublicationCommitTreeParentVerified": true,
+    "baseRootUnchangedExceptDocs": true,
+    "baseDocsUnchangedExceptWork8": true,
+    "baseWork8UnchangedExceptTwoCanonicalFilesAndNewBatchDirectory": true,
+    "remoteManifestEntriesModeHashSizeMatched": 38,
+    "newBatchTreeTruncated": false,
+    "canonicalPointerLedgerRegisterValidationCertificationRawBlobsRehashedAndByteMatched": 5,
+    "mismatches": 0
+  },
+  "localManifestSha256": "0453040e454738644f272b48203b45533e5fae423a91f7c79c7282bd83c83a9e",
+  "preservation": "64 statuses and historical acceptance arrays preserved;41accepted23outstanding,missionIN_PROGRESS/NO_GO. See EVIDENCE-BATCH-REVIEW.json.",
+  "scope": "Read-only remote verification and local review receipts only. Reviewer did not advance publication branches, dispatch CI, merge or deploy. Publication authority remains owner decision; hostedHH4/native/A11/fullrecovery acceptance not inferred.",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

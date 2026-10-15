@@ -1,0 +1,34 @@
+{
+  "reviewer": "independent_review",
+  "decision": "PASS_EXACT_EVIDENCE_MANIFEST_FOR_STAGING_NOT_MISSION_CERTIFICATION",
+  "baseEvidence": "740c6fbca69fe28aa16a5cede1c4c362109038cb",
+  "manifest": "reconstruction/evidence-manifest.json",
+  "manifestSha256": "0453040e454738644f272b48203b45533e5fae423a91f7c79c7282bd83c83a9e",
+  "files": 38,
+  "bytes": 923228,
+  "independentBlobSha256AndModeMismatches": 0,
+  "preservation": {
+    "originalRows": 45,
+    "originalCounts": {"PASS":33,"PENDING":8,"BLOCKED":4},
+    "amendmentRows": 19,
+    "amendmentCounts": {"PASS":8,"PENDING":11},
+    "allStatusesEqualPreservedBaseline": true,
+    "historicalLedgerDecisionAndPreservationArraysUnchanged": true,
+    "accepted": 41,
+    "outstanding": 23,
+    "historicalNewProgrammeAcceptanceFlags": "O9/O26/O34 flags already existed in preserved baseline; not new closures"
+  },
+  "truthAndScope": [
+    "Canonical continuation register/tracker/validation/certification pointers all resolve within batch.",
+    "Final exact source5cf07fd/tree5d1f recorded with compilation and scoped actual-host history PASS; local Node24.19 distinguished from hosted22.23 pending.",
+    "Prior published Runtime failure and skipped403 retained; candidate hostedHH4/native/session Redis restore not claimed executed.",
+    "Known A11 pending-edit product gap preserved; no unapproved repair or acceptance.",
+    "Historical failed test runs distinguished from terminal passing successor.",
+    "Stale pending-compilation narrative corrected; register current updatedAt added with priorCheckpointUpdatedAt preserved.",
+    "Pillow NOT_BORN,commerce LOCKED,Work9 inactive,mission IN_PROGRESS/NO_GO retained."
+  ],
+  "credentialInspection": "No provider-key/GitHub-token/AWS-access-key/private-key/long-bearer credential patterns found in38files. Review does not claim exhaustive secret detection.",
+  "remoteTree": "Pending staging and independent remote readback; this receipt approves exact local manifest only.",
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}
