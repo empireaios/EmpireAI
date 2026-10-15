@@ -304,7 +304,7 @@ describe("Honest delivery state and receipt persistence", () => {
     assert.match(provider, /retrievePillowChat\(priorReceipt\)/);
     assert.match(provider, /loadPendingPillowReceipts\(user.id\)/);
     assert.doesNotMatch(provider, /loadPillowSession\(\)/);
-    assert.match(provider, /GlobalAiAssistantSession key=\{user\?\.id/);
+    assert.match(provider, /GlobalAiAssistantSession key=\{user \? `\$\{user\.id\}:\$\{user\.workspaceId\}` : "anonymous"\}/);
     const bff = readFileSync(new URL("../../app/api/pillow/[...path]/route.ts", import.meta.url), "utf8");
     assert.doesNotMatch(bff, /while \(Date.now\(\) < deadline\)/);
     assert.match(bff, /new Response\(raw, \{ status: 202, headers \}\)/);

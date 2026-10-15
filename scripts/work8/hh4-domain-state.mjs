@@ -88,7 +88,14 @@ export async function initializeActualGeneratedDomains(application,root,source){
  const shadow=openShadowCeoRepository({dbPath:path.join(root,'shadow/shadow-ceo.db')});
  try{const objective=buildObjective({workspaceId:workspace,title:'Synthetic recovery objective',statement:'Preserve state without executing commerce.',idempotencyKey:id,source:'synthetic',economicClaim:'none'});shadow.save(objective);shadow.persist();record('shadow',shadow.getById(objective.id));}finally{shadow.close();}
  const authority=await api('orchestration/shadow-ceo-authority/repository/json-authority-store.js');
- const prior=authority.loadAuthorityStore();assert.equal(prior.approvals.length,0);assert.equal(prior.loop.running,false);authority.saveAuthorityStore(prior);record('authority',authority.loadAuthorityStore());
+ const prior=authority.loadAuthorityStore();assert.equal(prior.approvals.length,0);
+ // The canonical new loop is running in SYNTHETIC mode; running is not a live grant.
+ // Preserve that actual state and prove denial, rather than inventing an owner stop.
+ const {createInitialLoopState,attemptExternalAction}=await api('orchestration/shadow-ceo-authority/gate.js');
+ const {LIVE_SIDE_EFFECT_KINDS}=await api('orchestration/shadow-ceo-authority/types.js');
+ assert.deepEqual(prior.loop,createInitialLoopState('SYNTHETIC'));
+ for(const kind of LIVE_SIDE_EFFECT_KINDS){const denied=attemptExternalAction({kind,mode:prior.loop.mode,loopRunning:prior.loop.running,approvalStatus:'none',approvalSource:'deterministic_store',authorized:false});assert.equal(denied.decision,'BLOCKED');assert.equal(denied.reason,'LIVE_SIDE_EFFECT_FORBIDDEN');}
+ authority.saveAuthorityStore(prior);record('authority',authority.loadAuthorityStore());
  const owners=await api('orchestration/shadow-ceo-integration/request-owner.js');
  const instruction='Synthetic HH4 state preservation; no live effects.';
  owners.persistRequestOwner({requestId:id,runId:id,correlationId:id,completeInstruction:instruction,suppliedProducts:[],eligibilityRules:{synthetic:true},requestedBusinessOperation:'NONE',permittedActions:[],prohibitedActions:[],requestedAnswerFormat:{expectedLineCount:null,fieldNames:[],requiredToken:null,prohibitsExtraProse:false,template:'unspecified'},operatingMode:'SYNTHETIC',birthStatus:'NOT_BORN',realCommerceAuthority:'unauthorized',createdAt:at,workspaceId:workspace,instructionDigest:owners.instructionDigest(workspace,instruction)});record('requestOwners',owners.getRequestOwner(id));

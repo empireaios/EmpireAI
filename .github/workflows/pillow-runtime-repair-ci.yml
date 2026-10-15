@@ -284,6 +284,21 @@ jobs:
           const held=JSON.parse(fs.readFileSync(path.join(root,'container-evidence/hh4-held.json'),'utf8'));
           examineInspectionRestoration({directory:path.join(root,'container-evidence/held-capture'),digest:held.digest,source,destination:path.join(root,'fresh-inspection-restoration')});
           NODE
+          # Reuse the same exact compiled image; never boot the historical archive.
+          docker run --rm --interactive --read-only --network none \
+            --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
+            --memory 1g --cpus 1 --tmpfs /tmp:rw,nosuid,nodev,size=512m \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence,target=/evidence,readonly" \
+            --entrypoint node "$image_id" --input-type=module - "$(git rev-parse HEAD)" \
+            > "$RUNNER_TEMP/hh4-evidence/domain-rehydration-result.json" <<'NODE'
+          import fs from 'node:fs';
+          import {examineDomainRehydration} from './scripts/work8/hh4-domain-rehydration.mjs';
+          const source=process.argv[2];
+          const held=JSON.parse(fs.readFileSync('/evidence/container-evidence/hh4-held.json','utf8'));
+          const ready=JSON.parse(fs.readFileSync('/evidence/container-evidence/hh4-worker-ready.json','utf8'));
+          const result=await examineDomainRehydration({repo:'/app',directory:'/evidence/container-evidence/held-capture',digest:held.digest,source,inventory:ready.inventory});
+          console.log(JSON.stringify(result,null,2));
+          NODE
       - name: Preserve actual generated application startup and held capture evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
