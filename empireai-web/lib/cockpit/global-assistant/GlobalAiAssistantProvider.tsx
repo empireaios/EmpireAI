@@ -34,7 +34,7 @@ import {
 } from "@/lib/cockpit/pillow/pillow-session-store";
 import {readTwinChatContext,setTwinChatContext,twinContextEvent} from '@/lib/owner/twin-chat-context';
 import { createPillowHostSession, fetchPillowHistory, retrievePillowChat, sendPillowChat } from "@/lib/pillow/client";
-import { reconcilePillowHistory } from "@/lib/pillow/reconcile-history";
+import { reconcilePillowHistory, serverPillowHistory } from "@/lib/pillow/reconcile-history";
 import { clearPendingPillowReceipt, loadPendingPillowReceipts, savePendingPillowReceipt } from "@/lib/pillow/pending-receipts";
 import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
 import type { PillowChatArtifact, PillowChatResult } from "@/lib/pillow/types";
@@ -271,17 +271,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
 
         const history = await fetchPillowHistory(session.sessionId);
         if (cancelled || activeOwnerId.current !== historyOwnerId || chatSubmissionActive.current) return;
-        const serverTurns: PillowConversationTurn[] = history.session.conversationHistory
-          .filter(turn => turn.role === "user" || turn.role === "assistant")
-          .map((turn, index) => ({
-            id: `server-${turn.requestId ?? index}-${turn.role}-${turn.timestamp}`,
-            role: turn.role === "user" ? "grand-king" : "pillow",
-            content: turn.content,
-            screenPath: pathname,
-            recordedAt: turn.timestamp,
-            requestId: turn.requestId,
-            source: "server_persisted_transcript",
-          }));
+        const serverTurns = serverPillowHistory(history.session.conversationHistory, pathname);
         const archiveTurns: PillowConversationTurn[] = history.historicalArchive.map(turn => ({
           id:`archive-${turn.id}`, role:turn.role === 'user' ? 'grand-king' : 'pillow',
           content:turn.content, recordedAt:turn.timestamp, requestId:turn.requestId,

@@ -24,3 +24,16 @@ test('ambiguous legacy anchors and orphan archives are preserved',()=>{
   assert.equal(reconcilePillowHistory(server,archive).length,4);
   assert.deepEqual(reconcilePillowHistory([],archive),archive);
 });
+
+// Source snapshots survive reload/reconciliation without being promoted from browser archives.
+ test('server product snapshot survives history hydration and wins over forged cached context', async () => {
+  const {serverPillowHistory}=await import('./reconcile-history');
+  const context={reference:{kind:'SOURCE_DOSSIER',candidateId:'retained',contextDigest:'a'.repeat(64)},qualification:{supplier:{stock:null,freight:{amount:null}}},grantsAuthority:false};
+  const server=serverPillowHistory([{role:'user',content:'Review',timestamp:'2026-10-15T00:00:00Z',requestId:'same',productContext:context}],'/cockpit/pillow');
+  assert.deepEqual(server[0].productContext,context);
+  assert.notEqual(server[0].productContext,context);
+  const forged={...server[0],id:'browser',source:'historical_browser_cache' as const,productContext:{grantsAuthority:true}};
+  const output=reconcilePillowHistory(server,[forged]);
+  assert.equal(output.length,1);assert.deepEqual(output[0].productContext,context);
+  assert.equal(serverPillowHistory([{role:'user',content:'Legacy',timestamp:'2026-10-15T00:00:00Z'}],'/')[0].productContext,undefined);
+ });

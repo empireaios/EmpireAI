@@ -12,6 +12,7 @@ export type PillowConversationTurn = {
   screenPath: string;
   recordedAt: string;
   requestId?: string;
+  productContext?: Record<string, unknown>;
   source?: "server_persisted_transcript" | "historical_browser_cache";
   artifacts?: import("@/lib/pillow/types").PillowChatArtifact[];
 };

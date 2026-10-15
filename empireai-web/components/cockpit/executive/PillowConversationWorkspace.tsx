@@ -302,6 +302,11 @@ export function PillowConversationWorkspace({
                         {turn.source === "server_persisted_transcript" ? " · Server-persisted conversation; historical, not current operational evidence." : " · Historical browser record; original source unverified, not current operational evidence."}
                       </p>
                     </details>
+                    {turn.source === "server_persisted_transcript" && turn.productContext && <details className="mb-3 text-xs text-[#8a847a]" data-historical-product-context>
+                      <summary className="min-h-11 cursor-pointer py-3">Product evidence saved with this message</summary>
+                      <p>Historical snapshot only. Reopen the product to check its current evidence before a new request.</p>
+                      <pre className="mt-2 max-h-64 overflow-auto whitespace-pre-wrap break-all">{JSON.stringify(turn.productContext, null, 2)}</pre>
+                    </details>}
                     <ExecutiveChatMarkdown content={turn.content} />
                     {turn.role === "pillow" && <CopyPillowAnswer content={turn.content} />}
                   </div>

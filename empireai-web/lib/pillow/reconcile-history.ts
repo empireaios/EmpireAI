@@ -1,3 +1,4 @@
+import type { PillowTurn } from './types';
 import type { PillowConversationTurn } from '../cockpit/pillow/pillow-session-store';
 
 type Turn = PillowConversationTurn;
@@ -35,4 +36,15 @@ export function reconcilePillowHistory(server: readonly Turn[], archive: readonl
     output.push(row);
   }
   return ordered(output);
+}
+
+/** Keep the exact resolved historical snapshot; never turn it into a new attachment. */
+export function serverPillowHistory(turns: readonly PillowTurn[], screenPath: string): PillowConversationTurn[] {
+  return turns.filter(turn => turn.role === 'user' || turn.role === 'assistant').map((turn, index) => ({
+    id: `server-${turn.requestId ?? index}-${turn.role}-${turn.timestamp}`,
+    role: turn.role === 'user' ? 'grand-king' : 'pillow',
+    content: turn.content, screenPath, recordedAt: turn.timestamp, requestId: turn.requestId,
+    source: 'server_persisted_transcript',
+    ...(turn.productContext === undefined ? {} : {productContext: structuredClone(turn.productContext)}),
+  }));
 }
