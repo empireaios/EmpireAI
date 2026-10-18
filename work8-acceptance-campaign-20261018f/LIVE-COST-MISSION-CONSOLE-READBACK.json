@@ -1,0 +1,268 @@
+{
+  "reviewer": "/root/console_acceptance",
+  "scope": "Fresh bounded authenticated Advisor stored-state reads; no inference, live provider refresh, writes, tests or external messages. Not hosted isolated CI evidence.",
+  "productionIdentity": {
+    "retrievedAt": "2026-10-18T10:17:18.399Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "state",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": "2026-10-18T10:17:18.399Z",
+    "source": "current process identity and locked runtime profile",
+    "data": {
+      "backendSha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+      "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949",
+      "profile": "LOCKED_COMMISSIONING_V1",
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "frontendIdentity": {
+        "status": "UNVERIFIED",
+        "reason": "Use direct Vercel evidence"
+      },
+      "domains": [
+        "governed_commerce",
+        "financial_centre",
+        "package_format",
+        "changes",
+        "state",
+        "capabilities",
+        "pillow",
+        "accounting",
+        "assurance",
+        "reconciliation",
+        "missions",
+        "communications",
+        "authority",
+        "commissioning",
+        "approvals",
+        "execution",
+        "products",
+        "orders",
+        "decisions",
+        "events",
+        "finance",
+        "integrations",
+        "memory",
+        "intelligence",
+        "arsenal",
+        "evidence",
+        "intelligence_jobs",
+        "opportunities",
+        "exceptions",
+        "resources",
+        "rank_growth",
+        "investigations"
+      ]
+    },
+    "coverage": {
+      "limit": 20,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "readWindowUtc": [
+    "2026-10-18T10:17:10.478Z",
+    "2026-10-18T10:17:18.890Z"
+  ],
+  "costCentre": {
+    "journalCount": 3,
+    "journalDigest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+    "historicalCount": 7,
+    "historicalDigest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf",
+    "accounting": {
+      "schema": "owner-commissioning-accounting-v1",
+      "observedAt": "2026-10-18T10:17:18.508Z",
+      "readOnly": true,
+      "recordCount": 227,
+      "recordDigestSha256": "9a443196bae7cde0e02a583108a61b157cc4262f060a81c21af2affa4ffaaa92",
+      "ceilingMicroUsd": null,
+      "heldMicroUsd": 112427447,
+      "remainingMicroUsd": null,
+      "recordedEstimateMicroUsd": 20507705,
+      "estimateUnknownCount": 5,
+      "invoiceActualMicroUsd": null,
+      "invoiceUnknownCount": 227,
+      "reservationReleased": false,
+      "inferenceCalls": 0
+    },
+    "cashComplete": false,
+    "runway": null,
+    "providerBilling": "All returned providers billingAccess UNAVAILABLE",
+    "pricing": [
+      {
+        "provider": "openai",
+        "expiresAt": "2026-10-15T00:00:00.000Z",
+        "status": "EXPIRED",
+        "source": "reviewed-local-admission-policy",
+        "automaticRenewal": false
+      },
+      {
+        "provider": "anthropic",
+        "expiresAt": "2026-10-15T00:00:00.000Z",
+        "status": "EXPIRED",
+        "source": "reviewed-local-admission-policy",
+        "automaticRenewal": false
+      },
+      {
+        "provider": "gemini",
+        "expiresAt": "2026-10-15T00:00:00.000Z",
+        "status": "EXPIRED",
+        "source": "reviewed-local-admission-policy",
+        "automaticRenewal": false
+      }
+    ],
+    "meaning": "Recorded estimate20.507705USD and held112.427447USD are internal estimates/reservations, not paid cost or invoices; invoice actual unknown. Genuine Vercel usage accrual0.140117USD team-shared/unallocated, not invoice. One synthetic forecast is explicitly not genuine product economics."
+  },
+  "missionExecution": {
+    "executionStatus": "STALE",
+    "executionObservedAt": "2026-10-13T11:11:05.088Z",
+    "returnedExecutionRecords": 0,
+    "coverageComplete": false,
+    "candidateInvestigations": [
+      {
+        "id": "EMPIREAI-CANDIDATE-001",
+        "status": "FAILED",
+        "requestId": "pcr_5fcf9b139bb54343",
+        "assessment": null
+      },
+      {
+        "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+        "status": "COMPLETE",
+        "requestId": "pcr_27fb1ed5ddb24f5a",
+        "assessment": {
+          "sha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab",
+          "requestId": "pcr_27fb1ed5ddb24f5a",
+          "evidenceIds": [
+            "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+            "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+            "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+            "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+            "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+          ]
+        }
+      }
+    ],
+    "checkpoints": [
+      {
+        "id": "WORK-1-COMPREHENSIVE-AUDIT",
+        "state": "ACCEPTANCE_PENDING",
+        "revision": "d0d07771c5f64fb363ff2e00e35eb461d898fb14",
+        "at": 1791477904883
+      },
+      {
+        "id": "WORK-5-FINANCIAL-INTELLIGENCE",
+        "state": "COMPLETE",
+        "revision": "bce4e47bf749de614630a784b281690b83a88d42",
+        "at": 1791525152712
+      },
+      {
+        "id": "WORK-6-GOVERNED-COMMERCE",
+        "state": "COMPLETE",
+        "revision": "353ed974499a2bc78751de0156854117d6185a7d",
+        "at": 1791536272184
+      },
+      {
+        "id": "WORK-7-PREMIUM-OWNER",
+        "state": "COMPLETE",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "at": 1791571577502
+      },
+      {
+        "id": "WORK-7-PREMIUM-OWNER:UX-PR109",
+        "state": "COMPLETE",
+        "revision": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+        "at": 1791667498914
+      },
+      {
+        "id": "advanced-autonomous-assurance",
+        "state": "COMPLETE",
+        "revision": "51830f9f76d3a5b81250c0f5d2b4ce84b44b39c7",
+        "at": 1791571502013
+      },
+      {
+        "id": "work6-governed-commerce",
+        "state": "IN_PROGRESS",
+        "revision": "bce4e47bf749de614630a784b281690b83a88d42",
+        "at": 1791535475884
+      }
+    ],
+    "meaning": "Historical mission records remain available; no Work8 COMPLETE checkpoint or new execution evidenced. Empty bounded execution page is not universal absence proof."
+  },
+  "ownerDecisions": {
+    "status": "STALE",
+    "observedAt": "2026-10-13T11:11:05.088Z",
+    "returned": [
+      {
+        "id": "2b1ea367-3c45-4a66-8e5c-af8dab3494a7",
+        "module": "ai-ceo",
+        "title": "Pause underperforming SKU cluster",
+        "status": "pending",
+        "agent_id": "ai-ceo",
+        "authority_level": "L3",
+        "rationale": null,
+        "created_at": "2026-10-01T11:49:55.693Z",
+        "resolved_at": null
+      },
+      {
+        "id": "4b446da2-cfe9-4a6f-955b-e54193c58224",
+        "module": "ai-ceo",
+        "title": "Approve EU expansion for top commerce venture",
+        "status": "pending",
+        "agent_id": "ai-ceo",
+        "authority_level": "L3",
+        "rationale": null,
+        "created_at": "2026-10-01T11:49:55.693Z",
+        "resolved_at": null
+      },
+      {
+        "id": "f73ffd81-d3c5-450b-9b3c-f256c0ad8995",
+        "module": "ai-ceo",
+        "title": "Increase daily ad cap on highest ROAS channel",
+        "status": "pending",
+        "agent_id": "ai-ceo",
+        "authority_level": "L3",
+        "rationale": null,
+        "created_at": "2026-10-01T11:49:55.693Z",
+        "resolved_at": null
+      }
+    ],
+    "meaning": "Three pending Oct1 records with unresolved/null rationale and unverified business authenticity; none supplies current genuine product-bound owner disposition."
+  },
+  "assurance": {
+    "retrievedAt": "2026-10-18T10:17:10.704Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "assurance",
+    "grantsAuthority": false,
+    "status": "UNAVAILABLE",
+    "observedAt": null,
+    "data": null,
+    "reason": "Stored source unavailable or unreadable; no live refresh attempted"
+  },
+  "acceptanceDecision": "NO_NEW_COMPLETE_ROW_ACCEPTANCE",
+  "limitations": [
+    "Production backend608f3f remains separate from Work8 draft source and isolated hosted suite.",
+    "Current accounting227 does not recover original224 snapshot or prove count-change audit lineage.",
+    "Assurance domain UNAVAILABLE does not negate preserved historical accepted examinations.",
+    "CostCentre and historical missions improve current readback evidence but do not fill same-product owner/finance/Assurance/recovery journey."
+  ],
+  "sourceFileSha256": {
+    "live-advisor-missions.json": "2eae7b8b0118e2947b140804c8840db5e0fc21c4dfb097b437fdadb9fc86a335",
+    "live-advisor-decisions.json": "b5c3c38a76162539072c65e0ffe6bf3946f9dc606a0f058b63e38e9300c0c37c",
+    "live-advisor-state.json": "258db1b8b16a2b8394274cf7445e88fc98b8549d337330ec4f6699c03012e45e",
+    "live-advisor-assurance.json": "fdc01a17d088ca1152ab6341c64d9cb1790744252cfce153ed66ed01452d2f9c",
+    "live-advisor-execution.json": "6a457dba901acdda38408ef6d58fa3b94c403bf6ae6df96d49c1c70b68a72783",
+    "live-advisor-domain-discovery.json": "ddc417d633ba29b85387ed8f2db51bd883aecb5deceed9eba538d6980dc9bafc",
+    "live-advisor-financial_centre.json": "c9176c0a16e3c842655341e59911e3d532f87e8223b0b738fc1d1b362e3f856f",
+    "live-advisor-accounting.json": "9225bddec78094b0965bfcf6106eacaf026a5c25c3fdeba22ef4cf79a7d18a4a"
+  }
+}

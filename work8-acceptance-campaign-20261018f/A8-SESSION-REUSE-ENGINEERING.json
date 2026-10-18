@@ -1,0 +1,22 @@
+{
+  "status": "READY_FOR_INDEPENDENT_REVIEW_NOT_HOSTED_ACCEPTANCE",
+  "baseCommit": "15673745cb923a4164b7ebba6e14440fe4003c41",
+  "baseTree": "c324ecb16b3054b86e84ce4b662d3c3f2b1be9a8",
+  "files": {
+    "empireai-web/e2e/work8-source-context-native.mjs": "65e9e23ff0d2b69cd92974ebaa1a3daa171808a1cfdab894692ffb782b0e76d5",
+    "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx": "0d013ed99fc5e60ba9eee34802426c948a0b45069f5e6e5dfbe2777dbc572959",
+    "empireai-web/lib/pillow/client.ts": "e9526b5ee90b73633137f87ab94ac3c98b0392d2b6a5e13344f04dd94e854ca9",
+    "empireai-web/lib/pillow/session-resolution.ts": "ddcd860a4737e4fc148443f07cc7b61e29c84113ec2a6ac78147c305b5ae97fc",
+    "empireai-web/lib/pillow/session-resolution.test.ts": "bc0713beb05fb05c9970584a794e3154c57a7dc987f61c46f2e9272da8b58e03"
+  },
+  "targetedTest": "a8-session-reuse-tests-final.tap",
+  "testsPassed": 1,
+  "testsFailed": 0,
+  "actualBffProbe": "a8-bff-session-probe.json",
+  "limits": [
+    "Native A8 still pending",
+    "Targeted regression exercises actual client with deterministic HTTP transport; actual BFF probe separately proves rate behavior",
+    "No compiler run in author worktree; controller owns integration typecheck"
+  ],
+  "concurrency": "Owner/workspace/cache/archive-keyed in-flight resolution coalesces POST plus history read; authenticated session ID hint survives canceled UI without writing turns and is authenticated again on every use."
+}

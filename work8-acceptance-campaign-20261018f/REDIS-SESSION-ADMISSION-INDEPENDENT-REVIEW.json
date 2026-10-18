@@ -1,0 +1,41 @@
+{
+  "recordType": "INDEPENDENT_HOSTED_SESSION_WRITER_ADMISSION_ACCEPTANCE",
+  "reviewer": "/root/runtime_reconcile",
+  "decision": "PASS_SCOPED_TWO_NEW_REAL_REDIS_ASSERTIONS",
+  "source": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+  "tree": "c324ecb16b3054b86e84ce4b662d3c3f2b1be9a8",
+  "run": 39118567378,
+  "job": 117649288650,
+  "jobConclusion": "success",
+  "log": "runtime-job.log",
+  "logSha256": "dae7c3aee3855bed1d06d963a4957fda3a23b9a8e7912fc10e7594b66025ab55",
+  "suite": {
+    "tests": 414,
+    "pass": 414,
+    "fail": 0
+  },
+  "assertions": [
+    {
+      "name": "shared queue capture drains admitted session writes and refuses uncertain writers",
+      "result": "PASS",
+      "timestamp": "2026-10-18T10:24:15.2899451Z",
+      "scope": "Actual Redis and TaskQueue capture waits while admitted SessionStore SETEX is deliberately held, enters only after write settles and producer set drains. Uncertain SETEX rejection retains producer marker and blocks subsequent capture; no false clean release."
+    },
+    {
+      "name": "independent session process respects held capture owner and preserves original session",
+      "result": "PASS",
+      "timestamp": "2026-10-18T10:24:15.5938952Z",
+      "scope": "Separate OS child process uses actual SessionStore and real Redis under held capture owner; create, destroy and refresh rejected, read allowed; exact original session bytes and nonextended positive TTL retained, no producer leak and owner unchanged. After release refresh succeeds, old token removed and original principal preserved."
+    }
+  ],
+  "limits": [
+    "Applies to current cooperating SessionStore implementation and same configured shared capture keys.",
+    "Does not fence old binaries or arbitrary independent Redis clients with direct credentials.",
+    "Does not establish full runtime census, every store writer, visual-memory inventory, complete operational replacement restore, all pending-work replay or protected custody.",
+    "No original requirement or amendment promoted from these scoped assertions alone."
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "manualDispatches": 0,
+  "reruns": 0
+}

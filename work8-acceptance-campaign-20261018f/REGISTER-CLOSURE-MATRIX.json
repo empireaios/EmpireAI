@@ -1,0 +1,1654 @@
+{
+  "recordType": "INDEPENDENT_RETAINED_REGISTER_RECONCILIATION_NO_NEW_ACCEPTANCE",
+  "sourceCampaign": "C",
+  "counts": {
+    "O": {
+      "PASS": 34,
+      "PENDING": 7,
+      "BLOCKED": 4
+    },
+    "A": {
+      "PASS": 10,
+      "PENDING": 9
+    }
+  },
+  "accepted": 44,
+  "outstanding": 20,
+  "rowCount": 64,
+  "ledgerAgreement": true,
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "newAcceptedIds": [
+    "O19"
+  ],
+  "scope": "Read-only retained tracker and Mission Ledger; no re-examination of accepted underlying evidence; no publication. Closure routes are next-step planning, not acceptance findings.",
+  "sourceSha256": {
+    "FULL-TRACKER.md": "49c6ce94a1b37c777b786033942c1ccebc37769bf2c0eb0ccccfe9d7c14e10df",
+    "MISSION-LEDGER-REVIEW.json": "48cee612905469ad5385f9f6445402e76d31388609b7668c17acdc81772a97e6"
+  },
+  "outstandingRows": [
+    {
+      "id": "O2",
+      "status": "BLOCKED",
+      "requirement": "Financial and historical preservation",
+      "criteria": "Original224 immutable financial baseline or attributable audited lineage explaining legitimate changed counts; preserve3journal/7historical and authoritative digests. No arbitrary historicalcount freeze or missingproof waiver.",
+      "dependency": "Missing historical evidence",
+      "closure_route": "Recover original224 baseline or attributable audited lineage only upon a new credible lead. Preserve current3journal/7historical and digests; no repeated unsupported searches.",
+      "preciseMissingEvidence": "Original224 immutable accounting snapshot or attributable audit lineage reconciling changed counts.",
+      "blockerClass": "external_evidence",
+      "reviewedCandidate": null,
+      "assignedLane": "E business_finance",
+      "minimumExamination": "Recover original224 baseline or attributable audited lineage only upon a new credible lead. Preserve current3journal/7historical and digests; no repeated unsupported searches.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "BLOCKED",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "No: original record or credible new provenance lead required; preservation and bounded review authorized.",
+      "progressOverlay": "Fresh accounting227 record readback does not recover original224 snapshot or count-change lineage. Journal3/historical7 digests retained; no repeated search."
+    },
+    {
+      "id": "O7",
+      "status": "BLOCKED",
+      "requirement": "Product images and usage rights",
+      "criteria": "Apply documented existing supplier/platform media permissions for exact selected assets; record unknown permission without asserting a licence or routine correspondence.",
+      "dependency": "Exact asset permission evidence",
+      "closure_route": "Bind existing documented supplier/platform permission to exact selected asset IDs/versions. If no attributable licence exists, remain blocked; no routine external correspondence implied.",
+      "preciseMissingEvidence": "Attributable permission covering exact selected supplier/platform media assets and versions.",
+      "blockerClass": "external_evidence",
+      "reviewedCandidate": null,
+      "assignedLane": "E business_finance",
+      "minimumExamination": "Bind existing documented supplier/platform permission to exact selected asset IDs/versions. If no attributable licence exists, remain blocked; no routine external correspondence implied.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "BLOCKED",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Conditional: existing documented permission may suffice; no unsupported licence claim or external correspondence."
+    },
+    {
+      "id": "O13",
+      "status": "BLOCKED",
+      "requirement": "Actual Pillow assessment binding",
+      "criteria": "Use a complete eligible dossier and valid source-bound commissioning authority for actual Pillow inference; absent those, preserve refusal and request one bounded provider examination only when its inputs and cost can be specified.",
+      "dependency": "Eligible genuine dossier plus commissioned inference authority",
+      "closure_route": "Complete attributable fresh eligibility inputs, specify bounded inference inputs/cost and obtain applicable authority before actual Pillow assessment. Keep historical insufficient-evidence result separate.",
+      "preciseMissingEvidence": "Complete eligible current dossier and actual source-bound Pillow assessment under valid commissioning authority.",
+      "blockerClass": "external_evidence_and_authority",
+      "reviewedCandidate": null,
+      "assignedLane": "E business_finance",
+      "minimumExamination": "Complete attributable fresh eligibility inputs, specify bounded inference inputs/cost and obtain applicable authority before actual Pillow assessment. Keep historical insufficient-evidence result separate.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "BLOCKED",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "No actual paid inference under current directive; eligible evidence and separately bounded authority needed.",
+      "progressOverlay": "CostCentre readback cashCompletefalse/runwaynull/invoicesunknown; estimates/reservations are not actual cost. Genuine dossier remainsDEFERRED with exact freight/cash/forecast/FX/review dependencies."
+    },
+    {
+      "id": "O14",
+      "status": "PENDING",
+      "requirement": "Owner recommendations and decisions",
+      "criteria": "Bind an authentic eligible Pillow recommendation to an authenticated persisted owner decision; technical UI fixtures do not supply genuine reasoning.",
+      "dependency": "O13 eligible authentic recommendation plus actual owner decision",
+      "closure_route": "Persist authenticated owner decision bound to the eligible assessment and product identity. Deferred historical display alone cannot close.",
+      "preciseMissingEvidence": "Authentic eligible recommendation and authenticated durable owner decision bound to it.",
+      "blockerClass": "external_evidence_and_owner_decision",
+      "reviewedCandidate": null,
+      "assignedLane": "A frontend_route + E business_finance",
+      "minimumExamination": "Persist authenticated owner decision bound to the eligible assessment and product identity. Deferred historical display alone cannot close.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "No: owner decision and qualifying recommendation remain missing; technical controls can be examined."
+    },
+    {
+      "id": "O30",
+      "status": "PENDING",
+      "requirement": "Assurance watchdog/degraded operation",
+      "criteria": "F29 two missing pair arms independently accepted; retained worker-stall and notification/inbox/restart evidence preserved. Remaining: actual independent external owner-alert delivery and original owner escalation; no added physical-host destruction criterion.",
+      "dependency": "Independent alert executor/storage/delivery authority",
+      "closure_route": "Identify an existing independent execution and delivery route and obtain bounded external-message authority where required; prove actual owner delivery/escalation. Preserve accepted watchdog pair arms.",
+      "preciseMissingEvidence": "Actual independent external owner-alert delivery, required escalation, durable observations and failure handling receipts.",
+      "blockerClass": "external_authority_and_environment",
+      "reviewedCandidate": null,
+      "assignedLane": "D recovery_assurance",
+      "minimumExamination": "Identify an existing independent execution and delivery route and obtain bounded external-message authority where required; prove actual owner delivery/escalation. Preserve accepted watchdog pair arms.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Conditional: only an already-authorized safe delivery route; otherwise separate bounded delivery authority required."
+    },
+    {
+      "id": "O33",
+      "status": "PENDING",
+      "requirement": "Concurrency races and replay",
+      "criteria": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in declared runtime topology, including still-active prior instances. Preserve scoped reviewed lifecycle-marker and held-handoff corrections; neither establishes operational replay or full topology. Arbitrary privileged host attackers are not an added criterion.",
+      "dependency": "Declared complete runtime writer/transport topology",
+      "closure_route": "Execute added selected realRedis tests in normal automatic CI following approved publication; separately establish complete admitted/prior process topology, all-writer exclusion and pending-work continuity.",
+      "preciseMissingEvidence": "Campaign F two realRedis session-writer assertions independentlyPASS; runtime suite414/414. Cooperatingprocess drain/uncertainty/childprocess fencing proven only. Complete prior/current writer topology/fullrestore/allpending/custody remain. Visual-memory completefile capture/lock/materializer9path candidate4localPASS under source review; bootAllowed/fullRuntime remainfalse.",
+      "blockerClass": "technical_scope_and_missing_examination",
+      "reviewedCandidate": "Current16path staged successor includes10path visual-memory capture/lock/materializer correction, independently approved scoped5PASS; published session admission scopedHostedPASS retained.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      },
+      "assignedLane": "C recovery_assurance",
+      "minimumExamination": "Execute added selected realRedis tests in normal automatic CI following approved publication; separately establish complete admitted/prior process topology, all-writer exclusion and pending-work continuity.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Engineering and isolated examinations authorized; full coverage and applicable environment not yet established.",
+      "progressOverlay": "Published cooperating-session Redis admission scopedPASS,414/414; visual-memory10path successor final scopedreview and5PASS plus fullcompilationPASS. Still no complete prior/current topology/full operational restore/allpending/custody acceptance; bootAllowed/fullRuntimefalse preserved."
+    },
+    {
+      "id": "O39",
+      "status": "PENDING",
+      "requirement": "Cold restart rollback/migration/restore",
+      "criteria": "Distinct password-protected Redis replacement after original shutdown, atomic target identity, AOF-only crash recovery, paused fence and once-only labelled pending continuation independently pass. Full authorized application restoration, owner-session restoration into replacement topology and protected independently authenticated off-host custody remain.",
+      "dependency": "Complete application restore and protected custody",
+      "closure_route": "Complete full consistent capture/domain inventory and authorized restoration; separately prove Library retention/runtime credential exclusion/independent readback/corruption refusal/full target restore.",
+      "preciseMissingEvidence": "Campaign F two realRedis session-writer assertions independentlyPASS; runtime suite414/414. Cooperatingprocess drain/uncertainty/childprocess fencing proven only. Complete prior/current writer topology/fullrestore/allpending/custody remain. Visual-memory completefile capture/lock/materializer9path candidate4localPASS under source review; bootAllowed/fullRuntime remainfalse.",
+      "blockerClass": "technical_scope_and_external_custody",
+      "reviewedCandidate": "Current16path staged successor includes10path visual-memory capture/lock/materializer correction, independently approved scoped5PASS; published session admission scopedHostedPASS retained.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      },
+      "assignedLane": "C recovery_assurance",
+      "minimumExamination": "Complete full consistent capture/domain inventory and authorized restoration; separately prove Library retention/runtime credential exclusion/independent readback/corruption refusal/full target restore.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Partial engineering/examination authorized; complete custody authority and full operational restoration unproven.",
+      "progressOverlay": "Published cooperating-session Redis admission scopedPASS,414/414; visual-memory10path successor final scopedreview and5PASS plus fullcompilationPASS. Still no complete prior/current topology/full operational restore/allpending/custody acceptance; bootAllowed/fullRuntimefalse preserved."
+    },
+    {
+      "id": "O40",
+      "status": "BLOCKED",
+      "requirement": "Actual owner-view real-product walkthrough",
+      "criteria": "Complete the coherent authenticated desktop/mobile journey across genuine source evidence, product decisions, linked conclusions where legitimately available, simulated finance, Assurance and recovery status. Truthful rejected/deferred candidates are permitted in the R1/R5 presentation; no positive qualification or paid assessment is a blanket display prerequisite. Original O13/R2 genuine assessment requirements remain separately mandatory. Genuine connected visual evidence remains required; no separately purchased visual host is required.",
+      "dependency": "Genuine connected desktop/mobile walkthrough",
+      "closure_route": "Examine genuine same-identity missing owner decision/simulated outcome/Assurance/recovery linkage within original contract; truthful empty/unavailable surfaces alone do not satisfy complete row.",
+      "preciseMissingEvidence": "Authenticated connected product decision is absent; historical technical workflow closure is not an owner product decision. No same-product simulated-finance outcome is presented: isolated downstream stores are empty. Assurance is explicitly UNAVAILABLE and no recovery-status route is examined.",
+      "blockerClass": "missing_integrated_evidence",
+      "reviewedCandidate": "Hosted scoped Console PASS at exacttree6c7d6; authentic historical390/1440 readback and401/403 preserved.",
+      "candidateIdentity": {
+        "status": "See exact reviewed file hashes in campaign E receipts; new integrated successor awaiting controller exact-tree publication decision"
+      },
+      "assignedLane": "A frontend_route + E business_finance",
+      "minimumExamination": "Examine genuine same-identity missing owner decision/simulated outcome/Assurance/recovery linkage within original contract; truthful empty/unavailable surfaces alone do not satisfy complete row.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root/console_acceptance",
+        "decision": "BLOCKED",
+        "scopeDecision": "PASS_SCOPED_HOSTED_CONSOLE_READBACK_NO_COMPLETE_ROW_CLOSURE",
+        "receipt": "CONSOLE-INDEPENDENT-DECISION.json"
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Scoped successor examination achievable after exact publication approval; complete connected record evidence not yet available.",
+      "progressOverlay": "Fresh authenticated stored-state CostCentre/mission readback available, production608f3f distinct from isolated draftsource. Same-product owner decision/simulatedfinance/Assurance/recovery chain still absent; AssuranceUNAVAILABLE, decisions stale/unresolved."
+    },
+    {
+      "id": "O41",
+      "status": "PENDING",
+      "requirement": "Mobile desktop source-to-finance equality",
+      "criteria": "Preserve accepted source/price desktop-mobile display and five-shortcut evidence. Complete genuine same-identity full source/Pillow/owner/simulated finance/Assurance walkthrough; no physical-device certificate is required by the directive.",
+      "dependency": "Same-identity full source/Pillow/owner/finance/Assurance equality",
+      "closure_route": "Examine genuine same-identity missing owner decision/simulated outcome/Assurance/recovery linkage within original contract; truthful empty/unavailable surfaces alone do not satisfy complete row.",
+      "preciseMissingEvidence": "Desktop/mobile equality of genuine source and historical Pillow response passes; equality of connected owner decision, simulated-finance result and Assurance records is unproven because those records are absent.",
+      "blockerClass": "missing_integrated_evidence",
+      "reviewedCandidate": "Hosted scoped Console PASS at exacttree6c7d6; authentic historical390/1440 readback and401/403 preserved.",
+      "candidateIdentity": {
+        "status": "See exact reviewed file hashes in campaign E receipts; new integrated successor awaiting controller exact-tree publication decision"
+      },
+      "assignedLane": "A frontend_route + E business_finance",
+      "minimumExamination": "Examine genuine same-identity missing owner decision/simulated outcome/Assurance/recovery linkage within original contract; truthful empty/unavailable surfaces alone do not satisfy complete row.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root/console_acceptance",
+        "decision": "PENDING",
+        "scopeDecision": "PASS_SCOPED_HOSTED_CONSOLE_READBACK_NO_COMPLETE_ROW_CLOSURE",
+        "receipt": "CONSOLE-INDEPENDENT-DECISION.json"
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Scoped display examination authorized; absent genuine linked decision/financial records prevent whole-contract closure.",
+      "progressOverlay": "Fresh authenticated stored-state CostCentre/mission readback available, production608f3f distinct from isolated draftsource. Same-product owner decision/simulatedfinance/Assurance/recovery chain still absent; AssuranceUNAVAILABLE, decisions stale/unresolved."
+    },
+    {
+      "id": "O42",
+      "status": "PENDING",
+      "requirement": "Review exact-head CI and release authority",
+      "criteria": "Current exactsource1f08bb4807c956a87319e2c039ac9b5a2ec33e6d/treec324ecb16b3054b86e84ce4b662d3c3f2b1be9a8: Runtime39118567378 SUCCESS all6jobs; Semantic39118567368 SUCCESS; Assurance39118567382 SUCCESS; Product39118567379 FAILURE solelyA8. O19 independent completePASS. Remaining fullowner/operational/source acceptance gates and final certification remain; no merge/deployment authority.",
+      "dependency": "Exact current source CI plus remaining integrated gates",
+      "closure_route": "Reuse automatic runs for approved successor; reconcile exact source/evidence, source-bound acceptance and residual integrated operational/owner gates before independent final release review. No merge/deploy implied.",
+      "preciseMissingEvidence": "Final exact-source integrated owner/operational evidence and independent release acceptance, beyond current terminal CI.",
+      "blockerClass": "dependent_acceptance_and_review",
+      "reviewedCandidate": "Reviewed six-path successor; current published CI overlay retained.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      },
+      "assignedLane": "F root + register",
+      "minimumExamination": "Reuse automatic runs for approved successor; reconcile exact source/evidence, source-bound acceptance and residual integrated operational/owner gates before independent final release review. No merge/deploy implied.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Yes for verification/reconciliation; final PASS depends on mandatory integrated gates and applicable publication authority."
+    },
+    {
+      "id": "O43",
+      "status": "PENDING",
+      "requirement": "Independent Mission Ledger closure",
+      "criteria": "Independent Mission Ledger closure awaits complete mandatory operating, fault, recovery and owner-acceptance gates. No production mission_complete, merge or release authority.",
+      "dependency": "All mandatory operating/fault/recovery/owner gates",
+      "closure_route": "Reconcile every45+19 row against independent receipts and obtain complete Mission Ledger review only when mandatory gates close. Keep IN_PROGRESS/NO_GO meanwhile.",
+      "preciseMissingEvidence": "Independent final Mission Ledger certification with all mandatory operating/fault/recovery/owner gates satisfied.",
+      "blockerClass": "dependent_acceptance_and_review",
+      "reviewedCandidate": null,
+      "assignedLane": "F root + register",
+      "minimumExamination": "Reconcile every45+19 row against independent receipts and obtain complete Mission Ledger review only when mandatory gates close. Keep IN_PROGRESS/NO_GO meanwhile.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Reconciliation authorized; complete certification unavailable while mandatory gates remain open.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      }
+    },
+    {
+      "id": "A1",
+      "status": "PENDING",
+      "requirement": "Persistent autonomous digital twin",
+      "criteria": "Complete global capture/replay and genuine operating acceptance through the existing twin and Console; preserve new scoped integration and accepted isolated capability.",
+      "dependency": "Global capture/replay and genuine operating Console acceptance",
+      "closure_route": "Combine complete O33/O39 restoration with genuine connected Console operating evidence; retain isolated twin acceptance.",
+      "preciseMissingEvidence": "Campaign F two realRedis session-writer assertions independentlyPASS; runtime suite414/414. Cooperatingprocess drain/uncertainty/childprocess fencing proven only. Complete prior/current writer topology/fullrestore/allpending/custody remain. Visual-memory completefile capture/lock/materializer9path candidate4localPASS under source review; bootAllowed/fullRuntime remainfalse.",
+      "blockerClass": "dependent_integrated_evidence",
+      "reviewedCandidate": "Current16path staged successor includes10path visual-memory capture/lock/materializer correction, independently approved scoped5PASS; published session admission scopedHostedPASS retained.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      },
+      "assignedLane": "C recovery_assurance + A frontend_route",
+      "minimumExamination": "Combine complete O33/O39 restoration with genuine connected Console operating evidence; retain isolated twin acceptance.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Partial work authorized; full restoration/custody and genuine connected operating evidence remain dependencies.",
+      "progressOverlay": "Published cooperating-session Redis admission scopedPASS,414/414; visual-memory10path successor final scopedreview and5PASS plus fullcompilationPASS. Still no complete prior/current topology/full operational restore/allpending/custody acceptance; bootAllowed/fullRuntimefalse preserved."
+    },
+    {
+      "id": "A2",
+      "status": "PENDING",
+      "requirement": "Whole-system twin",
+      "criteria": "Cooperating writer coverage and distinct Redis inspection replacement verified; global exclusion and complete whole-system operational restoration remain. completeLiveState=false and bootAllowed=false preserved.",
+      "dependency": "Global writer exclusion and whole-system operational restore",
+      "closure_route": "Close full topology and whole-application restoration, beyond Redis inspection replacement. Do not change completeLiveState=false or bootAllowed=false absent proof.",
+      "preciseMissingEvidence": "Campaign F two realRedis session-writer assertions independentlyPASS; runtime suite414/414. Cooperatingprocess drain/uncertainty/childprocess fencing proven only. Complete prior/current writer topology/fullrestore/allpending/custody remain. Visual-memory completefile capture/lock/materializer9path candidate4localPASS under source review; bootAllowed/fullRuntime remainfalse.",
+      "blockerClass": "technical_scope_and_missing_examination",
+      "reviewedCandidate": "Current16path staged successor includes10path visual-memory capture/lock/materializer correction, independently approved scoped5PASS; published session admission scopedHostedPASS retained.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      },
+      "assignedLane": "C recovery_assurance",
+      "minimumExamination": "Close full topology and whole-application restoration, beyond Redis inspection replacement. Do not change completeLiveState=false or bootAllowed=false absent proof.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Engineering authorized; no complete whole-system examination available yet.",
+      "progressOverlay": "Published cooperating-session Redis admission scopedPASS,414/414; visual-memory10path successor final scopedreview and5PASS plus fullcompilationPASS. Still no complete prior/current topology/full operational restore/allpending/custody acceptance; bootAllowed/fullRuntimefalse preserved."
+    },
+    {
+      "id": "A3",
+      "status": "PENDING",
+      "requirement": "Protected backup vault",
+      "criteria": "Prove complete consistent snapshot, runtime credential exclusion from alteration/deletion, protected retention, independently authenticated off-host readback and complete fresh-target application restoration with canonical/session/pending-work invariants and no authority replay.",
+      "dependency": "Protected independent complete backup custody",
+      "closure_route": "Complete capture first; verify actual retained Library version/horizon, runtime exclusion and independently authenticated readback; run original bounded corruption/good-copy restore oracle.",
+      "preciseMissingEvidence": "Existing Library DATA custody is independently conditionally suitable but complete sealed snapshot, retention horizon, observed runtime credential exclusion, independent readback and full fresh-target restore remain unproven.",
+      "blockerClass": "external_custody_and_missing_examination",
+      "reviewedCandidate": "Current16path staged successor includes10path visual-memory capture/lock/materializer correction, independently approved scoped5PASS; published session admission scopedHostedPASS retained.",
+      "assignedLane": "C recovery_assurance",
+      "minimumExamination": "Complete capture first; verify actual retained Library version/horizon, runtime exclusion and independently authenticated readback; run original bounded corruption/good-copy restore oracle.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "No complete protected custody route established; no provisioning authorized. Existing suitable authority may be examined if identified.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      },
+      "progressOverlay": "Published cooperating-session Redis admission scopedPASS,414/414; visual-memory10path successor final scopedreview and5PASS plus fullcompilationPASS. Still no complete prior/current topology/full operational restore/allpending/custody acceptance; bootAllowed/fullRuntimefalse preserved."
+    },
+    {
+      "id": "A5",
+      "status": "PENDING",
+      "requirement": "Seamless upgrades and rollback",
+      "criteria": "Preserve accepted operating rollback. Complete whole-application consistency and authorized restore across all domains; paused inspection recovery is not complete application rollback.",
+      "dependency": "Whole-application cross-domain upgrade/restore consistency",
+      "closure_route": "Reuse accepted operating rollback; examine all required domains under authorized restore, preserving authority and financial/session/pending identities.",
+      "preciseMissingEvidence": "Campaign F two realRedis session-writer assertions independentlyPASS; runtime suite414/414. Cooperatingprocess drain/uncertainty/childprocess fencing proven only. Complete prior/current writer topology/fullrestore/allpending/custody remain. Visual-memory completefile capture/lock/materializer9path candidate4localPASS under source review; bootAllowed/fullRuntime remainfalse.",
+      "blockerClass": "technical_scope_and_missing_examination",
+      "reviewedCandidate": "Current16path staged successor includes10path visual-memory capture/lock/materializer correction, independently approved scoped5PASS; published session admission scopedHostedPASS retained.",
+      "assignedLane": "C recovery_assurance",
+      "minimumExamination": "Reuse accepted operating rollback; examine all required domains under authorized restore, preserving authority and financial/session/pending identities.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Engineering authorized; full cross-domain operational restoration evidence pending.",
+      "progressOverlay": "Published cooperating-session Redis admission scopedPASS,414/414; visual-memory10path successor final scopedreview and5PASS plus fullcompilationPASS. Still no complete prior/current topology/full operational restore/allpending/custody acceptance; bootAllowed/fullRuntimefalse preserved.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      }
+    },
+    {
+      "id": "A6",
+      "status": "PENDING",
+      "requirement": "Owner-visible autonomous dry run",
+      "criteria": "Provide authenticated visual same-identity genuine source-to-owner-to-simulated-results evidence using existing Console. No separately purchased visual host or waiver of genuine evidence is required.",
+      "dependency": "Authenticated genuine source-to-owner-to-simulated-results visual evidence",
+      "closure_route": "Examine genuine same-identity missing owner decision/simulated outcome/Assurance/recovery linkage within original contract; truthful empty/unavailable surfaces alone do not satisfy complete row.",
+      "preciseMissingEvidence": "No same-identity source-to-owner-decision-to-simulated-results autonomous dry-run chain is demonstrated. Empty isolated downstream data is truthful but is not such a chain.",
+      "blockerClass": "missing_integrated_evidence",
+      "reviewedCandidate": "Hosted scoped Console PASS at exacttree6c7d6; authentic historical390/1440 readback and401/403 preserved.",
+      "candidateIdentity": {
+        "status": "See exact reviewed file hashes in campaign E receipts; new integrated successor awaiting controller exact-tree publication decision"
+      },
+      "assignedLane": "A frontend_route + E business_finance",
+      "minimumExamination": "Examine genuine same-identity missing owner decision/simulated outcome/Assurance/recovery linkage within original contract; truthful empty/unavailable surfaces alone do not satisfy complete row.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root/console_acceptance",
+        "decision": "PENDING",
+        "scopeDecision": "PASS_SCOPED_HOSTED_CONSOLE_READBACK_NO_COMPLETE_ROW_CLOSURE",
+        "receipt": "CONSOLE-INDEPENDENT-DECISION.json"
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Scoped examination authorized after publication approval; empty order/finance fixtures do not establish full linked results.",
+      "progressOverlay": "Fresh authenticated stored-state CostCentre/mission readback available, production608f3f distinct from isolated draftsource. Same-product owner decision/simulatedfinance/Assurance/recovery chain still absent; AssuranceUNAVAILABLE, decisions stale/unresolved."
+    },
+    {
+      "id": "A8",
+      "status": "PENDING",
+      "requirement": "Product-linked Pillow Chat",
+      "criteria": "Actual authenticated compact icon/context-chip, followup, remove/switch/comparison evidence plus exact source binding and stale/missing/forged/crossowner/truncation protections. Positive paid assessment is not an independent prerequisite of original holistic\u00a78.",
+      "dependency": "Corrected native archive-session fixture full-contract result",
+      "closure_route": "After applicable exact-tree publication, inspect normal automatic native A8 result at both widths and independently join exact-context/history/forgery and retained cold-process evidence.",
+      "preciseMissingEvidence": "Published c324 native STARTUP_TIMEOUT; actual BFF diagnosis rapid4/10s session creation. Current five-path successor reuses authenticated history/session and handles concurrent bootstrap/canceled-route ID hints; targeted1PASS and independent source review. Full unchanged native desktop/mobile contract still awaits this exact successor hosted execution.",
+      "blockerClass": "reviewed_fixture_correction_awaiting_hosted_examination",
+      "reviewedCandidate": "Five-path authenticated history/session reuse plus concurrent-bootstrap and canceled-route IDhint correction. A8-SESSION-REUSE-INDEPENDENT-REVIEW.json; final targeted1PASS.",
+      "candidateIdentity": {
+        "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+        "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+        "changedPaths": 16,
+        "published": false,
+        "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+        "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+        "changes": {
+          "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+          "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+          "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+        }
+      },
+      "assignedLane": "A frontend_route",
+      "minimumExamination": "Publish applicable exact reviewed16path successor, inspect one normal automatic native both-width A8 examination and independently join exact context/history/forgery plus retained cold-process evidence. No rate/deadline relaxation.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "frontend_route + root independent correction reviewer",
+        "decision": "PENDING",
+        "scopeDecision": "CURRENT_HOSTED_NATIVE_FAILED; REVIEWED_FIXTURE_CORRECTION_HTTP_PASS_ONLY",
+        "receipt": "A8-FAILURE-AND-CORRECTION.md"
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Requires exact-tree publication approval to run the existing automatic hosted job; no established no-publication hosted route."
+    },
+    {
+      "id": "A10",
+      "status": "PENDING",
+      "requirement": "Canva-assisted editing",
+      "criteria": "Provide the exact authorised permitted asset/design and editing/export operation through existing Canva consumer; no runtime entitlement inferred from ChatGPT connector.",
+      "dependency": "Existing actual Canva consumer and export capability; supplier-media O7 and personal design selection not blanket prerequisites.",
+      "closure_route": "Identify existing permitted asset/design and scoped edit/export authority, then use actual existing Canva consumer. Connector availability is not runtime entitlement.",
+      "preciseMissingEvidence": "Applicable existing Canva consumer access/entitlement and actual edited/exported artifact receipt. Exact accepted owner-created SVG may supply permission; no personal owner design-choice gate.",
+      "blockerClass": "missing_consumer_capability_and_actual_export_evidence",
+      "reviewedCandidate": "A10-AUTHORITY-INTERPRETATION.json; accepted original SVG usable.",
+      "assignedLane": "E business_finance",
+      "minimumExamination": "One bounded actual Canva-assisted edit/export of exact permitted SVG, artifact/version/provenance and approval invalidation verification, independent decision.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Permitted asset selection/reversible examination edit authorized; actual applicable access/export capability unproven, no purchase or activation."
+    },
+    {
+      "id": "A15",
+      "status": "PENDING",
+      "requirement": "Keepa and Helium 10 readiness",
+      "criteria": "Verify applicable Keepa entitlement and preserve deferred Helium10 readiness; no subscription or activation.",
+      "dependency": "Applicable Keepa entitlement evidence",
+      "closure_route": "Verify current applicable entitlement with authorized read-only evidence, preserving deferred Helium10 status. No subscription, activation or purchase.",
+      "preciseMissingEvidence": "Applicable Keepa entitlement/readiness proof and truthful deferred Helium10 readiness.",
+      "blockerClass": "external_entitlement_evidence",
+      "reviewedCandidate": null,
+      "assignedLane": "E business_finance",
+      "minimumExamination": "Verify current applicable entitlement with authorized read-only evidence, preserving deferred Helium10 status. No subscription, activation or purchase.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root independent acceptance coordinator; obtain reviewer separate from implementation author when executable evidence is available",
+        "decision": "PENDING",
+        "newAcceptance": false,
+        "reason": "Complete applicable criterion not yet independently proven; this register review does not establish acceptance."
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Read-only existing entitlement examination authorized; no purchase/subscription/activation.",
+      "progressOverlay": "Fresh retrieval of stale incomplete integrations snapshot does not prove Keepa entitlement or absence; no provider refresh."
+    },
+    {
+      "id": "A19",
+      "status": "PENDING",
+      "requirement": "Integrated owner acceptance",
+      "criteria": "Use existing authenticated Console to verify identical genuine product/mission/order/finance/Assurance records on desktop and mobile; owner must be able to inspect them. No additional purchase-method approval required.",
+      "dependency": "Genuine same-identity integrated owner-readable records",
+      "closure_route": "Examine genuine same-identity missing owner decision/simulated outcome/Assurance/recovery linkage within original contract; truthful empty/unavailable surfaces alone do not satisfy complete row.",
+      "preciseMissingEvidence": "Genuine product and historical investigation records are visible at both widths; linked order/finance/Assurance records are not present, so complete integrated owner inspection is unproven.",
+      "blockerClass": "missing_integrated_evidence",
+      "reviewedCandidate": "Hosted scoped Console PASS at exacttree6c7d6; authentic historical390/1440 readback and401/403 preserved.",
+      "candidateIdentity": {
+        "status": "See exact reviewed file hashes in campaign E receipts; new integrated successor awaiting controller exact-tree publication decision"
+      },
+      "assignedLane": "A frontend_route + E business_finance",
+      "minimumExamination": "Examine genuine same-identity missing owner decision/simulated outcome/Assurance/recovery linkage within original contract; truthful empty/unavailable surfaces alone do not satisfy complete row.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root/console_acceptance",
+        "decision": "PENDING",
+        "scopeDecision": "PASS_SCOPED_HOSTED_CONSOLE_READBACK_NO_COMPLETE_ROW_CLOSURE",
+        "receipt": "CONSOLE-INDEPENDENT-DECISION.json"
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Scoped display work authorized; absent genuine linked records prevents whole-contract closure.",
+      "progressOverlay": "Fresh authenticated stored-state CostCentre/mission readback available, production608f3f distinct from isolated draftsource. Same-product owner decision/simulatedfinance/Assurance/recovery chain still absent; AssuranceUNAVAILABLE, decisions stale/unresolved."
+    }
+  ],
+  "requiredElevenFieldsMapping": {
+    "1": "id",
+    "2": "status",
+    "3": "criteria",
+    "4": "preciseMissingEvidence",
+    "5": "blockerClass",
+    "6": "reviewedCandidate",
+    "7": "dependency",
+    "8": "assignedLane",
+    "9": "minimumExamination",
+    "10": "independentReviewerAndFinalDecision",
+    "11": "achievableWithinExistingAuthorityAndInfrastructure"
+  },
+  "currentCIOverlay": {
+    "source": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+    "tree": "f2d7d7c085dc21e000c9b9e2a0aab2b17b410c1b",
+    "Runtime39114039616": "SUCCESS",
+    "Semantic39114039573": "SUCCESS",
+    "Assurance39114041892": "SUCCESS",
+    "Product39114039622": "FAILURE_A8_ONLY",
+    "attribution": "Campaign C receipts; current remote/F29 reconciliation supplied by runtime_reconcile. Older PR leading F29 failure is historical, not later contradictory acceptance."
+  },
+  "campaignECIReceipt": "CI-STATUS.json",
+  "acceptancePromotionPolicy": "Await independent full-contract receipts; baseline43/21 unchanged.",
+  "campaign": "F",
+  "publication": {
+    "evidence": {
+      "commit": "dccff9bd3a012f194958994284d4ec6e798042c5",
+      "tree": "3795db913ef930892cf8810cb9d260f93cbe6864"
+    },
+    "source": {
+      "commit": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+      "tree": "c324ecb16b3054b86e84ce4b662d3c3f2b1be9a8"
+    }
+  },
+  "currentCI": {
+    "source": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+    "tree": "c324ecb16b3054b86e84ce4b662d3c3f2b1be9a8",
+    "automatic": true,
+    "dispatches": 0,
+    "reruns": 0,
+    "allTerminal": true,
+    "runs": [
+      {
+        "id": 39118567382,
+        "name": "Independent Assurance Core",
+        "status": "completed",
+        "conclusion": "success",
+        "source": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+        "created_at": "2026-10-18T10:16:02Z",
+        "updated_at": "2026-10-18T10:16:22Z"
+      },
+      {
+        "id": 39118567368,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "source": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+        "created_at": "2026-10-18T10:16:02Z",
+        "updated_at": "2026-10-18T10:21:04Z"
+      },
+      {
+        "id": 39118567379,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "failure",
+        "source": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+        "created_at": "2026-10-18T10:16:02Z",
+        "updated_at": "2026-10-18T10:26:34Z"
+      },
+      {
+        "id": 39118567378,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "source": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+        "created_at": "2026-10-18T10:16:02Z",
+        "updated_at": "2026-10-18T10:30:09Z"
+      }
+    ],
+    "completedJobs": [
+      {
+        "run": 39118567379,
+        "id": 117649288960,
+        "name": "Work8 exact frontend review candidate (no deployment)",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout pinned review source without moving deployment branch",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout retained frontend bundle without deployment credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify and restore exact frontend review candidate",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use pinned Node runtime",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install reviewed web",
+            "conclusion": "success"
+          },
+          {
+            "name": "Typecheck reviewed web",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test reviewed web and financial readbacks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build reviewed web without deployment",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use pinned Node runtime",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout retained frontend bundle without deployment credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout pinned review source without moving deployment branch",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117649289071,
+        "name": "Real Redis image expiry, AOF and signal proof",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact tested source",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use the pinned supervisor runtime",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build actual Redis image and execute runtime-library checks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Require actual image authentication, AOF recovery, signal and expiry proof",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve image verification outcome in job summary",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use the pinned supervisor runtime",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact tested source",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117649289094,
+        "name": "Repository and deployment-root contract",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use Node.js 22",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify package scripts, lockfiles and the production web contract",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify deterministic build configuration and reject runtime drift",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify isolated provider read-only observation without credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Rehearse combined disk capture and fresh-process restore without production access",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve restore rehearsal receipt",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify disk-only legacy checkpoint capture and refusal cases",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify disk-only legacy Shadow CEO multi-store capture",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify bounded canary configuration and child-process cleanup",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record tested revision and limits",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117649387647,
+        "name": "Legacy Vite compatibility \u2014 clean install, typecheck, build",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install legacy frontend dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Typecheck legacy frontend",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build legacy frontend",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record current test coverage gap",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117649387664,
+        "name": "Backend \u2014 clean install, typecheck, build, offline tests",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install and build linked Pillow package",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install backend dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify backend development environment",
+            "conclusion": "success"
+          },
+          {
+            "name": "Typecheck backend",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build backend",
+            "conclusion": "success"
+          },
+          {
+            "name": "Work8 bounded integrated exams with kernel network denial",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify isolated SQL.js and HTTP capture admission, save and readback",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify Amazon sync evidence and sandbox go-live isolation",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify exact-model paid LLM price and durable reservation without provider calls",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify CJ account-bound authentication and exact VID stock without provider calls",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run fast invariant gate",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run ranking, correction and authority lock tests",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run chat, recovery and canonical-truth tests",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record reviewed offline scope",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117649387698,
+        "name": "Canonical Next.js web \u2014 clean install, typecheck, test, build",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install Next.js web dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Typecheck Next.js web",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test Next.js web",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build Next.js web",
+            "conclusion": "success"
+          },
+          {
+            "name": "Diagnose known lint debt without masking product checks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record lint baseline debt",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117649387701,
+        "name": "Exact old revision pending-RAM capture decision (isolated)",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout reviewed proof without persisted credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact protected source into separate isolated directory",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use pinned proof runtime",
+            "conclusion": "success"
+          },
+          {
+            "name": "Install exact old locked dependencies without lifecycle scripts",
+            "conclusion": "success"
+          },
+          {
+            "name": "One bounded proof using unmodified old storage source",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve synthetic capture artifacts and decision",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use pinned proof runtime",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact protected source into separate isolated directory",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout reviewed proof without persisted credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117649387757,
+        "name": "Phone browser to authenticated persisted commerce fixture",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use pinned Node runtime",
+            "conclusion": "success"
+          },
+          {
+            "name": "Install isolated application and browser dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify real phone browser login BFF backend and disk transaction",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build exact integrated frontend for source-context examination",
+            "conclusion": "success"
+          },
+          {
+            "name": "Examine authenticated source-context delivery on mobile and desktop",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Preserve scoped source-context examination evidence",
+            "conclusion": "success"
+          },
+          {
+            "name": "Examine preserved genuine historical owner readback on mobile and desktop",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve scoped historical owner readback evidence",
+            "conclusion": "success"
+          },
+          {
+            "name": "Examine Work8 two-stage media approval without live effects",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve browser receipt screenshot and bounded server logs",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use pinned Node runtime",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117649387840,
+        "name": "Pillow \u2014 clean install, typecheck, build, offline test",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install Pillow dependencies",
+            "conclusion": "success"
+          },
+          {
+            "name": "Typecheck Pillow",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build Pillow",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run reviewed in-process Pillow commerce and operations suites",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567379,
+        "id": 117651294614,
+        "name": "Product path result (no deployment)",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Require every product check to pass",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567378,
+        "id": 117649288527,
+        "name": "Exact-source Railway Railpack image",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout candidate source without merge or persisted credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use the repository Node pin",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build the effective root Railway configuration without deployment",
+            "conclusion": "success"
+          },
+          {
+            "name": "Assess exact accepted-source examination-only reuse boundary",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve explicitly retained F29 receipt",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Examine F27 simultaneous faults with independent external oracle",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve F27 external observations and protected containment",
+            "conclusion": "success"
+          },
+          {
+            "name": "Examine remaining F29 supervision pair loss in isolated exact image",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve owner-visible F29 incident and containment receipts",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve exact-source packaging receipt",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use the repository Node pin",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout candidate source without merge or persisted credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567378,
+        "id": 117649288650,
+        "name": "Durable runtime \u2014 real Redis, restart, ownership and authorization",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Require offline certification, redeploy and collection evidence tests",
+            "conclusion": "success"
+          },
+          {
+            "name": "Install Redis binary for test-owned isolated AOF processes",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install, typecheck and build Pillow",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run mandatory Pillow observer and reasoning-only policy tests",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install, verify, typecheck and build backend",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify changed examination boundaries",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build compiled coordinator examination image",
+            "conclusion": "success"
+          },
+          {
+            "name": "Examine actual compiled coordinator timeout and error paths",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve compiled coordinator examination receipts",
+            "conclusion": "success"
+          },
+          {
+            "name": "Examine generated application held capture and external containment",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve actual generated application startup and held capture evidence",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify bounded multi-provider inference and preserved authority",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify response completion and frontend preservation safeguards",
+            "conclusion": "success"
+          },
+          {
+            "name": "Prove permanent locked runtime and complete enabled-store restore",
+            "conclusion": "success"
+          },
+          {
+            "name": "Retain pre-cutover closure evidence",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run mandatory isolated runtime and session tests",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record exact tested revision and scope",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567378,
+        "id": 117649288676,
+        "name": "Generated full path \u2014 reasoning-admission",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Assess accepted corpus reuse at exact unchanged runtime boundary",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record retained corpus evidence without claiming new execution",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Install Redis binary for test-owned isolated AOF processes",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install, typecheck and build Pillow",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install, verify, typecheck and build backend",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify complete generated corpus with intercepted provider HTTP",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record current checkout identity separately from retained tested source",
+            "conclusion": "success"
+          },
+          {
+            "name": "Upload generated full-path evidence",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567378,
+        "id": 117649288678,
+        "name": "Durable web \u2014 receipt recovery, one submission, tests and build",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install and typecheck canonical Next.js web",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run web tests with mandatory durable-delivery coverage",
+            "conclusion": "success"
+          },
+          {
+            "name": "Build canonical Next.js web",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record exact tested revision and scope",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567378,
+        "id": 117649288804,
+        "name": "Generated full path \u2014 response-delivery",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Assess accepted corpus reuse at exact unchanged runtime boundary",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record retained corpus evidence without claiming new execution",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Install Redis binary for test-owned isolated AOF processes",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install, typecheck and build Pillow",
+            "conclusion": "success"
+          },
+          {
+            "name": "Clean install, verify, typecheck and build backend",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify complete generated corpus with intercepted provider HTTP",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record current checkout identity separately from retained tested source",
+            "conclusion": "success"
+          },
+          {
+            "name": "Upload generated full-path evidence",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Use Node.js 22 with npm cache",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Checkout exact event revision without persisting credentials",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "run": 39118567378,
+        "id": 117651991990,
+        "name": "Runtime repair result (no deployment)",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Require every mandatory repair gate to pass",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ],
+    "summary": "Runtime all6jobsSUCCESS;414/414 mandatoryruntime tests incl2new realRedis sessioncapture assertions. Product onlyA8native failure; O19 backend assertions and subsequent Console/media succeed. Independent fullcontract decisions in separate receipts."
+  },
+  "historicalCampaignEAttribution": {
+    "evidence": {
+      "commit": "e10de63cd5499bf53fe978fb6c26f802f3912da3",
+      "tree": "2225afd3df9579ca5e22675bef618433f200145b"
+    },
+    "source": {
+      "approvedCommit": "2a3f342db1f00f954d9a63682d8d8ed76eff4bb2",
+      "commit": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+      "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+      "metadataOnly": "removed skip-ci marker"
+    },
+    "evidenceFirst": true,
+    "exactTreesVerifiedBeforeAfter": true,
+    "priorIndependentByteModeReviewReused": true,
+    "duplicateDispatch": false,
+    "productionDeployment": false
+  },
+  "newAcceptedOriginalIds": [
+    19
+  ],
+  "newAcceptedAmendmentIds": [],
+  "newAcceptedRows": [
+    {
+      "id": "O19",
+      "status": "PASS",
+      "requirement": "Simulated listing schema/media",
+      "criteria": "Complete permitted exact-asset media/listing examination and authenticated approval separation; authorised Canva export only for a specified permitted design.",
+      "dependency": "Exact permitted assets and applicable simulated-listing consumer; supplier O7 is not necessarily prerequisite when owner-created assets satisfy this contract.",
+      "closure_route": "Publish applicable exact reviewed integrated tree, inspect existing work8 test-glob hosted result with retained allowlisted receipt; independent full-contract review joins unchanged A9/A11 and changed-boundary regression.",
+      "preciseMissingEvidence": "None for complete applicable O19 contract; final localactualSIGKILL/freshprocess proof joins published production hashes and hosted authenticated integration.",
+      "blockerClass": "engineering_integration_and_missing_examination",
+      "reviewedCandidate": "O19-TRANSFER-INDEPENDENT-REVIEW.md supersedes test-only-copy gap; durable APPLY_LISTING/TRANSFER_LISTING plus authenticated canonical intent examination.",
+      "assignedLane": "E business_finance",
+      "minimumExamination": "Complete; retain accepted hosted and local interruption receipts, no repeat.",
+      "independentReviewerAndFinalDecision": {
+        "reviewer": "/root/frontend_route",
+        "independentOfAuthor": "/root/business_finance",
+        "decision": "PASS_COMPLETE_ORIGINAL_CONTRACT",
+        "receipt": "O19-FINAL-INDEPENDENT-ACCEPTANCE.md"
+      },
+      "achievableWithinExistingAuthorityAndInfrastructure": "Potentially yes: owner-created permitted assets may satisfy the simulation independently of supplier-media O7; independent contract review required.",
+      "examinationLimitations": [
+        "Synthetic owner-created permitted asset; not supplier licence proof.",
+        "In-process listing engine only; no authenticated desktop/mobile browser examination.",
+        "Media approval state is independent of listing state and candidateDigest; full integration unproven.",
+        "Zero paid inference or external effects."
+      ],
+      "candidateIdentity": {
+        "status": "See exact reviewed file hashes in campaign E receipts; new integrated successor awaiting controller exact-tree publication decision"
+      },
+      "acceptanceReceipt": "O19-FINAL-INDEPENDENT-ACCEPTANCE.md"
+    }
+  ],
+  "acceptanceDecisionAudit": {
+    "O19": [
+      {
+        "step": 1,
+        "decision": "Provisional completePASS after hosted integration",
+        "receipt": "O19-INDEPENDENT-ACCEPTANCE.md"
+      },
+      {
+        "step": 2,
+        "decision": "Withdrawn before publication because graceful reopen was insufficient for explicit process-interruption requirement"
+      },
+      {
+        "step": 3,
+        "decision": "Final completePASS after actual localSIGKILL/freshprocess proof independently joined to five unchanged published production hashes and hosted integration",
+        "receipt": "O19-FINAL-INDEPENDENT-ACCEPTANCE.md",
+        "important": "Process-interruption proof executed locally, not in GitHub; hosted authenticated integration separately attributed."
+      }
+    ]
+  },
+  "stagedSuccessor": {
+    "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+    "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+    "changedPaths": 16,
+    "published": false,
+    "publicationAuthority": "APPLICABLE_EXACT_TREE_APPROVAL_REQUIRED",
+    "integration": "Pillow/backend/frontend compilation PASS; final remote fulltree independent review in progress",
+    "changes": {
+      "A8": "5paths authenticated history reuse, concurrent bootstrap/canceled-route IDhint; targeted1PASS and rootreview",
+      "visualMemory": "10paths; final scoped independent approval and5PASS after findings fixes; nofullrestore acceptance",
+      "O19": "1test-only path actualkill already joined to independentcompletePASS; production unchanged"
+    }
+  }
+}

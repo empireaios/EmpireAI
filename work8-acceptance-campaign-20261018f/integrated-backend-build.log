@@ -1,0 +1,12 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> @empireai/backend@0.1.0 prebuild
+> node ../scripts/sync-pillow-governance.mjs
+
+[sync-pillow-governance] Bundle ready at /workspace/scratch/7952261165b1/EmpireAI/backend/.pillow-governance-bundle
+
+> @empireai/backend@0.1.0 build
+> tsc -p tsconfig.json && node scripts/record-runtime-revision.cjs
+
+src/app.ts(700,73): error TS7006: Parameter 'visualMemorySnapshot' implicitly has an 'any' type.

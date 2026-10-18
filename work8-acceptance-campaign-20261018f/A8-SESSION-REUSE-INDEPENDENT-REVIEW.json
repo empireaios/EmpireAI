@@ -1,0 +1,27 @@
+{
+  "decision": "APPROVED_CHANGED_SOURCE_NOT_HOSTED_A8_ACCEPTANCE",
+  "reviewer": "root independent of frontend_route author",
+  "files": {
+    "empireai-web/lib/pillow/client.ts": "e9526b5ee90b73633137f87ab94ac3c98b0392d2b6a5e13344f04dd94e854ca9",
+    "empireai-web/lib/pillow/session-resolution.ts": "ddcd860a4737e4fc148443f07cc7b61e29c84113ec2a6ac78147c305b5ae97fc",
+    "empireai-web/lib/pillow/session-resolution.test.ts": "bc0713beb05fb05c9970584a794e3154c57a7dc987f61c46f2e9272da8b58e03",
+    "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx": "0d013ed99fc5e60ba9eee34802426c948a0b45069f5e6e5dfbe2777dbc572959",
+    "empireai-web/e2e/work8-source-context-native.mjs": "65e9e23ff0d2b69cd92974ebaa1a3daa171808a1cfdab894692ffb782b0e76d5"
+  },
+  "verified": [
+    "Cached session ID is a hint; actual authenticated history endpoint validates principal and exact returned session identity",
+    "Helper requires matching workspace; only 404 permits canonical replacement; permission/availability/integrity errors fail closed",
+    "Nonempty unverified archive retains POST with required acknowledgment; no silent archive drop",
+    "Navigation/focus and send both use authenticated resolution; owner guards retained after asynchronous completion",
+    "Existing production 4/10s admission and native examination deadlines unchanged",
+    "Native diagnostic retains timestamps and bounded error fields, not tokens",
+    "Whole-resolution in-flight coalescing isolates owner/workspace/archive/cache identity",
+    "Only authenticated session ID hints are retained across canceled UI routes; every subsequent hint use repeats authenticated history verification; canceled route never writes conversation turns"
+  ],
+  "retainedTest": "a8-session-reuse-tests-final.tap:1PASS/0FAIL; six simultaneous bootstrap resolutions coalesce to one POST, canceled-route subsequent no-local-cache resolution reauthenticates without new POST; eight navigation/focus/send resolutions and prior owner/workspace/archive negative assertions pass",
+  "limitations": [
+    "Transport test is not native hosted acceptance",
+    "Actual native reload/desktop/mobile full-contract successor examination remains required"
+  ],
+  "testsRepeatedByReviewer": 0
+}

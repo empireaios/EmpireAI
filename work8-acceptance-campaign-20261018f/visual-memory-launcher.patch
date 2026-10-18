@@ -1,0 +1,12 @@
+diff --git a/backend/src/validation/tests/work8-visual-memory-capture.test.ts b/backend/src/validation/tests/work8-visual-memory-capture.test.ts
+new file mode 100644
+index 00000000..446bd724
+--- /dev/null
++++ b/backend/src/validation/tests/work8-visual-memory-capture.test.ts
+@@ -0,0 +1,6 @@
++// Existing Work8 test glob executes the shared Pillow capture/materialization
++// examination without a duplicate workflow or copied assertions.
++import { pathToFileURL, fileURLToPath } from 'node:url';
++import path from 'node:path';
++const examination = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../pillow/src/validation/tests/visual-memory-recovery-capture.test.ts');
++await import(pathToFileURL(examination).href);

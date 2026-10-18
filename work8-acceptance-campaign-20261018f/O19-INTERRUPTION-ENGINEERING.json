@@ -1,0 +1,17 @@
+{
+  "decision": "AUTHOR_SCOPED_TEST_PASS_NOT_INDEPENDENT_ACCEPTANCE",
+  "testPath": "backend/src/validation/tests/work8-media-listing-interruption.test.ts",
+  "testSHA256": "edd00f0f92d25cd3c2b38500c51f801ba5e9ad7bd1a54da3d26fb5959c590d31",
+  "testReceipt": "O19-INTERRUPTION.tap",
+  "changedProductionFiles": [],
+  "productionByteEqualityToCurrentMain": {
+    "store": true,
+    "engine": true,
+    "work8-twin-media": true,
+    "work8-twin-runtime": true,
+    "work8-twin": true
+  },
+  "proof": "Kernel-isolated actual writer process commits approval/APPLY_LISTING/TRANSFER with native SQLite store open; parent receives committed fullrecords then SIGKILL, verifies signal and fresh independent reader reconstructs exact source/target/approval/apply/transfer; no authority copied, replay rejected and counts unchanged. No graceful close/checkpoint executed by writer.",
+  "hosted": "Existing work8testglob selects newtest when published; local actualprocess evidence available now, independent reviewer determines acceptance join.",
+  "limits": "Postcommit interruption only; does not prove a crash between transaction statements. Separate rollback fault test retained."
+}

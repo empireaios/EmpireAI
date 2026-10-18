@@ -1,0 +1,400 @@
+diff --git a/backend/src/app.ts b/backend/src/app.ts
+index 0c8a04f5..32154f9c 100644
+--- a/backend/src/app.ts
++++ b/backend/src/app.ts
+@@ -697,10 +697,12 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
+           withExistingShadowCapture(getDatabase(),resolveShadowCeoDbPath(),shadow=>
+             withExclusiveNativeMissionCapture(getActiveDatabasePath(),()=>
+               withExclusiveWork8DomainCapture(root,async()=> {
+-                const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath},queue);
++                return pillowHost.withVisualMemoryRecoveryCapture(async visualMemorySnapshot => {
++                const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath,visualMemorySnapshot},queue);
+                 staged=true;
+                 if(scope)await holdGeneratedCapture(scope,captured,{seal:finalizeWork8RecoveryInventory,verify:verifyWork8RecoveryInventory,invalidate:invalidateWork8RecoveryInventory});
+                 return captured;
++                });
+               })))))));
+       finalizeWork8RecoveryInventory(result);
+       verifyWork8RecoveryInventory(result);
+diff --git a/backend/src/orchestration/pillow-host/pillow-host.ts b/backend/src/orchestration/pillow-host/pillow-host.ts
+index 987d63fd..6e8869d4 100644
+--- a/backend/src/orchestration/pillow-host/pillow-host.ts
++++ b/backend/src/orchestration/pillow-host/pillow-host.ts
+@@ -787,6 +787,10 @@ export class PillowHost {
+         this.ensureRunning();
+         return this.pillowSession.visualMemory.stopVisualMemory();
+     }
++    async withVisualMemoryRecoveryCapture<T>(capture:(snapshot:unknown)=>Promise<T>):Promise<T> {
++        this.ensureRunning();
++        return this.pillowSession.visualMemory.withRecoverySnapshot(capture);
++    }
+     captureVisualMemory() {
+         this.ensureRunning();
+         return this.pillowSession.visualMemory.captureMemoryNow();
+diff --git a/backend/src/runtime/work8-recovery-capture.ts b/backend/src/runtime/work8-recovery-capture.ts
+index db84cfe9..869c3c72 100644
+--- a/backend/src/runtime/work8-recovery-capture.ts
++++ b/backend/src/runtime/work8-recovery-capture.ts
+@@ -44,7 +44,7 @@ export async function captureRedisSnapshot(queue:TaskQueue):Promise<{capturedAt:
+ export async function captureRedisInventory(queue:TaskQueue) {
+  return (await captureRedisSnapshot(queue)).rows;
+ }
+-export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string},queue:TaskQueue):Promise<Work8RecoveryResult>{
++export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string;visualMemorySnapshot?:unknown},queue:TaskQueue):Promise<Work8RecoveryResult>{
+  if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN: Redis producers, watchdog, continuation and protected custody remain uncovered; only explicit scoped inspection is available");
+  return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,captureId:randomUUID(),captureRepositoryLifecycle:request.captureRepositoryLifecycle===true,captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
+   authorityFile:path.join(resolveShadowCeoAuthorityDir(),'authority-store.json'),
+diff --git a/deployment/work8-recovery-set.cjs b/deployment/work8-recovery-set.cjs
+index 54eeb4dd..e7405f99 100644
+--- a/deployment/work8-recovery-set.cjs
++++ b/deployment/work8-recovery-set.cjs
+@@ -53,7 +53,14 @@ module.exports={createRecoverySet,verifyRecoverySet,selectRecoveryPoint};
+ // Integrated runtime inventory uses the existing checkpoint verifier. The caller
+ // holds application fences; this format deliberately does NOT attest global quiescence.
+ const RUNTIME_IDS=[...Object.keys(require('./work8-system-vault.cjs').STORES),'brain','missions','execution','shadow'];
+-async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityFile,requestOwnersFile,destination,sourceCommit,frontendRevision,captureId,captureRedis,captureRedisIdentity,captureObserverWatchdog=false,captureRepositoryLifecycle=false}) {
++function verifyVisualMemorySnapshot(value) {
++ assert.ok(value&&value.schema==='VISUAL_MEMORY_INSPECTION_V1'&&value.operationalRestoreAvailable===false&&path.isAbsolute(value.sourceStoragePath));
++ assert.ok(Array.isArray(value.files)&&value.files.length<=10001);
++ const names=new Set();let total=0;
++ for(const file of value.files){assert.ok(file&&typeof file.path==='string'&&(file.path==='index.json'||/^records\/[-a-zA-Z0-9_.]+\.json$/.test(file.path)));assert.ok(!names.has(file.path));names.add(file.path);assert.ok(Number.isSafeInteger(file.mode)&&file.mode>=0&&file.mode<=0o777);assert.equal(typeof file.bytes,'string');const bytes=Buffer.from(file.bytes,'base64');assert.equal(bytes.toString('base64'),file.bytes);total+=bytes.length;assert.ok(total<=33554432);JSON.parse(bytes.toString('utf8'));}
++ return value;
++}
++async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityFile,requestOwnersFile,destination,sourceCommit,frontendRevision,captureId,captureRedis,captureRedisIdentity,captureObserverWatchdog=false,captureRepositoryLifecycle=false,visualMemorySnapshot}) {
+  canonical(root); canonical(path.dirname(destination));
+  assert.equal(path.resolve(destination),destination);assert.ok(!destination.startsWith(root+path.sep));
+  assert.match(sourceCommit,/^[a-f0-9]{40}$/);assert.match(frontendRevision,/^[a-f0-9]{40}$/);assert.match(captureId,/^[a-f0-9-]{36}$/);
+@@ -82,6 +89,8 @@ async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityF
+   }
+   const jsonDigests={};
+   for(const [id,file] of Object.entries(json)){const size=fs.statSync(file).size;if(id==='assuranceWatchdog')assert.ok(size>0&&size<=65536,'OBSERVER_WATCHDOG_SIZE');const bytes=fs.readFileSync(file);const value=JSON.parse(bytes);if(id==='assuranceWatchdog')assert.ok(Number.isSafeInteger(value.observedAt)&&value.observedAt>0&&typeof value.status==='string','OBSERVER_WATCHDOG_SCHEMA');assert.ok(value&&typeof value==='object'&&!Array.isArray(value));fs.writeFileSync(path.join(destination,id+'.json'),bytes,{flag:'wx',mode:0o600});jsonDigests[id]=sha(bytes);}
++  let visualMemoryDigest;
++  if(visualMemorySnapshot!==undefined){verifyVisualMemorySnapshot(visualMemorySnapshot);const bytes=JSON.stringify(visualMemorySnapshot);fs.writeFileSync(path.join(destination,'visual-memory.json'),bytes,{flag:'wx',mode:0o600});visualMemoryDigest=sha(bytes);}
+   const lifecycleMarkers=captureRepositoryLifecycle?captureLifecycleMarkers(root,destination):undefined;
+   const redisIdentity=captureRedisIdentity?await captureRedisIdentity():undefined;
+   const legacyCaptureStartedAt=Date.now();const snapshot=await captureRedis();
+@@ -94,7 +103,7 @@ async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityF
+   const redisBytes=JSON.stringify(redis);fs.writeFileSync(path.join(destination,'redis.json'),redisBytes,{flag:'wx',mode:0o600});
+   if(lifecycleMarkers)verifyLifecycleMarkers(root,lifecycleMarkers,true);
+   fs.rmSync(staging,{recursive:true});
+-  const manifest={schema:'WORK8_RUNTIME_RECOVERY_SET_V1',captureId,sourceCommit,frontendRevision,capturedAt:new Date().toISOString(),stores,json:jsonDigests,...(lifecycleMarkers?{lifecycleMarkers}:{}),redisDigest:sha(redisBytes),redisCapturedAt,...(redisIdentity?{redisIdentity}:{}),bootAllowed:false,completeLiveState:false,authority:'HISTORICAL_ONLY_DO_NOT_BOOT',remaining:['Redis producers outside Brain queue are not globally fenced','Executive watchdog and Amazon continuation coverage unproven','Protected independent custody and restoration unproven']};
++  const manifest={schema:'WORK8_RUNTIME_RECOVERY_SET_V1',captureId,sourceCommit,frontendRevision,capturedAt:new Date().toISOString(),stores,json:jsonDigests,...(visualMemoryDigest?{visualMemoryDigest}:{}),...(lifecycleMarkers?{lifecycleMarkers}:{}),redisDigest:sha(redisBytes),redisCapturedAt,...(redisIdentity?{redisIdentity}:{}),bootAllowed:false,completeLiveState:false,authority:'HISTORICAL_ONLY_DO_NOT_BOOT',remaining:['Redis producers outside Brain queue are not globally fenced','Executive watchdog and Amazon continuation coverage unproven','Protected independent custody and restoration unproven']};
+   fs.writeFileSync(path.join(destination,'runtime-recovery.pending.json'),JSON.stringify(manifest),{flag:'wx',mode:0o600});durableTree(destination);
+   const result={directory:destination,digest:sha(JSON.stringify(manifest)),manifest};verifyRuntimeRecoverySet(result,true);return result;
+  } catch(error){fs.rmSync(path.join(destination,'runtime-recovery.json'),{force:true});throw error;}
+@@ -104,11 +113,12 @@ function verifyRuntimeRecoverySet({directory,digest},allowProvisional=false) {
+  const m=JSON.parse(bytes);assert.equal(m.schema,'WORK8_RUNTIME_RECOVERY_SET_V1');assert.match(m.sourceCommit,/^[a-f0-9]{40}$/);assert.match(m.frontendRevision,/^[a-f0-9]{40}$/);assert.match(m.captureId,/^[a-f0-9-]{36}$/);assert.equal(m.bootAllowed,false);assert.equal(m.completeLiveState,false);assert.equal(m.authority,'HISTORICAL_ONLY_DO_NOT_BOOT');
+  assert.deepEqual(Object.keys(m.stores).sort(),[...RUNTIME_IDS].sort());
+  if(Object.hasOwn(m,'lifecycleMarkers'))verifyLifecycleMarkers(directory,m.lifecycleMarkers);
+- assert.deepEqual(fs.readdirSync(directory).sort(),[...RUNTIME_IDS,...(Object.hasOwn(m,'lifecycleMarkers')?Object.keys(MARKERS).map(id=>id+'.initialized'):[]),'authority.json','requestOwners.json',...(Object.hasOwn(m.json,'assuranceWatchdog')?['assuranceWatchdog.json']:[]),'redis.json',manifestName].sort());
++ assert.deepEqual(fs.readdirSync(directory).sort(),[...RUNTIME_IDS,...(Object.hasOwn(m,'visualMemoryDigest')?['visual-memory.json']:[]),...(Object.hasOwn(m,'lifecycleMarkers')?Object.keys(MARKERS).map(id=>id+'.initialized'):[]),'authority.json','requestOwners.json',...(Object.hasOwn(m.json,'assuranceWatchdog')?['assuranceWatchdog.json']:[]),'redis.json',manifestName].sort());
+  for(const id of RUNTIME_IDS){verifyCheckpoint({directory:path.join(directory,id),manifestSha256:m.stores[id]});const part=read(path.join(directory,id,'manifest.json'));assert.equal(part.source.commit,m.sourceCommit);}
+  const jsonIds=Object.hasOwn(m.json,'assuranceWatchdog')?['assuranceWatchdog','authority','requestOwners']:['authority','requestOwners'];
+  assert.deepEqual(Object.keys(m.json).sort(),jsonIds);
+  for(const id of jsonIds){const file=path.join(directory,id+'.json');canonical(file);if(id==='assuranceWatchdog')assert.ok(fs.statSync(file).size>0&&fs.statSync(file).size<=65536,'OBSERVER_WATCHDOG_SIZE');assert.equal(sha(fs.readFileSync(file)),m.json[id]);JSON.parse(fs.readFileSync(file,'utf8'));}
++ if(Object.hasOwn(m,'visualMemoryDigest')){const file=path.join(directory,'visual-memory.json');canonical(file);const st=fs.lstatSync(file);assert.ok(st.isFile()&&st.nlink===1&&st.size<=50000000);const bytes=fs.readFileSync(file);assert.equal(sha(bytes),m.visualMemoryDigest);verifyVisualMemorySnapshot(JSON.parse(bytes));}
+  const redisFile=path.join(directory,'redis.json');canonical(redisFile);assert.equal(sha(fs.readFileSync(redisFile)),m.redisDigest);const rows=JSON.parse(fs.readFileSync(redisFile,'utf8'));assert.ok(Array.isArray(rows));
+  const keys=new Set();for(const row of rows){assert.equal(typeof row.key,'string');assert.equal(typeof row.dump,'string');assert.ok(Number.isSafeInteger(row.ttl)&&row.ttl>=-1);assert.ok(!keys.has(row.key));keys.add(row.key);}
+  return m;
+@@ -116,9 +126,27 @@ function verifyRuntimeRecoverySet({directory,digest},allowProvisional=false) {
+ function finalizeRuntimeRecoverySet(result) {
+  verifyRuntimeRecoverySet(result,true);assert.ok(!fs.existsSync(path.join(result.directory,'runtime-recovery.json')));fs.renameSync(path.join(result.directory,'runtime-recovery.pending.json'),path.join(result.directory,'runtime-recovery.json'));sync(result.directory);verifyRuntimeRecoverySet(result);return result;
+ }
++function materializeVisualMemoryInspection({directory,digest,destination}) {
++ const manifest=verifyRuntimeRecoverySet({directory,digest});
++ assert.ok(Object.hasOwn(manifest,'visualMemoryDigest'),'VISUAL_MEMORY_CAPTURE_REQUIRED');
++ const snapshot=verifyVisualMemorySnapshot(JSON.parse(fs.readFileSync(path.join(directory,'visual-memory.json'),'utf8')));
++ canonical(path.dirname(destination));assert.equal(path.resolve(destination),destination);
++ assert.ok(destination!==directory&&!destination.startsWith(directory+path.sep));
++ assert.ok(destination!==snapshot.sourceStoragePath&&!destination.startsWith(snapshot.sourceStoragePath+path.sep));
++ // All validation precedes exclusive target creation. Never use recorded source
++ // paths as destinations or overwrite an existing target. No application boot.
++ fs.mkdirSync(destination,{mode:0o700});
++ try {
++  const target=path.join(destination,'visual-memory');fs.mkdirSync(target,{mode:0o700});fs.mkdirSync(path.join(target,'records'),{mode:0o700});
++  for(const file of snapshot.files){const output=path.join(target,file.path);fs.writeFileSync(output,Buffer.from(file.bytes,'base64'),{flag:'wx',mode:file.mode});fs.chmodSync(output,file.mode);assert.equal(fs.readFileSync(output).toString('base64'),file.bytes);assert.equal(fs.statSync(output).mode&0o777,file.mode);}
++  fs.writeFileSync(path.join(destination,'INSPECTION_ONLY.json'),JSON.stringify({bootAllowed:false,noExecutionAuthority:true,sourceDigest:digest,visualMemoryDigest:manifest.visualMemoryDigest}),{flag:'wx',mode:0o600});
++  durableTree(destination);sync(path.dirname(destination));return {directory:destination,visualMemoryPath:target,digest:manifest.visualMemoryDigest,bootAllowed:false};
++ }catch(error){fs.rmSync(destination,{recursive:true,force:true});throw error;}
++}
+ function stageRuntimeRecoveryInspection({directory,digest,destination}) {
+  verifyRuntimeRecoverySet({directory,digest});canonical(path.dirname(destination));assert.equal(path.resolve(destination),destination);assert.ok(!destination.startsWith(directory+path.sep));
+  fs.mkdirSync(destination,{mode:0o700});const copy=path.join(destination,'sealed-evidence');fs.cpSync(directory,copy,{recursive:true,errorOnExist:true,force:false});verifyRuntimeRecoverySet({directory:copy,digest});
++ if(Object.hasOwn(verifyRuntimeRecoverySet({directory:copy,digest}),'visualMemoryDigest'))materializeVisualMemoryInspection({directory:copy,digest,destination:path.join(destination,'visual-memory-inspection')});
+  fs.writeFileSync(path.join(destination,'INSPECTION_ONLY.json'),JSON.stringify({bootAllowed:false,noExecutionAuthority:true,digest}),{flag:'wx',mode:0o600});durableTree(destination);return {directory:destination,digest,bootAllowed:false};
+ }
+-Object.assign(module.exports,{captureRuntimeRecoverySet,verifyRuntimeRecoverySet,finalizeRuntimeRecoverySet,stageRuntimeRecoveryInspection});
++Object.assign(module.exports,{materializeVisualMemoryInspection,verifyVisualMemorySnapshot,captureRuntimeRecoverySet,verifyRuntimeRecoverySet,finalizeRuntimeRecoverySet,stageRuntimeRecoveryInspection});
+diff --git a/pillow/src/validation/tests/visual-memory-recovery-capture.test.ts b/pillow/src/validation/tests/visual-memory-recovery-capture.test.ts
+new file mode 100644
+index 00000000..9b1da9e5
+--- /dev/null
++++ b/pillow/src/validation/tests/visual-memory-recovery-capture.test.ts
+@@ -0,0 +1,61 @@
++import assert from 'node:assert/strict';
++import {test} from 'node:test';
++import fs from 'node:fs';
++import path from 'node:path';
++import os from 'node:os';
++import {spawnSync} from 'node:child_process';
++import {createRequire} from 'node:module';
++import {MemoryPersistenceStore} from '../../visual-memory-engine/memory-persistence-store.js';
++import {DEFAULT_VISUAL_MEMORY_CONFIGURATION} from '../../visual-memory-engine/configuration.js';
++const {verifyVisualMemorySnapshot}=createRequire(import.meta.url)('../../../../deployment/work8-recovery-set.cjs');
++const fixture=()=>{const root=fs.mkdtempSync(path.join(os.tmpdir(),'visual-recovery-'));const store=new MemoryPersistenceStore(root,{...DEFAULT_VISUAL_MEMORY_CONFIGURATION,storageRoot:'visual'});store.initialize();return {root,store};};
++test('exact byte capture holds all local mutations and cleans up success/failure',async()=>{
++ const {root,store}=fixture();try{
++  store.saveIndex([]);fs.writeFileSync(path.join(store.getRecordsDir(),'record-a.json'),' {"record":{"memoryRecordId":"record-a"}}\n');
++  let release!:()=>void;const gate=new Promise<void>(r=>{release=r;});let captured=false;
++  const capture=store.withRecoverySnapshot(async snapshot=>{captured=true;verifyVisualMemorySnapshot(snapshot);assert.equal(Buffer.from(snapshot.files.find(x=>x.path==='records/record-a.json')!.bytes,'base64').toString(),' {"record":{"memoryRecordId":"record-a"}}\n');await gate;return snapshot;});
++  assert.equal(captured,true);assert.equal(store.isRecoveryHeld(),true);
++  const other=new MemoryPersistenceStore(root,{...DEFAULT_VISUAL_MEMORY_CONFIGURATION,storageRoot:'visual'});
++  assert.throws(()=>other.saveIndex([]),/SHARED_CAPTURE_BUSY/);
++  const moduleURL=new URL('../../visual-memory-engine/memory-persistence-store.ts',import.meta.url).href;
++  const configURL=new URL('../../visual-memory-engine/configuration.ts',import.meta.url).href;
++  const program=`import assert from 'node:assert/strict';import {MemoryPersistenceStore} from ${JSON.stringify(moduleURL)};import {DEFAULT_VISUAL_MEMORY_CONFIGURATION} from ${JSON.stringify(configURL)};const s=new MemoryPersistenceStore(${JSON.stringify(root)},{...DEFAULT_VISUAL_MEMORY_CONFIGURATION,storageRoot:'visual'});assert.throws(()=>s.initialize(),/SHARED_CAPTURE_BUSY/);assert.throws(()=>s.delete('record-a'),/SHARED_CAPTURE_BUSY/);assert.throws(()=>s.saveIndex([]),/SHARED_CAPTURE_BUSY/);`;
++  const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',program],{encoding:'utf8',timeout:10000});assert.equal(child.status,0,child.stderr);
++
++  assert.throws(()=>store.saveIndex([]),/RECOVERY_HELD/);assert.throws(()=>store.delete('record-a'),/RECOVERY_HELD/);assert.throws(()=>store.write({record:{memoryRecordId:'b'}} as never),/RECOVERY_HELD/);
++  await assert.rejects(store.withRecoverySnapshot(async()=>0),/ALREADY_HELD/);
++  release();await capture;assert.equal(store.isRecoveryHeld(),false);store.delete('record-a');
++  await assert.rejects(store.withRecoverySnapshot(async()=>{throw Error('injected');}),/injected/);assert.equal(store.isRecoveryHeld(),false);store.saveIndex([]);
++ }finally{fs.rmSync(root,{recursive:true,force:true});}
++});
++test('unsafe aliases corrupt bytes and unknown inventory refuse without retaining hold',async()=>{
++ const {root,store}=fixture();try{
++  fs.writeFileSync(path.join(root,'outside.json'),'{}');fs.symlinkSync(path.join(root,'outside.json'),path.join(store.getRecordsDir(),'alias.json'));
++  await assert.rejects(store.withRecoverySnapshot(async()=>0),/FILE_UNSAFE/);assert.equal(store.isRecoveryHeld(),false);
++  fs.unlinkSync(path.join(store.getRecordsDir(),'alias.json'));fs.writeFileSync(path.join(store.getRecordsDir(),'bad.json'),'{');
++  await assert.rejects(store.withRecoverySnapshot(async()=>0),SyntaxError);
++  fs.unlinkSync(path.join(store.getRecordsDir(),'bad.json'));fs.writeFileSync(path.join(store.getStorageDir(),'unmapped'),'state');
++  await assert.rejects(store.withRecoverySnapshot(async()=>0),/INVENTORY_UNKNOWN/);
++ }finally{fs.rmSync(root,{recursive:true,force:true});}
++});
++test('sealed inventory rejects duplicate paths and traversal',()=>{
++ const base={schema:'VISUAL_MEMORY_INSPECTION_V1',sourceStoragePath:'/isolated/visual',operationalRestoreAvailable:false,files:[{path:'index.json',mode:0o600,bytes:Buffer.from('{}').toString('base64')}]};
++ verifyVisualMemorySnapshot(base);assert.throws(()=>verifyVisualMemorySnapshot({...base,files:[...base.files,...base.files]}));assert.throws(()=>verifyVisualMemorySnapshot({...base,files:[{...base.files[0],path:'records/../escape.json'}]}));
++});
++test('complete recovery manifest binds visual inventory and rejects changed sealed bytes',async()=>{
++ const {root,store}=fixture();const parent=fs.mkdtempSync(path.join(os.tmpdir(),'visual-seal-'));
++ const require=createRequire(import.meta.url);const {DatabaseSync}=require('node:sqlite');
++ const adapter=require('../../../../deployment/work8-recovery-set.cjs');
++ try{
++  const names={...require('../../../../deployment/work8-system-vault.cjs').STORES,brain:'brain.sqlite',missions:'brain.sqlite.missions.sqlite',execution:'brain.sqlite.mission-execution.sqlite',shadow:'shadow.sqlite'};
++  for(const relative of Object.values(names) as string[]){const file=path.join(root,relative);fs.mkdirSync(path.dirname(file),{recursive:true});const db=new DatabaseSync(file);db.exec('CREATE TABLE preserved(id TEXT PRIMARY KEY); INSERT INTO preserved VALUES (\'original\')');db.close();}
++  store.saveIndex([]);const originalBytes=' {"record":{"memoryRecordId":"kept"}}\n';fs.writeFileSync(path.join(store.getRecordsDir(),'kept.json'),originalBytes,{mode:0o640});
++  for(const name of ['authority','requestOwners'])fs.writeFileSync(path.join(root,name+'.json'),'{}');
++  const result=await store.withRecoverySnapshot(visualMemorySnapshot=>adapter.captureRuntimeRecoverySet({root,primaryPath:path.join(root,'brain.sqlite'),shadowPath:path.join(root,'shadow.sqlite'),authorityFile:path.join(root,'authority.json'),requestOwnersFile:path.join(root,'requestOwners.json'),destination:path.join(parent,'sealed'),sourceCommit:'a'.repeat(40),frontendRevision:'b'.repeat(40),captureId:'11111111-1111-4111-8111-111111111111',captureRedis:async()=>[],visualMemorySnapshot}));
++  adapter.finalizeRuntimeRecoverySet(result);assert.match(result.manifest.visualMemoryDigest,/^[a-f0-9]{64}$/);adapter.verifyRuntimeRecoverySet(result);
++  const restored=adapter.materializeVisualMemoryInspection({...result,destination:path.join(parent,'restored')});assert.equal(restored.bootAllowed,false);assert.ok(fs.existsSync(path.join(restored.visualMemoryPath,'records')));assert.equal(fs.readFileSync(path.join(restored.visualMemoryPath,'records/kept.json'),'utf8'),originalBytes);assert.equal(fs.statSync(path.join(restored.visualMemoryPath,'records/kept.json')).mode&0o777,0o640);const reopened=new MemoryPersistenceStore(restored.directory,{...DEFAULT_VISUAL_MEMORY_CONFIGURATION,storageRoot:'visual-memory'});reopened.initialize();assert.equal(reopened.read('kept')?.record.memoryRecordId,'kept');
++  assert.throws(()=>adapter.materializeVisualMemoryInspection({...result,destination:path.join(parent,'restored')}));
++  const staged=adapter.stageRuntimeRecoveryInspection({...result,destination:path.join(parent,'staged')});assert.ok(fs.existsSync(path.join(staged.directory,'visual-memory-inspection','INSPECTION_ONLY.json')));
++  const file=path.join(result.directory,'visual-memory.json');fs.appendFileSync(file,' ');assert.throws(()=>adapter.verifyRuntimeRecoverySet(result));assert.throws(()=>adapter.materializeVisualMemoryInspection({...result,destination:path.join(parent,'corrupt')}));assert.equal(fs.existsSync(path.join(parent,'corrupt')),false);
++ }finally{fs.rmSync(root,{recursive:true,force:true});fs.rmSync(parent,{recursive:true,force:true});}
++});
+diff --git a/pillow/src/visual-memory-engine/engine.ts b/pillow/src/visual-memory-engine/engine.ts
+index 374e1779..9aa20359 100644
+--- a/pillow/src/visual-memory-engine/engine.ts
++++ b/pillow/src/visual-memory-engine/engine.ts
+@@ -138,6 +138,10 @@ export class VisualMemoryEngine {
+     return this.getState();
+   }
+ 
++  withRecoverySnapshot<T>(capture:(snapshot: import("./memory-persistence-store.js").VisualMemoryRecoverySnapshot)=>Promise<T>):Promise<T> {
++    return this.controller.withRecoverySnapshot(capture);
++  }
++
+   captureMemoryNow(): VisualMemoryRecord | null {
+     return this.controller.captureNow();
+   }
+diff --git a/pillow/src/visual-memory-engine/memory-controller.ts b/pillow/src/visual-memory-engine/memory-controller.ts
+index ad0a9484..f48c90b9 100644
+--- a/pillow/src/visual-memory-engine/memory-controller.ts
++++ b/pillow/src/visual-memory-engine/memory-controller.ts
+@@ -108,6 +108,10 @@ export class MemoryController {
+     });
+   }
+ 
++  withRecoverySnapshot<T>(capture:(snapshot: import("./memory-persistence-store.js").VisualMemoryRecoverySnapshot)=>Promise<T>):Promise<T> {
++    return this.persistenceStore.withRecoverySnapshot(capture);
++  }
++
+   async start(): Promise<void> {
+     if (!this.config.enabled) {
+       this.status = "idle";
+@@ -196,6 +200,7 @@ export class MemoryController {
+   }
+ 
+   captureNow(): VisualMemoryRecord | null {
++    if(this.persistenceStore.isRecoveryHeld())return null;
+     const session = this.sessionManager.getSession();
+     const sessionId = session?.sessionId ?? `vme-direct-${Date.now()}`;
+     this.recordSequence += 1;
+@@ -253,11 +258,12 @@ export class MemoryController {
+   }
+ 
+   runCleanup(): void {
+-    const removed = this.retentionManager.applyRetention(
++    if(this.persistenceStore.isRecoveryHeld())return;
++    const removed = this.persistenceStore.withWriteTransaction(()=>this.retentionManager.applyRetention(
+       this.indexer,
+       this.persistenceStore,
+       this.config,
+-    );
++    ));
+     if (removed > 0) {
+       this.performance.cleanups += 1;
+       const stats = this.persistenceStore.getStorageStats();
+@@ -278,9 +284,12 @@ export class MemoryController {
+   ): void {
+     const started = Date.now();
+     try {
+-      const bytes = this.persistenceStore.write(payload);
+-      this.indexer.index(record, componentIds);
+-      this.persistenceStore.saveIndex(this.indexer.getAll());
++      const bytes = this.persistenceStore.withWriteTransaction(()=>{
++        const written=this.persistenceStore.write(payload);
++        this.indexer.index(record, componentIds);
++        this.persistenceStore.saveIndex(this.indexer.getAll());
++        return written;
++      });
+       const duration = Date.now() - started;
+ 
+       this.latestRecord = record;
+@@ -325,6 +334,7 @@ export class MemoryController {
+   }
+ 
+   private async memoryTick(): Promise<void> {
++    if(this.persistenceStore.isRecoveryHeld())return;
+     if (this.capturing) {
+       this.performance.skippedCaptures += 1;
+       return;
+diff --git a/pillow/src/visual-memory-engine/memory-persistence-store.ts b/pillow/src/visual-memory-engine/memory-persistence-store.ts
+index 599e6c45..a7392ff5 100644
+--- a/pillow/src/visual-memory-engine/memory-persistence-store.ts
++++ b/pillow/src/visual-memory-engine/memory-persistence-store.ts
+@@ -1,7 +1,8 @@
+ /** T1-08 — Persistent storage for visual memory records. */
+ 
+-import { mkdirSync, readFileSync, writeFileSync, existsSync, unlinkSync, statSync } from "node:fs";
+-import { join } from "node:path";
++import { mkdirSync, readFileSync, writeFileSync, existsSync, unlinkSync, statSync, lstatSync, realpathSync, readdirSync } from "node:fs";
++import { join, resolve } from "node:path";
++import { acquireVisualMemoryLock } from "./recovery-lock.js";
+ import { appendMemoryLog } from "./memory-logging.js";
+ import type { VisualMemoryConfiguration } from "./configuration.js";
+ import type { MemoryIndexEntry, VisualMemoryRecord } from "./types.js";
+@@ -16,7 +17,47 @@ export type StoredMemoryPayload = {
+   workflowContextHistory?: unknown;
+ };
+ 
++export type VisualMemoryRecoverySnapshot = {schema:"VISUAL_MEMORY_INSPECTION_V1";sourceStoragePath:string;operationalRestoreAvailable:false;files:Array<{path:string;bytes:string;mode:number}>};
++
+ export class MemoryPersistenceStore {
++  private recoveryHeld = false;
++  private writeDepth = 0;
++  withWriteTransaction<T>(write:()=>T):T {
++    this.assertWritable();
++    if(this.config.storageBackend==='memory'||this.writeDepth>0)return write();
++    const release=acquireVisualMemoryLock(this.getStorageDir());
++    this.writeDepth++;
++    try{return write();}finally{this.writeDepth--;release();}
++  }
++  isRecoveryHeld(): boolean { return this.recoveryHeld; }
++  private assertWritable(): void { if (this.recoveryHeld) throw new Error("VISUAL_MEMORY_RECOVERY_HELD"); }
++  /** Local single-event-loop writer exclusion only; no global topology claim. */
++  async withRecoverySnapshot<T>(capture:(snapshot:VisualMemoryRecoverySnapshot)=>Promise<T>):Promise<T> {
++    if(this.recoveryHeld) throw new Error("VISUAL_MEMORY_RECOVERY_ALREADY_HELD");
++    if(this.config.storageBackend!=="file") throw new Error("VISUAL_MEMORY_FILE_CAPTURE_REQUIRED");
++    const release=acquireVisualMemoryLock(this.getStorageDir());
++    this.recoveryHeld=true;
++    try {
++      const root=resolve(this.getStorageDir());
++      if(realpathSync(root)!==root||!lstatSync(root).isDirectory())throw new Error("VISUAL_MEMORY_ROOT_UNSAFE");
++      const entries=readdirSync(root).sort();
++      if(entries.some(x=>x!=="index.json"&&x!=="records")||!entries.includes("records"))throw new Error("VISUAL_MEMORY_INVENTORY_UNKNOWN");
++      const records=join(root,"records");
++      if(realpathSync(records)!==records||!lstatSync(records).isDirectory())throw new Error("VISUAL_MEMORY_RECORDS_UNSAFE");
++      const names=readdirSync(records).sort();
++      if(names.length>10000||names.some(x=>!/^[-a-zA-Z0-9_.]+\.json$/.test(x)))throw new Error("VISUAL_MEMORY_RECORD_NAMES_INVALID");
++      let total=0;const files:Array<{path:string;bytes:string;mode:number}>=[];
++      for(const name of [...(entries.includes("index.json")?["index.json"]:[]),...names.map(x=>"records/"+x)]) {
++        const filename=join(root,name),st=lstatSync(filename);
++        if(!st.isFile()||st.nlink!==1||realpathSync(filename)!==filename)throw new Error("VISUAL_MEMORY_FILE_UNSAFE");
++        total+=st.size;if(total>33554432)throw new Error("VISUAL_MEMORY_CAPTURE_SIZE");
++        const bytes=readFileSync(filename);JSON.parse(bytes.toString("utf8"));
++        files.push({path:name,bytes:bytes.toString("base64"),mode:st.mode&0o777});
++      }
++      return await capture({schema:"VISUAL_MEMORY_INSPECTION_V1",sourceStoragePath:root,operationalRestoreAvailable:false,files});
++    } finally {try{release();}finally{this.recoveryHeld=false;}}
++  }
++
+   private memoryRecords = new Map<string, StoredMemoryPayload>();
+   private memoryIndex: MemoryIndexEntry[] = [];
+ 
+@@ -42,6 +83,12 @@ export class MemoryPersistenceStore {
+   }
+ 
+   initialize(): void {
++    if(this.config.storageBackend!=="memory")mkdirSync(resolve(this.getStorageDir(),".."),{recursive:true});
++    return this.withWriteTransaction(()=>this.initializeAdmitted());
++  }
++
++  private initializeAdmitted(): void {
++    this.assertWritable();
+     if (this.config.storageBackend === "memory") return;
+     const dir = this.getStorageDir();
+     const recordsDir = this.getRecordsDir();
+@@ -69,6 +116,11 @@ export class MemoryPersistenceStore {
+   }
+ 
+   saveIndex(entries: MemoryIndexEntry[]): void {
++    return this.withWriteTransaction(()=>this.saveIndexAdmitted(entries));
++  }
++
++  private saveIndexAdmitted(entries: MemoryIndexEntry[]): void {
++    this.assertWritable();
+     this.memoryIndex = entries.map((e) => ({ ...e, componentIds: [...e.componentIds] }));
+     if (this.config.storageBackend === "memory") return;
+     try {
+@@ -85,6 +137,11 @@ export class MemoryPersistenceStore {
+   }
+ 
+   write(payload: StoredMemoryPayload): number {
++    return this.withWriteTransaction(()=>this.writeAdmitted(payload));
++  }
++
++  private writeAdmitted(payload: StoredMemoryPayload): number {
++    this.assertWritable();
+     const recordPath = this.getRecordPath(payload.record.memoryRecordId);
+     const json = JSON.stringify(payload, null, 2);
+     const bytes = Buffer.byteLength(json, "utf8");
+@@ -124,6 +181,11 @@ export class MemoryPersistenceStore {
+   }
+ 
+   delete(memoryRecordId: string): void {
++    return this.withWriteTransaction(()=>this.deleteAdmitted(memoryRecordId));
++  }
++
++  private deleteAdmitted(memoryRecordId: string): void {
++    this.assertWritable();
+     if (this.config.storageBackend === "memory") {
+       this.memoryRecords.delete(memoryRecordId);
+       return;
+diff --git a/pillow/src/visual-memory-engine/recovery-lock.ts b/pillow/src/visual-memory-engine/recovery-lock.ts
+new file mode 100644
+index 00000000..5d109541
+--- /dev/null
++++ b/pillow/src/visual-memory-engine/recovery-lock.ts
+@@ -0,0 +1,11 @@
++import fs from 'node:fs';
++import path from 'node:path';
++/** Stable exclusion for updated cooperating processes. Never steal stale locks. */
++export function acquireVisualMemoryLock(storageRoot:string):()=>void {
++ const root=path.resolve(storageRoot),parent=path.dirname(root);
++ if(fs.realpathSync(parent)!==parent)throw Error('VISUAL_MEMORY_LOCK_PATH_UNSAFE');
++ const lock=root+'.capture-write-lock';
++ try{fs.mkdirSync(lock,{mode:0o700});}catch(error){if((error as NodeJS.ErrnoException).code==='EEXIST')throw Error('VISUAL_MEMORY_SHARED_CAPTURE_BUSY');throw error;}
++ const identity=fs.lstatSync(lock);let released=false;
++ return ()=>{if(released)return;const current=fs.lstatSync(lock);if(!current.isDirectory()||current.isSymbolicLink()||current.dev!==identity.dev||current.ino!==identity.ino)throw Error('VISUAL_MEMORY_LOCK_IDENTITY_CHANGED');fs.rmdirSync(lock);released=true;};
++}

@@ -1,0 +1,44 @@
+{
+  "source": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+  "tree": "c324ecb16b3054b86e84ce4b662d3c3f2b1be9a8",
+  "productRun": 39118567379,
+  "runtimeRun": 39118567378,
+  "artifacts": [
+    {
+      "id": 12133865462,
+      "name": "work8-source-context-evidence",
+      "digest": "sha256:a20b0260b582dc17591c75fc42e65959f11aedb520c24af9031d8dab386182b4",
+      "size": 85919,
+      "expired": false
+    },
+    {
+      "id": 12133795798,
+      "name": "commerce-browser-evidence",
+      "digest": "sha256:b56e6f3f99d5341a79e5a30e9a6cf1a5e8daea357f6f2327ff710fc1759abcdf",
+      "size": 1517945,
+      "expired": false
+    },
+    {
+      "id": 12133651374,
+      "name": "work8-owner-history-evidence",
+      "digest": "sha256:e90b5f68e7c506837e7c2b4be3994346ee66fc4b10e76e32b3f0c3839bb040b4",
+      "size": 3272506,
+      "expired": false
+    },
+    {
+      "id": 12133631470,
+      "name": "work8-hh4-held-capture",
+      "digest": "sha256:4d991a1001a830490ea20309d9956b324caf62af7c3d51cf4453fd0033278f20",
+      "size": 400764,
+      "expired": false
+    },
+    {
+      "id": 12133311948,
+      "name": "precutover-closure",
+      "digest": "sha256:d3a9ae890308ee0c0b649480eb64d6cb1fb7495e2f95cc7d0cdfdca3259941db",
+      "size": 5704,
+      "expired": false
+    }
+  ],
+  "scope": "Original ZIP bytes downloaded and retained; no workflow redispatch. Independent acceptance receipts separate."
+}

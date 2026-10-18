@@ -1,0 +1,67 @@
+{
+  "decision": "APPROVED_SCOPED_FINAL_SOURCE_REVIEW",
+  "reviewer": "business_finance independent",
+  "files": {
+    "backend/src/app.ts": "bf017b30ec79d3575bd348477b32cd08ddbfee97de1d8d6820570bbe6b17942d",
+    "backend/src/orchestration/pillow-host/pillow-host.ts": "5bdfc22d71f4e34b2f47b251c088fc7d644e09d6d2cfc29036f2995d0c648526",
+    "backend/src/runtime/work8-recovery-capture.ts": "66bd2423e3877dff99844ff32ff466526e980a9dc712801fb1216a1180f9632e",
+    "backend/src/validation/tests/work8-visual-memory-capture.test.ts": "42bf6aadac2c445eabef75b0da909acffea2a156b5fb22e232a6d95b4a49f290",
+    "deployment/work8-recovery-set.cjs": "87bb60033c46ad6f7ad19b6cd35bf3bb7700e3234e78a7987688fc53b6fd2dc3",
+    "pillow/src/validation/tests/visual-memory-recovery-capture.test.ts": "2d9b745715797a91bec62aedc9d2f40aa3840876c59bfe05f60b301ed4788dc6",
+    "pillow/src/visual-memory-engine/engine.ts": "b73c16cab1cd978a2c8cbd2f1e7f316c1e13479aaa1d9c804a9c78609813fc93",
+    "pillow/src/visual-memory-engine/memory-controller.ts": "bb613c581bfe9724b368653db6329209aa67e6d8a75393d6d058325f13210306",
+    "pillow/src/visual-memory-engine/memory-persistence-store.ts": "c5892eea93a18d9a6c37e3178c40af766471d9334d9833cc37ae4663d8e8432d",
+    "pillow/src/visual-memory-engine/recovery-lock.ts": "97d326406f82dbb190b4029337198c3d5172230433c9e992710484dacc571c56"
+  },
+  "priorFindings": [
+    {
+      "id": "VM1",
+      "severity": "blocking",
+      "path": "pillow/src/visual-memory-engine/memory-controller.ts",
+      "issue": "runCleanup newly throws shared capture contention outside catch; MemoryScheduler cleanup timer does not handle exception. Ordinary cross-process capture may terminate writer process.",
+      "requested": "Treat explicit shared capture busy as skipped cleanup; preserve other failures; targeted proof."
+    },
+    {
+      "id": "VM2",
+      "severity": "blocking",
+      "path": "pillow/src/visual-memory-engine/recovery-lock.ts",
+      "issue": "Existing storage root symlink not rejected before writer lock. Alias writer takes distinct lock and mutates canonical captured root.",
+      "requested": "Require existing root canonical directory/non-symlink before lock; permit missing root for initialize. Targeted alias refusal."
+    }
+  ],
+  "resolved": {
+    "VM1": "Dedicated VisualMemoryCaptureBusyError handled only at runCleanup; all other errors rethrow. Actual second controller same-root cleanup tested while held; succeeds after release.",
+    "VM2": "Existing storageRoot must be canonical nonsymlink directory before shared lock. Missingroot permitted for initialization only. Alias saveIndex/initialize refused duringcapture; controller unsafeerror not swallowed."
+  },
+  "findings": [],
+  "reviewedEvidence": [
+    "visual-memory-local.tap",
+    "visual-memory-launcher-isolated.tap",
+    "visual-memory-launcher-isolated-final.tap:5PASS0FAIL"
+  ],
+  "independentTestReruns": 0,
+  "finalScope": [
+    "Updated cooperating process/instance shared stable lock with owneridentity release; original stale lock never stolen",
+    "Record/index and cleanup mutations grouped; localcapture held through generatedcapture callback",
+    "Fullsealedmanifest/digest verifies before fresh materialization; exactfilebytes/modes readback; corrupt/existingtarget rejected; no boot",
+    "Existingselected backend work8glob dynamiclauncher executes same Pillow5tests under isolatedwrapper, no duplicateworkflow"
+  ],
+  "limits": [
+    "Old processes not participating in sharedlock are not excluded; entire runtime topology remains unproven",
+    "Materializer is inspection only, not wholeapplication operational restoration",
+    "Fullglobal recovery/protectedcustody/session/pendingwork/finance acceptance not established by these scopedtests",
+    "Final compilation controller gate separate; no reviewer rerun"
+  ],
+  "mainEquality": {
+    "backend/src/app.ts": true,
+    "backend/src/orchestration/pillow-host/pillow-host.ts": true,
+    "backend/src/runtime/work8-recovery-capture.ts": true,
+    "backend/src/validation/tests/work8-visual-memory-capture.test.ts": true,
+    "deployment/work8-recovery-set.cjs": true,
+    "pillow/src/validation/tests/visual-memory-recovery-capture.test.ts": true,
+    "pillow/src/visual-memory-engine/engine.ts": true,
+    "pillow/src/visual-memory-engine/memory-controller.ts": true,
+    "pillow/src/visual-memory-engine/memory-persistence-store.ts": true,
+    "pillow/src/visual-memory-engine/recovery-lock.ts": true
+  }
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "path": "backend/src/app.ts",
+    "mode": "100644",
+    "sha": "447005b2610975ba00ed07e3f4e9a3853052c63c",
+    "sha256": "bf017b30ec79d3575bd348477b32cd08ddbfee97de1d8d6820570bbe6b17942d",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "backend/src/orchestration/pillow-host/pillow-host.ts",
+    "mode": "100644",
+    "sha": "6e8869d47fbbaf08dd78a18a20a30fbe14c352c8",
+    "sha256": "5bdfc22d71f4e34b2f47b251c088fc7d644e09d6d2cfc29036f2995d0c648526",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "backend/src/runtime/work8-recovery-capture.ts",
+    "mode": "100644",
+    "sha": "869c3c72774b42e0c34b33e6886405c54b50ee4d",
+    "sha256": "66bd2423e3877dff99844ff32ff466526e980a9dc712801fb1216a1180f9632e",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "backend/src/validation/tests/work8-media-listing-interruption.test.ts",
+    "mode": "100644",
+    "sha": "6225a816a7c09d3adf76c07c37eec6f66310b3bf",
+    "sha256": "edd00f0f92d25cd3c2b38500c51f801ba5e9ad7bd1a54da3d26fb5959c590d31",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "backend/src/validation/tests/work8-visual-memory-capture.test.ts",
+    "mode": "100644",
+    "sha": "446bd72432481bee2b8e20e1cfe6727472e89927",
+    "sha256": "42bf6aadac2c445eabef75b0da909acffea2a156b5fb22e232a6d95b4a49f290",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "deployment/work8-recovery-set.cjs",
+    "mode": "100644",
+    "sha": "e7405f9911a4cb8e674003fdae4675f9ce39fc71",
+    "sha256": "87bb60033c46ad6f7ad19b6cd35bf3bb7700e3234e78a7987688fc53b6fd2dc3",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "empireai-web/e2e/work8-source-context-native.mjs",
+    "mode": "100644",
+    "sha": "ab2d1701c05fe44f3e5f61c31f50ec53fb96ad43",
+    "sha256": "65e9e23ff0d2b69cd92974ebaa1a3daa171808a1cfdab894692ffb782b0e76d5",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+    "mode": "100644",
+    "sha": "9baa2006c1a4dc33e30e9e79d0e674a4d8c2381f",
+    "sha256": "0d013ed99fc5e60ba9eee34802426c948a0b45069f5e6e5dfbe2777dbc572959",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "empireai-web/lib/pillow/client.ts",
+    "mode": "100644",
+    "sha": "9367267b9bd1b97d498dc880386c58bfa5246ee9",
+    "sha256": "e9526b5ee90b73633137f87ab94ac3c98b0392d2b6a5e13344f04dd94e854ca9",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "empireai-web/lib/pillow/session-resolution.test.ts",
+    "mode": "100644",
+    "sha": "87f818de18b71c713ef16c287e5f546c3f687a0d",
+    "sha256": "bc0713beb05fb05c9970584a794e3154c57a7dc987f61c46f2e9272da8b58e03",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "empireai-web/lib/pillow/session-resolution.ts",
+    "mode": "100644",
+    "sha": "bb13a00b9a7146267bfdef1b44ee02319d1a684b",
+    "sha256": "ddcd860a4737e4fc148443f07cc7b61e29c84113ec2a6ac78147c305b5ae97fc",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "pillow/src/validation/tests/visual-memory-recovery-capture.test.ts",
+    "mode": "100644",
+    "sha": "1d7ab8762de700bce66d6fe4c66988220a776343",
+    "sha256": "2d9b745715797a91bec62aedc9d2f40aa3840876c59bfe05f60b301ed4788dc6",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "pillow/src/visual-memory-engine/engine.ts",
+    "mode": "100644",
+    "sha": "9aa203591cea42dd388d1eb6cb8e50c1a19e5781",
+    "sha256": "b73c16cab1cd978a2c8cbd2f1e7f316c1e13479aaa1d9c804a9c78609813fc93",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "pillow/src/visual-memory-engine/memory-controller.ts",
+    "mode": "100644",
+    "sha": "fcd638df9d7be71e39dfc81a15a3e7a81c40ec93",
+    "sha256": "bb613c581bfe9724b368653db6329209aa67e6d8a75393d6d058325f13210306",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "pillow/src/visual-memory-engine/memory-persistence-store.ts",
+    "mode": "100644",
+    "sha": "a7392ff5e674461e233bbcd37370c489e6b68f68",
+    "sha256": "c5892eea93a18d9a6c37e3178c40af766471d9334d9833cc37ae4663d8e8432d",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  },
+  {
+    "path": "pillow/src/visual-memory-engine/recovery-lock.ts",
+    "mode": "100644",
+    "sha": "15957000284280bf2458ad4298f347cbcc327f0b",
+    "sha256": "97d326406f82dbb190b4029337198c3d5172230433c9e992710484dacc571c56",
+    "remoteBytesEqualLocal": true,
+    "reviewHashMatches": true
+  }
+]

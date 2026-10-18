@@ -1,0 +1,23 @@
+(node:6) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# O19_INTERRUPTION_RECEIPT {"writerTermination":"SIGKILL","sourceFiles":{"store":"ce470a09512cbc13c61f6b330a39449ac28ffa7083661eaee0f5f9364b6f49d0","engine":"d965095b75108166085ec36b7eb55e8ee02dd45b7524eeedb6a426f97f404b1d","work8-twin-media":"558388eb0f28a5d75ee01f49cddaebe3e0e9dd664ea05f07ac94957bf73467b1","work8-twin-runtime":"88d94563c0879fa5ac94dac7491e373fdc58b38830abba8e2d72a35d318a7c2b","work8-twin":"b36f52963495e1fe017fd636fde8e3acf9a81cbe8452d63ebfacf510a83ef555"},"status":"PASS_AFTER_SIGKILL","sourceReceiptDigest":"22f63aa4006646eb63e58eef45ded9daabb533ca407835784794d2200462aea6","targetReceiptDigest":"5bce28eecd6626dfe2aa928e553541489707fa76431b5fcee72409fd6fa60cd6","approvalDigest":"5d9c69dbe213d3f5b5eb9537e33766431744c999485d338f9f141a8befa7746e","transferBinding":{"sourceReceiptDigest":"22f63aa4006646eb63e58eef45ded9daabb533ca407835784794d2200462aea6","sourceApprovalDigest":"5d9c69dbe213d3f5b5eb9537e33766431744c999485d338f9f141a8befa7746e","targetWorkspace":"ws","targetMissionId":"target","targetReceiptDigest":"5bce28eecd6626dfe2aa928e553541489707fa76431b5fcee72409fd6fa60cd6","candidateDigest":"a15ca3e991d08bd372b902a57ba05105feba706293d7565fcdd8cad5e2e0542b","listingDigest":"58c248c3555f0f289ede54e8dfca9f3d263c739178eb8f7f6318a22aefffc02f"},"mediaVersion":4,"targetReceiptCount":2,"externalStatus":"NOT_SUBMITTED","review":null,"ownerApproval":null,"publicationIntent":null,"externalEffects":0,"paidInference":0}
+# Subtest: O19 committed durable approval transfer survives SIGKILL and a fresh process refuses replay without authority
+ok 1 - O19 committed durable approval transfer survives SIGKILL and a fresh process refuses replay without authority
+  ---
+  duration_ms: 820.843464
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1136.572483

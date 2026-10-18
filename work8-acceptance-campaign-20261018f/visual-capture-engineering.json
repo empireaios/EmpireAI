@@ -1,0 +1,34 @@
+{
+  "scope": "Cooperating updated visual-memory writers: file snapshot with shared stable lock and validated fresh inspection materialization. Not whole-application or old-binary exclusion.",
+  "base": "15673745cb923a4164b7ebba6e14440fe4003c41",
+  "files": {
+    "backend/src/app.ts": "bf017b30ec79d3575bd348477b32cd08ddbfee97de1d8d6820570bbe6b17942d",
+    "backend/src/orchestration/pillow-host/pillow-host.ts": "5bdfc22d71f4e34b2f47b251c088fc7d644e09d6d2cfc29036f2995d0c648526",
+    "backend/src/runtime/work8-recovery-capture.ts": "66bd2423e3877dff99844ff32ff466526e980a9dc712801fb1216a1180f9632e",
+    "backend/src/validation/tests/work8-visual-memory-capture.test.ts": "42bf6aadac2c445eabef75b0da909acffea2a156b5fb22e232a6d95b4a49f290",
+    "deployment/work8-recovery-set.cjs": "87bb60033c46ad6f7ad19b6cd35bf3bb7700e3234e78a7987688fc53b6fd2dc3",
+    "pillow/src/validation/tests/visual-memory-recovery-capture.test.ts": "2d9b745715797a91bec62aedc9d2f40aa3840876c59bfe05f60b301ed4788dc6",
+    "pillow/src/visual-memory-engine/engine.ts": "b73c16cab1cd978a2c8cbd2f1e7f316c1e13479aaa1d9c804a9c78609813fc93",
+    "pillow/src/visual-memory-engine/memory-controller.ts": "bb613c581bfe9724b368653db6329209aa67e6d8a75393d6d058325f13210306",
+    "pillow/src/visual-memory-engine/memory-persistence-store.ts": "c5892eea93a18d9a6c37e3178c40af766471d9334d9833cc37ae4663d8e8432d",
+    "pillow/src/visual-memory-engine/recovery-lock.ts": "97d326406f82dbb190b4029337198c3d5172230433c9e992710484dacc571c56"
+  },
+  "tests": "5 PASS exact kernel-isolated existing Product glob launcher, including actual second OS process, full sealed inventory/materialization, contention and alias refusal",
+  "compile": "Root consolidates final compilation. Initial Pillow build PASS predates follow-up; no final compile claim here.",
+  "mandatoryConditions": [
+    "Running Pillow host with file backend required; otherwise scoped runtime capture refuses rather than silently omitting visual memory",
+    "Capture lock held through existing originaldeadline capture path; no watchdog pause/restart or deadline changes",
+    "Shared lock never expires or steals; crashed writer needs separate reconciliation",
+    "Materializer uses only verified sealed bytes, fresh destination and stored modes, bootAllowedfalse; sourceStoragePath descriptive only",
+    "No uncooperative old process or complete runtime restoration claim"
+  ],
+  "hosted": "Existing Product work8 glob selects new backend launcher; no workflow change; next originalHH4 artifact must show visualMemoryDigest before hosted acceptance",
+  "remaining": "All other persistent runtime state/topology and operational admission/replay plus protectedcustody remain separate",
+  "sourceEdited": true,
+  "published": false,
+  "reviewCorrections": [
+    "VM1 exact typed shared-capture busy skips cleanup; all other errors preserved",
+    "VM2 existing root canonical-directory validation prevents alias lock bypass",
+    "TS7006 capture callback annotated using existing capture path parameter type"
+  ]
+}

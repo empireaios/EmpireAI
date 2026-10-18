@@ -1,0 +1,123 @@
+[
+  {
+    "attempt": 1,
+    "elapsed": 0.08,
+    "status": 201,
+    "body": {
+      "sessionId": "cdf68e40-7a40-47ba-807f-a2c6e9d74f26"
+    }
+  },
+  {
+    "attempt": 2,
+    "elapsed": 0.1,
+    "status": 201,
+    "body": {
+      "sessionId": "cdf68e40-7a40-47ba-807f-a2c6e9d74f26"
+    }
+  },
+  {
+    "attempt": 3,
+    "elapsed": 0.12,
+    "status": 201,
+    "body": {
+      "sessionId": "cdf68e40-7a40-47ba-807f-a2c6e9d74f26"
+    }
+  },
+  {
+    "attempt": 4,
+    "elapsed": 0.13,
+    "status": 503,
+    "body": {
+      "error": "Starting Executive Systems\u2026",
+      "retryAfterSec": 10,
+      "admission": {
+        "reason": "Pillow session create rate limit (4/10000ms)",
+        "lagMs": 0
+      }
+    }
+  },
+  {
+    "attempt": 5,
+    "elapsed": 2.15,
+    "status": 503,
+    "body": {
+      "error": "Starting Executive Systems\u2026",
+      "retryAfterSec": 10,
+      "admission": {
+        "reason": "Pillow session create rate limit (4/10000ms)",
+        "lagMs": 0
+      }
+    }
+  },
+  {
+    "attempt": 6,
+    "elapsed": 4.16,
+    "status": 503,
+    "body": {
+      "error": "Starting Executive Systems\u2026",
+      "retryAfterSec": 10,
+      "admission": {
+        "reason": "Pillow session create rate limit (4/10000ms)",
+        "lagMs": 0
+      }
+    }
+  },
+  {
+    "attempt": 7,
+    "elapsed": 6.18,
+    "status": 503,
+    "body": {
+      "error": "Starting Executive Systems\u2026",
+      "retryAfterSec": 10,
+      "admission": {
+        "reason": "Pillow session create rate limit (4/10000ms)",
+        "lagMs": 0
+      }
+    }
+  },
+  {
+    "attempt": 8,
+    "elapsed": 8.19,
+    "status": 503,
+    "body": {
+      "error": "Starting Executive Systems\u2026",
+      "retryAfterSec": 10,
+      "admission": {
+        "reason": "Pillow session create rate limit (4/10000ms)",
+        "lagMs": 0
+      }
+    }
+  },
+  {
+    "attempt": 9,
+    "elapsed": 10.22,
+    "status": 201,
+    "body": {
+      "sessionId": "cdf68e40-7a40-47ba-807f-a2c6e9d74f26"
+    }
+  },
+  {
+    "attempt": 10,
+    "elapsed": 12.24,
+    "status": 201,
+    "body": {
+      "sessionId": "cdf68e40-7a40-47ba-807f-a2c6e9d74f26"
+    }
+  },
+  {
+    "attempt": 11,
+    "elapsed": 14.26,
+    "status": 201,
+    "body": {
+      "sessionId": "cdf68e40-7a40-47ba-807f-a2c6e9d74f26"
+    }
+  },
+  {
+    "attempt": 12,
+    "elapsed": 16.29,
+    "status": 201,
+    "body": {
+      "sessionId": "cdf68e40-7a40-47ba-807f-a2c6e9d74f26"
+    }
+  }
+]

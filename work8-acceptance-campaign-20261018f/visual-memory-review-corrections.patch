@@ -1,0 +1,93 @@
+diff --git a/backend/src/app.ts b/backend/src/app.ts
+index 32154f9c..447005b2 100644
+--- a/backend/src/app.ts
++++ b/backend/src/app.ts
+@@ -697,7 +697,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
+           withExistingShadowCapture(getDatabase(),resolveShadowCeoDbPath(),shadow=>
+             withExclusiveNativeMissionCapture(getActiveDatabasePath(),()=>
+               withExclusiveWork8DomainCapture(root,async()=> {
+-                return pillowHost.withVisualMemoryRecoveryCapture(async visualMemorySnapshot => {
++                return pillowHost.withVisualMemoryRecoveryCapture(async (visualMemorySnapshot: Parameters<typeof captureWork8RecoveryInventory>[1]["visualMemorySnapshot"]) => {
+                 const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath,visualMemorySnapshot},queue);
+                 staged=true;
+                 if(scope)await holdGeneratedCapture(scope,captured,{seal:finalizeWork8RecoveryInventory,verify:verifyWork8RecoveryInventory,invalidate:invalidateWork8RecoveryInventory});
+diff --git a/pillow/src/validation/tests/visual-memory-recovery-capture.test.ts b/pillow/src/validation/tests/visual-memory-recovery-capture.test.ts
+index 9b1da9e5..1d7ab876 100644
+--- a/pillow/src/validation/tests/visual-memory-recovery-capture.test.ts
++++ b/pillow/src/validation/tests/visual-memory-recovery-capture.test.ts
+@@ -5,6 +5,7 @@ import path from 'node:path';
+ import os from 'node:os';
+ import {spawnSync} from 'node:child_process';
+ import {createRequire} from 'node:module';
++import {MemoryController} from '../../visual-memory-engine/memory-controller.js';
+ import {MemoryPersistenceStore} from '../../visual-memory-engine/memory-persistence-store.js';
+ import {DEFAULT_VISUAL_MEMORY_CONFIGURATION} from '../../visual-memory-engine/configuration.js';
+ const {verifyVisualMemorySnapshot}=createRequire(import.meta.url)('../../../../deployment/work8-recovery-set.cjs');
+@@ -59,3 +60,18 @@ test('complete recovery manifest binds visual inventory and rejects changed seal
+   const file=path.join(result.directory,'visual-memory.json');fs.appendFileSync(file,' ');assert.throws(()=>adapter.verifyRuntimeRecoverySet(result));assert.throws(()=>adapter.materializeVisualMemoryInspection({...result,destination:path.join(parent,'corrupt')}));assert.equal(fs.existsSync(path.join(parent,'corrupt')),false);
+  }finally{fs.rmSync(root,{recursive:true,force:true});fs.rmSync(parent,{recursive:true,force:true});}
+ });
++
++test('controller cleanup skips only shared capture contention and rejects aliased writer roots',async()=>{
++ const {root,store}=fixture();try{
++  const config={...DEFAULT_VISUAL_MEMORY_CONFIGURATION,storageRoot:'visual'};
++  const controller=new MemoryController(root,null as never,null as never,null as never,null as never,null as never,null as never,null as never,config);
++  await controller.initialize();
++  await store.withRecoverySnapshot(async()=>{assert.doesNotThrow(()=>controller.runCleanup());});
++  assert.doesNotThrow(()=>controller.runCleanup());
++  fs.symlinkSync(store.getStorageDir(),path.join(root,'alias'));
++  const alias=new MemoryPersistenceStore(root,{...config,storageRoot:'alias'});
++  await store.withRecoverySnapshot(async()=>{assert.throws(()=>alias.saveIndex([]),/LOCK_ROOT_UNSAFE/);assert.throws(()=>alias.initialize(),/LOCK_ROOT_UNSAFE/);});
++  const aliasController=new MemoryController(root,null as never,null as never,null as never,null as never,null as never,null as never,null as never,{...config,storageRoot:'alias'});
++  assert.throws(()=>aliasController.runCleanup(),/LOCK_ROOT_UNSAFE/);
++ }finally{fs.rmSync(root,{recursive:true,force:true});}
++});
+diff --git a/pillow/src/visual-memory-engine/memory-controller.ts b/pillow/src/visual-memory-engine/memory-controller.ts
+index f48c90b9..fcd638df 100644
+--- a/pillow/src/visual-memory-engine/memory-controller.ts
++++ b/pillow/src/visual-memory-engine/memory-controller.ts
+@@ -1,3 +1,4 @@
++import { VisualMemoryCaptureBusyError } from "./recovery-lock.js";
+ /** T1-08 — Visual memory orchestration controller. */
+ 
+ import type { VisualCaptureEngine } from "../visual-capture-engine/engine.js";
+@@ -259,11 +260,17 @@ export class MemoryController {
+ 
+   runCleanup(): void {
+     if(this.persistenceStore.isRecoveryHeld())return;
+-    const removed = this.persistenceStore.withWriteTransaction(()=>this.retentionManager.applyRetention(
++    let removed: number;
++    try { removed = this.persistenceStore.withWriteTransaction(()=>this.retentionManager.applyRetention(
+       this.indexer,
+       this.persistenceStore,
+       this.config,
+-    ));
++    )); } catch(error) {
++      // Another updated process owns capture; this timer simply skips its tick.
++      // Storage corruption, unsafe roots and other failures remain visible.
++      if(error instanceof VisualMemoryCaptureBusyError)return;
++      throw error;
++    }
+     if (removed > 0) {
+       this.performance.cleanups += 1;
+       const stats = this.persistenceStore.getStorageStats();
+diff --git a/pillow/src/visual-memory-engine/recovery-lock.ts b/pillow/src/visual-memory-engine/recovery-lock.ts
+index 5d109541..15957000 100644
+--- a/pillow/src/visual-memory-engine/recovery-lock.ts
++++ b/pillow/src/visual-memory-engine/recovery-lock.ts
+@@ -1,11 +1,14 @@
+ import fs from 'node:fs';
+ import path from 'node:path';
++export class VisualMemoryCaptureBusyError extends Error { constructor(){super("VISUAL_MEMORY_SHARED_CAPTURE_BUSY");this.name="VisualMemoryCaptureBusyError";} }
+ /** Stable exclusion for updated cooperating processes. Never steal stale locks. */
+ export function acquireVisualMemoryLock(storageRoot:string):()=>void {
+  const root=path.resolve(storageRoot),parent=path.dirname(root);
+  if(fs.realpathSync(parent)!==parent)throw Error('VISUAL_MEMORY_LOCK_PATH_UNSAFE');
++ try{const current=fs.lstatSync(root);if(!current.isDirectory()||current.isSymbolicLink()||fs.realpathSync(root)!==root)throw Error('VISUAL_MEMORY_LOCK_ROOT_UNSAFE');}
++ catch(error){if((error as NodeJS.ErrnoException).code!=='ENOENT')throw error;}
+  const lock=root+'.capture-write-lock';
+- try{fs.mkdirSync(lock,{mode:0o700});}catch(error){if((error as NodeJS.ErrnoException).code==='EEXIST')throw Error('VISUAL_MEMORY_SHARED_CAPTURE_BUSY');throw error;}
++ try{fs.mkdirSync(lock,{mode:0o700});}catch(error){if((error as NodeJS.ErrnoException).code==='EEXIST')throw new VisualMemoryCaptureBusyError();throw error;}
+  const identity=fs.lstatSync(lock);let released=false;
+  return ()=>{if(released)return;const current=fs.lstatSync(lock);if(!current.isDirectory()||current.isSymbolicLink()||current.dev!==identity.dev||current.ino!==identity.ino)throw Error('VISUAL_MEMORY_LOCK_IDENTITY_CHANGED');fs.rmdirSync(lock);released=true;};
+ }

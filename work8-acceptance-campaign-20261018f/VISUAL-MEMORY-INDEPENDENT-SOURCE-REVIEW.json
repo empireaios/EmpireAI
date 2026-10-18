@@ -1,0 +1,39 @@
+{
+  "decision": "APPROVED_SCOPED_SOURCE_REVIEW_NOT_RECOVERY_ACCEPTANCE",
+  "reviewer": "business_finance independent lane",
+  "files": {
+    "backend/src/app.ts": "8c40d00ad45f34bd732b835db247fdb66d841f2ea9eadabdf818ec8c3f0501d4",
+    "backend/src/orchestration/pillow-host/pillow-host.ts": "5bdfc22d71f4e34b2f47b251c088fc7d644e09d6d2cfc29036f2995d0c648526",
+    "backend/src/runtime/work8-recovery-capture.ts": "66bd2423e3877dff99844ff32ff466526e980a9dc712801fb1216a1180f9632e",
+    "deployment/work8-recovery-set.cjs": "5cb70bb5bc29b1aba61d2cfcb01452e6735a9eb3c0215ecad253633ffaa5e0f5",
+    "pillow/src/visual-memory-engine/engine.ts": "b73c16cab1cd978a2c8cbd2f1e7f316c1e13479aaa1d9c804a9c78609813fc93",
+    "pillow/src/visual-memory-engine/memory-controller.ts": "c8db34d1efa135e74e2e3857ef0e667d67178c61ff0be712ccd16cb900e8df3d",
+    "pillow/src/visual-memory-engine/memory-persistence-store.ts": "2051bf06f419a86eba8773df2e0c487685c6f349c9369a6d157a416b130a7d74",
+    "pillow/src/validation/tests/visual-memory-recovery-capture.test.ts": "6e00960f0f8fa41f7216d50ba35b6f17df6f527c36f8550c0e9e4e7529446cf6"
+  },
+  "reviewedTests": {
+    "receipt": "visual-memory-local.tap",
+    "passed": 3,
+    "failed": 0,
+    "independentReruns": 0
+  },
+  "findings": [],
+  "verifiedSourceBoundary": [
+    "Per-instance recoveryHeld established before synchronous inventory read and released finally on success/refusal/callback failure; nested capture refused",
+    "All file persistence mutators initialize/saveIndex/write/delete guarded before mutation; controller directcapture/timer/cleanup skip while held",
+    "memoryTick and captureNow perform writes synchronously without an intervening await; no in-flight async writer can straddle local gate in inspected code",
+    "Root/records/file aliases, hardlinks, unknown inventory, unsafe names, invalid JSON, duplicate/traversal paths and size bounds fail closed",
+    "Exact base64 original file bytes serialized; optional sealed visual-memory.json digest incorporated into existing recovery manifest and verifier; backward oldermanifest support retained",
+    "Host/application chain holds visual gate across generated held capture, within existing domain/admission fences; bootAllowed=false/completeLiveState=false preserved",
+    "Visual logs are in-memory only; durable root is index+records, not full volatile visual engine state"
+  ],
+  "limitations": [
+    "Per-instance same-eventloop exclusion only; another process or MemoryPersistenceStore instance can still write same root. No global writer/topology claim",
+    "No visual-memory restore/application rehydration implemented or established; no O33/O39/A1/A2/A3/A5 promotion",
+    "Capture now requires running Pillow and file-backed initialized safe visual root; disabled/stopped/memory-backend host fails closed",
+    "Local tests exercise persistence gate and snapshot schema; full sealedmanifest tamper/controller-host timer behavior needs actual changed-boundary hosted evidence",
+    "New Pillow test hosted selection not confirmed in inspected explicit Runtime lists; author/controller notified",
+    "Full Pillow/backend compilation author in progress; no build pass inferred"
+  ],
+  "acceptance": "OriginalHH4 remains historical accepted until relevant contradictory evidence; this successor needs exactsource hosted integration. No newwholecontract acceptance."
+}

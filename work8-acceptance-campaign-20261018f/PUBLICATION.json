@@ -1,0 +1,78 @@
+{
+  "recordType": "WORK8_CAMPAIGN_F_PUBLICATION",
+  "evidence": {
+    "sha": "dccff9bd3a012f194958994284d4ec6e798042c5",
+    "node_id": "C_kwDOTA0IHNoAKGRjY2ZmOWJkM2EwMTJmMTk0OTU4OTk0Mjg0ZDRlYzZlNzk4MDQyYzU",
+    "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/dccff9bd3a012f194958994284d4ec6e798042c5",
+    "html_url": "https://github.com/empireaios/EmpireAI/commit/dccff9bd3a012f194958994284d4ec6e798042c5",
+    "author": {
+      "name": "empireaios",
+      "email": "empireaiengine@gmail.com",
+      "date": "2026-10-18T10:07:57Z"
+    },
+    "committer": {
+      "name": "empireaios",
+      "email": "empireaiengine@gmail.com",
+      "date": "2026-10-18T10:07:57Z"
+    },
+    "tree": {
+      "sha": "3795db913ef930892cf8810cb9d260f93cbe6864",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/3795db913ef930892cf8810cb9d260f93cbe6864"
+    },
+    "message": "Work8 terminal campaign E evidence, unchanged acceptance register and independently reviewed eight-path successor [skip ci]",
+    "parents": [
+      {
+        "sha": "e10de63cd5499bf53fe978fb6c26f802f3912da3",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/e10de63cd5499bf53fe978fb6c26f802f3912da3",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/e10de63cd5499bf53fe978fb6c26f802f3912da3"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "source": {
+    "sha": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+    "node_id": "C_kwDOTA0IHNoAKDFmMDhiYjQ4MDdjOTU2YTg3MzE5ZTJjMDM5YWM5YjVhMmVjMzNlNmQ",
+    "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+    "html_url": "https://github.com/empireaios/EmpireAI/commit/1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+    "author": {
+      "name": "empireaios",
+      "email": "empireaiengine@gmail.com",
+      "date": "2026-10-18T10:15:53Z"
+    },
+    "committer": {
+      "name": "empireaios",
+      "email": "empireaiengine@gmail.com",
+      "date": "2026-10-18T10:15:53Z"
+    },
+    "tree": {
+      "sha": "c324ecb16b3054b86e84ce4b662d3c3f2b1be9a8",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/c324ecb16b3054b86e84ce4b662d3c3f2b1be9a8"
+    },
+    "message": "Work8 reviewed A8 elapsed replay clock, session capture admission and approved-media listing transfer",
+    "parents": [
+      {
+        "sha": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/538d5f68ad7c2ab10aa055815a1a086b2c2b444b"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "approvedSource": "b01e0fd461c50d7bff971d81b247d396adbdb9b6",
+  "evidenceFirst": true,
+  "exactTreesVerified": true,
+  "metadataOnly": "Removed source skip-ci staging marker",
+  "duplicateDispatch": false
+}

@@ -1,0 +1,172 @@
+{
+  "recordType": "BUSINESS_FINANCE_RETAINED_EVIDENCE_CLOSURE_INPUT",
+  "at": "2026-10-18T10:16:18.265219+00:00",
+  "newExternalReads": 0,
+  "paidInference": 0,
+  "externalEffects": 0,
+  "snapshotSearches": 0,
+  "newAcceptances": [],
+  "sources": [
+    {
+      "id": "ev_eebe8951f46cbbbe14c883c5e884c531aaeae9bc",
+      "fileSHA256": "8a57d6e36a177df9f7973d2d6b4166d178b5b8ff3eabc400126841439e4e14d4",
+      "observedAt": "2026-10-18T06:39:26.282Z",
+      "staleAfter": "2026-10-18T12:39:26.283Z"
+    },
+    {
+      "id": "ev_6724ef7efa25794fab55a347e0c72b97f4a9b3c5",
+      "fileSHA256": "6d062e692eab9c91b90bb0eee4f3f1e8cfb9ac00775e37ccd0e73f9c8899a615",
+      "observedAt": "2026-10-18T06:39:53.933Z",
+      "staleAfter": "2026-10-18T12:39:53.933Z"
+    },
+    {
+      "id": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+      "fileSHA256": "2cb585479a61cbe314efdff1c13c67fb7f8a854124b885b9a80f0fd343f4c094",
+      "observedAt": "2026-10-18T06:39:54.255Z",
+      "staleAfter": "2026-10-18T12:39:54.256Z"
+    }
+  ],
+  "dossierSHA256": "0e5da5b1f281b10fafb647cee5e1cf8b31ae8b8598418190b036030ef7fc09d9",
+  "stockAttribution": {
+    "total": 8023,
+    "cjHeld": 0,
+    "factory": 8023,
+    "detailInventoryNum": null,
+    "interpretation": "Recorded factory inventory, not CJ-held or reserved stock and not a supplier commitment."
+  },
+  "freightReviewInput": {
+    "selection": null,
+    "destination": "US",
+    "options": [
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "fc175ed8e4947c476ec13d695dff7e544ab33cb67d4bc1b3285cc27fac80d011",
+        "amount": 6.57,
+        "currency": "USD",
+        "service": "LuWei Ordinary US",
+        "leadTime": "5-11"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "a26dc62cbb82e01962cbe041ea76127a61d98b23ed84257ee3144151db0674cb",
+        "amount": 7.28,
+        "currency": "USD",
+        "service": "YunExpress Ordinary",
+        "leadTime": "4-7"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "59b2da7516cb7e098cb8e5fb25faecc93cadeced247bafc41d4d4ce7bfd7c5f4",
+        "amount": 7.9,
+        "currency": "USD",
+        "service": "YunExpress Sensitive",
+        "leadTime": "4-7"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "6e7da734461b9317aed30b06b64e24aff25c5fd4d622eb1318a1660d89bd125b",
+        "amount": 7.39,
+        "currency": "USD",
+        "service": "CJPacket Ordinary",
+        "leadTime": "4-9"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "870a65b5a66e416722329ffca61a512eb46d902a5771909a329b5a97cadb8d46",
+        "amount": 7.62,
+        "currency": "USD",
+        "service": "CJPacket Super Pure Electricity",
+        "leadTime": "5-11"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "2de101ce3655edd3a688d168dc09d08c89d16422b858ea67592eb3354c605147",
+        "amount": 7.62,
+        "currency": "USD",
+        "service": "CJPacket Pure Electricity",
+        "leadTime": "7-14"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "3ca75f422e434c03752a89a3a640327547d3d4b61f1c972d2252e8f0dcffa0ee",
+        "amount": 8.12,
+        "currency": "USD",
+        "service": "CJPacket Sensitive",
+        "leadTime": "4-9"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "69df11295eb56558f142b3c26cf3c7044b8a15ee6c6f15b9709e8b79f7b7ec44",
+        "amount": 9.21,
+        "currency": "USD",
+        "service": "CJPacket Sensitive Pro",
+        "leadTime": "5-11"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "d2f2ef33ab35c2033d9c79f60d1c51f40696218117ed4776233e20ecab744f84",
+        "amount": 8.48,
+        "currency": "USD",
+        "service": "USPS Ordinary",
+        "leadTime": "5-11"
+      },
+      {
+        "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "rowDigest": "8858f6a2e6e35b1c9477c93cc525e21b56b1ed852e7b381031428b9c806ae8bf",
+        "amount": 9.11,
+        "currency": "USD",
+        "service": "CJPacket Eub Special Line",
+        "leadTime": "10-23"
+      }
+    ],
+    "currencyBasis": "Retained exact endpoint contract; raw response lacks explicit currency. No new document verification.",
+    "processingAndReturns": "No processing/returns/RMA fields identified in these exact three retained source records; freight leadTime alone does not establish processing or returns policy."
+  },
+  "qualification": {
+    "status": "DEFERRED",
+    "qualified": false,
+    "missing": [
+      "AUTHENTICATED_EVIDENCE_REVIEW_REQUIRED",
+      "CANONICAL_FINANCIAL_SNAPSHOT_REQUIRED",
+      "COMPLETE_CURRENT_CASH_POSITION_REQUIRED",
+      "COMPLETE_REVIEWED_FORECAST_REQUIRED",
+      "EXACT_FREIGHT_REQUIRED",
+      "FREIGHT_CURRENCY_REQUIRED",
+      "SOURCE_COST_FX_BINDING_REQUIRED"
+    ],
+    "rejected": []
+  },
+  "financial": {
+    "status": "INCOMPLETE",
+    "netEstimate": null,
+    "exposure": null,
+    "cash": null,
+    "conversions": []
+  },
+  "blockedRows": {
+    "O2": "Original immutable224 baseline or attributable audited lineage still missing; no new lead/search.",
+    "O7": "Exact genuine supplier assets have UNVERIFIED rights and null permissionEvidence; owner-created fixtures do not fill this.",
+    "O13": "Genuine authenticated review +selected exact freight+canonical financial/cash/forecast/FX and evidence-based findings missing; no paid assessment ready.",
+    "A10": "No specified permitted actual design/export consumer entitlement.",
+    "A15": "Last known keepa.history UNAVAILABLE/no verifiedread; no licence evidence."
+  },
+  "nextBoundedInputs": [
+    "Authenticated source-bound review with genuine demand/competition/differentiation/quality/compliance/returns/marketplace findings and processing evidence",
+    "Exact selected freight row with digest, destination and applicable quantity\u2014not an automatic cheapest selection",
+    "Canonical reviewed cash/liability/commitment/forecast/FX/exposure input",
+    "Exact supplier permission or existing permitted design for distinct media contracts"
+  ],
+  "O19AuthorMappingNotCertification": {
+    "remainingHosted": "Current approved exactsource hosted selected backend test must retain O19_AUTHENTICATED_RECEIPT diagnostic; independent reviewer joins candidate/listing/sourceapproval/target/publication digests.",
+    "contractAssertions": [
+      "Listing schema preserves product/variant/category/claims/source/rights; wrongidentity/unknownrights/nonHTTPS refused",
+      "Current internally approved exact image version/bytes/source consumed by APPLY_LISTING; prior candidateapproval invalidated",
+      "Production TRANSFER_LISTING consumes durable binding only, targetownerworkspace, absenttarget, sourceSYNTHETIC, no suppliedpayload or copiedauthority",
+      "Stale/edit/replay/foreign/collision refused; both engine writes+binding atomic and durable",
+      "Actual authenticated canonical policyreview+ownerapproval gate samecandidate listing publication_intent; intercepted only and liveexecute423",
+      "Join unchanged accepted A9 exact original SVG native desktop/mobile and A11 controls with changed-boundary regression"
+    ],
+    "noInventedGate": "Do not require new UI, positive commercial qualification, actual supplier rights for original permitted test assets, distinct human reviewers or real external listing publication unless original contract says so.",
+    "authorConflict": "I authored this source; independent acceptance decision must come from reviewer, not this mapping."
+  }
+}

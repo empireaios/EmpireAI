@@ -1,0 +1,21 @@
+{
+  "recordType": "FINAL_INTEGRATED_COMPILATION",
+  "sourceTree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+  "sourceCommit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+  "Pillow": {
+    "exitCode": 0,
+    "log": "integrated-pillow-build-final.log",
+    "logSHA256": "bd9d9cc56f59697b51b5d75e263bb8c00726ecb9580da1caa5c92adef2b2ee17"
+  },
+  "backend": {
+    "exitCode": 0,
+    "log": "integrated-backend-build-final.log",
+    "logSHA256": "7b72ce9760dbaecf767e3772e960a11cdf7f1791bf6f31fc69e00b6d8699b168"
+  },
+  "frontendTypecheck": {
+    "exitCode": 0,
+    "log": "integrated-frontend-typecheck-final.log",
+    "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "earlierDiagnostics": "Initial backend TS7006 corrected; initial and final logs retained. Final complete source bytes compiled; no paid inference or workflow dispatch."
+}

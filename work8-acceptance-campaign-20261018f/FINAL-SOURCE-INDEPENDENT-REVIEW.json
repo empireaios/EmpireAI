@@ -1,0 +1,170 @@
+{
+  "reviewer": "/root/console_acceptance",
+  "decision": "APPROVED_EXACT_STAGED_INTEGRATION_NO_NEW_HOSTED_ACCEPTANCE",
+  "commit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+  "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+  "parent": "1f08bb4807c956a87319e2c039ac9b5a2ec33e6d",
+  "branch": "work8/staged-source-20261018f-f21713b9",
+  "localEquivalent": "959b47e9fe3c4004b6f9698a287856a58e34346e",
+  "verification": {
+    "remoteCommitRefParentVerified": true,
+    "rootEntriesEqualLocal": true,
+    "rootMerkleHashReconstructed": true,
+    "changedPaths": 16,
+    "allRemoteBlobsByteEqualLocal": true,
+    "allPathsModesBoundBySameRootTree": true,
+    "allFinalSHA256MatchIndependentReviews": true,
+    "localWorktreeClean": true
+  },
+  "changedPaths": [
+    {
+      "path": "backend/src/app.ts",
+      "mode": "100644",
+      "sha": "447005b2610975ba00ed07e3f4e9a3853052c63c",
+      "sha256": "bf017b30ec79d3575bd348477b32cd08ddbfee97de1d8d6820570bbe6b17942d",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "backend/src/orchestration/pillow-host/pillow-host.ts",
+      "mode": "100644",
+      "sha": "6e8869d47fbbaf08dd78a18a20a30fbe14c352c8",
+      "sha256": "5bdfc22d71f4e34b2f47b251c088fc7d644e09d6d2cfc29036f2995d0c648526",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "mode": "100644",
+      "sha": "869c3c72774b42e0c34b33e6886405c54b50ee4d",
+      "sha256": "66bd2423e3877dff99844ff32ff466526e980a9dc712801fb1216a1180f9632e",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-media-listing-interruption.test.ts",
+      "mode": "100644",
+      "sha": "6225a816a7c09d3adf76c07c37eec6f66310b3bf",
+      "sha256": "edd00f0f92d25cd3c2b38500c51f801ba5e9ad7bd1a54da3d26fb5959c590d31",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "backend/src/validation/tests/work8-visual-memory-capture.test.ts",
+      "mode": "100644",
+      "sha": "446bd72432481bee2b8e20e1cfe6727472e89927",
+      "sha256": "42bf6aadac2c445eabef75b0da909acffea2a156b5fb22e232a6d95b4a49f290",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "mode": "100644",
+      "sha": "e7405f9911a4cb8e674003fdae4675f9ce39fc71",
+      "sha256": "87bb60033c46ad6f7ad19b6cd35bf3bb7700e3234e78a7987688fc53b6fd2dc3",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-native.mjs",
+      "mode": "100644",
+      "sha": "ab2d1701c05fe44f3e5f61c31f50ec53fb96ad43",
+      "sha256": "65e9e23ff0d2b69cd92974ebaa1a3daa171808a1cfdab894692ffb782b0e76d5",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+      "mode": "100644",
+      "sha": "9baa2006c1a4dc33e30e9e79d0e674a4d8c2381f",
+      "sha256": "0d013ed99fc5e60ba9eee34802426c948a0b45069f5e6e5dfbe2777dbc572959",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "empireai-web/lib/pillow/client.ts",
+      "mode": "100644",
+      "sha": "9367267b9bd1b97d498dc880386c58bfa5246ee9",
+      "sha256": "e9526b5ee90b73633137f87ab94ac3c98b0392d2b6a5e13344f04dd94e854ca9",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "empireai-web/lib/pillow/session-resolution.test.ts",
+      "mode": "100644",
+      "sha": "87f818de18b71c713ef16c287e5f546c3f687a0d",
+      "sha256": "bc0713beb05fb05c9970584a794e3154c57a7dc987f61c46f2e9272da8b58e03",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "empireai-web/lib/pillow/session-resolution.ts",
+      "mode": "100644",
+      "sha": "bb13a00b9a7146267bfdef1b44ee02319d1a684b",
+      "sha256": "ddcd860a4737e4fc148443f07cc7b61e29c84113ec2a6ac78147c305b5ae97fc",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "pillow/src/validation/tests/visual-memory-recovery-capture.test.ts",
+      "mode": "100644",
+      "sha": "1d7ab8762de700bce66d6fe4c66988220a776343",
+      "sha256": "2d9b745715797a91bec62aedc9d2f40aa3840876c59bfe05f60b301ed4788dc6",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "pillow/src/visual-memory-engine/engine.ts",
+      "mode": "100644",
+      "sha": "9aa203591cea42dd388d1eb6cb8e50c1a19e5781",
+      "sha256": "b73c16cab1cd978a2c8cbd2f1e7f316c1e13479aaa1d9c804a9c78609813fc93",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "pillow/src/visual-memory-engine/memory-controller.ts",
+      "mode": "100644",
+      "sha": "fcd638df9d7be71e39dfc81a15a3e7a81c40ec93",
+      "sha256": "bb613c581bfe9724b368653db6329209aa67e6d8a75393d6d058325f13210306",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "pillow/src/visual-memory-engine/memory-persistence-store.ts",
+      "mode": "100644",
+      "sha": "a7392ff5e674461e233bbcd37370c489e6b68f68",
+      "sha256": "c5892eea93a18d9a6c37e3178c40af766471d9334d9833cc37ae4663d8e8432d",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    },
+    {
+      "path": "pillow/src/visual-memory-engine/recovery-lock.ts",
+      "mode": "100644",
+      "sha": "15957000284280bf2458ad4298f347cbcc327f0b",
+      "sha256": "97d326406f82dbb190b4029337198c3d5172230433c9e992710484dacc571c56",
+      "remoteBytesEqualLocal": true,
+      "reviewHashMatches": true
+    }
+  ],
+  "compilation": "Retained final integrated Pillow/backend build and frontend typecheck PASS supplied by controller; logs inspected, no compiler repeated. Backend reaches postbuild; Pillow tsc output no diagnostics; frontend terminal log empty.",
+  "scope": [
+    "A8 authenticated session-resolution/coalescing correction reviewed; native hosted successor acceptance remains pending.",
+    "Visual-memory cooperating-writer capture/manifest/inspection materialization reviewed with VM1/VM2 resolved; no whole-runtime restore/custody acceptance implied.",
+    "O19 existing full-contract acceptance retained on published production source plus exact local interruption proof; successor adds that test, not new production behavior for O19."
+  ],
+  "findings": [],
+  "testsRepeated": 0,
+  "publicationPerformed": false,
+  "newAcceptanceFromThisReview": [],
+  "ownerApprovalRequiredForDestinationPublication": true,
+  "evidenceSha256": {
+    "A8-SESSION-REUSE-INDEPENDENT-REVIEW.json": "fe85b5e0cffb80fe07667a5cf8b34afbf09f17bf7c7a210a938b301d6a4c4a80",
+    "VISUAL-MEMORY-FINAL-REVIEW.json": "a2a0b9ee07b9cb6016ed6e583ebb50b262d2fe15266c9af46e6562e8d76666f5",
+    "O19-FINAL-INDEPENDENT-ACCEPTANCE.md": "a5389b095c1b5547dd6e680dcbd62401ef08a0047ee6cf7cd8333f4ba13890fc",
+    "integrated-backend-build-final.log": "7b72ce9760dbaecf767e3772e960a11cdf7f1791bf6f31fc69e00b6d8699b168",
+    "integrated-pillow-build-final.log": "bd9d9cc56f59697b51b5d75e263bb8c00726ecb9580da1caa5c92adef2b2ee17",
+    "integrated-frontend-typecheck-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "final-source-independent-remote-readback.json": "9c685d4cd7b80892a586a3099517581ebb16e268e69b9ab0103747c6af9bfcca",
+    "final-source-verified-paths.json": "461106e915d3e15c1109bba9b4d1749fb76c9c3cdf6c4e8ca0c9d3e77353fb83"
+  }
+}

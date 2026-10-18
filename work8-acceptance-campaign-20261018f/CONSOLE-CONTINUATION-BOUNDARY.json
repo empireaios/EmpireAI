@@ -1,0 +1,75 @@
+{
+  "reviewer": "/root/console_acceptance",
+  "decision": "NO_NEW_COMPLETE_ACCEPTANCE_GENUINE_RECORD_JOIN_REQUIRED",
+  "scope": "Bounded continuation after campaign E; no accepted examination repeated. Inspected only existing source read domains and retained fixture provenance.",
+  "ids": [
+    "O40",
+    "O41",
+    "A6",
+    "A19"
+  ],
+  "preserved": [
+    "390/1440 authenticated historical response readback and refresh",
+    "Genuine Oct8 historical insufficient-evidence assessment identity",
+    "Truthful later Oct10 observation linkage by product only",
+    "Truthful isolated empty downstream stores and unavailable Assurance"
+  ],
+  "implementationFinding": "Existing Advisor read domains include decisions, governed_commerce, financial_centre, missions and assurance. No new UI or storage abstraction is necessary merely to display already attributable records. Current fixture contains no genuine owner decision or linked simulated result; its source expressly records None created.",
+  "remainingAssertionMap": {
+    "O40": [
+      "Same-product authenticated owner decision or disposition",
+      "Explicitly linked simulated outcome and finance presentation",
+      "Attributable Assurance and recovery status in connected journey"
+    ],
+    "O41": [
+      "Desktop/mobile equality of linked owner decision, simulated finance and Assurance records"
+    ],
+    "A6": [
+      "Attributable same-identity source-to-owner-to-simulated-results dry-run chain"
+    ],
+    "A19": [
+      "Inspectable connected product/mission/order/finance/Assurance records at both widths"
+    ]
+  },
+  "minimumExecutableContinuation": [
+    {
+      "step": 1,
+      "action": "Obtain actual source-bound owner disposition record. A truthful defer/reject is permitted; this lane must not impersonate owner or manufacture a historical decision.",
+      "dependency": "Attributable decision absent from retained fixture."
+    },
+    {
+      "step": 2,
+      "action": "Join a permitted dry-run result to that same product/disposition, explicitly distinguish any synthetic simulation and retain intercepted/zero-effect outcome.",
+      "dependency": "Existing O19 synthetic asset test is not automatically the genuine historical product chain."
+    },
+    {
+      "step": 3,
+      "action": "Present attributable current mission/Assurance and recovery checkpoint through existing read views, preserving NOT_BORN/LOCKED and scope limitations.",
+      "dependency": "Current historical fixture has unavailable Assurance and no recovery-status record."
+    },
+    {
+      "step": 4,
+      "action": "Only after records exist, run changed-boundary native connected journey once at390/1440 and independently compare exact IDs/digests across domains.",
+      "dependency": "No repeat of accepted historical-only readback required."
+    }
+  ],
+  "notRequired": [
+    "Positive commercial qualification as a blanket display prerequisite",
+    "Paid inference to show a truthful historical rejection/deferment",
+    "Additional purchased visual host or physical-device certification",
+    "Real commercial order, payment or external publication"
+  ],
+  "noActionClaims": {
+    "newSourceChanges": 0,
+    "testsRerun": 0,
+    "paidInference": 0,
+    "externalEffects": 0,
+    "ownerDecisionsFabricated": 0
+  },
+  "sourceSha256": {
+    "backend/src/advisor/read-model.ts": "e1b00ce758fa8d6da5f181953dc1a4104336a4b9bf16ff4f1221aa7e1dfcd45e",
+    "empireai-web/e2e/owner-history-backend.mts": "aaa6fad3143e81d11c2a96cd5e4edde5ea3259cfc1221bf5352ba55d31379d12",
+    "empireai-web/e2e/fixtures/genuine-deferred-journey.json": "65590dc4e27858343aa8998f40b08d00b170e0bc65fec02effa1643d6afcccc4"
+  },
+  "newAcceptedIds": []
+}
