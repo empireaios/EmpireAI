@@ -84,7 +84,12 @@ async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityF
   for(const [id,file] of Object.entries(json)){const size=fs.statSync(file).size;if(id==='assuranceWatchdog')assert.ok(size>0&&size<=65536,'OBSERVER_WATCHDOG_SIZE');const bytes=fs.readFileSync(file);const value=JSON.parse(bytes);if(id==='assuranceWatchdog')assert.ok(Number.isSafeInteger(value.observedAt)&&value.observedAt>0&&typeof value.status==='string','OBSERVER_WATCHDOG_SCHEMA');assert.ok(value&&typeof value==='object'&&!Array.isArray(value));fs.writeFileSync(path.join(destination,id+'.json'),bytes,{flag:'wx',mode:0o600});jsonDigests[id]=sha(bytes);}
   const lifecycleMarkers=captureRepositoryLifecycle?captureLifecycleMarkers(root,destination):undefined;
   const redisIdentity=captureRedisIdentity?await captureRedisIdentity():undefined;
-  const redisCapturedAt=Date.now();const redis=await captureRedis();assert.ok(Array.isArray(redis));
+  const legacyCaptureStartedAt=Date.now();const snapshot=await captureRedis();
+  // Legacy inspection callbacks still return arrays. Actual runtime capture uses
+  // Redis TIME from the same Lua execution as DUMP/PTTL, never a pre-await clock.
+  const redis=Array.isArray(snapshot)?snapshot:snapshot?.rows;
+  const redisCapturedAt=Array.isArray(snapshot)?legacyCaptureStartedAt:snapshot?.capturedAt;
+  assert.ok(Array.isArray(redis));assert.ok(Number.isSafeInteger(redisCapturedAt)&&redisCapturedAt>0,'REDIS_SNAPSHOT_TIME_INVALID');
   if(captureRedisIdentity)assert.deepEqual(await captureRedisIdentity(),redisIdentity);
   const redisBytes=JSON.stringify(redis);fs.writeFileSync(path.join(destination,'redis.json'),redisBytes,{flag:'wx',mode:0o600});
   if(lifecycleMarkers)verifyLifecycleMarkers(root,lifecycleMarkers,true);

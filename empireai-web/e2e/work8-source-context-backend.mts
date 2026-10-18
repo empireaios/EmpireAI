@@ -13,9 +13,13 @@ const empire=await buildApp({startWorkers:false,startScheduler:false,pillowEnabl
 const login=await empire.app.inject({method:'POST',url:'/auth/login',payload:{email:env.FOUNDER_EMAIL,password:env.FOUNDER_PASSWORD}});
 if(login.statusCode!==200)throw Error('ACTUAL_HOST_AUTH_FAILED');
 const actualCookie=String(login.headers['set-cookie']),user=login.json().user,intel=productionIntelligence();
-const created=await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie:actualCookie},payload:{forceNew:true}});
+const created=await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie:actualCookie},payload:{}});
 if(created.statusCode!==201)throw Error('ACTUAL_HOST_SESSION_FAILED:'+created.body);
 const actualSession=created.json().session,host:any=getPillowHost();
+// Ordinary canonical creation persists the empty conversation before cold history reads.
+host.sessionStore=new PillowSessionStore(()=>new ReasoningState(path.join(root,'commissioning','pillow-reasoning.sqlite')));
+const initialHistory=await empire.app.inject({method:'GET',url:'/api/pillow/history?sessionId='+encodeURIComponent(actualSession.sessionId),headers:{cookie:actualCookie}});
+if(initialHistory.statusCode!==200||initialHistory.json().sessionId!==actualSession.sessionId||initialHistory.json().history.length!==0)throw Error('ACTUAL_CANONICAL_COLD_HISTORY_FAILED:'+initialHistory.body);
 let providerCalls=0;
 host.llmLayer={listAvailableProviders:()=>['openai'],complete:async()=>{providerCalls++;return {content:'INTERCEPTED TEST RESPONSE: historical product context only; no operational authority.',provider:'openai',model:'offline-fixture',mode:'general_intelligence',usage:{promptTokens:1,completionTokens:1,totalTokens:2}};}};
 
