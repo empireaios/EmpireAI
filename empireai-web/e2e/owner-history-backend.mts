@@ -1,5 +1,7 @@
 /** Genuine retained historical readback, isolated authentication; no inference, writes or authority replay. */
-import fs from 'node:fs';import path from 'node:path';import {pathToFileURL} from 'node:url';import {createHash} from 'node:crypto';import {DatabaseSync} from 'node:sqlite';
+import fs from 'node:fs';import path from 'node:path';import {pathToFileURL} from 'node:url';import {createHash} from 'node:crypto';import {createRequire} from 'node:module';
+// This Node 22-only fixture runs outside the browser; load its builtin at runtime.
+const {DatabaseSync}=createRequire(import.meta.url)('node:sqlite');
 const [backend,sourceFile,root,readyFile]=process.argv.slice(2);if(!backend||!sourceFile||!root||!readyFile||process.env.WORK8_KERNEL_EGRESS!=='CONNECT_DENIED_LISTEN_ALLOWED')throw Error('ISOLATION_REQUIRED');
 Object.assign(process.env,{NODE_ENV:'test',FOUNDER_EMAIL:'owner@example.invalid',RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'commissioning','empireai-brain.db'),EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',INTELLIGENCE_DISABLED:'true'});
 fs.mkdirSync(path.join(root,'commissioning'),{recursive:true});globalThis.fetch=async()=>{throw Error('EXTERNAL_FETCH_FORBIDDEN');};
