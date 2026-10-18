@@ -1,0 +1,24 @@
+{
+  "decision": "HH4_PENDING_NO_ACCEPTANCE",
+  "source": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+  "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62",
+  "run": 39111097417,
+  "artifact": 12130034304,
+  "artifactSha256": "44bd0426f7dfce8d4ff32f07f7b2bc12ef241f75723bd3e6be42b78565d218ff",
+  "failure": "Actual Pillow host started; generated domain initialization failed opening mission execution database at hh4-domain-state.mjs:121. Controller held-capture assertion then failed.",
+  "preservedFacts": [
+    "Redis connected and Brain initialized",
+    "Pillow host started under actual image",
+    "External controller containment completed; container exited, no restart"
+  ],
+  "notEstablished": [
+    "held capture",
+    "operational readiness acceptance",
+    "authenticated session restoration",
+    "operational restoration",
+    "once-only replay",
+    "protected custody"
+  ],
+  "newRequirementsAccepted": [],
+  "limits": "Pending successor readiness correction is separate source review and local scoped test, not hosted acceptance."
+}

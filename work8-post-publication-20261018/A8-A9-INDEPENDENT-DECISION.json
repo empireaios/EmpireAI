@@ -1,0 +1,38 @@
+{
+  "decision": "NO_NEW_FULL_ACCEPTANCE",
+  "source": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+  "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62",
+  "actualCheckout": "e40855b67228dab3764d2b6de0820ee22b91abac",
+  "actualCheckoutTreeMatches": true,
+  "run": 39111097412,
+  "job": 117627307705,
+  "A8": {
+    "status": "PENDING",
+    "artifact": 12130552658,
+    "reason": "Integrated web build failed TS2307 node:sqlite in owner-history fixture. Native harness STARTUP_TIMEOUT because Next production build absent. No browser responses. Actual tier0 admission202 and forged pin409 scope passes preserved."
+  },
+  "A9": {
+    "status": "PENDING",
+    "artifact": 12130127974,
+    "reason": "Both desktop1440/mobile390 image/video import stop at getByLabel Usage-rights evidence exact lookup. Media-type selector correction progressed. No complete gallery/import/archive contract acceptance."
+  },
+  "A11": {
+    "status": "PASS_PRESERVED",
+    "passingChecks": 16,
+    "externalEffects": 0,
+    "paidInference": 0,
+    "reason": "Existing independently accepted baseline preserved; new receipt has only A9 failures, no contradictory A11 evidence."
+  },
+  "ownerHistory": {
+    "status": "NO_NATIVE_ACCEPTANCE",
+    "artifact": 12130642489,
+    "reason": "Same missing Next production build; historical transcript/receipt hashes unchanged."
+  },
+  "artifacts": {
+    "12130552658": "e1c7dc39ae15a95521b4f64c266797dc5038de46c6a3712bdd7ff4ecf49bcc7d",
+    "12130642489": "4f8b11b97cb1d8bc8adaa96173bf6291ab3a6e9c94a9de5f21e0cfcf2206e3ec",
+    "12130127974": "73ed2761bd4daf96d189776d60ed1f462aabd0ecf72953f80c654dc3061fc898"
+  },
+  "remaining": "42 accepted / 22 outstanding; no new original/amendment closures",
+  "contractBasis": "Original OWNER-HOLISTIC-DIRECTIVE sections8/9 and current owner exact acceptance directive; software acceptance does not require unauthorised inference."
+}

@@ -1,0 +1,63 @@
+(node:6) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: materializes pinned closed inventory into a fresh target without changing source or enabling boot
+ok 1 - materializes pinned closed inventory into a fresh target without changing source or enabling boot
+  ---
+  duration_ms: 56.09481
+  type: 'test'
+  ...
+# Subtest: rejects inspection archives and incomplete inventory despite self-consistent digests
+ok 2 - rejects inspection archives and incomplete inventory despite self-consistent digests
+  ---
+  duration_ms: 13.178984
+  type: 'test'
+  ...
+# Subtest: rejects digest tampering and unexpected payload files
+ok 3 - rejects digest tampering and unexpected payload files
+  ---
+  duration_ms: 9.155259
+  type: 'test'
+  ...
+# Subtest: rejects aliased, linked and partial destinations without modifying them
+ok 4 - rejects aliased, linked and partial destinations without modifying them
+  ---
+  duration_ms: 11.88007
+  type: 'test'
+  ...
+# Subtest: rejects traversal, duplicated paths and parent/file collisions in pinned contract
+ok 5 - rejects traversal, duplicated paths and parent/file collisions in pinned contract
+  ---
+  duration_ms: 12.652799
+  type: 'test'
+  ...
+# Subtest: copy failure cleans new staging and never leaves a final target or admission marker
+ok 6 - copy failure cleans new staging and never leaves a final target or admission marker
+  ---
+  duration_ms: 12.01167
+  type: 'test'
+  ...
+# Subtest: existing crash lock fails closed without stealing it
+ok 7 - existing crash lock fails closed without stealing it
+  ---
+  duration_ms: 8.355469
+  type: 'test'
+  ...
+# Subtest: dangling target symlinks and hard-linked payloads are not fresh isolated state
+ok 8 - dangling target symlinks and hard-linked payloads are not fresh isolated state
+  ---
+  duration_ms: 18.292555
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 284.62868

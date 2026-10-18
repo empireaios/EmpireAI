@@ -1,0 +1,25 @@
+{
+  "evidenceMode": "OFFLINE_FIXTURE",
+  "sourceHead": "e40855b67228dab3764d2b6de0820ee22b91abac",
+  "terminalRejectionVisible": true,
+  "productStageFilterVerified": true,
+  "ownerHomeProductsEvidenceJourney": true,
+  "ownerHistoricalProviderSnapshot": true,
+  "approvalLocked": true,
+  "ownerApiWriteDenied": true,
+  "browserLogin": true,
+  "phoneViewport": [
+    390,
+    844
+  ],
+  "bffBackendDiskReadback": true,
+  "realAuthMiddleware": true,
+  "sessionBackend": "isolated in-memory",
+  "logoutRevokesSession": true,
+  "foreignWorkspaceQueryRefused": true,
+  "providerAuthenticity": false,
+  "transactionKey": "amz:111-2222222-3333333|item:item-1|sku:EMP-FD-MVDK61WE",
+  "realisedFixtureContributionUsd": 15.95,
+  "authorityChanged": false,
+  "productionTouched": false
+}

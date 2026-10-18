@@ -1,0 +1,27 @@
+{
+  "decision": "READY_FOR_INDEPENDENT_REVIEW_NOT_ACCEPTANCE",
+  "baseCommit": "605934a552dab4b0f27988307532d5658ff0d150",
+  "files": [
+    "backend/src/validation/tests/work8-cold-state-materialization.test.mjs",
+    "deployment/work8-cold-state-materialization.cjs"
+  ],
+  "fileSha256": {
+    "backend/src/validation/tests/work8-cold-state-materialization.test.mjs": "bf88fb27a3282cfc8855b4c72514ec8145df4e2ef30a5434e4b356f9ba72e6d0",
+    "deployment/work8-cold-state-materialization.cjs": "611f7df5e185d8052359223725796730c6e6baaeb741bb06e26e935069884358"
+  },
+  "patchSha256": "4363b7e317d7e07dc329000ced9a4046e8c3a67e8fe1d0a3a9a391db7ecd864b",
+  "tests": {
+    "pass": 8,
+    "fail": 0,
+    "node": "22.23.2"
+  },
+  "scope": "Materializes manifest-digest-pinned bytes against independently supplied exact inventory contract into distinct fresh closed target. This validates declared inventory completeness only.",
+  "limitations": [
+    "No complete-runtime manifest producer exists yet; existing incomplete inspection archives rejected.",
+    "Caller still must independently establish complete topology inventory, consistent capture and source quarantine.",
+    "Redis dump bytes preserved but not activated; original sessions/TTL and pending replay need actual restore examination.",
+    "No application bootstrap, admission release, live authority, protected custody or full #33/#39 certification.",
+    "Private parent and cooperative lock required; no protection promised against hostile same-UID filesystem mutation."
+  ],
+  "newAcceptedRequirements": []
+}

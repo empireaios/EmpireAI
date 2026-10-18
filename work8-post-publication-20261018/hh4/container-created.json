@@ -1,0 +1,246 @@
+{
+  "source": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+  "imageId": "sha256:01cfd72be6fcabe975126e0f6905a6b684f919d322df77c674399d16ef149fd0",
+  "id": "bbd2b77a408b26f948c1b73e7a9224eeb08e0cdc8a7c1e33706c75255cdb4b60",
+  "name": "work8-hh4-7584fa5f-88e0-43a5-9c46-c2baff610838",
+  "controller": {
+    "pid": 4620,
+    "state": "R",
+    "startTicks": "19048",
+    "cgroup": "0::/system.slice/hosted-compute-agent.service\n"
+  },
+  "created": {
+    "Id": "bbd2b77a408b26f948c1b73e7a9224eeb08e0cdc8a7c1e33706c75255cdb4b60",
+    "Created": "2026-10-18T08:23:53.367854061Z",
+    "Path": "node",
+    "Args": [
+      "scripts/work8/hh4-generated-primary.mjs"
+    ],
+    "State": {
+      "Status": "created",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "0001-01-01T00:00:00Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "Image": "sha256:01cfd72be6fcabe975126e0f6905a6b684f919d322df77c674399d16ef149fd0",
+    "ResolvConfPath": "",
+    "HostnamePath": "",
+    "HostsPath": "",
+    "LogPath": "",
+    "Name": "/work8-hh4-7584fa5f-88e0-43a5-9c46-c2baff610838",
+    "RestartCount": 0,
+    "Driver": "overlay2",
+    "Platform": "linux",
+    "MountLabel": "",
+    "ProcessLabel": "",
+    "AppArmorProfile": "",
+    "ExecIDs": null,
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "none",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": [],
+      "DnsOptions": [],
+      "DnsSearch": [],
+      "ExtraHosts": null,
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,nosuid,nodev,size=1073741824,mode=1777"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 3221225472,
+      "NanoCpus": 2000000000,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": [],
+      "BlkioDeviceReadBps": [],
+      "BlkioDeviceWriteBps": [],
+      "BlkioDeviceReadIOps": [],
+      "BlkioDeviceWriteIOps": [],
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": [],
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 6442450944,
+      "MemorySwappiness": null,
+      "OomKillDisable": false,
+      "PidsLimit": 512,
+      "Ulimits": [],
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "Mounts": [
+        {
+          "Type": "bind",
+          "Source": "/home/runner/work/_temp/hh4-evidence/container-evidence",
+          "Target": "/evidence"
+        }
+      ],
+      "MaskedPaths": [
+        "/proc/asound",
+        "/proc/acpi",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/sys/firmware",
+        "/sys/devices/virtual/powercap"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ]
+    },
+    "GraphDriver": {
+      "Data": {
+        "ID": "bbd2b77a408b26f948c1b73e7a9224eeb08e0cdc8a7c1e33706c75255cdb4b60",
+        "LowerDir": "/var/lib/docker/overlay2/9c28e97299a347f62fbbe90821ee1c2da0d23494a1f0b95e238befa5eb3ef715-init/diff:/var/lib/docker/overlay2/jo62ahfr2tsypjmqfwr3s0ptp/diff:/var/lib/docker/overlay2/d428xjrd116fx1wos59caje8j/diff:/var/lib/docker/overlay2/ma6ytn04grf9dkdiyhfsrvv0g/diff:/var/lib/docker/overlay2/11aac376e43af8b57d1d4fab4981055d69ce6091429fee0adbce3facb171d0a2/diff:/var/lib/docker/overlay2/51a8b5ef5a3f259377c21978c2186cd64f99c3bd331b419d1df88393b118abae/diff:/var/lib/docker/overlay2/f0e4da3a7a8f4b695a93f2b36b9116d18db1891d540a517cfae0f725e4ae5fec/diff:/var/lib/docker/overlay2/333c0fbb7031182e4623cb39fdaf203d0736e0de5de09b9c2ebcda7f298bbfa7/diff:/var/lib/docker/overlay2/80122f3b0c0239a3cbc2bfd53f750638ce6a1bd72b0385c74a724239a083439c/diff",
+        "MergedDir": "/var/lib/docker/overlay2/9c28e97299a347f62fbbe90821ee1c2da0d23494a1f0b95e238befa5eb3ef715/merged",
+        "UpperDir": "/var/lib/docker/overlay2/9c28e97299a347f62fbbe90821ee1c2da0d23494a1f0b95e238befa5eb3ef715/diff",
+        "WorkDir": "/var/lib/docker/overlay2/9c28e97299a347f62fbbe90821ee1c2da0d23494a1f0b95e238befa5eb3ef715/work"
+      },
+      "Name": "overlay2"
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/home/runner/work/_temp/hh4-evidence/container-evidence",
+        "Destination": "/evidence",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      }
+    ],
+    "Config": {
+      "Hostname": "bbd2b77a408b",
+      "Domainname": "",
+      "User": "1001:1001",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "NODE_ENV=test",
+        "EMPIRE_ENGINEERING_TEST_MODE=true",
+        "HH4_SOURCE=ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+        "RAILWAY_GIT_COMMIT_SHA=ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+        "WORK8_KERNEL_EGRESS=DENIED",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "NODE_VERSION=22.23.2",
+        "YARN_VERSION=1.22.22"
+      ],
+      "Cmd": [
+        "scripts/work8/hh4-generated-primary.mjs"
+      ],
+      "Image": "sha256:01cfd72be6fcabe975126e0f6905a6b684f919d322df77c674399d16ef149fd0",
+      "Volumes": null,
+      "WorkingDir": "/app",
+      "Entrypoint": [
+        "node"
+      ],
+      "OnBuild": null,
+      "Labels": {
+        "work8.hh4": "work8-hh4-7584fa5f-88e0-43a5-9c46-c2baff610838"
+      }
+    },
+    "NetworkSettings": {
+      "Bridge": "",
+      "SandboxID": "",
+      "SandboxKey": "",
+      "Ports": {},
+      "HairpinMode": false,
+      "LinkLocalIPv6Address": "",
+      "LinkLocalIPv6PrefixLen": 0,
+      "SecondaryIPAddresses": null,
+      "SecondaryIPv6Addresses": null,
+      "EndpointID": "",
+      "Gateway": "",
+      "GlobalIPv6Address": "",
+      "GlobalIPv6PrefixLen": 0,
+      "IPAddress": "",
+      "IPPrefixLen": 0,
+      "IPv6Gateway": "",
+      "MacAddress": "",
+      "Networks": {
+        "none": {
+          "IPAMConfig": null,
+          "Links": null,
+          "Aliases": null,
+          "MacAddress": "",
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "",
+          "EndpointID": "",
+          "Gateway": "",
+          "IPAddress": "",
+          "IPPrefixLen": 0,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": null
+        }
+      }
+    }
+  },
+  "elapsedMs": 29.756497000000003
+}

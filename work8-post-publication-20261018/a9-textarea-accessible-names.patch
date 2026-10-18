@@ -1,0 +1,24 @@
+diff --git a/empireai-web/components/owner/work8/MediaImport.tsx b/empireai-web/components/owner/work8/MediaImport.tsx
+index c4590f37..98e5f573 100644
+--- a/empireai-web/components/owner/work8/MediaImport.tsx
++++ b/empireai-web/components/owner/work8/MediaImport.tsx
+@@ -9,15 +9,15 @@ export function MediaImport({busy,onSave}:{busy:boolean;onSave:(proposal:MediaPr
+  <label>Asset link <input type="url" required maxLength={2000} value={url} onChange={e=>setUrl(e.target.value)}/></label>
+  <label>Media type <select value={kind} onChange={e=>setKind(e.target.value as 'IMAGE'|'VIDEO')}><option value="IMAGE">Image</option><option value="VIDEO">Video</option></select></label>
+  <label>Source or editing provider <input required maxLength={300} value={source} onChange={e=>setSource(e.target.value)}/></label>
+- <label>Usage-rights evidence <textarea required maxLength={500} value={rights} onChange={e=>setRights(e.target.value)}/></label>
++ <label>Usage-rights evidence <textarea aria-label="Usage-rights evidence" required maxLength={500} value={rights} onChange={e=>setRights(e.target.value)}/></label>
+  <label><input type="checkbox" checked={reviewed} onChange={e=>setReviewed(e.target.checked)}/>I reviewed permission to use this exact asset.</label>
+- <label>Origin and editing history <textarea required maxLength={1000} value={provenance} onChange={e=>setProvenance(e.target.value)}/></label>
++ <label>Origin and editing history <textarea aria-label="Origin and editing history" required maxLength={1000} value={provenance} onChange={e=>setProvenance(e.target.value)}/></label>
+  <label>Asset SHA-256 checksum <input required pattern="[a-f0-9]{64}" maxLength={64} value={hash} onChange={e=>setHash(e.target.value.trim().toLowerCase())}/></label><p>The link and checksum are recorded as submitted evidence; asset bytes have not been independently verified.</p>
+  <button disabled={busy||assets.length>=20} type="submit">Add asset to proposed batch</button></form>
+  {assets.length>0&&<><ol>{assets.map((a,i)=><li key={a.id}>{a.kind==='IMAGE'?'Image':'Video'} {i+1} · {a.sourceIdentity} · {a.rightsStatus==='OWNER_REVIEWED'?'Rights reviewed':'Rights need review'} <button disabled={busy} onClick={()=>setAssets(assets.filter(x=>x.id!==a.id))}>Remove</button></li>)}</ol>
+  <form onSubmit={async e=>{e.preventDefault();if(await onSave({assets,instructions,editingReceipt:receipt})){setAssets([]);setReceipt('');setInstructions('');}}}>
+- <label>Changes made <textarea required maxLength={3000} value={instructions} onChange={e=>setInstructions(e.target.value)}/></label>
+- <label>Editing receipt or provenance reference <textarea required maxLength={1000} value={receipt} onChange={e=>setReceipt(e.target.value)}/></label>
++ <label>Changes made <textarea aria-label="Changes made" required maxLength={3000} value={instructions} onChange={e=>setInstructions(e.target.value)}/></label>
++ <label>Editing receipt or provenance reference <textarea aria-label="Editing receipt or provenance reference" required maxLength={1000} value={receipt} onChange={e=>setReceipt(e.target.value)}/></label>
+  <button disabled={busy} type="submit">Save revised batch for review</button></form></>}
+  {error&&<p role="alert">{error}</p>}
+  </details>;

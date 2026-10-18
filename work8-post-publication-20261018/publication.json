@@ -1,0 +1,28 @@
+{
+  "evidence": {
+    "commit": "36a6369769376f0885e07399738d0bc8e6a052c5",
+    "tree": "564f9d9358d05e79f058b1fdf083a8143b7c0376",
+    "previous": "b28855f58128a7060cde16139dbf95197c0cfe82"
+  },
+  "source": {
+    "commit": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+    "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62",
+    "reviewedCommit": "4e3fd2d59c801ab524bee8a1e83968d12b97bb52",
+    "previous": "1c7e135dca4ea68033f76b53728254add01267af",
+    "metadataChange": "Removed staging skip-ci message; identical approved complete tree"
+  },
+  "sequence": "evidence first, verified, then source",
+  "workflowRuns": {
+    "product": 39111097412,
+    "runtime": 39111097417,
+    "semantic": 39111097402,
+    "assurance": 39111097390
+  },
+  "duplicateDispatch": false,
+  "productionDeployment": false,
+  "baseline": {
+    "accepted": 42,
+    "outstanding": 22,
+    "a11": "PASS"
+  }
+}

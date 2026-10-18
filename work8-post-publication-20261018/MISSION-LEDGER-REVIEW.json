@@ -1,0 +1,113 @@
+{
+  "recordType": "POST_PUBLICATION_INDEPENDENT_RECONCILIATION_NOT_NEW_ACCEPTANCE",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "originalCounts": {
+    "PASS": 33,
+    "PENDING": 8,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 9,
+    "PENDING": 10
+  },
+  "accepted": 42,
+  "outstanding": 22,
+  "baselineEvidenceCommit": "b28855f58128a7060cde16139dbf95197c0cfe82",
+  "trackerBlob": "21ce11d6b18edb1d230200ab3ff01ac3571a6a7f",
+  "preservedA11": "Current owner directive explicitly preserves completed independent acceptance; recovered CI receipt separately attributed. Not fresh acceptance by this reviewer.",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "outstandingOriginalIds": [
+    2,
+    7,
+    13,
+    14,
+    19,
+    30,
+    33,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "outstandingAmendmentIds": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    8,
+    9,
+    10,
+    15,
+    19
+  ],
+  "certificationReason": "Mandatory operational recovery, genuine business/owner journey, independent alert delivery, custody and exact-source acceptance gates remain open. Source review and scoped tests do not close them.",
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "INACTIVE",
+  "productionMissionComplete": false,
+  "publishedByThisReview": false,
+  "publication": {
+    "evidence": {
+      "commit": "36a6369769376f0885e07399738d0bc8e6a052c5",
+      "tree": "564f9d9358d05e79f058b1fdf083a8143b7c0376",
+      "previous": "b28855f58128a7060cde16139dbf95197c0cfe82"
+    },
+    "source": {
+      "commit": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+      "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62",
+      "reviewedCommit": "4e3fd2d59c801ab524bee8a1e83968d12b97bb52",
+      "previous": "1c7e135dca4ea68033f76b53728254add01267af",
+      "metadataChange": "Removed staging skip-ci message; identical approved complete tree"
+    },
+    "sequence": "evidence first, verified, then source",
+    "workflowRuns": {
+      "product": 39111097412,
+      "runtime": 39111097417,
+      "semantic": 39111097402,
+      "assurance": 39111097390
+    },
+    "duplicateDispatch": false,
+    "productionDeployment": false,
+    "baseline": {
+      "accepted": 42,
+      "outstanding": 22,
+      "a11": "PASS"
+    }
+  },
+  "currentCI": {
+    "status": "ALL_TERMINAL",
+    "terminalResults": "CI-STATUS.json",
+    "HH4": "PENDING: actual host started, domain initialization failed opening mission execution DB; held capture failed",
+    "A8": "PENDING: missing Next build after node:sqlite fixture TS2307; native startup timeout",
+    "A9": "PENDING: both desktop1440/mobile390 failed exact Usage-rights evidence label lookup",
+    "Semantic": "SUCCESS",
+    "Assurance": "SUCCESS",
+    "Product": "FAILURE",
+    "Runtime": "FAILURE",
+    "OwnerHistory": "PENDING: artifact12130642489 same missing-build startup timeout",
+    "A11": "PASS_PRESERVED: sixteen current checks pass; no contradictory evidence",
+    "decisionReceipts": [
+      "HH4-INDEPENDENT-DECISION.json",
+      "A8-A9-INDEPENDENT-DECISION.json"
+    ],
+    "reasoningCorpus": "Final reasoning job SUCCESS in14m10 within30m bound; no full acceptance promotion",
+    "terminal": true
+  },
+  "freshBusinessEvidence": "business-new-lead-review.json; exact supplier inputs exist but no eligible dossier/qualification inferred",
+  "recoveryEngineering": "Scoped authority RMW lock and cold-state materialization reviewed; no complete O33/O39 acceptance",
+  "externalDecisionRegister": "EXTERNAL-DECISIONS.json",
+  "stagedSuccessor": {
+    "commit": "7f1971adbc831eed2a2a838d5867895bece05239",
+    "tree": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+    "changedPaths": 8,
+    "backendBuild": "PASS",
+    "frontendTypecheck": "PASS",
+    "published": false,
+    "hostedAcceptance": "NOT_ESTABLISHED",
+    "scope": "Scoped reviewed engineering, not new contract acceptance"
+  }
+}

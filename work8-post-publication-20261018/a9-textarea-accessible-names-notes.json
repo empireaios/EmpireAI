@@ -1,0 +1,18 @@
+{
+  "status": "READY_FOR_INDEPENDENT_REVIEW_NOT_NATIVE_ACCEPTANCE",
+  "baseCommit": "605934a552dab4b0f27988307532d5658ff0d150",
+  "path": "empireai-web/components/owner/work8/MediaImport.tsx",
+  "sha256": "353b4a7b203eab5e896416f446c5bf804873fb47ecc1b892e6e0456aadb5c9ff",
+  "patchSha256": "75ff61e6e42910eeb5959b20809502053f7083d404432503cd38cd1c17454ec5",
+  "failure": "Artifact12130127974 fails exact Usage-rights evidence lookup on image/video repeated import at both 1440 and390. Controlled textarea text nested within label can alter computed label on subsequent fills.",
+  "change": "Explicit aria-label matching visible label on four controlled textareas. Existing nested labels, layout, values, handlers, required/maxLength fields and all rights/version/approval semantics unchanged.",
+  "checks": [
+    "git diff --check passed",
+    "Removing only four added aria-label attributes yields exact original source bytes",
+    "Existing hosted test selectors and assertions unchanged"
+  ],
+  "limits": [
+    "Native browser unavailable locally: Playwright executable path absent. No new browser installation requested; hosted validation remains required."
+  ],
+  "newAcceptedRequirements": []
+}

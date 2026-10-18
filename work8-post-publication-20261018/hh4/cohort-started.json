@@ -1,0 +1,26 @@
+{
+  "source": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+  "imageId": "sha256:01cfd72be6fcabe975126e0f6905a6b684f919d322df77c674399d16ef149fd0",
+  "id": "bbd2b77a408b26f948c1b73e7a9224eeb08e0cdc8a7c1e33706c75255cdb4b60",
+  "controller": {
+    "pid": 4620,
+    "state": "R",
+    "startTicks": "19048",
+    "cgroup": "0::/system.slice/hosted-compute-agent.service\n"
+  },
+  "leader": {
+    "pid": 4681,
+    "state": "R",
+    "startTicks": "19056",
+    "cgroup": "0::/system.slice/docker-bbd2b77a408b26f948c1b73e7a9224eeb08e0cdc8a7c1e33706c75255cdb4b60.scope\n"
+  },
+  "members": [
+    {
+      "pid": 4681,
+      "state": "R",
+      "startTicks": "19056",
+      "cgroup": "0::/system.slice/docker-bbd2b77a408b26f948c1b73e7a9224eeb08e0cdc8a7c1e33706c75255cdb4b60.scope\n"
+    }
+  ],
+  "elapsedMs": 104.858006
+}

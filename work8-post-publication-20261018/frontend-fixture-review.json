@@ -1,0 +1,22 @@
+{
+  "decision": "APPROVED_SCOPED_SOURCE_REVIEW",
+  "reviewer": "independent frontend_fix_review agent",
+  "baseCommit": "605934a552dab4b0f27988307532d5658ff0d150",
+  "path": "empireai-web/e2e/owner-history-backend.mts",
+  "sha256": "ed8eb01dc1519c731a42dfbcb13475a272cc005fcfdcc49be7daf8486fa64744",
+  "gitBlob": "a3c7a3b41aff00109e07f8cdb51d270b6a1228fa",
+  "scope": "Replace static node:sqlite import with createRequire(import.meta.url) runtime builtin loading in Node22-only backend examination fixture. No production implementation changes.",
+  "findings": [],
+  "checks": {
+    "diff": "Exactly one file, 3 added / 1 removed lines; executable logic otherwise unchanged.",
+    "runtime": "Pinned repository Node22.23.2 and fixture inherits process.execPath from native harness.",
+    "builtinIdentity": "Node22.23.2 runtime require DatabaseSync strictly equals ESM static import DatabaseSync.",
+    "roundtrip": "In-memory SQLite schema, prepared insert, prepared select, JSON transcript roundtrip and close passed.",
+    "typeConfiguration": "No tsconfig.json, package.json or package-lock.json modifications. No global type weakening. Runtime require return has local any type only.",
+    "typecheck": "Full frontend typecheck pending central controller after dependencies install; no full build claim."
+  },
+  "limits": [
+    "Does not establish native browser acceptance, genuine complete Owner Console acceptance or any new requirement PASS.",
+    "Does not claim full frontend typecheck until central result is available."
+  ]
+}

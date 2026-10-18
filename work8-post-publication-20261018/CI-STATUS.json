@@ -1,0 +1,59 @@
+{
+  "source": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+  "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62",
+  "terminal": true,
+  "workflow_runs": [
+    {
+      "id": 39111097390,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 133,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39111097390/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39111097390/logs",
+      "workflow_id": 373040927
+    },
+    {
+      "id": 39111097402,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 692,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39111097402/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39111097402/logs",
+      "workflow_id": 362674549
+    },
+    {
+      "id": 39111097412,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 691,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39111097412/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39111097412/logs",
+      "workflow_id": 362309382
+    },
+    {
+      "id": 39111097417,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 693,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39111097417/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39111097417/logs",
+      "workflow_id": 362688325
+    }
+  ],
+  "reasoningJob": {
+    "id": 117627219062,
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-18T08:21:02Z",
+    "completed_at": "2026-10-18T08:35:12Z",
+    "elapsedSeconds": 850,
+    "configuredTimeoutMinutes": 30,
+    "assessment": "Completed normally within bound; not hung"
+  },
+  "noRerunsOrDuplicateDispatch": true,
+  "acceptance": "HH4/A8/A9 pending; A11 preserved. No new accepted original or amendment."
+}

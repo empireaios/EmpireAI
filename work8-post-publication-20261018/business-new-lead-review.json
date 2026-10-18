@@ -1,0 +1,150 @@
+{
+  "recordType": "NEW_READONLY_CONNECTED_EVIDENCE_NOT_ACCEPTANCE",
+  "retrievedAt": "2026-10-18T08:22:10.533Z",
+  "runtimeIdentity": {
+    "backendSha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+    "deploymentId": "4303f5e9-afef-4f70-9388-996a0e923949",
+    "profile": "LOCKED_COMMISSIONING_V1",
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "frontendIdentity": {
+      "status": "UNVERIFIED",
+      "reason": "Use direct Vercel evidence"
+    },
+    "domains": [
+      "governed_commerce",
+      "financial_centre",
+      "package_format",
+      "changes",
+      "state",
+      "capabilities",
+      "pillow",
+      "accounting",
+      "assurance",
+      "reconciliation",
+      "missions",
+      "communications",
+      "authority",
+      "commissioning",
+      "approvals",
+      "execution",
+      "products",
+      "orders",
+      "decisions",
+      "events",
+      "finance",
+      "integrations",
+      "memory",
+      "intelligence",
+      "arsenal",
+      "evidence",
+      "intelligence_jobs",
+      "opportunities",
+      "exceptions",
+      "resources",
+      "rank_growth",
+      "investigations"
+    ]
+  },
+  "sourceScope": "Existing durable provider evidence only; no refresh, paid inference or external effects initiated",
+  "product": {
+    "pid": "2610171752021618700",
+    "vid": "2610171752021619700",
+    "sku": "CJYD327828801AZ",
+    "name": "Highland Cow Desktop Sticky Note Organizer",
+    "observedPrice": 2.76,
+    "currency": "NOT_EXPLICIT_IN_RETRIEVED_DETAIL_RECORD; do not infer a currency-qualified economics pass"
+  },
+  "stock": {
+    "country": "CN",
+    "factoryInventory": 8023,
+    "cjInventory": 0,
+    "interpretation": "Factory stock, not CJ warehouse-held stock; provider observation, not guarantee"
+  },
+  "freight": {
+    "origin": "CN",
+    "destination": "US",
+    "quantity": 1,
+    "lowestObserved": {
+      "carrier": "LuWei Ordinary US",
+      "logisticPrice": 6.57,
+      "logisticPriceCn": 40.71,
+      "logisticAging": "5-11",
+      "totalPostageFee": 6.57
+    },
+    "currency": "No explicit currency field in retrieved record; field names/paired Cn value are not an independently checked currency contract",
+    "limitations": "Estimate; duties, returns, US return centre, guarantee and exact local-address surcharges unestablished"
+  },
+  "evidence": [
+    {
+      "id": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+      "digest": "6f3a108376a0c03bd01ff2ce20e4e922776a231f0ad1daf06f9cedc01ccd5fcd",
+      "observedAt": "2026-10-18T06:39:54.255Z",
+      "staleAfter": "2026-10-18T12:39:54.256Z",
+      "authenticity": "LIVE_PROVIDER"
+    },
+    {
+      "id": "ev_6724ef7efa25794fab55a347e0c72b97f4a9b3c5",
+      "digest": "57588a4834e0346b0dbe3cd89150c12c85f189657b7a2f2f15e0ebdec90cde2c",
+      "observedAt": "2026-10-18T06:39:53.933Z",
+      "staleAfter": "2026-10-18T12:39:53.933Z",
+      "authenticity": "LIVE_PROVIDER"
+    },
+    {
+      "id": "ev_eebe8951f46cbbbe14c883c5e884c531aaeae9bc",
+      "digest": "3727f5a515b7f3970e9681773ac452df98df44e9b3e1f7c447d63ea16a9e3d0a",
+      "observedAt": "2026-10-18T06:39:26.282Z",
+      "staleAfter": "2026-10-18T12:39:26.283Z",
+      "authenticity": "LIVE_PROVIDER"
+    }
+  ],
+  "matchingOpportunity": {
+    "id": "op_4391bfc1d16f307529d82be0aba8ea733497",
+    "subject": {
+      "id": "2610171752021618700",
+      "variant": "2610171752021619700",
+      "marketplace": "US",
+      "destination": "US"
+    },
+    "status": "INCOMPLETE",
+    "score": 38,
+    "evidenceCompleteness": "3/8",
+    "missing": [
+      "demand",
+      "competition",
+      "customer_problem",
+      "rank_growth",
+      "restriction_risk"
+    ],
+    "reasons": [
+      "SINGLE_SOURCE",
+      "MISSING_DEMAND",
+      "MISSING_COMPETITION",
+      "MISSING_CUSTOMER_PROBLEM",
+      "MISSING_RANK_GROWTH",
+      "MISSING_RESTRICTION_RISK"
+    ],
+    "evidenceRefs": [
+      "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+      "ev_6724ef7efa25794fab55a347e0c72b97f4a9b3c5"
+    ],
+    "independentSources": [
+      "CJ"
+    ],
+    "strategy": {
+      "id": "balanced-discovery",
+      "version": 1
+    },
+    "winningProduct": false,
+    "executionApproved": false,
+    "matching": {
+      "confidence": "UNMATCHED",
+      "reason": "Stable IDs retained; name similarity is insufficient"
+    },
+    "updatedAt": "2026-10-18T08:21:53.644Z",
+    "decisionRequired": "PILLOW_JUDGMENT",
+    "authenticity": "EVIDENCE_DERIVED"
+  },
+  "conclusion": "Fresh exact-linked supplier detail/stock/US quantity-one freight evidence exists; prior blanket stock/freight-unavailable claim is no longer accurate for this variant. Eligible genuine commercial dossier not established: opportunity remains INCOMPLETE 3/8 and UNMATCHED; no demand, competition, customer problem, rank growth, restriction risk, asset rights or actual current Pillow assessment inferred.",
+  "newAcceptedIds": []
+}

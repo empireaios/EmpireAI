@@ -1,0 +1,20 @@
+{
+  "reviewer": "integration_review",
+  "decision": "APPROVED_SCOPED_ACCESSIBILITY_SOURCE_CORRECTION",
+  "path": "empireai-web/components/owner/work8/MediaImport.tsx",
+  "sha256": "353b4a7b203eab5e896416f446c5bf804873fb47ecc1b892e6e0456aadb5c9ff",
+  "findings": [],
+  "verified": [
+    "Exactly four aria-label additions; stripping only these attributes reproduces base file bytes",
+    "Every explicit accessible name equals corresponding visible label",
+    "Existing native exact getByLabel selectors preserved",
+    "Values, state transitions, form validation, rights and approval behavior unchanged",
+    "Hosted receipt confirms exact Usage-rights evidence lookup failure for both widths"
+  ],
+  "limits": [
+    "Browser executable unavailable locally; repeated-fill native fix not demonstrated here",
+    "Full A9 acceptance remains pending hosted examination",
+    "Potential label pollution is source-level diagnosis, not independently reproduced browser root cause"
+  ],
+  "newAcceptedRequirements": []
+}

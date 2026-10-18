@@ -1,0 +1,11 @@
+{
+  "frontend": {
+    "commit": "e40855b67228dab3764d2b6de0820ee22b91abac",
+    "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62"
+  },
+  "backend": {
+    "commit": "e40855b67228dab3764d2b6de0820ee22b91abac",
+    "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62"
+  },
+  "node": "v22.23.2"
+}

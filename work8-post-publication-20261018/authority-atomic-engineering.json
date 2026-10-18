@@ -1,0 +1,19 @@
+{
+  "status": "LOCAL_SCOPED_TESTS_PASS_REQUIRES_INDEPENDENT_REVIEW",
+  "base": "605934a5",
+  "worktree": "/tmp/work8-authority-atomic",
+  "files": {
+    "backend/src/orchestration/shadow-ceo-authority/repository/json-authority-store.ts": "586984ef7b7d83cb77de661d115e3a20044798c0b95f4db690f2847b1d5b59cf",
+    "backend/src/validation/tests/work8-authority-atomic-mutation.test.ts": "3596d7c9c6c5fe916eb52b26ffcf27b5f2c72485f2f59d2d75fc6ee2779816b4"
+  },
+  "baseline": "original source failed deterministic competing-writer assertion (B admitted while A paused after read)",
+  "fixed": "4/4 pass; three full read-modify-write interleavings and all mutators capture refusal",
+  "contract": "Only persistBlockedAction/persistApprovalRequest/persistLoopState now acquire shared exclusion before reading. Existing atomic write, fsync, crash lock policy and public save replacement semantics retained.",
+  "limits": [
+    "No complete #33/#39 acceptance",
+    "No global writer cohort or older binary exclusion",
+    "saveAuthorityStore remains whole-store replacement API; callers using separate read/save remain outside atomic mutator guarantee",
+    "Not published"
+  ],
+  "discovery": "Renamed unchanged test bytes to work8-* for existing hosted selection; no workflow changes"
+}

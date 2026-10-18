@@ -1,0 +1,6 @@
+▲ Next.js 16.2.9
+- Local:         http://127.0.0.1:3138
+- Network:       http://127.0.0.1:3138
+✓ Ready in 142ms
+Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id
+    at ignore-listed frames
