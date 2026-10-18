@@ -1,0 +1,23 @@
+diff --git a/empireai-web/e2e/work8-source-context-backend.mts b/empireai-web/e2e/work8-source-context-backend.mts
+index d470407e..259a9b50 100644
+--- a/empireai-web/e2e/work8-source-context-backend.mts
++++ b/empireai-web/e2e/work8-source-context-backend.mts
+@@ -3,7 +3,9 @@ import fs from 'node:fs';import path from 'node:path';import {pathToFileURL} fro
+ const [backend,root,readyFile]=process.argv.slice(2);if(!backend||!root||!readyFile||process.env.WORK8_KERNEL_EGRESS!=='CONNECT_DENIED_LISTEN_ALLOWED')throw Error('ISOLATION_REQUIRED');
+ Object.assign(process.env,{NODE_ENV:'test',REDIS_OPTIONAL:'true',FOUNDER_EMAIL:'owner@example.invalid',RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'commissioning','empireai-brain.db'),EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',INTELLIGENCE_DISABLED:'true'});
+ fs.mkdirSync(path.join(root,'commissioning'),{recursive:true});
+-Date.now=()=>Date.parse('2026-10-10T18:40:00Z');globalThis.fetch=async()=>{throw Error('EXTERNAL_FETCH_FORBIDDEN');};
++// Historical evidence replay retains elapsed time so unchanged admission windows can expire.
++const replayEpoch=Date.parse('2026-10-10T18:40:00Z'),replayStarted=process.hrtime.bigint();
++Date.now=()=>replayEpoch+Number((process.hrtime.bigint()-replayStarted)/1000000n);globalThis.fetch=async()=>{throw Error('EXTERNAL_FETCH_FORBIDDEN');};
+ const load=(p:string)=>import(pathToFileURL(path.join(backend,p)).href);
+ const [{default:Fastify},{default:cookie},{InMemorySessionStore},{createAuthMiddleware},{registerGovernedCommerce,productionCommerce,resolveWork8ProductContext},{productionIntelligence},{digest},{installLockedCommissioning}]=await Promise.all([load('node_modules/fastify/fastify.js'),load('node_modules/@fastify/cookie/plugin.js'),load('src/auth/session-store.ts'),load('src/auth/middleware.ts'),load('src/runtime/commerce-runtime/governed/runtime.ts'),load('src/intelligence/store.ts'),load('src/intelligence/model.ts'),load('src/runtime/locked-commissioning.ts')]);
+ const app=Fastify(),sessions=new InMemorySessionStore();await app.register(cookie);const auth=createAuthMiddleware(sessions);installLockedCommissioning(app);registerGovernedCommerce(app,auth);
+@@ -67,6 +69,6 @@ if(capturedQueueInput?.kind!=='reasoning'||capturedQueueInput.bodyText!==JSON.st
+ if(record?.inputHash!==hashChatInput(user.workspaceId+':'+user.id+':'+input.sessionId,JSON.stringify(expectedInput)))throw Error('ACTUAL_HANDLER_BOUND_INPUT_HASH_MISMATCH');
+ const rejected=await examination.inject({method:'POST',url:'/api/pillow/chat',headers:{authorization:'Bearer '+tokens.owner},payload:{...input,workspaceContext:{productContext:{...bound.reference,contextDigest:'0'.repeat(64)}}}});if(rejected.statusCode!==409)throw Error('ACTUAL_HANDLER_FORGED_PIN_NOT_REJECTED');
+ fs.writeFileSync(path.join(root,'actual-tier0-admission.json'),JSON.stringify({classification:'ACTUAL_TIER0_HTTP_HANDLER_INTERCEPTED_QUEUE_NO_INFERENCE',status:'PASS',acceptedStatus:result.statusCode,forgedPinStatus:rejected.statusCode,inputHash:record.inputHash,expectedInputHash:hashChatInput(user.workspaceId+':'+user.id+':'+input.sessionId,JSON.stringify(expectedInput)),scope:'Actual HTTP authentication, server resolution and exact queue input bytes/hash through injected queue adapter; no Redis durability or model answer claim.'},null,2));dropChatRequestMemoryCacheForTests();
+-await app.listen({host:'127.0.0.1',port:3148});fs.writeFileSync(readyFile,JSON.stringify({tokens,candidateIds,sourceEvidenceId:source.id,sourceFactsDigest:source.digest,clock:'2026-10-10T18:40:00Z',clockClassification:'HISTORICAL_REPLAY_NOT_CURRENT_SOURCE_FRESHNESS',classification:'REAL_RETAINED_OBSERVATIONS_ISOLATED_AUTH_AND_ENRICHMENT_FIXTURE'}));
++await app.listen({host:'127.0.0.1',port:3148});fs.writeFileSync(readyFile,JSON.stringify({tokens,candidateIds,sourceEvidenceId:source.id,sourceFactsDigest:source.digest,clock:'2026-10-10T18:40:00Z',clockClassification:'HISTORICAL_REPLAY_WITH_MONOTONIC_ELAPSED_NOT_CURRENT_SOURCE_FRESHNESS',classification:'REAL_RETAINED_OBSERVATIONS_ISOLATED_AUTH_AND_ENRICHMENT_FIXTURE'}));
+ 
+ let stopping=false;async function shutdown(){if(stopping)return;stopping=true;await app.close();await examination.close();await empire.shutdown();process.exit(0);}process.once('SIGTERM',()=>{void shutdown();});process.once('SIGINT',()=>{void shutdown();});

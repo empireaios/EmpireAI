@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "b01e0fd461c50d7bff971d81b247d396adbdb9b6",
+  "tree": "c324ecb16b3054b86e84ce4b662d3c3f2b1be9a8",
+  "parent": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+  "localCommit": "15673745cb923a4164b7ebba6e14440fe4003c41",
+  "branch": "work8/staged-source-20261018e-c324ecb1",
+  "changedPaths": 8,
+  "backendBuild": "PASS successor-backend-build.log; final test-only allowlisted receipt diagnostic added afterward and exact-CI-launcher executed2PASS",
+  "frontendTypecheck": "PASS successor-frontend-typecheck-final.log after runtime fixture import and BigInt syntax corrections",
+  "priorFailuresRetained": true,
+  "publication": "AWAIT_NEW_EXACT_TREE_APPROVAL",
+  "A8": "PENDING_NEXT_NATIVE",
+  "O19": "PENDING_HOSTED_EXACT_TREE",
+  "sessionFence": "14LOCALPASS_NEW_REAL_REDIS_PENDING",
+  "newAcceptance": []
+}

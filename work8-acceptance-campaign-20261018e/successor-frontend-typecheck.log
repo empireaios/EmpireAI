@@ -1,0 +1,210 @@
+../backend/src/advisor/pillow-read.ts(3,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/advisor/pillow-read.ts(16,201): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/advisor/pillow-read.ts(20,148): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/advisor/pillow-read.ts(26,82): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/advisor/pillow-read.ts(28,119): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/advisor/store.ts(3,30): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/assurance/advisor-agent.ts(26,87): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/advisor-agent.ts(26,529): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/advisor-agent.ts(26,822): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/advisor-agent.ts(26,928): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/advisor-agent.ts(26,977): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/evidence-reconciliation.ts(4,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/assurance/evidence-reconciliation.ts(13,99): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/evidence-reconciliation.ts(36,26): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/runtime.ts(13,1): error TS2578: Unused '@ts-expect-error' directive.
+../backend/src/assurance/runtime.ts(17,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/assurance/runtime.ts(111,125): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/runtime.ts(112,127): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/runtime.ts(117,59): error TS7006: Parameter 'h' implicitly has an 'any' type.
+../backend/src/assurance/runtime.ts(130,103): error TS7006: Parameter 't' implicitly has an 'any' type.
+../backend/src/assurance/runtime.ts(142,386): error TS7006: Parameter 't' implicitly has an 'any' type.
+../backend/src/assurance/runtime.ts(182,64): error TS7006: Parameter 't' implicitly has an 'any' type.
+../backend/src/assurance/work8-financial-probe.ts(10,40): error TS7006: Parameter 'n' implicitly has an 'any' type.
+../backend/src/assurance/work8-financial-probe.ts(10,42): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/work8-fulfilment-probes.ts(21,46): error TS7006: Parameter 'n' implicitly has an 'any' type.
+../backend/src/assurance/work8-fulfilment-probes.ts(21,48): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(3,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/assurance/work8-queue-probe.ts(20,54): error TS7006: Parameter 'n' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(20,56): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(21,130): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(34,17): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(35,29): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(36,30): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(37,28): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(38,35): error TS7006: Parameter 's' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(40,343): error TS7006: Parameter 's' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(40,364): error TS7006: Parameter 's' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(40,472): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(40,517): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(40,565): error TS7006: Parameter 's' implicitly has an 'any' type.
+../backend/src/assurance/work8-queue-probe.ts(40,629): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/assurance/work8-response-binding.ts(1,82): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/assurance/work8-response-binding.ts(6,665): error TS7006: Parameter 'n' implicitly has an 'any' type.
+../backend/src/assurance/work8-response-binding.ts(6,667): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/work8-response-binding.ts(6,803): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/work8-response-binding.ts(14,40): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/work8-response-binding.ts(14,93): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/assurance/work8-response-binding.ts(24,20): error TS2339: Property 'requestId' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(24,53): error TS2339: Property 'workspaceId' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(25,20): error TS2339: Property 'status' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(26,27): error TS2339: Property 'finalResult' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(26,69): error TS2339: Property 'finalResult' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(26,112): error TS2339: Property 'finalResult' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(31,116): error TS2339: Property 'id' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(31,127): error TS2339: Property 'grantsAuthority' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(31,204): error TS2339: Property 'authenticity' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(31,228): error TS2339: Property 'facts' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(31,239): error TS2339: Property 'digest' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(41,123): error TS2339: Property 'id' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(41,180): error TS2339: Property 'grantsAuthority' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(41,212): error TS2339: Property 'authenticity' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(41,258): error TS2339: Property 'facts' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(41,274): error TS2339: Property 'digest' does not exist on type '{}'.
+../backend/src/assurance/work8-response-binding.ts(43,70): error TS2345: Argument of type 'Map<unknown, unknown>' is not assignable to parameter of type 'Map<string, Row>'.
+  Type 'unknown' is not assignable to type 'string'.
+../backend/src/assurance/work8-response-binding.ts(48,544): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/auth/middleware.ts(19,34): error TS2339: Property 'cookies' does not exist on type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+../backend/src/brain/llm/inference-readback.ts(5,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/brain/llm/inference-readback.ts(24,262): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/brain/llm/inference-readback.ts(25,30): error TS7006: Parameter 'sum' implicitly has an 'any' type.
+../backend/src/brain/llm/inference-readback.ts(25,34): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/brain/llm/inference-readback.ts(34,118): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/brain/llm/locked-inference.ts(10,30): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/brain/sqlite-process-owner.ts(3,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/finance/financial-centre.ts(3,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/finance/financial-centre.ts(53,152): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/finance/runtime.ts(4,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/finance/runtime.ts(12,619): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/finance/work8-birth-cutover.ts(47,29): error TS2737: BigInt literals are not available when targeting lower than ES2020.
+../backend/src/finance/work8-cost-intelligence.ts(42,265): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/finance/work8-cost-intelligence.ts(47,35): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/finance/work8-cost-intelligence.ts(49,39): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/finance/work8-cost-intelligence.ts(64,45): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/finance/work8-cost-intelligence.ts(64,85): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/finance/work8-cost-intelligence.ts(64,131): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/finance/work8-cost-intelligence.ts(132,75): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(4,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/institutional-memory/store.ts(146,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(147,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(149,20): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(160,56): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(162,29): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(163,339): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(163,730): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(168,18): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(176,66): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(176,124): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(203,25): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(204,33): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(205,32): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(207,35): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(207,159): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/institutional-memory/store.ts(208,631): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/acquisition.ts(5,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/intelligence/store.ts(3,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/intelligence/store.ts(119,171): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-acquisition.ts(17,293): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-acquisition.ts(19,26): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/intelligence/work8-acquisition.ts(20,23): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/intelligence/work8-acquisition.ts(21,16): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/intelligence/work8-acquisition.ts(23,25): error TS7006: Parameter 'j' implicitly has an 'any' type.
+../backend/src/intelligence/work8-dossier-decisions.ts(9,131): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-dossier-decisions.ts(20,60): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-dossier-decisions.ts(31,159): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-dossier-decisions.ts(31,206): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-dossier-decisions.ts(36,47): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-enrichment.ts(5,33): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/intelligence/work8-enrichment.ts(48,31): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-enrichment.ts(48,67): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/intelligence/work8-enrichment.ts(57,27): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-enrichment.ts(57,63): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-qualification.ts(71,137): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-qualification.ts(74,170): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/intelligence/work8-qualification.ts(76,137): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/orchestration/reality-integration/live-commerce/adapters/amazon-order-import.ts(130,40): error TS2737: BigInt literals are not available when targeting lower than ES2020.
+../backend/src/runtime/answer-gate-diagnostics.ts(3,30): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/runtime/commerce-runtime/governed/owner-portfolio.ts(16,23): error TS7006: Parameter 'row' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/runtime.ts(65,865): error TS7006: Parameter 'm' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/runtime.ts(65,1096): error TS7006: Parameter 'm' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/runtime.ts(66,273): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/store.ts(2,28): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/runtime/commerce-runtime/governed/store.ts(35,45): error TS7006: Parameter 'row' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/store.ts(37,174): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-canva-media.ts(44,38): error TS7006: Parameter 'id' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-communication-model.ts(15,112): error TS7006: Parameter 't' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-communication-model.ts(19,135): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-communication-model.ts(19,160): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-communication-model.ts(27,93): error TS7006: Parameter 't' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-communication-model.ts(27,112): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-durable-finance.ts(23,38): error TS7006: Parameter 'n' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-durable-finance.ts(23,40): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-durable-finance.ts(48,223): error TS7006: Parameter 'n' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-durable-finance.ts(48,225): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-durable-finance.ts(50,26): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-durable-finance.ts(50,28): error TS7006: Parameter 'i' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-durable-finance.ts(70,731): error TS7006: Parameter 'row' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-mission-page.ts(11,272): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-mission-page.ts(12,87): error TS7006: Parameter 'id' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-mission-page.ts(13,44): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-mission-page.ts(13,83): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-pillow-preview.ts(19,107): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-portfolio-model.ts(27,99): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(19,401): error TS7006: Parameter 'row' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(20,104): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(20,235): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(20,297): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(20,515): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(21,110): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(24,362): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(25,754): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts(28,250): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts(1,33): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts(46,192): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts(46,236): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts(46,321): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-source-discovery.ts(83,268): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-authority.ts(16,350): error TS7006: Parameter 'row' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-authority.ts(18,178): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(19,18): error TS7006: Parameter 'row' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(23,17): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(23,250): error TS7006: Parameter 'a' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(23,252): error TS7006: Parameter 'b' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(23,294): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ HIGH: number; ELEVATED: number; NORMAL: number; }'.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(23,331): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ HIGH: number; ELEVATED: number; NORMAL: number; }'.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(27,251): error TS7006: Parameter 'h' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(34,172): error TS7006: Parameter 'h' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-communications.ts(38,25): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ NORMAL: number; ELEVATED: number; HIGH: number; }'.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(23,18): error TS7006: Parameter 'row' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(28,96): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(29,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(30,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(31,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(32,100): error TS7006: Parameter 'a' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(33,52): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(38,112): error TS7006: Parameter 'h' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(45,30): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(46,223): error TS7006: Parameter 'a' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(56,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(73,80): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(73,243): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(78,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts(79,18): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-recovery.ts(140,83): error TS7006: Parameter 'c' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-recovery.ts(148,65): error TS7006: Parameter 'k' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-recovery.ts(148,123): error TS7006: Parameter 'k' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-recovery.ts(149,144): error TS7006: Parameter 'k' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-runtime.ts(117,73): error TS7006: Parameter 'e' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-runtime.ts(168,35): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin-runtime.ts(169,195): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin.ts(21,19): error TS7006: Parameter 'row' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin.ts(43,223): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin.ts(44,42): error TS7006: Parameter 'sessionId' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin.ts(72,196): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/work8-twin.ts(73,38): error TS7006: Parameter 'id' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/worker.ts(61,220): error TS7006: Parameter 'r' implicitly has an 'any' type.
+../backend/src/runtime/commerce-runtime/governed/worker.ts(91,181): error TS7006: Parameter 'x' implicitly has an 'any' type.
+../backend/src/runtime/owner-commissioning-readback.ts(5,30): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+../backend/src/runtime/pillow-request-receipts.ts(3,30): error TS2307: Cannot find module 'node:sqlite' or its corresponding type declarations.
+e2e/work8-media-listing-http.mts(8,117): error TS7016: Could not find a declaration file for module '../../backend/node_modules/@fastify/cookie/plugin.js'. '/workspace/scratch/7952261165b1/EmpireAI/backend/node_modules/@fastify/cookie/plugin.js' implicitly has an 'any' type.
+e2e/work8-source-context-backend.mts(8,73): error TS2737: BigInt literals are not available when targeting lower than ES2020.

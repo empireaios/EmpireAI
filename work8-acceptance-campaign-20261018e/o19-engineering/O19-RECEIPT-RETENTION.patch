@@ -1,0 +1,8 @@
+--- a/backend/src/validation/tests/work8-media-listing-binding.test.ts
++++ b/backend/src/validation/tests/work8-media-listing-binding.test.ts
+@@ -61,4 +61,5 @@
+  const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../../..');
+  const result=spawnSync('python3',[path.join(repo,'scripts/work8/incoming-only-exec.py'),process.execPath,'--import',path.join(repo,'backend/node_modules/tsx/dist/loader.mjs'),path.join(repo,'empireai-web/e2e/work8-media-listing-http.mts')],{encoding:'utf8',timeout:60000,maxBuffer:1024*1024});
+  assert.equal(result.error,undefined);assert.equal(result.status,0,result.stderr);const receipt=JSON.parse(result.stdout);assert.equal(receipt.status,'PASS_SCOPED_AUTHENTICATED_HTTP');assert.equal(receipt.externalEffects,0);assert.equal(receipt.transferBinding.candidateDigest,receipt.publication.candidateDigest);assert.equal(receipt.publication.intercept.status,'INTERCEPTED');
++ console.info('O19_AUTHENTICATED_RECEIPT '+JSON.stringify({status:receipt.status,checks:receipt.checks,binding:receipt.binding,transferBinding:receipt.transferBinding,publication:receipt.publication,externalEffects:receipt.externalEffects,paidInference:receipt.paidInference,limits:receipt.limits}));
+ });

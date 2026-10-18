@@ -1,0 +1,47 @@
+[
+  {
+    "attempt": 1,
+    "status": 201,
+    "body": {
+      "sessionId": "8891212f-5155-42b7-9c0a-e1ffe42edbce"
+    }
+  },
+  {
+    "attempt": 2,
+    "status": 201,
+    "body": {
+      "sessionId": "8891212f-5155-42b7-9c0a-e1ffe42edbce"
+    }
+  },
+  {
+    "attempt": 3,
+    "status": 201,
+    "body": {
+      "sessionId": "8891212f-5155-42b7-9c0a-e1ffe42edbce"
+    }
+  },
+  {
+    "attempt": 4,
+    "status": 503,
+    "body": {
+      "error": "Starting Executive Systems\u2026",
+      "retryAfterSec": 10,
+      "admission": {
+        "reason": "Pillow session create rate limit (4/10000ms)",
+        "lagMs": 0
+      }
+    }
+  },
+  {
+    "afterReal11Seconds": true,
+    "status": 503,
+    "body": {
+      "error": "Starting Executive Systems\u2026",
+      "retryAfterSec": 10,
+      "admission": {
+        "reason": "Pillow session create rate limit (4/10000ms)",
+        "lagMs": 0
+      }
+    }
+  }
+]

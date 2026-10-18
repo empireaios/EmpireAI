@@ -1,0 +1,14 @@
+{
+  "recordType": "O19_DURABLE_APPROVAL_CONSUMER_ENGINEERING",
+  "paths": {
+    "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts": "558388eb0f28a5d75ee01f49cddaebe3e0e9dd664ea05f07ac94957bf73467b1",
+    "backend/src/validation/tests/work8-media-listing-binding.test.ts": "2c330a3d40b5362337b16e45f40e92f34c72980d26dc948cb8569c8e9789c476",
+    "empireai-web/e2e/work8-media-listing-http.mts": "ef93c82d2fbf3f900de94555e79fe1bd7106c4ab10b3e1fd4de027c0ea7ce903"
+  },
+  "implementation": "Explicit authenticated TRANSFER_LISTING consumes only latest verified durable APPLY_LISTING; original approved selected asset/rights/product and source/candidate/listing binding exact; synthetic source only, absent target in owner workspace. Actual canonical research/listing with fixed separated proposer, initiating owner in immutable event. No copied approval, review or authority.",
+  "test": "3 PASS: atomic binding+transfer rollback/reopen/collision/stale/foreign/replay, actual authenticated route to canonical intercepted publication, A11 changed-boundary regression",
+  "hostedSelection": "Existing work8-media-listing-binding.test.ts launches route script as kernel-isolated child. No workflow change or duplicate dispatch.",
+  "noCompilerRepeated": true,
+  "deltaBasis": "Current EmpireAI working files at receipt generation; FULL.patch against9659160 also supplied",
+  "fullAcceptance": "Independent source/fullcontract review pending; no selfcertification"
+}

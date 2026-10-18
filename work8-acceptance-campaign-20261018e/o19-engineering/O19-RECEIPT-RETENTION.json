@@ -1,0 +1,6 @@
+{
+  "path": "backend/src/validation/tests/work8-media-listing-binding.test.ts",
+  "sha256": "06fdd040fc0910b3e74a2105dc5dae115e989065d5d66ad9d48a36fa5d3648e7",
+  "change": "Print allowlisted sanitized exact parsed child receipt as TAP diagnostic; no token/session/credential fields. No source behavior change.",
+  "testsRepeated": false
+}

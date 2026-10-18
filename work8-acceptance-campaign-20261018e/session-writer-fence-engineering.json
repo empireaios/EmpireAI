@@ -1,0 +1,31 @@
+{
+  "decision": "READY_FOR_INDEPENDENT_SOURCE_REVIEW_NOT_ACCEPTANCE",
+  "base": "9659160b2f187a0dc2c422c5bd1d1046d6f56c66",
+  "worktree": "/workspace/scratch/7952261165b1/session-fence",
+  "files": {
+    "backend/src/auth/session-store.ts": "06da0b26becee33412c68986e995384db61b45848218385fb5522df8b8333fef",
+    "backend/src/validation/tests/session-store-unavailable.test.ts": "ecc8b759a6d137797ac90d69f7b1eeb2018bdca3f5d579fefb69f171eddee686",
+    "backend/src/validation/tests/work8-model-session-faults.test.ts": "e5d9b60d256451cb9c7303c4993a15f6af51cc15ff6f085930df9d98ab57e62e",
+    "backend/src/validation/tests/pillow-durable-queue-redis.test.ts": "c8b522f5e007941bb984cc6ead74cdb340729b94a266de7543a09bf11f7842ff"
+  },
+  "implementation": "Session create/destroy/refresh join existing capture-owner/capture-producers protocol through atomic Lua admission. Admission token spans all mutation settlement; refresh spans old-token delete and new-token creation. Success requires acknowledged release; uncertainty retains token. No TTL/deadline change. Reads remain available. Missing EVAL fails closed.",
+  "localValidation": {
+    "kernelIsolatedTests": "14 PASS /0FAIL across session-store-unavailable and work8-model-session-faults",
+    "diffCheck": "PASS",
+    "typecheck": "Default heap OOM(exit134); no diagnostic. Consolidated controller typecheck with existing8GB allowance required."
+  },
+  "hostedPending": [
+    "Existing pillow-durable-queue-redis suite: independent OS process held-owner create/destroy/refresh refusal, original session bytes and decreasing TTL, no leaked admission, successful refresh after release",
+    "Actual TaskQueue capture waits admitted sessionSETEX settlement then succeeds; uncertain write retains producer and prevents capture at bounded originaltimeout"
+  ],
+  "workflow": "Existing pillow-runtime-repair-ci.yml includes this suite; no new workflow or dispatch.",
+  "limitations": [
+    "No actual Redis execution locally: redis-server/docker/podman unavailable",
+    "Does not exclude old binaries/direct Redis writers or grant full33/39 closure",
+    "Brain defaultprefix/fixedqueue key shared by convention; realTaskQueue hosted assertion detects drift",
+    "Uncertain writes intentionally block future capture until operator reconciliation; normal reads and future session writes are not globally blocked by that stale producer token"
+  ],
+  "mainCandidateModified": false,
+  "published": false,
+  "newAcceptance": false
+}

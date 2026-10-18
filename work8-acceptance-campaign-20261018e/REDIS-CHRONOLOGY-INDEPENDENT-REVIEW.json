@@ -1,0 +1,34 @@
+{
+  "recordType": "INDEPENDENT_CHANGED_BOUNDARY_HOSTED_REDIS_REVIEW",
+  "decision": "PASS_SCOPED_CHRONOLOGY_GUARD_NOT_COMPLETE_RESTORATION",
+  "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+  "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+  "run": 39116744635,
+  "job": 117643966813,
+  "jobConclusion": "success",
+  "log": "runtime-job.log",
+  "logSha256": "ba70ef2ea837900e6a85db7dc600d53e769e2f11cc33c6afb4bb0073e94ff0ed",
+  "test": {
+    "name": "concurrent runtime writers capture with actual pending missions then replay once while restored Redis stays fenced",
+    "tapNumber": 39,
+    "result": "ok",
+    "timestamp": "2026-10-18T09:55:31.7358009Z",
+    "durationMs": 11809.1399
+  },
+  "joinedSourceAssertion": "Exact reviewed test injects capture timestamp minus1ms into actual target Redis Lua TIME path; asserts TARGET_REDIS_CLOCK_BEFORE_CAPTURE and target dbsize0 before continuing actual positive restoration. This assertion is nested in passing test39, not separately printed TAP.",
+  "suite": {
+    "tests": 409,
+    "pass": 409,
+    "fail": 0
+  },
+  "limitations": [
+    "Rejects impossible backwards target clock before captured timestamp; does not establish arbitrary cross-host clock synchronization.",
+    "Inspection-only restored Redis remains fenced.",
+    "No complete every-writer operational restoration, complete pending-work inventory or protected custody acceptance.",
+    "Existing HH4/F29 accepted results preserved; no whole-row promotion."
+  ],
+  "newAcceptedRequirementIds": [],
+  "newAcceptedAmendmentIds": [],
+  "manualDispatches": 0,
+  "reruns": 0
+}

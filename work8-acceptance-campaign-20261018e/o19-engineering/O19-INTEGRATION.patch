@@ -1,0 +1,107 @@
+diff --git a/backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts b/backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts
+index 32ee033c..52dbea81 100644
+--- a/backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts
++++ b/backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts
+@@ -1,3 +1,4 @@
++import {listingSchema} from './contracts.js';
+ import {z} from 'zod';import {digest} from './store.js';import type {Work8TwinRuntime} from './work8-twin-runtime.js';import type {CommerceState} from './engine.js';
+ const key=z.string().min(1).max(160).regex(/^[A-Za-z0-9_.:-]+$/),hash=z.string().regex(/^[a-f0-9]{64}$/);
+ const ref=z.object({sessionId:key,missionId:key,receiptDigest:hash}).strict();
+@@ -5,10 +6,11 @@ const asset=z.object({id:key,url:z.string().max(2000).url().refine(s=>{const u=n
+ export const twinMediaRequest=z.discriminatedUnion('action',[
+  z.object({action:z.literal('REQUEST_EDIT'),id:key,reference:ref,expectedVersion:z.number().int().nonnegative(),instructions:z.string().trim().min(1).max(3000),assetIds:z.array(key).min(1).max(20)}).strict(),
+  z.object({action:z.literal('PROPOSE'),id:key,reference:ref,expectedVersion:z.number().int().nonnegative(),instructions:z.string().trim().min(1).max(3000),assets:z.array(asset).min(1).max(20),editingReceipt:z.string().min(1).max(1000)}).strict(),
++ z.object({action:z.literal('APPLY_LISTING'),id:key,reference:ref,expectedVersion:z.number().int().positive(),batchDigest:hash,listing:listingSchema}).strict(),
+  z.object({action:z.enum(['APPROVE_INTERNAL','REJECT','APPROVE_EXTERNAL']),id:key,reference:ref,expectedVersion:z.number().int().positive(),batchDigest:hash,assetIds:z.array(key).min(1).max(20).optional()}).strict(),
+ ]);
+ type Asset=z.infer<typeof asset>;
+-type Event={id:string;owner:string;workspace:string;sessionId:string;missionId:string;version:number;previous:string;digest:string;requestDigest:string;at:number;action:string;receiptDigest:string;batchDigest:string|null;assets:Asset[];selectedIds:string[];instructions:string|null;editingReceipt:string|null;status:string;externalEffects:0};
++type Event={id:string;owner:string;workspace:string;sessionId:string;missionId:string;version:number;previous:string;digest:string;requestDigest:string;at:number;action:string;receiptDigest:string;batchDigest:string|null;assets:Asset[];selectedIds:string[];instructions:string|null;editingReceipt:string|null;status:string;externalEffects:0;listingBinding?:{receiptDigest:string;candidateDigest:string;listingDigest:string;approvalDigest:string}};
+ /** Durable media workflow only. Canva execution needs separately configured,
+  * authorised integration; this service never fabricates edited files or sends. */
+ export class Work8TwinMedia{
+@@ -32,10 +34,23 @@ export class Work8TwinMedia{
+  }
+  command(p:{workspace:string;owner:string},raw:unknown){const r=twinMediaRequest.parse(raw);return this.runtime.store.transaction(()=>{
+  const view=this.read(p,r.reference),history=view.history,last=history.at(-1),requestDigest=digest({p,r});const prior=this.runtime.store.db.prepare('SELECT record FROM work8_twin_media WHERE workspace=? AND id=?').get(p.workspace,r.id);
+- if(prior){const e=JSON.parse(String(prior.record)) as Event;if(e.requestDigest!==requestDigest||!history.some(h=>h.digest===e.digest))throw Error('MEDIA_IDEMPOTENCY_CONFLICT');if(r.action==='APPROVE_INTERNAL'||r.action==='APPROVE_EXTERNAL')throw Error('MEDIA_APPROVAL_REPLAY_STALE');return e;}
++ if(prior){const e=JSON.parse(String(prior.record)) as Event;if(e.requestDigest!==requestDigest||!history.some(h=>h.digest===e.digest))throw Error('MEDIA_IDEMPOTENCY_CONFLICT');if(r.action==='APPROVE_INTERNAL'||r.action==='APPROVE_EXTERNAL'||r.action==='APPLY_LISTING')throw Error('MEDIA_APPROVAL_REPLAY_STALE');return e;}
+  if(view.version!==r.expectedVersion||history.length>=500)throw Error('MEDIA_VERSION_CONFLICT');
+- let assets:Asset[]=[],selectedIds:string[]=[],batchDigest:string|null=null,status='';
+- if(r.action==='REQUEST_EDIT'){
++ let assets:Asset[]=[],selectedIds:string[]=[],batchDigest:string|null=null,status='';let listingBinding:Event['listingBinding'];
++ if(r.action==='APPLY_LISTING'){
++ const approval=history.filter(e=>e.action==='APPROVE_INTERNAL').at(-1),current=view.current;
++ if(!current||!approval||current.batchDigest!==r.batchDigest||!view.sourceBindingCurrent)throw Error('MEDIA_LISTING_APPROVAL_REQUIRED');
++ assets=current.assets;selectedIds=assets.map(a=>a.id);batchDigest=current.batchDigest;
++ const context=this.runtime.context(p,r.reference);
++ if(assets.some(a=>a.kind!=='IMAGE'||a.rightsStatus!=='OWNER_REVIEWED'||a.sourceIdentity!==context.productId))throw Error('MEDIA_LISTING_SOURCE_OR_RIGHTS');
++ if(r.listing.images.length!==assets.length||new Set(r.listing.images.map(i=>i.sha256+':'+i.url)).size!==assets.length||r.listing.images.some(i=>!assets.some(a=>a.url===i.url&&a.sha256===i.sha256&&a.rightsEvidence===i.rightsEvidence&&a.provenance===i.license)))throw Error('MEDIA_LISTING_ASSET_MISMATCH');
++ const session=this.runtime.sessions.read(p,r.reference.sessionId),prior=this.runtime.store.history(session.twinWorkspace,r.reference.missionId).at(-1)!;
++ const state=prior.state as unknown as CommerceState;
++ // Actual canonical listing command retains original schema/provenance/admission checks,
++ // and invalidates previous candidate review/owner approval. No external approval is granted.
++ const receipt=this.runtime.worker.engine.execute({workspace:session.twinWorkspace,id:state.proposer,role:'PROPOSER'},{id:'media-listing:'+digest({workspace:p.workspace,id:r.id}),missionId:r.reference.missionId,expectedVersion:prior.version,command:{type:'listing',listing:r.listing}});
++ listingBinding={receiptDigest:receipt.digest,candidateDigest:String(receipt.state.candidateDigest),listingDigest:String(receipt.state.listingDigest),approvalDigest:approval.digest};status='LISTING_PREPARED_REVIEW_REQUIRED';
++ }else if(r.action==='REQUEST_EDIT'){
+  const available=[...view.original,...(view.current?.assets??[]),...(view.proposal?.assets??[])];if(r.assetIds.some(id=>!available.some(a=>a.id===id)))throw Error('MEDIA_ASSET_NOT_FOUND');selectedIds=r.assetIds;status='EDIT_REQUEST_BLOCKED_CANVA_RUNTIME';
+  }else if(r.action==='PROPOSE'){
+  if(new Set(r.assets.map(a=>a.id)).size!==r.assets.length)throw Error('MEDIA_DUPLICATE_ASSET');assets=r.assets;batchDigest=digest({assets,instructions:r.instructions,editingReceipt:r.editingReceipt,reference:r.reference});status='PROPOSED_OWNER_EVIDENCE_NOT_INDEPENDENTLY_VERIFIED';
+@@ -50,7 +65,7 @@ export class Work8TwinMedia{
+  status='SIMULATED_SUBMISSION_INTERCEPTED';
+  }else status='REJECTED';
+  }
+- const body={id:r.id,owner:p.owner,workspace:p.workspace,sessionId:r.reference.sessionId,missionId:r.reference.missionId,version:view.version+1,previous:last?.digest??'',requestDigest,at:this.runtime.worker.engine.clock(),action:r.action,receiptDigest:r.reference.receiptDigest,batchDigest,assets,selectedIds,instructions:'instructions'in r?r.instructions:null,editingReceipt:'editingReceipt'in r?r.editingReceipt:null,status,externalEffects:0 as const};
++ const body={id:r.id,owner:p.owner,workspace:p.workspace,sessionId:r.reference.sessionId,missionId:r.reference.missionId,version:view.version+1,previous:last?.digest??'',requestDigest,at:this.runtime.worker.engine.clock(),action:r.action,receiptDigest:r.reference.receiptDigest,batchDigest,assets,selectedIds,instructions:'instructions'in r?r.instructions:null,editingReceipt:'editingReceipt'in r?r.editingReceipt:null,status,externalEffects:0 as const,...(listingBinding?{listingBinding}:{})};
+  const event={...body,digest:digest(body)};this.runtime.store.db.prepare('INSERT INTO work8_twin_media VALUES(?,?,?,?,?,?)').run(p.workspace,r.reference.sessionId,r.reference.missionId,event.version,r.id,JSON.stringify(event));return event;
+  });}
+ }
+diff --git a/backend/src/validation/tests/work8-media-listing-binding.test.ts b/backend/src/validation/tests/work8-media-listing-binding.test.ts
+new file mode 100644
+index 00000000..dab15ea5
+--- /dev/null
++++ b/backend/src/validation/tests/work8-media-listing-binding.test.ts
+@@ -0,0 +1,43 @@
++import fs from 'node:fs';import os from 'node:os';import path from 'node:path';
++import test from 'node:test';import assert from 'node:assert/strict';
++import {GovernedCommerceStore,digest} from '../../runtime/commerce-runtime/governed/store.js';
++import {GovernedCommerceEngine} from '../../runtime/commerce-runtime/governed/engine.js';
++import {CommerceWorker} from '../../runtime/commerce-runtime/governed/worker.js';
++import {DurableSimulatedFinance} from '../../runtime/commerce-runtime/governed/work8-durable-finance.js';
++import {Work8TwinSessions} from '../../runtime/commerce-runtime/governed/work8-twin.js';
++import {Work8TwinRuntime} from '../../runtime/commerce-runtime/governed/work8-twin-runtime.js';
++import {acceptanceScenario} from '../../runtime/commerce-runtime/governed/scenario.js';
++test('O19 approved exact image binding prepares canonical listing and invalidates old authority atomically',()=>{
++ const root=fs.mkdtempSync(path.join(os.tmpdir(),'o19-binding-')),file=path.join(root,'commerce.sqlite');let store=new GovernedCommerceStore(file);const now=1792316400000,p={workspace:'ws',owner:'owner'},sessions=new Work8TwinSessions(store,()=>now),engine=new GovernedCommerceEngine(store,()=>now),worker=new CommerceWorker(engine),runtime=new Work8TwinRuntime(sessions,worker,new DurableSimulatedFinance(store,worker,()=>now));
++ try{
++ const session=sessions.transition(p,{id:'create',sessionId:'exam',expectedVersion:0,action:'CREATE'}),f=acceptanceScenario(session.twinWorkspace,p.owner,now);
++ for(const [i,step] of f.steps.slice(0,4).entries())engine.execute(step.actor,{id:'initial-'+i,missionId:'mission',expectedVersion:i,command:step.command});
++ const reference={sessionId:'exam',missionId:'mission',receiptDigest:store.history(session.twinWorkspace,'mission').at(-1)!.digest};
++ const asset={id:'original',url:'https://example.invalid/new.svg',kind:'IMAGE' as const,sha256:digest('original authored image'),sourceIdentity:f.candidate.productId,rightsEvidence:'evidence-QUALITY',rightsStatus:'OWNER_REVIEWED' as const,provenance:'Original authored examination image'};
++ const proposal=runtime.media.command(p,{action:'PROPOSE',id:'proposal',reference,expectedVersion:0,instructions:'Use exact approved image',assets:[asset],editingReceipt:'Local original asset'});
++ const listing={...f.listing,images:[{url:asset.url,sha256:asset.sha256,rightsEvidence:asset.rightsEvidence,license:asset.provenance}]};
++ const request={action:'APPLY_LISTING',id:'apply',reference,expectedVersion:1,batchDigest:proposal.batchDigest,listing};
++ assert.throws(()=>runtime.media.command(p,request),/APPROVAL_REQUIRED/);
++ const approval=runtime.media.command(p,{action:'APPROVE_INTERNAL',id:'internal',reference,expectedVersion:1,batchDigest:proposal.batchDigest});request.expectedVersion=2;
++ assert.throws(()=>runtime.media.command({...p,owner:'foreign'},request));
++ assert.throws(()=>runtime.media.command(p,{...request,batchDigest:'0'.repeat(64)}),/APPROVAL_REQUIRED/);
++ assert.throws(()=>runtime.media.command(p,{...request,expectedVersion:1}),/VERSION_CONFLICT/);
++ assert.throws(()=>runtime.media.command(p,{...request,listing:{...listing,images:[{...listing.images[0]!,sha256:'0'.repeat(64)}]}}),/ASSET_MISMATCH/);
++ assert.throws(()=>runtime.media.command(p,{...request,listing:{...listing,images:[{...listing.images[0]!,rightsEvidence:'forged'}]}}),/ASSET_MISMATCH/);
++ assert.throws(()=>runtime.media.command(p,{...request,listing:{...listing,productId:'foreign'}}),/IDENTITY_MISMATCH/);
++ assert.equal(runtime.media.read(p,reference).version,2);assert.equal(store.history(session.twinWorkspace,'mission').length,4);
++ store.db.exec(`CREATE TRIGGER fail_media_apply BEFORE INSERT ON work8_twin_media WHEN json_extract(NEW.record,'$.action')='APPLY_LISTING' BEGIN SELECT RAISE(ABORT,'INJECTED_MEDIA_WRITE_FAILURE'); END;`);
++ assert.throws(()=>runtime.media.command(p,request),/INJECTED_MEDIA_WRITE_FAILURE/);
++ assert.equal(store.history(session.twinWorkspace,'mission').length,4);assert.equal(runtime.media.read(p,reference).version,2);
++ assert.ok(store.history(session.twinWorkspace,'mission').at(-1)!.state.approval);
++ store.db.exec('DROP TRIGGER fail_media_apply');
++ const bound=runtime.media.command(p,request),latest=store.history(session.twinWorkspace,'mission').at(-1)!;
++ assert.equal(bound.status,'LISTING_PREPARED_REVIEW_REQUIRED');assert.equal(bound.listingBinding?.receiptDigest,latest.digest);assert.equal(bound.listingBinding?.approvalDigest,approval.digest);assert.deepEqual(latest.state.listing,listing);assert.equal(bound.listingBinding?.candidateDigest,digest({candidate:latest.state.candidate,listing:latest.state.listing}));assert.equal(latest.state.approval,undefined);assert.equal(latest.state.review,undefined);assert.equal(latest.externalEffects,0);
++ assert.throws(()=>runtime.media.command(p,request),/CONTEXT_STALE/);
++ const newReference={...reference,receiptDigest:latest.digest},view=runtime.media.read(p,newReference);assert.equal(view.current,null);assert.equal(view.externalStatus,'NOT_SUBMITTED');
++ assert.throws(()=>runtime.media.command(p,{...request,reference:newReference,expectedVersion:3}),/REPLAY_STALE|IDEMPOTENCY_CONFLICT/);
++ store.close();store=new GovernedCommerceStore(file);
++ const persisted=JSON.parse(String(store.db.prepare('SELECT record FROM work8_twin_media WHERE workspace=? AND id=?').get(p.workspace,'apply')!.record));
++ assert.deepEqual(persisted,bound);assert.ok(persisted.listingBinding);assert.equal(store.history(session.twinWorkspace,'mission').at(-1)!.digest,persisted.listingBinding.receiptDigest);
++ }finally{store.close();fs.rmSync(root,{recursive:true,force:true});}
++});

@@ -1,0 +1,99 @@
+{
+  "recordType": "BOUNDED_CURRENT_SOURCE_WRITER_TOPOLOGY_MAP_NOT_FULL_ACCEPTANCE",
+  "source": "9659160b2f187a0dc2c422c5bd1d1046d6f56c66",
+  "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+  "files": {
+    "backend/src/app.ts": "fd8daf3ec22c838e1be870e644ca98107f3125bc786925ad165ac4654a0164a2",
+    "backend/src/brain/task-queue.ts": "648d0abe66cdfd7a8cbe04fbe72dcba92deea6d10c5abd6e599cf4f958acf858",
+    "backend/src/auth/session-store.ts": "65a4beaa4ce40c9bd656bc8dc1cb0f2e829e2c90ba0b30df4f159aa6b4698337",
+    "backend/src/runtime/work8-primary-capture.ts": "caf40aa5307c3be62b55c7976299bb3b0b4d38a844ca98c4887ee533f4ecbb61",
+    "backend/src/runtime/tier0-isolated-primary.ts": "6ee6b55f5c17dc6bfe9f41a74e2fbbb76c0db467c7204753cc996735bd188790",
+    "backend/src/runtime/work8-background-capture.ts": "e1a32b935f7146107948c4a9d9cc482830a5b1c74c80584350f1f1260a20fe00",
+    "backend/src/runtime/pillow-durable-reasoning-worker.ts": "656962169e256f9365c6f03d941a6f8e6afccc2bd97240cc261dc9e0a7eb7b81",
+    "backend/src/runtime/pillow-chat-request-store.ts": "998fb6bb0a11ccbe324415d72dc59677c99dcf5dbe1d07581a2a094de4bd6b0b",
+    "backend/src/runtime/executive-continuity-watchdog.ts": "09b2037fd1a0e297c184974700a49f2ced7d2839e25b851a510612d8edccf81e",
+    "backend/src/runtime/executive-continuity-watchdog-worker.ts": "0763bd75c10d5bd262405a5403ae6282f33e7332dcefc442c1869b81c6efedf0",
+    "backend/src/assurance/permanent-worker.mjs": "ca774d237f7d37d8ae88deea98e5e5286107fc6e452f4b5f61046829fb805e86",
+    "deployment/observer-capture.cjs": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b",
+    "deployment/work8-recovery-set.cjs": "957920defb43aeb15613f3ae932b83fb36216583a0812dd14661e38eb50300ab",
+    "backend/src/orchestration/reality-integration/live-commerce/services/amazon-order-continuation.ts": "ce7adf320dec552634bafd95464016aef375c46721a16638485835f05087759d",
+    "backend/src/orchestration/reality-integration/live-commerce/services/amazon-listings-continuation.ts": "ffe004eeeb46327859ab4922e3dd8718811fc16f7a53f390c002b5b33642c59b",
+    "backend/src/orchestration/reality-integration/live-commerce/services/amazon-seller-inventory-continuation.ts": "0570eddc7a4476dc436f1a80a6012e5a6b1acc2a75343c0936f6628a75dedd43"
+  },
+  "scope": "Current implemented entry points and their fencing, not an observed live process census. No current external host inspection.",
+  "topology": [
+    {
+      "writer": "Brain BullMQ producers/workers",
+      "coverage": "TaskQueue admission Lua checks capture-owner and tracks capture-producers; withPausedSharedProcessing pauses/drains queue, checks schedulers/owner/active work before and after. Cooperating implementations only.",
+      "gap": "Prior binaries or independent queue clients can bypass this convention."
+    },
+    {
+      "writer": "Primary HTTP sessions and durable Pillow transport",
+      "coverage": "tier0-isolated-primary installs capture admission and inherited IPC participant; primary held callback drains supervised observers, HTTP and local background. Session create/destroy and refresh reachable inside registered HTTP routes.",
+      "gap": "SessionStore itself writes SETEX/DEL without a global capture token; an independent process using the same Redis credentials is outside primary IPC."
+    },
+    {
+      "writer": "Primary durable reasoning sweeper",
+      "coverage": "runOneDurableReasoningAttempt wraps readiness/claim/execute/settle in runCaptureAwareBackground. Existing work8-transport-capture test asserts drain before Redis claim.",
+      "gap": "A separate process calling request-store Lua primitives without participating admission is not globally excluded."
+    },
+    {
+      "writer": "Worker HTTP, presale/executive timers, Pillow boot, local JSON/native/SQL.js domains",
+      "coverage": "app capture nests primary IPC, background drain, shared queue pause, HTTP/local worker/timer drains and exclusive native/domain locks.",
+      "gap": "Not a full process census or universal store inventory."
+    },
+    {
+      "writer": "Amazon orders/listings/seller-inventory continuations",
+      "coverage": "All THREE current production timers already invoke runCaptureAwareBackground around continueOne...; index starts them after worker listening. This corrects overly broad retained prose implying current local timers are entirely uncoordinated.",
+      "gap": "Existing background test does not directly prove all three real timer wiring paths; prior process versions remain outside local gate. No production call sites bypass timer wrappers found in bounded lookup."
+    },
+    {
+      "writer": "Permanent Assurance observer/probe",
+      "coverage": "permanent-worker installs observer participant; initialization including safe probe and each cycle use capture.run, collectors use capture.track. Primary wraps supervised observer capture.",
+      "gap": "Only supervised cohort participates; standalone safe-live-probe and independent observers outside that cohort are not fenced."
+    },
+    {
+      "writer": "Executive continuity watchdog",
+      "coverage": "Started by index; heartbeat thread has SQLite flush guard, boot grace and bounded stall termination. It is not a persistent data writer.",
+      "gap": "Capture does not register a watchdog lifecycle participant; off-thread SIGKILL and main-thread recovery remain possible. Do not simply disable watchdog or extend original deadlines; prove containment/invalidation on interruption."
+    }
+  ],
+  "smallestDemonstratedUncoveredBoundary": {
+    "boundary": "Independent SessionStore Redis writer outside captured primary/worker IPC cohort",
+    "sourceEvidence": "SessionStore.create SETEX and destroy DEL contain no shared capture-owner check; the Brain capture-owner protocol applies only to TaskQueue.",
+    "meaning": "Structural coverage gap, not a reproduced race or defect in accepted scoped HH4.",
+    "narrowExaminationPlan": [
+      "Use existing disposable authenticated real Redis fixture, with owner/session records only and no provider credentials.",
+      "Hold current capture-owner with primary/local cohort drained; invoke SessionStore.create/destroy from second OS process sharing target Redis. Observe whether mutation is admitted and preserve exact before/after identity.",
+      "If mutation admitted, retain as expected uncovered-topology evidence; do not mark completeLiveState or bootAllowed true.",
+      "Correction options require explicit declared topology: enforce process-level exclusive Redis credentials/access for the actual cohort, or introduce atomic shared writer admission covering sessions/request-state/probes. A session-only patch cannot exclude older binaries and must not be presented as global closure.",
+      "After coherent mechanism chosen, require negative stale/foreign holder, in-flight drain, crash uncertainty, original session TTL and read-only availability checks."
+    ]
+  },
+  "smallestAdditionalCoverageExamination": {
+    "target": "Three existing Amazon continuation timer wrappers",
+    "plan": "Instrument provider-intercepted timer callbacks with a held local background admission and admitted in-flight operation. Assert each real timer cannot enter provider/SQL work while held, capture waits for admitted work, pending cursor remains byte-identical on refused tick, and one tick resumes after release. Reuse existing admission helper assertions; do not rerun accepted corpora.",
+    "whyNoPatchNow": "Current source already wraps all three timers. No demonstrated missing wrapper warrants a production correction."
+  },
+  "operationalRestoreStillMissing": [
+    "Declared active and prior process census and enforced writer exclusion",
+    "Complete persistent-state inventory including visual-memory files",
+    "Atomic full target materialization/admission with original financial/mission/session invariants",
+    "All pending-work once-only continuation across another restart",
+    "Separate protected independent custody"
+  ],
+  "actions": {
+    "sourceEdited": false,
+    "testsExecuted": false,
+    "externalReads": false,
+    "paidEffects": false,
+    "newAcceptance": false,
+    "HH4": "PASS preserved"
+  },
+  "executionBoundary": {
+    "localToolReadback": "command -v redis-server redis-cli docker podman produced no paths; runtime directory contains pinned Node/npm only.",
+    "whyNoLocalRaceTest": "The proposed cross-process atomic Redis examination requires a real disposable Redis server. A mock cannot substantiate cross-process storage exclusion. No new host/provision/workflow authorized by this bounded lane.",
+    "whyNoProductionPatch": "No missing local Amazon wrapper is present. Session-only admission does not exclude still-running prior binaries. Need declared runtime cohort and independently enforced access/identity mechanism before complete writer exclusion can be implemented honestly.",
+    "safeNext": "Integrate proposed narrow expected-gap examination into an already authorized future real-Redis harness only after controller decides scope; do not dispatch duplicate CI."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS_SCOPED_NOT_FULL_O19",
+  "checks": [
+    "Wrong product identity refused",
+    "Unknown rights reference refused",
+    "Non-HTTPS asset refused",
+    "Actual listing engine preserves complete permitted-asset package",
+    "Failed commands did not append receipts",
+    "A9 exact original SVG hash retained"
+  ],
+  "assetSHA256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+  "classification": "SYNTHETIC",
+  "externalEffects": 0,
+  "paidInference": 0,
+  "limitation": "In-process engine examination, no authenticated browser or actual supplier permission. Media approval store is independent from listing state; A9/A11 accepted media is not automatically copied into listing or its candidateDigest. Full same-asset approval-to-listing acceptance remains unproven."
+}

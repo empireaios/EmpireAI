@@ -1,0 +1,26 @@
+{
+  "status": "PASS_SCOPED_AUTHENTICATED_HTTP_NOT_FULL_O19",
+  "sourcePath": "empireai-web/e2e/work8-media-listing-http.mts",
+  "sourceSHA256": "fc1da1d7035cbc7135d490baffe34a4e28320eb2cd1277962f63735963e6ceef",
+  "changesToPriorReviewedTwoFiles": false,
+  "execution": "Existing incoming-only-exec.py denies all outbound connect, fresh disposable locked-commissioning env, real Fastify injection and auth/session/commerce handlers",
+  "assertions": [
+    "Anonymous401,foreignworkspace403",
+    "staleversion and forgedref refused",
+    "current approved image exactsha/url/rights/product binding accepted by actual route",
+    "candidate review and owner approval absent after listing change",
+    "replay refused,externalapproval not inherited",
+    "newproposal requires fresh internal then external media approval;submission intercepted",
+    "liveexecute423"
+  ],
+  "remaining": [
+    "Independent originalO19 fullcontract review joining retained A9native and A11 evidence",
+    "No new standalone nativeUI requirement inferred; existing originalcriteria govern"
+  ],
+  "fixtureDevelopmentCorrections": [
+    "Initial cleanup doubleclosed production store; app.close owns disposal",
+    "Initial twin paused; explicitly RESUME original session via existing transition for actual production admission. No fence bypass."
+  ],
+  "canonicalExtension": "Actual owner command route imports exact synthetic immutable candidate/listing; resulting digest equals approved media APPLY_LISTING binding. Premature approve/publication refused; independent reviewer then owner approval then canonical publication_intent INTERCEPTED, exactasset+candidate equal, actor separation and repeatedpublication rejection.",
+  "limits": "Explicit owner-requested synthetic copy between isolated twin and owner workspace; not automatic runtime transfer or genuine commercial qualification."
+}

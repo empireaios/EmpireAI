@@ -1,0 +1,25 @@
+{
+  "reviewer": "root independent integration controller",
+  "decision": "APPROVE_SCOPED_SOURCE_PENDING_INTEGRATED_COMPILATION_AND_HOSTED_REDIS",
+  "files": {
+    "backend/src/auth/session-store.ts": "06da0b26becee33412c68986e995384db61b45848218385fb5522df8b8333fef",
+    "backend/src/validation/tests/session-store-unavailable.test.ts": "ecc8b759a6d137797ac90d69f7b1eeb2018bdca3f5d579fefb69f171eddee686",
+    "backend/src/validation/tests/work8-model-session-faults.test.ts": "e5d9b60d256451cb9c7303c4993a15f6af51cc15ff6f085930df9d98ab57e62e",
+    "backend/src/validation/tests/pillow-durable-queue-redis.test.ts": "c8b522f5e007941bb984cc6ead74cdb340729b94a266de7543a09bf11f7842ff"
+  },
+  "findings": [],
+  "review": [
+    "Admission Lua atomically checks same TaskQueue owner key and registers nonexpiring producer",
+    "TaskQueue holds owner before pause/drain and waits producer cardinality, preventing accepted writer settlement during capture",
+    "Refresh holds one admission across old/new commands; existing TTL/read authentication remains",
+    "Uncertainty retains producer; acknowledged success releases exact unique token",
+    "Held-owner childprocess test plus actual queue drain/uncertainty hosted tests selected by existing workflow"
+  ],
+  "localTests": "Author14PASS preserved, not repeated",
+  "limits": [
+    "No local realRedis result",
+    "Old binaries/direct Redis writers outside contract",
+    "FullO33/O39 unaccepted",
+    "Standalone defaultheap compiler OOM needs consolidated8GBbuild"
+  ]
+}

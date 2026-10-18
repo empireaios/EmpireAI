@@ -1,0 +1,153 @@
+{
+  "recordType": "BOUNDED_EXTERNAL_AUTHORITY_DECISION_REGISTER",
+  "createdAt": "2026-10-18T09:49:27.932267+00:00",
+  "publishedIdentity": {
+    "evidence": {
+      "commit": "e10de63cd5499bf53fe978fb6c26f802f3912da3",
+      "tree": "2225afd3df9579ca5e22675bef618433f200145b"
+    },
+    "source": {
+      "approvedCommit": "2a3f342db1f00f954d9a63682d8d8ed76eff4bb2",
+      "commit": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+      "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+      "metadataOnly": "removed skip-ci marker"
+    },
+    "evidenceFirst": true,
+    "exactTreesVerifiedBeforeAfter": true,
+    "priorIndependentByteModeReviewReused": true,
+    "duplicateDispatch": false,
+    "productionDeployment": false
+  },
+  "baseline": {
+    "accepted": 43,
+    "outstanding": 21,
+    "newAcceptedIds": [],
+    "missionStatus": "IN_PROGRESS",
+    "decision": "NO_GO"
+  },
+  "scope": "Retained exact evidence records only; resource inventory observations are dated and not represented as fresh provider configuration. No messages, provisioning, credentials, provider inference, paid calls, broad searches or tests.",
+  "evidenceSha256": {
+    "post-publication-20261018/EXTERNAL-DECISIONS.json": "320d597cf6e4d1fc51cc2c04ef6932fea4e62fb64f0ffad75dff9fec4c78ea99",
+    "evidence-final/docs/work8/continued-closure-20261012/PROTECTED-CUSTODY-INVENTORY.json": "21b2a0849ca02aea83f5f1e3b8a672c6c7a6f6db9dfda54bcc620924ea17bca0",
+    "evidence-final/docs/work8/total-completion-20261013/new-dispositions/O39-LIBRARY-CUSTODY-SCOPE-REVIEW.json": "13475efd93e10abda47ae6fd03e673921db119f1542bf32e2d69a78bb5e5efbe",
+    "evidence-final/docs/work8/interrupted-recovery-20261012/ASSURANCE-READINESS-MATRIX.md": "fad05941fcfb8d8250a4a19f0e2998d4647db8d2053cc2ab4af81ffb8ba2bd01",
+    "lane-e-20261018d/BOUNDED-REVIEW.json": "f3792e2fbda580ec70bdbeb2c2f391872ce571e412f59d851cc7ab2176b6825b",
+    "acceptance-campaign-20261018d/O19-INDEPENDENT-REVIEW.md": "6c776ce84656bcba57b368b484bcff20a7670aef43e5c4fc5773a2523bbfd5af"
+  },
+  "decisions": [
+    {
+      "ids": [
+        "O30"
+      ],
+      "class": "UNPROVEN_EXTERNAL_DELIVERY_AUTHORITY_TUPLE",
+      "knownAccepted": "Internal notification/inbox and scoped worker-stall/fault handling preserved.",
+      "tuple": {
+        "independentExecutor": null,
+        "independentIncidentAttemptStore": null,
+        "deliveryProviderAccount": null,
+        "verifiedOwnerDestination": null,
+        "exactApprovedExaminationMessage": null,
+        "deliveryObservationAndFailureHandling": null
+      },
+      "safeExistingApprovedRouteEstablished": false,
+      "next": "Identify already-existing executor, incident/attempt storage, provider/destination and independence before asking approval for a concrete exact test message. Current evidence does not authorize a speculative send.",
+      "noClaim": "Internal inbox receipt is not external delivery; unknown tuple is not proof no external route exists."
+    },
+    {
+      "ids": [
+        "O39",
+        "A3"
+      ],
+      "class": "CONDITIONAL_EXISTING_CUSTODY_ROUTE_NOT_ACCEPTANCE",
+      "candidateTuple": {
+        "store": "Existing authorized ChatGPT Library for complete DATA snapshot plus sealed manifest, not duplicate Git-backed source",
+        "runtimeIdentity": "Must be proved excluded from Library/upload/delete credentials, proxies, writable retained mounts and host escape",
+        "independentRestoreIdentity": "Fresh separately authenticated readback unavailable to tested runtime cohort; not yet executed",
+        "retention": "Exact file/version and retrieval instructions with observed retrievability throughout declared recovery/continuation horizon; not yet proved",
+        "payload": "Complete consistent application capture including canonical/financial/session/pending records; not yet available",
+        "restore": "Good-copy full fresh-target restore plus before-write corrupt-copy refusal and no active authority replay; not yet proved"
+      },
+      "safeExistingApprovedRouteEstablished": "CONDITIONALLY_SUITABLE_ONLY",
+      "next": "Complete capture/inventory and declared failure boundary first; then verify existing Library version/retention and runtime credential exclusion and execute independently authenticated restore under original F30 bounds. No new infrastructure prerequisite inferred.",
+      "preservedBounds": "60s detection,120s execution,180s verification freshness per retained independent scope review.",
+      "limitations": "Railway inventory dated2026-10-12 shows only application/Redis-mounted volumes and no buckets in inspected projects; neither fresh current inventory nor universal absence claim."
+    },
+    {
+      "ids": [
+        "O2"
+      ],
+      "class": "MISSING_HISTORICAL_EVIDENCE",
+      "missing": "Original224 immutable financial baseline or attributable audited count-change lineage.",
+      "next": "Only follow a genuinely new credible lead; none present in bounded retained records.",
+      "existingAuthority": "Preservation and read-only evaluation of new evidence; no repeat unsupported search."
+    },
+    {
+      "ids": [
+        "O7"
+      ],
+      "class": "MISSING_EXACT_SUPPLIER_PERMISSION",
+      "missing": "Documented licence/permission for exact selected supplier/platform assets.",
+      "next": "Bind existing attributable permission if supplied; no correspondence implied. Owner-created fixtures do not licence supplier media."
+    },
+    {
+      "ids": [
+        "O13",
+        "O14"
+      ],
+      "class": "GENUINE_INPUTS_AND_OWNER_AUTHORITY",
+      "missing": [
+        "Authenticated evidence review",
+        "Canonical finance/current cash/reviewed forecast",
+        "Exact selected freight and source-cost FX binding",
+        "Demand/competition/quality/compliance/returns/marketplace findings and processing evidence",
+        "Complete eligible source-bound dossier",
+        "Bounded valid commissioning authority for actual Pillow assessment",
+        "Subsequent authenticated owner decision"
+      ],
+      "retainedFacts": "CJ2610171752021618700 variant2610171752021619700; factory8023/CJ-held0, observed2.76USD and10freight options, cheapest recorded LuWei6.57/5\u201311; no selected freight. Recorded expiry must be compared to actual use time. Not a new provider read or qualification.",
+      "next": "Complete genuine inputs before proposing bounded actual inference; do not present historical insufficient-evidence assessment as fresh."
+    },
+    {
+      "ids": [
+        "O19"
+      ],
+      "class": "EXECUTABLE_SIMULATION_INTEGRATION_GAP",
+      "missing": "Authenticated same-asset media-to-listing binding, applicable separated approvals/version invalidation, intercepted publication and durable receipts.",
+      "next": "Continue existing owner-created permitted-asset integration lane; do not make supplier O7 a blanket prerequisite. Six scoped listing assertions already independently reviewed; do not repeat."
+    },
+    {
+      "ids": [
+        "A10"
+      ],
+      "class": "EXACT_DESIGN_ASSET_AUTHORITY_AND_ENTITLEMENT",
+      "missing": "Exact permitted existing design/asset, bounded actual edit/export and applicable consumer entitlement.",
+      "next": "Identify concrete permitted design and authorized operation through existing consumer; no paid activation or mock export as proof."
+    },
+    {
+      "ids": [
+        "A15"
+      ],
+      "class": "ENTITLEMENT_EVIDENCE",
+      "missing": "Applicable Keepa entitlement/readiness proof.",
+      "knownRecord": "EmpireAI/docs/work8/business-owner-20261013/current-business-readback.json retained keepa.history UNAVAILABLE, lastVerifiedRead null; Helium10 deferred.",
+      "next": "Read-only existing entitlement proof if supplied; no subscription or activation."
+    },
+    {
+      "ids": [
+        "O40",
+        "O41",
+        "A6",
+        "A19"
+      ],
+      "class": "GENUINE_CONNECTED_OWNER_EVIDENCE",
+      "missing": "Same-identity genuine owner/mission/order/finance/Assurance inspection across desktop/mobile.",
+      "next": "Review current hosted deferred Console evidence when available; empty isolated order/finance and unavailable Assurance cannot become genuine integrated results. Positive qualification is not a blanket presentation prerequisite."
+    }
+  ],
+  "notExternalOnly": [
+    "O33/O39/A1/A2/A5 complete topology/capture/restore/replay engineering",
+    "A8 hosted full-contract independent examination",
+    "O19 same-asset listing integration",
+    "O42/O43 final certification"
+  ]
+}

@@ -1,0 +1,23 @@
+TAP version 13
+# O19_AUTHENTICATED_RECEIPT {"status":"PASS_SCOPED_AUTHENTICATED_HTTP","checks":["Anonymous401 and foreignworkspace403","Stale version and forged source refused","Authenticated actual route binds exact image and candidate digest; review remains required","Old request replay rejected; no inherited publication approval","Authenticated production transfer derives payload solely from durable approved binding; replay and foreign owners refused","Fresh separate approvals required; media submission intercepted; live execute423","Production durable-binding transfer preserves candidate digest; independent policy/owner approvals gate canonical intercepted publication intent and reject repeat"],"binding":{"receiptDigest":"ef1a380036f270e9d73cf611eff16ef488cdc70eb8b630cb90c2f439c5d95f2a","candidateDigest":"1f582a8a852a7c9689ea9a18b5c417fa61030a430129e44fc46b23ca110472c9","listingDigest":"5461a37815eaac299b957238802c7b9a93bde70a2376f1e79e202335c59f9cbd","approvalDigest":"74af6856f3bbf3d457164f8bd954f4c619b35c212a9cb413476bfa6967ef0968"},"transferBinding":{"sourceReceiptDigest":"ef1a380036f270e9d73cf611eff16ef488cdc70eb8b630cb90c2f439c5d95f2a","sourceApprovalDigest":"74af6856f3bbf3d457164f8bd954f4c619b35c212a9cb413476bfa6967ef0968","targetWorkspace":"ws_empire_1","targetMissionId":"listing-owner-copy","targetReceiptDigest":"d5a178b0564112e1bdd96a95b68de23dfd572091f9e24e14e6d31b8cdf68ddaa","candidateDigest":"1f582a8a852a7c9689ea9a18b5c417fa61030a430129e44fc46b23ca110472c9","listingDigest":"5461a37815eaac299b957238802c7b9a93bde70a2376f1e79e202335c59f9cbd"},"publication":{"receiptDigest":"792e8d735733609682e998d6fb66a5aff6af059cf88926f862629e158ae9e19d","candidateDigest":"1f582a8a852a7c9689ea9a18b5c417fa61030a430129e44fc46b23ca110472c9","listingDigest":"5461a37815eaac299b957238802c7b9a93bde70a2376f1e79e202335c59f9cbd","imageSHA256":"eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9","intercept":{"capacity":{"account":"simulation","marketplace":"US","mode":"NEW_ASIN","asin":null,"newAsinRemaining":10,"unsoldRemaining":10,"requestsPerSecond":5,"eligibility":"ELIGIBLE","provenance":{"source":"work6-deterministic-acceptance","reference":"synthetic:work6-fixture-not-provider-evidence","sha256":"ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd","observedAt":"2026-10-18T10:01:31.658Z","expiresAt":"2026-10-18T11:01:31.658Z","classification":"SYNTHETIC"}},"status":"INTERCEPTED","receiptId":"5e284f83f57eeae7ca44d0f3c5971555dead2ecb49f5b81ec2db0c2595c76eb8","canonicalPublisher":"marketplace-publishing/services/amazon-listings-publish-executor"},"reviewer":"commerce-independent-policy-reviewer","owner":"owner","executor":"brain-commerce-interceptor"},"externalEffects":0,"paidInference":0,"limits":["No native UI assertion","Explicit authenticated durable-binding synthetic transfer; no genuine supplier qualification"]}
+# Subtest: O19 approved exact image binding prepares canonical listing and invalidates old authority atomically
+ok 1 - O19 approved exact image binding prepares canonical listing and invalidates old authority atomically
+  ---
+  duration_ms: 205.140068
+  type: 'test'
+  ...
+# Subtest: O19 actual authenticated durable transfer and canonical listing publication route remains intercepted
+ok 2 - O19 actual authenticated durable transfer and canonical listing publication route remains intercepted
+  ---
+  duration_ms: 1149.663484
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1774.873076

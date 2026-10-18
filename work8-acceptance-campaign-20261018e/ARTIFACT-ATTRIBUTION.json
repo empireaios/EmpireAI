@@ -1,0 +1,44 @@
+{
+  "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+  "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+  "run": 39116744648,
+  "job": 117644053835,
+  "artifacts": [
+    {
+      "id": 12132527208,
+      "name": "commerce-browser-evidence",
+      "digest": "sha256:fdd37f1be6d445d97a96d0a967c667b501e7e2a041272aa6ec5dfbdf8c12f428",
+      "size": 1513628,
+      "expired": false
+    },
+    {
+      "id": 12132437322,
+      "name": "work8-owner-history-evidence",
+      "digest": "sha256:e7f760e6f16a803d3ce86bd4e84a039955e588dda6ab3e25bfadb126e35b9185",
+      "size": 3274325,
+      "expired": false
+    },
+    {
+      "id": 12132294173,
+      "name": "work8-source-context-evidence",
+      "digest": "sha256:cd9d726b254467b949f807d562c82551bcf6bbdc2a9ebe3f28e8ba74e6e7bd6d",
+      "size": 85740,
+      "expired": false
+    }
+  ],
+  "scope": "Original downloaded ZIP bytes retained; extracted for independent review. No workflow redispatch.",
+  "additionalRuntimeArtifacts": [
+    {
+      "id": 12133200035,
+      "name": "work8-hh4-held-capture",
+      "sha256": "a77a3adf0b8f55e97519fc7951ab0eb076e6926d06955a1b87e7958540d15e7d",
+      "file": "hh4.zip"
+    },
+    {
+      "id": 12133051521,
+      "name": "precutover-closure",
+      "sha256": "9c701c23721bc75a20faed2d10dca2dfa1e5fb5626baff50eb45b22798d5c944",
+      "file": "precutover.zip"
+    }
+  ]
+}

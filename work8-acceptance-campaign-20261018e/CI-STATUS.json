@@ -1,0 +1,79 @@
+{
+  "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+  "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+  "automatic": true,
+  "dispatches": 0,
+  "reruns": 0,
+  "allTerminal": true,
+  "runs": [
+    {
+      "id": 39116744632,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success",
+      "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+      "created_at": "2026-10-18T09:47:47Z",
+      "updated_at": "2026-10-18T09:48:11Z"
+    },
+    {
+      "id": 39116744633,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+      "created_at": "2026-10-18T09:47:47Z",
+      "updated_at": "2026-10-18T09:51:45Z"
+    },
+    {
+      "id": 39116744648,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "failure",
+      "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+      "created_at": "2026-10-18T09:47:47Z",
+      "updated_at": "2026-10-18T09:58:22Z"
+    },
+    {
+      "id": 39116744635,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+      "created_at": "2026-10-18T09:47:47Z",
+      "updated_at": "2026-10-18T10:02:10Z"
+    }
+  ],
+  "runtimeJobs": [
+    {
+      "id": 117643966667,
+      "name": "Exact-source Railway Railpack image",
+      "conclusion": "success"
+    },
+    {
+      "id": 117643966755,
+      "name": "Durable web — receipt recovery, one submission, tests and build",
+      "conclusion": "success"
+    },
+    {
+      "id": 117643966813,
+      "name": "Durable runtime — real Redis, restart, ownership and authorization",
+      "conclusion": "success"
+    },
+    {
+      "id": 117643966824,
+      "name": "Generated full path — reasoning-admission",
+      "conclusion": "success"
+    },
+    {
+      "id": 117643966830,
+      "name": "Generated full path — response-delivery",
+      "conclusion": "success"
+    },
+    {
+      "id": 117646619471,
+      "name": "Runtime repair result (no deployment)",
+      "conclusion": "success"
+    }
+  ],
+  "productFailure": "Only authenticated A8 native source-context step; subsequent Console and media steps successful. Independent artifact decisions separate."
+}

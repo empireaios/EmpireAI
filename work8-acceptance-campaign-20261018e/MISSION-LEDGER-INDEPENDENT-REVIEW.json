@@ -1,0 +1,170 @@
+{
+  "recordType": "INDEPENDENT_MISSION_LEDGER_RECONCILIATION_NOT_COMPLETE_CERTIFICATION",
+  "reviewer": "/root/register independent of implementation authors",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "originalCounts": {
+    "PASS": 33,
+    "BLOCKED": 4,
+    "PENDING": 8
+  },
+  "amendmentCounts": {
+    "PENDING": 9,
+    "PASS": 10
+  },
+  "accepted": 43,
+  "outstanding": 21,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "outstandingOriginalIds": [
+    2,
+    7,
+    13,
+    14,
+    19,
+    30,
+    33,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "outstandingAmendmentIds": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    8,
+    10,
+    15,
+    19
+  ],
+  "publication": {
+    "evidence": {
+      "commit": "e10de63cd5499bf53fe978fb6c26f802f3912da3",
+      "tree": "2225afd3df9579ca5e22675bef618433f200145b"
+    },
+    "source": {
+      "approvedCommit": "2a3f342db1f00f954d9a63682d8d8ed76eff4bb2",
+      "commit": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+      "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+      "metadataOnly": "removed skip-ci marker"
+    },
+    "evidenceFirst": true,
+    "exactTreesVerifiedBeforeAfter": true,
+    "priorIndependentByteModeReviewReused": true,
+    "duplicateDispatch": false,
+    "productionDeployment": false
+  },
+  "currentCI": {
+    "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+    "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+    "automatic": true,
+    "dispatches": 0,
+    "reruns": 0,
+    "allTerminal": true,
+    "runs": [
+      {
+        "id": 39116744632,
+        "name": "Independent Assurance Core",
+        "status": "completed",
+        "conclusion": "success",
+        "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+        "created_at": "2026-10-18T09:47:47Z",
+        "updated_at": "2026-10-18T09:48:11Z"
+      },
+      {
+        "id": 39116744633,
+        "name": "Pillow semantic repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+        "created_at": "2026-10-18T09:47:47Z",
+        "updated_at": "2026-10-18T09:51:45Z"
+      },
+      {
+        "id": 39116744648,
+        "name": "Product path CI",
+        "status": "completed",
+        "conclusion": "failure",
+        "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+        "created_at": "2026-10-18T09:47:47Z",
+        "updated_at": "2026-10-18T09:58:22Z"
+      },
+      {
+        "id": 39116744635,
+        "name": "Pillow runtime repair CI",
+        "status": "completed",
+        "conclusion": "success",
+        "source": "538d5f68ad7c2ab10aa055815a1a086b2c2b444b",
+        "created_at": "2026-10-18T09:47:47Z",
+        "updated_at": "2026-10-18T10:02:10Z"
+      }
+    ],
+    "runtimeJobs": [
+      {
+        "id": 117643966667,
+        "name": "Exact-source Railway Railpack image",
+        "conclusion": "success"
+      },
+      {
+        "id": 117643966755,
+        "name": "Durable web \u2014 receipt recovery, one submission, tests and build",
+        "conclusion": "success"
+      },
+      {
+        "id": 117643966813,
+        "name": "Durable runtime \u2014 real Redis, restart, ownership and authorization",
+        "conclusion": "success"
+      },
+      {
+        "id": 117643966824,
+        "name": "Generated full path \u2014 reasoning-admission",
+        "conclusion": "success"
+      },
+      {
+        "id": 117643966830,
+        "name": "Generated full path \u2014 response-delivery",
+        "conclusion": "success"
+      },
+      {
+        "id": 117646619471,
+        "name": "Runtime repair result (no deployment)",
+        "conclusion": "success"
+      }
+    ],
+    "productFailure": "Only authenticated A8 native source-context step; subsequent Console and media steps successful. Independent artifact decisions separate."
+  },
+  "decisions": {
+    "HH4": "PASS_PRESERVED_OWN_EXAMINATION",
+    "A9": "PASS_PRESERVED",
+    "A11": "PASS_16_ASSERTIONS_PRESERVED",
+    "A8": "PENDING_CURRENT_NATIVE_FAILED_CORRECTION_REVIEWED_NOT_HOSTED",
+    "O19": "PENDING_REVIEWED_DURABLE_CONSUMER_TARGETED_PASS_NEW_TREE_HOSTED_REQUIRED",
+    "redisChronology": "SCOPED_HOSTED_PASS_NO_WHOLE_RESTORE",
+    "sessionFence": "SCOPED_SOURCE_REVIEWED_14LOCAL_PASS_REALREDIS_PENDING",
+    "Console": "SCOPED_HOSTED_PASS_MISSING_CONNECTED_DECISION_FINANCE_ASSURANCE_RECOVERY"
+  },
+  "certificationReason": "Mandatory complete runtime topology/restoration/custody, independent external alert, genuine business/owner evidence and A8/O19 hosted successor acceptance remain open. Engineering/source review and scopedPASS do not promote complete rows.",
+  "acceptedRowPreservation": "All43 accepted row texts preserved verbatim from campaignD; stale embedded CI prose treated as historical provenance under current overlay.",
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "INACTIVE",
+  "productionMissionComplete": false,
+  "newPublicationByThisReview": false,
+  "newTestsByThisReview": false,
+  "evidenceSha256": {
+    "FULL-TRACKER-RECONCILED.md": "f59c15ca303576f5a8a1311e799eb270728657a3e7449173763295c6111ca60b",
+    "REGISTER-CLOSURE-MATRIX.json": "3d9eba8864a58add85a8ffd59732f33a6262e4607fa411732e348ac42d9c7d62",
+    "CI-STATUS.json": "a62b9d7ca361356b64d43cd1011c45e3c91db0c534204bee2af0f381c110519f",
+    "A8-FAILURE-AND-CORRECTION.md": "3fd95354477ed0378d07b3073786706806cd41bc06a48c50208e25d70b2bf490",
+    "A8-CORRECTION-INDEPENDENT-REVIEW.json": "175c677e5f0b0860826ae9e365fb32651f7e025c67f7291d65804df11f88b276",
+    "CONSOLE-INDEPENDENT-DECISION.json": "0ac022b0ce7991cb126c6fa923738557efa63cb6c793b57ce0940c70d39731c9",
+    "REDIS-CHRONOLOGY-INDEPENDENT-REVIEW.json": "28476e961b277781ce34b3406995a2c12744d6f2076678a2723cad8518c1a9fd",
+    "O19-TRANSFER-INDEPENDENT-REVIEW.md": "6551ffb192f85dbbb1c175586af9b9403f7665da8f2152fbe4526dc2fe3ca7c8",
+    "SESSION-WRITER-INDEPENDENT-REVIEW.json": "3f8e31ded345b4ff28f4aeb86f94a7e850b4a4fe4606e2fe55066f1e7fd42f17",
+    "EXTERNAL-AUTHORITY-DECISIONS.json": "123cb1efe6fcce5c0a9fbbc9832b48a0b3340f6517b56545d62d07a843252423"
+  }
+}

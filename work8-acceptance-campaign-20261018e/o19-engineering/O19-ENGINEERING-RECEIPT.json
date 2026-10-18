@@ -1,0 +1,37 @@
+{
+  "classification": "ENGINEERING_CANDIDATE_NOT_FULL_ACCEPTANCE",
+  "base": "9659160b2f187a0dc2c422c5bd1d1046d6f56c66",
+  "worktree": "o19-media-binding",
+  "sourcePaths": [
+    "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts",
+    "backend/src/validation/tests/work8-media-listing-binding.test.ts"
+  ],
+  "changes": "Explicit APPLY_LISTING validates approved selected exact image batch/version/source/rights against supplied listing then atomically writes canonical engine listing and immutable binding receipt. Candidate digest incorporates exact approved listing; old candidate review/owner approval invalidated. No external approval/publication granted. Video rejected by image-only listing schema.",
+  "remaining": [
+    "Independent source review",
+    "Authenticated native APPLY_LISTING product consumer and resulting exact receipt/batch display",
+    "Full O19 original contract acceptance; source/test pass not promotion",
+    "Supplier media permission remains O7; original permitted test assets can prove software integration"
+  ],
+  "blockerClassification": "Missing media-to-listing integration is unfinished engineering, not blanket external prerequisite. This candidate fixes service command boundary; connected owner UI/native acceptance still required.",
+  "tests": [
+    "O19-INTEGRATION-TEST.tap PASS",
+    "O19-A11-REGRESSION.tap PASS required changed media boundary"
+  ],
+  "scope": "No changes main or six-path approved candidate, no publish or external effects",
+  "sourceSHA256": {
+    "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts": "97e5fe5961359f3279431aa3beeabb5390d13ef57b922d9bfb1d5c5f8031b876",
+    "backend/src/validation/tests/work8-media-listing-binding.test.ts": "dd3eec52df77a7d18cf5037d428f8c23f1e9a71bf4cd366bf5fb52dbdfb9e6ce"
+  },
+  "addedEvidence": [
+    "Post-engine media-write failure trigger rolls back canonical receipt and media event, preserving prior approval",
+    "Actual file-backed store close/reopen preserves exact immutable media binding and canonical receipt digest"
+  ],
+  "typecheck": {
+    "status": "INCOMPLETE_RESOURCE_FAILURE",
+    "exitCode": 134,
+    "next": "Controller single integrated backend build with8GB; no local repeat",
+    "log": "O19-TYPECHECK.log"
+  },
+  "typeOnlyFollowup": "Mirrored controller assert.ok(persisted.listingBinding) TS18048 narrowing; no runtime source change or extra compilation."
+}

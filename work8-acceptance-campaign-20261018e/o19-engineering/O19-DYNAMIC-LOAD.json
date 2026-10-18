@@ -1,0 +1,5 @@
+{
+  "path": "empireai-web/e2e/work8-media-listing-http.mts",
+  "sha256": "da708b037f8f708c4d6d37d785952acd3af3bf9c8b5e7299a84236d8b4cc90b5",
+  "change": "Runtime fileURL loader using existing fixture pattern; frontend compiler no longer traverses backend project. Static Node assert retains explicit types. No suppressions."
+}

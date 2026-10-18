@@ -1,0 +1,65 @@
+{
+  "status": "PASS_SCOPED_AUTHENTICATED_HTTP",
+  "checks": [
+    "Anonymous401 and foreignworkspace403",
+    "Stale version and forged source refused",
+    "Authenticated actual route binds exact image and candidate digest; review remains required",
+    "Old request replay rejected; no inherited publication approval",
+    "Authenticated production transfer derives payload solely from durable approved binding; replay and foreign owners refused",
+    "Fresh separate approvals required; media submission intercepted; live execute423",
+    "Production durable-binding transfer preserves candidate digest; independent policy/owner approvals gate canonical intercepted publication intent and reject repeat"
+  ],
+  "binding": {
+    "receiptDigest": "7dd20a3f6439bb18e7848177cae3c8b89d499af5b00ccc3ae804fcfd5fd155f4",
+    "candidateDigest": "8eb5da4f71260c3cc14572b56e2dcd0236a84a245c91765e6e9d3bb8ce461f17",
+    "listingDigest": "5461a37815eaac299b957238802c7b9a93bde70a2376f1e79e202335c59f9cbd",
+    "approvalDigest": "1a69f3ef4cca89a88a3d532d865d5b39c8e5d28cc283197babe2bebddd3cec0a"
+  },
+  "transferBinding": {
+    "sourceReceiptDigest": "7dd20a3f6439bb18e7848177cae3c8b89d499af5b00ccc3ae804fcfd5fd155f4",
+    "sourceApprovalDigest": "1a69f3ef4cca89a88a3d532d865d5b39c8e5d28cc283197babe2bebddd3cec0a",
+    "targetWorkspace": "ws_empire_1",
+    "targetMissionId": "listing-owner-copy",
+    "targetReceiptDigest": "78a71350f626f16515519f4ce709bf8f60adb220186e345f15ea2ec1529e0caf",
+    "candidateDigest": "8eb5da4f71260c3cc14572b56e2dcd0236a84a245c91765e6e9d3bb8ce461f17",
+    "listingDigest": "5461a37815eaac299b957238802c7b9a93bde70a2376f1e79e202335c59f9cbd"
+  },
+  "publication": {
+    "receiptDigest": "f6be2616ff18c5592b680a8a1644daa18d3c7d3aeffea1ae4ec36ee50259e8dd",
+    "candidateDigest": "8eb5da4f71260c3cc14572b56e2dcd0236a84a245c91765e6e9d3bb8ce461f17",
+    "listingDigest": "5461a37815eaac299b957238802c7b9a93bde70a2376f1e79e202335c59f9cbd",
+    "imageSHA256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+    "intercept": {
+      "capacity": {
+        "account": "simulation",
+        "marketplace": "US",
+        "mode": "NEW_ASIN",
+        "asin": null,
+        "newAsinRemaining": 10,
+        "unsoldRemaining": 10,
+        "requestsPerSecond": 5,
+        "eligibility": "ELIGIBLE",
+        "provenance": {
+          "source": "work6-deterministic-acceptance",
+          "reference": "synthetic:work6-fixture-not-provider-evidence",
+          "sha256": "ac1d1be57de78abe02f9f5c3cbba30df7db9bcef061d746d31f60879795c15fd",
+          "observedAt": "2026-10-18T10:02:54.170Z",
+          "expiresAt": "2026-10-18T11:02:54.170Z",
+          "classification": "SYNTHETIC"
+        }
+      },
+      "status": "INTERCEPTED",
+      "receiptId": "53f7389a8d0c33032075754ec79ad04bfd6f36eb5f2b01d36ade8db22710a606",
+      "canonicalPublisher": "marketplace-publishing/services/amazon-listings-publish-executor"
+    },
+    "reviewer": "commerce-independent-policy-reviewer",
+    "owner": "owner",
+    "executor": "brain-commerce-interceptor"
+  },
+  "externalEffects": 0,
+  "paidInference": 0,
+  "limits": [
+    "No native UI assertion",
+    "Explicit authenticated durable-binding synthetic transfer; no genuine supplier qualification"
+  ]
+}

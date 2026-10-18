@@ -1,0 +1,97 @@
+{
+  "reviewer": "/root/console_acceptance",
+  "independentOfImplementation": true,
+  "decision": "PASS_SCOPED_HOSTED_CONSOLE_READBACK_NO_COMPLETE_ROW_CLOSURE",
+  "sourceIdentity": {
+    "commit": "ef5090dbb0092e92fd0bfaced377b036b36caff5",
+    "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+    "historicalRecordHash": "ad94a4ba32f707b27e46aa48d0d6a033aefc33e285a7082ecae21926a061700f",
+    "historicalResponseHash": "ed09d796a28acf1dd22fe2a3582a4dbbeae96079b40c359f1c6461584d0fb6d5",
+    "node": "v22.23.2"
+  },
+  "ciAttributionCaution": "Artifact records checkout ef5090dbb0092e92fd0bfaced377b036b36caff5, complete tree 6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9. Publication/CI head in CI-STATUS is 538d5f68ad7c2ab10aa055815a1a086b2c2b444b with same tree; do not equate different commit identities.",
+  "reviewMethod": [
+    "Read actual hosted receipt, identities, preservation and native examination source; no examination rerun.",
+    "Visually inspected mobile governed-commerce and desktop investigation screenshots.",
+    "Mapped each requested row to authoritative campaign D matrix criteria."
+  ],
+  "acceptedScopedAssertions": [
+    "Authenticated native 390/1440 historical request and response equality before and after refresh.",
+    "Exact genuine Oct8 insufficient-evidence assessment retained; Oct10 same-ASIN observations explicitly later and not claimed as earlier assessment inputs.",
+    "Five domains visible via actual BFF and production Advisor read routes, with exact API-visible values and workspace binding.",
+    "Empty isolated orders/finance and unavailable Assurance represented honestly; no false production-balance or commercial-qualification claim.",
+    "Anonymous401 and foreign-workspace403 checks completed by native examination.",
+    "Historical transcript/receipt before-after digests identical; zero inference and external effects."
+  ],
+  "rows": [
+    {
+      "id": "O40",
+      "originalCriteria": "Complete the coherent authenticated desktop/mobile journey across genuine source evidence, product decisions, linked conclusions where legitimately available, simulated finance, Assurance and recovery status. Truthful rejected/deferred candidates are permitted in the R1/R5 presentation; no positive qualification or paid assessment is a blanket display prerequisite. Original O13/R2 genuine assessment requirements remain separately mandatory. Genuine connected visual evidence remains required; no separately purchased visual host is required.",
+      "retainedStatus": "BLOCKED",
+      "decision": "NOT_COMPLETE",
+      "remainingAssertions": [
+        "Authenticated connected product decision is absent; historical technical workflow closure is not an owner product decision.",
+        "No same-product simulated-finance outcome is presented: isolated downstream stores are empty.",
+        "Assurance is explicitly UNAVAILABLE and no recovery-status route is examined."
+      ]
+    },
+    {
+      "id": "O41",
+      "originalCriteria": "Preserve accepted source/price desktop-mobile display and five-shortcut evidence. Complete genuine same-identity full source/Pillow/owner/simulated finance/Assurance walkthrough; no physical-device certificate is required by the directive.",
+      "retainedStatus": "PENDING",
+      "decision": "NOT_COMPLETE",
+      "remainingAssertions": [
+        "Desktop/mobile equality of genuine source and historical Pillow response passes; equality of connected owner decision, simulated-finance result and Assurance records is unproven because those records are absent."
+      ]
+    },
+    {
+      "id": "A6",
+      "originalCriteria": "Provide authenticated visual same-identity genuine source-to-owner-to-simulated-results evidence using existing Console. No separately purchased visual host or waiver of genuine evidence is required.",
+      "retainedStatus": "PENDING",
+      "decision": "NOT_COMPLETE",
+      "remainingAssertions": [
+        "No same-identity source-to-owner-decision-to-simulated-results autonomous dry-run chain is demonstrated. Empty isolated downstream data is truthful but is not such a chain."
+      ]
+    },
+    {
+      "id": "A19",
+      "originalCriteria": "Use existing authenticated Console to verify identical genuine product/mission/order/finance/Assurance records on desktop and mobile; owner must be able to inspect them. No additional purchase-method approval required.",
+      "retainedStatus": "PENDING",
+      "decision": "NOT_COMPLETE",
+      "remainingAssertions": [
+        "Genuine product and historical investigation records are visible at both widths; linked order/finance/Assurance records are not present, so complete integrated owner inspection is unproven."
+      ]
+    }
+  ],
+  "noAddedGates": [
+    "A positive commercial qualification or paid assessment is not required for truthful deferred/rejected display.",
+    "No physical-device certification or separately purchased visual host is required.",
+    "A product-bound deferred decision and explicitly scoped simulated result may be examined without real commerce; this artifact did not contain that chain."
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "baselineUnchanged": {
+    "accepted": 43,
+    "outstanding": 21
+  },
+  "evidenceSha256": {
+    "history.zip": "e7f760e6f16a803d3ce86bd4e84a039955e588dda6ab3e25bfadb126e35b9185",
+    "history/receipt.json": "810a3866f2a147cea04cdaa5e85919f4e5d96845e08fc60234532efe2e002cf2",
+    "history/source-identities.json": "35ffa59f798d5eefd5e029e8ec81924af33adc5a896105e7a798640970f814e0",
+    "history/preservation.json": "28481ba0be7355bf66a35e6062c61ec80a7f62168e9706d1433efe4948270354",
+    "history/response-statuses.json": "1946df0758d6beb88171f662ef633484f8bc1ae0680bc08810a003e9ab1e0568",
+    "history/owner-journey-governed_commerce-390.png": "4f68eadc8b6b971f65c5ffc9e16743b28f54b66388dc35c43778e549f26185fe",
+    "history/owner-journey-investigations-1440.png": "c1955b9745183584ce9659d42317ed46f27090a487fa4f4aa68cccd895561be8",
+    "console-hosted-merge-commit.json": "8b7d52e31604c586188e39a4ac1bcb59ed3cf1acc4b96a34441a6a3b89434adc"
+  },
+  "remoteCommitVerification": {
+    "sha": "ef5090dbb0092e92fd0bfaced377b036b36caff5",
+    "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+    "parents": [
+      "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+      "538d5f68ad7c2ab10aa055815a1a086b2c2b444b"
+    ],
+    "exactApprovedTree": true,
+    "source": "GitHub git/commits fetched independently by console reviewer"
+  }
+}

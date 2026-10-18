@@ -1,0 +1,202 @@
+diff --git a/backend/src/auth/session-store.ts b/backend/src/auth/session-store.ts
+index f896bf6c..a6f54f30 100644
+--- a/backend/src/auth/session-store.ts
++++ b/backend/src/auth/session-store.ts
+@@ -14,7 +14,10 @@ export class SessionStoreUnavailableError extends Error {
+   }
+ }
+ 
+-type SessionRedisClient = Pick<RedisClient, "setex" | "get" | "del">;
++type SessionRedisClient = Pick<RedisClient, "setex" | "get" | "del"> & Partial<Pick<RedisClient, "eval">>;
++// BullMQ default prefix and the fixed TaskQueue name; same Redis DB as sessions.
++const CAPTURE_OWNER = "bull:empireai-brain-tasks:capture-owner";
++const CAPTURE_PRODUCERS = "bull:empireai-brain-tasks:capture-producers";
+ const storedSessionSchema = z.object({
+   id: z.string().min(1),
+   email: z.string().email(),
+@@ -36,7 +39,32 @@ export interface SessionStoreBackend {
+ export class SessionStore implements SessionStoreBackend {
+   constructor(private readonly redis: SessionRedisClient) {}
+ 
+-  async create(user: SessionUser): Promise<SessionRecord> {
++  /** Cooperating session writers join the existing shared producer drain. A
++   * failed/uncertain write retains its non-expiring token: a timeout cannot
++   * prove a delayed Redis mutation will never commit. Reads remain available. */
++  private async withMutation<T>(mutate: () => Promise<T>): Promise<T> {
++    const token = randomUUID();
++    try {
++      if (!this.redis.eval) throw new Error("session_atomic_admission_unavailable");
++      const admitted = await this.redis.eval(
++        "if redis.call('exists', KEYS[1]) == 1 then return 0 end; redis.call('sadd', KEYS[2], ARGV[1]); return 1",
++        2, CAPTURE_OWNER, CAPTURE_PRODUCERS, token);
++      if (admitted !== 1) throw new Error("session_capture_active");
++      const result = await mutate();
++      const removed = await this.redis.eval(
++        "return redis.call('srem', KEYS[1], ARGV[1])", 1, CAPTURE_PRODUCERS, token);
++      if (removed !== 1) throw new Error("session_admission_release_unacknowledged");
++      return result;
++    } catch (cause) {
++      throw new SessionStoreUnavailableError({ cause });
++    }
++  }
++
++  create(user: SessionUser): Promise<SessionRecord> {
++    return this.withMutation(() => this.createAdmitted(user));
++  }
++
++  private async createAdmitted(user: SessionUser): Promise<SessionRecord> {
+     const token = randomBytes(32).toString("hex");
+     const now = new Date();
+     const expiresAt = new Date(
+@@ -77,7 +105,11 @@ export class SessionStore implements SessionStoreBackend {
+     }
+   }
+ 
+-  async destroy(token: string): Promise<void> {
++  destroy(token: string): Promise<void> {
++    return this.withMutation(() => this.destroyAdmitted(token));
++  }
++
++  private async destroyAdmitted(token: string): Promise<void> {
+     try {
+       const removed = await this.redis.del(`${SESSION_PREFIX}${token}`);
+       if (removed !== 0 && removed !== 1) throw new Error("session_delete_not_acknowledged");
+@@ -87,13 +119,15 @@ export class SessionStore implements SessionStoreBackend {
+   }
+ 
+   async refresh(token: string): Promise<SessionRecord | null> {
+-    const session = await this.get(token);
+-    if (!session) return null;
+-
+-    await this.destroy(token);
+-    const { token: _old, expiresAt: _exp, createdAt: _created, ...user } =
+-      session;
+-    return this.create(user);
++    // One admission spans both old-token deletion and successor creation, so
++    // capture cannot freeze the otherwise legitimate gap between commands.
++    return this.withMutation(async () => {
++      const session = await this.get(token);
++      if (!session) return null;
++      await this.destroyAdmitted(token);
++      const { token: _old, expiresAt: _exp, createdAt: _created, ...user } = session;
++      return this.createAdmitted(user);
++    });
+   }
+ }
+ 
+diff --git a/backend/src/validation/tests/pillow-durable-queue-redis.test.ts b/backend/src/validation/tests/pillow-durable-queue-redis.test.ts
+index caf20cd1..253c4a3b 100644
+--- a/backend/src/validation/tests/pillow-durable-queue-redis.test.ts
++++ b/backend/src/validation/tests/pillow-durable-queue-redis.test.ts
+@@ -6,6 +6,7 @@ import { createServer } from "node:net";
+ import { tmpdir } from "node:os";
+ import path from "node:path";
+ import { Redis } from "ioredis";
++import {TaskQueue} from "../../brain/task-queue.js";
+ import Fastify from "fastify";
+ import { InMemorySessionStore, SessionStore, SessionStoreUnavailableError } from "../../auth/session-store.js";
+ import { createTier0RedisClient, waitForRuntimeRedisReady } from "../../runtime/tier0-redis.js";
+@@ -78,6 +79,47 @@ describe("real Redis durable reasoning queue (required, no skipped certification
+     await startRedis();
+   });
+   beforeEach(async () => { await redis.flushdb(); dropChatRequestMemoryCacheForTests(); });
++  it("shared queue capture drains admitted session writes and refuses uncertain writers", async()=>{
++    const queue=new TaskQueue({host:"127.0.0.1",port},{} as never);
++    let release!:()=>void;const gate=new Promise<void>(r=>{release=r;});
++    let entered!:()=>void;const started=new Promise<void>(r=>{entered=r;});
++    const writer=new SessionStore({eval:redis.eval.bind(redis),get:redis.get.bind(redis),del:redis.del.bind(redis),setex:async(...args:unknown[])=>{entered();await gate;return (redis.setex as Function).apply(redis,args);}} as never);
++    const user={id:"drain-owner",email:"owner@example.test",name:"Owner",role:"founder" as const,workspaceId:"drain-workspace"};
++    let captured=false;
++    const writing=writer.create(user);await started;
++    const capturing=queue.withPausedSharedProcessing(async()=>{captured=true;assert.equal(await redis.scard("bull:empireai-brain-tasks:capture-producers"),0);},2000);
++    try {
++      await delay(100);assert.equal(captured,false);release();await writing;await capturing;assert.equal(captured,true);
++      const uncertain=new SessionStore({eval:redis.eval.bind(redis),get:redis.get.bind(redis),del:redis.del.bind(redis),setex:async()=>{throw Error("uncertain write");}} as never);
++      await assert.rejects(uncertain.create(user),SessionStoreUnavailableError);
++      assert.equal(await redis.scard("bull:empireai-brain-tasks:capture-producers"),1);
++      await assert.rejects(queue.withPausedSharedProcessing(()=>{throw Error("must not capture");},100),/producers did not drain/);
++      assert.equal(await redis.scard("bull:empireai-brain-tasks:capture-producers"),1);
++    } finally {release();await Promise.allSettled([writing,capturing]);await queue.close();}
++  });
++  it("independent session process respects held capture owner and preserves original session", async () => {
++    const sessions=new SessionStore(redis);
++    const original=await sessions.create({id:"capture-owner",email:"owner@example.test",name:"Owner",role:"founder",workspaceId:"capture-workspace"});
++    const ownerKey="bull:empireai-brain-tasks:capture-owner";
++    const producerKey="bull:empireai-brain-tasks:capture-producers";
++    const before=await redis.get("empireai:session:"+original.token);
++    const ttlBefore=await redis.pttl("empireai:session:"+original.token);
++    await redis.set(ownerKey,"held-fixture");
++    const program=`import assert from 'node:assert/strict';import {Redis} from 'ioredis';import {SessionStore,SessionStoreUnavailableError} from './src/auth/session-store.ts';const r=new Redis(process.env.SESSION_CAPTURE_REDIS);try{const s=new SessionStore(r);const token=process.env.SESSION_CAPTURE_TOKEN;const record=await s.get(token);assert.ok(record);for(const action of [()=>s.create(record),()=>s.destroy(token),()=>s.refresh(token)])await assert.rejects(action(),SessionStoreUnavailableError);}finally{r.disconnect();}`;
++    const child=spawn(process.execPath,["--import","tsx","--input-type=module","-e",program],{cwd:process.cwd(),env:{...process.env,SESSION_CAPTURE_REDIS:redisUrl,SESSION_CAPTURE_TOKEN:original.token},stdio:["ignore","pipe","pipe"]});
++    let output="";child.stdout!.on("data",c=>{output+=c;});child.stderr!.on("data",c=>{output+=c;});
++    await new Promise<void>((resolve,reject)=>{const timer=setTimeout(()=>{child.kill("SIGKILL");reject(Error("session child deadline"));},10000);child.once("error",e=>{clearTimeout(timer);reject(e);});child.once("exit",code=>{clearTimeout(timer);if(code===0)resolve();else reject(Error(output));});});
++    assert.equal(await redis.get("empireai:session:"+original.token),before);
++    const ttlAfter=await redis.pttl("empireai:session:"+original.token);assert.ok(ttlAfter>0&&ttlAfter<=ttlBefore);
++    assert.equal(await redis.scard(producerKey),0);
++    assert.equal(await redis.get(ownerKey),"held-fixture");
++    await redis.del(ownerKey);
++    const refreshed=await sessions.refresh(original.token);assert.ok(refreshed);
++    assert.equal(await sessions.get(original.token),null);
++    assert.equal((await sessions.get(refreshed.token))?.id,original.id);
++    assert.equal(await redis.scard(producerKey),0);
++  });
++
+   after(async () => {
+     configureChatRequestStore(null); dropChatRequestMemoryCacheForTests();
+     await stopRedis();
+diff --git a/backend/src/validation/tests/session-store-unavailable.test.ts b/backend/src/validation/tests/session-store-unavailable.test.ts
+index a7703254..c7a67053 100644
+--- a/backend/src/validation/tests/session-store-unavailable.test.ts
++++ b/backend/src/validation/tests/session-store-unavailable.test.ts
+@@ -13,7 +13,7 @@ const user: SessionUser = {
+ 
+ function client(overrides: Record<string, unknown> = {}) {
+   return {
+-    setex: async () => "OK", get: async () => null, del: async () => 1,
++    eval: async () => 1, setex: async () => "OK", get: async () => null, del: async () => 1,
+     ...overrides,
+   } as unknown as Pick<RedisClient, "get" | "setex" | "del">;
+ }
+@@ -72,3 +72,29 @@ describe("shared session command failures fail closed", () => {
+     } finally { await app.close(); }
+   });
+ });
++
++// Model tests exercise command ordering and uncertainty only. Real Redis / OS
++// process exclusion is a separate hosted examination, not inferred here.
++it("capture refuses session writes while preserving authenticated reads", async () => {
++  const record={...user,token:"old",createdAt:new Date().toISOString(),expiresAt:new Date(Date.now()+60000).toISOString()};
++  let writes=0;
++  const store=new SessionStore(client({eval:async()=>0,get:async()=>JSON.stringify(record),setex:async()=>{writes++;return "OK";},del:async()=>{writes++;return 1;}}));
++  assert.equal((await store.get("old"))?.id,user.id);
++  await assert.rejects(store.create(user),SessionStoreUnavailableError);
++  await assert.rejects(store.destroy("old"),SessionStoreUnavailableError);
++  await assert.rejects(store.refresh("old"),SessionStoreUnavailableError);
++  assert.equal(writes,0);
++});
++it("refresh retains one shared producer across delete and successor SETEX", async()=>{
++ const record={...user,token:"old",createdAt:new Date().toISOString(),expiresAt:new Date(Date.now()+60000).toISOString()};
++ let held=false;const order:string[]=[];
++ const store=new SessionStore(client({eval:async(_script:string,n:number,...args:string[])=>{if(n===2){assert.equal(args[0],"bull:empireai-brain-tasks:capture-owner");assert.equal(held,false);held=true;order.push("admit");}else{assert.equal(held,true);held=false;order.push("release");}return 1;},get:async()=>JSON.stringify(record),del:async()=>{assert.equal(held,true);order.push("delete");return 1;},setex:async(_key:string,ttl:number,value:string)=>{assert.equal(held,true);assert.ok(ttl>0);const next=JSON.parse(value);assert.equal(next.id,record.id);assert.notEqual(next.token,record.token);order.push("create");return "OK";}}));
++ assert.equal((await store.refresh("old"))?.id,user.id);
++ assert.deepEqual(order,["admit","delete","create","release"]);
++});
++it("uncertain admitted mutation retains producer and missing atomic support fails closed",async()=>{
++ let calls=0;
++ const store=new SessionStore(client({eval:async()=>{calls++;return 1;},setex:async()=>{throw Error("uncertain delayed write");}}));
++ await assert.rejects(store.create(user),SessionStoreUnavailableError);assert.equal(calls,1);
++ await assert.rejects(new SessionStore(client({eval:undefined})).create(user),SessionStoreUnavailableError);
++});
+diff --git a/backend/src/validation/tests/work8-model-session-faults.test.ts b/backend/src/validation/tests/work8-model-session-faults.test.ts
+index a9642163..75c013de 100644
+--- a/backend/src/validation/tests/work8-model-session-faults.test.ts
++++ b/backend/src/validation/tests/work8-model-session-faults.test.ts
+@@ -45,7 +45,7 @@ test('actual locked router failures feed passive Assurance and require a new suc
+ test('actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers',async()=>{
+  assert.equal(process.env.WORK8_KERNEL_EGRESS,'DENIED');const root=fs.mkdtempSync(path.join(os.tmpdir(),'work8-session-faults-'));
+  const values=new Map<string,string>();let failing=false,reads=0,executions=0;
+- const adapter={setex:async(k:string,_ttl:number,v:string)=>{values.set(k,v);return 'OK';},get:async(k:string)=>{reads++;if(failing)throw Error('INJECTED_REDIS_ADAPTER_UNAVAILABLE');return values.get(k)??null;},del:async(k:string)=>Number(values.delete(k))} as unknown as Pick<RedisClient,'setex'|'get'|'del'>;
++ const adapter={eval:async()=>1,setex:async(k:string,_ttl:number,v:string)=>{values.set(k,v);return 'OK';},get:async(k:string)=>{reads++;if(failing)throw Error('INJECTED_REDIS_ADAPTER_UNAVAILABLE');return values.get(k)??null;},del:async(k:string)=>Number(values.delete(k))} as unknown as Pick<RedisClient,'setex'|'get'|'del'>;
+  const store=new SessionStore(adapter),session=await store.create({id:'isolated-owner',email:'owner@example.invalid',name:'Isolated owner',role:'founder',workspaceId:w});
+  const app=Fastify(),control=new AssuranceControlPlane({root,revision:'work8-session-adapter',now:Date.now});await app.register(cookie);app.get('/isolated-protected',{preHandler:createAuthMiddleware(store)},async()=>{executions++;return {workspace:w};});
+  const probe=(status:string)=>control.observe(w,{id:'session-functional',capability:'session-auth',classification:'INJECTED_REDIS_ADAPTER',status,summary:'Actual Fastify authentication against injected session adapter',synthetic:true,evidence:{observedAt:Date.now(),reads,executions}});

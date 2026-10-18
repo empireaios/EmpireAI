@@ -1,0 +1,40 @@
+(node:6) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: A11 edit and version changes invalidate exact-version approvals with durable history
+ok 1 - A11 edit and version changes invalidate exact-version approvals with durable history
+  ---
+  duration_ms: 759.134684
+  type: 'test'
+  ...
+# (node:14) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:14) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:14) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: O19 approved exact image binding prepares canonical listing and invalidates old authority atomically
+ok 2 - O19 approved exact image binding prepares canonical listing and invalidates old authority atomically
+  ---
+  duration_ms: 225.775176
+  type: 'test'
+  ...
+# Subtest: O19 actual authenticated durable transfer and canonical listing publication route remains intercepted
+ok 3 - O19 actual authenticated durable transfer and canonical listing publication route remains intercepted
+  ---
+  duration_ms: 1031.163479
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1760.972059

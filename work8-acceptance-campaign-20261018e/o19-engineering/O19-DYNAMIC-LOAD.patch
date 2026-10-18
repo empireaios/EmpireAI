@@ -1,0 +1,24 @@
+--- a/empireai-web/e2e/work8-media-listing-http.mts
++++ b/empireai-web/e2e/work8-media-listing-http.mts
+@@ -1,3 +1,4 @@
++import {fileURLToPath,pathToFileURL} from 'node:url';
+ import {createHash} from 'node:crypto';
+ /** Actual authenticated route examination; kernel-isolated, disposable synthetic records only. */
+ import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import assert from 'node:assert/strict';
+@@ -5,10 +6,12 @@
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'o19-http-'));fs.mkdirSync(path.join(root,'commissioning'));
+ Object.assign(process.env,{NODE_ENV:'test',FOUNDER_EMAIL:'owner@example.invalid',RAILWAY_VOLUME_MOUNT_PATH:root,DATABASE_PATH:path.join(root,'legacy.sqlite'),EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',INTELLIGENCE_DISABLED:'true',LOG_LEVEL:'fatal'});
+ globalThis.fetch=async()=>{throw Error('EXTERNAL_FETCH_FORBIDDEN')};
+-const {default:Fastify}=await import('../../backend/node_modules/fastify/fastify.js'),{default:cookie}=await import('../../backend/node_modules/@fastify/cookie/plugin.js');
+-const {registerGovernedCommerce,productionCommerce}=await import('../../backend/src/runtime/commerce-runtime/governed/runtime.js');
+-const {createAuthMiddleware}=await import('../../backend/src/auth/middleware.js'),{InMemorySessionStore}=await import('../../backend/src/auth/session-store.js');
+-const {installLockedCommissioning}=await import('../../backend/src/runtime/locked-commissioning.js'),{acceptanceScenario}=await import('../../backend/src/runtime/commerce-runtime/governed/scenario.js'),{digest}=await import('../../backend/src/runtime/commerce-runtime/governed/store.js');
++const backend=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../backend');
++const load=(relative:string)=>import(pathToFileURL(path.join(backend,relative)).href);
++const {default:Fastify}=await load('node_modules/fastify/fastify.js'),{default:cookie}=await load('node_modules/@fastify/cookie/plugin.js');
++const {registerGovernedCommerce,productionCommerce}=await load('src/runtime/commerce-runtime/governed/runtime.ts');
++const {createAuthMiddleware}=await load('src/auth/middleware.ts'),{InMemorySessionStore}=await load('src/auth/session-store.ts');
++const {installLockedCommissioning}=await load('src/runtime/locked-commissioning.ts'),{acceptanceScenario}=await load('src/runtime/commerce-runtime/governed/scenario.ts');
+ const app=Fastify(),sessions=new InMemorySessionStore();await app.register(cookie);installLockedCommissioning(app);registerGovernedCommerce(app,createAuthMiddleware(sessions));
+ const user={id:'owner',email:'owner@example.invalid',name:'Examination owner',role:'founder',workspaceId:'ws_empire_1'} as const,p={workspace:user.workspaceId,owner:user.id},c=productionCommerce(),tokens={owner:(await sessions.create(user)).token,foreign:(await sessions.create({...user,workspaceId:'other'})).token};
+ const checks:string[]=[];const call=async(media:unknown,who:'owner'|'foreign'|null='owner')=>app.inject({method:'POST',url:'/api/owner/commerce',headers:who?{cookie:'empireai_session='+tokens[who]}:{},payload:{action:'twin_media',media}});
