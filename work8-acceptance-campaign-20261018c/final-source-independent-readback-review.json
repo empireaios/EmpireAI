@@ -1,0 +1,84 @@
+{
+  "decision": "PASS_INDEPENDENT_COMPLETE_TREE_AND_CHANGED_BOUNDARY_REVIEW",
+  "reviewer": "integration_review",
+  "commit": "2a3f342db1f00f954d9a63682d8d8ed76eff4bb2",
+  "parent": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+  "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+  "ref": "refs/heads/work8/staged-campaign-source-20261018c-6c7d6f4a",
+  "localCommit": "9659160b2f187a0dc2c422c5bd1d1046d6f56c66",
+  "rootEntries": 147,
+  "completeTreeLeaves": 17278,
+  "method": "Independent GitHub commit/ref/root-tree plus6changedfile complete text readback. Reconstructed remote Git tree root matches exact local root object; identical Merkle root establishes complete recursive tree identity. Changed6 bytes/modes/blob hashes and3 independent review receipts join exactly.",
+  "changedFiles": [
+    {
+      "path": "empireai-web/e2e/owner-history-native.mjs",
+      "mode": "100644",
+      "gitBlob": "45037057eca6c2b57c6a100f439f2af04d1e2151",
+      "sha256": "ff56010126b09c4cce3435b3a66353104e73a3a5566fe79df38627dee5e281f7"
+    },
+    {
+      "path": "empireai-web/e2e/owner-history-backend.mts",
+      "mode": "100644",
+      "gitBlob": "b34881468629cca4f2c54b1aa360acd14fc6a7d3",
+      "sha256": "aaa6fad3143e81d11c2a96cd5e4edde5ea3259cfc1221bf5352ba55d31379d12"
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "mode": "100644",
+      "gitBlob": "db84cfe99255f4269a40a6f6ba0fb3de91eb7016",
+      "sha256": "162f99bc8a8bc56bd04899eb24ac1eef90975d82fc086db06a5ee4f4929f161d"
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-backend.mts",
+      "mode": "100644",
+      "gitBlob": "d470407e96fd184638b15aea1656b991d46995ae",
+      "sha256": "becae61b2be98ac83da8332f5a3e9c61d640aa36ba879eef88a6a62a811421df"
+    },
+    {
+      "path": "backend/src/validation/tests/capture-shared-brain-redis.test.ts",
+      "mode": "100644",
+      "gitBlob": "d197eab2ffe955ab942816702a16550613a6864d",
+      "sha256": "0223e992936fc97ba6a1602d63e1a9e1eb59c6a17405a5d8728f1d01f3cc0d96"
+    },
+    {
+      "path": "empireai-web/e2e/fixtures/genuine-deferred-journey.json",
+      "mode": "100644",
+      "gitBlob": "c191c1fa478c6e4395e56e3873af8097b1b2ee71",
+      "sha256": "65590dc4e27858343aa8998f40b08d00b170e0bc65fec02effa1643d6afcccc4"
+    }
+  ],
+  "reviewJoins": [
+    {
+      "receipt": "redis-clock-guard-independent-review.json",
+      "sha256": "dfaa4af739f7fa3d15595f2c731f281ab3f5b1e85ef5cad838938a0e115bca1a",
+      "decision": "APPROVED_SCOPED_SOURCE_GUARD_REAL_REDIS_EXECUTION_PENDING"
+    },
+    {
+      "receipt": "a8-session-archive-independent-review.json",
+      "sha256": "71413312ebf898d3cb8212045cd576fa8fb8cb43fe85c7d5a0d3206796b35268",
+      "decision": "APPROVED_FIXTURE_ROUTE_FORWARDING_NATIVE_ACCEPTANCE_PENDING"
+    },
+    {
+      "receipt": "owner-journey-independent-review.json",
+      "sha256": "7370949965f8c4a6d12581d5b6d7bba8a3b84923e67a079c17779b4239b291f9",
+      "decision": "APPROVED_SCOPED_SOURCE_REVIEW_NOT_OWNER_ACCEPTANCE"
+    }
+  ],
+  "buildLogs": [
+    {
+      "path": "successor-backend-build.log",
+      "sha256": "d1befd21a23738624af2a2c9154edd91f8cea4369df5f488e8f88a12cc8558b6"
+    },
+    {
+      "path": "successor-frontend-typecheck-terminal.log",
+      "sha256": "5931835cd59aa16a919c51564ce38636b20739e24cf41e94f0ece9efa2b76558"
+    }
+  ],
+  "testsRepeated": false,
+  "findings": [],
+  "limits": [
+    "Successor native A8/archive and owner journey hosted execution pending.",
+    "Clock guard source reviewed; new actual Redis negative test awaits hosted run.",
+    "HH4 prior exact published source acceptance preserved; no full33/39 or Owner Console acceptance inferred."
+  ]
+}

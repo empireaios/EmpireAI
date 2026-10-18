@@ -1,0 +1,28 @@
+{
+  "scope": "THREE_HARNESS_FIXTURE_PATHS_NO_PRODUCTION_IMPLEMENTATION_OR_UI_EDITS",
+  "worktree": "/workspace/scratch/7952261165b1/owner-deferred-journey",
+  "paths": [
+    "empireai-web/e2e/owner-history-backend.mts",
+    "empireai-web/e2e/owner-history-native.mjs",
+    "empireai-web/e2e/fixtures/genuine-deferred-journey.json"
+  ],
+  "fileSha256": {
+    "empireai-web/e2e/owner-history-backend.mts": "aaa6fad3143e81d11c2a96cd5e4edde5ea3259cfc1221bf5352ba55d31379d12",
+    "empireai-web/e2e/owner-history-native.mjs": "ff56010126b09c4cce3435b3a66353104e73a3a5566fe79df38627dee5e281f7",
+    "empireai-web/e2e/fixtures/genuine-deferred-journey.json": "65590dc4e27858343aa8998f40b08d00b170e0bc65fec02effa1643d6afcccc4"
+  },
+  "patch": "owner-deferred-journey.patch",
+  "workflow": "Existing owner-history product CI job already selects same harness; no workflow changes",
+  "localValidation": "owner-journey-inject-receipt.json owner200/anonymous401/foreign403 across5real routes; native syntaxPASS; browser not executed",
+  "provenance": "Exact retained Oct10 same-ASIN source envelopes and original saved Oct8 investigation; later source is NOT historical assessment input; requestId join only, distinct reported hashes preserved",
+  "downstream": "Actual empty isolated orders/finance; not production balances. Actual unavailable Assurance; no constructed positive states.",
+  "fullAcceptance": false,
+  "review": "PENDING_FRONTEND_FIX_REVIEW",
+  "privateArtifacts": "Disposable smoke DB directory and ready file with ephemeral session tokens removed; only sanitized receipt preserved",
+  "newAcceptedIds": [],
+  "typecheckCorrection": "TS2775 explicit typeof import(node:assert/strict) annotation, compatible with Node20 export= typings; runtime import.default unchanged. Final main combined typecheck PASS exit0.",
+  "followupPatch": "owner-journey-assert-type-followup.patch",
+  "finalIntegrationTypecheck": "PASS_EXIT_0",
+  "finalTypecheckLog": "successor-frontend-typecheck-terminal.log",
+  "mainIsolatedBackendBytesEqual": true
+}

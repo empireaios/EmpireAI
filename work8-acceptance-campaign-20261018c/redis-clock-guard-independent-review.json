@@ -1,0 +1,22 @@
+{
+  "decision": "APPROVED_SCOPED_SOURCE_GUARD_REAL_REDIS_EXECUTION_PENDING",
+  "reviewer": "integration_review",
+  "base": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+  "files": {
+    "backend/src/runtime/work8-recovery-capture.ts": "162f99bc8a8bc56bd04899eb24ac1eef90975d82fc086db06a5ee4f4929f161d",
+    "backend/src/validation/tests/capture-shared-brain-redis.test.ts": "0223e992936fc97ba6a1602d63e1a9e1eb59c6a17405a5d8728f1d01f3cc0d96"
+  },
+  "findings": [],
+  "verified": [
+    "Target run identity and DB pin checked first; TIME chronology guard executes before first SET/RESTORE or any target dataset mutation. SELECT changes selected connection database only.",
+    "New ARGV3 capture timestamp removed alongside first2 arguments; owner/meta/payload indexing remains correct. Existing test args[4] still corresponds first user argument runId.",
+    "Existing controller-clock validation, target/source identity, loopback, explicit inspection mode, empty target, permanent owner/meta pause fence, ABSTTL expiry skip and no-execution return unchanged.",
+    "Added test injects capture-minus1ms in actual Redis Lua; demands precise rejection and DBSIZE0 before subsequent identity refusal and positive restore path."
+  ],
+  "validation": "Independent source/test review only; no tests repeated; actual Redis unavailable locally and authored test remains unexecuted pending hosted run.",
+  "limitations": [
+    "Rejects provably backwards chronology only.",
+    "Source/target/client skew with target time after capture remains unresolved and may extend effective remaining lifetime.",
+    "No full restoration, session preservation, replay or custody acceptance."
+  ]
+}

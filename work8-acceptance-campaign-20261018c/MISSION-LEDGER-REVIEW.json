@@ -1,0 +1,123 @@
+{
+  "recordType": "CAMPAIGN_C_CERTIFICATION_RECONCILIATION_NOT_NEW_ACCEPTANCE",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "originalCounts": {
+    "PASS": 33,
+    "PENDING": 8,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 10,
+    "PENDING": 9
+  },
+  "accepted": 43,
+  "outstanding": 21,
+  "baselineEvidenceCommit": "b28855f58128a7060cde16139dbf95197c0cfe82",
+  "trackerBlob": "21ce11d6b18edb1d230200ab3ff01ac3571a6a7f",
+  "preservedA11": "Current owner directive explicitly preserves completed independent acceptance; recovered CI receipt separately attributed. Not fresh acceptance by this reviewer.",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [
+    "A9"
+  ],
+  "outstandingOriginalIds": [
+    2,
+    7,
+    13,
+    14,
+    19,
+    30,
+    33,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "outstandingAmendmentIds": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    8,
+    10,
+    15,
+    19
+  ],
+  "certificationReason": "A9 complete amendment and HH4 original examination accepted; mandatory full operational recovery, independent alerts/custody, genuine business/owner journey and final exact-source gates remain open. Mission IN_PROGRESS/NO_GO43accepted21outstanding.",
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "INACTIVE",
+  "productionMissionComplete": false,
+  "publishedByThisReview": false,
+  "publication": {
+    "evidence": {
+      "commit": "0804cd8715df8cce56ffc48e1cf5d5536d5cc016",
+      "tree": "3bf6a0f22c5b7e09fe58dfdc08cc8f115d6bac70"
+    },
+    "source": {
+      "commit": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+      "tree": "f2d7d7c085dc21e000c9b9e2a0aab2b17b410c1b",
+      "approvedCommit": "034438abaf08d4db725536c5bb658c378dd83ab9",
+      "metadataOnly": "removed staging skip-ci message"
+    },
+    "evidenceFirst": true,
+    "exactTreesVerified": true,
+    "destinationDrift": false,
+    "runs": {
+      "Product": 39114039622,
+      "Runtime": 39114039616,
+      "Semantic": 39114039573,
+      "Assurance": 39114041892
+    },
+    "duplicateDispatch": false,
+    "productionDeployment": false
+  },
+  "currentCI": {
+    "status": "ALL_TERMINAL",
+    "HH4": "PASS_COMPLETE_ORIGINAL_EXAMINATION_8CRITERIA_NO45ROW_PROMOTION",
+    "A8": "PENDING_NATIVE_ARCHIVE_FORWARDING_FIXTURE_CORRECTION",
+    "A9": "PASS_COMPLETE_AMENDMENT_CONTRACT",
+    "A11": "PASS_PRESERVED",
+    "terminal": true,
+    "runs": {
+      "Product": 39114039622,
+      "Runtime": 39114039616,
+      "Semantic": 39114039573,
+      "Assurance": 39114041892
+    },
+    "Runtime": "SUCCESS",
+    "Semantic": "SUCCESS",
+    "Assurance": "SUCCESS",
+    "Product": "FAILURE_A8_ONLY",
+    "terminalReceipt": "CI-STATUS.json"
+  },
+  "freshBusinessEvidence": "BUSINESS-SOURCE-BOUND-DOSSIER.json and BUSINESS-CURRENCY-INDEPENDENT-REVIEW.json; scoped projection, not qualification",
+  "recoveryEngineering": "Scoped authority RMW lock and cold-state materialization reviewed; no complete O33/O39 acceptance",
+  "externalDecisionRegister": "../post-publication-20261018/EXTERNAL-DECISIONS.json",
+  "retainedEvidence": {
+    "console": "../acceptance-campaign-20261018b/12131730043/receipt.json",
+    "business": "../acceptance-campaign-20261018b/BUSINESS-CURRENCY-INDEPENDENT-REVIEW.json",
+    "dossier": "../acceptance-campaign-20261018b/BUSINESS-SOURCE-BOUND-DOSSIER.json"
+  },
+  "A9IndependentReceipt": "A9-INDEPENDENT-ACCEPTANCE.json",
+  "consoleSuccessor": "Three harness/fixture paths independently source-reviewed and integrated; scoped deferred walkthrough only, hosted pending",
+  "HH4IndependentReceipt": "HH4-INDEPENDENT-DECISION.json",
+  "HH4AcceptanceScope": "Own original examination only. No new original requirement row: full topology #33/#39, universal writer exclusion/pending replay and protected custody remain unaccepted.",
+  "stagedSuccessor": {
+    "commit": "2a3f342db1f00f954d9a63682d8d8ed76eff4bb2",
+    "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+    "changedPaths": 6,
+    "build": "PASS",
+    "frontendTypecheck": "PASS",
+    "published": false,
+    "publicationAuthority": "AWAIT_EXACT_TREE_APPROVAL",
+    "pending": [
+      "native A8 successor examination",
+      "native deferred Console successor examination",
+      "real Redis negative examination"
+    ],
+    "acceptanceNotInferred": true
+  }
+}

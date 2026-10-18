@@ -1,0 +1,17 @@
+{
+  "status": "READY_FOR_INDEPENDENT_SOURCE_REVIEW_HOSTED_TEST_PENDING",
+  "base": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+  "files": {
+    "backend/src/runtime/work8-recovery-capture.ts": "162f99bc8a8bc56bd04899eb24ac1eef90975d82fc086db06a5ee4f4929f161d",
+    "backend/src/validation/tests/capture-shared-brain-redis.test.ts": "0223e992936fc97ba6a1602d63e1a9e1eb59c6a17405a5d8728f1d01f3cc0d96"
+  },
+  "change": "Lua checks target Redis TIME against digest-pinned capture timestamp before SET/RESTORE; prior target-run-id/DB pin and empty-target/owner/meta admission controls preserved. Clock value reused for expiry skip; no restoration authorization.",
+  "test": "Existing actual Redis pending-mission restore examination now injects target TIME one millisecond before capture and requires precise rejection plus dbsize zero; existing positive restore follows.",
+  "validation": "git diff --check passed; actual Redis test not executed locally because no Redis binary exists at known runtime locations. No workflow dispatched.",
+  "limits": [
+    "Only rejects target time before capture, not all clock drift",
+    "Target behind controller/source but after capture can still extend effective lifetime; independent trusted clock policy remains required",
+    "No full recovery, custody, replay or session acceptance claim"
+  ],
+  "newAcceptedItems": []
+}

@@ -1,0 +1,111 @@
+{
+  "decision": "PASS_HH4_COMPLETE_ORIGINAL_EXAMINATION",
+  "reviewer": "integration_review",
+  "source": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+  "tree": "f2d7d7c085dc21e000c9b9e2a0aab2b17b410c1b",
+  "runtimeRun": 39114039616,
+  "runtimeJob": 117636030380,
+  "runtimeJobConclusion": "success",
+  "imageId": "sha256:47b19672c3aebe525d728a070bc828a057e979a9adc17298e7ac5ebded143e33",
+  "captureDigest": "26227c15dfa6b4389d304309bfcb2c2eb2994c7ba74fb8eb307bc058d3fe55b2",
+  "artifacts": [
+    {
+      "id": 12131058331,
+      "sha256": "08f8c13c6e165c3bf387f3b46e0c248cc296dd95f16bf81a7f1d568d4a842eeb"
+    },
+    {
+      "id": 12132061559,
+      "sha256": "99c454ace0d463f7091f77f949c0517481357144d6090831bdea28011d01aba7"
+    }
+  ],
+  "criteria": [
+    {
+      "assertion": "Independent container evidence access",
+      "status": "PASS",
+      "evidence": "Exact-image domain container now reads private host-UID evidence; actual4domain result succeeds."
+    },
+    {
+      "assertion": "Exact source and snapshot identity",
+      "status": "PASS",
+      "evidence": "Compiled revision/source/image pin and capture digest agree across held capture, inspection and domain result."
+    },
+    {
+      "assertion": "Original readiness and recovery deadlines",
+      "status": "PASS",
+      "evidence": "Held5000ms unchanged; contained203ms after receipt, before expiresAt. Same-source tests207-209 preserve infrastructure/readiness admission original deadline."
+    },
+    {
+      "assertion": "Canonical integrity",
+      "status": "PASS",
+      "evidence": "Full inspection source/restored canonical SHA equality;4actual domain adapter public/canonical/archive comparisons."
+    },
+    {
+      "assertion": "Session restoration",
+      "status": "PASS",
+      "evidence": "Precutover source quarantined, independent volume restored, original cookie auth/me200, identity/financial/mission/authority continuity. Redis readiness failures503."
+    },
+    {
+      "assertion": "Pending-work continuity",
+      "status": "PASS_SCOPED_ORIGINAL_EXAMINATION",
+      "evidence": "Same-source hosted offline-state-bundle test116 restores queued readonly mission, original dispatch once, attempts1, one dispatch checkpoint, commerce LOCKED; retained independent cold-process replay evidence preserved. Precutover separately preserves terminal no-provider attemptCount1; no universal pending-work claim."
+    },
+    {
+      "assertion": "Admission fences",
+      "status": "PASS",
+      "evidence": "Runtime409tests0fail include live worker/Pillow/shared Redis readiness and503 refusal; capture inspection has bootAllowedfalse/no execution; permanent locked profile and mutation guards retained."
+    },
+    {
+      "assertion": "No unauthorized operational restart",
+      "status": "PASS",
+      "evidence": "Held cohort externally contained with survivors[] and noRestart; archive never boots. Separate authorized disposable precutover restoration remains isolated, productionTouchedfalse, providerCredentials0."
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "path": "hh4/held-capture-result.json",
+      "sha256": "86a5ae2686fd909abb4e5b645165d15c8573db2528057d155c135582fbeca0eb"
+    },
+    {
+      "path": "hh4/held-capture-external-verification.json",
+      "sha256": "f01d14a36b5a1533fd357654f6ea07a42fa40e0ca9f39a805dea7236cdc7c03f"
+    },
+    {
+      "path": "hh4/domain-rehydration-result.json",
+      "sha256": "f6b22b73f1fdfaf0943889d92738a5a1aebfd6fd11a7eaff7fb88ba474ab18e8"
+    },
+    {
+      "path": "hh4/fresh-inspection-restoration/canonical-inspection-result.json",
+      "sha256": "9fc1492bc0750f947708667ec06f744b275ca32a2d597e9929a46f95036c9625"
+    },
+    {
+      "path": "precutover/receipt.json",
+      "sha256": "8d0a689565718276a7bd74da606d4fb49e1ce94c80dc2e0cfd8603a3b0c587a5"
+    },
+    {
+      "path": "precutover/http-observations.json",
+      "sha256": "efdaad20c1b014a88d84b95daa032feb3d398d2719f611c5b6fe3bd26f489697"
+    },
+    {
+      "path": "runtime-job.log",
+      "sha256": "24e71db82bef02eef19cb4d5cbfad912878f85034aa7025c8098e0dfdce7a73a"
+    }
+  ],
+  "priorReceiptsPreserved": [
+    "acceptance-campaign-20261018b/HH4-CONTRACT-MAP.json",
+    "acceptance-campaign-20261018b/HH4-INDEPENDENT-DECISION.json",
+    "post-publication-20261018/authority-atomic-independent-review.json"
+  ],
+  "testsRepeatedByReviewer": false,
+  "notAccepted": [
+    "#33/#39 full topology operational restoration",
+    "Universal writer exclusion and all pending-work once-only replay",
+    "Protected independent backup custody"
+  ],
+  "originalRequirementRowsNewlyAccepted": [],
+  "amendmentRowsNewlyAccepted": [],
+  "governance": {
+    "birth": "NOT_BORN",
+    "commerce": "LOCKED",
+    "productionTouched": false
+  }
+}

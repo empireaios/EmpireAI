@@ -1,0 +1,22 @@
+{
+  "decision": "APPROVED_FIXTURE_ROUTE_FORWARDING_NATIVE_ACCEPTANCE_PENDING",
+  "reviewer": "integration_review",
+  "path": "empireai-web/e2e/work8-source-context-backend.mts",
+  "sha256": "becae61b2be98ac83da8332f5a3e9c61d640aa36ba879eef88a6a62a811421df",
+  "findings": [],
+  "review": [
+    "Removed cached fake session response; forwards authenticated owner request body to actual production session handler and returns its exact status/body.",
+    "Checks workspace and owner before forwarding; canonical identity invariant enforced on successful201.",
+    "Matches actual frontend requiring historicalArchiveAccepted true before reload; no acknowledgement fabricated.",
+    "Actual HTTP preflight reviewed: initial200, intercepted423, history200, foreign403, actual archive201 ack, reload200 with exact canonical transcript unchanged, unverified archive strips injected product context/authority, invalid role400, foreign workspace403.",
+    "Preflight cleans child/temp data in finally; no repeated execution."
+  ],
+  "evidence": {
+    "path": "a8-archive-preflight-result.json",
+    "sha256": "355161f4bf5c15ae502f872c28937457fbac5e8a8efe1e65589eb1cefd77ba39"
+  },
+  "limits": [
+    "No native browser/full A8 acceptance yet.",
+    "Single isolated fixture change; production runtime and frontend unchanged."
+  ]
+}

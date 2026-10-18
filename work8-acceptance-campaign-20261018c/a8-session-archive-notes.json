@@ -1,0 +1,28 @@
+{
+  "status": "READY_FOR_INDEPENDENT_REVIEW",
+  "sourceCommit": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+  "path": "empireai-web/e2e/work8-source-context-backend.mts",
+  "sha256": "becae61b2be98ac83da8332f5a3e9c61d640aa36ba879eef88a6a62a811421df",
+  "patchSha256": "91c6c94a4c28cdee9a1df99040ef551664a41e5ba4301ad674026c444a1eb4c8",
+  "rootCause": "After two intentional intercepted423 chat responses, native reload requests historicalBrowserTurns. Production client requires actual historicalArchiveAccepted acknowledgement, which fixture cached session response lacked, causing hydration to throw before GET/history.",
+  "change": "Forward isolated authenticated session request to actual production handler, including archive payload. Verify successful session ID remains canonical; preserve schema, permission and archive semantics. No production code or native acceptance assertion changes.",
+  "validation": {
+    "actualHTTP": "PASS",
+    "session201": true,
+    "coldHistory200": true,
+    "archiveAcknowledgement201": true,
+    "reloadHistory200": true,
+    "serverProductContextUnchanged": true,
+    "unverifiedArchiveNoAuthority": true,
+    "invalidRole400": true,
+    "foreignWorkspace403": true,
+    "paidInference": 0,
+    "externalEffects": 0
+  },
+  "receipt": "a8-archive-preflight-result.json",
+  "limits": [
+    "Native hosted A8 rerun still required; no amendment acceptance yet.",
+    "Scoped local examination uses real production APIs but isolated auth and intercepted model transport."
+  ],
+  "newAcceptedAmendments": []
+}

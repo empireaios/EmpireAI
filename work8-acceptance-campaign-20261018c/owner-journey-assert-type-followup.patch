@@ -1,0 +1,11 @@
+--- a/empireai-web/e2e/owner-history-backend.mts
++++ b/empireai-web/e2e/owner-history-backend.mts
+@@ -34,7 +34,7 @@
+ let stopping=false;async function stop(){if(stopping)return;stopping=true;await app.close();const after={transcript:hash(fs.readFileSync(file)),receipt:hash(fs.readFileSync(path.join(root,'commissioning','pillow-request-receipts.sqlite')))};fs.writeFileSync(path.join(root,'preservation.json'),JSON.stringify({unchanged:JSON.stringify(before)===JSON.stringify(after),before,after,paidInference:0,externalEffects:0}));process.exit(0);}process.once('SIGTERM',()=>{void stop();});process.once('SIGINT',()=>{void stop();});
+ 
+ if(process.env.WORK8_OWNER_INJECT_ONLY==='1'){
+- const assert=(await import('node:assert/strict')).default;
++ const assert: typeof import('node:assert/strict')=(await import('node:assert/strict')).default;
+  for(const ref of journeyRecords){const [domain,...parts]=ref.split(':');const url='/api/owner/advisor/read?'+new URLSearchParams({domain:domain!,id:parts.join(':')});
+   const allowed=await app.inject({method:'GET',url,headers:{cookie:'empireai_session='+tokens.owner}});assert.equal(allowed.statusCode,200);const body=allowed.json();assert.equal(body.status,baseline[ref].status);assert.equal(body.workspace,journey.workspace);assert.equal(body.grantsAuthority,false);
+   assert.equal((await app.inject({method:'GET',url})).statusCode,401);assert.equal((await app.inject({method:'GET',url,headers:{cookie:'empireai_session='+tokens.foreign}})).statusCode,403);

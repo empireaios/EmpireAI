@@ -1,0 +1,50 @@
+{
+  "source": {
+    "commit": "2a3f342db1f00f954d9a63682d8d8ed76eff4bb2",
+    "tree": "6c7d6f4a899d00a0442a4ae5142cac61a4ccafb9",
+    "parent": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+    "paths": 6,
+    "backendBuild": "PASS",
+    "frontendTypecheck": "PASS",
+    "published": false
+  },
+  "archives": {
+    "media.zip": {
+      "bytes": 1631647,
+      "sha256": "88e590743fe7522f9ec33e8fdd7c3754dd3a20a19d642cab99dd1788f4e9f775"
+    },
+    "precutover.zip": {
+      "bytes": 5706,
+      "sha256": "99c454ace0d463f7091f77f949c0517481357144d6090831bdea28011d01aba7"
+    },
+    "a8.zip": {
+      "bytes": 73209,
+      "sha256": "fcb950ffb29ee0317cda0c72e8d5d4918f3c5e65565ab3a2e36c5c20a053821c"
+    },
+    "history.zip": {
+      "bytes": 547816,
+      "sha256": "47c7ff0b127e37b2f5deb0832c448e0168664b592f3336769a6d0be3ce35b615"
+    },
+    "hh4.zip": {
+      "bytes": 401357,
+      "sha256": "08f8c13c6e165c3bf387f3b46e0c248cc296dd95f16bf81a7f1d568d4a842eeb"
+    }
+  },
+  "acceptance": {
+    "HH4": "PASS_COMPLETE_EXAMINATION_NOT_FULL33/39",
+    "A9": "PASS_COMPLETE_AMENDMENT",
+    "A8": "PENDING_NATIVE_RELOAD",
+    "A11": "PASS_PRESERVED",
+    "newOriginalIds": [],
+    "newAmendmentIds": [
+      "A9"
+    ],
+    "accepted": 43,
+    "outstanding": 21
+  },
+  "successorLimits": [
+    "A8 corrected fixture needs native hosted replay",
+    "Deferred Console journey requires native examination; no full owner acceptance",
+    "Redis chronology guard negative test requires actual Redis execution; arbitrary clock skew remains unproven"
+  ]
+}

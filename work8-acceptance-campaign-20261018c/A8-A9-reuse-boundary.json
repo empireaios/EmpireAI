@@ -1,0 +1,20 @@
+{
+  "status": "REUSE_BOUNDARY_VERIFIED_PENDING_NATIVE_RESULTS",
+  "sourceCommit": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+  "priorSource": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "unchangedFiles": [
+    "backend/src/orchestration/pillow-host/reasoning-state.ts",
+    "backend/src/orchestration/pillow-host/session-store.ts",
+    "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts",
+    "backend/src/validation/tests/work8-media-approval-invalidation.test.ts",
+    "backend/src/validation/tests/work8-source-product-context.test.ts",
+    "backend/src/validation/tests/work8-product-context-delivery.test.ts"
+  ],
+  "retainedReceipts": [
+    "acceptance-campaign-20261018b/a8-cold-history-independent-review.json",
+    "acceptance-campaign-20261018b/A8-A9-contract-mapping.json",
+    "Accepted A11 complete-store reopen and sixteen assertion receipts"
+  ],
+  "newTestsExecuted": 0,
+  "newAcceptedAmendments": []
+}

@@ -1,0 +1,65 @@
+{
+  "status": "PASS_SCOPED_FASTIFY_INJECT_NOT_BROWSER",
+  "records": [
+    {
+      "ref": "evidence:ev_6b78ad4ee360cd4a38237a9b3f93508cc9ec33c1",
+      "status": "AVAILABLE",
+      "owner": 200,
+      "anonymous": 401,
+      "foreignWorkspace": 403
+    },
+    {
+      "ref": "investigations:EMPIREAI-CANDIDATE-001-FOLLOWUP",
+      "status": "AVAILABLE",
+      "owner": 200,
+      "anonymous": 401,
+      "foreignWorkspace": 403
+    },
+    {
+      "ref": "governed_commerce",
+      "status": "AVAILABLE",
+      "owner": 200,
+      "anonymous": 401,
+      "foreignWorkspace": 403
+    },
+    {
+      "ref": "financial_centre",
+      "status": "AVAILABLE",
+      "owner": 200,
+      "anonymous": 401,
+      "foreignWorkspace": 403
+    },
+    {
+      "ref": "assurance",
+      "status": "UNAVAILABLE",
+      "owner": 200,
+      "anonymous": 401,
+      "foreignWorkspace": 403
+    }
+  ],
+  "sourceFixtureHash": "65590dc4e27858343aa8998f40b08d00b170e0bc65fec02effa1643d6afcccc4",
+  "provenance": {
+    "market": "docs/work8/source-marketplace-readback.json exact retained envelopes",
+    "investigation": "Saved Advisor intelligence2026-10-18T08:22:10.533Z",
+    "temporalMeaning": "Oct10 observations concern same ASIN as Oct8 historical assessment. They were NOT consumed by that earlier assessment; original cited Oct8 envelopes absent from this fixture.",
+    "ownerDecision": "None created; historical technical workflow closure is not current product approval",
+    "downstream": "No commercial order or financial journal entries created; isolated empty stores are not a claim about production balances"
+  },
+  "preservation": {
+    "unchanged": true,
+    "before": {
+      "transcript": "a129a5b703c338a55d59deab5764ee7910ea3e165060e5f9d101dd24c94b19ba",
+      "receipt": "4419217bd83ff8fa6b731ada74a1d76fe09e7edf817553cb7c13a48306d19e6b"
+    },
+    "after": {
+      "transcript": "a129a5b703c338a55d59deab5764ee7910ea3e165060e5f9d101dd24c94b19ba",
+      "receipt": "4419217bd83ff8fa6b731ada74a1d76fe09e7edf817553cb7c13a48306d19e6b"
+    },
+    "paidInference": 0,
+    "externalEffects": 0
+  },
+  "paidInference": 0,
+  "externalEffects": 0,
+  "browserExamined": false,
+  "newAcceptedIds": []
+}

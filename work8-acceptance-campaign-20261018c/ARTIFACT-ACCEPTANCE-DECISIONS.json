@@ -1,0 +1,40 @@
+{
+  "source": "d6069705a9a2e8f7b58550afa2474a8382be2663",
+  "tree": "f2d7d7c085dc21e000c9b9e2a0aab2b17b410c1b",
+  "reviewer": "ci_review",
+  "artifactDigestsVerified": true,
+  "HH4": {
+    "decision": "PASS_COMPLETE_ORIGINAL_EXAMINATION",
+    "receipt": "HH4-INDEPENDENT-DECISION.json",
+    "full33_39": false
+  },
+  "A8": {
+    "decision": "PENDING",
+    "failure": "Reload awaited historical product context; fixture session did not acknowledge actual archive synchronization. Independent author diagnosis active; no full acceptance.",
+    "artifact": 12131881389,
+    "sha256": "fcb950ffb29ee0317cda0c72e8d5d4918f3c5e65565ab3a2e36c5c20a053821c"
+  },
+  "A9": {
+    "decision": "PASS_COMPLETE_AMENDMENT",
+    "receipt": "A9-INDEPENDENT-ACCEPTANCE.json",
+    "artifact": 12130899341,
+    "sha256": "88e590743fe7522f9ec33e8fdd7c3754dd3a20a19d642cab99dd1788f4e9f775"
+  },
+  "A11": "PASS_PRESERVED",
+  "historicalConsole": {
+    "decision": "PASS_SCOPED_HISTORICAL_READBACK",
+    "assertions": 4,
+    "artifact": 12132110371,
+    "sha256": "47c7ff0b127e37b2f5deb0832c448e0168664b592f3336769a6d0be3ce35b615",
+    "freshQualification": false
+  },
+  "newOriginalRequirements": [],
+  "newAmendments": [
+    "A9"
+  ],
+  "combined": {
+    "accepted": 43,
+    "outstanding": 21
+  },
+  "noRerunsOrDispatch": true
+}
