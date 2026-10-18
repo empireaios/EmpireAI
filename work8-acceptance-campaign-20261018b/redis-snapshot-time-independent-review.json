@@ -1,0 +1,22 @@
+{
+  "reviewer": "integration_review",
+  "decision": "APPROVED_SCOPED_SOURCE_CORRECTION_PENDING_REAL_REDIS",
+  "files": [
+    "backend/src/runtime/work8-recovery-capture.ts",
+    "deployment/work8-recovery-set.cjs",
+    "backend/src/validation/tests/work8-runtime-recovery.test.ts"
+  ],
+  "findings": [
+    "Runtime callback uses timed snapshot; row-array API retained for consumers.",
+    "Manifest schema and redis.json bytes remain compatible; server clock stored in existing redisCapturedAt field.",
+    "Invalid clocks reject before seal. Existing identity, capture-owner, inspection-only and fail-closed boundaries unchanged."
+  ],
+  "evidence": "Reviewed source diff and existing authored TAP: 3/3 deterministic tests; no repeated test or real Redis proof.",
+  "limits": [
+    "Only pre-await dispatch and source/client timestamp pairing corrected.",
+    "Restore still rejects capture timestamps later than client Date.now; source ahead can fail closed.",
+    "Target Redis TIME compares source-clock ABSTTL; slower target can extend wall-time lifetime. Cross-server clock alignment is unproven.",
+    "Legacy row-array callbacks retain pre-await client timestamp.",
+    "Full operational restoration, global writer exclusion, custody and HH4 acceptance not established."
+  ]
+}

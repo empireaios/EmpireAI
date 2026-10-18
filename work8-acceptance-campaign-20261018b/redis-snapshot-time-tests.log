@@ -1,0 +1,35 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: Redis snapshot time uses the atomic server clock and preserves the row-array API
+ok 1 - Redis snapshot time uses the atomic server clock and preserves the row-array API
+  ---
+  duration_ms: 25.172975
+  type: 'test'
+  ...
+# Subtest: Redis snapshot time survives client dispatch delay in the durable recovery manifest
+ok 2 - Redis snapshot time survives client dispatch delay in the durable recovery manifest
+  ---
+  duration_ms: 348.252967
+  type: 'test'
+  ...
+# Subtest: Redis snapshot time keeps legacy array callbacks compatible and rejects invalid clock before sealing
+ok 3 - Redis snapshot time keeps legacy array callbacks compatible and rejects invalid clock before sealing
+  ---
+  duration_ms: 556.37601
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1246.003564

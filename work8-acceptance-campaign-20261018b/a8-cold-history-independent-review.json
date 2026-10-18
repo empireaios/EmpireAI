@@ -1,0 +1,18 @@
+{
+  "reviewer": "integration_review",
+  "decision": "PASS_SCOPED_COLD_PROCESS_PERSISTENCE_REVIEW",
+  "file": "a8-cold-history/backend/src/validation/tests/work8-product-history-cold-process.test.ts",
+  "sha256": "a2b80e92659da6d0e4c521dd2fe6b9afd72d519aa2b00310bbab99eadcf1d410",
+  "evidence": "Reviewed complete test and authored 1/1 TAP. Writer PID33 terminated before reader PIDs56 and68; same canonical session59069a5f-1041-4fa7-a5b6-3220aa3062a6. No test repeated.",
+  "assertions": [
+    "Actual ReasoningState and PillowSessionStore adapters",
+    "Exact complete synthetic transcript/product/source/version/unknown fields survive two cold readers",
+    "Foreign owner and workspace rejected",
+    "Canonical identity preserved; approval none and mission null",
+    "Bounded local processes and finally cleanup"
+  ],
+  "limits": [
+    "Synthetic fixture does not establish server-resolved source validity or model reasoning.",
+    "No HTTP authentication, hosted desktop/mobile, Redis, full application restore or complete A8 acceptance."
+  ]
+}

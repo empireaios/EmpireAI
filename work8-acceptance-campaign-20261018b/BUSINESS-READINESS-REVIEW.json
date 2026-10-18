@@ -1,0 +1,74 @@
+{
+  "recordType": "SOURCE_BOUND_READINESS_EXAMINATION_NOT_FULL_ACCEPTANCE",
+  "reviewedCommit": "7f1971adbc831eed2a2a838d5867895bece05239",
+  "reviewedTree": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+  "publishedCommitReportedByIntegrationController": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "localSourceFilesMatchReviewedTree": true,
+  "fileSha256": {
+    "backend/src/intelligence/work8-dossier.ts": "4442732673006a735ad24ccf4220ba642d313d7fe2aefa5a0cd28c7e99ffe04f",
+    "backend/src/intelligence/work8-freight.ts": "600d9dbd7036d81999280ba97265e3cae31fd2aab26875a08b04949dfc6b9a00",
+    "backend/src/intelligence/work8-qualification.ts": "56379d630b176fefba2d7f7e49ea0af50b5fdee33b62680b3ceee9b4dd49494c",
+    "backend/src/runtime/commerce-runtime/governed/work8-source-projection.ts": "1f23b060007f61a044c2408676df388409ab93d805060bc1482cf03d2b940aff"
+  },
+  "receipt": "BUSINESS-SOURCE-BOUND-DOSSIER.json",
+  "observedAt": "2026-10-18T08:44:10.930Z",
+  "identityVerified": true,
+  "price": 2.76,
+  "currency": "USD from retained variants[].variantSellPrice endpoint contract; not explicit in response",
+  "factoryStock": 8023,
+  "cjHeldStock": 0,
+  "freightOptions": 10,
+  "freightCurrency": "USD from retained logisticPrice endpoint contract; not explicit in response",
+  "cheapestObservedOption": {
+    "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+    "rowDigest": "fc175ed8e4947c476ec13d695dff7e544ab33cb67d4bc1b3285cc27fac80d011",
+    "amount": 6.57,
+    "currency": "USD",
+    "currencyBasis": {
+      "currency": "USD",
+      "endpoint": "/logistic/freightCalculate",
+      "field": "logisticPrice",
+      "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+      "section": "1.1 Freight Calculation / Return",
+      "verifiedAt": "2026-10-11"
+    },
+    "service": "LuWei Ordinary US",
+    "leadTime": "5-11",
+    "currencyContradiction": false
+  },
+  "selectedFreight": null,
+  "selectionReason": "Ten options: actual production projection refuses automatic selection without authenticated review. No owner attestation fabricated.",
+  "eligibility": {
+    "status": "DEFERRED",
+    "qualified": false,
+    "missing": [
+      "AUTHENTICATED_EVIDENCE_REVIEW_REQUIRED",
+      "CANONICAL_FINANCIAL_SNAPSHOT_REQUIRED",
+      "COMPLETE_CURRENT_CASH_POSITION_REQUIRED",
+      "COMPLETE_REVIEWED_FORECAST_REQUIRED",
+      "EXACT_FREIGHT_REQUIRED",
+      "FREIGHT_CURRENCY_REQUIRED",
+      "SOURCE_COST_FX_BINDING_REQUIRED"
+    ],
+    "rejected": []
+  },
+  "scopeCorrection": "Raw records lack currency fields, but inspected established adapter contracts provide USD basis. Currency is no longer entirely unestablished. Selected freight remains null.",
+  "remaining": [
+    "Genuine reviewed seven findings including demand, competition, quality, compliance, returns and marketplace",
+    "Processing evidence and exact authenticated freight option selection",
+    "Canonical financial forecast/current cash/source-cost FX binding/exposure budget",
+    "Downstream exact media rights, listing review, bound actual Pillow assessment and simulation authority remain separate"
+  ],
+  "consoleHistorical": {
+    "pendingHosted": true,
+    "possibleScopedClosure": "Historical same-request/response desktop/mobile readback with auth isolation and preservation",
+    "completeIdsClosedAlone": [],
+    "remaining": "Current eligible recommendation/persisted owner decision; same-identity source-to-owner-to-simulated-finance/Assurance/recovery journey; required genuine owner acceptance"
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "paidInference": 0,
+  "externalEffects": 0,
+  "externalRefresh": false,
+  "grantsAuthority": false
+}

@@ -1,0 +1,15 @@
+{
+  "decision": "APPROVED_SCOPED_UID_ALIGNMENT_NOT_HOSTED_ACCEPTANCE",
+  "reviewer": "frontend_fix_review",
+  "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+  "sha256": "31d403349db98f6b0ea68562e5b7a16e0090abec3087ca2651cb790178478371",
+  "findings": [],
+  "assessment": [
+    "Existing outer cohort container uses process.getuid/getgid; evidence capture owns0600 files at runner UID/GID.",
+    "Downstream reader now uses same runner uid/gid rather than image default; no chmod, chown or widened file access.",
+    "Exact image, readonly evidence mount, readonly root, network none, cap-dropALL, no-new-privileges, pid/memory/cpu controls unchanged.",
+    "Retained local domain smoke is explicitly unbound local adapter evidence; no exact hosted acceptance inference."
+  ],
+  "remaining": "Hosted exact-image readback required; local UID simulation unavailable.",
+  "newAcceptedRequirements": []
+}

@@ -1,0 +1,23 @@
+(node:7) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:14) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:14) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# {"status":"PASS_SCOPED_COLD_PROCESS_TRANSCRIPT","writerPid":33,"readerPids":[56,68],"sessionId":"59069a5f-1041-4fa7-a5b6-3220aa3062a6","turnsSha256":"773bcda2797077e2132675d25fa09926ebee365ba2148782d8753cf0f8b0f432","paidInference":0,"externalEffects":0,"scope":"Actual ReasoningState and PillowSessionStore only. Writer terminated before independent cold readers; canonical identity, full product/source/version/unknown fields and owner/workspace isolation preserved. No HTTP authentication, Redis or full application restoration claim."}
+# Subtest: A8 original product-bound transcript survives writer exit and two independent cold readers
+ok 1 - A8 original product-bound transcript survives writer exit and two independent cold readers
+  ---
+  duration_ms: 763.774647
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1035.566479

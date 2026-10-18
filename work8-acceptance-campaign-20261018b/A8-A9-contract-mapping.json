@@ -1,0 +1,56 @@
+{
+  "status": "PREPARED_MAPPING_NOT_ACCEPTANCE",
+  "reviewer": "frontend_fix_review independent source/contract mapping",
+  "sourceCommit": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "authority": [
+    "evidence-final/docs/work8/resume-20261011/OWNER-HOLISTIC-DIRECTIVE.txt sections8/9",
+    "Current owner directive: full A8/A9 contract, durable history/records; earlier retained execution directive explicitly includes restart persistence",
+    "post-publication-20261018/FULL-TRACKER.md amendments8/9; A10 Canva and A11 approval separate"
+  ],
+  "A8": {
+    "nativeAssertions": {
+      "compact icon product/listing/order": "Actual click on all three authenticated routes at390/1440; compact icon rendering must also inspect source/screenshots.",
+      "identity/navigation": "Exact fixture/genuine retained variant SKUs in attachment after route navigation; actual source resolver delivery and exact Tier0 request/hash receipt.",
+      "removal/switch/comparison/followup": "Chip removed; second product replaces first; comparison has two bound variants; next message retains identical raw references.",
+      "unknown evidence": "Bound comparison stock and freight amounts null, grantsAuthority false; persisted history retains unknown fields.",
+      "durable history": "Reload reads authenticated endpoint backed by newly opened actual ReasoningState store, exact resolved comparison deep equality.",
+      "authenticated presentation": "Owner session cookie, foreign workspace401/403, mobile/desktop widths and overflow; screenshots.",
+      "forgery": "Separate actual Tier0 handler forged pin refusal; join exact input hash receipt."
+    },
+    "joinRetainedEvidence": [
+      "work8-source-product-context.test.ts: tampering, missing pins, cross-workspace, expiry and unknown facts",
+      "work8-product-context-delivery.test.ts: actual schema parsing and long conversation compaction preserve exact binding",
+      "work8-product-context.test.ts: governed product references",
+      "work8-product-history.test.ts: original attribution, mutation isolation, cross-workspace and complete-turn UTF8 history retention"
+    ],
+    "remainingBoundary": "Earlier owner directive explicitly requires restart persistence. Native and retained product-history tests reopen stores within same OS process; neither establishes process-stop/reopen. Join an existing valid exact-scope cold-process history receipt if available; otherwise propose bounded cold-process persistence check. Do not require whole HH4/Redis topology restoration or paid model inference for A8.",
+    "decisionNow": "PENDING current hosted results plus restart receipt attribution; no code defect inferred from this evidence gap."
+  },
+  "A9": {
+    "nativeAssertions": {
+      "exact import": "Image and video added through real forms; proposal version increments, exact kind/url/sha list preserved.",
+      "rights/source": "Visible rights/provenance/provider fields completed, permission checkbox set; owner-created bytes and source rights explicitly synthetic, no supplier licence claim.",
+      "actual bytes/gallery": "Browser fetched SHA256 matches original SVG/WebM, video metadata16px verified; relevant media visible, screenshot widths1440/390.",
+      "selection/version": "Internal approval selects two exact assets, external state stays NOT_SUBMITTED; existing A11 controls preserved.",
+      "archive": "Collapsed by default; nonempty historical article/version/status displayed; old digest remains; collapse preserves selected media.",
+      "durable readback": "Page reload yields full media deep equality through authenticated BFF; by itself not cold store persistence.",
+      "authentication": "Anonymous/foreign/admin refusals and real auth/session middleware; mobile/desktop same flow."
+    },
+    "joinRetainedEvidence": [
+      "work8-media-approval-invalidation.test.ts closes production governed store and reopens same file, deep-equals complete media state/history with ten events; reuse independently accepted A11 receipt if source boundary remains unchanged.",
+      "A11 accepted sixteen assertions remain separately accepted; do not reopen because A9 fails."
+    ],
+    "remainingBoundary": "Native success must be joined to retained store reopen receipt for durable-record claim. Current contract does not independently demand full runtime/process restoration for A9; do not invent it. Check final-media.json has submitted source/provenance/rights unchanged and screenshots show original/revised media and archive. Actual supplier rights and Canva export belong to separate #19/A10/business requirements.",
+    "decisionNow": "PENDING current hosted receipt/artifact inspection; no additional source edit proposed."
+  },
+  "sourceFiles": {
+    "empireai-web/e2e/work8-source-context-native.mjs": "da44b29a9b64f5e9349b175861d19386cf1504d870327c62a15250b45a33d132",
+    "empireai-web/e2e/work8-source-context-backend.mts": "3c41db64ba6678bb42b3988b3c7ff3301256603c87bf3a2d6ac17ae200362b30",
+    "empireai-web/e2e/work8-media-native.mjs": "fc3fec2c1856f090fbc2a0c0a907a9e50b17a0061b26882a1d7abdf97ebe1762",
+    "backend/src/validation/tests/work8-product-history.test.ts": "6dca413e56f33e5e05b4ecf51390b946486b0431535e3c5236e9e06133b8741e",
+    "backend/src/validation/tests/work8-media-approval-invalidation.test.ts": "8500f69e2c040bfd0b6b6056e4e2232d2387dcd1bdbacc1974daafedbe4b1cc9"
+  },
+  "newTestsExecuted": 0,
+  "newAcceptedRequirements": [],
+  "newAcceptedAmendments": []
+}

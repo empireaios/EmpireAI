@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {qualificationDossier} from '../EmpireAI/backend/src/intelligence/work8-dossier.ts';
+import {digest} from '../EmpireAI/backend/src/intelligence/model.ts';
+const root='/workspace/scratch/7952261165b1',ids=['ev_eebe8951f46cbbbe14c883c5e884c531aaeae9bc','ev_6724ef7efa25794fab55a347e0c72b97f4a9b3c5','ev_4391af5c2fd305056645b5c8bc158e233c505a85'];
+const rows=ids.map(id=>JSON.parse(fs.readFileSync(root+'/post-publication-20261018/'+id+'.json','utf8')).data);
+const pins=rows.map(source=>({id:source.id,envelopeDigest:digest(source)}));
+const binding={candidateId:'CJ:2610171752021618700:2610171752021619700',productId:'2610171752021618700',subject:{id:'2610171752021618700',variant:'2610171752021619700',marketplace:'US',destination:'US'},evidence:pins,snapshotDigest:digest(pins)};
+const now=Date.now();const result=qualificationDossier((workspace,id)=>workspace==='ws_empire_1'?rows.find(r=>r.id===id)??null:null,'ws_empire_1',binding,now,null,null);
+fs.writeFileSync(root+'/acceptance-campaign-20261018b/BUSINESS-SOURCE-BOUND-DOSSIER.json',JSON.stringify({classification:'READ_ONLY_LOCAL_PROJECTION_OF_RETAINED_PROVIDER_RECORDS_NOT_OWNER_REVIEW',at:new Date(now).toISOString(),sourceInputs:'../post-publication-20261018/ev_*.json',review:null,financialSnapshot:null,...result},null,2)+'\n');
+console.log(JSON.stringify({identityVerified:result.supplier.identityVerified,price:result.supplier.price,currency:result.supplier.currency,stock:result.supplier.stock,options:result.supplier.freight.options.length,selectedFreight:result.supplier.freight.amount,eligibility:result.eligibility,authority:result.grantsAuthority}));

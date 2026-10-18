@@ -1,0 +1,19 @@
+{
+  "status": "SCOPED_TESTS_PASS_AWAITING_INDEPENDENT_REVIEW",
+  "localBase": "fd8b0c7e09336b50b06c9cad8543e0d862cd1324",
+  "publishedEquivalent": "e50c4e5c (controller confirmed tree equality)",
+  "files": {
+    "backend/src/runtime/work8-recovery-capture.ts": "fb887f812518b6f36522e52841042c57c22afcc99c7aec93b44962fab470bfcc",
+    "deployment/work8-recovery-set.cjs": "957920defb43aeb15613f3ae932b83fb36216583a0812dd14661e38eb50300ab",
+    "backend/src/validation/tests/work8-runtime-recovery.test.ts": "f3b473fd5907d12be522d308ab8c88222246a97a4eb0aeca9b787bfbe118559f"
+  },
+  "problem": "Pre-await client timestamp plus server PTTL shortens expiry by dispatch delay and mixes clock domains. Runtime now captures server TIME with DUMP/PTTL atomically.",
+  "tests": "3 new tests pass using deterministic simulated Redis response and real durable capture manifest fixtures",
+  "limits": [
+    "Local Redis executable unavailable; actual Redis Lua response behavior awaits existing hosted changed-boundary examination",
+    "Restore ABSTTL/expired-row skip remains unchanged",
+    "Legacy array callbacks retain legacy client timestamp for compatibility; runtime switched to timed envelope",
+    "No complete restore, session authentication, custody or requirement acceptance claimed"
+  ],
+  "newAcceptedItems": []
+}

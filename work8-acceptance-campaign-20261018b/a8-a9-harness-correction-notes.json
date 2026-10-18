@@ -1,0 +1,22 @@
+{
+  "status": "READY_FOR_INDEPENDENT_REVIEW",
+  "baseCommit": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "files": {
+    "empireai-web/e2e/work8-source-context-native.mjs": "fe49d25f8f70feed648f0d8014c441ca84707093fab63a007c32ff8e580e9f33",
+    "empireai-web/e2e/work8-source-context-backend.mts": "f44f1c2b5682d5f3207e7f9717ba56784e174fcea7c309613f49d23ea8a7585c",
+    "empireai-web/e2e/work8-media-native.mjs": "48500fb0af520bd422c39cdda5d0c54d3a80aaedb3c34dc71d6e54fce8974222"
+  },
+  "change": [
+    "A8 opens exact two candidate disclosures before querying hidden role buttons; exact source identity and all subsequent assertions retained.",
+    "A8 canonical session follows ordinary production durable getOrCreate instead of explicitly ephemeral forceNew; cold initial history status/session/empty transcript assertion added.",
+    "A9 direct-child archive summary selects archive disclosure rather than nested Content verification summaries; no gallery/archive/durable assertion removed."
+  ],
+  "validation": [
+    "Actual isolated authenticated backend startup passed with modified fixture.",
+    "Canonical initial cold history200; actual Tier0 chat202 and forged pin409 retained; actual intercepted host chat423 then cold history200 with productContext; foreign history403.",
+    "git diff --check passed. Native browser hosted validation remains required."
+  ],
+  "actualHTTPReceipt": "a8-http-preflight-result.json",
+  "patchSha256": "29a8a7caf0767f9dc0757102e9f9e3dcb3e111bd7e93a35eb2edd85f2b80c03c",
+  "newAcceptedRequirements": []
+}

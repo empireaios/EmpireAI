@@ -1,0 +1,30 @@
+{
+  "source": {
+    "commit": "034438abaf08d4db725536c5bb658c378dd83ab9",
+    "tree": "f2d7d7c085dc21e000c9b9e2a0aab2b17b410c1b",
+    "parent": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+    "changedPaths": 8,
+    "backendBuild": "PASS",
+    "frontendTypecheck": "PASS",
+    "published": false
+  },
+  "artifactArchives": {
+    "12130883781.zip": {
+      "bytes": 329701,
+      "sha256": "71afd774fa7d438a0595b7b5c40911aab72f0cc8873100a7795822ff0a55122f"
+    },
+    "12131730043.zip": {
+      "bytes": 548261,
+      "sha256": "8d5ebc9ef57f010864031cdd5e003689881d1c123a569682807960cb45adbec8"
+    },
+    "12131540330.zip": {
+      "bytes": 1211040,
+      "sha256": "5a179b8cf88fc65a0f92bc4579ca5165d85f640e37cd68e75e68da89cbf1f76d"
+    },
+    "hh4.zip": {
+      "bytes": 399256,
+      "sha256": "ba737ca31eb61727a08c169fa4a1a15d204495b55a5e1f16cb7c405ec643aa6f"
+    }
+  },
+  "acceptance": "No full acceptance promoted; original compiled/runtime source must be distinguished from locally reviewed successor."
+}

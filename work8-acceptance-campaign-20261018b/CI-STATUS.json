@@ -1,0 +1,151 @@
+{
+  "source": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "tree": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+  "terminal": true,
+  "workflow_runs": [
+    {
+      "id": 39112559595,
+      "name": "Independent Assurance Core",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 134,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39112559595/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39112559595/logs",
+      "workflow_id": 373040927
+    },
+    {
+      "id": 39112559594,
+      "name": "Pillow semantic repair CI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 693,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39112559594/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39112559594/logs",
+      "workflow_id": 362674549
+    },
+    {
+      "id": 39112559598,
+      "name": "Product path CI",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 692,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39112559598/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39112559598/logs",
+      "workflow_id": 362309382
+    },
+    {
+      "id": 39112559614,
+      "name": "Pillow runtime repair CI",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 694,
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39112559614/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39112559614/logs",
+      "workflow_id": 362688325
+    }
+  ],
+  "reasoningJob": {
+    "id": 117631579426,
+    "result": "success",
+    "started": "2026-10-18T08:43:40Z",
+    "completed": "2026-10-18T08:57:43Z",
+    "elapsedSeconds": 843,
+    "configuredTimeoutMinutes": 30
+  },
+  "componentJobs": [
+    {
+      "id": 117631579229,
+      "name": "Real Redis image expiry, AOF and signal proof",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631579377,
+      "name": "Work8 exact frontend review candidate (no deployment)",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631579538,
+      "name": "Repository and deployment-root contract",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631687420,
+      "name": "Phone browser to authenticated persisted commerce fixture",
+      "conclusion": "failure"
+    },
+    {
+      "id": 117631687421,
+      "name": "Exact old revision pending-RAM capture decision (isolated)",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631687450,
+      "name": "Legacy Vite compatibility \u2014 clean install, typecheck, build",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631687478,
+      "name": "Canonical Next.js web \u2014 clean install, typecheck, test, build",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631687479,
+      "name": "Pillow \u2014 clean install, typecheck, build, offline test",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631687501,
+      "name": "Backend \u2014 clean install, typecheck, build, offline tests",
+      "conclusion": "success"
+    },
+    {
+      "id": 117633551851,
+      "name": "Product path result (no deployment)",
+      "conclusion": "failure"
+    }
+  ],
+  "runtimeComponentJobs": [
+    {
+      "id": 117631579272,
+      "name": "Durable web \u2014 receipt recovery, one submission, tests and build",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631579384,
+      "name": "Exact-source Railway Railpack image",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631579426,
+      "name": "Generated full path \u2014 reasoning-admission",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117631579499,
+      "name": "Durable runtime \u2014 real Redis, restart, ownership and authorization",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 117631579510,
+      "name": "Generated full path \u2014 response-delivery",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117634295940,
+      "name": "Runtime repair result (no deployment)",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "workflowCounts": {
+    "success": 2,
+    "failure": 2
+  },
+  "noRerunsOrDuplicateDispatch": true,
+  "acceptance": "No new requirement acceptance. HH4 capture scope progressed; full HH4/A8/A9 pending. A11 preserved."
+}

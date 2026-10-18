@@ -1,0 +1,111 @@
+{
+  "recordType": "CAMPAIGN_B_INDEPENDENT_BASELINE_RECONCILIATION_NOT_NEW_ACCEPTANCE",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "originalCounts": {
+    "PASS": 33,
+    "PENDING": 8,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 9,
+    "PENDING": 10
+  },
+  "accepted": 42,
+  "outstanding": 22,
+  "baselineEvidenceCommit": "b28855f58128a7060cde16139dbf95197c0cfe82",
+  "trackerBlob": "21ce11d6b18edb1d230200ab3ff01ac3571a6a7f",
+  "preservedA11": "Current owner directive explicitly preserves completed independent acceptance; recovered CI receipt separately attributed. Not fresh acceptance by this reviewer.",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "outstandingOriginalIds": [
+    2,
+    7,
+    13,
+    14,
+    19,
+    30,
+    33,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "outstandingAmendmentIds": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    8,
+    9,
+    10,
+    15,
+    19
+  ],
+  "certificationReason": "Mandatory operational recovery, genuine business/owner journey, independent alert delivery, custody and exact-source acceptance gates remain open. Source review and scoped tests do not close them.",
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "INACTIVE",
+  "productionMissionComplete": false,
+  "publishedByThisReview": false,
+  "publication": {
+    "evidence": {
+      "commit": "79b856c076fa4155c0642ef0bce5d319537c1050",
+      "tree": "d94a07a1bf8ca8b279b1e294a9802791646d7c92"
+    },
+    "source": {
+      "commit": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+      "tree": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+      "approvedCommit": "7f1971adbc831eed2a2a838d5867895bece05239",
+      "metadataOnly": "removed skip ci staging message"
+    },
+    "publicationSequence": "evidence verified first, then source verified",
+    "drift": false,
+    "draft": true,
+    "merged": false,
+    "deployed": false,
+    "runs": {
+      "Product": 39112559598,
+      "Runtime": 39112559614,
+      "Semantic": 39112559594,
+      "Assurance": 39112559595
+    },
+    "duplicateDispatch": false
+  },
+  "currentCI": {
+    "status": "ALL_TERMINAL",
+    "runs": {
+      "Product": 39112559598,
+      "Runtime": 39112559614,
+      "Semantic": 39112559594,
+      "Assurance": 39112559595
+    },
+    "HH4": "PENDING downstream artifact permission failure; actual startup/held capture/containment/canonical inspection passed",
+    "A8": "PENDING Products helper/history404 corrections",
+    "A9": "PENDING: artifact12131540330 import passes, archive summary locator ambiguous7/9 nested summaries",
+    "A11": "PASS_PRESERVED_CURRENT16ASSERTIONS",
+    "OwnerHistory": "PASS_SCOPED_HISTORICAL_READBACK_4CHECKS_NOT_FULL_CONSOLE_ACCEPTANCE",
+    "terminal": true,
+    "Product": "FAILURE",
+    "Runtime": "FAILURE",
+    "Semantic": "SUCCESS",
+    "Assurance": "SUCCESS",
+    "terminalReceipt": "CI-STATUS.json",
+    "artifactDecisions": "ARTIFACT-ACCEPTANCE-DECISIONS.json",
+    "reasoningCorpus": "SUCCESS14m03within30m; no full-contract promotion"
+  },
+  "freshBusinessEvidence": "BUSINESS-SOURCE-BOUND-DOSSIER.json and BUSINESS-CURRENCY-INDEPENDENT-REVIEW.json; scoped projection, not qualification",
+  "recoveryEngineering": "Scoped authority RMW lock and cold-state materialization reviewed; no complete O33/O39 acceptance",
+  "externalDecisionRegister": "../post-publication-20261018/EXTERNAL-DECISIONS.json",
+  "stagedSuccessor": {
+    "commit": "034438abaf08d4db725536c5bb658c378dd83ab9",
+    "tree": "f2d7d7c085dc21e000c9b9e2a0aab2b17b410c1b",
+    "changedPaths": 8,
+    "builds": "PASS",
+    "reviewed": true,
+    "published": false,
+    "hostedAcceptance": "NOT_ESTABLISHED"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "HH4_DOMAIN_ADAPTER_REHYDRATION_V1",
+  "status": "PASS_UNBOUND_LOCAL_ADAPTER_SMOKE_ONLY",
+  "mode": "LOCAL_ADAPTER_SMOKE",
+  "compiledRevision": null,
+  "revisionMarkerMatched": false,
+  "compiledBuildAttestation": "CALLER_MUST_VERIFY_EXACT_SOURCE_IMAGE_ASSOCIATION",
+  "source": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "digest": "1cff6e20f26b762fa5514606ea9ec35c1d2f67d15b75e0f76fa0113860b78841",
+  "checked": [
+    {
+      "domain": "intelligence",
+      "publicReadbackSha256": "0f22b638854087f997c7e9696800683864f6569fe5328bef35f25a03c4e58928",
+      "canonicalSha256": "b79619576fb0c8e69b326dbfb2e2bd3c9b7382e5acdf463c302cf1a14489591c",
+      "canonicalRecordsPreserved": true
+    },
+    {
+      "domain": "reasoning",
+      "publicReadbackSha256": "952d0bf4d8eb47b37e254494de0501291f1b63e10e7f1a415bb9f0e4ccde686c",
+      "canonicalSha256": "c38527fd55701c767124278c9d2c706102d3120e2bcb2ad040bd3e56691b2524",
+      "canonicalRecordsPreserved": true
+    },
+    {
+      "domain": "financialEvidence",
+      "publicReadbackSha256": "a27dfd888afbdfbf87b69399cabd6f6d7e5ab1b68759c8d14be289144aeb61fc",
+      "canonicalSha256": "361ced6dcc02faf9a5374d300f6f7fdb7d592fd3a2047f4c0ced2ddf28b0c407",
+      "canonicalRecordsPreserved": true
+    },
+    {
+      "domain": "commerce",
+      "publicReadbackSha256": "96f67f4e617c27ed221e90b90aa22d8c0dd6d8949d016697f3147c21c25a749d",
+      "canonicalSha256": "5f38dad42692da2914674439de07afb2894de1a98ad3ea285d8cbebbd725d8cb",
+      "canonicalRecordsPreserved": true
+    }
+  ],
+  "bootAllowed": false,
+  "operationalRestoration": false,
+  "replay": false,
+  "protectedCustody": false,
+  "externalEffects": 0,
+  "paidInference": 0,
+  "originalRequirementsAccepted": []
+}

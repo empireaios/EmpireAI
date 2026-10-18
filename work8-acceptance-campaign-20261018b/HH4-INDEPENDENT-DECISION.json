@@ -1,0 +1,32 @@
+{
+  "reviewer": "integration_review",
+  "decision": "HH4_PENDING_DOWNSTREAM_HOSTED_PERMISSION_CORRECTION",
+  "runId": "39112559614",
+  "jobId": "117631579499",
+  "artifactId": "12130868671",
+  "artifactSha256": "ba737ca31eb61727a08c169fa4a1a15d204495b55a5e1f16cb7c405ec643aa6f",
+  "source": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "imageId": "sha256:96138cd22026fbc1055aa8a5c0a0aef79f6e3970383ea62041a9355d3451b584",
+  "passed": [
+    "Actual Pillow startup and API listening after corrected app.ready lifecycle",
+    "Generated actual-domain synthetic initialization and held capture",
+    "External cohort containment under original hold, no restart",
+    "Canonical inspection restoration source and target digest match"
+  ],
+  "failed": "Downstream exact-image domain rehydration container EACCES reading private host-owned hh4-held.json; result zero bytes, before adapter function.",
+  "nextCorrection": "One-line domain Docker --user host UID:GID; pending independent review/publication/hosted run.",
+  "localAdditionalProof": "Actual hosted capture passes all4 domain adapter/public/canonical/archive comparisons in explicitly unbound LOCAL_ADAPTER_SMOKE; cannot establish hosted acceptance.",
+  "remaining": [
+    "Exact-image hosted domain readback",
+    "Original authenticated session preservation/downstream precutover receipt",
+    "Complete original HH4 contract independent acceptance"
+  ],
+  "broaderRecoveryNotAccepted": [
+    "Full operational topology restoration",
+    "Every writer excluded",
+    "Once-only pending-work replay",
+    "Protected independent backup custody"
+  ],
+  "newOriginalRequirementsAccepted": [],
+  "newAmendmentsAccepted": []
+}

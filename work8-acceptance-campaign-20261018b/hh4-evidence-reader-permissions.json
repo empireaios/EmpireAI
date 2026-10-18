@@ -1,0 +1,5 @@
+{
+  "status": "SIMULATION_UNAVAILABLE",
+  "reason": "User namespace maps only UID0; chown1001 fails EINVAL. No successful UID filesystem proof claimed.",
+  "uidMap": "0 0 1"
+}

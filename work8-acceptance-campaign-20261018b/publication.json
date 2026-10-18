@@ -1,0 +1,24 @@
+{
+  "evidence": {
+    "commit": "79b856c076fa4155c0642ef0bce5d319537c1050",
+    "tree": "d94a07a1bf8ca8b279b1e294a9802791646d7c92"
+  },
+  "source": {
+    "commit": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+    "tree": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+    "approvedCommit": "7f1971adbc831eed2a2a838d5867895bece05239",
+    "metadataOnly": "removed skip ci staging message"
+  },
+  "publicationSequence": "evidence verified first, then source verified",
+  "drift": false,
+  "draft": true,
+  "merged": false,
+  "deployed": false,
+  "runs": {
+    "Product": 39112559598,
+    "Runtime": 39112559614,
+    "Semantic": 39112559594,
+    "Assurance": 39112559595
+  },
+  "duplicateDispatch": false
+}

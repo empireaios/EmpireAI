@@ -1,0 +1,45 @@
+{
+  "decision": "AWAITING_EXACT_SOURCE_HOSTED_EVIDENCE",
+  "sourcePrefix": "e50c4e5c",
+  "tree": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+  "runtimeRun": 39112559614,
+  "reviewer": "integration_review",
+  "contractMap": [
+    {
+      "assertion": "Actual two-phase infrastructure startup, Pillow host and Fastify execution-runner readiness",
+      "requiredEvidence": "hh4-worker-ready source/run/process pins, inventory execution store records, external process verification; no deadline reset",
+      "status": "PENDING"
+    },
+    {
+      "assertion": "Held capture coordination, original hold deadline, image isolation and external cleanup",
+      "requiredEvidence": "held-capture-external-verification, pinned manifest, containment timestamps/monotonic interval/survivors=[], original 5000ms hold",
+      "status": "PENDING"
+    },
+    {
+      "assertion": "Captured records inspected without authority activation",
+      "requiredEvidence": "inspection-restoration canonical equality and exact-image domain-rehydration receipt",
+      "status": "PENDING",
+      "limit": "These receipts explicitly deny operationalRestoration/replay/custody."
+    },
+    {
+      "assertion": "Original authenticated session restoration and locked runtime readiness",
+      "requiredEvidence": "Separate downstream precutover-closure receipt passed=true, original cookie auth/me200, finance/mission/user invariants, no-provider request attemptCount1, source root exclusion, restore and Redis outage/refusal logs",
+      "status": "PENDING",
+      "limit": "Held capture success alone never establishes session restoration; skipped downstream test is not PASS."
+    },
+    {
+      "assertion": "Broader #33/#39 complete operational restore, all writer cohorts and once-only pending replay",
+      "requiredEvidence": "Complete declared topology coverage and source quarantine, all persistent stores+Redis consistency, actual restored application, admitted pending work completion once across further restart",
+      "status": "PENDING",
+      "limit": "Precutover fixture restores enabled stores and terminal no-provider request; it does not automatically establish all writer cohorts or pending-work replay."
+    },
+    {
+      "assertion": "Protected independent custody",
+      "requiredEvidence": "Independently authenticated off-host retention, runtime deletion/alteration denial and protected readback restore",
+      "status": "PENDING",
+      "limit": "CI artifact retention and same-host sealed bytes are not protected custody."
+    }
+  ],
+  "testsRepeated": false,
+  "newAcceptedRequirements": []
+}

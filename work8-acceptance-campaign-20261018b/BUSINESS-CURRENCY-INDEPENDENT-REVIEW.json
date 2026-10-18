@@ -1,0 +1,22 @@
+{
+  "decision": "APPROVED_SCOPED_RETAINED_SOURCE_PROJECTION_NOT_BUSINESS_QUALIFICATION",
+  "reviewer": "integration_review",
+  "dossierSha256": "0e5da5b1f281b10fafb647cee5e1cf8b31ae8b8598418190b036030ef7fc09d9",
+  "checks": [
+    "All3 retained source envelopes and fact digests match dossier pins",
+    "Exact product/variant price2.76 matches source",
+    "Stock explicitly factory8023/CJ0, not verified ready-to-dispatch CJ inventory",
+    "All10 freight rows, row digests, prices, services and quoted lead times match retained response",
+    "Selected freight remains null; eligibility deferred; no permission/owner/model/financial approval fabricated"
+  ],
+  "currencyDecision": "USD is an inherited endpoint-field adapter-contract inference with source URLs and historical verifiedAt metadata, not an explicit currency observation in these3 provider responses. Appropriate only with that attribution; no fresh official-document verification performed.",
+  "limits": [
+    "Historical contract metadata is not itself a captured official documentation body; this review verifies software contract application, not current provider documentation truth",
+    "No selected freight, guaranteed delivery, demand, margin or complete business acceptance inferred",
+    "Freshness is bounded to dossier timestamp and source expiry; do not present as perpetually current"
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "externalRefresh": false,
+  "paidInference": 0
+}

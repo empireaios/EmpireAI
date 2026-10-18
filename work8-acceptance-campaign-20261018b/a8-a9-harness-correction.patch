@@ -1,0 +1,58 @@
+diff --git a/empireai-web/e2e/work8-media-native.mjs b/empireai-web/e2e/work8-media-native.mjs
+index e18a371e..cb4d8c40 100644
+--- a/empireai-web/e2e/work8-media-native.mjs
++++ b/empireai-web/e2e/work8-media-native.mjs
+@@ -71,7 +71,7 @@ try{
+  const page=await ctx.newPage();await page.goto(base+'/cockpit/products');const region=page.getByRole('region',{name:'Product media versions'});await region.waitFor({timeout:60000});
+  await check('Unapproved/reapproved selection has no external approval '+width,async()=>{await region.getByRole('button',{name:width===1440?'Select and approve test-media':'Approve revised batch internally',exact:true}).click();await region.getByText('Approved internally; separate publication approval is outstanding.',{exact:true}).waitFor({timeout:20000});const m=await view();assert.equal(m.externalStatus,'NOT_SUBMITTED');assert.equal(m.current.assets.length,width===1440?1:2);assert(m.current.assets.every(a=>a.sha256===sha(svg)))});
+  await check('Separate selected-version intercepted submission '+width,async()=>{await region.getByRole('button',{name:'Authorise simulated submission of selected version',exact:true}).click();await region.getByText(/simulated submission intercepted/).first().waitFor({timeout:20000});const m=await view();assert.equal(m.externalStatus,'SIMULATED_SUBMISSION_INTERCEPTED');assert(m.history.every(e=>e.externalEffects===0))});
+- await check('Archive collapsed toggle preserves selected bytes '+width,async()=>{const a=region.locator('details').filter({has:page.getByText('Archive',{exact:true})});assert.equal(await a.getAttribute('open'),null);const selected=(await view()).current;await a.locator('summary').click();await a.locator('summary').click();assert.deepEqual((await view()).current,selected)});
++ await check('Archive collapsed toggle preserves selected bytes '+width,async()=>{const a=region.locator('details').filter({has:page.getByText('Archive',{exact:true})});assert.equal(await a.getAttribute('open'),null);const selected=(await view()).current;await a.locator(':scope > summary').click();await a.locator(':scope > summary').click();assert.deepEqual((await view()).current,selected)});
+  await check('Relevant media visible and no horizontal overflow '+width,async()=>{assert.equal(await region.locator('img').count(),width===1440?3:4);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))});
+  await region.screenshot({path:join(out,'media-'+width+'.png')});
+  }finally{await ctx.close()}}
+@@ -108,10 +108,10 @@ try{
+     const byteHashes=await page.evaluate(async urls=>Promise.all(urls.map(async url=>{const b=await (await fetch(url)).arrayBuffer();return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b))).map(x=>x.toString(16).padStart(2,'0')).join('')})),identities.map(a=>a.url));assert.deepEqual(byteHashes,identities.map(a=>sha(a.bytes)));
+     await region.getByRole('button',{name:'Approve revised batch internally',exact:true}).click();await region.getByText('Approved internally; separate publication approval is outstanding.',{exact:true}).waitFor({timeout:20000});
+     const approved=await view();assert.equal(approved.current.assets.length,2);assert.equal(approved.externalStatus,'NOT_SUBMITTED');
+-    const archive=region.locator('details').filter({has:page.getByText('Archive',{exact:true})});assert.equal(await archive.getAttribute('open'),null);await archive.locator('summary').click();
++    const archive=region.locator('details').filter({has:page.getByText('Archive',{exact:true})});assert.equal(await archive.getAttribute('open'),null);await archive.locator(':scope > summary').click();
+     assert(await archive.locator('article').count()>0);assert((await view()).history.some(e=>e.digest===before.proposal.digest));
+     await archive.getByText('Version '+before.proposal.version+' · '+before.proposal.status,{exact:true}).first().waitFor();
+-    await archive.locator('summary').click();assert.deepEqual((await view()).current,approved.current);
++    await archive.locator(':scope > summary').click();assert.deepEqual((await view()).current,approved.current);
+     await page.reload();await region.waitFor();const restored=await view();assert.deepEqual(restored,approved);assert.equal(await region.locator('details').filter({has:page.getByText('Archive',{exact:true})}).getAttribute('open'),null);
+     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await region.screenshot({path:join(out,'media-gallery-'+width+'.png')});
+    });
+diff --git a/empireai-web/e2e/work8-source-context-backend.mts b/empireai-web/e2e/work8-source-context-backend.mts
+index 57b3acaa..19f2ce8a 100644
+--- a/empireai-web/e2e/work8-source-context-backend.mts
++++ b/empireai-web/e2e/work8-source-context-backend.mts
+@@ -13,9 +13,13 @@ const empire=await buildApp({startWorkers:false,startScheduler:false,pillowEnabl
+ const login=await empire.app.inject({method:'POST',url:'/auth/login',payload:{email:env.FOUNDER_EMAIL,password:env.FOUNDER_PASSWORD}});
+ if(login.statusCode!==200)throw Error('ACTUAL_HOST_AUTH_FAILED');
+ const actualCookie=String(login.headers['set-cookie']),user=login.json().user,intel=productionIntelligence();
+-const created=await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie:actualCookie},payload:{forceNew:true}});
++const created=await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie:actualCookie},payload:{}});
+ if(created.statusCode!==201)throw Error('ACTUAL_HOST_SESSION_FAILED:'+created.body);
+ const actualSession=created.json().session,host:any=getPillowHost();
++// Ordinary canonical creation persists the empty conversation before cold history reads.
++host.sessionStore=new PillowSessionStore(()=>new ReasoningState(path.join(root,'commissioning','pillow-reasoning.sqlite')));
++const initialHistory=await empire.app.inject({method:'GET',url:'/api/pillow/history?sessionId='+encodeURIComponent(actualSession.sessionId),headers:{cookie:actualCookie}});
++if(initialHistory.statusCode!==200||initialHistory.json().sessionId!==actualSession.sessionId||initialHistory.json().history.length!==0)throw Error('ACTUAL_CANONICAL_COLD_HISTORY_FAILED:'+initialHistory.body);
+ let providerCalls=0;
+ host.llmLayer={listAvailableProviders:()=>['openai'],complete:async()=>{providerCalls++;return {content:'INTERCEPTED TEST RESPONSE: historical product context only; no operational authority.',provider:'openai',model:'offline-fixture',mode:'general_intelligence',usage:{promptTokens:1,completionTokens:1,totalTokens:2}};}};
+ 
+diff --git a/empireai-web/e2e/work8-source-context-native.mjs b/empireai-web/e2e/work8-source-context-native.mjs
+index d42d39e9..ee8a152b 100644
+--- a/empireai-web/e2e/work8-source-context-native.mjs
++++ b/empireai-web/e2e/work8-source-context-native.mjs
+@@ -20,7 +20,7 @@ try{
+   await page.getByRole('button',{name:'Test examples',exact:true}).click();const examples=await examplesResponse;assert.equal(examples.status(),200,'authenticated synthetic listing read');assert.ok((await examples.json()).items.length>0,'fixture portfolio contains listing');assert.equal(await page.getByRole('button',{name:'Test examples',exact:true}).getAttribute('aria-pressed'),'true');
+   await page.getByRole('button',{name:'Discuss product with Pillow',exact:true}).first().click();await page.getByLabel('Attached products',{exact:true}).waitFor();assert.match(await page.getByLabel('Attached products',{exact:true}).innerText(),/cj-sku-fixture/);await page.getByRole('button',{name:/^Remove /}).click();
+   await navigate('/cockpit/orders');await page.getByRole('button',{name:'Test order history',exact:true}).click();await page.getByRole('button',{name:'Discuss product with Pillow',exact:true}).first().click();await page.getByLabel('Attached products',{exact:true}).waitFor();assert.match(await page.getByLabel('Attached products',{exact:true}).innerText(),/cj-sku-fixture/);await page.getByRole('button',{name:/^Remove /}).click();
+-  async function products(){if(page.url().startsWith(base))await navigate('/cockpit/products');else await page.goto(base+'/cockpit/products');await page.getByRole('heading',{name:'Products & Approvals',exact:true}).waitFor();await until(async()=>await page.getByRole('button',{name:'Discuss product with Pillow',exact:true}).count()>0);for(const summary of await page.locator('details>summary').all()){if(await summary.isVisible()&&!await summary.evaluate(el=>el.parentElement.open))await summary.click();}}
++  async function products(){if(page.url().startsWith(base))await navigate('/cockpit/products');else await page.goto(base+'/cockpit/products');await page.getByRole('heading',{name:'Products & Approvals',exact:true}).waitFor();const candidates=page.getByRole('region',{name:'Candidate evidence progress',exact:true}),summaries=candidates.locator('details>summary').filter({hasText:/^Product /});await until(async()=>await summaries.count()===2);for(const summary of await summaries.all()){if(!await summary.evaluate(el=>el.parentElement.open))await summary.click();}await until(async()=>await candidates.getByRole('button',{name:'Discuss product with Pillow',exact:true}).count()===2);}
+   await products();await page.getByRole('button',{name:'Discuss product with Pillow',exact:true}).first().click();await page.getByLabel('Attached products',{exact:true}).waitFor();assert.match(await page.getByLabel('Attached products',{exact:true}).innerText(),/CJYD323957901AZ/);
+   await page.getByRole('button',{name:/^Remove /}).click();assert.equal(await page.getByLabel('Attached products',{exact:true}).count(),0);
+   await products();await page.getByRole('button',{name:'Discuss product with Pillow',exact:true}).first().click();await page.getByLabel('Attached products',{exact:true}).waitFor();

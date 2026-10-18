@@ -1,0 +1,426 @@
+{
+  "classification": "READ_ONLY_LOCAL_PROJECTION_OF_RETAINED_PROVIDER_RECORDS_NOT_OWNER_REVIEW",
+  "at": "2026-10-18T08:44:10.930Z",
+  "sourceInputs": "../post-publication-20261018/ev_*.json",
+  "review": null,
+  "financialSnapshot": null,
+  "schema": "WORK8_QUALIFICATION_DOSSIER_V1",
+  "workspace": "ws_empire_1",
+  "candidateId": "CJ:2610171752021618700:2610171752021619700",
+  "sourceBinding": {
+    "candidateId": "CJ:2610171752021618700:2610171752021619700",
+    "productId": "2610171752021618700",
+    "subject": {
+      "id": "2610171752021618700",
+      "variant": "2610171752021619700",
+      "marketplace": "US",
+      "destination": "US"
+    },
+    "evidence": [
+      {
+        "id": "ev_eebe8951f46cbbbe14c883c5e884c531aaeae9bc",
+        "envelopeDigest": "ba175c9862373c3a4914a5269337180d3207fce99793df1e844047f3a6faa7f0"
+      },
+      {
+        "id": "ev_6724ef7efa25794fab55a347e0c72b97f4a9b3c5",
+        "envelopeDigest": "ca00d67b26a5f4a8e0a3a9fd7791da6b66a8570ee7b217e6e2285c751ea1fb83"
+      },
+      {
+        "id": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+        "envelopeDigest": "79eac25330cc62ccd88642359448db59cd57de7e4f332240d119f9d6bdc550fd"
+      }
+    ],
+    "snapshotDigest": "73af558e04c3b50aaaa4f37cc66376c33d7b9e85328f9f75d0c797c2e8785be0"
+  },
+  "sourceEvidence": [
+    {
+      "id": "ev_eebe8951f46cbbbe14c883c5e884c531aaeae9bc",
+      "envelopeDigest": "ba175c9862373c3a4914a5269337180d3207fce99793df1e844047f3a6faa7f0",
+      "factsDigest": "3727f5a515b7f3970e9681773ac452df98df44e9b3e1f7c447d63ea16a9e3d0a",
+      "provider": "CJ",
+      "capability": "cj.detail",
+      "endpoint": "/product/query",
+      "observedAt": "2026-10-18T06:39:26.282Z",
+      "expiresAt": "2026-10-18T12:39:26.283Z",
+      "freshness": "FRESH",
+      "classification": "RETAINED_PROVIDER_OBSERVATION"
+    },
+    {
+      "id": "ev_6724ef7efa25794fab55a347e0c72b97f4a9b3c5",
+      "envelopeDigest": "ca00d67b26a5f4a8e0a3a9fd7791da6b66a8570ee7b217e6e2285c751ea1fb83",
+      "factsDigest": "57588a4834e0346b0dbe3cd89150c12c85f189657b7a2f2f15e0ebdec90cde2c",
+      "provider": "CJ",
+      "capability": "cj.stock",
+      "endpoint": "/product/stock/queryByVid",
+      "observedAt": "2026-10-18T06:39:53.933Z",
+      "expiresAt": "2026-10-18T12:39:53.933Z",
+      "freshness": "FRESH",
+      "classification": "RETAINED_PROVIDER_OBSERVATION"
+    },
+    {
+      "id": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+      "envelopeDigest": "79eac25330cc62ccd88642359448db59cd57de7e4f332240d119f9d6bdc550fd",
+      "factsDigest": "6f3a108376a0c03bd01ff2ce20e4e922776a231f0ad1daf06f9cedc01ccd5fcd",
+      "provider": "CJ",
+      "capability": "cj.freight",
+      "endpoint": "/logistic/freightCalculate",
+      "observedAt": "2026-10-18T06:39:54.255Z",
+      "expiresAt": "2026-10-18T12:39:54.256Z",
+      "freshness": "FRESH",
+      "classification": "RETAINED_PROVIDER_OBSERVATION"
+    }
+  ],
+  "supplier": {
+    "productId": "2610171752021618700",
+    "variantId": "2610171752021619700",
+    "destination": "US",
+    "identityVerified": true,
+    "title": "Highland Cow Desktop Sticky Note Organizer",
+    "price": 2.76,
+    "currency": "USD",
+    "currencyBasis": {
+      "currency": "USD",
+      "endpoint": "/product/query",
+      "field": "variants[].variantSellPrice",
+      "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+      "section": "1.5 Product Details(GET) / Variant",
+      "verifiedAt": "2026-10-10T21:42:51Z"
+    },
+    "stock": 8023,
+    "freight": {
+      "amount": null,
+      "currency": null,
+      "service": null,
+      "leadTime": null,
+      "currencyBasis": null,
+      "selectedBy": null,
+      "selection": null,
+      "options": [
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "fc175ed8e4947c476ec13d695dff7e544ab33cb67d4bc1b3285cc27fac80d011",
+          "amount": 6.57,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "LuWei Ordinary US",
+          "leadTime": "5-11",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "a26dc62cbb82e01962cbe041ea76127a61d98b23ed84257ee3144151db0674cb",
+          "amount": 7.28,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "YunExpress Ordinary",
+          "leadTime": "4-7",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "59b2da7516cb7e098cb8e5fb25faecc93cadeced247bafc41d4d4ce7bfd7c5f4",
+          "amount": 7.9,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "YunExpress Sensitive",
+          "leadTime": "4-7",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "6e7da734461b9317aed30b06b64e24aff25c5fd4d622eb1318a1660d89bd125b",
+          "amount": 7.39,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "CJPacket Ordinary",
+          "leadTime": "4-9",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "870a65b5a66e416722329ffca61a512eb46d902a5771909a329b5a97cadb8d46",
+          "amount": 7.62,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "CJPacket Super Pure Electricity",
+          "leadTime": "5-11",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "2de101ce3655edd3a688d168dc09d08c89d16422b858ea67592eb3354c605147",
+          "amount": 7.62,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "CJPacket Pure Electricity",
+          "leadTime": "7-14",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "3ca75f422e434c03752a89a3a640327547d3d4b61f1c972d2252e8f0dcffa0ee",
+          "amount": 8.12,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "CJPacket Sensitive",
+          "leadTime": "4-9",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "69df11295eb56558f142b3c26cf3c7044b8a15ee6c6f15b9709e8b79f7b7ec44",
+          "amount": 9.21,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "CJPacket Sensitive Pro",
+          "leadTime": "5-11",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "d2f2ef33ab35c2033d9c79f60d1c51f40696218117ed4776233e20ecab744f84",
+          "amount": 8.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "USPS Ordinary",
+          "leadTime": "5-11",
+          "currencyContradiction": false
+        },
+        {
+          "evidenceId": "ev_4391af5c2fd305056645b5c8bc158e233c505a85",
+          "rowDigest": "8858f6a2e6e35b1c9477c93cc525e21b56b1ed852e7b381031428b9c806ae8bf",
+          "amount": 9.11,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/logistic/freightCalculate",
+            "field": "logisticPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/logistic.html",
+            "section": "1.1 Freight Calculation / Return",
+            "verifiedAt": "2026-10-11"
+          },
+          "service": "CJPacket Eub Special Line",
+          "leadTime": "10-23",
+          "currencyContradiction": false
+        }
+      ]
+    },
+    "images": [
+      {
+        "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/18/02/f0453bf8-d2e3-48a4-bbb4-15e32f487cbe.jpg",
+        "displayUrl": null,
+        "rights": "UNVERIFIED",
+        "permissionEvidence": null
+      },
+      {
+        "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/18/02/7642d387-1d20-4395-b438-94c0a3e7b5de.jpg",
+        "displayUrl": null,
+        "rights": "UNVERIFIED",
+        "permissionEvidence": null
+      },
+      {
+        "observedUrl": "https://cf.cjdropshipping.com/quick/product/5fed412f-63f0-4f83-b1df-80d70929c0aa.jpg",
+        "displayUrl": null,
+        "rights": "UNVERIFIED",
+        "permissionEvidence": null
+      },
+      {
+        "observedUrl": "https://cf.cjdropshipping.com/quick/product/50f5f2d4-6c8f-4c35-9a66-ae162f72625c.jpg",
+        "displayUrl": null,
+        "rights": "UNVERIFIED",
+        "permissionEvidence": null
+      },
+      {
+        "observedUrl": "https://cf.cjdropshipping.com/quick/product/304029b0-0825-453f-b2c0-72cbb5554421.jpg",
+        "displayUrl": null,
+        "rights": "UNVERIFIED",
+        "permissionEvidence": null
+      },
+      {
+        "observedUrl": "https://cf.cjdropshipping.com/quick/product/8f13a985-f6dd-4f26-b955-bc1f92ce1e35.jpg",
+        "displayUrl": null,
+        "rights": "UNVERIFIED",
+        "permissionEvidence": null
+      }
+    ]
+  },
+  "financialInputs": {
+    "status": "MISSING_REVIEWED_CANONICAL_INPUTS",
+    "reason": "CANONICAL_FINANCIAL_READ_UNAVAILABLE",
+    "economics": null,
+    "cash": null,
+    "fx": null,
+    "financialDigest": null,
+    "grantsAuthority": false
+  },
+  "findings": [
+    {
+      "kind": "DEMAND",
+      "status": "MISSING_REVIEWED_EVIDENCE",
+      "value": null,
+      "sourceIds": [],
+      "verified": false
+    },
+    {
+      "kind": "COMPETITION",
+      "status": "MISSING_REVIEWED_EVIDENCE",
+      "value": null,
+      "sourceIds": [],
+      "verified": false
+    },
+    {
+      "kind": "DIFFERENTIATION",
+      "status": "MISSING_REVIEWED_EVIDENCE",
+      "value": null,
+      "sourceIds": [],
+      "verified": false
+    },
+    {
+      "kind": "QUALITY",
+      "status": "MISSING_REVIEWED_EVIDENCE",
+      "value": null,
+      "sourceIds": [],
+      "verified": false
+    },
+    {
+      "kind": "COMPLIANCE",
+      "status": "MISSING_REVIEWED_EVIDENCE",
+      "value": null,
+      "sourceIds": [],
+      "verified": false
+    },
+    {
+      "kind": "RETURNS",
+      "status": "MISSING_REVIEWED_EVIDENCE",
+      "value": null,
+      "sourceIds": [],
+      "verified": false
+    },
+    {
+      "kind": "MARKETPLACE",
+      "status": "MISSING_REVIEWED_EVIDENCE",
+      "value": null,
+      "sourceIds": [],
+      "verified": false
+    }
+  ],
+  "eligibility": {
+    "status": "DEFERRED",
+    "qualified": false,
+    "missing": [
+      "AUTHENTICATED_EVIDENCE_REVIEW_REQUIRED",
+      "CANONICAL_FINANCIAL_SNAPSHOT_REQUIRED",
+      "COMPLETE_CURRENT_CASH_POSITION_REQUIRED",
+      "COMPLETE_REVIEWED_FORECAST_REQUIRED",
+      "EXACT_FREIGHT_REQUIRED",
+      "FREIGHT_CURRENCY_REQUIRED",
+      "SOURCE_COST_FX_BINDING_REQUIRED"
+    ],
+    "rejected": []
+  },
+  "modelProposal": null,
+  "ownerApproval": null,
+  "simulationEnrollment": null,
+  "grantsAuthority": false,
+  "externalEffects": 0,
+  "paidInference": 0,
+  "policy": {
+    "version": "WORK8_TEXT_QUALIFICATION_V1",
+    "intendedUse": "INTERNAL_TEXT_SCREENING",
+    "mandatory": [
+      "EXACT_IDENTITY",
+      "FRESH_PRICE_CURRENCY_STOCK",
+      "PROCESSING",
+      "DESTINATION_FREIGHT",
+      "REVIEWED_SEVEN_FINDINGS",
+      "COMPLETE_REVIEWED_ECONOMICS",
+      "SOURCE_COST_FX_BINDING",
+      "COMPLETE_CASH_LIABILITIES_COMMITMENTS",
+      "EXPOSURE_BUDGET"
+    ],
+    "optional": [
+      "PRODUCT_IMAGES",
+      "MODEL_PROPOSAL"
+    ],
+    "imageDisplayAllowed": false,
+    "grantsExecutionAuthority": false
+  },
+  "reviewEvidencePins": [],
+  "financialQualification": {
+    "status": "INCOMPLETE",
+    "netEstimate": null,
+    "exposure": null,
+    "cash": null,
+    "conversions": []
+  },
+  "downstreamGates": {
+    "imageDisplay": "PERMISSION_REQUIRED",
+    "listing": "PERMISSION_AND_LISTING_REVIEW_REQUIRED",
+    "assessment": "COMPLETED_DOSSIER_BOUND_ASSESSMENT_REQUIRED",
+    "simulation": "EXPLICIT_OWNER_AUTHORITY_REQUIRED"
+  },
+  "digest": "ea2053fe3b1b1ad02705921d8783b6bf062c21d2b961b264f706a5a080799a6d"
+}

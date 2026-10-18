@@ -1,0 +1,30 @@
+{
+  "source": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "tree": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+  "actualBrowserCheckout": "46c81fcbe6744759bb5c5d0ad65a7bbbcae748ce",
+  "actualBrowserTreeMatches": true,
+  "productRun": 39112559598,
+  "browserJob": 117631687420,
+  "runtimeRun": 39112559614,
+  "runtimeJob": 117631579499,
+  "artifacts": {
+    "12130883781": "71afd774fa7d438a0595b7b5c40911aab72f0cc8873100a7795822ff0a55122f",
+    "12131730043": "8d5ebc9ef57f010864031cdd5e003689881d1c123a569682807960cb45adbec8",
+    "12131540330": "5a179b8cf88fc65a0f92bc4579ca5165d85f640e37cd68e75e68da89cbf1f76d"
+  },
+  "hh4Artifact": {
+    "id": 12130868671,
+    "sha256": "ba737ca31eb61727a08c169fa4a1a15d204495b55a5e1f16cb7c405ec643aa6f"
+  },
+  "decisions": {
+    "A8": "PENDING: native Products action wait timeout; prior listing/order contexts successful, history404 observed. Full followup/comparison/history/desktop unproven.",
+    "A9": "PENDING: image/video import advanced; archive summary selector matches nested verification summaries, blocking complete archive and postapproval reload examination.",
+    "A11": "PASS_PRESERVED: sixteen assertion checks passed, no contradictory evidence; externalEffects0 and paidInference0.",
+    "HH4": "PENDING_FULL_PACKAGE: held capture, readiness and containment scoped PASS; domain rehydration child fails EACCES reading root-owned evidence, session restoration downstream skipped.",
+    "OwnerConsole": "SCOPED_PASS: exact historical request/response authenticated readback desktop/mobile before+after refresh, unchanged transcript/receipt hashes. Not full owner journey."
+  },
+  "newAcceptedOriginals": [],
+  "newAcceptedAmendments": [],
+  "counts": "42 accepted /22 outstanding",
+  "limits": "Independent conclusions based on actual artifacts. No source repair or passing subset substituted for complete contract."
+}

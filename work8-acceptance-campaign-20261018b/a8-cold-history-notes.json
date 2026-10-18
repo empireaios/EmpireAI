@@ -1,0 +1,23 @@
+{
+  "status": "PASS_SCOPED_PENDING_INDEPENDENT_REVIEW",
+  "baseCommit": "e50c4e5c5181d0e8b5d373f09d3fc5eb37522a85",
+  "files": {
+    "backend/src/validation/tests/work8-product-history-cold-process.test.ts": "a2b80e92659da6d0e4c521dd2fe6b9afd72d519aa2b00310bbab99eadcf1d410",
+    "backend/src/orchestration/pillow-host/reasoning-state.ts": "1b227e1065ae315e48a451659b3557d5cdd43cfb4742645182f5155ee2d6f5f2",
+    "backend/src/orchestration/pillow-host/session-store.ts": "1e63b69cbe650aaca056b05078346aaf58286b0e3dc7b10dfe330610bb41b3f3"
+  },
+  "tests": {
+    "pass": 1,
+    "fail": 0,
+    "node": "22.23.2"
+  },
+  "scope": "Process termination and fresh process reopening of actual reasoning/session persistence adapters. Synthetic product-bound user turn and labelled synthetic assistant turn; exact canonical identity/full source-version fields/unknowns persist with cross-owner/workspace read refusal. No paid inference.",
+  "notClaimed": [
+    "HTTP authentication",
+    "Original external authentication token restoration",
+    "Redis queue recovery",
+    "Full application boot or #33/#39",
+    "Full A8 acceptance before native hosted results"
+  ],
+  "patchSha256": "0501323ab243bb168bdd95aa07989fc15c4c12c32927c7fcb0fd54de357460e5"
+}

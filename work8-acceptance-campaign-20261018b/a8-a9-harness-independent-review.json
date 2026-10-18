@@ -1,0 +1,34 @@
+{
+  "reviewer": "integration_review",
+  "decision": "APPROVED_SCOPED_HARNESS_CORRECTIONS_PENDING_HOSTED_NATIVE",
+  "files": [
+    {
+      "path": "empireai-web/e2e/work8-source-context-native.mjs",
+      "sha256": "fe49d25f8f70feed648f0d8014c441ca84707093fab63a007c32ff8e580e9f33"
+    },
+    {
+      "path": "empireai-web/e2e/work8-source-context-backend.mts",
+      "sha256": "f44f1c2b5682d5f3207e7f9717ba56784e174fcea7c309613f49d23ea8a7585c"
+    },
+    {
+      "path": "empireai-web/e2e/work8-media-native.mjs",
+      "sha256": "48500fb0af520bd422c39cdda5d0c54d3a80aaedb3c34dc71d6e54fce8974222"
+    }
+  ],
+  "findings": [
+    "A8 waits exact two Product summaries inside actual Candidate evidence progress region, opens collapsed details, then waits for actual accessible Discuss controls. Fixes circular wait without relaxing counts or assertions.",
+    "A8 ordinary actual canonical session creation matches normal frontend path; actual fresh-store history route200 empty assertion before readiness catches prior ephemeral forceNew session404. No manufactured persistence.",
+    "A9 archive direct-child summary selectors distinguish nested evidence summaries; all original exact bytes, approval, version, gallery/archive and durable reload assertions remain."
+  ],
+  "reviewedProof": [
+    "Actual HTTP preflight script and result: initial cold200, intercepted chat423, persisted cold200, exact context reference retained, foreign403.",
+    "Actual Tier0 fixture admission accepted202 and forged pin409 retained.",
+    "Production createSession/sessionStore branches and EnrichmentStatus summary/region identities reviewed."
+  ],
+  "testsNotRepeated": true,
+  "remaining": [
+    "Hosted browser corrected selectors at390/1440 widths",
+    "Complete independent A8/A9 acceptance after exact published source artifacts"
+  ],
+  "newRequirementsAccepted": []
+}
