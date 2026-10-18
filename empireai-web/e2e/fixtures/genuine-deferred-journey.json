@@ -1,0 +1,602 @@
+{
+  "classification": "RETAINED_GENUINE_TEMPORAL_IDENTITY_NOT_EXACT_ASSESSMENT_INPUT",
+  "workspace": "ws_empire_1",
+  "productId": "B0GN1TZZ9W",
+  "marketEvidence": [
+    {
+      "id": "ev_6b78ad4ee360cd4a38237a9b3f93508cc9ec33c1",
+      "capabilityId": "amazon.offers",
+      "eye": "MARKET",
+      "provider": "Amazon",
+      "endpoint": "/products/pricing/v0/items/B0GN1TZZ9W/offers",
+      "subject": {
+        "id": "B0GN1TZZ9W",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-10T18:39:09.158Z",
+      "retrievedAt": "2026-10-10T18:39:09.158Z",
+      "staleAfter": "2026-10-11T00:39:09.158Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "4c97de6cfd28d51c703113df00c711a5db2103cce13493b614b3203ef3be0c4b",
+      "facts": {
+        "response": {
+          "payload": {
+            "ASIN": "B0GN1TZZ9W",
+            "status": "Success",
+            "ItemCondition": "New",
+            "Identifier": {
+              "MarketplaceId": "ATVPDKIKX0DER",
+              "ItemCondition": "New",
+              "ASIN": "B0GN1TZZ9W"
+            },
+            "Summary": {
+              "LowestPrices": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "LandedPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "ListingPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "Shipping": {
+                    "CurrencyCode": "USD",
+                    "Amount": 0
+                  }
+                }
+              ],
+              "BuyBoxPrices": [
+                {
+                  "condition": "New",
+                  "LandedPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "ListingPrice": {
+                    "CurrencyCode": "USD",
+                    "Amount": 18.99
+                  },
+                  "Shipping": {
+                    "CurrencyCode": "USD",
+                    "Amount": 0
+                  }
+                }
+              ],
+              "NumberOfOffers": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "OfferCount": 1
+                }
+              ],
+              "BuyBoxEligibleOffers": [
+                {
+                  "condition": "new",
+                  "fulfillmentChannel": "Amazon",
+                  "OfferCount": 1
+                }
+              ],
+              "SalesRankings": [
+                {
+                  "ProductCategoryId": "office_product_display_on_website",
+                  "Rank": 275
+                },
+                {
+                  "ProductCategoryId": "1069544",
+                  "Rank": 1
+                }
+              ],
+              "ListPrice": {
+                "CurrencyCode": "USD",
+                "Amount": 19.99
+              },
+              "TotalOfferCount": 1
+            },
+            "Offers": [
+              {
+                "Shipping": {
+                  "CurrencyCode": "USD",
+                  "Amount": 0
+                },
+                "ListingPrice": {
+                  "CurrencyCode": "USD",
+                  "Amount": 18.99
+                },
+                "ShippingTime": {
+                  "maximumHours": 0,
+                  "minimumHours": 0,
+                  "availabilityType": "NOW"
+                },
+                "SellerFeedbackRating": {
+                  "FeedbackCount": 66520,
+                  "SellerPositiveFeedbackRating": 99
+                },
+                "PrimeInformation": {
+                  "IsPrime": true,
+                  "IsNationalPrime": true
+                },
+                "SubCondition": "new",
+                "SellerId": "A2K3WARBVMJ9U9",
+                "IsFeaturedMerchant": true,
+                "IsBuyBoxWinner": true,
+                "IsFulfilledByAmazon": true
+              }
+            ],
+            "marketplaceId": "ATVPDKIKX0DER"
+          }
+        },
+        "price": 18.99,
+        "currency": "USD",
+        "marketplaceId": "ATVPDKIKX0DER",
+        "interpretation": "Provider observation; sales rank is a proxy, not unit demand. No real EmpireAI sales claim."
+      },
+      "jobId": "follow_c2ba5d462cd663fe83475c3116a61a517383",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "Amazon:/products/pricing/v0/items/B0GN1TZZ9W/offers"
+      ],
+      "grantsAuthority": false
+    },
+    {
+      "id": "ev_042a033c4d1739ea9e31f361bf4eb295b48ed39e",
+      "capabilityId": "amazon.catalog",
+      "eye": "MARKET",
+      "provider": "Amazon",
+      "endpoint": "/catalog/2022-04-01/items",
+      "subject": {
+        "id": "B0GN1TZZ9W",
+        "marketplace": "US"
+      },
+      "observedAt": "2026-10-10T18:39:07.980Z",
+      "retrievedAt": "2026-10-10T18:39:07.980Z",
+      "staleAfter": "2026-10-11T00:39:07.981Z",
+      "authenticity": "LIVE_PROVIDER",
+      "digest": "90df87e4d4721b6a4f9398e12e824c924cc8e42d70ec0f1aeb852898faa463d3",
+      "facts": {
+        "response": {
+          "asin": "B0GN1TZZ9W",
+          "dimensions": [
+            {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "item": {
+                "height": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "length": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "width": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                }
+              },
+              "package": {
+                "height": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "length": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "weight": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                },
+                "width": {
+                  "unit": "[DEPTH_BOUND]",
+                  "value": "[DEPTH_BOUND]"
+                }
+              }
+            }
+          ],
+          "identifiers": [
+            {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "identifiers": [
+                {
+                  "identifierType": "[DEPTH_BOUND]",
+                  "identifier": "[DEPTH_BOUND]"
+                },
+                {
+                  "identifierType": "[DEPTH_BOUND]",
+                  "identifier": "[DEPTH_BOUND]"
+                }
+              ]
+            }
+          ],
+          "salesRanks": [
+            {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "classificationRanks": [
+                {
+                  "classificationId": "[DEPTH_BOUND]",
+                  "title": "[DEPTH_BOUND]",
+                  "link": "[DEPTH_BOUND]",
+                  "rank": "[DEPTH_BOUND]"
+                }
+              ],
+              "displayGroupRanks": [
+                {
+                  "websiteDisplayGroup": "[DEPTH_BOUND]",
+                  "title": "[DEPTH_BOUND]",
+                  "link": "[DEPTH_BOUND]",
+                  "rank": "[DEPTH_BOUND]"
+                }
+              ]
+            }
+          ],
+          "summaries": [
+            {
+              "marketplaceId": "ATVPDKIKX0DER",
+              "adultProduct": false,
+              "autographed": false,
+              "brand": "WALI",
+              "browseClassification": {
+                "displayName": "Letter Trays & Stacking Supports",
+                "classificationId": "1069544"
+              },
+              "color": "Black",
+              "itemClassification": "BASE_PRODUCT",
+              "itemName": "WALI Desk File Organizer, 4 Tier Desktop Paper Letter Tray Organizer with Drawer and 2 Pen Holders, Office Desk Accessories & Workspace Organizers for Office, Home Supplies(DO005DH-B), 1 Pack, Black",
+              "manufacturer": "WALI",
+              "memorabilia": false,
+              "modelNumber": "DO005DH-B",
+              "packageQuantity": 1,
+              "partNumber": "DO005DH-B",
+              "size": "4-Tier",
+              "style": "Modern",
+              "tradeInEligible": false,
+              "websiteDisplayGroup": "office_product_display_on_website",
+              "websiteDisplayGroupName": "Office Product"
+            }
+          ]
+        },
+        "interpretation": "Catalog rank proxy; not demand or profit"
+      },
+      "jobId": "scheduled_amazon.catalog_29860959",
+      "quality": [
+        "SOURCE_SPECIFIC",
+        "BOUNDED_SAMPLE",
+        "NO_EXECUTION_AUTHORITY"
+      ],
+      "lineage": [
+        "Amazon:/catalog/2022-04-01/items",
+        "ev_05c8e6e14b75bc69c657f104fe462d19f5115ad8"
+      ],
+      "grantsAuthority": false
+    }
+  ],
+  "investigation": {
+    "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+    "instruction": "Complete EMPIREAI-CANDIDATE-001-FOLLOWUP as the distinct bounded acceptance of the repaired Pillow\u2013Four Eyes investigation workflow. Preserve predecessor requests pcr_9a70c5d827a746b3, pcr_a9ce9198cde34896 and pcr_5fcf9b139bb54343, their failures, responses and accounting; do not replay them.\n\nUse existing opportunity packages and genuine fresh evidence first. Commission actual bounded Market, Supplier, Internet and Empire Eye jobs through the investigation tool where needed. Choose exact product identifiers, supplier variants and destinations from evidence, never guesses. Investigate Amazon identity, offers and demand proxies; CJ sourcing match, stock, freight and delivery where available; official safety or policy evidence; and current Empire constraints.\n\nMaximum three accounted model calls, two rounds, four jobs and twelve HTTP requests per round, eight jobs and twenty-four HTTP requests total, and three HTTP requests per job including authentication. Use existing services only. No automatic retries, new subscriptions, listings, orders, advertising, payments, external commerce effects or authority changes.\n\nConsume returned evidence and deliver a completed CEO commercial assessment: strongest defensible candidate if supported, comparison, strategy, advantages, risks, indicative economics only where supported, and explicit qualify, reject or evidence-insufficient recommendation. Cite actual job/evidence IDs, provenance, source dates, exact gaps and next focused investigation. Never invent demand, supplier matches, delivery reliability, fees or profit. Merely proposing jobs is insufficient. Record the investigation durably for independent King's Advisor readback. Preserve NOT_BORN, commerce LOCKED, historical records, institutional memory and private doctrine. Do not start Work 5 or another canonical Work.",
+    "predecessors": [
+      "pcr_9a70c5d827a746b3",
+      "pcr_a9ce9198cde34896",
+      "pcr_5fcf9b139bb54343"
+    ],
+    "owner": "usr_a91d007ebcebe18d",
+    "instructionHash": "29aa7346f4d5b32b2d144d7cf2bec762b73e48248f94818f8004c2faaa80bab8",
+    "status": "COMPLETE",
+    "createdAt": "2026-10-08T05:13:01.877Z",
+    "maxModelCalls": 3,
+    "maxRounds": 2,
+    "maxJobs": 8,
+    "maxRequests": 24,
+    "requestId": "pcr_27fb1ed5ddb24f5a",
+    "rounds": [
+      {
+        "round": 1,
+        "status": "RECORDED",
+        "plans": [
+          {
+            "id": "inv_8aaf4538c27e170e1f1dae4c8b2d2e1d",
+            "objective": "Compare OPNICE ASIN B0BYDGF8DT against the existing fresh WALI B0GN1TZZ9W catalogue and offers receipts. Retrieve exact OPNICE identity, specifications, available identifiers, current offers and sales-rank proxies. Preserve ASIN/title binding; distinguish rank snapshots from unit demand and historical trends. Count authentication within three requests; no retries.",
+            "capabilities": [
+              "amazon.catalog",
+              "amazon.offers"
+            ],
+            "subject": {
+              "id": "B0BYDGF8DT",
+              "marketplace": "US"
+            },
+            "requestLimit": 3,
+            "evidenceRefs": [
+              "ev_fe33646a8d2a8d3c76ebdcbd591498d65f17aafc",
+              "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c",
+              "ev_8bc214cb32327f0464e05ae965f40efd91cd394b"
+            ]
+          },
+          {
+            "id": "inv_de9ab1d1b082655a58d1c4fcefe25588",
+            "objective": "Search existing CJ sourcing for the evidenced WALI DO005DH-B four-tier black letter-tray organiser with drawer and two pen holders. Return actual product identifiers and specifications for plausible sourcing candidates; retrieve detail only for an identifier genuinely returned within this job if the request budget permits. Do not equate name or photographic similarity with an exact branded sourcing match. The existing CJ decorative metal tray is a separate unmatched product, not a WALI substitute. Count authentication within three requests; no retries.",
+            "capabilities": [
+              "cj.catalog",
+              "cj.detail"
+            ],
+            "subject": {
+              "id": "B0GN1TZZ9W",
+              "marketplace": "US",
+              "query": "4 tier desk file organizer drawer pen holders"
+            },
+            "requestLimit": 3,
+            "evidenceRefs": [
+              "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c",
+              "ev_48fbe4065f6c9c0c037916b8b05b682be09d0b0c"
+            ]
+          },
+          {
+            "id": "inv_0a448a782c1dbcae6527b1ecb7bab5bb",
+            "objective": "Retrieve official Amazon US dropshipping policy evidence, including seller-of-record, packaging and returns requirements, and official safety/recall evidence relevant to the evidenced WALI DO005DH-B metal desk organiser. Report source URLs, source publication/update dates where available, retrieval dates and coverage limitations. General policy is not seller-specific listing eligibility; absence of a recall is not safety clearance. Use existing bounded public-source services only, at most three requests including any authentication; no retries.",
+            "capabilities": [
+              "internet.research",
+              "internet.safety"
+            ],
+            "subject": {
+              "id": "B0GN1TZZ9W",
+              "marketplace": "US",
+              "query": "Amazon dropshipping policy WALI DO005DH-B desk organizer recall"
+            },
+            "requestLimit": 3,
+            "evidenceRefs": [
+              "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c"
+            ]
+          },
+          {
+            "id": "inv_24b0139d5fb1e34df863def65c37feb6",
+            "objective": "Read current operating constraints, existing opportunity packages, and durable investigation/accounting records for EMPIREAI-CANDIDATE-001-FOLLOWUP. Inspect predecessor pcr_9a70c5d827a746b3, pcr_a9ce9198cde34896 and pcr_5fcf9b139bb54343 without replaying or modifying them. Establish available financial limits, model-call and HTTP accounting, evidence freshness, and whether the existing host workflow durably captures jobs, receipts and final assessment for independent King's Advisor readback. Return actual record IDs and precise persistence gaps; this read grants no write or authority change. At most three requests including authentication; no retries.",
+            "capabilities": [
+              "empire.state"
+            ],
+            "subject": {
+              "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+              "marketplace": "GLOBAL"
+            },
+            "requestLimit": 3,
+            "evidenceRefs": [
+              "ev_8bc214cb32327f0464e05ae965f40efd91cd394b",
+              "ev_48fbe4065f6c9c0c037916b8b05b682be09d0b0c",
+              "ev_3c44fb38edf8927bdd74850782ec34d71fdeb584",
+              "ev_c35d68d14349549adc81b09393b06c17e8cd7f77"
+            ]
+          }
+        ],
+        "jobIds": [
+          "inv_8aaf4538c27e170e1f1dae4c8b2d2e1d",
+          "inv_de9ab1d1b082655a58d1c4fcefe25588",
+          "inv_0a448a782c1dbcae6527b1ecb7bab5bb",
+          "inv_24b0139d5fb1e34df863def65c37feb6"
+        ],
+        "startedAt": "2026-10-08T05:13:52.426Z",
+        "completedAt": "2026-10-08T05:13:53.906Z",
+        "jobs": [
+          {
+            "id": "inv_8aaf4538c27e170e1f1dae4c8b2d2e1d",
+            "objective": "Compare OPNICE ASIN B0BYDGF8DT against the existing fresh WALI B0GN1TZZ9W catalogue and offers receipts. Retrieve exact OPNICE identity, specifications, available identifiers, current offers and sales-rank proxies. Preserve ASIN/title binding; distinguish rank snapshots from unit demand and historical trends. Count authentication within three requests; no retries.",
+            "capabilities": [
+              "amazon.catalog",
+              "amazon.offers"
+            ],
+            "subject": {
+              "id": "B0BYDGF8DT",
+              "marketplace": "US"
+            },
+            "requestLimit": 3,
+            "evidenceRefs": [
+              "ev_fe33646a8d2a8d3c76ebdcbd591498d65f17aafc",
+              "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c",
+              "ev_8bc214cb32327f0464e05ae965f40efd91cd394b"
+            ],
+            "workspace": "ws_empire_1",
+            "requester": "PILLOW:pcr_27fb1ed5ddb24f5a",
+            "createdAt": "2026-10-08T05:13:52.437Z",
+            "status": "COMPLETED",
+            "attempts": 1,
+            "requestsUsed": 3,
+            "evidence": [
+              "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+              "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761"
+            ],
+            "failures": [],
+            "inferenceCalls": 0,
+            "commerceEffects": 0,
+            "grantsAuthority": false,
+            "startedAt": "2026-10-08T05:13:52.486Z",
+            "lease": "aca23fdd-eb55-4260-9c40-e9743ed46c5f",
+            "completedAt": "2026-10-08T05:13:53.781Z",
+            "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+          },
+          {
+            "id": "inv_de9ab1d1b082655a58d1c4fcefe25588",
+            "objective": "Search existing CJ sourcing for the evidenced WALI DO005DH-B four-tier black letter-tray organiser with drawer and two pen holders. Return actual product identifiers and specifications for plausible sourcing candidates; retrieve detail only for an identifier genuinely returned within this job if the request budget permits. Do not equate name or photographic similarity with an exact branded sourcing match. The existing CJ decorative metal tray is a separate unmatched product, not a WALI substitute. Count authentication within three requests; no retries.",
+            "capabilities": [
+              "cj.catalog",
+              "cj.detail"
+            ],
+            "subject": {
+              "id": "B0GN1TZZ9W",
+              "marketplace": "US",
+              "query": "4 tier desk file organizer drawer pen holders"
+            },
+            "requestLimit": 3,
+            "evidenceRefs": [
+              "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c",
+              "ev_48fbe4065f6c9c0c037916b8b05b682be09d0b0c"
+            ],
+            "workspace": "ws_empire_1",
+            "requester": "PILLOW:pcr_27fb1ed5ddb24f5a",
+            "createdAt": "2026-10-08T05:13:52.448Z",
+            "status": "PARTIAL",
+            "attempts": 1,
+            "requestsUsed": 3,
+            "evidence": [
+              "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb"
+            ],
+            "failures": [
+              {
+                "capability": "cj.detail",
+                "code": "CJ_PROVIDER_1602001"
+              }
+            ],
+            "inferenceCalls": 0,
+            "commerceEffects": 0,
+            "grantsAuthority": false,
+            "startedAt": "2026-10-08T05:13:52.518Z",
+            "lease": "2a43b404-d1ff-47ee-be01-33094094d79c",
+            "completedAt": "2026-10-08T05:13:53.632Z",
+            "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+          },
+          {
+            "id": "inv_0a448a782c1dbcae6527b1ecb7bab5bb",
+            "objective": "Retrieve official Amazon US dropshipping policy evidence, including seller-of-record, packaging and returns requirements, and official safety/recall evidence relevant to the evidenced WALI DO005DH-B metal desk organiser. Report source URLs, source publication/update dates where available, retrieval dates and coverage limitations. General policy is not seller-specific listing eligibility; absence of a recall is not safety clearance. Use existing bounded public-source services only, at most three requests including any authentication; no retries.",
+            "capabilities": [
+              "internet.research",
+              "internet.safety"
+            ],
+            "subject": {
+              "id": "B0GN1TZZ9W",
+              "marketplace": "US",
+              "query": "Amazon dropshipping policy WALI DO005DH-B desk organizer recall"
+            },
+            "requestLimit": 3,
+            "evidenceRefs": [
+              "ev_b5ac2f153bffd6342f3643646dcf6a8ee9cdc18c"
+            ],
+            "workspace": "ws_empire_1",
+            "requester": "PILLOW:pcr_27fb1ed5ddb24f5a",
+            "createdAt": "2026-10-08T05:13:52.464Z",
+            "status": "PARTIAL",
+            "attempts": 1,
+            "requestsUsed": 1,
+            "evidence": [
+              "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b"
+            ],
+            "failures": [
+              {
+                "capability": "internet.research",
+                "code": "PUBLIC_SOURCE_NOT_APPROVED"
+              }
+            ],
+            "inferenceCalls": 0,
+            "commerceEffects": 0,
+            "grantsAuthority": false,
+            "startedAt": "2026-10-08T05:13:52.542Z",
+            "lease": "0765911c-cad6-44e3-b3dc-861f593112bd",
+            "completedAt": "2026-10-08T05:13:52.949Z",
+            "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+          },
+          {
+            "id": "inv_24b0139d5fb1e34df863def65c37feb6",
+            "objective": "Read current operating constraints, existing opportunity packages, and durable investigation/accounting records for EMPIREAI-CANDIDATE-001-FOLLOWUP. Inspect predecessor pcr_9a70c5d827a746b3, pcr_a9ce9198cde34896 and pcr_5fcf9b139bb54343 without replaying or modifying them. Establish available financial limits, model-call and HTTP accounting, evidence freshness, and whether the existing host workflow durably captures jobs, receipts and final assessment for independent King's Advisor readback. Return actual record IDs and precise persistence gaps; this read grants no write or authority change. At most three requests including authentication; no retries.",
+            "capabilities": [
+              "empire.state"
+            ],
+            "subject": {
+              "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+              "marketplace": "GLOBAL"
+            },
+            "requestLimit": 3,
+            "evidenceRefs": [
+              "ev_8bc214cb32327f0464e05ae965f40efd91cd394b",
+              "ev_48fbe4065f6c9c0c037916b8b05b682be09d0b0c",
+              "ev_3c44fb38edf8927bdd74850782ec34d71fdeb584",
+              "ev_c35d68d14349549adc81b09393b06c17e8cd7f77"
+            ],
+            "workspace": "ws_empire_1",
+            "requester": "PILLOW:pcr_27fb1ed5ddb24f5a",
+            "createdAt": "2026-10-08T05:13:52.475Z",
+            "status": "COMPLETED",
+            "attempts": 1,
+            "requestsUsed": 0,
+            "evidence": [
+              "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+            ],
+            "failures": [],
+            "inferenceCalls": 0,
+            "commerceEffects": 0,
+            "grantsAuthority": false,
+            "startedAt": "2026-10-08T05:13:52.554Z",
+            "lease": "00a93992-d375-4a91-8a2e-326b0a2e58f2",
+            "completedAt": "2026-10-08T05:13:52.630Z",
+            "nextStep": "Evidence available in Pillow current context; executive judgment not yet claimed"
+          }
+        ],
+        "evidenceIds": [
+          "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+          "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+          "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+          "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+          "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+        ],
+        "deliveredEvidenceIds": [
+          "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+          "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+          "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+          "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+          "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+        ]
+      }
+    ],
+    "commerceEffects": 0,
+    "predecessorProof": [
+      {
+        "id": "pcr_9a70c5d827a746b3",
+        "hash": "a874123cb473eb6aaf27c5ec74212f72699557cb9de1c2a373233501601d6bca"
+      },
+      {
+        "id": "pcr_a9ce9198cde34896",
+        "hash": "6b2a2d518fc74ad43ca0dd79cdf413a6439cac7b04ad8f9b02440447f1c8e804"
+      },
+      {
+        "id": "pcr_5fcf9b139bb54343",
+        "hash": "a874123cb473eb6aaf27c5ec74212f72699557cb9de1c2a373233501601d6bca"
+      }
+    ],
+    "recoveredMissionIds": [
+      "EMPIREAI-CANDIDATE-001"
+    ],
+    "startedAt": "2026-10-08T05:13:30.881Z",
+    "closure": {
+      "at": "2026-10-08T05:16:16.610Z",
+      "owner": "usr_a91d007ebcebe18d",
+      "advisorReadback": {
+        "requestId": "pcr_27fb1ed5ddb24f5a",
+        "assessmentHash": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab",
+        "attestedBy": "AUTHENTICATED_OWNER"
+      },
+      "scope": "Investigation workflow acceptance; commercial qualification remains assessment-specific",
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "predecessorsPreserved": true
+    },
+    "modelStepCount": 2,
+    "assessment": {
+      "sha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab",
+      "requestId": "pcr_27fb1ed5ddb24f5a",
+      "at": "2026-10-08T05:14:34.374Z",
+      "evidenceIds": [
+        "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+        "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+        "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+        "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+        "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7"
+      ]
+    }
+  },
+  "provenance": {
+    "market": "docs/work8/source-marketplace-readback.json exact retained envelopes",
+    "investigation": "Saved Advisor intelligence2026-10-18T08:22:10.533Z",
+    "temporalMeaning": "Oct10 observations concern same ASIN as Oct8 historical assessment. They were NOT consumed by that earlier assessment; original cited Oct8 envelopes absent from this fixture.",
+    "ownerDecision": "None created; historical technical workflow closure is not current product approval",
+    "downstream": "No commercial order or financial journal entries created; isolated empty stores are not a claim about production balances"
+  }
+}

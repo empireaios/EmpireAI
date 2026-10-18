@@ -29,7 +29,13 @@ for(let i=0;i<2;i++){const sources=[{id:source.id,envelopeDigest:digest(source)}
 const {acceptanceScenario}=await load('src/runtime/commerce-runtime/governed/scenario.ts');const simulation=acceptanceScenario(user.workspaceId,user.id,Date.now());for(let i=0;i<5;i++){const step=simulation.steps[i];productionCommerce().engine.execute(step.actor,{id:'a8-ui-step-'+i,missionId:'a8-labelled-ui-mission',expectedVersion:i,command:step.command});}
 app.get('/auth/me',{preHandler:auth},async(req:any)=>({user:req.user}));
 // Explicit intercepted inference boundary: input is rebound by the real resolver; no Pillow answer is fabricated.
-app.post('/api/pillow/session',{preHandler:auth},async(req:any,reply:any)=>{if(req.user.id!==user.id)return reply.code(403).send({error:'OWNER_REQUIRED'});return {session:actualSession};});
+app.post('/api/pillow/session',{preHandler:auth},async(req:any,reply:any)=>{
+ if(req.user.id!==user.id||req.user.workspaceId!==user.workspaceId)return reply.code(403).send({error:'OWNER_REQUIRED'});
+ // Exercise actual canonical-session and browser-archive handling. Never fabricate archive acknowledgement.
+ const result=await empire.app.inject({method:'POST',url:'/api/pillow/session',headers:{cookie:actualCookie},payload:req.body??{}});
+ const body=result.json();if(result.statusCode===201&&body.session?.sessionId!==actualSession.sessionId)throw Error('ACTUAL_CANONICAL_SESSION_CHANGED');
+ return reply.code(result.statusCode).send(body);
+});
 app.get('/api/pillow/history',{preHandler:auth},async(req:any,reply:any)=>{
  if(req.user.id!==user.id||req.user.workspaceId!==user.workspaceId)return reply.code(403).send({error:'OWNER_REQUIRED'});
  // Fresh actual store on every read proves disk reload, not an operating-system process restart.
