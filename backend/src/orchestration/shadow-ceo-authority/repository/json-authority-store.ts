@@ -104,11 +104,20 @@ export function saveAuthorityStore(
   store: AuthorityStoreFile,
   baseDir?: string,
 ): void {
+  writeAuthorityStore(() => store, baseDir);
+}
+
+/** Evaluate the mutation only while holding the same exclusion used by capture. */
+function writeAuthorityStore(
+  resolveNext: () => AuthorityStoreFile,
+  baseDir?: string,
+): void {
   if (captureFenceHeld) throw new Error("AUTHORITY_JSON_CAPTURE_FENCED");
   const p = resolveStorePath(baseDir);
   const releaseShared = acquireSharedAuthorityExclusion(baseDir);
   const temp = `${p}.tmp-${process.pid}-${randomUUID()}`;
   try {
+    const store = resolveNext();
     const fd = fs.openSync(temp, "wx", 0o600);
     try {
       fs.writeFileSync(fd, JSON.stringify(store, null, 2), "utf8");
@@ -130,9 +139,11 @@ export function persistBlockedAction(
   blocked: BlockedActionRecord,
   baseDir?: string,
 ): BlockedActionRecord {
-  const store = loadAuthorityStore(baseDir);
-  store.blocked.push(blocked);
-  saveAuthorityStore(store, baseDir);
+  writeAuthorityStore(() => {
+    const store = loadAuthorityStore(baseDir);
+    store.blocked.push(blocked);
+    return store;
+  }, baseDir);
   return blocked;
 }
 
@@ -140,9 +151,11 @@ export function persistApprovalRequest(
   approval: ApprovalRequest,
   baseDir?: string,
 ): ApprovalRequest {
-  const store = loadAuthorityStore(baseDir);
-  store.approvals.push(approval);
-  saveAuthorityStore(store, baseDir);
+  writeAuthorityStore(() => {
+    const store = loadAuthorityStore(baseDir);
+    store.approvals.push(approval);
+    return store;
+  }, baseDir);
   return approval;
 }
 
@@ -150,9 +163,11 @@ export function persistLoopState(
   loop: OperatingLoopState,
   baseDir?: string,
 ): OperatingLoopState {
-  const store = loadAuthorityStore(baseDir);
-  store.loop = loop;
-  saveAuthorityStore(store, baseDir);
+  writeAuthorityStore(() => {
+    const store = loadAuthorityStore(baseDir);
+    store.loop = loop;
+    return store;
+  }, baseDir);
   return loop;
 }
 

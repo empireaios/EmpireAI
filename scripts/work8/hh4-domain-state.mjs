@@ -8,6 +8,27 @@ const require=createRequire(import.meta.url),repo=path.resolve(import.meta.dirna
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const api=relative=>import(new URL('../../backend/dist/'+relative,import.meta.url));
 
+/** Run actual Fastify readiness hooks before inspecting the application-owned
+ * lazy execution store. No alternate store or seeded execution receipts. */
+export async function readyActualExecutionStore(application,host,primary,deadline){
+ const remaining=deadline-Date.now();assert.ok(remaining>0,'HH4_ACTUAL_EXECUTION_DEADLINE');
+ let timer;
+ try{await Promise.race([application.app.ready(),new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('HH4_ACTUAL_EXECUTION_DEADLINE')),remaining);})]);}
+ finally{clearTimeout(timer);}
+ const file=primary+'.mission-execution.sqlite';
+ for(;;){
+  assert.ok(Date.now()<deadline,'HH4_ACTUAL_EXECUTION_DEADLINE');
+  const diagnostics=host.getMissionAuthorityExecutionDiagnostics();
+  assert.equal(diagnostics.enabled,true,'HH4_ACTUAL_EXECUTION_ADAPTER_REQUIRED');
+  assert.equal(diagnostics.running,true,'HH4_ACTUAL_EXECUTION_RUNNER_REQUIRED');
+  assert.equal(diagnostics.paused,false,'HH4_ACTUAL_EXECUTION_RUNNER_PAUSED');
+  assert.equal(diagnostics.lastError,null,'HH4_ACTUAL_EXECUTION_STORAGE_FAILURE');
+  assert.equal(diagnostics.recoveryError,null,'HH4_ACTUAL_EXECUTION_RECOVERY_FAILURE');
+  if(fs.existsSync(file))return file;
+  await new Promise(resolve=>setTimeout(resolve,Math.min(25,Math.max(1,deadline-Date.now()))));
+ }
+}
+
 /** Only the new examination worker calls this, before final runtime readiness.
  * Writes use the real domain adapters. All new records are explicitly synthetic;
  * no provider call, live grant, commerce execution or claimed owner action occurs.
@@ -116,9 +137,8 @@ export async function initializeActualGeneratedDomains(application,root,source){
  assert.deepEqual(fs.readdirSync(path.join(root,'pillow-session-continuity')),[]);
  inventory.emptyInitializedStores=['pillow-visual-memory/records','pillow-session-continuity'];
  host.createMissionRuntimeMission({missionName:'Synthetic HH4 unapproved recovery mission',workers:[],pillowConfirmed:false,grandKingApproved:false,highRisk:false});record('missions',host.getMissionRuntimeHistory());
- const executionDiagnostics=host.getMissionAuthorityExecutionDiagnostics();
- assert.equal(executionDiagnostics.enabled,true,'HH4_ACTUAL_EXECUTION_ADAPTER_REQUIRED');
- const executionDb=new DatabaseSync(primary+'.mission-execution.sqlite',{readOnly:true,allowExtension:false});
+ const executionFile=await readyActualExecutionStore(application,host,primary,hostDeadline);
+ const executionDb=new DatabaseSync(executionFile,{readOnly:true,allowExtension:false});
  try{record('execution',{scope:executionDb.prepare('SELECT * FROM execution_meta ORDER BY id').all(),jobs:executionDb.prepare('SELECT * FROM execution_jobs ORDER BY job_id').all(),events:executionDb.prepare('SELECT * FROM execution_events ORDER BY seq').all(),note:'Actual application-owned execution store; authorized pending replay remains a separate mandatory examination.'});}finally{executionDb.close();}
  const {getDatabase}=await api('brain/database.js');
  const brain=getDatabase(),tableNames=brain.prepare("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").all().map(row=>row.name);
