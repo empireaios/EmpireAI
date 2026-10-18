@@ -1,0 +1,6 @@
+(node:3205) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"level":30,"time":1792311802933,"pid":3205,"hostname":"runnervm8k3b6","dbPath":"/tmp/pillow-commerce-browser-AFJTwy/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+OFFLINE_FIXTURE backend http://127.0.0.1:4100; browser login offline-owner@example.test / offline-browser-only; expires in 15 minutes
+{"level":30,"time":1792311802937,"pid":3205,"hostname":"runnervm8k3b6","msg":"Auth routes registered"}
+{"level":30,"time":1792311830466,"pid":3205,"hostname":"runnervm8k3b6","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}

@@ -1,0 +1,12 @@
+{
+  "status": "FAIL",
+  "source": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+  "imageId": "sha256:01cfd72be6fcabe975126e0f6905a6b684f919d322df77c674399d16ef149fd0",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n",
+  "contained": true,
+  "heldCapture": false,
+  "operationalRestoration": false,
+  "replay": false,
+  "protectedCustody": false,
+  "originalRequirementsAccepted": []
+}

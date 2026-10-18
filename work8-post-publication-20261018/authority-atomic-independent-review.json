@@ -1,0 +1,30 @@
+{
+  "decision": "APPROVED_SCOPED_SOURCE_REVIEW",
+  "reviewer": "integration_review",
+  "baseCommit": "605934a552dab4b0f27988307532d5658ff0d150",
+  "files": {
+    "backend/src/orchestration/shadow-ceo-authority/repository/json-authority-store.ts": "586984ef7b7d83cb77de661d115e3a20044798c0b95f4db690f2847b1d5b59cf",
+    "backend/src/validation/tests/work8-authority-atomic-mutation.test.ts": "3596d7c9c6c5fe916eb52b26ffcf27b5f2c72485f2f59d2d75fc6ee2779816b4"
+  },
+  "independentTests": {
+    "node": "22.23.2",
+    "deterministicMultiprocessPass": 4,
+    "fail": 0,
+    "additionalChecks": [
+      "Corrupt-state mutation throws and releases shared lock without temp files",
+      "saveAuthorityStore replacement API remains usable",
+      "Local capture rejects mutation",
+      "Capture release remains idempotent"
+    ]
+  },
+  "baselineReceipt": "authority-atomic-baseline.log reviewed: competing B admitted while A paused after reading; deterministic failing assertion on original source.",
+  "assessment": "All three persist APIs now acquire capture-shared exclusion before reading state, hold it through mutation+atomic save+fsync and release in finally even if read fails. Public saveAuthorityStore signature and replacement semantics preserved.",
+  "requiredBeforeBatch": null,
+  "limits": [
+    "Updated cooperating mutators only; older binaries and raw writes remain unexcluded",
+    "Public load then save is still separate replacement semantics, not a transaction",
+    "No full #33/#39, runtime recovery or custody acceptance"
+  ],
+  "newAcceptedRequirements": [],
+  "ciDiscovery": "Author confirmed renamed work8-* file with identical SHA256, selected by existing workflow."
+}

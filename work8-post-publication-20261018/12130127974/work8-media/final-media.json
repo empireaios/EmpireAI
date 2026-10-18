@@ -1,0 +1,431 @@
+{
+  "version": 9,
+  "original": [],
+  "proposal": {
+    "id": "14109b20-3255-4905-a0ed-56dd49b667bf",
+    "owner": "isolated-owner",
+    "workspace": "ws_empire_1",
+    "sessionId": "media",
+    "missionId": "media-test",
+    "version": 6,
+    "previous": "e6f98cb696ab7d5db0be33d185588ef8095adfea00217a68117c7efa1e2139b7",
+    "requestDigest": "32cb70680128ce6662fa4feab10f7ec82e335ae336f2905286c6d761e508c75c",
+    "at": 1792312066251,
+    "action": "PROPOSE",
+    "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+    "batchDigest": "a650726d4083349d0580ac4fae8ff9ed4081948ed0a25df38a53efeff672287d",
+    "assets": [
+      {
+        "id": "test-media",
+        "url": "https://media.example.invalid/test.svg",
+        "kind": "IMAGE",
+        "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+        "sourceIdentity": "owner-directed-local-test",
+        "rightsEvidence": "Original local SVG created under owner test directive",
+        "rightsStatus": "OWNER_REVIEWED",
+        "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+      },
+      {
+        "id": "test-media-2",
+        "url": "https://media.example.invalid/test.svg",
+        "kind": "IMAGE",
+        "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+        "sourceIdentity": "owner-directed-local-test",
+        "rightsEvidence": "Original local SVG created under owner test directive",
+        "rightsStatus": "OWNER_REVIEWED",
+        "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+      }
+    ],
+    "selectedIds": [],
+    "instructions": "New version",
+    "editingReceipt": "Original permitted local bytes new version",
+    "status": "PROPOSED_OWNER_EVIDENCE_NOT_INDEPENDENTLY_VERIFIED",
+    "externalEffects": 0,
+    "digest": "3668bc6f0002f1bf230ccb4e5f9bec9fc99be5720861569924ad3f315884072b"
+  },
+  "current": null,
+  "history": [
+    {
+      "id": "proposal",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 1,
+      "previous": "",
+      "requestDigest": "ffcd6c2a01427242dd7d2a5e1c59afd1d3b52eedaeb5bf6b0bdd59c4dcd18fba",
+      "at": 1792312031934,
+      "action": "PROPOSE",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": "156bbd07850a1f3941648ad3ef4108de37aa1215598786c32c643204cd0f8e63",
+      "assets": [
+        {
+          "id": "test-media",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        },
+        {
+          "id": "test-media-2",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        }
+      ],
+      "selectedIds": [],
+      "instructions": "Exact media approval examination",
+      "editingReceipt": "Local original test bytes; no Canva export",
+      "status": "PROPOSED_OWNER_EVIDENCE_NOT_INDEPENDENTLY_VERIFIED",
+      "externalEffects": 0,
+      "digest": "2735c2079d78abb2a1d59f543b39fb59482075c019409c936f8626f5ef79e526"
+    },
+    {
+      "id": "3b9cbabd-c808-411c-b2f7-3e4ed4a60724",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 2,
+      "previous": "2735c2079d78abb2a1d59f543b39fb59482075c019409c936f8626f5ef79e526",
+      "requestDigest": "4cf55cab46da59b4e813a553437335f036ee3a8058e8c3650fef9d227426ea9b",
+      "at": 1792312044381,
+      "action": "APPROVE_INTERNAL",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": "156bbd07850a1f3941648ad3ef4108de37aa1215598786c32c643204cd0f8e63",
+      "assets": [
+        {
+          "id": "test-media",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        },
+        {
+          "id": "test-media-2",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        }
+      ],
+      "selectedIds": [
+        "test-media"
+      ],
+      "instructions": null,
+      "editingReceipt": null,
+      "status": "APPROVED_INTERNALLY",
+      "externalEffects": 0,
+      "digest": "aed4521732adf3a7004a941a6b78e9aeac23bbb3ebce794a064e2c94db97338d"
+    },
+    {
+      "id": "a118498c-43de-481f-8aed-1d224e04ee21",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 3,
+      "previous": "aed4521732adf3a7004a941a6b78e9aeac23bbb3ebce794a064e2c94db97338d",
+      "requestDigest": "82f531a4c227264f382c328383b6c3d05ccfeb85883552239659fd3db8c32b17",
+      "at": 1792312049254,
+      "action": "APPROVE_EXTERNAL",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": "156bbd07850a1f3941648ad3ef4108de37aa1215598786c32c643204cd0f8e63",
+      "assets": [
+        {
+          "id": "test-media",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        },
+        {
+          "id": "test-media-2",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        }
+      ],
+      "selectedIds": [
+        "test-media"
+      ],
+      "instructions": null,
+      "editingReceipt": null,
+      "status": "SIMULATED_SUBMISSION_INTERCEPTED",
+      "externalEffects": 0,
+      "digest": "c213a661a1c1521d218c211053d2e1d70d3b24f4a1670494846124782177b6f2"
+    },
+    {
+      "id": "f683d628-8fe5-4c01-bf2c-905cb268a900",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 4,
+      "previous": "c213a661a1c1521d218c211053d2e1d70d3b24f4a1670494846124782177b6f2",
+      "requestDigest": "899d158f0cdafbddfbef1965093a3111858aad9a593c1b09f32504ece21d9973",
+      "at": 1792312055807,
+      "action": "APPROVE_INTERNAL",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": "156bbd07850a1f3941648ad3ef4108de37aa1215598786c32c643204cd0f8e63",
+      "assets": [
+        {
+          "id": "test-media",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        },
+        {
+          "id": "test-media-2",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        }
+      ],
+      "selectedIds": [
+        "test-media",
+        "test-media-2"
+      ],
+      "instructions": null,
+      "editingReceipt": null,
+      "status": "APPROVED_INTERNALLY",
+      "externalEffects": 0,
+      "digest": "659fb65a629f83b75cc84eec43c119454e9534168a63b11d46432e2d59e1fef3"
+    },
+    {
+      "id": "c34fd07e-f6c0-4028-9b5c-c04fd96df1aa",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 5,
+      "previous": "659fb65a629f83b75cc84eec43c119454e9534168a63b11d46432e2d59e1fef3",
+      "requestDigest": "90faf25cbe2ba86a905b4ade0f2f676b596dfca3387f877290de3835907fcd1b",
+      "at": 1792312061189,
+      "action": "APPROVE_EXTERNAL",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": "156bbd07850a1f3941648ad3ef4108de37aa1215598786c32c643204cd0f8e63",
+      "assets": [
+        {
+          "id": "test-media",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        },
+        {
+          "id": "test-media-2",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        }
+      ],
+      "selectedIds": [
+        "test-media",
+        "test-media-2"
+      ],
+      "instructions": null,
+      "editingReceipt": null,
+      "status": "SIMULATED_SUBMISSION_INTERCEPTED",
+      "externalEffects": 0,
+      "digest": "e6f98cb696ab7d5db0be33d185588ef8095adfea00217a68117c7efa1e2139b7"
+    },
+    {
+      "id": "14109b20-3255-4905-a0ed-56dd49b667bf",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 6,
+      "previous": "e6f98cb696ab7d5db0be33d185588ef8095adfea00217a68117c7efa1e2139b7",
+      "requestDigest": "32cb70680128ce6662fa4feab10f7ec82e335ae336f2905286c6d761e508c75c",
+      "at": 1792312066251,
+      "action": "PROPOSE",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": "a650726d4083349d0580ac4fae8ff9ed4081948ed0a25df38a53efeff672287d",
+      "assets": [
+        {
+          "id": "test-media",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        },
+        {
+          "id": "test-media-2",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        }
+      ],
+      "selectedIds": [],
+      "instructions": "New version",
+      "editingReceipt": "Original permitted local bytes new version",
+      "status": "PROPOSED_OWNER_EVIDENCE_NOT_INDEPENDENTLY_VERIFIED",
+      "externalEffects": 0,
+      "digest": "3668bc6f0002f1bf230ccb4e5f9bec9fc99be5720861569924ad3f315884072b"
+    },
+    {
+      "id": "c7c104df-345c-4ee4-99b6-dd2a05b20303",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 7,
+      "previous": "3668bc6f0002f1bf230ccb4e5f9bec9fc99be5720861569924ad3f315884072b",
+      "requestDigest": "4511a82f4c7d39606bd11150fe24fd45bc30d4bff742cc542936edde69984e37",
+      "at": 1792312066288,
+      "action": "APPROVE_INTERNAL",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": "a650726d4083349d0580ac4fae8ff9ed4081948ed0a25df38a53efeff672287d",
+      "assets": [
+        {
+          "id": "test-media",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        },
+        {
+          "id": "test-media-2",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        }
+      ],
+      "selectedIds": [
+        "test-media",
+        "test-media-2"
+      ],
+      "instructions": null,
+      "editingReceipt": null,
+      "status": "APPROVED_INTERNALLY",
+      "externalEffects": 0,
+      "digest": "e82b53cae443e19a867f20ea8dfb2db17ae0934067a13c49df72961f4e00dc86"
+    },
+    {
+      "id": "6e73a6f6-86e8-45ad-bac0-c5db76f1d910",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 8,
+      "previous": "e82b53cae443e19a867f20ea8dfb2db17ae0934067a13c49df72961f4e00dc86",
+      "requestDigest": "496353ad0c0db1b28de359fc5a2375dc4092afd5675a9e21993af2d0ff07fa08",
+      "at": 1792312066316,
+      "action": "REQUEST_EDIT",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": null,
+      "assets": [],
+      "selectedIds": [
+        "test-media"
+      ],
+      "instructions": "Revise before any external submission",
+      "editingReceipt": null,
+      "status": "EDIT_REQUEST_BLOCKED_CANVA_RUNTIME",
+      "externalEffects": 0,
+      "digest": "2dc8e6cc712146036f1b31aa9fa49e7dfd07ba5b9cb0a37cec610909e747f04d"
+    },
+    {
+      "id": "d0405b69-d329-414b-9736-cb625bdccc0b",
+      "owner": "isolated-owner",
+      "workspace": "ws_empire_1",
+      "sessionId": "media",
+      "missionId": "media-test",
+      "version": 9,
+      "previous": "2dc8e6cc712146036f1b31aa9fa49e7dfd07ba5b9cb0a37cec610909e747f04d",
+      "requestDigest": "9e802d60713659a27d2f67547beee918365dd7f414f56ddd8faee99283b72ca7",
+      "at": 1792312066368,
+      "action": "REJECT",
+      "receiptDigest": "2410c5ee252e30c5da769c31e1ebd7b6652c53fcc62af98a161e6c1215b78876",
+      "batchDigest": "a650726d4083349d0580ac4fae8ff9ed4081948ed0a25df38a53efeff672287d",
+      "assets": [
+        {
+          "id": "test-media",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        },
+        {
+          "id": "test-media-2",
+          "url": "https://media.example.invalid/test.svg",
+          "kind": "IMAGE",
+          "sha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+          "sourceIdentity": "owner-directed-local-test",
+          "rightsEvidence": "Original local SVG created under owner test directive",
+          "rightsStatus": "OWNER_REVIEWED",
+          "provenance": "Synthetic test approval metadata; not personal owner attestation or supplier evidence"
+        }
+      ],
+      "selectedIds": [
+        "test-media",
+        "test-media-2"
+      ],
+      "instructions": null,
+      "editingReceipt": null,
+      "status": "REJECTED",
+      "externalEffects": 0,
+      "digest": "1c3f598fc0280657ccc25e3bb73c6429138bd5b47540fa49b924d4c3872c05d7"
+    }
+  ],
+  "status": "REJECTED",
+  "reminder": null,
+  "sourceBindingCurrent": true,
+  "externalStatus": "NOT_SUBMITTED",
+  "editingCapability": "CANVA_RUNTIME_NOT_CONFIGURED",
+  "classification": "SIMULATED_MEDIA_WORKFLOW",
+  "externalEffects": 0
+}

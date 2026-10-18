@@ -1,0 +1,40 @@
+TAP version 13
+# (node:67) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:67) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: BlockedAction locks the full read-modify-write and preserves competing records
+ok 1 - BlockedAction locks the full read-modify-write and preserves competing records
+  ---
+  duration_ms: 796.009714
+  type: 'test'
+  ...
+# Subtest: ApprovalRequest locks the full read-modify-write and preserves competing records
+ok 2 - ApprovalRequest locks the full read-modify-write and preserves competing records
+  ---
+  duration_ms: 794.659041
+  type: 'test'
+  ...
+# Subtest: LoopState locks the full read-modify-write and preserves competing records
+ok 3 - LoopState locks the full read-modify-write and preserves competing records
+  ---
+  duration_ms: 733.421123
+  type: 'test'
+  ...
+# Subtest: all mutators refuse cross-process capture without changing bytes
+ok 4 - all mutators refuse cross-process capture without changing bytes
+  ---
+  duration_ms: 803.633185
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3458.95572
+(node:60) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)

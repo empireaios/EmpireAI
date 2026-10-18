@@ -1,0 +1,18 @@
+{
+  "status": "READY_FOR_INDEPENDENT_REVIEW_NOT_HOSTED_ACCEPTANCE",
+  "baseCommit": "605934a552dab4b0f27988307532d5658ff0d150",
+  "files": {
+    "backend/src/validation/tests/work8-hh4-execution-readiness.test.ts": "af8da4f1dbe2b643e1f9d0de6b23e2c3dc5de3f992d2cd70dabf45b93aef6f39",
+    "scripts/work8/hh4-domain-state.mjs": "34cecc0e627485a89877ac65a0f5e0cc92a6f2d2e1d7392c4d8c32999555edb1"
+  },
+  "rootCause": "Generated initialization runs before index app.listen, but execution runner starts in Fastify onReady. Executor diagnostics enabled describes configured lazy store, not file initialization.",
+  "change": "Harness invokes real app.ready after Pillow host becomes running, waits for actual runner-owned native store within unchanged hostDeadline, refuses disabled/paused/error diagnostics; original read-only queries retained.",
+  "proof": "Real Fastify and production MissionExecutionService/registerMissionExecutionRoutes: former read-only open fails before readiness, helper initializes through real onReady runner, native app_id/user_version/meta verified, zero jobs/events; no TCP listener and route prehandler still rejects. Deadline/disabled/storage-error cases refuse.",
+  "scope": "Focused hook/store integration uses stubbed host history, not full application or hosted HH4. No production admission, recovery flag, or timeout expansion.",
+  "tests": {
+    "pass": 2,
+    "fail": 0
+  },
+  "patchSha256": "3ff593068eb889367d693fe649db14dbb4558ee48b0afccfaa87891f8f4dcbed",
+  "typescriptBoundary": "Runtime URL import matches existing cross-root module pattern; avoids static undeclared .mjs import under strict tsconfig. Final full backend compile delegated to integration controller."
+}

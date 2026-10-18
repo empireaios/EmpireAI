@@ -1,0 +1,29 @@
+{
+  "decision": "APPROVED_SCOPED_LIFECYCLE_CORRECTION_NOT_HOSTED_ACCEPTANCE",
+  "reviewer": "independent frontend_fix_review agent",
+  "baseCommit": "605934a552dab4b0f27988307532d5658ff0d150",
+  "fileSha256": {
+    "backend/src/validation/tests/work8-hh4-execution-readiness.test.ts": "af8da4f1dbe2b643e1f9d0de6b23e2c3dc5de3f992d2cd70dabf45b93aef6f39",
+    "scripts/work8/hh4-domain-state.mjs": "34cecc0e627485a89877ac65a0f5e0cc92a6f2d2e1d7392c4d8c32999555edb1"
+  },
+  "findings": [],
+  "independentlyExecutedTests": {
+    "node": "22.23.2",
+    "pass": 2,
+    "fail": 0,
+    "skipped": 0
+  },
+  "assessment": [
+    "Original order inspected: generated initialization precedes index app.listen; mission execution runner starts in actual registered Fastify onReady hook. This establishes the lazy-file root cause.",
+    "Correction runs actual app.ready before existing readOnly DatabaseSync open. It does not fabricate execution DB or receipts. Native schema/version, empty jobs/events and no TCP listener verified through real Fastify/service/routes with stubbed host history.",
+    "Existing hostDeadline is reused unchanged and expiry is checked before ready, while waiting for ready and during subsequent polling. No deadline reset or assertion removal.",
+    "Enabled/running/unpaused/error-free adapter and runner diagnostics required. Existing admission route prehandler still rejects test request with 423. No production authority changes.",
+    "Final test import reviewed: import(new URL(relative,import.meta.url).href) resolves the identical runtime module without requiring TypeScript declarations for an external .mjs module; helper unchanged. Author reran 2/2; independent 2/2 result above predates only this equivalent import expression."
+  ],
+  "limits": [
+    "Focused service/route integration uses stubbed host; hosted actual application examination remains necessary.",
+    "Promise race bounds observation; it does not cancel hung onReady hooks. Existing outer worker failure/termination cleanup remains required and unchanged.",
+    "No full recovery, original authenticated-session restoration, or #33/#39 closure claimed."
+  ],
+  "newAcceptedRequirements": []
+}

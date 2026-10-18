@@ -1,0 +1,29 @@
+{
+  "decision": "APPROVED_SCOPED_SOURCE_REVIEW_NOT_FULL_RECOVERY",
+  "reviewer": "independent frontend_fix_review agent",
+  "baseCommit": "605934a552dab4b0f27988307532d5658ff0d150",
+  "fileSha256": {
+    "backend/src/validation/tests/work8-cold-state-materialization.test.mjs": "bf88fb27a3282cfc8855b4c72514ec8145df4e2ef30a5434e4b356f9ba72e6d0",
+    "deployment/work8-cold-state-materialization.cjs": "611f7df5e185d8052359223725796730c6e6baaeb741bb06e26e935069884358"
+  },
+  "independentlyExecutedTests": {
+    "node": "22.23.2",
+    "pass": 8,
+    "fail": 0,
+    "skipped": 0
+  },
+  "findings": [],
+  "assessment": {
+    "freshTarget": "Existing destination, dangling symlink and cooperative crash lock reject. Source/target containment and canonical-parent checks reject aliases. Private caller-owned parent is required.",
+    "tamper": "Pinned manifest digest and independent exact inventory contract, source commit/frontend pins, exact file lists, byte hashes and size assertions reject checked tampering. Source verified again after copy. SQLite sealed delete mode and integrity checked; Redis data encoding checked but not executed.",
+    "partialCleanup": "Injected write failure independently rerun: stage and owned lock removed, final target absent, source retained. This is not power-loss recovery proof.",
+    "authority": "Materialization receipt explicitly denies boot/execution authority and Redis activation. No runtime or admission calls present."
+  },
+  "limitations": [
+    "Same-UID hostile mutation is explicitly excluded in author notes. Absence check plus rename is not an atomic no-replace guarantee against uncooperative writers; destructive cleanup assumes the private parent and cooperative lock remain controlled. Do not use as writer-exclusion evidence.",
+    "Manifest producer and complete topology inventory, consistent capture, source quarantine, Redis activation and session TTL restoration remain outside this patch.",
+    "No process-crash/power-loss atomic recovery or operational boot demonstrated.",
+    "No full #33/#39 or owner amendment acceptance established."
+  ],
+  "newAcceptedRequirements": []
+}

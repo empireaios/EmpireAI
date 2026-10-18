@@ -1,0 +1,88 @@
+{
+  "decision": "APPROVED_EXACT_STAGED_SOURCE_TREE_NOT_PUBLICATION_OR_ACCEPTANCE",
+  "reviewer": "integration_review",
+  "remoteCommit": "7f1971adbc831eed2a2a838d5867895bece05239",
+  "remoteTree": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+  "remoteParent": "ee0a19d0f0b649be1e12b6dcd1fc18d69f952f85",
+  "localCandidateCommit": "fd8b0c7e09336b50b06c9cad8543e0d862cd1324",
+  "completeRootReadback": {
+    "entries": 147,
+    "truncated": false,
+    "recomputedGitTreeHash": "16bb0c5ea7c54d40db69ae1bb84471feea8f7e7d",
+    "equalLocalRootEntriesPathsModesTypesObjectIds": true,
+    "completeLeafCount": 17276,
+    "method": "Independent GitHub Git-tree readback reconstructed hash plus exact local root equality; Merkle tree binds every descendant path/blob/mode. All eight changed file bytes separately read back and hashed. Recursive endpoint transport failed; no claim of independently downloading unchanged descendant blobs."
+  },
+  "changedPaths": [
+    {
+      "path": "backend/src/orchestration/shadow-ceo-authority/repository/json-authority-store.ts",
+      "mode": "100644",
+      "blob": "389bcd8ed2c608909efd4e7b5f5b1693b83110f9",
+      "sha256": "586984ef7b7d83cb77de661d115e3a20044798c0b95f4db690f2847b1d5b59cf"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-authority-atomic-mutation.test.ts",
+      "mode": "100644",
+      "blob": "7251bc214f6095f96783444bf8fb312b668a6475",
+      "sha256": "3596d7c9c6c5fe916eb52b26ffcf27b5f2c72485f2f59d2d75fc6ee2779816b4"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-cold-state-materialization.test.mjs",
+      "mode": "100644",
+      "blob": "5f98ac928c5f9cfde281e26feb6bc905c41ee9d8",
+      "sha256": "bf88fb27a3282cfc8855b4c72514ec8145df4e2ef30a5434e4b356f9ba72e6d0"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-hh4-execution-readiness.test.ts",
+      "mode": "100644",
+      "blob": "81a7df0224fdc10a9ca8a5331ad6eba586bd9be8",
+      "sha256": "af8da4f1dbe2b643e1f9d0de6b23e2c3dc5de3f992d2cd70dabf45b93aef6f39"
+    },
+    {
+      "path": "deployment/work8-cold-state-materialization.cjs",
+      "mode": "100644",
+      "blob": "c1a46f53d0d4b64f5922c9523cb4cd729063448b",
+      "sha256": "611f7df5e185d8052359223725796730c6e6baaeb741bb06e26e935069884358"
+    },
+    {
+      "path": "empireai-web/components/owner/work8/MediaImport.tsx",
+      "mode": "100644",
+      "blob": "98e5f5734252ef026cbf62453e59287c56a5f8a4",
+      "sha256": "353b4a7b203eab5e896416f446c5bf804873fb47ecc1b892e6e0456aadb5c9ff"
+    },
+    {
+      "path": "empireai-web/e2e/owner-history-backend.mts",
+      "mode": "100644",
+      "blob": "a3c7a3b41aff00109e07f8cdb51d270b6a1228fa",
+      "sha256": "ed8eb01dc1519c731a42dfbcb13475a272cc005fcfdcc49be7daf8486fa64744"
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "mode": "100644",
+      "blob": "80f43ade42e84c57e62f1d367a319d299c5520a4",
+      "sha256": "34cecc0e627485a89877ac65a0f5e0cc92a6f2d2e1d7392c4d8c32999555edb1"
+    }
+  ],
+  "independentReviewReceiptsSha256": {
+    "authority-atomic-independent-review.json": "cbda4c35c6168f18913c366bce714ed1b04657b3729e11386037427c92d0703e",
+    "cold-state-independent-review.json": "3ca0e577e32010b186f3477853c53009e485a3edcf514ed5a1be60d1c8688391",
+    "hh4-lifecycle-independent-review.json": "fd66cbccdf92a87f3dc428617628e79febce3b38253eb1328ce1628f66a04112",
+    "a9-textarea-independent-review.json": "ef0e83592f88656e6da9b77b06cb3d92e366ab0e2e79ec7c3118d76af12370f7",
+    "frontend-fixture-review.json": "b3ee655cdef8829ce4b7d6485c80d7b9d3ab21e1ed7caf7199071c1fb6e84260"
+  },
+  "integration": {
+    "finalBackendCompile": "Existing final-backend-build.log reviewed through successful postbuild; controller reported exit0",
+    "finalFrontendTypecheck": "Existing final-frontend-typecheck.log reviewed; controller reported exit0",
+    "testsRepeated": false,
+    "productionWorkflowChanged": false,
+    "sourceScope": "Eight reviewed paths only per remote parent comparison, inherited accepted frontend unchanged except reviewed accessibility labels."
+  },
+  "limitations": [
+    "HH4 and A9 changed boundary still need exact-source hosted examination",
+    "Cold materialization remains closed and scoped; no full topology restore or custody acceptance",
+    "No new original/amendment acceptance inferred"
+  ],
+  "newAcceptedRequirements": [],
+  "remoteStagedRef": "refs/heads/work8/staged-post-publication-source-20261018-16bb0c5e",
+  "remoteStagedRefVerified": true
+}
