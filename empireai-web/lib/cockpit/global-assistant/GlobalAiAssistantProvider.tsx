@@ -33,7 +33,8 @@ import {
   type PillowSessionSnapshot,
 } from "@/lib/cockpit/pillow/pillow-session-store";
 import {readTwinChatContext,setTwinChatContext,twinContextEvent} from '@/lib/owner/twin-chat-context';
-import { createPillowHostSession, fetchPillowHistory, retrievePillowChat, sendPillowChat } from "@/lib/pillow/client";
+import { retrievePillowChat, sendPillowChat } from "@/lib/pillow/client";
+import { resolvePillowConversation } from "@/lib/pillow/session-resolution";
 import { reconcilePillowHistory, serverPillowHistory } from "@/lib/pillow/reconcile-history";
 import { clearPendingPillowReceipt, loadPendingPillowReceipts, savePendingPillowReceipt } from "@/lib/pillow/pending-receipts";
 import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
@@ -267,9 +268,9 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
         // Every device resolves the server conversation. Local storage is only a cache.
         const cached=loadPillowSession(historyOwnerId);
         const historicalBrowserTurns=(cached?.turns ?? []).filter(turn=>!turn.source && Number.isFinite(Date.parse(turn.recordedAt))).map(turn=>({role:turn.role==='grand-king'?'user' as const:'assistant' as const,content:turn.content,timestamp:new Date(turn.recordedAt).toISOString(),requestId:turn.requestId}));
-        const session = await createPillowHostSession(historyWorkspaceId, historyOwnerId, historicalBrowserTurns);
-
-        const history = await fetchPillowHistory(session.sessionId);
+        if (!historyWorkspaceId) return;
+        const history = await resolvePillowConversation({ownerId:historyOwnerId,workspaceId:historyWorkspaceId,cachedSessionId:cached?.hostSessionId,historicalBrowserTurns});
+        const session = history.session;
         if (cancelled || activeOwnerId.current !== historyOwnerId || chatSubmissionActive.current) return;
         const serverTurns = serverPillowHistory(history.session.conversationHistory, pathname);
         const archiveTurns: PillowConversationTurn[] = history.historicalArchive.map(turn => ({
@@ -387,7 +388,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
   const ensureHostSession = useCallback(async (): Promise<string | null> => {
     if (!user || activeOwnerId.current !== user.id) return null;
     try {
-      const session = await createPillowHostSession(user.workspaceId, user.id);
+      const { session } = await resolvePillowConversation({ownerId:user.id,workspaceId:user.workspaceId,cachedSessionId:loadPillowSession(user.id)?.hostSessionId});
       if (activeOwnerId.current !== user.id) return null;
       const snapshot: PillowSessionSnapshot = {
         turns: loadPillowSession(user.id)?.turns ?? [],
