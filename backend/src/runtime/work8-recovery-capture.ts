@@ -103,7 +103,9 @@ export async function restoreWork8RedisInspection(request:{directory:string;dige
  local runId=string.match(redis.call('INFO','server'),'run_id:([a-f0-9]+)')
  if runId ~= ARGV[1] then return redis.error_reply('TARGET_REDIS_IDENTITY_CHANGED') end
  redis.call('SELECT',tonumber(ARGV[2]))
- table.remove(ARGV,1); table.remove(ARGV,1)
+ local clock=redis.call('TIME'); local now=tonumber(clock[1])*1000+math.floor(tonumber(clock[2])/1000)
+ if now < tonumber(ARGV[3]) then return redis.error_reply('TARGET_REDIS_CLOCK_BEFORE_CAPTURE') end
+ table.remove(ARGV,1); table.remove(ARGV,1); table.remove(ARGV,1)
  if redis.call('DBSIZE') ~= 0 then return redis.error_reply('INSPECTION_TARGET_NOT_EMPTY') end
  redis.call('SET',KEYS[1],ARGV[1])
  local restored=redis.pcall('RESTORE',KEYS[1],0,ARGV[2],'REPLACE')
@@ -113,13 +115,12 @@ export async function restoreWork8RedisInspection(request:{directory:string;dige
  if not matches then return redis.error_reply('CAPTURE_OWNER_MISMATCH') end
  redis.call('RESTORE',KEYS[2],0,ARGV[4])
  if redis.call('HGET',KEYS[2],'paused') ~= '1' then return redis.error_reply('CAPTURE_PAUSE_REQUIRED') end
- local clock=redis.call('TIME'); local now=tonumber(clock[1])*1000+math.floor(tonumber(clock[2])/1000)
  for i=5,#ARGV,3 do
   local expiry=tonumber(ARGV[i+1])
   if expiry==0 or expiry>now then redis.call('RESTORE',ARGV[i],expiry,ARGV[i+2],'ABSTTL') end
  end
  return 1`;
- const args:Array<string|number|Buffer>=[observed.runId,observed.db,inspectionOwner,Buffer.from(owner.dump,'base64'),source.owner,Buffer.from(meta.dump,'base64')];
+ const args:Array<string|number|Buffer>=[observed.runId,observed.db,manifest.redisCapturedAt!,inspectionOwner,Buffer.from(owner.dump,'base64'),source.owner,Buffer.from(meta.dump,'base64')];
  for(const row of rows)if(row!==owner&&row!==meta)args.push(Buffer.from(row.key,'base64'),row.ttl===-1?0:manifest.redisCapturedAt!+row.ttl,Buffer.from(row.dump,'base64'));
  await target.eval(script,2,source.ownerKey,source.metaKey,...args);
  return {mode:'inspection-only' as const,digest:request.digest,source, target:observed,owner:inspectionOwner,bootAllowed:false as const,noExecutionAuthority:true as const};

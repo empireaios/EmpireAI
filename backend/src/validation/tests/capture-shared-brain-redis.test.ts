@@ -261,6 +261,17 @@ test('concurrent runtime writers capture with actual pending missions then repla
   try{await oracle.ping();assert.equal(await oracle.dbsize(),0);for(const row of redisRows){const key=Buffer.from(row.key,'base64');await oracle.restore(key,0,Buffer.from(row.dump,'base64'));expected.set(row.key,await canonical(oracle,key));}}finally{oracle.disconnect();}
   const sourceStopped=once(server,'exit');server.kill('SIGKILL');await sourceStopped;
   const realEval=target.eval.bind(target);
+  // Inject an impossible target server clock into the actual Redis Lua path.
+  // Refusal must precede owner/meta writes, leaving the isolated target empty.
+  (target as any).eval=async(...args:any[])=>{
+   assert.ok(args[0].includes("local clock=redis.call('TIME')"));
+   const beforeCapture=manifest.redisCapturedAt-1;
+   args[0]=args[0].replace("local clock=redis.call('TIME')",
+    `local clock={${Math.floor(beforeCapture/1000)},${(beforeCapture%1000)*1000}}`);
+   return (realEval as any)(...args);
+  };
+  await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target),/TARGET_REDIS_CLOCK_BEFORE_CAPTURE/);
+  assert.equal(await target.dbsize(),0,'backwards target clock must not partially restore any records');
   (target as any).eval=async(...args:any[])=>{args[4]='0'.repeat(40);return (realEval as any)(...args);};
   await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target),/TARGET_REDIS_IDENTITY_CHANGED/);assert.equal(await target.dbsize(),0);
   (target as any).eval=async(...args:any[])=>{await target!.select(1);return (realEval as any)(...args);};
