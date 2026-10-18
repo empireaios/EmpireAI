@@ -1,0 +1,27 @@
+{
+  "runtime": {
+    "node": "22.23.2",
+    "npm": "10.9.8"
+  },
+  "pillowBuild": {
+    "exitCode": 0,
+    "log": "pillow-build.log"
+  },
+  "recoveredTenPathCorrectedBackendBuild": {
+    "exitCode": 0,
+    "log": "backend-ten-path-build.log"
+  },
+  "finalThirteenPathBackendBuild": {
+    "exitCode": 0,
+    "log": "backend-final-build.log",
+    "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62"
+  },
+  "firstAttempt": {
+    "exitCode": 2,
+    "cause": "Backend compilation started before fresh Pillow declaration emit completed; missing @empireai/pillow caused cascading diagnostics",
+    "log": "backend-first-attempt-dependency-race.log",
+    "correction": "Waited for Pillow build success, then backend build passed; no source workaround"
+  },
+  "frontendTypecheck": "Prior interrupted-session report retained; no terminal receipt recovered and no fresh typecheck claimed",
+  "hostedAcceptance": false
+}

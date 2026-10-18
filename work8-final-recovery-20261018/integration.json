@@ -1,0 +1,15 @@
+{
+  "reviewer": "integration_review",
+  "decision": "PASS_SCOPED_SOURCE_CORRECTION",
+  "stagedCommit": "88c72088cf51326019dbb767a663119e9f1af072",
+  "parentPublishedCommit": "1c7e135dca4ea68033f76b53728254add01267af",
+  "path": "scripts/work8/hh4-domain-state.mjs",
+  "sha256": "c76ece12716aaa29e3c576e68601cefa249424856ce6c1d5c0c2d977fedad9bc",
+  "checks": {
+    "parentCanonicalBlockExact": true,
+    "onlyCanonicalBlockChangedFromStaged": true,
+    "emptyInitializedStoresInventoryRetained": true,
+    "nodeCheckExitCode": 0
+  },
+  "scope": "HH4 harness regression repaired; not hosted startup, recovery or full acceptance. Authority lock remains limited capture/save exclusion; read-modify-write race remains outside this correction."
+}

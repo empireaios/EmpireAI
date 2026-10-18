@@ -1,0 +1,40 @@
+{
+  "candidate": "88c72088cf51326019dbb767a663119e9f1af072",
+  "tree": "add3c476be0f9c16279edf17ccdc07c5e7e814c7",
+  "published_parent": "1c7e135dca4ea68033f76b53728254add01267af",
+  "scope": "Independent read-only source review A8 provider/navigation and A9 selector; no test execution or acceptance promotion",
+  "decision": "APPROVE_SCOPED_SOURCE_CORRECTIONS_WITH_ACCEPTANCE_LIMITS",
+  "findings": [
+    {
+      "id": "A8-provider",
+      "severity": "resolved",
+      "detail": "Compared remote published CockpitShell with candidate: native early return removed; GlobalAiAssistantProvider now wraps native and legacy routes in stable position. ProductChatActions awaits source resolution and attachment before router.push. Provider remount key binds user and workspace. Navigation no longer unmounts provider through native/legacy branch switch."
+    },
+    {
+      "id": "A9-selector",
+      "severity": "resolved",
+      "detail": "Compared remote published media examination: exact getByLabel Media type changed to combobox role name /^Media type/. The native select remains wrapped in Media type label, including option text; role-based prefix locator targets actual select and preserves kind values and all downstream import assertions."
+    },
+    {
+      "id": "A8-full-acceptance",
+      "severity": "acceptance-evidence-gap",
+      "detail": "Native harness explicitly proves fresh actual host store reload, not operating-system/process restart or Redis durability. If original A8 requires restart persistence, a separate valid restart receipt must be joined before full PASS. No weakening of that criterion is approved."
+    },
+    {
+      "id": "A9-durability",
+      "severity": "acceptance-evidence-gap",
+      "detail": "Native harness reloads page while backend stays running; this alone proves authenticated readback, not cold-process media-store reopening. Full durable-record claim needs existing independent store persistence evidence or bounded cold readback, if required by original contract."
+    }
+  ],
+  "new_concrete_source_blockers": [],
+  "accepted_preservation": "A11 remains PASS. No accepted tests rerun. No production approval or acceptance inferred.",
+  "file_sha256": {
+    "empireai-web/components/cockpit/shell/CockpitShell.tsx": "2450de0f87079ec018dfb136a447425851e742922037411afd9e59494e2f1117",
+    "empireai-web/components/owner/ProductChatActions.tsx": "ce17e77a3209e92e4e944170c60114c0788457fc193bd09352f0670dd3a36260",
+    "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx": "4a98fcdedca48cdb8709e17c748ff660a618a8f6fcb21fd6ac07972fb1087378",
+    "empireai-web/e2e/work8-source-context-native.mjs": "da44b29a9b64f5e9349b175861d19386cf1504d870327c62a15250b45a33d132",
+    "empireai-web/e2e/work8-source-context-backend.mts": "3c41db64ba6678bb42b3988b3c7ff3301256603c87bf3a2d6ac17ae200362b30",
+    "empireai-web/e2e/work8-media-native.mjs": "fc3fec2c1856f090fbc2a0c0a907a9e50b17a0061b26882a1d7abdf97ebe1762",
+    "empireai-web/components/owner/work8/MediaImport.tsx": "6ec09528dc552f82faa8fee60397d7872e20b0fe75b3d6261b1bf9cee69cec0f"
+  }
+}

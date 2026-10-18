@@ -1,0 +1,48 @@
+{
+  "decision": "PASS_EXACT_REMOTE_SOURCE_TREE_REVIEW",
+  "localCommit": "605934a552dab4b0f27988307532d5658ff0d150",
+  "remoteCommit": "4e3fd2d59c801ab524bee8a1e83968d12b97bb52",
+  "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62",
+  "remoteBranch": "work8/staged-final-source-20261018-d71ee866",
+  "ancestry": "Independent GitHub Git commit endpoints confirm remote parent 88c72088, whose parent is published 1c7e135. Local clone is shallow; no false merge-base result claimed.",
+  "publishedAncestor": "1c7e135dca4ea68033f76b53728254add01267af",
+  "stagedAncestor": "88c72088cf51326019dbb767a663119e9f1af072",
+  "changedPathsFromPublished": [
+    ".github/workflows/product-path-ci.yml",
+    "backend/src/orchestration/shadow-ceo-authority/repository/json-authority-store.ts",
+    "backend/src/orchestration/shadow-ceo-integration/request-owner.ts",
+    "backend/src/validation/tests/fixtures/request-owner-lock-child.ts",
+    "backend/src/validation/tests/work8-request-owner-shared-lock.test.ts",
+    "empireai-web/components/cockpit/shell/CockpitShell.tsx",
+    "empireai-web/e2e/fixtures/genuine-historical-readback.json",
+    "empireai-web/e2e/owner-history-backend.mts",
+    "empireai-web/e2e/owner-history-native.mjs",
+    "empireai-web/e2e/work8-media-native.mjs",
+    "pillow/src/session-continuity-engine/configuration.ts",
+    "scripts/work8/hh4-domain-state.mjs",
+    "scripts/work8/hh4-generated-worker.mjs"
+  ],
+  "changedPathsFromStaged": [
+    "backend/src/orchestration/shadow-ceo-integration/request-owner.ts",
+    "backend/src/validation/tests/fixtures/request-owner-lock-child.ts",
+    "backend/src/validation/tests/work8-request-owner-shared-lock.test.ts",
+    "scripts/work8/hh4-domain-state.mjs"
+  ],
+  "reviewedHashes": {
+    "backend/src/orchestration/shadow-ceo-integration/request-owner.ts": "b571bcc014c31e0ac82f8dfd40e2a61c031d82453df8cc582b3326dbfa5ce98e",
+    "backend/src/validation/tests/fixtures/request-owner-lock-child.ts": "1be1f9c35d8ec0738913dffab3f97c366496495873eac7c15d5e7dcd4c15e11b",
+    "backend/src/validation/tests/work8-request-owner-shared-lock.test.ts": "40992dd061de760519e5faae5f86a158898bebcfb4dcfd3a324295f46ac0922e",
+    "scripts/work8/hh4-domain-state.mjs": "c76ece12716aaa29e3c576e68601cefa249424856ce6c1d5c0c2d977fedad9bc"
+  },
+  "verification": {
+    "readOnlyGitFetch": true,
+    "completeRecursivePathBlobModeEquality": true,
+    "treeEntryCount": 17272,
+    "treeManifestSha256": "d918b76ba2d9cd1e2cc5a1830472c6c1133dc8ba747f9afd8ab7ac839a3e5a24",
+    "fourChangedFilesMatchIndependentReviewedBytes": true,
+    "build": "NOT_CLAIMED_PENDING_SEPARATE_RESULT",
+    "hostedAcceptance": "NOT_CLAIMED",
+    "publicationBranchMoved": false
+  },
+  "scope": "Exact staging identity/integration source verification only; retain A11 PASS and 42/22 baseline."
+}

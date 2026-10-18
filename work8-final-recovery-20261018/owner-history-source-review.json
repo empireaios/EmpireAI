@@ -1,0 +1,20 @@
+{
+  "reviewer": "integration_review",
+  "decision": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "scope": "Static review only; not execution or Owner Console acceptance",
+  "sha256": {
+    "empireai-web/e2e/owner-history-native.mjs": "712928bc9824282ee9c123913362d4ea97555ee04fa6038bc6f04fe737ba6d0e",
+    "empireai-web/e2e/owner-history-backend.mts": "c9a2a2eefae72b5981ea599a5d6b6fbdbca89960536c82eed44f0ac776821c0e",
+    "empireai-web/e2e/fixtures/genuine-historical-readback.json": "ad94a4ba32f707b27e46aa48d0d6a033aefc33e285a7082ecae21926a061700f",
+    "empireai-web/components/owner/OwnerAdvisor.tsx": "0b3f08cd55cce39d5d68d3e125bc0cb185827fb757900f6a4933f7862d86ca00"
+  },
+  "findings": [
+    "OwnerAdvisor renders provenance details with open attribute; visible pre wait is consistent with actual UI.",
+    "record query splits pillow:request:id into domain=pillow and id=request:id, matching native response predicate.",
+    "Fixture workspace ws_empire_1 and founder email match authenticated Advisor authorization; foreign workspace is refused.",
+    "Historical response hash and exact assistant turn checked before fixture setup; production read projection uses retained transcript and durable receipt.",
+    "Kernel-isolated launcher execs Node in same process, so SIGTERM reaches backend shutdown handler. Cleanup requires preservation receipt before PASS is written.",
+    "Browser close has no explicit timeout and can throw before remaining cleanup/log writes; this is a robustness limitation, not observed failure. Existing terminal workflow bound remains; no full cleanup guarantee certified."
+  ],
+  "newAcceptedRequirements": []
+}

@@ -1,0 +1,75 @@
+{
+  "status": "FAIL",
+  "scope": "FOCUSED_A11_NATIVE_TWO_STAGE_EXAM_NOT_AUTOMATIC_FULL_45_PLUS_19_CERTIFICATION",
+  "checks": [
+    "Authenticated BFF refusal null",
+    "Authenticated BFF refusal foreign",
+    "Authenticated BFF refusal admin",
+    "Authenticated premature external approval refused",
+    "Authenticated forged receipt and version refused",
+    "Unapproved/reapproved selection has no external approval 1440",
+    "Separate selected-version intercepted submission 1440",
+    "Archive collapsed toggle preserves selected bytes 1440",
+    "Relevant media visible and no horizontal overflow 1440",
+    "Unapproved/reapproved selection has no external approval 390",
+    "Separate selected-version intercepted submission 390",
+    "Archive collapsed toggle preserves selected bytes 390",
+    "Relevant media visible and no horizontal overflow 390",
+    "Changed version invalidates approval and preserves archived original",
+    "Pending edit invalidates applicable approval",
+    "Rejected version cannot submit"
+  ],
+  "failures": [
+    {
+      "name": "Authenticated image/video import, selection and durable archive 1440",
+      "error": "TimeoutError: locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('region', { name: 'Product media versions' }).locator('details').filter({ has: getByText('Import revised images or videos', { exact: true }) }).getByLabel('Media type', { exact: true })\n"
+    },
+    {
+      "name": "Authenticated image/video import, selection and durable archive 390",
+      "error": "TimeoutError: locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('region', { name: 'Product media versions' }).locator('details').filter({ has: getByText('Import revised images or videos', { exact: true }) }).getByLabel('Media type', { exact: true })\n"
+    }
+  ],
+  "sourceManifest": [
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "sha256": "172bb8c88398f77c28fd09f4d1f0e21f363692dab1b83761aced0f0875c5ce23"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts",
+      "sha256": "b08969c12a5d40e38f834e21f476b1d504a838693eaa0da6694ed82575c35a1e"
+    },
+    {
+      "path": "backend/src/auth/middleware.ts",
+      "sha256": "749b1f05b3bc8fbc7ce444351519342d283f499c0a2745d0af596689832af3de"
+    },
+    {
+      "path": "empireai-web/components/owner/work8/TwinMedia.tsx",
+      "sha256": "9d44550044dc091a3c111ba5a2e4b194d64cd98ef3693eef5273b876902ce332"
+    },
+    {
+      "path": "empireai-web/components/owner/work8/TwinWorkspace.tsx",
+      "sha256": "19022bf021e1d40e68f0c7f9d89c63de0145d57fac3711ddce1749512bf86f04"
+    },
+    {
+      "path": "empireai-web/e2e/work8-media-native.mjs",
+      "sha256": "7b1c3c6201896af8e4934f7fe5a2e1cac392e371ec9e2717b89bb9b284fb30f4"
+    },
+    {
+      "path": "scripts/work8/incoming-only-exec.py",
+      "sha256": "250f130f3ecc639330107f5ca18dc8ac326fd466f8cbf45e784f92a1531f1be8"
+    }
+  ],
+  "harnessSha256": "7b1c3c6201896af8e4934f7fe5a2e1cac392e371ec9e2717b89bb9b284fb30f4",
+  "assetSha256": "eb915fa19dce2f3a5b0f212d01ecfaabb6ae6c48257f307dd664a6a4ac4813d9",
+  "videoSha256": "fad5f85f78f33067ff8ad17bcb20e1f3777aa2a7ad0e25fda5356ab35deb6bc5",
+  "externalEffects": 0,
+  "paidInference": 0,
+  "fixture": "Owner-directed original test media; synthetic principal/rights approval metadata, actual auth/session middleware. No genuine supplier or Canva claim.",
+  "limitations": [
+    "A9 software gallery/import/archive examined with owner-created bytes; genuine supplier journey remains separate",
+    "A10 actual Canva editing/export remains pending",
+    "No personal owner execution inferred",
+    "Existing source pending-edit gap is asserted, never waived"
+  ],
+  "completedAt": "2026-10-15T11:01:59.980Z"
+}

@@ -1,0 +1,14 @@
+{
+  "recordType": "PRESERVATION_ATTRIBUTION_NOT_NEW_ACCEPTANCE",
+  "amendment": "A11",
+  "status": "PASS",
+  "authority": "Current owner directive explicitly preserves prior independent acceptance",
+  "sourceCommit": "1c7e135dca4ea68033f76b53728254add01267af",
+  "workflowRun": 38723666162,
+  "artifactId": 11966919674,
+  "receipt": "work8-media-receipt.json",
+  "receiptSha256": "6d882205680cfe8277cd2f1dd086593d48fe2d505e4188f42fa6bf4931892ad5",
+  "independentRecoveryReview": "ci-recovery-summary.json",
+  "recoveredEvidence": "16 successful A11 checks; two A9 import selector failures are separate and do not reopen A11",
+  "newAcceptanceIssued": false
+}

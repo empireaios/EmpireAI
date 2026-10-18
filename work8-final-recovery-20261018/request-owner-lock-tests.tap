@@ -1,0 +1,44 @@
+(node:6) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: candidate capture fences both authority JSON writers through asynchronous readback
+ok 1 - candidate capture fences both authority JSON writers through asynchronous readback
+  ---
+  duration_ms: 20.136963
+  type: 'test'
+  ...
+# Subtest: candidate authority fence releases both stores on failure and partial acquisition
+ok 2 - candidate authority fence releases both stores on failure and partial acquisition
+  ---
+  duration_ms: 1.514351
+  type: 'test'
+  ...
+# (node:14) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:14) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: another process cannot write or acquire capture while capture holds; crash remains fail closed
+ok 3 - another process cannot write or acquire capture while capture holds; crash remains fail closed
+  ---
+  duration_ms: 1521.576055
+  type: 'test'
+  ...
+# Subtest: concurrent cooperating writers preserve all distinct owner records
+ok 4 - concurrent cooperating writers preserve all distinct owner records
+  ---
+  duration_ms: 426.100308
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2226.400268

@@ -1,0 +1,24 @@
+{
+  "decision": "READY_FOR_INDEPENDENT_REVIEW",
+  "baseCommit": "88c72088cf51326019dbb767a663119e9f1af072",
+  "files": [
+    "backend/src/orchestration/shadow-ceo-integration/request-owner.ts",
+    "backend/src/validation/tests/fixtures/request-owner-lock-child.ts",
+    "backend/src/validation/tests/work8-request-owner-shared-lock.test.ts"
+  ],
+  "sha256": {
+    "backend/src/orchestration/shadow-ceo-integration/request-owner.ts": "b571bcc014c31e0ac82f8dfd40e2a61c031d82453df8cc582b3326dbfa5ce98e",
+    "backend/src/validation/tests/fixtures/request-owner-lock-child.ts": "1be1f9c35d8ec0738913dffab3f97c366496495873eac7c15d5e7dcd4c15e11b",
+    "backend/src/validation/tests/work8-request-owner-shared-lock.test.ts": "40992dd061de760519e5faae5f86a158898bebcfb4dcfd3a324295f46ac0922e"
+  },
+  "tests": "4 PASS, 0 FAIL; work8-request-owner-shared-lock and existing capture-authority-json; pinned Node v22.23.2",
+  "boundaries": [
+    "Shared capture/write exclusion for updated cooperating processes only",
+    "Read-modify-write lock begins before digest lookup and ends after durable save or exception",
+    "Stale crashed-owner lock remains fail-closed; no auto-expiry",
+    "60 distinct records preserved across 3 concurrent child processes",
+    "Does not fence older binaries, raw filesystem writes, Redis producers, or establish full restore/custody"
+  ],
+  "patchSha256": "e36fdd60919f472a19b6e57f56f3905c5ff02d6f6fafb2577e5c20b05d54adca",
+  "ciSelection": "Existing work8-*.test.ts glob; no workflow edit"
+}

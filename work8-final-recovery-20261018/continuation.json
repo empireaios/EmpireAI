@@ -1,0 +1,42 @@
+{
+  "status": "IN_PROGRESS_NO_GO",
+  "recoveredCandidate": {
+    "commit": "88c72088cf51326019dbb767a663119e9f1af072",
+    "tree": "add3c476be0f9c16279edf17ccdc07c5e7e814c7",
+    "paths": 10
+  },
+  "finalLocalSource": {
+    "commit": "605934a552dab4b0f27988307532d5658ff0d150",
+    "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62"
+  },
+  "stagedSource": {
+    "commit": "4e3fd2d59c801ab524bee8a1e83968d12b97bb52",
+    "tree": "d71ee8661d1b88669c331b4b27abae0f9bb9da62",
+    "branch": "work8/staged-final-source-20261018-d71ee866",
+    "pathsAgainstPublished": 13
+  },
+  "publishedSourceUnchanged": "1c7e135dca4ea68033f76b53728254add01267af",
+  "publishedEvidenceUnchanged": "b28855f58128a7060cde16139dbf95197c0cfe82",
+  "newAcceptance": [],
+  "preservedAccepted": 42,
+  "outstanding": 22,
+  "requiredNext": [
+    "Exact-tree evidence-first publication approval",
+    "Use single automatic CI set; no duplicate dispatch",
+    "Independent HH4/A8/A9 complete-contract review",
+    "Continue operational restore and complete writer-cohort engineering; protected custody separately"
+  ],
+  "governance": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "pr113": "DRAFT_UNMERGED",
+    "productionDeployment": false
+  },
+  "missingPriorReceipts": [
+    "Interrupted local backend terminal receipt not recovered",
+    "Previous ten-path independent remote review receipt not recovered; fresh review performed",
+    "Prior cold-process replay detailed receipt not in recovered source/evidence; preserve reported scoped result, do not infer full acceptance"
+  ],
+  "scope": "No new requirement accepted. Source staging is not publication to PR branch."
+}

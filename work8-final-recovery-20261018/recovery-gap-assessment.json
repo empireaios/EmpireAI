@@ -1,0 +1,73 @@
+{
+  "recordType": "NARROW_SOURCE_RECOVERY_GAP_ASSESSMENT_NOT_ACCEPTANCE",
+  "scope": [
+    "O33",
+    "O39",
+    "A1",
+    "A2",
+    "A3",
+    "A5"
+  ],
+  "status": "UNFINISHED_AUTHORISED_ENGINEERING_WITH_SEPARATE_CUSTODY_BOUNDARY",
+  "inspectedFiles": [
+    "backend/src/app.ts",
+    "backend/src/runtime/work8-recovery-capture.ts",
+    "deployment/work8-recovery-set.cjs",
+    "deployment/work8-system-vault.cjs",
+    "scripts/work8/hh4-domain-rehydration.mjs"
+  ],
+  "observations": [
+    {
+      "file": "backend/src/app.ts",
+      "finding": "captureWork8Recovery rejects requireComplete other than explicit false. Current coordination composes primary/background/shared queue/local admission/SQLite/native/domain capture fences; does not establish complete runtime topology."
+    },
+    {
+      "file": "backend/src/runtime/work8-recovery-capture.ts",
+      "finding": "capture inventory requires explicit inspection scope. restoreWork8RedisInspection pins distinct Redis identity, restores TTL-aware rows, preserves persistent capture-owner and paused state; returns bootAllowed false and no execution authority."
+    },
+    {
+      "file": "deployment/work8-recovery-set.cjs",
+      "finding": "Fixed inventory has nine system-vault databases plus brain, missions, execution and shadow (13 SQLite stores), authority and request-owner JSON, optional watchdog JSON and optional lifecycle markers. Manifest explicitly records incomplete global producer/watchdog/continuation coverage and bootAllowed=false, completeLiveState=false."
+    },
+    {
+      "file": "scripts/work8/hh4-domain-rehydration.mjs",
+      "finding": "Disposable copies reopened through intelligence/reasoning/financial/commerce adapters prove scoped data compatibility only; no complete application boot, replay or custody."
+    }
+  ],
+  "topologyPrerequisites": [
+    "Identify every admitted process and transport in the actual declared runtime topology, including still-active prior binaries and worker/primary roles.",
+    "Establish exclusion and drain for non-Brain Redis producers, executive watchdog and Amazon continuation alongside existing coordinated fences.",
+    "Bind source shutdown/quarantine and fresh target identity to the restore operation; do not infer source exclusion from inspection restore caller preconditions."
+  ],
+  "inventoryPrerequisites": [
+    "Map all persistent runtime state to explicit capture and target paths, including data outside the fixed SQLite/JSON map.",
+    "Account for writable visual-memory state: it is not an entry in the inspected fixed recovery store map; establish whether/how its state belongs in the required runtime snapshot.",
+    "Preserve database lifecycle markers, authority/request ownership records, authenticated Redis sessions and expiry, pending work, finance records and mission records."
+  ],
+  "remainingExecutableAssertions": [
+    "Complete consistent capture across all declared stores and writers.",
+    "Validated atomic materialization of databases, JSON and lifecycle markers into a distinct fresh target, with failure cleanup and no partial admission.",
+    "Original authenticated sessions restored with correct TTL and source/target Redis pinning.",
+    "Actual complete application startup/readiness after authorized restoration with NOT_BORN, LOCKED and all live-effect fences preserved.",
+    "Finance and mission canonical invariants and once-only pending continuation, including verification across an additional restart.",
+    "Reject stale, partial, mismatched, aliased or incomplete capture/restore inputs."
+  ],
+  "separateExternalBoundary": {
+    "scope": [
+      "O39",
+      "A3"
+    ],
+    "required": "Existing qualifying independently authenticated off-host custody, protected retention and runtime credentials denied alteration/deletion, plus actual protected readback/restoration evidence.",
+    "notASubstitute": "Protected custody configuration does not replace full restoration engineering; incomplete engineering must not be reported as solely externally blocked."
+  },
+  "preservedSubclaims": [
+    "Owner-directed preservation of reviewed cold-process replay and cooperating multi-process authority-lock results; these do not establish every writer or full restore.",
+    "Existing scoped Redis inspection replacement and domain-adapter rehydration remain scoped; do not promote them to operational recovery."
+  ],
+  "decision": "No restore-plan-only implementation added because it cannot close the package and would expand the current ten-path batch. Full recovery remains authorised unfinished engineering, requiring the listed coordinated work and examination.",
+  "sourceEditsMade": false,
+  "testsRepeated": false,
+  "newAcceptanceIssued": false,
+  "completeLiveStateEnabled": false,
+  "bootAuthorityEnabled": false
+}

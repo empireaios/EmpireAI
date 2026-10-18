@@ -1,0 +1,53 @@
+{
+  "source": "1c7e135dca4ea68033f76b53728254add01267af",
+  "runs": {
+    "Product": {
+      "id": 38723666162,
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    "Runtime": {
+      "id": 38723666141,
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    "Semantic": {
+      "id": 38723666124,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "Assurance": {
+      "id": 38723666116,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
+  "media_artifact": {
+    "id": 11966919674,
+    "zip_sha256": "2069bdaca003b3051c83bb8d54478f7f642024d79b7b55919201c6c65f9e8f2c",
+    "receipt_sha256": "6d882205680cfe8277cd2f1dd086593d48fe2d505e4188f42fa6bf4931892ad5",
+    "receipt_path": "work8-media/receipt.json"
+  },
+  "A11_decision": "Preserve existing independent A11 PASS and owner baseline. Recovered receipt has 16 successful A11 checks; only two failures concern A9 media type selector, at widths 1440 and 390. No new acceptance issued.",
+  "HH4": "Pending; hosted held capture failed, downstream session tests skipped.",
+  "A8": "Pending; native Test examples button lookup timed out.",
+  "A9": "Pending; media type selector import checks failed.",
+  "published_backend_build": {
+    "job": 116384299656,
+    "conclusion": "success",
+    "limit": "Published source only, not ten-path successor"
+  },
+  "generated_reasoning_job": {
+    "id": 116384133443,
+    "conclusion": "success"
+  },
+  "generated_response_job": {
+    "id": 116384133149,
+    "conclusion": "success"
+  },
+  "staged_candidate_check": {
+    "sha_prefix": "88c72088",
+    "pull_request_workflow_runs": [],
+    "limit": "Wrapper filters PR-triggered workflows. No interrupted local build receipt recovered by this CI review lane."
+  }
+}

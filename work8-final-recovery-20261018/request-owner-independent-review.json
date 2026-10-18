@@ -1,0 +1,37 @@
+{
+  "decision": "APPROVE_SCOPED_SOURCE",
+  "baseCommit": "88c72088cf51326019dbb767a663119e9f1af072",
+  "files": [
+    "backend/src/orchestration/shadow-ceo-integration/request-owner.ts",
+    "backend/src/validation/tests/fixtures/request-owner-lock-child.ts",
+    "backend/src/validation/tests/work8-request-owner-shared-lock.test.ts"
+  ],
+  "sha256": {
+    "backend/src/orchestration/shadow-ceo-integration/request-owner.ts": "b571bcc014c31e0ac82f8dfd40e2a61c031d82453df8cc582b3326dbfa5ce98e",
+    "backend/src/validation/tests/fixtures/request-owner-lock-child.ts": "1be1f9c35d8ec0738913dffab3f97c366496495873eac7c15d5e7dcd4c15e11b",
+    "backend/src/validation/tests/work8-request-owner-shared-lock.test.ts": "40992dd061de760519e5faae5f86a158898bebcfb4dcfd3a324295f46ac0922e"
+  },
+  "review": [
+    "Atomic mkdir lock shared by capture and complete persist read-modify-write; acquired before digest lookup and held through save and parent fsync.",
+    "Normal errors and existing-record idempotent return execute finally release. Capture release is idempotent; identity replacement rejects release and preserves fail-closed state.",
+    "Crashed lock holder leaves directory; no stale-timeout stealing. Updated cooperating writers reject lock contention.",
+    "Existing capture wrapper tests cover callback error and partial acquisition release; new child tests cover competing capture/writer, crash and 60 retained records across 3 writers."
+  ],
+  "verification": {
+    "retained_tap": "review-results/request-owner-lock-tests.tap",
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "skipped": 0,
+    "runtime_verified": "v22.23.2",
+    "source_hashes_match_reviewed_receipt": true,
+    "duplicate_execution": false
+  },
+  "packaging_note": "Untracked old request-owner-shared-lock.test.ts remains alongside renamed work8-request-owner-shared-lock.test.ts. Integrate only the three exact reviewed paths; omit untracked duplicate and node_modules.",
+  "limits": [
+    "No full recovery acceptance; only request-owner shared lock boundary.",
+    "Older binaries and raw filesystem writers are not fenced.",
+    "No Redis, full application restore or protected custody claim.",
+    "Crash lock recovery requires separately authorized quiescent intervention; liveness after crash is intentionally not automatic."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "recordType": "INDEPENDENT_READONLY_BASELINE_RECONCILIATION_NOT_NEW_ACCEPTANCE",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "originalCounts": {
+    "PASS": 33,
+    "PENDING": 8,
+    "BLOCKED": 4
+  },
+  "amendmentCounts": {
+    "PASS": 9,
+    "PENDING": 10
+  },
+  "accepted": 42,
+  "outstanding": 22,
+  "baselineEvidenceCommit": "b28855f58128a7060cde16139dbf95197c0cfe82",
+  "trackerBlob": "21ce11d6b18edb1d230200ab3ff01ac3571a6a7f",
+  "preservedA11": "Current owner directive explicitly preserves completed independent acceptance; recovered CI receipt separately attributed. Not fresh acceptance by this reviewer.",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "outstandingOriginalIds": [
+    2,
+    7,
+    13,
+    14,
+    19,
+    30,
+    33,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "outstandingAmendmentIds": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    8,
+    9,
+    10,
+    15,
+    19
+  ],
+  "certificationReason": "Mandatory operational recovery, genuine business/owner journey, independent alert delivery, custody and exact-source acceptance gates remain open. Source review and scoped tests do not close them.",
+  "pillow": "NOT_BORN",
+  "commerce": "LOCKED",
+  "work9": "INACTIVE",
+  "productionMissionComplete": false,
+  "publishedByThisReview": false
+}
