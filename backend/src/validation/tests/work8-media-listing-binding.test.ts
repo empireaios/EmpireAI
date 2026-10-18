@@ -1,0 +1,65 @@
+import {spawnSync} from 'node:child_process';import {fileURLToPath} from 'node:url';
+import fs from 'node:fs';import os from 'node:os';import path from 'node:path';
+import test from 'node:test';import assert from 'node:assert/strict';
+import {GovernedCommerceStore,digest} from '../../runtime/commerce-runtime/governed/store.js';
+import {GovernedCommerceEngine} from '../../runtime/commerce-runtime/governed/engine.js';
+import {CommerceWorker} from '../../runtime/commerce-runtime/governed/worker.js';
+import {DurableSimulatedFinance} from '../../runtime/commerce-runtime/governed/work8-durable-finance.js';
+import {Work8TwinSessions} from '../../runtime/commerce-runtime/governed/work8-twin.js';
+import {Work8TwinRuntime} from '../../runtime/commerce-runtime/governed/work8-twin-runtime.js';
+import {acceptanceScenario} from '../../runtime/commerce-runtime/governed/scenario.js';
+test('O19 approved exact image binding prepares canonical listing and invalidates old authority atomically',()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'o19-binding-')),file=path.join(root,'commerce.sqlite');let store=new GovernedCommerceStore(file);const now=1792316400000,p={workspace:'ws',owner:'owner'},sessions=new Work8TwinSessions(store,()=>now),engine=new GovernedCommerceEngine(store,()=>now),worker=new CommerceWorker(engine),runtime=new Work8TwinRuntime(sessions,worker,new DurableSimulatedFinance(store,worker,()=>now));
+ try{
+ const session=sessions.transition(p,{id:'create',sessionId:'exam',expectedVersion:0,action:'CREATE'}),f=acceptanceScenario(session.twinWorkspace,p.owner,now);
+ for(const [i,step] of f.steps.slice(0,4).entries())engine.execute(step.actor,{id:'initial-'+i,missionId:'mission',expectedVersion:i,command:step.command});
+ const reference={sessionId:'exam',missionId:'mission',receiptDigest:store.history(session.twinWorkspace,'mission').at(-1)!.digest};
+ const asset={id:'original',url:'https://example.invalid/new.svg',kind:'IMAGE' as const,sha256:digest('original authored image'),sourceIdentity:f.candidate.productId,rightsEvidence:'evidence-QUALITY',rightsStatus:'OWNER_REVIEWED' as const,provenance:'Original authored examination image'};
+ const proposal=runtime.media.command(p,{action:'PROPOSE',id:'proposal',reference,expectedVersion:0,instructions:'Use exact approved image',assets:[asset],editingReceipt:'Local original asset'});
+ const listing={...f.listing,images:[{url:asset.url,sha256:asset.sha256,rightsEvidence:asset.rightsEvidence,license:asset.provenance}]};
+ const request={action:'APPLY_LISTING',id:'apply',reference,expectedVersion:1,batchDigest:proposal.batchDigest,listing};
+ assert.throws(()=>runtime.media.command(p,request),/APPROVAL_REQUIRED/);
+ const approval=runtime.media.command(p,{action:'APPROVE_INTERNAL',id:'internal',reference,expectedVersion:1,batchDigest:proposal.batchDigest});request.expectedVersion=2;
+ assert.throws(()=>runtime.media.command({...p,owner:'foreign'},request));
+ assert.throws(()=>runtime.media.command(p,{...request,batchDigest:'0'.repeat(64)}),/APPROVAL_REQUIRED/);
+ assert.throws(()=>runtime.media.command(p,{...request,expectedVersion:1}),/VERSION_CONFLICT/);
+ assert.throws(()=>runtime.media.command(p,{...request,listing:{...listing,images:[{...listing.images[0]!,sha256:'0'.repeat(64)}]}}),/ASSET_MISMATCH/);
+ assert.throws(()=>runtime.media.command(p,{...request,listing:{...listing,images:[{...listing.images[0]!,rightsEvidence:'forged'}]}}),/ASSET_MISMATCH/);
+ assert.throws(()=>runtime.media.command(p,{...request,listing:{...listing,productId:'foreign'}}),/IDENTITY_MISMATCH/);
+ assert.equal(runtime.media.read(p,reference).version,2);assert.equal(store.history(session.twinWorkspace,'mission').length,4);
+ store.db.exec(`CREATE TRIGGER fail_media_apply BEFORE INSERT ON work8_twin_media WHEN json_extract(NEW.record,'$.action')='APPLY_LISTING' BEGIN SELECT RAISE(ABORT,'INJECTED_MEDIA_WRITE_FAILURE'); END;`);
+ assert.throws(()=>runtime.media.command(p,request),/INJECTED_MEDIA_WRITE_FAILURE/);
+ assert.equal(store.history(session.twinWorkspace,'mission').length,4);assert.equal(runtime.media.read(p,reference).version,2);
+ assert.ok(store.history(session.twinWorkspace,'mission').at(-1)!.state.approval);
+ store.db.exec('DROP TRIGGER fail_media_apply');
+ const bound=runtime.media.command(p,request),latest=store.history(session.twinWorkspace,'mission').at(-1)!;
+ assert.equal(bound.status,'LISTING_PREPARED_REVIEW_REQUIRED');assert.equal(bound.listingBinding?.receiptDigest,latest.digest);assert.equal(bound.listingBinding?.approvalDigest,approval.digest);assert.deepEqual(latest.state.listing,listing);assert.equal(bound.listingBinding?.candidateDigest,digest({candidate:latest.state.candidate,listing:latest.state.listing}));assert.equal(latest.state.approval,undefined);assert.equal(latest.state.review,undefined);assert.equal(latest.externalEffects,0);
+ assert.throws(()=>runtime.media.command(p,request),/CONTEXT_STALE/);
+ const newReference={...reference,receiptDigest:latest.digest},view=runtime.media.read(p,newReference);assert.equal(view.current,null);assert.equal(view.externalStatus,'NOT_SUBMITTED');
+ assert.throws(()=>runtime.media.command(p,{...request,reference:newReference,expectedVersion:3}),/REPLAY_STALE|IDEMPOTENCY_CONFLICT/);
+ const transfer={action:'TRANSFER_LISTING',id:'transfer',reference:newReference,expectedVersion:3,batchDigest:bound.batchDigest,targetMissionId:'owner-listing'};
+ assert.throws(()=>runtime.media.command({...p,owner:'foreign'},transfer));
+ assert.throws(()=>runtime.media.command(p,{...transfer,batchDigest:'0'.repeat(64)}),/TRANSFER_STALE/);
+ engine.execute({...f.actors.PROPOSER!,workspace:p.workspace},{id:'existing-target',missionId:'collision',expectedVersion:0,command:{type:'research',candidate:f.candidate}});
+ assert.throws(()=>runtime.media.command(p,{...transfer,targetMissionId:'collision'}),/TARGET_EXISTS/);
+ store.db.exec(`CREATE TRIGGER fail_transfer BEFORE INSERT ON work8_twin_media WHEN json_extract(NEW.record,'$.action')='TRANSFER_LISTING' BEGIN SELECT RAISE(ABORT,'INJECTED_TRANSFER_FAILURE'); END;`);
+ assert.throws(()=>runtime.media.command(p,transfer),/INJECTED_TRANSFER_FAILURE/);assert.equal(store.history(p.workspace,'owner-listing').length,0);assert.equal(runtime.media.read(p,newReference).version,3);
+ store.db.exec('DROP TRIGGER fail_transfer');
+ const transferred=runtime.media.command(p,transfer),target=store.history(p.workspace,'owner-listing').at(-1)!;
+ assert.equal(transferred.transferBinding?.targetReceiptDigest,target.digest);assert.equal(transferred.transferBinding?.sourceReceiptDigest,latest.digest);assert.equal(target.state.candidateDigest,latest.state.candidateDigest);assert.equal(target.state.approval,undefined);assert.equal(target.state.review,undefined);assert.equal(target.state.publicationIntent,undefined);assert.equal(transferred.owner,p.owner);
+ assert.throws(()=>runtime.media.command(p,transfer),/REPLAY_STALE/);
+ assert.throws(()=>runtime.media.command(p,{...transfer,id:'second',expectedVersion:4}),/TRANSFER_STALE/);
+ store.close();store=new GovernedCommerceStore(file);
+ const persisted=JSON.parse(String(store.db.prepare('SELECT record FROM work8_twin_media WHERE workspace=? AND id=?').get(p.workspace,'apply')!.record));
+ assert.deepEqual(JSON.parse(String(store.db.prepare('SELECT record FROM work8_twin_media WHERE workspace=? AND id=?').get(p.workspace,'transfer')!.record)),transferred);
+ assert.equal(store.history(p.workspace,'owner-listing').at(-1)!.digest,transferred.transferBinding?.targetReceiptDigest);
+ assert.deepEqual(persisted,bound);assert.ok(persisted.listingBinding);assert.equal(store.history(session.twinWorkspace,'mission').at(-1)!.digest,persisted.listingBinding.receiptDigest);
+ }finally{store.close();fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('O19 actual authenticated durable transfer and canonical listing publication route remains intercepted',()=>{
+ const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../../..');
+ const result=spawnSync('python3',[path.join(repo,'scripts/work8/incoming-only-exec.py'),process.execPath,'--import',path.join(repo,'backend/node_modules/tsx/dist/loader.mjs'),path.join(repo,'empireai-web/e2e/work8-media-listing-http.mts')],{encoding:'utf8',timeout:60000,maxBuffer:1024*1024});
+ assert.equal(result.error,undefined);assert.equal(result.status,0,result.stderr);const receipt=JSON.parse(result.stdout);assert.equal(receipt.status,'PASS_SCOPED_AUTHENTICATED_HTTP');assert.equal(receipt.externalEffects,0);assert.equal(receipt.transferBinding.candidateDigest,receipt.publication.candidateDigest);assert.equal(receipt.publication.intercept.status,'INTERCEPTED');
+ console.info('O19_AUTHENTICATED_RECEIPT '+JSON.stringify({status:receipt.status,checks:receipt.checks,binding:receipt.binding,transferBinding:receipt.transferBinding,publication:receipt.publication,externalEffects:receipt.externalEffects,paidInference:receipt.paidInference,limits:receipt.limits}));
+});

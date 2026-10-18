@@ -14,7 +14,10 @@ export class SessionStoreUnavailableError extends Error {
   }
 }
 
-type SessionRedisClient = Pick<RedisClient, "setex" | "get" | "del">;
+type SessionRedisClient = Pick<RedisClient, "setex" | "get" | "del"> & Partial<Pick<RedisClient, "eval">>;
+// BullMQ default prefix and the fixed TaskQueue name; same Redis DB as sessions.
+const CAPTURE_OWNER = "bull:empireai-brain-tasks:capture-owner";
+const CAPTURE_PRODUCERS = "bull:empireai-brain-tasks:capture-producers";
 const storedSessionSchema = z.object({
   id: z.string().min(1),
   email: z.string().email(),
@@ -36,7 +39,32 @@ export interface SessionStoreBackend {
 export class SessionStore implements SessionStoreBackend {
   constructor(private readonly redis: SessionRedisClient) {}
 
-  async create(user: SessionUser): Promise<SessionRecord> {
+  /** Cooperating session writers join the existing shared producer drain. A
+   * failed/uncertain write retains its non-expiring token: a timeout cannot
+   * prove a delayed Redis mutation will never commit. Reads remain available. */
+  private async withMutation<T>(mutate: () => Promise<T>): Promise<T> {
+    const token = randomUUID();
+    try {
+      if (!this.redis.eval) throw new Error("session_atomic_admission_unavailable");
+      const admitted = await this.redis.eval(
+        "if redis.call('exists', KEYS[1]) == 1 then return 0 end; redis.call('sadd', KEYS[2], ARGV[1]); return 1",
+        2, CAPTURE_OWNER, CAPTURE_PRODUCERS, token);
+      if (admitted !== 1) throw new Error("session_capture_active");
+      const result = await mutate();
+      const removed = await this.redis.eval(
+        "return redis.call('srem', KEYS[1], ARGV[1])", 1, CAPTURE_PRODUCERS, token);
+      if (removed !== 1) throw new Error("session_admission_release_unacknowledged");
+      return result;
+    } catch (cause) {
+      throw new SessionStoreUnavailableError({ cause });
+    }
+  }
+
+  create(user: SessionUser): Promise<SessionRecord> {
+    return this.withMutation(() => this.createAdmitted(user));
+  }
+
+  private async createAdmitted(user: SessionUser): Promise<SessionRecord> {
     const token = randomBytes(32).toString("hex");
     const now = new Date();
     const expiresAt = new Date(
@@ -77,7 +105,11 @@ export class SessionStore implements SessionStoreBackend {
     }
   }
 
-  async destroy(token: string): Promise<void> {
+  destroy(token: string): Promise<void> {
+    return this.withMutation(() => this.destroyAdmitted(token));
+  }
+
+  private async destroyAdmitted(token: string): Promise<void> {
     try {
       const removed = await this.redis.del(`${SESSION_PREFIX}${token}`);
       if (removed !== 0 && removed !== 1) throw new Error("session_delete_not_acknowledged");
@@ -87,13 +119,15 @@ export class SessionStore implements SessionStoreBackend {
   }
 
   async refresh(token: string): Promise<SessionRecord | null> {
-    const session = await this.get(token);
-    if (!session) return null;
-
-    await this.destroy(token);
-    const { token: _old, expiresAt: _exp, createdAt: _created, ...user } =
-      session;
-    return this.create(user);
+    // One admission spans both old-token deletion and successor creation, so
+    // capture cannot freeze the otherwise legitimate gap between commands.
+    return this.withMutation(async () => {
+      const session = await this.get(token);
+      if (!session) return null;
+      await this.destroyAdmitted(token);
+      const { token: _old, expiresAt: _exp, createdAt: _created, ...user } = session;
+      return this.createAdmitted(user);
+    });
   }
 }
 

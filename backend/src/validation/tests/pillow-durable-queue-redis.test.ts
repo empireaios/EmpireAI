@@ -6,6 +6,7 @@ import { createServer } from "node:net";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { Redis } from "ioredis";
+import {TaskQueue} from "../../brain/task-queue.js";
 import Fastify from "fastify";
 import { InMemorySessionStore, SessionStore, SessionStoreUnavailableError } from "../../auth/session-store.js";
 import { createTier0RedisClient, waitForRuntimeRedisReady } from "../../runtime/tier0-redis.js";
@@ -78,6 +79,47 @@ describe("real Redis durable reasoning queue (required, no skipped certification
     await startRedis();
   });
   beforeEach(async () => { await redis.flushdb(); dropChatRequestMemoryCacheForTests(); });
+  it("shared queue capture drains admitted session writes and refuses uncertain writers", async()=>{
+    const queue=new TaskQueue({host:"127.0.0.1",port},{} as never);
+    let release!:()=>void;const gate=new Promise<void>(r=>{release=r;});
+    let entered!:()=>void;const started=new Promise<void>(r=>{entered=r;});
+    const writer=new SessionStore({eval:redis.eval.bind(redis),get:redis.get.bind(redis),del:redis.del.bind(redis),setex:async(...args:unknown[])=>{entered();await gate;return (redis.setex as Function).apply(redis,args);}} as never);
+    const user={id:"drain-owner",email:"owner@example.test",name:"Owner",role:"founder" as const,workspaceId:"drain-workspace"};
+    let captured=false;
+    const writing=writer.create(user);await started;
+    const capturing=queue.withPausedSharedProcessing(async()=>{captured=true;assert.equal(await redis.scard("bull:empireai-brain-tasks:capture-producers"),0);},2000);
+    try {
+      await delay(100);assert.equal(captured,false);release();await writing;await capturing;assert.equal(captured,true);
+      const uncertain=new SessionStore({eval:redis.eval.bind(redis),get:redis.get.bind(redis),del:redis.del.bind(redis),setex:async()=>{throw Error("uncertain write");}} as never);
+      await assert.rejects(uncertain.create(user),SessionStoreUnavailableError);
+      assert.equal(await redis.scard("bull:empireai-brain-tasks:capture-producers"),1);
+      await assert.rejects(queue.withPausedSharedProcessing(()=>{throw Error("must not capture");},100),/producers did not drain/);
+      assert.equal(await redis.scard("bull:empireai-brain-tasks:capture-producers"),1);
+    } finally {release();await Promise.allSettled([writing,capturing]);await queue.close();}
+  });
+  it("independent session process respects held capture owner and preserves original session", async () => {
+    const sessions=new SessionStore(redis);
+    const original=await sessions.create({id:"capture-owner",email:"owner@example.test",name:"Owner",role:"founder",workspaceId:"capture-workspace"});
+    const ownerKey="bull:empireai-brain-tasks:capture-owner";
+    const producerKey="bull:empireai-brain-tasks:capture-producers";
+    const before=await redis.get("empireai:session:"+original.token);
+    const ttlBefore=await redis.pttl("empireai:session:"+original.token);
+    await redis.set(ownerKey,"held-fixture");
+    const program=`import assert from 'node:assert/strict';import {Redis} from 'ioredis';import {SessionStore,SessionStoreUnavailableError} from './src/auth/session-store.ts';const r=new Redis(process.env.SESSION_CAPTURE_REDIS);try{const s=new SessionStore(r);const token=process.env.SESSION_CAPTURE_TOKEN;const record=await s.get(token);assert.ok(record);for(const action of [()=>s.create(record),()=>s.destroy(token),()=>s.refresh(token)])await assert.rejects(action(),SessionStoreUnavailableError);}finally{r.disconnect();}`;
+    const child=spawn(process.execPath,["--import","tsx","--input-type=module","-e",program],{cwd:process.cwd(),env:{...process.env,SESSION_CAPTURE_REDIS:redisUrl,SESSION_CAPTURE_TOKEN:original.token},stdio:["ignore","pipe","pipe"]});
+    let output="";child.stdout!.on("data",c=>{output+=c;});child.stderr!.on("data",c=>{output+=c;});
+    await new Promise<void>((resolve,reject)=>{const timer=setTimeout(()=>{child.kill("SIGKILL");reject(Error("session child deadline"));},10000);child.once("error",e=>{clearTimeout(timer);reject(e);});child.once("exit",code=>{clearTimeout(timer);if(code===0)resolve();else reject(Error(output));});});
+    assert.equal(await redis.get("empireai:session:"+original.token),before);
+    const ttlAfter=await redis.pttl("empireai:session:"+original.token);assert.ok(ttlAfter>0&&ttlAfter<=ttlBefore);
+    assert.equal(await redis.scard(producerKey),0);
+    assert.equal(await redis.get(ownerKey),"held-fixture");
+    await redis.del(ownerKey);
+    const refreshed=await sessions.refresh(original.token);assert.ok(refreshed);
+    assert.equal(await sessions.get(original.token),null);
+    assert.equal((await sessions.get(refreshed.token))?.id,original.id);
+    assert.equal(await redis.scard(producerKey),0);
+  });
+
   after(async () => {
     configureChatRequestStore(null); dropChatRequestMemoryCacheForTests();
     await stopRedis();

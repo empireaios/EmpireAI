@@ -45,7 +45,7 @@ test('actual locked router failures feed passive Assurance and require a new suc
 test('actual SessionStore Redis-adapter GET failure blocks Fastify handler and fresh read recovers',async()=>{
  assert.equal(process.env.WORK8_KERNEL_EGRESS,'DENIED');const root=fs.mkdtempSync(path.join(os.tmpdir(),'work8-session-faults-'));
  const values=new Map<string,string>();let failing=false,reads=0,executions=0;
- const adapter={setex:async(k:string,_ttl:number,v:string)=>{values.set(k,v);return 'OK';},get:async(k:string)=>{reads++;if(failing)throw Error('INJECTED_REDIS_ADAPTER_UNAVAILABLE');return values.get(k)??null;},del:async(k:string)=>Number(values.delete(k))} as unknown as Pick<RedisClient,'setex'|'get'|'del'>;
+ const adapter={eval:async()=>1,setex:async(k:string,_ttl:number,v:string)=>{values.set(k,v);return 'OK';},get:async(k:string)=>{reads++;if(failing)throw Error('INJECTED_REDIS_ADAPTER_UNAVAILABLE');return values.get(k)??null;},del:async(k:string)=>Number(values.delete(k))} as unknown as Pick<RedisClient,'setex'|'get'|'del'>;
  const store=new SessionStore(adapter),session=await store.create({id:'isolated-owner',email:'owner@example.invalid',name:'Isolated owner',role:'founder',workspaceId:w});
  const app=Fastify(),control=new AssuranceControlPlane({root,revision:'work8-session-adapter',now:Date.now});await app.register(cookie);app.get('/isolated-protected',{preHandler:createAuthMiddleware(store)},async()=>{executions++;return {workspace:w};});
  const probe=(status:string)=>control.observe(w,{id:'session-functional',capability:'session-auth',classification:'INJECTED_REDIS_ADAPTER',status,summary:'Actual Fastify authentication against injected session adapter',synthetic:true,evidence:{observedAt:Date.now(),reads,executions}});
