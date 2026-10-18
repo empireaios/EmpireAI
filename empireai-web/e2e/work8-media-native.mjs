@@ -71,7 +71,7 @@ try{
  const page=await ctx.newPage();await page.goto(base+'/cockpit/products');const region=page.getByRole('region',{name:'Product media versions'});await region.waitFor({timeout:60000});
  await check('Unapproved/reapproved selection has no external approval '+width,async()=>{await region.getByRole('button',{name:width===1440?'Select and approve test-media':'Approve revised batch internally',exact:true}).click();await region.getByText('Approved internally; separate publication approval is outstanding.',{exact:true}).waitFor({timeout:20000});const m=await view();assert.equal(m.externalStatus,'NOT_SUBMITTED');assert.equal(m.current.assets.length,width===1440?1:2);assert(m.current.assets.every(a=>a.sha256===sha(svg)))});
  await check('Separate selected-version intercepted submission '+width,async()=>{await region.getByRole('button',{name:'Authorise simulated submission of selected version',exact:true}).click();await region.getByText(/simulated submission intercepted/).first().waitFor({timeout:20000});const m=await view();assert.equal(m.externalStatus,'SIMULATED_SUBMISSION_INTERCEPTED');assert(m.history.every(e=>e.externalEffects===0))});
- await check('Archive collapsed toggle preserves selected bytes '+width,async()=>{const a=region.locator('details').filter({has:page.getByText('Archive',{exact:true})});assert.equal(await a.getAttribute('open'),null);const selected=(await view()).current;await a.locator('summary').click();await a.locator('summary').click();assert.deepEqual((await view()).current,selected)});
+ await check('Archive collapsed toggle preserves selected bytes '+width,async()=>{const a=region.locator('details').filter({has:page.getByText('Archive',{exact:true})});assert.equal(await a.getAttribute('open'),null);const selected=(await view()).current;await a.locator(':scope > summary').click();await a.locator(':scope > summary').click();assert.deepEqual((await view()).current,selected)});
  await check('Relevant media visible and no horizontal overflow '+width,async()=>{assert.equal(await region.locator('img').count(),width===1440?3:4);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))});
  await region.screenshot({path:join(out,'media-'+width+'.png')});
  }finally{await ctx.close()}}
@@ -108,10 +108,10 @@ try{
     const byteHashes=await page.evaluate(async urls=>Promise.all(urls.map(async url=>{const b=await (await fetch(url)).arrayBuffer();return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b))).map(x=>x.toString(16).padStart(2,'0')).join('')})),identities.map(a=>a.url));assert.deepEqual(byteHashes,identities.map(a=>sha(a.bytes)));
     await region.getByRole('button',{name:'Approve revised batch internally',exact:true}).click();await region.getByText('Approved internally; separate publication approval is outstanding.',{exact:true}).waitFor({timeout:20000});
     const approved=await view();assert.equal(approved.current.assets.length,2);assert.equal(approved.externalStatus,'NOT_SUBMITTED');
-    const archive=region.locator('details').filter({has:page.getByText('Archive',{exact:true})});assert.equal(await archive.getAttribute('open'),null);await archive.locator('summary').click();
+    const archive=region.locator('details').filter({has:page.getByText('Archive',{exact:true})});assert.equal(await archive.getAttribute('open'),null);await archive.locator(':scope > summary').click();
     assert(await archive.locator('article').count()>0);assert((await view()).history.some(e=>e.digest===before.proposal.digest));
     await archive.getByText('Version '+before.proposal.version+' · '+before.proposal.status,{exact:true}).first().waitFor();
-    await archive.locator('summary').click();assert.deepEqual((await view()).current,approved.current);
+    await archive.locator(':scope > summary').click();assert.deepEqual((await view()).current,approved.current);
     await page.reload();await region.waitFor();const restored=await view();assert.deepEqual(restored,approved);assert.equal(await region.locator('details').filter({has:page.getByText('Archive',{exact:true})}).getAttribute('open'),null);
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await region.screenshot({path:join(out,'media-gallery-'+width+'.png')});
    });

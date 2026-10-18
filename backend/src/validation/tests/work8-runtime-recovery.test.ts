@@ -63,3 +63,57 @@ test('supervised observer sidecar is mandatory, bounded, independently hashed, a
   fs.appendFileSync(path.join(result.directory,'assuranceWatchdog.json'),' ');assert.throws(()=>recovery.verifyRuntimeRecoverySet(result));
  }finally{f.close();}
 });
+
+test('Redis snapshot time uses the atomic server clock and preserves the row-array API',async()=>{
+ const {captureRedisSnapshot,captureRedisInventory}=await import('../../runtime/work8-recovery-capture.js');
+ const serverTime=1_800_000_005_000;
+ const binaryKey=Buffer.from([0,255,17]),dump=Buffer.from([255,0,123]);
+ const queue={queue:{client:Promise.resolve({evalBuffer:async(script:string)=>{
+  assert.match(script,/redis.call\('TIME'\)/);
+  assert.match(script,/return \{capturedAt, out\}/);
+  return [serverTime,[[binaryKey,dump,60000]]];
+ }})}};
+ const timed=await captureRedisSnapshot(queue as never);
+ assert.equal(timed.capturedAt,serverTime);
+ assert.deepEqual(timed.rows,[{key:binaryKey.toString('base64'),dump:dump.toString('base64'),ttl:60000}]);
+ assert.deepEqual(await captureRedisInventory(queue as never),timed.rows);
+ for(const invalid of [0,-1,NaN,1.5,Number.MAX_SAFE_INTEGER+1]){
+  const bad={queue:{client:Promise.resolve({evalBuffer:async()=>[invalid,[]]})}};
+  await assert.rejects(captureRedisSnapshot(bad as never),/REDIS_SNAPSHOT_TIME_INVALID/);
+ }
+});
+
+test('Redis snapshot time survives client dispatch delay in the durable recovery manifest',async()=>{
+ const f=fixture();try{
+  const before=Date.now(),serverSnapshotTime=before+5000;
+  const rows=[{key:'c2Vzc2lvbg==',dump:'ZHVtcA==',ttl:60000}];
+  // Model five seconds between invocation and execution without sleeping.
+  const captured=await withExclusiveWork8DomainCapture(f.root,()=>recovery.captureRuntimeRecoverySet({
+   ...f.args,captureRedis:async()=>({capturedAt:serverSnapshotTime,rows})
+  }));
+  recovery.finalizeRuntimeRecoverySet(captured);
+  const m=recovery.verifyRuntimeRecoverySet(captured);
+  assert.equal(m.redisCapturedAt,serverSnapshotTime);
+  assert.equal(m.redisCapturedAt+rows[0]!.ttl,serverSnapshotTime+60000);
+  assert.notEqual(m.redisCapturedAt,before);
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(captured.directory,'redis.json'),'utf8')),rows);
+  assert.equal(m.bootAllowed,false);assert.equal(m.completeLiveState,false);
+ }finally{f.close();}
+});
+
+test('Redis snapshot time keeps legacy array callbacks compatible and rejects invalid clock before sealing',async()=>{
+ const f=fixture();try{
+  const before=Date.now();
+  const captured=await withExclusiveWork8DomainCapture(f.root,()=>recovery.captureRuntimeRecoverySet(f.args));
+  recovery.finalizeRuntimeRecoverySet(captured);
+  const m=recovery.verifyRuntimeRecoverySet(captured);
+  assert.ok(m.redisCapturedAt>=before&&m.redisCapturedAt<=Date.now());
+ }finally{f.close();}
+ const bad=fixture();try{
+  await assert.rejects(withExclusiveWork8DomainCapture(bad.root,()=>recovery.captureRuntimeRecoverySet({
+   ...bad.args,captureRedis:async()=>({capturedAt:NaN,rows:[]})
+  })),/REDIS_SNAPSHOT_TIME_INVALID/);
+  assert.equal(fs.existsSync(path.join(bad.args.destination,'runtime-recovery.pending.json')),false);
+  assert.equal(fs.existsSync(path.join(bad.args.destination,'runtime-recovery.json')),false);
+ }finally{bad.close();}
+});

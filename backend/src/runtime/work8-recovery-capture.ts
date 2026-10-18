@@ -17,6 +17,8 @@ export type Work8RecoveryResult={directory:string;digest:string;manifest:{comple
 // not establish exclusion of remote producers before or after this command.
 const redisSnapshot=`
 if redis.call('DBSIZE') > 10000 then return redis.error_reply('RECOVERY_REDIS_KEY_LIMIT') end
+local clock = redis.call('TIME')
+local capturedAt = tonumber(clock[1])*1000+math.floor(tonumber(clock[2])/1000)
 local out = {}; local total = 0
 for _, key in ipairs(redis.call('KEYS', '*')) do
  local dump = redis.call('DUMP', key); local ttl = redis.call('PTTL', key)
@@ -26,20 +28,28 @@ for _, key in ipairs(redis.call('KEYS', '*')) do
   table.insert(out, {key, dump, ttl})
  end
 end
-return out`;
-export async function captureRedisInventory(queue:TaskQueue) {
+return {capturedAt, out}`;
+type RedisInventoryRow = {key:string;dump:string;ttl:number};
+/** The server timestamp and PTTL values belong to one atomic snapshot, so client
+ * queueing/network delays cannot shorten the original session lifetime. */
+export async function captureRedisSnapshot(queue:TaskQueue):Promise<{capturedAt:number;rows:RedisInventoryRow[]}> {
  const client=await queue.queue.client;
- const binaryClient=client as unknown as {evalBuffer?:(script:string,keys:number)=>Promise<Array<[Buffer,Buffer,number]>>};
+ const binaryClient=client as unknown as {evalBuffer?:(script:string,keys:number)=>Promise<[number,Array<[Buffer,Buffer,number]>]>};
  if(typeof binaryClient.evalBuffer!=='function') throw new Error('REDIS_BINARY_SNAPSHOT_UNAVAILABLE');
- const rows=await binaryClient.evalBuffer(redisSnapshot,0);
- return rows.map(([key,dump,ttl])=>({key:key.toString('base64'),dump:dump.toString('base64'),ttl})).sort((a,b)=>a.key.localeCompare(b.key));
+ const [capturedAt,rows]=await binaryClient.evalBuffer(redisSnapshot,0);
+ if(!Number.isSafeInteger(capturedAt)||capturedAt<=0)throw new Error('REDIS_SNAPSHOT_TIME_INVALID');
+ return {capturedAt,rows:rows.map(([key,dump,ttl])=>({key:key.toString('base64'),dump:dump.toString('base64'),ttl})).sort((a,b)=>a.key.localeCompare(b.key))};
+}
+/** Preserve the established row-array API for inspection consumers. */
+export async function captureRedisInventory(queue:TaskQueue) {
+ return (await captureRedisSnapshot(queue)).rows;
 }
 export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string},queue:TaskQueue):Promise<Work8RecoveryResult>{
  if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN: Redis producers, watchdog, continuation and protected custody remain uncovered; only explicit scoped inspection is available");
  return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,captureId:randomUUID(),captureRepositoryLifecycle:request.captureRepositoryLifecycle===true,captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
   authorityFile:path.join(resolveShadowCeoAuthorityDir(),'authority-store.json'),
   requestOwnersFile:path.join(resolveShadowCeoDataRoot(),'shadow-ceo-request-owners.json'),
-  captureRedis:()=>captureRedisInventory(queue),captureRedisIdentity:async()=>{
+  captureRedis:()=>captureRedisSnapshot(queue),captureRedisIdentity:async()=>{
    const client=await queue.queue.client as unknown as Redis;
    const identity=await redisIdentity(client);
    const ownerKey=queue.queue.toKey('capture-owner'),owner=await client.get(ownerKey);
