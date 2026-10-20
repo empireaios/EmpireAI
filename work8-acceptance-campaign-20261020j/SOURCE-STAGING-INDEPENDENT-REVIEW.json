@@ -1,0 +1,38 @@
+{
+  "decision": "PASS_EXACT_REMOTE_FOUR_PATH_SOURCE",
+  "reviewer": "/root/certification_h",
+  "commit": "00d3792c3e0669e29d923d529d977957b60cb750",
+  "tree": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+  "parent": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+  "branch": "work8/staged-source-20261020j",
+  "paths": [
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "sha256": "57056fe2170a8872e8876b37eb6541cc047980e52b7193edbb22b028d3f57755",
+      "blob": "c5f67960b6d63be3297c3954bcfb523dc5908186"
+    },
+    {
+      "path": "scripts/work8/application-graph-restoration.mjs",
+      "mode": "100644",
+      "sha256": "fc407fa46a5de25d631f587ad05feedfdf030f8da38bc0dc2a32c9ef1494cff5",
+      "blob": "ed02168682abe5db0093928e3ea3971c933ff231"
+    },
+    {
+      "path": "scripts/work8/index-restoration-phase.mjs",
+      "mode": "100644",
+      "sha256": "554f1ae7f02f69148bd6e2fca9cc46293c6419e87972743845a5854e7ae43aab",
+      "blob": "a748c84680a382f26dfb603a5b6a053c5681f270"
+    },
+    {
+      "path": "scripts/work8/index-restoration-phase.test.mjs",
+      "mode": "100644",
+      "sha256": "de7276e7459c0f8d88cafc01807ceae484965eaeb583f8596f07220b184021ce",
+      "blob": "6b6b8b74c8e745d809ea1ae23ed8b9cb68ab87cf"
+    }
+  ],
+  "inheritedPathsUnchanged": true,
+  "localRemoteCompleteTreeEqual": true,
+  "destinationPublished": false,
+  "hostedIndexExamination": "Pending exact-tree approval and automatic CI"
+}

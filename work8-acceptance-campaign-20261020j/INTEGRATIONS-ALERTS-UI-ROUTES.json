@@ -1,0 +1,86 @@
+{
+  "recordType": "J_SOURCE_GROUNDED_READ_ONLY_OWNER_UI_NAVIGATION",
+  "at": "2026-10-20T08:56:41.662572+00:00",
+  "browserOwner": "root; no duplicatebrowser by integrations lane",
+  "sourceHashes": {
+    "empireai-web/app/(cockpit)/cockpit/infrastructure/integrations/page.tsx": "1ff75ba47d12c6346148c655b76670a7225b05713192b56f891932df7983fff6",
+    "empireai-web/components/cockpit/widgets/InfrastructurePanels.tsx": "ffdeef7c5957f255ea955b2999a64deb2a36e4bea9104728e68ac1ec7c72c951",
+    "empireai-web/components/owner/OwnerEyes.tsx": "796174b9d7e35ddc16040df9377f107f77992259662f2da53b320e6103a2da01",
+    "empireai-web/components/owner/OwnerAssurance.tsx": "d46e8996447c4565c9bfb32525a4d728518a6098100984641a9cb03cf121d99d",
+    "empireai-web/components/owner/OwnerNotifications.tsx": "e8cdec736ee99342e5855f72438a5e357e5d5649f994959efea657618be2aef8",
+    "empireai-web/components/owner/work7/OwnerJourneys.tsx": "283f5375621a25795f39e25ff30d8f4ae366ef9d236db022ddbfc7e2ec12a80c",
+    "empireai-web/components/owner/work8/TwinMedia.tsx": "9d44550044dc091a3c111ba5a2e4b194d64cd98ef3693eef5273b876902ce332"
+  },
+  "navigation": [
+    {
+      "target": "A15 Keepa capability",
+      "route": "/cockpit/eyes",
+      "actions": [
+        "Click Sources & diagnostics",
+        "Expand Intelligence Arsenal > Keepa history capability"
+      ],
+      "visibleFields": [
+        "Configuration",
+        "Credential present boolean",
+        "Authentication",
+        "Read",
+        "Last good",
+        "Verified endpoint",
+        "Write capability",
+        "Authority: Read only"
+      ],
+      "scope": "Capability/credential presence display, not actual new provider read or independently established subscription entitlement",
+      "avoid": [
+        "Source query submit",
+        "Pause/Resume schedules",
+        "Approve investigation/readback"
+      ]
+    },
+    {
+      "target": "Provider evidence fallback",
+      "route": "/cockpit/system",
+      "actions": [
+        "Expand Business capabilities, read scope and provider truth on actual provider card",
+        "Expand Dated provider read receipts"
+      ],
+      "scope": "Displayedproviderstate only; no external refresh inferred"
+    },
+    {
+      "target": "A10 existing integration display",
+      "route": "/cockpit/infrastructure/integrations",
+      "actions": [
+        "Read Integration Connections table"
+      ],
+      "visibleFields": [
+        "Integration",
+        "Type",
+        "Status",
+        "Last sync"
+      ],
+      "scope": "No company-bound CanvaOAuthstatusscopes nor export/actionconfig UI found in thispanel; staleConnected labels cannot prove runtimeentitlement"
+    },
+    {
+      "target": "O30 current evidence",
+      "route": "/cockpit/assurance",
+      "actions": [
+        "Read Assurance inbox status",
+        "Read King\u2019s Advisor collaboration",
+        "Expand Coverage and durable history"
+      ],
+      "scope": "Inbox automaticallysynchronizes internal savednotices; explicitly not independentdelivery duringserviceunavailability. No externalprovider/destinationconfiguration UI identified.",
+      "avoid": [
+        "Run health check",
+        "Pause/Resume safe recovery",
+        "Request eligible recovery",
+        "Approve/reject/defer remedy",
+        "Acknowledge notices"
+      ]
+    }
+  ],
+  "A10MediaBoundary": "TwinMedia at /cockpit/products shows awaiting authorized runtime connection. Save editing request changesdurablestate and doesnotexecuteCanva. Do not use as accessprobe.",
+  "next": "Root must ground current visible UI/records in browser before any conclusion; repository route mapping is not hosted acceptance.",
+  "newAcceptance": false,
+  "browserActions": 0,
+  "rawApiCalls": 0,
+  "externalEffects": 0
+}

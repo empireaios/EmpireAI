@@ -1,0 +1,125 @@
+{
+  "recordType": "AUTHENTICATED_OWNER_UI_READBACK_J",
+  "observer": "/root",
+  "observedAt": "2026-10-20T09:00:30Z",
+  "session": {
+    "manualOwnerRecovery": true,
+    "signedInHomeVerified": true,
+    "signOutControlVisible": true,
+    "loginRepeated": false,
+    "secretValuesRead": false
+  },
+  "currentProducts": {
+    "researchCandidates": 0,
+    "savedResearchRoute": "/cockpit/intelligence/products",
+    "result": "Retry control; DEMO-labelled view; no genuine loaded research record"
+  },
+  "historicalMirror": {
+    "product": "1872203651945525250",
+    "variant": "1872203652109103106",
+    "sku": "CJFU225443901AZ",
+    "sourceDate": "2026-09-29T12:36:42.890Z",
+    "priceUsd": 52.25,
+    "disposition": "REJECTED_SUPPLIER_SHIPPED_NOT_CJ_CONTROLLED",
+    "ownerDecision": "Not requested; no approval recorded",
+    "freshQualification": false
+  },
+  "historicalPillowDecision": {
+    "id": "decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6",
+    "version": 0,
+    "source": "completed-reasoning:pcr_27fb1ed5ddb24f5a",
+    "sourceDate": "2026-10-08T05:14:34.404Z",
+    "candidate": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+    "disposition": "EVIDENCE-INSUFFICIENT",
+    "amazonReferences": [
+      "B0GN1TZZ9W",
+      "B0BYDGF8DT"
+    ],
+    "cjProduct": "2610070327381623000",
+    "cjVariant": "2610070327381624400",
+    "matching": "EXPLICITLY_UNMATCHED",
+    "ownerState": "Awaiting owner review",
+    "deferControlEnabled": true,
+    "approveRejectRevisionDisabled": true,
+    "decisionMutationPerformed": false,
+    "notLinkedToSep29Mirror": true
+  },
+  "orders": {
+    "liveFeed": "No verified live order feed",
+    "testHistory": [
+      {
+        "id": "order-fixture",
+        "product": "Synthetic storage organiser",
+        "units": 2,
+        "status": "Delivered",
+        "date": "2026-10-09",
+        "payment": "Unverified"
+      }
+    ],
+    "genuineCandidateOutcomeLinked": false
+  },
+  "finance": {
+    "operationalAmounts": "No verified operational amounts in period",
+    "historicalFixtures": 7,
+    "historicalDigest": "2dafb93abe62c17339351529eacd02c4b33f29e9f2df3173be28c818b6ee21bf",
+    "entryDigest": "e59dcbdd7a85614ce46e2b75a7e4dfe8971847cec3b1980617bc4e128de0f4dc",
+    "backendRevision": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+    "original224LineageRecovered": false
+  },
+  "assurance": {
+    "sourceReadAt": "2026-10-20T08:59:11.673Z",
+    "guards": {
+      "verified": 0,
+      "atRisk": 0,
+      "tripped": 1,
+      "unknown": 14
+    },
+    "operationalRefresh": "Evidence refresh failed; saved observations may be out of date",
+    "disasterRecovery": "No source-backed backup freshness, recovery objective or completed restore-test evidence in these stores",
+    "commerceControls": "PAUSED_BLOCKED",
+    "controlsChanged": false
+  },
+  "keepa": {
+    "route": "/cockpit/system",
+    "id": "keepa.history",
+    "credentialPresent": false,
+    "configurationState": "NOT_CONFIGURED",
+    "authenticationState": "UNVERIFIED",
+    "readState": "UNVERIFIED",
+    "availability": "UNAVAILABLE",
+    "lastVerifiedRead": null,
+    "accountWideEntitlementInferred": false
+  },
+  "desktopObserved": true,
+  "mobileIndependentPresentationVerified": false,
+  "newAcceptedIds": [],
+  "paidInference": 0,
+  "externalMessages": 0,
+  "commerceEffects": 0,
+  "canva": {
+    "route": "/cockpit/infrastructure/integrations",
+    "visibleResult": "Connector grid unavailable; DEMO-labelled department view",
+    "entitlementVerified": false,
+    "exportAttempted": false
+  },
+  "currentIntelligence": {
+    "route": "/cockpit/eyes",
+    "observedAt": "2026-10-20T09:01:55Z",
+    "discoveryObservations": 9,
+    "linkedPillowAssessments": 0,
+    "candidateInvestigations": 10,
+    "openGaps": 13,
+    "detailEvidenceId": "ev_0d5d7a782c4b9ba4dfe795570b7b240e50cfaf93",
+    "subjectProduct": "2610200608021613300",
+    "observedAtSource": "2026-10-20T06:39:29.178Z",
+    "staleAfter": "2026-10-20T12:39:29.178Z",
+    "digest": "ea43715a114d49883afa72dc7a8227dd30f3f0344830a377804ae79a70241dbf",
+    "authenticity": "LIVE_PROVIDER",
+    "detailCandidate": "op_75dacf3076c483a83a87bea0a379fb80bc72",
+    "detailCandidateCompleteness": "1/8",
+    "status": "INCOMPLETE",
+    "matching": "UNMATCHED",
+    "executionApproved": false,
+    "newProviderRequestPerformed": false
+  }
+}

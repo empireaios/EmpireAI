@@ -1,0 +1,30 @@
+{
+  "scope": "O40/O41/A6/A19 exact retained contract; no new requirements",
+  "baseline": "45 accepted/19outstanding",
+  "examiner": "root sole browser controller",
+  "reviewer": "certification_h",
+  "assertions": [
+    "Actual authenticated owner/workspace and source identity/date bound to genuine product/variant",
+    "Linked Pillow conclusion or truthful deferred/rejected disposition; no positive qualification or paid assessment blanket display prerequisite",
+    "Genuine same-product authenticated owner decision; technical workflow closure not substituted",
+    "Same-identity simulated downstream/order and finance result",
+    "Linked Assurance record and recovery status",
+    "Desktop/mobile equal identities/values and owner-readable durable navigation/readback"
+  ],
+  "rowBoundaries": {
+    "O40": "Complete the coherent authenticated desktop/mobile journey across genuine source evidence, product decisions, linked conclusions where legitimately available, simulated finance, Assurance and recovery status. Truthful rejected/deferred candidates are permitted in the R1/R5 presentation; no positive qualification or paid assessment is a blanket display prerequisite. Original O13/R2 genuine assessment requirements remain separately mandatory. Genuine connected visual evidence remains required; no separately purchased visual host is required.",
+    "O41": "Preserve accepted source/price desktop-mobile display and five-shortcut evidence. Complete genuine same-identity full source/Pillow/owner/simulated finance/Assurance walkthrough; no physical-device certificate is required by the directive.",
+    "A6": "Provide authenticated visual same-identity genuine source-to-owner-to-simulated-results evidence using existing Console. No separately purchased visual host or waiver of genuine evidence is required.",
+    "A19": "Use existing authenticated Console to verify identical genuine product/mission/order/finance/Assurance records on desktop and mobile; owner must be able to inspect them. No additional purchase-method approval required."
+  },
+  "preserve": [
+    "Accepted source/price display and five shortcuts",
+    "A8/media accepted examinations",
+    "O13 genuine assessment separate mandatory requirement"
+  ],
+  "limits": [
+    "Empty/unavailable surfaces alone insufficient for complete linked journey",
+    "No physical-device certificate or separately purchased host required",
+    "No new product qualification or paid inference implied"
+  ]
+}

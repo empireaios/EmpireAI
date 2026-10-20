@@ -1,0 +1,38 @@
+{
+  "recordType": "INDEPENDENT_J_INDEX_RESTORATION_SOURCE_REVIEW",
+  "reviewer": "/root/certification_h",
+  "decision": "PASS_SCOPED_FOUR_PATH_SOURCE_WITH_HOSTED_PROC_ASSERTION_PENDING",
+  "baseCommit": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+  "paths": {
+    ".github/workflows/pillow-runtime-repair-ci.yml": "57056fe2170a8872e8876b37eb6541cc047980e52b7193edbb22b028d3f57755",
+    "scripts/work8/application-graph-restoration.mjs": "fc407fa46a5de25d631f587ad05feedfdf030f8da38bc0dc2a32c9ef1494cff5",
+    "scripts/work8/index-restoration-phase.mjs": "554f1ae7f02f69148bd6e2fca9cc46293c6419e87972743845a5854e7ae43aab",
+    "scripts/work8/index-restoration-phase.test.mjs": "de7276e7459c0f8d88cafc01807ceae484965eaeb583f8596f07220b184021ce"
+  },
+  "independentPreflight": {
+    "pass": 1,
+    "fail": 0,
+    "skip": 1,
+    "reason": "Local process.pid notmapped in/proc; CI=true requires real mapping and cannot silentlyskip",
+    "logSha256": "86234b06f15c6b7fe4486d3c7cb313bcf8fcd6883b9957604d61142a4d29608d"
+  },
+  "reviewedBoundaries": [
+    "Fresh second target fromsamefrozen capture; original graph branchassertions preserved",
+    "Actual index child HTTP status and worker-thread watchdogReady heartbeat health; no invented watchdogPID",
+    "Original bearer/cookie exactidentity andTTL; forgery401; out-of-workspace mission403 instead of privilegedsessionmint",
+    "Redis captureowner/pause retained and missionexecutor false; source mission/execution/financial/liveCostCentre canonicaltables fixed",
+    "Read-only source/capture/journal; no network, nonrootcontainer, existing180000msdeadline",
+    "Numeric processstartTicks required before signaling; identitymismatch refuses signals and retains target for outercontainment",
+    "Partial failure receipt preserves processstate; containertrap retains inspect/log before removal",
+    "Unknown targettablemutations remain awaitingindependentreview; noPASS shortcut"
+  ],
+  "limits": [
+    "Actual index/watchdog hosted examination notyetexecuted; futureexacttreeapproval required",
+    "Production Amazon continuations omitted inengineeringmode, globalcurrent/priorwriter membership notcertified",
+    "Separateaccepted Redis/AOF/session/pendingreplay proofs preserved, notextended automatically",
+    "No full operationalrestoration/protectedcustody or whole-row acceptance inferred"
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "publicationAuthorized": false
+}

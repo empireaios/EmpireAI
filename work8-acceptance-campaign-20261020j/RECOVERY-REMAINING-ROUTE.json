@@ -1,0 +1,44 @@
+{
+  "recordType": "WORK8_J_BOUNDED_REMAINING_RECOVERY_ROUTE",
+  "scope": "Retained H bounded initializer census + I reviewed application-graph receipt; only exact index/watchdog/engineering-policy/cohort references rechecked. No global repository investigation.",
+  "acceptedEvidenceReused": [
+    "HH4 actual index startup/held capture/outer cohort containment",
+    "Replacement Redis original bearer/cookie + AOF recovery and once-only pending mission execution",
+    "H/I coordinated13-store plus visual/session/journal snapshot and cold readers",
+    "Local Amazon continuation capture-aware background fence"
+  ],
+  "remaining": [
+    {
+      "boundary": "Current restored application graph",
+      "route": "Observe single automatically triggered new graph examination; triage only actual failure or independently classify table mutations. Do not repeat source capture/Redis suites."
+    },
+    {
+      "boundary": "Restored actual index topology",
+      "route": "After graph pass, reuse same frozen capture in one isolated network-none fresh target; start actual index with original watchdog defaults and engineering guards. Independently attest watchdog worker readiness, existing primary/worker/observer membership, original transport sessions and unchanged source hashes. Do not call buildApp graph full index proof.",
+      "note": "index invokes watchdog with default enabled; HH4 source startup includes it. New I restored graph deliberately does not."
+    },
+    {
+      "boundary": "Global current/prior admitted writers",
+      "route": "One authoritative declared membership inventory from existing launcher/platform configuration plus live process/start-time/cgroup identities and Redis endpoint/db. Include current/prior worker, primary, observer, launcher and independent session producers. Demonstrate captured cohort terminated and no prior admitted member survives; prove updated locks shared same canonical paths/Redis namespace. Local drains alone do not establish membership completeness."
+    },
+    {
+      "boundary": "Operational pending replay",
+      "route": "Reuse accepted exact-once isolated mission execution proof. Couple its pinned scope/build/dispatch identity to restored graph only after reviewed bounded admission; preserve commercial fences. Do not clear capture-owner or resume all BullMQ work merely for PASS."
+    },
+    {
+      "boundary": "Protected custody",
+      "route": "Independent lane must establish retention/version integrity, runtime credential exclusion and authenticated off-host readback of complete recovery material, not only checkpoint report."
+    }
+  ],
+  "minimumResource": "Existing automatic CI Docker image, private fixture volume and loopback Redis suffice for isolated graph/index tests. Genuine live topology membership/protected custody requires independently attributable authority and inventory; no new infrastructure requested.",
+  "codeChanges": [],
+  "newAcceptedIds": [],
+  "decision": "IN_PROGRESS_NO_GO",
+  "sourceHashes": {
+    "backend/src/index.ts": "980baa79a9961464bf6a405d94c5582bfb0dd35deec8e1310b414252669187bf",
+    "backend/src/runtime/executive-continuity-watchdog.ts": "09b2037fd1a0e297c184974700a49f2ced7d2839e25b851a510612d8edccf81e",
+    "backend/src/runtime/work8-background-capture.ts": "e1a32b935f7146107948c4a9d9cc482830a5b1c74c80584350f1f1260a20fe00",
+    "backend/src/runtime/engineering-test-mode.ts": "e23317e707a4684a3c87ab587596b638387e629c664534645e60ddfbf5c722da",
+    "scripts/work8/hh4-outer-cohort.mjs": "17f6ac6c8bf7a3631284d38d968a08945b0f53140cacf41df064178eacf16c17"
+  }
+}

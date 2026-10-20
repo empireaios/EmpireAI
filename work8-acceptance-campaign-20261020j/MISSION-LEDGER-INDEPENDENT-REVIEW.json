@@ -1,0 +1,174 @@
+{
+  "recordType": "INDEPENDENT_J_MISSION_LEDGER_CERTIFICATION",
+  "reviewer": "/root/certification_h",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "accepted": 45,
+  "outstanding": 19,
+  "rowCount": 64,
+  "counts": {
+    "O": {
+      "PASS": 34,
+      "PENDING": 7,
+      "BLOCKED": 4
+    },
+    "A": {
+      "PASS": 11,
+      "PENDING": 8
+    }
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "allOutstandingRowsAssigned": true,
+  "remainingRows": [
+    "O2",
+    "O7",
+    "O13",
+    "O14",
+    "O30",
+    "O33",
+    "O39",
+    "O40",
+    "O41",
+    "O42",
+    "O43",
+    "A1",
+    "A2",
+    "A3",
+    "A5",
+    "A6",
+    "A10",
+    "A15",
+    "A19"
+  ],
+  "publication": {
+    "evidence": {
+      "commit": "1461443215a66445c27e5a957d77e47b3445812c",
+      "tree": "01f422258437fbea251f0203ce33e86bf8b45079"
+    },
+    "source": {
+      "approved": "986d1b237f87658c9309f496392acd77ba83435b",
+      "published": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+      "tree": "01f4b9a214c062e826c6ee0d6f58d2627e7edffc"
+    },
+    "evidenceFirst": true,
+    "exactTreeVerified": true,
+    "safeAncestry": true,
+    "metadataOnlyChange": "remove skip ci marker",
+    "prDraft": true,
+    "merged": false
+  },
+  "automaticCI": {
+    "decision": "ALL_FOUR_TERMINAL_SUCCESS",
+    "runs": [
+      {
+        "id": 39396928186,
+        "name": "Independent Assurance Core",
+        "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      },
+      {
+        "id": 39396928128,
+        "name": "Pillow semantic repair CI",
+        "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      },
+      {
+        "id": 39396928126,
+        "name": "Product path CI",
+        "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      },
+      {
+        "id": 39396928605,
+        "name": "Pillow runtime repair CI",
+        "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      }
+    ],
+    "dispatches": 0,
+    "reruns": 0
+  },
+  "scopedAcceptance": "Actual fresh buildApp graph restored with original synthetic sessions, exact thirteen-store preboot identity, preserved records and queue fences; no table mutations. This is not full index/global topology/protected custody certification.",
+  "priorAcceptancePreserved": [
+    "A8",
+    "O19",
+    "HH4",
+    "A9",
+    "A11",
+    "F29",
+    "seven auxiliary capture checks",
+    "replacement Redis/AOF/original bearer-cookie/once-only pending replay",
+    "all other independently accepted rows"
+  ],
+  "activeConsoleRevision": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+  "console": "Authenticated desktop access and genuine source visibility recovered; missing linked owner-decision/outcome/finance/Assurance chain prevents complete owner acceptance; current mobile unexamined.",
+  "deferOption": "Exact historical decision/version/source-bound proposal only; no mutation performed.",
+  "stagedSuccessor": {
+    "decision": "PASS_EXACT_REMOTE_FOUR_PATH_SOURCE",
+    "reviewer": "/root/certification_h",
+    "commit": "00d3792c3e0669e29d923d529d977957b60cb750",
+    "tree": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+    "parent": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+    "branch": "work8/staged-source-20261020j",
+    "paths": [
+      {
+        "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+        "mode": "100644",
+        "sha256": "57056fe2170a8872e8876b37eb6541cc047980e52b7193edbb22b028d3f57755",
+        "blob": "c5f67960b6d63be3297c3954bcfb523dc5908186"
+      },
+      {
+        "path": "scripts/work8/application-graph-restoration.mjs",
+        "mode": "100644",
+        "sha256": "fc407fa46a5de25d631f587ad05feedfdf030f8da38bc0dc2a32c9ef1494cff5",
+        "blob": "ed02168682abe5db0093928e3ea3971c933ff231"
+      },
+      {
+        "path": "scripts/work8/index-restoration-phase.mjs",
+        "mode": "100644",
+        "sha256": "554f1ae7f02f69148bd6e2fca9cc46293c6419e87972743845a5854e7ae43aab",
+        "blob": "a748c84680a382f26dfb603a5b6a053c5681f270"
+      },
+      {
+        "path": "scripts/work8/index-restoration-phase.test.mjs",
+        "mode": "100644",
+        "sha256": "de7276e7459c0f8d88cafc01807ceae484965eaeb583f8596f07220b184021ce",
+        "blob": "6b6b8b74c8e745d809ea1ae23ed8b9cb68ab87cf"
+      }
+    ],
+    "inheritedPathsUnchanged": true,
+    "localRemoteCompleteTreeEqual": true,
+    "destinationPublished": false,
+    "hostedIndexExamination": "Pending exact-tree approval and automatic CI"
+  },
+  "controls": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "PR113": "DRAFT_UNMERGED",
+    "productionPromotion": false
+  },
+  "receiptSha256": {
+    "FULL-TRACKER-RECONCILED.md": "47584fd55dc0e329894c4d663fc8402e222dfcc06f9f314f97ddbcd744a3f97c",
+    "REGISTER-CLOSURE-MATRIX.json": "dd35b6ecffbe772f583a598f47320034fecaed28b81335aad454db7f6941f0b8",
+    "REGISTER-CLOSURE-MATRIX.md": "3cbab061c9d9afa31253a00f59ece6a8be42d7ef08cfd9b047d61181b34dd664",
+    "CONTINUATION-CHECKPOINT.md": "14c0dd7fc86db8337497201d88157c927690b24cf68312f3506a692e7032855c",
+    "CI-STATUS.json": "98b1d9ad52af79d50504fb28e5578f2b7e4092607c28f22b5d0f63fbc80312e9",
+    "APPLICATION-GRAPH-HOSTED-INDEPENDENT-DECISION.json": "5d3b87b42df2702c6dfb4a390112eae99b4b2d5d24b75e9c715684af67728b4a",
+    "OWNER-CONSOLE-OBSERVATIONS.json": "bf44c43014f148b3743fda7aacaf07f61b3f5e679a7169cdd4045f25e05e527c",
+    "OWNER-CONSOLE-INDEPENDENT-DECISION.json": "7aedbbc9f5dc80db65e02753ba349005f336781021575ff680067549a14b964a",
+    "OWNER-DEFER-PROPOSED-BOUNDARY.json": "c1e163ff8d9ecc4a9acda769e55ec7276a3cc51043a3fdfff8d7d91b6a5df34d",
+    "INDEX-RESTORATION-INDEPENDENT-REVIEW.json": "e34c85d7df5e14e180438150125dce89562b1b9ed53535636c151e35a0aab150",
+    "SOURCE-STAGING-INDEPENDENT-REVIEW.json": "04603c1d776255d275e6ef7c48738514d34e7593e7335358330e031614340176",
+    "CUSTODY-REMAINING-ASSURANCE.json": "4994233fca93784476a1e9ab95f2cf69602d46dacfe2647e9171fe853f47f97c"
+  }
+}

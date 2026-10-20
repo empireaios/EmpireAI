@@ -1,0 +1,157 @@
+diff --git a/.github/workflows/pillow-runtime-repair-ci.yml b/.github/workflows/pillow-runtime-repair-ci.yml
+index 3fb6594a..c5f67960 100644
+--- a/.github/workflows/pillow-runtime-repair-ci.yml
++++ b/.github/workflows/pillow-runtime-repair-ci.yml
+@@ -328,6 +328,28 @@ jobs:
+             --entrypoint node "$image_id" scripts/work8/application-graph-restoration.mjs "$(git rev-parse HEAD)" \
+             > "$RUNNER_TEMP/hh4-evidence/application-graph.log" 2>&1
+           docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/application-graph-container.json"
++      - name: Restored actual index and watchdog from same frozen capture
++        timeout-minutes: 5
++        run: |
++          set -euo pipefail
++          node --test scripts/work8/index-restoration-phase.test.mjs
++          image_id=$(docker image inspect --format '{{.Id}}' work8-hh3:ci)
++          name="work8-restored-index-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
++          mkdir -m 700 "$RUNNER_TEMP/hh4-evidence/index-restoration-results"
++          trap 'docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/index-restoration-container.json" 2>&1 || true; docker logs "$name" > "$RUNNER_TEMP/hh4-evidence/index-restoration.log" 2>&1 || true; docker rm -f "$name" >/dev/null 2>&1 || true' EXIT
++          docker run --name "$name" --read-only --network none \
++            --user "$(id -u):$(id -g)" --cap-drop ALL --security-opt no-new-privileges \
++            --pids-limit 512 --memory 3g --cpus 2 --restart no \
++            --tmpfs /tmp:rw,nosuid,nodev,size=1073741824,mode=1777 \
++            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence,target=/evidence,readonly" \
++            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/index-restoration-results,target=/results" \
++            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/container-evidence/held-capture,target=/capture,readonly" \
++            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/restored-journal/docs/governance/digital-soul/executive-decision-records.jsonl,target=/app/docs/governance/digital-soul/executive-decision-records.jsonl,readonly" \
++            -e NODE_ENV=test -e EMPIRE_ENGINEERING_TEST_MODE=true -e WORK8_KERNEL_EGRESS=DENIED \
++            -e RAILWAY_GIT_COMMIT_SHA="$(git rev-parse HEAD)" \
++            --entrypoint node "$image_id" scripts/work8/application-graph-restoration.mjs "$(git rev-parse HEAD)" index \
++            > "$RUNNER_TEMP/hh4-evidence/index-restoration.log" 2>&1
++          docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/index-restoration-container.json"
+       - name: Preserve actual generated application startup and held capture evidence
+         if: always()
+         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+diff --git a/scripts/work8/application-graph-restoration.mjs b/scripts/work8/application-graph-restoration.mjs
+index 83beb078..ed021686 100644
+--- a/scripts/work8/application-graph-restoration.mjs
++++ b/scripts/work8/application-graph-restoration.mjs
+@@ -21,7 +21,8 @@ export function validateRestorationAuthorization({source,held,verification,inven
+ }
+ /** Generated, isolated application-graph examination only. Never promotes the
+  * original inspection manifest or imports historical approval authority. */
+-export async function examineApplicationGraph({source,evidence='/evidence',directory='/capture',resultFile='/results/application-graph-result.json'}){
++export async function examineApplicationGraph({source,evidence='/evidence',directory='/capture',resultFile='/results/application-graph-result.json',mode='graph'}){
++ assert.ok(['graph','index'].includes(mode),'RESTORATION_MODE_REQUIRED');
+  const read=name=>JSON.parse(fs.readFileSync(path.join(evidence,name),'utf8'));
+  const held=read('container-evidence/hh4-held.json'),inventory=read('container-evidence/hh4-worker-ready.json').inventory;
+  validateRestorationAuthorization({source,held,inventory,verification:read('held-capture-external-verification.json')});
+@@ -53,7 +54,7 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
+  const port=await new Promise((resolve,reject)=>{const s=createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const port=s.address().port;s.close(()=>resolve(port));});});
+  // Capture the port before closing (Node clears address on close).
+  assert.ok(Number.isInteger(port),'ISOLATED_REDIS_PORT_REQUIRED');
+- let server,redis,application,failure;const hardDeadline=setTimeout(()=>{try{fs.writeFileSync(resultFile,JSON.stringify({schema:'WORK8_APPLICATION_GRAPH_RESTORATION_V1',source,digest:held.digest,status:'FAIL',error:'ORIGINAL_APPLICATION_STARTUP_DEADLINE',cleanupRequiresOuterContainment:true}),{flag:'wx',mode:0o600});}finally{console.error('APPLICATION_RESTORATION_HARD_DEADLINE');process.exit(1);}},Math.max(1,deadline-Date.now()));hardDeadline.unref();const receipt={schema:'WORK8_APPLICATION_GRAPH_RESTORATION_V1',source,digest:held.digest,status:'FAIL',preboot,operationalRestoration:false,authorityImported:false,sourceManifestBootAllowed:false,paidInference:0,externalEffects:0,globalWriterTopology:false,protectedCustody:false,originalRequirementsAccepted:[]};
++ let server,redis,application,failure;const hardDeadline=setTimeout(()=>{try{fs.writeFileSync(resultFile,JSON.stringify({schema:'WORK8_APPLICATION_GRAPH_RESTORATION_V1',source,digest:held.digest,status:'FAIL',error:'ORIGINAL_APPLICATION_STARTUP_DEADLINE',cleanupRequiresOuterContainment:true}),{flag:'wx',mode:0o600});}finally{console.error('APPLICATION_RESTORATION_HARD_DEADLINE');process.exit(1);}},Math.max(1,deadline-Date.now()));hardDeadline.unref();const receipt={schema:'WORK8_APPLICATION_GRAPH_RESTORATION_V1',source,digest:held.digest,status:'FAIL',mode,preboot,operationalRestoration:false,authorityImported:false,sourceManifestBootAllowed:false,paidInference:0,externalEffects:0,globalWriterTopology:false,protectedCustody:false,originalRequirementsAccepted:[]};
+  try{
+   const redisDir=path.join(root,'redis');fs.mkdirSync(redisDir,{mode:0o700});
+   server=spawn('/usr/bin/redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',redisDir,'--save','','--appendonly','yes','--appendfsync','always'],{stdio:['ignore','pipe','inherit']});
+@@ -64,6 +65,7 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
+   const runId=(await redis.info('server')).match(/^run_id:([a-f0-9]{40})\r?$/m)?.[1];assert.ok(runId);
+   const {restoreWork8RedisInspection}=await import('../../backend/dist/runtime/work8-recovery-capture.js');
+   const restored=await restoreWork8RedisInspection({directory,digest:held.digest,mode:'inspection-only',expectedCaptureOwner:manifest.redisIdentity.owner,expectedSource:manifest.redisIdentity,expectedTarget:{runId,db:0}},redis);
++  if(mode==='graph'){
+   const {buildApp}=await import('../../backend/dist/app.js');application=await buildApp({startWorkers:false,startScheduler:false,earlyListen:false});
+   await application.app.ready();
+   const {getPillowHost}=await import('../../backend/dist/orchestration/pillow-host/pillow-host.js');const host=getPillowHost();
+@@ -77,17 +79,22 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
+   assert.deepEqual(tableDigests(path.join(root,LAYOUT.execution)),beforeTables.execution,'PENDING_EXECUTION_CHANGED_WITHOUT_AUTHORITY');
+   assert.deepEqual(host.getMissionRuntimeHistory(),inventory.domains.missions.publicReadback,'MISSION_HISTORY_CHANGED');
+   const {FinancialCentre}=await import('../../backend/dist/finance/financial-centre.js');const finance=new FinancialCentre(path.join(root,LAYOUT.financialEvidence));try{assert.deepEqual(finance.entries(inventory.workspace),inventory.domains.financialEvidence.publicReadback);}finally{finance.close();}
++  }else{
++   const {examineRestoredIndex}=await import('./index-restoration-phase.mjs');
++   receipt.index=await examineRestoredIndex({repo,deadline,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner});
++   for(const id of ['missions','execution','financialEvidence','liveCostCentre'])assert.deepEqual(tableDigests(path.join(root,LAYOUT[id])),beforeTables[id],id+'_INDEX_RECORDS_CHANGED');
++  }
+   const {listExecutiveDecisionRecords}=await import('../../pillow/dist/digital-soul/decision-record.js');
+   assert.deepEqual(await listExecutiveDecisionRecords(repo),Buffer.from(journal.file.bytes,'base64').toString().split('\n').filter(x=>x.trim()).map(x=>JSON.parse(x)));
+   assert.ok(fs.readFileSync(boundJournal).equals(Buffer.from(journal.file.bytes,'base64')));
+   recovery.verifyRuntimeRecoverySet({directory,digest:held.digest});
+   receipt.targetTableChanges=[];for(const [id,relative]of Object.entries(LAYOUT)){const after=tableDigests(path.join(root,relative));for(const name of new Set([...Object.keys(beforeTables[id]),...Object.keys(after)])){if(JSON.stringify(beforeTables[id][name])!==JSON.stringify(after[name]))receipt.targetTableChanges.push({store:id,table:name,before:beforeTables[id][name]??null,after:after[name]??null,attribution:'APPLICATION_STARTUP_OR_READBACK_REQUIRES_INDEPENDENT_CLASSIFICATION'});}}
+-  receipt.status=receipt.targetTableChanges.length?'AWAITING_INDEPENDENT_MUTATION_CLASSIFICATION':'PASS_SCOPED_APPLICATION_GRAPH_ONLY';receipt.originalSessionAuthenticated=true;receipt.missionAndFinancialHistoryPreserved=true;receipt.queueAdmissionRemainsFenced=true;receipt.indexWatchdogAndAmazonContinuationsExamined=false;receipt.pendingReplay='REUSE_ACCEPTED_SEPARATE_PROCESS_PROOF_NOT_REEXAMINED';
+- }catch(error){failure=error;receipt.error=String(error);}
+- finally{try{await application?.shutdown();}catch(error){failure??=error;receipt.status='FAIL';receipt.shutdownError=String(error);}redis?.disconnect();if(server&&server.exitCode===null){const exited=once(server,'exit');server.kill('SIGKILL');await exited;}clearTimeout(hardDeadline);receipt.redisProcessStopped=true;fs.writeFileSync(resultFile,JSON.stringify(receipt,null,2),{flag:'wx',mode:0o600});assert.equal(fs.realpathSync(runDirectory),runDirectory);const current=fs.statSync(runDirectory);assert.equal(current.dev,runIdentity.dev);assert.equal(current.ino,runIdentity.ino);fs.rmSync(runDirectory,{recursive:true,force:true});}
++  receipt.status=receipt.targetTableChanges.length?'AWAITING_INDEPENDENT_MUTATION_CLASSIFICATION':(mode==='index'?'PASS_SCOPED_INDEX_WATCHDOG_ONLY':'PASS_SCOPED_APPLICATION_GRAPH_ONLY');receipt.originalSessionAuthenticated=true;receipt.missionAndFinancialHistoryPreserved=true;receipt.queueAdmissionRemainsFenced=true;receipt.indexWatchdogAndAmazonContinuationsExamined=false;receipt.indexWatchdogExamined=mode==='index';receipt.pendingReplay='REUSE_ACCEPTED_SEPARATE_PROCESS_PROOF_NOT_REEXAMINED';
++ }catch(error){failure=error;receipt.error=String(error);if(error.indexReceipt)receipt.index=error.indexReceipt;}
++ finally{try{await application?.shutdown();}catch(error){failure??=error;receipt.status='FAIL';receipt.shutdownError=String(error);}redis?.disconnect();if(server&&server.exitCode===null){const exited=once(server,'exit');server.kill('SIGKILL');await exited;}if(!receipt.index?.cleanupRequiresOuterContainment)clearTimeout(hardDeadline);receipt.redisProcessStopped=true;fs.writeFileSync(resultFile,JSON.stringify(receipt,null,2),{flag:'wx',mode:0o600});assert.equal(fs.realpathSync(runDirectory),runDirectory);const current=fs.statSync(runDirectory);assert.equal(current.dev,runIdentity.dev);assert.equal(current.ino,runIdentity.ino);if(!receipt.index?.cleanupRequiresOuterContainment)fs.rmSync(runDirectory,{recursive:true,force:true});}
+  if(failure)throw failure;return receipt;
+ }
+ export function prepareRestoredJournal({directory,digest,destination}){
+  const recovery=require('../../deployment/work8-recovery-set.cjs');const manifest=recovery.verifyRuntimeRecoverySet({directory,digest});assert.ok(manifest.executiveDecisionJournalDigest);const snapshot=JSON.parse(fs.readFileSync(path.join(directory,'executive-decisions.json')));assert.ok(snapshot.file);return require('../../deployment/work8-session-continuity-recovery.cjs').materializeExecutiveDecisionJournal({snapshot,destination});
+ }
+-if(process.argv[1]===import.meta.filename)examineApplicationGraph({source:process.argv[2]}).catch(error=>{console.error(error);process.exitCode=1;});
++if(process.argv[1]===import.meta.filename)examineApplicationGraph({source:process.argv[2],mode:process.argv[3]??'graph',resultFile:process.argv[3]==='index'?'/results/index-restoration-result.json':'/results/application-graph-result.json'}).catch(error=>{console.error(error);process.exitCode=1;});
+diff --git a/scripts/work8/index-restoration-phase.mjs b/scripts/work8/index-restoration-phase.mjs
+new file mode 100644
+index 00000000..a748c846
+--- /dev/null
++++ b/scripts/work8/index-restoration-phase.mjs
+@@ -0,0 +1,47 @@
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import path from 'node:path';
++import {spawn} from 'node:child_process';
++import {createServer} from 'node:net';
++import {once} from 'node:events';
++const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
++export function processIdentity(pid){try{const fields=fs.readFileSync(`/proc/${pid}/stat`,'utf8').split(') ').slice(1).join(') ').trim().split(/\s+/);return {pid,startTicks:fields[19],state:fields[0]};}catch(error){if(error.code==='ENOENT'||error.code==='ESRCH')return null;throw error;}}
++export function validateIndexHealth(value){const c=value?.continuity;assert.equal(c?.watchdogEnabled,true);assert.equal(c.watchdogRunning,true);assert.equal(c.healthy,true);assert.ok(Number.isFinite(c.lastHeartbeatAgeMs)&&c.lastHeartbeatAgeMs>=0&&c.lastHeartbeatAgeMs<22500);assert.deepEqual(c.alerts,[]);return c;}
++export async function examineRestoredIndex({repo,deadline,originalSession,redis,manifest,inspectionOwner}){
++ assert.equal(process.env.NODE_ENV,'test');assert.equal(process.env.EMPIRE_ENGINEERING_TEST_MODE,'true');assert.equal(process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED,'false');
++ const port=await new Promise((resolve,reject)=>{const s=createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const p=s.address().port;s.close(()=>resolve(p));});});
++ const child=spawn(process.execPath,[path.join(repo,'backend/dist/index.js')],{env:{...process.env,PORT:String(port),HOST:'127.0.0.1'},stdio:['ignore','inherit','inherit']});
++ let exited=false,exitCode=null,spawnError;child.once('error',error=>{spawnError=error;});child.once('exit',code=>{exited=true;exitCode=code;});
++ let identity;const receipt={mode:'ACTUAL_INDEX_ENGINEERING_FENCED',watchdogKind:'node:worker_threads.Worker',uniqueWatchdogTidMapped:false,productionAmazonContinuationsExamined:false,globalWriterMembershipProven:false};
++ const get=async(route,headers={})=>{assert.ok(Date.now()<deadline,'ORIGINAL_INDEX_STARTUP_DEADLINE');return fetch(`http://127.0.0.1:${port}${route}`,{headers,signal:AbortSignal.timeout(Math.max(1,Math.min(2000,deadline-Date.now())))});};
++ let failure;
++ try{
++  await once(child,'spawn');identity=processIdentity(child.pid);assert.ok(identity,'INDEX_PROCESS_IDENTITY_UNAVAILABLE');assert.match(identity.startTicks,/^\d+$/,'INDEX_START_IDENTITY_INVALID');receipt.identity=identity;
++  let health;
++  for(;;){assert.ok(Date.now()<deadline,'ORIGINAL_INDEX_STARTUP_DEADLINE');if(spawnError)throw spawnError;assert.equal(exited,false,'INDEX_EXITED_BEFORE_READY');
++   try{const [watchdog,pillow]=await Promise.all([get('/health/executive-continuity'),get('/api/pillow/status',{authorization:'Bearer '+originalSession.token})]);assert.equal(watchdog.status,200);assert.equal(pillow.status,200);health=validateIndexHealth(await watchdog.json());assert.equal((await pillow.json()).status.lifecycle,'running');break;}catch(error){if(exited||Date.now()>=deadline)throw error;await pause(100);}
++  }
++  receipt.continuity=health;
++  receipt.threadInventory=fs.readdirSync(`/proc/${child.pid}/task`).map(tid=>{const raw=fs.readFileSync(`/proc/${child.pid}/task/${tid}/stat`,'utf8'),fields=raw.slice(raw.lastIndexOf(') ')+2).trim().split(/\s+/);return {tid:Number(tid),startTicks:fields[19]};});
++  assert.ok(receipt.threadInventory.length>1,'WATCHDOG_THREAD_MEMBERSHIP_UNAVAILABLE');assert.equal(processIdentity(child.pid)?.startTicks,identity.startTicks);
++  for(const headers of [{authorization:'Bearer '+originalSession.token},{cookie:'empireai_session='+originalSession.token}]){const response=await get('/auth/me',headers);assert.equal(response.status,200);const {platformIdentity,...actual}=(await response.json()).user;const {token,expiresAt,createdAt,...expected}=originalSession;assert.deepEqual(actual,expected);}
++  assert.equal((await get('/auth/me',{authorization:'Bearer forged'})).status,401);
++  assert.equal((await get('/api/pillow/mission-runtime',{authorization:'Bearer '+originalSession.token})).status,403,'ORIGINAL_WORKSPACE_MUST_NOT_GAIN_MISSION_AUTHORITY');
++  const raw=await redis.get('empireai:session:'+originalSession.token);assert.deepEqual(JSON.parse(raw),originalSession);
++  const ttl=await redis.pttl('empireai:session:'+originalSession.token);assert.ok(ttl>0&&ttl<=Date.parse(originalSession.expiresAt)-Date.now()+1000);
++  assert.equal(await redis.get(manifest.redisIdentity.ownerKey),inspectionOwner);assert.equal(await redis.hget(manifest.redisIdentity.metaKey,'paused'),'1');
++  receipt.originalSessionAuthenticated=true;receipt.originalMissionScopeDenied=true;receipt.queueAdmissionRemainsFenced=true;
++ }catch(error){failure=error;}
++ finally{
++  if(!exited&&identity){
++   const current=processIdentity(child.pid);
++   if(current?.startTicks!==identity.startTicks){receipt.cleanupRequiresOuterContainment=true;failure??=Error('INDEX_PROCESS_IDENTITY_CHANGED');}
++   else{const event=once(child,'exit');child.kill('SIGTERM');let timer;await Promise.race([event,new Promise(resolve=>{timer=setTimeout(resolve,Math.max(1,Math.min(5000,deadline-Date.now())));})]);clearTimeout(timer);if(!exited){const retained=processIdentity(child.pid);if(retained?.startTicks===identity.startTicks){child.kill('SIGKILL');await event;}else receipt.cleanupRequiresOuterContainment=true;failure??=Error('INDEX_GRACEFUL_CLEANUP_DEADLINE');}}
++  }
++  if(!identity&&child.pid&&!exited)receipt.cleanupRequiresOuterContainment=true;
++  receipt.exitCode=exitCode;receipt.indexProcessStopped=!child.pid||processIdentity(child.pid)===null;
++  if(!receipt.indexProcessStopped){receipt.cleanupRequiresOuterContainment=true;failure??=Error('INDEX_CONTAINMENT_UNPROVEN');}
++  if(exitCode!==0)failure??=spawnError??Error('INDEX_EXIT_NOT_CLEAN');
++ }
++ if(failure){failure.indexReceipt=receipt;throw failure;}return receipt;
++}
+diff --git a/scripts/work8/index-restoration-phase.test.mjs b/scripts/work8/index-restoration-phase.test.mjs
+new file mode 100644
+index 00000000..6b6b8b74
+--- /dev/null
++++ b/scripts/work8/index-restoration-phase.test.mjs
+@@ -0,0 +1,7 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {validateIndexHealth,processIdentity} from './index-restoration-phase.mjs';
++const healthy=()=>({continuity:{watchdogEnabled:true,watchdogRunning:true,healthy:true,lastHeartbeatAgeMs:100,alerts:[]}});
++test('actual index readiness requires acknowledged watchdog and current heartbeat',()=>{validateIndexHealth(healthy());for(const mutate of [v=>v.continuity.watchdogEnabled=false,v=>v.continuity.watchdogRunning=false,v=>v.continuity.healthy=false,v=>v.continuity.lastHeartbeatAgeMs=22500,v=>v.continuity.lastHeartbeatAgeMs=-1,v=>v.continuity.alerts.push('heartbeat_missing')]){const v=healthy();mutate(v);assert.throws(()=>validateIndexHealth(v));}assert.equal(processIdentity(2147483647),null);});
++
++test('actual proc namespace process identity is available',t=>{const own=processIdentity(process.pid);if(!own){assert.notEqual(process.env.CI,'true','HOSTED_PROC_IDENTITY_REQUIRED');t.skip('Local execution namespace has no /proc entry for process.pid; real hosted namespace assertion remains required');return;}assert.equal(own.pid,process.pid);assert.match(own.startTicks,/^\d+$/);});

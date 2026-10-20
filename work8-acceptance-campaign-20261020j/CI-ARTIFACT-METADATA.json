@@ -1,0 +1,257 @@
+{
+  "runtime": {
+    "artifacts": [
+      {
+        "id": 12254025673,
+        "name": "generated-full-path-reasoning-admission",
+        "size_in_bytes": 777,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12254025673",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12254025673/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:10:01Z",
+        "expires_at": "2026-11-03T09:10:00Z",
+        "updated_at": "2026-10-20T09:10:01Z",
+        "digest": "sha256:d6d080851862fb65bb31cbef3a34bb080b4735ab3433bc60945b66d8d203fe5e",
+        "workflow_run": {
+          "id": 39396928605,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12253875051,
+        "name": "generated-full-path-response-delivery",
+        "size_in_bytes": 904,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12253875051",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12253875051/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:04:29Z",
+        "expires_at": "2026-11-03T09:04:29Z",
+        "updated_at": "2026-10-20T09:04:29Z",
+        "digest": "sha256:a64b0ca92281d8157e91d1377f49ac4b068d195966c9f24d5dd41ad36d060d73",
+        "workflow_run": {
+          "id": 39396928605,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12252725636,
+        "name": "work8-hh3-compiled-coordinator",
+        "size_in_bytes": 14062,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252725636",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252725636/zip",
+        "expired": false,
+        "created_at": "2026-10-20T08:58:55Z",
+        "expires_at": "2026-11-19T08:58:54Z",
+        "updated_at": "2026-10-20T08:58:55Z",
+        "digest": "sha256:9945d72cde0a105c4bc9c7540ee8d69bd7885d9a668c38ced10c8cda7c38d3de",
+        "workflow_run": {
+          "id": 39396928605,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12252432091,
+        "name": "work8-f27-external-compound",
+        "size_in_bytes": 377747,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252432091",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252432091/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:00:34Z",
+        "expires_at": "2026-11-19T09:00:33Z",
+        "updated_at": "2026-10-20T09:00:34Z",
+        "digest": "sha256:0fc04c16b1d2e643a618f03c4cfd5dea0b51379ab50538bf2299d087f5593246",
+        "workflow_run": {
+          "id": 39396928605,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12252282784,
+        "name": "work8-f29-pair-containment",
+        "size_in_bytes": 108580,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252282784",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252282784/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:00:53Z",
+        "expires_at": "2026-11-19T09:00:52Z",
+        "updated_at": "2026-10-20T09:00:53Z",
+        "digest": "sha256:439b9c8fab41b9996f621fc889b7c5e625f4be39cf08a100b23037bbace8d310",
+        "workflow_run": {
+          "id": 39396928605,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12252277441,
+        "name": "work8-hh4-held-capture",
+        "size_in_bytes": 521729,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252277441",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252277441/zip",
+        "expired": false,
+        "created_at": "2026-10-20T08:59:16Z",
+        "expires_at": "2026-11-19T08:59:15Z",
+        "updated_at": "2026-10-20T08:59:16Z",
+        "digest": "sha256:bf182feeeeb1a3ad43f001c8112c6ee0e8ea1c96bd70f3389c0447fa77b336e2",
+        "workflow_run": {
+          "id": 39396928605,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12252267752,
+        "name": "locked-railway-package",
+        "size_in_bytes": 3453,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252267752",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252267752/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:00:54Z",
+        "expires_at": "2027-01-18T08:55:35Z",
+        "updated_at": "2026-10-20T09:00:54Z",
+        "digest": "sha256:190510a3317bfd97af94a0e82b11f16065ad434d5813e86b768db53b24bad775",
+        "workflow_run": {
+          "id": 39396928605,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12252222864,
+        "name": "precutover-closure",
+        "size_in_bytes": 5513,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252222864",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252222864/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:00:43Z",
+        "expires_at": "2026-11-03T09:00:42Z",
+        "updated_at": "2026-10-20T09:00:43Z",
+        "digest": "sha256:bb5479e789ff4db57076f5f71e012665075372cb3ccc60dde22e35044c4de924",
+        "workflow_run": {
+          "id": 39396928605,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      }
+    ]
+  },
+  "product": {
+    "artifacts": [
+      {
+        "id": 12253281154,
+        "name": "commerce-browser-evidence",
+        "size_in_bytes": 1643375,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12253281154",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12253281154/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:01:36Z",
+        "expires_at": "2026-11-03T09:01:35Z",
+        "updated_at": "2026-10-20T09:01:36Z",
+        "digest": "sha256:d5269b2b695fe43a31c12cf1ff4173ca2d6598eb50d269bf1183715091e4f4f4",
+        "workflow_run": {
+          "id": 39396928126,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12252660033,
+        "name": "cutover-rehearsal",
+        "size_in_bytes": 416,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252660033",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252660033/zip",
+        "expired": false,
+        "created_at": "2026-10-20T08:55:51Z",
+        "expires_at": "2026-11-03T08:55:50Z",
+        "updated_at": "2026-10-20T08:55:51Z",
+        "digest": "sha256:a09010d0e0faff0fb64c4424aec16ec872a0cefba05f4dd11bf1d8be8d4084c1",
+        "workflow_run": {
+          "id": 39396928126,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12252446287,
+        "name": "work8-owner-history-evidence",
+        "size_in_bytes": 3269213,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252446287",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12252446287/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:00:34Z",
+        "expires_at": "2026-11-03T09:00:33Z",
+        "updated_at": "2026-10-20T09:00:34Z",
+        "digest": "sha256:3ac74e5ec7c5b13ca1b21f82a4ad8b1690d4afb08c2b72e3ff33bcf2eddcc863",
+        "workflow_run": {
+          "id": 39396928126,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12251972610,
+        "name": "work8-source-context-evidence",
+        "size_in_bytes": 269410,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12251972610",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12251972610/zip",
+        "expired": false,
+        "created_at": "2026-10-20T09:00:21Z",
+        "expires_at": "2026-11-03T09:00:20Z",
+        "updated_at": "2026-10-20T09:00:21Z",
+        "digest": "sha256:5135826e2e00da7794c2fe67d68e1090570232efdba70c316815ff93602f28fb",
+        "workflow_run": {
+          "id": 39396928126,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      },
+      {
+        "id": 12251584566,
+        "name": "legacy-capture-proof",
+        "size_in_bytes": 5268,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12251584566",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12251584566/zip",
+        "expired": false,
+        "created_at": "2026-10-20T08:56:26Z",
+        "expires_at": "2026-11-03T08:56:26Z",
+        "updated_at": "2026-10-20T08:56:26Z",
+        "digest": "sha256:43c274f85d24d6482fe4c4bdce64b9db5ee349b151beb3ea310f85819fc16b30",
+        "workflow_run": {
+          "id": 39396928126,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/autonomous-examination-20261011",
+          "head_sha": "6ac732ee382ecd72cb4348ffacc54c94297c5a33"
+        }
+      }
+    ]
+  }
+}

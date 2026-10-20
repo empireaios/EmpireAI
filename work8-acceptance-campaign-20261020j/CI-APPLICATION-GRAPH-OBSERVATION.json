@@ -1,0 +1,81 @@
+{
+  "recordType": "INDEPENDENT_AUTOMATIC_HOSTED_APPLICATION_GRAPH_OBSERVATION",
+  "source": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+  "tree": "01f4b9a214c062e826c6ee0d6f58d2627e7edffc",
+  "mergeCheckout": "6a7d46e7c153f908a3fe21f28e7f7664b6cdc82d",
+  "runtimeRun": 39396928605,
+  "runtimeJob": 118541843171,
+  "runtimeJobConclusion": "SUCCESS",
+  "runtimeAssertions": {
+    "passed": 414,
+    "failed": 0,
+    "skipped": 0
+  },
+  "graphStep": 14,
+  "graphStepConclusion": "SUCCESS",
+  "artifact": 12252277441,
+  "artifactSha256": "bf182feeeeb1a3ad43f001c8112c6ee0e8ea1c96bd70f3389c0447fa77b336e2",
+  "graphReceipt": {
+    "schema": "WORK8_APPLICATION_GRAPH_RESTORATION_V1",
+    "source": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+    "digest": "af1232cb6f08139832a3bbf67da6675b97113538afa3596db9c806a29838765a",
+    "status": "PASS_SCOPED_APPLICATION_GRAPH_ONLY",
+    "preboot": {
+      "intelligence": "bf104e39f150f47fd2070b494d336717341f0776a122371e3ec356ec532e9fbf",
+      "pillowMemory": "30d70334e6bb6bdd330a1131f9371228ba1c36faebbd5ccca468079ce91b3a38",
+      "pillowRequests": "236ba5affa9dfcdac5d83d811d4177a0e598863b3ce9b70cf14b368d1b4dbb99",
+      "pillowReasoning": "0262c13398a372f63f67ec27a48edefc584e928958d1ecdded0e12e7f459fd95",
+      "communications": "770343d267c92afca367de4ad34016f66f14dd33f123c1a7151135f03110bd43",
+      "liveCostCentre": "22d124c2a56ff9b2d3a9ab5a4ce4e6664708cb44e9e9cf6ecc578c492febf20d",
+      "assurance": "a94af9044b1cad4af984ee9025e7df6cf304644ecffb65f74beab5fcc44b6ce7",
+      "financialEvidence": "78701aa3ffc7abf2e00a742e1f43c58dae97cb3a9cb8da6e4ac89b7fde69b5d5",
+      "commerce": "95de3721c3ee5eec3ec61bad179a0e33f78fb7ca57dd21e8fa942bae543561c2",
+      "brain": "2b0a0623a3b9257d0c318126f64e65197431552823f3bee2bf4a302e49e2c9f8",
+      "missions": "0eed9e1219018f8874b4158c738cecc5041f8bcdbcdbf9f8dda03c4a25c8a0f2",
+      "execution": "a2e0d3fb211cfbb5ba6d4716cb377eed674cc6256a05fedac6ee7599fc89a469",
+      "shadow": "dd893ae0155bae4ddd9b2a57580befd7018295a584b7ad298608e141a3ff2ae5"
+    },
+    "operationalRestoration": false,
+    "authorityImported": false,
+    "sourceManifestBootAllowed": false,
+    "paidInference": 0,
+    "externalEffects": 0,
+    "globalWriterTopology": false,
+    "protectedCustody": false,
+    "originalRequirementsAccepted": [],
+    "targetTableChanges": [],
+    "originalSessionAuthenticated": true,
+    "missionAndFinancialHistoryPreserved": true,
+    "queueAdmissionRemainsFenced": true,
+    "indexWatchdogAndAmazonContinuationsExamined": false,
+    "pendingReplay": "REUSE_ACCEPTED_SEPARATE_PROCESS_PROOF_NOT_REEXAMINED",
+    "redisProcessStopped": true
+  },
+  "container": {
+    "state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-20T08:59:06.209559634Z",
+      "FinishedAt": "2026-10-20T08:59:14.871712769Z"
+    },
+    "image": "sha256:c397d377fb5ef0ca8474a3a4de1c3395ac3674ebedeb872811e7cb2ce414dcd6",
+    "network": "none",
+    "readonly": true,
+    "restartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    }
+  },
+  "scope": "Generated isolated application graph only. Prior accepted replacement Redis/AOF, original bearer/cookie and pending replay proof preserved. Full operational restoration, global writer topology and protected custody remain separately unproven. No complete row acceptance inferred.",
+  "workflowDispatches": 0,
+  "reruns": 0,
+  "newCompleteOriginalRequirementIds": [],
+  "newCompleteAmendmentIds": []
+}

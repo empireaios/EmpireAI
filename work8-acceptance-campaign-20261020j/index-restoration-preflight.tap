@@ -1,0 +1,26 @@
+(node:6) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual index readiness requires acknowledged watchdog and current heartbeat
+ok 1 - actual index readiness requires acknowledged watchdog and current heartbeat
+  ---
+  duration_ms: 7.837473
+  type: 'test'
+  ...
+# Subtest: actual proc namespace process identity is available
+ok 2 - actual proc namespace process identity is available # SKIP Local execution namespace has no /proc entry for process.pid; real hosted namespace assertion remains required
+  ---
+  duration_ms: 0.219356
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 90.44548

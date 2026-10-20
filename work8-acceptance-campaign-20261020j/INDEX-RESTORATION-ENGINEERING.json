@@ -1,0 +1,23 @@
+{
+  "recordType": "J_INDEX_RESTORATION_ENGINEERING",
+  "baseCommit": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+  "paths": {
+    ".github/workflows/pillow-runtime-repair-ci.yml": "57056fe2170a8872e8876b37eb6541cc047980e52b7193edbb22b028d3f57755",
+    "scripts/work8/application-graph-restoration.mjs": "fc407fa46a5de25d631f587ad05feedfdf030f8da38bc0dc2a32c9ef1494cff5",
+    "scripts/work8/index-restoration-phase.mjs": "554f1ae7f02f69148bd6e2fca9cc46293c6419e87972743845a5854e7ae43aab",
+    "scripts/work8/index-restoration-phase.test.mjs": "de7276e7459c0f8d88cafc01807ceae484965eaeb583f8596f07220b184021ce"
+  },
+  "preflight": "1 PASS / 0 FAIL / 1 SKIP: local process namespace /proc mapping absent; CI=true requires real mapping",
+  "syntax": "PASS",
+  "yaml": "PASS",
+  "hosted": "PENDING_OWNER_EXACT_TREE_APPROVAL",
+  "claims": [
+    "Fresh separate target reuses same frozen capture",
+    "Actual index process and default watchdog thread readiness",
+    "Original synthetic authenticated session unchanged; mission-scope403 preserved",
+    "No queue release or executor enablement",
+    "Graph accepted branch preserved",
+    "Global/prior writer membership and production Amazon topology excluded"
+  ],
+  "newAcceptedRows": []
+}

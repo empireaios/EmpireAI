@@ -1,0 +1,75 @@
+{
+  "recordType": "INDEPENDENT_J_HOSTED_APPLICATION_GRAPH_DECISION",
+  "reviewer": "/root/certification_h",
+  "decision": "PASS_SCOPED_ACTUAL_APPLICATION_GRAPH_RESTORATION",
+  "source": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+  "tree": "01f4b9a214c062e826c6ee0d6f58d2627e7edffc",
+  "run": 39396928605,
+  "job": 118541843171,
+  "artifact": 12252277441,
+  "zipSha256": "bf182feeeeb1a3ad43f001c8112c6ee0e8ea1c96bd70f3389c0447fa77b336e2",
+  "captureDigest": "af1232cb6f08139832a3bbf67da6675b97113538afa3596db9c806a29838765a",
+  "independentlyVerified": [
+    "All13preboot store SHA256 match exact retained source checkpoints",
+    "Container exit0/stoppedPid0; networknone; readonlyroot; nonroot1001:1001; allcaps dropped",
+    "Original evidence/capture/journal mounts readonly; onlyresults bind writable",
+    "Actual compiled Pillow host started and stopped in retained log; application shutdown complete",
+    "No target table mutations reported; no unknown mutation classification outstanding"
+  ],
+  "publishedHarnessAssertionsPassed": [
+    "Original synthetic Redis session exactrecord, bearer/cookie sameidentity, TTL noextension, forgedbearer401",
+    "Mission and financial public histories preserved",
+    "Missionauthorityexecutor disabled; executiontables unchanged; captureowner retained; taskqueuepaused",
+    "Exact historical journal bytes read throughactual consumer; noexecutinghistorygrants",
+    "Original180000msdeadline retained; cleanupcompleted"
+  ],
+  "receipt": {
+    "schema": "WORK8_APPLICATION_GRAPH_RESTORATION_V1",
+    "source": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+    "digest": "af1232cb6f08139832a3bbf67da6675b97113538afa3596db9c806a29838765a",
+    "status": "PASS_SCOPED_APPLICATION_GRAPH_ONLY",
+    "preboot": {
+      "intelligence": "bf104e39f150f47fd2070b494d336717341f0776a122371e3ec356ec532e9fbf",
+      "pillowMemory": "30d70334e6bb6bdd330a1131f9371228ba1c36faebbd5ccca468079ce91b3a38",
+      "pillowRequests": "236ba5affa9dfcdac5d83d811d4177a0e598863b3ce9b70cf14b368d1b4dbb99",
+      "pillowReasoning": "0262c13398a372f63f67ec27a48edefc584e928958d1ecdded0e12e7f459fd95",
+      "communications": "770343d267c92afca367de4ad34016f66f14dd33f123c1a7151135f03110bd43",
+      "liveCostCentre": "22d124c2a56ff9b2d3a9ab5a4ce4e6664708cb44e9e9cf6ecc578c492febf20d",
+      "assurance": "a94af9044b1cad4af984ee9025e7df6cf304644ecffb65f74beab5fcc44b6ce7",
+      "financialEvidence": "78701aa3ffc7abf2e00a742e1f43c58dae97cb3a9cb8da6e4ac89b7fde69b5d5",
+      "commerce": "95de3721c3ee5eec3ec61bad179a0e33f78fb7ca57dd21e8fa942bae543561c2",
+      "brain": "2b0a0623a3b9257d0c318126f64e65197431552823f3bee2bf4a302e49e2c9f8",
+      "missions": "0eed9e1219018f8874b4158c738cecc5041f8bcdbcdbf9f8dda03c4a25c8a0f2",
+      "execution": "a2e0d3fb211cfbb5ba6d4716cb377eed674cc6256a05fedac6ee7599fc89a469",
+      "shadow": "dd893ae0155bae4ddd9b2a57580befd7018295a584b7ad298608e141a3ff2ae5"
+    },
+    "operationalRestoration": false,
+    "authorityImported": false,
+    "sourceManifestBootAllowed": false,
+    "paidInference": 0,
+    "externalEffects": 0,
+    "globalWriterTopology": false,
+    "protectedCustody": false,
+    "originalRequirementsAccepted": [],
+    "targetTableChanges": [],
+    "originalSessionAuthenticated": true,
+    "missionAndFinancialHistoryPreserved": true,
+    "queueAdmissionRemainsFenced": true,
+    "indexWatchdogAndAmazonContinuationsExamined": false,
+    "pendingReplay": "REUSE_ACCEPTED_SEPARATE_PROCESS_PROOF_NOT_REEXAMINED",
+    "redisProcessStopped": true
+  },
+  "scopeLimits": [
+    "Actual buildApp graph only; no restored index/watchdog/Amazon topology proof",
+    "Pending replay separateacceptedprocessproof preserved, notrerun orsilentlyextended",
+    "Global current/prior admittedwriters and protectedcustody notproven",
+    "Synthetic source fixtures do not qualify genuinecommercial product or historical224financiallineage",
+    "No complete O33/O39/A1/A2/A3/A5 acceptance inferred"
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "recordType": "J_PROPOSED_OWNER_DEFER_BOUNDARY",
+  "status": "NOT_EXECUTED_REQUIRES_SPECIFIC_OWNER_APPROVAL",
+  "examiner": "root actual authenticated UI",
+  "decisionId": "decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6",
+  "version": 0,
+  "source": "completed-reasoning:pcr_27fb1ed5ddb24f5a",
+  "sourceDate": "2026-10-08T05:14:34.404Z",
+  "observedConclusion": "EVIDENCE-INSUFFICIENT",
+  "observedState": "awaiting owner review; defer enabled; approve/reject/revision disabled",
+  "proposedAction": "DEFER",
+  "proposedReason": "Defer EMPIREAI-CANDIDATE-001-FOLLOWUP at version0, retaining the historical EVIDENCE-INSUFFICIENT conclusion and explicit unmatched WALI/OPNICE/CJ decorative-tray references. Request attributable missing evidence before further consideration; authorize no acquisition, listing, paid inference or commercial execution.",
+  "limits": [
+    "No decision mutation authorized by this receipt",
+    "Historical assessment remains historical, not fresh qualification",
+    "Owner defer alone cannot establish missing linked orders/finance/Assurance results or complete four owner-facing rows"
+  ],
+  "confirmedBinding": {
+    "candidate": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+    "amazon": [
+      "B0GN1TZZ9W",
+      "B0BYDGF8DT"
+    ],
+    "cjProduct": "2610070327381623000",
+    "cjVariant": "2610070327381624400",
+    "cjDescription": "decorative tray",
+    "matching": "explicitly unmatched; equivalence rejected",
+    "notBoundToHistoricalMirror": true
+  },
+  "unrelatedOrder": "order-fixture synthetic storage organiser2units deliveredOct9; no genuinecandidate/payment linkage, not accepted as connected outcome"
+}
