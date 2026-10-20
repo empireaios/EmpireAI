@@ -1,0 +1,20 @@
+{
+  "recordType": "INDEPENDENT_K_OWNER_DECISION_BOUNDARY",
+  "reviewer": "/root/certification_h",
+  "decision": "NOT_ACCEPTED_AS_DURABLE_DEFER",
+  "basis": "Exact root authenticated UI attempt and reload receipt; no duplicate browser examination",
+  "attemptSha256": "d902946831fa95f53461b1a673103ae071313a7c1dcc4ab42201f803c2fe0105",
+  "observed": "One authorized click; version0 and awaiting review unchanged; no history transition",
+  "cause": "Local-only UI feedback and durable enum omission, independently reviewed",
+  "localCorrection": "Four-path source and two targeted checks PASS; strict changed-boundary typecheck PASS; not deployed",
+  "rowDecisions": {
+    "O14": "PENDING: actual durable owner decision and eligible recommendation not proven",
+    "O40": "BLOCKED: complete genuine connected owner journey absent",
+    "O41": "PENDING: connected desktop/mobile equality absent",
+    "A6": "PENDING: genuine source-to-owner-to-simulated-results chain absent",
+    "A19": "PENDING: integrated genuine owner-readable records/equality absent"
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "controls": "No retry, direct API substitute, deployment or authority expansion performed"
+}

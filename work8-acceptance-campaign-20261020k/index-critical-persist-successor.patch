@@ -1,0 +1,136 @@
+diff --git a/scripts/work8/application-graph-restoration.mjs b/scripts/work8/application-graph-restoration.mjs
+index ed021686..fe991b41 100644
+--- a/scripts/work8/application-graph-restoration.mjs
++++ b/scripts/work8/application-graph-restoration.mjs
+@@ -8,6 +8,7 @@ import {spawn} from 'node:child_process';
+ import {once} from 'node:events';
+ import {createHash} from 'node:crypto';
+ function tableDigests(file){const db=new DatabaseSync(file,{readOnly:true});try{const out={};for(const {name}of db.prepare("SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name").all()){const rows=db.prepare('SELECT * FROM "'+name.replaceAll('"','""')+'"').all().map(r=>JSON.stringify(r,(_k,v)=>typeof v==='bigint'?String(v):v)).sort();out[name]={count:rows.length,sha256:sha(JSON.stringify(rows))};}return out;}finally{db.close();}}
++function auditRows(file){const db=new DatabaseSync(file,{readOnly:true});try{const rows=db.prepare('SELECT * FROM audit_logs ORDER BY id').all().map(row=>({...row}));assert.ok(rows.length<=1000&&Buffer.byteLength(JSON.stringify(rows))<=1048576,'BOUNDED_SYNTHETIC_AUDIT_EVIDENCE_REQUIRED');return rows;}finally{db.close();}}
+ const require=createRequire(import.meta.url),sha=b=>createHash('sha256').update(b).digest('hex');
+ export function validateRestorationAuthorization({source,held,verification,inventory}){
+  assert.match(source,/^[a-f0-9]{40}$/);assert.equal(held.source,source);assert.equal(verification.source,source);
+@@ -44,6 +45,7 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
+  fs.cpSync(sealed,root,{recursive:true,errorOnExist:true,force:false});
+  assert.equal(JSON.parse(fs.readFileSync(path.join(root,'INSPECTION_ONLY.json'))).bootAllowed,false);
+  const preboot={},beforeTables={};for(const [id,relative]of Object.entries(LAYOUT)){const original=fs.readFileSync(path.join(directory,id,'checkpoint.db')),target=fs.readFileSync(path.join(root,relative));assert.ok(target.equals(original));preboot[id]=sha(target);beforeTables[id]=tableDigests(path.join(root,relative));}
++ const beforeAudit=mode==='index'?auditRows(path.join(root,LAYOUT.brain)):null;
+  const journal=JSON.parse(fs.readFileSync(path.join(directory,'executive-decisions.json')));
+  // The application reads its static repository journal path: a nonempty journal
+  // needs a separately reviewed binding, never silently ignore or activate it.
+@@ -81,8 +83,15 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
+   const {FinancialCentre}=await import('../../backend/dist/finance/financial-centre.js');const finance=new FinancialCentre(path.join(root,LAYOUT.financialEvidence));try{assert.deepEqual(finance.entries(inventory.workspace),inventory.domains.financialEvidence.publicReadback);}finally{finance.close();}
+   }else{
+    const {examineRestoredIndex}=await import('./index-restoration-phase.mjs');
+-   receipt.index=await examineRestoredIndex({repo,deadline,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner});
++   receipt.index=await examineRestoredIndex({repo,deadline,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner,onDiagnostic:diagnostic=>fs.writeFileSync(path.join(path.dirname(resultFile),'index-last-poll.json'),JSON.stringify({source,digest:held.digest,diagnostic},null,2),{mode:0o600})});
+    for(const id of ['missions','execution','financialEvidence','liveCostCentre'])assert.deepEqual(tableDigests(path.join(root,LAYOUT[id])),beforeTables[id],id+'_INDEX_RECORDS_CHANGED');
++   const afterAudit=auditRows(path.join(root,LAYOUT.brain)),prior=new Map(beforeAudit.map(row=>[row.id,row])),after=new Map(afterAudit.map(row=>[row.id,row]));
++   const changedOrRemoved=beforeAudit.filter(row=>JSON.stringify(after.get(row.id))!==JSON.stringify(row));
++   const addedRows=afterAudit.filter(row=>!prior.has(row.id));
++   const auditDelta={source,digest:held.digest,scope:'SYNTHETIC_GENERATED_TARGET_AUDIT_ROWS',sourceRowCount:beforeAudit.length,targetRowCount:afterAudit.length,existingRowsUnchanged:changedOrRemoved.length===0,changedOrRemoved,addedRows,classification:'INDEPENDENT_REVIEW_REQUIRED_NO_AUTOMATIC_ALLOWLIST'};
++   fs.writeFileSync(path.join(path.dirname(resultFile),'index-audit-row-delta.json'),JSON.stringify(auditDelta,null,2),{flag:'wx',mode:0o600});
++   receipt.auditDelta={existingRowsUnchanged:auditDelta.existingRowsUnchanged,addedCount:addedRows.length,evidence:'index-audit-row-delta.json'};
++   assert.equal(changedOrRemoved.length,0,'CAPTURED_AUDIT_HISTORY_CHANGED');
+   }
+   const {listExecutiveDecisionRecords}=await import('../../pillow/dist/digital-soul/decision-record.js');
+   assert.deepEqual(await listExecutiveDecisionRecords(repo),Buffer.from(journal.file.bytes,'base64').toString().split('\n').filter(x=>x.trim()).map(x=>JSON.parse(x)));
+diff --git a/scripts/work8/index-restoration-launcher.mjs b/scripts/work8/index-restoration-launcher.mjs
+new file mode 100644
+index 00000000..c82e76b3
+--- /dev/null
++++ b/scripts/work8/index-restoration-launcher.mjs
+@@ -0,0 +1,31 @@
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import path from 'node:path';
++export function validatePersistCommand(message,{capability,source,used}){
++ assert.equal(used,false,'TARGET_PERSIST_ALREADY_USED');
++ assert.deepEqual(Object.keys(message??{}).sort(),['action','capability','source']);
++ assert.equal(message.action,'persist-restored-index-once');assert.equal(message.capability,capability);assert.equal(message.source,source);
++}
++export async function launchRestoredIndex(){
++ const capability=process.argv[2],source=process.env.RAILWAY_GIT_COMMIT_SHA;
++ assert.match(capability,/^[a-f0-9-]{36}$/);assert.match(source,/^[a-f0-9]{40}$/);
++ assert.ok(process.connected&&process.send,'PARENT_IPC_REQUIRED');assert.equal(process.env.NODE_ENV,'test');assert.equal(process.env.EMPIRE_ENGINEERING_TEST_MODE,'true');
++ assert.equal(process.env.EMPIRE_RUNTIME_PROFILE,'LOCKED_COMMISSIONING_V1');assert.equal(process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED,'false');
++ const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;assert.equal(fs.realpathSync(root),root);assert.match(root,/^\/tmp\/work8-generated-capture-[^/]+\/volume$/);
++ assert.ok(path.resolve(process.env.DATABASE_PATH).startsWith(root+path.sep));
++ let used=false;
++ process.on('message',async message=>{
++  try{
++   validatePersistCommand(message,{capability,source,used});used=true;
++   const {getPillowHost}=await import('../../backend/dist/orchestration/pillow-host/pillow-host.js');assert.equal(getPillowHost().getStatus().lifecycle,'running','TARGET_PILLOW_NOT_RUNNING');
++   const {getDatabase,persistDatabase}=await import('../../backend/dist/brain/database.js');getDatabase();
++   const {getSqlitePersistStats}=await import('../../backend/dist/brain/sqlite-database.js');const before={...getSqlitePersistStats()};
++   await persistDatabase();const after={...getSqlitePersistStats()};
++   assert.ok(after.flushCount>before.flushCount,'TARGET_DURABLE_FLUSH_NOT_OBSERVED');
++   process.send?.({event:'restored-index-persisted',source,capability,before,after});
++  }catch(error){process.send?.({event:'restored-index-persist-failed',source,capability,error:String(error)});}
++ });
++ // Same real startup module and watchdog; no runtime flags/timers replaced.
++ await import('../../backend/dist/index.js');
++}
++if(process.argv[1]===import.meta.filename)launchRestoredIndex().catch(error=>{console.error(error);process.exitCode=1;});
+diff --git a/scripts/work8/index-restoration-phase.mjs b/scripts/work8/index-restoration-phase.mjs
+index a748c846..ae512b04 100644
+--- a/scripts/work8/index-restoration-phase.mjs
++++ b/scripts/work8/index-restoration-phase.mjs
+@@ -4,24 +4,35 @@ import path from 'node:path';
+ import {spawn} from 'node:child_process';
+ import {createServer} from 'node:net';
+ import {once} from 'node:events';
++import {randomUUID} from 'node:crypto';
+ const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+ export function processIdentity(pid){try{const fields=fs.readFileSync(`/proc/${pid}/stat`,'utf8').split(') ').slice(1).join(') ').trim().split(/\s+/);return {pid,startTicks:fields[19],state:fields[0]};}catch(error){if(error.code==='ENOENT'||error.code==='ESRCH')return null;throw error;}}
+ export function validateIndexHealth(value){const c=value?.continuity;assert.equal(c?.watchdogEnabled,true);assert.equal(c.watchdogRunning,true);assert.equal(c.healthy,true);assert.ok(Number.isFinite(c.lastHeartbeatAgeMs)&&c.lastHeartbeatAgeMs>=0&&c.lastHeartbeatAgeMs<22500);assert.deepEqual(c.alerts,[]);return c;}
+-export async function examineRestoredIndex({repo,deadline,originalSession,redis,manifest,inspectionOwner}){
++export async function examineRestoredIndex({repo,deadline,originalSession,redis,manifest,inspectionOwner,onDiagnostic=()=>{}}){
+  assert.equal(process.env.NODE_ENV,'test');assert.equal(process.env.EMPIRE_ENGINEERING_TEST_MODE,'true');assert.equal(process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED,'false');
+  const port=await new Promise((resolve,reject)=>{const s=createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const p=s.address().port;s.close(()=>resolve(p));});});
+- const child=spawn(process.execPath,[path.join(repo,'backend/dist/index.js')],{env:{...process.env,PORT:String(port),HOST:'127.0.0.1'},stdio:['ignore','inherit','inherit']});
++ const capability=randomUUID();
++ const child=spawn(process.execPath,[path.join(repo,'scripts/work8/index-restoration-launcher.mjs'),capability],{env:{...process.env,PORT:String(port),HOST:'127.0.0.1'},stdio:['ignore','inherit','inherit','ipc']});
+  let exited=false,exitCode=null,spawnError;child.once('error',error=>{spawnError=error;});child.once('exit',code=>{exited=true;exitCode=code;});
+  let identity;const receipt={mode:'ACTUAL_INDEX_ENGINEERING_FENCED',watchdogKind:'node:worker_threads.Worker',uniqueWatchdogTidMapped:false,productionAmazonContinuationsExamined:false,globalWriterMembershipProven:false};
+  const get=async(route,headers={})=>{assert.ok(Date.now()<deadline,'ORIGINAL_INDEX_STARTUP_DEADLINE');return fetch(`http://127.0.0.1:${port}${route}`,{headers,signal:AbortSignal.timeout(Math.max(1,Math.min(2000,deadline-Date.now())))});};
+- let failure;
++ let failure,flushRequested=false,flushAck=null,flushError=null;
++ child.on('message',message=>{if(message?.source!==process.env.RAILWAY_GIT_COMMIT_SHA||message?.capability!==capability)return;if(message.event==='restored-index-persisted'){const {capability:_private,...ack}=message;flushAck=ack;}if(message.event==='restored-index-persist-failed')flushError=String(message.error);});
+  try{
+   await once(child,'spawn');identity=processIdentity(child.pid);assert.ok(identity,'INDEX_PROCESS_IDENTITY_UNAVAILABLE');assert.match(identity.startTicks,/^\d+$/,'INDEX_START_IDENTITY_INVALID');receipt.identity=identity;
+   let health;
+   for(;;){assert.ok(Date.now()<deadline,'ORIGINAL_INDEX_STARTUP_DEADLINE');if(spawnError)throw spawnError;assert.equal(exited,false,'INDEX_EXITED_BEFORE_READY');
+-   try{const [watchdog,pillow]=await Promise.all([get('/health/executive-continuity'),get('/api/pillow/status',{authorization:'Bearer '+originalSession.token})]);assert.equal(watchdog.status,200);assert.equal(pillow.status,200);health=validateIndexHealth(await watchdog.json());assert.equal((await pillow.json()).status.lifecycle,'running');break;}catch(error){if(exited||Date.now()>=deadline)throw error;await pause(100);}
++   try{const [watchdog,pillow]=await Promise.all([get('/health/executive-continuity'),get('/api/pillow/status',{authorization:'Bearer '+originalSession.token})]);
++    const watchdogBody=await watchdog.json(),pillowBody=await pillow.json();
++    receipt.lastPoll={at:Date.now(),watchdogStatus:watchdog.status,pillowStatus:pillow.status,continuity:watchdogBody.continuity??null,pillowLifecycle:pillowBody.status?.lifecycle??null,flushRequested,flushAck,flushError};onDiagnostic(receipt);
++    assert.equal(watchdog.status,200);assert.equal(pillow.status,200);assert.equal(pillowBody.status.lifecycle,'running');
++    if(flushError)throw Error('TARGET_CRITICAL_PERSIST_FAILED: '+flushError);
++    if(!flushRequested){flushRequested=true;child.send({action:'persist-restored-index-once',capability,source:process.env.RAILWAY_GIT_COMMIT_SHA});}
++    if(!flushAck){await pause(100);continue;}
++    health=validateIndexHealth(watchdogBody);break;
++   }catch(error){receipt.lastPollFailure=String(error);onDiagnostic(receipt);if(flushError||exited||Date.now()>=deadline)throw error;await pause(100);}
+   }
+-  receipt.continuity=health;
++  receipt.continuity=health;receipt.criticalPersist=flushAck;receipt.readinessQualification='HEALTHY_AFTER_EXPLICIT_TARGET_CRITICAL_PERSIST';onDiagnostic(receipt);
+   receipt.threadInventory=fs.readdirSync(`/proc/${child.pid}/task`).map(tid=>{const raw=fs.readFileSync(`/proc/${child.pid}/task/${tid}/stat`,'utf8'),fields=raw.slice(raw.lastIndexOf(') ')+2).trim().split(/\s+/);return {tid:Number(tid),startTicks:fields[19]};});
+   assert.ok(receipt.threadInventory.length>1,'WATCHDOG_THREAD_MEMBERSHIP_UNAVAILABLE');assert.equal(processIdentity(child.pid)?.startTicks,identity.startTicks);
+   for(const headers of [{authorization:'Bearer '+originalSession.token},{cookie:'empireai_session='+originalSession.token}]){const response=await get('/auth/me',headers);assert.equal(response.status,200);const {platformIdentity,...actual}=(await response.json()).user;const {token,expiresAt,createdAt,...expected}=originalSession;assert.deepEqual(actual,expected);}
+diff --git a/scripts/work8/index-restoration-phase.test.mjs b/scripts/work8/index-restoration-phase.test.mjs
+index 6b6b8b74..715019dc 100644
+--- a/scripts/work8/index-restoration-phase.test.mjs
++++ b/scripts/work8/index-restoration-phase.test.mjs
+@@ -5,3 +5,12 @@ const healthy=()=>({continuity:{watchdogEnabled:true,watchdogRunning:true,health
+ test('actual index readiness requires acknowledged watchdog and current heartbeat',()=>{validateIndexHealth(healthy());for(const mutate of [v=>v.continuity.watchdogEnabled=false,v=>v.continuity.watchdogRunning=false,v=>v.continuity.healthy=false,v=>v.continuity.lastHeartbeatAgeMs=22500,v=>v.continuity.lastHeartbeatAgeMs=-1,v=>v.continuity.alerts.push('heartbeat_missing')]){const v=healthy();mutate(v);assert.throws(()=>validateIndexHealth(v));}assert.equal(processIdentity(2147483647),null);});
+ 
+ test('actual proc namespace process identity is available',t=>{const own=processIdentity(process.pid);if(!own){assert.notEqual(process.env.CI,'true','HOSTED_PROC_IDENTITY_REQUIRED');t.skip('Local execution namespace has no /proc entry for process.pid; real hosted namespace assertion remains required');return;}assert.equal(own.pid,process.pid);assert.match(own.startTicks,/^\d+$/);});
++
++import {validatePersistCommand} from './index-restoration-launcher.mjs';
++test('target critical persist accepts one exact parent capability and no arbitrary operation',()=>{
++ const scope={capability:'00000000-0000-0000-0000-000000000000',source:'a'.repeat(40),used:false};
++ const command=()=>({action:'persist-restored-index-once',capability:scope.capability,source:scope.source});
++ validatePersistCommand(command(),scope);
++ for(const mutate of [m=>m.action='resume-queue',m=>m.capability='forged',m=>m.source='b'.repeat(40),m=>m.path='/other',m=>delete m.source]){const m=command();mutate(m);assert.throws(()=>validatePersistCommand(m,scope));}
++ assert.throws(()=>validatePersistCommand(command(),{...scope,used:true}),/ALREADY_USED/);
++});

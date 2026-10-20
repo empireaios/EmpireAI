@@ -1,0 +1,48 @@
+{
+  "recordType": "INDEPENDENT_K_OWNER_DEFER_SOURCE_REVIEW",
+  "reviewer": "/root/certification_h",
+  "decision": "PASS_SCOPED_FOUR_PATH_SOURCE_AND_TWO_TARGETED_CHECKS",
+  "baseTree": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+  "reviewedPaths": {
+    "backend/src/institutional-memory/executive.ts": "226261e63faae3675b9328dd8a66dd530a06cfa5048aabd0c7bda880c3a58793",
+    "backend/src/institutional-memory/store.ts": "6f4f79fc3a6c5aadbf205bd59969ad0295cfb7e1f0a24a947308e29bbabab4b6",
+    "backend/src/validation/tests/work3-institutional-memory.test.ts": "76d7e76f16882e1baa5afd25d6d25534f08519b6ecaf1aca6c3d8d9e1e85781c",
+    "empireai-web/components/owner/work7/OwnerJourneys.tsx": "974eaa29110104427e89f12df78e8fce641229c3481d5c4d9caf0ede34b0fef6"
+  },
+  "independentTests": {
+    "pass": 2,
+    "fail": 0,
+    "skip": 0,
+    "logSha256": "035b026ecdce5e6597fae445a046a1635179b5a2d9c5111f1840603e2f65686c"
+  },
+  "verified": [
+    "DEFER additive command/event schema uses existing append-only owner decision route",
+    "Cold-process exact event/note/source/session/target preservation and version0to1",
+    "Same-id replay idempotent; changed-note conflict, stale version, wrong workspace and forged origin refused",
+    "Executive projection DEFERRED, NOT_EXECUTED, no outcome and grantsAuthorityfalse",
+    "Actual DecisionCard function handler sends authenticated POST with exact target/version/note only on click",
+    "Missing reason/prior decision disables Defer; missing durable receipt does not refresh or claim success",
+    "Existing approve/reject/revise buttons retained",
+    "Unchanged actual route requires founder, configured email, ws_empire_1 and owner bearer; workspace/actor derived server-side"
+  ],
+  "compilation": {
+    "changedBoundaryStrictTypecheck": "PASS exit0; author retained receipt",
+    "fullBackendNoEmit": "Resource OOM; not claimed PASS",
+    "frontendFullTypecheck": "Not run; actual changed handler exercised by targeted transpilation test"
+  },
+  "limits": [
+    "Isolated handler/store tests are not hosted authenticated UI acceptance",
+    "Current real owner click produced no durable transition; actual owner decision remains unpersisted",
+    "Fresh changed tree needs exact owner publication approval and applicable route availability before authorized retry",
+    "No complete O14/O40/O41/A6/A19 acceptance inferred"
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "publicationAuthorized": false,
+  "finalTestOnlyCorrection": {
+    "previousHash": "1e62d07983513bf55a7cc0a759c46c57089e60bcc61984266d7ebe1c7f8ef8b6",
+    "finalHash": "76d7e76f16882e1baa5afd25d6d25534f08519b6ecaf1aca6c3d8d9e1e85781c",
+    "change": "Added assert.ok(projected) and assert.ok(projected.ownerDecision) before unchanged field assertions to satisfy strict nullability",
+    "independentReview": "Reviewed; runtime expectation unchanged, author final targeted2PASS/0FAIL/0SKIP retained"
+  }
+}

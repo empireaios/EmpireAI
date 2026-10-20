@@ -1,0 +1,37 @@
+{
+  "recordType": "INDEPENDENT_K_INDEX_CRITICAL_PERSIST_SOURCE_REVIEW",
+  "reviewer": "/root/certification_h",
+  "decision": "PASS_SCOPED_FOUR_PATH_CORRECTION_NOT_HOSTED_ACCEPTANCE",
+  "baseCommit": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+  "paths": {
+    "scripts/work8/application-graph-restoration.mjs": "9b9f0f0f3ff369aea8b60a140570caa92251b292ca2a5f3e49d3f7ae5afa4388",
+    "scripts/work8/index-restoration-phase.mjs": "61c85b2cd652579b118fdc10a28932a4cb7f34a3d3aa1036279a390a416c6b95",
+    "scripts/work8/index-restoration-launcher.mjs": "e17609c2b3ed30276e7ac7412613e86fe73d3ded68bd40fe00fc708d4d0ea8a5",
+    "scripts/work8/index-restoration-phase.test.mjs": "37afa405747755d2987800cfe0b552fb5800719ff692a1266b0a01fdc0b4ecfa"
+  },
+  "independentNewTest": {
+    "pass": 1,
+    "fail": 0,
+    "skip": 0,
+    "scope": "Only new exact IPC capability/operation/source/refusal/replay validator; accepted readiness and process tests not repeated",
+    "logSha256": "e5ba695e5744b4d1b217361efa0d402ba90e754d8630f9a3576aa544092814a2"
+  },
+  "verified": [
+    "Actual index module unchanged; isolated launcher only",
+    "Exactly one parent IPC command, matching random capability and source; no arbitrary operation/path",
+    "Critical persistence invokes existing database requestCriticalPersist after actual Pillow running",
+    "Full health predicate and original180000ms deadline unchanged",
+    "Bounded last HTTP/health/failure and flush acknowledgment retained",
+    "Readiness explicitly qualified after target critical persistence",
+    "Mission/execution/financial/liveCostCentre records retain exact checks; other table deltas require independent classification"
+  ],
+  "causeClassification": "Source-supported hypothesis; original polls discarded, so sole hosted cause is not established",
+  "limits": [
+    "Corrected hosted index outcome not yet available",
+    "No proof of every store flush from one brain critical-persist call",
+    "Coupled pending design not implemented; accepted separate replay preserved",
+    "No full restoration, global writer or custody certification"
+  ],
+  "publicationAuthorized": false,
+  "finalAuditDeltaReview": "Exact existing rows must remain unchanged; exact added synthetic audit rows retained privately with1000row/1MiB caps, no silent truncation or automatic allowlist. Final syntax checkPASS."
+}

@@ -1,0 +1,119 @@
+{
+  "recordType": "INDEPENDENT_K_MISSION_LEDGER_CERTIFICATION",
+  "reviewer": "/root/certification_h",
+  "status": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "accepted": 45,
+  "outstanding": 19,
+  "rowCount": 64,
+  "counts": {
+    "O": {
+      "PASS": 34,
+      "PENDING": 7,
+      "BLOCKED": 4
+    },
+    "A": {
+      "PASS": 11,
+      "PENDING": 8
+    }
+  },
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "allOutstandingAssigned": [
+    "O2",
+    "O7",
+    "O13",
+    "O14",
+    "O30",
+    "O33",
+    "O39",
+    "O40",
+    "O41",
+    "O42",
+    "O43",
+    "A1",
+    "A2",
+    "A3",
+    "A5",
+    "A6",
+    "A10",
+    "A15",
+    "A19"
+  ],
+  "publication": {
+    "evidence": {
+      "commit": "c7b5770e1bc3edcd80d3aa8cf0f2f45662024b92",
+      "tree": "84b09893af41c6219f3dd423fc76e177ef17f70c"
+    },
+    "source": {
+      "approved": "00d3792c3e0669e29d923d529d977957b60cb750",
+      "published": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "tree": "0789dce08d58aee93ad980f311bc182ebeda2eda"
+    },
+    "evidenceFirst": true,
+    "exactTreeVerified": true,
+    "safeAncestry": true,
+    "metadataOnlyChange": "remove skip ci marker",
+    "prDraft": true,
+    "merged": false
+  },
+  "stagedSuccessor": {
+    "commit": "ea7f6c48a6e457844a79101890405939d826d63b",
+    "tree": "8af669142ceb72d232590e62da54034c8eeed90b",
+    "parent": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+    "branch": "work8/staged-source-20261020k",
+    "destinationPublished": false
+  },
+  "hostedDecision": {
+    "Product": "SUCCESS",
+    "Semantic": "SUCCESS",
+    "Assurance": "SUCCESS",
+    "Runtime": "FAILURE",
+    "index": "Original 180-second startup deadline failed; logs showing listen, watchdog and Pillow startup do not establish readiness or restoration.",
+    "processIdentity": "Two hosted preflight assertions passed with zero skips.",
+    "laterRuntimeSuite": "Skipped after index failure; no K 414-test claim.",
+    "containment": "Stopped container, PID 0, no OOM, no network, no restart."
+  },
+  "ownerDecision": "One authorized DEFER click produced local feedback only; native reload retained version 0 and awaiting review. No durable decision accepted.",
+  "consoleRevision": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+  "examinedSource": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+  "successorScope": "Eight reviewed paths staged only: durable DEFER and isolated critical persistence with bounded diagnostics. No hosted successor result or deployment claim.",
+  "recoveryLimits": [
+    "Full index restoration remains unaccepted.",
+    "Coupled nonempty pending continuation is design only.",
+    "Prior accepted Redis/AOF, original bearer/cookie restoration and standalone once-only replay remain accepted.",
+    "Global current/prior writer topology and protected full-data custody remain unproven."
+  ],
+  "priorAcceptedPreserved": [
+    "A8",
+    "O19",
+    "HH4",
+    "A9",
+    "A11",
+    "F29",
+    "Scoped application graph restoration",
+    "Seven auxiliary persistence checks"
+  ],
+  "controls": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "PR113": "DRAFT_UNMERGED",
+    "productionDeployment": false
+  },
+  "receiptSha256": {
+    "PUBLICATION.json": "5ee5b566689b9507b0641d841a14afdd940c55d7acba109c65d955714eaf0394",
+    "CI-STATUS.json": "a6e1a78de1db78eb34a31a75d2e587c627d28bd9e9098a0cfbfcf75e0b890922",
+    "CI-INDEX-WATCHDOG-OBSERVATION.json": "b5f875f5d47d05bd8d15ea40b340f4b37653509cf032e0a71ff0920517030b31",
+    "INDEX-HOSTED-INDEPENDENT-DECISION.json": "8721ef0711c89f1f5bc3d99a2eb47d271892002bbda5bdaacf3fc9b685832930",
+    "OWNER-DEFER-INDEPENDENT-ACCEPTANCE-DECISION.json": "761c1d5bc6c885e607ee7d6dd80a7fe2801849daa5382b81142bb7e9a5ac2d15",
+    "OWNER-DEFER-INDEPENDENT-REVIEW.json": "d867653b60ebee1cab370b34e26f82fb5ce97d8c1e01db7833ff397b70a146ec",
+    "INDEX-CRITICAL-PERSIST-INDEPENDENT-REVIEW.json": "d330a4c3abd329d751caf9dd84b012994914a2bbf4f05d7d22544be40d023a4e",
+    "CONSOLIDATED-INTEGRATION-INDEPENDENT-REVIEW.json": "2a03dc34ceff8bf24bdf8830b3155032689c3192a4cc0cd68535cf5e3485843e",
+    "SOURCE-STAGING-INDEPENDENT-REVIEW.json": "8cc433bd49ef1e937c92f12e4795ca2d044682d1535865bd974b2bfc95e5f116",
+    "REGISTER-CLOSURE-MATRIX.json": "341eaf8d999579558a3057fc655c471b59177967d58cacc7e1167c83442a15cd",
+    "FULL-TRACKER-RECONCILED.md": "799901f0ccbbc100716f781669b9bf35abe29874722162af93f87185f0f58ecf",
+    "REGISTER-CLOSURE-MATRIX.md": "b27024160fc9b6e0e78e298cf4aa27e88aeb46c094f8be40dc9487873f61fe66",
+    "CONTINUATION-CHECKPOINT.md": "69b1d7821c13c01a9db2080ff1ad5150b381ad87cd532832ada577b7b1d33fca"
+  }
+}

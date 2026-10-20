@@ -1,0 +1,82 @@
+{
+  "recordType": "K_COUPLED_PENDING_RESTORATION_PROPOSED_DESIGN",
+  "implementationStatus": "NOT_STARTED_AWAITING_ACTUAL_INDEX_RESULT_AND_INDEPENDENT_DESIGN_REVIEW",
+  "sourceOperation": {
+    "host": "Actual application-owned PillowHost and registered MissionExecutionService; no substitute host/service",
+    "pause": "Existing host.missionAuthorityLifecycle.pauseAndWait after application readiness",
+    "freshFixture": "Clearly labelled synthetic single mission via host.executeMissionRuntime; fixed worker pillow-authority-reader-v1, authority.snapshot.v1, empty input, highRisk false",
+    "expectedSource": "Exactly one queued job, attempts0, matching persisted Running dispatch-intent/timeline and requestIdentity. No prior or unexpected execution jobs.",
+    "authority": "Fresh bounded engineering examination authorized by owner; synthetic approval flags are test fixture authorization, never claimed genuine owner business decision.",
+    "capture": "Same generated source capability/private roots/network-none; existing background drain/native store locks/Redis producer fences. Runner stays paused until external source containment."
+  },
+  "targetAdmission": {
+    "mode": "Explicit generated isolated index-pending examination, separate from accepted graph/index-readback modes",
+    "preEnableChecks": [
+      "Verified source image/commit and manifest digest",
+      "Independent original held-source containment and matching ready inventory",
+      "Exact one queued job and0attempts; reject extra/leased/unknown/completed jobs",
+      "Exact missionId/dispatchId/jobId, owner/workspace, source build, worker/action, empty input hash",
+      "Persisted intent/timeline must match job request identity",
+      "Retained original session; historical journal and approval history never confer authority"
+    ],
+    "enablement": "Only existing MISSION_AUTHORITY_EXECUTOR_ENABLED for the isolated fresh target after all checks; no runtime production mode or global Redis owner release",
+    "allowedEffects": [
+      "One actual readonly authority inspection",
+      "One durable execution receipt/output event",
+      "Matching mission reconciliation records"
+    ],
+    "requiredDenials": [
+      "No paid inference/network/provider dispatch",
+      "No commerce/listing/payment/birth",
+      "No extra job or forged dispatch",
+      "Original synthetic-workspace mission HTTP remains403"
+    ]
+  },
+  "proof": [
+    "Actual index runner completes expected job once, attempts1, reconciled true",
+    "Output kind actual_readonly_authority_inspection; NOT_BORN/LOCKED; certificationCredit false",
+    "Exactly one new readonly_output_and_receipt_committed event",
+    "Global Redis captureowner and paused meta unchanged",
+    "Clean restart same completed target retains exact receipt hash/attempt/event count",
+    "All other financial and operational records remain unchanged or independently classified; no automatic PASS on unexplained deltas"
+  ],
+  "deadlines": {
+    "sourceStartupMs": 180000,
+    "sourcePillowReadinessMs": 120000,
+    "originalHeldCaptureMs": 5000,
+    "sourceContainmentMs": 5000,
+    "targetTotalStartupAndRestartMs": 180000,
+    "resetDeadlineBetweenPhases": false
+  },
+  "membershipLimits": [
+    "Generated primary/worker/Redis and application-owned mission runner only; external source cohort containment retained",
+    "Watchdog worker thread subject to actual index result",
+    "No claim all current/prior global writers, real tier0-primary or independent Assurance observer covered"
+  ],
+  "acceptedProofsNotRepeated": [
+    "Standalone domain-service once-only replay",
+    "Redis replacement/AOF/originalsession",
+    "Graph13store restoration",
+    "Accepted fault/endurance/media/Console tests"
+  ],
+  "newAcceptedIds": [],
+  "sourceContractHashes": {
+    "backend/src/validation/tests/fixtures/work8-replay-capture-child.ts": "1911bdc440a06a5636ce90dd5130a6de55ff1d01eadaf1b7e9cac7be0fdd30bc",
+    "backend/src/orchestration/pillow-host/mission-execution/contract.ts": "0bc923a26433fafe3dac78921e6cdb30bffef3877c4a7d59442109d016fb9ff4",
+    "backend/src/orchestration/pillow-host/mission-execution/service.ts": "2f0ff505d731a2eaf7d1b84cd8e1b2f493d4fedfa53eb9a46fc1924b3a9ccec6",
+    "backend/src/orchestration/pillow-host/mission-execution/runner.ts": "315f355f775acfa7a252bf19f50ac2e27e28965ec9db1e5ad533543208a9051f",
+    "backend/src/orchestration/pillow-host/routes/mission-runtime-routes.ts": "0a662476e3f38ae126838f212277a0142986da006e462686108367f4265e49ee"
+  },
+  "independentDesignReview": {
+    "reviewer": "/root/certification_h",
+    "decision": "CONDITIONAL_DESIGN_APPROVAL_AFTER_K_INDEX_OUTCOME",
+    "conditions": [
+      "Source pauseAndWait quiesces actual registered runner before enqueue; oracle derived from persisted job and mission records",
+      "Reject unexpected jobs/status/attempts/leases/build/owner/workspace/op/input/intent before executor enablement",
+      "Private fresh network-none target; no additional admitted producer between prevalidation and execution",
+      "Fresh generated examination authority separate from historical approval flags",
+      "One readonly completion/output, attempts1, unchanged receipt/event/attempt after restart",
+      "Synthetic coupled continuation only; no complete global topology/custody claim"
+    ]
+  }
+}

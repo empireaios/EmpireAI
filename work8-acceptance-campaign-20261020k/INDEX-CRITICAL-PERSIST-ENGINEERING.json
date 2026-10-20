@@ -1,0 +1,31 @@
+{
+  "recordType": "K_INDEX_TARGET_CRITICAL_PERSIST_CORRECTION",
+  "baseCommit": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+  "paths": {
+    "scripts/work8/application-graph-restoration.mjs": "9b9f0f0f3ff369aea8b60a140570caa92251b292ca2a5f3e49d3f7ae5afa4388",
+    "scripts/work8/index-restoration-phase.mjs": "61c85b2cd652579b118fdc10a28932a4cb7f34a3d3aa1036279a390a416c6b95",
+    "scripts/work8/index-restoration-launcher.mjs": "e17609c2b3ed30276e7ac7412613e86fe73d3ded68bd40fe00fc708d4d0ea8a5",
+    "scripts/work8/index-restoration-phase.test.mjs": "37afa405747755d2987800cfe0b552fb5800719ff692a1266b0a01fdc0b4ecfa"
+  },
+  "observedHostedFailure": {
+    "source": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+    "indexListening": "2026-10-20T09:37:02Z",
+    "PillowRunning": "2026-10-20T09:37:07Z",
+    "result": "ORIGINAL_APPLICATION_STARTUP_DEADLINE",
+    "lastPollUnavailable": true
+  },
+  "sourceSupportedHypothesis": "Full watchdog health rejects sqlite.pending; ordinary noncritical first flush defaults to3600000ms while target startup deadline is180000ms. Original discarded polls do not establish sole cause.",
+  "correction": [
+    "Isolated launcher imports actual unchanged index module",
+    "Single exact parent-owned IPC capability/source-bound command after Pillowrunning invokes existing persistDatabase/requestCriticalPersist",
+    "No deadline or health-predicate weakening",
+    "Retain bounded last HTTP/health/failure and critical-persist acknowledgment",
+    "Qualify result healthy after explicit target critical flush; not ordinary unassisted startup",
+    "Unknown target table changes continue to require independent classification"
+  ],
+  "localVerification": "2 PASS / 0 FAIL /1 local proc namespace SKIP; includes one new IPC validator with6 refusal/replay cases; syntax/diff checks PASS",
+  "hostedCorrectionResult": "NOT_RUN_AWAITING_EXACT_TREE_AUTHORITY",
+  "coupledPending": "Design retained; implementation deferred to avoid obscuring actual failed boundary",
+  "newAcceptedIds": [],
+  "auditDeltaEvidence": "Private bounded exact added audit rows; existing captured audit rows must remain byte-equivalent as records; no automatic allowance for new rows. Other unknown table deltas retain independent classification."
+}

@@ -1,0 +1,18 @@
+{
+  "recordType": "K_OWNER_DEFER_ENGINEERING",
+  "baseTree": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+  "cause": "Defer button was local feedback only; durable command/event schema excluded DEFER. No decision mutation occurred in observed Console click.",
+  "paths": {
+    "backend/src/institutional-memory/executive.ts": "226261e63faae3675b9328dd8a66dd530a06cfa5048aabd0c7bda880c3a58793",
+    "backend/src/institutional-memory/store.ts": "6f4f79fc3a6c5aadbf205bd59969ad0295cfb7e1f0a24a947308e29bbabab4b6",
+    "backend/src/validation/tests/work3-institutional-memory.test.ts": "76d7e76f16882e1baa5afd25d6d25534f08519b6ecaf1aca6c3d8d9e1e85781c",
+    "empireai-web/components/owner/work7/OwnerJourneys.tsx": "974eaa29110104427e89f12df78e8fce641229c3481d5c4d9caf0ede34b0fef6"
+  },
+  "targetedTests": "2 PASS / 0 FAIL / 0 SKIP",
+  "runtimeAuthorizationUnchanged": true,
+  "actualOwnerDecisionPersisted": false,
+  "hostedAcceptance": "PENDING_REVIEWED_SOURCE_PUBLICATION_AND_APPLICABLE_DEPLOYED_ROUTE",
+  "noExternalEffect": true,
+  "changedBoundaryTypecheck": "PASS strict NodeNext store/executive/test, retained Fastify cookie ambient declarations",
+  "fullBackendTypecheck": "RESOURCE_LIMIT: Node default heap OOM exit134; no full compile claim; no full retry"
+}

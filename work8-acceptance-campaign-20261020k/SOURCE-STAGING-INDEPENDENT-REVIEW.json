@@ -1,0 +1,70 @@
+{
+  "recordType": "INDEPENDENT_K_REMOTE_SOURCE_STAGING_REVIEW",
+  "reviewer": "/root/certification_h",
+  "decision": "PASS_EXACT_REMOTE_COMPLETE_TREE_AND_EIGHT_PATHS",
+  "commit": "ea7f6c48a6e457844a79101890405939d826d63b",
+  "tree": "8af669142ceb72d232590e62da54034c8eeed90b",
+  "parent": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+  "branch": "work8/staged-source-20261020k",
+  "entries": [
+    {
+      "path": "scripts/work8/application-graph-restoration.mjs",
+      "sha256": "9b9f0f0f3ff369aea8b60a140570caa92251b292ca2a5f3e49d3f7ae5afa4388",
+      "mode": "100644",
+      "gitEntry": "100644 blob fe991b41d9770fccaa5332fa9b1cb5cad6269e47\tscripts/work8/application-graph-restoration.mjs",
+      "bytes": 15932
+    },
+    {
+      "path": "scripts/work8/index-restoration-phase.mjs",
+      "sha256": "61c85b2cd652579b118fdc10a28932a4cb7f34a3d3aa1036279a390a416c6b95",
+      "mode": "100644",
+      "gitEntry": "100644 blob ae512b04c5d6e79530195873a76764a84aeba649\tscripts/work8/index-restoration-phase.mjs",
+      "bytes": 7075
+    },
+    {
+      "path": "scripts/work8/index-restoration-launcher.mjs",
+      "sha256": "e17609c2b3ed30276e7ac7412613e86fe73d3ded68bd40fe00fc708d4d0ea8a5",
+      "mode": "100644",
+      "gitEntry": "100644 blob c82e76b358af71b2fe67ec244f1d290a842ce534\tscripts/work8/index-restoration-launcher.mjs",
+      "bytes": 2391
+    },
+    {
+      "path": "scripts/work8/index-restoration-phase.test.mjs",
+      "sha256": "37afa405747755d2987800cfe0b552fb5800719ff692a1266b0a01fdc0b4ecfa",
+      "mode": "100644",
+      "gitEntry": "100644 blob 715019dccb4f7a5180decd40c324061db80519be\tscripts/work8/index-restoration-phase.test.mjs",
+      "bytes": 1904
+    },
+    {
+      "path": "backend/src/institutional-memory/executive.ts",
+      "sha256": "226261e63faae3675b9328dd8a66dd530a06cfa5048aabd0c7bda880c3a58793",
+      "mode": "100644",
+      "gitEntry": "100644 blob b4fabd193d1aa2b401c5d020d01b7eb5e7f1e239\tbackend/src/institutional-memory/executive.ts",
+      "bytes": 2831
+    },
+    {
+      "path": "backend/src/institutional-memory/store.ts",
+      "sha256": "6f4f79fc3a6c5aadbf205bd59969ad0295cfb7e1f0a24a947308e29bbabab4b6",
+      "mode": "100644",
+      "gitEntry": "100644 blob f4f313e783163a609ef6290e1981ff0f9d7a1a0c\tbackend/src/institutional-memory/store.ts",
+      "bytes": 29578
+    },
+    {
+      "path": "backend/src/validation/tests/work3-institutional-memory.test.ts",
+      "sha256": "76d7e76f16882e1baa5afd25d6d25534f08519b6ecaf1aca6c3d8d9e1e85781c",
+      "mode": "100644",
+      "gitEntry": "100644 blob 54b22448a4c363f1df861f0926382b0ed68d9ca1\tbackend/src/validation/tests/work3-institutional-memory.test.ts",
+      "bytes": 20436
+    },
+    {
+      "path": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "sha256": "974eaa29110104427e89f12df78e8fce641229c3481d5c4d9caf0ede34b0fef6",
+      "mode": "100644",
+      "gitEntry": "100644 blob 20ed28e938fe2b8f27d632bb900353e3ef9a88ff\tempireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "bytes": 51285
+    }
+  ],
+  "inheritedPathsUnchanged": true,
+  "destinationPublished": false,
+  "scope": "Remote object readback and reuse of retained independent source reviews; no hosted successor acceptance."
+}

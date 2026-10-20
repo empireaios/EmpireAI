@@ -1,0 +1,256 @@
+# EMPIREAI — WORK 8 INDEX/WATCHDOG PUBLICATION, OWNER DEFER AUTHORISATION & PARALLEL CLOSURE
+
+**GRAND KING — CONSOLIDATED OWNER AUTHORISATION**
+
+**PRIMARY OBJECTIVE: PUBLISH THE INDEPENDENTLY REVIEWED INDEX/WATCHDOG SUCCESSOR, COMPLETE THE NEXT FULL-RESTORATION EXAMINATION, RECORD THE EXACT AUTHORISED OWNER DEFER DECISION, AND ADVANCE ALL 19 OUTSTANDING WORK 8 REQUIREMENTS AND AMENDMENTS TOWARD LEGITIMATE CERTIFICATION.**
+
+**EXECUTION EFFICIENCY, COST CONTROL, SHARED-BLOCKER REMOVAL AND COMPLETE ACCEPTANCE ARE THE HIGHEST PRIORITIES.**
+
+**RESUME. DO NOT RESTART WORK 8. DO NOT REPEAT ACCEPTED EXAMINATIONS. DO NOT PERFORM ANOTHER BROAD INVESTIGATION.**
+
+Repository: `empireaios/EmpireAI`
+
+Draft PR: `#113`
+
+## 1. Exact-tree publication authorised
+
+I explicitly authorise publication of the following independently reviewed and durably staged candidates.
+
+**EVIDENCE — PUBLISH FIRST**
+
+Commit:
+`c7b5770e1bc3edcd80d3aa8cf0f2f45662024b92`
+
+Complete tree:
+`84b09893af41c6219f3dd423fc76e177ef17f70c`
+
+**SOURCE — PUBLISH SECOND**
+
+Commit:
+`00d3792c3e0669e29d923d529d977957b60cb750`
+
+Complete tree:
+`0789dce08d58aee93ad980f311bc182ebeda2eda`
+
+Verify exact reviewed commits, complete trees, review receipts and safe destination ancestry.
+
+Publish evidence first, source second.
+
+Preserve all approved file contents, paths and modes. Commit metadata may differ only where required by the established publication mechanism.
+
+Verify remote complete-tree equality after publication.
+
+If already published, verify and reuse rather than publishing again.
+
+Allow only the existing automatic CI. No duplicate workflow dispatches or unnecessary reruns.
+
+This approval applies only to these exact trees.
+
+## 2. Exact owner DEFER decision authorised
+
+I explicitly authorise the following narrowly scoped owner decision.
+
+Decision ID:
+`decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6`
+
+Expected version:
+`0`
+
+Source:
+`completed-reasoning:pcr_27fb1ed5ddb24f5a`
+
+**Decision: DEFER**
+
+**Reason:** Retain the existing EVIDENCE-INSUFFICIENT conclusion. The referenced WALI/OPNICE Amazon evidence and CJ decorative-tray evidence are not sufficiently matched or attributable to establish product eligibility. Require genuine missing evidence before reconsideration.
+
+Execution conditions:
+
+1. Use the existing authenticated Owner Console.
+2. Verify the exact decision ID, source, product identity and expected version.
+3. Confirm the decision has not already been submitted or superseded.
+4. Commit DEFER only through the authorised owner-decision route.
+5. Preserve the complete decision history and source provenance.
+6. Independently verify the persisted result and exact version transition.
+7. Do not retry a successful decision or overwrite a concurrent change.
+8. If identity, version or authority does not match, do not submit; report the discrepancy.
+
+This authorisation grants **DEFER only**.
+
+It does not authorise product acquisition, listing, publication, paid inference, supplier contact, commercial execution or changes to any other product decision.
+
+Do not attribute this decision to the September mirror or October 20 diffuser.
+
+Use the resulting genuine decision record in downstream acceptance examinations only where its actual identity and evidence legitimately apply.
+
+Do not manufacture simulated financial or Assurance results merely to close a tracker row.
+
+## 3. Preserve accepted Work 8 baseline
+
+**45 ACCEPTED / 19 OUTSTANDING**
+
+Original requirements:
+- 34 PASS
+- 7 PENDING
+- 4 BLOCKED
+
+Owner amendments:
+- 11 PASS
+- 8 PENDING
+
+Preserve A8, O19, HH4, A9, A11, F29 and all other accepted examinations.
+
+The latest published application-graph restoration passed independent scoped acceptance.
+
+All four automatic CI workflows passed on the published source.
+
+Do not repeat accepted examinations without demonstrated regression.
+
+Use `Work8-Published-Parallel-Closure-Checkpoint-20261020j.md` as the authoritative continuation baseline.
+
+Mission Ledger remains **IN_PROGRESS / NO_GO**.
+
+## 4. Complete index/watchdog restoration
+
+The four-path successor adds a fresh-target index/watchdog examination using the existing frozen capture.
+
+After publication, verify through normal automatic CI:
+
+- Original 180-second startup bound.
+- Exact frozen capture integrity.
+- Fresh-target index restoration.
+- Watchdog restoration.
+- Original session continuity.
+- Mission and financial record integrity.
+- Queue admission fences.
+- Read-only evidence and journal mounts.
+- Runtime identity and process isolation.
+- Corruption refusal.
+- No unauthorised authority restoration.
+
+The previously unexecutable local `/proc` identity assertion must execute in the supported hosted environment. Do not silently skip it.
+
+Obtain independent changed-boundary acceptance.
+
+If a genuine failure occurs, isolate its precise cause from retained logs before proposing further engineering.
+
+## 5. Complete shared operational recovery and custody
+
+Continue O33/O39 and A1/A2/A3/A5 as one coordinated recovery campaign.
+
+Prioritise complete writer membership, consistent capture, full application restoration, pending-work continuity and protected off-host custody.
+
+Reuse the independently accepted thirteen-store, session, financial/mission and application-startup evidence.
+
+Do not repeat six separate restoration campaigns for six related requirements.
+
+Evaluate the existing authorised Library custody route against the actual retention, credential-exclusion, independent readback, corruption-refusal and fresh-target restoration criteria.
+
+Do not purchase infrastructure without separate owner approval.
+
+## 6. Advance authenticated owner acceptance
+
+The Owner Console session has been restored and authenticated.
+
+Reuse it without unnecessary login attempts.
+
+After the authorised DEFER is persisted, independently inspect its genuine record and any legitimate downstream consequences.
+
+Target O14, O40, O41, A6 and A19 wherever the exact same-product evidence applies.
+
+Complete desktop/mobile examinations for genuine connected records.
+
+Distinguish:
+
+- Genuine source observations.
+- Historical Pillow dispositions.
+- Actual owner decisions.
+- Simulated downstream outcomes.
+- Financial records.
+- Assurance and recovery evidence.
+
+Do not combine unrelated products, fixtures or source identities into a fictional operating journey.
+
+If a genuine linked downstream result is absent, record the precise missing connection and continue its authorised engineering or examination.
+
+## 7. Continue independent parallel closure lanes
+
+**Business qualification:** Obtain current matched CJ/Amazon evidence, exact supplier terms, freight, returns/RMA and media permissions. Preserve truthful DEFERRED status where evidence is insufficient.
+
+**Independent alerts:** Identify the executor, durable attempt store, provider, verified destination, observer and escalation route. No external message or new infrastructure without separate authority.
+
+**Historical accounting:** Preserve the existing 227 records and historical digests. Investigate the missing original 224-record baseline only through a credible new provenance lead.
+
+**Canva:** Verify genuine existing entitlement, server-side export authority and artifact readback. Do not substitute temporary Systems preparation authority.
+
+**Keepa:** Preserve the confirmed runtime NOT_CONFIGURED status while distinguishing it from account-wide subscription entitlement. Do not purchase or activate services.
+
+**Independent certification:** Continuously reconcile the complete 64-row register and obtain whole-row acceptance only when every applicable criterion is satisfied.
+
+Do not stop independent lanes while one dependency remains blocked.
+
+## 8. Cost and execution discipline
+
+Maintain the US$10 default individual task ceiling unless separately authorised.
+
+Prioritise complete accepted requirements per unit of expenditure.
+
+Avoid:
+
+- Broad investigations.
+- Duplicate CI.
+- Repeated accepted tests.
+- Repeated failed authentication attempts.
+- Unnecessary infrastructure.
+- Unmatched supplier evidence.
+- Repeated unsupported accounting searches.
+- Fragmented publication batches.
+- Repeated owner approvals for already-authorised actions.
+
+Use one integration controller to coordinate parallel work and consolidate independently reviewed successors.
+
+Any subsequent changed tree requires fresh exact-tree owner approval.
+
+## 9. Preserve constitutional safeguards
+
+**PILLOW NOT_BORN**
+
+**COMMERCE LOCKED**
+
+**WORK 9 INACTIVE**
+
+Keep PR #113 draft and unmerged.
+
+Preserve all fifteen safeguards and seven HTTP 423 external-effect fences.
+
+No production promotion, release lease, paid inference, real listing, acquisition, commercial transaction, external message or infrastructure purchase without separate applicable authority.
+
+The exact DEFER authorisation above does not modify these restrictions.
+
+## 10. Required continuation
+
+Do not stop after publication, green CI or the owner DEFER decision.
+
+At the next durable checkpoint, report:
+
+1. Exact published commits and trees.
+2. Terminal automatic CI.
+3. Index/watchdog restoration acceptance.
+4. Full operational recovery and custody progress.
+5. Exact owner DEFER execution and durable readback.
+6. Connected owner desktop/mobile evidence.
+7. Genuine business qualification progress.
+8. Independent alert-delivery readiness.
+9. Historical accounting, Canva and Keepa blockers.
+10. Newly accepted original requirement IDs.
+11. Newly accepted amendment IDs.
+12. Updated accepted/outstanding totals.
+13. Remaining blockers and smallest legitimate closure actions.
+14. Next consolidated publication approval, if required.
+
+Preserve all completed engineering, evidence and independent review receipts.
+
+**FINAL OWNER INSTRUCTION**
+
+**THE OBJECTIVE IS COMPLETE WORK 8 CERTIFICATION, NOT ANOTHER PUBLICATION CHECKPOINT.**
+
+**PUBLISH THE EXACT APPROVED TREES. EXECUTE ONLY THE SPECIFIED OWNER DEFER. COMPLETE INDEX/WATCHDOG RESTORATION. ADVANCE ALL 19 OUTSTANDING REQUIREMENTS IN PARALLEL. CONTROL COSTS. PRESERVE SAFETY. DO NOT RESTART.**

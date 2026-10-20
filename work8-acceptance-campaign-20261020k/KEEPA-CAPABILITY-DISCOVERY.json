@@ -1,0 +1,13 @@
+{
+  "recordType": "K_BOUNDED_KEEPA_CAPABILITY_DISCOVERY",
+  "examiner": "/root",
+  "loadedKeepaTools": 0,
+  "pluginDirectoryQuery": "Keepa",
+  "limit": 5,
+  "returnedPlugins": [],
+  "calls": 1,
+  "meaning": "No Keepa plugin was returned by this bounded, non-exhaustive directory query. This does not establish account entitlement absence.",
+  "retainedRuntime": "NOT_CONFIGURED; credentialPresent:false; authentication/read UNVERIFIED",
+  "accountEntitlement": "UNKNOWN",
+  "purchaseOrActivation": false
+}

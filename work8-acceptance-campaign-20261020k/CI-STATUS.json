@@ -1,0 +1,3039 @@
+{
+  "source": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+  "tree": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+  "mergeCheckout": "d34e84f921c57d2c0b758fce79ef3f0bfc596e18",
+  "automatic": true,
+  "dispatches": 0,
+  "reruns": 0,
+  "observedAt": "2026-10-20T09:45:10.460Z",
+  "runs": [
+    {
+      "id": 39401519425,
+      "name": "Pillow semantic repair CI",
+      "node_id": "WFR_kwLOTA0IHM8AAAAJLIN5QQ",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "path": ".github/workflows/pillow-semantic-repair-ci.yml",
+      "display_title": "Work 8 draft: bounded discovery, canonical simulation and Assurance recovery",
+      "run_number": 701,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "workflow_id": 362674549,
+      "check_suite_id": 106769238050,
+      "check_suite_node_id": "CS_kwDOTA0IHM8AAAAY2_FIIg",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519425",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519425",
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/empireaios/EmpireAI/pulls/113",
+          "id": 4814742504,
+          "number": 113,
+          "head": {
+            "ref": "work8/autonomous-examination-20261011",
+            "sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+            "repo": {
+              "id": 1275922460,
+              "url": "https://api.github.com/repos/empireaios/EmpireAI",
+              "name": "EmpireAI"
+            }
+          },
+          "base": {
+            "ref": "work2/backend-release",
+            "sha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+            "repo": {
+              "id": 1275922460,
+              "url": "https://api.github.com/repos/empireaios/EmpireAI",
+              "name": "EmpireAI"
+            }
+          }
+        }
+      ],
+      "created_at": "2026-10-20T09:33:18Z",
+      "updated_at": "2026-10-20T09:38:07Z",
+      "actor": {
+        "login": "empireaios",
+        "id": 295548100,
+        "node_id": "U_kgDOEZ20xA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/empireaios",
+        "html_url": "https://github.com/empireaios",
+        "followers_url": "https://api.github.com/users/empireaios/followers",
+        "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+        "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+        "organizations_url": "https://api.github.com/users/empireaios/orgs",
+        "repos_url": "https://api.github.com/users/empireaios/repos",
+        "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/empireaios/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "run_attempt": 1,
+      "referenced_workflows": [],
+      "run_started_at": "2026-10-20T09:33:18Z",
+      "triggering_actor": {
+        "login": "empireaios",
+        "id": 295548100,
+        "node_id": "U_kgDOEZ20xA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/empireaios",
+        "html_url": "https://github.com/empireaios",
+        "followers_url": "https://api.github.com/users/empireaios/followers",
+        "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+        "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+        "organizations_url": "https://api.github.com/users/empireaios/orgs",
+        "repos_url": "https://api.github.com/users/empireaios/repos",
+        "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/empireaios/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519425/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519425/logs",
+      "check_suite_url": "https://api.github.com/repos/empireaios/EmpireAI/check-suites/106769238050",
+      "artifacts_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519425/artifacts",
+      "cancel_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519425/cancel",
+      "rerun_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519425/rerun",
+      "previous_attempt_url": null,
+      "workflow_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/workflows/362674549",
+      "head_commit": {
+        "id": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+        "tree_id": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+        "message": "Work 8 J reviewed isolated actual-index restoration examination",
+        "timestamp": "2026-10-20T09:33:00Z",
+        "author": {
+          "name": "empireaios",
+          "email": "empireaiengine@gmail.com"
+        },
+        "committer": {
+          "name": "empireaios",
+          "email": "empireaiengine@gmail.com"
+        }
+      },
+      "repository": {
+        "id": 1275922460,
+        "node_id": "R_kgDOTA0IHA",
+        "name": "EmpireAI",
+        "full_name": "empireaios/EmpireAI",
+        "private": false,
+        "owner": {
+          "login": "empireaios",
+          "id": 295548100,
+          "node_id": "U_kgDOEZ20xA",
+          "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/empireaios",
+          "html_url": "https://github.com/empireaios",
+          "followers_url": "https://api.github.com/users/empireaios/followers",
+          "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+          "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+          "organizations_url": "https://api.github.com/users/empireaios/orgs",
+          "repos_url": "https://api.github.com/users/empireaios/repos",
+          "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/empireaios/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/empireaios/EmpireAI",
+        "description": "EmpireAI - AI Operating System",
+        "fork": false,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI",
+        "forks_url": "https://api.github.com/repos/empireaios/EmpireAI/forks",
+        "keys_url": "https://api.github.com/repos/empireaios/EmpireAI/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/empireaios/EmpireAI/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/empireaios/EmpireAI/teams",
+        "hooks_url": "https://api.github.com/repos/empireaios/EmpireAI/hooks",
+        "issue_events_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/empireaios/EmpireAI/events",
+        "assignees_url": "https://api.github.com/repos/empireaios/EmpireAI/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/empireaios/EmpireAI/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/empireaios/EmpireAI/tags",
+        "blobs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/empireaios/EmpireAI/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/empireaios/EmpireAI/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/empireaios/EmpireAI/languages",
+        "stargazers_url": "https://api.github.com/repos/empireaios/EmpireAI/stargazers",
+        "contributors_url": "https://api.github.com/repos/empireaios/EmpireAI/contributors",
+        "subscribers_url": "https://api.github.com/repos/empireaios/EmpireAI/subscribers",
+        "subscription_url": "https://api.github.com/repos/empireaios/EmpireAI/subscription",
+        "commits_url": "https://api.github.com/repos/empireaios/EmpireAI/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/empireaios/EmpireAI/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/empireaios/EmpireAI/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/empireaios/EmpireAI/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/empireaios/EmpireAI/merges",
+        "archive_url": "https://api.github.com/repos/empireaios/EmpireAI/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/empireaios/EmpireAI/downloads",
+        "issues_url": "https://api.github.com/repos/empireaios/EmpireAI/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/empireaios/EmpireAI/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/empireaios/EmpireAI/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/empireaios/EmpireAI/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/empireaios/EmpireAI/labels{/name}",
+        "releases_url": "https://api.github.com/repos/empireaios/EmpireAI/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/empireaios/EmpireAI/deployments"
+      },
+      "head_repository": {
+        "id": 1275922460,
+        "node_id": "R_kgDOTA0IHA",
+        "name": "EmpireAI",
+        "full_name": "empireaios/EmpireAI",
+        "private": false,
+        "owner": {
+          "login": "empireaios",
+          "id": 295548100,
+          "node_id": "U_kgDOEZ20xA",
+          "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/empireaios",
+          "html_url": "https://github.com/empireaios",
+          "followers_url": "https://api.github.com/users/empireaios/followers",
+          "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+          "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+          "organizations_url": "https://api.github.com/users/empireaios/orgs",
+          "repos_url": "https://api.github.com/users/empireaios/repos",
+          "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/empireaios/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/empireaios/EmpireAI",
+        "description": "EmpireAI - AI Operating System",
+        "fork": false,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI",
+        "forks_url": "https://api.github.com/repos/empireaios/EmpireAI/forks",
+        "keys_url": "https://api.github.com/repos/empireaios/EmpireAI/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/empireaios/EmpireAI/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/empireaios/EmpireAI/teams",
+        "hooks_url": "https://api.github.com/repos/empireaios/EmpireAI/hooks",
+        "issue_events_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/empireaios/EmpireAI/events",
+        "assignees_url": "https://api.github.com/repos/empireaios/EmpireAI/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/empireaios/EmpireAI/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/empireaios/EmpireAI/tags",
+        "blobs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/empireaios/EmpireAI/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/empireaios/EmpireAI/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/empireaios/EmpireAI/languages",
+        "stargazers_url": "https://api.github.com/repos/empireaios/EmpireAI/stargazers",
+        "contributors_url": "https://api.github.com/repos/empireaios/EmpireAI/contributors",
+        "subscribers_url": "https://api.github.com/repos/empireaios/EmpireAI/subscribers",
+        "subscription_url": "https://api.github.com/repos/empireaios/EmpireAI/subscription",
+        "commits_url": "https://api.github.com/repos/empireaios/EmpireAI/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/empireaios/EmpireAI/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/empireaios/EmpireAI/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/empireaios/EmpireAI/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/empireaios/EmpireAI/merges",
+        "archive_url": "https://api.github.com/repos/empireaios/EmpireAI/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/empireaios/EmpireAI/downloads",
+        "issues_url": "https://api.github.com/repos/empireaios/EmpireAI/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/empireaios/EmpireAI/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/empireaios/EmpireAI/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/empireaios/EmpireAI/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/empireaios/EmpireAI/labels{/name}",
+        "releases_url": "https://api.github.com/repos/empireaios/EmpireAI/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/empireaios/EmpireAI/deployments"
+      }
+    },
+    {
+      "id": 39401519250,
+      "name": "Independent Assurance Core",
+      "node_id": "WFR_kwLOTA0IHM8AAAAJLIN4kg",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "path": ".github/workflows/independent-assurance.yml",
+      "display_title": "Work 8 draft: bounded discovery, canonical simulation and Assurance recovery",
+      "run_number": 142,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "workflow_id": 373040927,
+      "check_suite_id": 106769237611,
+      "check_suite_node_id": "CS_kwDOTA0IHM8AAAAY2_FGaw",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519250",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519250",
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/empireaios/EmpireAI/pulls/113",
+          "id": 4814742504,
+          "number": 113,
+          "head": {
+            "ref": "work8/autonomous-examination-20261011",
+            "sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+            "repo": {
+              "id": 1275922460,
+              "url": "https://api.github.com/repos/empireaios/EmpireAI",
+              "name": "EmpireAI"
+            }
+          },
+          "base": {
+            "ref": "work2/backend-release",
+            "sha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+            "repo": {
+              "id": 1275922460,
+              "url": "https://api.github.com/repos/empireaios/EmpireAI",
+              "name": "EmpireAI"
+            }
+          }
+        }
+      ],
+      "created_at": "2026-10-20T09:33:18Z",
+      "updated_at": "2026-10-20T09:33:40Z",
+      "actor": {
+        "login": "empireaios",
+        "id": 295548100,
+        "node_id": "U_kgDOEZ20xA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/empireaios",
+        "html_url": "https://github.com/empireaios",
+        "followers_url": "https://api.github.com/users/empireaios/followers",
+        "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+        "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+        "organizations_url": "https://api.github.com/users/empireaios/orgs",
+        "repos_url": "https://api.github.com/users/empireaios/repos",
+        "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/empireaios/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "run_attempt": 1,
+      "referenced_workflows": [],
+      "run_started_at": "2026-10-20T09:33:18Z",
+      "triggering_actor": {
+        "login": "empireaios",
+        "id": 295548100,
+        "node_id": "U_kgDOEZ20xA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/empireaios",
+        "html_url": "https://github.com/empireaios",
+        "followers_url": "https://api.github.com/users/empireaios/followers",
+        "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+        "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+        "organizations_url": "https://api.github.com/users/empireaios/orgs",
+        "repos_url": "https://api.github.com/users/empireaios/repos",
+        "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/empireaios/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519250/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519250/logs",
+      "check_suite_url": "https://api.github.com/repos/empireaios/EmpireAI/check-suites/106769237611",
+      "artifacts_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519250/artifacts",
+      "cancel_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519250/cancel",
+      "rerun_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519250/rerun",
+      "previous_attempt_url": null,
+      "workflow_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/workflows/373040927",
+      "head_commit": {
+        "id": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+        "tree_id": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+        "message": "Work 8 J reviewed isolated actual-index restoration examination",
+        "timestamp": "2026-10-20T09:33:00Z",
+        "author": {
+          "name": "empireaios",
+          "email": "empireaiengine@gmail.com"
+        },
+        "committer": {
+          "name": "empireaios",
+          "email": "empireaiengine@gmail.com"
+        }
+      },
+      "repository": {
+        "id": 1275922460,
+        "node_id": "R_kgDOTA0IHA",
+        "name": "EmpireAI",
+        "full_name": "empireaios/EmpireAI",
+        "private": false,
+        "owner": {
+          "login": "empireaios",
+          "id": 295548100,
+          "node_id": "U_kgDOEZ20xA",
+          "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/empireaios",
+          "html_url": "https://github.com/empireaios",
+          "followers_url": "https://api.github.com/users/empireaios/followers",
+          "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+          "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+          "organizations_url": "https://api.github.com/users/empireaios/orgs",
+          "repos_url": "https://api.github.com/users/empireaios/repos",
+          "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/empireaios/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/empireaios/EmpireAI",
+        "description": "EmpireAI - AI Operating System",
+        "fork": false,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI",
+        "forks_url": "https://api.github.com/repos/empireaios/EmpireAI/forks",
+        "keys_url": "https://api.github.com/repos/empireaios/EmpireAI/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/empireaios/EmpireAI/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/empireaios/EmpireAI/teams",
+        "hooks_url": "https://api.github.com/repos/empireaios/EmpireAI/hooks",
+        "issue_events_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/empireaios/EmpireAI/events",
+        "assignees_url": "https://api.github.com/repos/empireaios/EmpireAI/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/empireaios/EmpireAI/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/empireaios/EmpireAI/tags",
+        "blobs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/empireaios/EmpireAI/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/empireaios/EmpireAI/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/empireaios/EmpireAI/languages",
+        "stargazers_url": "https://api.github.com/repos/empireaios/EmpireAI/stargazers",
+        "contributors_url": "https://api.github.com/repos/empireaios/EmpireAI/contributors",
+        "subscribers_url": "https://api.github.com/repos/empireaios/EmpireAI/subscribers",
+        "subscription_url": "https://api.github.com/repos/empireaios/EmpireAI/subscription",
+        "commits_url": "https://api.github.com/repos/empireaios/EmpireAI/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/empireaios/EmpireAI/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/empireaios/EmpireAI/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/empireaios/EmpireAI/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/empireaios/EmpireAI/merges",
+        "archive_url": "https://api.github.com/repos/empireaios/EmpireAI/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/empireaios/EmpireAI/downloads",
+        "issues_url": "https://api.github.com/repos/empireaios/EmpireAI/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/empireaios/EmpireAI/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/empireaios/EmpireAI/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/empireaios/EmpireAI/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/empireaios/EmpireAI/labels{/name}",
+        "releases_url": "https://api.github.com/repos/empireaios/EmpireAI/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/empireaios/EmpireAI/deployments"
+      },
+      "head_repository": {
+        "id": 1275922460,
+        "node_id": "R_kgDOTA0IHA",
+        "name": "EmpireAI",
+        "full_name": "empireaios/EmpireAI",
+        "private": false,
+        "owner": {
+          "login": "empireaios",
+          "id": 295548100,
+          "node_id": "U_kgDOEZ20xA",
+          "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/empireaios",
+          "html_url": "https://github.com/empireaios",
+          "followers_url": "https://api.github.com/users/empireaios/followers",
+          "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+          "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+          "organizations_url": "https://api.github.com/users/empireaios/orgs",
+          "repos_url": "https://api.github.com/users/empireaios/repos",
+          "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/empireaios/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/empireaios/EmpireAI",
+        "description": "EmpireAI - AI Operating System",
+        "fork": false,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI",
+        "forks_url": "https://api.github.com/repos/empireaios/EmpireAI/forks",
+        "keys_url": "https://api.github.com/repos/empireaios/EmpireAI/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/empireaios/EmpireAI/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/empireaios/EmpireAI/teams",
+        "hooks_url": "https://api.github.com/repos/empireaios/EmpireAI/hooks",
+        "issue_events_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/empireaios/EmpireAI/events",
+        "assignees_url": "https://api.github.com/repos/empireaios/EmpireAI/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/empireaios/EmpireAI/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/empireaios/EmpireAI/tags",
+        "blobs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/empireaios/EmpireAI/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/empireaios/EmpireAI/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/empireaios/EmpireAI/languages",
+        "stargazers_url": "https://api.github.com/repos/empireaios/EmpireAI/stargazers",
+        "contributors_url": "https://api.github.com/repos/empireaios/EmpireAI/contributors",
+        "subscribers_url": "https://api.github.com/repos/empireaios/EmpireAI/subscribers",
+        "subscription_url": "https://api.github.com/repos/empireaios/EmpireAI/subscription",
+        "commits_url": "https://api.github.com/repos/empireaios/EmpireAI/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/empireaios/EmpireAI/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/empireaios/EmpireAI/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/empireaios/EmpireAI/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/empireaios/EmpireAI/merges",
+        "archive_url": "https://api.github.com/repos/empireaios/EmpireAI/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/empireaios/EmpireAI/downloads",
+        "issues_url": "https://api.github.com/repos/empireaios/EmpireAI/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/empireaios/EmpireAI/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/empireaios/EmpireAI/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/empireaios/EmpireAI/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/empireaios/EmpireAI/labels{/name}",
+        "releases_url": "https://api.github.com/repos/empireaios/EmpireAI/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/empireaios/EmpireAI/deployments"
+      }
+    },
+    {
+      "id": 39401519171,
+      "name": "Product path CI",
+      "node_id": "WFR_kwLOTA0IHM8AAAAJLIN4Qw",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "path": ".github/workflows/product-path-ci.yml",
+      "display_title": "Work 8 draft: bounded discovery, canonical simulation and Assurance recovery",
+      "run_number": 700,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "workflow_id": 362309382,
+      "check_suite_id": 106769237360,
+      "check_suite_node_id": "CS_kwDOTA0IHM8AAAAY2_FFcA",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171",
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/empireaios/EmpireAI/pulls/113",
+          "id": 4814742504,
+          "number": 113,
+          "head": {
+            "ref": "work8/autonomous-examination-20261011",
+            "sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+            "repo": {
+              "id": 1275922460,
+              "url": "https://api.github.com/repos/empireaios/EmpireAI",
+              "name": "EmpireAI"
+            }
+          },
+          "base": {
+            "ref": "work2/backend-release",
+            "sha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+            "repo": {
+              "id": 1275922460,
+              "url": "https://api.github.com/repos/empireaios/EmpireAI",
+              "name": "EmpireAI"
+            }
+          }
+        }
+      ],
+      "created_at": "2026-10-20T09:33:18Z",
+      "updated_at": "2026-10-20T09:43:07Z",
+      "actor": {
+        "login": "empireaios",
+        "id": 295548100,
+        "node_id": "U_kgDOEZ20xA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/empireaios",
+        "html_url": "https://github.com/empireaios",
+        "followers_url": "https://api.github.com/users/empireaios/followers",
+        "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+        "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+        "organizations_url": "https://api.github.com/users/empireaios/orgs",
+        "repos_url": "https://api.github.com/users/empireaios/repos",
+        "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/empireaios/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "run_attempt": 1,
+      "referenced_workflows": [],
+      "run_started_at": "2026-10-20T09:33:18Z",
+      "triggering_actor": {
+        "login": "empireaios",
+        "id": 295548100,
+        "node_id": "U_kgDOEZ20xA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/empireaios",
+        "html_url": "https://github.com/empireaios",
+        "followers_url": "https://api.github.com/users/empireaios/followers",
+        "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+        "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+        "organizations_url": "https://api.github.com/users/empireaios/orgs",
+        "repos_url": "https://api.github.com/users/empireaios/repos",
+        "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/empireaios/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171/logs",
+      "check_suite_url": "https://api.github.com/repos/empireaios/EmpireAI/check-suites/106769237360",
+      "artifacts_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171/artifacts",
+      "cancel_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171/cancel",
+      "rerun_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171/rerun",
+      "previous_attempt_url": null,
+      "workflow_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/workflows/362309382",
+      "head_commit": {
+        "id": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+        "tree_id": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+        "message": "Work 8 J reviewed isolated actual-index restoration examination",
+        "timestamp": "2026-10-20T09:33:00Z",
+        "author": {
+          "name": "empireaios",
+          "email": "empireaiengine@gmail.com"
+        },
+        "committer": {
+          "name": "empireaios",
+          "email": "empireaiengine@gmail.com"
+        }
+      },
+      "repository": {
+        "id": 1275922460,
+        "node_id": "R_kgDOTA0IHA",
+        "name": "EmpireAI",
+        "full_name": "empireaios/EmpireAI",
+        "private": false,
+        "owner": {
+          "login": "empireaios",
+          "id": 295548100,
+          "node_id": "U_kgDOEZ20xA",
+          "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/empireaios",
+          "html_url": "https://github.com/empireaios",
+          "followers_url": "https://api.github.com/users/empireaios/followers",
+          "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+          "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+          "organizations_url": "https://api.github.com/users/empireaios/orgs",
+          "repos_url": "https://api.github.com/users/empireaios/repos",
+          "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/empireaios/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/empireaios/EmpireAI",
+        "description": "EmpireAI - AI Operating System",
+        "fork": false,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI",
+        "forks_url": "https://api.github.com/repos/empireaios/EmpireAI/forks",
+        "keys_url": "https://api.github.com/repos/empireaios/EmpireAI/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/empireaios/EmpireAI/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/empireaios/EmpireAI/teams",
+        "hooks_url": "https://api.github.com/repos/empireaios/EmpireAI/hooks",
+        "issue_events_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/empireaios/EmpireAI/events",
+        "assignees_url": "https://api.github.com/repos/empireaios/EmpireAI/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/empireaios/EmpireAI/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/empireaios/EmpireAI/tags",
+        "blobs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/empireaios/EmpireAI/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/empireaios/EmpireAI/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/empireaios/EmpireAI/languages",
+        "stargazers_url": "https://api.github.com/repos/empireaios/EmpireAI/stargazers",
+        "contributors_url": "https://api.github.com/repos/empireaios/EmpireAI/contributors",
+        "subscribers_url": "https://api.github.com/repos/empireaios/EmpireAI/subscribers",
+        "subscription_url": "https://api.github.com/repos/empireaios/EmpireAI/subscription",
+        "commits_url": "https://api.github.com/repos/empireaios/EmpireAI/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/empireaios/EmpireAI/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/empireaios/EmpireAI/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/empireaios/EmpireAI/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/empireaios/EmpireAI/merges",
+        "archive_url": "https://api.github.com/repos/empireaios/EmpireAI/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/empireaios/EmpireAI/downloads",
+        "issues_url": "https://api.github.com/repos/empireaios/EmpireAI/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/empireaios/EmpireAI/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/empireaios/EmpireAI/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/empireaios/EmpireAI/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/empireaios/EmpireAI/labels{/name}",
+        "releases_url": "https://api.github.com/repos/empireaios/EmpireAI/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/empireaios/EmpireAI/deployments"
+      },
+      "head_repository": {
+        "id": 1275922460,
+        "node_id": "R_kgDOTA0IHA",
+        "name": "EmpireAI",
+        "full_name": "empireaios/EmpireAI",
+        "private": false,
+        "owner": {
+          "login": "empireaios",
+          "id": 295548100,
+          "node_id": "U_kgDOEZ20xA",
+          "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/empireaios",
+          "html_url": "https://github.com/empireaios",
+          "followers_url": "https://api.github.com/users/empireaios/followers",
+          "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+          "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+          "organizations_url": "https://api.github.com/users/empireaios/orgs",
+          "repos_url": "https://api.github.com/users/empireaios/repos",
+          "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/empireaios/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/empireaios/EmpireAI",
+        "description": "EmpireAI - AI Operating System",
+        "fork": false,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI",
+        "forks_url": "https://api.github.com/repos/empireaios/EmpireAI/forks",
+        "keys_url": "https://api.github.com/repos/empireaios/EmpireAI/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/empireaios/EmpireAI/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/empireaios/EmpireAI/teams",
+        "hooks_url": "https://api.github.com/repos/empireaios/EmpireAI/hooks",
+        "issue_events_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/empireaios/EmpireAI/events",
+        "assignees_url": "https://api.github.com/repos/empireaios/EmpireAI/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/empireaios/EmpireAI/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/empireaios/EmpireAI/tags",
+        "blobs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/empireaios/EmpireAI/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/empireaios/EmpireAI/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/empireaios/EmpireAI/languages",
+        "stargazers_url": "https://api.github.com/repos/empireaios/EmpireAI/stargazers",
+        "contributors_url": "https://api.github.com/repos/empireaios/EmpireAI/contributors",
+        "subscribers_url": "https://api.github.com/repos/empireaios/EmpireAI/subscribers",
+        "subscription_url": "https://api.github.com/repos/empireaios/EmpireAI/subscription",
+        "commits_url": "https://api.github.com/repos/empireaios/EmpireAI/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/empireaios/EmpireAI/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/empireaios/EmpireAI/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/empireaios/EmpireAI/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/empireaios/EmpireAI/merges",
+        "archive_url": "https://api.github.com/repos/empireaios/EmpireAI/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/empireaios/EmpireAI/downloads",
+        "issues_url": "https://api.github.com/repos/empireaios/EmpireAI/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/empireaios/EmpireAI/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/empireaios/EmpireAI/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/empireaios/EmpireAI/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/empireaios/EmpireAI/labels{/name}",
+        "releases_url": "https://api.github.com/repos/empireaios/EmpireAI/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/empireaios/EmpireAI/deployments"
+      }
+    },
+    {
+      "id": 39401519278,
+      "name": "Pillow runtime repair CI",
+      "node_id": "WFR_kwLOTA0IHM8AAAAJLIN4rg",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "display_title": "Work 8 draft: bounded discovery, canonical simulation and Assurance recovery",
+      "run_number": 702,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "workflow_id": 362688325,
+      "check_suite_id": 106769237703,
+      "check_suite_node_id": "CS_kwDOTA0IHM8AAAAY2_FGxw",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519278",
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/empireaios/EmpireAI/pulls/113",
+          "id": 4814742504,
+          "number": 113,
+          "head": {
+            "ref": "work8/autonomous-examination-20261011",
+            "sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+            "repo": {
+              "id": 1275922460,
+              "url": "https://api.github.com/repos/empireaios/EmpireAI",
+              "name": "EmpireAI"
+            }
+          },
+          "base": {
+            "ref": "work2/backend-release",
+            "sha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+            "repo": {
+              "id": 1275922460,
+              "url": "https://api.github.com/repos/empireaios/EmpireAI",
+              "name": "EmpireAI"
+            }
+          }
+        }
+      ],
+      "created_at": "2026-10-20T09:33:18Z",
+      "updated_at": "2026-10-20T09:44:27Z",
+      "actor": {
+        "login": "empireaios",
+        "id": 295548100,
+        "node_id": "U_kgDOEZ20xA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/empireaios",
+        "html_url": "https://github.com/empireaios",
+        "followers_url": "https://api.github.com/users/empireaios/followers",
+        "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+        "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+        "organizations_url": "https://api.github.com/users/empireaios/orgs",
+        "repos_url": "https://api.github.com/users/empireaios/repos",
+        "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/empireaios/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "run_attempt": 1,
+      "referenced_workflows": [],
+      "run_started_at": "2026-10-20T09:33:18Z",
+      "triggering_actor": {
+        "login": "empireaios",
+        "id": 295548100,
+        "node_id": "U_kgDOEZ20xA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/empireaios",
+        "html_url": "https://github.com/empireaios",
+        "followers_url": "https://api.github.com/users/empireaios/followers",
+        "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+        "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+        "organizations_url": "https://api.github.com/users/empireaios/orgs",
+        "repos_url": "https://api.github.com/users/empireaios/repos",
+        "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/empireaios/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "jobs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278/jobs",
+      "logs_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278/logs",
+      "check_suite_url": "https://api.github.com/repos/empireaios/EmpireAI/check-suites/106769237703",
+      "artifacts_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278/artifacts",
+      "cancel_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278/cancel",
+      "rerun_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278/rerun",
+      "previous_attempt_url": null,
+      "workflow_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/workflows/362688325",
+      "head_commit": {
+        "id": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+        "tree_id": "0789dce08d58aee93ad980f311bc182ebeda2eda",
+        "message": "Work 8 J reviewed isolated actual-index restoration examination",
+        "timestamp": "2026-10-20T09:33:00Z",
+        "author": {
+          "name": "empireaios",
+          "email": "empireaiengine@gmail.com"
+        },
+        "committer": {
+          "name": "empireaios",
+          "email": "empireaiengine@gmail.com"
+        }
+      },
+      "repository": {
+        "id": 1275922460,
+        "node_id": "R_kgDOTA0IHA",
+        "name": "EmpireAI",
+        "full_name": "empireaios/EmpireAI",
+        "private": false,
+        "owner": {
+          "login": "empireaios",
+          "id": 295548100,
+          "node_id": "U_kgDOEZ20xA",
+          "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/empireaios",
+          "html_url": "https://github.com/empireaios",
+          "followers_url": "https://api.github.com/users/empireaios/followers",
+          "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+          "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+          "organizations_url": "https://api.github.com/users/empireaios/orgs",
+          "repos_url": "https://api.github.com/users/empireaios/repos",
+          "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/empireaios/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/empireaios/EmpireAI",
+        "description": "EmpireAI - AI Operating System",
+        "fork": false,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI",
+        "forks_url": "https://api.github.com/repos/empireaios/EmpireAI/forks",
+        "keys_url": "https://api.github.com/repos/empireaios/EmpireAI/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/empireaios/EmpireAI/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/empireaios/EmpireAI/teams",
+        "hooks_url": "https://api.github.com/repos/empireaios/EmpireAI/hooks",
+        "issue_events_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/empireaios/EmpireAI/events",
+        "assignees_url": "https://api.github.com/repos/empireaios/EmpireAI/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/empireaios/EmpireAI/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/empireaios/EmpireAI/tags",
+        "blobs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/empireaios/EmpireAI/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/empireaios/EmpireAI/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/empireaios/EmpireAI/languages",
+        "stargazers_url": "https://api.github.com/repos/empireaios/EmpireAI/stargazers",
+        "contributors_url": "https://api.github.com/repos/empireaios/EmpireAI/contributors",
+        "subscribers_url": "https://api.github.com/repos/empireaios/EmpireAI/subscribers",
+        "subscription_url": "https://api.github.com/repos/empireaios/EmpireAI/subscription",
+        "commits_url": "https://api.github.com/repos/empireaios/EmpireAI/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/empireaios/EmpireAI/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/empireaios/EmpireAI/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/empireaios/EmpireAI/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/empireaios/EmpireAI/merges",
+        "archive_url": "https://api.github.com/repos/empireaios/EmpireAI/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/empireaios/EmpireAI/downloads",
+        "issues_url": "https://api.github.com/repos/empireaios/EmpireAI/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/empireaios/EmpireAI/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/empireaios/EmpireAI/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/empireaios/EmpireAI/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/empireaios/EmpireAI/labels{/name}",
+        "releases_url": "https://api.github.com/repos/empireaios/EmpireAI/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/empireaios/EmpireAI/deployments"
+      },
+      "head_repository": {
+        "id": 1275922460,
+        "node_id": "R_kgDOTA0IHA",
+        "name": "EmpireAI",
+        "full_name": "empireaios/EmpireAI",
+        "private": false,
+        "owner": {
+          "login": "empireaios",
+          "id": 295548100,
+          "node_id": "U_kgDOEZ20xA",
+          "avatar_url": "https://avatars.githubusercontent.com/u/295548100?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/empireaios",
+          "html_url": "https://github.com/empireaios",
+          "followers_url": "https://api.github.com/users/empireaios/followers",
+          "following_url": "https://api.github.com/users/empireaios/following{/other_user}",
+          "gists_url": "https://api.github.com/users/empireaios/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/empireaios/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/empireaios/subscriptions",
+          "organizations_url": "https://api.github.com/users/empireaios/orgs",
+          "repos_url": "https://api.github.com/users/empireaios/repos",
+          "events_url": "https://api.github.com/users/empireaios/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/empireaios/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/empireaios/EmpireAI",
+        "description": "EmpireAI - AI Operating System",
+        "fork": false,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI",
+        "forks_url": "https://api.github.com/repos/empireaios/EmpireAI/forks",
+        "keys_url": "https://api.github.com/repos/empireaios/EmpireAI/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/empireaios/EmpireAI/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/empireaios/EmpireAI/teams",
+        "hooks_url": "https://api.github.com/repos/empireaios/EmpireAI/hooks",
+        "issue_events_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/empireaios/EmpireAI/events",
+        "assignees_url": "https://api.github.com/repos/empireaios/EmpireAI/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/empireaios/EmpireAI/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/empireaios/EmpireAI/tags",
+        "blobs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/empireaios/EmpireAI/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/empireaios/EmpireAI/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/empireaios/EmpireAI/languages",
+        "stargazers_url": "https://api.github.com/repos/empireaios/EmpireAI/stargazers",
+        "contributors_url": "https://api.github.com/repos/empireaios/EmpireAI/contributors",
+        "subscribers_url": "https://api.github.com/repos/empireaios/EmpireAI/subscribers",
+        "subscription_url": "https://api.github.com/repos/empireaios/EmpireAI/subscription",
+        "commits_url": "https://api.github.com/repos/empireaios/EmpireAI/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/empireaios/EmpireAI/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/empireaios/EmpireAI/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/empireaios/EmpireAI/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/empireaios/EmpireAI/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/empireaios/EmpireAI/merges",
+        "archive_url": "https://api.github.com/repos/empireaios/EmpireAI/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/empireaios/EmpireAI/downloads",
+        "issues_url": "https://api.github.com/repos/empireaios/EmpireAI/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/empireaios/EmpireAI/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/empireaios/EmpireAI/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/empireaios/EmpireAI/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/empireaios/EmpireAI/labels{/name}",
+        "releases_url": "https://api.github.com/repos/empireaios/EmpireAI/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/empireaios/EmpireAI/deployments"
+      }
+    }
+  ],
+  "runtimeJobs": [
+    {
+      "id": 118557112427,
+      "run_id": 39401519278,
+      "workflow_name": "Pillow runtime repair CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmo34aw",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557112427",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519278/job/118557112427",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-20T09:33:18Z",
+      "started_at": "2026-10-20T09:33:20Z",
+      "completed_at": "2026-10-20T09:40:02Z",
+      "name": "Durable runtime — real Redis, restart, ownership and authorization",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:21Z",
+          "completed_at": "2026-10-20T09:33:22Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:22Z",
+          "completed_at": "2026-10-20T09:33:24Z"
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:24Z",
+          "completed_at": "2026-10-20T09:33:31Z"
+        },
+        {
+          "name": "Require offline certification, redeploy and collection evidence tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:31Z",
+          "completed_at": "2026-10-20T09:33:32Z"
+        },
+        {
+          "name": "Install Redis binary for test-owned isolated AOF processes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:33:32Z",
+          "completed_at": "2026-10-20T09:33:48Z"
+        },
+        {
+          "name": "Clean install, typecheck and build Pillow",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:33:48Z",
+          "completed_at": "2026-10-20T09:34:40Z"
+        },
+        {
+          "name": "Run mandatory Pillow observer and reasoning-only policy tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:34:40Z",
+          "completed_at": "2026-10-20T09:34:42Z"
+        },
+        {
+          "name": "Clean install, verify, typecheck and build backend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:34:42Z",
+          "completed_at": "2026-10-20T09:35:47Z"
+        },
+        {
+          "name": "Verify changed examination boundaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:35:47Z",
+          "completed_at": "2026-10-20T09:35:47Z"
+        },
+        {
+          "name": "Build compiled coordinator examination image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-20T09:35:47Z",
+          "completed_at": "2026-10-20T09:36:19Z"
+        },
+        {
+          "name": "Examine actual compiled coordinator timeout and error paths",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-20T09:36:19Z",
+          "completed_at": "2026-10-20T09:36:38Z"
+        },
+        {
+          "name": "Preserve compiled coordinator examination receipts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-20T09:36:38Z",
+          "completed_at": "2026-10-20T09:36:38Z"
+        },
+        {
+          "name": "Examine generated application held capture and external containment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-20T09:36:38Z",
+          "completed_at": "2026-10-20T09:36:49Z"
+        },
+        {
+          "name": "Isolated restored application graph with original session and retained fences",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-20T09:36:49Z",
+          "completed_at": "2026-10-20T09:36:58Z"
+        },
+        {
+          "name": "Restored actual index and watchdog from same frozen capture",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 15,
+          "started_at": "2026-10-20T09:36:58Z",
+          "completed_at": "2026-10-20T09:39:58Z"
+        },
+        {
+          "name": "Preserve actual generated application startup and held capture evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-20T09:39:58Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Verify bounded multi-provider inference and preserved authority",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Verify response completion and frontend preservation safeguards",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Prove permanent locked runtime and complete enabled-store restore",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Retain pre-cutover closure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Run mandatory isolated runtime and session tests",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 21,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Record exact tested revision and scope",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 22,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 43,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-10-20T09:40:00Z",
+          "completed_at": "2026-10-20T09:40:00Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557112427",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008425,
+      "runner_name": "GitHub Actions 1000008425",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557112712,
+      "run_id": 39401519278,
+      "workflow_name": "Pillow runtime repair CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmo35iA",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557112712",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519278/job/118557112712",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:18Z",
+      "started_at": "2026-10-20T09:33:20Z",
+      "completed_at": "2026-10-20T09:42:30Z",
+      "name": "Generated full path — response-delivery",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:21Z",
+          "completed_at": "2026-10-20T09:33:21Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:21Z",
+          "completed_at": "2026-10-20T09:33:24Z"
+        },
+        {
+          "name": "Assess accepted corpus reuse at exact unchanged runtime boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:24Z",
+          "completed_at": "2026-10-20T09:33:26Z"
+        },
+        {
+          "name": "Record retained corpus evidence without claiming new execution",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:26Z",
+          "completed_at": "2026-10-20T09:33:26Z"
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:33:26Z",
+          "completed_at": "2026-10-20T09:33:31Z"
+        },
+        {
+          "name": "Install Redis binary for test-owned isolated AOF processes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:33:31Z",
+          "completed_at": "2026-10-20T09:33:41Z"
+        },
+        {
+          "name": "Clean install, typecheck and build Pillow",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:33:41Z",
+          "completed_at": "2026-10-20T09:35:05Z"
+        },
+        {
+          "name": "Clean install, verify, typecheck and build backend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:35:05Z",
+          "completed_at": "2026-10-20T09:36:45Z"
+        },
+        {
+          "name": "Verify complete generated corpus with intercepted provider HTTP",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:36:45Z",
+          "completed_at": "2026-10-20T09:42:27Z"
+        },
+        {
+          "name": "Record current checkout identity separately from retained tested source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-20T09:42:27Z",
+          "completed_at": "2026-10-20T09:42:27Z"
+        },
+        {
+          "name": "Upload generated full-path evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-20T09:42:27Z",
+          "completed_at": "2026-10-20T09:42:28Z"
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-20T09:42:28Z",
+          "completed_at": "2026-10-20T09:42:28Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-20T09:42:28Z",
+          "completed_at": "2026-10-20T09:42:28Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-20T09:42:28Z",
+          "completed_at": "2026-10-20T09:42:28Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557112712",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008429,
+      "runner_name": "GitHub Actions 1000008429",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557112729,
+      "run_id": 39401519278,
+      "workflow_name": "Pillow runtime repair CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmo35mQ",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557112729",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519278/job/118557112729",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:18Z",
+      "started_at": "2026-10-20T09:33:20Z",
+      "completed_at": "2026-10-20T09:35:30Z",
+      "name": "Durable web — receipt recovery, one submission, tests and build",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:21Z",
+          "completed_at": "2026-10-20T09:33:21Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:21Z",
+          "completed_at": "2026-10-20T09:33:25Z"
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:25Z",
+          "completed_at": "2026-10-20T09:33:31Z"
+        },
+        {
+          "name": "Clean install and typecheck canonical Next.js web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:31Z",
+          "completed_at": "2026-10-20T09:34:04Z"
+        },
+        {
+          "name": "Run web tests with mandatory durable-delivery coverage",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:34:04Z",
+          "completed_at": "2026-10-20T09:34:08Z"
+        },
+        {
+          "name": "Build canonical Next.js web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:34:08Z",
+          "completed_at": "2026-10-20T09:35:28Z"
+        },
+        {
+          "name": "Record exact tested revision and scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:35:28Z",
+          "completed_at": "2026-10-20T09:35:28Z"
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-20T09:35:28Z",
+          "completed_at": "2026-10-20T09:35:28Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-20T09:35:28Z",
+          "completed_at": "2026-10-20T09:35:28Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-20T09:35:28Z",
+          "completed_at": "2026-10-20T09:35:28Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557112729",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008428,
+      "runner_name": "GitHub Actions 1000008428",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557112874,
+      "run_id": 39401519278,
+      "workflow_name": "Pillow runtime repair CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmo36Kg",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557112874",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519278/job/118557112874",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:18Z",
+      "started_at": "2026-10-20T09:33:21Z",
+      "completed_at": "2026-10-20T09:38:50Z",
+      "name": "Exact-source Railway Railpack image",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:22Z",
+          "completed_at": "2026-10-20T09:33:23Z"
+        },
+        {
+          "name": "Checkout candidate source without merge or persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:23Z",
+          "completed_at": "2026-10-20T09:33:26Z"
+        },
+        {
+          "name": "Use the repository Node pin",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:26Z",
+          "completed_at": "2026-10-20T09:33:32Z"
+        },
+        {
+          "name": "Build the effective root Railway configuration without deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:32Z",
+          "completed_at": "2026-10-20T09:37:18Z"
+        },
+        {
+          "name": "Assess exact accepted-source examination-only reuse boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:37:18Z",
+          "completed_at": "2026-10-20T09:37:18Z"
+        },
+        {
+          "name": "Preserve explicitly retained F29 receipt",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-10-20T09:37:18Z",
+          "completed_at": "2026-10-20T09:37:18Z"
+        },
+        {
+          "name": "Examine F27 simultaneous faults with independent external oracle",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:37:18Z",
+          "completed_at": "2026-10-20T09:38:24Z"
+        },
+        {
+          "name": "Preserve F27 external observations and protected containment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:38:24Z",
+          "completed_at": "2026-10-20T09:38:25Z"
+        },
+        {
+          "name": "Examine remaining F29 supervision pair loss in isolated exact image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:38:25Z",
+          "completed_at": "2026-10-20T09:38:44Z"
+        },
+        {
+          "name": "Preserve owner-visible F29 incident and containment receipts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-20T09:38:44Z",
+          "completed_at": "2026-10-20T09:38:46Z"
+        },
+        {
+          "name": "Preserve exact-source packaging receipt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-20T09:38:46Z",
+          "completed_at": "2026-10-20T09:38:47Z"
+        },
+        {
+          "name": "Post Use the repository Node pin",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-20T09:38:47Z",
+          "completed_at": "2026-10-20T09:38:47Z"
+        },
+        {
+          "name": "Post Checkout candidate source without merge or persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-20T09:38:47Z",
+          "completed_at": "2026-10-20T09:38:47Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-20T09:38:47Z",
+          "completed_at": "2026-10-20T09:38:48Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557112874",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008431,
+      "runner_name": "GitHub Actions 1000008431",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557113028,
+      "run_id": 39401519278,
+      "workflow_name": "Pillow runtime repair CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmo36xA",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557113028",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519278/job/118557113028",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:18Z",
+      "started_at": "2026-10-20T09:33:20Z",
+      "completed_at": "2026-10-20T09:44:20Z",
+      "name": "Generated full path — reasoning-admission",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:21Z",
+          "completed_at": "2026-10-20T09:33:24Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:24Z",
+          "completed_at": "2026-10-20T09:33:27Z"
+        },
+        {
+          "name": "Assess accepted corpus reuse at exact unchanged runtime boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:27Z",
+          "completed_at": "2026-10-20T09:33:29Z"
+        },
+        {
+          "name": "Record retained corpus evidence without claiming new execution",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:29Z",
+          "completed_at": "2026-10-20T09:33:29Z"
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:33:29Z",
+          "completed_at": "2026-10-20T09:33:35Z"
+        },
+        {
+          "name": "Install Redis binary for test-owned isolated AOF processes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:33:35Z",
+          "completed_at": "2026-10-20T09:33:53Z"
+        },
+        {
+          "name": "Clean install, typecheck and build Pillow",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:33:53Z",
+          "completed_at": "2026-10-20T09:34:45Z"
+        },
+        {
+          "name": "Clean install, verify, typecheck and build backend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:34:45Z",
+          "completed_at": "2026-10-20T09:35:48Z"
+        },
+        {
+          "name": "Verify complete generated corpus with intercepted provider HTTP",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:35:48Z",
+          "completed_at": "2026-10-20T09:44:17Z"
+        },
+        {
+          "name": "Record current checkout identity separately from retained tested source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-20T09:44:17Z",
+          "completed_at": "2026-10-20T09:44:17Z"
+        },
+        {
+          "name": "Upload generated full-path evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-20T09:44:17Z",
+          "completed_at": "2026-10-20T09:44:17Z"
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-20T09:44:17Z",
+          "completed_at": "2026-10-20T09:44:18Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-20T09:44:18Z",
+          "completed_at": "2026-10-20T09:44:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-20T09:44:18Z",
+          "completed_at": "2026-10-20T09:44:18Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557113028",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008430,
+      "runner_name": "GitHub Actions 1000008430",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118561635630,
+      "run_id": 39401519278,
+      "workflow_name": "Pillow runtime repair CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519278",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmtL9Lg",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118561635630",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519278/job/118561635630",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-20T09:44:21Z",
+      "started_at": "2026-10-20T09:44:23Z",
+      "completed_at": "2026-10-20T09:44:26Z",
+      "name": "Runtime repair result (no deployment)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:44:24Z",
+          "completed_at": "2026-10-20T09:44:24Z"
+        },
+        {
+          "name": "Require every mandatory repair gate to pass",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 2,
+          "started_at": "2026-10-20T09:44:24Z",
+          "completed_at": "2026-10-20T09:44:24Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:44:24Z",
+          "completed_at": "2026-10-20T09:44:24Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118561635630",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008440,
+      "runner_name": "GitHub Actions 1000008440",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ],
+  "productJobs": [
+    {
+      "id": 118557112127,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmo33Pw",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557112127",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557112127",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:18Z",
+      "started_at": "2026-10-20T09:33:20Z",
+      "completed_at": "2026-10-20T09:33:50Z",
+      "name": "Repository and deployment-root contract",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:20Z",
+          "completed_at": "2026-10-20T09:33:22Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:22Z",
+          "completed_at": "2026-10-20T09:33:26Z"
+        },
+        {
+          "name": "Use Node.js 22",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:26Z",
+          "completed_at": "2026-10-20T09:33:30Z"
+        },
+        {
+          "name": "Verify package scripts, lockfiles and the production web contract",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:30Z",
+          "completed_at": "2026-10-20T09:33:30Z"
+        },
+        {
+          "name": "Verify deterministic build configuration and reject runtime drift",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:33:30Z",
+          "completed_at": "2026-10-20T09:33:30Z"
+        },
+        {
+          "name": "Verify isolated provider read-only observation without credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:33:30Z",
+          "completed_at": "2026-10-20T09:33:35Z"
+        },
+        {
+          "name": "Rehearse combined disk capture and fresh-process restore without production access",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:33:35Z",
+          "completed_at": "2026-10-20T09:33:35Z"
+        },
+        {
+          "name": "Preserve restore rehearsal receipt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:33:35Z",
+          "completed_at": "2026-10-20T09:33:35Z"
+        },
+        {
+          "name": "Verify disk-only legacy checkpoint capture and refusal cases",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:33:35Z",
+          "completed_at": "2026-10-20T09:33:41Z"
+        },
+        {
+          "name": "Verify disk-only legacy Shadow CEO multi-store capture",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-20T09:33:41Z",
+          "completed_at": "2026-10-20T09:33:42Z"
+        },
+        {
+          "name": "Verify bounded canary configuration and child-process cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-20T09:33:42Z",
+          "completed_at": "2026-10-20T09:33:48Z"
+        },
+        {
+          "name": "Record tested revision and limits",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-20T09:33:48Z",
+          "completed_at": "2026-10-20T09:33:48Z"
+        },
+        {
+          "name": "Post Use Node.js 22",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-20T09:33:48Z",
+          "completed_at": "2026-10-20T09:33:48Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-20T09:33:48Z",
+          "completed_at": "2026-10-20T09:33:48Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-20T09:33:48Z",
+          "completed_at": "2026-10-20T09:33:48Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557112127",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008423,
+      "runner_name": "GitHub Actions 1000008423",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557112428,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmo34bA",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557112428",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557112428",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:18Z",
+      "started_at": "2026-10-20T09:33:20Z",
+      "completed_at": "2026-10-20T09:35:20Z",
+      "name": "Work8 exact frontend review candidate (no deployment)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:21Z",
+          "completed_at": "2026-10-20T09:33:22Z"
+        },
+        {
+          "name": "Checkout pinned review source without moving deployment branch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:22Z",
+          "completed_at": "2026-10-20T09:33:25Z"
+        },
+        {
+          "name": "Checkout retained frontend bundle without deployment credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:25Z",
+          "completed_at": "2026-10-20T09:33:30Z"
+        },
+        {
+          "name": "Verify and restore exact frontend review candidate",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:30Z",
+          "completed_at": "2026-10-20T09:33:31Z"
+        },
+        {
+          "name": "Use pinned Node runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:33:31Z",
+          "completed_at": "2026-10-20T09:33:36Z"
+        },
+        {
+          "name": "Clean install reviewed web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:33:36Z",
+          "completed_at": "2026-10-20T09:33:51Z"
+        },
+        {
+          "name": "Typecheck reviewed web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:33:51Z",
+          "completed_at": "2026-10-20T09:34:06Z"
+        },
+        {
+          "name": "Test reviewed web and financial readbacks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:34:06Z",
+          "completed_at": "2026-10-20T09:34:09Z"
+        },
+        {
+          "name": "Build reviewed web without deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:34:09Z",
+          "completed_at": "2026-10-20T09:35:17Z"
+        },
+        {
+          "name": "Post Use pinned Node runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-20T09:35:17Z",
+          "completed_at": "2026-10-20T09:35:17Z"
+        },
+        {
+          "name": "Post Checkout retained frontend bundle without deployment credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-20T09:35:17Z",
+          "completed_at": "2026-10-20T09:35:17Z"
+        },
+        {
+          "name": "Post Checkout pinned review source without moving deployment branch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-20T09:35:17Z",
+          "completed_at": "2026-10-20T09:35:17Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-20T09:35:17Z",
+          "completed_at": "2026-10-20T09:35:18Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557112428",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008426,
+      "runner_name": "GitHub Actions 1000008426",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557112434,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmo34cg",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557112434",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557112434",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:18Z",
+      "started_at": "2026-10-20T09:33:20Z",
+      "completed_at": "2026-10-20T09:34:29Z",
+      "name": "Real Redis image expiry, AOF and signal proof",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:21Z",
+          "completed_at": "2026-10-20T09:33:22Z"
+        },
+        {
+          "name": "Checkout exact tested source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:22Z",
+          "completed_at": "2026-10-20T09:33:26Z"
+        },
+        {
+          "name": "Use the pinned supervisor runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:26Z",
+          "completed_at": "2026-10-20T09:33:31Z"
+        },
+        {
+          "name": "Build actual Redis image and execute runtime-library checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:31Z",
+          "completed_at": "2026-10-20T09:33:41Z"
+        },
+        {
+          "name": "Require actual image authentication, AOF recovery, signal and expiry proof",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:33:41Z",
+          "completed_at": "2026-10-20T09:34:26Z"
+        },
+        {
+          "name": "Preserve image verification outcome in job summary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:34:26Z",
+          "completed_at": "2026-10-20T09:34:26Z"
+        },
+        {
+          "name": "Post Use the pinned supervisor runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-20T09:34:26Z",
+          "completed_at": "2026-10-20T09:34:26Z"
+        },
+        {
+          "name": "Post Checkout exact tested source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-20T09:34:26Z",
+          "completed_at": "2026-10-20T09:34:26Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-20T09:34:26Z",
+          "completed_at": "2026-10-20T09:34:26Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557112434",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008424,
+      "runner_name": "GitHub Actions 1000008424",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557332885,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmpFVlQ",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557332885",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557332885",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:50Z",
+      "started_at": "2026-10-20T09:33:52Z",
+      "completed_at": "2026-10-20T09:43:00Z",
+      "name": "Backend — clean install, typecheck, build, offline tests",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:53Z",
+          "completed_at": "2026-10-20T09:33:54Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:54Z",
+          "completed_at": "2026-10-20T09:33:58Z"
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:58Z",
+          "completed_at": "2026-10-20T09:34:06Z"
+        },
+        {
+          "name": "Clean install and build linked Pillow package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:34:06Z",
+          "completed_at": "2026-10-20T09:34:44Z"
+        },
+        {
+          "name": "Clean install backend dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:34:44Z",
+          "completed_at": "2026-10-20T09:34:46Z"
+        },
+        {
+          "name": "Verify backend development environment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:34:46Z",
+          "completed_at": "2026-10-20T09:34:46Z"
+        },
+        {
+          "name": "Typecheck backend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:34:46Z",
+          "completed_at": "2026-10-20T09:35:22Z"
+        },
+        {
+          "name": "Build backend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:35:22Z",
+          "completed_at": "2026-10-20T09:36:06Z"
+        },
+        {
+          "name": "Work8 bounded integrated exams with kernel network denial",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:36:06Z",
+          "completed_at": "2026-10-20T09:42:21Z"
+        },
+        {
+          "name": "Verify isolated SQL.js and HTTP capture admission, save and readback",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-20T09:42:21Z",
+          "completed_at": "2026-10-20T09:42:31Z"
+        },
+        {
+          "name": "Verify Amazon sync evidence and sandbox go-live isolation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-20T09:42:31Z",
+          "completed_at": "2026-10-20T09:42:43Z"
+        },
+        {
+          "name": "Verify exact-model paid LLM price and durable reservation without provider calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-20T09:42:43Z",
+          "completed_at": "2026-10-20T09:42:43Z"
+        },
+        {
+          "name": "Verify CJ account-bound authentication and exact VID stock without provider calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-20T09:42:43Z",
+          "completed_at": "2026-10-20T09:42:49Z"
+        },
+        {
+          "name": "Run fast invariant gate",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-20T09:42:49Z",
+          "completed_at": "2026-10-20T09:42:52Z"
+        },
+        {
+          "name": "Run ranking, correction and authority lock tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-20T09:42:52Z",
+          "completed_at": "2026-10-20T09:42:53Z"
+        },
+        {
+          "name": "Run chat, recovery and canonical-truth tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-20T09:42:53Z",
+          "completed_at": "2026-10-20T09:42:56Z"
+        },
+        {
+          "name": "Record reviewed offline scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-20T09:42:56Z",
+          "completed_at": "2026-10-20T09:42:56Z"
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-10-20T09:42:56Z",
+          "completed_at": "2026-10-20T09:42:56Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-10-20T09:42:56Z",
+          "completed_at": "2026-10-20T09:42:57Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-10-20T09:42:57Z",
+          "completed_at": "2026-10-20T09:42:57Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557332885",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008434,
+      "runner_name": "GitHub Actions 1000008434",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557332902,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmpFVpg",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557332902",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557332902",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:50Z",
+      "started_at": "2026-10-20T09:33:52Z",
+      "completed_at": "2026-10-20T09:39:23Z",
+      "name": "Phone browser to authenticated persisted commerce fixture",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:53Z",
+          "completed_at": "2026-10-20T09:33:53Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:53Z",
+          "completed_at": "2026-10-20T09:33:57Z"
+        },
+        {
+          "name": "Use pinned Node runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:57Z",
+          "completed_at": "2026-10-20T09:34:01Z"
+        },
+        {
+          "name": "Install isolated application and browser dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:34:01Z",
+          "completed_at": "2026-10-20T09:35:34Z"
+        },
+        {
+          "name": "Verify real phone browser login BFF backend and disk transaction",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:35:34Z",
+          "completed_at": "2026-10-20T09:36:11Z"
+        },
+        {
+          "name": "Build exact integrated frontend for source-context examination",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:36:11Z",
+          "completed_at": "2026-10-20T09:37:34Z"
+        },
+        {
+          "name": "Examine authenticated source-context delivery on mobile and desktop",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:37:34Z",
+          "completed_at": "2026-10-20T09:38:06Z"
+        },
+        {
+          "name": "Preserve scoped source-context examination evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:38:06Z",
+          "completed_at": "2026-10-20T09:38:07Z"
+        },
+        {
+          "name": "Examine preserved genuine historical owner readback on mobile and desktop",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:38:07Z",
+          "completed_at": "2026-10-20T09:38:18Z"
+        },
+        {
+          "name": "Preserve scoped historical owner readback evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-20T09:38:18Z",
+          "completed_at": "2026-10-20T09:38:19Z"
+        },
+        {
+          "name": "Examine Work8 two-stage media approval without live effects",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-20T09:38:19Z",
+          "completed_at": "2026-10-20T09:39:20Z"
+        },
+        {
+          "name": "Preserve browser receipt screenshot and bounded server logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-20T09:39:20Z",
+          "completed_at": "2026-10-20T09:39:21Z"
+        },
+        {
+          "name": "Post Use pinned Node runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-20T09:39:21Z",
+          "completed_at": "2026-10-20T09:39:21Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-20T09:39:21Z",
+          "completed_at": "2026-10-20T09:39:21Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-20T09:39:21Z",
+          "completed_at": "2026-10-20T09:39:21Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557332902",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008433,
+      "runner_name": "GitHub Actions 1000008433",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557332915,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmpFVsw",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557332915",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557332915",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:50Z",
+      "started_at": "2026-10-20T09:33:52Z",
+      "completed_at": "2026-10-20T09:34:10Z",
+      "name": "Exact old revision pending-RAM capture decision (isolated)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:53Z",
+          "completed_at": "2026-10-20T09:33:53Z"
+        },
+        {
+          "name": "Checkout reviewed proof without persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:53Z",
+          "completed_at": "2026-10-20T09:33:56Z"
+        },
+        {
+          "name": "Checkout exact protected source into separate isolated directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:56Z",
+          "completed_at": "2026-10-20T09:33:59Z"
+        },
+        {
+          "name": "Use pinned proof runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:33:59Z",
+          "completed_at": "2026-10-20T09:34:03Z"
+        },
+        {
+          "name": "Install exact old locked dependencies without lifecycle scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:34:03Z",
+          "completed_at": "2026-10-20T09:34:06Z"
+        },
+        {
+          "name": "One bounded proof using unmodified old storage source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:34:06Z",
+          "completed_at": "2026-10-20T09:34:07Z"
+        },
+        {
+          "name": "Preserve synthetic capture artifacts and decision",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:34:07Z",
+          "completed_at": "2026-10-20T09:34:08Z"
+        },
+        {
+          "name": "Post Use pinned proof runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-20T09:34:08Z",
+          "completed_at": "2026-10-20T09:34:08Z"
+        },
+        {
+          "name": "Post Checkout exact protected source into separate isolated directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-20T09:34:08Z",
+          "completed_at": "2026-10-20T09:34:08Z"
+        },
+        {
+          "name": "Post Checkout reviewed proof without persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-20T09:34:08Z",
+          "completed_at": "2026-10-20T09:34:08Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-20T09:34:08Z",
+          "completed_at": "2026-10-20T09:34:08Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557332915",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008435,
+      "runner_name": "GitHub Actions 1000008435",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557332928,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmpFVwA",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557332928",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557332928",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:50Z",
+      "started_at": "2026-10-20T09:33:52Z",
+      "completed_at": "2026-10-20T09:34:18Z",
+      "name": "Legacy Vite compatibility — clean install, typecheck, build",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:53Z",
+          "completed_at": "2026-10-20T09:33:54Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:54Z",
+          "completed_at": "2026-10-20T09:33:57Z"
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:57Z",
+          "completed_at": "2026-10-20T09:34:03Z"
+        },
+        {
+          "name": "Clean install legacy frontend dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:34:03Z",
+          "completed_at": "2026-10-20T09:34:07Z"
+        },
+        {
+          "name": "Typecheck legacy frontend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:34:07Z",
+          "completed_at": "2026-10-20T09:34:07Z"
+        },
+        {
+          "name": "Build legacy frontend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:34:07Z",
+          "completed_at": "2026-10-20T09:34:15Z"
+        },
+        {
+          "name": "Record current test coverage gap",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:34:15Z",
+          "completed_at": "2026-10-20T09:34:15Z"
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-20T09:34:15Z",
+          "completed_at": "2026-10-20T09:34:15Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-20T09:34:15Z",
+          "completed_at": "2026-10-20T09:34:15Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-20T09:34:15Z",
+          "completed_at": "2026-10-20T09:34:15Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557332928",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008436,
+      "runner_name": "GitHub Actions 1000008436",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557333170,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmpFWsg",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557333170",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557333170",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:50Z",
+      "started_at": "2026-10-20T09:33:52Z",
+      "completed_at": "2026-10-20T09:36:42Z",
+      "name": "Canonical Next.js web — clean install, typecheck, test, build",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:53Z",
+          "completed_at": "2026-10-20T09:33:54Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:54Z",
+          "completed_at": "2026-10-20T09:33:57Z"
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:57Z",
+          "completed_at": "2026-10-20T09:34:04Z"
+        },
+        {
+          "name": "Clean install Next.js web dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:34:04Z",
+          "completed_at": "2026-10-20T09:34:19Z"
+        },
+        {
+          "name": "Typecheck Next.js web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:34:19Z",
+          "completed_at": "2026-10-20T09:34:38Z"
+        },
+        {
+          "name": "Test Next.js web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:34:38Z",
+          "completed_at": "2026-10-20T09:34:42Z"
+        },
+        {
+          "name": "Build Next.js web",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:34:42Z",
+          "completed_at": "2026-10-20T09:36:05Z"
+        },
+        {
+          "name": "Diagnose known lint debt without masking product checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-20T09:36:05Z",
+          "completed_at": "2026-10-20T09:36:40Z"
+        },
+        {
+          "name": "Record lint baseline debt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-20T09:36:40Z",
+          "completed_at": "2026-10-20T09:36:40Z"
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-20T09:36:40Z",
+          "completed_at": "2026-10-20T09:36:40Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-20T09:36:40Z",
+          "completed_at": "2026-10-20T09:36:40Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-20T09:36:40Z",
+          "completed_at": "2026-10-20T09:36:40Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557333170",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008437,
+      "runner_name": "GitHub Actions 1000008437",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118557333814,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmpFZNg",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118557333814",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118557333814",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:33:50Z",
+      "started_at": "2026-10-20T09:33:52Z",
+      "completed_at": "2026-10-20T09:35:43Z",
+      "name": "Pillow — clean install, typecheck, build, offline test",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:33:54Z",
+          "completed_at": "2026-10-20T09:33:54Z"
+        },
+        {
+          "name": "Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:33:54Z",
+          "completed_at": "2026-10-20T09:33:57Z"
+        },
+        {
+          "name": "Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:33:57Z",
+          "completed_at": "2026-10-20T09:34:04Z"
+        },
+        {
+          "name": "Clean install Pillow dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-20T09:34:04Z",
+          "completed_at": "2026-10-20T09:34:04Z"
+        },
+        {
+          "name": "Typecheck Pillow",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-20T09:34:04Z",
+          "completed_at": "2026-10-20T09:34:40Z"
+        },
+        {
+          "name": "Build Pillow",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-20T09:34:40Z",
+          "completed_at": "2026-10-20T09:35:30Z"
+        },
+        {
+          "name": "Run reviewed in-process Pillow commerce and operations suites",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-20T09:35:30Z",
+          "completed_at": "2026-10-20T09:35:40Z"
+        },
+        {
+          "name": "Post Use Node.js 22 with npm cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-20T09:35:40Z",
+          "completed_at": "2026-10-20T09:35:40Z"
+        },
+        {
+          "name": "Post Checkout exact event revision without persisting credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-20T09:35:40Z",
+          "completed_at": "2026-10-20T09:35:40Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-20T09:35:40Z",
+          "completed_at": "2026-10-20T09:35:40Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118557333814",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008438,
+      "runner_name": "GitHub Actions 1000008438",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 118561092155,
+      "run_id": 39401519171,
+      "workflow_name": "Product path CI",
+      "head_branch": "work8/autonomous-examination-20261011",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/39401519171",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAbmsqyOw",
+      "head_sha": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/118561092155",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/39401519171/job/118561092155",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-20T09:43:00Z",
+      "started_at": "2026-10-20T09:43:02Z",
+      "completed_at": "2026-10-20T09:43:06Z",
+      "name": "Product path result (no deployment)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-20T09:43:03Z",
+          "completed_at": "2026-10-20T09:43:03Z"
+        },
+        {
+          "name": "Require every product check to pass",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-20T09:43:03Z",
+          "completed_at": "2026-10-20T09:43:03Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-20T09:43:03Z",
+          "completed_at": "2026-10-20T09:43:03Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/118561092155",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008439,
+      "runner_name": "GitHub Actions 1000008439",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "recordType": "INDEPENDENT_K_INDEX_HOSTED_BOUNDARY_DECISION",
+  "reviewer": "/root/certification_h",
+  "decision": "FAIL_INDEX_RESTORATION_ORIGINAL_DEADLINE",
+  "source": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+  "publication": {
+    "evidence": {
+      "commit": "c7b5770e1bc3edcd80d3aa8cf0f2f45662024b92",
+      "tree": "84b09893af41c6219f3dd423fc76e177ef17f70c"
+    },
+    "source": {
+      "approved": "00d3792c3e0669e29d923d529d977957b60cb750",
+      "published": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+      "tree": "0789dce08d58aee93ad980f311bc182ebeda2eda"
+    },
+    "evidenceFirst": true,
+    "exactTreeVerified": true,
+    "safeAncestry": true,
+    "metadataOnlyChange": "remove skip ci marker",
+    "prDraft": true,
+    "merged": false
+  },
+  "artifact": 12256625187,
+  "artifactSha256": "ec0fe9c37f06f93647aa0b83eb5b764ea52c62983a2b166de5352bf4d5bc4488",
+  "preflight": {
+    "pass": 2,
+    "fail": 0,
+    "skip": 0,
+    "actualProcNamespace": "PASS; prior local resource skip resolved by hosted actual process identity assertion"
+  },
+  "actualIndex": {
+    "schema": "WORK8_APPLICATION_GRAPH_RESTORATION_V1",
+    "source": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+    "digest": "a05c99dc8683a4c6ceb3e2884637fcbc7dfd845e37d0d8c3a36332122a188d2d",
+    "status": "FAIL",
+    "error": "ORIGINAL_APPLICATION_STARTUP_DEADLINE",
+    "cleanupRequiresOuterContainment": true
+  },
+  "containerState": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 1,
+    "Error": "",
+    "StartedAt": "2026-10-20T09:36:58.73426616Z",
+    "FinishedAt": "2026-10-20T09:39:58.839147079Z"
+  },
+  "observedLogs": [
+    "Actual index listening",
+    "Executive watchdog started",
+    "Pillow host started",
+    "Original180000ms deadline reached before readiness/session/fence/canonical result receipt"
+  ],
+  "limits": [
+    "Startup log lines do not establish complete readiness or restoration acceptance",
+    "No successful index authenticated-session, queue-fence or mutation classification receipt reached",
+    "Outer container stopped with PID0; no operational restoration or global membership acceptance",
+    "Accepted preceding application graph and prior Redis/AOF/session/pending proofs remain preserved"
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

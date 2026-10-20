@@ -1,0 +1,62 @@
+{
+  "recordType": "WORK8_K_EXISTING_CUSTODY_ROUTE_DECISION",
+  "reviewer": "/root/inventory_h",
+  "at": "2026-10-20T09:35:00.027366+00:00",
+  "decision": "EXISTING_ROUTE_ELIGIBLE_PROTECTED_CUSTODY_NOT_PROVEN",
+  "newAcceptedIds": [],
+  "reusedReceipt": {
+    "path": "acceptance-campaign-20261020j/CUSTODY-REMAINING-ASSURANCE.json",
+    "sha256": "4994233fca93784476a1e9ab95f2cf69602d46dacfe2647e9171fe853f47f97c",
+    "repeatRemoteReportReadback": false,
+    "reportIsRuntimeBackup": false,
+    "reportReadbackSha256": "681ce1ab4c52145598e46ab68cb381f7aaeaa89342419e04c4fbae403e63bf66"
+  },
+  "availableRecoveryArtifact": {
+    "source": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+    "snapshotDigest": "af1232cb6f08139832a3bbf67da6675b97113538afa3596db9c806a29838765a",
+    "completeLiveState": false,
+    "bootAllowed": false,
+    "acceptedScope": "Held capture/containment and J fresh buildApp graph with 13 stores; original sessions and unchanged tables. Retained independent Redis/AOF and isolated pending-work proofs remain valid.",
+    "pendingScope": "K actual index/watchdog receipt; global current/prior writer membership; coupled operational replay; protected custody.",
+    "attribution": "recovery_h K coordination message, and J held-capture-result.json; no new capture or repeated examination"
+  },
+  "actualExecutableNextStep": {
+    "now": "Preserve the existing captured artifact and let the shared authorized K automatic index/watchdog examination finish. No additional Library upload/readback can establish complete protected custody from the currently incomplete artifact.",
+    "afterCompleteArtifact": "Use one canonical complete data set bound to exact source, declared topology and snapshot digest; existing authorized Library route remains eligible. Read actual returned object/version identity, then independently compare full bytes and couple a corrupted local-copy refusal and good-copy fresh-target restoration to the same recovery package. Do not mutate or delete the protected original."
+  },
+  "remainingExternalAssuranceDependencies": [
+    {
+      "criterion": "Retention/version integrity",
+      "requiredProof": "Applicable owner/provider retention/protection record for the actual complete backup object; exact object/version identity and digest/history. Existing expected_current_version and restore_version interfaces do not alone establish object-specific retention. No new WORM criterion."
+    },
+    {
+      "criterion": "Runtime credential exclusion",
+      "requiredProof": "Secret-free rights/capability summary for declared app, worker, controller and proxy/mount routes showing they cannot overwrite/delete the custody copy; bounded authorized denial proof at that boundary. Owner-authenticated connector access alone proves neither exclusion nor separately administered credentials."
+    },
+    {
+      "criterion": "Complete restored topology and data",
+      "requiredProof": "Authoritative current/prior writer membership plus full consistent captured data and coupled operational replay. The Library interface cannot supply application membership or replace restoration proof."
+    }
+  ],
+  "acceptedFactsPreserved": [
+    "I independently authenticated exact off-host report readback, 65579 bytes",
+    "J scoped fresh-target application-graph restoration",
+    "Previously accepted corrupt-copy/refusal checks where attributable remain retained; they are not claimed as a new complete custody restore"
+  ],
+  "closureSequence": [
+    "Complete and independently review shared recovery artifact coverage",
+    "Bind existing custody object/version, applicable retention and runtime exclusion proofs",
+    "Read complete bytes independently and compare exact digest",
+    "Use that same retrieved set for local corrupt-copy rejection and isolated fresh-target restoration",
+    "Independent complete-contract decision before any PASS"
+  ],
+  "operations": {
+    "newRemoteReads": 0,
+    "remoteWrites": 0,
+    "sourceChanges": 0,
+    "newInfrastructure": 0,
+    "newTests": 0,
+    "rawCredentialsRead": 0
+  },
+  "publication": "This local campaign receipt is staged for central integration and applicable consolidated exact-tree approval; no external publication by this lane."
+}

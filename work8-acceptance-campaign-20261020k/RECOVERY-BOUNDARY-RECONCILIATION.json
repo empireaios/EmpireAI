@@ -1,0 +1,50 @@
+{
+  "recordType": "K_RETAINED_RECOVERY_BOUNDARY_RECONCILIATION",
+  "source": "6ac732ee382ecd72cb4348ffacc54c94297c5a33",
+  "snapshotDigest": "af1232cb6f08139832a3bbf67da6675b97113538afa3596db9c806a29838765a",
+  "imageId": "sha256:c397d377fb5ef0ca8474a3a4de1c3395ac3674ebedeb872811e7cb2ce414dcd6",
+  "acceptedGraph": "PASS_SCOPED_APPLICATION_GRAPH_ONLY; unchanged13-store tables and original authenticated session",
+  "declaredSourceMembers": {
+    "primary": {
+      "pid": 4707,
+      "startTicks": "21868",
+      "namespacePid": 1,
+      "argv": [
+        "node",
+        "scripts/work8/hh4-generated-primary.mjs"
+      ]
+    },
+    "worker": {
+      "pid": 4734,
+      "startTicks": "21873",
+      "namespacePid": 13,
+      "argv": [
+        "/usr/local/bin/node",
+        "/app/scripts/work8/hh4-generated-worker.mjs"
+      ]
+    }
+  },
+  "sourceContained": true,
+  "notProvenByTheseMembers": [
+    "Actual tier0-primary topology",
+    "Independent Assurance observer topology",
+    "Current/prior admitted writers outside generated source cgroup"
+  ],
+  "capturedExecutionJobs": 0,
+  "capturedExecutionEvents": 0,
+  "pendingEvidenceStatus": "Captured application-owned execution store is initialized but empty. Existing independent once-only restored domain-service replay proof remains accepted and separate. Empty-table restoration is not pending-work continuity.",
+  "nextPendingBoundary": "After actual index result, review one bounded read-only pending job captured from actual application-owned runner and restored continuation. Keep global Redis queue owner/pause and commerce fences; no real business operation or invented owner decision. Do not rerun already accepted standalone domain-service replay.",
+  "captureAuthority": {
+    "bootAllowed": false,
+    "completeLiveState": false
+  },
+  "custodyStatus": "No complete operational recovery artifact supplied to custody lane; checkpoint-report readback is not full backup proof.",
+  "automaticIndexResult": "AWAITING_CI_OBSERVER",
+  "codeChanges": [],
+  "newAcceptedIds": [],
+  "sourceReceiptHashes": {
+    "held-capture-external-verification.json": "28201e3717bd914b2f69ddb9155037ad0f90d499a22d26e8dc96342d39d33067",
+    "container-evidence/hh4-worker-ready.json": "b1529118d3d4db666b1878c3ed44d9ce08bd9e44295eaaa5f409a7cb6ace4b6c",
+    "application-graph-results/application-graph-result.json": "91d571c58176c5fce6c4de99565391a526da302834238f97b16cca27efabf70d"
+  }
+}

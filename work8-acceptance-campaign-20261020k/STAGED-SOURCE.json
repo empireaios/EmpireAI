@@ -1,0 +1,8 @@
+{
+  "commit": "ea7f6c48a6e457844a79101890405939d826d63b",
+  "tree": "8af669142ceb72d232590e62da54034c8eeed90b",
+  "parent": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+  "branch": "work8/staged-source-20261020k",
+  "status": "STAGED_ONLY_REQUIRES_EXACT_TREE_OWNER_APPROVAL",
+  "localCompleteTreeEquality": true
+}

@@ -1,0 +1,58 @@
+{
+  "recordType": "WORK8_K_BOUNDED_ACCOUNT_CAPABILITY_ATTEMPT",
+  "at": "2026-10-20T09:44:21.695093+00:00",
+  "decision": "NO_NEW_ACCEPTANCE_ACCOUNT_READ_EXECUTION_INCOMPLETE",
+  "canva": {
+    "operation": "search_designs",
+    "query": "EmpireAI",
+    "limitPerAccount": 5,
+    "accountsAttempted": [
+      "link_6a3b281fb6b0819181789c0bce6674e1",
+      "link_6ac9a3a789d881918e29baa7541f682d"
+    ],
+    "readOnly": true,
+    "callStructure": "Two independent read-only requests awaited via Promise.allSettled, followed by Keepa discovery only after completion.",
+    "outcome": "Controller cost-control interruption after hung tool. Underlying tool wording was aborted by user after564.8seconds; this is not evidence of owner cancellation. No returned account/design payload retained. Access and entitlement remain unknown, not absent.",
+    "retainedResultSlots": [
+      null,
+      null
+    ],
+    "mutationRequested": false,
+    "editExportRequested": false,
+    "retry": false,
+    "serverBoundaryPreserved": "ChatGPT account access would not prove runtime OAuth. Existing governed Canva consumer still lacks separately bound server export authority and bounded artifact reader. Local preparation authority remains inapplicable.",
+    "interruptionAuthority": "Root integration controller cost-control stop"
+  },
+  "keepa": {
+    "plannedOperation": "One plugin discovery query Keepa,limit5",
+    "executed": false,
+    "reason": "Sequential discovery was after unresolved Canva requests and was not reached before abort.",
+    "lastGroundedRuntimeFact": "J authenticated owner System shows credentialPresentfalse/NOT_CONFIGURED/authenticationUNVERIFIED/readUNVERIFIED/noverifiedread.",
+    "accountWideEntitlement": "UNPROVEN; runtime configuration does not establish subscription absence.",
+    "retry": false
+  },
+  "O30": {
+    "status": "PENDING",
+    "retainedBoundary": "Independent executor, durable attempt store, provider/sender, verified destination, independent observer, failure/escalation and exactsendauthority remain unestablished. Accepted notification ledger uses primaryappdatabase; nofreshinventoryoracceptedfaulttest repeated.",
+    "externalMessagesSent": 0
+  },
+  "businessFinancePreservation": {
+    "genuineCurrentProduct": "CJ diffuser2610200608021613300 from retainedJ sourceev_0d5d7a782c4b9ba4dfe795570b7b240e50cfaf93",
+    "sourceObservedAt": "2026-10-20T06:39:29.178Z",
+    "sourceStaleAfter": "2026-10-20T12:39:29.178Z",
+    "limitations": "Valid only until source-specificexpiry; no matchedAmazonqualification. Missing product-bound processing/returns/RMA/media rights andselectedfreight/economics inputs remain. UnrelatedhistoricalPillowreference remainsseparate.",
+    "historicalAccounting": "No credible new224baseline/auditedlineagelead supplied or obtained; no repeatedsearch. Preserve227records andhistoricaldigests."
+  },
+  "safety": {
+    "newSourceChanges": 0,
+    "externalWrites": 0,
+    "paidInference": 0,
+    "purchases": 0,
+    "subscriptionsActivated": 0,
+    "infrastructureProvisioned": 0,
+    "newBrowserAttempts": 0
+  },
+  "stopBoundary": "Controllercost-controlinstruction: no furthercapabilitycalls oralternativeroute/retries; persist incompleteexecutionhonestly.",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": []
+}

@@ -1,0 +1,28 @@
+{
+  "recordType": "INDEPENDENT_K_CONSOLIDATED_SOURCE_INTEGRATION",
+  "reviewer": "/root/certification_h",
+  "decision": "PASS_EXACT_FINAL_EIGHT_PATH_REVIEWED_INTEGRATION",
+  "parent": "ea18e6c62ff89da35df6eaf4f42a42dbe497207d",
+  "completeTree": "8af669142ceb72d232590e62da54034c8eeed90b",
+  "paths": {
+    "scripts/work8/application-graph-restoration.mjs": "9b9f0f0f3ff369aea8b60a140570caa92251b292ca2a5f3e49d3f7ae5afa4388",
+    "scripts/work8/index-restoration-phase.mjs": "61c85b2cd652579b118fdc10a28932a4cb7f34a3d3aa1036279a390a416c6b95",
+    "scripts/work8/index-restoration-launcher.mjs": "e17609c2b3ed30276e7ac7412613e86fe73d3ded68bd40fe00fc708d4d0ea8a5",
+    "scripts/work8/index-restoration-phase.test.mjs": "37afa405747755d2987800cfe0b552fb5800719ff692a1266b0a01fdc0b4ecfa",
+    "backend/src/institutional-memory/executive.ts": "226261e63faae3675b9328dd8a66dd530a06cfa5048aabd0c7bda880c3a58793",
+    "backend/src/institutional-memory/store.ts": "6f4f79fc3a6c5aadbf205bd59969ad0295cfb7e1f0a24a947308e29bbabab4b6",
+    "backend/src/validation/tests/work3-institutional-memory.test.ts": "76d7e76f16882e1baa5afd25d6d25534f08519b6ecaf1aca6c3d8d9e1e85781c",
+    "empireai-web/components/owner/work7/OwnerJourneys.tsx": "974eaa29110104427e89f12df78e8fce641229c3481d5c4d9caf0ede34b0fef6"
+  },
+  "noOverlappingEdits": true,
+  "localTargetedResults": {
+    "ownerDefer": "2PASS/0FAIL/0SKIP; strict changed-boundary typecheckPASS",
+    "newIndexIPC": "1independentPASS/0FAIL/0SKIP",
+    "fullBackendNoEmit": "Resource OOM; no full buildPASS claim"
+  },
+  "scope": "Two reviewed compatible boundaries only: durableDEFER and isolated indexcriticalpersist/diagnostics",
+  "hostedSuccessor": "NOT_RUN; fresh exact-treeapproval required",
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "auditDelta": "Private bounded exact added rows, existing history unchanged, independent classification still required"
+}
