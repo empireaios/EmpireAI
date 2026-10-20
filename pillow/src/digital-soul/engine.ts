@@ -1,3 +1,4 @@
+import {withExecutiveDecisionJournalSnapshot,type ExecutiveDecisionJournalSnapshot} from "./recovery-snapshot.js";
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -200,6 +201,10 @@ export class DigitalSoulRuntime {
 
   describeRhythm() {
     return describeOperatingRhythmDoctrine();
+  }
+
+  withRecoverySnapshot<T>(capture:(snapshot:ExecutiveDecisionJournalSnapshot)=>Promise<T>):Promise<T>{
+    return withExecutiveDecisionJournalSnapshot(this.repositoryRoot,capture);
   }
 
   async recordDecision(input: RecordDecisionInput) {

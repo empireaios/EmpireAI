@@ -44,7 +44,7 @@ export async function captureRedisSnapshot(queue:TaskQueue):Promise<{capturedAt:
 export async function captureRedisInventory(queue:TaskQueue) {
  return (await captureRedisSnapshot(queue)).rows;
 }
-export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string;visualMemorySnapshot?:unknown},queue:TaskQueue):Promise<Work8RecoveryResult>{
+export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string;visualMemorySnapshot?:unknown;sessionContinuitySnapshot?:unknown;executiveDecisionJournalSnapshot?:unknown},queue:TaskQueue):Promise<Work8RecoveryResult>{
  if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN: Redis producers, watchdog, continuation and protected custody remain uncovered; only explicit scoped inspection is available");
  return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,captureId:randomUUID(),captureRepositoryLifecycle:request.captureRepositoryLifecycle===true,captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
   authorityFile:path.join(resolveShadowCeoAuthorityDir(),'authority-store.json'),
