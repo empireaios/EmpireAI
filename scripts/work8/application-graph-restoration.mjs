@@ -8,6 +8,7 @@ import {spawn} from 'node:child_process';
 import {once} from 'node:events';
 import {createHash} from 'node:crypto';
 function tableDigests(file){const db=new DatabaseSync(file,{readOnly:true});try{const out={};for(const {name}of db.prepare("SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name").all()){const rows=db.prepare('SELECT * FROM "'+name.replaceAll('"','""')+'"').all().map(r=>JSON.stringify(r,(_k,v)=>typeof v==='bigint'?String(v):v)).sort();out[name]={count:rows.length,sha256:sha(JSON.stringify(rows))};}return out;}finally{db.close();}}
+function auditRows(file){const db=new DatabaseSync(file,{readOnly:true});try{const rows=db.prepare('SELECT * FROM audit_logs ORDER BY id').all().map(row=>({...row}));assert.ok(rows.length<=1000&&Buffer.byteLength(JSON.stringify(rows))<=1048576,'BOUNDED_SYNTHETIC_AUDIT_EVIDENCE_REQUIRED');return rows;}finally{db.close();}}
 const require=createRequire(import.meta.url),sha=b=>createHash('sha256').update(b).digest('hex');
 export function validateRestorationAuthorization({source,held,verification,inventory}){
  assert.match(source,/^[a-f0-9]{40}$/);assert.equal(held.source,source);assert.equal(verification.source,source);
@@ -44,6 +45,7 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
  fs.cpSync(sealed,root,{recursive:true,errorOnExist:true,force:false});
  assert.equal(JSON.parse(fs.readFileSync(path.join(root,'INSPECTION_ONLY.json'))).bootAllowed,false);
  const preboot={},beforeTables={};for(const [id,relative]of Object.entries(LAYOUT)){const original=fs.readFileSync(path.join(directory,id,'checkpoint.db')),target=fs.readFileSync(path.join(root,relative));assert.ok(target.equals(original));preboot[id]=sha(target);beforeTables[id]=tableDigests(path.join(root,relative));}
+ const beforeAudit=mode==='index'?auditRows(path.join(root,LAYOUT.brain)):null;
  const journal=JSON.parse(fs.readFileSync(path.join(directory,'executive-decisions.json')));
  // The application reads its static repository journal path: a nonempty journal
  // needs a separately reviewed binding, never silently ignore or activate it.
@@ -81,8 +83,15 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
   const {FinancialCentre}=await import('../../backend/dist/finance/financial-centre.js');const finance=new FinancialCentre(path.join(root,LAYOUT.financialEvidence));try{assert.deepEqual(finance.entries(inventory.workspace),inventory.domains.financialEvidence.publicReadback);}finally{finance.close();}
   }else{
    const {examineRestoredIndex}=await import('./index-restoration-phase.mjs');
-   receipt.index=await examineRestoredIndex({repo,deadline,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner});
+   receipt.index=await examineRestoredIndex({repo,deadline,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner,onDiagnostic:diagnostic=>fs.writeFileSync(path.join(path.dirname(resultFile),'index-last-poll.json'),JSON.stringify({source,digest:held.digest,diagnostic},null,2),{mode:0o600})});
    for(const id of ['missions','execution','financialEvidence','liveCostCentre'])assert.deepEqual(tableDigests(path.join(root,LAYOUT[id])),beforeTables[id],id+'_INDEX_RECORDS_CHANGED');
+   const afterAudit=auditRows(path.join(root,LAYOUT.brain)),prior=new Map(beforeAudit.map(row=>[row.id,row])),after=new Map(afterAudit.map(row=>[row.id,row]));
+   const changedOrRemoved=beforeAudit.filter(row=>JSON.stringify(after.get(row.id))!==JSON.stringify(row));
+   const addedRows=afterAudit.filter(row=>!prior.has(row.id));
+   const auditDelta={source,digest:held.digest,scope:'SYNTHETIC_GENERATED_TARGET_AUDIT_ROWS',sourceRowCount:beforeAudit.length,targetRowCount:afterAudit.length,existingRowsUnchanged:changedOrRemoved.length===0,changedOrRemoved,addedRows,classification:'INDEPENDENT_REVIEW_REQUIRED_NO_AUTOMATIC_ALLOWLIST'};
+   fs.writeFileSync(path.join(path.dirname(resultFile),'index-audit-row-delta.json'),JSON.stringify(auditDelta,null,2),{flag:'wx',mode:0o600});
+   receipt.auditDelta={existingRowsUnchanged:auditDelta.existingRowsUnchanged,addedCount:addedRows.length,evidence:'index-audit-row-delta.json'};
+   assert.equal(changedOrRemoved.length,0,'CAPTURED_AUDIT_HISTORY_CHANGED');
   }
   const {listExecutiveDecisionRecords}=await import('../../pillow/dist/digital-soul/decision-record.js');
   assert.deepEqual(await listExecutiveDecisionRecords(repo),Buffer.from(journal.file.bytes,'base64').toString().split('\n').filter(x=>x.trim()).map(x=>JSON.parse(x)));
