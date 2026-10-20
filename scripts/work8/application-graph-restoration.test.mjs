@@ -1,0 +1,6 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {validateRestorationAuthorization} from './application-graph-restoration.mjs';
+const source='a'.repeat(40),digest='b'.repeat(64);
+const fixture=()=>({source,held:{source,digest,bootAllowed:false,completeLiveState:false},verification:{source,held:{digest},verificationAfterContainment:true,containment:{after:{State:{Running:false,Pid:0}},noRestart:true,survivors:[]}},inventory:{source,classification:'LABELLED_SYNTHETIC_INITIALIZATION',workspace:'synthetic:hh4',externalEffects:0,paidInference:0,originalSession:{workspaceId:'synthetic:hh4',email:'hh4-owner@example.test'}}});
+test('generated application restoration requires matching contained source and synthetic authority',()=>{validateRestorationAuthorization(fixture());for(const change of [x=>x.verification.containment.survivors.push({pid:4}),x=>x.verification.containment.after.State.Running=true,x=>x.verification.containment.noRestart=false,x=>x.verification.held.digest='c'.repeat(64),x=>x.inventory.originalSession.workspaceId='live',x=>x.inventory.classification='PRODUCTION',x=>x.held.bootAllowed=true]){const x=fixture();change(x);assert.throws(()=>validateRestorationAuthorization(x));}});

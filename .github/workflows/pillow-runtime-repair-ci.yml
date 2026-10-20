@@ -300,6 +300,34 @@ jobs:
           const result=await examineDomainRehydration({repo:'/app',directory:'/evidence/container-evidence/held-capture',digest:held.digest,source,inventory:ready.inventory});
           console.log(JSON.stringify(result,null,2));
           NODE
+      - name: Isolated restored application graph with original session and retained fences
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          node --test scripts/work8/application-graph-restoration.test.mjs
+          node --input-type=module - "$RUNNER_TEMP/hh4-evidence" <<'NODE'
+          import fs from 'node:fs';
+          import {prepareRestoredJournal} from './scripts/work8/application-graph-restoration.mjs';
+          const root=process.argv[2],held=JSON.parse(fs.readFileSync(root+'/container-evidence/hh4-held.json'));
+          prepareRestoredJournal({directory:root+'/container-evidence/held-capture',digest:held.digest,destination:root+'/restored-journal'});
+          NODE
+          image_id=$(docker image inspect --format '{{.Id}}' work8-hh3:ci)
+          name="work8-restored-graph-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -m 700 "$RUNNER_TEMP/hh4-evidence/application-graph-results"
+          trap 'docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/application-graph-container.json" 2>&1 || true; docker logs "$name" > "$RUNNER_TEMP/hh4-evidence/application-graph.log" 2>&1 || true; docker rm -f "$name" >/dev/null 2>&1 || true' EXIT
+          docker run --name "$name" --read-only --network none \
+            --user "$(id -u):$(id -g)" --cap-drop ALL --security-opt no-new-privileges \
+            --pids-limit 512 --memory 3g --cpus 2 --restart no \
+            --tmpfs /tmp:rw,nosuid,nodev,size=1073741824,mode=1777 \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence,target=/evidence,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/application-graph-results,target=/results" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/container-evidence/held-capture,target=/capture,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/restored-journal/docs/governance/digital-soul/executive-decision-records.jsonl,target=/app/docs/governance/digital-soul/executive-decision-records.jsonl,readonly" \
+            -e NODE_ENV=test -e EMPIRE_ENGINEERING_TEST_MODE=true -e WORK8_KERNEL_EGRESS=DENIED \
+            -e RAILWAY_GIT_COMMIT_SHA="$(git rev-parse HEAD)" \
+            --entrypoint node "$image_id" scripts/work8/application-graph-restoration.mjs "$(git rev-parse HEAD)" \
+            > "$RUNNER_TEMP/hh4-evidence/application-graph.log" 2>&1
+          docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/application-graph-container.json"
       - name: Preserve actual generated application startup and held capture evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
