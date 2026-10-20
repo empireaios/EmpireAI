@@ -140,6 +140,7 @@ export async function initializeActualGeneratedDomains(application,root,source){
  const executionFile=await readyActualExecutionStore(application,host,primary,hostDeadline);
  const executionDb=new DatabaseSync(executionFile,{readOnly:true,allowExtension:false});
  try{record('execution',{scope:executionDb.prepare('SELECT * FROM execution_meta ORDER BY id').all(),jobs:executionDb.prepare('SELECT * FROM execution_jobs ORDER BY job_id').all(),events:executionDb.prepare('SELECT * FROM execution_events ORDER BY seq').all(),note:'Actual application-owned execution store; authorized pending replay remains a separate mandatory examination.'});}finally{executionDb.close();}
+ inventory.originalSession=await application.brain.sessionStore.create({id:'hh4-restoration-owner',email:'hh4-owner@example.test',name:'Synthetic recovery owner',role:'founder',workspaceId:workspace});
  const {getDatabase}=await api('brain/database.js');
  const brain=getDatabase(),tableNames=brain.prepare("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").all().map(row=>row.name);
  const canonicalTables=Object.fromEntries(tableNames.map(name=>[name,brain.prepare('SELECT * FROM "'+String(name).replaceAll('"','""')+'"').all().map(row=>({...row})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)))]));
