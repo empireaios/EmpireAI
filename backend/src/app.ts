@@ -699,10 +699,13 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
             withExclusiveNativeMissionCapture(getActiveDatabasePath(),()=>
               withExclusiveWork8DomainCapture(root,async()=> {
                 return withConfiguredVisualCapture(pillowEnabled,pillowHost,async (visualMemorySnapshot) => {
-                const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath,visualMemorySnapshot},queue);
+                const capture=async(sessionContinuitySnapshot?:unknown,executiveDecisionJournalSnapshot?:unknown)=>{
+                const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath,visualMemorySnapshot,sessionContinuitySnapshot,executiveDecisionJournalSnapshot},queue);
                 staged=true;
                 if(scope)await holdGeneratedCapture(scope,captured,{seal:finalizeWork8RecoveryInventory,verify:verifyWork8RecoveryInventory,invalidate:invalidateWork8RecoveryInventory});
                 return captured;
+                };
+                return pillowEnabled ? pillowHost.withSessionContinuityRecoveryCapture(capture) : capture();
                 });
               })))))));
       finalizeWork8RecoveryInventory(result);

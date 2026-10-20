@@ -6,6 +6,7 @@ const {verifySystem,selectSystemPoint}=require('./work8-system-vault.cjs');
 const {verifyCheckpoint}=require('./legacy-checkpoint-capture.cjs');
 const {verifyLegacyShadowDisk}=require('./legacy-shadow-state-capture.cjs');
 const {MARKERS,captureLifecycleMarkers,verifyLifecycleMarkers}=require('./work8-lifecycle-markers.cjs');
+const {verifySessionContinuitySnapshot,verifyExecutiveDecisionJournalSnapshot}=require('./work8-session-continuity-recovery.cjs');
 const names=['system','brain','missions','execution','shadow'];
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 function canonical(p){assert.ok(path.isAbsolute(p));assert.equal(fs.realpathSync(p),p);}
@@ -60,7 +61,7 @@ function verifyVisualMemorySnapshot(value) {
  for(const file of value.files){assert.ok(file&&typeof file.path==='string'&&(file.path==='index.json'||/^records\/[-a-zA-Z0-9_.]+\.json$/.test(file.path)));assert.ok(!names.has(file.path));names.add(file.path);assert.ok(Number.isSafeInteger(file.mode)&&file.mode>=0&&file.mode<=0o777);assert.equal(typeof file.bytes,'string');const bytes=Buffer.from(file.bytes,'base64');assert.equal(bytes.toString('base64'),file.bytes);total+=bytes.length;assert.ok(total<=33554432);JSON.parse(bytes.toString('utf8'));}
  return value;
 }
-async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityFile,requestOwnersFile,destination,sourceCommit,frontendRevision,captureId,captureRedis,captureRedisIdentity,captureObserverWatchdog=false,captureRepositoryLifecycle=false,visualMemorySnapshot}) {
+async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityFile,requestOwnersFile,destination,sourceCommit,frontendRevision,captureId,captureRedis,captureRedisIdentity,captureObserverWatchdog=false,captureRepositoryLifecycle=false,visualMemorySnapshot,sessionContinuitySnapshot,executiveDecisionJournalSnapshot}) {
  canonical(root); canonical(path.dirname(destination));
  assert.equal(path.resolve(destination),destination);assert.ok(!destination.startsWith(root+path.sep));
  assert.match(sourceCommit,/^[a-f0-9]{40}$/);assert.match(frontendRevision,/^[a-f0-9]{40}$/);assert.match(captureId,/^[a-f0-9-]{36}$/);
@@ -91,6 +92,10 @@ async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityF
   for(const [id,file] of Object.entries(json)){const size=fs.statSync(file).size;if(id==='assuranceWatchdog')assert.ok(size>0&&size<=65536,'OBSERVER_WATCHDOG_SIZE');const bytes=fs.readFileSync(file);const value=JSON.parse(bytes);if(id==='assuranceWatchdog')assert.ok(Number.isSafeInteger(value.observedAt)&&value.observedAt>0&&typeof value.status==='string','OBSERVER_WATCHDOG_SCHEMA');assert.ok(value&&typeof value==='object'&&!Array.isArray(value));fs.writeFileSync(path.join(destination,id+'.json'),bytes,{flag:'wx',mode:0o600});jsonDigests[id]=sha(bytes);}
   let visualMemoryDigest;
   if(visualMemorySnapshot!==undefined){verifyVisualMemorySnapshot(visualMemorySnapshot);const bytes=JSON.stringify(visualMemorySnapshot);fs.writeFileSync(path.join(destination,'visual-memory.json'),bytes,{flag:'wx',mode:0o600});visualMemoryDigest=sha(bytes);}
+  let sessionContinuityDigest;
+  if(sessionContinuitySnapshot!==undefined){verifySessionContinuitySnapshot(sessionContinuitySnapshot);const bytes=JSON.stringify(sessionContinuitySnapshot);fs.writeFileSync(path.join(destination,'session-continuity.json'),bytes,{flag:'wx',mode:0o600});sessionContinuityDigest=sha(bytes);}
+  let executiveDecisionJournalDigest;
+  if(executiveDecisionJournalSnapshot!==undefined){verifyExecutiveDecisionJournalSnapshot(executiveDecisionJournalSnapshot);const bytes=JSON.stringify(executiveDecisionJournalSnapshot);fs.writeFileSync(path.join(destination,'executive-decisions.json'),bytes,{flag:'wx',mode:0o600});executiveDecisionJournalDigest=sha(bytes);}
   const lifecycleMarkers=captureRepositoryLifecycle?captureLifecycleMarkers(root,destination):undefined;
   const redisIdentity=captureRedisIdentity?await captureRedisIdentity():undefined;
   const legacyCaptureStartedAt=Date.now();const snapshot=await captureRedis();
@@ -103,7 +108,7 @@ async function captureRuntimeRecoverySet({root,primaryPath,shadowPath,authorityF
   const redisBytes=JSON.stringify(redis);fs.writeFileSync(path.join(destination,'redis.json'),redisBytes,{flag:'wx',mode:0o600});
   if(lifecycleMarkers)verifyLifecycleMarkers(root,lifecycleMarkers,true);
   fs.rmSync(staging,{recursive:true});
-  const manifest={schema:'WORK8_RUNTIME_RECOVERY_SET_V1',captureId,sourceCommit,frontendRevision,capturedAt:new Date().toISOString(),stores,json:jsonDigests,...(visualMemoryDigest?{visualMemoryDigest}:{}),...(lifecycleMarkers?{lifecycleMarkers}:{}),redisDigest:sha(redisBytes),redisCapturedAt,...(redisIdentity?{redisIdentity}:{}),bootAllowed:false,completeLiveState:false,authority:'HISTORICAL_ONLY_DO_NOT_BOOT',remaining:['Redis producers outside Brain queue are not globally fenced','Executive watchdog and Amazon continuation coverage unproven','Protected independent custody and restoration unproven']};
+  const manifest={schema:'WORK8_RUNTIME_RECOVERY_SET_V1',captureId,sourceCommit,frontendRevision,capturedAt:new Date().toISOString(),stores,json:jsonDigests,...(visualMemoryDigest?{visualMemoryDigest}:{}),...(sessionContinuityDigest?{sessionContinuityDigest}:{}),...(executiveDecisionJournalDigest?{executiveDecisionJournalDigest}:{}),...(lifecycleMarkers?{lifecycleMarkers}:{}),redisDigest:sha(redisBytes),redisCapturedAt,...(redisIdentity?{redisIdentity}:{}),bootAllowed:false,completeLiveState:false,authority:'HISTORICAL_ONLY_DO_NOT_BOOT',remaining:['Redis producers outside Brain queue are not globally fenced','Executive watchdog and Amazon continuation coverage unproven','Protected independent custody and restoration unproven']};
   fs.writeFileSync(path.join(destination,'runtime-recovery.pending.json'),JSON.stringify(manifest),{flag:'wx',mode:0o600});durableTree(destination);
   const result={directory:destination,digest:sha(JSON.stringify(manifest)),manifest};verifyRuntimeRecoverySet(result,true);return result;
  } catch(error){fs.rmSync(path.join(destination,'runtime-recovery.json'),{force:true});throw error;}
@@ -113,12 +118,14 @@ function verifyRuntimeRecoverySet({directory,digest},allowProvisional=false) {
  const m=JSON.parse(bytes);assert.equal(m.schema,'WORK8_RUNTIME_RECOVERY_SET_V1');assert.match(m.sourceCommit,/^[a-f0-9]{40}$/);assert.match(m.frontendRevision,/^[a-f0-9]{40}$/);assert.match(m.captureId,/^[a-f0-9-]{36}$/);assert.equal(m.bootAllowed,false);assert.equal(m.completeLiveState,false);assert.equal(m.authority,'HISTORICAL_ONLY_DO_NOT_BOOT');
  assert.deepEqual(Object.keys(m.stores).sort(),[...RUNTIME_IDS].sort());
  if(Object.hasOwn(m,'lifecycleMarkers'))verifyLifecycleMarkers(directory,m.lifecycleMarkers);
- assert.deepEqual(fs.readdirSync(directory).sort(),[...RUNTIME_IDS,...(Object.hasOwn(m,'visualMemoryDigest')?['visual-memory.json']:[]),...(Object.hasOwn(m,'lifecycleMarkers')?Object.keys(MARKERS).map(id=>id+'.initialized'):[]),'authority.json','requestOwners.json',...(Object.hasOwn(m.json,'assuranceWatchdog')?['assuranceWatchdog.json']:[]),'redis.json',manifestName].sort());
+ assert.deepEqual(fs.readdirSync(directory).sort(),[...RUNTIME_IDS,...(Object.hasOwn(m,'executiveDecisionJournalDigest')?['executive-decisions.json']:[]),...(Object.hasOwn(m,'sessionContinuityDigest')?['session-continuity.json']:[]),...(Object.hasOwn(m,'visualMemoryDigest')?['visual-memory.json']:[]),...(Object.hasOwn(m,'lifecycleMarkers')?Object.keys(MARKERS).map(id=>id+'.initialized'):[]),'authority.json','requestOwners.json',...(Object.hasOwn(m.json,'assuranceWatchdog')?['assuranceWatchdog.json']:[]),'redis.json',manifestName].sort());
  for(const id of RUNTIME_IDS){verifyCheckpoint({directory:path.join(directory,id),manifestSha256:m.stores[id]});const part=read(path.join(directory,id,'manifest.json'));assert.equal(part.source.commit,m.sourceCommit);}
  const jsonIds=Object.hasOwn(m.json,'assuranceWatchdog')?['assuranceWatchdog','authority','requestOwners']:['authority','requestOwners'];
  assert.deepEqual(Object.keys(m.json).sort(),jsonIds);
  for(const id of jsonIds){const file=path.join(directory,id+'.json');canonical(file);if(id==='assuranceWatchdog')assert.ok(fs.statSync(file).size>0&&fs.statSync(file).size<=65536,'OBSERVER_WATCHDOG_SIZE');assert.equal(sha(fs.readFileSync(file)),m.json[id]);JSON.parse(fs.readFileSync(file,'utf8'));}
  if(Object.hasOwn(m,'visualMemoryDigest')){const file=path.join(directory,'visual-memory.json');canonical(file);const st=fs.lstatSync(file);assert.ok(st.isFile()&&st.nlink===1&&st.size<=50000000);const bytes=fs.readFileSync(file);assert.equal(sha(bytes),m.visualMemoryDigest);verifyVisualMemorySnapshot(JSON.parse(bytes));}
+ if(Object.hasOwn(m,'sessionContinuityDigest')){const file=path.join(directory,'session-continuity.json');canonical(file);const st=fs.lstatSync(file);assert.ok(st.isFile()&&st.nlink===1&&st.size<=12000000);const bytes=fs.readFileSync(file);assert.equal(sha(bytes),m.sessionContinuityDigest);verifySessionContinuitySnapshot(JSON.parse(bytes));}
+ if(Object.hasOwn(m,'executiveDecisionJournalDigest')){const file=path.join(directory,'executive-decisions.json');canonical(file);const st=fs.lstatSync(file);assert.ok(st.isFile()&&st.nlink===1&&st.size<=50000000);const bytes=fs.readFileSync(file);assert.equal(sha(bytes),m.executiveDecisionJournalDigest);verifyExecutiveDecisionJournalSnapshot(JSON.parse(bytes));}
  const redisFile=path.join(directory,'redis.json');canonical(redisFile);assert.equal(sha(fs.readFileSync(redisFile)),m.redisDigest);const rows=JSON.parse(fs.readFileSync(redisFile,'utf8'));assert.ok(Array.isArray(rows));
  const keys=new Set();for(const row of rows){assert.equal(typeof row.key,'string');assert.equal(typeof row.dump,'string');assert.ok(Number.isSafeInteger(row.ttl)&&row.ttl>=-1);assert.ok(!keys.has(row.key));keys.add(row.key);}
  return m;

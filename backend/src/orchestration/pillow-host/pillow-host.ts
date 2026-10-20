@@ -791,6 +791,11 @@ export class PillowHost {
         this.ensureRunning();
         return this.pillowSession.visualMemory.withRecoverySnapshot(capture);
     }
+    async withSessionContinuityRecoveryCapture<T>(capture:(snapshot:unknown,journal:unknown)=>Promise<T>):Promise<T> {
+        this.ensureRunning();
+        return this.pillowSession.sessionContinuity.withRecoverySnapshot(snapshot=>
+            this.pillowSession.digitalSoul.withRecoverySnapshot(journal=>capture(snapshot,journal)));
+    }
     captureVisualMemory() {
         this.ensureRunning();
         return this.pillowSession.visualMemory.captureMemoryNow();
