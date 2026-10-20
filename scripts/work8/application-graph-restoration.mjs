@@ -21,7 +21,8 @@ export function validateRestorationAuthorization({source,held,verification,inven
 }
 /** Generated, isolated application-graph examination only. Never promotes the
  * original inspection manifest or imports historical approval authority. */
-export async function examineApplicationGraph({source,evidence='/evidence',directory='/capture',resultFile='/results/application-graph-result.json'}){
+export async function examineApplicationGraph({source,evidence='/evidence',directory='/capture',resultFile='/results/application-graph-result.json',mode='graph'}){
+ assert.ok(['graph','index'].includes(mode),'RESTORATION_MODE_REQUIRED');
  const read=name=>JSON.parse(fs.readFileSync(path.join(evidence,name),'utf8'));
  const held=read('container-evidence/hh4-held.json'),inventory=read('container-evidence/hh4-worker-ready.json').inventory;
  validateRestorationAuthorization({source,held,inventory,verification:read('held-capture-external-verification.json')});
@@ -53,7 +54,7 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
  const port=await new Promise((resolve,reject)=>{const s=createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const port=s.address().port;s.close(()=>resolve(port));});});
  // Capture the port before closing (Node clears address on close).
  assert.ok(Number.isInteger(port),'ISOLATED_REDIS_PORT_REQUIRED');
- let server,redis,application,failure;const hardDeadline=setTimeout(()=>{try{fs.writeFileSync(resultFile,JSON.stringify({schema:'WORK8_APPLICATION_GRAPH_RESTORATION_V1',source,digest:held.digest,status:'FAIL',error:'ORIGINAL_APPLICATION_STARTUP_DEADLINE',cleanupRequiresOuterContainment:true}),{flag:'wx',mode:0o600});}finally{console.error('APPLICATION_RESTORATION_HARD_DEADLINE');process.exit(1);}},Math.max(1,deadline-Date.now()));hardDeadline.unref();const receipt={schema:'WORK8_APPLICATION_GRAPH_RESTORATION_V1',source,digest:held.digest,status:'FAIL',preboot,operationalRestoration:false,authorityImported:false,sourceManifestBootAllowed:false,paidInference:0,externalEffects:0,globalWriterTopology:false,protectedCustody:false,originalRequirementsAccepted:[]};
+ let server,redis,application,failure;const hardDeadline=setTimeout(()=>{try{fs.writeFileSync(resultFile,JSON.stringify({schema:'WORK8_APPLICATION_GRAPH_RESTORATION_V1',source,digest:held.digest,status:'FAIL',error:'ORIGINAL_APPLICATION_STARTUP_DEADLINE',cleanupRequiresOuterContainment:true}),{flag:'wx',mode:0o600});}finally{console.error('APPLICATION_RESTORATION_HARD_DEADLINE');process.exit(1);}},Math.max(1,deadline-Date.now()));hardDeadline.unref();const receipt={schema:'WORK8_APPLICATION_GRAPH_RESTORATION_V1',source,digest:held.digest,status:'FAIL',mode,preboot,operationalRestoration:false,authorityImported:false,sourceManifestBootAllowed:false,paidInference:0,externalEffects:0,globalWriterTopology:false,protectedCustody:false,originalRequirementsAccepted:[]};
  try{
   const redisDir=path.join(root,'redis');fs.mkdirSync(redisDir,{mode:0o700});
   server=spawn('/usr/bin/redis-server',['--bind','127.0.0.1','--port',String(port),'--dir',redisDir,'--save','','--appendonly','yes','--appendfsync','always'],{stdio:['ignore','pipe','inherit']});
@@ -64,6 +65,7 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
   const runId=(await redis.info('server')).match(/^run_id:([a-f0-9]{40})\r?$/m)?.[1];assert.ok(runId);
   const {restoreWork8RedisInspection}=await import('../../backend/dist/runtime/work8-recovery-capture.js');
   const restored=await restoreWork8RedisInspection({directory,digest:held.digest,mode:'inspection-only',expectedCaptureOwner:manifest.redisIdentity.owner,expectedSource:manifest.redisIdentity,expectedTarget:{runId,db:0}},redis);
+  if(mode==='graph'){
   const {buildApp}=await import('../../backend/dist/app.js');application=await buildApp({startWorkers:false,startScheduler:false,earlyListen:false});
   await application.app.ready();
   const {getPillowHost}=await import('../../backend/dist/orchestration/pillow-host/pillow-host.js');const host=getPillowHost();
@@ -77,17 +79,22 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
   assert.deepEqual(tableDigests(path.join(root,LAYOUT.execution)),beforeTables.execution,'PENDING_EXECUTION_CHANGED_WITHOUT_AUTHORITY');
   assert.deepEqual(host.getMissionRuntimeHistory(),inventory.domains.missions.publicReadback,'MISSION_HISTORY_CHANGED');
   const {FinancialCentre}=await import('../../backend/dist/finance/financial-centre.js');const finance=new FinancialCentre(path.join(root,LAYOUT.financialEvidence));try{assert.deepEqual(finance.entries(inventory.workspace),inventory.domains.financialEvidence.publicReadback);}finally{finance.close();}
+  }else{
+   const {examineRestoredIndex}=await import('./index-restoration-phase.mjs');
+   receipt.index=await examineRestoredIndex({repo,deadline,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner});
+   for(const id of ['missions','execution','financialEvidence','liveCostCentre'])assert.deepEqual(tableDigests(path.join(root,LAYOUT[id])),beforeTables[id],id+'_INDEX_RECORDS_CHANGED');
+  }
   const {listExecutiveDecisionRecords}=await import('../../pillow/dist/digital-soul/decision-record.js');
   assert.deepEqual(await listExecutiveDecisionRecords(repo),Buffer.from(journal.file.bytes,'base64').toString().split('\n').filter(x=>x.trim()).map(x=>JSON.parse(x)));
   assert.ok(fs.readFileSync(boundJournal).equals(Buffer.from(journal.file.bytes,'base64')));
   recovery.verifyRuntimeRecoverySet({directory,digest:held.digest});
   receipt.targetTableChanges=[];for(const [id,relative]of Object.entries(LAYOUT)){const after=tableDigests(path.join(root,relative));for(const name of new Set([...Object.keys(beforeTables[id]),...Object.keys(after)])){if(JSON.stringify(beforeTables[id][name])!==JSON.stringify(after[name]))receipt.targetTableChanges.push({store:id,table:name,before:beforeTables[id][name]??null,after:after[name]??null,attribution:'APPLICATION_STARTUP_OR_READBACK_REQUIRES_INDEPENDENT_CLASSIFICATION'});}}
-  receipt.status=receipt.targetTableChanges.length?'AWAITING_INDEPENDENT_MUTATION_CLASSIFICATION':'PASS_SCOPED_APPLICATION_GRAPH_ONLY';receipt.originalSessionAuthenticated=true;receipt.missionAndFinancialHistoryPreserved=true;receipt.queueAdmissionRemainsFenced=true;receipt.indexWatchdogAndAmazonContinuationsExamined=false;receipt.pendingReplay='REUSE_ACCEPTED_SEPARATE_PROCESS_PROOF_NOT_REEXAMINED';
- }catch(error){failure=error;receipt.error=String(error);}
- finally{try{await application?.shutdown();}catch(error){failure??=error;receipt.status='FAIL';receipt.shutdownError=String(error);}redis?.disconnect();if(server&&server.exitCode===null){const exited=once(server,'exit');server.kill('SIGKILL');await exited;}clearTimeout(hardDeadline);receipt.redisProcessStopped=true;fs.writeFileSync(resultFile,JSON.stringify(receipt,null,2),{flag:'wx',mode:0o600});assert.equal(fs.realpathSync(runDirectory),runDirectory);const current=fs.statSync(runDirectory);assert.equal(current.dev,runIdentity.dev);assert.equal(current.ino,runIdentity.ino);fs.rmSync(runDirectory,{recursive:true,force:true});}
+  receipt.status=receipt.targetTableChanges.length?'AWAITING_INDEPENDENT_MUTATION_CLASSIFICATION':(mode==='index'?'PASS_SCOPED_INDEX_WATCHDOG_ONLY':'PASS_SCOPED_APPLICATION_GRAPH_ONLY');receipt.originalSessionAuthenticated=true;receipt.missionAndFinancialHistoryPreserved=true;receipt.queueAdmissionRemainsFenced=true;receipt.indexWatchdogAndAmazonContinuationsExamined=false;receipt.indexWatchdogExamined=mode==='index';receipt.pendingReplay='REUSE_ACCEPTED_SEPARATE_PROCESS_PROOF_NOT_REEXAMINED';
+ }catch(error){failure=error;receipt.error=String(error);if(error.indexReceipt)receipt.index=error.indexReceipt;}
+ finally{try{await application?.shutdown();}catch(error){failure??=error;receipt.status='FAIL';receipt.shutdownError=String(error);}redis?.disconnect();if(server&&server.exitCode===null){const exited=once(server,'exit');server.kill('SIGKILL');await exited;}if(!receipt.index?.cleanupRequiresOuterContainment)clearTimeout(hardDeadline);receipt.redisProcessStopped=true;fs.writeFileSync(resultFile,JSON.stringify(receipt,null,2),{flag:'wx',mode:0o600});assert.equal(fs.realpathSync(runDirectory),runDirectory);const current=fs.statSync(runDirectory);assert.equal(current.dev,runIdentity.dev);assert.equal(current.ino,runIdentity.ino);if(!receipt.index?.cleanupRequiresOuterContainment)fs.rmSync(runDirectory,{recursive:true,force:true});}
  if(failure)throw failure;return receipt;
 }
 export function prepareRestoredJournal({directory,digest,destination}){
  const recovery=require('../../deployment/work8-recovery-set.cjs');const manifest=recovery.verifyRuntimeRecoverySet({directory,digest});assert.ok(manifest.executiveDecisionJournalDigest);const snapshot=JSON.parse(fs.readFileSync(path.join(directory,'executive-decisions.json')));assert.ok(snapshot.file);return require('../../deployment/work8-session-continuity-recovery.cjs').materializeExecutiveDecisionJournal({snapshot,destination});
 }
-if(process.argv[1]===import.meta.filename)examineApplicationGraph({source:process.argv[2]}).catch(error=>{console.error(error);process.exitCode=1;});
+if(process.argv[1]===import.meta.filename)examineApplicationGraph({source:process.argv[2],mode:process.argv[3]??'graph',resultFile:process.argv[3]==='index'?'/results/index-restoration-result.json':'/results/application-graph-result.json'}).catch(error=>{console.error(error);process.exitCode=1;});
