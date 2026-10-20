@@ -147,6 +147,7 @@ function stageRuntimeRecoveryInspection({directory,digest,destination}) {
  verifyRuntimeRecoverySet({directory,digest});canonical(path.dirname(destination));assert.equal(path.resolve(destination),destination);assert.ok(!destination.startsWith(directory+path.sep));
  fs.mkdirSync(destination,{mode:0o700});const copy=path.join(destination,'sealed-evidence');fs.cpSync(directory,copy,{recursive:true,errorOnExist:true,force:false});verifyRuntimeRecoverySet({directory:copy,digest});
  if(Object.hasOwn(verifyRuntimeRecoverySet({directory:copy,digest}),'visualMemoryDigest'))materializeVisualMemoryInspection({directory:copy,digest,destination:path.join(destination,'visual-memory-inspection')});
+ require('./work8-runtime-inspection-layout.cjs').materializeRuntimeInspection({directory:copy,digest,destination:path.join(destination,'runtime-inspection')});
  fs.writeFileSync(path.join(destination,'INSPECTION_ONLY.json'),JSON.stringify({bootAllowed:false,noExecutionAuthority:true,digest}),{flag:'wx',mode:0o600});durableTree(destination);return {directory:destination,digest,bootAllowed:false};
 }
 Object.assign(module.exports,{materializeVisualMemoryInspection,verifyVisualMemorySnapshot,captureRuntimeRecoverySet,verifyRuntimeRecoverySet,finalizeRuntimeRecoverySet,stageRuntimeRecoveryInspection});
