@@ -1,0 +1,54 @@
+{
+  "schema": "WORK8_AUXILIARY_PERSISTENCE_ENGINEERING_V1",
+  "baseCommit": "9e6c259d2e1792e0a1886f053b1d8d0b4e36879e",
+  "baseTree": "41fd1325cfe94850d12b9b5febe77d3fd582f9c4",
+  "changedPaths": {
+    "backend/src/app.ts": "d411b49b352bf9302081da93e448076b600e1d38e06cd9627275d0938e033a23",
+    "backend/src/orchestration/pillow-host/pillow-host.ts": "2a467f043430e05847de1d184cb6bcc59d48c9af16d5bafa74403c4933ce0961",
+    "backend/src/runtime/work8-recovery-capture.ts": "46547a73f6d1c3fe7a3ea8ddb200cc99eaf9347e6cb87d6bf234bdb42e24bd69",
+    "backend/src/validation/tests/work8-session-continuity-recovery.test.mjs": "ff807bde8716b08b0f01b953c905b0164ac72fbab97a60ae1f9b0465a160596e",
+    "deployment/work8-recovery-set.cjs": "efcece0548662db66fa362d83e1d376b09ff706806ddd53119f75b204f9f09df",
+    "deployment/work8-runtime-inspection-layout.cjs": "5989ed8395b1ec4b63a2f92c258789bde0dca7acb1c02bba7a08b626a691b0db",
+    "deployment/work8-session-continuity-recovery.cjs": "7f550713d3af4b48065ecf3f31e72cd3a9735ddcfe082e11b370058a7efed3c1",
+    "pillow/src/digital-soul/decision-record.ts": "e4bb1b952e07dfbfb1ea10016459ba774e60a737fc8baaf7e0423e77601977c8",
+    "pillow/src/digital-soul/engine.ts": "b2340519925c93b60156ae000b216b4dbd04c3d7b6707fc127c5eadd36d265eb",
+    "pillow/src/digital-soul/recovery-snapshot.ts": "7e0ce6d693501a0fd8238e4a931c6b4e01f48b6fb608f54b2a87c210ebb02dcc",
+    "pillow/src/session-continuity-engine/continuity-controller.ts": "d63fe12e4a5e6c670efcf4dd00cf69c6be6b9dc1876a7dcdb4afc254bbd0ec3c",
+    "pillow/src/session-continuity-engine/engine.ts": "e824cbc88b8832c8f985407aee6db20d6b9e1d50207a68652574335a4fa628df",
+    "pillow/src/session-continuity-engine/recovery-snapshot.ts": "8adb5ad78b6358af275e18d82fc4d528e5801cb5b0bbf98252975c78ee0d407f",
+    "pillow/src/session-continuity-engine/session-context-store.ts": "14b64bac89eca0c3f1d5f647948e30e13ee954d6bb5e6acbceaaa420153fdb61"
+  },
+  "pillowCompile": {
+    "exitCode": 0,
+    "node": "22.23.2",
+    "command": "node pillow/node_modules/typescript/bin/tsc -p pillow/tsconfig.json",
+    "log": "auxiliary-persistence-pillow-build-final.log",
+    "compiledDist": "/workspace/scratch/7952261165b1/recovery-h/pillow/dist"
+  },
+  "targetedTests": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 1,
+    "log": "auxiliary-persistence-tests-final.tap",
+    "skipReason": "Local user namespace rejects non-root uid mapping with spawnSync EINVAL; existing normal non-root GitHub runner executes actual permission assertion",
+    "selectedByExistingProductGlob": true
+  },
+  "scope": [
+    "Coordinated exact Pillow UX continuity snapshot capture and fresh-process readback",
+    "No successful continuity bookkeeping on failed/busy persistence; initialization failclosed",
+    "Mutable DigitalSoul decision journal coordinated append/snapshot, immutable prior lines preserved, inert fresh-reader restoration",
+    "Both optional auxiliary digests bound into full13-store manifest; corruption refused before destination creation",
+    "Writable journal coordination namespace keyed to canonical source path, no writes to readonly application during capture; absent journal remains absent"
+  ],
+  "limits": [
+    "Only updated cooperating processes sharing declared writable lock namespace; prior/uncooperative processes not proven",
+    "Session snapshot remains singleton last-successful-writer behavior; no multi-owner merge guarantee",
+    "The Pillow UX continuity identity is not an authenticated Redis owner session; no extra auth or authority replay",
+    "Inspection targets never boot or import execution authority",
+    "Full operational restoration, global topology and protected custody remain unproven",
+    "Actual non-root readonly permission assertion pending hosted automatic execution"
+  ],
+  "reviewRequestedFrom": "certification_h",
+  "published": false,
+  "newCompleteAcceptance": false
+}

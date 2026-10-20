@@ -1,0 +1,28 @@
+{
+  "recordType": "A10_SERVER_CONSUMER_WIRING_SCOPE_REVIEW",
+  "decision": "NO_UNSAFE_EXISTING_AUTHORITY_REUSE",
+  "sourceFiles": {
+    "backend/src/runtime/commerce-runtime/governed/work8-preparation-authority.ts": "b516784ba8cfb8d3759ca999a85786e886cc2669fb3d85950f55aa979100805c",
+    "backend/src/execution/canva-connect-connector/services/canva-connect-service.ts": "f8cb606ccac6d83eb5000505adf4e715dd80b3bfb15c47968cc233091c072c94",
+    "backend/src/execution/canva-connect-connector/services/canva-oauth-service.ts": "c5ab4052181b1398fbacb9e2f8c38c4f5b5aa2e2d7537b6c0bdda8663ae589ed",
+    "backend/src/orchestration/visual-generation-layer/providers/canva-visual-provider.ts": "cfcc8a5bcdf8397b254e6481488898c1471438aeacb6e3f325d14f025ba243f1"
+  },
+  "existing": [
+    "CanvaVisualProvider.exportDesign delegates to existing authenticated CanvaConnectService",
+    "Workspace/company OAuth connection and credential-vault access exist",
+    "Work8CanvaMedia validates exact owner/workspace/source/edit/version binding and reserves immutable attempt before externaloperation"
+  ],
+  "missing": [
+    "Server-owned persisted exact-binding export/download grant checker including exact assetrights",
+    "Configured actual company identity bound to owner/workspace",
+    "Bounded HTTPS artifact reader with redirect/host/byte controls"
+  ],
+  "rejectedShortcut": "PreparationAuthority scopes explicitly local-only/externalEffectsfalse and cannot grant Canva export; owner-provided browser flags also cannot construct server ports. OAuth possession alone is not specific export authority.",
+  "minimumEngineeringPackage": "Durable exact-binding export grant/revocation consumer plus bounded artifact reader and server-side company configuration, defaultdeny; intercepted integration tests for cross-owner/workspace,expiry/revocation,asset/versionstaleness,replay,redirect/bytebounds,provenance and separate media approvals. This would not prove actual Canva entitlement/edit/export.",
+  "sourceEdited": false,
+  "liveExport": false,
+  "newAcceptance": false,
+  "controllerDecision": "Do not add nominal optionalports or a new grant package before genuine runtime company/scopes/access are known; preserve defaultdeny.",
+  "smallestNextAction": "Use genuine authenticated owner session to read existing Canva OAuth status for actual bound company, returning only connected/mock/scopes; establish company provenance. Verify applicable Keepa capability/entitlement through existing owner integration route without activating paidservices. Shared securelogin access dependency with business/Console lane.",
+  "healthCaution": "Canva health may resolve/refresh token; inspect OAuth status first. No token or credential output."
+}

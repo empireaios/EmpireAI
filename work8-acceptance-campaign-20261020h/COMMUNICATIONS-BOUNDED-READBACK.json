@@ -1,0 +1,1536 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"retrievedAt\":\"2026-10-20T07:51:57.132Z\",\"readOnly\":true,\"inferenceCalls\":0,\"externalRefresh\":false,\"workspace\":\"ws_empire_1\",\"domain\":\"communications\",\"grantsAuthority\":false,\"status\":\"AVAILABLE\",\"observedAt\":null,\"source\":\"owner-imported Advisor artifacts and internal work-item results\",\"data\":[{\"id\":\"advisor_result_advisor_inc_81e71808-7d77-403f-92ca-c723f5504ad2\",\"created\":\"2026-10-08T08:36:03.034Z\",\"handler\":\"ASSURANCE\",\"status\":\"COMPLETED\",\"result\":{\"executionIdentity\":\"API_ADVISOR\",\"taskId\":\"advisor_inc_81e71808-7d77-403f-92ca-c723f5504ad2\",\"incidentId\":\"inc_81e71808-7d77-403f-92ca-c723f5504ad2\",\"decision\":{\"finding\":\"Supplied evidence reports the derived reconciliation view as MISSING and unhealthy, with no repair attempts recorded. A derived-view rebuild is supported; Birth remains NOT_BORN and commerce remains LOCKED.\",\"evidenceRefs\":[\"inc_81e71808-7d77-403f-92ca-c723f5504ad2\",\"owner_f84c0566-d846-426e-a44f-bb5ea412536e\"],\"action\":\"RUNBOOK\",\"runbook\":\"rebuild_reconciliation_advisor\",\"uncertainty\":\"This is a repair proposal, not an executed repair. Current revision and immutable-source availability have not been independently verified. Execution must preserve every source record, affect only the derived reconciliation view, and leave Birth and commerce unchanged; no owner approval is inferred.\"},\"provider\":\"openai\",\"model\":\"gpt-6.1-sol\",\"usage\":{\"promptTokens\":674,\"completionTokens\":170,\"totalTokens\":844},\"provenance\":{\"capability\":\"analysis\",\"requestKey\":\"c1fc8059d0af9d02f1ace1d6e77df14cf1949405edfd7d3bda624d2324ea56f0\",\"attempts\":[{\"provider\":\"openai\",\"model\":\"gpt-6.1-sol\",\"outcome\":\"success\"}]},\"billingStatus\":\"USAGE_RECORDED_NOT_INVOICE\",\"synthetic\":false,\"actionId\":\"adv_action_0c1f5570139df6bc50f2663d98c47807\",\"receipt\":{\"id\":\"rec_b7fa22de-e253-42d7-9a9a-6d8f705c155d\",\"incidentId\":\"inc_81e71808-7d77-403f-92ca-c723f5504ad2\",\"runbookId\":\"rebuild_reconciliation_advisor\",\"runbookVersion\":\"1\",\"authority\":\"A\",\"revision\":\"6826b752906cd2cf0db7da7a9b705cc2c375b8d5\",\"status\":\"VERIFIED\",\"startedAt\":1791448562981,\"deadlineAt\":1791448582981,\"idempotencyKey\":\"8632ebdababb4cad59d174de14fa34a919f2628028a67e5a466832e0f3695fe4\",\"actor\":\"API_ADVISOR\",\"ownerApprovalActor\":null,\"approvalId\":null,\"result\":{\"status\":\"REBUILT\",\"sha256\":\"0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00\",\"sourceDigest\":\"9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46\",\"revision\":\"6826b752906cd2cf0db7da7a9b705cc2c375b8d5\"},\"verification\":{\"status\":\"VERIFIED\",\"healthy\":true,\"sha256\":\"0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00\",\"value\":{\"schema\":\"empire-reconciliation-v1\",\"workspace\":\"ws_empire_1\",\"sourceDigest\":\"9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46\",\"investigations\":[{\"missionId\":\"EMPIREAI-CANDIDATE-001\",\"requestId\":\"pcr_5fcf9b139bb54343\",\"predecessors\":[{\"requestId\":\"pcr_9a70c5d827a746b3\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_a9ce9198cde34896\",\"status\":\"COMPLETED\",\"failureClass\":\"BRAIN_SUCCESS\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}}],\"historicalMissionStatus\":\"FAILED\",\"resolution\":{\"status\":\"RESOLVED_BY_SUCCESSOR\",\"missionId\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"at\":\"2026-10-08T05:16:16.610Z\"},\"commercial\":{\"status\":\"ASSESSMENT_SPECIFIC_UNVERIFIED\",\"assessmentSha256\":null,\"originalObservedAt\":null,\"source\":null,\"originalTextUnchanged\":true},\"technicalWorkflow\":{\"status\":\"FAILED\",\"acceptedAt\":null,\"source\":{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001\",\"sha256\":\"e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e\",\"observedAt\":\"2026-10-08T04:09:51.295Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null}},\"durableResponse\":{\"status\":\"UNVERIFIED\",\"requestId\":\"pcr_5fcf9b139bb54343\",\"sha256\":null},\"independentReadback\":{\"status\":\"UNVERIFIED\",\"at\":null,\"attestedBy\":null,\"scope\":\"Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read\"},\"internalAccounting\":{\"status\":\"RECORDED_INTERNAL_USAGE\",\"callRecords\":1,\"reservedMicroUsd\":627091,\"estimatedMicroUsd\":117629,\"receipts\":[\"2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe\"]},\"providerInvoices\":{\"status\":\"UNVERIFIED\",\"settledMicroUsd\":null,\"reason\":\"Internal usage and reservation receipts are not independently available provider invoices\"},\"supersession\":null,\"historicalQualification\":\"No verified superseding technical closure\",\"evidence\":[],\"memory\":[],\"locks\":{\"birth\":\"UNVERIFIED\",\"commerce\":\"UNVERIFIED\",\"historicalOnly\":true},\"grantsAuthority\":false},{\"missionId\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"predecessors\":[{\"requestId\":\"pcr_9a70c5d827a746b3\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_a9ce9198cde34896\",\"status\":\"COMPLETED\",\"failureClass\":\"BRAIN_SUCCESS\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_5fcf9b139bb54343\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}}],\"historicalMissionStatus\":\"COMPLETE\",\"resolution\":null,\"commercial\":{\"status\":\"EVIDENCE_INSUFFICIENT\",\"assessmentSha256\":\"c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab\",\"originalObservedAt\":\"2026-10-08T05:14:34.374Z\",\"source\":{\"system\":\"PILLOW_ASSESSMENT\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9\",\"observedAt\":\"2026-10-08T05:14:34.374Z\",\"authority\":\"MODEL_GENERATED_HISTORICAL_ASSESSMENT\",\"revision\":null},\"originalTextUnchanged\":true},\"technicalWorkflow\":{\"status\":\"COMPLETE\",\"acceptedAt\":\"2026-10-08T05:16:16.610Z\",\"source\":{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"sha256\":\"9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1\",\"observedAt\":\"2026-10-08T05:16:16.610Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null}},\"durableResponse\":{\"status\":\"VERIFIED\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab\"},\"independentReadback\":{\"status\":\"COMPLETED_OWNER_ATTESTED\",\"at\":\"2026-10-08T05:16:16.610Z\",\"attestedBy\":\"AUTHENTICATED_OWNER\",\"scope\":\"Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read\"},\"internalAccounting\":{\"status\":\"RECORDED_INTERNAL_USAGE\",\"callRecords\":2,\"reservedMicroUsd\":1371635,\"estimatedMicroUsd\":273695,\"receipts\":[\"6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65\",\"b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23\"]},\"providerInvoices\":{\"status\":\"UNVERIFIED\",\"settledMicroUsd\":null,\"reason\":\"Internal usage and reservation receipts are not independently available provider invoices\"},\"supersession\":{\"kind\":\"LATER_TECHNICAL_EVIDENCE\",\"earlierAssessmentAt\":\"2026-10-08T05:14:34.374Z\",\"laterAcceptanceAt\":\"2026-10-08T05:16:16.610Z\",\"earlierAssessmentPreserved\":true,\"materialHistoricalClaimsMustUseBothSources\":true},\"historicalQualification\":\"Earlier uncertainty remains historical; later bound closure verifies technical acceptance only\",\"evidence\":[{\"system\":\"FOUR_EYES\",\"id\":\"ev_21c5f73fdfebd04f3741adb9b37056a88ea17934\",\"sha256\":\"b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802\",\"observedAt\":\"2026-10-08T05:13:53.372Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761\",\"sha256\":\"753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4\",\"observedAt\":\"2026-10-08T05:13:53.758Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb\",\"sha256\":\"8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40\",\"observedAt\":\"2026-10-08T05:13:53.493Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b\",\"sha256\":\"8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a\",\"observedAt\":\"2026-10-08T05:13:52.917Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7\",\"sha256\":\"6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73\",\"observedAt\":\"2026-10-08T05:13:52.565Z\",\"authority\":\"INTERNAL_UNVERIFIED\",\"revision\":null}],\"memory\":[{\"system\":\"INSTITUTIONAL_MEMORY\",\"id\":\"decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6\",\"sha256\":\"fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f\",\"observedAt\":\"2026-10-08T05:14:34.404Z\",\"authority\":\"MODEL_GENERATED_CLAIM\",\"revision\":null}],\"locks\":{\"birth\":\"NOT_BORN\",\"commerce\":\"LOCKED\",\"historicalOnly\":true},\"grantsAuthority\":false}],\"sources\":[{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001\",\"sha256\":\"e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e\",\"observedAt\":\"2026-10-08T04:09:51.295Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null},{\"system\":\"PILLOW_REQUEST\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe\",\"sha256\":\"f2a51d6d334ae9f21f1e74fc4f557f51216eec9a25c31f87d1bc383a897919dd\",\"observedAt\":\"2026-10-08T04:09:51.327Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null},{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"sha256\":\"9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1\",\"observedAt\":\"2026-10-08T05:16:16.610Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null},{\"system\":\"PILLOW_ASSESSMENT\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9\",\"observedAt\":\"2026-10-08T05:14:34.374Z\",\"authority\":\"MODEL_GENERATED_HISTORICAL_ASSESSMENT\",\"revision\":null},{\"system\":\"PILLOW_REQUEST\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"97110c50cc3838ebfa3d367b42369583734ee0037c577bbe5c3d55ab8bddc05e\",\"observedAt\":\"2026-10-08T05:14:34.471Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_21c5f73fdfebd04f3741adb9b37056a88ea17934\",\"sha256\":\"b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802\",\"observedAt\":\"2026-10-08T05:13:53.372Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761\",\"sha256\":\"753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4\",\"observedAt\":\"2026-10-08T05:13:53.758Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb\",\"sha256\":\"8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40\",\"observedAt\":\"2026-10-08T05:13:53.493Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b\",\"sha256\":\"8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a\",\"observedAt\":\"2026-10-08T05:13:52.917Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7\",\"sha256\":\"6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73\",\"observedAt\":\"2026-10-08T05:13:52.565Z\",\"authority\":\"INTERNAL_UNVERIFIED\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"INSTITUTIONAL_MEMORY\",\"id\":\"decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6\",\"sha256\":\"fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f\",\"observedAt\":\"2026-10-08T05:14:34.404Z\",\"authority\":\"MODEL_GENERATED_CLAIM\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65\",\"sha256\":\"11ef1f0ff8a9006ef405123afb5d807d67d4a9e962d88c8d16048514389b7cb2\",\"observedAt\":\"2026-10-08T05:13:30.917Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23\",\"sha256\":\"40066a7aa788013df3348c03963d88d6a46af9297837c29e8449c919a8758244\",\"observedAt\":\"2026-10-08T05:13:53.950Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null}],\"conflicts\":[],\"readOnly\":true,\"inferenceCalls\":0,\"commerceEffects\":0,\"grantsAuthority\":false,\"materializedAt\":\"2026-10-08T08:36:02.988Z\",\"revision\":\"6826b752906cd2cf0db7da7a9b705cc2c375b8d5\"}},\"completedAt\":1791448562998},\"verification\":{\"verified\":true,\"evidence\":{\"receipt\":{\"id\":\"rec_b7fa22de-e253-42d7-9a9a-6d8f705c155d\",\"incidentId\":\"inc_81e71808-7d77-403f-92ca-c723f5504ad2\",\"runbookId\":\"rebuild_reconciliation_advisor\",\"runbookVersion\":\"1\",\"authority\":\"A\",\"revision\":\"6826b752906cd2cf0db7da7a9b705cc2c375b8d5\",\"status\":\"VERIFIED\",\"startedAt\":1791448562981,\"deadlineAt\":1791448582981,\"idempotencyKey\":\"8632ebdababb4cad59d174de14fa34a919f2628028a67e5a466832e0f3695fe4\",\"actor\":\"API_ADVISOR\",\"ownerApprovalActor\":null,\"approvalId\":null,\"result\":{\"status\":\"REBUILT\",\"sha256\":\"0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00\",\"sourceDigest\":\"9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46\",\"revision\":\"6826b752906cd2cf0db7da7a9b705cc2c375b8d5\"},\"verification\":{\"status\":\"VERIFIED\",\"healthy\":true,\"sha256\":\"0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00\",\"value\":{\"schema\":\"empire-reconciliation-v1\",\"workspace\":\"ws_empire_1\",\"sourceDigest\":\"9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46\",\"investigations\":[{\"missionId\":\"EMPIREAI-CANDIDATE-001\",\"requestId\":\"pcr_5fcf9b139bb54343\",\"predecessors\":[{\"requestId\":\"pcr_9a70c5d827a746b3\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_a9ce9198cde34896\",\"status\":\"COMPLETED\",\"failureClass\":\"BRAIN_SUCCESS\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}}],\"historicalMissionStatus\":\"FAILED\",\"resolution\":{\"status\":\"RESOLVED_BY_SUCCESSOR\",\"missionId\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"at\":\"2026-10-08T05:16:16.610Z\"},\"commercial\":{\"status\":\"ASSESSMENT_SPECIFIC_UNVERIFIED\",\"assessmentSha256\":null,\"originalObservedAt\":null,\"source\":null,\"originalTextUnchanged\":true},\"technicalWorkflow\":{\"status\":\"FAILED\",\"acceptedAt\":null,\"source\":{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001\",\"sha256\":\"e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e\",\"observedAt\":\"2026-10-08T04:09:51.295Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null}},\"durableResponse\":{\"status\":\"UNVERIFIED\",\"requestId\":\"pcr_5fcf9b139bb54343\",\"sha256\":null},\"independentReadback\":{\"status\":\"UNVERIFIED\",\"at\":null,\"attestedBy\":null,\"scope\":\"Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read\"},\"internalAccounting\":{\"status\":\"RECORDED_INTERNAL_USAGE\",\"callRecords\":1,\"reservedMicroUsd\":627091,\"estimatedMicroUsd\":117629,\"receipts\":[\"2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe\"]},\"providerInvoices\":{\"status\":\"UNVERIFIED\",\"settledMicroUsd\":null,\"reason\":\"Internal usage and reservation receipts are not independently available provider invoices\"},\"supersession\":null,\"historicalQualification\":\"No verified superseding technical closure\",\"evidence\":[],\"memory\":[],\"locks\":{\"birth\":\"UNVERIFIED\",\"commerce\":\"UNVERIFIED\",\"historicalOnly\":true},\"grantsAuthority\":false},{\"missionId\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"predecessors\":[{\"requestId\":\"pcr_9a70c5d827a746b3\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_a9ce9198cde34896\",\"status\":\"COMPLETED\",\"failureClass\":\"BRAIN_SUCCESS\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_5fcf9b139bb54343\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}}],\"historicalMissionStatus\":\"COMPLETE\",\"resolution\":null,\"commercial\":{\"status\":\"EVIDENCE_INSUFFICIENT\",\"assessmentSha256\":\"c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab\",\"originalObservedAt\":\"2026-10-08T05:14:34.374Z\",\"source\":{\"system\":\"PILLOW_ASSESSMENT\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9\",\"observedAt\":\"2026-10-08T05:14:34.374Z\",\"authority\":\"MODEL_GENERATED_HISTORICAL_ASSESSMENT\",\"revision\":null},\"originalTextUnchanged\":true},\"technicalWorkflow\":{\"status\":\"COMPLETE\",\"acceptedAt\":\"2026-10-08T05:16:16.610Z\",\"source\":{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"sha256\":\"9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1\",\"observedAt\":\"2026-10-08T05:16:16.610Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null}},\"durableResponse\":{\"status\":\"VERIFIED\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab\"},\"independentReadback\":{\"status\":\"COMPLETED_OWNER_ATTESTED\",\"at\":\"2026-10-08T05:16:16.610Z\",\"attestedBy\":\"AUTHENTICATED_OWNER\",\"scope\":\"Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read\"},\"internalAccounting\":{\"status\":\"RECORDED_INTERNAL_USAGE\",\"callRecords\":2,\"reservedMicroUsd\":1371635,\"estimatedMicroUsd\":273695,\"receipts\":[\"6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65\",\"b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23\"]},\"providerInvoices\":{\"status\":\"UNVERIFIED\",\"settledMicroUsd\":null,\"reason\":\"Internal usage and reservation receipts are not independently available provider invoices\"},\"supersession\":{\"kind\":\"LATER_TECHNICAL_EVIDENCE\",\"earlierAssessmentAt\":\"2026-10-08T05:14:34.374Z\",\"laterAcceptanceAt\":\"2026-10-08T05:16:16.610Z\",\"earlierAssessmentPreserved\":true,\"materialHistoricalClaimsMustUseBothSources\":true},\"historicalQualification\":\"Earlier uncertainty remains historical; later bound closure verifies technical acceptance only\",\"evidence\":[{\"system\":\"FOUR_EYES\",\"id\":\"ev_21c5f73fdfebd04f3741adb9b37056a88ea17934\",\"sha256\":\"b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802\",\"observedAt\":\"2026-10-08T05:13:53.372Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761\",\"sha256\":\"753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4\",\"observedAt\":\"2026-10-08T05:13:53.758Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb\",\"sha256\":\"8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40\",\"observedAt\":\"2026-10-08T05:13:53.493Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b\",\"sha256\":\"8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a\",\"observedAt\":\"2026-10-08T05:13:52.917Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7\",\"sha256\":\"6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73\",\"observedAt\":\"2026-10-08T05:13:52.565Z\",\"authority\":\"INTERNAL_UNVERIFIED\",\"revision\":null}],\"memory\":[{\"system\":\"INSTITUTIONAL_MEMORY\",\"id\":\"decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6\",\"sha256\":\"fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f\",\"observedAt\":\"2026-10-08T05:14:34.404Z\",\"authority\":\"MODEL_GENERATED_CLAIM\",\"revision\":null}],\"locks\":{\"birth\":\"NOT_BORN\",\"commerce\":\"LOCKED\",\"historicalOnly\":true},\"grantsAuthority\":false}],\"sources\":[{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001\",\"sha256\":\"e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e\",\"observedAt\":\"2026-10-08T04:09:51.295Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null},{\"system\":\"PILLOW_REQUEST\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe\",\"sha256\":\"f2a51d6d334ae9f21f1e74fc4f557f51216eec9a25c31f87d1bc383a897919dd\",\"observedAt\":\"2026-10-08T04:09:51.327Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null},{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"sha256\":\"9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1\",\"observedAt\":\"2026-10-08T05:16:16.610Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null},{\"system\":\"PILLOW_ASSESSMENT\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9\",\"observedAt\":\"2026-10-08T05:14:34.374Z\",\"authority\":\"MODEL_GENERATED_HISTORICAL_ASSESSMENT\",\"revision\":null},{\"system\":\"PILLOW_REQUEST\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"97110c50cc3838ebfa3d367b42369583734ee0037c577bbe5c3d55ab8bddc05e\",\"observedAt\":\"2026-10-08T05:14:34.471Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_21c5f73fdfebd04f3741adb9b37056a88ea17934\",\"sha256\":\"b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802\",\"observedAt\":\"2026-10-08T05:13:53.372Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761\",\"sha256\":\"753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4\",\"observedAt\":\"2026-10-08T05:13:53.758Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb\",\"sha256\":\"8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40\",\"observedAt\":\"2026-10-08T05:13:53.493Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b\",\"sha256\":\"8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a\",\"observedAt\":\"2026-10-08T05:13:52.917Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7\",\"sha256\":\"6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73\",\"observedAt\":\"2026-10-08T05:13:52.565Z\",\"authority\":\"INTERNAL_UNVERIFIED\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"INSTITUTIONAL_MEMORY\",\"id\":\"decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6\",\"sha256\":\"fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f\",\"observedAt\":\"2026-10-08T05:14:34.404Z\",\"authority\":\"MODEL_GENERATED_CLAIM\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65\",\"sha256\":\"11ef1f0ff8a9006ef405123afb5d807d67d4a9e962d88c8d16048514389b7cb2\",\"observedAt\":\"2026-10-08T05:13:30.917Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23\",\"sha256\":\"40066a7aa788013df3348c03963d88d6a46af9297837c29e8449c919a8758244\",\"observedAt\":\"2026-10-08T05:13:53.950Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null}],\"conflicts\":[],\"readOnly\":true,\"inferenceCalls\":0,\"commerceEffects\":0,\"grantsAuthority\":false,\"materializedAt\":\"2026-10-08T08:36:02.988Z\",\"revision\":\"6826b752906cd2cf0db7da7a9b705cc2c375b8d5\"}},\"completedAt\":1791448562998},\"reconciliation\":{\"status\":\"VERIFIED\",\"healthy\":true,\"sha256\":\"0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00\",\"value\":{\"schema\":\"empire-reconciliation-v1\",\"workspace\":\"ws_empire_1\",\"sourceDigest\":\"9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46\",\"investigations\":[{\"missionId\":\"EMPIREAI-CANDIDATE-001\",\"requestId\":\"pcr_5fcf9b139bb54343\",\"predecessors\":[{\"requestId\":\"pcr_9a70c5d827a746b3\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_a9ce9198cde34896\",\"status\":\"COMPLETED\",\"failureClass\":\"BRAIN_SUCCESS\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}}],\"historicalMissionStatus\":\"FAILED\",\"resolution\":{\"status\":\"RESOLVED_BY_SUCCESSOR\",\"missionId\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"at\":\"2026-10-08T05:16:16.610Z\"},\"commercial\":{\"status\":\"ASSESSMENT_SPECIFIC_UNVERIFIED\",\"assessmentSha256\":null,\"originalObservedAt\":null,\"source\":null,\"originalTextUnchanged\":true},\"technicalWorkflow\":{\"status\":\"FAILED\",\"acceptedAt\":null,\"source\":{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001\",\"sha256\":\"e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e\",\"observedAt\":\"2026-10-08T04:09:51.295Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null}},\"durableResponse\":{\"status\":\"UNVERIFIED\",\"requestId\":\"pcr_5fcf9b139bb54343\",\"sha256\":null},\"independentReadback\":{\"status\":\"UNVERIFIED\",\"at\":null,\"attestedBy\":null,\"scope\":\"Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read\"},\"internalAccounting\":{\"status\":\"RECORDED_INTERNAL_USAGE\",\"callRecords\":1,\"reservedMicroUsd\":627091,\"estimatedMicroUsd\":117629,\"receipts\":[\"2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe\"]},\"providerInvoices\":{\"status\":\"UNVERIFIED\",\"settledMicroUsd\":null,\"reason\":\"Internal usage and reservation receipts are not independently available provider invoices\"},\"supersession\":null,\"historicalQualification\":\"No verified superseding technical closure\",\"evidence\":[],\"memory\":[],\"locks\":{\"birth\":\"UNVERIFIED\",\"commerce\":\"UNVERIFIED\",\"historicalOnly\":true},\"grantsAuthority\":false},{\"missionId\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"predecessors\":[{\"requestId\":\"pcr_9a70c5d827a746b3\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_a9ce9198cde34896\",\"status\":\"COMPLETED\",\"failureClass\":\"BRAIN_SUCCESS\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}},{\"requestId\":\"pcr_5fcf9b139bb54343\",\"status\":\"FAILED_FATAL\",\"failureClass\":\"BRAIN_FATAL\",\"source\":{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null}}],\"historicalMissionStatus\":\"COMPLETE\",\"resolution\":null,\"commercial\":{\"status\":\"EVIDENCE_INSUFFICIENT\",\"assessmentSha256\":\"c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab\",\"originalObservedAt\":\"2026-10-08T05:14:34.374Z\",\"source\":{\"system\":\"PILLOW_ASSESSMENT\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9\",\"observedAt\":\"2026-10-08T05:14:34.374Z\",\"authority\":\"MODEL_GENERATED_HISTORICAL_ASSESSMENT\",\"revision\":null},\"originalTextUnchanged\":true},\"technicalWorkflow\":{\"status\":\"COMPLETE\",\"acceptedAt\":\"2026-10-08T05:16:16.610Z\",\"source\":{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"sha256\":\"9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1\",\"observedAt\":\"2026-10-08T05:16:16.610Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null}},\"durableResponse\":{\"status\":\"VERIFIED\",\"requestId\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab\"},\"independentReadback\":{\"status\":\"COMPLETED_OWNER_ATTESTED\",\"at\":\"2026-10-08T05:16:16.610Z\",\"attestedBy\":\"AUTHENTICATED_OWNER\",\"scope\":\"Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read\"},\"internalAccounting\":{\"status\":\"RECORDED_INTERNAL_USAGE\",\"callRecords\":2,\"reservedMicroUsd\":1371635,\"estimatedMicroUsd\":273695,\"receipts\":[\"6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65\",\"b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23\"]},\"providerInvoices\":{\"status\":\"UNVERIFIED\",\"settledMicroUsd\":null,\"reason\":\"Internal usage and reservation receipts are not independently available provider invoices\"},\"supersession\":{\"kind\":\"LATER_TECHNICAL_EVIDENCE\",\"earlierAssessmentAt\":\"2026-10-08T05:14:34.374Z\",\"laterAcceptanceAt\":\"2026-10-08T05:16:16.610Z\",\"earlierAssessmentPreserved\":true,\"materialHistoricalClaimsMustUseBothSources\":true},\"historicalQualification\":\"Earlier uncertainty remains historical; later bound closure verifies technical acceptance only\",\"evidence\":[{\"system\":\"FOUR_EYES\",\"id\":\"ev_21c5f73fdfebd04f3741adb9b37056a88ea17934\",\"sha256\":\"b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802\",\"observedAt\":\"2026-10-08T05:13:53.372Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761\",\"sha256\":\"753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4\",\"observedAt\":\"2026-10-08T05:13:53.758Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb\",\"sha256\":\"8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40\",\"observedAt\":\"2026-10-08T05:13:53.493Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b\",\"sha256\":\"8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a\",\"observedAt\":\"2026-10-08T05:13:52.917Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7\",\"sha256\":\"6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73\",\"observedAt\":\"2026-10-08T05:13:52.565Z\",\"authority\":\"INTERNAL_UNVERIFIED\",\"revision\":null}],\"memory\":[{\"system\":\"INSTITUTIONAL_MEMORY\",\"id\":\"decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6\",\"sha256\":\"fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f\",\"observedAt\":\"2026-10-08T05:14:34.404Z\",\"authority\":\"MODEL_GENERATED_CLAIM\",\"revision\":null}],\"locks\":{\"birth\":\"NOT_BORN\",\"commerce\":\"LOCKED\",\"historicalOnly\":true},\"grantsAuthority\":false}],\"sources\":[{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001\",\"sha256\":\"e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e\",\"observedAt\":\"2026-10-08T04:09:51.295Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null},{\"system\":\"PILLOW_REQUEST\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe\",\"sha256\":\"f2a51d6d334ae9f21f1e74fc4f557f51216eec9a25c31f87d1bc383a897919dd\",\"observedAt\":\"2026-10-08T04:09:51.327Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null},{\"system\":\"MISSION_LEDGER\",\"id\":\"EMPIREAI-CANDIDATE-001-FOLLOWUP\",\"sha256\":\"9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1\",\"observedAt\":\"2026-10-08T05:16:16.610Z\",\"authority\":\"DURABLE_WORKFLOW_RECORD\",\"revision\":null},{\"system\":\"PILLOW_ASSESSMENT\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9\",\"observedAt\":\"2026-10-08T05:14:34.374Z\",\"authority\":\"MODEL_GENERATED_HISTORICAL_ASSESSMENT\",\"revision\":null},{\"system\":\"PILLOW_REQUEST\",\"id\":\"pcr_27fb1ed5ddb24f5a\",\"sha256\":\"97110c50cc3838ebfa3d367b42369583734ee0037c577bbe5c3d55ab8bddc05e\",\"observedAt\":\"2026-10-08T05:14:34.471Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_21c5f73fdfebd04f3741adb9b37056a88ea17934\",\"sha256\":\"b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802\",\"observedAt\":\"2026-10-08T05:13:53.372Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761\",\"sha256\":\"753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4\",\"observedAt\":\"2026-10-08T05:13:53.758Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb\",\"sha256\":\"8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40\",\"observedAt\":\"2026-10-08T05:13:53.493Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b\",\"sha256\":\"8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a\",\"observedAt\":\"2026-10-08T05:13:52.917Z\",\"authority\":\"LIVE_PROVIDER\",\"revision\":null},{\"system\":\"FOUR_EYES\",\"id\":\"ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7\",\"sha256\":\"6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73\",\"observedAt\":\"2026-10-08T05:13:52.565Z\",\"authority\":\"INTERNAL_UNVERIFIED\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_9a70c5d827a746b3\",\"sha256\":\"cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc\",\"observedAt\":\"2026-10-08T01:09:09.061Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_a9ce9198cde34896\",\"sha256\":\"9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1\",\"observedAt\":\"2026-10-08T03:07:14.731Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"PILLOW_PREDECESSOR\",\"id\":\"pcr_5fcf9b139bb54343\",\"sha256\":\"6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c\",\"observedAt\":\"2026-10-08T04:10:13.359Z\",\"authority\":\"DURABLE_REQUEST_RECEIPT\",\"revision\":null},{\"system\":\"INSTITUTIONAL_MEMORY\",\"id\":\"decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6\",\"sha256\":\"fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f\",\"observedAt\":\"2026-10-08T05:14:34.404Z\",\"authority\":\"MODEL_GENERATED_CLAIM\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65\",\"sha256\":\"11ef1f0ff8a9006ef405123afb5d807d67d4a9e962d88c8d16048514389b7cb2\",\"observedAt\":\"2026-10-08T05:13:30.917Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null},{\"system\":\"INFERENCE_ACCOUNTING\",\"id\":\"b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23\",\"sha256\":\"40066a7aa788013df3348c03963d88d6a46af9297837c29e8449c919a8758244\",\"observedAt\":\"2026-10-08T05:13:53.950Z\",\"authority\":\"INTERNAL_RESERVATION_AND_USAGE\",\"revision\":null}],\"conflicts\":[],\"readOnly\":true,\"inferenceCalls\":0,\"commerceEffects\":0,\"grantsAuthority\":false,\"materializedAt\":\"2026-10-08T08:36:02.988Z\",\"revision\":\"6826b752906cd2cf0db7da7a9b705cc2c375b8d5\"}}}}},\"request_id\":null},{\"id\":\"work1_audit_20261008_1523\",\"created\":\"2026-10-08T15:48:50.191Z\",\"handler\":\"SOFTWARE\",\"status\":\"COMPLETED\",\"result\":{\"code\":\"RECORDED_UNTRUSTED_EVIDENCE\",\"grantsAuthority\":false,\"externalEffect\":false,\"source\":\"KING_ADVISOR\",\"provenance\":\"owner-imported untrusted artifact; not owner endorsement\",\"synthetic\":false},\"request_id\":null},{\"id\":\"work1_audit_final_20261008\",\"created\":\"2026-10-08T16:21:22.503Z\",\"handler\":\"SOFTWARE\",\"status\":\"COMPLETED\",\"result\":{\"code\":\"RECORDED_UNTRUSTED_EVIDENCE\",\"grantsAuthority\":false,\"externalEffect\":false,\"source\":\"KING_ADVISOR\",\"provenance\":\"owner-imported untrusted artifact; not owner endorsement\",\"synthetic\":false},\"request_id\":null},{\"id\":\"work1_release_20261009\",\"created\":\"2026-10-08T16:46:04.870Z\",\"handler\":\"SOFTWARE\",\"status\":\"COMPLETED\",\"result\":{\"code\":\"RECORDED_UNTRUSTED_EVIDENCE\",\"grantsAuthority\":false,\"externalEffect\":false,\"source\":\"KING_ADVISOR\",\"provenance\":\"owner-imported untrusted artifact; not owner endorsement\",\"synthetic\":false},\"request_id\":null},{\"id\":\"work2-production-ceo-v1\",\"created\":\"2026-10-07T13:54:31.391Z\",\"handler\":\"PILLOW\",\"status\":\"BLOCKED\",\"result\":{\"code\":\"SYNTHETIC_NO_INFERENCE\",\"boundary\":\"acceptDurableChatRequestClaim\",\"route\":\"PILLOW\",\"inferenceCalls\":0,\"completedJudgment\":false},\"request_id\":null},{\"id\":\"work2-production-gap-v1\",\"created\":\"2026-10-07T13:54:31.272Z\",\"handler\":\"BLOCKED\",\"status\":\"BLOCKED\",\"result\":{\"code\":\"CAPABILITY_GAP\",\"grantsAuthority\":false,\"externalEffect\":false,\"source\":\"KING_ADVISOR\",\"provenance\":\"owner-imported untrusted artifact; not owner endorsement\",\"synthetic\":true},\"request_id\":null},{\"id\":\"work2-production-hostile-v1\",\"created\":\"2026-10-07T13:54:31.178Z\",\"handler\":\"BLOCKED\",\"status\":\"BLOCKED\",\"result\":{\"code\":\"BLOCKED_NOT_BORN\",\"grantsAuthority\":false,\"externalEffect\":false,\"source\":\"KING_ADVISOR\",\"provenance\":\"owner-imported untrusted artifact; not owner endorsement\",\"synthetic\":true},\"request_id\":null},{\"id\":\"work2-production-note-v1\",\"created\":\"2026-10-07T13:54:30.810Z\",\"handler\":\"SOFTWARE\",\"status\":\"COMPLETED\",\"result\":{\"code\":\"RECORDED_UNTRUSTED_EVIDENCE\",\"grantsAuthority\":false,\"externalEffect\":false,\"source\":\"KING_ADVISOR\",\"provenance\":\"owner-imported untrusted artifact; not owner endorsement\",\"synthetic\":true},\"request_id\":null},{\"id\":\"work2-production-owner-v1\",\"created\":\"2026-10-07T13:54:31.500Z\",\"handler\":\"GRAND_KING\",\"status\":\"AWAITING_OWNER\",\"result\":{\"code\":\"AUTHORITY_REQUIRED\",\"grantsAuthority\":false,\"externalEffect\":false,\"source\":\"KING_ADVISOR\",\"provenance\":\"owner-imported untrusted artifact; not owner endorsement\",\"synthetic\":true},\"request_id\":null}],\"coverage\":{\"limit\":10,\"after\":\"\",\"since\":null,\"complete\":false,\"providerAccessVerified\":false,\"businessAuthenticity\":\"UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce\",\"missingFields\":\"Not stored or not exposed; do not infer approval, execution or complete economics\"}}"
+    }
+  ],
+  "structuredContent": {
+    "retrievedAt": "2026-10-20T07:51:57.132Z",
+    "readOnly": true,
+    "inferenceCalls": 0,
+    "externalRefresh": false,
+    "workspace": "ws_empire_1",
+    "domain": "communications",
+    "grantsAuthority": false,
+    "status": "AVAILABLE",
+    "observedAt": null,
+    "source": "owner-imported Advisor artifacts and internal work-item results",
+    "data": [
+      {
+        "id": "advisor_result_advisor_inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+        "created": "2026-10-08T08:36:03.034Z",
+        "handler": "ASSURANCE",
+        "status": "COMPLETED",
+        "result": {
+          "executionIdentity": "API_ADVISOR",
+          "taskId": "advisor_inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+          "incidentId": "inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+          "decision": {
+            "finding": "Supplied evidence reports the derived reconciliation view as MISSING and unhealthy, with no repair attempts recorded. A derived-view rebuild is supported; Birth remains NOT_BORN and commerce remains LOCKED.",
+            "evidenceRefs": [
+              "inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+              "owner_f84c0566-d846-426e-a44f-bb5ea412536e"
+            ],
+            "action": "RUNBOOK",
+            "runbook": "rebuild_reconciliation_advisor",
+            "uncertainty": "This is a repair proposal, not an executed repair. Current revision and immutable-source availability have not been independently verified. Execution must preserve every source record, affect only the derived reconciliation view, and leave Birth and commerce unchanged; no owner approval is inferred."
+          },
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "usage": {
+            "promptTokens": 674,
+            "completionTokens": 170,
+            "totalTokens": 844
+          },
+          "provenance": {
+            "capability": "analysis",
+            "requestKey": "c1fc8059d0af9d02f1ace1d6e77df14cf1949405edfd7d3bda624d2324ea56f0",
+            "attempts": [
+              {
+                "provider": "openai",
+                "model": "gpt-6.1-sol",
+                "outcome": "success"
+              }
+            ]
+          },
+          "billingStatus": "USAGE_RECORDED_NOT_INVOICE",
+          "synthetic": false,
+          "actionId": "adv_action_0c1f5570139df6bc50f2663d98c47807",
+          "receipt": {
+            "id": "rec_b7fa22de-e253-42d7-9a9a-6d8f705c155d",
+            "incidentId": "inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+            "runbookId": "rebuild_reconciliation_advisor",
+            "runbookVersion": "1",
+            "authority": "A",
+            "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+            "status": "VERIFIED",
+            "startedAt": 1791448562981,
+            "deadlineAt": 1791448582981,
+            "idempotencyKey": "8632ebdababb4cad59d174de14fa34a919f2628028a67e5a466832e0f3695fe4",
+            "actor": "API_ADVISOR",
+            "ownerApprovalActor": null,
+            "approvalId": null,
+            "result": {
+              "status": "REBUILT",
+              "sha256": "0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00",
+              "sourceDigest": "9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46",
+              "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5"
+            },
+            "verification": {
+              "status": "VERIFIED",
+              "healthy": true,
+              "sha256": "0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00",
+              "value": {
+                "schema": "empire-reconciliation-v1",
+                "workspace": "ws_empire_1",
+                "sourceDigest": "9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46",
+                "investigations": [
+                  {
+                    "missionId": "EMPIREAI-CANDIDATE-001",
+                    "requestId": "pcr_5fcf9b139bb54343",
+                    "predecessors": [
+                      {
+                        "requestId": "pcr_9a70c5d827a746b3",
+                        "status": "FAILED_FATAL",
+                        "failureClass": "BRAIN_FATAL",
+                        "source": {
+                          "system": "PILLOW_PREDECESSOR",
+                          "id": "pcr_9a70c5d827a746b3",
+                          "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                          "observedAt": "2026-10-08T01:09:09.061Z",
+                          "authority": "DURABLE_REQUEST_RECEIPT",
+                          "revision": null
+                        }
+                      },
+                      {
+                        "requestId": "pcr_a9ce9198cde34896",
+                        "status": "COMPLETED",
+                        "failureClass": "BRAIN_SUCCESS",
+                        "source": {
+                          "system": "PILLOW_PREDECESSOR",
+                          "id": "pcr_a9ce9198cde34896",
+                          "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                          "observedAt": "2026-10-08T03:07:14.731Z",
+                          "authority": "DURABLE_REQUEST_RECEIPT",
+                          "revision": null
+                        }
+                      }
+                    ],
+                    "historicalMissionStatus": "FAILED",
+                    "resolution": {
+                      "status": "RESOLVED_BY_SUCCESSOR",
+                      "missionId": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                      "requestId": "pcr_27fb1ed5ddb24f5a",
+                      "at": "2026-10-08T05:16:16.610Z"
+                    },
+                    "commercial": {
+                      "status": "ASSESSMENT_SPECIFIC_UNVERIFIED",
+                      "assessmentSha256": null,
+                      "originalObservedAt": null,
+                      "source": null,
+                      "originalTextUnchanged": true
+                    },
+                    "technicalWorkflow": {
+                      "status": "FAILED",
+                      "acceptedAt": null,
+                      "source": {
+                        "system": "MISSION_LEDGER",
+                        "id": "EMPIREAI-CANDIDATE-001",
+                        "sha256": "e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e",
+                        "observedAt": "2026-10-08T04:09:51.295Z",
+                        "authority": "DURABLE_WORKFLOW_RECORD",
+                        "revision": null
+                      }
+                    },
+                    "durableResponse": {
+                      "status": "UNVERIFIED",
+                      "requestId": "pcr_5fcf9b139bb54343",
+                      "sha256": null
+                    },
+                    "independentReadback": {
+                      "status": "UNVERIFIED",
+                      "at": null,
+                      "attestedBy": null,
+                      "scope": "Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read"
+                    },
+                    "internalAccounting": {
+                      "status": "RECORDED_INTERNAL_USAGE",
+                      "callRecords": 1,
+                      "reservedMicroUsd": 627091,
+                      "estimatedMicroUsd": 117629,
+                      "receipts": [
+                        "2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe"
+                      ]
+                    },
+                    "providerInvoices": {
+                      "status": "UNVERIFIED",
+                      "settledMicroUsd": null,
+                      "reason": "Internal usage and reservation receipts are not independently available provider invoices"
+                    },
+                    "supersession": null,
+                    "historicalQualification": "No verified superseding technical closure",
+                    "evidence": [],
+                    "memory": [],
+                    "locks": {
+                      "birth": "UNVERIFIED",
+                      "commerce": "UNVERIFIED",
+                      "historicalOnly": true
+                    },
+                    "grantsAuthority": false
+                  },
+                  {
+                    "missionId": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                    "requestId": "pcr_27fb1ed5ddb24f5a",
+                    "predecessors": [
+                      {
+                        "requestId": "pcr_9a70c5d827a746b3",
+                        "status": "FAILED_FATAL",
+                        "failureClass": "BRAIN_FATAL",
+                        "source": {
+                          "system": "PILLOW_PREDECESSOR",
+                          "id": "pcr_9a70c5d827a746b3",
+                          "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                          "observedAt": "2026-10-08T01:09:09.061Z",
+                          "authority": "DURABLE_REQUEST_RECEIPT",
+                          "revision": null
+                        }
+                      },
+                      {
+                        "requestId": "pcr_a9ce9198cde34896",
+                        "status": "COMPLETED",
+                        "failureClass": "BRAIN_SUCCESS",
+                        "source": {
+                          "system": "PILLOW_PREDECESSOR",
+                          "id": "pcr_a9ce9198cde34896",
+                          "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                          "observedAt": "2026-10-08T03:07:14.731Z",
+                          "authority": "DURABLE_REQUEST_RECEIPT",
+                          "revision": null
+                        }
+                      },
+                      {
+                        "requestId": "pcr_5fcf9b139bb54343",
+                        "status": "FAILED_FATAL",
+                        "failureClass": "BRAIN_FATAL",
+                        "source": {
+                          "system": "PILLOW_PREDECESSOR",
+                          "id": "pcr_5fcf9b139bb54343",
+                          "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                          "observedAt": "2026-10-08T04:10:13.359Z",
+                          "authority": "DURABLE_REQUEST_RECEIPT",
+                          "revision": null
+                        }
+                      }
+                    ],
+                    "historicalMissionStatus": "COMPLETE",
+                    "resolution": null,
+                    "commercial": {
+                      "status": "EVIDENCE_INSUFFICIENT",
+                      "assessmentSha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab",
+                      "originalObservedAt": "2026-10-08T05:14:34.374Z",
+                      "source": {
+                        "system": "PILLOW_ASSESSMENT",
+                        "id": "pcr_27fb1ed5ddb24f5a",
+                        "sha256": "f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9",
+                        "observedAt": "2026-10-08T05:14:34.374Z",
+                        "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+                        "revision": null
+                      },
+                      "originalTextUnchanged": true
+                    },
+                    "technicalWorkflow": {
+                      "status": "COMPLETE",
+                      "acceptedAt": "2026-10-08T05:16:16.610Z",
+                      "source": {
+                        "system": "MISSION_LEDGER",
+                        "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                        "sha256": "9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1",
+                        "observedAt": "2026-10-08T05:16:16.610Z",
+                        "authority": "DURABLE_WORKFLOW_RECORD",
+                        "revision": null
+                      }
+                    },
+                    "durableResponse": {
+                      "status": "VERIFIED",
+                      "requestId": "pcr_27fb1ed5ddb24f5a",
+                      "sha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab"
+                    },
+                    "independentReadback": {
+                      "status": "COMPLETED_OWNER_ATTESTED",
+                      "at": "2026-10-08T05:16:16.610Z",
+                      "attestedBy": "AUTHENTICATED_OWNER",
+                      "scope": "Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read"
+                    },
+                    "internalAccounting": {
+                      "status": "RECORDED_INTERNAL_USAGE",
+                      "callRecords": 2,
+                      "reservedMicroUsd": 1371635,
+                      "estimatedMicroUsd": 273695,
+                      "receipts": [
+                        "6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65",
+                        "b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23"
+                      ]
+                    },
+                    "providerInvoices": {
+                      "status": "UNVERIFIED",
+                      "settledMicroUsd": null,
+                      "reason": "Internal usage and reservation receipts are not independently available provider invoices"
+                    },
+                    "supersession": {
+                      "kind": "LATER_TECHNICAL_EVIDENCE",
+                      "earlierAssessmentAt": "2026-10-08T05:14:34.374Z",
+                      "laterAcceptanceAt": "2026-10-08T05:16:16.610Z",
+                      "earlierAssessmentPreserved": true,
+                      "materialHistoricalClaimsMustUseBothSources": true
+                    },
+                    "historicalQualification": "Earlier uncertainty remains historical; later bound closure verifies technical acceptance only",
+                    "evidence": [
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                        "sha256": "b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802",
+                        "observedAt": "2026-10-08T05:13:53.372Z",
+                        "authority": "LIVE_PROVIDER",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+                        "sha256": "753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4",
+                        "observedAt": "2026-10-08T05:13:53.758Z",
+                        "authority": "LIVE_PROVIDER",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+                        "sha256": "8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40",
+                        "observedAt": "2026-10-08T05:13:53.493Z",
+                        "authority": "LIVE_PROVIDER",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+                        "sha256": "8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a",
+                        "observedAt": "2026-10-08T05:13:52.917Z",
+                        "authority": "LIVE_PROVIDER",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7",
+                        "sha256": "6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73",
+                        "observedAt": "2026-10-08T05:13:52.565Z",
+                        "authority": "INTERNAL_UNVERIFIED",
+                        "revision": null
+                      }
+                    ],
+                    "memory": [
+                      {
+                        "system": "INSTITUTIONAL_MEMORY",
+                        "id": "decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6",
+                        "sha256": "fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f",
+                        "observedAt": "2026-10-08T05:14:34.404Z",
+                        "authority": "MODEL_GENERATED_CLAIM",
+                        "revision": null
+                      }
+                    ],
+                    "locks": {
+                      "birth": "NOT_BORN",
+                      "commerce": "LOCKED",
+                      "historicalOnly": true
+                    },
+                    "grantsAuthority": false
+                  }
+                ],
+                "sources": [
+                  {
+                    "system": "MISSION_LEDGER",
+                    "id": "EMPIREAI-CANDIDATE-001",
+                    "sha256": "e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e",
+                    "observedAt": "2026-10-08T04:09:51.295Z",
+                    "authority": "DURABLE_WORKFLOW_RECORD",
+                    "revision": null
+                  },
+                  {
+                    "system": "PILLOW_REQUEST",
+                    "id": "pcr_5fcf9b139bb54343",
+                    "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                    "observedAt": "2026-10-08T04:10:13.359Z",
+                    "authority": "DURABLE_REQUEST_RECEIPT",
+                    "revision": null
+                  },
+                  {
+                    "system": "PILLOW_PREDECESSOR",
+                    "id": "pcr_9a70c5d827a746b3",
+                    "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                    "observedAt": "2026-10-08T01:09:09.061Z",
+                    "authority": "DURABLE_REQUEST_RECEIPT",
+                    "revision": null
+                  },
+                  {
+                    "system": "PILLOW_PREDECESSOR",
+                    "id": "pcr_a9ce9198cde34896",
+                    "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                    "observedAt": "2026-10-08T03:07:14.731Z",
+                    "authority": "DURABLE_REQUEST_RECEIPT",
+                    "revision": null
+                  },
+                  {
+                    "system": "INFERENCE_ACCOUNTING",
+                    "id": "2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe",
+                    "sha256": "f2a51d6d334ae9f21f1e74fc4f557f51216eec9a25c31f87d1bc383a897919dd",
+                    "observedAt": "2026-10-08T04:09:51.327Z",
+                    "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                    "revision": null
+                  },
+                  {
+                    "system": "MISSION_LEDGER",
+                    "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                    "sha256": "9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1",
+                    "observedAt": "2026-10-08T05:16:16.610Z",
+                    "authority": "DURABLE_WORKFLOW_RECORD",
+                    "revision": null
+                  },
+                  {
+                    "system": "PILLOW_ASSESSMENT",
+                    "id": "pcr_27fb1ed5ddb24f5a",
+                    "sha256": "f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9",
+                    "observedAt": "2026-10-08T05:14:34.374Z",
+                    "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+                    "revision": null
+                  },
+                  {
+                    "system": "PILLOW_REQUEST",
+                    "id": "pcr_27fb1ed5ddb24f5a",
+                    "sha256": "97110c50cc3838ebfa3d367b42369583734ee0037c577bbe5c3d55ab8bddc05e",
+                    "observedAt": "2026-10-08T05:14:34.471Z",
+                    "authority": "DURABLE_REQUEST_RECEIPT",
+                    "revision": null
+                  },
+                  {
+                    "system": "FOUR_EYES",
+                    "id": "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                    "sha256": "b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802",
+                    "observedAt": "2026-10-08T05:13:53.372Z",
+                    "authority": "LIVE_PROVIDER",
+                    "revision": null
+                  },
+                  {
+                    "system": "FOUR_EYES",
+                    "id": "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+                    "sha256": "753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4",
+                    "observedAt": "2026-10-08T05:13:53.758Z",
+                    "authority": "LIVE_PROVIDER",
+                    "revision": null
+                  },
+                  {
+                    "system": "FOUR_EYES",
+                    "id": "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+                    "sha256": "8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40",
+                    "observedAt": "2026-10-08T05:13:53.493Z",
+                    "authority": "LIVE_PROVIDER",
+                    "revision": null
+                  },
+                  {
+                    "system": "FOUR_EYES",
+                    "id": "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+                    "sha256": "8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a",
+                    "observedAt": "2026-10-08T05:13:52.917Z",
+                    "authority": "LIVE_PROVIDER",
+                    "revision": null
+                  },
+                  {
+                    "system": "FOUR_EYES",
+                    "id": "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7",
+                    "sha256": "6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73",
+                    "observedAt": "2026-10-08T05:13:52.565Z",
+                    "authority": "INTERNAL_UNVERIFIED",
+                    "revision": null
+                  },
+                  {
+                    "system": "PILLOW_PREDECESSOR",
+                    "id": "pcr_9a70c5d827a746b3",
+                    "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                    "observedAt": "2026-10-08T01:09:09.061Z",
+                    "authority": "DURABLE_REQUEST_RECEIPT",
+                    "revision": null
+                  },
+                  {
+                    "system": "PILLOW_PREDECESSOR",
+                    "id": "pcr_a9ce9198cde34896",
+                    "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                    "observedAt": "2026-10-08T03:07:14.731Z",
+                    "authority": "DURABLE_REQUEST_RECEIPT",
+                    "revision": null
+                  },
+                  {
+                    "system": "PILLOW_PREDECESSOR",
+                    "id": "pcr_5fcf9b139bb54343",
+                    "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                    "observedAt": "2026-10-08T04:10:13.359Z",
+                    "authority": "DURABLE_REQUEST_RECEIPT",
+                    "revision": null
+                  },
+                  {
+                    "system": "INSTITUTIONAL_MEMORY",
+                    "id": "decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6",
+                    "sha256": "fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f",
+                    "observedAt": "2026-10-08T05:14:34.404Z",
+                    "authority": "MODEL_GENERATED_CLAIM",
+                    "revision": null
+                  },
+                  {
+                    "system": "INFERENCE_ACCOUNTING",
+                    "id": "6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65",
+                    "sha256": "11ef1f0ff8a9006ef405123afb5d807d67d4a9e962d88c8d16048514389b7cb2",
+                    "observedAt": "2026-10-08T05:13:30.917Z",
+                    "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                    "revision": null
+                  },
+                  {
+                    "system": "INFERENCE_ACCOUNTING",
+                    "id": "b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23",
+                    "sha256": "40066a7aa788013df3348c03963d88d6a46af9297837c29e8449c919a8758244",
+                    "observedAt": "2026-10-08T05:13:53.950Z",
+                    "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                    "revision": null
+                  }
+                ],
+                "conflicts": [],
+                "readOnly": true,
+                "inferenceCalls": 0,
+                "commerceEffects": 0,
+                "grantsAuthority": false,
+                "materializedAt": "2026-10-08T08:36:02.988Z",
+                "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5"
+              }
+            },
+            "completedAt": 1791448562998
+          },
+          "verification": {
+            "verified": true,
+            "evidence": {
+              "receipt": {
+                "id": "rec_b7fa22de-e253-42d7-9a9a-6d8f705c155d",
+                "incidentId": "inc_81e71808-7d77-403f-92ca-c723f5504ad2",
+                "runbookId": "rebuild_reconciliation_advisor",
+                "runbookVersion": "1",
+                "authority": "A",
+                "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5",
+                "status": "VERIFIED",
+                "startedAt": 1791448562981,
+                "deadlineAt": 1791448582981,
+                "idempotencyKey": "8632ebdababb4cad59d174de14fa34a919f2628028a67e5a466832e0f3695fe4",
+                "actor": "API_ADVISOR",
+                "ownerApprovalActor": null,
+                "approvalId": null,
+                "result": {
+                  "status": "REBUILT",
+                  "sha256": "0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00",
+                  "sourceDigest": "9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46",
+                  "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5"
+                },
+                "verification": {
+                  "status": "VERIFIED",
+                  "healthy": true,
+                  "sha256": "0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00",
+                  "value": {
+                    "schema": "empire-reconciliation-v1",
+                    "workspace": "ws_empire_1",
+                    "sourceDigest": "9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46",
+                    "investigations": [
+                      {
+                        "missionId": "EMPIREAI-CANDIDATE-001",
+                        "requestId": "pcr_5fcf9b139bb54343",
+                        "predecessors": [
+                          {
+                            "requestId": "pcr_9a70c5d827a746b3",
+                            "status": "FAILED_FATAL",
+                            "failureClass": "BRAIN_FATAL",
+                            "source": {
+                              "system": "PILLOW_PREDECESSOR",
+                              "id": "pcr_9a70c5d827a746b3",
+                              "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                              "observedAt": "2026-10-08T01:09:09.061Z",
+                              "authority": "DURABLE_REQUEST_RECEIPT",
+                              "revision": null
+                            }
+                          },
+                          {
+                            "requestId": "pcr_a9ce9198cde34896",
+                            "status": "COMPLETED",
+                            "failureClass": "BRAIN_SUCCESS",
+                            "source": {
+                              "system": "PILLOW_PREDECESSOR",
+                              "id": "pcr_a9ce9198cde34896",
+                              "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                              "observedAt": "2026-10-08T03:07:14.731Z",
+                              "authority": "DURABLE_REQUEST_RECEIPT",
+                              "revision": null
+                            }
+                          }
+                        ],
+                        "historicalMissionStatus": "FAILED",
+                        "resolution": {
+                          "status": "RESOLVED_BY_SUCCESSOR",
+                          "missionId": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                          "requestId": "pcr_27fb1ed5ddb24f5a",
+                          "at": "2026-10-08T05:16:16.610Z"
+                        },
+                        "commercial": {
+                          "status": "ASSESSMENT_SPECIFIC_UNVERIFIED",
+                          "assessmentSha256": null,
+                          "originalObservedAt": null,
+                          "source": null,
+                          "originalTextUnchanged": true
+                        },
+                        "technicalWorkflow": {
+                          "status": "FAILED",
+                          "acceptedAt": null,
+                          "source": {
+                            "system": "MISSION_LEDGER",
+                            "id": "EMPIREAI-CANDIDATE-001",
+                            "sha256": "e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e",
+                            "observedAt": "2026-10-08T04:09:51.295Z",
+                            "authority": "DURABLE_WORKFLOW_RECORD",
+                            "revision": null
+                          }
+                        },
+                        "durableResponse": {
+                          "status": "UNVERIFIED",
+                          "requestId": "pcr_5fcf9b139bb54343",
+                          "sha256": null
+                        },
+                        "independentReadback": {
+                          "status": "UNVERIFIED",
+                          "at": null,
+                          "attestedBy": null,
+                          "scope": "Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read"
+                        },
+                        "internalAccounting": {
+                          "status": "RECORDED_INTERNAL_USAGE",
+                          "callRecords": 1,
+                          "reservedMicroUsd": 627091,
+                          "estimatedMicroUsd": 117629,
+                          "receipts": [
+                            "2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe"
+                          ]
+                        },
+                        "providerInvoices": {
+                          "status": "UNVERIFIED",
+                          "settledMicroUsd": null,
+                          "reason": "Internal usage and reservation receipts are not independently available provider invoices"
+                        },
+                        "supersession": null,
+                        "historicalQualification": "No verified superseding technical closure",
+                        "evidence": [],
+                        "memory": [],
+                        "locks": {
+                          "birth": "UNVERIFIED",
+                          "commerce": "UNVERIFIED",
+                          "historicalOnly": true
+                        },
+                        "grantsAuthority": false
+                      },
+                      {
+                        "missionId": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                        "requestId": "pcr_27fb1ed5ddb24f5a",
+                        "predecessors": [
+                          {
+                            "requestId": "pcr_9a70c5d827a746b3",
+                            "status": "FAILED_FATAL",
+                            "failureClass": "BRAIN_FATAL",
+                            "source": {
+                              "system": "PILLOW_PREDECESSOR",
+                              "id": "pcr_9a70c5d827a746b3",
+                              "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                              "observedAt": "2026-10-08T01:09:09.061Z",
+                              "authority": "DURABLE_REQUEST_RECEIPT",
+                              "revision": null
+                            }
+                          },
+                          {
+                            "requestId": "pcr_a9ce9198cde34896",
+                            "status": "COMPLETED",
+                            "failureClass": "BRAIN_SUCCESS",
+                            "source": {
+                              "system": "PILLOW_PREDECESSOR",
+                              "id": "pcr_a9ce9198cde34896",
+                              "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                              "observedAt": "2026-10-08T03:07:14.731Z",
+                              "authority": "DURABLE_REQUEST_RECEIPT",
+                              "revision": null
+                            }
+                          },
+                          {
+                            "requestId": "pcr_5fcf9b139bb54343",
+                            "status": "FAILED_FATAL",
+                            "failureClass": "BRAIN_FATAL",
+                            "source": {
+                              "system": "PILLOW_PREDECESSOR",
+                              "id": "pcr_5fcf9b139bb54343",
+                              "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                              "observedAt": "2026-10-08T04:10:13.359Z",
+                              "authority": "DURABLE_REQUEST_RECEIPT",
+                              "revision": null
+                            }
+                          }
+                        ],
+                        "historicalMissionStatus": "COMPLETE",
+                        "resolution": null,
+                        "commercial": {
+                          "status": "EVIDENCE_INSUFFICIENT",
+                          "assessmentSha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab",
+                          "originalObservedAt": "2026-10-08T05:14:34.374Z",
+                          "source": {
+                            "system": "PILLOW_ASSESSMENT",
+                            "id": "pcr_27fb1ed5ddb24f5a",
+                            "sha256": "f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9",
+                            "observedAt": "2026-10-08T05:14:34.374Z",
+                            "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+                            "revision": null
+                          },
+                          "originalTextUnchanged": true
+                        },
+                        "technicalWorkflow": {
+                          "status": "COMPLETE",
+                          "acceptedAt": "2026-10-08T05:16:16.610Z",
+                          "source": {
+                            "system": "MISSION_LEDGER",
+                            "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                            "sha256": "9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1",
+                            "observedAt": "2026-10-08T05:16:16.610Z",
+                            "authority": "DURABLE_WORKFLOW_RECORD",
+                            "revision": null
+                          }
+                        },
+                        "durableResponse": {
+                          "status": "VERIFIED",
+                          "requestId": "pcr_27fb1ed5ddb24f5a",
+                          "sha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab"
+                        },
+                        "independentReadback": {
+                          "status": "COMPLETED_OWNER_ATTESTED",
+                          "at": "2026-10-08T05:16:16.610Z",
+                          "attestedBy": "AUTHENTICATED_OWNER",
+                          "scope": "Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read"
+                        },
+                        "internalAccounting": {
+                          "status": "RECORDED_INTERNAL_USAGE",
+                          "callRecords": 2,
+                          "reservedMicroUsd": 1371635,
+                          "estimatedMicroUsd": 273695,
+                          "receipts": [
+                            "6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65",
+                            "b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23"
+                          ]
+                        },
+                        "providerInvoices": {
+                          "status": "UNVERIFIED",
+                          "settledMicroUsd": null,
+                          "reason": "Internal usage and reservation receipts are not independently available provider invoices"
+                        },
+                        "supersession": {
+                          "kind": "LATER_TECHNICAL_EVIDENCE",
+                          "earlierAssessmentAt": "2026-10-08T05:14:34.374Z",
+                          "laterAcceptanceAt": "2026-10-08T05:16:16.610Z",
+                          "earlierAssessmentPreserved": true,
+                          "materialHistoricalClaimsMustUseBothSources": true
+                        },
+                        "historicalQualification": "Earlier uncertainty remains historical; later bound closure verifies technical acceptance only",
+                        "evidence": [
+                          {
+                            "system": "FOUR_EYES",
+                            "id": "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                            "sha256": "b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802",
+                            "observedAt": "2026-10-08T05:13:53.372Z",
+                            "authority": "LIVE_PROVIDER",
+                            "revision": null
+                          },
+                          {
+                            "system": "FOUR_EYES",
+                            "id": "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+                            "sha256": "753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4",
+                            "observedAt": "2026-10-08T05:13:53.758Z",
+                            "authority": "LIVE_PROVIDER",
+                            "revision": null
+                          },
+                          {
+                            "system": "FOUR_EYES",
+                            "id": "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+                            "sha256": "8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40",
+                            "observedAt": "2026-10-08T05:13:53.493Z",
+                            "authority": "LIVE_PROVIDER",
+                            "revision": null
+                          },
+                          {
+                            "system": "FOUR_EYES",
+                            "id": "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+                            "sha256": "8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a",
+                            "observedAt": "2026-10-08T05:13:52.917Z",
+                            "authority": "LIVE_PROVIDER",
+                            "revision": null
+                          },
+                          {
+                            "system": "FOUR_EYES",
+                            "id": "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7",
+                            "sha256": "6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73",
+                            "observedAt": "2026-10-08T05:13:52.565Z",
+                            "authority": "INTERNAL_UNVERIFIED",
+                            "revision": null
+                          }
+                        ],
+                        "memory": [
+                          {
+                            "system": "INSTITUTIONAL_MEMORY",
+                            "id": "decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6",
+                            "sha256": "fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f",
+                            "observedAt": "2026-10-08T05:14:34.404Z",
+                            "authority": "MODEL_GENERATED_CLAIM",
+                            "revision": null
+                          }
+                        ],
+                        "locks": {
+                          "birth": "NOT_BORN",
+                          "commerce": "LOCKED",
+                          "historicalOnly": true
+                        },
+                        "grantsAuthority": false
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "system": "MISSION_LEDGER",
+                        "id": "EMPIREAI-CANDIDATE-001",
+                        "sha256": "e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e",
+                        "observedAt": "2026-10-08T04:09:51.295Z",
+                        "authority": "DURABLE_WORKFLOW_RECORD",
+                        "revision": null
+                      },
+                      {
+                        "system": "PILLOW_REQUEST",
+                        "id": "pcr_5fcf9b139bb54343",
+                        "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                        "observedAt": "2026-10-08T04:10:13.359Z",
+                        "authority": "DURABLE_REQUEST_RECEIPT",
+                        "revision": null
+                      },
+                      {
+                        "system": "PILLOW_PREDECESSOR",
+                        "id": "pcr_9a70c5d827a746b3",
+                        "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                        "observedAt": "2026-10-08T01:09:09.061Z",
+                        "authority": "DURABLE_REQUEST_RECEIPT",
+                        "revision": null
+                      },
+                      {
+                        "system": "PILLOW_PREDECESSOR",
+                        "id": "pcr_a9ce9198cde34896",
+                        "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                        "observedAt": "2026-10-08T03:07:14.731Z",
+                        "authority": "DURABLE_REQUEST_RECEIPT",
+                        "revision": null
+                      },
+                      {
+                        "system": "INFERENCE_ACCOUNTING",
+                        "id": "2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe",
+                        "sha256": "f2a51d6d334ae9f21f1e74fc4f557f51216eec9a25c31f87d1bc383a897919dd",
+                        "observedAt": "2026-10-08T04:09:51.327Z",
+                        "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                        "revision": null
+                      },
+                      {
+                        "system": "MISSION_LEDGER",
+                        "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                        "sha256": "9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1",
+                        "observedAt": "2026-10-08T05:16:16.610Z",
+                        "authority": "DURABLE_WORKFLOW_RECORD",
+                        "revision": null
+                      },
+                      {
+                        "system": "PILLOW_ASSESSMENT",
+                        "id": "pcr_27fb1ed5ddb24f5a",
+                        "sha256": "f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9",
+                        "observedAt": "2026-10-08T05:14:34.374Z",
+                        "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+                        "revision": null
+                      },
+                      {
+                        "system": "PILLOW_REQUEST",
+                        "id": "pcr_27fb1ed5ddb24f5a",
+                        "sha256": "97110c50cc3838ebfa3d367b42369583734ee0037c577bbe5c3d55ab8bddc05e",
+                        "observedAt": "2026-10-08T05:14:34.471Z",
+                        "authority": "DURABLE_REQUEST_RECEIPT",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                        "sha256": "b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802",
+                        "observedAt": "2026-10-08T05:13:53.372Z",
+                        "authority": "LIVE_PROVIDER",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+                        "sha256": "753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4",
+                        "observedAt": "2026-10-08T05:13:53.758Z",
+                        "authority": "LIVE_PROVIDER",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+                        "sha256": "8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40",
+                        "observedAt": "2026-10-08T05:13:53.493Z",
+                        "authority": "LIVE_PROVIDER",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+                        "sha256": "8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a",
+                        "observedAt": "2026-10-08T05:13:52.917Z",
+                        "authority": "LIVE_PROVIDER",
+                        "revision": null
+                      },
+                      {
+                        "system": "FOUR_EYES",
+                        "id": "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7",
+                        "sha256": "6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73",
+                        "observedAt": "2026-10-08T05:13:52.565Z",
+                        "authority": "INTERNAL_UNVERIFIED",
+                        "revision": null
+                      },
+                      {
+                        "system": "PILLOW_PREDECESSOR",
+                        "id": "pcr_9a70c5d827a746b3",
+                        "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                        "observedAt": "2026-10-08T01:09:09.061Z",
+                        "authority": "DURABLE_REQUEST_RECEIPT",
+                        "revision": null
+                      },
+                      {
+                        "system": "PILLOW_PREDECESSOR",
+                        "id": "pcr_a9ce9198cde34896",
+                        "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                        "observedAt": "2026-10-08T03:07:14.731Z",
+                        "authority": "DURABLE_REQUEST_RECEIPT",
+                        "revision": null
+                      },
+                      {
+                        "system": "PILLOW_PREDECESSOR",
+                        "id": "pcr_5fcf9b139bb54343",
+                        "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                        "observedAt": "2026-10-08T04:10:13.359Z",
+                        "authority": "DURABLE_REQUEST_RECEIPT",
+                        "revision": null
+                      },
+                      {
+                        "system": "INSTITUTIONAL_MEMORY",
+                        "id": "decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6",
+                        "sha256": "fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f",
+                        "observedAt": "2026-10-08T05:14:34.404Z",
+                        "authority": "MODEL_GENERATED_CLAIM",
+                        "revision": null
+                      },
+                      {
+                        "system": "INFERENCE_ACCOUNTING",
+                        "id": "6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65",
+                        "sha256": "11ef1f0ff8a9006ef405123afb5d807d67d4a9e962d88c8d16048514389b7cb2",
+                        "observedAt": "2026-10-08T05:13:30.917Z",
+                        "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                        "revision": null
+                      },
+                      {
+                        "system": "INFERENCE_ACCOUNTING",
+                        "id": "b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23",
+                        "sha256": "40066a7aa788013df3348c03963d88d6a46af9297837c29e8449c919a8758244",
+                        "observedAt": "2026-10-08T05:13:53.950Z",
+                        "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                        "revision": null
+                      }
+                    ],
+                    "conflicts": [],
+                    "readOnly": true,
+                    "inferenceCalls": 0,
+                    "commerceEffects": 0,
+                    "grantsAuthority": false,
+                    "materializedAt": "2026-10-08T08:36:02.988Z",
+                    "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5"
+                  }
+                },
+                "completedAt": 1791448562998
+              },
+              "reconciliation": {
+                "status": "VERIFIED",
+                "healthy": true,
+                "sha256": "0e0489caa9a669b3f58551cfc2077666b96cbaf3d5507e67acf067299708aa00",
+                "value": {
+                  "schema": "empire-reconciliation-v1",
+                  "workspace": "ws_empire_1",
+                  "sourceDigest": "9c2a21bc08906adf93a62017456cf7065f5d9961d2c113102aaecabc6517bc46",
+                  "investigations": [
+                    {
+                      "missionId": "EMPIREAI-CANDIDATE-001",
+                      "requestId": "pcr_5fcf9b139bb54343",
+                      "predecessors": [
+                        {
+                          "requestId": "pcr_9a70c5d827a746b3",
+                          "status": "FAILED_FATAL",
+                          "failureClass": "BRAIN_FATAL",
+                          "source": {
+                            "system": "PILLOW_PREDECESSOR",
+                            "id": "pcr_9a70c5d827a746b3",
+                            "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                            "observedAt": "2026-10-08T01:09:09.061Z",
+                            "authority": "DURABLE_REQUEST_RECEIPT",
+                            "revision": null
+                          }
+                        },
+                        {
+                          "requestId": "pcr_a9ce9198cde34896",
+                          "status": "COMPLETED",
+                          "failureClass": "BRAIN_SUCCESS",
+                          "source": {
+                            "system": "PILLOW_PREDECESSOR",
+                            "id": "pcr_a9ce9198cde34896",
+                            "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                            "observedAt": "2026-10-08T03:07:14.731Z",
+                            "authority": "DURABLE_REQUEST_RECEIPT",
+                            "revision": null
+                          }
+                        }
+                      ],
+                      "historicalMissionStatus": "FAILED",
+                      "resolution": {
+                        "status": "RESOLVED_BY_SUCCESSOR",
+                        "missionId": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                        "requestId": "pcr_27fb1ed5ddb24f5a",
+                        "at": "2026-10-08T05:16:16.610Z"
+                      },
+                      "commercial": {
+                        "status": "ASSESSMENT_SPECIFIC_UNVERIFIED",
+                        "assessmentSha256": null,
+                        "originalObservedAt": null,
+                        "source": null,
+                        "originalTextUnchanged": true
+                      },
+                      "technicalWorkflow": {
+                        "status": "FAILED",
+                        "acceptedAt": null,
+                        "source": {
+                          "system": "MISSION_LEDGER",
+                          "id": "EMPIREAI-CANDIDATE-001",
+                          "sha256": "e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e",
+                          "observedAt": "2026-10-08T04:09:51.295Z",
+                          "authority": "DURABLE_WORKFLOW_RECORD",
+                          "revision": null
+                        }
+                      },
+                      "durableResponse": {
+                        "status": "UNVERIFIED",
+                        "requestId": "pcr_5fcf9b139bb54343",
+                        "sha256": null
+                      },
+                      "independentReadback": {
+                        "status": "UNVERIFIED",
+                        "at": null,
+                        "attestedBy": null,
+                        "scope": "Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read"
+                      },
+                      "internalAccounting": {
+                        "status": "RECORDED_INTERNAL_USAGE",
+                        "callRecords": 1,
+                        "reservedMicroUsd": 627091,
+                        "estimatedMicroUsd": 117629,
+                        "receipts": [
+                          "2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe"
+                        ]
+                      },
+                      "providerInvoices": {
+                        "status": "UNVERIFIED",
+                        "settledMicroUsd": null,
+                        "reason": "Internal usage and reservation receipts are not independently available provider invoices"
+                      },
+                      "supersession": null,
+                      "historicalQualification": "No verified superseding technical closure",
+                      "evidence": [],
+                      "memory": [],
+                      "locks": {
+                        "birth": "UNVERIFIED",
+                        "commerce": "UNVERIFIED",
+                        "historicalOnly": true
+                      },
+                      "grantsAuthority": false
+                    },
+                    {
+                      "missionId": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                      "requestId": "pcr_27fb1ed5ddb24f5a",
+                      "predecessors": [
+                        {
+                          "requestId": "pcr_9a70c5d827a746b3",
+                          "status": "FAILED_FATAL",
+                          "failureClass": "BRAIN_FATAL",
+                          "source": {
+                            "system": "PILLOW_PREDECESSOR",
+                            "id": "pcr_9a70c5d827a746b3",
+                            "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                            "observedAt": "2026-10-08T01:09:09.061Z",
+                            "authority": "DURABLE_REQUEST_RECEIPT",
+                            "revision": null
+                          }
+                        },
+                        {
+                          "requestId": "pcr_a9ce9198cde34896",
+                          "status": "COMPLETED",
+                          "failureClass": "BRAIN_SUCCESS",
+                          "source": {
+                            "system": "PILLOW_PREDECESSOR",
+                            "id": "pcr_a9ce9198cde34896",
+                            "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                            "observedAt": "2026-10-08T03:07:14.731Z",
+                            "authority": "DURABLE_REQUEST_RECEIPT",
+                            "revision": null
+                          }
+                        },
+                        {
+                          "requestId": "pcr_5fcf9b139bb54343",
+                          "status": "FAILED_FATAL",
+                          "failureClass": "BRAIN_FATAL",
+                          "source": {
+                            "system": "PILLOW_PREDECESSOR",
+                            "id": "pcr_5fcf9b139bb54343",
+                            "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                            "observedAt": "2026-10-08T04:10:13.359Z",
+                            "authority": "DURABLE_REQUEST_RECEIPT",
+                            "revision": null
+                          }
+                        }
+                      ],
+                      "historicalMissionStatus": "COMPLETE",
+                      "resolution": null,
+                      "commercial": {
+                        "status": "EVIDENCE_INSUFFICIENT",
+                        "assessmentSha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab",
+                        "originalObservedAt": "2026-10-08T05:14:34.374Z",
+                        "source": {
+                          "system": "PILLOW_ASSESSMENT",
+                          "id": "pcr_27fb1ed5ddb24f5a",
+                          "sha256": "f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9",
+                          "observedAt": "2026-10-08T05:14:34.374Z",
+                          "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+                          "revision": null
+                        },
+                        "originalTextUnchanged": true
+                      },
+                      "technicalWorkflow": {
+                        "status": "COMPLETE",
+                        "acceptedAt": "2026-10-08T05:16:16.610Z",
+                        "source": {
+                          "system": "MISSION_LEDGER",
+                          "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                          "sha256": "9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1",
+                          "observedAt": "2026-10-08T05:16:16.610Z",
+                          "authority": "DURABLE_WORKFLOW_RECORD",
+                          "revision": null
+                        }
+                      },
+                      "durableResponse": {
+                        "status": "VERIFIED",
+                        "requestId": "pcr_27fb1ed5ddb24f5a",
+                        "sha256": "c95785a82d858ce209b71a60c897d88b687fb94dfefdbd24583bb37dc76435ab"
+                      },
+                      "independentReadback": {
+                        "status": "COMPLETED_OWNER_ATTESTED",
+                        "at": "2026-10-08T05:16:16.610Z",
+                        "attestedBy": "AUTHENTICATED_OWNER",
+                        "scope": "Exact request and assessment hash; owner-attested historical independent readback, not a new connected-client read"
+                      },
+                      "internalAccounting": {
+                        "status": "RECORDED_INTERNAL_USAGE",
+                        "callRecords": 2,
+                        "reservedMicroUsd": 1371635,
+                        "estimatedMicroUsd": 273695,
+                        "receipts": [
+                          "6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65",
+                          "b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23"
+                        ]
+                      },
+                      "providerInvoices": {
+                        "status": "UNVERIFIED",
+                        "settledMicroUsd": null,
+                        "reason": "Internal usage and reservation receipts are not independently available provider invoices"
+                      },
+                      "supersession": {
+                        "kind": "LATER_TECHNICAL_EVIDENCE",
+                        "earlierAssessmentAt": "2026-10-08T05:14:34.374Z",
+                        "laterAcceptanceAt": "2026-10-08T05:16:16.610Z",
+                        "earlierAssessmentPreserved": true,
+                        "materialHistoricalClaimsMustUseBothSources": true
+                      },
+                      "historicalQualification": "Earlier uncertainty remains historical; later bound closure verifies technical acceptance only",
+                      "evidence": [
+                        {
+                          "system": "FOUR_EYES",
+                          "id": "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                          "sha256": "b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802",
+                          "observedAt": "2026-10-08T05:13:53.372Z",
+                          "authority": "LIVE_PROVIDER",
+                          "revision": null
+                        },
+                        {
+                          "system": "FOUR_EYES",
+                          "id": "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+                          "sha256": "753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4",
+                          "observedAt": "2026-10-08T05:13:53.758Z",
+                          "authority": "LIVE_PROVIDER",
+                          "revision": null
+                        },
+                        {
+                          "system": "FOUR_EYES",
+                          "id": "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+                          "sha256": "8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40",
+                          "observedAt": "2026-10-08T05:13:53.493Z",
+                          "authority": "LIVE_PROVIDER",
+                          "revision": null
+                        },
+                        {
+                          "system": "FOUR_EYES",
+                          "id": "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+                          "sha256": "8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a",
+                          "observedAt": "2026-10-08T05:13:52.917Z",
+                          "authority": "LIVE_PROVIDER",
+                          "revision": null
+                        },
+                        {
+                          "system": "FOUR_EYES",
+                          "id": "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7",
+                          "sha256": "6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73",
+                          "observedAt": "2026-10-08T05:13:52.565Z",
+                          "authority": "INTERNAL_UNVERIFIED",
+                          "revision": null
+                        }
+                      ],
+                      "memory": [
+                        {
+                          "system": "INSTITUTIONAL_MEMORY",
+                          "id": "decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6",
+                          "sha256": "fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f",
+                          "observedAt": "2026-10-08T05:14:34.404Z",
+                          "authority": "MODEL_GENERATED_CLAIM",
+                          "revision": null
+                        }
+                      ],
+                      "locks": {
+                        "birth": "NOT_BORN",
+                        "commerce": "LOCKED",
+                        "historicalOnly": true
+                      },
+                      "grantsAuthority": false
+                    }
+                  ],
+                  "sources": [
+                    {
+                      "system": "MISSION_LEDGER",
+                      "id": "EMPIREAI-CANDIDATE-001",
+                      "sha256": "e6276c6b3c21717b8073ff1fb798084675feb5cbbc1ac3d57339b0a1b1ad553e",
+                      "observedAt": "2026-10-08T04:09:51.295Z",
+                      "authority": "DURABLE_WORKFLOW_RECORD",
+                      "revision": null
+                    },
+                    {
+                      "system": "PILLOW_REQUEST",
+                      "id": "pcr_5fcf9b139bb54343",
+                      "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                      "observedAt": "2026-10-08T04:10:13.359Z",
+                      "authority": "DURABLE_REQUEST_RECEIPT",
+                      "revision": null
+                    },
+                    {
+                      "system": "PILLOW_PREDECESSOR",
+                      "id": "pcr_9a70c5d827a746b3",
+                      "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                      "observedAt": "2026-10-08T01:09:09.061Z",
+                      "authority": "DURABLE_REQUEST_RECEIPT",
+                      "revision": null
+                    },
+                    {
+                      "system": "PILLOW_PREDECESSOR",
+                      "id": "pcr_a9ce9198cde34896",
+                      "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                      "observedAt": "2026-10-08T03:07:14.731Z",
+                      "authority": "DURABLE_REQUEST_RECEIPT",
+                      "revision": null
+                    },
+                    {
+                      "system": "INFERENCE_ACCOUNTING",
+                      "id": "2fe8d5844b2195affbf8ab14cec5cd3555ba777acc1fc2a2964820b3953c02fe",
+                      "sha256": "f2a51d6d334ae9f21f1e74fc4f557f51216eec9a25c31f87d1bc383a897919dd",
+                      "observedAt": "2026-10-08T04:09:51.327Z",
+                      "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                      "revision": null
+                    },
+                    {
+                      "system": "MISSION_LEDGER",
+                      "id": "EMPIREAI-CANDIDATE-001-FOLLOWUP",
+                      "sha256": "9e12953e921090abb57b77b4b520cccd6cea379ec6fc4a6c4c3df165b1da81a1",
+                      "observedAt": "2026-10-08T05:16:16.610Z",
+                      "authority": "DURABLE_WORKFLOW_RECORD",
+                      "revision": null
+                    },
+                    {
+                      "system": "PILLOW_ASSESSMENT",
+                      "id": "pcr_27fb1ed5ddb24f5a",
+                      "sha256": "f6985112a94d6d160e0fab9f6f75672c4e37d4c5852ce71c895d5d42d88e9ec9",
+                      "observedAt": "2026-10-08T05:14:34.374Z",
+                      "authority": "MODEL_GENERATED_HISTORICAL_ASSESSMENT",
+                      "revision": null
+                    },
+                    {
+                      "system": "PILLOW_REQUEST",
+                      "id": "pcr_27fb1ed5ddb24f5a",
+                      "sha256": "97110c50cc3838ebfa3d367b42369583734ee0037c577bbe5c3d55ab8bddc05e",
+                      "observedAt": "2026-10-08T05:14:34.471Z",
+                      "authority": "DURABLE_REQUEST_RECEIPT",
+                      "revision": null
+                    },
+                    {
+                      "system": "FOUR_EYES",
+                      "id": "ev_21c5f73fdfebd04f3741adb9b37056a88ea17934",
+                      "sha256": "b9188b99ba65f56a9a0df68191e7c17ba70dbfceae379fd1fe0348530a4cf802",
+                      "observedAt": "2026-10-08T05:13:53.372Z",
+                      "authority": "LIVE_PROVIDER",
+                      "revision": null
+                    },
+                    {
+                      "system": "FOUR_EYES",
+                      "id": "ev_35069795d5b7f2c4e8eb073bb96c16aeb66ae761",
+                      "sha256": "753a78c03573ba770af1ee3945e842e76fb458872b0cf64e06d634ac25fcc3c4",
+                      "observedAt": "2026-10-08T05:13:53.758Z",
+                      "authority": "LIVE_PROVIDER",
+                      "revision": null
+                    },
+                    {
+                      "system": "FOUR_EYES",
+                      "id": "ev_8a17072e9776e9c0f161fb4c2c5b4fa2d2cff7fb",
+                      "sha256": "8775eaa60ad7871a575d22db63fbbe0c13c7275c4259c4c998ae5ecb05270b40",
+                      "observedAt": "2026-10-08T05:13:53.493Z",
+                      "authority": "LIVE_PROVIDER",
+                      "revision": null
+                    },
+                    {
+                      "system": "FOUR_EYES",
+                      "id": "ev_669e7e3a65ed3e2e11f0d51eb8bbb5dca322bf1b",
+                      "sha256": "8f2edbc0561c969795d04d7eee3024e97469ea7f3422f612de8bec68d0f11f8a",
+                      "observedAt": "2026-10-08T05:13:52.917Z",
+                      "authority": "LIVE_PROVIDER",
+                      "revision": null
+                    },
+                    {
+                      "system": "FOUR_EYES",
+                      "id": "ev_c1f920553dba42a4e177ae9ba2f456fc4873cda7",
+                      "sha256": "6064bba230c9d3400cbe73e25aa5a6ef6b34fd4ab68aa80584970fd567074b73",
+                      "observedAt": "2026-10-08T05:13:52.565Z",
+                      "authority": "INTERNAL_UNVERIFIED",
+                      "revision": null
+                    },
+                    {
+                      "system": "PILLOW_PREDECESSOR",
+                      "id": "pcr_9a70c5d827a746b3",
+                      "sha256": "cd952f6402c108c65bbd6350dd1a84c1346768c225a5e5e78c563f134f7861cc",
+                      "observedAt": "2026-10-08T01:09:09.061Z",
+                      "authority": "DURABLE_REQUEST_RECEIPT",
+                      "revision": null
+                    },
+                    {
+                      "system": "PILLOW_PREDECESSOR",
+                      "id": "pcr_a9ce9198cde34896",
+                      "sha256": "9022d2bc3c94ca13161d412faf1505afc5c2a00d45defb836381d0f0a9e1fae1",
+                      "observedAt": "2026-10-08T03:07:14.731Z",
+                      "authority": "DURABLE_REQUEST_RECEIPT",
+                      "revision": null
+                    },
+                    {
+                      "system": "PILLOW_PREDECESSOR",
+                      "id": "pcr_5fcf9b139bb54343",
+                      "sha256": "6a99930627604ba38b82792d9f33056da3a1ae79e25aa3989406528d7ce34e4c",
+                      "observedAt": "2026-10-08T04:10:13.359Z",
+                      "authority": "DURABLE_REQUEST_RECEIPT",
+                      "revision": null
+                    },
+                    {
+                      "system": "INSTITUTIONAL_MEMORY",
+                      "id": "decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6",
+                      "sha256": "fe3abfcc05a7a368e59bea8090f747b19ef56309be0fdc2258d085d13f817c5f",
+                      "observedAt": "2026-10-08T05:14:34.404Z",
+                      "authority": "MODEL_GENERATED_CLAIM",
+                      "revision": null
+                    },
+                    {
+                      "system": "INFERENCE_ACCOUNTING",
+                      "id": "6a5c21e154aac26c45960566dd213fdf884498644f29c3003ddc6a3c68630f65",
+                      "sha256": "11ef1f0ff8a9006ef405123afb5d807d67d4a9e962d88c8d16048514389b7cb2",
+                      "observedAt": "2026-10-08T05:13:30.917Z",
+                      "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                      "revision": null
+                    },
+                    {
+                      "system": "INFERENCE_ACCOUNTING",
+                      "id": "b04422047f5ed71108543d6c242fde14b6b7f0ee8a8659b14b30af429947bf23",
+                      "sha256": "40066a7aa788013df3348c03963d88d6a46af9297837c29e8449c919a8758244",
+                      "observedAt": "2026-10-08T05:13:53.950Z",
+                      "authority": "INTERNAL_RESERVATION_AND_USAGE",
+                      "revision": null
+                    }
+                  ],
+                  "conflicts": [],
+                  "readOnly": true,
+                  "inferenceCalls": 0,
+                  "commerceEffects": 0,
+                  "grantsAuthority": false,
+                  "materializedAt": "2026-10-08T08:36:02.988Z",
+                  "revision": "6826b752906cd2cf0db7da7a9b705cc2c375b8d5"
+                }
+              }
+            }
+          }
+        },
+        "request_id": null
+      },
+      {
+        "id": "work1_audit_20261008_1523",
+        "created": "2026-10-08T15:48:50.191Z",
+        "handler": "SOFTWARE",
+        "status": "COMPLETED",
+        "result": {
+          "code": "RECORDED_UNTRUSTED_EVIDENCE",
+          "grantsAuthority": false,
+          "externalEffect": false,
+          "source": "KING_ADVISOR",
+          "provenance": "owner-imported untrusted artifact; not owner endorsement",
+          "synthetic": false
+        },
+        "request_id": null
+      },
+      {
+        "id": "work1_audit_final_20261008",
+        "created": "2026-10-08T16:21:22.503Z",
+        "handler": "SOFTWARE",
+        "status": "COMPLETED",
+        "result": {
+          "code": "RECORDED_UNTRUSTED_EVIDENCE",
+          "grantsAuthority": false,
+          "externalEffect": false,
+          "source": "KING_ADVISOR",
+          "provenance": "owner-imported untrusted artifact; not owner endorsement",
+          "synthetic": false
+        },
+        "request_id": null
+      },
+      {
+        "id": "work1_release_20261009",
+        "created": "2026-10-08T16:46:04.870Z",
+        "handler": "SOFTWARE",
+        "status": "COMPLETED",
+        "result": {
+          "code": "RECORDED_UNTRUSTED_EVIDENCE",
+          "grantsAuthority": false,
+          "externalEffect": false,
+          "source": "KING_ADVISOR",
+          "provenance": "owner-imported untrusted artifact; not owner endorsement",
+          "synthetic": false
+        },
+        "request_id": null
+      },
+      {
+        "id": "work2-production-ceo-v1",
+        "created": "2026-10-07T13:54:31.391Z",
+        "handler": "PILLOW",
+        "status": "BLOCKED",
+        "result": {
+          "code": "SYNTHETIC_NO_INFERENCE",
+          "boundary": "acceptDurableChatRequestClaim",
+          "route": "PILLOW",
+          "inferenceCalls": 0,
+          "completedJudgment": false
+        },
+        "request_id": null
+      },
+      {
+        "id": "work2-production-gap-v1",
+        "created": "2026-10-07T13:54:31.272Z",
+        "handler": "BLOCKED",
+        "status": "BLOCKED",
+        "result": {
+          "code": "CAPABILITY_GAP",
+          "grantsAuthority": false,
+          "externalEffect": false,
+          "source": "KING_ADVISOR",
+          "provenance": "owner-imported untrusted artifact; not owner endorsement",
+          "synthetic": true
+        },
+        "request_id": null
+      },
+      {
+        "id": "work2-production-hostile-v1",
+        "created": "2026-10-07T13:54:31.178Z",
+        "handler": "BLOCKED",
+        "status": "BLOCKED",
+        "result": {
+          "code": "BLOCKED_NOT_BORN",
+          "grantsAuthority": false,
+          "externalEffect": false,
+          "source": "KING_ADVISOR",
+          "provenance": "owner-imported untrusted artifact; not owner endorsement",
+          "synthetic": true
+        },
+        "request_id": null
+      },
+      {
+        "id": "work2-production-note-v1",
+        "created": "2026-10-07T13:54:30.810Z",
+        "handler": "SOFTWARE",
+        "status": "COMPLETED",
+        "result": {
+          "code": "RECORDED_UNTRUSTED_EVIDENCE",
+          "grantsAuthority": false,
+          "externalEffect": false,
+          "source": "KING_ADVISOR",
+          "provenance": "owner-imported untrusted artifact; not owner endorsement",
+          "synthetic": true
+        },
+        "request_id": null
+      },
+      {
+        "id": "work2-production-owner-v1",
+        "created": "2026-10-07T13:54:31.500Z",
+        "handler": "GRAND_KING",
+        "status": "AWAITING_OWNER",
+        "result": {
+          "code": "AUTHORITY_REQUIRED",
+          "grantsAuthority": false,
+          "externalEffect": false,
+          "source": "KING_ADVISOR",
+          "provenance": "owner-imported untrusted artifact; not owner endorsement",
+          "synthetic": true
+        },
+        "request_id": null
+      }
+    ],
+    "coverage": {
+      "limit": 10,
+      "after": "",
+      "since": null,
+      "complete": false,
+      "providerAccessVerified": false,
+      "businessAuthenticity": "UNVERIFIED: stored records may include historical fixtures; not evidence of real commerce",
+      "missingFields": "Not stored or not exposed; do not infer approval, execution or complete economics"
+    }
+  },
+  "isError": false
+}

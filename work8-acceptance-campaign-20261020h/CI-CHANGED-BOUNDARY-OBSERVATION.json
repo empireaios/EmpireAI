@@ -1,0 +1,62 @@
+{
+  "recordType": "CI_CHANGED_BOUNDARY_OBSERVATION",
+  "source": "ffeb87b7b07bdea6406bd304963b6c19c56f6848",
+  "tree": "41fd1325cfe94850d12b9b5febe77d3fd582f9c4",
+  "mergeCheckout": "3fa2f200a39d5f7fbc3f18c420637f2f689917a0",
+  "runtimeRun": 39389327588,
+  "runtimeJob": 118516757977,
+  "runtimeJobConclusion": "success",
+  "productRun": 39389327743,
+  "backendJob": 118516949593,
+  "backendJobConclusion": "success",
+  "backendIntegratedAssertions": {
+    "passed": 333,
+    "failed": 0,
+    "changedChecks": [
+      240,
+      241,
+      242,
+      243,
+      326,
+      327,
+      328
+    ]
+  },
+  "runtimeAssertions": {
+    "passed": 414,
+    "failed": 0
+  },
+  "HH3": {
+    "artifact": 12248853139,
+    "modes": [
+      "timeout",
+      "observer-error",
+      "invalidate-error"
+    ],
+    "correctedTimeout": "Error: GENERATED_CAPTURE_HELD_EPOCH_EXPIRED",
+    "scope": "Compiled coordinator only"
+  },
+  "HH4": {
+    "artifact": 12249395375,
+    "heldCaptureAndContainment": "PASS",
+    "canonicalInspection": "PASS_INSPECTION_RESTORATION_ONLY",
+    "canonicalStores": 13,
+    "runtimeInspectionMaterialized": true,
+    "domainAdapterReadback": "PASS_SCOPED_DOMAIN_REHYDRATION_ONLY",
+    "bootAllowed": false,
+    "operationalRestoration": false,
+    "replay": false,
+    "protectedCustody": false
+  },
+  "sourceAttribution": "Remote merge commit full tree verified equal published source; actual receipt revisions match source",
+  "workflowDispatches": 0,
+  "reruns": 0,
+  "newCompleteRequirementAcceptance": false,
+  "hashes": {
+    "hh3.zip": "55faba33e355a36b8ebaeda9c058941bcc46cdcbdb5ed18eb83c179c4d46464e",
+    "hh4.zip": "91fbb2167f9b57f60ac68fb3373f7d310b19dd173875d1dcbd687a884baa9315",
+    "backend-job.log": "edf0983d9b77089c5912191099a1048907148e24a744b869904e14066056e0b6",
+    "runtime-redis-job.log": "51f60010d418b6248092b0b71611f867250bc49d355436a153195d4bbb3068fe",
+    "CI-MERGE-COMMIT.json": "9523adb8e2a7427b5c341324f447ee1b799200666efd74f5726e88a47041e47d"
+  }
+}

@@ -1,0 +1,79 @@
+(node:6) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:13) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:13) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: cooperating cold writer is excluded for entire capture; durable identity resumes afterward
+ok 1 - cooperating cold writer is excluded for entire capture; durable identity resumes afterward
+  ---
+  duration_ms: 271.463828
+  type: 'test'
+  ...
+# Subtest: canonical aliases, hardlinks, corrupt snapshots and unknown files refuse capture
+ok 2 - canonical aliases, hardlinks, corrupt snapshots and unknown files refuse capture
+  ---
+  duration_ms: 7.508999
+  type: 'test'
+  ...
+# Subtest: joined thirteen-store manifest restores exact context into fresh process, corruption refuses before target
+ok 3 - joined thirteen-store manifest restores exact context into fresh process, corruption refuses before target
+  ---
+  duration_ms: 231.5162
+  type: 'test'
+  ...
+# Subtest: capture contention cannot reset cold identity or claim controller success; update resumes after release
+ok 4 - capture contention cannot reset cold identity or claim controller success; update resumes after release
+  ---
+  duration_ms: 15.823774
+  type: 'test'
+  ...
+# Subtest: executive journal has cross-process writer exclusion, exact immutable prior lines and inert fresh reader
+ok 5 - executive journal has cross-process writer exclusion, exact immutable prior lines and inert fresh reader
+  ---
+  duration_ms: 151.528998
+  type: 'test'
+  ...
+# Subtest: absent journal capture never writes static application directory and declares stable writable lock identity
+ok 6 - absent journal capture never writes static application directory and declares stable writable lock identity
+  ---
+  duration_ms: 57.847532
+  type: 'test'
+  ...
+# Subtest: actual non-root read-only application captures absent journal using separate writable coordination volume
+not ok 7 - actual non-root read-only application captures absent journal using separate writable coordination volume
+  ---
+  duration_ms: 4.99249
+  type: 'test'
+  location: '/workspace/scratch/7952261165b1/recovery-h/backend/src/validation/tests/work8-session-continuity-recovery.test.mjs:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    null !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: ~
+  operator: 'strictEqual'
+  stack: |-
+    file:///workspace/scratch/7952261165b1/recovery-h/backend/src/validation/tests/work8-session-continuity-recovery.test.mjs:14:1789
+    fixture (file:///workspace/scratch/7952261165b1/recovery-h/backend/src/validation/tests/work8-session-continuity-recovery.test.mjs:7:111)
+    TestContext.<anonymous> (file:///workspace/scratch/7952261165b1/recovery-h/backend/src/validation/tests/work8-session-continuity-recovery.test.mjs:14:123)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 6
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 831.385635

@@ -1,0 +1,131 @@
+{
+  "decision": "PASS_EXACT_FOURTEEN_PATH_INTEGRATION_SOURCE",
+  "reviewer": "/root/certification_h",
+  "commit": "3b726b3eb205bf02e945ee487e248c6716f32ca5",
+  "tree": "5d839752d3dd70f53fe046be636b6d54623879d6",
+  "parent": "ffeb87b7b07bdea6406bd304963b6c19c56f6848",
+  "paths": [
+    {
+      "path": "backend/src/app.ts",
+      "mode": "100644",
+      "sha256": "d411b49b352bf9302081da93e448076b600e1d38e06cd9627275d0938e033a23",
+      "gitBlob": "808fa0cc2d51534e002eb7b7ef1be16aa72a9337"
+    },
+    {
+      "path": "backend/src/orchestration/pillow-host/pillow-host.ts",
+      "mode": "100644",
+      "sha256": "2a467f043430e05847de1d184cb6bcc59d48c9af16d5bafa74403c4933ce0961",
+      "gitBlob": "a48d402997bc2cfef197e8a4256f4d42ffa7efaa"
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "mode": "100644",
+      "sha256": "46547a73f6d1c3fe7a3ea8ddb200cc99eaf9347e6cb87d6bf234bdb42e24bd69",
+      "gitBlob": "a8e04e80950396fd0014beca70bf8344ba7e378c"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-session-continuity-recovery.test.mjs",
+      "mode": "100644",
+      "sha256": "ff807bde8716b08b0f01b953c905b0164ac72fbab97a60ae1f9b0465a160596e",
+      "gitBlob": "a8df8b7b0098a27c7cad8ad536be2713615af41e"
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "mode": "100644",
+      "sha256": "efcece0548662db66fa362d83e1d376b09ff706806ddd53119f75b204f9f09df",
+      "gitBlob": "568bfead698edcfad6264f7b7e15f006306a344a"
+    },
+    {
+      "path": "deployment/work8-runtime-inspection-layout.cjs",
+      "mode": "100644",
+      "sha256": "5989ed8395b1ec4b63a2f92c258789bde0dca7acb1c02bba7a08b626a691b0db",
+      "gitBlob": "15648ada0d268d0a2a2869207f8e3caeadb2c7dd"
+    },
+    {
+      "path": "deployment/work8-session-continuity-recovery.cjs",
+      "mode": "100644",
+      "sha256": "7f550713d3af4b48065ecf3f31e72cd3a9735ddcfe082e11b370058a7efed3c1",
+      "gitBlob": "8bd63362218f7188c1de6eeff6878a9868619618"
+    },
+    {
+      "path": "pillow/src/digital-soul/decision-record.ts",
+      "mode": "100644",
+      "sha256": "e4bb1b952e07dfbfb1ea10016459ba774e60a737fc8baaf7e0423e77601977c8",
+      "gitBlob": "301e52d772e4899e3d0ff5fefd532c22cfeab15b"
+    },
+    {
+      "path": "pillow/src/digital-soul/engine.ts",
+      "mode": "100644",
+      "sha256": "b2340519925c93b60156ae000b216b4dbd04c3d7b6707fc127c5eadd36d265eb",
+      "gitBlob": "48d2359806b579a8eb757be675d2b950c7434e9f"
+    },
+    {
+      "path": "pillow/src/digital-soul/recovery-snapshot.ts",
+      "mode": "100644",
+      "sha256": "7e0ce6d693501a0fd8238e4a931c6b4e01f48b6fb608f54b2a87c210ebb02dcc",
+      "gitBlob": "5323680a7d4dea42f7326b652abbaf0e4468f857"
+    },
+    {
+      "path": "pillow/src/session-continuity-engine/continuity-controller.ts",
+      "mode": "100644",
+      "sha256": "d63fe12e4a5e6c670efcf4dd00cf69c6be6b9dc1876a7dcdb4afc254bbd0ec3c",
+      "gitBlob": "9fccfbcdbf1bd9bc3b5e53012f3cae1a4fcd7e18"
+    },
+    {
+      "path": "pillow/src/session-continuity-engine/engine.ts",
+      "mode": "100644",
+      "sha256": "e824cbc88b8832c8f985407aee6db20d6b9e1d50207a68652574335a4fa628df",
+      "gitBlob": "7ff850ee33430d993b8e68b80c60fd293161279b"
+    },
+    {
+      "path": "pillow/src/session-continuity-engine/recovery-snapshot.ts",
+      "mode": "100644",
+      "sha256": "8adb5ad78b6358af275e18d82fc4d528e5801cb5b0bbf98252975c78ee0d407f",
+      "gitBlob": "c59b7553a2a9f5cd30de041c5465d5c85fda0094"
+    },
+    {
+      "path": "pillow/src/session-continuity-engine/session-context-store.ts",
+      "mode": "100644",
+      "sha256": "14b64bac89eca0c3f1d5f647948e30e13ee954d6bb5e6acbceaaa420153fdb61",
+      "gitBlob": "ce3c84efd76ec6703151ce2a9ba2e867c54d4645"
+    }
+  ],
+  "completeTreeVerified": true,
+  "unchangedPathsPreserved": true,
+  "compilation": {
+    "tree": "5d839752d3dd70f53fe046be636b6d54623879d6",
+    "paths": 14,
+    "node": "22.23.2",
+    "npm": "10.9.8",
+    "pillow": "PASS; exactauthorcompiledoutputreused afterall14sourcehashverification",
+    "backend": "PASS",
+    "backendExitCode": 0,
+    "backendHeapMB": 6144,
+    "backendLog": "integrated-backend-build.log",
+    "frontend": "UNCHANGED; no rebuild",
+    "targeted": {
+      "pass": 6,
+      "fail": 0,
+      "skip": 1
+    },
+    "hostedSuccessor": "NOT_RUN; freshexacttreeapprovalrequired",
+    "completeRequirementPromotion": false
+  },
+  "targetedTests": {
+    "pass": 6,
+    "fail": 0,
+    "skip": 1
+  },
+  "publicationAuthorized": false,
+  "hostedSuccessor": "PENDING_OWNER_APPROVAL_AND_AUTOMATIC_CI",
+  "limits": [
+    "Actual nonroot read-only application assertion pending hosted execution; local root user namespace prevented UID child.",
+    "Historical session/journal fields are inert bytes, not restored executable grants.",
+    "No full operational restoration, global writer membership, protected custody, or whole-row acceptance inferred."
+  ],
+  "remoteReadback": {
+    "branch": "work8/staged-source-20261020h",
+    "fetchedCommit": "3b726b3eb205bf02e945ee487e248c6716f32ca5",
+    "verified": true
+  }
+}

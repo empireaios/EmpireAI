@@ -1,0 +1,70 @@
+{
+  "recordType": "BOUNDED_INITIALIZER_PERSISTENCE_AND_TOPOLOGY_CENSUS",
+  "reviewer": "/root/inventory_h independent read-only",
+  "at": "2026-10-20T07:59:45.906639+00:00",
+  "sourceTree": "41fd1325cfe94850d12b9b5febe77d3fd582f9c4",
+  "scope": "Pillow session initialization, backend app/index configured initialization, direct referenced storage and lifecycle implementations only. Direct session imports were inspected for filesystem/storage signatures; no repository-wide scan. Not a complete recursive runtime dependency attestation.",
+  "knownManifestDomains": [
+    "thirteen canonical SQL stores",
+    "Redis snapshots/chronology inspection",
+    "visual-memory bytes/index",
+    "lifecycle markers",
+    "inert authority/request-owner evidence"
+  ],
+  "additionalConfirmedDomains": [
+    {
+      "domain": "Pillow session continuity",
+      "path": "SESSION_CONTINUITY_STORAGE_ROOT/session-snapshot.json",
+      "status": "Missing from published recovery manifest; recovery_h successor adds coordinated capture",
+      "classification": "Mutable runtime identity/context state"
+    },
+    {
+      "domain": "Digital Soul executive decisions",
+      "path": "<bootstrap.repositoryRoot>/docs/governance/digital-soul/executive-decision-records.jsonl",
+      "writer": "pillow/src/digital-soul/decision-record.ts recordExecutiveDecision uses mkdir + appendFile; DigitalSoulRuntime exposes recordDecision",
+      "status": "Missing from published recovery manifest/shared lock",
+      "classification": "Mutable runtime executive decision journal; not static governance merely because located under docs",
+      "absence": "Missing-file read returns empty; capture must represent genuine absence distinctly without inventing an initialized journal"
+    }
+  ],
+  "staticOrDerived": [
+    "Bootstrap is explicitly read-only repository reconstruction",
+    "RepositoryMemoryEngine derives read-only memory from bootstrap/intelligence",
+    "Digital Soul constitution and requirement matrix are versioned static governance inputs",
+    "DurableSessionEngine describes/read-assesses durable architecture; its direct implementation has no additional durable file writer",
+    "MissionRuntime persistence resolves native .missions.sqlite, already among canonical13 stores"
+  ],
+  "topology": [
+    {
+      "actor": "Amazon order/listing/inventory continuations",
+      "finding": "Each tick wraps runCaptureAwareBackground; app capture uses withDrainedWork8Background. Therefore local cooperative admission/drain exists even though stop/drain callbacks are owned by index shutdown. Do not label these missing solely from post-app startup.",
+      "remaining": "Separately admitted prior/current processes, transport membership and complete globally coordinated replay require their own proof."
+    },
+    {
+      "actor": "Executive continuity watchdog",
+      "finding": "Started after app.listen; separate worker/heartbeat, SQL flush guard and graceful/forced recovery lifecycle effects. No separate persistent file identified in inspected implementation.",
+      "remaining": "Containment/coordination of lifecycle actions during global capture/restore must be proven; no unreviewed claim that heartbeat itself is a missing data store."
+    }
+  ],
+  "batchRecommendation": "Include known session-context and Digital Soul journal domains in one compatible reviewed source batch if feasible; keep manifest completeLiveState/boot authority false until complete declared topology and fresh-target operational restore pass. Preserve observed absence, exact bytes/modes, cooperative writer exclusion and corruption refusal. Do not copy static governance as if live journals.",
+  "resourceBoundary": "Live full-runtime topology/process inventory and full operational restored application examination remain unavailable from source inspection alone; protected independently authenticated custody/retention and owner-session/pending replay also require actual evidence.",
+  "allRuntimeStoresProven": false,
+  "newAcceptedIds": [],
+  "sourceSha256": {
+    "pillow/src/session.ts": "19feed280363857f2b6431e701188182bf189b5eb8b12e64ef4ca623b794146e",
+    "pillow/src/digital-soul/paths.ts": "12e9528c1e56acfdc3c25eb85fa912dac42dfbae1a7a3cd0d591237921c67eba",
+    "pillow/src/digital-soul/engine.ts": "d910df8dd2bff2c34ba0f96543b9cf6e25697ea95847b60c7aae82fa725969bb",
+    "pillow/src/digital-soul/decision-record.ts": "74bf2b53ea43f028c4aa9163c60ef620baf4fe7f0dda3b2307de82f4d43b0f62",
+    "pillow/src/bootstrap/engine.ts": "ff09e44c7c809c667cd9f49b7f9acd4211c7d0456379e80786523188e54cf6bf",
+    "pillow/src/memory/engine.ts": "a89fdb1ffd441f51957c3fc6c83cab8e25705efb762ea32fcebeea0323a59712",
+    "pillow/src/durable-sessions/engine.ts": "dfa800de603272b19d302af7b47bc8eeeb2114870bd097cc0a574d49f644daa3",
+    "pillow/src/mission-runtime/mission-persistence.ts": "f3c0ff104f89c96c7c0d4af0421b94463fcf5f8c5eb1a3f067d3ddcf8be3ac77",
+    "backend/src/app.ts": "e037758986fdff0ab7c2b79d84fca4c458a09c9952f9f6eb45784756e2aff9b4",
+    "backend/src/index.ts": "980baa79a9961464bf6a405d94c5582bfb0dd35deec8e1310b414252669187bf",
+    "backend/src/runtime/work8-background-capture.ts": "e1a32b935f7146107948c4a9d9cc482830a5b1c74c80584350f1f1260a20fe00",
+    "backend/src/runtime/executive-continuity-watchdog.ts": "09b2037fd1a0e297c184974700a49f2ced7d2839e25b851a510612d8edccf81e",
+    "backend/src/orchestration/reality-integration/live-commerce/services/amazon-order-continuation.ts": "ce7adf320dec552634bafd95464016aef375c46721a16638485835f05087759d",
+    "backend/src/orchestration/reality-integration/live-commerce/services/amazon-listings-continuation.ts": "ffe004eeeb46327859ab4922e3dd8718811fc16f7a53f390c002b5b33642c59b",
+    "backend/src/orchestration/reality-integration/live-commerce/services/amazon-seller-inventory-continuation.ts": "0570eddc7a4476dc436f1a80a6012e5a6b1acc2a75343c0936f6628a75dedd43"
+  }
+}

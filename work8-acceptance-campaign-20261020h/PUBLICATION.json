@@ -1,0 +1,23 @@
+{
+  "evidence": {
+    "commit": "77f7584c8a2b2cbb7b57c937193e55f45714008a",
+    "tree": "b1ac7cd0ba7bca6119e9c7712d51d78363db87de",
+    "parent": "577d17c9eaf6b9f90f946aa96142cff190f13fcd"
+  },
+  "source": {
+    "approvedCommit": "9e6c259d2e1792e0a1886f053b1d8d0b4e36879e",
+    "commit": "ffeb87b7b07bdea6406bd304963b6c19c56f6848",
+    "tree": "41fd1325cfe94850d12b9b5febe77d3fd582f9c4",
+    "parent": "bc18feefd7438f33e0d84424c61ef1eaca707551",
+    "metadataOnlyChange": "Removed skip ci message to allow normal automatic CI"
+  },
+  "publicationOrder": [
+    "evidence",
+    "source"
+  ],
+  "beforeAfterCompleteTreesVerified": true,
+  "expectedHeadLeases": true,
+  "force": false,
+  "workflowDispatches": 0,
+  "reruns": 0
+}

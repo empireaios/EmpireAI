@@ -1,0 +1,63 @@
+{
+  "recordType": "WORK8_H_INTEGRATION_AND_ALERT_ACCESS_BOUNDARIES",
+  "at": "2026-10-20T07:52:34.097942+00:00",
+  "newAcceptedIds": [],
+  "sourceFiles": {
+    "backend/src/runtime/commerce-runtime/governed/runtime.ts": "172bb8c88398f77c28fd09f4d1f0e21f363692dab1b83761aced0f0875c5ce23",
+    "backend/src/runtime/commerce-runtime/governed/work8-canva-media.ts": "90077a5427089ee31f6836d30ebb183b2afdc6f407d62b8300bec2ea41b75774",
+    "backend/src/execution/canva-connect-connector/routes/canva-connect-routes.ts": "d115a246c81a64ce69bb49cce711980d4827638656be609d53a6cb6e17e64641",
+    "backend/src/intelligence/acquisition.ts": "92daab65b9be297aed77232053e897c27a9365f42faa8fee747083ba124be858"
+  },
+  "A10": {
+    "status": "PENDING",
+    "concreteSourceBoundary": "Governed twin_canva_export_proposal route constructs Work8CanvaMedia with only media, without server-owned CanvaMediaExportPorts. prepare immediately refuses CANVA_RUNTIME_AUTHORITY_NOT_CONFIGURED. ChatGPT Canva connector is not that runtime consumer.",
+    "existingAuthenticatedReadRoutes": [
+      "GET /canva/oauth/status?companyId=<actual bound company>",
+      "GET /canva/health?companyId=<actual bound company>"
+    ],
+    "requiredReadResult": "Actual workspace/company OAuth connection with mock=false and relevant scopes; health must identify actual provider access, not stored labels. No credentials need be exposed.",
+    "remaining": [
+      "Existing authenticated runtime route access",
+      "Server-owned exact owner/workspace/design/asset/version export authority and bounded artifact read ports, derived from genuine existing grant rather than browser assertion",
+      "Actual permitted Canva edit/export and exactbytes/provenance/version",
+      "Independent full original contract acceptance"
+    ],
+    "noCanvaMutationPerformed": true
+  },
+  "A15": {
+    "status": "PENDING",
+    "currentNamedCapability": "keepa.history UNAVAILABLE / readState UNVERIFIED / lastVerifiedRead null / endpoint null",
+    "scope": "Current durable capability declaration, not independent account-wide absence or paid-subscription test",
+    "acquisitionImplementation": "Existing provider_read Keepa history request uses KEEPA_API_KEY and /product; no call attempted with absent verified entitlement or credentials.",
+    "remaining": "Applicable existing runtime Keepa entitlement and bounded successful attributed historical response; preserve deferred Helium10; no paid activation."
+  },
+  "O30": {
+    "status": "PENDING",
+    "scope": "Reused minute-old G Railway inventory; one10record communications-domain page read for concrete existing route evidence. No external route established in inspectedscope.",
+    "readback": "Communications returns historical internal work-item and owner-imported artifact records; not external alert delivery provider receipts. Shared capabilities explicitly mark Gmail inbox/supplier communications unwired to executivechat. This does not establish account-wide service absence.",
+    "missing": [
+      "Independently controlled existing executor",
+      "Durable independent attempt store",
+      "Delivery provider and authorized sender",
+      "Verified owner destination",
+      "Independent success/failure observer",
+      "Exact one-test sending/escalation authority"
+    ],
+    "externalMessagesSent": 0,
+    "infrastructureChanges": 0
+  },
+  "crossLaneLead": {
+    "freshProviderReceiptsExist": "CJ stock2026-10-20T06:39:56.557Z andfreight06:39:57.104Z, detail/catalogsamebatch; Amazoncatalog/offerssamebatch",
+    "businessLaneNotified": true,
+    "caution": "Namedcapability receipt discovery only; exact source-bound facts and expiry must be read independently before qualification."
+  },
+  "checksNotRepeated": [
+    "Railway inventory",
+    "Accepted A9/A11 tests",
+    "Stale integrations snapshot retrieval",
+    "Historical224 accounting search"
+  ],
+  "externalRefresh": false,
+  "paidInference": 0,
+  "purchases": 0
+}

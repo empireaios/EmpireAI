@@ -1,0 +1,124 @@
+{
+  "schema": "work8-business-finance-console-h-v1",
+  "date": "2026-10-20",
+  "decision": "IN_PROGRESS / NO_GO",
+  "newCompleteAcceptances": [],
+  "freshEvidence": {
+    "productId": "2610200608021613300",
+    "variantId": "2610200608021615600",
+    "sku": "CJJT328757901AZ",
+    "name": "Simulation 3d Fireplace Flame Aroma Diffuser Household Desk",
+    "variant": "black",
+    "identityLimit": "Different product from G2610171752021618700 /2610171752021619700; does not refresh or silently replace G dossier.",
+    "detail": {
+      "id": "ev_0d5d7a782c4b9ba4dfe795570b7b240e50cfaf93",
+      "observedAt": "2026-10-20T06:39:29.178Z",
+      "staleAt": "2026-10-20T12:39:29.178Z",
+      "numericVariantPrice": 7.47
+    },
+    "stock": {
+      "id": "ev_2f70e708c72ab7a4b52d62e26f1e3dadc0938b44",
+      "observedAt": "2026-10-20T06:39:56.557Z",
+      "staleAt": "2026-10-20T12:39:56.557Z",
+      "factoryStock": 5238,
+      "cjStock": 0,
+      "warehouse": "China Warehouse",
+      "limit": "Not reserved stock or a dispatch guarantee"
+    },
+    "freight": {
+      "id": "ev_7e8829e21256d22ed3ea8586d838ad9d05417396",
+      "observedAt": "2026-10-20T06:39:57.104Z",
+      "staleAt": "2026-10-20T12:39:57.105Z",
+      "origin": "CN",
+      "destination": "US",
+      "quantity": 1,
+      "options": 10,
+      "lowestObservedTotal": 15.59,
+      "service": "CJPacket Sensitive",
+      "estimatedDays": "4–9",
+      "selected": false,
+      "limit": "Estimate, not delivered-cost or processing guarantee"
+    },
+    "amazon": {
+      "asin": "B0GN1TZZ9W",
+      "product": "WALI desk organizer",
+      "catalogEvidence": "ev_12aaf268de6d83f8f390a0d46f9b362f3987919d",
+      "offersEvidence": "ev_823a9e43efcdd7fd761487b681df76e0e262bce5",
+      "match": "UNMATCHED; unrelated to diffuser"
+    },
+    "retrieval": "Existing stored LIVE_PROVIDER receipts followed current capability lead. No duplicate provider refresh, paid inference, commerce, or supplier contact executed.",
+    "opportunity": {
+      "id": "op_8ebfe6ffeb113ab0c244961495fa70aae9a9",
+      "status": "INCOMPLETE",
+      "coverage": "3/8",
+      "score": 38,
+      "missing": [
+        "demand",
+        "competition",
+        "customer problem",
+        "rank/growth",
+        "restriction risk"
+      ],
+      "match": "UNMATCHED"
+    }
+  },
+  "policyEvidence": [
+    {
+      "url": "https://cjdropshipping.com/dispute-policy.html",
+      "retrievedDate": "2026-10-20",
+      "summary": "Current general dispute policy includes a45-day USA delay threshold after dispatch and30-day ordinary/electronic damage complaint windows after delivery. Returns are toChina warehouses; high costs and long transit apply. This is not evidence of aUS returns centre, prepaid label, or an exactSKU account-specific promise.",
+      "scope": "General policy, not executed product/account agreement"
+    },
+    {
+      "url": "https://cjdropshipping.com/user-agreement",
+      "retrievedDate": "2026-10-20",
+      "summary": "Current agreement assigns platform content ownership toCJ or suppliers, recognizes supplier-origin content and third-party infringement risk, and assigns users country-specific IP responsibility. Production/procurement can be delayed. These clauses do not establish exactasset commercial permissions or exactSKU processing SLA.",
+      "scope": "General current terms"
+    },
+    {
+      "url": "https://oss.cjdropshipping.com/pdf/CJ%20Dropshipping%20Agreement%202025.6.12.pdf",
+      "retrievedDate": "2026-10-20",
+      "summary": "Published agreement template describes supplier ownership of product digital files and sales-related use restrictions, alongside third-party IP responsibilities. Blank PartyB signature fields are not evidence theowner executed this agreement or that individual assets are cleared.",
+      "scope": "Template, execution unproven"
+    }
+  ],
+  "remainingQualificationProof": [
+    "Exact product/variant processing and dispatch commitment",
+    "Applicable account-bound returns/refund handling and costs",
+    "Exact image/video asset identity and applicable usage licence",
+    "Product compliance and battery/shipping restrictions",
+    "Genuine matched Amazon product and demand/economic evidence",
+    "Source-bound complete Pillow assessment within authorised no-paid-inference boundary"
+  ],
+  "console": {
+    "url": "https://empire-ai.co/cockpit",
+    "observedState": "Grand King Access sign-in wall; Email, Password, Enter EmpireAI",
+    "authentication": "Secure browserAuth request initiated using inspected email/password fields; tool returned aborted by user after773.2seconds. No credentials observed, no success inferred, no retry.",
+    "checksBlocked": [
+      "Authenticated desktop/mobile connected-owner journey",
+      "Genuine owner decisions/results durable readback",
+      "Existing owner provider_read refresh for originalG SKU ifstillrequired",
+      "A10 authenticated Canva status for genuineboundcompany",
+      "A15 account-bound integration prerequisites"
+    ],
+    "handoff": "Existing-owner secure sign-in required; do not request secrets inchat. Abort respected. No separate duplicate handoff initiated."
+  },
+  "finance": {
+    "decision": "Historical accounting lineage remains unproven",
+    "action": "No repeated missing224 search; retained G evidence preserved. No new credible accounting lead.",
+    "requiredProof": "Attributable historical snapshot/source lineage and reconciliation against preservedlive records"
+  },
+  "supplierEnquiry": {
+    "status": "NOT_SENT",
+    "recipient": "No verified specific supplier/support recipient or account-bound support route established in thislane; no recipient invented.",
+    "draft": "For CJ product2610200608021613300, black variant2610200608021615600 /SKU CJJT328757901AZ, quantity1 toUS: please confirm current factory versus CJ-held availability and processing/dispatch time; applicable shipping and battery restrictions; exact return address, eligibility, costs, refund responsibility and timeframes; and permission/licence for the exact product images/video for Amazoncommercial use, identifying assets and any third-party restrictions. Please provide source-dated, account-applicable documentation.",
+    "sendAuthority": "Not authorised; draftonly"
+  },
+  "controls": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "externalEffects": 0,
+    "publication": false
+  }
+}

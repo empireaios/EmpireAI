@@ -1,0 +1,19 @@
+{
+  "tree": "5d839752d3dd70f53fe046be636b6d54623879d6",
+  "paths": 14,
+  "node": "22.23.2",
+  "npm": "10.9.8",
+  "pillow": "PASS; exactauthorcompiledoutputreused afterall14sourcehashverification",
+  "backend": "PASS",
+  "backendExitCode": 0,
+  "backendHeapMB": 6144,
+  "backendLog": "integrated-backend-build.log",
+  "frontend": "UNCHANGED; no rebuild",
+  "targeted": {
+    "pass": 6,
+    "fail": 0,
+    "skip": 1
+  },
+  "hostedSuccessor": "NOT_RUN; freshexacttreeapprovalrequired",
+  "completeRequirementPromotion": false
+}

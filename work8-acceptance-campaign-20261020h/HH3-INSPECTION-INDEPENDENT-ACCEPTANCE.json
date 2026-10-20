@@ -1,0 +1,203 @@
+{
+  "recordType": "INDEPENDENT_HOSTED_CHANGED_BOUNDARY_ACCEPTANCE",
+  "reviewer": "/root/certification_h independent of source author and CI observer",
+  "at": "2026-10-20T07:59:24.946337+00:00",
+  "decision": "PASS_HH3_DISABLED_PILLOW_CORRECTION_AND_THIRTEEN_STORE_INSPECTION_BOUNDARY",
+  "source": "ffeb87b7b07bdea6406bd304963b6c19c56f6848",
+  "completeTree": "41fd1325cfe94850d12b9b5febe77d3fd582f9c4",
+  "runtimeRun": 39389327588,
+  "runtimeJob": 118516757977,
+  "artifacts": {
+    "HH3": 12248853139,
+    "HH4": 12249395375
+  },
+  "method": "Independently read retained original hosted artifacts, exact source/merge-tree attribution and control receipts; recomputed equality of all13SQL checkpoint/materialized files and all3lifecycle markers; no examinations rerun.",
+  "HH3": [
+    {
+      "mode": "timeout",
+      "decision": "PASS_CHANGED_BOUNDARY",
+      "error": "Error: GENERATED_CAPTURE_HELD_EPOCH_EXPIRED",
+      "cleanupLiveSurvivors": 0
+    },
+    {
+      "mode": "observer-error",
+      "decision": "PASS_CHANGED_BOUNDARY",
+      "error": "Error: HH3_LABELLED_OBSERVER_FAILURE",
+      "cleanupLiveSurvivors": 0
+    },
+    {
+      "mode": "invalidate-error",
+      "decision": "PASS_CHANGED_BOUNDARY",
+      "error": null,
+      "cleanupLiveSurvivors": 0
+    }
+  ],
+  "HH4": {
+    "heldCapture": true,
+    "canonicalRecordEquality": true,
+    "canonicalSha256": "f54f8826b1fb7f8750645f288d2b8ac3ed27b1821fa89fbf031e8068b654ce4a",
+    "canonicalStores": [
+      {
+        "id": "intelligence",
+        "sha256": "f128ae351cdcec09eba9d04e71e0a7b062ef09d9d1829631d27fc7a0c1b6f541",
+        "bytes": 45056
+      },
+      {
+        "id": "pillowMemory",
+        "sha256": "8f8eebb964fbd4593ec13124d55e96ef11a44723999244a66a96962f44a5b6fa",
+        "bytes": 45056
+      },
+      {
+        "id": "pillowRequests",
+        "sha256": "e9b65e5b58e6d1c4be0149cf9cc103f8be267b065fcc6e3a60d3f055ec0b6742",
+        "bytes": 16384
+      },
+      {
+        "id": "pillowReasoning",
+        "sha256": "9496b093a386c49649dc4486ddef8defc57883e6d5c4a391a65c95fb0da14f12",
+        "bytes": 36864
+      },
+      {
+        "id": "communications",
+        "sha256": "01a8cb86205624504db3961198f8e5eae37025138b63e5cddb034f121ab7a032",
+        "bytes": 61440
+      },
+      {
+        "id": "liveCostCentre",
+        "sha256": "22d124c2a56ff9b2d3a9ab5a4ce4e6664708cb44e9e9cf6ecc578c492febf20d",
+        "bytes": 12288
+      },
+      {
+        "id": "assurance",
+        "sha256": "b3f52a4d6ffde9aa0290f59f57f9c9f5c04cb0982117b4cd6abb9d9de856e8cc",
+        "bytes": 69632
+      },
+      {
+        "id": "financialEvidence",
+        "sha256": "fa4b12dc8e8798651c81af7f0ab842d596d611b0276337288d2794cb5a5bc012",
+        "bytes": 12288
+      },
+      {
+        "id": "commerce",
+        "sha256": "acd9fadc15bf986a550a3fe53c645d55dc1ba0faa65c408dad62da9e29dd99e6",
+        "bytes": 241664
+      },
+      {
+        "id": "brain",
+        "sha256": "6a51c18093bbedd57f95b6535c36aa023043d49ca5b867df2d89c56d0be3ad27",
+        "bytes": 2502656
+      },
+      {
+        "id": "missions",
+        "sha256": "47f1fff4947e849e9173bb884ac7c4d16f7ea77c92c703261a3bae5ed2c061f2",
+        "bytes": 8192
+      },
+      {
+        "id": "execution",
+        "sha256": "a2e0d3fb211cfbb5ba6d4716cb377eed674cc6256a05fedac6ee7599fc89a469",
+        "bytes": 20480
+      },
+      {
+        "id": "shadow",
+        "sha256": "7342a5d91d093ee488ff470654bf5b1602733ef4e643f1a30438a67d58e54441",
+        "bytes": 20480
+      }
+    ],
+    "lifecycleMarkersEqual": 3,
+    "originalReadinessDeadlineMs": 180000,
+    "originalCaptureResponseDeadlineMs": 30000,
+    "originalHeldEpochMs": 5000,
+    "observedTotalMs": 12835.09164,
+    "observedCaptureResponseMs": 196.68055400000048,
+    "containedBeforeHeldExpiry": true,
+    "visualSnapshotFileCount": 0,
+    "bootAllowed": false,
+    "authorityImported": false,
+    "redisRestored": false,
+    "completeOperationalRestore": false
+  },
+  "preservedAcceptedScopes": [
+    "A8",
+    "O19",
+    "HH3",
+    "HH4",
+    "A9",
+    "A11",
+    "F29"
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "totals": {
+    "accepted": 45,
+    "outstanding": 19
+  },
+  "limits": [
+    "Hosted HH4 domain initialization is explicitly synthetic; no fresh commercial or financial qualification inferred.",
+    "Current hosted visual snapshot is empty; retained targeted nonempty visual capture/restoration tests remain separate applicable proof.",
+    "Full declared prior/current writer topology, session-continuity file coverage, operational fresh-target boot/session/pending replay and protected independent custody remain unproven.",
+    "Artifact extraction equality provesbytes; exactmode behavior is covered by retained reviewed source/targeted tests, not inferred from ZIP extraction filesystemmodes."
+  ],
+  "receiptSha256": {
+    "hh3/timeout/receipt.json": "5cf697ed6e9759fbbf6aca241a1eaeb0c3cbb44b697451a4e55136f6df493e69",
+    "hh3/observer-error/receipt.json": "7288eaf1ff02fe721820cc65e3c4a00454de4966d6c91f775da0db6e0779b8f2",
+    "hh3/invalidate-error/receipt.json": "2ee331a806dd6c08ae5ca057308d0ae14207556b54502b0381669f35c520637c",
+    "hh3.zip": "55faba33e355a36b8ebaeda9c058941bcc46cdcbdb5ed18eb83c179c4d46464e",
+    "hh4.zip": "91fbb2167f9b57f60ac68fb3373f7d310b19dd173875d1dcbd687a884baa9315",
+    "hh4/held-capture-result.json": "cd50bc3646ef65c8c134591f7a9335cfaba614e8e84df1885c20bff51ee9a6a3",
+    "hh4/held-capture-external-verification.json": "582f4a6b1c2ddffa94394269b53980be85ef9e0faabc76d93d6da1ee9e1e0781",
+    "hh4/domain-rehydration-result.json": "5aceb9c87372704039c3414d23cd22a4fcebabaf77bb899b98540e91ca47eab0",
+    "hh4/fresh-inspection-restoration/canonical-inspection-result.json": "e87670516217fdb179c671b68c931000ffbb54220fbe25c351487e04fd15c45e",
+    "hh4/fresh-inspection-restoration/runtime-inspection/INSPECTION_ONLY.json": "026fcd06f3696c9cfa92381329353a376cfeffdfd4f93114c75d0c0f7acc6f4e",
+    "backend-job.log": "edf0983d9b77089c5912191099a1048907148e24a744b869904e14066056e0b6"
+  },
+  "hostedChangedBoundaryChecks": {
+    "ProductRun": 39389327743,
+    "backendJob": 118516949593,
+    "assertionIds": [
+      240,
+      241,
+      242,
+      243,
+      326,
+      327,
+      328
+    ],
+    "passed": 7,
+    "failed": 0,
+    "scope": "All13storematerialization, corruptionbeforetarget, cleanup/existingtarget preservation, marker/aliasrefusal and disabled/enabledPillow policy"
+  },
+  "terminalAutomaticCI": [
+    {
+      "id": 39389327985,
+      "name": "Independent Assurance Core",
+      "head_sha": "ffeb87b7b07bdea6406bd304963b6c19c56f6848",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 39389327674,
+      "name": "Pillow semantic repair CI",
+      "head_sha": "ffeb87b7b07bdea6406bd304963b6c19c56f6848",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 39389327743,
+      "name": "Product path CI",
+      "head_sha": "ffeb87b7b07bdea6406bd304963b6c19c56f6848",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 39389327588,
+      "name": "Pillow runtime repair CI",
+      "head_sha": "ffeb87b7b07bdea6406bd304963b6c19c56f6848",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    }
+  ]
+}

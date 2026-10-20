@@ -1,0 +1,106 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: cooperating cold writer is excluded for entire capture; durable identity resumes afterward
+ok 1 - cooperating cold writer is excluded for entire capture; durable identity resumes afterward
+  ---
+  duration_ms: 262.79315
+  type: 'test'
+  ...
+# Subtest: canonical aliases, hardlinks, corrupt snapshots and unknown files refuse capture
+ok 2 - canonical aliases, hardlinks, corrupt snapshots and unknown files refuse capture
+  ---
+  duration_ms: 5.264982
+  type: 'test'
+  ...
+# Subtest: joined thirteen-store manifest restores exact context into fresh process, corruption refuses before target
+ok 3 - joined thirteen-store manifest restores exact context into fresh process, corruption refuses before target
+  ---
+  duration_ms: 234.372912
+  type: 'test'
+  ...
+# Subtest: capture contention cannot reset cold identity or claim controller success; update resumes after release
+ok 4 - capture contention cannot reset cold identity or claim controller success; update resumes after release
+  ---
+  duration_ms: 11.955196
+  type: 'test'
+  ...
+# Subtest: executive journal has cross-process writer exclusion, exact immutable prior lines and inert fresh reader
+not ok 5 - executive journal has cross-process writer exclusion, exact immutable prior lines and inert fresh reader
+  ---
+  duration_ms: 132.44485
+  type: 'test'
+  location: '/workspace/scratch/7952261165b1/recovery-h/backend/src/validation/tests/work8-session-continuity-recovery.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      [
+        {
+          alternatives: [],
+          approvalAuthority: 'fixture owner',
+          assumptions: [],
+    ...
+          expectedRisks: [],
+    -     futureReviewDate: undefined,
+          id: 'ds-dec-mvge9w5x-gxypx5',
+          reasoning: 'No external effect',
+          recommendedBy: 'Pillow',
+          recordedAt: '2026-10-20T08:01:37.557Z'
+        }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      id: 'ds-dec-mvge9w5x-gxypx5'
+      recordedAt: '2026-10-20T08:01:37.557Z'
+      decision: 'Retain source-bound evidence'
+      context: 'isolated recovery examination'
+      evidence:
+      assumptions:
+      alternatives:
+      reasoning: 'No external effect'
+      expectedEmpireValue: 'Integrity'
+      expectedRisks:
+      confidence: 'Moderate'
+      approvalAuthority: 'fixture owner'
+      recommendedBy: 'Pillow'
+      constitutionalAlignment: true
+  actual:
+    0:
+      id: 'ds-dec-mvge9w5x-gxypx5'
+      recordedAt: '2026-10-20T08:01:37.557Z'
+      decision: 'Retain source-bound evidence'
+      context: 'isolated recovery examination'
+      evidence:
+      assumptions:
+      alternatives:
+      reasoning: 'No external effect'
+      expectedEmpireValue: 'Integrity'
+      expectedRisks:
+      confidence: 'Moderate'
+      approvalAuthority: 'fixture owner'
+      recommendedBy: 'Pillow'
+      constitutionalAlignment: true
+  operator: 'deepStrictEqual'
+  stack: |-
+    file:///workspace/scratch/7952261165b1/recovery-h/backend/src/validation/tests/work8-session-continuity-recovery.test.mjs:12:2036
+    async fixture (file:///workspace/scratch/7952261165b1/recovery-h/backend/src/validation/tests/work8-session-continuity-recovery.test.mjs:7:105)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 4
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 740.066672

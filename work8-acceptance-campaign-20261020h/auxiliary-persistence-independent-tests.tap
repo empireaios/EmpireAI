@@ -1,0 +1,57 @@
+(node:5) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:12) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:12) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: cooperating cold writer is excluded for entire capture; durable identity resumes afterward
+ok 1 - cooperating cold writer is excluded for entire capture; durable identity resumes afterward
+  ---
+  duration_ms: 345.552466
+  type: 'test'
+  ...
+# Subtest: canonical aliases, hardlinks, corrupt snapshots and unknown files refuse capture
+ok 2 - canonical aliases, hardlinks, corrupt snapshots and unknown files refuse capture
+  ---
+  duration_ms: 5.747186
+  type: 'test'
+  ...
+# Subtest: joined thirteen-store manifest restores exact context into fresh process, corruption refuses before target
+ok 3 - joined thirteen-store manifest restores exact context into fresh process, corruption refuses before target
+  ---
+  duration_ms: 465.973597
+  type: 'test'
+  ...
+# Subtest: capture contention cannot reset cold identity or claim controller success; update resumes after release
+ok 4 - capture contention cannot reset cold identity or claim controller success; update resumes after release
+  ---
+  duration_ms: 17.332699
+  type: 'test'
+  ...
+# Subtest: executive journal has cross-process writer exclusion, exact immutable prior lines and inert fresh reader
+ok 5 - executive journal has cross-process writer exclusion, exact immutable prior lines and inert fresh reader
+  ---
+  duration_ms: 167.18349
+  type: 'test'
+  ...
+# Subtest: absent journal capture never writes static application directory and declares stable writable lock identity
+ok 6 - absent journal capture never writes static application directory and declares stable writable lock identity
+  ---
+  duration_ms: 66.816126
+  type: 'test'
+  ...
+# Subtest: actual non-root read-only application captures absent journal using separate writable coordination volume
+ok 7 - actual non-root read-only application captures absent journal using separate writable coordination volume # SKIP Local user namespace cannot map non-root uid; normal hosted non-root execution required
+  ---
+  duration_ms: 3.348262
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 1172.001339

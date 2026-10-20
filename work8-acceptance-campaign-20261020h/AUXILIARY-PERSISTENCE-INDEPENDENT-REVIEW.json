@@ -1,0 +1,76 @@
+{
+  "recordType": "INDEPENDENT_AUXILIARY_PERSISTENCE_CHANGED_BOUNDARY_REVIEW",
+  "reviewer": "/root/certification_h independent of recovery_h author",
+  "at": "2026-10-20T08:07:46.731728+00:00",
+  "decision": "PASS_SCOPED_SOURCE_AND_SIX_TARGETED_TESTS_WITH_ONE_EXPLICIT_HOSTED_ASSERTION_PENDING",
+  "baseTree": "41fd1325cfe94850d12b9b5febe77d3fd582f9c4",
+  "reviewedPaths": {
+    "backend/src/app.ts": "d411b49b352bf9302081da93e448076b600e1d38e06cd9627275d0938e033a23",
+    "backend/src/orchestration/pillow-host/pillow-host.ts": "2a467f043430e05847de1d184cb6bcc59d48c9af16d5bafa74403c4933ce0961",
+    "backend/src/runtime/work8-recovery-capture.ts": "46547a73f6d1c3fe7a3ea8ddb200cc99eaf9347e6cb87d6bf234bdb42e24bd69",
+    "backend/src/validation/tests/work8-session-continuity-recovery.test.mjs": "ff807bde8716b08b0f01b953c905b0164ac72fbab97a60ae1f9b0465a160596e",
+    "deployment/work8-recovery-set.cjs": "efcece0548662db66fa362d83e1d376b09ff706806ddd53119f75b204f9f09df",
+    "deployment/work8-runtime-inspection-layout.cjs": "5989ed8395b1ec4b63a2f92c258789bde0dca7acb1c02bba7a08b626a691b0db",
+    "deployment/work8-session-continuity-recovery.cjs": "7f550713d3af4b48065ecf3f31e72cd3a9735ddcfe082e11b370058a7efed3c1",
+    "pillow/src/digital-soul/decision-record.ts": "e4bb1b952e07dfbfb1ea10016459ba774e60a737fc8baaf7e0423e77601977c8",
+    "pillow/src/digital-soul/engine.ts": "b2340519925c93b60156ae000b216b4dbd04c3d7b6707fc127c5eadd36d265eb",
+    "pillow/src/digital-soul/recovery-snapshot.ts": "7e0ce6d693501a0fd8238e4a931c6b4e01f48b6fb608f54b2a87c210ebb02dcc",
+    "pillow/src/session-continuity-engine/continuity-controller.ts": "d63fe12e4a5e6c670efcf4dd00cf69c6be6b9dc1876a7dcdb4afc254bbd0ec3c",
+    "pillow/src/session-continuity-engine/engine.ts": "e824cbc88b8832c8f985407aee6db20d6b9e1d50207a68652574335a4fa628df",
+    "pillow/src/session-continuity-engine/recovery-snapshot.ts": "8adb5ad78b6358af275e18d82fc4d528e5801cb5b0bbf98252975c78ee0d407f",
+    "pillow/src/session-continuity-engine/session-context-store.ts": "14b64bac89eca0c3f1d5f647948e30e13ee954d6bb5e6acbceaaa420153fdb61"
+  },
+  "independentTestExecution": {
+    "command": "/tmp/work8-runtime-g/node_modules/node/bin/node --test backend/src/validation/tests/work8-session-continuity-recovery.test.mjs",
+    "exitCode": 0,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 1,
+    "receipt": "auxiliary-persistence-independent-tests.tap",
+    "sha256": "75e3c9ec97a78dfd8738536d0fe9785f516713e1d962091723562c1fec6aed63"
+  },
+  "resolvedReviewFindings": [
+    "Persistence success is explicit; controller latest/buffer/success/fingerprint only advances after acknowledged store success; busy/failed persistence increments failure and retries on later update.",
+    "Initialization lockbusy/corruption fail closed instead of silently resetting identity.",
+    "DigitalSoul capture no longer tries to create lock under read-onlyapplication; source-keyed lock is in declared writablevolume namespace and capture does not create sourcegovernancedirectories.",
+    "Actualreadonlypermissiontest does not claim chmodunderroot provesreadonly: normalnonrootrunner uses sameUID child, requires EACCES/EROFS precondition, then captures throughwritablevolume; localroot uidmappingEINVAL/EPERM is explicitSKIP."
+  ],
+  "verified": [
+    "SeparateOS cooperatingwriter exclusion across entire awaitedcapture forsession andjournal; writes resume afterward.",
+    "Atomic temporary sessionwrite/fsync/rename/directoryfsync; durablememory acknowledgment onlyafterwrite succeeds.",
+    "Exact sessionactor/contextbytes andDigitalSoul historicaljournalrecords read byfreshprocess afterinertmaterialization.",
+    "Both auxiliarydigests joined to13storemanifest; corruptionrefused beforefreshdestination; symlink/hardlink/unknownsessionfile refusal.",
+    "Absentjournal remainsnull, notinvented initializedrecord; existingpriorjournallines unchanged afterappend.",
+    "ConfiguredPillowdisabled branchstill bypassesauxiliaryhostcapture; enabledhost ensureRunning preserved.",
+    "No activeauthority stores/grants imported, no applicationboot, no Redis owner-session restoration claimed."
+  ],
+  "compilation": {
+    "Pillow": {
+      "exitCode": 0,
+      "node": "22.23.2",
+      "command": "node pillow/node_modules/typescript/bin/tsc -p pillow/tsconfig.json",
+      "log": "auxiliary-persistence-pillow-build-final.log",
+      "compiledDist": "/workspace/scratch/7952261165b1/recovery-h/pillow/dist"
+    },
+    "backendIntegratedBuild": "PASS exit0; INTEGRATED-COMPILATION.json"
+  },
+  "limits": [
+    "Only updated cooperating processes sharing declared writable lock namespace; prior/uncooperative processes not proven",
+    "Session snapshot remains singleton last-successful-writer behavior; no multi-owner merge guarantee",
+    "The Pillow UX continuity identity is not an authenticated Redis owner session; no extra auth or authority replay",
+    "Inspection targets never boot or import execution authority",
+    "Full operational restoration, global topology and protected custody remain unproven",
+    "Actual non-root readonly permission assertion pending hosted automatic execution",
+    "The six passing tests include a clearly labelled injectedreadonlysource boundary; realnonrootpermission assertion remains pendingnormalhostedexecution.",
+    "Source review and local tests do not accept any complete O33/O39/A1/A2/A3/A5 requirement.",
+    "Journal approvalAuthority and sessionactor/context fields are historicalinertbytes, not restored executablegrants or authenticated runtimeadmission.",
+    "No complete recursivepersistence/topology attestation; missing/uncooperatingpriorprocesses and sharednamespace proof remain externalto thisscope."
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "publicationAuthorized": false,
+  "stagedSource": {
+    "commit": "3b726b3eb205bf02e945ee487e248c6716f32ca5",
+    "tree": "5d839752d3dd70f53fe046be636b6d54623879d6"
+  }
+}

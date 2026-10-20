@@ -1,0 +1,20 @@
+{
+  "recordType": "INDEPENDENT_READONLY_CAPABILITY_PREFLIGHT",
+  "reviewer": "/root/inventory_h",
+  "at": "2026-10-20T08:14:38.578874+00:00",
+  "decision": "BLOCKED_CAPABILITY_DROP_UNSUPPORTED",
+  "attempts": 1,
+  "command": "capsh --drop=cap_dac_override,cap_dac_read_search -- -c <pinned Node22 compiled-production driver>",
+  "exitCode": 1,
+  "stderr": "unable to raise CAP_SETPCAP for BSET changes: Operation not permitted",
+  "productionDriverExecuted": false,
+  "actualReadonlyPreconditionProven": false,
+  "newAcceptance": false,
+  "compiledModuleSha256": "51e176684940721dae99b5a3b52276c0d3f8183d7ce3f63770a588da43f4d654",
+  "driverSha256": "755aefc946b55e3cf0acfbc02dd60f83844837a717818daf7dc84fbcbbf88968",
+  "sourceEdited": false,
+  "testsEdited": false,
+  "uidFaked": false,
+  "installs": 0,
+  "followup": "Preserve local targeted checks; actual read-only permission boundary still needs capable nonroot/readonly hosted examination. No second privilege or environment workaround attempted."
+}
