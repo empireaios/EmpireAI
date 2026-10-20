@@ -101,6 +101,10 @@ async function pillowFetchWithRetry(
   throw lastError ?? new Error("Pillow request failed");
 }
 
+export class PillowRequestError extends Error {
+  constructor(message: string, readonly status: number) { super(message); this.name = "PillowRequestError"; }
+}
+
 async function pillowRequest<T>(
   path: string,
   init?: RequestInit & { params?: Record<string, string | undefined>; timeoutMs?: number; retries?: number },
@@ -128,10 +132,10 @@ async function pillowRequest<T>(
 
     if (!response.ok) {
       const body = (await response.json().catch(() => ({}))) as { error?: string };
-      throw new Error(
+      throw new PillowRequestError(
         toExecutiveSurfaceMessage(
           body.error ?? `Pillow request failed (${response.status})`,
-        ),
+        ), response.status,
       );
     }
 

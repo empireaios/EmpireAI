@@ -1,3 +1,4 @@
+import { VisualMemoryCaptureBusyError } from "./recovery-lock.js";
 /** T1-08 — Visual memory orchestration controller. */
 
 import type { VisualCaptureEngine } from "../visual-capture-engine/engine.js";
@@ -108,6 +109,10 @@ export class MemoryController {
     });
   }
 
+  withRecoverySnapshot<T>(capture:(snapshot: import("./memory-persistence-store.js").VisualMemoryRecoverySnapshot)=>Promise<T>):Promise<T> {
+    return this.persistenceStore.withRecoverySnapshot(capture);
+  }
+
   async start(): Promise<void> {
     if (!this.config.enabled) {
       this.status = "idle";
@@ -196,6 +201,7 @@ export class MemoryController {
   }
 
   captureNow(): VisualMemoryRecord | null {
+    if(this.persistenceStore.isRecoveryHeld())return null;
     const session = this.sessionManager.getSession();
     const sessionId = session?.sessionId ?? `vme-direct-${Date.now()}`;
     this.recordSequence += 1;
@@ -253,11 +259,18 @@ export class MemoryController {
   }
 
   runCleanup(): void {
-    const removed = this.retentionManager.applyRetention(
+    if(this.persistenceStore.isRecoveryHeld())return;
+    let removed: number;
+    try { removed = this.persistenceStore.withWriteTransaction(()=>this.retentionManager.applyRetention(
       this.indexer,
       this.persistenceStore,
       this.config,
-    );
+    )); } catch(error) {
+      // Another updated process owns capture; this timer simply skips its tick.
+      // Storage corruption, unsafe roots and other failures remain visible.
+      if(error instanceof VisualMemoryCaptureBusyError)return;
+      throw error;
+    }
     if (removed > 0) {
       this.performance.cleanups += 1;
       const stats = this.persistenceStore.getStorageStats();
@@ -278,9 +291,12 @@ export class MemoryController {
   ): void {
     const started = Date.now();
     try {
-      const bytes = this.persistenceStore.write(payload);
-      this.indexer.index(record, componentIds);
-      this.persistenceStore.saveIndex(this.indexer.getAll());
+      const bytes = this.persistenceStore.withWriteTransaction(()=>{
+        const written=this.persistenceStore.write(payload);
+        this.indexer.index(record, componentIds);
+        this.persistenceStore.saveIndex(this.indexer.getAll());
+        return written;
+      });
       const duration = Date.now() - started;
 
       this.latestRecord = record;
@@ -325,6 +341,7 @@ export class MemoryController {
   }
 
   private async memoryTick(): Promise<void> {
+    if(this.persistenceStore.isRecoveryHeld())return;
     if (this.capturing) {
       this.performance.skippedCaptures += 1;
       return;
