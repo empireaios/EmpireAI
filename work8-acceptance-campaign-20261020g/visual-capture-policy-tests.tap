@@ -1,0 +1,11 @@
+✔ explicit disabled Pillow reaches original held-capture failure without starting host (1.26901ms)
+✔ enabled Pillow startup failure remains strict (0.163704ms)
+✔ enabled host holds real visual capture through downstream completion (0.248791ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.430501

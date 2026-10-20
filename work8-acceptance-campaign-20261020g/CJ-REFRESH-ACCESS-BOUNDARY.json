@@ -1,0 +1,37 @@
+{
+  "recordType": "BOUNDED_CJ_REFRESH_ACCESS_BOUNDARY",
+  "sourceCommit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+  "route": {
+    "method": "POST",
+    "path": "/api/owner/commerce",
+    "authentication": "existing authenticated OWNER session",
+    "action": "provider_read",
+    "source": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+    "behavior": "runIntelligenceJob with followups=false; durable idempotent source-bound read, not paid inference or commerce",
+    "job": {
+      "id": "work8-g-cj-logistics-20261020",
+      "objective": "Refresh exact retained variant stock and US freight evidence only; no orders or inference",
+      "capabilities": [
+        "cj.stock",
+        "cj.freight"
+      ],
+      "subject": {
+        "id": "2610171752021618700",
+        "variant": "2610171752021619700",
+        "marketplace": "US",
+        "destination": "US"
+      },
+      "requestLimit": 2,
+      "evidenceRefs": [
+        "ev_6724ef7efa25794fab55a347e0c72b97f4a9b3c5",
+        "ev_4391af5c2fd305056645b5c8bc158e233c505a85"
+      ]
+    }
+  },
+  "executed": false,
+  "boundary": "Available Advisor connector offers stored-state reads only, explicitly externalRefresh=false. No refresh tool is exposed. Existing authenticated owner route may be usable by controller if existing authorized session is available; provider access/current entitlement and budget still enforced by runtime. No new credentials sought.",
+  "retainedReadback": "Three exact source IDs fetched October20, all retain October18 observations/expiration; fetching is not refreshing.",
+  "processingReturns": "Exact detail/stock/freight records contain no attributable processing/returns/RMA policy. Product description is manufacturing/material specification. Freight logisticAging is transit estimate, not processing or returns terms.",
+  "additionalFinding": "CJPacket Eub Special Line logisticPrice9.11 plus clearanceOperationFee0.46 yields totalPostageFee9.57 in retained raw record; no selected freight or current economics inferred.",
+  "newAcceptance": false
+}

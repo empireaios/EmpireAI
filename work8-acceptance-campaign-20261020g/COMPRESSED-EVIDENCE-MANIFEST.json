@@ -1,0 +1,107 @@
+[
+  {
+    "file": "SOURCE-G-REMOTE-COMPLETE-TREE.bin",
+    "stored": "SOURCE-G-REMOTE-COMPLETE-TREE.bin.gz",
+    "uncompressedBytes": 2002374,
+    "uncompressedSha256": "3efb48b3b757d8e9bb8132841a7e76fb104fb6e11298a3c48d919196dcf2a1e6",
+    "compressedSha256": "8daed853e519a2f4ed032d3eea564e6714a598afb639a30c396ba4401760814e"
+  },
+  {
+    "file": "generated-reasoning-job.log",
+    "stored": "generated-reasoning-job.log.gz",
+    "uncompressedBytes": 36092,
+    "uncompressedSha256": "44527cd01ce40d1cedb47578d22a9b428fa35dcebd930d0621455fc96012ad40",
+    "compressedSha256": "aff261b9f592b33c609815f44ceccaadfcd7a84e31b06d05ec9df099bc796540"
+  },
+  {
+    "file": "backend-dependency-install.log",
+    "stored": "backend-dependency-install.log.gz",
+    "uncompressedBytes": 928,
+    "uncompressedSha256": "33f36d9cecf4262f1f9a799dab7653d666dcbd77c8cc993d91a9a451551d4af9",
+    "compressedSha256": "bba39de32f93df75392e546ba050da0a218e9eb753786d3ada64c181003ee0e4"
+  },
+  {
+    "file": "integrated-pillow-build.log",
+    "stored": "integrated-pillow-build.log.gz",
+    "uncompressedBytes": 230,
+    "uncompressedSha256": "bd9d9cc56f59697b51b5d75e263bb8c00726ecb9580da1caa5c92adef2b2ee17",
+    "compressedSha256": "e543d257a71a3bac8da35938841b6e3141a9ed97e0b967cb55c7ebfa04b5cffd"
+  },
+  {
+    "file": "runtime-install.log",
+    "stored": "runtime-install.log.gz",
+    "uncompressedBytes": 332,
+    "uncompressedSha256": "7cd6691508b5ee6ef31f85c460f3fce4a2ecf69d7a2538c9bcebf9fbb143f2e2",
+    "compressedSha256": "ed245528f2d3f8923fcb4a0164d31f62da503165b74e665334218917f553eca7"
+  },
+  {
+    "file": "generated-response-job.log",
+    "stored": "generated-response-job.log.gz",
+    "uncompressedBytes": 34673,
+    "uncompressedSha256": "c31f96c7b368e803285811a6a2e3c44df833b2d4f6a64201bd983d8b1006a607",
+    "compressedSha256": "c848e22255ee67c7b1349f2f3e16c43190105fddc2bdd60f7f24ebb0f7e9be1d"
+  },
+  {
+    "file": "pillow-job.log",
+    "stored": "pillow-job.log.gz",
+    "uncompressedBytes": 40690,
+    "uncompressedSha256": "648b6a3e8a59d17a194d8db8c505123cb0b5a859de9ae1d743bcb76eb0c3fa93",
+    "compressedSha256": "ee5b1ccb788b55ef1b975bd08d433a0a5f6ea445725d463018e8cdc38f60fc04"
+  },
+  {
+    "file": "native-browser-job.log",
+    "stored": "native-browser-job.log.gz",
+    "uncompressedBytes": 66206,
+    "uncompressedSha256": "fecff16ef4826e3997d37969439ae20fad14815dd84fdc1ca704a91dcc107d0e",
+    "compressedSha256": "6458d62bc0bc01c0118582405c059ec2e0cf36b548bc031c8315ea13cf0e163c"
+  },
+  {
+    "file": "redis-image-job.log",
+    "stored": "redis-image-job.log.gz",
+    "uncompressedBytes": 35644,
+    "uncompressedSha256": "f6a230187a5db0ea08ee78cff33b751a96d69afda33e9f8a09d270e8fc43319f",
+    "compressedSha256": "2164c899be75309f77bb1726583483c0e746d66dfab0db6634b81e5809ce801c"
+  },
+  {
+    "file": "pillow-dependency-install.log",
+    "stored": "pillow-dependency-install.log.gz",
+    "uncompressedBytes": 561,
+    "uncompressedSha256": "0b23ca2b35f5fea467f5fde9194ed452deb4300520dcfad4fc339752aee70599",
+    "compressedSha256": "0628b1437a03651da5833889f50b2797204fdfc9b88ee9322ed73aa6a073005c"
+  },
+  {
+    "file": "integrated-backend-build.log",
+    "stored": "integrated-backend-build.log.gz",
+    "uncompressedBytes": 2880,
+    "uncompressedSha256": "f76817ec138fd6608f4de8372167ecf8672afb22b5107a5fb230ee69ae4797cd",
+    "compressedSha256": "e8b1dc098248d59b6341737a3101077ee81f9d2956c9b6dc3224b1e85630b43f"
+  },
+  {
+    "file": "backend-job.log",
+    "stored": "backend-job.log.gz",
+    "uncompressedBytes": 373446,
+    "uncompressedSha256": "e5b7e5afbf7dffc415985928afddeacfb194a86bd2fa57284ff803172a236f05",
+    "compressedSha256": "705aab31e3540b99c666569dd0266e14922f09dbe34225c1dfc1b385d3053de7"
+  },
+  {
+    "file": "runtime-redis-job.log",
+    "stored": "runtime-redis-job.log.gz",
+    "uncompressedBytes": 99033,
+    "uncompressedSha256": "75dc5afb64f2906dabdf9120f279735c8d3abe13bb95d20eebfe308aa1f63506",
+    "compressedSha256": "93fe97e4477826f8f580fcaf84a2d4590028401a13618f582fafa9e127047415"
+  },
+  {
+    "file": "railpack-job.log",
+    "stored": "railpack-job.log.gz",
+    "uncompressedBytes": 58462,
+    "uncompressedSha256": "fa720bb5e316f90767eee4a3d2cc8ca0025f788c1247e72f41f4e4b85fabf0ea",
+    "compressedSha256": "5359fa3b9b5dee70e94f09e5c9f6f084a91d9507cb97a39902ba08b26cd0fef2"
+  },
+  {
+    "file": "integrated-backend-build-final.log",
+    "stored": "integrated-backend-build-final.log.gz",
+    "uncompressedBytes": 1520,
+    "uncompressedSha256": "d1befd21a23738624af2a2c9154edd91f8cea4369df5f488e8f88a12cc8558b6",
+    "compressedSha256": "d1ccc3011e59e99edaee832cebcca414f5273f85208f2db1dc4ffcb32477843a"
+  }
+]

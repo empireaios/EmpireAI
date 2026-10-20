@@ -1,0 +1,26 @@
+{
+  "evidence": {
+    "approvedCommit": "577d17c9eaf6b9f90f946aa96142cff190f13fcd",
+    "publishedCommit": "577d17c9eaf6b9f90f946aa96142cff190f13fcd",
+    "tree": "41c9a91795b831c6169150c0506d1ab4029d6861",
+    "branch": "work8/examination-evidence-20261011"
+  },
+  "source": {
+    "approvedCommit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+    "publishedCommit": "bc18feefd7438f33e0d84424c61ef1eaca707551",
+    "tree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+    "branch": "work8/autonomous-examination-20261011",
+    "metadataOnlyChange": "Removed staging skip-ci message; tree unchanged"
+  },
+  "order": [
+    "evidence",
+    "source"
+  ],
+  "beforeAndAfterCompleteTreesVerified": true,
+  "expectedHeadLeaseUsed": true,
+  "force": false,
+  "draft": true,
+  "merged": false,
+  "workflowDispatches": 0,
+  "reruns": 0
+}

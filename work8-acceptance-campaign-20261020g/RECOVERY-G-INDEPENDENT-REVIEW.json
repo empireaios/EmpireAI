@@ -1,0 +1,43 @@
+{
+  "recordType": "INDEPENDENT_CHANGED_BOUNDARY_REVIEW",
+  "reviewer": "alerts_custody_g independent of recovery_g author",
+  "createdAt": "2026-10-20T07:25:08.793Z",
+  "decision": "PASS_SCOPED_SOURCE_AND_TARGETED_EXAMINATION",
+  "files": {
+    "backend/src/app.ts": "e037758986fdff0ab7c2b79d84fca4c458a09c9952f9f6eb45784756e2aff9b4",
+    "backend/src/runtime/work8-visual-capture-policy.ts": "e2842febeceb1b73d7faa9dfec135b6f167ddad698abc922c5ea76856b714281",
+    "backend/src/validation/tests/work8-runtime-inspection-layout.test.mjs": "80b6452f7efa1d85e36d513ac38d6a5e231c7a5694b740e4b232069af321fb4e",
+    "backend/src/validation/tests/work8-visual-capture-policy.test.mjs": "7e676c33aaaf0ff77dafb6b9134560a05bb019891084018c0c63f3b3705c8021",
+    "deployment/work8-recovery-set.cjs": "89461212dc437ec1eea749f51652884688803b3322aff94f5a355327ac96424c",
+    "deployment/work8-runtime-inspection-layout.cjs": "3e9a9a238a0a52ff368b926554f4a1ac52427b36c63732ddbd7cd9b1f660d48a"
+  },
+  "reviewed": [
+    "13 canonical SQL store mappings and three lifecycle marker paths are fixed repository constants",
+    "Whole runtime manifest and child manifests verified; retained SQL/marker bytes directly hashed against sealed digests before target creation",
+    "O_NOFOLLOW descriptor reads and regular single-link source requirement; canonical parent; nonnested fresh exclusive destination; exact bytes and observed source permissions preserved",
+    "Failure removes only freshly created materializer directory; existing targets preserved",
+    "No authority imported, no application started, no Redis restored; receipt remains bootAllowed:false and completeOperationalRestore:false",
+    "Configured disabled Pillow skips unavailable visual engine; enabled Pillow continues strict real capture and propagates startup errors"
+  ],
+  "requestedFixesResolved": [
+    "Replaced verify-then-reread byte comparison with direct sealed-hash binding",
+    "Descriptor-based retained reads",
+    "Added lifecycle marker and aliased source refusal coverage"
+  ],
+  "independentTestExecution": {
+    "command": "node --test backend/src/validation/tests/work8-runtime-inspection-layout.test.mjs backend/src/validation/tests/work8-visual-capture-policy.test.mjs",
+    "passed": 7,
+    "failed": 0,
+    "diffCheck": "PASS"
+  },
+  "limits": [
+    "Targeted fixture examination and source review only, not complete hosted restoration or complete requirement acceptance",
+    "All SQL bytes retained in memory; known572MB primary plus other stores and runtime overhead requires sufficient resources; no real-corpus memory/deadline result established",
+    "Preserves observed sealed-copy permissions, not proof of historical runtime modes because checkpoint manifests do not seal modes",
+    "Parent integration build and exact complete tree review remain required",
+    "Inspection target assumes controlled fresh parent; no hostile same-UID mutation guarantee"
+  ],
+  "newAcceptedOriginal": [],
+  "newAcceptedAmendments": [],
+  "publicationAuthorized": false
+}

@@ -1,0 +1,17 @@
+{
+  "sourceTree": "41fd1325cfe94850d12b9b5febe77d3fd582f9c4",
+  "node": "22.23.2",
+  "npm": "10.9.8",
+  "pillowDependencyBuild": "PASS",
+  "backendBuild": "PASS",
+  "backendExitCode": 0,
+  "initialBackendAttempt": {
+    "exitCode": 134,
+    "reason": "Default2GB V8heap exhausted; no compiler diagnostics",
+    "log": "integrated-backend-build.log"
+  },
+  "finalBackendHeapMB": 6144,
+  "finalBackendLog": "integrated-backend-build-final.log",
+  "frontend": "UNCHANGED; retained published Product9jobsSUCCESS, no rebuild",
+  "hostedSuccessorVerification": "NOT_RUN; exacttreepublicationapprovalrequired"
+}

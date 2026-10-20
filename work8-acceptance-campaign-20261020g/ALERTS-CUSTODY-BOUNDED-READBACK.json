@@ -1,0 +1,227 @@
+{
+  "recordType": "WORK8_G_BOUNDED_ALERTS_CUSTODY_READ_ONLY",
+  "observedAt": "2026-10-20T07:21:02.594Z",
+  "scope": "Two previously identified Railway production environments only; no account-wide absence claim",
+  "inventory": [
+    {
+      "scope": "empireai",
+      "operation": "describe_environment",
+      "result": {
+        "project": {
+          "id": "75374474-2b3a-4b0f-a9bc-203cdc1314d8",
+          "name": "empireai",
+          "workspaceName": "empireaios's Projects"
+        },
+        "environment": {
+          "id": "da94aed2-956b-4903-a886-68a5e9a557c8",
+          "name": "production",
+          "isEphemeral": false
+        },
+        "staged": null,
+        "region": null,
+        "services": [
+          {
+            "id": "fdef2b8f-a806-455e-bd4a-ab9e93e3b8c9",
+            "name": "empireai-locked-redis",
+            "state": "live",
+            "source": {
+              "image": "redis:7.2.16-bookworm",
+              "repo": null,
+              "branch": null
+            },
+            "regions": [
+              "sfo"
+            ],
+            "numReplicas": 1,
+            "cronSchedule": null,
+            "volumeMounts": [
+              {
+                "volumeId": "af8cc57d-7175-47c5-8145-3b68713c52c5",
+                "volumeName": "empireai-locked-redis-data",
+                "mountPath": "/data"
+              }
+            ],
+            "latestDeployment": {
+              "id": "2ca21fd5-1eda-418a-916a-ad16b6746af5",
+              "status": "SUCCESS",
+              "createdAt": "2026-10-01T11:46:59.942Z",
+              "url": null
+            },
+            "stagedChangeCount": 0
+          },
+          {
+            "id": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+            "name": "empireai-locked-runtime",
+            "state": "live",
+            "source": {
+              "image": null,
+              "repo": "empireaios/EmpireAI",
+              "branch": "work2/backend-release"
+            },
+            "regions": [
+              "sfo"
+            ],
+            "numReplicas": 1,
+            "cronSchedule": null,
+            "volumeMounts": [
+              {
+                "volumeId": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+                "volumeName": "empireai-locked-runtime-data",
+                "mountPath": "/data"
+              }
+            ],
+            "latestDeployment": {
+              "id": "4303f5e9-afef-4f70-9388-996a0e923949",
+              "status": "SUCCESS",
+              "createdAt": "2026-10-10T21:09:07.045Z",
+              "url": null
+            },
+            "stagedChangeCount": 0
+          },
+          {
+            "id": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+            "name": "EmpireAI",
+            "state": "live",
+            "source": {
+              "image": null,
+              "repo": "empireaios/EmpireAI",
+              "branch": "main"
+            },
+            "regions": [
+              "sfo"
+            ],
+            "numReplicas": 1,
+            "cronSchedule": null,
+            "volumeMounts": [
+              {
+                "volumeId": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+                "volumeName": "empireai-volume",
+                "mountPath": "/data"
+              }
+            ],
+            "latestDeployment": {
+              "id": "208a2de6-ecda-44a4-ae48-bd6393b6fb78",
+              "status": "FAILED",
+              "createdAt": "2026-09-14T17:59:01.747Z",
+              "url": null
+            },
+            "stagedChangeCount": 0
+          }
+        ],
+        "volumes": [
+          {
+            "id": "40ab30d1-2759-4eba-b3c8-255436610bb0",
+            "name": "empireai-volume",
+            "state": "live",
+            "region": "sfo",
+            "sizeMB": 5000,
+            "mountedOn": {
+              "serviceId": "c3c89cbb-3e10-414a-98a2-f9ec4f1f840e",
+              "serviceName": "EmpireAI",
+              "mountPath": "/data"
+            },
+            "stagedChangeCount": 0
+          },
+          {
+            "id": "6f8dcd97-59ae-479b-ae6d-199aa476059f",
+            "name": "empireai-locked-runtime-data",
+            "state": "live",
+            "region": "sfo",
+            "sizeMB": 1024,
+            "mountedOn": {
+              "serviceId": "7a25cfc6-7298-480f-91db-1b37871f8cac",
+              "serviceName": "empireai-locked-runtime",
+              "mountPath": "/data"
+            },
+            "stagedChangeCount": 0
+          },
+          {
+            "id": "af8cc57d-7175-47c5-8145-3b68713c52c5",
+            "name": "empireai-locked-redis-data",
+            "state": "live",
+            "region": "sfo",
+            "sizeMB": 1024,
+            "mountedOn": {
+              "serviceId": "fdef2b8f-a806-455e-bd4a-ab9e93e3b8c9",
+              "serviceName": "empireai-locked-redis",
+              "mountPath": "/data"
+            },
+            "stagedChangeCount": 0
+          }
+        ],
+        "buckets": [],
+        "sharedVariableNames": []
+      }
+    },
+    {
+      "scope": "empireai",
+      "operation": "list_webhooks",
+      "result": {
+        "webhooks": []
+      }
+    },
+    {
+      "scope": "empireai-canary-20260923",
+      "operation": "describe_environment",
+      "result": {
+        "project": {
+          "id": "feb90d26-c54b-4435-ac32-f666e3e25447",
+          "name": "empireai-canary-20260923",
+          "workspaceName": "empireaios's Projects"
+        },
+        "environment": {
+          "id": "3b0664a3-8655-4fc1-b9cf-113034a81e0a",
+          "name": "production",
+          "isEphemeral": false
+        },
+        "staged": null,
+        "region": null,
+        "services": [],
+        "volumes": [],
+        "buckets": [],
+        "sharedVariableNames": []
+      }
+    },
+    {
+      "scope": "empireai-canary-20260923",
+      "operation": "list_webhooks",
+      "result": {
+        "webhooks": []
+      }
+    }
+  ],
+  "conclusions": {
+    "alerts": "No configured project webhooks in either project. No dedicated independent executor or independent attempt store identified in these environments. Existing three services are application and Redis services; inventory alone cannot prove process-level alert behavior or absence outside inspected scope.",
+    "custody": "Primary has three app/Redis-mounted sfo volumes; canary empty; zero buckets in inspected environments. Existing Library conditional suitability preserved, not full custody acceptance."
+  },
+  "missingAlertTuple": [
+    "Existing independently controlled executor identity and bounded runtime authority",
+    "Durable attempt-store location and independent access/retention",
+    "Existing delivery provider/account and authorized sender identity",
+    "Verified owner destination and independent delivery/failure observation identity",
+    "Exact one-test message, trigger, escalation and sending authority"
+  ],
+  "proposedTestMessage": "EmpireAI Work 8 isolated owner-alert acceptance test. COMMERCE LOCKED; PILLOW NOT_BORN. No operational action requested. Correlation: <unique examination ID>.",
+  "minimumDecision": "No ready-to-execute exact route was established, so no generic send/provision approval is requested. Identify the existing executor, durable store, delivery provider/sender, verified destination and observer; bind them to the exact test message and bounded escalation before a concrete sending approval.",
+  "custodyRemaining": [
+    "Complete consistent application DATA capture and sealed source/run/cohort/path/mode/digest manifest",
+    "Actual retained file/version identity and stated retention horizon",
+    "Observed runtime credential/network/proxy/mount/host-escape exclusion across declared writers/controllers",
+    "Fresh independently authenticated exact readback",
+    "Corrupt-copy refusal before writes and good-copy full fresh-target operational restore, preserving financial/session/pending records and inactive authorities",
+    "Original 60s detection,120s execution,180s verification freshness"
+  ],
+  "preserved": [
+    "O19",
+    "HH4",
+    "A9",
+    "A11",
+    "F29"
+  ],
+  "newAcceptedOriginal": [],
+  "newAcceptedAmendments": [],
+  "mutations": 0,
+  "externalMessagesSent": 0,
+  "infrastructureCreated": 0,
+  "decision": "PENDING_NO_COMPLETE_ACCEPTANCE"
+}

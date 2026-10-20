@@ -1,0 +1,46 @@
+{
+  "decision": "PASS_COMPLETE_A8_ORIGINAL_AMENDMENT",
+  "reviewer": "independent agent a8_review_g; not source author or CI executor",
+  "publishedSource": "bc18feefd7438f33e0d84424c61ef1eaca707551",
+  "approvedSource": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+  "hostedCheckout": "263d3942d46a7fecbd2ee97a3f118c80a78f54d5",
+  "completeTree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+  "run": 39385501016,
+  "job": 118504429438,
+  "artifact": 12246854445,
+  "artifactSha256": "91b03286502b6282d1eeaf159c88e2bcfb32df964bc348d7e679ae10c75e5531",
+  "criteria": {
+    "native_authenticated_products_listings_orders_entry": "PASS 390 and 1440; actual Next BFF and actual retained-source resolver",
+    "context_remove_switch_comparison_followup": "PASS both widths, four host-persisted deliveries; exact raw/bound comparison equality within both initial/followup pairs",
+    "source_identity_unknowns": "PASS evidence ev_73b424033a094d8cf1e0efdcb53570e32985b16c, facts digest 1f47081865a103e9ece852113ead67eb1c4f8b97797c2d65d2ec8b9a73d9614c; exact SKU/variant/workspace binding; stock/freight remain null, grantsAuthority false",
+    "native_reload_archive_history": "PASS both widths actual authenticated history endpoint; 18 successful history reads per width; eight persisted turns; every delivered context found verbatim in actual host history; screenshot inspection confirms server-record labels and product-evidence disclosure",
+    "session_reuse_concurrency_cancel": "PASS retained independently reviewed targeted test: six concurrent bootstrap calls one POST; canceled route hint reauthenticates; eight navigation/focus/send reuses; current native has no failed session requests, two201 per width including legitimate archive restoration",
+    "forged_stale_missing_foreign_truncation": "PASS current actual Tier0 forged pin409 and exact queued input hash; current native foreign source401/403; retained F backend tests210,211,213,214 source/workspace/UTF8 protections",
+    "cold_process_durability": "PASS retained F backend test212, writer4732 terminated before readers4751/4763; actual ReasoningState/PillowSessionStore exact full product/source/version/unknown fields and owner/workspace isolation; turnsSHA256773bcda2797077e2132675d25fa09926ebee365ba2148782d8753cf0f8b0f432"
+  },
+  "sourceReviewReuse": "All five A8 current file SHA256 equal A8-SESSION-REUSE-INDEPENDENT-REVIEW.json; retained backend transcript/resolver implementations unchanged by successor; no repeated tests",
+  "scope": [
+    "Historical source replay with monotonic elapsed clock, not fresh supplier qualification",
+    "Model transport intercepted; no paid inference or actual model answer required for original product-context interaction contract",
+    "Authenticated owner/enrichment fixtures, not personal owner commercial approval",
+    "Current native reload plus retained separate cold-process proof, not full operational/Redis restoration",
+    "423 chat/dispatch fences retained; screenshots show Commerce LOCKED and NOT_BORN; unrelated runtime HH3 failure is not an A8 regression"
+  ],
+  "newAccepted": [
+    "A8"
+  ],
+  "acceptedTotalIfNoOtherChanges": 45,
+  "outstandingTotalIfNoOtherChanges": 19,
+  "remainingA8Criteria": [],
+  "files": {
+    "source-identities.json": "70dda900fe2bf0cf99f51520b1a37b350d2d5d27a44e8494ec8267ce6041fa02",
+    "actual-tier0-admission.json": "ea15abc868c06cb1b545ed5ade4460f893720d2abfe26929ebe06ef0ab189059",
+    "source-context-1440.png": "5a4d89c75565b7ba87afa2a3e2027a853abc18f2f33c6ba98519b4450e66525e",
+    "receipt.json": "37d94e1df1c9e7df0eb323c8e3f38e7982fa39844d36a64a965eff3c01f0e7c4",
+    "context-delivery.jsonl": "08bb7e842d59d58f90b62a40989eba99dc367ed2f7429012a1254793c12bbe42",
+    "source-context-390.png": "480e9d504359353da8ff863bf77db9ae454afeb96dbdb2f68de347e07669f35c",
+    "actual-host-history.json": "c3da1ab162bee59bee5e8cd617e9a3750da34ca923acf915463800974373cf80",
+    "server.log": "fe1e7fbd51a12fb699cac515ccf3256bc97bc0d5eb1358cc38e7db37f70b5017",
+    "response-statuses.json": "624fc7039f78112ec493d905563ec094a8a2afecd1da822b81555101e8e1e664"
+  }
+}

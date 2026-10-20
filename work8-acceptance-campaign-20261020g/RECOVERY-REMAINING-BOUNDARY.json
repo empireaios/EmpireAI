@@ -1,0 +1,61 @@
+{
+  "schema": "WORK8_RECOVERY_BOUNDARY_REVIEW_V1",
+  "sourceCommit": "4503ee6858aa2ad187ba2902ecab957a8af5c1dc",
+  "sourceTree": "f21713b9b90cad36531372b775bfd6ff9a8f9e71",
+  "method": "Targeted source review against retained F continuation and closure matrix; no accepted tests rerun",
+  "newCompleteAcceptance": false,
+  "preserved": [
+    "HH4",
+    "two real-Redis session-writer assertions",
+    "five reviewed visual-memory capture checks",
+    "O19",
+    "F29"
+  ],
+  "confirmed": {
+    "runtimeSqlStores": 13,
+    "completeCaptureExplicitlyRefused": true,
+    "inspectionOnlyRedisRestore": true,
+    "visualInspectionMaterialization": true,
+    "fullCanonicalFilesystemMaterialization": false,
+    "joinedFreshApplicationRestoreConsumer": false,
+    "globalPriorInstanceWriterExclusionProven": false,
+    "protectedIndependentCustodyProven": false
+  },
+  "remainingProof": [
+    "Declared prior/current runtime topology and every admitted writer excluded or drained",
+    "Complete consistent capture across canonical stores, Redis chronology, sessions, visual files and pending work",
+    "Fresh isolated application restore using exact source and canonical layout without imported execution authority",
+    "Live Cost Centre, mission-execution, owner sessions and once-only pending continuation invariants",
+    "Protected retention/version horizon, runtime credential/failure exclusion and independently authenticated off-host readback",
+    "Original bounded valid/corrupt restore oracle"
+  ],
+  "scopeCaution": "Inspection archives and materialized files do not establish full operational restoration or complete O33/O39/A1/A2/A3/A5 acceptance.",
+  "proposedNextEngineering": "Independently review bounded materializer, then use it in isolated actual application fresh-target readback alongside existing Redis inspection under original deadlines and fences; only after complete proof assess operational restoration.",
+  "engineering": {
+    "status": "IMPLEMENTED_TARGETED_TESTS_PASS_AWAITING_INDEPENDENT_REVIEW",
+    "paths": [
+      "deployment/work8-recovery-set.cjs",
+      "deployment/work8-runtime-inspection-layout.cjs",
+      "backend/src/validation/tests/work8-runtime-inspection-layout.test.mjs"
+    ],
+    "tests": "4 materializer assertions and 3 changed visual-policy boundary assertions PASS on Node24.19",
+    "scope": "Fresh inspection layout of 13 canonical SQL stores with lifecycle and optional visual memory; exact bytes/modes and source identity, before-write corruption refusal, existing target preservation, fresh target cleanup and durability. Historical execution authority remains sealed only. Existing visual inspection path preserved. Modes describe captured checkpoint files at read time; historical runtime file modes are not sealed by existing checkpoint format.",
+    "limitations": [
+      "No application boot or execution authority",
+      "Redis/session restoration remains separate existing inspection operation",
+      "No global prior-instance quiescence proof",
+      "No complete operational restoration or protected custody acceptance",
+      "Materializer retains entire SQL corpus in memory, requiring at least known572MBprimary plusotherstores and runtimeheadroom; not yet suitable for unknown resource-limited fullapplicationrestore."
+    ],
+    "patch": "recovery-g-successor.patch"
+  },
+  "hh3ChangedBoundary": {
+    "observed": "automaticRuntime CI expectedHELD_EPOCH_EXPIRED but observedPillowHostNotRunningError",
+    "cause": "ExplicitpillowEnabled:false HH3fixture now traversed unconditional visualhostcapture before originalheldepochassertion",
+    "correction": "withConfiguredVisualCapture bypasses absentvisualengine only when configuredPillowdisabled; enabledhost remainsstrict",
+    "targetedTests": 3,
+    "hostedRerun": false,
+    "historicalHH3AcceptedEvidencePreserved": true,
+    "pending": "independentreview andfutureexacttreeapproval plusautomaticCI"
+  }
+}

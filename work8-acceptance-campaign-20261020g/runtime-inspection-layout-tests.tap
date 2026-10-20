@@ -1,0 +1,12 @@
+✔ joined inspection path rehydrates all13 exact canonical stores without authority (190.221247ms)
+✔ corrupt final store refuses before creating target (96.159125ms)
+✔ write failure removes only freshly created layout (84.219271ms)
+✔ aliased checkpoint refuses before target creation (85.087815ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 537.89283

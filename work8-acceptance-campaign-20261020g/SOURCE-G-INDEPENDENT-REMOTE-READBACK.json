@@ -1,0 +1,48 @@
+{
+  "reviewer": "alerts_custody_g",
+  "observedAt": "2026-10-20T07:30:56.217413+00:00",
+  "method": "Independent git fetch of remote staging branch; Git content-addressed commit/tree/blob verification and complete base comparison",
+  "commit": "9e6c259d2e1792e0a1886f053b1d8d0b4e36879e",
+  "tree": "41fd1325cfe94850d12b9b5febe77d3fd582f9c4",
+  "parent": "bc18feefd7438f33e0d84424c61ef1eaca707551",
+  "branch": "work8/staged-source-20261020g",
+  "changedPaths": [
+    {
+      "path": "backend/src/app.ts",
+      "sha256": "e037758986fdff0ab7c2b79d84fca4c458a09c9952f9f6eb45784756e2aff9b4",
+      "gitTreeEntry": "100644 blob 746fad35493be63ae4e007b622fbd2b162d6de71\tbackend/src/app.ts"
+    },
+    {
+      "path": "backend/src/runtime/work8-visual-capture-policy.ts",
+      "sha256": "e2842febeceb1b73d7faa9dfec135b6f167ddad698abc922c5ea76856b714281",
+      "gitTreeEntry": "100644 blob 0767e97ee8a61b6091b550a7a984b1f334fe7c02\tbackend/src/runtime/work8-visual-capture-policy.ts"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-runtime-inspection-layout.test.mjs",
+      "sha256": "80b6452f7efa1d85e36d513ac38d6a5e231c7a5694b740e4b232069af321fb4e",
+      "gitTreeEntry": "100644 blob 135c1ddfcb71ffcd55831ca2a8add1aa8319410e\tbackend/src/validation/tests/work8-runtime-inspection-layout.test.mjs"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-visual-capture-policy.test.mjs",
+      "sha256": "7e676c33aaaf0ff77dafb6b9134560a05bb019891084018c0c63f3b3705c8021",
+      "gitTreeEntry": "100644 blob 29a439e48d5275c94bbf880b1372e8a794861195\tbackend/src/validation/tests/work8-visual-capture-policy.test.mjs"
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "sha256": "89461212dc437ec1eea749f51652884688803b3322aff94f5a355327ac96424c",
+      "gitTreeEntry": "100644 blob ab165004c50ec47ad269d92d53bb737998226a4f\tdeployment/work8-recovery-set.cjs"
+    },
+    {
+      "path": "deployment/work8-runtime-inspection-layout.cjs",
+      "sha256": "3e9a9a238a0a52ff368b926554f4a1ac52427b36c63732ddbd7cd9b1f660d48a",
+      "gitTreeEntry": "100644 blob 7b587da8c9c5ae5769f15ecdb2b6a2573ab9435c\tdeployment/work8-runtime-inspection-layout.cjs"
+    }
+  ],
+  "unchangedBaseOutsideSixPaths": true,
+  "completeTreeManifest": "SOURCE-G-REMOTE-COMPLETE-TREE.bin",
+  "completeTreeManifestSha256": "3efb48b3b757d8e9bb8132841a7e76fb104fb6e11298a3c48d919196dcf2a1e6",
+  "completeTreeEntryCount": 17290,
+  "decision": "EXACT_SOURCE_STAGING_PASS_PENDING_COMPILATION",
+  "publicationApprovalStillRequired": true,
+  "fullRestoreAcceptance": false
+}
