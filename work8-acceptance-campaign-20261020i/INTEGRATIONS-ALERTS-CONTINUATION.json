@@ -1,0 +1,50 @@
+{
+  "recordType": "WORK8_I_INDEPENDENT_ALERT_AND_ENTITLEMENT_CONTINUATION",
+  "at": "2026-10-20T08:27:02.358402+00:00",
+  "newAcceptance": false,
+  "retainedEvidence": [
+    "acceptance-campaign-20261020h/INTEGRATIONS-ALERTS-ACCESS-BOUNDARIES.json",
+    "acceptance-campaign-20261020h/A10-CONSUMER-WIRING-SCOPE.json",
+    "acceptance-campaign-20261020g/ALERTS-CUSTODY-BOUNDED-READBACK.json"
+  ],
+  "noRepeatedInventory": true,
+  "O30": {
+    "newBoundedSourceFinding": "Existing createNotificationDeliveryLedger persists reservation/result in getDatabase() primary application SQL; it is an accepted local notification ledger, not a proved independently controlled off-host delivery-attempt store. Safe snapshot reports providers0/livefalse. F29 controller receipt explicitly permanentExternalAlerting:false.",
+    "sourceSha256": {
+      "backend/src/orchestration/pillow-host/notification-delivery-ledger.ts": "8b7c4f39bd3bc4ee78bfd6942d99c04ddcde57369adae1035e7a5e3ee250deeb",
+      "backend/src/orchestration/pillow-host/notification-worker-bridge.ts": "bb6d0fd89efd771a2a5190b6f18d2b14716c3f79bca303c676c9b15e6bf64169",
+      "scripts/work8/f29-outer-controller.cjs": "469f5b400eceb1bf7c58eb0541d666d91a036682ee2ea87a3bec319d77865a14"
+    },
+    "preserved": "Accepted F29 containment and notification restart scope are unchanged; no examination repeated.",
+    "minimumRequiredTuple": {
+      "executor": "Existing independently controlled process/host identity and permitted watchdog runtime",
+      "attemptStore": "Existing durable store outside protected app failure domain with independent access",
+      "providerSender": "Existing delivery account/provider and authorized sender",
+      "destination": "Verified owner destination for this Work8alert scope",
+      "observer": "Independent delivery/failure observation authority",
+      "escalation": "Bounded retry/escalation mapping and failure receipts",
+      "messageAuthority": "One exact test message and failure/escalation permissions before sending"
+    },
+    "existingTupleEstablished": false,
+    "sourceMutationJustified": false,
+    "reason": "Moving the accepted local ledger or inventing provider config would not establish actual independently controlled delivery resources. No live route is grounded yet."
+  },
+  "A10": {
+    "status": "PENDING",
+    "existingConsumerBoundary": "OAuth/export adapter exists but exactbinding exportgrant/artifactreader absent; local preparation authority doesnotgrant externalexport",
+    "smallestNextAction": "Business Console lane owns one secure sign-in. Once authenticated read genuine boundcompany OAuth status connected/mock/scopes, before testingexport. No newbrowserattempt bythislane."
+  },
+  "A15": {
+    "status": "PENDING",
+    "retainedCapability": "Keepa history unavailable/unverified/noverifiedread at Hboundedread",
+    "smallestNextAction": "Use same authenticated owner account evidence to establish actual entitlement withoutsubscriptionactivation. No retry of unchangedstoredcapability."
+  },
+  "safety": {
+    "externalMessages": 0,
+    "paidInference": 0,
+    "newInfrastructure": 0,
+    "purchases": 0,
+    "credentialDisclosure": false,
+    "newBrowserAttempts": 0
+  }
+}

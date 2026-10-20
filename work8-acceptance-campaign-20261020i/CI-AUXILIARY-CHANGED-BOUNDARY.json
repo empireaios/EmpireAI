@@ -1,0 +1,69 @@
+{
+  "recordType": "AUTOMATIC_HOSTED_AUXILIARY_PERSISTENCE_CHANGED_BOUNDARY_OBSERVATION",
+  "source": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+  "tree": "5d839752d3dd70f53fe046be636b6d54623879d6",
+  "mergeCheckout": "a123254ef05e0702e2f077307d83c0b4803147d8",
+  "productRun": 39393472720,
+  "backendJob": 118530531872,
+  "backendJobConclusion": "SUCCESS",
+  "integratedSuite": {
+    "passed": 340,
+    "failed": 0,
+    "skipped": 0
+  },
+  "auxiliaryTests": {
+    "ids": [
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279
+    ],
+    "passed": 7,
+    "skipped": 0,
+    "actualNonRootReadonlyTest": 279,
+    "previousLocalSkipResolved": true,
+    "readonlyPrecondition": "Published test requires nonzeroUID and EACCES/EROFS before successful capture via separate writablevolume; test would fail if precondition missing"
+  },
+  "runtimeRun": 39393472842,
+  "runtimeJob": 118530346920,
+  "runtimeJobConclusion": "SUCCESS",
+  "runtimeAssertions": {
+    "passed": 414,
+    "failed": 0
+  },
+  "HH3": "Unchanged compiled coordinator3modes SUCCESS, retained source-bound joblog; no duplicate artifactdownload",
+  "HH4": {
+    "artifact": 12251095706,
+    "heldCapture": "PASS_SCOPED",
+    "sessionContinuityDigest": "e43f648e15d703b0de4a583bb13f7520c8f5309cfd4e057724550db4cc69b4e2",
+    "executiveDecisionJournalDigest": "e4c4ad20ebc2bfd6959f29000c776cb3b31ca5f71dc0b700760c3040098eedcc",
+    "sessionSnapshotFileCount": 0,
+    "journalFilePresent": true,
+    "nonemptyContextRestorationProof": "Targeted test275, not empty fresh HH4snapshot",
+    "bootAllowed": false,
+    "completeLiveState": false,
+    "operationalRestoration": false,
+    "replay": false,
+    "protectedCustody": false
+  },
+  "workflowDispatches": 0,
+  "reruns": 0,
+  "newCompleteOriginalRequirementIds": [],
+  "newCompleteAmendmentIds": [],
+  "hashes": {
+    "backend-job.log": "61c2206d81c6e96f2a08f3929feb2a36e177c721c496636d9c81557beed1953f",
+    "runtime-redis-job.log": "448d6669567b10c8849d04be4531e683b9d58821e2f0f596eedeb8fab5508241",
+    "hh4.zip": "e3df32077c9d544eff4957f5f56edbe9f8e57855d9bdf662a46f26afd95d8085",
+    "CI-MERGE-COMMIT.json": "cfc8296754a644b401263ae2cec8dbd13da27a16a4b7061d9a1493a4c8ba4e7d"
+  },
+  "priorAcceptedRecoveryProofPreserved": [
+    "replacement Redis/AOF recovery",
+    "original bearer/cookie session restoration",
+    "pending-work replay"
+  ],
+  "scopeLimitation": "This auxiliary examination does not establish full-application session recovery, global prior-process writer exclusion, full operational restoration or protected custody, and does not extend prior replay acceptance to complete application recovery.",
+  "preservedPriorAcceptanceScope": "Prior independently accepted replacement Redis/AOF, original bearer/cookie session preservation and once-only pending-work replay evidence remains preserved. The auxiliary examination does not extend those separate receipts to complete application-level operational restoration."
+}

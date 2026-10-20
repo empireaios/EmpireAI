@@ -1,0 +1,15 @@
+# Work8 campaign I — independent automatic CI observation
+
+Published source5e20e6b77dac470a079b9207474ee55afeafbf90, complete tree5d839752d3dd70f53fe046be636b6d54623879d6. Actual CI checkouta123254ef05e0702e2f077307d83c0b4803147d8 has identical complete tree and includes the published sourceparent.
+
+All four automatic workflows terminalSUCCESS, attempt1: Runtime39393472842, Product39393472720, Semantic39393472735, Assurance39393472780. Product nine constituentjobs plus resultgate and Runtime five plus resultgate allSUCCESS. No dispatch, rerun, deployment or application inference initiated by observer.
+
+Backendjob118530531872 integrated340/340PASS, failed0, skipped0. All seven auxiliary persistence assertions273–279PASS. Test279 proves actual non-root readonly application cannot mkdir (EACCES/EROFS required) and then successfully captures absentjournal through distinct writable coordinationvolume. The previously explicit localroot UIDmapping skip is resolved by actual hosted execution. Other six assertions cover crossprocess writer exclusion, canonical aliases/hardlinks/corruption/unknownfiles, exact nonempty context and journal preservation through freshprocess, contention successaccounting and absentjournal writablelockidentity.
+
+Runtimejob118530346920SUCCESS,414/414mandatory assertionsPASS. Original compiledHH3 and HH4 stepsSUCCESS, preserving their prior scope. Current HH4artifact12251095706 is retained because the auxiliary capture boundary changed. ZIP SHA256e3df32077c9d544eff4957f5f56edbe9f8e57855d9bdf662a46f26afd95d8085 verified. Actual heldcapture manifest now seals sessionContinuityDigest and executiveDecisionJournalDigest alongside visualmemory/Redis. Fresh runtimeinspection target retains them with bootAllowedfalse and activeauthority not imported.
+
+Important scope: actual fresh HH4 sessioncontinuity snapshot contains zero files; its digest does not prove nonempty usercontext restoration. The latter is proved only by labelled targeted test275. HH4journal file is present and preserved. Prior accepted replacement Redis/AOF recovery, original bearer/cookie session restoration and pending-work replay proof remain preserved. This auxiliary examination does not establish the separate outstanding full-application session recovery, global prior-process writer exclusion, full operational restoration or protected custody criteria; its scoped results do not extend prior replay acceptance to complete application recovery. Future graph snapshot engineering is not part of this published CI tree.
+
+Complete statuses, jobsteps, artifactmetadata, exact source mergecommit, currentHH4 ZIP and complete backend/runtime/contract logs retained. Previously accepted unchanged A8/media/HH3 artifact ZIPs were not downloaded again. No complete requirement or amendment promoted by this CI observation.
+
+Prior independently accepted replacement Redis/AOF, original bearer/cookie session preservation and once-only pending-work replay evidence remains preserved. The auxiliary examination does not extend those separate receipts to complete application-level operational restoration.

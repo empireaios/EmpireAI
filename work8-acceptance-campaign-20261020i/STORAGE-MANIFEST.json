@@ -1,0 +1,265 @@
+{
+  "scope": "Top-level I receipts only; extracted directories excluded; original HH4 ZIP preserved",
+  "files": [
+    {
+      "original": "APPLICATION-GRAPH-ENGINEERING.json",
+      "stored": "APPLICATION-GRAPH-ENGINEERING.json",
+      "originalBytes": 1307,
+      "storedBytes": 1307,
+      "originalSha256": "05b013a250ea2d59a4b24f47c993a5428a44a2719c9c15c334b4d047b817980d",
+      "storedSha256": "05b013a250ea2d59a4b24f47c993a5428a44a2719c9c15c334b4d047b817980d",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "APPLICATION-GRAPH-INDEPENDENT-REVIEW.json",
+      "stored": "APPLICATION-GRAPH-INDEPENDENT-REVIEW.json",
+      "originalBytes": 2994,
+      "storedBytes": 2994,
+      "originalSha256": "c78bd3ff6b372760ca1bb8919f1a2f34c26ab9ae78de5f76a2c06e3adf32b77f",
+      "storedSha256": "c78bd3ff6b372760ca1bb8919f1a2f34c26ab9ae78de5f76a2c06e3adf32b77f",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "AUXILIARY-HOSTED-INDEPENDENT-REVIEW.json",
+      "stored": "AUXILIARY-HOSTED-INDEPENDENT-REVIEW.json",
+      "originalBytes": 3638,
+      "storedBytes": 3638,
+      "originalSha256": "c6679d158d4a72534a3865d8938087df3a122e9f56c2328b61900f67cb8099cc",
+      "storedSha256": "c6679d158d4a72534a3865d8938087df3a122e9f56c2328b61900f67cb8099cc",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "BUSINESS-CONSOLE-AUTH-BOUNDARY.json",
+      "stored": "BUSINESS-CONSOLE-AUTH-BOUNDARY.json",
+      "originalBytes": 1063,
+      "storedBytes": 1063,
+      "originalSha256": "e17f2af759058ee830d19d4f59ed013201ba33734131a2e12f4f20f9ea007f52",
+      "storedSha256": "e17f2af759058ee830d19d4f59ed013201ba33734131a2e12f4f20f9ea007f52",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "CI-ARTIFACT-METADATA.json",
+      "stored": "CI-ARTIFACT-METADATA.json",
+      "originalBytes": 11028,
+      "storedBytes": 11028,
+      "originalSha256": "d69ec2420132c6b8928404a9506ab5c8a9e7af6358404be99620c77f0902553c",
+      "storedSha256": "d69ec2420132c6b8928404a9506ab5c8a9e7af6358404be99620c77f0902553c",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "CI-AUXILIARY-CHANGED-BOUNDARY.json",
+      "stored": "CI-AUXILIARY-CHANGED-BOUNDARY.json",
+      "originalBytes": 2971,
+      "storedBytes": 2971,
+      "originalSha256": "f86160c05f72702a297421a54c4f094f58a3659e82dece1d7d3110ae4ca86ab3",
+      "storedSha256": "f86160c05f72702a297421a54c4f094f58a3659e82dece1d7d3110ae4ca86ab3",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "CI-INDEPENDENT-OBSERVATION.md",
+      "stored": "CI-INDEPENDENT-OBSERVATION.md",
+      "originalBytes": 3118,
+      "storedBytes": 3118,
+      "originalSha256": "546845f5acf551a5af7b190ff3d800c5f4f4cf312f468b93fc537326dbd55d7c",
+      "storedSha256": "546845f5acf551a5af7b190ff3d800c5f4f4cf312f468b93fc537326dbd55d7c",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "CI-MERGE-COMMIT.json",
+      "stored": "CI-MERGE-COMMIT.json",
+      "originalBytes": 2827,
+      "storedBytes": 2827,
+      "originalSha256": "cfc8296754a644b401263ae2cec8dbd13da27a16a4b7061d9a1493a4c8ba4e7d",
+      "storedSha256": "cfc8296754a644b401263ae2cec8dbd13da27a16a4b7061d9a1493a4c8ba4e7d",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "CI-STATUS.json",
+      "stored": "CI-STATUS.json",
+      "originalBytes": 134061,
+      "storedBytes": 134061,
+      "originalSha256": "28a8516ea3c56e2dadef4529cfe7c60c0f8fff5d20657c22702fb88cde2f770b",
+      "storedSha256": "28a8516ea3c56e2dadef4529cfe7c60c0f8fff5d20657c22702fb88cde2f770b",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "CONTINUATION-CHECKPOINT.md",
+      "stored": "CONTINUATION-CHECKPOINT.md",
+      "originalBytes": 2010,
+      "storedBytes": 2010,
+      "originalSha256": "d9d77de4c4faa862c194e81b708d794327aad37e7dea7d615ed18bffcd5cb500",
+      "storedSha256": "d9d77de4c4faa862c194e81b708d794327aad37e7dea7d615ed18bffcd5cb500",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "CUSTODY-INDEPENDENT-DECISION.json",
+      "stored": "CUSTODY-INDEPENDENT-DECISION.json",
+      "originalBytes": 5050,
+      "storedBytes": 5050,
+      "originalSha256": "23c82b539247c4de426a2d0443cbc2e9f5612fee3ec6995343528f1ca953a444",
+      "storedSha256": "23c82b539247c4de426a2d0443cbc2e9f5612fee3ec6995343528f1ca953a444",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "CUSTODY-LIBRARY-READBACK-METADATA.json",
+      "stored": "CUSTODY-LIBRARY-READBACK-METADATA.json",
+      "originalBytes": 2843,
+      "storedBytes": 2843,
+      "originalSha256": "84a6ef92a765760cf14860777168b127a86ebaa92b95ae36cab5bfb8042ea7df",
+      "storedSha256": "84a6ef92a765760cf14860777168b127a86ebaa92b95ae36cab5bfb8042ea7df",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "FULL-TRACKER-RECONCILED.md",
+      "stored": "FULL-TRACKER-RECONCILED.md",
+      "originalBytes": 23669,
+      "storedBytes": 23669,
+      "originalSha256": "d39837f67d5313e9ff77aca15adac3ce93d83a6057de2ac5262f227e35138ea4",
+      "storedSha256": "d39837f67d5313e9ff77aca15adac3ce93d83a6057de2ac5262f227e35138ea4",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "INTEGRATIONS-ALERTS-CONTINUATION.json",
+      "stored": "INTEGRATIONS-ALERTS-CONTINUATION.json",
+      "originalBytes": 3210,
+      "storedBytes": 3210,
+      "originalSha256": "200ad1a49a12d038140b89465749260287718e3f2869959bc4401c722ba5290c",
+      "storedSha256": "200ad1a49a12d038140b89465749260287718e3f2869959bc4401c722ba5290c",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "MISSION-LEDGER-INDEPENDENT-REVIEW.json",
+      "stored": "MISSION-LEDGER-INDEPENDENT-REVIEW.json",
+      "originalBytes": 6535,
+      "storedBytes": 6535,
+      "originalSha256": "487e11334ebaaf2c1b19767b24ef06d388d233a2ad3a8f79ad677ac12a4d0ee2",
+      "storedSha256": "487e11334ebaaf2c1b19767b24ef06d388d233a2ad3a8f79ad677ac12a4d0ee2",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "PUBLICATION.json",
+      "stored": "PUBLICATION.json",
+      "originalBytes": 439,
+      "storedBytes": 439,
+      "originalSha256": "b0fff6f822d5d5f8a6a621acf1aac9b4668eba324fb35e694859cd21946deb07",
+      "storedSha256": "b0fff6f822d5d5f8a6a621acf1aac9b4668eba324fb35e694859cd21946deb07",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "REGISTER-CLOSURE-MATRIX.json",
+      "stored": "REGISTER-CLOSURE-MATRIX.json",
+      "originalBytes": 96815,
+      "storedBytes": 96815,
+      "originalSha256": "5dd285173d020396370b05816287c8108c3fffdc12f990a3b969cb9e77493705",
+      "storedSha256": "5dd285173d020396370b05816287c8108c3fffdc12f990a3b969cb9e77493705",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "REGISTER-CLOSURE-MATRIX.md",
+      "stored": "REGISTER-CLOSURE-MATRIX.md",
+      "originalBytes": 17991,
+      "storedBytes": 17991,
+      "originalSha256": "60aec43a53b63d5dce6844ca4934ab378b068676feb4b6df3b8f1aa2888b9f6c",
+      "storedSha256": "60aec43a53b63d5dce6844ca4934ab378b068676feb4b6df3b8f1aa2888b9f6c",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "SOURCE-STAGING-INDEPENDENT-REVIEW.json",
+      "stored": "SOURCE-STAGING-INDEPENDENT-REVIEW.json",
+      "originalBytes": 1523,
+      "storedBytes": 1523,
+      "originalSha256": "a60af43a306718c4c1e2e777435c6d6bad1d7a00e05aa2913ff4c077370ae3c4",
+      "storedSha256": "a60af43a306718c4c1e2e777435c6d6bad1d7a00e05aa2913ff4c077370ae3c4",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "STAGED-SOURCE.json",
+      "stored": "STAGED-SOURCE.json",
+      "originalBytes": 276,
+      "storedBytes": 276,
+      "originalSha256": "9d18d5b5cf75da185b230faf072c77dfbb7ecca29000942b97d5460c7e56c0fe",
+      "storedSha256": "9d18d5b5cf75da185b230faf072c77dfbb7ecca29000942b97d5460c7e56c0fe",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "application-graph-preflight.tap",
+      "stored": "application-graph-preflight.tap",
+      "originalBytes": 822,
+      "storedBytes": 822,
+      "originalSha256": "1709882cb086deb825d991b6382c74f159498c682d36796e417d4b8d8e1e00a8",
+      "storedSha256": "1709882cb086deb825d991b6382c74f159498c682d36796e417d4b8d8e1e00a8",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "application-graph-successor.patch",
+      "stored": "application-graph-successor.patch",
+      "originalBytes": 19994,
+      "storedBytes": 19994,
+      "originalSha256": "00e137b410ccb2ee775b16aa36d7d8039730ea620b17cb7a2cc6aa48042b05f1",
+      "storedSha256": "00e137b410ccb2ee775b16aa36d7d8039730ea620b17cb7a2cc6aa48042b05f1",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "backend-job.log",
+      "stored": "backend-job.log.gz",
+      "originalBytes": 379434,
+      "storedBytes": 70855,
+      "originalSha256": "61c2206d81c6e96f2a08f3929feb2a36e177c721c496636d9c81557beed1953f",
+      "storedSha256": "a7d0427452e3d05f4b8572f4bebaa50532c2ca9ac07fa30c8c48eaf3cd766efd",
+      "encoding": "gzip-lossless",
+      "mode": "100644"
+    },
+    {
+      "original": "contract-job.log",
+      "stored": "contract-job.log.gz",
+      "originalBytes": 61605,
+      "storedBytes": 14596,
+      "originalSha256": "c88ed26b6269773b1e2fa9f1166497838f94812dd44e4dbb0970468cd5004df2",
+      "storedSha256": "200b29153c459d65881f194dc271be10a347a1b93b86ce6894d5618b16ae2c80",
+      "encoding": "gzip-lossless",
+      "mode": "100644"
+    },
+    {
+      "original": "hh4.zip",
+      "stored": "hh4.zip",
+      "originalBytes": 513878,
+      "storedBytes": 513878,
+      "originalSha256": "e3df32077c9d544eff4957f5f56edbe9f8e57855d9bdf662a46f26afd95d8085",
+      "storedSha256": "e3df32077c9d544eff4957f5f56edbe9f8e57855d9bdf662a46f26afd95d8085",
+      "encoding": "identity",
+      "mode": "100644"
+    },
+    {
+      "original": "runtime-redis-job.log",
+      "stored": "runtime-redis-job.log.gz",
+      "originalBytes": 453176,
+      "storedBytes": 86063,
+      "originalSha256": "448d6669567b10c8849d04be4531e683b9d58821e2f0f596eedeb8fab5508241",
+      "storedSha256": "e29e0bf03ff0ad949d1f286ec02e38ef6db6874fb92dc7761e5c0bd0d2baa0ef",
+      "encoding": "gzip-lossless",
+      "mode": "100644"
+    }
+  ]
+}

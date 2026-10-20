@@ -1,0 +1,39 @@
+{
+  "decision": "PASS_EXACT_REMOTE_FOUR_PATH_SOURCE",
+  "reviewer": "/root/certification_h",
+  "branch": "work8/staged-source-20261020i",
+  "commit": "986d1b237f87658c9309f496392acd77ba83435b",
+  "tree": "01f4b9a214c062e826c6ee0d6f58d2627e7edffc",
+  "parent": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+  "changedPaths": [
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "sha256": "dd8ee0b1166f919acfbebbb05b82dd020232ebf1e12cfb1c1238dd095e75dbdd",
+      "mode": "100644",
+      "gitBlob": "3fb6594ad97cb1778511027472bced470887679b"
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "sha256": "5c28003e199ab8c455f698f4bfc8c2acbe5c598bd24e62183f97e642317d225b",
+      "mode": "100644",
+      "gitBlob": "2ef63f4542baef10ffc63acb2b629447c3f69dda"
+    },
+    {
+      "path": "scripts/work8/application-graph-restoration.mjs",
+      "sha256": "52dd88d66b2c5ed2f4fa367f5ad177e6e661ce121eaf2f45974271ff9725f282",
+      "mode": "100644",
+      "gitBlob": "83beb0781e3dcf8a4e772ba9cf9a4ee9b22a8774"
+    },
+    {
+      "path": "scripts/work8/application-graph-restoration.test.mjs",
+      "sha256": "8e744f99bf230b891817855e398f18865b813d0dae6894fd94426bfe54376b78",
+      "mode": "100644",
+      "gitBlob": "d9af97efdf07fdaee2c44f66e5520c66c93f2217"
+    }
+  ],
+  "allInheritedPathsPreserved": true,
+  "localRemoteCompleteTreeEqual": true,
+  "publicationAuthorized": false,
+  "hostedApplicationGraph": "NOT_RUN; fresh exact-tree approval required",
+  "newCompleteAcceptances": []
+}

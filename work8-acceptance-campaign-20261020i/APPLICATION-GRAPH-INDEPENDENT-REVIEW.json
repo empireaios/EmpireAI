@@ -1,0 +1,57 @@
+{
+  "recordType": "INDEPENDENT_I_APPLICATION_GRAPH_SOURCE_REVIEW",
+  "reviewer": "/root/certification_h",
+  "decision": "PASS_SCOPED_FOUR_PATH_SOURCE_AND_PREFLIGHT_NOT_HOSTED_ACCEPTANCE",
+  "baseCommit": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+  "integratedTree": "01f4b9a214c062e826c6ee0d6f58d2627e7edffc",
+  "reviewedPaths": {
+    ".github/workflows/pillow-runtime-repair-ci.yml": {
+      "sha256": "dd8ee0b1166f919acfbebbb05b82dd020232ebf1e12cfb1c1238dd095e75dbdd",
+      "mode": "0o644"
+    },
+    "scripts/work8/hh4-domain-state.mjs": {
+      "sha256": "5c28003e199ab8c455f698f4bfc8c2acbe5c598bd24e62183f97e642317d225b",
+      "mode": "0o644"
+    },
+    "scripts/work8/application-graph-restoration.mjs": {
+      "sha256": "52dd88d66b2c5ed2f4fa367f5ad177e6e661ce121eaf2f45974271ff9725f282",
+      "mode": "0o644"
+    },
+    "scripts/work8/application-graph-restoration.test.mjs": {
+      "sha256": "8e744f99bf230b891817855e398f18865b813d0dae6894fd94426bfe54376b78",
+      "mode": "0o644"
+    }
+  },
+  "independentTest": {
+    "command": "Node22 --test scripts/work8/application-graph-restoration.test.mjs",
+    "exitCode": 0,
+    "pass": 1,
+    "fail": 0,
+    "skip": 0,
+    "negativeMutations": 7,
+    "durationMs": 78.552573
+  },
+  "resolvedFindings": [
+    "Original evidence mounted readonly; separate writable results directory prevents capture alias writes.",
+    "Historical journal mapped readonly at unchanged actual runtime path; static governance preserved.",
+    "Mission authority executor disabled; execution tables must remain equal and queue capture owner/pause retained.",
+    "Bearer and cookie readback compare original identity; session lifetime cannot extend; forged bearer denied.",
+    "Unknown startup table changes yield AWAITING_INDEPENDENT_MUTATION_CLASSIFICATION, not PASS.",
+    "Original180000ms deadline remaining budget enforced; failure receipt and outer inspect/log/containment retained.",
+    "Cleanup checks private generated parent identity and ownership; external source/results excluded."
+  ],
+  "scope": [
+    "Actual buildApp graph restoration under existing engineering flags, not index/watchdog/Amazon topology.",
+    "Fresh isolated Redis target restores original synthetic bearer/cookie within retained admission fence.",
+    "Source13-store hashes validated before app startup; mission/financial public histories checked; exact journal bytes read through actual consumer.",
+    "No production runtime changes; one synthetic source-session fixture addition and one bounded automatic workflow step."
+  ],
+  "limits": [
+    "Actual application graph has not run locally: Redis/Docker unavailable; next approved automatic CI must supply real evidence.",
+    "Target startup mutations require independent classification.",
+    "No full operational restoration, global writer membership, protected custody or whole-requirement acceptance."
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "publicationAuthorized": false
+}

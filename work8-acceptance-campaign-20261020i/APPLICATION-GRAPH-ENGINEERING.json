@@ -1,0 +1,24 @@
+{
+  "schema": "WORK8_APPLICATION_GRAPH_ENGINEERING_I",
+  "baseCommit": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+  "paths": {
+    ".github/workflows/pillow-runtime-repair-ci.yml": "dd8ee0b1166f919acfbebbb05b82dd020232ebf1e12cfb1c1238dd095e75dbdd",
+    "scripts/work8/hh4-domain-state.mjs": "5c28003e199ab8c455f698f4bfc8c2acbe5c598bd24e62183f97e642317d225b",
+    "scripts/work8/application-graph-restoration.mjs": "52dd88d66b2c5ed2f4fa367f5ad177e6e661ce121eaf2f45974271ff9725f282",
+    "scripts/work8/application-graph-restoration.test.mjs": "8e744f99bf230b891817855e398f18865b813d0dae6894fd94426bfe54376b78"
+  },
+  "localValidation": {
+    "node22Syntax": "PASS",
+    "authorizationValidator": "1 PASS / 0 FAIL; seven negative mutations",
+    "yamlParse": "PASS"
+  },
+  "hosted": "NOT_RUN: no local Redis/Docker; future exact-tree approval and existing automatic CI required",
+  "completeRequirementsAccepted": [],
+  "limits": [
+    "Actual buildApp graph only; no index watchdog/Amazon topology proof",
+    "Mission replay disabled; accepted once-only replay evidence reused separately",
+    "Historical journal bound readonly; no executable authority imported",
+    "Unknown table mutations require independent classification",
+    "Protected custody and global writer membership remain unproven"
+  ]
+}

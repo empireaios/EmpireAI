@@ -1,0 +1,91 @@
+{
+  "decision": "PASS_COMPLETE_SEVEN_CHECK_AUXILIARY_CHANGED_BOUNDARY_AND_HOSTED_INERT_CAPTURE",
+  "reviewer": "/root/certification_h",
+  "source": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+  "tree": "5d839752d3dd70f53fe046be636b6d54623879d6",
+  "artifact": 12251095706,
+  "artifactSha256": "e3df32077c9d544eff4957f5f56edbe9f8e57855d9bdf662a46f26afd95d8085",
+  "sessionContinuity": {
+    "persistenceEnabled": true,
+    "fileCount": 0,
+    "sealedCopyExact": true,
+    "nonemptySessionRestorationProven": false
+  },
+  "executiveJournal": {
+    "filePresent": true,
+    "bytes": 915,
+    "sha256": "fef85beccd34cabae7004e1808ceb8e2bf78527aa605391650e01dcd8cd13098",
+    "records": 2,
+    "modeDeclared": 420,
+    "sealedCopyExact": true,
+    "materializedBytesExact": true,
+    "historicalDates": [
+      "2026-07-22T10:31:36.420Z",
+      "2026-07-22T12:18:03.189Z"
+    ],
+    "authorityImported": false
+  },
+  "manifestDigestFields": {
+    "visualMemoryDigest": "da904ecd134b7ebaf4bac155cf090412f6ffcb9cba43c284b841f67629ce8877",
+    "sessionContinuityDigest": "e43f648e15d703b0de4a583bb13f7520c8f5309cfd4e057724550db4cc69b4e2",
+    "executiveDecisionJournalDigest": "e4c4ad20ebc2bfd6959f29000c776cb3b31ca5f71dc0b700760c3040098eedcc",
+    "redisDigest": "7e94b650ed4e33d091531f9a142aa44681b8648db1268543dc1356cd005060d6"
+  },
+  "limits": [
+    "Session-continuity capture is empty in this hosted HH4 artifact; field presence is not nonempty continuity proof.",
+    "Journal contains historical July22 decision records; approvalAuthority fields are inert bytes only.",
+    "Inspection remains bootAllowedfalse and noExecutionAuthoritytrue; no operational restoration, pending-work replay or custody acceptance.",
+    "Nonempty context and inert journal fresh-reader preservation proven by targeted tests275/277; this is not authenticated full application restoration."
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "independentlyRecomputedManifestBindings": {
+    "session-continuity.json": true,
+    "executive-decisions.json": true
+  },
+  "backendJob": 118530531872,
+  "backendLogSha256": "61c2206d81c6e96f2a08f3929feb2a36e177c721c496636d9c81557beed1953f",
+  "hostedTargetedTests": [
+    {
+      "id": 273,
+      "name": "cooperating cold writer is excluded for entire capture; durable identity resumes afterward",
+      "result": "PASS"
+    },
+    {
+      "id": 274,
+      "name": "canonical aliases, hardlinks, corrupt snapshots and unknown files refuse capture",
+      "result": "PASS"
+    },
+    {
+      "id": 275,
+      "name": "joined thirteen-store manifest restores exact context into fresh process, corruption refuses before target",
+      "result": "PASS"
+    },
+    {
+      "id": 276,
+      "name": "capture contention cannot reset cold identity or claim controller success; update resumes after release",
+      "result": "PASS"
+    },
+    {
+      "id": 277,
+      "name": "executive journal has cross-process writer exclusion, exact immutable prior lines and inert fresh reader",
+      "result": "PASS"
+    },
+    {
+      "id": 278,
+      "name": "absent journal capture never writes static application directory and declares stable writable lock identity",
+      "result": "PASS"
+    },
+    {
+      "id": 279,
+      "name": "actual non-root read-only application captures absent journal using separate writable coordination volume",
+      "result": "PASS"
+    }
+  ],
+  "integratedSuite": {
+    "pass": 340,
+    "fail": 0,
+    "skip": 0
+  },
+  "actualNonrootReadonlyPermission": "PASS test279; source requires actual EACCES/EROFS before snapshot on normal nonroot runner; local H skip resolved"
+}

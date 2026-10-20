@@ -1,0 +1,166 @@
+{
+  "recordType": "INDEPENDENT_I_MISSION_LEDGER_CERTIFICATION",
+  "reviewer": "/root/certification_h",
+  "missionStatus": "IN_PROGRESS",
+  "decision": "NO_GO",
+  "counts": {
+    "O": {
+      "PASS": 34,
+      "BLOCKED": 4,
+      "PENDING": 7
+    },
+    "A": {
+      "PENDING": 8,
+      "PASS": 11
+    }
+  },
+  "accepted": 45,
+  "outstanding": 19,
+  "rowCount": 64,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "allOutstandingRowsAssigned": true,
+  "remainingRows": [
+    "O2",
+    "O7",
+    "O13",
+    "O14",
+    "O30",
+    "O33",
+    "O39",
+    "O40",
+    "O41",
+    "O42",
+    "O43",
+    "A1",
+    "A2",
+    "A3",
+    "A5",
+    "A6",
+    "A10",
+    "A15",
+    "A19"
+  ],
+  "publication": {
+    "evidence": {
+      "commit": "8ca882f59717019332ab9ed8e7e7c833e8d589c6",
+      "tree": "8cfceb5cb6121fb73051caf897f0c2a027f0f011"
+    },
+    "source": {
+      "approved": "3b726b3eb205bf02e945ee487e248c6716f32ca5",
+      "published": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+      "tree": "5d839752d3dd70f53fe046be636b6d54623879d6"
+    },
+    "evidenceFirst": true,
+    "remoteRefAndTreeVerified": true,
+    "metadataOnlyChange": "remove skip ci marker for normal automatic CI",
+    "prDraft": true,
+    "merged": false
+  },
+  "automaticCI": {
+    "decision": "ALL_FOUR_TERMINAL_SUCCESS",
+    "runs": [
+      {
+        "id": 39393472780,
+        "name": "Independent Assurance Core",
+        "head_sha": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      },
+      {
+        "id": 39393472735,
+        "name": "Pillow semantic repair CI",
+        "head_sha": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      },
+      {
+        "id": 39393472720,
+        "name": "Product path CI",
+        "head_sha": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      },
+      {
+        "id": 39393472842,
+        "name": "Pillow runtime repair CI",
+        "head_sha": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      }
+    ],
+    "dispatches": 0,
+    "reruns": 0
+  },
+  "scopedAcceptedBoundary": "All7 auxiliary persistence checks273\u2013279 including actual nonroot permission; exact historical journal capture/inert materialization. Not full operational restoration.",
+  "stagedSource": {
+    "decision": "PASS_EXACT_REMOTE_FOUR_PATH_SOURCE",
+    "reviewer": "/root/certification_h",
+    "branch": "work8/staged-source-20261020i",
+    "commit": "986d1b237f87658c9309f496392acd77ba83435b",
+    "tree": "01f4b9a214c062e826c6ee0d6f58d2627e7edffc",
+    "parent": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+    "changedPaths": [
+      {
+        "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+        "sha256": "dd8ee0b1166f919acfbebbb05b82dd020232ebf1e12cfb1c1238dd095e75dbdd",
+        "mode": "100644",
+        "gitBlob": "3fb6594ad97cb1778511027472bced470887679b"
+      },
+      {
+        "path": "scripts/work8/hh4-domain-state.mjs",
+        "sha256": "5c28003e199ab8c455f698f4bfc8c2acbe5c598bd24e62183f97e642317d225b",
+        "mode": "100644",
+        "gitBlob": "2ef63f4542baef10ffc63acb2b629447c3f69dda"
+      },
+      {
+        "path": "scripts/work8/application-graph-restoration.mjs",
+        "sha256": "52dd88d66b2c5ed2f4fa367f5ad177e6e661ce121eaf2f45974271ff9725f282",
+        "mode": "100644",
+        "gitBlob": "83beb0781e3dcf8a4e772ba9cf9a4ee9b22a8774"
+      },
+      {
+        "path": "scripts/work8/application-graph-restoration.test.mjs",
+        "sha256": "8e744f99bf230b891817855e398f18865b813d0dae6894fd94426bfe54376b78",
+        "mode": "100644",
+        "gitBlob": "d9af97efdf07fdaee2c44f66e5520c66c93f2217"
+      }
+    ],
+    "allInheritedPathsPreserved": true,
+    "localRemoteCompleteTreeEqual": true,
+    "publicationAuthorized": false,
+    "hostedApplicationGraph": "NOT_RUN; fresh exact-tree approval required",
+    "newCompleteAcceptances": []
+  },
+  "custody": "Exact existing Library report readback only; full DATA retention/runtime exclusion/restore unproven",
+  "ownerConsole": "Secure sign-in submitted; actual Invalid email or password; no authentication/no retry",
+  "business": "Retained distinct CJ receipts; Amazon mismatch and missing eligibility/rights remain",
+  "alerts": "Independent executor/store/provider/destination/observer/escalation/authority tuple unproven",
+  "historicalFinance": "Original224 lineage absent;227preserved; no new crediblelead",
+  "controls": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "PR113": "DRAFT_UNMERGED"
+  },
+  "receiptSha256": {
+    "FULL-TRACKER-RECONCILED.md": "d39837f67d5313e9ff77aca15adac3ce93d83a6057de2ac5262f227e35138ea4",
+    "REGISTER-CLOSURE-MATRIX.json": "5dd285173d020396370b05816287c8108c3fffdc12f990a3b969cb9e77493705",
+    "REGISTER-CLOSURE-MATRIX.md": "60aec43a53b63d5dce6844ca4934ab378b068676feb4b6df3b8f1aa2888b9f6c",
+    "AUXILIARY-HOSTED-INDEPENDENT-REVIEW.json": "c6679d158d4a72534a3865d8938087df3a122e9f56c2328b61900f67cb8099cc",
+    "APPLICATION-GRAPH-INDEPENDENT-REVIEW.json": "c78bd3ff6b372760ca1bb8919f1a2f34c26ab9ae78de5f76a2c06e3adf32b77f",
+    "SOURCE-STAGING-INDEPENDENT-REVIEW.json": "a60af43a306718c4c1e2e777435c6d6bad1d7a00e05aa2913ff4c077370ae3c4",
+    "CUSTODY-INDEPENDENT-DECISION.json": "23c82b539247c4de426a2d0443cbc2e9f5612fee3ec6995343528f1ca953a444",
+    "INTEGRATIONS-ALERTS-CONTINUATION.json": "200ad1a49a12d038140b89465749260287718e3f2869959bc4401c722ba5290c",
+    "BUSINESS-CONSOLE-AUTH-BOUNDARY.json": "e17f2af759058ee830d19d4f59ed013201ba33734131a2e12f4f20f9ea007f52",
+    "CI-STATUS.json": "28a8516ea3c56e2dadef4529cfe7c60c0f8fff5d20657c22702fb88cde2f770b",
+    "CONTINUATION-CHECKPOINT.md": "d9d77de4c4faa862c194e81b708d794327aad37e7dea7d615ed18bffcd5cb500",
+    "CI-INDEPENDENT-OBSERVATION.md": "546845f5acf551a5af7b190ff3d800c5f4f4cf312f468b93fc537326dbd55d7c",
+    "CI-AUXILIARY-CHANGED-BOUNDARY.json": "f86160c05f72702a297421a54c4f094f58a3659e82dece1d7d3110ae4ca86ab3"
+  },
+  "preservedPriorRedisScope": "Prior independently accepted replacement Redis/AOF, original bearer/cookie session preservation and once-only pending-work replay evidence remains preserved. The auxiliary examination does not extend those separate receipts to complete application-level operational restoration."
+}

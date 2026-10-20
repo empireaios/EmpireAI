@@ -1,0 +1,40 @@
+{
+  "sha": "a123254ef05e0702e2f077307d83c0b4803147d8",
+  "node_id": "C_kwDOTA0IHNoAKGExMjMyNTRlZjA1ZTA3MDJlMmYwNzczMDdkODNjMGI0ODAzMTQ3ZDg",
+  "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/a123254ef05e0702e2f077307d83c0b4803147d8",
+  "html_url": "https://github.com/empireaios/EmpireAI/commit/a123254ef05e0702e2f077307d83c0b4803147d8",
+  "author": {
+    "name": "empireaios",
+    "email": "empireaiengine@gmail.com",
+    "date": "2026-10-20T08:26:54Z"
+  },
+  "committer": {
+    "name": "GitHub",
+    "email": "noreply@github.com",
+    "date": "2026-10-20T08:26:54Z"
+  },
+  "tree": {
+    "sha": "5d839752d3dd70f53fe046be636b6d54623879d6",
+    "url": "https://api.github.com/repos/empireaios/EmpireAI/git/trees/5d839752d3dd70f53fe046be636b6d54623879d6"
+  },
+  "message": "Merge 5e20e6b77dac470a079b9207474ee55afeafbf90 into 608f3f5382e32d295ebe3733194846ac7cbb9d57",
+  "parents": [
+    {
+      "sha": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/608f3f5382e32d295ebe3733194846ac7cbb9d57",
+      "html_url": "https://github.com/empireaios/EmpireAI/commit/608f3f5382e32d295ebe3733194846ac7cbb9d57"
+    },
+    {
+      "sha": "5e20e6b77dac470a079b9207474ee55afeafbf90",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/5e20e6b77dac470a079b9207474ee55afeafbf90",
+      "html_url": "https://github.com/empireaios/EmpireAI/commit/5e20e6b77dac470a079b9207474ee55afeafbf90"
+    }
+  ],
+  "verification": {
+    "verified": true,
+    "reason": "valid",
+    "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq1yXOCRC1aQ7uu5UhlAAAm2AQAKS3+fASCF8/SOtvDlGj4pTN\njnbQXDP1OSB6kTWRV4CO1s/vc7PExahrFbg0bKlpi+9SgrqbA5BIZIa0zcZaTqGf\nloCHLb1mHJJsAUx2w+RiKNKKS4LePu/t5elcK/enYZMrAdkTSE8zdtGbvGANTmmb\nYanbxOzJ3BnICjrWiEkz5V4LXsqVxly3hA1aGBbyG7w1TNC8v6SHrFBqTQ8aL8vl\nXm6rODuaf8lKLC0yByZALe6MT5eAhyJhauRxYwZ1B0HpDaPCtq1fvzms6C+Ue1/e\nU0wX4ChhcPAX2uwzFdmUne/rTc7xjmH0SzsUaGAgHEdmUqmu9gjB7AH/V1AJZyle\nFn9SVOizVn7m2T7F51OqDV73l3FeaccE+sVcxQfE2Jw/j+3Q3SaMqGphcSb/1z6r\ngIqiEHnRgBH3QLLwwcGA4/nHZy1IHGOII9TTm91JwYTpGr14JjBb7OPSSwNby48s\naDcQ4rs300Q6y9vUOoArDGBAF6W8h0Q/r4qMaIcCVSGur8T0+4ePNT/j8fMkdNEW\nvDdutNGqfJUTdJfGXaaejZt3mXneRui6gU1Q1VZ73PJ3QuLOiwwWY+5dCX549+Cp\n3ebyKrj916lBMJcD1x8vg6NMdF8YHNzn5OIIJNsnJ1Kzs83gIpVq32KlqGG62eHW\nXemWxXlUySxcxiB+3zMH\n=nYUK\n-----END PGP SIGNATURE-----\n",
+    "payload": "tree 5d839752d3dd70f53fe046be636b6d54623879d6\nparent 608f3f5382e32d295ebe3733194846ac7cbb9d57\nparent 5e20e6b77dac470a079b9207474ee55afeafbf90\nauthor empireaios <empireaiengine@gmail.com> 1792484814 +0000\ncommitter GitHub <noreply@github.com> 1792484814 +0000\n\nMerge 5e20e6b77dac470a079b9207474ee55afeafbf90 into 608f3f5382e32d295ebe3733194846ac7cbb9d57\n",
+    "verified_at": "2026-10-20T08:26:55Z"
+  }
+}
