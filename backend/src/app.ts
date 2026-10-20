@@ -1,3 +1,4 @@
+import {withConfiguredVisualCapture} from './runtime/work8-visual-capture-policy.js';
 import {assertGeneratedCaptureScope,holdGeneratedCapture,type GeneratedCaptureScope} from './runtime/work8-generated-capture-hold.js';
 import { registerWork8RecoveryRoutes } from './runtime/work8-recovery-routes.js';
 import { resolveShadowCeoDbPath } from './orchestration/shadow-ceo-integration/durable-paths.js';
@@ -697,7 +698,7 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
           withExistingShadowCapture(getDatabase(),resolveShadowCeoDbPath(),shadow=>
             withExclusiveNativeMissionCapture(getActiveDatabasePath(),()=>
               withExclusiveWork8DomainCapture(root,async()=> {
-                return pillowHost.withVisualMemoryRecoveryCapture(async (visualMemorySnapshot: Parameters<typeof captureWork8RecoveryInventory>[1]["visualMemorySnapshot"]) => {
+                return withConfiguredVisualCapture(pillowEnabled,pillowHost,async (visualMemorySnapshot) => {
                 const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath,visualMemorySnapshot},queue);
                 staged=true;
                 if(scope)await holdGeneratedCapture(scope,captured,{seal:finalizeWork8RecoveryInventory,verify:verifyWork8RecoveryInventory,invalidate:invalidateWork8RecoveryInventory});
