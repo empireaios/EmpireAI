@@ -23,7 +23,7 @@ export function validateRestorationAuthorization({source,held,verification,inven
 /** Generated, isolated application-graph examination only. Never promotes the
  * original inspection manifest or imports historical approval authority. */
 export async function examineApplicationGraph({source,evidence='/evidence',directory='/capture',resultFile='/results/application-graph-result.json',mode='graph'}){
- assert.ok(['graph','index'].includes(mode),'RESTORATION_MODE_REQUIRED');
+ assert.ok(['graph','index','pending'].includes(mode),'RESTORATION_MODE_REQUIRED');
  const read=name=>JSON.parse(fs.readFileSync(path.join(evidence,name),'utf8'));
  const held=read('container-evidence/hh4-held.json'),inventory=read('container-evidence/hh4-worker-ready.json').inventory;
  validateRestorationAuthorization({source,held,inventory,verification:read('held-capture-external-verification.json')});
@@ -45,7 +45,7 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
  fs.cpSync(sealed,root,{recursive:true,errorOnExist:true,force:false});
  assert.equal(JSON.parse(fs.readFileSync(path.join(root,'INSPECTION_ONLY.json'))).bootAllowed,false);
  const preboot={},beforeTables={};for(const [id,relative]of Object.entries(LAYOUT)){const original=fs.readFileSync(path.join(directory,id,'checkpoint.db')),target=fs.readFileSync(path.join(root,relative));assert.ok(target.equals(original));preboot[id]=sha(target);beforeTables[id]=tableDigests(path.join(root,relative));}
- const beforeAudit=mode==='index'?auditRows(path.join(root,LAYOUT.brain)):null;
+ const beforeAudit=mode!=='graph'?auditRows(path.join(root,LAYOUT.brain)):null;
  const journal=JSON.parse(fs.readFileSync(path.join(directory,'executive-decisions.json')));
  // The application reads its static repository journal path: a nonempty journal
  // needs a separately reviewed binding, never silently ignore or activate it.
@@ -83,8 +83,23 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
   const {FinancialCentre}=await import('../../backend/dist/finance/financial-centre.js');const finance=new FinancialCentre(path.join(root,LAYOUT.financialEvidence));try{assert.deepEqual(finance.entries(inventory.workspace),inventory.domains.financialEvidence.publicReadback);}finally{finance.close();}
   }else{
    const {examineRestoredIndex}=await import('./index-restoration-phase.mjs');
-   receipt.index=await examineRestoredIndex({repo,deadline,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner,onDiagnostic:diagnostic=>fs.writeFileSync(path.join(path.dirname(resultFile),'index-last-poll.json'),JSON.stringify({source,digest:held.digest,diagnostic},null,2),{mode:0o600})});
-   for(const id of ['missions','execution','financialEvidence','liveCostCentre'])assert.deepEqual(tableDigests(path.join(root,LAYOUT[id])),beforeTables[id],id+'_INDEX_RECORDS_CHANGED');
+   let pending;
+   if(mode==='pending'){
+    const authorization=inventory.pendingExamination;assert.equal(authorization?.classification,'GENERATED_READONLY_EXAMINATION_NOT_OWNER_BUSINESS_APPROVAL');assert.equal(authorization.source,source);assert.equal(authorization.operation,'authority.snapshot.v1');
+    const {readPendingState,validatePendingState}=await import('./pending-restoration.mjs');
+    validatePendingState(readPendingState(process.env.DATABASE_PATH),{source,oracle:authorization.state});
+    pending={oracle:authorization.state,stage:'queued',digest:held.digest};
+   }
+   receipt.index=await examineRestoredIndex({repo,deadline,pending,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner,onDiagnostic:diagnostic=>fs.writeFileSync(path.join(path.dirname(resultFile),'index-last-poll.json'),JSON.stringify({source,digest:held.digest,diagnostic},null,2),{mode:0o600})});
+   if(mode==='pending'){
+    const {readPendingState,validatePendingState}=await import('./pending-restoration.mjs');
+    const completedState=readPendingState(process.env.DATABASE_PATH);validatePendingState(completedState,{source,oracle:pending.oracle,completed:true});assert.deepEqual(completedState,receipt.index.pendingState);
+    receipt.restart=await examineRestoredIndex({repo,deadline,originalSession:inventory.originalSession,redis,manifest,inspectionOwner:restored.owner,pending:{...pending,stage:'completed',completedState},onDiagnostic:diagnostic=>fs.writeFileSync(path.join(path.dirname(resultFile),'pending-restart-last-poll.json'),JSON.stringify({source,digest:held.digest,diagnostic},null,2),{mode:0o600})});
+    assert.deepEqual(readPendingState(process.env.DATABASE_PATH),completedState,'POST_RESTART_PERSISTED_IDENTITY_CHANGED');
+    receipt.syntheticPendingContinuation={operation:'authority.snapshot.v1',attempts:1,outputEvents:1,restartNoDuplicate:true,freshExaminationAuthority:true,historicalAuthorityImported:false};
+    fs.writeFileSync(path.join(path.dirname(resultFile),'pending-continuation-state.json'),JSON.stringify({source,digest:held.digest,sourceState:pending.oracle,completedState},null,2),{flag:'wx',mode:0o600});
+   }
+   for(const id of (mode==='pending'?['financialEvidence','liveCostCentre']:['missions','execution','financialEvidence','liveCostCentre']))assert.deepEqual(tableDigests(path.join(root,LAYOUT[id])),beforeTables[id],id+'_INDEX_RECORDS_CHANGED');
    const afterAudit=auditRows(path.join(root,LAYOUT.brain)),prior=new Map(beforeAudit.map(row=>[row.id,row])),after=new Map(afterAudit.map(row=>[row.id,row]));
    const changedOrRemoved=beforeAudit.filter(row=>JSON.stringify(after.get(row.id))!==JSON.stringify(row));
    const addedRows=afterAudit.filter(row=>!prior.has(row.id));
@@ -98,12 +113,12 @@ export async function examineApplicationGraph({source,evidence='/evidence',direc
   assert.ok(fs.readFileSync(boundJournal).equals(Buffer.from(journal.file.bytes,'base64')));
   recovery.verifyRuntimeRecoverySet({directory,digest:held.digest});
   receipt.targetTableChanges=[];for(const [id,relative]of Object.entries(LAYOUT)){const after=tableDigests(path.join(root,relative));for(const name of new Set([...Object.keys(beforeTables[id]),...Object.keys(after)])){if(JSON.stringify(beforeTables[id][name])!==JSON.stringify(after[name]))receipt.targetTableChanges.push({store:id,table:name,before:beforeTables[id][name]??null,after:after[name]??null,attribution:'APPLICATION_STARTUP_OR_READBACK_REQUIRES_INDEPENDENT_CLASSIFICATION'});}}
-  receipt.status=receipt.targetTableChanges.length?'AWAITING_INDEPENDENT_MUTATION_CLASSIFICATION':(mode==='index'?'PASS_SCOPED_INDEX_WATCHDOG_ONLY':'PASS_SCOPED_APPLICATION_GRAPH_ONLY');receipt.originalSessionAuthenticated=true;receipt.missionAndFinancialHistoryPreserved=true;receipt.queueAdmissionRemainsFenced=true;receipt.indexWatchdogAndAmazonContinuationsExamined=false;receipt.indexWatchdogExamined=mode==='index';receipt.pendingReplay='REUSE_ACCEPTED_SEPARATE_PROCESS_PROOF_NOT_REEXAMINED';
- }catch(error){failure=error;receipt.error=String(error);if(error.indexReceipt)receipt.index=error.indexReceipt;}
+  receipt.status=receipt.targetTableChanges.length?'AWAITING_INDEPENDENT_MUTATION_CLASSIFICATION':(mode==='index'?'PASS_SCOPED_INDEX_WATCHDOG_ONLY':'PASS_SCOPED_APPLICATION_GRAPH_ONLY');receipt.originalSessionAuthenticated=true;receipt.missionAndFinancialHistoryPreserved=true;receipt.queueAdmissionRemainsFenced=true;receipt.indexWatchdogAndAmazonContinuationsExamined=false;receipt.indexWatchdogExamined=mode!=='graph';receipt.pendingReplay=mode==='pending'?'SYNTHETIC_COUPLED_READONLY_CONTINUATION_INDEPENDENT_REVIEW_REQUIRED':'REUSE_ACCEPTED_SEPARATE_PROCESS_PROOF_NOT_REEXAMINED';
+ }catch(error){failure=error;receipt.error=String(error);if(error.indexReceipt){receipt.index=error.indexReceipt;};}
  finally{try{await application?.shutdown();}catch(error){failure??=error;receipt.status='FAIL';receipt.shutdownError=String(error);}redis?.disconnect();if(server&&server.exitCode===null){const exited=once(server,'exit');server.kill('SIGKILL');await exited;}if(!receipt.index?.cleanupRequiresOuterContainment)clearTimeout(hardDeadline);receipt.redisProcessStopped=true;fs.writeFileSync(resultFile,JSON.stringify(receipt,null,2),{flag:'wx',mode:0o600});assert.equal(fs.realpathSync(runDirectory),runDirectory);const current=fs.statSync(runDirectory);assert.equal(current.dev,runIdentity.dev);assert.equal(current.ino,runIdentity.ino);if(!receipt.index?.cleanupRequiresOuterContainment)fs.rmSync(runDirectory,{recursive:true,force:true});}
  if(failure)throw failure;return receipt;
 }
 export function prepareRestoredJournal({directory,digest,destination}){
  const recovery=require('../../deployment/work8-recovery-set.cjs');const manifest=recovery.verifyRuntimeRecoverySet({directory,digest});assert.ok(manifest.executiveDecisionJournalDigest);const snapshot=JSON.parse(fs.readFileSync(path.join(directory,'executive-decisions.json')));assert.ok(snapshot.file);return require('../../deployment/work8-session-continuity-recovery.cjs').materializeExecutiveDecisionJournal({snapshot,destination});
 }
-if(process.argv[1]===import.meta.filename)examineApplicationGraph({source:process.argv[2],mode:process.argv[3]??'graph',resultFile:process.argv[3]==='index'?'/results/index-restoration-result.json':'/results/application-graph-result.json'}).catch(error=>{console.error(error);process.exitCode=1;});
+if(process.argv[1]===import.meta.filename)examineApplicationGraph({source:process.argv[2],mode:process.argv[3]??'graph',resultFile:process.argv[3]==='pending'?'/results/pending-restoration-result.json':process.argv[3]==='index'?'/results/index-restoration-result.json':'/results/application-graph-result.json'}).catch(error=>{console.error(error);process.exitCode=1;});
