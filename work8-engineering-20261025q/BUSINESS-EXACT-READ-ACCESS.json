@@ -1,0 +1,18 @@
+{
+  "campaign": "Q",
+  "date": "2026-10-24",
+  "scope": "Bounded callable-interface check against retained campaign-o/BUSINESS-EXACT-READ-INTERFACE.json",
+  "decision": "EXTERNAL_EXECUTION_INTERFACE_DEPENDENCY",
+  "candidate": {"product": "2610240019051639200", "variant": "2610240019061630200", "marketplace": "US", "destination": "US"},
+  "newFinding": "Current callable Advisor registry exposes only fetch, list_records and search. Fetch explicitly excludes external refresh; list_records provides stored domain pagination; search finds stored-state domains. No callable exact provider-read/job operation is exposed.",
+  "retainedInterface": "Authenticated owner POST /api/owner/advisor/intelligence action job with cj.detail, cj.stock and cj.freight. Prepared only, not executed. Existing native Queue bounded read accepts catalogue keywords, not deterministic product/variant reads.",
+  "requiredDependency": "Existing trusted authenticated API client/tool exposing the exact job operation, with deployed source identity and owner/workspace authority verified; alternatively separately reviewed native exact-ID UI exposure and applicable deployment authority. Do not obtain credentials or invoke hidden browser fetch as a substitute.",
+  "matchedAmazon": "No exact matched Amazon record ID supplied by the retained interface plan. No match inferred, unrelated product substituted, or broad search performed. An attributable matching record must bind this exact CJ product/variant before qualification.",
+  "costBoundary": "Retained plan estimates30 configured CJ points for three named calls; marginal USD and overhead remain unknown. No provider job queued, paid inference, point purchase, or automatic reload performed.",
+  "O7": "Preserve existing independent BLOCKED decision: historical asset provenance plus applicable blanket permission may suffice, but current account/policy/intended-use applicability remains unproven. Do not invent a bespoke per-asset requirement or allege revocation.",
+  "newCompleteAcceptances": [],
+  "performed": ["Read exact retained interface plan", "Inspect currently callable Advisor tool metadata", "Save this Q receipt"],
+  "notPerformed": ["Provider refresh", "Repeated stored freshness query", "Browser operation", "External messages", "Paid inference", "Commerce", "Accounting search", "Source modification", "Publication"],
+  "continuation": "Root may continue unrelated lanes. This lane stops at the concrete missing execution interface; no additional owner publication approval alone supplies that interface.",
+  "frozen": true
+}

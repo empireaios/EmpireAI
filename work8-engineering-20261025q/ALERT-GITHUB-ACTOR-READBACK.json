@@ -1,0 +1,19 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "id": "295548100",
+    "name": null,
+    "email": "empireaiengine@gmail.com",
+    "nickname": "empireaios",
+    "picture": "https://avatars.githubusercontent.com/u/295548100?v=4",
+    "workspace_id": null,
+    "workspace_name": null,
+    "workspace_picture": null
+  },
+  "isError": false
+}

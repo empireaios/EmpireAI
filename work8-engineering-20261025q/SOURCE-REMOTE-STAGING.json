@@ -1,0 +1,11 @@
+{
+  "commit": "a11087d2eca4157a2ca2cfc65e6e2415dcaa42f6",
+  "tree": "26a030a5db565a8d501acd072c99d0dbfd7cac4d",
+  "parent": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+  "remoteCompleteTreeEquality": true,
+  "branchRefsUpdated": false,
+  "published": false,
+  "deployed": false,
+  "reviewScope": "EXACT_STAGING_ONLY_NOT_RELEASE_READY",
+  "retention": "Unreferenced Git object: retained remotely but subject to eventual garbage collection until approved ref publication"
+}

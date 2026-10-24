@@ -1,0 +1,25 @@
+✔ two real admitted processes block transition across async application activity; last crash releases native exclusion (216.869486ms)
+✔ exclusive transition commits once and rejects stale expected epoch (9.069909ms)
+✔ two concurrent transition controllers produce exactly one committed epoch (76.725651ms)
+✔ generation history rejects reuse of an earlier generation (8.097259ms)
+✔ different Redis capability or storage identity refuses before writes (110.452561ms)
+✔ loaded image revision mismatch refuses even with a compatible environment label (41.774008ms)
+✔ read-only export retains unknown external and capture boundaries (6.390727ms)
+✔ future authority schema and invalid export fields refuse instead of leaking extra data (6.295598ms)
+✔ epoch overflow is refused before authority mutation (7.24031ms)
+✔ incompatible source rollback fails before application writes (41.691664ms)
+✔ missing or corrupted pinned external cutover receipt refuses boot and transition (38.644927ms)
+✔ corrupt authority refuses before application mutation (37.607661ms)
+✔ WAL mode rejected: read snapshots are not generation exclusion (41.30885ms)
+✔ replaced authority inode cannot bypass a surviving admitted generation (84.082834ms)
+✔ ordinary process exit records exiting while kernel retains lock until final process teardown (64.494558ms)
+✔ production preload refuses privileged or runtime-owned authority before application writes (35.349479ms)
+✔ Assurance replacements retain mandatory preload and exact generation configuration (1.492474ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 917.123402

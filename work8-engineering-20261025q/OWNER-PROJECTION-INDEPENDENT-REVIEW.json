@@ -1,0 +1,25 @@
+{
+  "reviewer": "business_console_h independent source/evidence review",
+  "date": "2026-10-24",
+  "decision": "PASS_SCOPED_PROJECTION_RECEIPT_NOT_RELEASE_OR_WHOLE_REQUIREMENT",
+  "reviewed": ["campaign-q/OWNER-PROJECTION-EXECUTION.json", "campaign-q/owner-projection-check.mjs", "campaign-n/owner-release/backend-live-executive.ts", "campaign-n/owner-release/backend-reviewed-executive.ts", "campaign-n/owner-release/CANDIDATE-TREES.json"],
+  "identity": {
+    "liveSha256": "31b43ca499e6b98343ec55046a588ee76e60eed530c4188ba57d0d589d7f664f",
+    "reviewedSha256": "226261e63faae3675b9328dd8a66dd530a06cfa5048aabd0c7bda880c3a58793",
+    "hashesRecomputed": true,
+    "matchesExecutionReceipt": true,
+    "reviewedMatchesNCandidateManifest": true,
+    "nBackendCandidateTree": "7469666e172da6c7ed63648edb673b599e08079e"
+  },
+  "cases": [
+    {"case": "no-decision", "verdict": "Supported: both modules project AWAITING_OWNER_REVIEW; version0 and NOT_EXECUTED preserved."},
+    {"case": "committed-defer", "verdict": "Supported for a synthetic supplied record: old module falls through to AWAITING_OWNER_REVIEW; reviewed module explicitly projects DEFERRED; version1 and ownerDecision preserved. Case name does not prove a real database commit."},
+    {"case": "defer-with-outcome", "verdict": "Supported: OUTCOME_REPORTED takes precedence in both modules; version2 and NOT_EXECUTED preserved when no executionRef exists."}
+  ],
+  "testReview": "Script imports exact modules, supplies an in-memory memory facade, asserts no fixture mutation, version preservation, timeline/recommendation agreement, NOT_BORN/LOCKED and zero authority/inference/external effects. Static source inspection supports reported case values. No test rerun performed.",
+  "rollback": "Old projection is not semantically compatible after DEFER is persisted: it retains ownerDecision but mislabels status as AWAITING_OWNER_REVIEW. A post-DEFER rollback needs a reviewed DEFER-aware backend/schema and compatible frontend, or a separately reviewed state strategy. These three cases do not establish full-store or release rollback compatibility.",
+  "limits": ["Synthetic in-memory projection only; no authenticated owner decision, persistence, reload or database migration proven", "No zod/store-schema execution or frontend build", "Node24.22.1 receipt is not production Node22.23.2 build verification", "No publication/deployment or complete candidate-tree verification performed by this review", "Approval, rejection, revision and execution-reference variants were not new tested cases"],
+  "newCompleteAcceptances": [],
+  "sourceEdits": false,
+  "rerun": false
+}

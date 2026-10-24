@@ -1,0 +1,66 @@
+{
+  "baseCommit": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+  "baseTree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+  "scope": "Five-path bounded declared-cohort generation admission; NOT full recovery certification",
+  "changedPaths": [
+    {
+      "path": "deployment/runtime-generation.cjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "sha256": "06f0ccab82d9dbef5e8a8e882090e606a40a52b1adc0441c8da0d90a96897a08",
+      "blob": "a60faa8bebf954fc4991ec888384490008cc6819",
+      "bytes": 10436
+    },
+    {
+      "path": "deployment/runtime-generation-preload.cjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "sha256": "fb53e646826318418bed2126aa738513fe436b051ae9c1b741ba5357611b31da",
+      "blob": "4508a66c2ea751e49c33cd41617f6e1199acc6e3",
+      "bytes": 977
+    },
+    {
+      "path": "deployment/runtime-generation.test.cjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "sha256": "24a118e76085cde8d93717cfcaba1c57f9aaee205e145245546d7bcc14e84be4",
+      "blob": "ba81fc170a971d44dddd6356c8dfa922c506ec05",
+      "bytes": 11597
+    },
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "mode": "100644",
+      "baseBlob": "11eac0815510fe644e2dadf447e35b2cfef9762e",
+      "sha256": "51f996e189e17be9ef1e9cc497f4f68df2089a57069a4f78a45b2be6665391ab",
+      "blob": "f4b545158a6760c25c4d8b350a0e8ad21f438317",
+      "bytes": 6428
+    },
+    {
+      "path": "deployment/assurance-supervisor.cjs",
+      "mode": "100644",
+      "baseBlob": "f564e02b43b41ba9ae42de258af69e3485fa7f9b",
+      "sha256": "9f001f2aa14a97bdd60de5c926fe814f6a6987988f1e72acfa3c6cedef291da6",
+      "blob": "9fda1a98ad58dd5fc736ac0d37a9d89336c0288f",
+      "bytes": 6219
+    }
+  ],
+  "tests": {
+    "node": "24.22.1",
+    "protocolAndNegativeAdmission": "17/17 PASS; successful child admission uses internal lock protocol loader, not production DAC admission",
+    "retainedLauncherChangedBoundary": "2/2 PASS",
+    "nonrootProductionAdmission": "NOT EXECUTED: uid/gid child spawning unavailable; actual production gate refuses current uid0 runtime",
+    "node22": "NOT EXECUTED locally",
+    "labelOnlyChangeAfterRun": "First test renamed from admitted processes to protocol child processes after terminal run; no test logic changed. Successful production preload remains unverified."
+  },
+  "operatingGates": [
+    "Separately controlled nonroot runtime and operator-owned immutable authority including protected ancestors, pinned device/inode and cutover receipt. Current root Railway runtime refuses.",
+    "Actual legacy process exclusion and Redis quiescence/in-flight drain plus old connection/credential exclusion must be independently proved; receipt byte integrity cannot certify external truth.",
+    "Operator-created generation authority schema and exact initial receipt must be independently reviewed and provisioned during separately approved cutover.",
+    "Cohort lifetime lock prevents generation transition while admitted process survives; it does NOT freeze writes for capture. Existing held capture protocol still required.",
+    "Member receipt directory is writable; deletion/tampering does not yield complete membership proof. Export explicitly refuses completeness.",
+    "Source rollback must use compatible build receipt and valid prospective epoch, preserving authority. Older bypassing binaries excluded by separate operating control."
+  ],
+  "publication": "NOT PUBLISHED; independent review pending; no deploy, CI, external effects",
+  "accepted": 45,
+  "outstanding": 19
+}

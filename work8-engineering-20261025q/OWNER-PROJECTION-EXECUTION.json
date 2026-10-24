@@ -1,0 +1,40 @@
+{
+  "status": "SCOPED_EXACT_PROJECTION_EXECUTION_PASS_NOT_RELEASE_BUILD",
+  "runtime": "v24.22.1",
+  "files": {
+    "/workspace/scratch/7952261165b1/campaign-n/owner-release/backend-live-executive.ts": "31b43ca499e6b98343ec55046a588ee76e60eed530c4188ba57d0d589d7f664f",
+    "/workspace/scratch/7952261165b1/campaign-n/owner-release/backend-reviewed-executive.ts": "226261e63faae3675b9328dd8a66dd530a06cfa5048aabd0c7bda880c3a58793"
+  },
+  "cases": [
+    {
+      "case": "no-decision",
+      "oldStatus": "AWAITING_OWNER_REVIEW",
+      "newStatus": "AWAITING_OWNER_REVIEW",
+      "version": 0,
+      "executionStatus": "NOT_EXECUTED"
+    },
+    {
+      "case": "committed-defer",
+      "oldStatus": "AWAITING_OWNER_REVIEW",
+      "newStatus": "DEFERRED",
+      "version": 1,
+      "executionStatus": "NOT_EXECUTED"
+    },
+    {
+      "case": "defer-with-outcome",
+      "oldStatus": "OUTCOME_REPORTED",
+      "newStatus": "OUTCOME_REPORTED",
+      "version": 2,
+      "executionStatus": "NOT_EXECUTED"
+    }
+  ],
+  "limits": [
+    "Synthetic in-memory fixture; no live decision or database write",
+    "Executed exact projection module using native type stripping; zod store schemas and frontend not built",
+    "Node24 differs from production Node22.23.2; not a production-candidate build certification",
+    "Old backend misprojects committed DEFER; must not serve as compatible post-DEFER rollback"
+  ],
+  "tests": 3,
+  "newAcceptedItems": [],
+  "externalEffects": 0
+}

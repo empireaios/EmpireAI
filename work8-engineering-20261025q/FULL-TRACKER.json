@@ -1,0 +1,510 @@
+{
+  "accepted": 45,
+  "outstanding": 19,
+  "rows": [
+    {
+      "id": "O1",
+      "status": "PASS",
+      "requirement": "Work7 exact production/closure",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O2",
+      "status": "BLOCKED",
+      "requirement": "Financial and historical preservation",
+      "preservation": "No credible new original-224 baseline or audited lineage lead. Existing 227 accounting records and historical digests remain preserved without repeated unsupported search.",
+      "currentProgress": "Preserve retained 227 accounting records and historical/journal digests. No original 224-record baseline or attributable audited count-change lineage has been recovered in the bounded records.",
+      "remainingProof": "Missing historical provenance"
+    },
+    {
+      "id": "O3",
+      "status": "PASS",
+      "requirement": "Approved UX and fifteen safety controls",
+      "preservation": "Complete original preservation/safety row independently accepted: Work7 exact public assets/cockpit route trees/navigation/presentation and11destination order preserved; approved Home/art/mobilechat and scoped actualconsumers retained. No fullgenuinejourney or historicalfinancial certification inferred."
+    },
+    {
+      "id": "O4",
+      "status": "PASS",
+      "requirement": "Sandbox isolation and denied egress",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O5",
+      "status": "PASS",
+      "requirement": "Real-source connectivity and entitlements",
+      "preservation": "Original connectivity and availability-boundary criteria independently accepted: actual CJ/Amazon reads; four capability levels; explicit unavailable403/stale/Keepa unknown. No optional paid activation or source entitlement inferred."
+    },
+    {
+      "id": "O6",
+      "status": "PASS",
+      "requirement": "Authentic source product records",
+      "preservation": "PASS: authentic retained CJ records, exact source identity/provenance and denominated cohort verified; actual authenticated application consumer displayed genuine records on desktop1440/mobile390. Unknown supplier/media/market fields remain explicit. No qualification/Pillow/owner decision inferred."
+    },
+    {
+      "id": "O7",
+      "status": "BLOCKED",
+      "requirement": "Product images and usage rights",
+      "preservation": "Retained CJ source evidence remains explicitly identity- and expiry-bound, without matched marketplace qualification, complete processing/returns/media-rights/economics evidence or an eligible new Pillow assessment. No repeated provider query or paid inference.",
+      "currentProgress": "Q connector capability review confirms no exact external CJ refresh operation. Existing exact-job client or reviewed native control required; no matching Amazon evidence inferred.",
+      "remainingProof": "Attributable exact-asset usage-rights evidence"
+    },
+    {
+      "id": "O8",
+      "status": "PASS",
+      "requirement": "Observed supplier prices/currencies",
+      "preservation": "PASS: exact observed CJ variant USD2.76 and source currency contract/time/reference displayed on desktop/mobile; parent currency remains explicitly unknown. Freight selection and profitable qualification belong to12, not observed-price acceptance."
+    },
+    {
+      "id": "O9",
+      "status": "PASS",
+      "requirement": "Competitor and market evidence",
+      "preservation": "Preserve complete independently accepted original scope and retained evidence. No demonstrated regression; no repeated examination."
+    },
+    {
+      "id": "O10",
+      "status": "PASS",
+      "requirement": "Normalization identity and deduplication",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O11",
+      "status": "PASS",
+      "requirement": "Freshness and quarantine",
+      "preservation": "PASS: original freshness/quarantine criterion met by retained scanner expiry/contradiction/envelope tests, genuine exact-expiry and pinned-source tamper refusal, and truthful consumer freshness labels. No genuine provider refresh or Assurance recovery claim inferred."
+    },
+    {
+      "id": "O12",
+      "status": "PASS",
+      "requirement": "Software screening and economics",
+      "preservation": "Original software screening/economics criteria independently accepted: genuine persisted deferral and owner unknowns; labelled positive canonical economics equals actual component. No genuine qualification or Pillow inference asserted."
+    },
+    {
+      "id": "O13",
+      "status": "BLOCKED",
+      "requirement": "Actual Pillow assessment binding",
+      "preservation": "Retained CJ source evidence remains explicitly identity- and expiry-bound, without matched marketplace qualification, complete processing/returns/media-rights/economics evidence or an eligible new Pillow assessment. No repeated provider query or paid inference.",
+      "currentProgress": "Q connector capability review confirms no exact external CJ refresh operation. Existing exact-job client or reviewed native control required; no matching Amazon evidence inferred.",
+      "remainingProof": "Matched current product evidence, processing/returns/freight/media rights/eligibility and separately bounded inference authority"
+    },
+    {
+      "id": "O14",
+      "status": "PENDING",
+      "requirement": "Owner recommendations and decisions",
+      "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+      "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+      "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+    },
+    {
+      "id": "O15",
+      "status": "PASS",
+      "requirement": "Initial up-to-100 qualification",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O16",
+      "status": "PASS",
+      "requirement": "Daily discovery and low-supply outcomes",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O17",
+      "status": "PASS",
+      "requirement": "Transactional active portfolio cap",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O18",
+      "status": "PASS",
+      "requirement": "Portfolio review retirement/replacement",
+      "preservation": "Preserve complete independently accepted original scope and retained evidence. No demonstrated regression; no repeated examination."
+    },
+    {
+      "id": "O19",
+      "status": "PASS",
+      "requirement": "Simulated listing schema/media",
+      "preservation": "Preserve final independent O19 acceptance: hosted authenticated approval-to-listing transfer and intercepted publication joined with actual local SIGKILL/fresh-process recovery on unchanged production hashes. No external commerce."
+    },
+    {
+      "id": "O20",
+      "status": "PASS",
+      "requirement": "Simulated orders and supplier intents",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O21",
+      "status": "PASS",
+      "requirement": "Partial shipments tracking/delivery",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O22",
+      "status": "PASS",
+      "requirement": "Refund returns and supplier credits",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O23",
+      "status": "PASS",
+      "requirement": "Settlement payout holds/bank receipts",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O24",
+      "status": "PASS",
+      "requirement": "Financial reconciliation and money conservation",
+      "preservation": "Complete original independent financial-reconciliation row accepted: retained canonical/adversarial/FX/retirement evidence plus authenticated actual browser equality. Held payout remains null; completed simulated contribution2040minor equals events/journal/API/display; source unchanged."
+    },
+    {
+      "id": "O25",
+      "status": "PASS",
+      "requirement": "Live Cost Centre separate accounting",
+      "preservation": "Preserve isolated full section22 Cost Centre software acceptance. Actual historical224 preservation and real invoice/payment/cash attestation remain separate2/A17; no actual financial evidence is fabricated."
+    },
+    {
+      "id": "O26",
+      "status": "PASS",
+      "requirement": "Assurance detection/correlation",
+      "preservation": "Complete original scope independently accepted. Preserve exact retained and new F27 evidence; no repeated examination needed without changed boundary."
+    },
+    {
+      "id": "O27",
+      "status": "PASS",
+      "requirement": "Bounded repair authority catalogue",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O28",
+      "status": "PASS",
+      "requirement": "Fresh independent recovery verification",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O29",
+      "status": "PASS",
+      "requirement": "Recurrence budget and circuit breaker",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O30",
+      "status": "PENDING",
+      "requirement": "Assurance watchdog/degraded operation",
+      "preservation": "Independent delivery prerequisites remain unestablished. The accepted notification ledger is in the primary application database; no new provider, verified destination, observer or exact send authority was established. No message was sent.",
+      "currentProgress": "Q authenticated GitHub actor empireaios identified; its profile email differs from retained Gmail observer. Actual notification routing/preference/quota/escalation remains unverified; no test message sent.",
+      "remainingProof": "Independent executor, off-host durable attempt store, provider and authorized sender, verified destination, independent observer, escalation route and exact test-message authorization"
+    },
+    {
+      "id": "O31",
+      "status": "PASS",
+      "requirement": "Scenario blueprint seeds and independent oracles",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O32",
+      "status": "PASS",
+      "requirement": "Unit integration/contract and property exams",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O33",
+      "status": "PENDING",
+      "requirement": "Concurrency races and replay",
+      "preservation": "The actual index examination failed the original 180-second deadline after startup logs, before a successful readiness/session/fence receipt. Hosted process-identity preflight passed two checks with no skips. Accepted application-graph and prior separate Redis/AOF/session/replay evidence remain preserved. Captured execution jobs/events are empty, so this capture cannot prove coupled pending replay.",
+      "currentProgress": "Q five-path cohort generation protocol implemented and accepted for staging only.17 protocol/refusal +2 launcher checks pass. Positive nonroot/Node22 admission unavailable locally. Writable membership receipts, complete capture and externalRedis exclusion remain unresolved; no operating certification.",
+      "remainingProof": "Complete enforced admitted writer/producer coverage, prior-generation safe exclusion, integrated same-copy protected operational restoration."
+    },
+    {
+      "id": "O34",
+      "status": "PASS",
+      "requirement": "Fault injection and compounded failures",
+      "preservation": "Complete original scope independently accepted. Preserve exact retained and new F27 evidence; no repeated examination needed without changed boundary."
+    },
+    {
+      "id": "O35",
+      "status": "PASS",
+      "requirement": "Provider outage malformed output and correlation",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O36",
+      "status": "PASS",
+      "requirement": "All fifteen safety controls positive/negative exams",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O37",
+      "status": "PASS",
+      "requirement": "Multi-day virtual-time operations",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O38",
+      "status": "PASS",
+      "requirement": "Measured elapsed endurance",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O39",
+      "status": "PENDING",
+      "requirement": "Cold restart rollback/migration/restore",
+      "preservation": "The actual index examination failed the original 180-second deadline after startup logs, before a successful readiness/session/fence receipt. Hosted process-identity preflight passed two checks with no skips. Accepted application-graph and prior separate Redis/AOF/session/replay evidence remain preserved. Captured execution jobs/events are empty, so this capture cannot prove coupled pending replay.",
+      "currentProgress": "Q five-path cohort generation protocol implemented and accepted for staging only.17 protocol/refusal +2 launcher checks pass. Positive nonroot/Node22 admission unavailable locally. Writable membership receipts, complete capture and externalRedis exclusion remain unresolved; no operating certification.",
+      "remainingProof": "Complete enforced admitted writer/producer coverage, prior-generation safe exclusion, integrated same-copy protected operational restoration."
+    },
+    {
+      "id": "O40",
+      "status": "BLOCKED",
+      "requirement": "Actual owner-view real-product walkthrough",
+      "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+      "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+      "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+    },
+    {
+      "id": "O41",
+      "status": "PENDING",
+      "requirement": "Mobile desktop source-to-finance equality",
+      "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+      "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+      "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+    },
+    {
+      "id": "O42",
+      "status": "PENDING",
+      "requirement": "Review exact-head CI and release authority",
+      "preservation": "Product, Semantic and Assurance automatic workflows succeeded. Runtime failed the changed index deadline and result gate; four other runtime jobs succeeded. Later mandatory-runtime steps skipped after failure are not claimed. No complete row newly accepted; certification remains IN_PROGRESS / NO_GO.",
+      "currentProgress": "All four automatic workflows passed on the exact published source. Scoped hosted queued-work restoration independently accepted; no whole-row promotion. Remaining owner, full operational, custody and external-evidence contracts prevent final certification.",
+      "remainingProof": "Complete remaining owner, operational, custody and external-evidence contracts; final exact-source review"
+    },
+    {
+      "id": "O43",
+      "status": "PENDING",
+      "requirement": "Independent Mission Ledger closure",
+      "preservation": "Product, Semantic and Assurance automatic workflows succeeded. Runtime failed the changed index deadline and result gate; four other runtime jobs succeeded. Later mandatory-runtime steps skipped after failure are not claimed. No complete row newly accepted; certification remains IN_PROGRESS / NO_GO.",
+      "currentProgress": "All four automatic workflows passed on the exact published source. Scoped hosted queued-work restoration independently accepted; no whole-row promotion. Remaining owner, full operational, custody and external-evidence contracts prevent final certification.",
+      "remainingProof": "Complete remaining owner, operational, custody and external-evidence contracts; final exact-source review"
+    },
+    {
+      "id": "O44",
+      "status": "PASS",
+      "requirement": "GO/NO-GO residual risks",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "O45",
+      "status": "PASS",
+      "requirement": "Work9 handoff without activation",
+      "preservation": "Preserve accepted scope; no repeat or status change."
+    },
+    {
+      "id": "A1",
+      "status": "PENDING",
+      "requirement": "Persistent autonomous digital twin",
+      "preservation": "The actual index examination failed the original 180-second deadline after startup logs, before a successful readiness/session/fence receipt. Hosted process-identity preflight passed two checks with no skips. Accepted application-graph and prior separate Redis/AOF/session/replay evidence remain preserved. Captured execution jobs/events are empty, so this capture cannot prove coupled pending replay.",
+      "currentProgress": "Q five-path cohort generation protocol implemented and accepted for staging only.17 protocol/refusal +2 launcher checks pass. Positive nonroot/Node22 admission unavailable locally. Writable membership receipts, complete capture and externalRedis exclusion remain unresolved; no operating certification.",
+      "remainingProof": "Complete enforced admitted writer/producer coverage, prior-generation safe exclusion, integrated same-copy protected operational restoration."
+    },
+    {
+      "id": "A2",
+      "status": "PENDING",
+      "requirement": "Whole-system twin",
+      "preservation": "The actual index examination failed the original 180-second deadline after startup logs, before a successful readiness/session/fence receipt. Hosted process-identity preflight passed two checks with no skips. Accepted application-graph and prior separate Redis/AOF/session/replay evidence remain preserved. Captured execution jobs/events are empty, so this capture cannot prove coupled pending replay.",
+      "currentProgress": "Q five-path cohort generation protocol implemented and accepted for staging only.17 protocol/refusal +2 launcher checks pass. Positive nonroot/Node22 admission unavailable locally. Writable membership receipts, complete capture and externalRedis exclusion remain unresolved; no operating certification.",
+      "remainingProof": "Complete enforced admitted writer/producer coverage, prior-generation safe exclusion, integrated same-copy protected operational restoration."
+    },
+    {
+      "id": "A3",
+      "status": "PENDING",
+      "requirement": "Protected backup vault",
+      "preservation": "The actual index examination failed the original 180-second deadline after startup logs, before a successful readiness/session/fence receipt. Hosted process-identity preflight passed two checks with no skips. Accepted application-graph and prior separate Redis/AOF/session/replay evidence remain preserved. Captured execution jobs/events are empty, so this capture cannot prove coupled pending replay.",
+      "currentProgress": "Q five-path cohort generation protocol implemented and accepted for staging only.17 protocol/refusal +2 launcher checks pass. Positive nonroot/Node22 admission unavailable locally. Writable membership receipts, complete capture and externalRedis exclusion remain unresolved; no operating certification.",
+      "remainingProof": "Complete enforced admitted writer/producer coverage, prior-generation safe exclusion, integrated same-copy protected operational restoration."
+    },
+    {
+      "id": "A4",
+      "status": "PASS",
+      "requirement": "Future-state workspace",
+      "preservation": "None for isolated future-state workspace foundation. Protected backup custody and live whole-system synchronization remain amendments3/2."
+    },
+    {
+      "id": "A5",
+      "status": "PENDING",
+      "requirement": "Seamless upgrades and rollback",
+      "preservation": "The actual index examination failed the original 180-second deadline after startup logs, before a successful readiness/session/fence receipt. Hosted process-identity preflight passed two checks with no skips. Accepted application-graph and prior separate Redis/AOF/session/replay evidence remain preserved. Captured execution jobs/events are empty, so this capture cannot prove coupled pending replay.",
+      "currentProgress": "Q five-path cohort generation protocol implemented and accepted for staging only.17 protocol/refusal +2 launcher checks pass. Positive nonroot/Node22 admission unavailable locally. Writable membership receipts, complete capture and externalRedis exclusion remain unresolved; no operating certification.",
+      "remainingProof": "Complete enforced admitted writer/producer coverage, prior-generation safe exclusion, integrated same-copy protected operational restoration."
+    },
+    {
+      "id": "A6",
+      "status": "PENDING",
+      "requirement": "Owner-visible autonomous dry run",
+      "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+      "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+      "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+    },
+    {
+      "id": "A7",
+      "status": "PASS",
+      "requirement": "Five mobile shortcuts",
+      "preservation": "Five required shortcuts, Home/logo, artwork preservation, readability/touch/keyboard/narrow geometry and native34px safe-area verified on exact retained Work8 frontend7dff79a6. Isolated acceptance; deployment-linked branch is unchanged."
+    },
+    {
+      "id": "A8",
+      "status": "PASS",
+      "requirement": "Product-linked Pillow Chat",
+      "preservation": "Independently accepted complete original A8 contract on exact published tree f21713b9b90cad36531372b775bfd6ff9a8f9e71: authenticated native390/1440 Products/Listings/Orders context entry/removal/switch/comparison/followup, native reload and archive/history; exact source/workspace identity, forged-source rejection and truthful unknowns; retained unchanged cold-process persistence and independently reviewed concurrency/cancellation/session reuse. Receipt A8-INDEPENDENT-ACCEPTANCE.json. Intercepted inference; no product qualification or broader restoration inferred."
+    },
+    {
+      "id": "A9",
+      "status": "PASS",
+      "requirement": "Product image/video management",
+      "preservation": "Independently accepted full A9 contract on source d6069705a9a2e8f7b58550afa2474a8382be2663, Product39114039622 artifact12130899341:18 native assertions; exact permitted image/video bytes/version, gallery screenshots390/1440, archive/reload, authenticated boundaries and retained unchanged durable store evidence. A11 PASS preserved. Owner-created fixtures do not establish supplier rights, Canva or personal owner approval. Receipt:A9-INDEPENDENT-ACCEPTANCE.json."
+    },
+    {
+      "id": "A10",
+      "status": "PENDING",
+      "requirement": "Canva-assisted editing",
+      "preservation": "Two bounded read-only Canva account searches hung and were stopped by the controller for cost control. No account/design result was retained; entitlement remains unknown. No edit/export or retry occurred; runtime export authority remains unproven.",
+      "currentProgress": "Prior connector reads hung and were interrupted without a usable entitlement response. No demonstrated change in availability is present. Server-side export authority remains required; Console sign-in supplies no Canva entitlement.",
+      "remainingProof": "Applicable account/consumer entitlement, working authorized export path and actual edited/exported artifact receipt"
+    },
+    {
+      "id": "A11",
+      "status": "PASS",
+      "requirement": "Separate internal/external media approval",
+      "preservation": "PRESERVED OWNER-SUPPLIED INDEPENDENT ACCEPTANCE: sixteen passing assertions; material edit invalidation, fresh internal approval, exact identity/version binding, stale/replay/mismatch rejection, durable history, authenticated desktop/mobile and intercepted publication. No fresh decision by this reconciliation. Recovered hosted receipt attribution is recorded in A11-RECEIPT-ATTRIBUTION.json."
+    },
+    {
+      "id": "A12",
+      "status": "PASS",
+      "requirement": "Temporary Systems authority",
+      "preservation": "Complete original temporary Systems authority criteria independently accepted: four preparation scopes, one-task/timed/expiry/revocation, owner/scope binding, durable native state and bounded saved-request preview. No actual new inference or live authority."
+    },
+    {
+      "id": "A13",
+      "status": "PASS",
+      "requirement": "Conversational UX changes",
+      "preservation": "Preserve independently accepted isolated conversational preview software; personal King acceptance, arbitrary app-wide changes and deployment remain separate."
+    },
+    {
+      "id": "A14",
+      "status": "PASS",
+      "requirement": "Human-interaction risk management",
+      "preservation": "Preserve complete isolated simulated communication acceptance; actual model judgement, real sending and genuine integrated business journey remain separate."
+    },
+    {
+      "id": "A15",
+      "status": "PENDING",
+      "requirement": "Keepa and Helium 10 readiness",
+      "preservation": "One bounded root Keepa discovery query returned no plugins; no Keepa tools were loaded. This non-exhaustive result does not prove account entitlement absence. The actual runtime remains NOT_CONFIGURED and unverified; no purchase or activation.",
+      "currentProgress": "Retained runtime NOT_CONFIGURED and missing credential do not establish absent account subscription. Keepa account entitlement remains unknown; Helium 10 remains truthfully deferred.",
+      "remainingProof": "Applicable account entitlement and authorized usable read capability"
+    },
+    {
+      "id": "A16",
+      "status": "PASS",
+      "requirement": "Financial Birth Cutover",
+      "preservation": "All ten original isolated cutover assertions independently accepted. Archive/identity/conservation and actual prior-code/checkpoint compatibility retained; mobile Finance fixed. No actual financial Birth."
+    },
+    {
+      "id": "A17",
+      "status": "PASS",
+      "requirement": "Autonomous Cost Intelligence",
+      "preservation": "Preserve full Work8 software acceptance with authenticated governed discovery and truthful unavailable access; continuous live billing remains Work9, not activated."
+    },
+    {
+      "id": "A18",
+      "status": "PASS",
+      "requirement": "Isolated hosted twin",
+      "preservation": "Owner direction already removes separately purchased demonstration hosting. Verify equivalent isolated technical capability and full required runtime scope; protected custody remains mandatory under amendment3."
+    },
+    {
+      "id": "A19",
+      "status": "PENDING",
+      "requirement": "Integrated owner acceptance",
+      "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+      "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+      "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+    }
+  ],
+  "campaign": "M",
+  "publication": {
+    "evidence": {
+      "commit": "982f535ed409c7563d0a323bf6586d320fed61ef",
+      "tree": "ce9aa5b83cc4d3c6b204e6d3086053a113e14f0a"
+    },
+    "source": {
+      "approved": "ddb4426476ea54f900b148cb23c50c77a8192a1d",
+      "published": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+      "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f"
+    },
+    "evidenceFirst": true,
+    "safeDirectParentAncestry": true,
+    "remoteCompleteTreeEquality": true,
+    "metadataOnlyChange": "remove skip ci marker for normal automatic source CI",
+    "prDraft": true,
+    "merged": false
+  },
+  "newAcceptedIds": [],
+  "missionStatus": "IN_PROGRESS",
+  "certification": "NO_GO",
+  "hostedQueuedWorkDecision": "PASS_SCOPED_GENERATED_READONLY_COUPLED_CONTINUATION_AND_RESTART",
+  "currentCI": {
+    "source": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+    "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+    "runs": [
+      {
+        "id": 40104285260,
+        "name": "Product path CI",
+        "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-10-24T15:01:13Z"
+      },
+      {
+        "id": 40104285262,
+        "name": "Pillow semantic repair CI",
+        "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-10-24T14:55:08Z"
+      },
+      {
+        "id": 40104285264,
+        "name": "Independent Assurance Core",
+        "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-10-24T14:50:45Z"
+      },
+      {
+        "id": 40104285277,
+        "name": "Pillow runtime repair CI",
+        "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-10-24T15:03:31Z"
+      }
+    ],
+    "runtimeJobs": 6,
+    "productJobs": 10,
+    "dispatches": 0,
+    "reruns": 0
+  },
+  "checkpoint": "2026-10-25 Q",
+  "sourceBaseline": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+  "evidenceBaseline": "b14faa6d8cd50e2ee57c60a420f96c10e5dc1af3",
+  "candidateSource": {
+    "commit": "a11087d2eca4157a2ca2cfc65e6e2415dcaa42f6",
+    "tree": "26a030a5db565a8d501acd072c99d0dbfd7cac4d",
+    "parent": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+    "remoteCompleteTreeEquality": true,
+    "branchRefsUpdated": false,
+    "published": false,
+    "deployed": false,
+    "reviewScope": "EXACT_STAGING_ONLY_NOT_RELEASE_READY",
+    "retention": "Unreferenced Git object: retained remotely but subject to eventual garbage collection until approved ref publication"
+  }
+}
