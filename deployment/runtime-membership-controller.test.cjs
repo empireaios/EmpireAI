@@ -1,0 +1,13 @@
+'use strict';
+const {test}=require('node:test'),assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
+const {MembershipJournal,digest}=require('./runtime-membership-controller.cjs');
+const ID='11111111-1111-1111-1111-111111111111';
+const rec=(pid=123)=>({id:ID,role:'primary',pid,startTicks:'12345',boot:'22222222-2222-2222-2222-222222222222',pidNamespace:'pid:[123]',uid:65534,gid:65534,source:'a'.repeat(40),generation:'33333333-3333-3333-3333-333333333333',epoch:1,cutoverDigest:'b'.repeat(64),entrySha256:'c'.repeat(64),storeRoot:'/isolated/store',storeDevice:1,storeInode:2,scope:['native-sqlite'],scopeDigest:digest(JSON.stringify(['native-sqlite']))});
+function journal(t){const root=fs.mkdtempSync(path.join(os.tmpdir(),'membership-journal-unit-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));const file=path.join(root,'journal.sqlite');return {file,j:new MembershipJournal(file,{initialize:true})};}
+test('journal unit: admission is durable to independent readback before acknowledgment',t=>{const {file,j}=journal(t);j.admit(rec());j.close();const read=new MembershipJournal(file);assert.equal(read.read().members[0].state,'ADMITTED');assert.equal(read.read().revision,1);read.close();});
+test('journal unit: duplicate admission rolls back member and revision together',t=>{const {j}=journal(t);j.admit(rec());assert.throws(()=>j.admit(rec(456)));assert.equal(j.read().revision,1);assert.equal(j.read().members[0].pid,123);j.close();});
+test('journal unit: no missing journal auto-reconstruction',t=>{const root=fs.mkdtempSync(path.join(os.tmpdir(),'membership-missing-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));assert.throws(()=>new MembershipJournal(path.join(root,'missing.sqlite')),/MISSING/);});
+test('journal unit: terminated transition retains original admission and monotonic event sequence',t=>{const {j}=journal(t);j.admit(rec());j.state(ID,'TERMINATED',{basis:'SAME_NAMESPACE_PID_START_ABSENT',observedAt:new Date().toISOString()});assert.deepEqual(j.read().events.map(e=>e.sequence),[1,2]);assert.equal(j.read().members[0].state,'TERMINATED');j.close();});
+test('journal unit: valid SQLite with truncated history refuses authoritative readback',t=>{const {j}=journal(t);j.admit(rec());j.db.exec('DELETE FROM events');assert.throws(()=>j.read(),/COHERENCE/);j.close();});
+test('journal unit: extra secret-bearing record fields refuse export',t=>{const {j}=journal(t);assert.throws(()=>j.admit({...rec(),privateCredential:'must-not-export'}),/SCHEMA/);assert.equal(j.read().revision,0);j.close();});

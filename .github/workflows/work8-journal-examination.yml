@@ -1,0 +1,43 @@
+name: Work 8 authoritative journal examination
+
+# Publication to this dedicated reviewed-candidate ref is the only trigger.
+# No PR trigger, production environment, credentials, deployment, or old suites.
+on:
+  push:
+    branches: ['work8/journal-examination-20261025s']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: work8-journal-examination-20261025s
+  cancel-in-progress: false
+
+jobs:
+  authoritative-journal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout the exact approved event source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /deployment/
+            /scripts/work8/run-journal-examination.sh
+            /.github/workflows/work8-journal-examination.yml
+      - name: Run only the isolated authoritative journal examination
+        env:
+          WORK8_EXPECTED_SOURCE: ${{ github.sha }}
+        run: bash scripts/work8/run-journal-examination.sh
+      - name: Retain exact-source examination evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-journal-${{ github.sha }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/work8-journal-evidence/
+          if-no-files-found: error
+          retention-days: 7
