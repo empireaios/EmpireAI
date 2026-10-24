@@ -8,16 +8,24 @@ import {randomUUID} from 'node:crypto';
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 export function processIdentity(pid){try{const fields=fs.readFileSync(`/proc/${pid}/stat`,'utf8').split(') ').slice(1).join(') ').trim().split(/\s+/);return {pid,startTicks:fields[19],state:fields[0]};}catch(error){if(error.code==='ENOENT'||error.code==='ESRCH')return null;throw error;}}
 export function validateIndexHealth(value){const c=value?.continuity;assert.equal(c?.watchdogEnabled,true);assert.equal(c.watchdogRunning,true);assert.equal(c.healthy,true);assert.ok(Number.isFinite(c.lastHeartbeatAgeMs)&&c.lastHeartbeatAgeMs>=0&&c.lastHeartbeatAgeMs<22500);assert.deepEqual(c.alerts,[]);return c;}
-export async function examineRestoredIndex({repo,deadline,originalSession,redis,manifest,inspectionOwner,onDiagnostic=()=>{}}){
+export async function examineRestoredIndex({repo,deadline,originalSession,redis,manifest,inspectionOwner,onDiagnostic=()=>{},pending}){
  assert.equal(process.env.NODE_ENV,'test');assert.equal(process.env.EMPIRE_ENGINEERING_TEST_MODE,'true');assert.equal(process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED,'false');
  const port=await new Promise((resolve,reject)=>{const s=createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const p=s.address().port;s.close(()=>resolve(p));});});
  const capability=randomUUID();
- const child=spawn(process.execPath,[path.join(repo,'scripts/work8/index-restoration-launcher.mjs'),capability],{env:{...process.env,PORT:String(port),HOST:'127.0.0.1'},stdio:['ignore','inherit','inherit','ipc']});
+ let pendingFile;
+ if(pending){
+  const {readPendingState,validatePendingState}=await import('./pending-restoration.mjs');
+  const current=readPendingState(process.env.DATABASE_PATH);validatePendingState(current,{source:process.env.RAILWAY_GIT_COMMIT_SHA,oracle:pending.oracle,completed:pending.stage==='completed'});
+  if(pending.stage==='completed')assert.deepEqual(current,pending.completedState);
+  pendingFile=path.join(path.dirname(process.env.RAILWAY_VOLUME_MOUNT_PATH),'pending-'+capability+'.json');
+  fs.writeFileSync(pendingFile,JSON.stringify({...pending,source:process.env.RAILWAY_GIT_COMMIT_SHA,capability,authorization:'FRESH_GENERATED_SINGLE_READONLY_EXAMINATION'}),{flag:'wx',mode:0o400});
+ }
+ const child=spawn(process.execPath,[path.join(repo,'scripts/work8/index-restoration-launcher.mjs'),capability,...(pendingFile?[pendingFile,pending.digest]:[])],{env:{...process.env,PORT:String(port),HOST:'127.0.0.1'},stdio:['ignore','inherit','inherit','ipc']});
  let exited=false,exitCode=null,spawnError;child.once('error',error=>{spawnError=error;});child.once('exit',code=>{exited=true;exitCode=code;});
  let identity;const receipt={mode:'ACTUAL_INDEX_ENGINEERING_FENCED',watchdogKind:'node:worker_threads.Worker',uniqueWatchdogTidMapped:false,productionAmazonContinuationsExamined:false,globalWriterMembershipProven:false};
  const get=async(route,headers={})=>{assert.ok(Date.now()<deadline,'ORIGINAL_INDEX_STARTUP_DEADLINE');return fetch(`http://127.0.0.1:${port}${route}`,{headers,signal:AbortSignal.timeout(Math.max(1,Math.min(2000,deadline-Date.now())))});};
- let failure,flushRequested=false,flushAck=null,flushError=null;
- child.on('message',message=>{if(message?.source!==process.env.RAILWAY_GIT_COMMIT_SHA||message?.capability!==capability)return;if(message.event==='restored-index-persisted'){const {capability:_private,...ack}=message;flushAck=ack;}if(message.event==='restored-index-persist-failed')flushError=String(message.error);});
+ let failure,flushRequested=false,flushAck=null,flushError=null,pendingAck=null;
+ child.on('message',message=>{if(message?.source!==process.env.RAILWAY_GIT_COMMIT_SHA||message?.capability!==capability)return;if(message.event==='pending-admission-validated'){const {capability:_private,...ack}=message;pendingAck=ack;}if(message.event==='restored-index-persisted'){const {capability:_private,...ack}=message;flushAck=ack;}if(message.event==='restored-index-persist-failed')flushError=String(message.error);});
  try{
   await once(child,'spawn');identity=processIdentity(child.pid);assert.ok(identity,'INDEX_PROCESS_IDENTITY_UNAVAILABLE');assert.match(identity.startTicks,/^\d+$/,'INDEX_START_IDENTITY_INVALID');receipt.identity=identity;
   let health;
@@ -41,6 +49,22 @@ export async function examineRestoredIndex({repo,deadline,originalSession,redis,
   const raw=await redis.get('empireai:session:'+originalSession.token);assert.deepEqual(JSON.parse(raw),originalSession);
   const ttl=await redis.pttl('empireai:session:'+originalSession.token);assert.ok(ttl>0&&ttl<=Date.parse(originalSession.expiresAt)-Date.now()+1000);
   assert.equal(await redis.get(manifest.redisIdentity.ownerKey),inspectionOwner);assert.equal(await redis.hget(manifest.redisIdentity.metaKey,'paused'),'1');
+  if(pending){
+   assert.ok(pendingAck,'CHILD_PENDING_ADMISSION_REQUIRED');assert.equal(pendingAck.stage,pending.stage);assert.equal(pendingAck.digest,pending.digest);
+   const {readPendingState,validatePendingState}=await import('./pending-restoration.mjs');
+   let completed;
+   for(;;){assert.ok(Date.now()<deadline,'ORIGINAL_PENDING_CONTINUATION_DEADLINE');const state=readPendingState(process.env.DATABASE_PATH);
+    const job=JSON.parse(state.execution.jobs[0]?.document??'null');
+    if(job?.status==='completed'&&job.reconciled){validatePendingState(state,{source:process.env.RAILWAY_GIT_COMMIT_SHA,oracle:pending.oracle,completed:true});completed=state;break;}
+    assert.equal(pending.stage,'queued','COMPLETED_JOB_REGRESSED');assert.ok(job&&['queued','leased','completed'].includes(job.status));assert.ok(job.attempts<=1);await pause(50);
+   }
+   if(pending.stage==='completed'){
+    assert.deepEqual(completed,pending.completedState);assert.ok(deadline-Date.now()>1100,'ORIGINAL_RESTART_OBSERVATION_DEADLINE');await pause(1100);
+    assert.deepEqual(readPendingState(process.env.DATABASE_PATH),pending.completedState,'RESTART_DUPLICATE_EXECUTION_OR_MUTATION');
+   }
+   assert.equal(await redis.get(manifest.redisIdentity.ownerKey),inspectionOwner);assert.equal(await redis.hget(manifest.redisIdentity.metaKey,'paused'),'1');
+   receipt.pendingAdmission=pendingAck;receipt.pendingState=completed;receipt.pendingRestartObserved=pending.stage==='completed';
+  }
   receipt.originalSessionAuthenticated=true;receipt.originalMissionScopeDenied=true;receipt.queueAdmissionRemainsFenced=true;
  }catch(error){failure=error;}
  finally{
@@ -54,5 +78,6 @@ export async function examineRestoredIndex({repo,deadline,originalSession,redis,
   if(!receipt.indexProcessStopped){receipt.cleanupRequiresOuterContainment=true;failure??=Error('INDEX_CONTAINMENT_UNPROVEN');}
   if(exitCode!==0)failure??=spawnError??Error('INDEX_EXIT_NOT_CLEAN');
  }
+ if(pendingFile)fs.rmSync(pendingFile,{force:true});
  if(failure){failure.indexReceipt=receipt;throw failure;}return receipt;
 }

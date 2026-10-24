@@ -138,6 +138,16 @@ export async function initializeActualGeneratedDomains(application,root,source){
  inventory.emptyInitializedStores=['pillow-visual-memory/records','pillow-session-continuity'];
  host.createMissionRuntimeMission({missionName:'Synthetic HH4 unapproved recovery mission',workers:[],pillowConfirmed:false,grandKingApproved:false,highRisk:false});record('missions',host.getMissionRuntimeHistory());
  const executionFile=await readyActualExecutionStore(application,host,primary,hostDeadline);
+ // Fresh synthetic examination permission covers exactly this readonly operation.
+ // Quiesce the real app-owned runner BEFORE creating the persisted pending job.
+ assert.ok(host.missionAuthorityLifecycle?.pauseAndWait);await host.missionAuthorityLifecycle.pauseAndWait();
+ assert.equal(host.getMissionAuthorityExecutionDiagnostics().paused,true);
+ const pending=host.executeMissionRuntime({missionName:'Synthetic HH4 isolated readonly continuation',workers:['pillow-authority-reader-v1'],pillowConfirmed:true,grandKingApproved:true,highRisk:false});
+ assert.ok(pending.authorityExecution?.jobId);
+ const {readPendingState,validatePendingState}=await import('./pending-restoration.mjs');
+ const pendingState=readPendingState(primary);const pendingJob=validatePendingState(pendingState,{source});assert.equal(pendingJob.jobId,pending.authorityExecution.jobId);
+ inventory.pendingExamination={classification:'GENERATED_READONLY_EXAMINATION_NOT_OWNER_BUSINESS_APPROVAL',source,operation:'authority.snapshot.v1',state:pendingState};
+ record('missions',host.getMissionRuntimeHistory());
  const executionDb=new DatabaseSync(executionFile,{readOnly:true,allowExtension:false});
  try{record('execution',{scope:executionDb.prepare('SELECT * FROM execution_meta ORDER BY id').all(),jobs:executionDb.prepare('SELECT * FROM execution_jobs ORDER BY job_id').all(),events:executionDb.prepare('SELECT * FROM execution_events ORDER BY seq').all(),note:'Actual application-owned execution store; authorized pending replay remains a separate mandatory examination.'});}finally{executionDb.close();}
  inventory.originalSession=await application.brain.sessionStore.create({id:'hh4-restoration-owner',email:'hh4-owner@example.test',name:'Synthetic recovery owner',role:'founder',workspaceId:workspace});

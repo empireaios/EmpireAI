@@ -13,6 +13,18 @@ export async function launchRestoredIndex(){
  assert.equal(process.env.EMPIRE_RUNTIME_PROFILE,'LOCKED_COMMISSIONING_V1');assert.equal(process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED,'false');
  const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;assert.equal(fs.realpathSync(root),root);assert.match(root,/^\/tmp\/work8-generated-capture-[^/]+\/volume$/);
  assert.ok(path.resolve(process.env.DATABASE_PATH).startsWith(root+path.sep));
+ // Only a fresh parent-generated capability can opt into the single readonly
+ // continuation. This validation runs before importing index/executor modules.
+ const pendingFile=process.argv[3];
+ if(pendingFile){
+  assert.equal(path.dirname(pendingFile),path.dirname(root));assert.equal(path.basename(pendingFile),'pending-'+capability+'.json');
+  const stat=fs.lstatSync(pendingFile);assert.ok(stat.isFile()&&!stat.isSymbolicLink()&&stat.size<=3145728);assert.equal(stat.mode&0o777,0o400);assert.equal(stat.uid,process.getuid());
+  const plan=JSON.parse(fs.readFileSync(pendingFile,'utf8'));
+  const {readPendingState,validatePendingPlan}=await import('./pending-restoration.mjs');
+  validatePendingPlan(plan,{capability,source,expectedDigest:process.argv[4],state:readPendingState(process.env.DATABASE_PATH)});
+  process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED='true';
+  process.send?.({event:'pending-admission-validated',capability,source,stage:plan.stage,digest:plan.digest,historicalAuthorityImported:false});
+ }
  let used=false;
  process.on('message',async message=>{
   try{
