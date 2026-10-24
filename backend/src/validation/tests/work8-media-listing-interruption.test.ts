@@ -1,0 +1,40 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import os from 'node:os';import {fileURLToPath,pathToFileURL} from 'node:url';import {spawn,spawnSync} from 'node:child_process';import {once} from 'node:events';import {createHash} from 'node:crypto';
+
+test('O19 committed durable approval transfer survives SIGKILL and a fresh process refuses replay without authority',async()=>{
+ const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../../..'),root=fs.mkdtempSync(path.join(os.tmpdir(),'o19-sigkill-')),loader=path.join(repo,'backend/node_modules/tsx/dist/loader.mjs'),launcher=path.join(repo,'scripts/work8/isolated-exec.py');
+ const module=(name:string)=>JSON.stringify(pathToFileURL(path.join(repo,'backend/src/runtime/commerce-runtime/governed',name+'.ts')).href);
+ const sourceFiles=['store','engine','work8-twin-media','work8-twin-runtime','work8-twin'];
+ const identities=()=>Object.fromEntries(sourceFiles.map(n=>[n,createHash('sha256').update(fs.readFileSync(path.join(repo,'backend/src/runtime/commerce-runtime/governed',n+'.ts'))).digest('hex')]));const before=identities();
+ const program=`import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';
+import {GovernedCommerceStore,digest} from ${module('store')};import {GovernedCommerceEngine} from ${module('engine')};import {CommerceWorker} from ${module('worker')};import {Work8TwinSessions} from ${module('work8-twin')};import {Work8TwinRuntime} from ${module('work8-twin-runtime')};import {DurableSimulatedFinance} from ${module('work8-durable-finance')};import {acceptanceScenario} from ${module('scenario')};
+const root=process.argv[2],mode=process.argv[3],p={workspace:'ws',owner:'owner'},now=1792316400000,store=new GovernedCommerceStore(path.join(root,'commerce.sqlite')),sessions=new Work8TwinSessions(store,()=>now),engine=new GovernedCommerceEngine(store,()=>now),worker=new CommerceWorker(engine),runtime=new Work8TwinRuntime(sessions,worker,new DurableSimulatedFinance(store,worker,()=>now));
+if(mode==='write'){
+ const session=sessions.transition(p,{id:'create',sessionId:'exam',expectedVersion:0,action:'CREATE'}),f=acceptanceScenario(session.twinWorkspace,p.owner,now);
+ const research=engine.execute(f.actors.PROPOSER,{id:'research',missionId:'source',expectedVersion:0,command:f.steps[0].command});const reference={sessionId:'exam',missionId:'source',receiptDigest:research.digest};
+ const asset={id:'image',url:'https://example.invalid/original.svg',kind:'IMAGE',sha256:digest('original isolated interruption fixture'),sourceIdentity:f.candidate.productId,rightsEvidence:'evidence-QUALITY',rightsStatus:'OWNER_REVIEWED',provenance:'Original authored isolated interruption image'};
+ const proposal=runtime.media.command(p,{action:'PROPOSE',id:'proposal',reference,expectedVersion:0,instructions:'Interruption boundary',assets:[asset],editingReceipt:'Original permitted fixture'});
+ const approval=runtime.media.command(p,{action:'APPROVE_INTERNAL',id:'internal',reference,expectedVersion:1,batchDigest:proposal.batchDigest});
+ const listing={...f.listing,images:[{url:asset.url,sha256:asset.sha256,rightsEvidence:asset.rightsEvidence,license:asset.provenance}]};
+ const apply=runtime.media.command(p,{action:'APPLY_LISTING',id:'apply',reference,expectedVersion:2,batchDigest:proposal.batchDigest,listing});
+ const nextReference={...reference,receiptDigest:apply.listingBinding.receiptDigest};const request={action:'TRANSFER_LISTING',id:'transfer',reference:nextReference,expectedVersion:3,batchDigest:proposal.batchDigest,targetMissionId:'target'};
+ const transfer=runtime.media.command(p,request),source=store.history(session.twinWorkspace,'source').at(-1),target=store.history(p.workspace,'target').at(-1);
+ console.log(JSON.stringify({phase:'COMMITTED_BEFORE_SIGKILL',approval,apply,transfer,source,target,request}));
+ setInterval(()=>{},1000); // Deliberately no close, checkpoint, signal handler or orderly exit.
+}else{
+ const expected=JSON.parse(fs.readFileSync(path.join(root,'expected.json'),'utf8')),session=sessions.read(p,'exam');
+ const source=store.history(session.twinWorkspace,'source').at(-1),target=store.history(p.workspace,'target').at(-1);assert.deepEqual(source,expected.source);assert.deepEqual(target,expected.target);
+ const view=runtime.media.read(p,expected.request.reference);assert.equal(view.version,4);assert.deepEqual(view.history.find(e=>e.id==='internal'),expected.approval);assert.deepEqual(view.history.find(e=>e.id==='apply'),expected.apply);assert.deepEqual(view.history.find(e=>e.id==='transfer'),expected.transfer);
+ assert.equal(view.externalStatus,'NOT_SUBMITTED');assert.equal(view.current,null);assert.equal(target.state.review,undefined);assert.equal(target.state.approval,undefined);assert.equal(target.state.publicationIntent,undefined);assert.equal(target.externalEffects,0);assert.equal(target.state.paidInference,0);
+ assert.throws(()=>runtime.media.command(p,expected.request),/REPLAY_STALE/);assert.equal(store.history(p.workspace,'target').length,2);assert.equal(runtime.media.read(p,expected.request.reference).version,4);
+ console.log(JSON.stringify({status:'PASS_AFTER_SIGKILL',sourceReceiptDigest:source.digest,targetReceiptDigest:target.digest,approvalDigest:expected.approval.digest,transferBinding:expected.transfer.transferBinding,mediaVersion:4,targetReceiptCount:2,externalStatus:view.externalStatus,review:null,ownerApproval:null,publicationIntent:null,externalEffects:0,paidInference:0}));store.close();}
+`;
+ const script=path.join(root,'child.mjs');fs.writeFileSync(script,program);let child:ReturnType<typeof spawn>|undefined;
+ try{
+  child=spawn('python3',[launcher,process.execPath,'--import',loader,script,root,'write'],{stdio:['ignore','pipe','pipe']});let stderr='';child.stderr!.on('data',b=>{stderr+=String(b)});
+  const ready=await new Promise<string>((resolve,reject)=>{let text='';const timer=setTimeout(()=>reject(Error('COMMITTED_RECEIPT_TIMEOUT '+stderr)),20000);child!.once('exit',(code,signal)=>{clearTimeout(timer);reject(Error('WRITER_EARLY_EXIT '+code+' '+signal+' '+stderr))});child!.stdout!.on('data',b=>{text+=String(b);const end=text.indexOf('\n');if(end>=0){clearTimeout(timer);resolve(text.slice(0,end));}});});
+  const expected=JSON.parse(ready);assert.equal(expected.phase,'COMMITTED_BEFORE_SIGKILL');fs.writeFileSync(path.join(root,'expected.json'),JSON.stringify(expected));
+  const exited=once(child,'exit');assert.equal(child.kill('SIGKILL'),true);const [code,signal]=await exited;assert.equal(code,null);assert.equal(signal,'SIGKILL');
+  const read=spawnSync('python3',[launcher,process.execPath,'--import',loader,script,root,'read'],{encoding:'utf8',timeout:20000,maxBuffer:1024*1024});assert.equal(read.status,0,read.stderr);const receipt=JSON.parse(read.stdout);assert.equal(receipt.status,'PASS_AFTER_SIGKILL');assert.deepEqual(identities(),before);
+  console.info('O19_INTERRUPTION_RECEIPT '+JSON.stringify({writerTermination:'SIGKILL',sourceFiles:before,...receipt}));
+ }finally{if(child&&child.exitCode===null&&child.signalCode===null)child.kill('SIGKILL');fs.rmSync(root,{recursive:true,force:true});}
+});

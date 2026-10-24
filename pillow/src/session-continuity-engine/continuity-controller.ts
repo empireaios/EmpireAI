@@ -71,6 +71,10 @@ export class ContinuityController {
     this.contextStore = new SessionContextStore(repositoryRoot, config);
   }
 
+  withRecoverySnapshot<T>(capture:(snapshot:import("./recovery-snapshot.js").SessionContinuityRecoverySnapshot)=>Promise<T>):Promise<T>{
+    return this.contextStore.withRecoverySnapshot(capture);
+  }
+
   getStatus(): ContinuityStatus {
     return this.status;
   }
@@ -224,8 +228,7 @@ export class ContinuityController {
       stableStateCount: this.stableStateCount,
     });
     if (result.model) {
-      this.applyContinuity(result.model, result.changeSummary, result.stableStateDetected);
-      return result.model;
+      return this.applyContinuity(result.model, result.changeSummary, result.stableStateDetected) ? result.model : null;
     }
     return null;
   }
@@ -234,11 +237,16 @@ export class ContinuityController {
     model: SessionContinuityModel,
     changes: import("./types.js").SessionChangeSummary | null,
     stableDetected: boolean,
-  ): void {
+  ): boolean {
+    if(!this.contextStore.save(model,this.actorIdentifier)){
+      this.sessionManager.recordUpdate(false,null);
+      this.performance.failedUpdates+=1;this.performance.totalUpdates+=1;
+      this.healthMonitor.recordUpdate(0,false);
+      return false;
+    }
     this.previousContinuity = this.latestContinuity;
     this.latestContinuity = model;
     this.continuityBuffer.push(model);
-    this.contextStore.save(model, this.actorIdentifier);
     this.sessionManager.recordUpdate(true, model.currentScreenId);
     this.recoveryManager.recordSuccess();
     this.performance.successfulUpdates += 1;
@@ -260,6 +268,7 @@ export class ContinuityController {
       this.stableStateCount = 0;
     }
     this.healthMonitor.recordUpdate(1, true);
+    return true;
   }
 
   private fingerprint(): string {
@@ -311,8 +320,7 @@ export class ContinuityController {
       });
 
       if (result.model) {
-        this.applyContinuity(result.model, result.changeSummary, result.stableStateDetected);
-        this.lastContinuityFingerprint = fp;
+        if(this.applyContinuity(result.model, result.changeSummary, result.stableStateDetected)) this.lastContinuityFingerprint = fp;
       } else {
         this.sessionManager.recordUpdate(false, null);
         this.performance.failedUpdates += 1;

@@ -7,6 +7,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
 const { DatabaseSync } = require('node:sqlite');
+const { pathToFileURL } = require('node:url');
 const MAX_FILE = 512 * 1024 * 1024;
 const digest = data => crypto.createHash('sha256').update(data).digest('hex');
 const id = s => Object.fromEntries(['dev', 'ino', 'size', 'mtimeMs', 'ctimeMs'].map(k => [k, s[k]]));
@@ -46,7 +47,8 @@ function hashFile(filename, size) {
 }
 function validateCopy(filename, kind) {
   if (kind === 'sqlite') {
-    const db = new DatabaseSync(filename, { readOnly: true });
+    // Only a copied, hash-verified checkpoint is passed here, never a live store.
+    const db = new DatabaseSync(pathToFileURL(filename).href + '?immutable=1', { readOnly: true, allowExtension: false });
     try { assert.equal(db.prepare('PRAGMA integrity_check').get()?.integrity_check, 'ok', 'Shadow CEO SQLite integrity failed'); }
     finally { db.close(); }
   } else {

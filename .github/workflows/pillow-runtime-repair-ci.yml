@@ -26,18 +26,21 @@ jobs:
   locked-railway-package:
     name: Exact-source Railway Railpack image
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # 30m image build + two (180s startup + 720s fault) arms + upload margin.
+    timeout-minutes: 65
     steps:
       - name: Checkout candidate source without merge or persisted credentials
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+          fetch-depth: 2
       - name: Use the repository Node pin
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: '.node-version'
       - name: Build the effective root Railway configuration without deployment
+        timeout-minutes: 30
         shell: bash
         env:
           BUILDKIT_HOST: docker-container://buildkit
@@ -87,7 +90,39 @@ jobs:
           git rev-parse HEAD > "$RUNNER_TEMP/locked-package-evidence/source-sha.txt"
           cp railway.toml railpack.json "$RUNNER_TEMP/locked-package-evidence/"
           cat "$RUNNER_TEMP/locked-package-evidence/source-sha.txt" "$RUNNER_TEMP/locked-package-evidence/runtime.json" >> "$GITHUB_STEP_SUMMARY"
+      - name: Assess exact accepted-source examination-only reuse boundary
+        id: f29-boundary
+        run: node scripts/work8/f27-change-boundary.cjs >> "$GITHUB_OUTPUT"
+      - name: Preserve explicitly retained F29 receipt
+        if: steps.f29-boundary.outputs.run_f29 == 'false'
+        run: node scripts/work8/f27-change-boundary.cjs --receipt f29 "$RUNNER_TEMP/locked-package-evidence/retained-f29.json" >> "$GITHUB_STEP_SUMMARY"
+      - name: Examine F27 simultaneous faults with independent external oracle
+        timeout-minutes: 5
+        run: |
+          node scripts/work8/f27-outer-controller.cjs empireai-locked:ci "$RUNNER_TEMP/f27-external-evidence"
+      - name: Preserve F27 external observations and protected containment
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: work8-f27-external-compound
+          path: ${{ runner.temp }}/f27-external-evidence
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Examine remaining F29 supervision pair loss in isolated exact image
+        if: steps.f29-boundary.outputs.run_f29 != 'false'
+        timeout-minutes: 32
+        run: |
+          node scripts/work8/f29-outer-controller.cjs empireai-locked:ci "$RUNNER_TEMP/f29-pair-evidence"
+      - name: Preserve owner-visible F29 incident and containment receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: work8-f29-pair-containment
+          path: ${{ runner.temp }}/f29-pair-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: Preserve exact-source packaging receipt
+        if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: locked-railway-package
@@ -189,14 +224,166 @@ jobs:
           npm run verify:env --prefix backend
           npm run typecheck --prefix backend
           npm run build --prefix backend
+      - name: Verify changed examination boundaries
+        run: |
+          node --test scripts/work8/tests/f27-change-boundary.test.cjs scripts/work8/tests/f27-clock-origin.test.cjs
+          node --experimental-vm-modules scripts/work8/tests/hh3-owned-process-group.test.mjs
+      # Insert into durable-runtime immediately after backend build; not the F29 job.
+      # Exact held app/helper + HH3 scripts must be present in this candidate revision.
+      - name: Build compiled coordinator examination image
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          test -f backend/dist/runtime/work8-generated-capture-hold.js
+          docker build --file scripts/work8/hh3.Dockerfile --tag work8-hh3:ci .
+          mkdir -p "$RUNNER_TEMP/hh3-evidence"
+          chmod 0777 "$RUNNER_TEMP/hh3-evidence"
+          docker image inspect work8-hh3:ci > "$RUNNER_TEMP/hh3-evidence/image.json"
+          git rev-parse HEAD > "$RUNNER_TEMP/hh3-evidence/source-sha.txt"
+      - name: Examine actual compiled coordinator timeout and error paths
+        timeout-minutes: 9
+        run: |
+          set -euo pipefail
+          container="work8-hh3-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          trap 'docker rm --force "$container" >/dev/null 2>&1 || true' EXIT
+          docker create --name "$container" --read-only --network none \
+            --cap-drop ALL --security-opt no-new-privileges --pids-limit 256 \
+            --memory 5g --cpus 2 --tmpfs /tmp:rw,nosuid,nodev,size=2g \
+            --mount "type=bind,source=$RUNNER_TEMP/hh3-evidence,target=/evidence" \
+            -e NODE_ENV=test -e EMPIRE_ENGINEERING_TEST_MODE=true \
+            -e HH3_SOURCE="$(git rev-parse HEAD)" work8-hh3:ci
+          docker inspect "$container" > "$RUNNER_TEMP/hh3-evidence/container-before.json"
+          timeout --signal=TERM --kill-after=10s 480s docker start --attach "$container"
+          docker inspect "$container" > "$RUNNER_TEMP/hh3-evidence/container-after.json"
+          test "$(docker inspect --format '{{.State.ExitCode}}' "$container")" = 0
+          test -f "$RUNNER_TEMP/hh3-evidence/timeout/receipt.json"
+          test -f "$RUNNER_TEMP/hh3-evidence/observer-error/receipt.json"
+          test -f "$RUNNER_TEMP/hh3-evidence/invalidate-error/receipt.json"
+      - name: Preserve compiled coordinator examination receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-hh3-compiled-coordinator
+          path: ${{ runner.temp }}/hh3-evidence
+          if-no-files-found: error
+          retention-days: 30
+      - name: Examine generated application held capture and external containment
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/hh4-evidence"
+          image_id=$(docker image inspect --format '{{.Id}}' work8-hh3:ci)
+          node --test scripts/work8/hh4-held-capture-controller.test.mjs
+          node scripts/work8/hh4-held-capture-controller.mjs "$image_id" "$(git rev-parse HEAD)" "$RUNNER_TEMP/hh4-evidence"
+          node --test scripts/work8/hh4-inspection-restoration.test.mjs
+          node --input-type=module - "$RUNNER_TEMP/hh4-evidence" "$(git rev-parse HEAD)" <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import {examineInspectionRestoration} from './scripts/work8/hh4-inspection-restoration.mjs';
+          const [root,source]=process.argv.slice(2);
+          const held=JSON.parse(fs.readFileSync(path.join(root,'container-evidence/hh4-held.json'),'utf8'));
+          examineInspectionRestoration({directory:path.join(root,'container-evidence/held-capture'),digest:held.digest,source,destination:path.join(root,'fresh-inspection-restoration')});
+          NODE
+          # Reuse the same exact compiled image; never boot the historical archive.
+          docker run --rm --interactive --read-only --network none \
+            --user "$(id -u):$(id -g)" \
+            --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
+            --memory 1g --cpus 1 --tmpfs /tmp:rw,nosuid,nodev,size=512m \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence,target=/evidence,readonly" \
+            --entrypoint node "$image_id" --input-type=module - "$(git rev-parse HEAD)" \
+            > "$RUNNER_TEMP/hh4-evidence/domain-rehydration-result.json" <<'NODE'
+          import fs from 'node:fs';
+          import {examineDomainRehydration} from './scripts/work8/hh4-domain-rehydration.mjs';
+          const source=process.argv[2];
+          const held=JSON.parse(fs.readFileSync('/evidence/container-evidence/hh4-held.json','utf8'));
+          const ready=JSON.parse(fs.readFileSync('/evidence/container-evidence/hh4-worker-ready.json','utf8'));
+          const result=await examineDomainRehydration({repo:'/app',directory:'/evidence/container-evidence/held-capture',digest:held.digest,source,inventory:ready.inventory});
+          console.log(JSON.stringify(result,null,2));
+          NODE
+      - name: Isolated restored application graph with original session and retained fences
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          node --test scripts/work8/application-graph-restoration.test.mjs
+          node --input-type=module - "$RUNNER_TEMP/hh4-evidence" <<'NODE'
+          import fs from 'node:fs';
+          import {prepareRestoredJournal} from './scripts/work8/application-graph-restoration.mjs';
+          const root=process.argv[2],held=JSON.parse(fs.readFileSync(root+'/container-evidence/hh4-held.json'));
+          prepareRestoredJournal({directory:root+'/container-evidence/held-capture',digest:held.digest,destination:root+'/restored-journal'});
+          NODE
+          image_id=$(docker image inspect --format '{{.Id}}' work8-hh3:ci)
+          name="work8-restored-graph-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -m 700 "$RUNNER_TEMP/hh4-evidence/application-graph-results"
+          trap 'docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/application-graph-container.json" 2>&1 || true; docker logs "$name" > "$RUNNER_TEMP/hh4-evidence/application-graph.log" 2>&1 || true; docker rm -f "$name" >/dev/null 2>&1 || true' EXIT
+          docker run --name "$name" --read-only --network none \
+            --user "$(id -u):$(id -g)" --cap-drop ALL --security-opt no-new-privileges \
+            --pids-limit 512 --memory 3g --cpus 2 --restart no \
+            --tmpfs /tmp:rw,nosuid,nodev,size=1073741824,mode=1777 \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence,target=/evidence,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/application-graph-results,target=/results" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/container-evidence/held-capture,target=/capture,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/restored-journal/docs/governance/digital-soul/executive-decision-records.jsonl,target=/app/docs/governance/digital-soul/executive-decision-records.jsonl,readonly" \
+            -e NODE_ENV=test -e EMPIRE_ENGINEERING_TEST_MODE=true -e WORK8_KERNEL_EGRESS=DENIED \
+            -e RAILWAY_GIT_COMMIT_SHA="$(git rev-parse HEAD)" \
+            --entrypoint node "$image_id" scripts/work8/application-graph-restoration.mjs "$(git rev-parse HEAD)" \
+            > "$RUNNER_TEMP/hh4-evidence/application-graph.log" 2>&1
+          docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/application-graph-container.json"
+      - name: Restored actual index and watchdog from same frozen capture
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          node --test scripts/work8/index-restoration-phase.test.mjs
+          image_id=$(docker image inspect --format '{{.Id}}' work8-hh3:ci)
+          name="work8-restored-index-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -m 700 "$RUNNER_TEMP/hh4-evidence/index-restoration-results"
+          trap 'docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/index-restoration-container.json" 2>&1 || true; docker logs "$name" > "$RUNNER_TEMP/hh4-evidence/index-restoration.log" 2>&1 || true; docker rm -f "$name" >/dev/null 2>&1 || true' EXIT
+          docker run --name "$name" --read-only --network none \
+            --user "$(id -u):$(id -g)" --cap-drop ALL --security-opt no-new-privileges \
+            --pids-limit 512 --memory 3g --cpus 2 --restart no \
+            --tmpfs /tmp:rw,nosuid,nodev,size=1073741824,mode=1777 \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence,target=/evidence,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/index-restoration-results,target=/results" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/container-evidence/held-capture,target=/capture,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/restored-journal/docs/governance/digital-soul/executive-decision-records.jsonl,target=/app/docs/governance/digital-soul/executive-decision-records.jsonl,readonly" \
+            -e NODE_ENV=test -e EMPIRE_ENGINEERING_TEST_MODE=true -e WORK8_KERNEL_EGRESS=DENIED \
+            -e RAILWAY_GIT_COMMIT_SHA="$(git rev-parse HEAD)" \
+            --entrypoint node "$image_id" scripts/work8/application-graph-restoration.mjs "$(git rev-parse HEAD)" index \
+            > "$RUNNER_TEMP/hh4-evidence/index-restoration.log" 2>&1
+          docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/index-restoration-container.json"
+      - name: Coupled readonly pending continuation and restart from same frozen capture
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          node --test scripts/work8/pending-restoration.test.mjs
+          image_id=$(docker image inspect --format '{{.Id}}' work8-hh3:ci)
+          name="work8-restored-pending-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -m 700 "$RUNNER_TEMP/hh4-evidence/pending-restoration-results"
+          trap 'docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/pending-restoration-container.json" 2>&1 || true; docker logs "$name" > "$RUNNER_TEMP/hh4-evidence/pending-restoration.log" 2>&1 || true; docker rm -f "$name" >/dev/null 2>&1 || true' EXIT
+          docker run --name "$name" --read-only --network none \
+            --user "$(id -u):$(id -g)" --cap-drop ALL --security-opt no-new-privileges \
+            --pids-limit 512 --memory 3g --cpus 2 --restart no \
+            --tmpfs /tmp:rw,nosuid,nodev,size=1073741824,mode=1777 \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence,target=/evidence,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/pending-restoration-results,target=/results" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/container-evidence/held-capture,target=/capture,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/hh4-evidence/restored-journal/docs/governance/digital-soul/executive-decision-records.jsonl,target=/app/docs/governance/digital-soul/executive-decision-records.jsonl,readonly" \
+            -e NODE_ENV=test -e EMPIRE_ENGINEERING_TEST_MODE=true -e WORK8_KERNEL_EGRESS=DENIED \
+            -e RAILWAY_GIT_COMMIT_SHA="$(git rev-parse HEAD)" \
+            --entrypoint node "$image_id" scripts/work8/application-graph-restoration.mjs "$(git rev-parse HEAD)" pending \
+            > "$RUNNER_TEMP/hh4-evidence/pending-restoration.log" 2>&1
+          docker inspect "$name" > "$RUNNER_TEMP/hh4-evidence/pending-restoration-container.json"
+      - name: Preserve actual generated application startup and held capture evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-hh4-held-capture
+          path: ${{ runner.temp }}/hh4-evidence
+          if-no-files-found: warn
+          retention-days: 30
       - name: Verify bounded multi-provider inference and preserved authority
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/advisor-gateway.test.ts backend/src/validation/tests/advisor-pillow-readback.test.ts backend/src/validation/tests/provider-receipt-readback.test.ts backend/src/validation/tests/answer-gate-diagnostics.test.ts backend/src/validation/tests/owner-commissioning-readback.test.ts backend/src/validation/tests/locked-inference.test.ts backend/src/validation/tests/locked-provider-orchestration.test.ts backend/src/validation/tests/locked-reasoning-integration.test.ts
-      - name: Verify generated complete reasoning admission path with intercepted provider HTTP
-        run: node --import ./backend/node_modules/tsx/dist/loader.mjs backend/scripts/reasoning-admission-full-path.mjs "$RUNNER_TEMP/reasoning-admission-full-path.json"
       - name: Verify response completion and frontend preservation safeguards
         run: node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/executive-response-completion.test.ts empireai-web/lib/pillow/confirmed-reasoning.test.ts empireai-web/lib/pillow/durable-delivery.test.ts empireai-web/lib/pillow/bff-chat-sanitize.test.ts
-      - name: Verify complete generated response delivery to owner UI
-        run: node --import ./backend/node_modules/tsx/dist/loader.mjs backend/scripts/response-delivery-full-path.mjs "$RUNNER_TEMP/response-delivery-full-path.json"
       - name: Prove permanent locked runtime and complete enabled-store restore
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
@@ -246,6 +433,9 @@ jobs:
             src/validation/tests/offline-state-bundle.test.ts \
             src/validation/tests/reasoning-only-policy.test.ts \
             src/validation/tests/session-store-unavailable.test.ts \
+            src/validation/tests/work8-generated-startup-protocol.test.ts \
+            src/validation/tests/work8-product-history.test.ts \
+            src/validation/tests/locked-fresh-session.test.ts \
             src/validation/tests/sqlite-persistence-boundary.test.ts \
             src/validation/tests/sqlite-shutdown-boundary.test.ts \
             src/validation/tests/primary-shutdown.test.ts \
@@ -345,6 +535,88 @@ jobs:
             echo 'No deployment, live commerce, independent Birth certification or production readiness is claimed.'
           } >> "$GITHUB_STEP_SUMMARY"
 
+  generated-full-path:
+    # The two complete intercepted-provider corpora previously consumed ~25 minutes
+    # before the runtime/session suite could start. Give each its own bounded job;
+    # every corpus and the runtime suite remain mandatory in the final gate.
+    name: Generated full path — ${{ matrix.corpus }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        corpus: [reasoning-admission, response-delivery]
+    env:
+      NODE_ENV: test
+      PILLOW_TEST_REDIS_SERVER: /usr/bin/redis-server
+    steps:
+      - name: Checkout exact event revision without persisting credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Assess accepted corpus reuse at exact unchanged runtime boundary
+        id: corpus-boundary
+        run: node scripts/work8/f27-change-boundary.cjs >> "$GITHUB_OUTPUT"
+      - name: Record retained corpus evidence without claiming new execution
+        if: steps.corpus-boundary.outputs.run_corpora == 'false'
+        env:
+          CORPUS: ${{ matrix.corpus }}
+        run: node scripts/work8/f27-change-boundary.cjs --receipt "$CORPUS" "$RUNNER_TEMP/$CORPUS-retained.json" >> "$GITHUB_STEP_SUMMARY"
+      - name: Use Node.js 22 with npm cache
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+          cache: npm
+          cache-dependency-path: |
+            pillow/package-lock.json
+            backend/package-lock.json
+      - name: Install Redis binary for test-owned isolated AOF processes
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes redis-server
+          test -x "$PILLOW_TEST_REDIS_SERVER"
+          "$PILLOW_TEST_REDIS_SERVER" --version
+          # The mandatory integration suite owns its loopback port, data directory,
+          # AOF persistence and process restarts. No hosted Redis credentials are used.
+      - name: Clean install, typecheck and build Pillow
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
+        run: |
+          npm ci --prefix pillow
+          npm run typecheck --prefix pillow
+          npm run build --prefix pillow
+      - name: Clean install, verify, typecheck and build backend
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
+        run: |
+          npm ci --prefix backend
+          npm run verify:env --prefix backend
+          npm run typecheck --prefix backend
+          npm run build --prefix backend
+      - name: Verify complete generated corpus with intercepted provider HTTP
+        if: steps.corpus-boundary.outputs.run_corpora != 'false'
+        env:
+          CORPUS: ${{ matrix.corpus }}
+        run: node --import ./backend/node_modules/tsx/dist/loader.mjs "backend/scripts/$CORPUS-full-path.mjs" "$RUNNER_TEMP/$CORPUS-full-path.json"
+      - name: Record current checkout identity separately from retained tested source
+        if: always()
+        env:
+          CORPUS: ${{ matrix.corpus }}
+        run: git rev-parse HEAD > "$RUNNER_TEMP/$CORPUS-source-sha.txt"
+      - name: Upload generated full-path evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: generated-full-path-${{ matrix.corpus }}
+          path: |
+            ${{ runner.temp }}/${{ matrix.corpus }}-full-path.json
+            ${{ runner.temp }}/${{ matrix.corpus }}-source-sha.txt
+            ${{ runner.temp }}/${{ matrix.corpus }}-retained.json
+          retention-days: 14
+          if-no-files-found: error
+
   durable-web:
     name: Durable web — receipt recovery, one submission, tests and build
     runs-on: ubuntu-latest
@@ -406,16 +678,18 @@ jobs:
   runtime-repair-result:
     name: Runtime repair result (no deployment)
     if: ${{ always() }}
-    needs: [durable-runtime, durable-web, locked-railway-package]
+    needs: [durable-runtime, durable-web, locked-railway-package, generated-full-path]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Require both mandatory repair gates to pass
+      - name: Require every mandatory repair gate to pass
         env:
+          GENERATED_RESULT: ${{ needs.generated-full-path.result }}
           RUNTIME_RESULT: ${{ needs.durable-runtime.result }}
           WEB_RESULT: ${{ needs.durable-web.result }}
           PACKAGE_RESULT: ${{ needs.locked-railway-package.result }}
         run: |
+          test "$GENERATED_RESULT" = success
           test "$RUNTIME_RESULT" = success
           test "$WEB_RESULT" = success
           test "$PACKAGE_RESULT" = success

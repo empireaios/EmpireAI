@@ -1,0 +1,11 @@
+{
+  "base": "8277718e03a0e5d9b612dbe1240bb4a005e56856",
+  "detectMs": 26077.423348,
+  "runId": "joined-assurance-wZKw1H",
+  "files": {
+    "backend/src/validation/tests/work8-joined-assurance.test.ts": "aa1c0286e3fa375daad6e128e67132f72f53c37fbc9999e4e0148a6e72923e08",
+    "docs/work8/joined-successor-20261013/receipt.json": "77df1fd021f91f014f40f4a0b5d7376d2276343f6d1e309597c608e4518e79c9",
+    "docs/work8/joined-successor-20261013/examination.tap": "56045fd7c821b664488516275707e7c9431973cd65f33ff76a0a346111197402",
+    "docs/work8/joined-successor-20261013/BOUNDARY.md": "09caa38151ee8fb2f8f9718e80a708348d1e4b0989ee878a0707fb273603c7a5"
+  }
+}

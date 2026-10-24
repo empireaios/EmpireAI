@@ -199,6 +199,26 @@ jobs:
         run: |
           npm run build --prefix backend
           test -f backend/dist/runtime/native-store-capture-lock.cjs
+      - name: Work8 bounded integrated exams with kernel network denial
+        working-directory: backend
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Preserve the complete discovered suite. Only these authenticated
+          # in-process HTTP examinations require socket creation; outbound
+          # connect/send syscalls remain denied by the existing launcher.
+          denied=()
+          listen_only=()
+          for test_file in src/validation/tests/work8-*.test.ts src/validation/tests/work8-*.test.mjs src/validation/tests/work6-commerce-routes.test.ts ../scripts/work8/autonomous-locks.test.ts ../scripts/work8/shared-store-days.test.ts; do
+            case "$test_file" in
+              src/validation/tests/work8-inspector-inbox.test.ts|src/validation/tests/work8-joined-assurance.test.ts)
+                listen_only+=("$test_file") ;;
+              *) denied+=("$test_file") ;;
+            esac
+          done
+          test "${#listen_only[@]}" -eq 2
+          python3 ../scripts/work8/isolated-exec.py node --import tsx --test --test-concurrency=1 "${denied[@]}"
+          python3 ../scripts/work8/isolated-exec.py --listen-only node --import tsx --test --test-concurrency=1 "${listen_only[@]}"
       - name: Verify isolated SQL.js and HTTP capture admission, save and readback
         working-directory: backend
         env:
@@ -318,6 +338,102 @@ jobs:
         run: |
           echo 'Lint is diagnostic and non-gating in this first product-path slice. Baseline observed on origin/main: 164 errors and 11 warnings. This is unresolved debt, not a lint PASS.' >> "$GITHUB_STEP_SUMMARY"
 
+  work8-frontend-review:
+    name: Work8 exact frontend review candidate (no deployment)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout pinned review source without moving deployment branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 720764722e6178d4126dcf376383096e204ec5ba
+          persist-credentials: false
+      # Publish the approved evidence bundle before this source head. The branch
+      # is only transport: blob, commit and complete tree are independently pinned.
+      - name: Checkout retained frontend bundle without deployment credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: work8/examination-evidence-20261011
+          path: _work8_evidence
+          persist-credentials: false
+      - name: Verify and restore exact frontend review candidate
+        shell: bash
+        run: |
+          bundle=_work8_evidence/docs/work8/resume-20261011/FRONTEND-AUTONOMY-CANDIDATE.bundle
+          test "$(git hash-object "$bundle")" = f559557f06a1e493e52fe5fe7f9c3c04b7773cda
+          git bundle verify "$bundle"
+          git fetch "$bundle" HEAD
+          git checkout --detach 7dff79a6b712972b08add445d19e30cb664f69e0
+          test "$(git rev-parse HEAD)" = 7dff79a6b712972b08add445d19e30cb664f69e0
+          test "$(git rev-parse HEAD^{tree})" = 03e55a6cea520a6cb1d1a752b51d3c9781290c65
+          # Review the bounded mobile Finance correction without updating the
+          # deployment-linked frontend branch. Retain the original source pin.
+          correction=_work8_evidence/docs/work8/remediation-20261012/assurance-console/frontend-mobile-finance.bundle
+          test "$(git hash-object "$correction")" = 7b81f4069aef77823770cd1d26338c32a0e88838
+          git bundle verify "$correction"
+          git fetch "$correction" HEAD
+          git checkout --detach 960d6167206e5fc9994adfe89c63d4ce83dd1123
+          test "$(git rev-parse HEAD)" = 960d6167206e5fc9994adfe89c63d4ce83dd1123
+          test "$(git rev-parse HEAD^{tree})" = a956c4f2235ac48d745d8e51a170fe5909bb3427
+          communication=_work8_evidence/docs/work8/interrupted-recovery-20261012/bundles/FRONTEND-COMMUNICATION.bundle
+          test "$(git hash-object "$communication")" = a4a4609a6a2e324d62730cc530642f7532c2525e
+          git bundle verify "$communication"
+          git fetch "$communication" refs/heads/work8/communication-ui-20261012
+          git checkout --detach 900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a
+          test "$(git rev-parse HEAD)" = 900eeafe05dc2e9e3c7bc0844f791bb7b1a8f40a
+          test "$(git rev-parse HEAD^{tree})" = 79d458316ebb7407aa9aad45a4bab3f6f26c4f91
+          usage=_work8_evidence/docs/work8/revised-review-20261012/business-finance/cost-intelligence17/FRONTEND-900ee-to-5276.bundle
+          test "$(git hash-object "$usage")" = 05a7bc977a276f6af1402fe026c444e9ad65f007
+          git bundle verify "$usage"
+          git fetch "$usage" refs/heads/work8/cost-usage-ui-20261012
+          git checkout --detach 5276c8dc7b58cc8602c1801f8db676f896db29d7
+          test "$(git rev-parse HEAD)" = 5276c8dc7b58cc8602c1801f8db676f896db29d7
+          test "$(git rev-parse HEAD^{tree})" = 94fd9dde528fe900e635671d91ce2586650d09a3
+          preview=_work8_evidence/docs/work8/resumed-execution-20261012/pillow-preview/frontend-858b1c99.bundle
+          test "$(git hash-object "$preview")" = b5c40b1eb0a4bc97bf7e3cba347585f01b4c758c
+          git bundle verify "$preview"
+          git fetch "$preview" HEAD
+          git checkout --detach 858b1c99c5acd3ada160f2fe9c1448eb8e6beb09
+          test "$(git rev-parse HEAD)" = 858b1c99c5acd3ada160f2fe9c1448eb8e6beb09
+          test "$(git rev-parse HEAD^{tree})" = c268a1083fcf9b6364f1b000e4aa3ee7337c5ec4
+          portfolio=_work8_evidence/docs/work8/post-publication-20261012/portfolio18/frontend-858b-to-e7fd.bundle
+          test "$(git hash-object "$portfolio")" = c1deb0b80b2219b5248dc4cf674050ffa1e98a57
+          git bundle verify "$portfolio"
+          git fetch "$portfolio" HEAD
+          git checkout --detach e7fd599a447a4e1b273363d7f664507194cd2ba1
+          test "$(git rev-parse HEAD)" = e7fd599a447a4e1b273363d7f664507194cd2ba1
+          test "$(git rev-parse HEAD^{tree})" = f077bb0e7008663f64dac4e01c4e218e67e4222e
+          inbox=_work8_evidence/docs/work8/publication-closure-20261012/owner-inbox-frontend.bundle
+          test "$(git hash-object "$inbox")" = 46d9a524ccbb88270791742ffab7a1575cefb573
+          git bundle verify "$inbox"
+          git fetch "$inbox" HEAD
+          git checkout --detach ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4
+          test "$(git rev-parse HEAD)" = ad5ce5df5e3a8d65b06b75bfed5a5af2e6de53a4
+          test "$(git rev-parse HEAD^{tree})" = 31a817093307b986ed97c870bab0ce5b5ba81e84
+          comparables=_work8_evidence/docs/work8/o9-console-20261013/frontend.bundle
+          test "$(git hash-object "$comparables")" = 5a05b10f3dbbdb611d9a9f5ee70c6946cee69bef
+          git bundle verify "$comparables"
+          git fetch "$comparables" HEAD
+          git checkout --detach c6b698c4a98073789b6d6729c642a0882ad43b3f
+          test "$(git rev-parse HEAD)" = c6b698c4a98073789b6d6729c642a0882ad43b3f
+          test "$(git rev-parse HEAD^{tree})" = c6234ccc85b1a7600ee21952f90010de44f125a4
+          rm -rf -- _work8_evidence
+      - name: Use pinned Node runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Clean install reviewed web
+        run: npm ci --prefix empireai-web
+      - name: Typecheck reviewed web
+        run: npm run typecheck --prefix empireai-web
+      - name: Test reviewed web and financial readbacks
+        working-directory: empireai-web
+        run: |
+          npm test
+          node --test tests/work8/financial-rehearsal.test.mjs
+      - name: Build reviewed web without deployment
+        run: npm run build --prefix empireai-web
+
   bounded-redis-image:
     name: Real Redis image expiry, AOF and signal proof
     runs-on: ubuntu-latest
@@ -385,6 +501,41 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify real phone browser login BFF backend and disk transaction
         run: node empireai-web/scripts/verify-commerce-browser.mjs
+      - name: Build exact integrated frontend for source-context examination
+        if: ${{ !cancelled() }}
+        run: npm run build --prefix empireai-web
+      - name: Examine authenticated source-context delivery on mobile and desktop
+        if: ${{ !cancelled() }}
+        working-directory: empireai-web
+        env:
+          WORK8_A8_BACKEND_ROOT: ${{ github.workspace }}/backend
+          WORK8_A8_OUT: ${{ github.workspace }}/work8-source-context-evidence
+        run: node e2e/work8-source-context-native.mjs
+      - name: Preserve scoped source-context examination evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-source-context-evidence
+          path: work8-source-context-evidence
+          retention-days: 14
+      - name: Examine preserved genuine historical owner readback on mobile and desktop
+        if: ${{ !cancelled() }}
+        working-directory: empireai-web
+        env:
+          WORK8_OWNER_BACKEND_ROOT: ${{ github.workspace }}/backend
+          WORK8_OWNER_RECORD: ${{ github.workspace }}/empireai-web/e2e/fixtures/genuine-historical-readback.json
+          WORK8_OWNER_OUT: ${{ github.workspace }}/work8-owner-history-evidence
+        run: node e2e/owner-history-native.mjs
+      - name: Preserve scoped historical owner readback evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-owner-history-evidence
+          path: work8-owner-history-evidence
+          retention-days: 14
+      - name: Examine Work8 two-stage media approval without live effects
+        if: ${{ !cancelled() }}
+        run: node empireai-web/e2e/work8-media-native.mjs
       - name: Preserve browser receipt screenshot and bounded server logs
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -438,6 +589,7 @@ jobs:
       - backend
       - legacy-frontend
       - empireai-web
+      - work8-frontend-review
       - bounded-redis-image
       - commerce-browser
       - legacy-capture-proof
@@ -450,6 +602,7 @@ jobs:
           PILLOW_RESULT: ${{ needs.pillow.result }}
           BACKEND_RESULT: ${{ needs.backend.result }}
           LEGACY_WEB_RESULT: ${{ needs.legacy-frontend.result }}
+          WORK8_WEB_RESULT: ${{ needs.work8-frontend-review.result }}
           NEXT_WEB_RESULT: ${{ needs.empireai-web.result }}
           REDIS_IMAGE_RESULT: ${{ needs.bounded-redis-image.result }}
           LEGACY_CAPTURE_RESULT: ${{ needs.legacy-capture-proof.result }}
@@ -470,6 +623,7 @@ jobs:
             "$BACKEND_RESULT" \
             "$LEGACY_WEB_RESULT" \
             "$NEXT_WEB_RESULT" \
+            "$WORK8_WEB_RESULT" \
             "$REDIS_IMAGE_RESULT" \
             "$COMMERCE_BROWSER_RESULT" \
             "$LEGACY_CAPTURE_RESULT"; do

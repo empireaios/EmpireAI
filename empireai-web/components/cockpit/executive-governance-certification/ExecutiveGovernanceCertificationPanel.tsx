@@ -85,7 +85,7 @@ export function ExecutiveGovernanceCertificationPanel() {
           <Link href="/cockpit/founder/grand-king-executive-cockpit" className="text-xs text-[#d4af37] hover:underline">
             Grand King Cockpit →
           </Link>
-          <Link href="/cockpit/founder/enterprise-governance-framework" className="text-xs text-[#d4af37] hover:underline">
+          <Link href="/cockpit/founder/enterprise-governance" className="text-xs text-[#d4af37] hover:underline">
             E5-01 Governance Framework →
           </Link>
           <span className="text-xs text-[#6f6a60]">

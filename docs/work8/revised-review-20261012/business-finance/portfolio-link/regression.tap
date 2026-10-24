@@ -1,0 +1,18 @@
+✔ canonical chargeback, unknown fees, cutoff and cash traces pass; unsupported currency remains a gap (68.535962ms)
+✔ canonical amounts and full settlement conserve source money (87.841805ms)
+✔ unknown costs and period cutoff remain explicit (31.966207ms)
+✔ forged amounts, state/receipt pairs, duplicate liabilities and unsourced assumptions rejected (117.833047ms)
+✔ losses, negative cash and delayed payouts remain visible (15.634397ms)
+✔ 100 canonical integer scenarios satisfy independent conservation (1500.313089ms)
+✔ owner financial readback links actual canonical simulated order and leaves unobserved charges unknown (238.899823ms)
+✔ mission with research but no orders never fabricates zero revenue or complete finance (5.285894ms)
+✔ simulated outcome review links durably to governed retirement without changing historical finance (225.533337ms)
+✔ reversed review evidence cannot support linkage; legacy unlinked retirement remains valid (57.582456ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2487.8791

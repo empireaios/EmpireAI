@@ -35,7 +35,8 @@ export class GovernedCommerceStore {
   let previous='',version=0;return rows.map(row=>{const r=JSON.parse(String(row.record)) as Receipt;const {digest:actual,...body}=r;if(r.workspace!==workspace||r.missionId!==mission||r.previous!==previous||r.version!==++version||digest(body)!==actual)throw Error('COMMERCE_JOURNAL_CORRUPT');previous=actual;return r;});
  }
  missions(workspace:string){return this.db.prepare('SELECT DISTINCT mission FROM commerce_runtime_receipts WHERE workspace=? ORDER BY mission LIMIT 200').all(workspace).map(r=>{const h=this.history(workspace,String(r.mission));return h.at(-1)!;});}
- transaction<T>(fn:()=>T):T{this.db.exec('BEGIN IMMEDIATE');try{const r=fn();this.db.exec('COMMIT');return r;}catch(e){if(this.db.isTransaction)this.db.exec('ROLLBACK');throw e;}}
+ private transactionSequence=0;
+ transaction<T>(fn:()=>T):T{const nested=this.db.isTransaction,savepoint='commerce_'+(++this.transactionSequence);this.db.exec(nested?'SAVEPOINT '+savepoint:'BEGIN IMMEDIATE');try{const r=fn();this.db.exec(nested?'RELEASE SAVEPOINT '+savepoint:'COMMIT');return r;}catch(e){if(this.db.isTransaction){if(nested){this.db.exec('ROLLBACK TO SAVEPOINT '+savepoint);this.db.exec('RELEASE SAVEPOINT '+savepoint);}else this.db.exec('ROLLBACK');}throw e;}}
  insert(r:Receipt){this.db.prepare('INSERT INTO commerce_runtime_receipts VALUES(?,?,?,?,?)').run(r.workspace,r.missionId,r.version,r.id,JSON.stringify(r));}
  prior(workspace:string,id:string){const row=this.db.prepare('SELECT record FROM commerce_runtime_receipts WHERE workspace=? AND id=?').get(workspace,id);return row?JSON.parse(String(row.record)) as Receipt:null;}
 }

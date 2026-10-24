@@ -1,0 +1,90 @@
+TAP version 13
+# ◇ injected env (0) from .env
+# Subtest: actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+ok 1 - actual AssuranceRuntime cycle repairs registered bounded checkpoint gap without inference or new commerce receipts
+  ---
+  duration_ms: 339.050987
+  type: 'test'
+  ...
+# Subtest: source-bound proposal preserves nullable economics and never grants fact/payment/approval authority
+ok 2 - source-bound proposal preserves nullable economics and never grants fact/payment/approval authority
+  ---
+  duration_ms: 2.655542
+  type: 'test'
+  ...
+# Subtest: forged authority, nullable-value substitution, unsupported citations and cross-candidate snapshots refuse
+ok 3 - forged authority, nullable-value substitution, unsupported citations and cross-candidate snapshots refuse
+  ---
+  duration_ms: 2.661589
+  type: 'test'
+  ...
+# Subtest: delivered citations permit only unreviewed model estimates, not their factual promotion
+ok 4 - delivered citations permit only unreviewed model estimates, not their factual promotion
+  ---
+  duration_ms: 0.30484
+  type: 'test'
+  ...
+# Subtest: multiple tags, malformed and oversized output produce bounded explicit refusal
+ok 5 - multiple tags, malformed and oversized output produce bounded explicit refusal
+  ---
+  duration_ms: 0.402016
+  type: 'test'
+  ...
+# Subtest: compounded backlog and missed schedule alert closes only after actual bounded worker drain and rescheduled admission
+ok 6 - compounded backlog and missed schedule alert closes only after actual bounded worker drain and rescheduled admission
+  ---
+  duration_ms: 684.470584
+  type: 'test'
+  ...
+# Subtest: expired running lease is escalated without replay; corrupt schedule fails closed
+ok 7 - expired running lease is escalated without replay; corrupt schedule fails closed
+  ---
+  duration_ms: 7.982637
+  type: 'test'
+  ...
+# Subtest: actual pending investigation is never healthy; fresh canonical request completion independently closes binding incident
+ok 8 - actual pending investigation is never healthy; fresh canonical request completion independently closes binding incident
+  ---
+  duration_ms: 50.758527
+  type: 'test'
+  ...
+# Subtest: wrong request, altered assessment, empty answer, foreign delivered evidence and corrupt source fail closed
+ok 9 - wrong request, altered assessment, empty answer, foreign delivered evidence and corrupt source fail closed
+  ---
+  duration_ms: 74.061111
+  type: 'test'
+  ...
+# Subtest: oversized response source is refused by byte preflight before payload SELECT or JSON parsing
+ok 10 - oversized response source is refused by byte preflight before payload SELECT or JSON parsing
+  ---
+  duration_ms: 45.735671
+  type: 'test'
+  ...
+# Subtest: unbound technical responses cannot acquire a fabricated candidate assessment binding
+ok 11 - unbound technical responses cannot acquire a fabricated candidate assessment binding
+  ---
+  duration_ms: 37.334849
+  type: 'test'
+  ...
+# Subtest: completed binding cannot close on absent authenticated-owner attestation or owner identity
+ok 12 - completed binding cannot close on absent authenticated-owner attestation or owner identity
+  ---
+  duration_ms: 32.115752
+  type: 'test'
+  ...
+# ◇ injected env (0) from .env
+# Subtest: seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+ok 13 - seven live-effect routes stay locked during admitted autonomous repair; forbidden repair and failed verification stay contained
+  ---
+  duration_ms: 132.615598
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2776.679778

@@ -13,7 +13,7 @@ const user: SessionUser = {
 
 function client(overrides: Record<string, unknown> = {}) {
   return {
-    setex: async () => "OK", get: async () => null, del: async () => 1,
+    eval: async () => 1, setex: async () => "OK", get: async () => null, del: async () => 1,
     ...overrides,
   } as unknown as Pick<RedisClient, "get" | "setex" | "del">;
 }
@@ -71,4 +71,30 @@ describe("shared session command failures fail closed", () => {
       assert.equal(executions, 0);
     } finally { await app.close(); }
   });
+});
+
+// Model tests exercise command ordering and uncertainty only. Real Redis / OS
+// process exclusion is a separate hosted examination, not inferred here.
+it("capture refuses session writes while preserving authenticated reads", async () => {
+  const record={...user,token:"old",createdAt:new Date().toISOString(),expiresAt:new Date(Date.now()+60000).toISOString()};
+  let writes=0;
+  const store=new SessionStore(client({eval:async()=>0,get:async()=>JSON.stringify(record),setex:async()=>{writes++;return "OK";},del:async()=>{writes++;return 1;}}));
+  assert.equal((await store.get("old"))?.id,user.id);
+  await assert.rejects(store.create(user),SessionStoreUnavailableError);
+  await assert.rejects(store.destroy("old"),SessionStoreUnavailableError);
+  await assert.rejects(store.refresh("old"),SessionStoreUnavailableError);
+  assert.equal(writes,0);
+});
+it("refresh retains one shared producer across delete and successor SETEX", async()=>{
+ const record={...user,token:"old",createdAt:new Date().toISOString(),expiresAt:new Date(Date.now()+60000).toISOString()};
+ let held=false;const order:string[]=[];
+ const store=new SessionStore(client({eval:async(_script:string,n:number,...args:string[])=>{if(n===2){assert.equal(args[0],"bull:empireai-brain-tasks:capture-owner");assert.equal(held,false);held=true;order.push("admit");}else{assert.equal(held,true);held=false;order.push("release");}return 1;},get:async()=>JSON.stringify(record),del:async()=>{assert.equal(held,true);order.push("delete");return 1;},setex:async(_key:string,ttl:number,value:string)=>{assert.equal(held,true);assert.ok(ttl>0);const next=JSON.parse(value);assert.equal(next.id,record.id);assert.notEqual(next.token,record.token);order.push("create");return "OK";}}));
+ assert.equal((await store.refresh("old"))?.id,user.id);
+ assert.deepEqual(order,["admit","delete","create","release"]);
+});
+it("uncertain admitted mutation retains producer and missing atomic support fails closed",async()=>{
+ let calls=0;
+ const store=new SessionStore(client({eval:async()=>{calls++;return 1;},setex:async()=>{throw Error("uncertain delayed write");}}));
+ await assert.rejects(store.create(user),SessionStoreUnavailableError);assert.equal(calls,1);
+ await assert.rejects(new SessionStore(client({eval:undefined})).create(user),SessionStoreUnavailableError);
 });

@@ -138,6 +138,10 @@ export class VisualMemoryEngine {
     return this.getState();
   }
 
+  withRecoverySnapshot<T>(capture:(snapshot: import("./memory-persistence-store.js").VisualMemoryRecoverySnapshot)=>Promise<T>):Promise<T> {
+    return this.controller.withRecoverySnapshot(capture);
+  }
+
   captureMemoryNow(): VisualMemoryRecord | null {
     return this.controller.captureNow();
   }

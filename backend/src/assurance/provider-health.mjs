@@ -23,6 +23,8 @@ export function readProviderHealth(filename, configured, now=Date.now(), maxAgeM
    if(now-at>maxAgeMs)return {...base,status:'DEGRADED',reason:'FUNCTIONAL_EVIDENCE_STALE',retainedResponseVerified:true};
    return {...base,status:'HEALTHY',reason:'RECENT_ACCOUNTED_PROVIDER_RESPONSE',retainedResponseVerified:true};
   });
-  return {status:configured.length?aggregateCapabilityHealth(providers):'EXTERNALLY_BLOCKED',providers,maxAgeMs,inferenceCalls:0,reason:configured.length?'PASSIVE_FUNCTIONAL_RECEIPTS':'PROVIDER_NOT_CONFIGURED',historicalReconciliation:readHistoricalProviderEvidence(db,filename)};
+  const sourceTimes=providers.map(p=>Date.parse(p.observedAt));
+  const observedAt=sourceTimes.length&&sourceTimes.every(Number.isSafeInteger)?Math.min(...sourceTimes):null;
+  return {status:configured.length?aggregateCapabilityHealth(providers):'EXTERNALLY_BLOCKED',providers,observedAt,maxAgeMs,inferenceCalls:0,reason:configured.length?'PASSIVE_FUNCTIONAL_RECEIPTS':'PROVIDER_NOT_CONFIGURED',historicalReconciliation:readHistoricalProviderEvidence(db,filename)};
  }finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}
 }

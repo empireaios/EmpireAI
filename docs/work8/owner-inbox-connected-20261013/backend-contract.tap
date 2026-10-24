@@ -1,0 +1,14 @@
+{"level":30,"time":1791820959736,"pid":14,"hostname":"7b7b0efbbb80","dbPath":"/tmp/work8-owner-notice-AlXVip/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1791820959740,"pid":14,"hostname":"7b7b0efbbb80","msg":"Auth routes registered"}
+{"level":30,"time":1791820969796,"pid":14,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+✔ canonical Assurance incidents enter existing authenticated durable owner inbox; identity, history, failure and page scope stay explicit (12581.995191ms)
+{"level":30,"time":1791820970108,"pid":14,"hostname":"7b7b0efbbb80","dbPath":"/tmp/work8-owner-notice-AlXVip/brain.sqlite","driver":"sql.js","msg":"Brain database initialized"}
+{"level":30,"time":1791820970158,"pid":14,"hostname":"7b7b0efbbb80","reason":"sql.js-db.export-sync-shutdown","msg":"Event-loop lag cleared after known synchronous block"}
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13424.530978

@@ -2,9 +2,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const { superviseAssurance } = require('./assurance-supervisor.cjs');
+const { assuranceRuntimeOrigin } = require('./assurance-supervisor.cjs');
+const { runSupervisedRuntime } = require('./locked-supervision.cjs');
 const { resolveRuntimeRevision } = require('./runtime-revision.cjs');
-const { runBounded, canaryExitCode, assertRuntimeVersion } = require('./canary-launcher.cjs');
+const { canaryExitCode, assertRuntimeVersion } = require('./canary-launcher.cjs');
 const PROFILE = 'LOCKED_COMMISSIONING_V1';
 function configuration(input) {
   if (input.EMPIRE_RUNTIME_PROFILE !== PROFILE) throw Error('Explicit locked profile required');
@@ -24,6 +25,7 @@ function configuration(input) {
   if (!['redis:','rediss:'].includes(redis.protocol) || !redis.password || redis.hostname!==input.EMPIRE_LOCKED_REDIS_HOST || redis.search || redis.hash || !['','/','/0'].includes(redis.pathname)) throw Error('Dedicated authenticated Redis required');
   const keys=[...intelligenceKeys,...verifierKeys,'INTELLIGENCE_ENABLED','INTELLIGENCE_DISABLED','COMMISSIONING_OPERATOR_TOKEN_SHA256','COMMISSIONING_OPERATOR_EXPIRES_AT','ANTHROPIC_API_KEY','GOOGLE_AI_API_KEY','OPENAI_API_KEY','PATH','HOME','TMPDIR','LANG','TZ','PORT','REDIS_URL','FOUNDER_EMAIL','FOUNDER_PASSWORD','ADMIN_EMAIL','ADMIN_PASSWORD','SESSION_SECRET','CORS_ORIGIN','RAILWAY_VOLUME_MOUNT_PATH','RAILWAY_PROJECT_ID','RAILWAY_ENVIRONMENT_ID','RAILWAY_SERVICE_ID','RAILWAY_GIT_COMMIT_SHA','RAILWAY_DEPLOYMENT_ID'];
   const env=Object.fromEntries(keys.filter(k=>input[k]!==undefined).map(k=>[k,input[k]]));
+  env.ASSURANCE_RUNTIME_ORIGIN=assuranceRuntimeOrigin(input);
   Object.assign(env,{EMPIRE_RUNTIME_PROFILE:PROFILE,NODE_ENV:'production',NODE_OPTIONS:'--max-old-space-size=1536',DATABASE_PATH:database,
     DEFAULT_LLM_PROVIDER:'openai',DEFAULT_LLM_MODEL:'gpt-6.1-sol',EMPIRE_ENGINEERING_TEST_MODE:'true',EMPIRE_TIER0_ISOLATION:'true',EMPIRE_ENABLE_EXTENSION_ROUTES:'false',EMPIRE_REQUIRE_DATA_VOLUME:'true',EMPIRE_PERSISTENCE_GATE:'strict',
     EMPIRE_SHUTDOWN_TIMEOUT_MS:'15000',EMPIREAI_REPO_ROOT:path.resolve(__dirname,'..'),SHADOW_CEO_DATA_DIR:database+'.shadow',
@@ -47,12 +49,10 @@ async function main(){
   }
   // Separate deterministic processes. Neither receives provider/owner secrets.
   // Inspector continues reporting missed cycles when the collector dies.
-  const stopAssurance=superviseAssurance({cwd,env});
-  process.once('SIGTERM',stopAssurance);process.once('SIGINT',stopAssurance);
-  const result=await runBounded({command:process.execPath,args:['backend/dist/index.js'],env,cwd,expiresAt:null,onSpawn:child=>{
+  const result=await runSupervisedRuntime({command:process.execPath,args:['backend/dist/index.js'],env,cwd,expiresAt:null,onSpawn:child=>{
     console.log(JSON.stringify({event:'locked_runtime_start',profile:PROFILE,launchId:crypto.randomUUID(),childPid:child.pid,source:env.RAILWAY_GIT_COMMIT_SHA,birth:'NOT_BORN',commerce:'LOCKED',operational:false}));
   }});
-  stopAssurance();console.log(JSON.stringify({event:'locked_runtime_stop',...result}));process.exitCode=canaryExitCode(result);
+  console.log(JSON.stringify({event:'locked_runtime_stop',...result}));process.exitCode=result.coverageLost?1:canaryExitCode(result);
 }
 module.exports={PROFILE,configuration};
 if(require.main===module)main().catch(()=>{console.error('Locked commissioning runtime refused startup or clean shutdown');process.exitCode=1;});

@@ -1,3 +1,6 @@
+import {createRequire} from 'node:module';
+const {installObserverParticipant}=createRequire(import.meta.url)('../../../deployment/observer-capture.cjs');
+const capture=installObserverParticipant();
 import path from 'node:path';
 import {AssuranceControlPlane,inspectControlPlaneMonitor} from './control-plane.mjs';
 import { assurancePaths } from './live-sources.mjs';
@@ -6,9 +9,12 @@ import {setTimeout as delay} from 'node:timers/promises';
 const {database}=assurancePaths(process.env.RAILWAY_VOLUME_MOUNT_PATH);
 const shutdown=new AbortController();
 let stopping=false;for(const s of ['SIGTERM','SIGINT'])process.on(s,()=>{stopping=true;shutdown.abort();});
+process.once('disconnect',()=>{stopping=true;shutdown.abort();});
 let controlPlane=null;
 try{if(process.env.RAILWAY_GIT_COMMIT_SHA)controlPlane=new AssuranceControlPlane({root:path.dirname(database),revision:process.env.RAILWAY_GIT_COMMIT_SHA});}catch{}
+capture.ready();
 while(!stopping){
+  const ran=await capture.run(async()=>{
   if(controlPlane){try{
     inspectControlPlaneMonitor(controlPlane);
   }catch{console.error(JSON.stringify({event:'assurance_control_plane_supervision_failed'}));}}
@@ -19,7 +25,12 @@ while(!stopping){
   }catch{
     console.log(JSON.stringify({event:'independent_assurance_watchdog',status:'SOURCE_UNAVAILABLE',healthy:false,observerFailed:true,heartbeatRenewed:false}));
   }
+  });
+  if(ran&&process.connected)process.send({type:'assurance_progress'},()=>{});
   await delay(30000,undefined,{signal:shutdown.signal}).catch(error=>{if(error.name!=='AbortError')throw error;});
 }
 
 controlPlane?.close();
+
+// Release the referenced parent IPC channel after orderly observer shutdown.
+if(process.connected)process.disconnect();

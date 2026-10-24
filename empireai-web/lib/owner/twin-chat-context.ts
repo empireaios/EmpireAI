@@ -1,0 +1,8 @@
+export type TwinChatReference={sessionId?:string;missionId:string;receiptDigest:string};
+export type TwinChatSelection=TwinChatReference|TwinChatReference[];
+export const twinContextEvent='empireai-twin-product-context';
+const key=(owner:string)=>'empireai-twin-product-v1:'+owner;
+function reference(value:unknown):TwinChatReference|null{const r=value as Partial<TwinChatReference>|null;return r&&(r.sessionId===undefined||typeof r.sessionId==='string')&&typeof r.missionId==='string'&&typeof r.receiptDigest==='string'&&/^[a-f0-9]{64}$/.test(r.receiptDigest)?{...(r.sessionId?{sessionId:r.sessionId}:{}),missionId:r.missionId,receiptDigest:r.receiptDigest}:null;}
+export function readTwinChatContext(owner:string):TwinChatSelection|null{try{const value=JSON.parse(sessionStorage.getItem(key(owner))??'null');if(!Array.isArray(value))return reference(value);if(value.length<2||value.length>4)return null;const refs=value.map(reference);return refs.every((r):r is TwinChatReference=>r!==null)&&new Set(refs.map(r=>r.sessionId??'')).size===1&&new Set(refs.map(r=>r.missionId)).size===refs.length?refs:null;}catch{return null;}}
+export function setTwinChatContext(owner:string,selection:TwinChatSelection|null){if(selection)sessionStorage.setItem(key(owner),JSON.stringify(selection));else sessionStorage.removeItem(key(owner));window.dispatchEvent(new Event(twinContextEvent));}
+export function addTwinChatContext(owner:string,ref:TwinChatReference){const prior=readTwinChatContext(owner),refs=prior?(Array.isArray(prior)?prior:[prior]):[];const same=refs.filter(r=>r.sessionId===ref.sessionId&&r.missionId!==ref.missionId);if(same.length>=4)throw Error('Compare up to four products at a time.');const next=[...same,ref];setTwinChatContext(owner,next.length===1?ref:next);}

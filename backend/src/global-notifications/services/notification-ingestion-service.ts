@@ -1,3 +1,5 @@
+import {ingestInspectorNotifications} from './assurance-inspector-ingestion.js';
+import {ingestAssuranceNotifications} from './assurance-notification-ingestion.js';
 import { buildExecutiveHeadquartersDashboard } from "../../executive-council/services/executive-headquarters-service.js";
 import { listActiveSignals } from "../../executive-surveillance/services/signal-engine-service.js";
 import { buildSurveillanceDashboard } from "../../executive-surveillance/services/surveillance-dashboard-service.js";
@@ -377,8 +379,10 @@ function ingestUxMissionHome(workspaceId: string, companyId: string): GlobalNoti
 }
 
 /** GC-03 — Pull notifications from ESS, Eye, REAL, Council, Pillow, OMS, and UX modules. */
-export function ingestNotificationsFromSources(workspaceId: string, companyId: string): GlobalNotification[] {
+export function ingestNotificationsFromSources(workspaceId: string, companyId: string, assuranceAfter=''): GlobalNotification[] {
   return [
+    ...ingestAssuranceNotifications(workspaceId, companyId,undefined,assuranceAfter),
+    ...ingestInspectorNotifications(workspaceId, companyId),
     ...ingestEss(workspaceId, companyId),
     ...ingestEyeSeries(workspaceId, companyId),
     ...ingestRealModules(workspaceId, companyId),

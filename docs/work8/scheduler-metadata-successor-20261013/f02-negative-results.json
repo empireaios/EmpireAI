@@ -1,0 +1,94 @@
+[
+  {
+    "mode": "retained",
+    "probe": {
+      "id": "work8_read_queue_progress",
+      "capability": "work8_read_queue_progress",
+      "classification": "work8_read_queue_progress",
+      "severity": "HIGH",
+      "runbookId": null,
+      "status": "DEGRADED",
+      "summary": "Queued reads or scheduled admissions exceeded their progress bound; preserve unknown outcomes and escalate without resubmission.",
+      "evidence": {
+        "observedAt": 1791818694991,
+        "thresholdMs": 120000,
+        "scheduleThresholdMs": 30000,
+        "missedSlots": [
+          {
+            "id": "empire.state",
+            "dueAt": 1791818664990,
+            "admittedAt": 1791818694991
+          }
+        ],
+        "queued": 1,
+        "running": 0,
+        "oldQueuedIds": [],
+        "expiredLeaseIds": [],
+        "overdueScheduleIds": [
+          "empire.state"
+        ],
+        "oldestQueuedAgeMs": 0,
+        "sourceDigest": "4356408425896122c3c309238fc505b5647c801b1339c5ad5cdb13de3cb7cfb8",
+        "externalEffects": 0,
+        "inferenceCalls": 0,
+        "coverage": "ALL_ACTIVE_READ_JOBS_MAX_20_AND_SCHEDULES_MAX_32; HISTORICAL_FAILURES_RETAINED_ELSEWHERE"
+      }
+    }
+  },
+  {
+    "mode": "removed-missed-marker",
+    "probe": {
+      "id": "work8_read_queue_progress",
+      "capability": "work8_read_queue_progress",
+      "classification": "work8_read_queue_progress",
+      "severity": "HIGH",
+      "runbookId": null,
+      "status": "HEALTHY",
+      "summary": "No overdue queued read or scheduled admission in this bounded snapshot.",
+      "evidence": {
+        "observedAt": 1791818694991,
+        "thresholdMs": 120000,
+        "scheduleThresholdMs": 30000,
+        "missedSlots": [],
+        "queued": 1,
+        "running": 0,
+        "oldQueuedIds": [],
+        "expiredLeaseIds": [],
+        "overdueScheduleIds": [],
+        "oldestQueuedAgeMs": 0,
+        "sourceDigest": "15e5c6c68c8f071dfa11074cf9f000050012cec74038b35faf191fe33ddeb73b",
+        "externalEffects": 0,
+        "inferenceCalls": 0,
+        "coverage": "ALL_ACTIVE_READ_JOBS_MAX_20_AND_SCHEDULES_MAX_32; HISTORICAL_FAILURES_RETAINED_ELSEWHERE"
+      }
+    }
+  },
+  {
+    "mode": "malformed-admission",
+    "probe": {
+      "id": "work8_read_queue_progress",
+      "capability": "work8_read_queue_progress",
+      "classification": "work8_read_queue_progress",
+      "severity": "HIGH",
+      "runbookId": null,
+      "status": "HEALTHY",
+      "summary": "No overdue queued read or scheduled admission in this bounded snapshot.",
+      "evidence": {
+        "observedAt": 1791818694991,
+        "thresholdMs": 120000,
+        "scheduleThresholdMs": 30000,
+        "missedSlots": [],
+        "queued": 1,
+        "running": 0,
+        "oldQueuedIds": [],
+        "expiredLeaseIds": [],
+        "overdueScheduleIds": [],
+        "oldestQueuedAgeMs": 0,
+        "sourceDigest": "15e5c6c68c8f071dfa11074cf9f000050012cec74038b35faf191fe33ddeb73b",
+        "externalEffects": 0,
+        "inferenceCalls": 0,
+        "coverage": "ALL_ACTIVE_READ_JOBS_MAX_20_AND_SCHEDULES_MAX_32; HISTORICAL_FAILURES_RETAINED_ELSEWHERE"
+      }
+    }
+  }
+]

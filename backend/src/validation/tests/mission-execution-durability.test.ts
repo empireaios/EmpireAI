@@ -155,3 +155,19 @@ test("kill after receipt commit preserves output and never executes again", asyn
   assert.equal(recovered.claim(build, Date.now() + 6000), null); assert.equal(done.attempts, 1);
  } finally { cleanup(directory); }
 });
+
+test('local capture waits through execution receipt reconciliation and denies a new claim',async()=>{
+ const {withDrainedWork8Background}=await import('../../runtime/work8-background-capture.js');
+ const {directory,store}=setup();let finish!:(v:ReturnType<typeof inspectActualAuthority>)=>void;
+ const runner=new MissionExecutionRunner(store,build,{canExecute:()=>true,reconcile:()=>true},()=>new Promise(resolve=>{finish=resolve;}));
+ try{
+  const first=store.enqueue(input('capture-first')).job;runner.resume();const active=runner.tick();
+  await new Promise<void>(resolve=>setImmediate(resolve));let captured=false;
+  const capture=withDrainedWork8Background(async()=>{
+   captured=true;assert.equal(store.get(first.jobId)?.status,'completed');assert.equal(store.get(first.jobId)?.reconciled,true);
+   const second=store.enqueue(input('capture-second')).job;await runner.tick();assert.equal(store.get(second.jobId)?.attempts,0);
+  });
+  await new Promise<void>(resolve=>setImmediate(resolve));assert.equal(captured,false);
+  finish(inspectActualAuthority());await active;await capture;
+ }finally{await runner.stop();cleanup(directory);}
+});

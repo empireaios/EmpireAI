@@ -10,6 +10,7 @@ function fixture() {
   const client = {
     set: async (key: string, value: string) => keys.has(key) ? null : (keys.set(key, value), "OK"),
     get: async (key: string) => keys.get(key) ?? null,
+    scard: async () => 0,
     eval: async (_script: string, _count: number, key: string, owner: string) =>
       keys.get(key) === owner ? (keys.delete(key), 1) : 0,
     xrevrange: async () => [[lastEvent, []]],

@@ -101,6 +101,10 @@ async function pillowFetchWithRetry(
   throw lastError ?? new Error("Pillow request failed");
 }
 
+export class PillowRequestError extends Error {
+  constructor(message: string, readonly status: number) { super(message); this.name = "PillowRequestError"; }
+}
+
 async function pillowRequest<T>(
   path: string,
   init?: RequestInit & { params?: Record<string, string | undefined>; timeoutMs?: number; retries?: number },
@@ -128,10 +132,10 @@ async function pillowRequest<T>(
 
     if (!response.ok) {
       const body = (await response.json().catch(() => ({}))) as { error?: string };
-      throw new Error(
+      throw new PillowRequestError(
         toExecutiveSurfaceMessage(
           body.error ?? `Pillow request failed (${response.status})`,
-        ),
+        ), response.status,
       );
     }
 
@@ -151,20 +155,23 @@ export async function fetchPillowStatus(): Promise<{ status: PillowHostStatus }>
 
 const inflightSessionCreates = new Map<string, Promise<PillowWorkspaceSession>>();
 
-export async function createPillowHostSession(workspaceId?: string, ownerId?: string): Promise<PillowWorkspaceSession> {
+export async function createPillowHostSession(workspaceId?: string, ownerId?: string, historicalBrowserTurns?: Array<{role:"user"|"assistant";content:string;timestamp:string;requestId?:string}>): Promise<PillowWorkspaceSession> {
   // Coalesce concurrent creates — cockpit bootstrap + recovery must not stampede Brain.
   // A new signed-in owner must never inherit another owner's in-flight session.
-  const key = JSON.stringify([ownerId ?? null, workspaceId ?? null]);
+  const key = JSON.stringify([ownerId ?? null, workspaceId ?? null, historicalBrowserTurns ?? null]);
   const existing = inflightSessionCreates.get(key);
   if (existing) return existing;
-  const pending = pillowRequest<{ session: PillowWorkspaceSession }>("/api/pillow/session", {
+  const pending = pillowRequest<{ session: PillowWorkspaceSession; historicalArchiveAccepted?: boolean }>("/api/pillow/session", {
       method: "POST",
-      body: JSON.stringify(workspaceId ? { workspaceId } : {}),
+      body: JSON.stringify({workspaceId, ...(historicalBrowserTurns?.length ? {historicalBrowserTurns} : {})}),
       timeoutMs: PILLOW_SESSION_TIMEOUT_MS,
       // No automatic HTTP retries — caller owns backoff to avoid request storms.
       retries: 0,
     })
-      .then((result) => result.session)
+      .then((result) => {
+        if (historicalBrowserTurns?.length && result.historicalArchiveAccepted !== true) throw new Error("Server historical archive is not ready; device history preserved");
+        return result.session;
+      })
       .finally(() => {
         inflightSessionCreates.delete(key);
       });
@@ -274,11 +281,14 @@ export async function sendPillowChat(input: {
 
 export async function fetchPillowHistory(sessionId: string): Promise<{
   session: PillowWorkspaceSession;
+  historicalArchive: Array<import("./types").PillowTurn & {id:string}>;
 }> {
-  return pillowRequest("/api/pillow/history", {
-    params: { sessionId },
+  const result = await pillowRequest<Omit<PillowWorkspaceSession, "conversationHistory"> & {history: PillowWorkspaceSession["conversationHistory"];historicalArchive?: Array<import("./types").PillowTurn & {id:string}>}>("/api/pillow/history", {
+    params: { sessionId }, cache: "no-store",
     timeoutMs: PILLOW_SESSION_TIMEOUT_MS,
   });
+  if (result.sessionId !== sessionId || !Array.isArray(result.history)) throw new Error("Server conversation history unavailable");
+  return {session: {...result, conversationHistory: result.history}, historicalArchive: result.historicalArchive ?? []};
 }
 
 export async function fetchPillowApprovals(includeHistory = false): Promise<{

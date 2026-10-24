@@ -1,6 +1,8 @@
 "use client";
 
-import { isConfirmedReasoning } from "@/lib/pillow/confirmed-reasoning";
+import { hasReasoningFailure, isConfirmedReasoning } from "@/lib/pillow/confirmed-reasoning";
+
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
 
 import {
   createContext,
@@ -22,15 +24,18 @@ import type {
 } from "@/lib/cockpit/global-assistant/types";
 import {
   appendPillowTurn,
-  clearPillowHostSession,
   loadPillowPanelPreferences,
   loadPillowSession,
+  preservePillowLocalArchive,
   savePillowPanelPreferences,
   savePillowSession,
   type PillowConversationTurn,
   type PillowSessionSnapshot,
 } from "@/lib/cockpit/pillow/pillow-session-store";
-import { createPillowHostSession, fetchPillowHistory, retrievePillowChat, sendPillowChat } from "@/lib/pillow/client";
+import {readTwinChatContext,setTwinChatContext,twinContextEvent} from '@/lib/owner/twin-chat-context';
+import { retrievePillowChat, sendPillowChat } from "@/lib/pillow/client";
+import { resolvePillowConversation } from "@/lib/pillow/session-resolution";
+import { reconcilePillowHistory, serverPillowHistory } from "@/lib/pillow/reconcile-history";
 import { clearPendingPillowReceipt, loadPendingPillowReceipts, savePendingPillowReceipt } from "@/lib/pillow/pending-receipts";
 import { mapPillowChatToAssistantResponse } from "@/lib/pillow/map-response";
 import type { PillowChatArtifact, PillowChatResult } from "@/lib/pillow/types";
@@ -56,6 +61,7 @@ import {
 } from "@/lib/pillow-ux";
 import { useFounderShellOptional } from "@/lib/founder-shell/FounderShellProvider";
 import { useAuth } from "@/lib/auth/context";
+import {readProductContext,referenceIdentity,selectProduct,type AttachedProduct,type ProductReference} from "@/lib/pillow/product-context";
 
 type GlobalAiAssistantState = {
   expanded: boolean;
@@ -81,6 +87,9 @@ type GlobalAiAssistantState = {
 };
 
 type GlobalAiAssistantContextValue = GlobalAiAssistantState & {
+  attachedProducts: AttachedProduct[];
+  attachProduct: (reference:ProductReference,compare?:boolean)=>Promise<void>;
+  removeProduct: (missionId:string)=>void;
   expand: () => void;
   collapse: () => void;
   toggle: () => void;
@@ -109,7 +118,7 @@ export function GlobalAiAssistantProvider({ children }: { children: ReactNode })
   const { user } = useAuth();
   // Remount on identity change: never render the previous owner's transcript,
   // context, active request or session for even one frame of the next account.
-  return <GlobalAiAssistantSession key={user?.id ?? "anonymous"}>{children}</GlobalAiAssistantSession>;
+  return <GlobalAiAssistantSession key={user ? `${user.id}:${user.workspaceId}` : "anonymous"}>{children}</GlobalAiAssistantSession>;
 }
 
 function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
@@ -118,7 +127,6 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
   const founderShell = useFounderShellOptional();
   const panelPrefs = loadPillowPanelPreferences();
   const savedSession = loadPillowSession(user?.id);
-  const hostSessionInit = useRef(false);
   const recoveryLoopActive = useRef(false);
   const chatSubmissionActive = useRef(false);
   const activeOwnerId = useRef(user?.id);
@@ -247,100 +255,54 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     [buildWorkspaceContext, founderShell?.data],
   );
 
+  const historyOwnerId = user?.id;
+  const historyWorkspaceId = user?.workspaceId;
   useEffect(() => {
-    if (!user) return;
-    if (hostSessionInit.current) return;
-    hostSessionInit.current = true;
-
-    void (async () => {
-      // Remount / Strict-effect safety: reuse a persisted host session instead of
-      // creating another and rate-limit storming Brain (/api/pillow/session 503).
-      const existingId = loadPillowSession(user.id)?.hostSessionId ?? null;
-      if (existingId) {
-        markReady(existingId, loadPillowSession(user.id)?.turns ?? []);
-        return;
-      }
-
-      markStarting("starting");
-      const maxAttempts = 4;
-      for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-        try {
-          const session = await createPillowHostSession(user.workspaceId, user.id);
-          if (activeOwnerId.current !== user.id) return;
-          // Mark ready immediately — history is non-blocking for conversation readiness.
-          markReady(session.sessionId, savedSession?.turns ?? []);
-          let turns = savedSession?.turns ?? [];
-          try {
-            const history = await fetchPillowHistory(session.sessionId);
-            if (activeOwnerId.current !== user.id) return;
-            if (history.session.conversationHistory.length > 0) {
-              turns = history.session.conversationHistory.flatMap((turn, index) => {
-                const role = turn.role === "user" ? ("grand-king" as const) : ("pillow" as const);
-                return [
-                  {
-                    id: `server-${index}-${turn.timestamp}`,
-                    role,
-                    content: toExecutiveSurfaceMessage(turn.content, turn.content),
-                    screenPath: pathname,
-                    recordedAt: turn.timestamp,
-                  },
-                ];
-              });
-              const snapshot: PillowSessionSnapshot = {
-                turns,
-                lastScreenPath: pathname,
-                updatedAt: new Date().toISOString(),
-                hostSessionId: session.sessionId,
-              };
-              savePillowSession(snapshot, user.id);
-              setState((s) => ({ ...s, conversation: turns }));
-            } else {
-              savePillowSession({
-                turns,
-                lastScreenPath: pathname,
-                updatedAt: new Date().toISOString(),
-                hostSessionId: session.sessionId,
-              }, user.id);
-            }
-          } catch {
-            if (activeOwnerId.current !== user.id) return;
-            savePillowSession({
-              turns,
-              lastScreenPath: pathname,
-              updatedAt: new Date().toISOString(),
-              hostSessionId: session.sessionId,
-            }, user.id);
-          }
-          return;
-        } catch (error) {
-          if (activeOwnerId.current !== user.id) return;
-          // Do not clear a concurrently established session on rate-limit failure.
-          const persisted = loadPillowSession(user.id);
-          if (persisted?.hostSessionId) {
-            markReady(persisted.hostSessionId, persisted.turns ?? []);
-            return;
-          }
-          clearPillowHostSession(user.id);
-          const phase: ExecutiveReadinessPhase =
-            attempt >= 3 ? "delayed" : attempt > 1 ? "recovering" : "starting";
-          markStarting(
-            phase,
-            error instanceof Error ? error.message : EXECUTIVE_STARTING_LABEL,
-          );
-          if (attempt < maxAttempts) {
-            await new Promise((r) => setTimeout(r, Math.min(8_000, 1_500 * attempt)));
-          }
+    if (!historyOwnerId) return;
+    let cancelled = false;
+    let running = false;
+    const hydrate = async () => {
+      if (running || chatSubmissionActive.current || recoveryLoopActive.current) return;
+      running = true;
+      try {
+        // Every device resolves the server conversation. Local storage is only a cache.
+        const cached=loadPillowSession(historyOwnerId);
+        const historicalBrowserTurns=(cached?.turns ?? []).filter(turn=>!turn.source && Number.isFinite(Date.parse(turn.recordedAt))).map(turn=>({role:turn.role==='grand-king'?'user' as const:'assistant' as const,content:turn.content,timestamp:new Date(turn.recordedAt).toISOString(),requestId:turn.requestId}));
+        if (!historyWorkspaceId) return;
+        const history = await resolvePillowConversation({ownerId:historyOwnerId,workspaceId:historyWorkspaceId,cachedSessionId:cached?.hostSessionId,historicalBrowserTurns});
+        const session = history.session;
+        if (cancelled || activeOwnerId.current !== historyOwnerId || chatSubmissionActive.current) return;
+        const serverTurns = serverPillowHistory(history.session.conversationHistory, pathname);
+        const archiveTurns: PillowConversationTurn[] = history.historicalArchive.map(turn => ({
+          id:`archive-${turn.id}`, role:turn.role === 'user' ? 'grand-king' : 'pillow',
+          content:turn.content, recordedAt:turn.timestamp, requestId:turn.requestId,
+          screenPath:pathname, source:'historical_browser_cache',
+        }));
+        const turns = reconcilePillowHistory(serverTurns, archiveTurns);
+        const previous = loadPillowSession(historyOwnerId);
+        // Preserve browser-only historical records separately; never silently
+        // upload them as server evidence or inference context.
+        preservePillowLocalArchive(previous, turns, historyOwnerId);
+        savePillowSession({turns, lastScreenPath: pathname, updatedAt: new Date().toISOString(), hostSessionId: session.sessionId}, historyOwnerId);
+        markReady(session.sessionId, turns);
+      } catch {
+        if (!cancelled && activeOwnerId.current === historyOwnerId) {
+          markStarting("recovering", "Server conversation history could not be synchronized. Any displayed cached history is device-local and unverified.");
         }
-      }
-      if (activeOwnerId.current !== user.id) return;
-      const recovered = loadPillowSession(user.id)?.hostSessionId;
-      if (recovered) {
-        markReady(recovered, loadPillowSession(user.id)?.turns ?? []);
-        return;
-      }
-      markStarting("delayed", EXECUTIVE_RECOVERING_LABEL);
-    })();
-  }, [markReady, markStarting, pathname, savedSession?.turns, user]);
+      } finally { running = false; }
+    };
+    void hydrate();
+    const refresh = () => { if (document.visibilityState === "visible") void hydrate(); };
+    window.addEventListener("focus", refresh);
+    window.addEventListener("online", refresh);
+    document.addEventListener("visibilitychange", refresh);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("focus", refresh);
+      window.removeEventListener("online", refresh);
+      document.removeEventListener("visibilitychange", refresh);
+    };
+  }, [markReady, markStarting, pathname, historyOwnerId, historyWorkspaceId]);
 
   const refreshContext = useCallback(async () => {
     // Never share chat `loading` with background context refresh — that disabled Send
@@ -362,13 +324,11 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     }
   }, [pathname, state.pageOverride, syncExecutiveAwareness]);
 
-  useEffect(() => {
-    void refreshContext();
-  }, [refreshContext]);
+  useEffect(() => subscribeRead(refreshContext), [refreshContext]);
 
   useEffect(() => {
     if (state.context) {
-      syncExecutiveAwareness(state.context, state.pageOverride);
+      return subscribeRead(() => syncExecutiveAwareness(state.context, state.pageOverride));
     }
   }, [founderShell?.data, state.context, state.pageOverride, syncExecutiveAwareness]);
 
@@ -427,14 +387,8 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
 
   const ensureHostSession = useCallback(async (): Promise<string | null> => {
     if (!user || activeOwnerId.current !== user.id) return null;
-    // Reuse first — Executive Home / panel expand must not create parallel sessions.
-    const existing = loadPillowSession(user.id);
-    if (existing?.hostSessionId) {
-      markReady(existing.hostSessionId, existing.turns ?? []);
-      return existing.hostSessionId;
-    }
     try {
-      const session = await createPillowHostSession(user.workspaceId, user.id);
+      const { session } = await resolvePillowConversation({ownerId:user.id,workspaceId:user.workspaceId,cachedSessionId:loadPillowSession(user.id)?.hostSessionId});
       if (activeOwnerId.current !== user.id) return null;
       const snapshot: PillowSessionSnapshot = {
         turns: loadPillowSession(user.id)?.turns ?? [],
@@ -447,11 +401,6 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       return session.sessionId;
     } catch (error) {
       if (activeOwnerId.current !== user.id) return null;
-      const persisted = loadPillowSession(user.id);
-      if (persisted?.hostSessionId) {
-        markReady(persisted.hostSessionId, persisted.turns ?? []);
-        return persisted.hostSessionId;
-      }
       markStarting(
         "recovering",
         error instanceof Error ? error.message : EXECUTIVE_RECOVERING_LABEL,
@@ -476,7 +425,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       }
     }
     const response = mapPillowChatToAssistantResponse(chatResult, query);
-    const isStatus = chatResult.kind === "durable_pending" ||
+    const isStatus = hasReasoningFailure(chatResult) || chatResult.kind === "durable_pending" ||
       chatResult.status === "FAILED_FATAL" || chatResult.status === "FAILED" ||
       chatResult.status === "RESULT_UNAVAILABLE";
     const preserveReasoning = isConfirmedReasoning(chatResult);
@@ -541,14 +490,47 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     };
   }, [user, state.executiveReady, state.readinessPhase, ensureHostSession, markStarting]);
 
+  const [attachedProducts,setAttachedProducts]=useState<AttachedProduct[]>([]);
+  const productSelectionVersion=useRef(0);
+  const attachedProductsRef=useRef<AttachedProduct[]>([]);
+  useEffect(()=>{
+    const clearAttached=()=>{
+      productSelectionVersion.current++;
+      attachedProductsRef.current=[];
+      setAttachedProducts([]);
+    };
+    clearAttached();
+    window.addEventListener(twinContextEvent,clearAttached);
+    return ()=>window.removeEventListener(twinContextEvent,clearAttached);
+  },[user?.id,user?.workspaceId]);
+  const attachProduct=useCallback(async(reference:ProductReference,compare=false)=>{
+    if(state.loading)throw Error("Wait for the current message before changing product context.");
+    const version=++productSelectionVersion.current, owner=activeOwnerId.current;
+    const product=await readProductContext(reference);
+    if(version!==productSelectionVersion.current||owner!==activeOwnerId.current)throw Error("Product selection changed before verification completed.");
+    const next=selectProduct(attachedProductsRef.current,product,compare);
+    if(owner)setTwinChatContext(owner,null);
+    attachedProductsRef.current=next;setAttachedProducts(next);
+  },[state.loading]);
+  const removeProduct=useCallback((missionId:string)=>{
+    if(state.loading)return;
+    productSelectionVersion.current++;
+    const next=attachedProductsRef.current.filter(p=>referenceIdentity(p.reference)!==missionId);
+    attachedProductsRef.current=next;setAttachedProducts(next);
+  },[state.loading]);
+
   const sendViaPillow = useCallback(
     async (
       query: string,
       target?: GlobalAssistantTarget,
     ): Promise<boolean> => {
+      const productContext=user?readTwinChatContext(user.id):null;
+      const contextKey=productContext?JSON.stringify(productContext):undefined;
+      productSelectionVersion.current++;
       const buildContextWithContinuity = (): Record<string, unknown> => {
         const base = buildWorkspaceContext(state.context, state.pageOverride);
         const turns = (loadPillowSession(user?.id)?.turns ?? [])
+          .filter(t => t.source === "server_persisted_transcript")
           .slice(-12)
           .map((t) => ({
             role: t.role,
@@ -560,13 +542,16 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
         return {
           ...base,
           recentConversationTurns: turns,
+          ...(attachedProducts.length?{productContext:attachedProducts.length===1?attachedProducts[0].reference:attachedProducts.map(p=>p.reference)}:(productContext?{productContext}:{})),
         };
       };
 
+      const productContextKey=JSON.stringify({workspace:user?.workspaceId,refs:attachedProducts.map(p=>p.reference)});
       const attemptChat = async (sessionId: string): Promise<boolean> => {
         const priorReceipt = user
-          ? loadPendingPillowReceipts(user.id).find((row) => row.query === query)
+          ? loadPendingPillowReceipts(user.id).find((row) => row.query === query && row.contextKey === contextKey)
           : undefined;
+        if(priorReceipt && (priorReceipt.productContextKey===undefined?attachedProducts.length>0:priorReceipt.productContextKey!==productContextKey))throw Error("An earlier request with this message is still pending under different product context. Inspect that saved request before sending again.");
         const chatResult: PillowChatResult & { reboundSessionId?: string } = priorReceipt
           ? await retrievePillowChat(priorReceipt)
           : await sendPillowChat({
@@ -575,7 +560,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
             workspaceContext: buildContextWithContinuity(),
           }, {
             onAccepted: (receipt) => {
-              if (user) savePendingPillowReceipt(user.id, { ...receipt, query });
+              if (user) savePendingPillowReceipt(user.id, { ...receipt, query, contextKey, productContextKey });
             },
           });
         if (!user || activeOwnerId.current !== user.id) return true;
@@ -617,9 +602,8 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       buildWorkspaceContext,
       ensureHostSession,
       markStarting,
-      markReady,
-      pathname,
       presentChatResult,
+      attachedProducts,
       state.context,
       state.pageOverride,
       user,
@@ -786,11 +770,12 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       ...state,
+      attachedProducts,attachProduct,removeProduct,
       expand: () => {
         // Mark panel expanded only. Do NOT auto-dispatch the Pillow focus event —
         // Executive Home mounts expand() and that was yanking page scroll into Pillow.
         // Explicit openers (Ask AI / Ask Pillow) dispatch the focus event themselves.
-        setState((s) => ({ ...s, expanded: true }));
+        setState((s) => s.expanded ? s : ({ ...s, expanded: true }));
       },
       collapse: () => setState((s) => ({ ...s, expanded: false })),
       toggle: () => setState((s) => ({ ...s, expanded: !s.expanded })),
@@ -813,6 +798,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     }),
     [
       state,
+      attachedProducts,attachProduct,removeProduct,
       ensureHostSession,
       setPageOverride,
       refreshContext,
@@ -847,3 +833,4 @@ export function usePillowPageContext() {
     pageOverride: ctx?.pageOverride ?? null,
   };
 }
+

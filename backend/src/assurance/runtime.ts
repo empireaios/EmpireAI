@@ -1,4 +1,10 @@
-import {readGovernedCommerce} from '../runtime/commerce-runtime/governed/runtime.js';
+import {runCaptureAwareBackground} from '../runtime/work8-background-capture.js';
+import {readWork8QueueProbe} from './work8-queue-probe.js';
+import {readWork8ResponseBinding} from './work8-response-binding.js';
+import {readWork8FinancialProbe} from './work8-financial-probe.js';
+import {makeWork8FulfilmentProbes} from './work8-fulfilment-probes.js';
+import {makeWork8CommerceRecovery} from './work8-commerce-recovery.js';
+import {productionCommerce,readGovernedCommerce} from '../runtime/commerce-runtime/governed/runtime.js';
 import {productionFinance} from '../finance/financial-centre.js';
 import {acceptanceRevisionEligible,retainedAcceptance} from './acceptance-continuity.js';
 import {closureHealthBlockers} from '../../src/assurance/closure-health.mjs';
@@ -69,9 +75,24 @@ export class AssuranceRuntime {
    const scopeNow=Date.now();
    const coverage=inspectAssurance(path.join(this.root,'commissioning','assurance.sqlite'),{now:scopeNow,epoch:0,intervalMs:300000,graceMs:120000});
    const scopeContext:any={profile:process.env.EMPIRE_RUNTIME_PROFILE,observedAt:scopeNow,coverage};
-   const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>this.control.observe(workspace,{id,capability:id,status,summary,evidence,classification:id,runbookId,...(['provider_configuration','four_eyes_reads'].includes(id)?{scopeContext}: {})});
+   const observe=(id:string,status:string,summary:string,evidence:unknown={},runbookId?:string)=>{
+    // These synchronous readers examine current local state. Cached provider,
+    // capability and scheduler evidence must retain the original source time.
+    const directRead=['governed_commerce','model_server_contract','durable_control','pricing_review','reconciliation_view'].includes(id);
+    const record=evidence as any;
+    const times=id==='provider_configuration'?record.providers?.map((p:any)=>Date.parse(p.observedAt)):
+     id==='four_eyes_reads'&&Array.isArray(evidence)?evidence.map((r:any)=>Date.parse(r.lastGoodAt)):
+     id==='four_eyes_scheduler'?[Date.parse(record.heartbeatAt)]:null;
+    const sourceObservedAt=times?.length&&times.every(Number.isSafeInteger)?Math.min(...times):directRead?Date.now():record?.observedAt;
+    return this.control.observe(workspace,{id,capability:id,status,summary,evidence,sourceObservedAt,classification:id,runbookId,...(['provider_configuration','four_eyes_reads'].includes(id)?{scopeContext}: {})});
+   };
    try{const commerce=readGovernedCommerce(workspace);const blocked=commerce.tasks.filter(t=>t.status==='BLOCKED');observe('governed_commerce',blocked.length?'DEGRADED':'HEALTHY','Immutable commerce evidence and bounded synthetic task progress',{tasks:commerce.tasks.map(t=>({id:t.id,status:t.status,cursor:t.cursor,error:t.error})),externalEffects:0,runbook:'Inspect exact failing receipt; reconcile unknown provider identity before resuming. Never retry an uncertain write or reset journal.'});}catch{observe('governed_commerce','UNAVAILABLE','Commerce evidence integrity or storage unavailable; execution stopped');}
-   try{const finance=productionFinance().snapshot(workspace);observe('financial_evidence','HEALTHY','Financial journal readable; billing and cash verification remain record-specific',{entryDigest:finance.entryDigest,entries:finance.entries.length,unresolvedFinancialAlerts:finance.alerts.length,completeCashPosition:finance.completeCashPosition});}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
+   try{const commerce=productionCommerce();const recovery=makeWork8CommerceRecovery(commerce);for(const probe of recovery.probes(workspace))this.control.observe(workspace,probe);observe('work8_checkpoint_integrity','HEALTHY','Fresh verified commerce receipt and checkpoint integrity; business outcomes are assessed separately',{observedAt:Date.now()});}catch{observe('work8_checkpoint_integrity','UNAVAILABLE','Commerce checkpoint or receipt integrity unavailable; automatic progress repair denied',{observedAt:Date.now()});}
+   try{for(const probe of makeWork8FulfilmentProbes(productionCommerce()).probes(workspace))this.control.observe(workspace,probe);observe('work8_fulfilment_integrity','HEALTHY','Bounded fulfilment slice read successfully; separate coverage probe reports incomplete or stale sweeps',{observedAt:Date.now()});}catch{observe('work8_fulfilment_integrity','UNAVAILABLE','Fulfilment history unavailable; no healthy order outcome may be inferred',{observedAt:Date.now()});}
+   try{const discovery=readGovernedCommerce(workspace).retainedDiscovery;const checkpoint=discovery.checkpoint;observe('retained_product_discovery',discovery.availability==='CHECKPOINT_UNAVAILABLE'?'UNAVAILABLE':!checkpoint?'NOT_CHECKED':checkpoint.shortfall>0?'DEGRADED':'HEALTHY','Retained product evidence scan; no new supplier read is implied',{observedAt:Date.now(),availability:discovery.availability,day:checkpoint?.day??null,newCandidates:checkpoint?.newCandidates??null,shortfall:checkpoint?.shortfall??null,externalRefresh:false});}catch{observe('retained_product_discovery','UNAVAILABLE','Retained product discovery evidence unavailable',{observedAt:Date.now()});}
+   try{for(const probe of productionCommerce().simulatedFinance.probes(workspace))this.control.observe(workspace,probe);}catch{observe('simulated_financial_integrity','UNAVAILABLE','Durable simulated financial reconciliation unavailable; no actual finance repair authorised',{observedAt:Date.now()});}
+   try{this.control.observe(workspace,readWork8FinancialProbe(productionFinance(),workspace));}catch{observe('financial_evidence','UNAVAILABLE','Financial journal unavailable; financial amounts must remain unknown');}
+   this.control.observe(workspace,readWork8QueueProbe(this.root,workspace));
    const contract=checkToolContract();observe('model_server_contract',contract.status,contract.summary,contract.evidence);
    observe('durable_control', 'HEALTHY','Operational event store is readable',{events:this.control.snapshot(workspace).events.length});
    const configured=configuredLockedProviders();const pricing=readLockedPricingPolicy().map(p=>({...p,active:configured.includes(p.provider as any)}));observe('pricing_review',pricing.some(p=>p.active&&p.status==='EXPIRED')?'BLOCKED':pricing.some(p=>p.active&&p.status==='EXPIRING')?'DEGRADED':'HEALTHY','Local inference price review expiry',pricing);
@@ -96,8 +117,11 @@ export class AssuranceRuntime {
      const reads=capabilities.map(c=>{const h=health.find(h=>h.id===c.id);return {id:c.id,...classifyCapability({implemented:c.implemented,configured:c.credentials.every(k=>Boolean(process.env[k])),health:h,now:Date.now(),maxAgeMs:c.ttlMs}),lastGoodAt:h?.lastGoodAt??null,evidenceId:h?.evidenceId??null,failure:h?.failure??null};});
      observe('four_eyes_reads',aggregateCapabilityHealth(reads),'Per-capability saved reads distinguish failed, stale, missing and external evidence; no monitoring API calls',reads);
     } finally {db.close();}
-   } catch {observe('four_eyes_scheduler','UNAVAILABLE','Four Eyes durable scheduler source unavailable');}
-   try {const r=readReconciliation(this.root,workspace);observe('response_evidence_linkage',r.conflicts.length?'DEGRADED':r.investigations.length?'HEALTHY':'UNVERIFIED','Cross-source request/assessment/evidence binding',{conflicts:r.conflicts.map((v:any)=>({id:v.id,code:v.code,missionId:v.missionId}))});}catch{observe('response_evidence_linkage','UNAVAILABLE','Required response/evidence source unavailable');}
+   } catch {
+    observe('four_eyes_scheduler','UNAVAILABLE','Four Eyes durable scheduler source unavailable');
+    observe('four_eyes_reads','UNAVAILABLE','Four Eyes capability source unavailable; prior observations cannot establish current read health',{observedAt:Date.now(),inferenceCalls:0});
+   }
+   this.control.observe(workspace,readWork8ResponseBinding(this.root,workspace));
    const view=verifyReconciliation(this.root,workspace);
    const admission=this.control.get(workspace,'acceptance','active');
    const advisorMode=admission?.mode==='API_ADVISOR'&&!admission.completed;
@@ -109,7 +133,7 @@ export class AssuranceRuntime {
    await this.control.tick(workspace);
    for(const task of this.advisor.list(workspace))if(task.status==='WAITING_FOR_DEPENDENCY'&&task.stage!=='NOT_STARTED')await this.advisor.reconcile(workspace,String(task.id));
    await this.advisor.resumeEligible(workspace);
-   if(!this.advisorWork)this.advisorWork=this.advisor.runNext(workspace).catch(()=>null).finally(()=>{this.advisorWork=null;});
+   if(!this.advisorWork)this.advisorWork=runCaptureAwareBackground(()=>this.advisor.runNext(workspace)).catch(()=>null).finally(()=>{this.advisorWork=null;});
    if(admission?.mode==='MONITOR_FAILURE'&&!admission.completed){
     const monitorIncident=this.control.snapshot(workspace).incidents.find((i:any)=>i.probeId==='assurance-primary-monitor'&&i.lastAt>=admission.at&&i.verifiedAt>=admission.pauseUntil&&i.status==='RECOVERED');
     if(monitorIncident&&verifySourcePreservation(this.root,admission.sourceManifest).verified){const completed={...admission,completed:true,preservation:verifySourcePreservation(this.root,admission.sourceManifest),monitorIncidentId:monitorIncident.id,verifiedAt:Date.now()};this.control.put(workspace,'acceptance','active',completed);this.control.put(workspace,'acceptance_history',admission.id,completed);this.control.event(workspace,'MONITOR_RECOVERY_VERIFIED',{id:admission.id,monitorIncidentId:monitorIncident.id,independentInspector:true});}
@@ -173,8 +197,9 @@ export async function createAssuranceRuntime(root:string,revision:string){
  const rebuild={version:'1',authority:'A',capability:'reconciliation_view',timeoutMs:10000,maxAttempts:2,cooldownMs:30000,
  execute:async()=>rebuildReconciliation(root,workspace,revision),verify:async()=>verifyReconciliation(root,workspace),reconcile:async()=>({completed:verifyReconciliation(root,workspace).healthy})};
  const control=new AssuranceControlPlane({root:path.join(root,'commissioning'),revision,deploymentVerifier:createDeploymentVerifier(),runbooks:{
+  work8_checkpoint_replay:{version:'work8-checkpoint-v1',authority:'A',capability:'commerce-checkpoint',maxAttempts:1,cooldownMs:1000,timeoutMs:1000,execute:(context:any)=>makeWork8CommerceRecovery(productionCommerce()).runbook.execute(context),verify:(context:any)=>makeWork8CommerceRecovery(productionCommerce()).runbook.verify(context)},
   rebuild_reconciliation:rebuild,rebuild_reconciliation_advisor:{...rebuild,executor:'API_ADVISOR'},
-  quarantine_reconciliation:{...rebuild,authority:'B',capability:'approval_quarantine',title:'Quarantine and rebuild the derived operational view',description:'Move only the derived reconciliation JSON to a retained quarantine copy, rebuild it from existing sources, and verify unchanged source digest.',approvalReason:'A deliberate operational view interruption requires your specific approval.',execute:async()=>{const before=reconciliationHash(readReconciliationSources(root,workspace));const file=path.join(root,'commissioning','reconciliation-'+workspace+'.json');if(fs.existsSync(file))fs.renameSync(file,file+'.approved-'+Date.now());const result=rebuildReconciliation(root,workspace,revision);return {...result,sourceUnchanged:before===reconciliationHash(readReconciliationSources(root,workspace))};},verify:async({result}:any)=>({healthy:result?.sourceUnchanged===true&&verifyReconciliation(root,workspace).healthy})}
+  quarantine_reconciliation:{...rebuild,authority:'B',capability:'approval_quarantine',title:'Quarantine and rebuild the derived operational view',description:'Move only the derived reconciliation JSON to a retained quarantine copy, rebuild it from existing sources, and verify unchanged source digest.',approvalReason:'A deliberate operational view interruption requires your specific approval.',execute:async()=>{const before=reconciliationHash(readReconciliationSources(root,workspace));const file=path.join(root,'commissioning','reconciliation-'+workspace+'.json');if(fs.existsSync(file))fs.renameSync(file,file+'.approved-'+Date.now());const result=rebuildReconciliation(root,workspace,revision);return {...result,sourceUnchanged:before===reconciliationHash(readReconciliationSources(root,workspace))};},verify:async({result}:any)=>{const verification=verifyReconciliation(root,workspace);return {...verification,healthy:result?.sourceUnchanged===true&&verification.healthy};}}
  }});
  return new AssuranceRuntime(root,revision,control);
 }
@@ -184,7 +209,7 @@ export async function readAssuranceRecord(w:string,kind:string,id:string){if(w!=
 export async function assuranceOwnerCommand(ownerId:string,input:unknown){if(!active)throw Error('ASSURANCE_RUNTIME_UNAVAILABLE');return active.command(ownerId,input);}
 export function installAssuranceRuntime(app:FastifyInstance){
  let timer:ReturnType<typeof setInterval>|undefined;
- app.addHook('onReady',async()=>{if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')return;const root=process.env.RAILWAY_VOLUME_MOUNT_PATH,revision=process.env.RAILWAY_GIT_COMMIT_SHA;if(!root||!revision)return;active=await createAssuranceRuntime(root,revision);active.advisor.recoverInterrupted(workspace);const run=()=>active?.cycle().catch(()=>{ /* stale persisted heartbeat exposes failed monitoring */ });void run();timer=setInterval(run,30000);timer.unref();});
+ app.addHook('onReady',async()=>{if(process.env.EMPIRE_RUNTIME_PROFILE!=='LOCKED_COMMISSIONING_V1')return;const root=process.env.RAILWAY_VOLUME_MOUNT_PATH,revision=process.env.RAILWAY_GIT_COMMIT_SHA;if(!root||!revision)return;active=await createAssuranceRuntime(root,revision);active.advisor.recoverInterrupted(workspace);const run=()=>runCaptureAwareBackground(()=>active?.cycle()).catch(()=>{ /* stale persisted heartbeat exposes failed monitoring */ });void run();timer=setInterval(run,30000);timer.unref();});
  app.addHook('onClose',async()=>{if(timer)clearInterval(timer);if(active?.advisorWork)await active.advisorWork;active?.control.close();active=null;});
 }
 

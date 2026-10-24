@@ -1,0 +1,641 @@
+{
+  "readbackAt": "2026-10-10T21:37:04.269Z",
+  "projectedAt": "2026-10-10T21:42:51Z",
+  "externalRefresh": false,
+  "inferenceCalls": 0,
+  "products": [
+    {
+      "candidateId": "CJ:2610100523081617500:UNSELECTED",
+      "productId": "2610100523081617500",
+      "variantId": null,
+      "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage",
+      "category": "Home, Garden & Furniture > Home Storage > Storage Bags & Cases & Boxes",
+      "supplier": "CJ",
+      "supplierId": null,
+      "supplierName": null,
+      "observedPrice": 2.48,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:09.880Z",
+      "freshness": "FRESH",
+      "observedVariants": [
+        {
+          "variantId": "2610100523081618500",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Gradient Blue And White",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618501",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Gradient Green And White",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618502",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Gradient Orange And Black",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618503",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Morandi White",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618504",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Gradient Blue And Black",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618505",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Gradient Green And Black",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618506",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Morandi Black",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618507",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Gradient Purple And Black",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618508",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Rainbow Clothespin",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        },
+        {
+          "variantId": "2610100523081618509",
+          "title": "Thickened A4 Hanging Accordion File Folder - 6 Pocket Large Capacity Document Organizer for Student Exam Papers and Office Storage Gradient Purple And White",
+          "observedPrice": 2.48,
+          "currency": "USD",
+          "currencyBasis": {
+            "currency": "USD",
+            "endpoint": "/product/query",
+            "field": "variants[].variantSellPrice",
+            "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+            "section": "1.5 Product Details(GET) / Variant",
+            "verifiedAt": "2026-10-10T21:42:51Z"
+          }
+        }
+      ],
+      "images": [
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/6f3c3481-c1d8-4e7c-ba16-9a76a9f7c7bb.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/2bcdf144-3520-4a65-aefa-f2d1c06af991.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/10/05/9d75a08b-eef3-4e87-859c-f801d7d529fa_trans.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/a72db919-36db-49dd-9382-7cb48fb9329a.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/0f5b278b-e5c4-4e1b-9dff-9180a539b08a.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/10/05/0669d23f-4181-49b6-a8b3-29b2ae0b136c.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/ae64a241-1b31-4de7-a8c5-e8205115c09f.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/196c13c1-b137-4376-b78c-46ca56383940.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/0f329ff1-8fb4-436c-b91d-008a7daeb7a4.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        },
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/10/05/531e891e-7c16-4f29-a22b-b296e5fcc478_trans.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_73b424033a094d8cf1e0efdcb53570e32985b16c",
+        "digest": "1f47081865a103e9ece852113ead67eb1c4f8b97797c2d65d2ec8b9a73d9614c",
+        "endpoint": "/product/query"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2610100154541603900:UNSELECTED",
+      "productId": "2610100154541603900",
+      "variantId": null,
+      "title": "Lap Desk For Laptops Lazy Bed Table",
+      "category": "Home Office Storage",
+      "supplier": "CJ",
+      "supplierId": "9999",
+      "supplierName": null,
+      "observedPrice": 5.25,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/10/01/8efc63b7-a125-4982-b575-4785a175b645_trans.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2610091135581606600:UNSELECTED",
+      "productId": "2610091135581606600",
+      "variantId": null,
+      "title": "3D-printed Curly-haired Puppy Desk Ornament",
+      "category": "Home Office Storage",
+      "supplier": "CJ",
+      "supplierId": "9999",
+      "supplierName": null,
+      "observedPrice": 0.65,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/5ee78f83-873c-4e6f-87a6-73f0dafaa8bf.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2610090500531604200:UNSELECTED",
+      "productId": "2610090500531604200",
+      "variantId": null,
+      "title": "Seven-color Cup USB Humidifier For Home Desk Use",
+      "category": "Home Office Storage",
+      "supplier": "CJ",
+      "supplierId": "9999",
+      "supplierName": null,
+      "observedPrice": 1.1,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/09/04/25cc250b-3119-4390-b2d6-3752f349d893_trans.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2108460795489075201:UNSELECTED",
+      "productId": "2108460795489075201",
+      "variantId": null,
+      "title": "New Universal Car Seat Back Organizer with Touch Screen Tablet Holder Car Backseat Storage Bag Multi-Pocket Car Seat Organizer",
+      "category": "Storage Bags & Cases & Boxes",
+      "supplier": "CJ",
+      "supplierId": "1290910194594639873",
+      "supplierName": "Ruian Yizhong International Trade Co., Ltd.",
+      "observedPrice": 12.9,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/17915040/632eaef3-6f83-41bd-8e53-224267854d09.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2108374537463308290:UNSELECTED",
+      "productId": "2108374537463308290",
+      "variantId": null,
+      "title": "Full Copper Glass Living Room Pendant Light, Creative Luxury Restaurant Light, Bar Counter, Front Desk, Bedroom Small Pendant Light, Wall Mounted Zhongshan Lighting Fixtures",
+      "category": "Wall Lamps",
+      "supplier": "CJ",
+      "supplierId": "2099080596646273024",
+      "supplierName": "Zhongshan Gelvshi Home Furnishings Co., Ltd.",
+      "observedPrice": null,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/dcbdf11f-5cfb-44b3-ac48-f97e4043c18d.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "PRICE_UNKNOWN",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2610081254341614600:UNSELECTED",
+      "productId": "2610081254341614600",
+      "variantId": null,
+      "title": "Foldable Small Table Front And Rear Row In-car Multi-functional Desk",
+      "category": "Interior Parts",
+      "supplier": "CJ",
+      "supplierId": "8888",
+      "supplierName": null,
+      "observedPrice": null,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/08/12/33ee5d6b-72b0-4e0f-8fe4-07ba8f1867a3_trans.jpeg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "PRICE_UNKNOWN",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2610081240171606400:UNSELECTED",
+      "productId": "2610081240171606400",
+      "variantId": null,
+      "title": "Desk-reclining Cat Plush Toy Creative Landscape Decoration Anime-themed Small Ornament",
+      "category": "Action & Toy Figures",
+      "supplier": "CJ",
+      "supplierId": "9999",
+      "supplierName": null,
+      "observedPrice": 1.91,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/09/01/4234b1ab-c8ee-4fa7-b458-4439e405144a.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2610081020391608100:UNSELECTED",
+      "productId": "2610081020391608100",
+      "variantId": null,
+      "title": "Rainbow Themed Desk Pencil Holder - Colorful Pen Container Storage Box For Office School Stationery Organization",
+      "category": "Sports Accessories",
+      "supplier": "CJ",
+      "supplierId": "9999",
+      "supplierName": null,
+      "observedPrice": 4.92,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://cf.cjdropshipping.com/quick/product/1c23d3cd-0b97-4374-88b5-2b87b78ca8b7.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    },
+    {
+      "candidateId": "CJ:2610080830171630800:UNSELECTED",
+      "productId": "2610080830171630800",
+      "variantId": null,
+      "title": "Monitor Auxiliary Stand Desktop Protection Steel Plate Universal Glass Desk Protector Reinforcement",
+      "category": "Home Office Storage",
+      "supplier": "CJ",
+      "supplierId": "9999",
+      "supplierName": null,
+      "observedPrice": 3.16,
+      "currency": null,
+      "currencyBasis": null,
+      "observedAt": "2026-10-10T18:39:08.596Z",
+      "freshness": "FRESH",
+      "observedVariants": [],
+      "images": [
+        {
+          "observedUrl": "https://oss-cf.cjdropshipping.com/product/2026/10/08/09/e2fa16be-425e-4db8-bbde-d415fe621e80.jpg",
+          "displayUrl": null,
+          "rights": "UNVERIFIED"
+        }
+      ],
+      "source": {
+        "evidenceId": "ev_a7c51b508105b7be2481a3d8fd40a6b0147b5a33",
+        "digest": "031d3cb78baa2e4d30a5cfa12c2efddd17c3e727268c781fe6686b6d0b8840f9",
+        "endpoint": "/product/list"
+      },
+      "authenticity": "REAL_READ_ONLY",
+      "downstream": "SIMULATED_ONLY",
+      "screening": "DEFERRED",
+      "reasons": [
+        "MEDIA_USAGE_RIGHTS_UNVERIFIED",
+        "INDEPENDENT_ELIGIBILITY_AND_ECONOMICS_REQUIRED",
+        "PILLOW_ASSESSMENT_NOT_LINKED",
+        "CURRENCY_UNKNOWN",
+        "VARIANT_NOT_SELECTED"
+      ],
+      "stock": null,
+      "leadTime": null,
+      "shipping": null,
+      "competitorPrices": [],
+      "pillowAssessment": null
+    }
+  ],
+  "rejected": [],
+  "counts": {
+    "actualSourceProducts": 10,
+    "observedVariants": 10,
+    "variantPricesWithDocumentedCurrency": 10,
+    "sourceIdentityMatches": 10,
+    "observedImages": 19,
+    "validImagesWithRights": 0,
+    "pricesWithCurrency": 0,
+    "softwareScreened": 10,
+    "qualified": 0,
+    "pillowAssessments": 0,
+    "ownerRecommendations": 0
+  },
+  "grantsAuthority": false
+}

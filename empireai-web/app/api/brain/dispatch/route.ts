@@ -1,5 +1,4 @@
 import { DISPATCH_UPSTREAM_TIMEOUT_MS, proxyBrainRequest } from "@/lib/brain/server-proxy";
-import { brainRouteConfig } from "@/lib/brain/route-config";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

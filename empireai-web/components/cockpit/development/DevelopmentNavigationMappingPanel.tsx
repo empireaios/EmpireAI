@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import { DataTable, Panel } from "@/components/platform/ui/PlatformPrimitives";
 import { DataModeBadge } from "@/components/cockpit/widgets/DataModeBadge";
@@ -54,11 +56,7 @@ export function DevelopmentNavigationMappingPanel() {
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-    const id = setInterval(() => void load(), 5000);
-    return () => clearInterval(id);
-  }, [load]);
+  useEffect(() => subscribeRead(load, 5000), [load]);
 
   const nme = data?.navigationMapping;
   const engine = nme?.engine;

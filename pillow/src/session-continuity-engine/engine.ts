@@ -89,6 +89,10 @@ export class SessionContinuityEngine {
     return this.getState();
   }
 
+  withRecoverySnapshot<T>(capture:(snapshot:import("./recovery-snapshot.js").SessionContinuityRecoverySnapshot)=>Promise<T>):Promise<T>{
+    return this.controller.withRecoverySnapshot(capture);
+  }
+
   getState(): SessionContinuityState {
     if (!this.initializedAt) {
       throw new Error("Session Continuity Engine not initialized. Call initialize() first.");

@@ -1,5 +1,7 @@
 "use client";
 
+import { subscribeRead } from "@/lib/cockpit/subscribe-read";
+
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -163,9 +165,7 @@ export function OneProductDecisionDossierPanel({
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  useEffect(() => subscribeRead(load), [load]);
 
   if (loading && !dossier) {
     return (

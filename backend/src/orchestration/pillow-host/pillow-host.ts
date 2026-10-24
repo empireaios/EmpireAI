@@ -1,4 +1,5 @@
 // @ts-nocheck
+import {createNotificationDeliveryLedger} from "./notification-delivery-ledger.js";
 import {attachPillowReconciliation} from '../../assurance/pillow-context.js';
 import {claimInvestigation,PillowInvestigation} from '../../intelligence/investigation.js';
 import {productionIntelligence} from '../../intelligence/store.js';
@@ -330,6 +331,7 @@ export class PillowHost {
                 dryRunRecoveryValidation: !pillowProductionMode,
                 dryRunSyncExecution: !pillowProductionMode,
             });
+            this.pillowSession.notificationWorker.bindDeliveryLedger(createNotificationDeliveryLedger());
             if (this.missionAuthorityAdapter) this.pillowSession.missionRuntime.bindIntegrations({ authorityMissionExecutor: this.missionAuthorityAdapter });
             const adapter = createBrainLLMAdapter(this.llmRouter);
             const artifactRegistry = createArtifactRegistry(this.repositoryRoot);
@@ -784,6 +786,15 @@ export class PillowHost {
     stopVisualMemory() {
         this.ensureRunning();
         return this.pillowSession.visualMemory.stopVisualMemory();
+    }
+    async withVisualMemoryRecoveryCapture<T>(capture:(snapshot:unknown)=>Promise<T>):Promise<T> {
+        this.ensureRunning();
+        return this.pillowSession.visualMemory.withRecoverySnapshot(capture);
+    }
+    async withSessionContinuityRecoveryCapture<T>(capture:(snapshot:unknown,journal:unknown)=>Promise<T>):Promise<T> {
+        this.ensureRunning();
+        return this.pillowSession.sessionContinuity.withRecoverySnapshot(snapshot=>
+            this.pillowSession.digitalSoul.withRecoverySnapshot(journal=>capture(snapshot,journal)));
     }
     captureVisualMemory() {
         this.ensureRunning();
@@ -29704,6 +29715,7 @@ export class PillowHost {
             content: input.message,
             timestamp: new Date().toISOString(),
             requestId,
+            ...(input.workspaceContext?.productContext ? { productContext: structuredClone(input.workspaceContext.productContext) } : {}),
         };
         session.conversationHistory.push(userTurn);
         const llmUserMessage = input.workspaceContext

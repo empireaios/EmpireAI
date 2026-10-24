@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: actual overdue missing tracking escalates without writes; fresh delivered observation closes
+ok 1 - actual overdue missing tracking escalates without writes; fresh delivered observation closes
+  ---
+  duration_ms: 38.150125
+  type: 'test'
+  ...
+# Subtest: partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment
+ok 2 - partial shipment plus real delayed and lost tracking stays overdue until terminal fulfilment
+  ---
+  duration_ms: 20.808946
+  type: 'test'
+  ...
+# Subtest: unknown supplier remains blocked and verified history corruption never produces healthy evidence
+ok 3 - unknown supplier remains blocked and verified history corruption never produces healthy evidence
+  ---
+  duration_ms: 12.236926
+  type: 'test'
+  ...
+# Subtest: bounded mission scan resumes from durable cursor and never clears skipped order incidents
+ok 4 - bounded mission scan resumes from durable cursor and never clears skipped order incidents
+  ---
+  duration_ms: 34.946166
+  type: 'test'
+  ...
+# Subtest: history bound fails closed without healthy order probes and stale sweep cannot claim coverage
+ok 5 - history bound fails closed without healthy order probes and stale sweep cannot claim coverage
+  ---
+  duration_ms: 18.612515
+  type: 'test'
+  ...
+# Subtest: new mission inserted behind durable cursor prevents false complete coverage
+ok 6 - new mission inserted behind durable cursor prevents false complete coverage
+  ---
+  duration_ms: 31.478433
+  type: 'test'
+  ...
+# Subtest: pre-deadline adverse tracking escalates immediately and fresh delivery closes; uncertainty takes precedence
+ok 7 - pre-deadline adverse tracking escalates immediately and fresh delivery closes; uncertainty takes precedence
+  ---
+  duration_ms: 70.566407
+  type: 'test'
+  ...
+# Subtest: independent SQLite worker connections race for 1000th slot; 1001st denied
+ok 8 - independent SQLite worker connections race for 1000th slot; 1001st denied
+  ---
+  duration_ms: 43762.591436
+  type: 'test'
+  ...
+# Subtest: bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities
+ok 9 - bounded queue resumes in a real new process; duplicate concurrent ticks do not duplicate identities
+  ---
+  duration_ms: 307.914784
+  type: 'test'
+  ...
+# Subtest: authentic retained cohort has truthful under-supply and zero provider discovery
+ok 10 - authentic retained cohort has truthful under-supply and zero provider discovery
+  ---
+  duration_ms: 8.254502
+  type: 'test'
+  ...
+# Subtest: source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent
+ok 11 - source expiry between enqueue and processing quarantines candidate; next day never recounts prior parent
+  ---
+  duration_ms: 6.973642
+  type: 'test'
+  ...
+# Subtest: source expiry and snapshot mutation cannot become fresh qualified candidates
+ok 12 - source expiry and snapshot mutation cannot become fresh qualified candidates
+  ---
+  duration_ms: 2.989857
+  type: 'test'
+  ...
+# Subtest: daily target is bounded at 100 and durable receipt tampering fails closed
+ok 13 - daily target is bounded at 100 and durable receipt tampering fails closed
+  ---
+  duration_ms: 22.239062
+  type: 'test'
+  ...
+# Subtest: changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor
+ok 14 - changed source snapshot is quarantined and failed receipt commit rolls back candidate identity and cursor
+  ---
+  duration_ms: 5.963759
+  type: 'test'
+  ...
+# Subtest: facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot
+ok 15 - facts-identical envelope edits cannot extend expiry or alter source authenticity/identity after snapshot
+  ---
+  duration_ms: 14.036147
+  type: 'test'
+  ...
+# Subtest: deleted or mutated parent identity blocks read/retry/new day rather than recounting
+ok 16 - deleted or mutated parent identity blocks read/retry/new day rather than recounting
+  ---
+  duration_ms: 9.470686
+  type: 'test'
+  ...
+# Subtest: same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases
+ok 17 - same stock identity cannot overcommit across orders or missions, including unknown outcome; confirmed cancellation releases
+  ---
+  duration_ms: 40.657334
+  type: 'test'
+  ...
+# Subtest: two real SQLite connections competing for3 units admit exactly one2-unit order
+ok 18 - two real SQLite connections competing for3 units admit exactly one2-unit order
+  ---
+  duration_ms: 146.79452
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 45393.762407

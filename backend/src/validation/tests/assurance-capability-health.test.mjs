@@ -26,9 +26,10 @@ test('new revision resolves historical incidents only with affirmative matching 
   const incident=cp.observe('workspace',probe);cp.close();cp=new AssuranceControlPlane({root,revision:'new',now:()=>++now});
   cp.observe('workspace',{...probe,status:'EXTERNALLY_BLOCKED'});assert.equal(cp.get('workspace','incident',incident.id).status,'DETECTED');
   cp.put('workspace','recovery','uncertain',{id:'uncertain',incidentId:incident.id,status:'UNKNOWN'});
-  cp.observe('workspace',{...probe,status:'HEALTHY'});assert.equal(cp.get('workspace','incident',incident.id).status,'DETECTED');
+  cp.observe('workspace',{...probe,status:'HEALTHY',evidence:{observedAt:now}});assert.equal(cp.get('workspace','incident',incident.id).status,'DETECTED');
   cp.put('workspace','recovery','uncertain',{id:'uncertain',incidentId:incident.id,status:'FAILED'});
-  cp.observe('workspace',{...probe,status:'HEALTHY'});const resolved=cp.get('workspace','incident',incident.id);assert.equal(resolved.status,'RECOVERED');assert.equal(resolved.revision,'old');assert.equal(resolved.verificationRevision,'new');
+  cp.observe('workspace',{...probe,status:'HEALTHY'});assert.equal(cp.get('workspace','incident',incident.id).status,'DETECTED','unbound health cannot close an old-revision incident');
+  cp.observe('workspace',{...probe,status:'HEALTHY',evidence:{observedAt:now}});const resolved=cp.get('workspace','incident',incident.id);assert.equal(resolved.status,'RECOVERED');assert.equal(resolved.revision,'old');assert.equal(resolved.verificationRevision,'new');
   assert.ok(cp.snapshot('workspace').events.some(e=>e.type==='INCIDENT_DETECTED'));
  }finally{cp.close();fs.rmSync(root,{recursive:true,force:true});}
 });

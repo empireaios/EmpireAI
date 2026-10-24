@@ -47,13 +47,39 @@ export type RequestOwnerRecord = {
 
 let captureFenceHeld = false;
 
-/** Synchronous, local-process write fence for owner records. */
+/** Updated cooperating processes share capture/write exclusion. Crashed owners
+ * leave a fail-closed lock; expiry and automatic lock stealing are forbidden. */
+function acquireRequestOwnerExclusion(): () => void {
+  const parent = path.dirname(ownersPath());
+  fs.mkdirSync(parent, { recursive: true });
+  if (fs.realpathSync(parent) !== path.resolve(parent)) throw new Error("REQUEST_OWNER_LOCK_PATH_UNSAFE");
+  const lock = ownersPath() + ".capture-write-lock";
+  try { fs.mkdirSync(lock, { mode: 0o700 }); }
+  catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new Error("REQUEST_OWNER_SHARED_CAPTURE_BUSY");
+    throw error;
+  }
+  const identity = fs.lstatSync(lock);
+  let released = false;
+  return () => {
+    if (released) return;
+    const current = fs.lstatSync(lock);
+    if (!current.isDirectory() || current.isSymbolicLink() || current.dev !== identity.dev || current.ino !== identity.ino)
+      throw new Error("REQUEST_OWNER_LOCK_IDENTITY_CHANGED");
+    fs.rmdirSync(lock);
+    released = true;
+  };
+}
+
+/** Capture holds the same exclusion as the full owner read-modify-write. */
 export function acquireRequestOwnerCaptureFence(): () => void {
   if (captureFenceHeld) throw new Error("REQUEST_OWNER_CAPTURE_BUSY");
+  const releaseShared = acquireRequestOwnerExclusion();
   captureFenceHeld = true;
   let released = false;
   return () => {
     if (released) return;
+    releaseShared();
     released = true;
     captureFenceHeld = false;
   };
@@ -146,20 +172,23 @@ export function getRequestOwner(requestId: string): RequestOwnerRecord | null {
 
 export function persistRequestOwner(record: RequestOwnerRecord): RequestOwnerRecord {
   if (captureFenceHeld) throw new Error("REQUEST_OWNER_CAPTURE_FENCED");
-  const existing = findOwnerByDigest(record.instructionDigest);
-  if (existing) {
-    // Recover same request on retry — never mix with a different instruction.
-    if (existing.completeInstruction !== record.completeInstruction) {
-      throw new Error(
-        `REQUEST_OWNER_COLLISION: digest ${record.instructionDigest} already bound to another instruction`,
-      );
+  const releaseShared = acquireRequestOwnerExclusion();
+  try {
+    const existing = findOwnerByDigest(record.instructionDigest);
+    if (existing) {
+      // Recover same request on retry — never mix with a different instruction.
+      if (existing.completeInstruction !== record.completeInstruction) {
+        throw new Error(
+          `REQUEST_OWNER_COLLISION: digest ${record.instructionDigest} already bound to another instruction`,
+        );
+      }
+      return existing;
     }
-    return existing;
-  }
-  const map = loadOwners();
-  map[record.requestId] = record;
-  saveOwners(map);
-  return record;
+    const map = loadOwners();
+    map[record.requestId] = record;
+    saveOwners(map);
+    return record;
+  } finally { releaseShared(); }
 }
 
 export function ownershipBundle(owner: RequestOwnerRecord): Record<string, string> {

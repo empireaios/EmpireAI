@@ -1,3 +1,4 @@
+import { runCaptureAwareBackground } from "./work8-background-capture.js";
 /** Durable reasoning-only transport. No purchase/publish/spend tools are routed here. */
 import {
   claimNextReasoningRequest,
@@ -102,34 +103,36 @@ export async function runOneDurableReasoningAttempt(options: {
   ready?: () => Promise<boolean>;
   signal?: AbortSignal;
 }): Promise<boolean> {
-  if (options.signal?.aborted) return false;
-  if (options.ready && !(await options.ready())) return false;
-  if (options.signal?.aborted) return false;
-  const job = await claimNextReasoningRequest({
-    owner: options.owner, leaseMs: options.leaseMs ?? 230_000, maxAttempts: options.maxAttempts ?? 3,
-  });
-  if (!job) return false;
-  // If the process dies here, lease expiry makes this full input reclaimable.
-  const result: ReasoningAttempt = options.signal?.aborted
-    ? { ok: false, failureClass: "NETWORK", error: "worker_shutting_down" }
-    : await options.execute(job);
-  if (!result.ok && options.signal?.aborted) {
-    await releaseInterruptedReasoningRequest({ requestId: job.request.requestId, leaseToken: job.request.leaseToken! });
+  return await runCaptureAwareBackground(async () => {
+    if (options.signal?.aborted) return false;
+    if (options.ready && !(await options.ready())) return false;
+    if (options.signal?.aborted) return false;
+    const job = await claimNextReasoningRequest({
+      owner: options.owner, leaseMs: options.leaseMs ?? 230_000, maxAttempts: options.maxAttempts ?? 3,
+    });
+    if (!job) return false;
+    // If the process dies here, lease expiry makes this full input reclaimable.
+    const result: ReasoningAttempt = options.signal?.aborted
+      ? { ok: false, failureClass: "NETWORK", error: "worker_shutting_down" }
+      : await options.execute(job);
+    if (!result.ok && options.signal?.aborted) {
+      await releaseInterruptedReasoningRequest({ requestId: job.request.requestId, leaseToken: job.request.leaseToken! });
+      return true;
+    }
+    await settleReasoningRequest({
+      requestId: job.request.requestId,
+      leaseToken: job.request.leaseToken!,
+      maxAttempts: options.maxAttempts ?? 3,
+      ...(result.ok ? { result: result.result } : {
+        failureClass: result.failureClass,
+        error: result.error,
+        upstreamStatus: result.upstreamStatus,
+        fatal: policyForFailure(result.failureClass) === "FAIL",
+        retryDelayMs: Math.min(30_000, 2 ** job.request.attemptCount * 1_000),
+      }),
+    });
     return true;
-  }
-  await settleReasoningRequest({
-    requestId: job.request.requestId,
-    leaseToken: job.request.leaseToken!,
-    maxAttempts: options.maxAttempts ?? 3,
-    ...(result.ok ? { result: result.result } : {
-      failureClass: result.failureClass,
-      error: result.error,
-      upstreamStatus: result.upstreamStatus,
-      fatal: policyForFailure(result.failureClass) === "FAIL",
-      retryDelayMs: Math.min(30_000, 2 ** job.request.attemptCount * 1_000),
-    }),
-  });
-  return true;
+  }) ?? false;
 }
 
 /** Timer discovers Redis-owned work; it is not the source of ownership. */

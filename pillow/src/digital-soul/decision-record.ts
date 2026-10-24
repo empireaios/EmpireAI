@@ -1,4 +1,6 @@
-import { appendFile, mkdir, readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
+import fs from "node:fs";
+import {acquireExecutiveDecisionJournalLock} from "./recovery-snapshot.js";
 import path from "node:path";
 
 import { DIGITAL_SOUL_DECISION_STORE_RELATIVE } from "./paths.js";
@@ -82,7 +84,12 @@ export async function recordExecutiveDecision(
   };
 
   const filePath = decisionStorePath(repositoryRoot);
-  await mkdir(path.dirname(filePath), { recursive: true });
-  await appendFile(filePath, `${JSON.stringify(record)}\n`, "utf8");
+  const release=acquireExecutiveDecisionJournalLock(repositoryRoot);
+  try{
+    if(!fs.existsSync(path.dirname(filePath)))fs.mkdirSync(path.dirname(filePath),{recursive:true,mode:0o700});
+    const fd=fs.openSync(filePath,fs.constants.O_WRONLY|fs.constants.O_CREAT|fs.constants.O_APPEND|fs.constants.O_NOFOLLOW,0o600);
+    try{const stat=fs.fstatSync(fd);if(!stat.isFile()||stat.nlink!==1)throw Error('EXECUTIVE_DECISION_JOURNAL_UNSAFE');fs.writeFileSync(fd,`${JSON.stringify(record)}\n`);fs.fsyncSync(fd);}finally{fs.closeSync(fd);}
+    const parent=fs.openSync(path.dirname(filePath),'r');try{fs.fsyncSync(parent);}finally{fs.closeSync(parent);}
+  }finally{release();}
   return record;
 }

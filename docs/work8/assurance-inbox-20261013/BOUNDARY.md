@@ -1,0 +1,9 @@
+# Independent observer to authenticated inbox boundary
+
+Base source 7b7b4ec4. Original requirements26/30/34 require Assurance self-failure/degraded detection and truthful durable escalation;41 requires genuine full source-to-finance journey, delegated separately and not claimed here.
+
+Concrete missing connection: independent inspector findings are written to assurance_findings while existing inbox reads only cp_records incidents. Acceptance: primary control-plane absent plus independent persisted domain/watchdog findings reach existing authenticated workspace inbox; read/ack does not resolve source; source unavailability retains prior notices; unknown/malformed source does not look healthy; no foreign-workspace leakage; restart and resolved-history retained. Read is latest100 with explicit incomplete bound, not entire-source certification. Source is system-wide and therefore restricted to existing ws_empire_1 system workspace. No external send, new store, paid inference, deployment, or full26/30/34/41 acceptance claim. Real independent push during host outage remains an external operational dependency.
+
+Existing notification ACL is workspace-authenticated, including operator role. New records explicitly label AUTHENTICATED_SYSTEM_WORKSPACE_PULL_INBOX; no exclusive personal owner access is claimed or new ACL introduced.
+
+Final examination: one integrated test passed using actual native AssuranceStore and recordOwnerAssurance, real auth and global notification routes, source database with no cp_records primary table, actual Brain inbox persistence/reopen, same-workspace operator visibility explicitly labelled, foreign workspace isolation, notice-only acknowledgement, resolved-history retention, 101-source incomplete window and malformed/missing source refusal. Kernel blocks outbound connects via incoming-only-exec; no external messages. Strict focused dependency typecheck passed. No accepted browser campaign repeated.

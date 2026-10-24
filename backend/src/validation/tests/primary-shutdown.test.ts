@@ -10,7 +10,7 @@ import { primaryShutdownTimeoutMs } from "../../runtime/primary-shutdown.js";
 const controllerUrl = new URL("../../runtime/primary-shutdown.ts", import.meta.url).href;
 const loaderUrl = import.meta.resolve("tsx");
 
-async function startFixture(mode: "save" | "hang" | "fail" | "no-child") {
+async function startFixture(mode: "save" | "hang" | "fail" | "no-child" | "store-fail") {
   const dir = await mkdtemp(path.join(tmpdir(), "empire-primary-shutdown-"));
   const workerPath = path.join(dir, "worker.mjs");
   const parentPath = path.join(dir, "parent.mjs");
@@ -45,6 +45,7 @@ async function startFixture(mode: "save" | "hang" | "fail" | "no-child") {
       stopBackground:async()=>{record('sweeper_stop');await new Promise(r=>setTimeout(r,30));record('sweeper_settled');},
       closeServer:()=>new Promise((resolve,reject)=>server.close(e=>e?reject(e):resolve())),
       disconnect:()=>record('redis_disconnect'),
+      closeStores:()=>{record('stores_close');if(${JSON.stringify(mode)}==='store-fail')throw Error('store close failed');},
       report:(event)=>record(event),timeoutMs:1000,
     });
     server.listen(0,'127.0.0.1',()=>{
@@ -89,7 +90,7 @@ test("real primary SIGTERM drains, forwards to child, waits for disk save and su
     fixture.parent.kill("SIGINT"); // repeated signal cannot abort the graceful save
     assert.deepEqual(await fixture.exited, [0, null]);
     assert.deepEqual(JSON.parse(await readFile(fixture.marker, "utf8")), { pendingMutation: "saved-on-shutdown" });
-    assert.deepEqual(await fixture.events(), ["sweeper_stop", "sweeper_settled", "child_signal", "child_saved", "primary_shutdown_complete", "redis_disconnect"]);
+    assert.deepEqual(await fixture.events(), ["sweeper_stop", "sweeper_settled", "child_signal", "child_saved", "stores_close", "primary_shutdown_complete", "redis_disconnect"]);
   } finally { await fixture.cleanup(); }
 });
 
@@ -130,4 +131,12 @@ test("shutdown grace is finite and bounded even with invalid configuration", () 
   assert.equal(primaryShutdownTimeoutMs("Infinity"), 30_000);
   assert.equal(primaryShutdownTimeoutMs("-1"), 1_000);
   assert.equal(primaryShutdownTimeoutMs("900000"), 120_000);
+});
+
+
+test('store finalizer failure denies clean shutdown evidence',async()=>{
+ const fixture=await startFixture('store-fail');try{
+ fixture.parent.kill('SIGTERM');assert.deepEqual(await fixture.exited,[1,null]);
+ const events=await fixture.events();assert.ok(events.includes('stores_close'));assert.ok(events.includes('primary_shutdown_failed'));assert.ok(!events.includes('primary_shutdown_complete'));
+ }finally{await fixture.cleanup();}
 });

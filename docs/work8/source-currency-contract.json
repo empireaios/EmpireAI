@@ -1,0 +1,15 @@
+{
+  "verifiedAt": "2026-10-10T21:42:51Z",
+  "source": "https://developers.cjdropshipping.com/en/api/api2/api/product.html",
+  "exactEndpoint": "/api2.0/v1/product/query",
+  "section": "1.5 Product Details(GET) / Variant",
+  "field": "variants[].variantSellPrice",
+  "documentedUnit": "USD",
+  "shortQuote": "unit: $ (USD)",
+  "scope": "Matched product-detail variant prices only; not parent sellPrice or catalogue sellPrice",
+  "catalogueEndpoint": "/api2.0/v1/product/list",
+  "catalogueParentCurrency": "NOT_ESTABLISHED_BY_EXACT_FIELD_DOCUMENTATION",
+  "detailParentCurrency": "NOT_ESTABLISHED_BY_EXACT_FIELD_DOCUMENTATION",
+  "imageRights": "NOT_ESTABLISHED",
+  "access": "Public documentation read; no authenticated refresh or billable supplier request"
+}

@@ -89,3 +89,101 @@ test('owner-confirmed lesson remains qualified and contradiction removes active 
 }finally{s.done();}});
 test('numeric discrepancy requires matching units; nonexecution is not business failure',()=>{assert.equal(discrepancy([{name:'cost',unit:'SGD',low:10,high:10}],[{name:'cost',unit:'USD',value:16}])[0]!.delta,null);const s=setup();try{s.m.ownerCommand('ws1','owner',{action:'synthetic_experience',experience});s.m.ownerCommand('ws1','owner',{action:'event',event:{id:'cancel',target:'synthetic1',kind:'OUTCOME',note:'Not executed',expectedVersion:0,outcome:{status:'NOT_EXECUTED',observedAt:evidence.observedAt,evidence:[]}}});assert.equal(s.m.get('ws1','synthetic1').current.outcomeStatus,'NOT_EXECUTED');}finally{s.done();}});
 test('retrieval and storage inputs bounded, legacy fixtures not imported, trivial chat not captured',()=>{const s=setup();try{assert.equal(materialExecutiveRequest('hello'),false);assert.equal(materialExecutiveRequest('review institutional lessons'),true);for(let i=0;i<10;i++)s.m.ownerCommand('ws1','owner',{action:'doctrine',id:'d'+i,scope:{domain:'executive'},statement:'x'.repeat(5000),explicitDurableInstruction:true});assert.ok(JSON.stringify(s.m.bootstrap('ws1','strategy')).length<12000);assert.ok(s.m.bootstrap('ws1','strategy').records!.length<=6);assert.match(s.m.bootstrap('ws1','strategy').legacyBackfill!,/NONE/);assert.throws(()=>s.m.ownerCommand('ws1','owner',{action:'synthetic_experience',experience:{...experience,evidence:[],authenticity:'REAL'}}));}finally{s.done();}});
+
+test('owner DEFER persists exactly once across cold process without approval or execution authority',async()=>{
+ const s=setup();try{
+  const {readExecutive}=await import('../../institutional-memory/executive.js');
+  const {spawnSync}=await import('node:child_process');
+  const target=s.m.captureDecision('ws1',{request:'defer-source',session:'original-session',question:'Review product candidate-1',answer:'EVIDENCE-INSUFFICIENT: unmatched source identities',influences:[]}).id;
+  const before=s.m.get('ws1',target);
+  const command={action:'owner_decision',id:'defer-receipt',target,expectedVersion:0,decision:'DEFER',note:'Require attributable matching evidence before reconsideration.'};
+  assert.deepEqual(s.m.ownerCommand('ws1','authenticated-owner',command),{id:'defer-receipt',created:true});
+  assert.deepEqual(s.m.ownerCommand('ws1','authenticated-owner',command),{id:'defer-receipt',created:false});
+  assert.throws(()=>s.m.ownerCommand('ws1','authenticated-owner',{...command,note:'Changed reason'}),/MEMORY_IDEMPOTENCY_CONFLICT/);
+  assert.throws(()=>s.m.ownerCommand('ws1','authenticated-owner',{...command,id:'stale-defer'}),/MEMORY_VERSION_CONFLICT/);
+  assert.throws(()=>s.m.ownerCommand('ws2','authenticated-owner',{...command,id:'wrong-workspace'}),/INVALID_EXPERIENCE_TARGET/);
+  assert.throws(()=>s.m.ownerCommand('ws1','authenticated-owner',{...command,id:'forged-origin',expectedVersion:1,origin:{actor:'SYSTEM'}}));
+  const moduleUrl=new URL('../../institutional-memory/store.ts',import.meta.url).href;
+  const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',`import {InstitutionalMemory} from ${JSON.stringify(moduleUrl)};console.log(JSON.stringify(new InstitutionalMemory(${JSON.stringify(s.filename)}).get('ws1',${JSON.stringify(target)})));`],{encoding:'utf8'});
+  assert.equal(child.status,0,child.stderr);
+  const cold=JSON.parse(child.stdout);
+  assert.equal(cold.version,1);assert.equal(cold.events.length,1);assert.equal(cold.events[0].decision,'DEFER');
+  assert.equal(cold.events[0].note,command.note);assert.equal(cold.events[0].origin.source,'authenticated-owner:authenticated-owner');
+  assert.equal(cold.events[0].origin.actor,'GRAND_KING');assert.equal(cold.events[0].grantsAuthority,false);
+  assert.deepEqual(cold.origin,before.origin);assert.equal(cold.request,before.request);assert.equal(cold.session,before.session);assert.equal(cold.decision,before.decision);
+  const projected=readExecutive(new InstitutionalMemory(s.filename),'ws1',new Date().toISOString().slice(0,10)).recommendations.find((r:any)=>r.id===target);
+  assert.ok(projected);assert.ok(projected.ownerDecision);assert.equal(projected.status,'DEFERRED');assert.equal(projected.ownerDecision.id,'defer-receipt');assert.equal(projected.executionStatus,'NOT_EXECUTED');assert.equal(projected.grantsAuthority,false);assert.equal(projected.outcome,null);
+ }finally{s.done();}
+});
+
+test('native owner DEFER button sends the authenticated version-bound durable command',async()=>{
+ const ts=await import('typescript');const vm=await import('node:vm');
+ const source=fs.readFileSync(new URL('../../../../empireai-web/components/owner/work7/OwnerJourneys.tsx',import.meta.url),'utf8');
+ const card=source.slice(source.indexOf('function DecisionCard('),source.indexOf('function PlanReview('));
+ const executable=ts.transpile(card+'\nglobalThis.renderDecision=DecisionCard;', {jsx:ts.JsxEmit.React,target:ts.ScriptTarget.ES2022});
+ const render=(note:string,ownerDecision:unknown=null,receipt=true)=>{
+  const calls:any[]=[];let refreshed=0,state=0,feedback='';
+  const context:any={React:{createElement:(type:any,props:any,...children:any[])=>({type,props:props??{},children})},useState:()=>{const index=state++;return [[note,false,''][index],(value:string)=>{if(index===2)feedback=value;}];},row:(v:any)=>v??{},rows:(v:any)=>Array.isArray(v)?v:[],txt:(v:any,fallback='')=>v==null?fallback:String(v),ownerLabel:String,recommendationHeadline:String,s:{},Evidence:()=>null,Links:()=>null,crypto:{randomUUID:()=> 'unique-defer'},fetch:async(url:string,options:any)=>{calls.push({url,...options});return{ok:true,json:async()=>({result:receipt?{id:'durable-defer-receipt'}:{}})};}};
+  vm.runInNewContext(executable,context);
+  const item={id:'candidate-decision',version:0,source:'completed-reasoning:fixture-request',ownerDecision};
+  const tree=context.renderDecision({item,refresh:()=>refreshed++});
+  const buttons:any[]=[];const visit=(node:any)=>{if(!node||typeof node!=='object')return;if(node.type==='button')buttons.push(node);for(const child of node.children??[])Array.isArray(child)?child.forEach(visit):visit(child);};visit(tree);
+  return {buttons,calls,refreshed:()=>refreshed,feedback:()=>feedback};
+ };
+ const missing=render('');assert.equal(missing.buttons.find(b=>b.children[0]==='Defer decision').props.disabled,true);
+ const decided=render('Valid reason',{id:'prior-receipt'});assert.equal(decided.buttons.find(b=>b.children[0]==='Defer decision').props.disabled,true);
+ const ready=render('Require matching source evidence.');const button=ready.buttons.find(b=>b.children[0]==='Defer decision');assert.equal(button.props.disabled,false);assert.equal(ready.calls.length,0);button.props.onClick();await new Promise(resolve=>setImmediate(resolve));
+ assert.equal(ready.calls.length,1);assert.equal(ready.calls[0].url,'/api/owner/advisor/memory');assert.equal(ready.calls[0].method,'POST');assert.equal(ready.calls[0].credentials,'include');
+ assert.deepEqual(JSON.parse(ready.calls[0].body),{action:'owner_decision',id:'work7-decision-unique-defer',target:'candidate-decision',expectedVersion:0,decision:'DEFER',note:'Require matching source evidence.'});assert.equal(ready.refreshed(),1);assert.match(ready.feedback(),/Decision recorded.*durable-defer-receipt/);
+ const unconfirmed=render('Require evidence.',null,false);unconfirmed.buttons.find(b=>b.children[0]==='Defer decision').props.onClick();await new Promise(resolve=>setImmediate(resolve));assert.equal(unconfirmed.refreshed(),0);assert.match(unconfirmed.feedback(),/no durable receipt/);assert.doesNotMatch(unconfirmed.feedback(),/Decision recorded/);
+ assert.deepEqual(ready.buttons.slice(0,3).map(b=>b.children[0]),['Approve recommendation','Reject recommendation','Request revision']);
+});
+
+test('isolated authenticated DEFER route binds owner and source under concurrent version commands',async()=>{
+ const {default:Fastify}=await import('fastify');const {default:cookie}=await import('@fastify/cookie');
+ const {installLockedCommissioning}=await import('../../runtime/locked-commissioning.js');
+ const {registerAdvisorRoutes}=await import('../../advisor/routes.js');const {AdvisorStore}=await import('../../advisor/store.js');
+ const {createAuthMiddleware}=await import('../../auth/middleware.js');const {InMemorySessionStore}=await import('../../auth/session-store.js');const {env}=await import('../../config/env.js');
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'work8-defer-route-'));fs.mkdirSync(path.join(root,'commissioning'));
+ const saved={EMPIRE_RUNTIME_PROFILE:process.env.EMPIRE_RUNTIME_PROFILE,EMPIRE_ENGINEERING_TEST_MODE:process.env.EMPIRE_ENGINEERING_TEST_MODE,RAILWAY_VOLUME_MOUNT_PATH:process.env.RAILWAY_VOLUME_MOUNT_PATH};
+ const app=Fastify(),sessions=new InMemorySessionStore(),file=path.join(root,'commissioning','pillow-institutional.sqlite'),memory=new InstitutionalMemory(file);
+ Object.assign(process.env,{EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',RAILWAY_VOLUME_MOUNT_PATH:root});
+ try{
+ await app.register(cookie);installLockedCommissioning(app);registerAdvisorRoutes(app,createAuthMiddleware(sessions),new AdvisorStore(path.join(root,'commissioning','communications.sqlite')));
+ const owner={id:'isolated-owner',email:env.FOUNDER_EMAIL,name:'Isolated owner fixture',role:'founder' as const,workspaceId:'ws_empire_1'};
+ const token=(await sessions.create(owner)).token,headers={authorization:'Bearer '+token};
+ let source:{id:string};let cloneDigest:string|null=null;
+ if(process.env.WORK8_OWNER_READBACK_FIXTURE){
+  const fixture=JSON.parse(fs.readFileSync(process.env.WORK8_OWNER_READBACK_FIXTURE,'utf8'));const envelope=JSON.parse(fixture.text);const original=envelope.data;
+  assert.equal(envelope.readOnly,true);assert.equal(envelope.workspace,owner.workspaceId);assert.equal(original.id,'decision_cdd63cfa788060b6d2d30f1511efabdae0f182d6');assert.equal(original.origin.source,'completed-reasoning:pcr_27fb1ed5ddb24f5a');assert.equal(original.version,0);assert.deepEqual(original.events,[]);
+  const {events,version,current,...body}=original;cloneDigest=hash(body);memory.identity(owner.workspaceId);
+  const {DatabaseSync}=await import('node:sqlite');const db=new DatabaseSync(file);try{db.prepare('INSERT INTO records VALUES(?,?,?,?,?,?,?,?)').run(owner.workspaceId,body.id,body.kind,body.scope.domain,body.origin.authenticity,body.recordedAt,JSON.stringify(body),cloneDigest);}finally{db.close();}
+  source={id:body.id};
+ }else source=memory.captureDecision(owner.workspaceId,{request:'isolated-defer-source',session:'isolated-defer-session',question:'[SYNTHETIC_MEMORY_TEST] Review isolated candidate-1',answer:'EVIDENCE-INSUFFICIENT: exact candidate-1 sourcing remains unmatched',influences:[]});
+ const before=memory.get(owner.workspaceId,source.id);
+ const command={action:'owner_decision',id:'isolated-defer-a',target:source.id,expectedVersion:0,decision:'DEFER',note:'Retain the existing EVIDENCE-INSUFFICIENT conclusion. The referenced WALI/OPNICE Amazon evidence and CJ decorative-tray evidence are not sufficiently matched or attributable to establish product eligibility. Require genuine missing evidence before reconsideration.'};
+ const post=(payload:Record<string,unknown>,auth:Record<string,string>={})=>app.inject({method:'POST',url:'/api/owner/advisor/memory',payload,headers:auth});
+  assert.equal((await post(command)).statusCode,401);
+  assert.equal((await post(command,{cookie:'empireai_session='+token})).statusCode,403);
+  assert.equal((await post(command,{...headers,origin:'https://evil.example'})).statusCode,403);
+  for(const override of [{role:'operator' as const},{workspaceId:'unrelated-workspace'},{email:'other-owner@example.test'}]){
+   const other=(await sessions.create({...owner,...override})).token;assert.equal((await post(command,{authorization:'Bearer '+other})).statusCode,403);
+  }
+  assert.equal(memory.get(owner.workspaceId,source.id).version,0);
+  const commands=[command,{...command,id:'isolated-defer-b'}];
+  const results=await Promise.all(commands.map(c=>post(c,headers)));
+  assert.deepEqual(results.map(r=>r.statusCode).sort(),[200,400]);
+  const winner=commands[results.findIndex(r=>r.statusCode===200)]!;
+  const successful=results.find(r=>r.statusCode===200)!.json();assert.equal(successful.result.id,winner.id);assert.equal(successful.result.created,true);assert.equal(successful.grantsAuthority,false);assert.equal(successful.inferenceCalls,0);
+  const duplicate=await post(winner,headers);assert.equal(duplicate.statusCode,200);assert.equal(duplicate.json().result.created,false);
+  assert.equal((await post({...winner,note:'Altered replay note'},headers)).statusCode,400);
+  assert.equal((await post({...winner,id:'isolated-stale-defer'},headers)).statusCode,400);
+  assert.equal((await post({...winner,id:'isolated-forged-actor',expectedVersion:1,origin:{actor:'SYSTEM'}},headers)).statusCode,400);
+  const readback=await app.inject({method:'GET',url:'/api/owner/advisor/read?domain=memory&id='+source.id,headers});assert.equal(readback.statusCode,200,readback.body);
+  const record=readback.json().data;assert.equal(record.id,source.id);assert.equal(record.version,1);assert.equal(record.events.length,1);assert.equal(record.events[0].kind,'OWNER_DECISION');assert.equal(record.events[0].decision,'DEFER');assert.equal(record.events[0].note,winner.note);assert.equal(record.events[0].origin.actor,'GRAND_KING');assert.equal(record.events[0].origin.source,'authenticated-owner:'+owner.id);assert.equal(record.events[0].grantsAuthority,false);assert.equal(record.origin.authenticity,before.origin.authenticity);
+  assert.deepEqual(record.origin,before.origin);assert.equal(record.decision,before.decision);assert.equal(record.request,before.request);assert.equal(record.session,before.session);
+  const executive=await app.inject({method:'GET',url:'/api/owner/advisor/executive',headers});assert.equal(executive.statusCode,200,executive.body);const projected=executive.json().recommendations.find((r:any)=>r.id===source.id);assert.ok(projected);assert.equal(projected.version,1);assert.equal(projected.status,'DEFERRED');assert.equal(projected.ownerDecision.id,winner.id);assert.equal(projected.source,before.origin.source);assert.equal(projected.executionStatus,'NOT_EXECUTED');assert.equal(projected.grantsAuthority,false);assert.equal(projected.outcome,null);
+  assert.equal((await app.inject({method:'POST',url:'/amazon/publish',payload:{},headers})).statusCode,423);
+  console.log(JSON.stringify({examination:'ISOLATED_AUTHENTICATED_DEFER_ROUTE',fixture:cloneDigest?'CLONED_HISTORICAL_RECORD_SYNTHETIC_LOCAL_OWNER_AUTHORITY':'SYNTHETIC_RECORD_AND_LOCAL_OWNER_AUTHORITY',target:source.id,source:before.origin.source,cloneDigest,versionBefore:0,versionAfter:record.version,eventCount:record.events.length,concurrentWinners:1,actualOwnerDecisionPersisted:false,externalEffects:0}));
+ }finally{await app.close();for(const [name,value] of Object.entries(saved)){if(value===undefined)delete process.env[name];else process.env[name]=value;}fs.rmSync(root,{recursive:true,force:true});}
+});

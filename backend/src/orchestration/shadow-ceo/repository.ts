@@ -16,6 +16,8 @@ const TABLE = "shadow_ceo_records";
 export type ShadowCeoRepositoryOptions = {
   /** File path or :memory:… — when omitted, uses a default under cwd/.data */
   dbPath?: string;
+  /** Recovery-owned existing-file view: never migrate or persist source bytes. */
+  captureReadOnly?: boolean;
 };
 
 export function ensureShadowCeoTables(db: EmpireDatabase): void {
@@ -43,11 +45,17 @@ export class SqliteShadowCeoRepository {
 
   constructor(options: ShadowCeoRepositoryOptions = {}) {
     this.dbPath = options.dbPath ?? resolveShadowCeoDbPath();
-    if (!this.dbPath.startsWith(":memory:")) {
+    if (!options.captureReadOnly && !this.dbPath.startsWith(":memory:")) {
       fs.mkdirSync(path.dirname(this.dbPath), { recursive: true });
     }
-    this.db = new EmpireDatabase(this.dbPath);
-    ensureShadowCeoTables(this.db);
+    this.db = new EmpireDatabase(this.dbPath, options.captureReadOnly === true);
+    if (options.captureReadOnly) {
+      try {
+        // Validate the existing schema without migrations or writes. Missing or
+        // damaged stores are evidence of refusal, never authority to recreate.
+        this.db.prepare(`SELECT id,kind,objective_id,idempotency_key,record_json,created_at,updated_at FROM ${TABLE} LIMIT 0`).all();
+      } catch (error) { this.db.close(); throw error; }
+    } else ensureShadowCeoTables(this.db);
   }
 
   /** Flush durable state to disk (no-op for in-memory). */

@@ -1,3 +1,4 @@
+import { runCaptureAwareBackground } from "../../../runtime/work8-background-capture.js";
 import { getPillowAuthority } from "../../pillow-commissioning/pillow-authority.js";
 import type { AuthorityOutput, ExecutionJob, ExecutionReceipt } from "./contract.js";
 import { MissionExecutionStore } from "./store.js";
@@ -42,7 +43,7 @@ export class MissionExecutionRunner {
   tick(): Promise<void> {
     if (this.paused) return Promise.resolve();
     if (this.active) return this.active;
-    this.active = this.processOne().catch(() => { this.lastError = "EXECUTION_STORAGE_OR_RECONCILIATION_UNAVAILABLE"; })
+    this.active = runCaptureAwareBackground(() => this.processOne()).catch(() => { this.lastError = "EXECUTION_STORAGE_OR_RECONCILIATION_UNAVAILABLE"; })
       .finally(() => { this.active = null; });
     return this.active;
   }

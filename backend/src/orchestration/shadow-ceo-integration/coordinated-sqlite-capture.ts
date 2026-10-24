@@ -1,5 +1,5 @@
 import type { EmpireDatabase } from "../../brain/sqlite-database.js";
-import type { SqliteShadowCeoRepository } from "../shadow-ceo/repository.js";
+import { openShadowCeoRepository, type SqliteShadowCeoRepository } from "../shadow-ceo/repository.js";
 
 /** Hold both candidate SQL.js handles through the caller's disk verification.
  * The caller must separately drain HTTP, background jobs, JSON/native stores,
@@ -22,4 +22,17 @@ export async function withQuiescedBrainAndShadowCapture<T>(
     try { shadowFence?.release(); }
     finally { releaseBrain(); }
   }
+}
+
+/** Call ONLY inside the complete applicable admission drain. This recovery-owned
+ * view is loaded after admitted writers finish, never writes/migrates the source,
+ * and is closed before the enclosing drain reopens admissions. Surviving handles
+ * still fail the existing SQL.js alias check; other processes remain separate. */
+export async function withExistingShadowCapture<T>(
+  brain: EmpireDatabase, shadowPath: string,
+  captureAndVerify: (shadow: SqliteShadowCeoRepository) => T | Promise<T>,
+): Promise<T> {
+  const shadow = openShadowCeoRepository({dbPath:shadowPath,captureReadOnly:true});
+  try { return await withQuiescedBrainAndShadowCapture(brain,shadow,()=>captureAndVerify(shadow)); }
+  finally { shadow.close(); }
 }

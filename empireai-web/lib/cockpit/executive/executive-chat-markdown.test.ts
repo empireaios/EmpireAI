@@ -9,6 +9,43 @@ import {
 } from "./executive-chat-markdown.ts";
 
 describe("ExecutiveChatMarkdown helpers", () => {
+  it("renders saved pipe tables as cells without collapsing or changing the source", () => {
+    const src = "| Test | Required support |\r\n|---|---|\r\n| **Customer value** | Evidence. 2. Next check |\r\n| Served economics | Costs and margin |";
+    assert.equal(looksLikeMarkdown(src), true);
+    assert.deepEqual(parseExecutiveChatBlocks(src), [{
+      type: "table", headers: ["Test", "Required support"], rows: [
+        ["**Customer value**", "Evidence. 2. Next check"],
+        ["Served economics", "Costs and margin"],
+      ],
+    }]);
+    assert.ok(src.includes("\r\n|---|---|\r\n"));
+  });
+
+  it("supports optional outer pipes, alignment delimiters, escaped pipes and text-only HTML", () => {
+    assert.deepEqual(parseExecutiveChatBlocks("Name | Evidence\n:--- | ---:\nA\\|B | <script>alert(1)</script>"), [{
+      type: "table", headers: ["Name", "Evidence"], rows: [["A|B", "<script>alert(1)</script>"]],
+    }]);
+  });
+
+  it("does not swallow tables after prose or list bodies, or the following paragraph", () => {
+    const table = "| Test | Support |\n|---|---|\n| Value | Evidence |";
+    for (const prefix of ["Introduction", "1. Review\nDetails"]) {
+      const blocks = parseExecutiveChatBlocks(`${prefix}\n${table}\n\nAfter the table.`);
+      assert.equal(blocks.length, 3);
+      assert.equal(blocks[1]?.type, "table");
+      assert.deepEqual(blocks[2], { type: "p", text: "After the table." });
+    }
+  });
+
+  it("leaves ordinary pipes and malformed tables as text, retaining mismatched rows", () => {
+    for (const src of ["A | B", "A | B\n--- | invalid", "A | B\n--- | --- | ---"]) {
+      assert.equal(looksLikeMarkdown(src), false);
+      assert.equal(parseExecutiveChatBlocks(src).some((b) => b.type === "table"), false);
+    }
+    const blocks = parseExecutiveChatBlocks("| A | B |\n|---|---|\n| one | two | three |");
+    assert.deepEqual(blocks[1], { type: "p", text: "| one | two | three |" });
+  });
+
   it("detects bold/lists/headings as markdown", () => {
     assert.equal(looksLikeMarkdown("**What I Know**\n\n- one\n- two"), true);
     assert.equal(looksLikeMarkdown("## Heading\n\nParagraph"), true);
