@@ -1,0 +1,37 @@
+{
+  "source": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+  "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+  "reviewer": "recovery_m",
+  "status": "AWAITING_AUTOMATIC_HOSTED_RECEIPT",
+  "scope": "Generated actual-index coupled readonly pending continuation, preserving prior accepted graph/index/Redis/session evidence",
+  "assertions": [
+    "Exact source revision, capture digest, source containment and thirteen-store preboot identity",
+    "Actual application-owned runner paused before capture of exactly one queued authority.snapshot.v1 job and its exact dispatch intent",
+    "Fresh generated child capability and independent expected digest validated before enabling the existing isolated executor; no imported historical owner authority",
+    "Original shared 180-second readiness, continuation, restart and cleanup deadline without relaxed health predicates",
+    "Exactly one attempt, one readonly output and one receipt reconciliation, with exact source/build/workspace/owner/job binding",
+    "All unrelated mission identities/history preserved; only exact reviewed continuation/reconciliation deltas allowed",
+    "Clean restart preserves completed state and produces no replay or new receipt/event",
+    "Original bearer/cookie sessions, unchanged expiry/TTL, forged-session rejection and original mission-scope denial",
+    "Redis capture-owner and paused queue admission fences retained across both index processes",
+    "Financial and Cost Centre records, immutable journal and original canonical records preserved",
+    "Independently classify exact audit additions and execution/mission deltas; never blanket-allow new rows",
+    "Index and Redis stop, outer container stopped without restart/survivors, no external effects or paid inference"
+  ],
+  "notEstablishedByScopedPass": [
+    "Complete global current/prior admitted writer membership",
+    "All production continuation topology",
+    "Protected off-host custody and independent full-data readback",
+    "Complete O33/O39/A1/A2/A3/A5 acceptance"
+  ],
+  "membershipBoundary": {
+    "required": "Existing launcher/platform admitted-instance inventory and lifecycle history including prior-instance termination, exact process/start identity or equivalent platform instance identity, and canonical store/lock/Redis endpoint/db mappings for capture interval",
+    "availableReadInterfaces": "Railway service/deployment/config/log tools can bound declared platform services and deployments; no exposed process-list/exec primitive establishes exhaustive admitted writer membership",
+    "noRepeatedInventory": true,
+    "noNewInfrastructure": true,
+    "noCredentialsRead": true
+  },
+  "ciObserver": "ci_m",
+  "duplicateTestsOrDispatches": 0,
+  "newAcceptedIds": []
+}

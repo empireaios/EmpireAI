@@ -1,0 +1,32 @@
+{
+  "recordType": "M_REMAINING_SHARED_RECOVERY_BOUNDARY",
+  "reviewer": "recovery_m",
+  "currentResult": "Hosted generated readonly queued work restored and completed exactly once; clean restart did not replay it. No source repair is required for this accepted boundary.",
+  "actualCaptureCoverage": {
+    "primary": {"pid":4637,"startTicks":"19529","namespacePid":1,"entrypoint":"scripts/work8/hh4-generated-primary.mjs"},
+    "worker": {"pid":4669,"startTicks":"19534","namespacePid":13,"entrypoint":"scripts/work8/hh4-generated-worker.mjs"},
+    "scope": "The two declared generated capture processes and their contained descendants. This is not an inventory of all production or still-active prior application instances.",
+    "completeLiveState": false,
+    "bootAllowed": false
+  },
+  "remainingCriterion": "Complete exclusion and coordinated capture/replay for every admitted writer and transport in the declared operating topology, including still-active prior instances; then protected custody and same-set fresh operational restoration.",
+  "smallestMissingInput": {
+    "kind": "Existing platform/launcher authenticated read-only membership and lifecycle export for the capture interval",
+    "requiredFields": [
+      "Declared service/role and complete current/prior instance set, including primary, worker, watchdog and Assurance/observer where admitted",
+      "Instance or process identity with start identity, activation/termination state and interval",
+      "Secret-free canonical SQL/JSON/visual-memory/session/journal roots and coordination-lock identities",
+      "Secret-free Redis endpoint identity, logical database and every admitted producer route",
+      "Which writer/exclusion mechanism covers each member and evidence that prior writers are terminated or fenced"
+    ],
+    "availableInterfaceLimit": "Current Railway tools expose service/deployment/config/log reads but no process-list or runtime-exec primitive that supplies this exhaustive admitted-writer export. A service list alone cannot prove all writers or their actual shared storage/lock mappings.",
+    "notRequested": "No production restart, deployment, new host, infrastructure purchase, credential disclosure or extra retention standard."
+  },
+  "locallyExecutableNow": "Preserve and classify the exact new artifact and reuse accepted O19/Redis/rollback evidence. Neither another synthetic fixture nor repackaging the inspection archive can supply the missing authoritative operating membership.",
+  "afterInput": "Review each declared member against existing exclusion hooks; identify only actual uncovered writers. Use the already authorized isolated recovery infrastructure for one shared full-coverage examination once the declared topology and protected complete dataset are available. Any necessary changed source receives narrow review and exact-tree approval.",
+  "custodyBoundary": "The available snapshot remains an inspection/generated recovery set, not a complete operational backup. Object-specific retention/version protection, runtime alteration/deletion exclusion, independent authenticated complete-data readback and same-set corruption refusal/full restoration are still required.",
+  "acceptedEvidenceReused": ["HH3/HH4", "L actual index/watchdog readiness after explicit persist", "M actual-index generated readonly pending continuation and restart", "O19 approval-to-listing and fresh-process idempotency", "Prior Redis/AOF/session and rollback scoped acceptance"],
+  "newSourceChanges": 0,
+  "duplicateTests": 0,
+  "newCompleteAcceptedIds": []
+}

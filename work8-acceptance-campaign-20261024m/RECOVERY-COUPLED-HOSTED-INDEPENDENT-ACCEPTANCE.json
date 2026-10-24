@@ -1,0 +1,66 @@
+{
+  "recordType": "INDEPENDENT_M_HOSTED_COUPLED_PENDING_ACCEPTANCE",
+  "decision": "PASS_SCOPED_GENERATED_READONLY_COUPLED_CONTINUATION_AND_RESTART",
+  "reviewer": "recovery_m",
+  "source": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+  "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+  "artifactId": 12563823520,
+  "artifactSha256": "16074bef0bbf1b6d44944eb15531521a10912b2808f8d40c278781283a09d230",
+  "captureDigest": "eaa7b58dc54d8c57c82f18524dbd05eb0ecd4fdfc60148e50f3d954cd69c6762",
+  "containerElapsedSeconds": 18.791961,
+  "originalDeadlineSeconds": 180,
+  "method": "Independent original artifact readback, source-oracle/completed/restart equality and exact mutation classification; no runtime or accepted test reexecution",
+  "jobId": "mae_912cb37c639f7a971517ca0f10e2ba9faec9d70d47d7df6ef2533347adb714ef",
+  "receiptId": "maer_944855b140409a0f74b14770fa2c38dce1ebcbaa3e77938b6c41e08349941e41",
+  "attempts": 1,
+  "outputEvents": 1,
+  "restartStateUnchanged": true,
+  "auditClassification": {
+    "priorRows": 48,
+    "afterRows": 52,
+    "priorRowsUnchanged": true,
+    "acceptedAddedActions": [
+      "pillow.startup",
+      "pillow.shutdown",
+      "pillow.startup",
+      "pillow.shutdown"
+    ],
+    "reason": "Two actual index lifecycles; exact system/pillow-host audit additions and timestamps match two starts/stops. Reuses unchanged lifecycle-source classification, not a general allowlist."
+  },
+  "mutationClassification": {
+    "executionJobs": "Exact singleton queued-to-completed transition, immutable binding, one attempt, readonly output and non-authoritative receipt",
+    "executionEvents": "Original admission retained; exactly one claimed/output-committed/reconciled sequence",
+    "missionSnapshot": "Two original missions retained; unrelated mission unchanged and all prior history prefix preserved; only the reviewed Waiting-to-Running-to-Completed reconciliation, one receipt checkpoint and corresponding audit/timeline additions",
+    "otherStores": "No other table changes; financial and Cost Centre exact equality preserved"
+  },
+  "preserved": [
+    "Original bearer/cookie session identity and TTL checks",
+    "Original mission-scope denial and forged-session rejection",
+    "Redis owner/pause admission fence",
+    "Thirteen-store preboot equality and immutable runtime journal",
+    "Pillow NOT_BORN, commerce LOCKED, no imported historical authority",
+    "Nonroot network-none readonly-container isolation; both index processes and Redis stopped; no restart"
+  ],
+  "limits": [
+    "Generated readonly authority.snapshot.v1 continuation only, not real business pending work",
+    "Complete global current/prior writer membership and production continuation topology remain unproved",
+    "Protected off-host custody and independently authenticated complete-data restore remain unproved",
+    "No complete O33/O39/A1/A2/A3/A5 acceptance inferred"
+  ],
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "missionStatus": "IN_PROGRESS",
+  "certification": "NO_GO",
+  "evidenceSha256": {
+    "pending-restoration-results/pending-restoration-result.json": "6cc17f2ed5e8041fc958b893f1668bcab276b25d7629112de21f0f543b451f69",
+    "pending-restoration-results/pending-continuation-state.json": "056bdb7829bb7bb45fcaebd5c1f2b3b14cc42b96acb989799d6b13874a421776",
+    "pending-restoration-results/index-audit-row-delta.json": "6df7c57a35aaba404ebac89f899915b3b09b171df62f24ab81786c75056020f4",
+    "pending-restoration-results/pending-restart-last-poll.json": "58c07467f707a113286e02cc3c348f04cf8ccff6228fea6d0aa53671c4580e94",
+    "pending-restoration-container.json": "b7ee4790bf49696d8bc672aa83a041dd5810a0f5601002dabfb75a49b1a873ae",
+    "pending-restoration.log": "237b796ec77940c31443139e1df443b4012e66af3fe24b62c238dc8a52579925",
+    "container-evidence/hh4-worker-ready.json": "0f6089d41bac4e41e8391e55681951f8a57a341f6f55a00948fb5249d00ba206",
+    "container-evidence/hh4-held.json": "82663d39609480f5e300bd0d99fd8a707e6470175aa544d148e0b13be2b89e66"
+  }
+}

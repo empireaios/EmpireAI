@@ -1,0 +1,59 @@
+{
+  "source": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+  "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+  "run": 40104285277,
+  "job": 120902628184,
+  "attempt": 1,
+  "steps": [
+    {
+      "name": "Examine generated application held capture and external containment",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-10-24T14:53:17Z",
+      "completed_at": "2026-10-24T14:53:27Z"
+    },
+    {
+      "name": "Isolated restored application graph with original session and retained fences",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 14,
+      "started_at": "2026-10-24T14:53:27Z",
+      "completed_at": "2026-10-24T14:53:35Z"
+    },
+    {
+      "name": "Restored actual index and watchdog from same frozen capture",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 15,
+      "started_at": "2026-10-24T14:53:35Z",
+      "completed_at": "2026-10-24T14:53:44Z"
+    },
+    {
+      "name": "Coupled readonly pending continuation and restart from same frozen capture",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 16,
+      "started_at": "2026-10-24T14:53:44Z",
+      "completed_at": "2026-10-24T14:54:03Z"
+    },
+    {
+      "name": "Preserve actual generated application startup and held capture evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 17,
+      "started_at": "2026-10-24T14:54:03Z",
+      "completed_at": "2026-10-24T14:54:04Z"
+    }
+  ],
+  "artifact": {
+    "id": 12563823520,
+    "bytes": 564469,
+    "sha256": "16074bef0bbf1b6d44944eb15531521a10912b2808f8d40c278781283a09d230"
+  },
+  "rawReceiptStatus": "AWAITING_INDEPENDENT_MUTATION_CLASSIFICATION",
+  "newWholeRowsAccepted": [],
+  "scope": "Hosted generated application, actual index readonly pending continuation and restart. Independent acceptance remains separate. No global writer/custody/production authority inference.",
+  "dispatches": 0,
+  "reruns": 0
+}

@@ -1,0 +1,68 @@
+{
+  "recordType": "INDEPENDENT_M_COMPLETE_ROW_RECONCILIATION",
+  "reviewer": "certification_m",
+  "source": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+  "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+  "receiptReview": "Verified original artifact SHA256 and all eight cited evidence hashes; reviewed independent recovery decision and exact remaining operating membership/custody boundary. No test reexecution.",
+  "scopedDecision": "PASS_SCOPED_GENERATED_READONLY_COUPLED_CONTINUATION_AND_RESTART",
+  "originalDeadlineSeconds": 180,
+  "observedContainerSeconds": 18.791961,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "missionStatus": "IN_PROGRESS",
+  "certification": "NO_GO",
+  "reason": "Generated readonly queued-work restoration satisfies its examination, but global current/prior writers, all production continuations, protected complete-data restoration and other outstanding contracts remain unproved.",
+  "ownerDeferBoundary": "Current hosted route fixture is synthetic fallback, not exact historical clone or live owner action; prior L local clone scope remains separate.",
+  "fullCITerminal": "ALL_FOUR_SUCCESS_ATTEMPT_1",
+  "currentCI": {
+    "source": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+    "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+    "runs": [
+      {
+        "id": 40104285260,
+        "name": "Product path CI",
+        "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-10-24T15:01:13Z"
+      },
+      {
+        "id": 40104285262,
+        "name": "Pillow semantic repair CI",
+        "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-10-24T14:55:08Z"
+      },
+      {
+        "id": 40104285264,
+        "name": "Independent Assurance Core",
+        "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-10-24T14:50:45Z"
+      },
+      {
+        "id": 40104285277,
+        "name": "Pillow runtime repair CI",
+        "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-10-24T15:03:31Z"
+      }
+    ],
+    "runtimeJobs": 6,
+    "productJobs": 10,
+    "dispatches": 0,
+    "reruns": 0
+  },
+  "newAcceptedIds": [],
+  "terminalCIReceiptSha256": "a77bfb5403da66c4fa40abcc704f72179b2b454e13103c890cf42862d93f260d",
+  "noSourceSuccessorRequired": true
+}

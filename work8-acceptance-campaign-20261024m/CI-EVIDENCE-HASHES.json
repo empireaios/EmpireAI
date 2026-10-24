@@ -1,0 +1,58 @@
+{
+  "CI-TERMINAL-SUMMARY.json": {
+    "bytes": 1274,
+    "sha256": "a77bfb5403da66c4fa40abcc704f72179b2b454e13103c890cf42862d93f260d"
+  },
+  "CI-INDEPENDENT-OBSERVATION.md": {
+    "bytes": 2180,
+    "sha256": "5f8b83279ba353610f50050a772c1170e9b3780fd829132ca15b77e94889832e"
+  },
+  "CI-TARGET-OBSERVATION.json": {
+    "bytes": 2017,
+    "sha256": "1bf2ff380a5687679a5e25de58c18351241ad02556fe998ef46d91245808efaa"
+  },
+  "CI-ARTIFACT-METADATA.json": {
+    "bytes": 1695,
+    "sha256": "3b734b74ad3ea38ea432b9ec8e05f8a994b9e01f127a3cc695afacd0a694feae"
+  },
+  "ci-runtime-jobs.json": {
+    "bytes": 29673,
+    "sha256": "241bae1638b3f331216534178bdf321882502d938895e51465f71688ff81d204"
+  },
+  "ci-product-jobs.json": {
+    "bytes": 43889,
+    "sha256": "bfe8bb9bd09b148abc0197dea2898ec067441a53c670126a9f0dfe7421641e10"
+  },
+  "hh4.zip": {
+    "bytes": 564469,
+    "sha256": "16074bef0bbf1b6d44944eb15531521a10912b2808f8d40c278781283a09d230"
+  },
+  "runtime-redis-job.log": {
+    "bytes": 467472,
+    "sha256": "8a043cc7762b388b44309140f3afc6ca5d99454e41ec76fa5ea2e8bbfde69ea5"
+  },
+  "backend-job.log": {
+    "bytes": 379705,
+    "sha256": "db7af99b6c4c040659fbdcdcaddd50818a0c3a2447bab5323c8b1ef63d31ae40"
+  },
+  "contract-job.log": {
+    "bytes": 61529,
+    "sha256": "cbe941ea35f8b4fe8b5f6d5a3ae262e75aa91a5c6428b1db926361ae56ba0800"
+  },
+  "ci-run-40104285260.json": {
+    "bytes": 14267,
+    "sha256": "6c388a89d6a5d02b3843baaec84fd3a52e74722236e07dd423d8e11be34e3e41"
+  },
+  "ci-run-40104285262.json": {
+    "bytes": 14287,
+    "sha256": "79bdedb91a097f6598fc86ff0ff1e61430579d1029f0ad2362909219aec47555"
+  },
+  "ci-run-40104285264.json": {
+    "bytes": 14284,
+    "sha256": "518a17592f257fffe73c5f7a31a09e4388d84ac03209d91af96da76d75b90501"
+  },
+  "ci-run-40104285277.json": {
+    "bytes": 14285,
+    "sha256": "08cf1fa5cfbbd12ac8422743893ee967acad7426216a9cb3680e93f3c83f129b"
+  }
+}
