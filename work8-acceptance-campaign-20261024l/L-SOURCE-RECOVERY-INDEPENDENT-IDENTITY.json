@@ -1,0 +1,76 @@
+{
+  "recordType": "INDEPENDENT_RECOVERED_L_EXACT_SOURCE_IDENTITY",
+  "reviewer": "recover_register_l",
+  "date": "2026-10-24",
+  "commit": "ddb4426476ea54f900b148cb23c50c77a8192a1d",
+  "parent": "04fee481aa44391f63b90808b51ae4d3c9e8d57f",
+  "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+  "paths": [
+    {
+      "path": ".github/workflows/pillow-runtime-repair-ci.yml",
+      "mode": "100644",
+      "gitBlob": "d560df987afd1eeedd9c88dc48244ee2424bd2f8",
+      "sha256": "d0e0ae9350f90006ce3c5b31fdd3d18eb5716169755595bbd463672ff15fc505",
+      "bytes": 42257
+    },
+    {
+      "path": "backend/src/validation/tests/work3-institutional-memory.test.ts",
+      "mode": "100644",
+      "gitBlob": "27f507ce09834a29a9f84c9710d53e7393acde40",
+      "sha256": "48b51f55771f40f39ad5404c085c528fddb934d01c466d8339783efc58ebae15",
+      "bytes": 27777
+    },
+    {
+      "path": "scripts/work8/application-graph-restoration.mjs",
+      "mode": "100644",
+      "gitBlob": "24ce08b2b54434aab6b07833e8e18ef994c7dc96",
+      "sha256": "cb54d74992d5a220a503ab8b07626196bc8af6a21227ae345090287122e74a64",
+      "bytes": 18010
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "mode": "100644",
+      "gitBlob": "1f1924f75ce66520099eb48433411008a5173412",
+      "sha256": "b4400f0c2ce9465726b7af8f5406d489229a2b0f53a7dc22afea835c446113b2",
+      "bytes": 16767
+    },
+    {
+      "path": "scripts/work8/index-restoration-launcher.mjs",
+      "mode": "100644",
+      "gitBlob": "ebb7dfcf2cbc29e518429eae1b495d35ece70e91",
+      "sha256": "4cd55b4bb34a21f92fc7748c5378f8e3849ef669a9b30067e67be1e18304355a",
+      "bytes": 3408
+    },
+    {
+      "path": "scripts/work8/index-restoration-phase.mjs",
+      "mode": "100644",
+      "gitBlob": "59ddc8ad70ac791c07fa7ededf523d3e28812c03",
+      "sha256": "d8a632196d8a8717c40d5866f5daa2c7c80ded59c05b42970d603747987d5642",
+      "bytes": 9491
+    },
+    {
+      "path": "scripts/work8/pending-restoration.mjs",
+      "mode": "100644",
+      "gitBlob": "b3edad35187583c8f2e0361d610a482bb3b088c4",
+      "sha256": "2c1cbf38352724b494b83fd83c41dcf8c60adc45db27a001ee5af5e021b59444",
+      "bytes": 9201
+    },
+    {
+      "path": "scripts/work8/pending-restoration.test.mjs",
+      "mode": "100644",
+      "gitBlob": "44d52810bdb3f56f2b279d2d177b85b6dda8c288",
+      "sha256": "74885812788e42813c56c6b69bc0b2e9abae25515f8ddad20473cd724d113c0b",
+      "bytes": 6405
+    }
+  ],
+  "changedPaths": 8,
+  "decision": "PASS_EXACT_RECOVERY_IDENTITY",
+  "reviewReuse": "Eight SHA256 values equal prior independently reviewed hashes. No accepted functionality review reopened; no tests rerun.",
+  "limits": [
+    "Prior L local TAP/compiler/review raw files were not recovered by this lane; prior decisions remain conversation-provenance claims, not recreated raw evidence.",
+    "No successor hosted acceptance or destination publication inferred."
+  ],
+  "newAcceptedIds": [],
+  "accepted": 45,
+  "outstanding": 19
+}

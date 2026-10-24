@@ -1,0 +1,12 @@
+{
+  "commit": "ddb4426476ea54f900b148cb23c50c77a8192a1d",
+  "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+  "parent": "04fee481aa44391f63b90808b51ae4d3c9e8d57f",
+  "branch": "work8/staged-source-20261020l",
+  "changedPaths": 8,
+  "reconstructedSource": false,
+  "destinationPublished": false,
+  "freshExactTreeApprovalRequired": true,
+  "testsRepeated": false,
+  "workflowsDispatched": false
+}

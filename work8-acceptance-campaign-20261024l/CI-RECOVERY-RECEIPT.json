@@ -1,0 +1,106 @@
+{
+  "recoveredAt": "2026-10-24",
+  "source": "04fee481aa44391f63b90808b51ae4d3c9e8d57f",
+  "completeTree": "8af669142ceb72d232590e62da54034c8eeed90b",
+  "runs": [
+    {
+      "id": 39405165219,
+      "name": "Pillow semantic repair CI",
+      "head_sha": "04fee481aa44391f63b90808b51ae4d3c9e8d57f",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "updated_at": "2026-10-20T10:08:19Z"
+    },
+    {
+      "id": 39405165225,
+      "name": "Product path CI",
+      "head_sha": "04fee481aa44391f63b90808b51ae4d3c9e8d57f",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "updated_at": "2026-10-20T10:10:28Z"
+    },
+    {
+      "id": 39405165241,
+      "name": "Independent Assurance Core",
+      "head_sha": "04fee481aa44391f63b90808b51ae4d3c9e8d57f",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "updated_at": "2026-10-20T10:03:45Z"
+    },
+    {
+      "id": 39405165248,
+      "name": "Pillow runtime repair CI",
+      "head_sha": "04fee481aa44391f63b90808b51ae4d3c9e8d57f",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "updated_at": "2026-10-20T10:17:52Z"
+    }
+  ],
+  "artifact": {
+    "id": 12257200525,
+    "bytes": 530112,
+    "sha256": "014e60cce23c21b7c3f77f8fec57d64c81b3c709d049e59482d9f74ee3279dc0"
+  },
+  "newTestExecutions": 0,
+  "newWorkflowDispatches": 0,
+  "newAcceptance": false,
+  "limits": "Recover retained execution evidence only. Existing independent scoped acceptance preserved; no new full-row decision.",
+  "files": {
+    "ci-product-jobs.json": {
+      "bytes": 22934,
+      "sha256": "45c2ae5d46cacf709f054a5fc660c9b4b7451ae3f967918668f4e36ee5502ab9"
+    },
+    "ci-run-39405165225.json": {
+      "bytes": 14262,
+      "sha256": "190c857d5e7924196f17a3881202f6a41f230387dd0074f810e662a1c8a0cbb7"
+    },
+    "L-SOURCE-COMPARE.json": {
+      "bytes": 63269,
+      "sha256": "54e6ad32ae115c1c3f944b329951c15a82ec4d75c66ea4ca81d0d7539075d566"
+    },
+    "K-REGISTER-CLOSURE-MATRIX.json": {
+      "bytes": 116891,
+      "sha256": "451c52c1503d91a47c4f118afd450c8cb1198781203e7a664330bc1eb7a5362e"
+    },
+    "runtime-redis-job.log": {
+      "bytes": 463348,
+      "sha256": "586a3e2446c587bcc1387cc1e2ee0ce70bc34e3cd4d79c44c842945c4f9850b1"
+    },
+    "contract-job.log": {
+      "bytes": 61087,
+      "sha256": "9c45a1e0fc8acd8f4645b124cde81530d08818c3058628f321de181b94500ddb"
+    },
+    "ci-run-39405165241.json": {
+      "bytes": 14279,
+      "sha256": "c8cb63efcdf1fa92d9e51ca5196edd44578520397e5ed9b29f7d052f777ee0aa"
+    },
+    "backend-job.log": {
+      "bytes": 379159,
+      "sha256": "21960b4095d31cfac00ecf7c9646bd95757dbe62c60618eb73966dc02b638f5f"
+    },
+    "K-FULL-TRACKER-RECONCILED.md": {
+      "bytes": 17265,
+      "sha256": "e68454cebbf0a923316791d1e8554fc4f95694a29b2572f74c7c152425029ee3"
+    },
+    "ci-run-39405165219.json": {
+      "bytes": 14282,
+      "sha256": "95ff4ab226b8df85f55d84be00253c428e4cfe5c4e79cad2cd3232f9cdeb6e2a"
+    },
+    "ci-run-39405165248.json": {
+      "bytes": 14280,
+      "sha256": "d2e5716e6e7752791aa2376529761ff7e18a678388198b0686b736da55b81296"
+    },
+    "hh4.zip": {
+      "bytes": 530112,
+      "sha256": "014e60cce23c21b7c3f77f8fec57d64c81b3c709d049e59482d9f74ee3279dc0"
+    },
+    "ci-runtime-jobs.json": {
+      "bytes": 15831,
+      "sha256": "8164bf037cdef83bdbc77021e4bfff9b675f8780693e50f16cacebba2fe7e92f"
+    }
+  }
+}
