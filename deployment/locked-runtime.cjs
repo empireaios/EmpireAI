@@ -1,4 +1,6 @@
 'use strict';
+// Admission must precede all application and supervisor imports.
+if(require.main===module)require('./runtime-generation-preload.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -23,10 +25,10 @@ function configuration(input) {
   if (input.FOUNDER_EMAIL===input.ADMIN_EMAIL || input.FOUNDER_PASSWORD===input.ADMIN_PASSWORD || (input.SESSION_SECRET||'').length<32 || [input.FOUNDER_PASSWORD,input.ADMIN_PASSWORD].includes(input.SESSION_SECRET)) throw Error('Independent identities and secrets required');
   const redis = new URL(input.REDIS_URL);
   if (!['redis:','rediss:'].includes(redis.protocol) || !redis.password || redis.hostname!==input.EMPIRE_LOCKED_REDIS_HOST || redis.search || redis.hash || !['','/','/0'].includes(redis.pathname)) throw Error('Dedicated authenticated Redis required');
-  const keys=[...intelligenceKeys,...verifierKeys,'INTELLIGENCE_ENABLED','INTELLIGENCE_DISABLED','COMMISSIONING_OPERATOR_TOKEN_SHA256','COMMISSIONING_OPERATOR_EXPIRES_AT','ANTHROPIC_API_KEY','GOOGLE_AI_API_KEY','OPENAI_API_KEY','PATH','HOME','TMPDIR','LANG','TZ','PORT','REDIS_URL','FOUNDER_EMAIL','FOUNDER_PASSWORD','ADMIN_EMAIL','ADMIN_PASSWORD','SESSION_SECRET','CORS_ORIGIN','RAILWAY_VOLUME_MOUNT_PATH','RAILWAY_PROJECT_ID','RAILWAY_ENVIRONMENT_ID','RAILWAY_SERVICE_ID','RAILWAY_GIT_COMMIT_SHA','RAILWAY_DEPLOYMENT_ID'];
+  const keys=['EMPIRE_GENERATION_DIRECTORY','EMPIRE_GENERATION','EMPIRE_CUTOVER_DIGEST','EMPIRE_GENERATION_DEVICE','EMPIRE_GENERATION_INODE',...intelligenceKeys,...verifierKeys,'INTELLIGENCE_ENABLED','INTELLIGENCE_DISABLED','COMMISSIONING_OPERATOR_TOKEN_SHA256','COMMISSIONING_OPERATOR_EXPIRES_AT','ANTHROPIC_API_KEY','GOOGLE_AI_API_KEY','OPENAI_API_KEY','PATH','HOME','TMPDIR','LANG','TZ','PORT','REDIS_URL','FOUNDER_EMAIL','FOUNDER_PASSWORD','ADMIN_EMAIL','ADMIN_PASSWORD','SESSION_SECRET','CORS_ORIGIN','RAILWAY_VOLUME_MOUNT_PATH','RAILWAY_PROJECT_ID','RAILWAY_ENVIRONMENT_ID','RAILWAY_SERVICE_ID','RAILWAY_GIT_COMMIT_SHA','RAILWAY_DEPLOYMENT_ID'];
   const env=Object.fromEntries(keys.filter(k=>input[k]!==undefined).map(k=>[k,input[k]]));
   env.ASSURANCE_RUNTIME_ORIGIN=assuranceRuntimeOrigin(input);
-  Object.assign(env,{EMPIRE_RUNTIME_PROFILE:PROFILE,NODE_ENV:'production',NODE_OPTIONS:'--max-old-space-size=1536',DATABASE_PATH:database,
+  Object.assign(env,{EMPIRE_RUNTIME_PROFILE:PROFILE,NODE_ENV:'production',NODE_OPTIONS:'--max-old-space-size=1536 --require='+JSON.stringify(path.join(__dirname,'runtime-generation-preload.cjs')),DATABASE_PATH:database,
     DEFAULT_LLM_PROVIDER:'openai',DEFAULT_LLM_MODEL:'gpt-6.1-sol',EMPIRE_ENGINEERING_TEST_MODE:'true',EMPIRE_TIER0_ISOLATION:'true',EMPIRE_ENABLE_EXTENSION_ROUTES:'false',EMPIRE_REQUIRE_DATA_VOLUME:'true',EMPIRE_PERSISTENCE_GATE:'strict',
     EMPIRE_SHUTDOWN_TIMEOUT_MS:'15000',EMPIREAI_REPO_ROOT:path.resolve(__dirname,'..'),SHADOW_CEO_DATA_DIR:database+'.shadow',
     REDIS_OPTIONAL:'false',WORKER_CONCURRENCY:'1',HOST:'0.0.0.0',LIVE_PAYMENT_ENABLED:'false',LIVE_CJ_FULFILLMENT_ENABLED:'false',META_ADS_LAUNCH_ENABLED:'false',PRODUCTION_DEPLOYMENT_ENABLED:'false',LIVE_OPS_PRODUCTION_NOT_ELIGIBLE:'true',COMMERCE_READINESS_BLOCKED:'true'});
@@ -56,3 +58,4 @@ async function main(){
 }
 module.exports={PROFILE,configuration};
 if(require.main===module)main().catch(()=>{console.error('Locked commissioning runtime refused startup or clean shutdown');process.exitCode=1;});
+

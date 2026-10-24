@@ -53,7 +53,7 @@ function superviseAssurance({cwd,env,spawnImpl=spawn,onEvent=e=>console.log(JSON
   }
   function start(name){
     if(stopping)return;
-    const childEnv={PATH:env.PATH,RAILWAY_VOLUME_MOUNT_PATH:env.RAILWAY_VOLUME_MOUNT_PATH,RAILWAY_GIT_COMMIT_SHA:env.RAILWAY_GIT_COMMIT_SHA,ASSURANCE_RUNTIME_ORIGIN:origin};
+    const childEnv={NODE_OPTIONS:env.NODE_OPTIONS,EMPIRE_GENERATION_DIRECTORY:env.EMPIRE_GENERATION_DIRECTORY,EMPIRE_GENERATION:env.EMPIRE_GENERATION,EMPIRE_CUTOVER_DIGEST:env.EMPIRE_CUTOVER_DIGEST,EMPIRE_GENERATION_DEVICE:env.EMPIRE_GENERATION_DEVICE,EMPIRE_GENERATION_INODE:env.EMPIRE_GENERATION_INODE,PATH:env.PATH,RAILWAY_VOLUME_MOUNT_PATH:env.RAILWAY_VOLUME_MOUNT_PATH,RAILWAY_GIT_COMMIT_SHA:env.RAILWAY_GIT_COMMIT_SHA,ASSURANCE_RUNTIME_ORIGIN:origin};
     if(name==='permanent-worker.mjs')childEnv.REDIS_URL=env.REDIS_URL;
     let child,queued=false,progressTimer;
     const clearProgress=()=>{clearTimeout(progressTimer);timers.delete(progressTimer);};
@@ -92,3 +92,4 @@ function superviseAssurance({cwd,env,spawnImpl=spawn,onEvent=e=>console.log(JSON
   stop.attachRuntime=attachRuntime;return stop;
 }
 module.exports={superviseAssurance,assuranceRuntimeOrigin};
+
