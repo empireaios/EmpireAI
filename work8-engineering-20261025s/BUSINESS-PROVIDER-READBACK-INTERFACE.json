@@ -1,0 +1,25 @@
+{
+  "campaign": "S",
+  "retainedSourceCommit": "ddb4426476ea54f900b148cb23c50c77a8192a1d",
+  "gitBlobs": {"workflow": "2d9d4a29c8f1c445c26905ba87cfb2a4713ce7d1", "implementation": "363b6bf697b4d965ef5a6767cff2d4885de5430f", "tests": "a57bfad39d40498806463d359ab6d452caab32b1"},
+  "decision": "EXISTING_WORKFLOW_DOES_NOT_SUPPLY_EXACT_QUALIFICATION_READS",
+  "method": "Read retained git objects only; no dispatch, provider call, publication, test execution or source edit.",
+  "files": [".github/workflows/provider-readback.yml", "deployment/provider-readback.mjs", "deployment/provider-readback.test.mjs"],
+  "workflow": {
+    "trigger": "Push to ci/provider-readback-amazon-v1 or ci/provider-readback-cj-v1; no workflow_dispatch inputs",
+    "environment": "empireai-readonly-cj for CJ branch",
+    "credentialBinding": "References VERIFY_CJ_API_KEY protected environment secret; availability and account authority not examined",
+    "restrictions": "First run attempt only, read-only repository permission,5minute job limit, pinned actions/runtime, fixed50point CJ bound, no application startup",
+    "evidence": "Sanitized admission/receipt artifacts retained14days; raw provider body digest only"
+  },
+  "actualCjPlan": "Authentication exchange followed by fixed GET /product/list?pageNum=1&pageSize=1. Supported direct-token code path performs that same fixed catalog GET, but workflow does not select direct-token mode.",
+  "exactSubjectSupport": false,
+  "missingOperations": ["Selected CJ product detail by pid", "Selected variant stock by vid", "US freight calculation", "Product processing or returns terms", "Applicable media permission evidence"],
+  "amazonPlan": "First pageSize1 seller listings observation in US marketplace; no selected ASIN or selected CJ match input. Not a matched-product qualification read.",
+  "testsReviewed": "Offline tests cover fixed allowlists, failure behavior, no retry, sanitization, credential-format rejection and explicit non-qualification flags. Tests do not claim exact detail/stock/freight support. Not rerun.",
+  "scopeConclusion": "Credible protected job infrastructure exists, but this retained workflow hardcodes a one-row catalogue observation rather than the currently required exact product/variant reads. Executing it would spend a provider read without closing the Q exact-interface gap.",
+  "minimalNextProof": "An already existing reviewed exact-ID job implementation and its trusted invocation contract must be identified before any dispatch proposal. Otherwise adding exact detail/stock/freight is a new reviewed engineering and exact-tree publication scope, not an available execution action. Current remote branch identity, environment approval and secret/account binding would also need proof before execution.",
+  "newCompleteAcceptances": [],
+  "externalEffects": 0,
+  "frozen": true
+}

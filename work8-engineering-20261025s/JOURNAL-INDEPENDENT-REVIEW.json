@@ -1,0 +1,106 @@
+{
+  "reviewer": "/root/cert_n",
+  "decision": "ACCEPT_EXACT_NINE_PATHS_FOR_DURABLE_STAGING_AND_OWNER_REVIEW",
+  "scope": "Single protected controller/journal and declared synthetic cohort; targeted isolated hosted examination prepared, not executed.",
+  "files": [
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "sha256": "8dc83460f2bdede0f1010e45189751b9b924b252ca0448fe762c04ba4e2713a6",
+      "blob": "4645a96d6f6c1ba73fa137c49eec6bff2418b070",
+      "bytes": 20170,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "sha256": "3606b697b6bc1dec0e0476cedb3748e773d6f2d20c7e06a3e4e7d2679e02bdce",
+      "blob": "f55c87b355f2f30fe7fce20d623a188910c490d8",
+      "bytes": 2527,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.test.cjs",
+      "sha256": "c409aa2a3070bcb88c046c3a554fab059040ff6b24295f853f84378db44e2fab",
+      "blob": "d477c8f14c982d84dca86e2e434071bb02f4f2ef",
+      "bytes": 2612,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "sha256": "54798ac06bb233faf32885230ee9788f643cbf0b71d714e4206be87c7e8710cf",
+      "blob": "66774125fa92ab7e139b7dd681c4d30b97992a8a",
+      "bytes": 11352,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-writer.mjs",
+      "sha256": "f28f272613576647bcd9f7bf1f6be88574385b3220d2724d643f03a400b4ce88",
+      "blob": "29bdebbe42cda86f79e28da884f04adb029e5ed1",
+      "bytes": 1871,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-redis.cjs",
+      "sha256": "1ba5ddd94fd64c8adf673e4f08af6b1de8e3ad9a8841984c45e15d6bdf2ec3f4",
+      "blob": "0399ebf693480605dc89c9ddcda8c170bfe7cb3a",
+      "bytes": 1432,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-runner.cjs",
+      "sha256": "c9895772f773d472f0195acdb62aa613871978b9fe8c341cc570562a384c99c8",
+      "blob": "415d9abf689949079eec9ad2f5d3d1147256aa04",
+      "bytes": 583,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/work8-journal-examination.yml",
+      "sha256": "ffed08ef2ecbbffe780910ae5633832703189b8f9b75585f3cb036c803ad81a3",
+      "blob": "98dbff6bbca2e022474d95e30c0960c4270c54fa",
+      "bytes": 1506,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/work8/run-journal-examination.sh",
+      "sha256": "c250d41cfa45af851429f02a3f10b2b242c80e9c0089e7a157d2c98266f2aa58",
+      "blob": "7372f6587a2c59ea7d488d0bc112e590e55d232f",
+      "bytes": 5439,
+      "mode": "100644"
+    }
+  ],
+  "sourceFindings": [
+    "Controller singleton native exclusive lock precedes recovery and is retained for controller lifetime. It is scoped to the protected journal, not a proof no other cohort exists.",
+    "Operator-owned journal and protected ancestors separate runtime UID from append/update/delete authority. FULL-sync transactional ADMITTED commit precedes private IPC acknowledgment; bootstrap awaits ACK before entrypoint import.",
+    "Identity binds controller-observed child PID/start, boot/PID namespace, UID/GID/zero effective capabilities, exact command/entry hash, generation/epoch/cutover, and declared store root/inode/scope.",
+    "Capture freezes admissions, requires complete declared ready census, participant drain acknowledgment, stable journal revision and bounded total deadline. Missing/changed participant or revision fails closed.",
+    "Restart reconciles committed/unacknowledged members conservatively. Prior live identity or changed namespace refuses; same-namespace terminated identity is recorded without inventing broader external fencing.",
+    "Journal strict schema and logical replay coherence reject truncated valid-SQLite history, extra fields, revision gaps and inconsistent member state. Export is projected/validated and explicitly refuses production/full-recovery claims."
+  ],
+  "workflowFindings": [
+    "Dedicated push-only branch work8/journal-examination-20261025s; no PR or workflow_dispatch trigger; exact github.sha checkout, read-only contents permission, no retained credentials.",
+    "Only targeted examination; Node22.23.2 pinned image digest, Redis7.4.2 image resolved to recorded immutable local ID, isolated internal network, no host ports/production mounts/secrets/Docker socket.",
+    "Operator UID0 with bounded capabilities and actual runtime UID65534; protected source copy and disposable state; no mock principal or skip fallback.",
+    "12-minute job,360-second examination, cleanup,5MiB evidence bound and seven-day artifact retention; attempt must equal1.",
+    "Terminal gate requires exactly1 passing hosted TAP test,zero failures/skips/todos/cancellations,11 fixed true assertions,exact Node/source/operator/runtime identities and no external effects."
+  ],
+  "retainedVerification": {
+    "journalUnits": "6/6 PASS from JOURNAL-UNIT-TESTS.txt; no reviewer rerun",
+    "staticChecks": "Parent reports syntax/static checks passed; not hosted execution",
+    "QChecks": "17 protocol plus2 launcher and3 owner checks preserved; no duplicate execution"
+  },
+  "hostedExecution": "NOT_EXECUTED_DOCKER_DISTINCT_UID_NODE22_GATE_REMAINS",
+  "operatingLimitations": [
+    "No production nested launcher graph integration; this controller owns only declared spawned synthetic children.",
+    "No independently capable external Redis producer fencing or legacy process cutover proof.",
+    "No complete thirteen-store/application recovery or protected operational-copy custody/restoration.",
+    "Positive hosted result would establish only scoped journal/admission/capture behavior; six complete recovery rows require independent whole-contract adjudication."
+  ],
+  "publicationBoundary": "Staging only. Evidence publication first on approved exact tree; source branch creation/publication and automatic targeted run require fresh consolidated owner approval. No dispatch, deployment or rerun authorized by this receipt.",
+  "accepted": 45,
+  "outstanding": 19,
+  "newAcceptedOriginalIds": [],
+  "newAcceptedAmendmentIds": [],
+  "missionStatus": "IN_PROGRESS",
+  "certification": "NO_GO",
+  "implementationManifestCrossCheck": "All seven frozen deployment path hashes match independent nine-path manifest",
+  "unitLogSha256": "2181f39dafe5567f31820091bb3ce2cb254bd5ef497bf6bf49fe43fd1c69977d"
+}

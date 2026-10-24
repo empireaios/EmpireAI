@@ -1,0 +1,113 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_SCOPED_STAGING",
+  "base": "Parent verified Q candidate a11087 / tree26a030; full staging identity controlled by root",
+  "scope": "New controller-owned journal and declared synthetic-cohort admission/capture examination; actual production launcher graph not wired",
+  "changedPaths": [
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "bytes": 20170,
+      "sha256": "8dc83460f2bdede0f1010e45189751b9b924b252ca0448fe762c04ba4e2713a6",
+      "gitBlob": "4645a96d6f6c1ba73fa137c49eec6bff2418b070"
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "bytes": 2527,
+      "sha256": "3606b697b6bc1dec0e0476cedb3748e773d6f2d20c7e06a3e4e7d2679e02bdce",
+      "gitBlob": "f55c87b355f2f30fe7fce20d623a188910c490d8"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.test.cjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "bytes": 2612,
+      "sha256": "c409aa2a3070bcb88c046c3a554fab059040ff6b24295f853f84378db44e2fab",
+      "gitBlob": "d477c8f14c982d84dca86e2e434071bb02f4f2ef"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "bytes": 11352,
+      "sha256": "54798ac06bb233faf32885230ee9788f643cbf0b71d714e4206be87c7e8710cf",
+      "gitBlob": "66774125fa92ab7e139b7dd681c4d30b97992a8a"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-redis.cjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "bytes": 1432,
+      "sha256": "1ba5ddd94fd64c8adf673e4f08af6b1de8e3ad9a8841984c45e15d6bdf2ec3f4",
+      "gitBlob": "0399ebf693480605dc89c9ddcda8c170bfe7cb3a"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-writer.mjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "bytes": 1871,
+      "sha256": "f28f272613576647bcd9f7bf1f6be88574385b3220d2724d643f03a400b4ce88",
+      "gitBlob": "29bdebbe42cda86f79e28da884f04adb029e5ed1"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-runner.cjs",
+      "mode": "100644",
+      "baseBlob": null,
+      "bytes": 583,
+      "sha256": "c9895772f773d472f0195acdb62aa613871978b9fe8c341cc570562a384c99c8",
+      "gitBlob": "415d9abf689949079eec9ad2f5d3d1147256aa04"
+    }
+  ],
+  "tests": {
+    "localNode": "24.22.1",
+    "localJournalUnit": "6/6 PASS",
+    "log": "campaign-s/JOURNAL-UNIT-TESTS.txt",
+    "logSha256": "2181f39dafe5567f31820091bb3ce2cb254bd5ef497bf6bf49fe43fd1c69977d",
+    "syntax": "hosted test and bootstrap syntax checks PASS",
+    "positiveHosted": "NOT RUN; requires staged automatic dedicated-branch CI after exact-tree owner publication approval",
+    "hostedCommand": "node --test deployment/runtime-membership-controller.hosted.test.cjs",
+    "hostedExpected": "one test, one pass, zero fail/cancelled/skipped/todo; Node22.23.2, actual distinct UID65534 and real isolated Redis mandatory"
+  },
+  "guaranteesImplemented": [
+    "Controller-only protected journal; exact schema and replay coherence verification.",
+    "Durable FULL-sync admission commit before private inherited-IPC ACK.",
+    "Mandatory Q native lifetime generation lock before enrollment or application imports.",
+    "Actual child PID/start/namespace/UID/GID/CapEff/cmdline binding to operator-controlled role, source, epoch/cutover and store inode scope.",
+    "Singleton native controller lock acquired before recovery/census; no dual pre-admission controller.",
+    "No auto-reconstruction of missing history; prior live member or different namespace refuses restart.",
+    "Freeze admission before complete declared census; held callbacks drain synthetic SQLite/file/Redis writers; whole capture deadline and revision checks; late/unexpected frames invalidate/contain.",
+    "Controller loss produces child IPC-loss containment; retained committed-before-ACK member remains conservative until actual PID/start absence reconciliation.",
+    "Readback excludes credential/env contents and explicitly refuses production/full recovery certification."
+  ],
+  "notProven": [
+    "Positive distinct-principal hosted execution has not occurred.",
+    "Production nested launcher/loss-guard/primary-to-worker graph has not been routed through this controller.",
+    "Existing production prior writers and historical missing membership cannot be reconstructed.",
+    "External Redis producer capability exclusion and prior in-flight command draining outside declared isolated cohort remain separate operating proofs.",
+    "Protected operating backup custody and full restoration are not supplied by journal correctness.",
+    "No whole-row independent acceptance; baseline 45 accepted/19 outstanding retained."
+  ],
+  "requiredHostedAssertions": [
+    "identitySeparation",
+    "journalProtection",
+    "durableAdmission",
+    "currentPriorCensus",
+    "staleGenerationRefusal",
+    "competingAdmission",
+    "crashRestart",
+    "captureExclusion",
+    "incompleteMembershipRefusal",
+    "scopeBinding",
+    "secretFreeReadback"
+  ],
+  "effects": {
+    "publication": false,
+    "deployment": false,
+    "ciDispatch": false,
+    "infrastructureProvisioning": false,
+    "paidInference": false,
+    "productionMutation": false
+  }
+}

@@ -1,0 +1,14 @@
+✔ journal unit: admission is durable to independent readback before acknowledgment (10.786578ms)
+✔ journal unit: duplicate admission rolls back member and revision together (5.370936ms)
+✔ journal unit: no missing journal auto-reconstruction (0.737826ms)
+✔ journal unit: terminated transition retains original admission and monotonic event sequence (6.689433ms)
+✔ journal unit: valid SQLite with truncated history refuses authoritative readback (5.251296ms)
+✔ journal unit: extra secret-bearing record fields refuse export (4.564566ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 121.495301

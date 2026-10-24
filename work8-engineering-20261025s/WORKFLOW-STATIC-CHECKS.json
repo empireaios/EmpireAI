@@ -1,0 +1,8 @@
+{
+  "bashSyntax": "PASS",
+  "yamlParse": "PASS",
+  "oneDedicatedPushTrigger": "PASS",
+  "readOnlyGitHubPermissions": "PASS",
+  "hostedExecuted": false,
+  "localIdentityAcceptance": false
+}

@@ -1,0 +1,41 @@
+{
+  "reviewer": "/root/cert_n",
+  "decision": "ACCEPT_EVIDENCE_FOR_EXACT_STAGING_ONLY",
+  "sourceCommit": "7c7eb0e902f3f8e1e1108111c17ab0a2b536c5ed",
+  "sourceTree": "c9ba46605373a1a56bdb1bffb3e23686bc9acf9c",
+  "sourceParent": "a11087d2eca4157a2ca2cfc65e6e2415dcaa42f6",
+  "reviewedEvidence": [
+    {
+      "path": "campaign-s/Work8-Authoritative-Journal-Checkpoint-20261025s.md",
+      "sha256": "eed0983b24e411b2f69faaf29bec7e99cfe0b6dce33f1297204a4f0aed7f7c0e"
+    },
+    {
+      "path": "campaign-s/FULL-TRACKER.json",
+      "sha256": "06dfa8df5d450fa1c054dd77a2f076ddb3354ab8d206ab7e45773ed957fcc375"
+    },
+    {
+      "path": "campaign-s/SOURCE-LOCAL-CANDIDATE.json",
+      "sha256": "f28f961c01734228057843ecfdfbcb7e63e095b46a645f947dec3e5f3e01e822"
+    },
+    {
+      "path": "campaign-s/JOURNAL-INDEPENDENT-REVIEW.json",
+      "sha256": "ae97622cc77ab6b0855a57c47239fa53fafe9edc3b18c6b00987501fac6f2312"
+    }
+  ],
+  "checks": [
+    "All nine source entries, blobs, SHA256 values and modes match prior independent frozen manifest.",
+    "Complete64-row tracker preserves all45 accepted and19 outstanding statuses; no new IDs promoted.",
+    "Candidate metadata corrected to S source, retaining Q as prior engineering base.",
+    "Checkpoint distinguishes6 local journal tests from unexecuted mandatory hosted examination.",
+    "O40 read-only coherent journey remains separately assessed; no blanket deployment/positive-qualification prerequisite imposed.",
+    "Declared cohort/production integration, external Redis fencing, complete recovery and protected custody limitations retained.",
+    "Evidence/source publication and targeted automatic job remain subject to fresh exact-tree owner approval; no prior approval expanded."
+  ],
+  "accepted": 45,
+  "outstanding": 19,
+  "newAcceptedIds": [],
+  "missionStatus": "IN_PROGRESS",
+  "certification": "NO_GO",
+  "testsExecutedByReviewer": false,
+  "publicationOrDispatchByReviewer": false
+}

@@ -1,0 +1,74 @@
+{
+  "commit": null,
+  "tree": "c9ba46605373a1a56bdb1bffb3e23686bc9acf9c",
+  "parent": "a11087d2eca4157a2ca2cfc65e6e2415dcaa42f6",
+  "baseTree": "26a030a5db565a8d501acd072c99d0dbfd7cac4d",
+  "entries": [
+    {
+      "path": ".github/workflows/work8-journal-examination.yml",
+      "mode": "100644",
+      "blob": "98dbff6bbca2e022474d95e30c0960c4270c54fa",
+      "sha256": "ffed08ef2ecbbffe780910ae5633832703189b8f9b75585f3cb036c803ad81a3",
+      "bytes": 1506
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-redis.cjs",
+      "mode": "100644",
+      "blob": "0399ebf693480605dc89c9ddcda8c170bfe7cb3a",
+      "sha256": "1ba5ddd94fd64c8adf673e4f08af6b1de8e3ad9a8841984c45e15d6bdf2ec3f4",
+      "bytes": 1432
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-runner.cjs",
+      "mode": "100644",
+      "blob": "415d9abf689949079eec9ad2f5d3d1147256aa04",
+      "sha256": "c9895772f773d472f0195acdb62aa613871978b9fe8c341cc570562a384c99c8",
+      "bytes": 583
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-writer.mjs",
+      "mode": "100644",
+      "blob": "29bdebbe42cda86f79e28da884f04adb029e5ed1",
+      "sha256": "f28f272613576647bcd9f7bf1f6be88574385b3220d2724d643f03a400b4ce88",
+      "bytes": 1871
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "mode": "100644",
+      "blob": "f55c87b355f2f30fe7fce20d623a188910c490d8",
+      "sha256": "3606b697b6bc1dec0e0476cedb3748e773d6f2d20c7e06a3e4e7d2679e02bdce",
+      "bytes": 2527
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "mode": "100644",
+      "blob": "4645a96d6f6c1ba73fa137c49eec6bff2418b070",
+      "sha256": "8dc83460f2bdede0f1010e45189751b9b924b252ca0448fe762c04ba4e2713a6",
+      "bytes": 20170
+    },
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "mode": "100644",
+      "blob": "66774125fa92ab7e139b7dd681c4d30b97992a8a",
+      "sha256": "54798ac06bb233faf32885230ee9788f643cbf0b71d714e4206be87c7e8710cf",
+      "bytes": 11352
+    },
+    {
+      "path": "deployment/runtime-membership-controller.test.cjs",
+      "mode": "100644",
+      "blob": "d477c8f14c982d84dca86e2e434071bb02f4f2ef",
+      "sha256": "c409aa2a3070bcb88c046c3a554fab059040ff6b24295f853f84378db44e2fab",
+      "bytes": 2612
+    },
+    {
+      "path": "scripts/work8/run-journal-examination.sh",
+      "mode": "100644",
+      "blob": "7372f6587a2c59ea7d488d0bc112e590e55d232f",
+      "sha256": "c250d41cfa45af851429f02a3f10b2b242c80e9c0089e7a157d2c98266f2aa58",
+      "bytes": 5439
+    }
+  ],
+  "refsUpdated": false,
+  "published": false,
+  "deployed": false
+}
