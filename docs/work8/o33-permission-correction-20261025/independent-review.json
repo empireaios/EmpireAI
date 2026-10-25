@@ -1,0 +1,106 @@
+{
+  "recordType": "WORK8_O33_PERMISSION_CORRECTION_INDEPENDENT_REVIEW",
+  "reviewer": "/root/permission_review",
+  "verdict": "PASS_FOR_STAGING_WITH_HOSTED_PERMISSION_PREFLIGHT_PENDING",
+  "sourceParent": "2b3bec3f5584258bb28ab6f0c49a359518ccf704",
+  "changedPaths": [
+    "scripts/work8/o33-application-coordinator.mjs",
+    "scripts/work8/o33-permissions.mjs",
+    "scripts/work8/o33-permissions-preflight.mjs",
+    "scripts/work8/run-o33-application.sh"
+  ],
+  "findingsResolved": [
+    "Directory mode is set while operator owns it, before runtime ownership handoff; final UID/GID/mode asserted.",
+    "Only operator-owned evidence is normalized. Foreign-owned evidence retains owner/mode and must remain readable by uploader.",
+    "Original examination failure remains in receipt when evidence normalization also fails.",
+    "Preflight now checks host uploader read access to0600/0700 private evidence and actual host evidence, separately from runtime isolation; no unconditional runtime read requirement for host-private files.",
+    "Nonroot evidence write-denial uses accessSync(W_OK), avoiding evidence content mutation even if denial fails."
+  ],
+  "compilation": {
+    "node": "22.23.2",
+    "npm": "10.9.8",
+    "backend": "PASS",
+    "exitCode": 0,
+    "command": "NODE_OPTIONS=--max-old-space-size=6144 npm run build --prefix backend",
+    "basis": "Controller exit0 report and completed compiler/runtime revision/postbuild log; no TypeScript source changes"
+  },
+  "localVerification": {
+    "node": "v22.23.2",
+    "status": "PASS",
+    "checks": [
+      "operator-owned directory exact mode",
+      "operator-owned evidence readability and bytes",
+      "symlink refusal",
+      "hardlink refusal"
+    ],
+    "limits": "UID0 only; foreign ownership/nonroot access require staged hosted preflight"
+  },
+  "hostedPreflight": {
+    "status": "STAGED_NOT_EXECUTED",
+    "environment": "Existing O33 Docker container and job, before coordinator",
+    "plannedAssertions": [
+      "Actual UID65534 directory ownership/mode handoff and repeated existing-directory use",
+      "Operator still lacks CAP_FOWNER and cannot chmod runtime-owned directory",
+      "Foreign readable evidence ownership/mode/content preserved",
+      "Unreadable unrelated-owner evidence refused",
+      "Actual uploader reads host-owned private0600/0700 and actual host evidence",
+      "UID65534 has zero effective capabilities, can write its directory and cannot read/write operator/sealed areas or private host evidence",
+      "Runtime cannot modify host/operator evidence"
+    ],
+    "noNewJobOrDispatch": true
+  },
+  "safeguards": {
+    "capabilitiesUnchanged": true,
+    "runtimeAdmissionUnchanged": true,
+    "writerCensusUnchanged": true,
+    "generationExclusionUnchanged": true,
+    "captureHoldsAndDeadlinesUnchanged": true,
+    "onceOnlyReplayOraclesUnchanged": true,
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE"
+  },
+  "requiredCorrections": [],
+  "limitations": [
+    "Local UID map contains only UID0, effective/bounding capabilities zero; no Docker available.",
+    "No actual foreign-UID ownership or nonroot access PASS claimed before hosted preflight.",
+    "No full O33 topology or whole-row acceptance inferred."
+  ],
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19
+  },
+  "reviewerActions": {
+    "tests": 0,
+    "builds": 0,
+    "CI": 0,
+    "publication": false
+  },
+  "files": [
+    {
+      "path": "scripts/work8/o33-application-coordinator.mjs",
+      "sha256": "a6404bb17f78b7c70b4e3e22c390a588b9829a306cb5d0a8654dd30f54022ec1"
+    },
+    {
+      "path": "scripts/work8/o33-permissions.mjs",
+      "sha256": "af34eeda3ae3a16bb9d5b49f2912365968c77bd8ddc31429c7837d7893806896"
+    },
+    {
+      "path": "scripts/work8/o33-permissions-preflight.mjs",
+      "sha256": "f7965396ffee7d0329dea943f86bd69da54799c07813ae71450e36ef38c81cb3"
+    },
+    {
+      "path": "scripts/work8/run-o33-application.sh",
+      "sha256": "9b053f624bf81cebf27cedffc61ef7d779f14c25c73c4a618da90281961ffa42"
+    },
+    {
+      "path": "permission-evidence/backend-build.log",
+      "sha256": "b39c5cee325289138ac977b6c63bfac981e6f33c7f73cf3bc45c1fd6acdc9569"
+    },
+    {
+      "path": "permission-evidence/local-boundary-result.json",
+      "sha256": "7ee01eb5c5698ed0a017680f2935eb8e400b0ab2fd5d454cc0ccb58cc53dbb1a"
+    }
+  ],
+  "completeSourceTree": "4be36c26e6ed5755a8678f552b50b0daeb8a80c9"
+}

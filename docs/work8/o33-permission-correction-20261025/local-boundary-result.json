@@ -1,0 +1,11 @@
+{
+  "node": "v22.23.2",
+  "status": "PASS",
+  "checks": [
+    "operator-owned directory exact mode",
+    "operator-owned evidence readability and bytes",
+    "symlink refusal",
+    "hardlink refusal"
+  ],
+  "limits": "UID0 only; foreign ownership/nonroot access require staged hosted preflight"
+}
