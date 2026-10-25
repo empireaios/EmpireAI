@@ -1,0 +1,79 @@
+{
+  "recordType": "WORK8_O33_HOSTED_PERMISSION_AND_WHOLE_ROW_REVIEW",
+  "reviewer": "/root/permission_hosted_review",
+  "run": 40194561100,
+  "source": "c321eb20f2e3a22e6eb40bb9fb353bf30e283c95",
+  "sourceTree": "4be36c26e6ed5755a8678f552b50b0daeb8a80c9",
+  "verdict": "O33_NOT_ACCEPTED_ACTUAL_APPLICATION_LOCK_PATH_PERMISSION_FAILURE",
+  "compilation": "PASS hosted Node22 build",
+  "permissionPreflight": {
+    "verdict": "PASS_WITHIN_DECLARED_TESTED_PATHS",
+    "checks": {
+      "actualDirectoryHandoff": true,
+      "foreignEvidencePreserved": true,
+      "unreadableForeignEvidenceRefused": true,
+      "actualUploaderReadability": true,
+      "nonRootAccessAndIsolation": true,
+      "noAddedPrivileges": true
+    },
+    "hostOwnershipModeContentPreserved": true,
+    "scopeLimit": "Preflight did not exercise the actual visual-memory sibling capture-write-lock path."
+  },
+  "failure": {
+    "primary": "EACCES mkdir /work8-exam/source/volume/pillow-visual-memory.capture-write-lock",
+    "observedAt": "2026-10-25T12:48:38.433Z",
+    "component": "Pillow host startup",
+    "cause": "prepare() creates parent volume as operator UID0 mode0755. Actual runtime UID65534 cannot create the visual-memory sibling lock directory under that parent. Writable visual-memory subdirectory does not grant write access to its parent.",
+    "downstream": "HH4_ACTUAL_HOST_NOT_READY at hh4-domain-state.mjs:138 after120second wait; coordinator APPLICATION_EXIT_BEFORE_ready",
+    "notCause": "Governance required/bootstrap knowledge files were found; readiness timeout is downstream, not the initiating error."
+  },
+  "wholeRow": {
+    "assertionsExecuted": 0,
+    "acceptedRows": [],
+    "captureReplayProven": false,
+    "decision": "PENDING"
+  },
+  "preservation": {
+    "accepted": 45,
+    "outstanding": 19,
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "productionCutover": false,
+    "protectedCustody": false
+  },
+  "nextBoundary": "Actual runtime lock-path placement/access must be addressed and verified without widening authority-root permissions or capabilities. No speculative rerun authorized.",
+  "reviewerActions": {
+    "tests": 0,
+    "builds": 0,
+    "CI": 0,
+    "sourceChanges": 0,
+    "externalMutations": 0
+  },
+  "evidence": [
+    {
+      "path": "permission-preflight.json",
+      "sha256": "f9ec08db61bb37f2430bbf421b35b47322b63db43e527dea956242bdde55352b"
+    },
+    {
+      "path": "o33-application-result.json",
+      "sha256": "802ec9f3d69d405942e9ea95a3ce5f9d7fcdd7a3c8f4df0547e98e70656b8102"
+    },
+    {
+      "path": "source.log",
+      "sha256": "265d644b18fe9b17f5d174bb94784afe184b1ee4d21737bbab79ca0d860747d6"
+    },
+    {
+      "path": "build.log",
+      "sha256": "6488b836c2bbc1cd6d61d7480986a1bbf4484938602d73b8523776f909a974e3"
+    },
+    {
+      "path": "source-tree.txt",
+      "sha256": "59a2f2478a2bf8e4a906933d45ee4b043171440c32424ba2629945222d4f63f9"
+    },
+    {
+      "path": "source-commit.txt",
+      "sha256": "757207217e6becf6a6a56f1fd814adfcd0886730472f37f84556da45546c73fd"
+    }
+  ]
+}
