@@ -73,7 +73,8 @@ timeout --signal=TERM --kill-after=10s 360s docker run --name "$exam" \
   --network "$network" --read-only --user 0:0 --cap-drop ALL \
   --cap-add SETUID --cap-add SETGID --cap-add CHOWN --cap-add DAC_OVERRIDE --cap-add KILL --cap-add SYS_PTRACE \
   --security-opt no-new-privileges --memory 512m --cpus 2 --pids-limit 128 \
-  --tmpfs /work8-exam:rw,nosuid,nodev,mode=0755,size=128m \
+  --tmpfs /work8-exam:rw,noexec,nosuid,nodev,mode=0755,size=128m \
+  --tmpfs /work8-native:rw,exec,nosuid,nodev,mode=0755,size=1m \
   --tmpfs /tmp:rw,noexec,nosuid,nodev,mode=1777,size=16m \
   --mount "type=bind,src=$GITHUB_WORKSPACE,dst=/src,readonly" \
   --mount "type=bind,src=$out,dst=/evidence" \
@@ -85,11 +86,21 @@ timeout --signal=TERM --kill-after=10s 360s docker run --name "$exam" \
     mkdir /work8-exam/source
     cp -R /src/deployment /work8-exam/source/deployment
     chmod -R a-w /work8-exam/source/deployment
-    mkdir /work8-exam/native
-    cp /native/runtime-writer-isolation.so /work8-exam/native/writer.so
-    chmod 0444 /work8-exam/native/writer.so
-    export WORK8_WRITER_ISOLATION_LIBRARY=/work8-exam/native/writer.so
-    export WORK8_WRITER_ISOLATION_SHA256=$(sha256sum /work8-exam/native/writer.so | cut -d " " -f1)
+    cp /native/runtime-writer-isolation.so /work8-native/writer.so
+    chmod 0444 /work8-native/writer.so
+    export WORK8_WRITER_ISOLATION_LIBRARY=/work8-native/writer.so
+    export WORK8_WRITER_ISOLATION_SHA256=$(sha256sum /work8-native/writer.so | cut -d " " -f1)
+    node <<"MOUNT_CHECK"
+const fs=require("node:fs"),assert=require("node:assert/strict");
+const rows=fs.readFileSync("/proc/self/mountinfo","utf8").trim().split("\n").map(line=>{const [left,right]=line.split(" - ");const fields=left.split(" ");return {mount:fields[4],options:fields[5].split(","),filesystem:right.split(" ")[0]};});
+const required=["/work8-native","/work8-exam","/tmp"];
+fs.writeFileSync(process.env.WORK8_EVIDENCE_DIR+"/native-mount-readback.json",JSON.stringify({scope:"ISOLATED_EXAMINATION_ONLY",verdict:"UNVERIFIED",mounts:rows.filter(row=>required.includes(row.mount))})+"\n");
+const selected=required.map(mount=>{const matches=rows.filter(row=>row.mount===mount);assert.equal(matches.length,1,"EXACT_MOUNT_REQUIRED");return matches[0];});
+for(const row of selected){assert.equal(row.filesystem,"tmpfs");assert.ok(row.options.includes("nosuid")&&row.options.includes("nodev"));assert.equal(row.options.includes("noexec"),row.mount!=="/work8-native","NATIVE_EXEC_DATA_NOEXEC_REQUIRED");}
+const dir=fs.statSync("/work8-native"),file=fs.lstatSync("/work8-native/writer.so");
+assert.equal(dir.uid,0);assert.equal(dir.mode&0o777,0o755);assert.equal(file.uid,0);assert.equal(file.mode&0o777,0o444);assert.ok(file.isFile());assert.equal(file.nlink,1);
+fs.writeFileSync(process.env.WORK8_EVIDENCE_DIR+"/native-mount-readback.json",JSON.stringify({scope:"ISOLATED_EXAMINATION_ONLY",mounts:selected,operatorOwnedArtifact:true,runtimeWritable:false})+"\n");
+MOUNT_CHECK
     cd /work8-exam/source
     exec node --test --test-reporter=tap deployment/runtime-writer-graph.hosted.test.cjs
   ' | tee "$out/tests.tap"
