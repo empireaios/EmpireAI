@@ -1,0 +1,9 @@
+{"event":"locked_runtime_start","profile":"LOCKED_COMMISSIONING_V1","launchId":"90b9d607-2b42-4069-88d1-8c080b109672","childPid":40,"source":"1177578c6543224d5d819286ec931f4a33ed1c10","birth":"NOT_BORN","commerce":"LOCKED","operational":false}
+(node:40) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ERROR: ld.so: object '/work8-exam/native/writer.so' from LD_PRELOAD cannot be preloaded (failed to map segment from shared object): ignored.
+(node:47) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Runtime writer controller refused: STARTUP_READBACK_FAILED
+{"event":"launcher_loss_containment","at":"2026-10-25T05:10:00.813Z","source":"1177578c6543224d5d819286ec931f4a33ed1c10","reason":"CONTROLLER_EXITED","action":"STOP_RUNTIME_GROUP","recoveryVerified":false,"commerce":"LOCKED","birth":"NOT_BORN","auditPersisted":false}
+{"event":"locked_runtime_stop","code":null,"signal":"SIGKILL","reason":"child_exit","forcedTermination":false,"forcedSignal":null}

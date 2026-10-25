@@ -1,0 +1,18 @@
+{
+  "commit": null,
+  "tree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+  "parent": "1177578c6543224d5d819286ec931f4a33ed1c10",
+  "baseTree": "916e8feb2cd5c195855ce1683628f625774e5424",
+  "entries": [
+    {
+      "path": "scripts/work8/run-writer-integration.sh",
+      "mode": "100644",
+      "blob": "3db6d9216c0aec1007db9e216082da3a379f2053",
+      "sha256": "e3b5eac347ed24f9c16313492cbe03262aa5f24bb926e971b07c5899395c6b70",
+      "bytes": 8152
+    }
+  ],
+  "refsUpdated": false,
+  "published": false,
+  "deployed": false
+}

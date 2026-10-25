@@ -1,0 +1,32 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "artifacts": [
+      {
+        "id": 12587578569,
+        "name": "work8-writer-1177578c6543224d5d819286ec931f4a33ed1c10-40164516085",
+        "size_in_bytes": 13694,
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12587578569",
+        "archive_download_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/artifacts/12587578569/zip",
+        "expired": false,
+        "created_at": "2026-10-25T05:10:01Z",
+        "expires_at": "2026-11-01T05:10:01Z",
+        "updated_at": "2026-10-25T05:10:01Z",
+        "digest": "sha256:eb39d34096ba0ed0f54f610aa17ea5fbe82611d47c55b44f9ecde7f37bccea45",
+        "workflow_run": {
+          "id": 40164516085,
+          "repository_id": 1275922460,
+          "head_repository_id": 1275922460,
+          "head_branch": "work8/writer-integration-20261025v",
+          "head_sha": "1177578c6543224d5d819286ec931f4a33ed1c10"
+        }
+      }
+    ]
+  },
+  "isError": false
+}

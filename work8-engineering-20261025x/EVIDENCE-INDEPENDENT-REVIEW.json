@@ -1,0 +1,36 @@
+{
+  "decision": "ACCEPT_EVIDENCE_FOR_STAGING_AND_EXACT_TREE_OWNER_REVIEW",
+  "reviewedFiles": [
+    {
+      "path": "FULL-TRACKER.json",
+      "sha256": "c11c20eaf780b43d18768d78a9399d914d484731676e571e32197a46d869e648",
+      "bytes": 41197
+    },
+    {
+      "path": "Work8-Published-Mount-Checkpoint-20261025x.json",
+      "sha256": "421a5bc297b51f96b34e196f6298e5556856224e11e758bef9fe1c21efd72a89",
+      "bytes": 43696
+    }
+  ],
+  "stagedCorrection": {
+    "commit": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+    "tree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+    "parent": "1177578c6543224d5d819286ec931f4a33ed1c10",
+    "published": false,
+    "refsUpdated": false
+  },
+  "sourceHashMatchesIndependentReview": true,
+  "checks": [
+    "64 unique rows and identical embedded tracker;45PASS15PENDING4BLOCKED",
+    "Published exact pair distinguished from unpublished correction",
+    "Run40164516085 failure before admission; AUTH/PING/INFO only scoped progress",
+    "Native executable-mount explanation retains uncertainty: effective mountinfo and mmap errno absent",
+    "13 artifact files and exact artifact digest retained",
+    "No mocked preflight result described as hosted mount acceptance",
+    "Prior compile/recovery/journal acceptance preserved; no whole-row promotions"
+  ],
+  "accepted": 45,
+  "outstanding": 19,
+  "missionLedger": "IN_PROGRESS / NO_GO",
+  "noReruns": true
+}

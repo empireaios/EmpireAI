@@ -1,0 +1,21 @@
+{
+  "evidence": {
+    "commit": "657b81b7f512fe62b4a5a4e95379065c3c6e3e7d",
+    "tree": "6d17ed6c7bdf74712ba95f8bbd890a38d433b8c2",
+    "branch": "work8/examination-evidence-20261011"
+  },
+  "source": {
+    "commit": "1177578c6543224d5d819286ec931f4a33ed1c10",
+    "tree": "916e8feb2cd5c195855ce1683628f625774e5424",
+    "branch": "work8/writer-integration-20261025v"
+  },
+  "evidenceFirst": true,
+  "completeTreeEquality": true,
+  "metadataChanged": false,
+  "automaticRun": 40164516085,
+  "dispatches": 0,
+  "reruns": 0,
+  "pr113Head": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+  "prDraft": true,
+  "merged": false
+}

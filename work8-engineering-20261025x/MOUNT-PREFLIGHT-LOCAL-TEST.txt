@@ -1,0 +1,11 @@
+✔ mount preflight accepts only executable protected native mount and noexec data mounts (2.654006ms)
+✔ mount preflight refuses noexec native image and executable data (2.003179ms)
+✔ mount preflight refuses runtime-owned native artifact (0.748675ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 97.14111

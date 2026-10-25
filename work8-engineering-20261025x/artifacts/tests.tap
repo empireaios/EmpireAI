@@ -1,0 +1,38 @@
+TAP version 13
+# (node:22) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual production control modules: synthetic application admission, capture and independent containment
+not ok 1 - actual production control modules: synthetic application admission, capture and independent containment
+  ---
+  duration_ms: 202.388665
+  type: 'test'
+  location: '/work8-exam/source/deployment/runtime-writer-graph.hosted.test.cjs:32:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    GRAPH_START_FAILED {"event":"locked_runtime_start","profile":"LOCKED_COMMISSIONING_V1","launchId":"90b9d607-2b42-4069-88d1-8c080b109672","childPid":40,"source":"1177578c6543224d5d819286ec931f4a33ed1c10","birth":"NOT_BORN","commerce":"LOCKED","operational":false}
+    (node:40) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+    (Use `node --trace-warnings ...` to show where the warning was created)
+    ERROR: ld.so: object '/work8-exam/native/writer.so' from LD_PRELOAD cannot be preloaded (failed to map segment from shared object): ignored.
+    (node:47) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+    (Use `node --trace-warnings ...` to show where the warning was created)
+    Runtime writer controller refused: STARTUP_READBACK_FAILED
+    {"event":"launcher_loss_containment","at":"2026-10-25T05:10:00.813Z","source":"1177578c6543224d5d819286ec931f4a33ed1c10","reason":"CONTROLLER_EXITED","action":"STOP_RUNTIME_GROUP","recoveryVerified":false,"commerce":"LOCKED","birth":"NOT_BORN","auditPersisted":false}
+    {"event":"locked_runtime_stop","code":null,"signal":"SIGKILL","reason":"child_exit","forcedTermination":false,"forcedSignal":null}
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    /work8-exam/source/deployment/runtime-writer-graph.hosted.test.cjs:45:35
+    until (/work8-exam/source/deployment/runtime-writer-graph.hosted.test.cjs:11:106)
+    async TestContext.<anonymous> (/work8-exam/source/deployment/runtime-writer-graph.hosted.test.cjs:44:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 257.656889

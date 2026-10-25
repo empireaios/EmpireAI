@@ -1,0 +1,81 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 121082704206,
+      "run_id": 40164516085,
+      "workflow_name": "Work 8 actual writer integration examination",
+      "head_branch": "work8/writer-integration-20261025v",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/40164516085",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAcMRdxTg",
+      "head_sha": "1177578c6543224d5d819286ec931f4a33ed1c10",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/121082704206",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/40164516085/job/121082704206",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-25T05:09:45Z",
+      "started_at": "2026-10-25T05:09:47Z",
+      "completed_at": "2026-10-25T05:10:04Z",
+      "name": "writer-integration",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T05:09:49Z",
+          "completed_at": "2026-10-25T05:09:50Z"
+        },
+        {
+          "name": "Checkout approved event source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T05:09:50Z",
+          "completed_at": "2026-10-25T05:09:53Z"
+        },
+        {
+          "name": "Examine only the new writer integration boundary",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 3,
+          "started_at": "2026-10-25T05:09:53Z",
+          "completed_at": "2026-10-25T05:10:01Z"
+        },
+        {
+          "name": "Retain exact-source evidence including failures",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T05:10:01Z",
+          "completed_at": "2026-10-25T05:10:02Z"
+        },
+        {
+          "name": "Post Checkout approved event source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T05:10:02Z",
+          "completed_at": "2026-10-25T05:10:02Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T05:10:02Z",
+          "completed_at": "2026-10-25T05:10:02Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/121082704206",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008480,
+      "runner_name": "GitHub Actions 1000008480",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

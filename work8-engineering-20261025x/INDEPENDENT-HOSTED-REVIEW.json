@@ -1,0 +1,23 @@
+{
+  "decision": "FAIL_HOSTED_GRAPH_EXAMINATION_NATIVE_PRELOAD_BEFORE_ADMISSION",
+  "run": 40164516085,
+  "source": "1177578c6543224d5d819286ec931f4a33ed1c10",
+  "tree": "916e8feb2cd5c195855ce1683628f625774e5424",
+  "artifactSha256": "eb39d34096ba0ed0f54f610aa17ea5fbe82611d47c55b44f9ecde7f37bccea45",
+  "observed": [
+    "Initial synthetic Redis AUTH/PING/INFO completed; driver reached graph startup",
+    "Dynamic loader could not map /work8-exam/native/writer.so and ignored LD_PRELOAD",
+    "Controller refused STARTUP_READBACK_FAILED; independent guard emitted STOP_RUNTIME_GROUP",
+    "0pass1fail0skip; no graph integration assertion accepted"
+  ],
+  "classification": "TEST_HARNESS_NATIVE_ARTIFACT_MOUNT_CONFIGURATION",
+  "causalLimit": "Missing executable mount authorization is consistent with loader failure and HostConfig omission of exec. Effective mountinfo and mmap errno were not retained; noexec itself is not directly proven. No journal implementation failure established.",
+  "minimumCorrection": "Dedicated operator-owned exec tmpfs for immutable native library; data/source tmpfs explicitly noexec; preserve read-only root, zero runtime capabilities and mandatory mapped-library/seccomp attestation. Retain and validate effective mount options before graph launch in next authorized run.",
+  "preserved": [
+    "Prior Pillow/backend compilation",
+    "Accepted original journal and recovery scoped evidence",
+    "45 accepted /19 outstanding"
+  ],
+  "newlyAcceptedWholeRows": [],
+  "noReruns": true
+}

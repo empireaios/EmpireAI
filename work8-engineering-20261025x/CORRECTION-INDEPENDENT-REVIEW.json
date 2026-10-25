@@ -1,0 +1,40 @@
+{
+  "decision": "ACCEPT_FOR_STAGING_AND_EXACT_TREE_OWNER_REVIEW_ONLY",
+  "baseCommit": "1177578c6543224d5d819286ec931f4a33ed1c10",
+  "baseTree": "916e8feb2cd5c195855ce1683628f625774e5424",
+  "files": [
+    {
+      "path": "scripts/work8/run-writer-integration.sh",
+      "sha256": "e3b5eac347ed24f9c16313492cbe03262aa5f24bb926e971b07c5899395c6b70",
+      "gitBlob": "3db6d9216c0aec1007db9e216082da3a379f2053",
+      "bytes": 8152,
+      "mode": "100644"
+    }
+  ],
+  "scope": "Dedicated1MiB root-owned native-artifact executable tmpfs; existing data/source tmpfs explicitly noexec; effective mount and immutable artifact preflight with retained unverified readback before assertions.",
+  "preserved": [
+    "Original process identities and zero runtime capabilities",
+    "Read-only root and existing capability set",
+    "Original deadlines",
+    "Mandatory native mapped-artifact/seccomp attestation",
+    "No application or journal source changes"
+  ],
+  "localEvidence": {
+    "path": "MOUNT-PREFLIGHT-LOCAL-TEST.txt",
+    "sha256": "68e0e26631a31e7135c2e8d55ff5fffd060109d505127cb5d98a38172be2de0a",
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "skipped": 0,
+    "scope": "Mocked mount/ownership preflight logic only; not effective mount or hosted acceptance",
+    "reviewerReran": false
+  },
+  "limitations": [
+    "Original loader failure lacks effective mountinfo/errno; exact noexec cause remains inferred",
+    "Corrected effective mount/native admission requires next authorized automatic hosted run",
+    "No whole-row acceptance, production cutover or custody certification"
+  ],
+  "newlyAcceptedWholeRows": [],
+  "accepted": 45,
+  "outstanding": 19
+}
