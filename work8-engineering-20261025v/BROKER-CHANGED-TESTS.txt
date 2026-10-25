@@ -1,0 +1,12 @@
+✔ broker returns no spawn or success before durable controller admission (2.039286ms)
+✔ broker acknowledges actual signal refusal and rejects caller-selected signals (0.277265ms)
+✔ capture receipt is controller-supplied and tied to current child bridge (0.279069ms)
+✔ exit invalidates old handle and refuses replay into a replacement (0.211047ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85.326304

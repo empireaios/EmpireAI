@@ -1,0 +1,10 @@
+{"scope":"NATIVE_POLICY_ONLY","deniedSyscalls":["clone","clone3","execve","execveat","setsid","setpgid","unshare","setns","ptrace","process_vm_writev","process_vm_readv","pidfd_getfd","fork","vfork","legacy-x32"],"nodeThreadCreation":true,"nodeProcessCreationDenied":true,"distinctPrincipalAcceptance":false}
+✔ native writer policy rejects processes/group escape and preserves Node threads (214.430265ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 295.175329

@@ -1,0 +1,57 @@
+[
+  {
+    "file": "deployment/runtime-brain-broker.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/runtime-brain-broker.test.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/runtime-membership-controller.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/runtime-generation.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/runtime-startup-readback.mjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/runtime-operator-audit.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/runtime-writer-controller.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/launcher-loss-guard.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/locked-runtime.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/runtime-writer-graph.hosted.test.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  },
+  {
+    "file": "deployment/fixtures/runtime-graph-application.cjs",
+    "exit": 0,
+    "diagnostic": ""
+  }
+]

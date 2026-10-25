@@ -1,0 +1,62 @@
+[
+  {
+    "path": "backend/src/runtime/runtime-process-handle.ts",
+    "sha256": "47aeda40d09b5b8cb082509b6ae639ea9ae3ced45ff79b94012912392b0b3aec"
+  },
+  {
+    "path": "backend/src/runtime/tier0-isolated-primary.ts",
+    "sha256": "f0716e7ec858122713f5864342ab8782d8181ced729438e48524a55c0157efe5"
+  },
+  {
+    "path": "backend/src/runtime/primary-shutdown.ts",
+    "sha256": "e252ee1d3f4f7721881ece547e0e20f7d65b883bba09e6b4e79775b4cb53cc93"
+  },
+  {
+    "path": "backend/src/runtime/work8-primary-capture.ts",
+    "sha256": "85985bfcc56a4ecc25347221b38262906dce646fee0de6f5a580d9e5212f6ef3"
+  },
+  {
+    "path": "deployment/runtime-brain-broker.cjs",
+    "sha256": "c2806cf03db26f15016b75f7d66961b057e67c4ecd89787d0abf1f8b41814ba9"
+  },
+  {
+    "path": "deployment/runtime-brain-broker.test.cjs",
+    "sha256": "d6fc08b8d9130aff04f79b1283f21e63c04541bcefc289070af503a5cc613018"
+  },
+  {
+    "path": "deployment/runtime-membership-controller.cjs",
+    "sha256": "2cc283756c9ddd83ca087c9ed4a9e9288212b00c81a681cabc55af6e8d792ce6"
+  },
+  {
+    "path": "deployment/runtime-generation.cjs",
+    "sha256": "af912e18ad31707d58c2db1ae6168c6a821d7395ba66b41384cd3bb4675282ce"
+  },
+  {
+    "path": "deployment/runtime-startup-readback.mjs",
+    "sha256": "406e3baae84bd28cd2975afcc0db862a1438c0aecde89c4eb3cc8a140bb510fc"
+  },
+  {
+    "path": "deployment/runtime-operator-audit.cjs",
+    "sha256": "73e6fc4c3d95f15a1ff6b0032d79ac23b58d2cf97ded69fb942e07477cece647"
+  },
+  {
+    "path": "deployment/runtime-writer-controller.cjs",
+    "sha256": "e76bad60f3770581873aa218ee22d832554f89999672ab089cbe3f54464bf9a9"
+  },
+  {
+    "path": "deployment/launcher-loss-guard.cjs",
+    "sha256": "784553efa00db2bfbc09938dce88f3ea59e93b845df8bb4936f3c36fd04b982c"
+  },
+  {
+    "path": "deployment/locked-runtime.cjs",
+    "sha256": "e10f88d2daa0fd7ee1616b7b39e8d03f7d5b646ee7492814877a28ea43864e83"
+  },
+  {
+    "path": "deployment/runtime-writer-graph.hosted.test.cjs",
+    "sha256": "ab3d6af43e338b5fa6639b47b3d4857eebffa4d7c4dd9b3132f1157e3f9a3dfa"
+  },
+  {
+    "path": "deployment/fixtures/runtime-graph-application.cjs",
+    "sha256": "f17f43abfcc32a0f22cd1ba52bceaf2e9edabf6df15eb7eca42a5efbfd901fc2"
+  }
+]

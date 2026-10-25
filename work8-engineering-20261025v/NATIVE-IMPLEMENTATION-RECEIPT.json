@@ -1,0 +1,40 @@
+{
+  "scope": "Native process-creation/group-escape enforcement and operator attestation hooks; graph integration owned separately",
+  "localChangedPolicyTest": "1/1 PASS;15 direct syscall EPERM/ENOSYS cases,x32 ABI SIGSYS,and Node worker thread inherited process-creation refusal",
+  "hostedNode22IdentityAcceptance": false,
+  "nativeArtifactTracked": false,
+  "files": [
+    {
+      "path": "deployment/native/runtime-writer-isolation.c",
+      "bytes": 3452,
+      "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c",
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.cjs",
+      "bytes": 3270,
+      "sha256": "dff08c2dd38678875da9c53322a591f147a66c1afeb4a002c85a526662d6a2d2",
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.test.cjs",
+      "bytes": 3523,
+      "sha256": "4a440353b341211f42ce35a6e759e7de81c11b7efc1a42e8d945c2ff4e2f79c9",
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/fixtures/runtime-writer-isolation-probe.c",
+      "bytes": 2196,
+      "sha256": "d8aec455b2f250b810635bdd9109094c8ff1b12ca30f6672694c13d0c9af5285",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/work8/build-writer-isolation.sh",
+      "bytes": 628,
+      "sha256": "95c3befa895e56621c7cc088bec910201b3418ea1488f56d50a7c4c8bdba168a",
+      "mode": "100644"
+    }
+  ],
+  "historicalDevelopmentChecks": "Initial14-case check preserved in conversation; final added checks address independent review findings only",
+  "testLogSha256": "2fa9a488dc059c91502f585b1b6cd1ec5910f4fc7e26cfba08e0849c7a394c4e"
+}

@@ -1,0 +1,107 @@
+{
+  "node": "v24.22.1",
+  "scope": "Syntax only; not TypeScript typecheck or Node22 hosted acceptance",
+  "checks": [
+    {
+      "path": "backend/src/runtime/primary-shutdown.ts",
+      "exit": 0,
+      "diagnostic": "",
+      "method": "Node stripTypeScriptTypes then ESM syntax check; no type resolution"
+    },
+    {
+      "path": "backend/src/runtime/runtime-process-handle.ts",
+      "exit": 0,
+      "diagnostic": "",
+      "method": "Node stripTypeScriptTypes then ESM syntax check; no type resolution"
+    },
+    {
+      "path": "backend/src/runtime/tier0-isolated-primary.ts",
+      "exit": 0,
+      "diagnostic": "",
+      "method": "Node stripTypeScriptTypes then ESM syntax check; no type resolution"
+    },
+    {
+      "path": "backend/src/runtime/work8-primary-capture.ts",
+      "exit": 0,
+      "diagnostic": "",
+      "method": "Node stripTypeScriptTypes then ESM syntax check; no type resolution"
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "exit": 0,
+      "diagnostic": "",
+      "method": "Node stripTypeScriptTypes then ESM syntax check; no type resolution"
+    },
+    {
+      "path": "deployment/launcher-loss-guard.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-brain-broker.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-brain-broker.test.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-generation.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-membership-receipt.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-membership-receipt.test.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-operator-audit.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-startup-readback.mjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-writer-controller.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.test.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "exit": 0,
+      "diagnostic": ""
+    }
+  ],
+  "note": "Direct node --check does not parse TypeScript in this environment; TypeScript entries were checked after built-in stripping. No full typecheck claim."
+}

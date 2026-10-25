@@ -1,0 +1,72 @@
+{
+  "reviewer": "/root/writer_review_v",
+  "decision": "ACCEPT_NATIVE_ENFORCEMENT_COMPONENT_FOR_INTEGRATION_AND_STAGING_ONLY",
+  "files": [
+    {
+      "path": "deployment/native/runtime-writer-isolation.c",
+      "mode": "100644",
+      "bytes": 3452,
+      "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c",
+      "blob": "7678fc0332a8daea71f46b01803c29b2acb4ceb4"
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.cjs",
+      "mode": "100644",
+      "bytes": 3270,
+      "sha256": "dff08c2dd38678875da9c53322a591f147a66c1afeb4a002c85a526662d6a2d2",
+      "blob": "66597ec44b64f45ae1f96815a51d7b2af2b8c385"
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.test.cjs",
+      "mode": "100644",
+      "bytes": 3523,
+      "sha256": "4a440353b341211f42ce35a6e759e7de81c11b7efc1a42e8d945c2ff4e2f79c9",
+      "blob": "256264e3e1424a8995f45a5b2a80382183cff1a6"
+    },
+    {
+      "path": "deployment/fixtures/runtime-writer-isolation-probe.c",
+      "mode": "100644",
+      "bytes": 2196,
+      "sha256": "d8aec455b2f250b810635bdd9109094c8ff1b12ca30f6672694c13d0c9af5285",
+      "blob": "acd4a1bc6e6384689b73a0a57f4ac55bf044814c"
+    },
+    {
+      "path": "scripts/work8/build-writer-isolation.sh",
+      "mode": "100644",
+      "bytes": 628,
+      "sha256": "95c3befa895e56621c7cc088bec910201b3418ea1488f56d50a7c4c8bdba168a",
+      "blob": "c189986874f3cd1ec849785e96857fc1c571923f"
+    }
+  ],
+  "localEvidence": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "skipped": 0,
+    "deniedSyscalls": 15,
+    "x32Abi": "SIGSYS",
+    "nodeWorkerCreation": "PASS",
+    "nodeWorkerSubprocessDenial": "PASS",
+    "logSha256": "2fa9a488dc059c91502f585b1b6cd1ec5910f4fc7e26cfba08e0849c7a394c4e",
+    "executionByReviewer": false
+  },
+  "reviewedGuarantees": [
+    "Immutable native artifact and mapped device/inode/path/hash binding",
+    "Mandatory extra seccomp filter, no-new-privileges and zero effective runtime capabilities",
+    "No fork/vfork or non-thread clone, clone3 ENOSYS fallback",
+    "No later exec or process-group/namespace escape",
+    "Unsupported ABI refused, including x32 aliases",
+    "Inherited loader injection variables refused"
+  ],
+  "remainingGates": [
+    "Actual controller launch integration and policy attestation under distinct UIDs",
+    "Actual Node22/Docker target-libc build and hosted execution",
+    "Complete graph coverage and independent guard/capture/audit integration",
+    "Global old-writer/Redis exclusion and protected operational custody"
+  ],
+  "acceptedWholeRows": [],
+  "totals": {
+    "accepted": 45,
+    "outstanding": 19
+  }
+}

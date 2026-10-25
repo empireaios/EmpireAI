@@ -1,0 +1,234 @@
+{
+  "decision": "ACCEPT_FOR_STAGING_AND_OWNER_EXACT_TREE_REVIEW_ONLY",
+  "scope": "Independent source architecture and changed-boundary examination design review; not hosted execution acceptance",
+  "sourceFiles": [
+    {
+      "path": ".github/workflows/work8-writer-integration.yml",
+      "sha256": "b4cad21ca6839e3c79635df7fe5ccb1b4875d90c4cf1f874b0a7b5b2050c047d",
+      "gitBlob": "3f75888bf7ad8b302e0ef1b5b6fb6fb360501db4",
+      "bytes": 1769,
+      "mode": "100644"
+    },
+    {
+      "path": "backend/src/runtime/primary-shutdown.ts",
+      "sha256": "e252ee1d3f4f7721881ece547e0e20f7d65b883bba09e6b4e79775b4cb53cc93",
+      "gitBlob": "a97bf59a5485c7d49e33598e776b07049cb5cffa",
+      "bytes": 4060,
+      "mode": "100644"
+    },
+    {
+      "path": "backend/src/runtime/runtime-process-handle.ts",
+      "sha256": "47aeda40d09b5b8cb082509b6ae639ea9ae3ced45ff79b94012912392b0b3aec",
+      "gitBlob": "7f22dda84d50b49c94d73566c945d48071c078ec",
+      "bytes": 4798,
+      "mode": "100644"
+    },
+    {
+      "path": "backend/src/runtime/tier0-isolated-primary.ts",
+      "sha256": "f0716e7ec858122713f5864342ab8782d8181ced729438e48524a55c0157efe5",
+      "gitBlob": "22960a8df86ba3a0dfadc43e5cf141ba3b220d67",
+      "bytes": 35989,
+      "mode": "100644"
+    },
+    {
+      "path": "backend/src/runtime/work8-primary-capture.ts",
+      "sha256": "85985bfcc56a4ecc25347221b38262906dce646fee0de6f5a580d9e5212f6ef3",
+      "gitBlob": "4e043f2f2527535bf7e9e33da527924f3346cd4d",
+      "bytes": 5736,
+      "mode": "100644"
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "sha256": "79da773e6d13e24742c99d8f10132652d88f0a621ca0b716c97942d6f311de7e",
+      "gitBlob": "72be288165b1f52aeb551e37a026528c3fa4614b",
+      "bytes": 10547,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/fixtures/runtime-graph-application.cjs",
+      "sha256": "f17f43abfcc32a0f22cd1ba52bceaf2e9edabf6df15eb7eca42a5efbfd901fc2",
+      "gitBlob": "bebf952f9158cc608d2d86b15251b458a1a494db",
+      "bytes": 2471,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/fixtures/runtime-writer-isolation-probe.c",
+      "sha256": "d8aec455b2f250b810635bdd9109094c8ff1b12ca30f6672694c13d0c9af5285",
+      "gitBlob": "acd4a1bc6e6384689b73a0a57f4ac55bf044814c",
+      "bytes": 2196,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/launcher-loss-guard.cjs",
+      "sha256": "784553efa00db2bfbc09938dce88f3ea59e93b845df8bb4936f3c36fd04b982c",
+      "gitBlob": "d6428ffe94f41a0912f502b6378b46a1ad40db8a",
+      "bytes": 4685,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "sha256": "e10f88d2daa0fd7ee1616b7b39e8d03f7d5b646ee7492814877a28ea43864e83",
+      "gitBlob": "6c3dfeba9e1d0181f46b6bec0fc225894972d0f9",
+      "bytes": 7021,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/native/runtime-writer-isolation.c",
+      "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c",
+      "gitBlob": "7678fc0332a8daea71f46b01803c29b2acb4ceb4",
+      "bytes": 3452,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/railway.locked.toml",
+      "sha256": "4b8b9530cf081f7a487af46c61e560783ef23fbd8b0dd128ee56710f6dab17c8",
+      "gitBlob": "c48eed4d9dec2269b0bdc8848b0c5a8dbe7b2fbb",
+      "bytes": 922,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-brain-broker.cjs",
+      "sha256": "c2806cf03db26f15016b75f7d66961b057e67c4ecd89787d0abf1f8b41814ba9",
+      "gitBlob": "1a0f6ed24bba5655bc39a18f71e7b010004fff54",
+      "bytes": 2759,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-brain-broker.test.cjs",
+      "sha256": "d6fc08b8d9130aff04f79b1283f21e63c04541bcefc289070af503a5cc613018",
+      "gitBlob": "b242e0242f6539dfe74452251ae93b09c9421bf8",
+      "bytes": 3007,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-generation.cjs",
+      "sha256": "af912e18ad31707d58c2db1ae6168c6a821d7395ba66b41384cd3bb4675282ce",
+      "gitBlob": "7948477c13da36e9fd8506c4830dab932136bf8b",
+      "bytes": 11248,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "sha256": "2cc283756c9ddd83ca087c9ed4a9e9288212b00c81a681cabc55af6e8d792ce6",
+      "gitBlob": "79e913fd959f4e48460deffaafea13c1bfc0c258",
+      "bytes": 20654,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-membership-receipt.cjs",
+      "sha256": "dcf4aa371f470f92c22d0db5ff4320a03156c4d71855721cf6247eddfae20815",
+      "gitBlob": "0b3bf51c9bbc780a43e897b904aa5b7e5088d472",
+      "bytes": 2060,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-membership-receipt.test.cjs",
+      "sha256": "2a7376e1aa750152878f7657eb1ca4de4edd36b8723563133853677b4aead0d7",
+      "gitBlob": "4b23f25dcc75db786751d9f36a10c91030efde60",
+      "bytes": 1810,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-operator-audit.cjs",
+      "sha256": "73e6fc4c3d95f15a1ff6b0032d79ac23b58d2cf97ded69fb942e07477cece647",
+      "gitBlob": "b42450e1f61868fa0ee6a027fd862b3067ef82af",
+      "bytes": 2388,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-startup-readback.mjs",
+      "sha256": "406e3baae84bd28cd2975afcc0db862a1438c0aecde89c4eb3cc8a140bb510fc",
+      "gitBlob": "f002768fd0fc27737489b2bfdc1c968c0f115ee9",
+      "bytes": 515,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-writer-controller.cjs",
+      "sha256": "e76bad60f3770581873aa218ee22d832554f89999672ab089cbe3f54464bf9a9",
+      "gitBlob": "90b7da3c515f022c5646063a24f2b84aa732cd78",
+      "bytes": 9187,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-writer-graph.hosted.test.cjs",
+      "sha256": "ab3d6af43e338b5fa6639b47b3d4857eebffa4d7c4dd9b3132f1157e3f9a3dfa",
+      "gitBlob": "7e2febac7238f1968452b9d265fecac68d537886",
+      "bytes": 9435,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.cjs",
+      "sha256": "dff08c2dd38678875da9c53322a591f147a66c1afeb4a002c85a526662d6a2d2",
+      "gitBlob": "66597ec44b64f45ae1f96815a51d7b2af2b8c385",
+      "bytes": 3270,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.test.cjs",
+      "sha256": "4a440353b341211f42ce35a6e759e7de81c11b7efc1a42e8d945c2ff4e2f79c9",
+      "gitBlob": "256264e3e1424a8995f45a5b2a80382183cff1a6",
+      "bytes": 3523,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "sha256": "553063b96e479e1f4393bf336d64139babf768e6a07054077534eb10019f9e1a",
+      "gitBlob": "83b173a5e15543657c3cea645a1e51900b941cf1",
+      "bytes": 21814,
+      "mode": "100644"
+    },
+    {
+      "path": "railpack.json",
+      "sha256": "68fa180474da0337fce1436fbea096df194b8c295f78f2d0db1edd94cbfcd603",
+      "gitBlob": "9227dbb898ac741e10349f2f5a82866982839435",
+      "bytes": 307,
+      "mode": "100644"
+    },
+    {
+      "path": "railway.toml",
+      "sha256": "4bcb07b57bc379d72d63da66ce725215906b90fc3e01083cb0f4ee851b1080ad",
+      "gitBlob": "2891d9253cebc29419cab9488d358159c2136d4a",
+      "bytes": 1023,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/work8/build-writer-isolation.sh",
+      "sha256": "95c3befa895e56621c7cc088bec910201b3418ea1488f56d50a7c4c8bdba168a",
+      "gitBlob": "c189986874f3cd1ec849785e96857fc1c571923f",
+      "bytes": 628,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/work8/run-writer-integration.sh",
+      "sha256": "d83c26d11b4202bbb9a231e066a01ec6fc7b69372f811021bf97cb7f10012b57",
+      "gitBlob": "81f9ae6c8daaefff44cba6a410397c8ae0179c14",
+      "bytes": 6647,
+      "mode": "100644"
+    }
+  ],
+  "reviewedEvidence": [
+    "NATIVE-INDEPENDENT-REVIEW.json",
+    "NATIVE-POLICY-LOCAL-TEST.txt",
+    "BROKER-CHANGED-TESTS.txt",
+    "GRAPH-SYNTAX-CHECKS.json",
+    "RECEIPT-LOCAL-TEST.txt"
+  ],
+  "findingsResolved": [
+    "Operator guard lifetime generation lease closes before-first/after-last child gap",
+    "Explicit trusted guard role; no runtime root admission bypass",
+    "Native syscall policy rejects process descendants and group escape while retaining threads",
+    "Capture receipt checks lifecycle revision, exact cohort and stopping state",
+    "Emergency marker and audit fence preserve capture invalidation",
+    "Broker admission and send/signal results reflect actual controller-owned child",
+    "Hosted fixture capture begins from authoritative census, not fixed startup sleep"
+  ],
+  "limitations": [
+    "Backend/Pillow compilation unavailable locally and required in targeted hosted job",
+    "Actual Node22 Docker graph fixture not executed; owner exact-tree publication approval required",
+    "Native artifact target libc and operator SYS_PTRACE availability must pass hosted examination",
+    "Fixture uses synthetic application entries; actual application restoration remains separate",
+    "Historical operating membership, safe production cutover and protected custody remain unproven",
+    "No complete requirement accepted; baseline45 accepted19 outstanding"
+  ],
+  "newlyAcceptedWholeRows": []
+}
