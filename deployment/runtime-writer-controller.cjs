@@ -17,7 +17,7 @@ function realRoles(cwd,env,source){
   const entry=role==='startup-readback'?path.join(__dirname,'runtime-startup-readback.mjs'):role.startsWith('assurance-')?path.join(cwd,'backend/src/assurance',role==='assurance-worker'?'permanent-worker.mjs':'permanent-inspector.mjs'):path.join(cwd,'backend/dist/index.js');
   let environment={...clean};
   if(role==='brain-worker')Object.assign(environment,{EMPIRE_ROLE:'brain-worker',EMPIRE_TIER0_ISOLATION:'false',PORT:String(Number(env.EMPIRE_BRAIN_WORKER_PORT??Number(env.PORT)+1)),HOST:'127.0.0.1'});
-  if(role.startsWith('assurance-'))environment={ASSURANCE_RUNTIME_ORIGIN:env.ASSURANCE_RUNTIME_ORIGIN,WORK8_REAL_GRAPH:'1'};
+  if(role.startsWith('assurance-'))environment={TMPDIR:env.TMPDIR,ASSURANCE_RUNTIME_ORIGIN:env.ASSURANCE_RUNTIME_ORIGIN,WORK8_REAL_GRAPH:'1'};
   return {role,entry,inheritOutput:true,nodeArgs:['--max-old-space-size=1536'],entrySha256:digest(fs.readFileSync(entry)),stateDirectory:path.dirname(env.DATABASE_PATH),scope,environment};
  });
 }

@@ -34,8 +34,9 @@ if(examination){
  if(examination.pending){const {readPendingState,validatePendingPlan}=await import('../scripts/work8/pending-restoration.mjs');validatePendingPlan(examination.pending,{capability:examination.nonce,source,expectedDigest:examination.pending.digest,state:readPendingState(process.env.DATABASE_PATH)});}
  process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED='true';
  const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
- process.env.SESSION_CONTINUITY_STORAGE_ROOT=path.relative(repo,path.join(examination.volume.root,'pillow-session-continuity'));
- process.env.VISUAL_MEMORY_STORAGE_ROOT=path.relative(repo,path.join(examination.volume.root,'pillow-visual-memory'));
+ const {nativeRoot}=require('./o33-path-contract.cjs');
+ process.env.SESSION_CONTINUITY_STORAGE_ROOT=path.relative(repo,nativeRoot(examination.volume.root,'session'));
+ process.env.VISUAL_MEMORY_STORAGE_ROOT=path.relative(repo,nativeRoot(examination.volume.root,'visual'));
 
  Object.defineProperty(globalThis,Symbol.for('work8.admitted.isolated.application'),{value:Object.freeze(examination),writable:false,configurable:false});
 }

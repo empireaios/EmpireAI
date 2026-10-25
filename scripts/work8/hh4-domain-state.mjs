@@ -141,10 +141,12 @@ async function initializeDomainRecords(application,root,source,admitted){
  // These optional observers are not scheduled in a headless worker. Their
  // initialized empty stores must not silently grow outside the capture inventory.
  assert.equal(process.env.PILLOW_HEADLESS_OBSERVERS_ENABLED??'', '');
- assert.deepEqual(fs.readdirSync(path.join(root,'pillow-visual-memory')).sort(),['records']);
- assert.deepEqual(fs.readdirSync(path.join(root,'pillow-visual-memory/records')),[]);
- assert.deepEqual(fs.readdirSync(path.join(root,'pillow-session-continuity')),[]);
- inventory.emptyInitializedStores=['pillow-visual-memory/records','pillow-session-continuity'];
+ const declared=globalThis[Symbol.for('work8.admitted.isolated.application')];
+ const native=kind=>declared?require('../../deployment/o33-path-contract.cjs').nativeRoot(root,kind):path.join(root,kind==='visual'?'pillow-visual-memory':'pillow-session-continuity');
+ assert.deepEqual(fs.readdirSync(native('visual')).sort(),['records']);
+ assert.deepEqual(fs.readdirSync(path.join(native('visual'),'records')),[]);
+ assert.deepEqual(fs.readdirSync(native('session')),[]);
+ inventory.emptyInitializedStores=[path.relative(root,path.join(native('visual'),'records')),path.relative(root,native('session'))];
  host.createMissionRuntimeMission({missionName:'Synthetic HH4 unapproved recovery mission',workers:[],pillowConfirmed:false,grandKingApproved:false,highRisk:false});record('missions',host.getMissionRuntimeHistory());
  const executionFile=await readyActualExecutionStore(application,host,primary,hostDeadline);
  // Fresh synthetic examination permission covers exactly this readonly operation.

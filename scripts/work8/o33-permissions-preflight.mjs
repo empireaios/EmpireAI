@@ -2,8 +2,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {DatabaseSync} from 'node:sqlite';
+import contract from '../../deployment/o33-path-contract.cjs';
 import {createHash} from 'node:crypto';
-import {mkdir,readableEvidence} from './o33-permissions.mjs';
+import {mkdir,readableEvidence,preparePathContract,ownedTree} from './o33-permissions.mjs';
 const root='/work8-exam/permission-preflight',evidence=process.env.WORK8_EVIDENCE_DIR;
 const receipt={source:process.env.WORK8_SOURCE_SHA,scope:'O33_PERMISSION_PREFLIGHT_ONLY',status:'FAIL',checks:{}};
 const snapshot=f=>{const s=fs.lstatSync(f);return {uid:s.uid,gid:s.gid,mode:s.mode&0o777,sha256:s.isFile()?createHash('sha256').update(fs.readFileSync(f)).digest('hex'):null};};
@@ -45,6 +47,32 @@ try{
  `,runtime,operator,sealed,host,owned,actualHost,privateFile],{uid:65534,gid:65534,encoding:'utf8',timeout:10000,env:{PATH:process.env.PATH}});
  assert.equal(child.status,0,child.stderr||String(child.error));assert.match(child.stdout,/NONROOT_ACCESS_AND_ISOLATION_PASS/);
  receipt.checks.nonRootAccessAndIsolation=true;receipt.checks.noAddedPrivileges=true;
+ receipt.pathContract={};
+ for(const phase of ['fresh','restored']){
+ const topology=preparePathContract(path.join(root,'declared-'+phase));mkdir(path.join(topology.operator,'sealed'),0,0o500);
+ for(const name of ['generation.sqlite','cutover.json'])fs.writeFileSync(path.join(topology.authority,name),'protected',{mode:0o644});
+ for(const name of ['journal.sqlite','journal.sqlite.controller.sqlite','journal.sqlite.audit-fence.sqlite']){const file=path.join(topology.operator,name),db=new DatabaseSync(file);db.exec('PRAGMA journal_mode=DELETE;CREATE TABLE probe(n);BEGIN EXCLUSIVE;INSERT INTO probe VALUES(1);ROLLBACK;');db.close();}
+ for(const name of ['journal.sqlite.emergency','grant.json','grant.json.capture','grant.json.release'])fs.writeFileSync(path.join(topology.operator,name),'operator',{flag:'wx',mode:0o600});
+ for(const name of ['inspection','results']){const dir=path.join(topology.operator,name);mkdir(dir,0,0o700);const file=path.join(dir,'permission-probe.json');fs.writeFileSync(file,'operator',{flag:'wx',mode:0o600});assert.equal(fs.readFileSync(file,'utf8'),'operator');}
+ assert.equal(snapshot(path.join(topology.operator,'sealed')).mode,0o500);
+ receipt.checks.operatorControlPaths=true;
+ // Use the already-mounted, hash-pinned native isolation artifact, no added
+ // capability or alternate runtime. A failed contract stops before coordinator.
+ assert.ok(process.env.WORK8_WRITER_ISOLATION_LIBRARY);assert.match(process.env.WORK8_WRITER_ISOLATION_SHA256,/^[a-f0-9]{64}$/);
+ assert.equal(createHash('sha256').update(fs.readFileSync(process.env.WORK8_WRITER_ISOLATION_LIBRARY)).digest('hex'),process.env.WORK8_WRITER_ISOLATION_SHA256);
+ if(phase==='restored'){
+  // Same offline copy/handoff semantics as target materialization: private
+  // operator-created files/directories become runtime-owned before launch.
+  for(const relative of Object.values(contract.SQL)){const file=path.join(topology.volume,relative);fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o700});const db=new DatabaseSync(file);db.exec('CREATE TABLE restored_probe(n);');db.close();fs.chmodSync(file,0o600);}
+  for(const file of [path.join(topology.visual,'index.json'),path.join(topology.visual,'records/probe.json'),path.join(topology.session,'session-snapshot.json'),...contract.CONTROL.map(x=>path.join(topology.volume,x))]){fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o700});fs.writeFileSync(file,'restored',{mode:0o600});}
+  for(const relative of contract.RUNTIME_DIRECTORIES)ownedTree(path.join(topology.volume,relative),65534);
+ }
+ const contractChild=spawnSync(process.execPath,[path.join(import.meta.dirname,'o33-path-contract-preflight.mjs'),topology.base,evidence],{uid:65534,gid:65534,encoding:'utf8',timeout:20000,env:{PATH:process.env.PATH,TMPDIR:topology.temporary,RAILWAY_VOLUME_MOUNT_PATH:topology.volume,LD_PRELOAD:process.env.WORK8_WRITER_ISOLATION_LIBRARY,O33_EXPECTED_FILTERS:String(Number(fs.readFileSync('/proc/self/status','utf8').match(/^Seccomp_filters:\s*(\d+)$/m)[1])+1)}});
+ assert.equal(contractChild.status,0,contractChild.stderr||String(contractChild.error));
+ receipt.pathContract[phase]=JSON.parse(contractChild.stdout);assert.equal(receipt.pathContract[phase].status,'PASS');
+ }
+ receipt.checks.completeDeclaredPathContract=true;
+
  receipt.status='PASS';receipt.hostEvidenceBefore=actualBefore;receipt.hostEvidenceAfter=snapshot(actualHost);
 }catch(error){receipt.error=String(error);receipt.stack=error.stack;throw error;}
 finally{fs.writeFileSync(path.join(evidence,'permission-preflight.json'),JSON.stringify(receipt,null,2),{mode:0o644});if(fs.existsSync(root))fs.rmSync(root,{recursive:true,force:true});}

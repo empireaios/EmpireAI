@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import contract from '../../deployment/o33-path-contract.cjs';
 
 // Set modes while the operator still owns the inactive directory. CAP_CHOWN
 // permits handoff; it does not permit a subsequent chmod on another owner.
@@ -35,4 +36,17 @@ export function readableEvidence(dir){
   normalize(directory,root,true);
  };
  walk(dir);
+}
+
+// Shared by the real coordinator and the hosted preflight. No runtime-owned
+// directory is an ancestor of generation authority or sealed evidence.
+export function preparePathContract(base){
+ const p=contract.paths(base);mkdir(p.base);mkdir(p.volume);mkdir(p.operator,0,0o700);
+ for(const dir of [p.capture,p.temporary,...contract.RUNTIME_DIRECTORIES.map(d=>path.join(p.volume,d))])mkdir(dir,65534,0o700);
+ mkdir(p.authority);mkdir(path.join(p.authority,'members'),65534,0o700);return p;
+}
+
+export function ownedTree(dir,uid){
+ for(const name of fs.readdirSync(dir)){const f=path.join(dir,name),s=fs.lstatSync(f);assert.ok(!s.isSymbolicLink());if(s.isDirectory())ownedTree(f,uid);else assert.ok(s.isFile()&&s.nlink===1);fs.chownSync(f,uid,uid);}
+ fs.chownSync(dir,uid,uid);
 }
