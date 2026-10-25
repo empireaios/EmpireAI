@@ -39,9 +39,10 @@ function event(root,value){
  const fd=fs.openSync(file,'wx',0o600);try{fs.writeFileSync(fd,JSON.stringify(value)+'\n');fs.fsyncSync(fd);}finally{fs.closeSync(fd);}
  const d=fs.openSync(dir,'r');try{fs.fsyncSync(d);}finally{fs.closeSync(d);}
 }
-function acquireGenerationLock({root,expectedGeneration,expectedSource,cutoverDigest,role,expectedDevice,expectedInode,volumeRoot,redisUrl}){
+function acquireGenerationLock({root,expectedGeneration,expectedSource,cutoverDigest,role,expectedDevice,expectedInode,volumeRoot,redisUrl,controlPrincipal=false}){
  generation(expectedGeneration);source(expectedSource);
- if(!['launcher','primary','brain-worker','assurance-worker','assurance-inspector'].includes(role))reject();
+ if(controlPrincipal&&(process.getuid()!==0||role!=='launcher'))reject();
+ if(!['launcher','primary','brain-worker','assurance-worker','assurance-inspector','startup-readback'].includes(role))reject();
  const {db,file,identity}=open(root,true,expectedDevice,expectedInode);let held=false;
  try{
   db.exec('BEGIN');
@@ -59,10 +60,10 @@ function acquireGenerationLock({root,expectedGeneration,expectedSource,cutoverDi
   if(!/^\d+$/.test(startTicks))reject();
   const member=crypto.randomUUID();
   const base={member,epoch:row.epoch,generation:expectedGeneration,source:expectedSource,role,pid:process.pid,startTicks,cutoverDigest};
-  event(root,{...base,event:'admitted',at:new Date().toISOString()});
+  if(!controlPrincipal)event(root,{...base,event:'admitted',at:new Date().toISOString()});
   // Deliberately no public release: callers cannot drop the lock and continue
   // writing. A native connection failure is fatal; there is no helper process.
-  process.once('exit',()=>{try{db.prepare('SELECT 1').get();event(root,{...base,event:'exiting',at:new Date().toISOString()});}catch{}});
+  process.once('exit',()=>{try{db.prepare('SELECT 1').get();if(!controlPrincipal)event(root,{...base,event:'exiting',at:new Date().toISOString()});}catch{}});
   const verifyIdentity=()=>{try{const current=regular(file);if(current.dev!==identity.dev||current.ino!==identity.ino)throw Error('changed');}catch{process.kill(process.pid,'SIGKILL');}};
   const watcher=fs.watch(root,verifyIdentity);watcher.unref();
   const timer=setInterval(verifyIdentity,100);timer.unref();
@@ -77,6 +78,13 @@ function admit({root,expectedGeneration,expectedSource,cutoverDigest,role,expect
  immutableToRuntime(path.join(root,'generation.sqlite'));
  immutableToRuntime(path.join(root,'cutover-'+cutoverDigest+'.json'));
  return acquireGenerationLock(arguments[0]);
+}
+// Trusted operator guard only: no runtime admission bypass and no writable receipt authority.
+function acquireOperatorGuardLease(options){
+ if(process.getuid()!==0)reject();
+ let at=canonical(options.root);for(;;){const st=fs.lstatSync(at);if(st.uid!==0||(st.mode&0o022)!==0)reject();const parent=path.dirname(at);if(parent===at)break;at=parent;}
+ for(const file of ['generation.sqlite','cutover-'+options.cutoverDigest+'.json']){const st=regular(path.join(options.root,file));if(st.uid!==0||(st.mode&0o022)!==0)reject();}
+ return acquireGenerationLock({...options,role:'launcher',controlPrincipal:true});
 }
 function transition({root,expectedGeneration,nextGeneration,cutoverDigest,expectedDevice,expectedInode}){
  generation(expectedGeneration);generation(nextGeneration);if(expectedGeneration===nextGeneration)reject();
@@ -103,10 +111,10 @@ function exportMembership({root,expectedDevice,expectedInode}){
  if(!authority||authority.version!==VERSION||!Number.isSafeInteger(authority.epoch)||authority.epoch<1||!/^[a-f0-9]{64}$/.test(authority.cutover_digest))reject();generation(authority.generation);
  const sources=JSON.parse(authority.sources);if(!Array.isArray(sources)||!sources.length)reject();sources.forEach(source);authority.sources=sources;
  const transitions=db.prepare('SELECT previous_generation,next_generation,cutover_digest,at FROM transitions').all().map(r=>{generation(r.previous_generation);generation(r.next_generation);if(!/^[a-f0-9]{64}$/.test(r.cutover_digest)||!Number.isFinite(Date.parse(r.at)))reject();return {...r,at:new Date(r.at).toISOString()};});
- const members=fs.readdirSync(path.join(root,'members')).filter(x=>/^[a-f0-9-]{36}\.(admitted|exiting)\.json$/.test(x)).sort().map(x=>{const m=JSON.parse(fs.readFileSync(path.join(root,'members',x),'utf8'));generation(m.member);generation(m.generation);source(m.source);if(!Number.isSafeInteger(m.pid)||!Number.isSafeInteger(m.epoch)||!/^\d+$/.test(m.startTicks)||!['launcher','primary','brain-worker','assurance-worker','assurance-inspector'].includes(m.role)||!['admitted','exiting'].includes(m.event)||x!==m.member+'.'+m.event+'.json'||!/^[a-f0-9]{64}$/.test(m.cutoverDigest)||!Number.isFinite(Date.parse(m.at)))reject();return {member:m.member,generation:m.generation,source:m.source,epoch:m.epoch,role:m.role,pid:m.pid,startTicks:m.startTicks,cutoverDigest:m.cutoverDigest,event:m.event,at:new Date(m.at).toISOString()};});
+ const members=fs.readdirSync(path.join(root,'members')).filter(x=>/^[a-f0-9-]{36}\.(admitted|exiting)\.json$/.test(x)).sort().map(x=>{const m=JSON.parse(fs.readFileSync(path.join(root,'members',x),'utf8'));generation(m.member);generation(m.generation);source(m.source);if(!Number.isSafeInteger(m.pid)||!Number.isSafeInteger(m.epoch)||!/^\d+$/.test(m.startTicks)||!['launcher','primary','brain-worker','assurance-worker','assurance-inspector','startup-readback'].includes(m.role)||!['admitted','exiting'].includes(m.event)||x!==m.member+'.'+m.event+'.json'||!/^[a-f0-9]{64}$/.test(m.cutoverDigest)||!Number.isFinite(Date.parse(m.at)))reject();return {member:m.member,generation:m.generation,source:m.source,epoch:m.epoch,role:m.role,pid:m.pid,startTicks:m.startTicks,cutoverDigest:m.cutoverDigest,event:m.event,at:new Date(m.at).toISOString()};});
  return {authority,members,transitions,completeLiveState:false,bootAllowed:false,scope:'DECLARED_SHARED_VOLUME_COHORT_ONLY',receiptCompleteness:'UNPROVEN_RUNTIME_WRITABLE_MEMBER_DIRECTORY',currentLiveness:'UNKNOWN_FROM_RECEIPTS',captureHeld:'NOT_ESTABLISHED',externalRedisExclusion:'OPERATING_RECEIPT_REQUIRES_INDEPENDENT_VERIFICATION'};
  }finally{db.close();}
 }
 // Internal primitive is exported for protocol examination. Production MUST use
 // admit through the mandatory preload; this primitive alone is not admission.
-module.exports={admit,acquireGenerationLock,transition,exportMembership,VERSION};
+module.exports={acquireOperatorGuardLease,admit,acquireGenerationLock,transition,exportMembership,VERSION};

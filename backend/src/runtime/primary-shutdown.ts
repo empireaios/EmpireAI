@@ -1,4 +1,4 @@
-import type { ChildProcess } from "node:child_process";
+import { signalRuntimeChild, type RuntimeProcessHandle } from "./runtime-process-handle.js";
 
 /** A deadline is a failed shutdown, never evidence that the child's writes saved. */
 export function primaryShutdownTimeoutMs(raw = process.env.EMPIRE_SHUTDOWN_TIMEOUT_MS): number {
@@ -7,7 +7,7 @@ export function primaryShutdownTimeoutMs(raw = process.env.EMPIRE_SHUTDOWN_TIMEO
 }
 
 export function installPrimaryShutdown(options: {
-  getChild: () => ChildProcess | null;
+  getChild: () => RuntimeProcessHandle | null;
   stopBackground: () => Promise<void>;
   closeServer: () => Promise<void>;
   disconnect: () => void;
@@ -53,7 +53,7 @@ export function installPrimaryShutdown(options: {
           const exited = new Promise<{ code: number | null; signal: NodeJS.Signals | null }>((resolve) => {
             child.once("exit", (code, signal) => resolve({ code, signal }));
           });
-          if (!child.kill("SIGTERM")) throw new Error("Could not signal Brain worker shutdown");
+          if (!(await signalRuntimeChild(child, "SIGTERM"))) throw new Error("Could not signal Brain worker shutdown");
           const result = await exited;
           if (result.code !== 0 || result.signal !== null) {
             throw new Error(`Brain worker shutdown failed: code=${result.code}; signal=${result.signal}`);
@@ -89,3 +89,4 @@ export function installPrimaryShutdown(options: {
   process.on("SIGINT", handleSignal);
   return { isStopping: () => stopping, schedule, shutdown };
 }
+

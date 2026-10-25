@@ -1,15 +1,18 @@
 import { randomUUID } from 'node:crypto';
-import type { ChildProcess } from 'node:child_process';
+import { AsyncLocalStorage } from 'node:async_hooks';
+const activeMembershipCapture = new AsyncLocalStorage<Record<string, unknown> | undefined>();
+export const getActiveMembershipCapture = () => activeMembershipCapture.getStore();
+import type { RuntimeProcessHandle } from './runtime-process-handle.js';
 
 const protocol = 'work8-primary-capture-v1';
-type Message = { protocol: string; id: string; action: string; generation?: string };
+type Message = { protocol: string; id: string; action: string; generation?: string; membershipReceipt?: Record<string, unknown> };
 const message = (v: unknown): v is Message => !!v && typeof v === 'object' &&
   (v as Message).protocol === protocol && typeof (v as Message).id === 'string' &&
   /^[a-f0-9-]{36}$/.test((v as Message).id) && typeof (v as Message).action === 'string';
 
 /** Private inherited IPC only. This fences the primary's registered admissions and
  * loops; it does not attest independent Redis producers or external observers. */
-export function installPrimaryCaptureParticipant(child: ChildProcess,
+export function installPrimaryCaptureParticipant(child: RuntimeProcessHandle,
   drain: (held: () => Promise<void>) => Promise<void>) {
   const generation = randomUUID();
   let active: string | undefined;
@@ -52,6 +55,7 @@ export async function withPrimaryCaptureFence<T>(capture: () => Promise<T>): Pro
     throw new Error('PRIMARY_CAPTURE_IPC_REQUIRED');
   const id = randomUUID();
   let generation: string | undefined;
+  let membershipReceipt: Record<string, unknown> | undefined;
   let stage: 'acquiring' | 'held' | 'releasing' = 'acquiring';
   let resolveHeld!: () => void, resolveReleased!: () => void, rejectLost!: (e: Error) => void;
   const held = new Promise<void>(r => { resolveHeld = r; });
@@ -63,7 +67,9 @@ export async function withPrimaryCaptureFence<T>(capture: () => Promise<T>): Pro
   const receive = (v: unknown) => {
     if (!message(v) || v.id !== id) return;
     if (v.action === 'held' && stage === 'acquiring' && typeof v.generation === 'string') {
-      generation = v.generation; stage = 'held'; resolveHeld();
+      generation = v.generation; membershipReceipt = v.membershipReceipt;
+      if (process.env.WORK8_REAL_GRAPH === '1' && (!membershipReceipt || membershipReceipt.schema !== 'work8-controller-capture-v1' || membershipReceipt.captureId !== id || membershipReceipt.source !== process.env.RAILWAY_GIT_COMMIT_SHA || membershipReceipt.generation !== process.env.EMPIRE_GENERATION)) { fail(); return; }
+      stage = 'held'; resolveHeld();
     } else if (v.action === 'released' && stage === 'releasing' && v.generation === generation) resolveReleased();
     else fail();
   };
@@ -74,7 +80,7 @@ export async function withPrimaryCaptureFence<T>(capture: () => Promise<T>): Pro
     send('acquire'); await Promise.race([held, lost]);
     // Await callback completion even if IPC is lost. The caller must quarantine
     // any written manifest when this outer operation refuses success.
-    const result = await capture();
+    const result = await activeMembershipCapture.run(membershipReceipt, capture);
     if (failure) throw failure;
     stage = 'releasing'; send('release');
     await Promise.race([released, lost]);
@@ -95,3 +101,4 @@ export async function withPrimaryCaptureFence<T>(capture: () => Promise<T>): Pro
     void lost.catch(() => {});
   }
 }
+

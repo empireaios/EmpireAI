@@ -18,11 +18,11 @@ function protectedPath(file,operatorUid){
  for(;;){const s=fs.lstatSync(current);if(s.uid!==operatorUid||(s.mode&0o022)!==0)fail('OPERATOR_PATH_NOT_PROTECTED');const parent=path.dirname(current);if(parent===current)break;current=parent;}
 }
 const UUID=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
-const rolesAllowed=['primary','brain-worker','assurance-worker','assurance-inspector'];
+const rolesAllowed=['primary','brain-worker','assurance-worker','assurance-inspector','startup-readback','containment-guard'];
 function exact(value,keys){if(!value||typeof value!=='object'||Array.isArray(value)||JSON.stringify(Object.keys(value).sort())!==JSON.stringify([...keys].sort()))fail('JOURNAL_SCHEMA_REFUSED');}
 function record(value){
  exact(value,['id','role','pid','startTicks','boot','pidNamespace','uid','gid','source','generation','epoch','cutoverDigest','entrySha256','scope','scopeDigest','storeRoot','storeDevice','storeInode']);
- if(!UUID.test(value.id)||!UUID.test(value.generation)||!UUID.test(value.boot)||!rolesAllowed.includes(value.role)||!Number.isSafeInteger(value.pid)||value.pid<1||!/^\d+$/.test(value.startTicks)||!/^pid:\[\d+\]$/.test(value.pidNamespace)||!Number.isSafeInteger(value.uid)||value.uid<1||!Number.isSafeInteger(value.gid)||value.gid<1||!Number.isSafeInteger(value.epoch)||value.epoch<1||!/^[a-f0-9]{40}$/.test(value.source)||!/^[a-f0-9]{64}$/.test(value.entrySha256)||!/^[a-f0-9]{64}$/.test(value.cutoverDigest)||typeof value.storeRoot!=='string'||!path.isAbsolute(value.storeRoot)||value.storeRoot.includes('\0')||!Number.isSafeInteger(value.storeDevice)||!Number.isSafeInteger(value.storeInode)||!Array.isArray(value.scope)||!value.scope.length||value.scope.some(x=>typeof x!=='string'||!/^[a-z0-9:_-]{1,80}$/.test(x))||value.scopeDigest!==digest(JSON.stringify(value.scope)))fail('JOURNAL_RECORD_REFUSED');
+ if(!UUID.test(value.id)||!UUID.test(value.generation)||!UUID.test(value.boot)||!rolesAllowed.includes(value.role)||(value.role==='containment-guard'&&(value.uid!==0||value.gid!==0))||!Number.isSafeInteger(value.pid)||value.pid<1||!/^\d+$/.test(value.startTicks)||!/^pid:\[\d+\]$/.test(value.pidNamespace)||!Number.isSafeInteger(value.uid)||(value.uid<0||(value.uid===0&&value.role!=='containment-guard'))||!Number.isSafeInteger(value.gid)||(value.gid<0||(value.gid===0&&value.role!=='containment-guard'))||!Number.isSafeInteger(value.epoch)||value.epoch<1||!/^[a-f0-9]{40}$/.test(value.source)||!/^[a-f0-9]{64}$/.test(value.entrySha256)||!/^[a-f0-9]{64}$/.test(value.cutoverDigest)||typeof value.storeRoot!=='string'||!path.isAbsolute(value.storeRoot)||value.storeRoot.includes('\0')||!Number.isSafeInteger(value.storeDevice)||!Number.isSafeInteger(value.storeInode)||!Array.isArray(value.scope)||!value.scope.length||value.scope.some(x=>typeof x!=='string'||!/^[a-z0-9:_-]{1,80}$/.test(x))||value.scopeDigest!==digest(JSON.stringify(value.scope)))fail('JOURNAL_RECORD_REFUSED');
  return Object.fromEntries(Object.keys(value).map(k=>[k,value[k]]));
 }
 function proof(event,value){
@@ -80,15 +80,15 @@ class MembershipJournal{
  close(){this.db.close();}
 }
 class MembershipController extends EventEmitter{
- constructor({journalPath,initialize=false,runtimeUid,runtimeGid,source,generation,generationEnv,roles,volumeRoot,redisUrl,bootstrap=path.join(__dirname,'runtime-membership-bootstrap.mjs')}){
-  super();this.operatorUid=process.getuid();
+ constructor({journalPath,initialize=false,runtimeUid,runtimeGid,source,generation,generationEnv,roles,volumeRoot,redisUrl,writerIsolation,bootstrap=path.join(__dirname,'runtime-membership-bootstrap.mjs')}){
+  super();this.operatorUid=process.getuid();this.writerIsolation=writerIsolation;
   if(!Number.isInteger(runtimeUid)||runtimeUid===0||runtimeUid===this.operatorUid||!Number.isInteger(runtimeGid)||!/^[a-f0-9]{40}$/.test(source))fail('DISTINCT_RUNTIME_PRINCIPAL_REQUIRED');
   if(!/^[a-f0-9-]{36}$/.test(generation))fail('INVALID_GENERATION');
   protectedPath(path.dirname(journalPath),this.operatorUid);protectedPath(bootstrap,this.operatorUid);
   exact(generationEnv,['EMPIRE_GENERATION_DIRECTORY','EMPIRE_GENERATION','EMPIRE_CUTOVER_DIGEST','EMPIRE_GENERATION_DEVICE','EMPIRE_GENERATION_INODE']);
   if(generationEnv?.EMPIRE_GENERATION!==generation)fail('GENERATION_BINDING_MISMATCH');
   this.uid=runtimeUid;this.gid=runtimeGid;this.source=source;this.generation=generation;this.generationEnv=generationEnv;this.volumeRoot=volumeRoot;this.redisUrl=redisUrl;this.bootstrap=bootstrap;this.roles=new Map();this.live=new Map();this.phase='OPEN';this.capture=null;
-  for(const spec of roles){if(!['primary','brain-worker','assurance-worker','assurance-inspector'].includes(spec.role)||this.roles.has(spec.role)||!Array.isArray(spec.scope)||!spec.scope.length||spec.scope.some(x=>typeof x!=='string'||!/^[a-z0-9:_-]{1,80}$/.test(x)))fail('INVALID_ROLE_MANIFEST');protectedPath(spec.entry,this.operatorUid);if(digest(fs.readFileSync(spec.entry))!==spec.entrySha256)fail('ENTRY_ARTIFACT_MISMATCH');this.roles.set(spec.role,Object.freeze({...spec,scope:Object.freeze([...spec.scope])}));}
+  for(const spec of roles){if(spec.role==='containment-guard'||!rolesAllowed.includes(spec.role)||this.roles.has(spec.role)||!Array.isArray(spec.scope)||!spec.scope.length||spec.scope.some(x=>typeof x!=='string'||!/^[a-z0-9:_-]{1,80}$/.test(x)))fail('INVALID_ROLE_MANIFEST');protectedPath(spec.entry,this.operatorUid);if(digest(fs.readFileSync(spec.entry))!==spec.entrySha256)fail('ENTRY_ARTIFACT_MISMATCH');this.roles.set(spec.role,Object.freeze({...spec,scope:Object.freeze([...spec.scope])}));}
   const guardPath=journalPath+'.controller.sqlite';if(initialize){const fd=fs.openSync(guardPath,'wx',0o600);fs.closeSync(fd);}else if(!fs.existsSync(guardPath))fail('CONTROLLER_LOCK_MISSING');
   protectedPath(guardPath,this.operatorUid);this.guard=new DatabaseSync(guardPath,{timeout:0});
   try{this.guard.exec('PRAGMA journal_mode=DELETE; BEGIN EXCLUSIVE');}catch(e){this.guard.close();throw e;}
@@ -112,9 +112,9 @@ class MembershipController extends EventEmitter{
   if([...this.live.values()].some(m=>m.role===role))fail('ROLE_ALREADY_PRESENT');
   protectedPath(spec.entry,this.operatorUid);if(digest(fs.readFileSync(spec.entry))!==spec.entrySha256)fail('ENTRY_ARTIFACT_MISMATCH');
   const id=crypto.randomUUID(),nonce=crypto.randomUUID();
-  const env={PATH:process.env.PATH,LANG:'C.UTF-8',...this.generationEnv,RAILWAY_VOLUME_MOUNT_PATH:this.volumeRoot,RAILWAY_GIT_COMMIT_SHA:this.source,REDIS_URL:role==='assurance-inspector'?undefined:this.redisUrl,WORK8_MEMBERSHIP_ID:id,WORK8_MEMBERSHIP_NONCE:nonce,WORK8_MEMBERSHIP_ROLE:role,WORK8_RUNTIME_STATE:spec.stateDirectory,WORK8_CONTROLLER_JOURNAL_PATH:this.journal.file};
+  const env={...spec.environment,PATH:process.env.PATH,LANG:'C.UTF-8',...this.generationEnv,RAILWAY_VOLUME_MOUNT_PATH:this.volumeRoot,RAILWAY_GIT_COMMIT_SHA:this.source,REDIS_URL:role==='assurance-inspector'?undefined:this.redisUrl,WORK8_MEMBERSHIP_ID:id,WORK8_MEMBERSHIP_NONCE:nonce,WORK8_MEMBERSHIP_ROLE:role,WORK8_RUNTIME_STATE:spec.stateDirectory,WORK8_CONTROLLER_JOURNAL_PATH:this.journal.file,...this.writerIsolation?.environment};
   if(env.REDIS_URL===undefined)delete env.REDIS_URL;
-  const child=spawn(process.execPath,['--import',this.bootstrap,spec.entry],{env,uid:this.uid,gid:this.gid,stdio:['ignore','pipe','pipe','ipc']});
+  const child=spawn(process.execPath,[...(spec.nodeArgs||[]),'--import',this.bootstrap,spec.entry],{env,uid:this.uid,gid:this.gid,stdio:['ignore',spec.inheritOutput?'inherit':'pipe',spec.inheritOutput?'inherit':'pipe','ipc']});
   const member={id,nonce,role,child,record:null,ready:false,afterCommit};this.live.set(id,member);
   child.on('message',m=>{try{this.message(member,m);}catch(e){this.invalidate(e);}});
   child.on('error',e=>this.invalidate(e));
@@ -131,9 +131,10 @@ class MembershipController extends EventEmitter{
   if(m.id!==member.id||m.nonce!==member.nonce)fail('PRIVATE_IPC_IDENTITY_MISMATCH');
   if(m.action==='enroll'){
    if(this.phase!=='OPEN'||member.record)fail('ENROLLMENT_REFUSED');
+   this.writerIsolation?.verify(member.child.pid);
    const p=processIdentity(member.child.pid);if(!p||p.state==='Z'||p.uids.some(x=>x!==this.uid)||p.gids.some(x=>x!==this.gid)||!/^0+$/.test(p.capEff))fail('CHILD_IDENTITY_MISMATCH');
    const spec=this.roles.get(member.role);
-   const cmd=fs.readFileSync(`/proc/${p.pid}/cmdline`,'utf8').split('\0').filter(Boolean);if(JSON.stringify(cmd.slice(1))!==JSON.stringify(['--import',this.bootstrap,spec.entry]))fail('CHILD_ENTRYPOINT_MISMATCH');
+   const cmd=fs.readFileSync(`/proc/${p.pid}/cmdline`,'utf8').split('\0').filter(Boolean);if(JSON.stringify(cmd.slice(1))!==JSON.stringify([...(spec.nodeArgs||[]),'--import',this.bootstrap,spec.entry]))fail('CHILD_ENTRYPOINT_MISMATCH');
    const authority=this.readAuthority();if(JSON.stringify(authority)!==JSON.stringify(this.authority))fail('AUTHORITY_CHANGED');
    const store=fs.statSync(spec.stateDirectory);if(fs.realpathSync(spec.stateDirectory)!==spec.stateDirectory||!spec.stateDirectory.startsWith(this.volumeRoot+path.sep)||!store.isDirectory()||store.uid!==this.uid||store.gid!==this.gid)fail('STORE_SCOPE_MISMATCH');
    const record={storeRoot:spec.stateDirectory,storeDevice:store.dev,storeInode:store.ino,epoch:authority.epoch,cutoverDigest:authority.cutoverDigest,id:member.id,role:member.role,pid:p.pid,startTicks:p.startTicks,boot:p.boot,pidNamespace:p.pidNamespace,uid:this.uid,gid:this.gid,source:this.source,generation:this.generation,entrySha256:spec.entrySha256,scope:[...spec.scope],scopeDigest:digest(JSON.stringify(spec.scope))};
@@ -180,4 +181,4 @@ class MembershipController extends EventEmitter{
  read(){return {...this.journal.read(),scope:'DECLARED_SYNTHETIC_COHORT_ONLY',phase:this.phase,completeLiveState:false,bootAllowed:false,productionGraphIntegrated:false,externalRedisExclusion:'NOT_CERTIFIED_BY_LOCAL_JOURNAL'};}
  async stop(){this.phase='STOPPING';const pending=[...this.live.values()].map(m=>new Promise(resolve=>{m.child.once('exit',resolve);m.child.kill('SIGKILL');}));await Promise.all(pending);this.journal.close();this.guard.close();this.phase='STOPPED';}
 }
-module.exports={MembershipController,MembershipJournal,processIdentity,protectedPath,PROTOCOL,digest};
+module.exports={MembershipController,MembershipJournal,processIdentity,protectedPath,PROTOCOL,digest,validateMemberRecord:record};

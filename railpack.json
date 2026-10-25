@@ -10,5 +10,10 @@
         "npm ci --include=dev"
       ]
     }
-  }
+  },
+  "buildAptPackages": [
+    "...",
+    "gcc",
+    "libc6-dev"
+  ]
 }

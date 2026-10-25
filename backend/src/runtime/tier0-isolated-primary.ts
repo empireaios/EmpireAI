@@ -27,7 +27,8 @@ import { installLockedCommissioning } from "./locked-commissioning.js";
  * Grand King login/session therefore survives worker flush, stall, or restart.
  */
 import { createHash } from "node:crypto";
-import { spawn, type ChildProcess } from "node:child_process";
+import { spawn } from "node:child_process";
+import { spawnAdmittedBrain, type RuntimeProcessHandle } from "./runtime-process-handle.js";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import fs from "node:fs";
@@ -145,7 +146,7 @@ function workerEntryPath(): string {
 }
 
 type WorkerState = {
-  child: ChildProcess | null;
+  child: RuntimeProcessHandle | null;
   port: number;
   restarts: number;
   lastExitAt: number | null;
@@ -808,7 +809,7 @@ export async function startTier0IsolatedPrimary(examination?:GeneratedWorkerAdop
       HOST: "127.0.0.1",
     };
     try {
-      const child = spawn(process.execPath, [workerEntryPath()], {
+      const child = process.env.WORK8_MEMBERSHIP_ROLE === "primary" ? spawnAdmittedBrain() : spawn(process.execPath, [workerEntryPath()], {
         env: childEnv,
         stdio: ["inherit", "inherit", "inherit", "ipc"],
         detached: false,
@@ -875,3 +876,4 @@ export async function startTier0IsolatedPrimary(examination?:GeneratedWorkerAdop
   if(adopted)adopted.admit();
   else lifecycle.schedule(() => spawnWorker(), Number(process.env.EMPIRE_BRAIN_WORKER_SPAWN_DELAY_MS ?? 1_500));
 }
+

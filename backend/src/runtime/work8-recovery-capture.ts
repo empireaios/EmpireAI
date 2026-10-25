@@ -1,3 +1,4 @@
+import {getActiveMembershipCapture} from './work8-primary-capture.js';
 import {createRequire} from 'node:module';
 import type {Redis} from 'ioredis';
 import {createHash,randomUUID} from 'node:crypto';
@@ -46,7 +47,9 @@ export async function captureRedisInventory(queue:TaskQueue) {
 }
 export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string;visualMemorySnapshot?:unknown;sessionContinuitySnapshot?:unknown;executiveDecisionJournalSnapshot?:unknown},queue:TaskQueue):Promise<Work8RecoveryResult>{
  if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN: Redis producers, watchdog, continuation and protected custody remain uncovered; only explicit scoped inspection is available");
- return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,captureId:randomUUID(),captureRepositoryLifecycle:request.captureRepositoryLifecycle===true,captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
+ const controllerMembershipReceipt=getActiveMembershipCapture();
+ if(process.env.WORK8_REAL_GRAPH==='1'&&!controllerMembershipReceipt)throw new Error('CONTROLLER_CAPTURE_RECEIPT_REQUIRED');
+ return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,controllerMembershipReceipt,captureId:randomUUID(),captureRepositoryLifecycle:request.captureRepositoryLifecycle===true,captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
   authorityFile:path.join(resolveShadowCeoAuthorityDir(),'authority-store.json'),
   requestOwnersFile:path.join(resolveShadowCeoDataRoot(),'shadow-ceo-request-owners.json'),
   captureRedis:()=>captureRedisSnapshot(queue),captureRedisIdentity:async()=>{
@@ -125,3 +128,4 @@ export async function restoreWork8RedisInspection(request:{directory:string;dige
  await target.eval(script,2,source.ownerKey,source.metaKey,...args);
  return {mode:'inspection-only' as const,digest:request.digest,source, target:observed,owner:inspectionOwner,bootAllowed:false as const,noExecutionAuthority:true as const};
 }
+
