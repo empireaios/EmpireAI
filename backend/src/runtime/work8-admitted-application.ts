@@ -33,7 +33,7 @@ export async function holdAdmittedCapture(scope:AdmittedCaptureScope,result:Work
 }
 export async function initializeAdmittedApplicationIfPresent(app:EmpireApp){
  const g=admittedApplicationGrant();if(!g)return;assert.equal(application,undefined);assert.ok(Date.now()<g.expiresAt);application=app;
- assert.ok(app.brain.taskQueue instanceof TaskQueue);const client=await app.brain.taskQueue.queue.client;const runId=(await client.info('server')).match(/^run_id:([a-f0-9]{40})\r?$/m)?.[1];assert.equal(runId,g.redis.runId);assert.equal(g.redis.db,0);
+ assert.ok(app.brain.taskQueue instanceof TaskQueue);const client=await app.brain.taskQueue.queue.client;const runId=(await client.info()).match(/^run_id:([a-f0-9]{40})\r?$/m)?.[1];assert.equal(runId,g.redis.runId);assert.equal(g.redis.db,0);
  if(g.mode==='source'){
   const file=path.resolve(import.meta.dirname,'../../../scripts/work8/hh4-domain-state.mjs');
   const {initializeAdmittedGeneratedDomains}=await import(pathToFileURL(file).href);
