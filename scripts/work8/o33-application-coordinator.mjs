@@ -9,6 +9,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {once} from 'node:events';
 import {readPendingState,validatePendingState} from './pending-restoration.mjs';
 import {validateIndexHealth} from './index-restoration-phase.mjs';
+import {mkdir,readableEvidence} from './o33-permissions.mjs';
 // Operator owns inactive materialization/infrastructure only. All application
 // writers are the actual compiled entries admitted through locked-runtime.
 const require=createRequire(import.meta.url),repo=path.resolve(import.meta.dirname,'../..');
@@ -20,7 +21,6 @@ const sha=b=>createHash('sha256').update(b).digest('hex'),read=f=>JSON.parse(fs.
 const source=process.env.WORK8_SOURCE_SHA,evidence=process.env.WORK8_EVIDENCE_DIR,active=[];
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 function durable(file,value,mode=0o600){const fd=fs.openSync(file,'wx',mode);try{fs.writeFileSync(fd,JSON.stringify(value,null,2));fs.fsyncSync(fd);}finally{fs.closeSync(fd);}const d=fs.openSync(path.dirname(file),'r');try{fs.fsyncSync(d);}finally{fs.closeSync(d);}}
-function mkdir(dir,uid=0,mode=0o755){fs.mkdirSync(dir,{recursive:true,mode});fs.chownSync(dir,uid,uid);fs.chmodSync(dir,mode);}
 function ownedTree(dir,uid){for(const name of fs.readdirSync(dir)){const f=path.join(dir,name),s=fs.lstatSync(f);assert.ok(!s.isSymbolicLink());if(s.isDirectory())ownedTree(f,uid);else assert.ok(s.isFile()&&s.nlink===1);fs.chownSync(f,uid,uid);}fs.chownSync(dir,uid,uid);}
 function sealedTree(dir){for(const name of fs.readdirSync(dir)){const f=path.join(dir,name),s=fs.lstatSync(f);assert.ok(!s.isSymbolicLink());if(s.isDirectory())sealedTree(f);else{assert.ok(s.isFile()&&s.nlink===1);fs.chownSync(f,0,0);const fd=fs.openSync(f,'r');try{fs.fsyncSync(fd);}finally{fs.closeSync(fd);}}}fs.chownSync(dir,0,0);fs.chmodSync(dir,0o500);const fd=fs.openSync(dir,'r');try{fs.fsyncSync(fd);}finally{fs.closeSync(fd);}}
 async function until(fn,deadline,label){for(;;){assert.ok(Date.now()<deadline,label);const value=await fn();assert.ok(Date.now()<deadline,label);if(value)return value;await pause(20);}}
@@ -57,7 +57,6 @@ async function refusePrior(c,g,prior,label){
  durable(path.join(evidence,label+'-refusal.json'),{source,prior,current,firstFailure:'RUNTIME_GENERATION_AUTHORITY_REFUSED',guardRefused:true,journalUnchanged:true,canonicalDataUnchanged:true,redisDumpsUnchanged:true});
  fs.writeFileSync(path.join(evidence,label+'.log'),r.output());
 }
-function readableEvidence(dir){for(const name of fs.readdirSync(dir)){const f=path.join(dir,name),s=fs.lstatSync(f);if(s.isDirectory())readableEvidence(f);else if(s.isFile())fs.chmodSync(f,0o644);}fs.chmodSync(dir,0o755);}
 
 function tables(file){const db=new DatabaseSync(file,{readOnly:true});try{return Object.fromEntries(db.prepare("SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name").all().map(({name})=>[name,sha(JSON.stringify(db.prepare('SELECT * FROM "'+name.replaceAll('"','""')+'"').all().map(x=>JSON.stringify(x)).sort()))]));}finally{db.close();}}
 
@@ -123,5 +122,11 @@ try{
 }catch(error){receipt.error=String(error);receipt.stack=error.stack;throw error;}
 finally{
  for(const r of active){fs.writeFileSync(path.join(evidence,r.label+'.log'),r.output());if(r.child.exitCode===null){try{const guard=view(r.c).members.find(m=>m.role==='containment-guard'&&live(m));if(guard)process.kill(guard.pid,'SIGTERM');else r.child.kill('SIGTERM');}catch{r.child.kill('SIGTERM');}}}
- fs.writeFileSync(path.join(evidence,'o33-application-result.json'),JSON.stringify(receipt,null,2));readableEvidence(evidence);
+ fs.writeFileSync(path.join(evidence,'o33-application-result.json'),JSON.stringify(receipt,null,2));
+ try{readableEvidence(evidence);}catch(error){
+  receipt.status='FAIL';receipt.evidencePreparationError=String(error);
+  fs.writeFileSync(path.join(evidence,'o33-application-result.json'),JSON.stringify(receipt,null,2));
+  if(!receipt.error)throw error; // Preserve the original examination failure.
+  console.error('Evidence preparation also failed:',String(error));
+ }
 }

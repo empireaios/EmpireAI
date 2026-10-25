@@ -125,6 +125,7 @@ assert.equal(dir.uid,0);assert.equal(dir.mode&0o777,0o755);assert.equal(file.uid
 fs.writeFileSync(process.env.WORK8_EVIDENCE_DIR+"/native-mount-readback.json",JSON.stringify({scope:"ISOLATED_EXAMINATION_ONLY",mounts:selected,operatorOwnedArtifact:true,runtimeWritable:false})+"\n");
 MOUNT_CHECK
     cd /app
+    node scripts/work8/o33-permissions-preflight.mjs
     exec node scripts/work8/o33-application-coordinator.mjs
   ' >/dev/null
 
