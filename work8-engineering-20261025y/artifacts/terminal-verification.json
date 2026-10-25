@@ -1,0 +1,24 @@
+{
+  "status": "PASS_SCOPED_CONTROL_MODULES",
+  "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "tap": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "assertionsPerScenario": [
+    "actualControlModules",
+    "captureCensusBound",
+    "cleanDrainOrIndependentContainment",
+    "demotedRuntime",
+    "descendantSpawnRefused",
+    "guardGenerationLease",
+    "journalMutationRefused",
+    "syntheticApplicationOnly"
+  ],
+  "wholeRequirementAcceptance": false,
+  "fullApplicationRestoration": false
+}

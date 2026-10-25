@@ -1,0 +1,19 @@
+{"event":"locked_runtime_start","profile":"LOCKED_COMMISSIONING_V1","launchId":"6ce23afa-a451-46e1-8563-441122711139","childPid":102,"source":"fe442e0c1a0d792173f8bc818ab1deecdb7d601a","birth":"NOT_BORN","commerce":"LOCKED","operational":false}
+(node:102) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:109) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:116) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:124) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:125) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:123) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:144) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"event":"assurance_process_exit","component":"permanent-worker.mjs","code":null,"signal":"SIGKILL"}
+{"event":"assurance_process_exit","component":"permanent-inspector.mjs","code":null,"signal":"SIGKILL"}
+{"event":"launcher_loss_containment","at":"2026-10-25T08:09:57.134Z","source":"fe442e0c1a0d792173f8bc818ab1deecdb7d601a","reason":"CONTROLLER_EXITED","action":"STOP_RUNTIME_GROUP","recoveryVerified":false,"commerce":"LOCKED","birth":"NOT_BORN","auditPersisted":true}
+{"event":"locked_runtime_stop","code":null,"signal":"SIGKILL","reason":"child_exit","forcedTermination":false,"forcedSignal":null}

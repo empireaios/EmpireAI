@@ -1,0 +1,33 @@
+{
+  "decision": "PASS_ACTUAL_CONTROL_MODULES_SYNTHETIC_APPLICATION_SCOPE",
+  "run": 40175524098,
+  "attempt": 1,
+  "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "tree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+  "artifactSha256": "c2370b555eb5f25b5435590f53d743499e2ab636d669620fdaafe771a306e009",
+  "tests": 1,
+  "pass": 1,
+  "fail": 0,
+  "skip": 0,
+  "acceptedScope": [
+    "Actual launcher/guard/controller/broker executing synthetic primary/brain/observer entries",
+    "Controller-owned admission with root guard and runtime UID/GID65534 in both scenarios",
+    "Mandatory native artifact/filter/capability attestation completed before admission",
+    "Runtime descendant spawn and controller-journal mutation refused",
+    "Five-role source/generation/census receipt and generation transition exclusion",
+    "Clean shutdown and primary-death capture invalidation/group containment",
+    "Effective native exec tmpfs, data noexec tmpfs and operator-owned immutable artifact verified"
+  ],
+  "environmentDecision": "Existing Node22.23.2 Docker environment is suitable for this demonstrated isolated control-module examination; native-mount correction cycle is closed. Production compatibility and full real application execution are not inferred.",
+  "retainedObservedContainment": "Primary-death log records observer SIGKILL, STOP_RUNTIME_GROUP and auditPersisted=true; harness verifies all recorded members absent/zombie and no capture release.",
+  "limits": [
+    "Synthetic application entries replace real compiled application and observers",
+    "Operating historical membership and safe production cutover unproved",
+    "Full-store restoration and protected custody unproved",
+    "No whole requirement promotion"
+  ],
+  "newlyAcceptedWholeRows": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "noReruns": true
+}

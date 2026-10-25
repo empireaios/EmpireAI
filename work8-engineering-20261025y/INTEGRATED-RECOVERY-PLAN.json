@@ -1,0 +1,126 @@
+{
+  "schema": "WORK8_SHARED_REAL_APPLICATION_RECOVERY_PLAN_V1",
+  "source": {
+    "commit": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+    "tree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+    "hostedRun": 40175524098,
+    "acceptedScope": "Actual control modules with synthetic application entries; not real-application restoration"
+  },
+  "targets": [
+    "O33",
+    "O39",
+    "A1",
+    "A2",
+    "A3",
+    "A5"
+  ],
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19,
+    "missionLedger": "IN_PROGRESS / NO_GO"
+  },
+  "determination": "One shared integrated campaign is appropriate. The retained accepted synthetic graph result does not supply a real application cohort, an operating cutover receipt, protected operational backup, or independently read-back restore target. No whole-row promotion is justified now.",
+  "noRepeat": [
+    "Do not rerun run40175524098 synthetic control graph checks unchanged.",
+    "Reuse accepted thirteen-store/application-graph, sessions, visual memory, index/watchdog and queued-work evidence within its original source and boundary.",
+    "Do not rerun unrelated Backend/Runtime suites or accepted journal protocol cases.",
+    "Do not claim an inspection-only adapter establishes operational restoration."
+  ],
+  "existingInterfaces": [
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "interface": "main -> real locked launcher -> launcher-loss-guard -> runtime-writer-controller",
+      "use": "Start actual compiled backend/dist/index.js primary/brain and actual backend/src/assurance/permanent-worker.mjs and permanent-inspector.mjs; do not substitute synthetic entries."
+    },
+    {
+      "path": "deployment/runtime-writer-controller.cjs",
+      "interface": "realRoles, native isolation verification, private admission IPC, capture census/revision freeze",
+      "use": "Bind source, generation, PID/start, store scope and Redis scope for every actual role. Trusted controller remains control-plane journal writer; containment guard is explicitly registered operator writer."
+    },
+    {
+      "path": "deployment/runtime-generation.cjs",
+      "interface": "admit, acquireOperatorGuardLease, transition, exportMembership",
+      "use": "Lifetime generation locks and compatibility checks; the cutover receipt shape validates supplied claims but does not independently prove old writers excluded."
+    },
+    {
+      "path": "backend/src/runtime/work8-primary-capture.ts",
+      "interface": "withPrimaryCaptureFence; getActiveMembershipCapture",
+      "use": "Reuse actual primary/session/observer capture bridge and bind frozen controller receipt to captured data."
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "interface": "captureWork8RecoveryInventory, verifyWork8RecoveryInventory, finalizeWork8RecoveryInventory; restoreWork8RedisInspection",
+      "use": "Actual Redis chronology/inventory and application snapshot capture. Redis inspection restore remains non-operational and cannot grant queue authority."
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "interface": "captureRuntimeRecoverySet, verifyRuntimeRecoverySet, finalizeRuntimeRecoverySet, stageRuntimeRecoveryInspection",
+      "use": "Canonical snapshots and checksum verification; stageRuntimeRecoveryInspection stays inspection-only. The recovered scripts/work8/application-graph-restoration.mjs provides the separate generated operational application examination."
+    },
+    {
+      "path": "deployment/runtime-operator-audit.cjs",
+      "interface": "openAuditFence, recordOperatorContainment",
+      "use": "Guard audit exclusion and durable emergency invalidation must remain effective through capture; protected journal and marker history are inspection evidence, not restored execution authority."
+    },
+    {
+      "path": "backend/src/runtime/primary-shutdown.ts",
+      "interface": "actual primary drain and brokered worker shutdown",
+      "use": "Exercise same process shutdown path as runtime; no test-only replacement."
+    },
+    {
+      "path": "scripts/work8/application-graph-restoration.mjs",
+      "blob": "24ce08b2b54434aab6b07833e8e18ef994c7dc96",
+      "interface": "examineApplicationGraph({source,evidence,directory,resultFile,mode}); modes graph/index/pending",
+      "use": "Retained accepted generated application/index/pending restoration entrypoint, unchanged in current source. Requires source-matched held capture, initialized inventory and external containment verification; retains original180-second deadline. It does not itself bind the actual controller graph or protected custody."
+    }
+  ],
+  "requiredInputs": [
+    "Exact reviewed source/build identity and complete immutable compiled Pillow/backend plus native filter artifacts; actual entries and required non-secret schema/configuration.",
+    "Existing Node22.23.2/Docker runner with separate operator/runtime principals, required /proc attestation capability, root-protected authority/image paths and runtime-owned canonical data directories. Prior hosted runner proves this capability only in its isolated tested configuration.",
+    "Private isolated authenticated Redis with verified run_id/database and no production endpoint; fresh isolated source/target volumes, with full inventory of actual canonical paths and ownership. No implicit chown or migration of production data.",
+    "New coordinated capture under the actual controller graph, with current-source hh4-held.json, hh4-worker-ready.json inventory and held-capture-external-verification.json plus capture bytes/digest. The recovered application-graph-restoration entrypoint rejects older source artifacts; do not relabel them.",
+    "Non-commercial isolated application records spanning original authenticated test session, financial/mission records, runtime journal, visual memory and pending work with durable unique IDs; connect every assertion to one consistent cohort. Production session/data export needs separately established authority and handling.",
+    "Current/prior controller lifecycle history plus operating cutover proof when evaluating real operating recovery. Synthetic fixture admission cannot reconstruct unknown historical production membership.",
+    "Existing eligible protected off-host storage account/route, upload/read access for full operational data, retention/version semantics and a separately authenticated read principal without runtime-held storage credentials."
+  ],
+  "cutoverRollbackPrerequisites": [
+    "No production cutover or deployment is authorized. Require exact forward source/image and explicit compatible rollback source/image, frontend relationship where needed, independently reviewed schema/data handling and bounded rollback trigger.",
+    "The current accepted controller-capable source is a prospective rollback floor, not automatically a fully verified production rollback candidate. Legacy non-controller revisions and revisions lacking durable DEFER compatibility are prohibited.",
+    "Before new operating epoch, authenticated inventory must establish current writers and every prior writer with possible volume/Redis access; verify termination/fencing or revoke access so unknown historical writers cannot re-enter. Deployment removal status or container list alone is insufficient.",
+    "Bind cutover receipt to canonical volume device/inode, Redis host/port/database/run_id, admitted generation, compatible sources and independent operating evidence; do not fabricate missing history.",
+    "Preserve controller journal, emergency markers, owner DEFER version precondition and financial/session records. New target/rollback authority must be deliberately issued; copied old journal/snapshot authority cannot silently regain execution rights.",
+    "Failure or unavailable authority stays closed; guard group containment and native restrictions remain enabled. Rollback must not permit stale generations or duplicate pending work."
+  ],
+  "authorityBoundaries": {
+    "alreadyAuthorized": "Read retained source/evidence; prepare minimum real-app examination and integration plan; local isolated engineering within existing infrastructure and default task ceiling. No new code or external calls performed in this planning lane.",
+    "nextExactTreeApproval": "If adding the one real-application integrated workflow/fixture is necessary, independently review and stage its exact source/evidence trees; obtain consolidated publication/targeted-run authority. The previous targeted synthetic job approval does not authorize another changed job or automatic rerun.",
+    "separateOperatingApproval": "Production cutover/deployment/rollback and any live-data authority must be separately reviewed and approved; preserve PR113 draft and no release lease.",
+    "custodyAccess": "Use existing eligible storage only. Obtain missing authenticated write/read/retention access and data-handling authorization where absent; no provisioning or purchase."
+  },
+  "whyNotClosableNow": {
+    "realApplication": "The accepted run executed synthetic application entries. Actual application record creation/holds/restoration under the new native filter and controller remains unexamined.",
+    "operationalRestore": "Entry point recovered: scripts/work8/application-graph-restoration.mjs is byte-identical in accepted a12 and current source. Its original generated-target graph/index/pending scope is reusable. Missing proof is a new source-bound coordinated capture and deliberate binding of its target to the actual controller/native-fenced runtime graph plus protected custody. Existing entrypoint does not establish these automatically.",
+    "operatingEpoch": "Complete old operating writer exclusion and a safe prospective production epoch have not been established or authorized.",
+    "custody": "No retained evidence here establishes complete-data protected off-host copy, separate principal readback, retention and restoration from that copy.",
+    "rollback": "An exact separately verified compatible forward/rollback pair is not supplied by a successful synthetic graph test."
+  },
+  "smallestNextAction": "Prepare one narrowly reviewed real-application/controller integration examination using the recovered unchanged restoration entrypoint and a new current-source coordinated capture. Confirm eligible protected custody and exact target authority before commissioning the combined campaign; do not rediscover or rerun the accepted restoration script alone.",
+  "newAcceptedRows": [],
+  "prohibitedEffects": [
+    "production deployment",
+    "production cutover",
+    "paid inference",
+    "external messages",
+    "real commerce",
+    "infrastructure purchase",
+    "repeated accepted CI"
+  ],
+  "controls": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE"
+  },
+  "companionCampaign": "INTEGRATED-RECOVERY-CAMPAIGN.json supplies the shared campaign and independent acceptance gates; this file supplies retained implementation interfaces, exact input gaps and release compatibility prerequisites.",
+  "restoreReadback": "SOURCE-BOUND-RESTORE-READBACK.json",
+  "localReadbackCaveat": "Resolved: local restoration reference matches remote blob24ce08b2b54434aab6b07833e8e18ef994c7dc96 exactly (18010bytes)."
+}

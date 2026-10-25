@@ -1,0 +1,287 @@
+{
+  "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "scope": "ACTUAL_CONTROL_MODULES_SYNTHETIC_APPLICATION_ENTRIES",
+  "productionGraphIntegrated": false,
+  "operatingRecoveryCertified": false,
+  "acceptedRows": [],
+  "receipts": [
+    {
+      "scenario": "clean",
+      "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+      "generation": "12865164-224d-4e88-bbed-13ebefa75811",
+      "members": [
+        {
+          "id": "4f4998f6-8e32-41eb-a2fc-4e9957b79152",
+          "role": "containment-guard",
+          "pid": 46,
+          "startTicks": "4941",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 0,
+          "gid": 0,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "12865164-224d-4e88-bbed-13ebefa75811",
+          "epoch": 1,
+          "cutoverDigest": "eb0c3cfb0e562b14f1f8dfb6967c2c8a4c2a2c12a7fb515bd6f58b234cd3a9b7",
+          "entrySha256": "784553efa00db2bfbc09938dce88f3ea59e93b845df8bb4936f3c36fd04b982c",
+          "scope": [
+            "containment-audit"
+          ],
+          "scopeDigest": "345f644325d790615bd273c0d84a089fc67db2e97210a628043e1f9cd6193b56",
+          "storeRoot": "/work8-exam/case-fc0d1e78-034c-4d18-a7d2-7f3c63943b9f/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 215,
+          "state": "ADMITTED"
+        },
+        {
+          "storeRoot": "/work8-exam/case-fc0d1e78-034c-4d18-a7d2-7f3c63943b9f/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 215,
+          "epoch": 1,
+          "cutoverDigest": "eb0c3cfb0e562b14f1f8dfb6967c2c8a4c2a2c12a7fb515bd6f58b234cd3a9b7",
+          "id": "5e6ee0de-2ae2-466c-a488-10d22f96127c",
+          "role": "assurance-inspector",
+          "pid": 69,
+          "startTicks": "4951",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 65534,
+          "gid": 65534,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "12865164-224d-4e88-bbed-13ebefa75811",
+          "entrySha256": "20593bee1d36405023e3e83d9663cfb4f121c22f003500b3f75c4e5c9e7e3c08",
+          "scope": [
+            "assurance-records"
+          ],
+          "scopeDigest": "6a54c8c4dd571908aefa80bbb6183efd9a9f23a170e93695a0a6adad92766310",
+          "state": "ADMITTED"
+        },
+        {
+          "storeRoot": "/work8-exam/case-fc0d1e78-034c-4d18-a7d2-7f3c63943b9f/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 215,
+          "epoch": 1,
+          "cutoverDigest": "eb0c3cfb0e562b14f1f8dfb6967c2c8a4c2a2c12a7fb515bd6f58b234cd3a9b7",
+          "id": "7ef9f9e3-b4da-48b0-957b-0403bc8adf3f",
+          "role": "brain-worker",
+          "pid": 88,
+          "startTicks": "4956",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 65534,
+          "gid": 65534,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "12865164-224d-4e88-bbed-13ebefa75811",
+          "entrySha256": "f17f43abfcc32a0f22cd1ba52bceaf2e9edabf6df15eb7eca42a5efbfd901fc2",
+          "scope": [
+            "sql-stores",
+            "redis-producer",
+            "visual-memory",
+            "queued-work"
+          ],
+          "scopeDigest": "e4f1783e7786fdbc5155faa7d0f5218fac79eab3fb771a4482b8181810066e06",
+          "state": "ADMITTED"
+        },
+        {
+          "storeRoot": "/work8-exam/case-fc0d1e78-034c-4d18-a7d2-7f3c63943b9f/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 215,
+          "epoch": 1,
+          "cutoverDigest": "eb0c3cfb0e562b14f1f8dfb6967c2c8a4c2a2c12a7fb515bd6f58b234cd3a9b7",
+          "id": "d90f16ca-82a3-4294-8e76-9109b2eb0f7d",
+          "role": "primary",
+          "pid": 67,
+          "startTicks": "4951",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 65534,
+          "gid": 65534,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "12865164-224d-4e88-bbed-13ebefa75811",
+          "entrySha256": "f17f43abfcc32a0f22cd1ba52bceaf2e9edabf6df15eb7eca42a5efbfd901fc2",
+          "scope": [
+            "sessions",
+            "native-stores",
+            "runtime-journal",
+            "queue-runner"
+          ],
+          "scopeDigest": "0c00a0429d7d1e496dc66143f361d7da8ff049a60e5035ff6ad2bb364398dc0e",
+          "state": "ADMITTED"
+        },
+        {
+          "storeRoot": "/work8-exam/case-fc0d1e78-034c-4d18-a7d2-7f3c63943b9f/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 215,
+          "epoch": 1,
+          "cutoverDigest": "eb0c3cfb0e562b14f1f8dfb6967c2c8a4c2a2c12a7fb515bd6f58b234cd3a9b7",
+          "id": "db94d7bb-0de4-40a1-9195-9f3d3f556792",
+          "role": "assurance-worker",
+          "pid": 68,
+          "startTicks": "4951",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 65534,
+          "gid": 65534,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "12865164-224d-4e88-bbed-13ebefa75811",
+          "entrySha256": "20593bee1d36405023e3e83d9663cfb4f121c22f003500b3f75c4e5c9e7e3c08",
+          "scope": [
+            "assurance-records",
+            "redis-producer"
+          ],
+          "scopeDigest": "18f2972acea51ab2ca3696d5092f64a162312a73610669bab68cc18295e8ff11",
+          "state": "ADMITTED"
+        }
+      ],
+      "assertions": {
+        "actualControlModules": true,
+        "syntheticApplicationOnly": true,
+        "demotedRuntime": true,
+        "descendantSpawnRefused": true,
+        "journalMutationRefused": true,
+        "guardGenerationLease": true,
+        "captureCensusBound": true,
+        "cleanDrainOrIndependentContainment": true
+      }
+    },
+    {
+      "scenario": "primary-death",
+      "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+      "generation": "e858bb89-54ec-40a1-b02a-961d8efa6d0f",
+      "members": [
+        {
+          "storeRoot": "/work8-exam/case-2d830de6-8321-45e2-a324-c80dd4a12947/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 369,
+          "epoch": 1,
+          "cutoverDigest": "16ab1d5484d2f472e368b88becbd6f2ab1f76aab7e7777e549066cddcffc5bdd",
+          "id": "1f0b94ef-9395-420f-abe1-a43449ff3b47",
+          "role": "assurance-inspector",
+          "pid": 125,
+          "startTicks": "4981",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 65534,
+          "gid": 65534,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "e858bb89-54ec-40a1-b02a-961d8efa6d0f",
+          "entrySha256": "20593bee1d36405023e3e83d9663cfb4f121c22f003500b3f75c4e5c9e7e3c08",
+          "scope": [
+            "assurance-records"
+          ],
+          "scopeDigest": "6a54c8c4dd571908aefa80bbb6183efd9a9f23a170e93695a0a6adad92766310",
+          "state": "ADMITTED"
+        },
+        {
+          "id": "379fc1bb-b079-4296-ab73-1cdce3fabc16",
+          "role": "containment-guard",
+          "pid": 102,
+          "startTicks": "4971",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 0,
+          "gid": 0,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "e858bb89-54ec-40a1-b02a-961d8efa6d0f",
+          "epoch": 1,
+          "cutoverDigest": "16ab1d5484d2f472e368b88becbd6f2ab1f76aab7e7777e549066cddcffc5bdd",
+          "entrySha256": "784553efa00db2bfbc09938dce88f3ea59e93b845df8bb4936f3c36fd04b982c",
+          "scope": [
+            "containment-audit"
+          ],
+          "scopeDigest": "345f644325d790615bd273c0d84a089fc67db2e97210a628043e1f9cd6193b56",
+          "storeRoot": "/work8-exam/case-2d830de6-8321-45e2-a324-c80dd4a12947/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 369,
+          "state": "ADMITTED"
+        },
+        {
+          "storeRoot": "/work8-exam/case-2d830de6-8321-45e2-a324-c80dd4a12947/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 369,
+          "epoch": 1,
+          "cutoverDigest": "16ab1d5484d2f472e368b88becbd6f2ab1f76aab7e7777e549066cddcffc5bdd",
+          "id": "caaf7b66-5a34-41ea-9961-dd3c1b75dde9",
+          "role": "assurance-worker",
+          "pid": 124,
+          "startTicks": "4980",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 65534,
+          "gid": 65534,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "e858bb89-54ec-40a1-b02a-961d8efa6d0f",
+          "entrySha256": "20593bee1d36405023e3e83d9663cfb4f121c22f003500b3f75c4e5c9e7e3c08",
+          "scope": [
+            "assurance-records",
+            "redis-producer"
+          ],
+          "scopeDigest": "18f2972acea51ab2ca3696d5092f64a162312a73610669bab68cc18295e8ff11",
+          "state": "ADMITTED"
+        },
+        {
+          "storeRoot": "/work8-exam/case-2d830de6-8321-45e2-a324-c80dd4a12947/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 369,
+          "epoch": 1,
+          "cutoverDigest": "16ab1d5484d2f472e368b88becbd6f2ab1f76aab7e7777e549066cddcffc5bdd",
+          "id": "cc70159c-b1da-49d8-9287-dc8ab077f5e8",
+          "role": "primary",
+          "pid": 123,
+          "startTicks": "4980",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 65534,
+          "gid": 65534,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "e858bb89-54ec-40a1-b02a-961d8efa6d0f",
+          "entrySha256": "f17f43abfcc32a0f22cd1ba52bceaf2e9edabf6df15eb7eca42a5efbfd901fc2",
+          "scope": [
+            "sessions",
+            "native-stores",
+            "runtime-journal",
+            "queue-runner"
+          ],
+          "scopeDigest": "0c00a0429d7d1e496dc66143f361d7da8ff049a60e5035ff6ad2bb364398dc0e",
+          "state": "ADMITTED"
+        },
+        {
+          "storeRoot": "/work8-exam/case-2d830de6-8321-45e2-a324-c80dd4a12947/volume/commissioning",
+          "storeDevice": 74,
+          "storeInode": 369,
+          "epoch": 1,
+          "cutoverDigest": "16ab1d5484d2f472e368b88becbd6f2ab1f76aab7e7777e549066cddcffc5bdd",
+          "id": "fe882770-dac0-420e-a93c-6e9011513ae0",
+          "role": "brain-worker",
+          "pid": 144,
+          "startTicks": "4986",
+          "boot": "42ce55d1-d948-4e87-afa1-28a0319b4d32",
+          "pidNamespace": "pid:[4026532431]",
+          "uid": 65534,
+          "gid": 65534,
+          "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "generation": "e858bb89-54ec-40a1-b02a-961d8efa6d0f",
+          "entrySha256": "f17f43abfcc32a0f22cd1ba52bceaf2e9edabf6df15eb7eca42a5efbfd901fc2",
+          "scope": [
+            "sql-stores",
+            "redis-producer",
+            "visual-memory",
+            "queued-work"
+          ],
+          "scopeDigest": "e4f1783e7786fdbc5155faa7d0f5218fac79eab3fb771a4482b8181810066e06",
+          "state": "ADMITTED"
+        }
+      ],
+      "assertions": {
+        "actualControlModules": true,
+        "syntheticApplicationOnly": true,
+        "demotedRuntime": true,
+        "descendantSpawnRefused": true,
+        "journalMutationRefused": true,
+        "guardGenerationLease": true,
+        "captureCensusBound": true,
+        "cleanDrainOrIndependentContainment": true
+      }
+    }
+  ]
+}

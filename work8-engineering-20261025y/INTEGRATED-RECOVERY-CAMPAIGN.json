@@ -1,0 +1,93 @@
+{
+  "objective": "One integrated real-application recovery campaign for O33/O39/A1/A2/A3/A5",
+  "baseline": "45 accepted /19 outstanding; scoped Y control-module PASS retained",
+  "entryGates": [
+    "Exact real application source/build artifacts bound to accepted compiler/source identity",
+    "Prepared canonical stores and controller/runtime ownership, existing isolated target and Redis scope",
+    "Explicit known admitted cohort; pre-protocol operating writers excluded only through separately authorized verified cutover when using operating data",
+    "Eligible protected complete-data route and independently authenticated readback available before claiming custody"
+  ],
+  "reuseWithoutRepeat": [
+    "U isolated journal11/11",
+    "Y actual control-module clean/primary-death/mount/identity examination",
+    "V Pillow/backend compilation where source/build inputs unchanged",
+    "Retained13-store/application graph/session/visual-memory/runtime journal evidence within exact original scopes",
+    "Accepted index/watchdog and queued once-only evidence; only changed integrated boundary must be examined"
+  ],
+  "singleCampaignSequence": [
+    "Launch real compiled primary/brain/Assurance/startup entries under accepted controller/native isolation; collect exact admitted writer/scope census and canonical store bindings",
+    "Perform one coordinated real application capture with admission freeze, all mutable participant hold acknowledgements, stable controller revision and guard audit exclusion",
+    "Preserve complete canonical store/Redis/session/journal/visual-memory manifest and financial/mission invariants; move complete backup through eligible protected route",
+    "Independent credential reads protected version; verify manifest/hash/retention and corruption refusal",
+    "Restore protected copy to fresh isolated target under new explicitly compatible authority, never replay copied authority; verify full readiness, original sessions and pending work exactly once",
+    "Apply exact compatible rollback plan in isolated scope, verify stale re-entry rejection and preserved records; issue independent six-row criteria matrix"
+  ],
+  "stopConditions": [
+    "Missing operating exclusion/cutover authority stops operating branch only",
+    "Missing independent protected custody proof prevents A3 and any dependent complete restoration claim",
+    "Real application incompatibility triggers only diagnosed changed-boundary correction, not repeated synthetic fixtures"
+  ],
+  "separateAuthority": "No production cutover/deployment, new infrastructure, external message or commerce is authorized. New changed source/evidence trees require exact-tree approval.",
+  "sixRowGateMatrix": [
+    {
+      "id": "O33",
+      "mandatoryRemaining": [
+        "Actual concurrent writers and capture exclusion",
+        "Stale/current generation replay exclusion",
+        "Once-only coupled pending work under real integrated graph"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "O39",
+      "mandatoryRemaining": [
+        "Full fresh-target operational restore",
+        "Compatible rollback and migrations",
+        "Corruption refusal and no authority replay"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "A1",
+      "mandatoryRemaining": [
+        "Persistent real application identity/state continuity",
+        "Complete operational restoration and safe epoch"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "A2",
+      "mandatoryRemaining": [
+        "Complete actual primary/worker/observer and data-store graph",
+        "Consistent capture and full restoration"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "A3",
+      "mandatoryRemaining": [
+        "Complete-data off-host protected custody",
+        "Retention/version integrity and runtime credential exclusion",
+        "Independent authenticated readback and restoration"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "A5",
+      "mandatoryRemaining": [
+        "Explicit compatible forward/rollback pair",
+        "Generation consistency and stale re-entry refusal",
+        "Original session/financial preservation without duplicate work"
+      ],
+      "decision": "PENDING"
+    }
+  ],
+  "otherLaneDependencies": {
+    "ownerConsole": "Existing conditional DEFER preserved; no click. Corrected release/rollback pair and separate production authority remain required.",
+    "business": "No new credible matched current supplier/marketplace terms, media rights and economics evidence; no expired observations promoted.",
+    "alerts": "Verified independent executor/attempt store/provider/destination/observer plus bounded message authority remain required; no message sent.",
+    "accounting": "227 records and historical digests preserved; original224 provenance or audited lineage missing; no unsupported search repeated.",
+    "Canva": "Server-side export authority/entitlement gap preserved; no hanging reads repeated.",
+    "Keepa": "Runtime NOT_CONFIGURED is not account entitlement evidence; applicable authenticated entitlement readback still needed."
+  }
+}

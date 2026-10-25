@@ -1,0 +1,44 @@
+{
+  "decision": "ACCEPT_EVIDENCE_FOR_STAGING_AND_EXACT_TREE_OWNER_REVIEW",
+  "reviewedFiles": [
+    {
+      "path": "FULL-TRACKER.json",
+      "sha256": "70d3049ff094dd744da30daaa4014a6912d8cd636cacce6c9cae940a349a5c20",
+      "bytes": 40744
+    },
+    {
+      "path": "Work8-Writer-Integration-PASS-Checkpoint-20261025y.json",
+      "sha256": "3b510dd040d6d82f57aca2394627b551c05e4af3abf7eb294d940070ca62147a",
+      "bytes": 58528
+    }
+  ],
+  "counts": {
+    "original": {
+      "PASS": 34,
+      "PENDING": 7,
+      "BLOCKED": 4
+    },
+    "amendments": {
+      "PASS": 11,
+      "PENDING": 8
+    },
+    "accepted": 45,
+    "outstanding": 19
+  },
+  "acceptedHostedScope": "Run40175524098 actual control modules with synthetic application entries only;1test1pass0fail0skip",
+  "checks": [
+    "17 artifacts retained with exact accepted archive digest",
+    "Environment suitable only for demonstrated isolated scope; native correction cycle closed",
+    "No source candidate or newly accepted whole row",
+    "U journal and Y latest accepted hosted identities accurately distinguished",
+    "Recovered18010-byte restoration reference matches reported current-tree Git blob; no restoration execution inferred",
+    "Shared real-application campaign retains actual source/capture/custody/epoch prerequisites"
+  ],
+  "restorationReadback": {
+    "gitBlob": "24ce08b2b54434aab6b07833e8e18ef994c7dc96",
+    "sha256": "cb54d74992d5a220a503ab8b07626196bc8af6a21227ae345090287122e74a64",
+    "executed": false
+  },
+  "missionLedger": "IN_PROGRESS / NO_GO",
+  "noReruns": true
+}

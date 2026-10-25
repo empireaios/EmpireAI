@@ -1,0 +1,47 @@
+{
+  "schema": "WORK8_SOURCE_BOUND_RESTORE_READBACK_V1",
+  "path": "scripts/work8/application-graph-restoration.mjs",
+  "localReference": "campaign-y/reference/application-graph-restoration.mjs",
+  "reportedRemoteGitBlob": "24ce08b2b54434aab6b07833e8e18ef994c7dc96",
+  "localGitBlob": "24ce08b2b54434aab6b07833e8e18ef994c7dc96",
+  "localSha256": "cb54d74992d5a220a503ab8b07626196bc8af6a21227ae345090287122e74a64",
+  "localBytes": 18010,
+  "byteEqualityVerified": true,
+  "identityCaveat": "Resolved: parent removed one extra transfer newline; local git blob now exactly matches reported remote tree blob. No source implementation change.",
+  "currentSource": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "currentTree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+  "entrypoint": "examineApplicationGraph({source,evidence,directory,resultFile,mode})",
+  "modes": [
+    "graph",
+    "index",
+    "pending"
+  ],
+  "requiredInputs": [
+    "container-evidence/hh4-held.json",
+    "container-evidence/hh4-worker-ready.json inventory",
+    "held-capture-external-verification.json",
+    "complete snapshot bytes matching held.digest",
+    "immutable runtime revision and matching sourceCommit",
+    "read-only executive decision journal matching captured bytes and mode"
+  ],
+  "sourceBinding": "Requires exact source equality across held/inventory/verification/runtime revision/capture manifest. Old accepted source evidence cannot be relabelled.",
+  "originalDeadlineMs": 180000,
+  "isolation": "Separate fresh generated target; synthetic:hh4 and LABELLED_SYNTHETIC_INITIALIZATION; verified original container stopped/no restart/no survivors; zero paid inference/external effects.",
+  "retainedProof": [
+    "canonical store equality before boot",
+    "original synthetic session authentication, expiry and forged-token refusal",
+    "mission/financial preservation",
+    "fenced queue and no historical authority import",
+    "index/watchdog mode",
+    "bounded authority.snapshot.v1 continuation and no duplicate after restart in pending mode"
+  ],
+  "limits": [
+    "Graph mode builds application without workers/scheduler; index/pending call index-restoration-phase. Actual controller graph is not automatically bound.",
+    "Receipt operationalRestoration=false/globalWriterTopology=false/protectedCustody=false; no whole-row certification.",
+    "Protected custody and new-generation operating proof remain absent."
+  ],
+  "resolved": "Actual retained restoration entrypoint and required inputs identified; do not search again.",
+  "minimumRemaining": "New current-source coordinated capture and actual-controller/native-fenced restoration binding, plus independently authenticated protected copy and compatible safe epoch/rollback prerequisites.",
+  "executions": 0,
+  "newAcceptedRows": []
+}
