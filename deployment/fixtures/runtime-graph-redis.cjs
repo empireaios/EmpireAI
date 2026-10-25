@@ -2,9 +2,10 @@
 // Only the graph examination's isolated synthetic Redis capability is accepted.
 // The previously accepted journal fixture is deliberately unchanged.
 const net=require('node:net');
-function command(url,args){
+function command(url,args,expectedHost='journal-redis'){
+ if(!['journal-redis','target-redis'].includes(expectedHost))throw Error('ISOLATED_GRAPH_REDIS_HOST');
  const u=new URL(url);
- if(u.protocol!=='redis:'||!['journal-redis','127.0.0.1'].includes(u.hostname)||u.username||u.password!=='work8-synthetic-only'||u.pathname!=='/0'||u.search||u.hash||!['["PING"]','["INFO","server"]'].includes(JSON.stringify(args)))throw Error('ISOLATED_GRAPH_REDIS_ONLY');
+ if(u.protocol!=='redis:'||![expectedHost,'127.0.0.1'].includes(u.hostname)||u.username||u.password!=='work8-synthetic-only'||u.pathname!=='/0'||u.search||u.hash||!['["PING"]','["INFO","server"]'].includes(JSON.stringify(args)))throw Error('ISOLATED_GRAPH_REDIS_ONLY');
  const encode=a=>'*'+a.length+'\r\n'+a.map(v=>'$'+Buffer.byteLength(v)+'\r\n'+v+'\r\n').join('');
  return new Promise((resolve,reject)=>{
   const socket=net.createConnection({host:u.hostname,port:Number(u.port||6379)});let data=Buffer.alloc(0),authenticated=false,done=false;

@@ -49,6 +49,15 @@ export async function initializeActualGeneratedDomains(application,root,source){
  for(const [name,value]of Object.entries(process.env))if(value&&/(?:API_KEY|ACCESS_TOKEN|SECRET_ACCESS_KEY|PROXY)$/i.test(name))throw Error('HH4_EXTERNAL_CREDENTIAL');
  assert.equal(fs.readFileSync('/proc/net/route','utf8').trim().split('\n').length,1);
  assert.ok(fs.readFileSync('/proc/net/ipv6_route','utf8').trim().split('\n').every(row=>!row||row.trim().endsWith('lo')));
+ return initializeDomainRecords(application,root,source,false);
+}
+export async function initializeAdmittedGeneratedDomains(application,root,source){
+ const {admittedApplicationGrant}=await api('runtime/work8-admitted-application.js');const grant=admittedApplicationGrant();assert.ok(grant);assert.equal(grant.mode,'source');assert.equal(grant.source,source);assert.equal(grant.volume.root,root);assert.equal(process.env.NODE_ENV,'production');
+ return initializeDomainRecords(application,root,source,true);
+}
+async function initializeDomainRecords(application,root,source,admitted){
+ const generated=path.dirname(root);
+ const shadowRoot=admitted?process.env.SHADOW_CEO_DATA_DIR:path.join(root,'shadow');assert.ok(shadowRoot.startsWith(root+path.sep));
  const now=Date.now(),at=new Date(now).toISOString(),workspace='synthetic:hh4',id='hh4_'+path.basename(generated).replace(/[^a-zA-Z0-9_-]/g,'_');
  const inventory={classification:'LABELLED_SYNTHETIC_INITIALIZATION',source,root,workspace,at,domains:{},paidInference:0,externalEffects:0,restorationAccepted:false,replayAccepted:false};
  const c=relative=>path.join(root,'commissioning',relative);
@@ -106,7 +115,7 @@ export async function initializeActualGeneratedDomains(application,root,source){
 
  const {openShadowCeoRepository}=await api('orchestration/shadow-ceo/repository.js');
  const {buildObjective}=await api('orchestration/shadow-ceo/control-plane.js');
- const shadow=openShadowCeoRepository({dbPath:path.join(root,'shadow/shadow-ceo.db')});
+ const shadow=openShadowCeoRepository({dbPath:path.join(shadowRoot,'shadow-ceo.db')});
  try{const objective=buildObjective({workspaceId:workspace,title:'Synthetic recovery objective',statement:'Preserve state without executing commerce.',idempotencyKey:id,source:'synthetic',economicClaim:'none'});shadow.save(objective);shadow.persist();record('shadow',shadow.getById(objective.id));}finally{shadow.close();}
  const authority=await api('orchestration/shadow-ceo-authority/repository/json-authority-store.js');
  const prior=authority.loadAuthorityStore();assert.equal(prior.approvals.length,0);

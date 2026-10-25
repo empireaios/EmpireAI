@@ -1,3 +1,4 @@
+import {isAdmittedCaptureScope,assertAdmittedCaptureScope,holdAdmittedCapture,type AdmittedCaptureScope} from './runtime/work8-admitted-application.js';
 import {withConfiguredVisualCapture} from './runtime/work8-visual-capture-policy.js';
 import {assertGeneratedCaptureScope,holdGeneratedCapture,type GeneratedCaptureScope} from './runtime/work8-generated-capture-hold.js';
 import { registerWork8RecoveryRoutes } from './runtime/work8-recovery-routes.js';
@@ -285,7 +286,7 @@ export type EmpireApp = {
    */
   withDrainedWork8LocalCapture: <T>(shadow: SqliteShadowCeoRepository,
     captureAndVerify: () => T | Promise<T>, timeoutMs?: number) => Promise<T>;
-  captureWork8Recovery: (request:Work8RecoveryRequest,scope?:GeneratedCaptureScope)=>Promise<Work8RecoveryResult>;
+  captureWork8Recovery: (request:Work8RecoveryRequest,scope?:GeneratedCaptureScope|AdmittedCaptureScope)=>Promise<Work8RecoveryResult>;
   finishRouteRegistration?: () => Promise<void>;
 };
 
@@ -681,13 +682,13 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
     }, timeoutMs);
   };
 
-  const captureWork8Recovery = async (request:Work8RecoveryRequest,scope?:GeneratedCaptureScope):Promise<Work8RecoveryResult> => {
+  const captureWork8Recovery = async (request:Work8RecoveryRequest,scope?:GeneratedCaptureScope|AdmittedCaptureScope):Promise<Work8RecoveryResult> => {
     if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN");
     if (!(brain.taskQueue instanceof TaskQueue)) throw new Error("Recovery requires connected Redis");
     const queue=brain.taskQueue;
     const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
     if (!root) throw new Error("Recovery requires explicit volume root");
-    if(scope)assertGeneratedCaptureScope(scope,request,root);
+    if(scope){if(isAdmittedCaptureScope(scope))assertAdmittedCaptureScope(scope,request,root);else assertGeneratedCaptureScope(scope,request,root);}
     let staged=false;
     try {
       // Load the temporary Shadow view only after every applicable admission
@@ -702,13 +703,13 @@ export async function buildApp(options: BuildAppOptions = {}): Promise<EmpireApp
                 const capture=async(sessionContinuitySnapshot?:unknown,executiveDecisionJournalSnapshot?:unknown)=>{
                 const captured=await captureWork8RecoveryInventory(request,{root,primaryPath:getActiveDatabasePath(),shadowPath:shadow.dbPath,visualMemorySnapshot,sessionContinuitySnapshot,executiveDecisionJournalSnapshot},queue);
                 staged=true;
-                if(scope)await holdGeneratedCapture(scope,captured,{seal:finalizeWork8RecoveryInventory,verify:verifyWork8RecoveryInventory,invalidate:invalidateWork8RecoveryInventory});
+                if(scope){const actions={seal:finalizeWork8RecoveryInventory,verify:verifyWork8RecoveryInventory,invalidate:invalidateWork8RecoveryInventory};if(isAdmittedCaptureScope(scope))await holdAdmittedCapture(scope,captured,actions);else await holdGeneratedCapture(scope,captured,actions);}
                 return captured;
                 };
                 return pillowEnabled ? pillowHost.withSessionContinuityRecoveryCapture(capture) : capture();
                 });
               })))))));
-      finalizeWork8RecoveryInventory(result);
+      if(!isAdmittedCaptureScope(scope))finalizeWork8RecoveryInventory(result);
       verifyWork8RecoveryInventory(result);
       return result;
     } catch(error) {if(staged) invalidateWork8RecoveryInventory(request.destination);throw error;}

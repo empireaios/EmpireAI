@@ -80,8 +80,8 @@ class MembershipJournal{
  close(){this.db.close();}
 }
 class MembershipController extends EventEmitter{
- constructor({journalPath,initialize=false,runtimeUid,runtimeGid,source,generation,generationEnv,roles,volumeRoot,redisUrl,writerIsolation,bootstrap=path.join(__dirname,'runtime-membership-bootstrap.mjs')}){
-  super();this.operatorUid=process.getuid();this.writerIsolation=writerIsolation;
+ constructor({journalPath,initialize=false,runtimeUid,runtimeGid,source,generation,generationEnv,roles,volumeRoot,redisUrl,writerIsolation,admissionExtension,bootstrap=path.join(__dirname,'runtime-membership-bootstrap.mjs')}){
+  super();this.admissionExtension=admissionExtension;this.operatorUid=process.getuid();this.writerIsolation=writerIsolation;
   if(!Number.isInteger(runtimeUid)||runtimeUid===0||runtimeUid===this.operatorUid||!Number.isInteger(runtimeGid)||!/^[a-f0-9]{40}$/.test(source))fail('DISTINCT_RUNTIME_PRINCIPAL_REQUIRED');
   if(!/^[a-f0-9-]{36}$/.test(generation))fail('INVALID_GENERATION');
   protectedPath(path.dirname(journalPath),this.operatorUid);protectedPath(bootstrap,this.operatorUid);
@@ -139,8 +139,9 @@ class MembershipController extends EventEmitter{
    const store=fs.statSync(spec.stateDirectory);if(fs.realpathSync(spec.stateDirectory)!==spec.stateDirectory||!spec.stateDirectory.startsWith(this.volumeRoot+path.sep)||!store.isDirectory()||store.uid!==this.uid||store.gid!==this.gid)fail('STORE_SCOPE_MISMATCH');
    const record={storeRoot:spec.stateDirectory,storeDevice:store.dev,storeInode:store.ino,epoch:authority.epoch,cutoverDigest:authority.cutoverDigest,id:member.id,role:member.role,pid:p.pid,startTicks:p.startTicks,boot:p.boot,pidNamespace:p.pidNamespace,uid:this.uid,gid:this.gid,source:this.source,generation:this.generation,entrySha256:spec.entrySha256,scope:[...spec.scope],scopeDigest:digest(JSON.stringify(spec.scope))};
    this.journal.admit(record);member.record=record;
+   const examination=this.admissionExtension?.(member);this.emit('admitted',member);
    member.afterCommit?.(record); // Examination crash point; no ACK precedes commit.
-   member.child.send({protocol:PROTOCOL,id:member.id,nonce:member.nonce,action:'admitted'},e=>{if(e)this.invalidate(e);});return;
+   member.child.send({protocol:PROTOCOL,id:member.id,nonce:member.nonce,action:'admitted',...(examination?{examination}:{} )},e=>{if(e)this.invalidate(e);});return;
   }
   if(!member.record)fail('UNADMITTED_MEMBER_FRAME');
   if(m.action==='ready'){

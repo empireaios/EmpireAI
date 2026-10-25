@@ -1,4 +1,4 @@
-name: Work 8 actual writer integration examination
+name: Work 8 O33 actual application capture and replay
 on:
   push:
     branches: ['work8/writer-integration-20261025v']
@@ -18,19 +18,31 @@ jobs:
           ref: ${{ github.sha }}
           persist-credentials: false
           fetch-depth: 1
-      # Pillow/backend compilation accepted on c8b56b5e230c064982b9a8ed24ecf78f475137d3
-      # in run40161831246. This reviewed successor changes only this workflow
-      # and the synthetic Redis fixture/import/tests; application/build inputs
-      # are unchanged. Restore the compile gate before future application changes.
-      - name: Examine only the new writer integration boundary
+      - name: Node runtime from reviewed repository pin
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+      - name: Compile changed backend boundary with its Pillow dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/work8-o33-evidence"
+          {
+            npm ci --prefix pillow
+            npm ci --prefix backend
+            node scripts/sync-pillow-governance.mjs
+            npm run build --prefix pillow
+            npm run build --prefix backend
+          } 2>&1 | tee "$RUNNER_TEMP/work8-o33-evidence/build.log"
+      - name: Examine complete declared O33 topology capture and replay
         env:
           WORK8_EXPECTED_SOURCE: ${{ github.sha }}
-        run: bash scripts/work8/run-writer-integration.sh
+        run: bash scripts/work8/run-o33-application.sh
       - name: Retain exact-source evidence including failures
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-writer-${{ github.sha }}-${{ github.run_id }}
-          path: ${{ runner.temp }}/work8-writer-evidence/
+          name: work8-o33-${{ github.sha }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/work8-o33-evidence/
           if-no-files-found: error
           retention-days: 7

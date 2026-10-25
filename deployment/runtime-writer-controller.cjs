@@ -6,6 +6,7 @@ const {installBrainBroker}=require('./runtime-brain-broker.cjs');
 const {superviseAssurance}=require('./assurance-supervisor.cjs');
 const {initializeAuditFence,openAuditFence}=require('./runtime-operator-audit.cjs');
 const {configuration}=require('./locked-runtime.cjs');
+const {loadGrant,verifyGrantRedis,reserveGrant,issueGrant,installExaminationChannel}=require('./runtime-isolated-application.cjs');
 const {resolveRuntimeRevision}=require('./runtime-revision.cjs');
 const scopes={primary:['sessions','native-stores','runtime-journal','queue-runner'],'brain-worker':['sql-stores','redis-producer','visual-memory','queued-work'],'assurance-worker':['assurance-records','redis-producer'],'assurance-inspector':['assurance-records'],'startup-readback':['inference-readback']};
 const group=pid=>Number(fs.readFileSync('/proc/'+pid+'/stat','utf8').split(') ')[1].split(' ')[2]);
@@ -34,13 +35,18 @@ async function main(){
  const stateDirectory=path.dirname(env.DATABASE_PATH),st=fs.statSync(stateDirectory);
  if(fs.realpathSync(stateDirectory)!==stateDirectory||st.uid!==uid||st.gid!==gid)throw Error('PREPARED_RUNTIME_STORE_REQUIRED');
  const generationEnv=Object.fromEntries(['EMPIRE_GENERATION_DIRECTORY','EMPIRE_GENERATION','EMPIRE_CUTOVER_DIGEST','EMPIRE_GENERATION_DEVICE','EMPIRE_GENERATION_INODE'].map(k=>[k,env[k]]));
+ const examination=loadGrant(env.WORK8_ISOLATED_APPLICATION_GRANT,env);
+ await verifyGrantRedis(examination,env);
+ reserveGrant(examination);
+ delete env.WORK8_ISOLATED_APPLICATION_GRANT;
  const initialize=!fs.existsSync(journal);
- const c=new MembershipController({journalPath:journal,initialize,runtimeUid:uid,runtimeGid:gid,source,generation:env.EMPIRE_GENERATION,generationEnv,roles:realRoles(cwd,env,source),volumeRoot:env.RAILWAY_VOLUME_MOUNT_PATH,redisUrl:env.REDIS_URL,writerIsolation:isolation});
+ const c=new MembershipController({journalPath:journal,initialize,runtimeUid:uid,runtimeGid:gid,source,generation:env.EMPIRE_GENERATION,generationEnv,roles:realRoles(cwd,env,source),volumeRoot:env.RAILWAY_VOLUME_MOUNT_PATH,redisUrl:env.REDIS_URL,writerIsolation:isolation,admissionExtension:examination?member=>member.role==='brain-worker'?issueGrant(examination,member):undefined:undefined});
  initializeAuditFence(journal,{initialize});
  const guardRecord={id:crypto.randomUUID(),role:'containment-guard',pid:guard.pid,startTicks:guard.startTicks,boot:guard.boot,pidNamespace:guard.pidNamespace,uid:0,gid:0,source,generation:env.EMPIRE_GENERATION,epoch:c.authority.epoch,cutoverDigest:c.authority.cutoverDigest,entrySha256:digest(fs.readFileSync(guardEntry)),scope:['containment-audit'],scopeDigest:digest(JSON.stringify(['containment-audit'])),storeRoot:stateDirectory,storeDevice:st.dev,storeInode:st.ino};
  c.journal.admit(guardRecord);
  let stopping=false,capture=null,stopObservers=()=>{};const quarantined=new Set();
  const fail=error=>{if(stopping)return;stopping=true;c.invalidate(error);process.exitCode=1;void c.stop().finally(()=>process.exit(1));};
+ if(examination)c.on('admitted',member=>{if(member.role==='brain-worker')installExaminationChannel(examination,member,fail);});
  c.on('fault',error=>{if(!stopping)fail(error);});
  process.once('disconnect',()=>fail(Error('GUARD_DISCONNECTED')));
  const complete=()=>{

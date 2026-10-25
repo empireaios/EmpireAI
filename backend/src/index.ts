@@ -1,3 +1,4 @@
+import {initializeAdmittedApplicationIfPresent,publishAdmittedApplicationReadyIfPresent} from './runtime/work8-admitted-application.js';
 import {initializeGeneratedWorkerIfRegistered,publishGeneratedWorkerReadyIfRegistered} from './runtime/work8-generated-worker-lifecycle.js';
 import { env } from "./config/env.js";
 import { logger } from "./config/logger.js";
@@ -73,6 +74,7 @@ async function main() {
 
   const {app,shutdown,finishRouteRegistration}=application;
   await initializeGeneratedWorkerIfRegistered(application);
+  await initializeAdmittedApplicationIfPresent(application);
 
   shutdownAction = async () => {
     await stopAmazonOrderImport?.();
@@ -134,6 +136,7 @@ async function main() {
     );
   }
   publishGeneratedWorkerReadyIfRegistered();
+  await publishAdmittedApplicationReadyIfPresent();
 }
 
 main().catch((error) => {
