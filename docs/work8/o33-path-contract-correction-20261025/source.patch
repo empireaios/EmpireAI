@@ -1,0 +1,268 @@
+diff --git a/deployment/o33-path-contract.cjs b/deployment/o33-path-contract.cjs
+new file mode 100644
+index 00000000..34101207
+--- /dev/null
++++ b/deployment/o33-path-contract.cjs
+@@ -0,0 +1,12 @@
++'use strict';
++// O33's private filesystem layout. Runtime-owned envelopes include the sibling
++// locks required by the real stores; volume/authority ancestors stay operator-owned.
++const path=require('node:path');
++const {STORES}=require('./work8-system-vault.cjs');
++const NATIVE=Object.freeze({visual:'pillow-visual-memory',session:'pillow-session-continuity'});
++const RUNTIME_DIRECTORIES=Object.freeze(['commissioning','finance','commerce',...Object.values(NATIVE),'.work8-executive-journal-locks']);
++const SQL=Object.freeze({...STORES,brain:'commissioning/empireai-brain.db',missions:'commissioning/empireai-brain.db.missions.sqlite',execution:'commissioning/empireai-brain.db.mission-execution.sqlite',shadow:'commissioning/empireai-brain.db.shadow/shadow-ceo.db'});
++const CONTROL=Object.freeze(['commissioning/empireai-brain.db.shadow/shadow-ceo-authority/authority-store.json','commissioning/empireai-brain.db.shadow/shadow-ceo-request-owners.json','commissioning/assurance.sqlite.watchdog',...Object.values(require('./work8-lifecycle-markers.cjs').MARKERS)]);
++function nativeRoot(volume,kind){const name=NATIVE[kind];if(!name)throw Error('UNKNOWN_NATIVE_STORE');return path.join(volume,name,name);}
++function paths(base){const volume=path.join(base,'volume');return {base,volume,operator:path.join(base,'operator'),capture:path.join(base,'capture'),temporary:path.join(base,'tmp'),authority:path.join(volume,'authority'),visual:nativeRoot(volume,'visual'),session:nativeRoot(volume,'session'),journalLocks:path.join(volume,'.work8-executive-journal-locks')};}
++module.exports={NATIVE,RUNTIME_DIRECTORIES,SQL,CONTROL,nativeRoot,paths};
+diff --git a/deployment/runtime-isolated-application.cjs b/deployment/runtime-isolated-application.cjs
+index 27d91030..ad3fa2cb 100644
+--- a/deployment/runtime-isolated-application.cjs
++++ b/deployment/runtime-isolated-application.cjs
+@@ -22,7 +22,7 @@ function loadGrant(file,env){
+  assert.equal(path.dirname(g.captureDirectory),path.join(path.dirname(g.volume.root),'capture'));assert.equal(path.basename(g.captureDirectory),'point');
+  protectedPath(g.resultDirectory,0);assert.ok(fs.statSync(g.resultDirectory).isDirectory());
+  if(g.mode==='source')assert.equal(g.pending,undefined);else{assert.ok(g.pending);assert.equal(g.pending.capability,g.nonce);assert.equal(g.pending.source,g.source);assert.equal(g.pending.stage,g.mode==='restart'?'completed':'queued');}
+- if(g.mode==='source'){const allowed=['authority','commissioning','finance','commerce','pillow-session-continuity','pillow-visual-memory'];for(const entry of fs.readdirSync(g.volume.root)){assert.ok(allowed.includes(entry),'UNKNOWN_SOURCE_STORE');const dir=path.join(g.volume.root,entry),st=fs.lstatSync(dir);assert.ok(st.isDirectory()&&!st.isSymbolicLink());if(entry!=='authority')assert.deepEqual(fs.readdirSync(dir),[],'SOURCE_REQUIRES_FRESH_CANONICAL_STORES');}assert.ok(fs.existsSync(path.join(g.volume.root,'commissioning')));}
++ if(g.mode==='source'){const allowed=['authority',...require('./o33-path-contract.cjs').RUNTIME_DIRECTORIES];for(const entry of fs.readdirSync(g.volume.root)){assert.ok(allowed.includes(entry),'UNKNOWN_SOURCE_STORE');const dir=path.join(g.volume.root,entry),st=fs.lstatSync(dir);assert.ok(st.isDirectory()&&!st.isSymbolicLink());if(entry!=='authority')assert.deepEqual(fs.readdirSync(dir),[],'SOURCE_REQUIRES_FRESH_CANONICAL_STORES');}assert.ok(fs.existsSync(path.join(g.volume.root,'commissioning')));}
+  return {file,grant:g};
+ }
+ async function verifyGrantRedis(spec,env){if(!spec)return;const {command}=require('./fixtures/runtime-graph-redis.cjs');assert.equal(await command(env.REDIS_URL,['PING'],spec.grant.redis.host),'PONG');const runId=(await command(env.REDIS_URL,['INFO','server'],spec.grant.redis.host)).match(/^run_id:([a-f0-9]{40})\r?$/m)?.[1];assert.equal(runId,spec.grant.redis.runId);const receipt=JSON.parse(fs.readFileSync(path.join(env.EMPIRE_GENERATION_DIRECTORY,'cutover-'+env.EMPIRE_CUTOVER_DIGEST+'.json')));assert.deepEqual(receipt.redis,spec.grant.redis);}
+diff --git a/deployment/runtime-membership-bootstrap.mjs b/deployment/runtime-membership-bootstrap.mjs
+index 5fb306a7..269e6a51 100644
+--- a/deployment/runtime-membership-bootstrap.mjs
++++ b/deployment/runtime-membership-bootstrap.mjs
+@@ -34,8 +34,9 @@ if(examination){
+  if(examination.pending){const {readPendingState,validatePendingPlan}=await import('../scripts/work8/pending-restoration.mjs');validatePendingPlan(examination.pending,{capability:examination.nonce,source,expectedDigest:examination.pending.digest,state:readPendingState(process.env.DATABASE_PATH)});}
+  process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED='true';
+  const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+- process.env.SESSION_CONTINUITY_STORAGE_ROOT=path.relative(repo,path.join(examination.volume.root,'pillow-session-continuity'));
+- process.env.VISUAL_MEMORY_STORAGE_ROOT=path.relative(repo,path.join(examination.volume.root,'pillow-visual-memory'));
++ const {nativeRoot}=require('./o33-path-contract.cjs');
++ process.env.SESSION_CONTINUITY_STORAGE_ROOT=path.relative(repo,nativeRoot(examination.volume.root,'session'));
++ process.env.VISUAL_MEMORY_STORAGE_ROOT=path.relative(repo,nativeRoot(examination.volume.root,'visual'));
+ 
+  Object.defineProperty(globalThis,Symbol.for('work8.admitted.isolated.application'),{value:Object.freeze(examination),writable:false,configurable:false});
+ }
+diff --git a/deployment/runtime-writer-controller.cjs b/deployment/runtime-writer-controller.cjs
+index 90cde2eb..7da4bba0 100644
+--- a/deployment/runtime-writer-controller.cjs
++++ b/deployment/runtime-writer-controller.cjs
+@@ -17,7 +17,7 @@ function realRoles(cwd,env,source){
+   const entry=role==='startup-readback'?path.join(__dirname,'runtime-startup-readback.mjs'):role.startsWith('assurance-')?path.join(cwd,'backend/src/assurance',role==='assurance-worker'?'permanent-worker.mjs':'permanent-inspector.mjs'):path.join(cwd,'backend/dist/index.js');
+   let environment={...clean};
+   if(role==='brain-worker')Object.assign(environment,{EMPIRE_ROLE:'brain-worker',EMPIRE_TIER0_ISOLATION:'false',PORT:String(Number(env.EMPIRE_BRAIN_WORKER_PORT??Number(env.PORT)+1)),HOST:'127.0.0.1'});
+-  if(role.startsWith('assurance-'))environment={ASSURANCE_RUNTIME_ORIGIN:env.ASSURANCE_RUNTIME_ORIGIN,WORK8_REAL_GRAPH:'1'};
++  if(role.startsWith('assurance-'))environment={TMPDIR:env.TMPDIR,ASSURANCE_RUNTIME_ORIGIN:env.ASSURANCE_RUNTIME_ORIGIN,WORK8_REAL_GRAPH:'1'};
+   return {role,entry,inheritOutput:true,nodeArgs:['--max-old-space-size=1536'],entrySha256:digest(fs.readFileSync(entry)),stateDirectory:path.dirname(env.DATABASE_PATH),scope,environment};
+  });
+ }
+diff --git a/scripts/work8/hh4-domain-state.mjs b/scripts/work8/hh4-domain-state.mjs
+index 62bd0952..09fc09c9 100644
+--- a/scripts/work8/hh4-domain-state.mjs
++++ b/scripts/work8/hh4-domain-state.mjs
+@@ -141,10 +141,12 @@ async function initializeDomainRecords(application,root,source,admitted){
+  // These optional observers are not scheduled in a headless worker. Their
+  // initialized empty stores must not silently grow outside the capture inventory.
+  assert.equal(process.env.PILLOW_HEADLESS_OBSERVERS_ENABLED??'', '');
+- assert.deepEqual(fs.readdirSync(path.join(root,'pillow-visual-memory')).sort(),['records']);
+- assert.deepEqual(fs.readdirSync(path.join(root,'pillow-visual-memory/records')),[]);
+- assert.deepEqual(fs.readdirSync(path.join(root,'pillow-session-continuity')),[]);
+- inventory.emptyInitializedStores=['pillow-visual-memory/records','pillow-session-continuity'];
++ const declared=globalThis[Symbol.for('work8.admitted.isolated.application')];
++ const native=kind=>declared?require('../../deployment/o33-path-contract.cjs').nativeRoot(root,kind):path.join(root,kind==='visual'?'pillow-visual-memory':'pillow-session-continuity');
++ assert.deepEqual(fs.readdirSync(native('visual')).sort(),['records']);
++ assert.deepEqual(fs.readdirSync(path.join(native('visual'),'records')),[]);
++ assert.deepEqual(fs.readdirSync(native('session')),[]);
++ inventory.emptyInitializedStores=[path.relative(root,path.join(native('visual'),'records')),path.relative(root,native('session'))];
+  host.createMissionRuntimeMission({missionName:'Synthetic HH4 unapproved recovery mission',workers:[],pillowConfirmed:false,grandKingApproved:false,highRisk:false});record('missions',host.getMissionRuntimeHistory());
+  const executionFile=await readyActualExecutionStore(application,host,primary,hostDeadline);
+  // Fresh synthetic examination permission covers exactly this readonly operation.
+diff --git a/scripts/work8/o33-application-coordinator.mjs b/scripts/work8/o33-application-coordinator.mjs
+index 294cf38e..fd3fb27b 100644
+--- a/scripts/work8/o33-application-coordinator.mjs
++++ b/scripts/work8/o33-application-coordinator.mjs
+@@ -9,19 +9,20 @@ import {DatabaseSync} from 'node:sqlite';
+ import {once} from 'node:events';
+ import {readPendingState,validatePendingState} from './pending-restoration.mjs';
+ import {validateIndexHealth} from './index-restoration-phase.mjs';
+-import {mkdir,readableEvidence} from './o33-permissions.mjs';
++import {mkdir,readableEvidence,preparePathContract,ownedTree} from './o33-permissions.mjs';
+ // Operator owns inactive materialization/infrastructure only. All application
+ // writers are the actual compiled entries admitted through locked-runtime.
+ const require=createRequire(import.meta.url),repo=path.resolve(import.meta.dirname,'../..');
+ const {MembershipJournal,processIdentity}=require('../../deployment/runtime-membership-controller.cjs');
+ const generation=require('../../deployment/runtime-generation.cjs'),recovery=require('../../deployment/work8-recovery-set.cjs');
+ const {LAYOUT,materializeRuntimeInspection}=require('../../deployment/work8-runtime-inspection-layout.cjs');
++const contract=require('../../deployment/o33-path-contract.cjs');
+ const Redis=createRequire(path.join(repo,'backend/package.json'))('ioredis');
+ const sha=b=>createHash('sha256').update(b).digest('hex'),read=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+ const source=process.env.WORK8_SOURCE_SHA,evidence=process.env.WORK8_EVIDENCE_DIR,active=[];
+ const pause=ms=>new Promise(r=>setTimeout(r,ms));
+ function durable(file,value,mode=0o600){const fd=fs.openSync(file,'wx',mode);try{fs.writeFileSync(fd,JSON.stringify(value,null,2));fs.fsyncSync(fd);}finally{fs.closeSync(fd);}const d=fs.openSync(path.dirname(file),'r');try{fs.fsyncSync(d);}finally{fs.closeSync(d);}}
+-function ownedTree(dir,uid){for(const name of fs.readdirSync(dir)){const f=path.join(dir,name),s=fs.lstatSync(f);assert.ok(!s.isSymbolicLink());if(s.isDirectory())ownedTree(f,uid);else assert.ok(s.isFile()&&s.nlink===1);fs.chownSync(f,uid,uid);}fs.chownSync(dir,uid,uid);}
++
+ function sealedTree(dir){for(const name of fs.readdirSync(dir)){const f=path.join(dir,name),s=fs.lstatSync(f);assert.ok(!s.isSymbolicLink());if(s.isDirectory())sealedTree(f);else{assert.ok(s.isFile()&&s.nlink===1);fs.chownSync(f,0,0);const fd=fs.openSync(f,'r');try{fs.fsyncSync(fd);}finally{fs.closeSync(fd);}}}fs.chownSync(dir,0,0);fs.chmodSync(dir,0o500);const fd=fs.openSync(dir,'r');try{fs.fsyncSync(fd);}finally{fs.closeSync(fd);}}
+ async function until(fn,deadline,label){for(;;){assert.ok(Date.now()<deadline,label);const value=await fn();assert.ok(Date.now()<deadline,label);if(value)return value;await pause(20);}}
+ function live(record){const p=processIdentity(record.pid);return p&&p.state!=='Z'&&p.startTicks===record.startTicks;}
+@@ -30,16 +31,14 @@ const roles=['assurance-inspector','assurance-worker','brain-worker','containmen
+ function census(c){const v=view(c),members=v.members.filter(m=>m.state!=='TERMINATED');assert.deepEqual(members.map(m=>m.role).sort(),roles);for(const m of members){assert.equal(m.source,source);assert.equal(m.generation,c.generation);assert.ok(live(m));if(m.role!=='containment-guard')assert.equal(m.uid,65534);}return {revision:v.revision,members};}
+ async function redisIdentity(url){const u=new URL(url);assert.equal(u.password,'work8-synthetic-only');assert.ok(['journal-redis','target-redis'].includes(u.hostname));assert.equal(u.pathname,'/0');const r=new Redis(url,{maxRetriesPerRequest:0,retryStrategy:()=>null});try{assert.equal(await r.ping(),'PONG');const runId=(await r.info('server')).match(/^run_id:([a-f0-9]{40})\r?$/m)?.[1];assert.match(runId??'',/^[a-f0-9]{40}$/);return {host:u.hostname,port:Number(u.port||6379),db:0,runId};}finally{r.disconnect();}}
+ function prepare(name,redis){
+- const base=path.join('/work8-exam',name),volume=path.join(base,'volume'),operator=path.join(base,'operator');mkdir(base);mkdir(volume);mkdir(operator,0,0o700);mkdir(path.join(base,'capture'),65534,0o700);
+- for(const d of ['commissioning','finance','commerce','pillow-visual-memory','pillow-session-continuity'])mkdir(path.join(volume,d),65534,0o700);
+- const authority=path.join(volume,'authority');mkdir(authority);mkdir(path.join(authority,'members'),65534,0o700);const st=fs.statSync(volume),epoch=randomUUID();
++ const {base,volume,operator,authority}=preparePathContract(path.join('/work8-exam',name));const st=fs.statSync(volume),epoch=randomUUID();
+  const cutover={schema:'runtime-cutover-v1',proofReferences:['FRESH_PRIVATE_ISOLATED_VOLUME_AND_REDIS_NO_OPERATING_HISTORY'],reviewReceipt:'O33_ISOLATED_EPOCH_NOT_PRODUCTION_CUTOVER',storage:{root:volume,dev:st.dev,ino:st.ino},redis,compatibleSources:[source],priorWriterDisposition:'EXCLUDED_BY_REVIEWED_OPERATING_TRANSITION',redisDisposition:'EXCLUSIVE_COHORT_CAPABILITY_REVIEWED'};
+  const bytes=JSON.stringify(cutover),digest=sha(bytes);fs.writeFileSync(path.join(authority,'cutover-'+digest+'.json'),bytes,{flag:'wx',mode:0o644});
+  const file=path.join(authority,'generation.sqlite'),db=new DatabaseSync(file);db.exec('PRAGMA journal_mode=DELETE; CREATE TABLE authority(id INTEGER PRIMARY KEY,version INTEGER,generation TEXT,cutover_digest TEXT,sources TEXT,epoch INTEGER); CREATE TABLE transitions(previous_generation TEXT,next_generation TEXT,cutover_digest TEXT,at TEXT);');db.prepare('INSERT INTO authority VALUES(1,1,?,?,?,1)').run(epoch,digest,JSON.stringify([source]));db.close();fs.chmodSync(file,0o644);return {base,volume,operator,authority,generation:epoch,digest,identity:fs.statSync(file),journal:path.join(operator,'journal.sqlite'),redis,primary:path.join(volume,'commissioning/empireai-brain.db')};
+ }
+ function networkProof(c){const p=read('/network-proof.json');assert.equal(p.source,source);assert.equal(p.internal,true);assert.deepEqual(p.attachedNetworkIds,[p.networkId]);assert.ok(p.containerId.startsWith(os.hostname()));assert.equal(p.privileged,false);assert.equal(p.readonlyRootfs,true);assert.equal(p.noPublishedPorts,true);const value={networkId:p.networkId,internal:true,containerId:p.containerId,networkNamespace:fs.readlinkSync('/proc/self/ns/net'),attachedNetworkIds:p.attachedNetworkIds};const file=path.join(c.operator,'network-proof.json');if(!fs.existsSync(file))durable(file,value,0o444);assert.deepEqual(read(file),value);return {networkProofFile:file,networkProofSha256:sha(fs.readFileSync(file))};}
+ function grant(c,mode,expiresAt,pending){const nonce=randomUUID(),resultDirectory=path.join(c.operator,nonce);mkdir(resultDirectory,0,0o700);const volume=fs.statSync(c.volume),file=path.join(c.operator,nonce+'.json');const value={schema:'work8-isolated-application-v1',source,generation:c.generation,nonce,mode,volume:{root:c.volume,dev:volume.dev,ino:volume.ino},redis:c.redis,expiresAt,captureDirectory:path.join(c.base,'capture/point'),resultDirectory,...networkProof(c),...(pending?{pending:{...pending,source,capability:nonce,authorization:'FRESH_GENERATED_SINGLE_READONLY_EXAMINATION'}}:{})};durable(file,value,0o444);return {file,value};}
+-function env(c,g){return {EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',RAILWAY_VOLUME_MOUNT_PATH:c.volume,DATABASE_PATH:c.primary,RAILWAY_GIT_COMMIT_SHA:source,REDIS_URL:'redis://:work8-synthetic-only@'+c.redis.host+':'+c.redis.port+'/0',EMPIRE_LOCKED_REDIS_HOST:c.redis.host,PORT:'43100',FOUNDER_EMAIL:'hh4-owner@example.test',ADMIN_EMAIL:'hh4-admin@example.test',FOUNDER_PASSWORD:'generated-hh4-owner-password',ADMIN_PASSWORD:'generated-hh4-admin-password',SESSION_SECRET:'synthetic-session-credential-000003333',WORK8_CONTROLLER_JOURNAL_PATH:c.journal,WORK8_RUNTIME_UID:'65534',WORK8_RUNTIME_GID:'65534',WORK8_WRITER_ISOLATION_LIBRARY:process.env.WORK8_WRITER_ISOLATION_LIBRARY,WORK8_WRITER_ISOLATION_SHA256:process.env.WORK8_WRITER_ISOLATION_SHA256,EMPIRE_GENERATION_DIRECTORY:c.authority,EMPIRE_GENERATION:c.generation,EMPIRE_CUTOVER_DIGEST:c.digest,EMPIRE_GENERATION_DEVICE:String(c.identity.dev),EMPIRE_GENERATION_INODE:String(c.identity.ino),WORK8_ISOLATED_APPLICATION_GRANT:g.file};}
++function env(c,g){return {TMPDIR:contract.paths(c.base).temporary,EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',RAILWAY_VOLUME_MOUNT_PATH:c.volume,DATABASE_PATH:c.primary,RAILWAY_GIT_COMMIT_SHA:source,REDIS_URL:'redis://:work8-synthetic-only@'+c.redis.host+':'+c.redis.port+'/0',EMPIRE_LOCKED_REDIS_HOST:c.redis.host,PORT:'43100',FOUNDER_EMAIL:'hh4-owner@example.test',ADMIN_EMAIL:'hh4-admin@example.test',FOUNDER_PASSWORD:'generated-hh4-owner-password',ADMIN_PASSWORD:'generated-hh4-admin-password',SESSION_SECRET:'synthetic-session-credential-000003333',WORK8_CONTROLLER_JOURNAL_PATH:c.journal,WORK8_RUNTIME_UID:'65534',WORK8_RUNTIME_GID:'65534',WORK8_WRITER_ISOLATION_LIBRARY:process.env.WORK8_WRITER_ISOLATION_LIBRARY,WORK8_WRITER_ISOLATION_SHA256:process.env.WORK8_WRITER_ISOLATION_SHA256,EMPIRE_GENERATION_DIRECTORY:c.authority,EMPIRE_GENERATION:c.generation,EMPIRE_CUTOVER_DIGEST:c.digest,EMPIRE_GENERATION_DEVICE:String(c.identity.dev),EMPIRE_GENERATION_INODE:String(c.identity.ino),WORK8_ISOLATED_APPLICATION_GRANT:g.file};}
+ function launch(c,g,label){let output='';const child=spawn(process.execPath,[path.join(repo,'deployment/locked-runtime.cjs')],{env:env(c,g),stdio:['ignore','pipe','pipe']});child.stdout.on('data',b=>{output+=b;if(output.length>4194304)child.kill('SIGTERM');});child.stderr.on('data',b=>{output+=b;if(output.length>4194304)child.kill('SIGTERM');});const v={c,g,child,label,output:()=>output};active.push(v);return v;}
+ async function event(run,name,deadline){return until(()=>{const failure=path.join(run.g.value.resultDirectory,'failure.json');if(fs.existsSync(failure))throw Error(JSON.stringify(read(failure)));if(run.child.exitCode!==null)throw Error('APPLICATION_EXIT_BEFORE_'+name+' '+run.output());const file=path.join(run.g.value.resultDirectory,name+'.json');if(!fs.existsSync(file))return null;const r=read(file);assert.equal(r.source,source);assert.equal(r.generation,run.c.generation);return r;},deadline,'ORIGINAL_'+name.toUpperCase()+'_DEADLINE');}
+ async function health(run,original,deadline){return until(async()=>{if(run.child.exitCode!==null)throw Error('INDEX_EXITED_BEFORE_READY');try{const get=(route,headers={})=>fetch('http://127.0.0.1:43100'+route,{headers,signal:AbortSignal.timeout(Math.max(1,Math.min(2000,deadline-Date.now())))});const [watchdog,pillow]=await Promise.all([get('/health/executive-continuity'),get('/api/pillow/status',{authorization:'Bearer '+original.token})]);assert.equal(watchdog.status,200);assert.equal(pillow.status,200);assert.equal((await pillow.json()).status.lifecycle,'running');return validateIndexHealth(await watchdog.json());}catch(error){fs.writeFileSync(path.join(evidence,run.label+'-last-readiness.json'),JSON.stringify({source,error:String(error),at:Date.now()}));return null;}},deadline,'ORIGINAL_INDEX_STARTUP_DEADLINE');}
+@@ -75,10 +74,10 @@ try{
+  // ONE original180-second restoration deadline covers preparation, startup,
+  // pending completion and restart/no-replay observation. Never reset it.
+  const restoreDeadline=Date.now()+180000,t=prepare('target',targetRedis),inspection=path.join(t.operator,'inspection');materializeRuntimeInspection({directory:sealed,digest:held.digest,destination:inspection});
+- const targetPaths={...LAYOUT,brain:'commissioning/empireai-brain.db',missions:'commissioning/empireai-brain.db.missions.sqlite',execution:'commissioning/empireai-brain.db.mission-execution.sqlite',shadow:'commissioning/empireai-brain.db.shadow/shadow-ceo.db'};
++ const targetPaths=contract.SQL;
+  for(const [id,relative]of Object.entries(targetPaths)){const to=path.join(t.volume,relative);fs.mkdirSync(path.dirname(to),{recursive:true,mode:0o700});fs.copyFileSync(path.join(inspection,LAYOUT[id]),to,fs.constants.COPYFILE_EXCL);assert.ok(fs.readFileSync(to).equals(fs.readFileSync(path.join(sealed,id,'checkpoint.db'))));}
+  for(const name of ['commissioning','finance','commerce'])ownedTree(path.join(t.volume,name),65534);
+- for(const [from,to]of [['visual-memory-inspection/visual-memory','pillow-visual-memory'],['session-continuity','pillow-session-continuity']]){fs.cpSync(path.join(inspection,from),path.join(t.volume,to),{recursive:true,errorOnExist:true,force:false});ownedTree(path.join(t.volume,to),65534);}
++ for(const [from,to]of [['visual-memory-inspection/visual-memory','visual'],['session-continuity','session']]){const destination=contract.nativeRoot(t.volume,to);fs.cpSync(path.join(inspection,from),destination,{recursive:true,errorOnExist:true,force:false});ownedTree(destination,65534);}
+  for(const [id,relative]of Object.entries(require('../../deployment/work8-lifecycle-markers.cjs').MARKERS)){const file=path.join(t.volume,relative);fs.copyFileSync(path.join(sealed,id+'.initialized'),file,fs.constants.COPYFILE_EXCL);fs.chownSync(file,65534,65534);}
+  // Restore only this exact inert generated control state, never arbitrary
+  // historical approvals. The sealed source remains evidence and is not altered.
+diff --git a/scripts/work8/o33-path-contract-preflight.mjs b/scripts/work8/o33-path-contract-preflight.mjs
+new file mode 100644
+index 00000000..3424dc2d
+--- /dev/null
++++ b/scripts/work8/o33-path-contract-preflight.mjs
+@@ -0,0 +1,44 @@
++// Runs only in a throwaway topology, with the same uid/gid and native process
++// isolation as admitted writers. It is not an application/capture examination.
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import path from 'node:path';
++import os from 'node:os';
++import {DatabaseSync} from 'node:sqlite';
++import {acquireAuthorityJsonCaptureFence} from '../../backend/dist/orchestration/shadow-ceo-authority/repository/json-authority-store.js';
++import {acquireRequestOwnerCaptureFence} from '../../backend/dist/orchestration/shadow-ceo-integration/request-owner.js';
++import contract from '../../deployment/o33-path-contract.cjs';
++import {acquireVisualMemoryLock} from '../../pillow/dist/visual-memory-engine/recovery-lock.js';
++import {acquireSessionContinuityLock} from '../../pillow/dist/session-continuity-engine/recovery-snapshot.js';
++import {acquireExecutiveDecisionJournalLock,executiveDecisionCoordinationRoot} from '../../pillow/dist/digital-soul/recovery-snapshot.js';
++const p=contract.paths(process.argv[2]),evidence=process.argv[3],repo=path.resolve(import.meta.dirname,'../..');
++assert.equal(process.getuid(),65534);assert.equal(process.getgid(),65534);assert.deepEqual(process.getgroups(),[65534]);
++const status=fs.readFileSync('/proc/self/status','utf8');assert.match(status,/^CapEff:\s*0+$/m);assert.match(status,/^NoNewPrivs:\s*1$/m);assert.match(status,/^Seccomp:\s*2$/m);
++assert.equal(Number(status.match(/^Seccomp_filters:\s*(\d+)$/m)[1]),Number(process.env.O33_EXPECTED_FILTERS));
++assert.ok(fs.readFileSync('/proc/self/maps','utf8').split('\n').some(line=>line.trim().endsWith(' '+process.env.LD_PRELOAD)),'PINNED_NATIVE_IMAGE_NOT_MAPPED');
++const checked=[];
++function atomic(file){fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o700});const temp=file+'.permission-preflight.tmp';fs.writeFileSync(temp,'contract',{flag:'wx',mode:0o600});fs.renameSync(temp,file);assert.equal(fs.readFileSync(file,'utf8'),'contract');const fd=fs.openSync(file,'r');fs.fsyncSync(fd);fs.closeSync(fd);fs.unlinkSync(file);checked.push(file);}
++for(const relative of Object.values(contract.SQL)){
++ const file=path.join(p.volume,relative);fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o700});
++ for(const mode of ['DELETE','WAL']){const db=new DatabaseSync(file);try{assert.equal(db.prepare('PRAGMA journal_mode='+mode).get().journal_mode,mode.toLowerCase());db.exec('CREATE TABLE IF NOT EXISTS permission_probe(n); BEGIN IMMEDIATE; INSERT INTO permission_probe VALUES(1);');assert.ok(fs.existsSync(file+(mode==='WAL'?'-wal':'-journal')));if(mode==='WAL')assert.ok(fs.existsSync(file+'-shm'));db.exec('ROLLBACK');}finally{db.close();}}
++ fs.unlinkSync(file);checked.push(file+'{,-journal,-wal,-shm}');
++}
++for(const relative of contract.CONTROL)atomic(path.join(p.volume,relative));
++process.env.SHADOW_CEO_DATA_DIR=path.join(p.volume,'commissioning/empireai-brain.db.shadow');
++for(const [file,acquire] of [[path.join(process.env.SHADOW_CEO_DATA_DIR,'shadow-ceo-authority/authority-store.json'),()=>acquireAuthorityJsonCaptureFence()],[path.join(process.env.SHADOW_CEO_DATA_DIR,'shadow-ceo-request-owners.json'),acquireRequestOwnerCaptureFence]]){const release=acquire();assert.ok(fs.statSync(file+'.capture-write-lock').isDirectory());assert.throws(acquire,/CAPTURE_BUSY/);release();assert.ok(!fs.existsSync(file+'.capture-write-lock'));acquire()();checked.push(file+'.capture-write-lock');}
++for(const [root,acquire]of [[p.visual,acquireVisualMemoryLock],[p.session,acquireSessionContinuityLock]]){
++ const release=acquire(root);assert.ok(fs.statSync(root+'.capture-write-lock').isDirectory());assert.throws(()=>acquire(root),/SHARED_CAPTURE_BUSY/);release();assert.ok(!fs.existsSync(root+'.capture-write-lock'));acquire(root)();checked.push(root+'.capture-write-lock');
++}
++for(const relative of ['index.json','records/permission-probe.json'])atomic(path.join(p.visual,relative));
++atomic(path.join(p.session,'session-snapshot.json'));
++const journalRoot=executiveDecisionCoordinationRoot(repo),release=acquireExecutiveDecisionJournalLock(repo);assert.equal(path.dirname(journalRoot),p.journalLocks);assert.throws(()=>acquireExecutiveDecisionJournalLock(repo),/SHARED_CAPTURE_BUSY/);release();checked.push(journalRoot+'.capture-write-lock');
++const journal=path.join(repo,'docs/governance/digital-soul/executive-decision-records.jsonl');fs.readFileSync(journal);assert.throws(()=>fs.accessSync(journal,fs.constants.W_OK));
++atomic(path.join(p.authority,'members/permission-probe.admitted.json'));
++for(const name of ['store/checkpoint.db','store/manifest.json','runtime-recovery.pending.json','runtime-recovery.json','redis.json','session-continuity.json','executive-decisions.json'])atomic(path.join(p.capture,'point',name));
++assert.equal(os.tmpdir(),p.temporary);const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'sqlite-contract-'));atomic(path.join(tmp,'temporary'));fs.rmdirSync(tmp);
++for(const dir of [p.base,p.volume,p.authority,p.operator,path.join(p.operator,'sealed'),evidence]){
++ assert.throws(()=>fs.mkdirSync(path.join(dir,'forbidden-write')));checked.push('DENIED:'+dir);
++}
++for(const file of [path.join(p.authority,'generation.sqlite'),path.join(p.authority,'cutover.json'),path.join(evidence,'application-image.json')]){fs.readFileSync(file);assert.throws(()=>fs.accessSync(file,fs.constants.W_OK));}
++assert.throws(()=>fs.renameSync(p.authority,path.join(p.volume,'moved-authority')));assert.throws(()=>fs.readdirSync(p.operator));
++console.log(JSON.stringify({status:'PASS',uid:process.getuid(),gid:process.getgid(),checked,redis:'NETWORK_ONLY; server state belongs to isolated Redis containers, never application filesystem'}));
+diff --git a/scripts/work8/o33-permissions-preflight.mjs b/scripts/work8/o33-permissions-preflight.mjs
+index a44d78ec..2cde3977 100644
+--- a/scripts/work8/o33-permissions-preflight.mjs
++++ b/scripts/work8/o33-permissions-preflight.mjs
+@@ -2,8 +2,10 @@ import assert from 'node:assert/strict';
+ import fs from 'node:fs';
+ import path from 'node:path';
+ import {spawnSync} from 'node:child_process';
++import {DatabaseSync} from 'node:sqlite';
++import contract from '../../deployment/o33-path-contract.cjs';
+ import {createHash} from 'node:crypto';
+-import {mkdir,readableEvidence} from './o33-permissions.mjs';
++import {mkdir,readableEvidence,preparePathContract,ownedTree} from './o33-permissions.mjs';
+ const root='/work8-exam/permission-preflight',evidence=process.env.WORK8_EVIDENCE_DIR;
+ const receipt={source:process.env.WORK8_SOURCE_SHA,scope:'O33_PERMISSION_PREFLIGHT_ONLY',status:'FAIL',checks:{}};
+ const snapshot=f=>{const s=fs.lstatSync(f);return {uid:s.uid,gid:s.gid,mode:s.mode&0o777,sha256:s.isFile()?createHash('sha256').update(fs.readFileSync(f)).digest('hex'):null};};
+@@ -45,6 +47,32 @@ try{
+  `,runtime,operator,sealed,host,owned,actualHost,privateFile],{uid:65534,gid:65534,encoding:'utf8',timeout:10000,env:{PATH:process.env.PATH}});
+  assert.equal(child.status,0,child.stderr||String(child.error));assert.match(child.stdout,/NONROOT_ACCESS_AND_ISOLATION_PASS/);
+  receipt.checks.nonRootAccessAndIsolation=true;receipt.checks.noAddedPrivileges=true;
++ receipt.pathContract={};
++ for(const phase of ['fresh','restored']){
++ const topology=preparePathContract(path.join(root,'declared-'+phase));mkdir(path.join(topology.operator,'sealed'),0,0o500);
++ for(const name of ['generation.sqlite','cutover.json'])fs.writeFileSync(path.join(topology.authority,name),'protected',{mode:0o644});
++ for(const name of ['journal.sqlite','journal.sqlite.controller.sqlite','journal.sqlite.audit-fence.sqlite']){const file=path.join(topology.operator,name),db=new DatabaseSync(file);db.exec('PRAGMA journal_mode=DELETE;CREATE TABLE probe(n);BEGIN EXCLUSIVE;INSERT INTO probe VALUES(1);ROLLBACK;');db.close();}
++ for(const name of ['journal.sqlite.emergency','grant.json','grant.json.capture','grant.json.release'])fs.writeFileSync(path.join(topology.operator,name),'operator',{flag:'wx',mode:0o600});
++ for(const name of ['inspection','results']){const dir=path.join(topology.operator,name);mkdir(dir,0,0o700);const file=path.join(dir,'permission-probe.json');fs.writeFileSync(file,'operator',{flag:'wx',mode:0o600});assert.equal(fs.readFileSync(file,'utf8'),'operator');}
++ assert.equal(snapshot(path.join(topology.operator,'sealed')).mode,0o500);
++ receipt.checks.operatorControlPaths=true;
++ // Use the already-mounted, hash-pinned native isolation artifact, no added
++ // capability or alternate runtime. A failed contract stops before coordinator.
++ assert.ok(process.env.WORK8_WRITER_ISOLATION_LIBRARY);assert.match(process.env.WORK8_WRITER_ISOLATION_SHA256,/^[a-f0-9]{64}$/);
++ assert.equal(createHash('sha256').update(fs.readFileSync(process.env.WORK8_WRITER_ISOLATION_LIBRARY)).digest('hex'),process.env.WORK8_WRITER_ISOLATION_SHA256);
++ if(phase==='restored'){
++  // Same offline copy/handoff semantics as target materialization: private
++  // operator-created files/directories become runtime-owned before launch.
++  for(const relative of Object.values(contract.SQL)){const file=path.join(topology.volume,relative);fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o700});const db=new DatabaseSync(file);db.exec('CREATE TABLE restored_probe(n);');db.close();fs.chmodSync(file,0o600);}
++  for(const file of [path.join(topology.visual,'index.json'),path.join(topology.visual,'records/probe.json'),path.join(topology.session,'session-snapshot.json'),...contract.CONTROL.map(x=>path.join(topology.volume,x))]){fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o700});fs.writeFileSync(file,'restored',{mode:0o600});}
++  for(const relative of contract.RUNTIME_DIRECTORIES)ownedTree(path.join(topology.volume,relative),65534);
++ }
++ const contractChild=spawnSync(process.execPath,[path.join(import.meta.dirname,'o33-path-contract-preflight.mjs'),topology.base,evidence],{uid:65534,gid:65534,encoding:'utf8',timeout:20000,env:{PATH:process.env.PATH,TMPDIR:topology.temporary,RAILWAY_VOLUME_MOUNT_PATH:topology.volume,LD_PRELOAD:process.env.WORK8_WRITER_ISOLATION_LIBRARY,O33_EXPECTED_FILTERS:String(Number(fs.readFileSync('/proc/self/status','utf8').match(/^Seccomp_filters:\s*(\d+)$/m)[1])+1)}});
++ assert.equal(contractChild.status,0,contractChild.stderr||String(contractChild.error));
++ receipt.pathContract[phase]=JSON.parse(contractChild.stdout);assert.equal(receipt.pathContract[phase].status,'PASS');
++ }
++ receipt.checks.completeDeclaredPathContract=true;
++
+  receipt.status='PASS';receipt.hostEvidenceBefore=actualBefore;receipt.hostEvidenceAfter=snapshot(actualHost);
+ }catch(error){receipt.error=String(error);receipt.stack=error.stack;throw error;}
+ finally{fs.writeFileSync(path.join(evidence,'permission-preflight.json'),JSON.stringify(receipt,null,2),{mode:0o644});if(fs.existsSync(root))fs.rmSync(root,{recursive:true,force:true});}
+diff --git a/scripts/work8/o33-permissions.mjs b/scripts/work8/o33-permissions.mjs
+index e0b69386..bb1c2798 100644
+--- a/scripts/work8/o33-permissions.mjs
++++ b/scripts/work8/o33-permissions.mjs
+@@ -1,6 +1,7 @@
+ import assert from 'node:assert/strict';
+ import fs from 'node:fs';
+ import path from 'node:path';
++import contract from '../../deployment/o33-path-contract.cjs';
+ 
+ // Set modes while the operator still owns the inactive directory. CAP_CHOWN
+ // permits handoff; it does not permit a subsequent chmod on another owner.
+@@ -36,3 +37,16 @@ export function readableEvidence(dir){
+  };
+  walk(dir);
+ }
++
++// Shared by the real coordinator and the hosted preflight. No runtime-owned
++// directory is an ancestor of generation authority or sealed evidence.
++export function preparePathContract(base){
++ const p=contract.paths(base);mkdir(p.base);mkdir(p.volume);mkdir(p.operator,0,0o700);
++ for(const dir of [p.capture,p.temporary,...contract.RUNTIME_DIRECTORIES.map(d=>path.join(p.volume,d))])mkdir(dir,65534,0o700);
++ mkdir(p.authority);mkdir(path.join(p.authority,'members'),65534,0o700);return p;
++}
++
++export function ownedTree(dir,uid){
++ for(const name of fs.readdirSync(dir)){const f=path.join(dir,name),s=fs.lstatSync(f);assert.ok(!s.isSymbolicLink());if(s.isDirectory())ownedTree(f,uid);else assert.ok(s.isFile()&&s.nlink===1);fs.chownSync(f,uid,uid);}
++ fs.chownSync(dir,uid,uid);
++}

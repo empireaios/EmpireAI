@@ -1,0 +1,11 @@
+import fs from 'node:fs';import path from 'node:path';import os from 'node:os';import assert from 'node:assert/strict';import {DatabaseSync} from 'node:sqlite';import {pathToFileURL} from 'node:url';
+const repo=path.resolve(process.argv[2]),contract=(await import(pathToFileURL(path.join(repo,'deployment/o33-path-contract.cjs')))).default;
+const {acquireVisualMemoryLock}=await import(pathToFileURL(path.join(repo,'pillow/dist/visual-memory-engine/recovery-lock.js')));
+const {acquireSessionContinuityLock}=await import(pathToFileURL(path.join(repo,'pillow/dist/session-continuity-engine/recovery-snapshot.js')));
+const root=fs.mkdtempSync(path.join(os.tmpdir(),'o33-contract-local-')),checks=[];
+try{const p=contract.paths(root);for(const d of contract.RUNTIME_DIRECTORIES)fs.mkdirSync(path.join(p.volume,d),{recursive:true,mode:0o700});
+for(const [target,acquire]of [[p.visual,acquireVisualMemoryLock],[p.session,acquireSessionContinuityLock]]){const release=acquire(target);assert.ok(fs.existsSync(target+'.capture-write-lock'));assert.throws(()=>acquire(target),/SHARED_CAPTURE_BUSY/);release();acquire(target)();checks.push(path.relative(root,target)+': actual lock acquire/busy/release/reacquire');}
+for(const f of Object.values(contract.SQL)){const file=path.join(p.volume,f);fs.mkdirSync(path.dirname(file),{recursive:true});for(const mode of ['DELETE','WAL']){const db=new DatabaseSync(file);db.exec('PRAGMA journal_mode='+mode+'; CREATE TABLE IF NOT EXISTS probe(n);BEGIN IMMEDIATE;INSERT INTO probe VALUES(1)');assert.ok(fs.existsSync(file+(mode==='WAL'?'-wal':'-journal')));if(mode==='WAL')assert.ok(fs.existsSync(file+'-shm'));db.exec('ROLLBACK');db.close();}checks.push(f+': actual SQLite DELETE/WAL/SHM');}
+assert.equal(new Set(Object.values(contract.SQL)).size,13);assert.ok(!contract.RUNTIME_DIRECTORIES.includes('authority'));assert.ok(!contract.RUNTIME_DIRECTORIES.some(x=>x==='.'||x.includes('..')));
+console.log(JSON.stringify({status:'PASS_LOCAL_ONLY',checks,syntax:'9 changed source files node --check PASS; git diff --check PASS',uidMap:fs.readFileSync('/proc/self/uid_map','utf8'),limitation:'UID0-only namespace: hosted65534 ownership/readability/isolation checks NOT run, pending approved hosted preflight. No capture/replay or accepted examination repeated.'},null,2));
+}finally{fs.rmSync(root,{recursive:true,force:true});}

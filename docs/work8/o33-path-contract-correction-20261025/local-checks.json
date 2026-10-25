@@ -1,0 +1,23 @@
+{
+  "status": "PASS_LOCAL_ONLY",
+  "checks": [
+    "volume/pillow-visual-memory/pillow-visual-memory: actual lock acquire/busy/release/reacquire",
+    "volume/pillow-session-continuity/pillow-session-continuity: actual lock acquire/busy/release/reacquire",
+    "commissioning/intelligence.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/pillow-institutional.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/pillow-request-receipts.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/pillow-reasoning.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/communications.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/openai-october-2026.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/assurance.sqlite: actual SQLite DELETE/WAL/SHM",
+    "finance/evidence.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commerce/runtime.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/empireai-brain.db: actual SQLite DELETE/WAL/SHM",
+    "commissioning/empireai-brain.db.missions.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/empireai-brain.db.mission-execution.sqlite: actual SQLite DELETE/WAL/SHM",
+    "commissioning/empireai-brain.db.shadow/shadow-ceo.db: actual SQLite DELETE/WAL/SHM"
+  ],
+  "syntax": "9 changed source files node --check PASS; git diff --check PASS",
+  "uidMap": "         0          0          1\n",
+  "limitation": "UID0-only namespace: hosted65534 ownership/readability/isolation checks NOT run, pending approved hosted preflight. No capture/replay or accepted examination repeated."
+}

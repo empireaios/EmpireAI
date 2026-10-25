@@ -1,0 +1,39 @@
+{
+  "schema": "WORK8_O33_SHARED_PATH_CONTRACT_STAGE_V1",
+  "source": {
+    "commit": "f6da3b15aa5e7ff35316b23b38a977a085cfe2af",
+    "tree": "cf92146324e456883203d813cd3890af182ce150",
+    "parent": "c321eb20f2e3a22e6eb40bb9fb353bf30e283c95",
+    "published": false
+  },
+  "evidenceParent": "01c6738c82301fcbfbf08799bef95b9ad1aeb399",
+  "publishedEvidenceHead": "727c8e63ec3898e76af6528308d3fbd56030f870",
+  "compilation": {
+    "status": "PASS",
+    "command": "npm run build",
+    "directory": "backend",
+    "node": "22.23.2",
+    "npm": "10.9.8",
+    "NODE_OPTIONS": "--max-old-space-size=6144",
+    "exitCode": 0,
+    "logSha256": "2ed45543004d97982bd665dbda8e9bc915a0783cb5bcb3ff0aa3c6a5ef454c23"
+  },
+  "local": "PASS18 targeted helper/store checks; syntax9files and git diff --check PASS",
+  "hosted": "PENDING owner approval; mandatory actual UID65534 fresh/restored contract preflight before one O33 capture/replay examination; stop on failure, no speculative rerun",
+  "review": "PASS_FOR_STAGING_HOSTED_COMPLETE_PATH_PREFLIGHT_PENDING",
+  "baseline": {
+    "rows": 64,
+    "accepted": 45,
+    "outstanding": 19,
+    "O33": "PENDING"
+  },
+  "locks": {
+    "PR113": "draft/unmerged",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE"
+  },
+  "publicationGate": "Successful changed-boundary compilation and independent review required for every future source candidate; exact owner approval required",
+  "preservation": "Evidence successor includes failed run40194561100 artifact/review through parent01c673 and latest tracker unchanged; no publication, CI or deployment performed",
+  "next": "Evidence first, source second only on exact-tree approval. One automatic hosted preflight then O33 examination and independent whole-row acceptance review."
+}

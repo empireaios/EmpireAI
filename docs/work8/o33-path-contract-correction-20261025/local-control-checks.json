@@ -1,0 +1,9 @@
+{
+  "status": "PASS_LOCAL_ONLY",
+  "checks": [
+    "authority: actual compiled helper import/acquire/busy/release/reacquire",
+    "request-owner: actual compiled helper import/acquire/busy/release/reacquire",
+    "executive: actual compiled helper import/acquire/busy/release/reacquire"
+  ],
+  "scope": "Additional control helper checks only; previous local native/SQL checks not repeated; foreign UID permission proof remains hosted-pending"
+}
