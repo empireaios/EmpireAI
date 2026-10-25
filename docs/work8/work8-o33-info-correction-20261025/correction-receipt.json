@@ -1,0 +1,47 @@
+{
+  "recordType": "WORK8_O33_COST_CONTROLLED_CORRECTION",
+  "date": "2026-10-25",
+  "source": {
+    "parent": "0329e389035e96599e439fff068bf11b3496ecd4",
+    "commit": "2b3bec3f5584258bb28ab6f0c49a359518ccf704",
+    "tree": "98db296b8b16fde5a897e34f0b8672d6cf9c6b19",
+    "published": false,
+    "changedPaths": [
+      "backend/src/runtime/work8-admitted-application.ts"
+    ],
+    "change": "client.info('server') -> client.info(); unchanged run_id regex/equality and db0 assertion"
+  },
+  "priorRun": {
+    "id": 40185699918,
+    "result": "backend TS2554; runtime examination skipped",
+    "artifact": 12596147345
+  },
+  "compilation": {
+    "node": "22.23.2",
+    "npm": "10.9.8",
+    "pillow": "PASS",
+    "backend": "PASS",
+    "backendCommand": "NODE_OPTIONS=--max-old-space-size=6144 npm run build --prefix backend",
+    "firstAttempt": "default local heap exhausted, exit134; no compiler verdict",
+    "retry": "only unfinished backend compilation, exit0"
+  },
+  "identity": {
+    "checks": 6,
+    "pass": 6,
+    "scope": "Compiled initializer with synthetic client responses; not live Redis or hosted topology"
+  },
+  "futurePublicationGate": "Every future source candidate requires successful changed-boundary compilation and independent review before publication approval is requested.",
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19,
+    "missionLedger": "IN_PROGRESS / NO_GO"
+  },
+  "safety": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "pr113": "draft/unmerged"
+  },
+  "next": "Owner approval for exact evidence/source successor; evidence first/source second; one automatic missing O33 examination, then independent whole-row decision. No duplicate dispatch or production deployment.",
+  "otherAssignments": "No independently executable closure identified without recorded operating/custody/owner/product/accounting/alert/entitlement inputs; no repeated investigation."
+}

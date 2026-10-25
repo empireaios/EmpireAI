@@ -1,0 +1,42 @@
+(node:149) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> @empireai/backend@0.1.0 prebuild
+> node ../scripts/sync-pillow-governance.mjs
+
+(node:162) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:170) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:170) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:170) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[sync-pillow-governance] Bundle ready at /workspace/scratch/5f32024bbd36/o33-correction/backend/.pillow-governance-bundle
+
+> @empireai/backend@0.1.0 build
+> tsc -p tsconfig.json && node scripts/record-runtime-revision.cjs
+
+
+<--- Last few GCs --->
+
+[194:0x100f7000]    51515 ms: Mark-Compact 2040.5 (2089.3) -> 2023.4 (2081.1) MB, pooled: 2 MB, 755.32 / 0.00 ms  (average mu = 0.423, current mu = 0.381) allocation failure; scavenge might not succeed
+[194:0x100f7000]    51525 ms: Scavenge (interleaved) 2031.3 (2081.1) -> 2023.5 (2097.1) MB, pooled: 0 MB, 5.00 / 0.00 ms  (average mu = 0.423, current mu = 0.381) allocation failure; 
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0xe46bbe node::OOMErrorHandler(char const*, v8::OOMDetails const&) [node]
+ 2: 0x1244310 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [node]
+ 3: 0x12445e7 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, v8::OOMDetails const&) [node]
+ 4: 0x14734f5  [node]
+ 5: 0x148cd89 v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [node]
+ 6: 0x1461488 v8::internal::HeapAllocator::AllocateRawWithLightRetrySlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [node]
+ 7: 0x14623b5 v8::internal::HeapAllocator::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [node]
+ 8: 0x143afbe v8::internal::Factory::NewFillerObject(int, v8::internal::AllocationAlignment, v8::internal::AllocationType, v8::internal::AllocationOrigin) [node]
+ 9: 0x189d8cc v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [node]
+10: 0x7fa68de6caf6 
+Aborted

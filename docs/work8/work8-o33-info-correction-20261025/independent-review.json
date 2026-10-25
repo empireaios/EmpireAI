@@ -1,0 +1,97 @@
+{
+  "recordType": "WORK8_O33_INFO_CORRECTION_INDEPENDENT_REVIEW",
+  "reviewer": "/root/correction_review",
+  "verdict": "PASS_FOR_STAGING_AND_TARGETED_HOSTED_O33_EXAMINATION",
+  "sourceParent": "0329e389035e96599e439fff068bf11b3496ecd4",
+  "completeSourceTree": "98db296b8b16fde5a897e34f0b8672d6cf9c6b19",
+  "scope": "One-line zero-argument INFO correction; compilation and changed identity boundary only",
+  "sourceDelta": {
+    "path": "backend/src/runtime/work8-admitted-application.ts",
+    "before": "client.info('server')",
+    "after": "client.info()",
+    "changedPaths": 1,
+    "runIdRegexUnchanged": true,
+    "runIdEqualityUnchanged": true,
+    "dbZeroAssertionUnchanged": true
+  },
+  "typeEvidence": [
+    "Installed BullMQ redis-client.d.ts:144 declares info(): Promise<string>",
+    "BullMQ redis-connection.js:445 itself calls _client.info()",
+    "BullMQ node-redis adapter forwards raw.info()"
+  ],
+  "compilation": {
+    "node": "22.23.2",
+    "npm": "10.9.8",
+    "pillow": "PASS",
+    "backend": "PASS",
+    "backendSuccessfulCommand": "NODE_OPTIONS=--max-old-space-size=6144 npm run build --prefix backend",
+    "successfulExitCode": 0,
+    "exitCodeBasis": "Execution-controller completion report corroborated by successful compiler/runtime-revision/postbuild log",
+    "initialAttempt": "Default-heap local backend attempt exhausted memory, exit134; no compilation verdict. Same-source unfinished build retried once with bounded6144MiB heap; this is not a CI rerun."
+  },
+  "identityChecks": {
+    "status": "PASS",
+    "cases": 6,
+    "artifact": "redis-identity-result.json",
+    "method": "Reviewed actual compiled initializer executed through vm.SourceTextModule with synthetic admission, TaskQueue and Redis-client dependencies",
+    "verified": [
+      "INFO invoked with zero arguments",
+      "Matching run_id accepted in full section response",
+      "Matching LF response accepted",
+      "Different identity refused",
+      "Missing identity refused",
+      "Malformed identity refused",
+      "Nonzero database refused"
+    ],
+    "limitations": [
+      "No live Redis server was used",
+      "No actual hosted topology examination or complete-row acceptance inferred"
+    ]
+  },
+  "requiredCorrections": [],
+  "reviewerExecution": {
+    "tests": 0,
+    "builds": 0,
+    "publication": false,
+    "deployment": false
+  },
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19,
+    "O33": "PENDING_HOSTED_EXAMINATION",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE"
+  },
+  "publicationGate": "Require exact source/evidence owner approval; after approval perform missing complete O33 examination and independent whole-row review. Future source candidates require successful changed-boundary compilation before publication request.",
+  "files": [
+    {
+      "path": "evidence/source.patch",
+      "sha256": "13f150da21ee4c2057daf27cc17ad9a7ffa1580191240f95dabd568b3226b5e1"
+    },
+    {
+      "path": "evidence/backend-build.log",
+      "sha256": "6f97e531af8a540e0fe2f7a6d73f8c0dd3d1a4845ab2b284e9056c7cedcfb82f"
+    },
+    {
+      "path": "evidence/backend-build-6144.log",
+      "sha256": "2ed45543004d97982bd665dbda8e9bc915a0783cb5bcb3ff0aa3c6a5ef454c23"
+    },
+    {
+      "path": "evidence/pillow-build.log",
+      "sha256": "108a69ac56892d100be5e524d489add1a17ed133d5c54ee3dd5c8a64a9489aaa"
+    },
+    {
+      "path": "evidence/redis-identity-check.mjs",
+      "sha256": "4fd6552b9cc1f82c85f3485d8eebabf54003e05167c07d11344fcbcb9f609987"
+    },
+    {
+      "path": "evidence/redis-identity-result.json",
+      "sha256": "913976a8fddaf4687dabec03c638de8e5bf3d49a7aa16b46486bf70f40d2ce61"
+    },
+    {
+      "path": "o33-correction/backend/src/runtime/work8-admitted-application.ts",
+      "sha256": "b6f6144749f4b67c863d9b1f57505b28cf50840277b576caa22380d7d6b38b39"
+    }
+  ]
+}

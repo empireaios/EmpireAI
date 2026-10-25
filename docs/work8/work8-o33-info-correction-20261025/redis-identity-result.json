@@ -1,0 +1,43 @@
+{
+  "scope": "Actual compiled initializer; synthetic TaskQueue/client and admission environment; no live Redis or hosted topology claim",
+  "node": "v22.23.2",
+  "tests": 6,
+  "results": [
+    {
+      "name": "full INFO sections matching identity",
+      "status": "PASS",
+      "expected": "accept",
+      "infoArguments": []
+    },
+    {
+      "name": "LF response matching identity",
+      "status": "PASS",
+      "expected": "accept",
+      "infoArguments": []
+    },
+    {
+      "name": "different Redis identity",
+      "status": "PASS",
+      "expected": "refuse",
+      "infoArguments": []
+    },
+    {
+      "name": "missing identity",
+      "status": "PASS",
+      "expected": "refuse",
+      "infoArguments": []
+    },
+    {
+      "name": "malformed identity",
+      "status": "PASS",
+      "expected": "refuse",
+      "infoArguments": []
+    },
+    {
+      "name": "nonzero database",
+      "status": "PASS",
+      "expected": "refuse",
+      "infoArguments": []
+    }
+  ]
+}
