@@ -1,0 +1,58 @@
+{
+  "reviewer": "/root/review_t",
+  "decision": "ACCEPT_EXACT_TWO_PATH_CORRECTION_FOR_STAGING_AND_OWNER_APPROVAL",
+  "baseSource": "7c7eb0e902f3f8e1e1108111c17ab0a2b536c5ed",
+  "baseTree": "c9ba46605373a1a56bdb1bffb3e23686bc9acf9c",
+  "files": [
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "mode": "100644",
+      "sha256": "bc16de886279d4730294d2cbbad40b045190d7896df2ae968ecb06d527960769",
+      "blob": "75948a8054d5fa770e49b8efe08f7915a17feba9",
+      "bytes": 11684
+    },
+    {
+      "path": "scripts/work8/run-journal-examination.sh",
+      "mode": "100644",
+      "sha256": "21c457eeb8ad740937f5140f33bfa6aad07100cb5a5365128bc356677dbd27a4",
+      "blob": "839af1214a88666b93a13d9acf36dd951d637e62",
+      "bytes": 5541
+    }
+  ],
+  "rationale": "Bounded isolated operator identity-observation capability plus preservation of previously swallowed enrollment faults; no journal or production protocol changes.",
+  "verifiedBySourceReview": {
+    "onlyOperatorSysPtraceAdded": true,
+    "runtimeZeroEffectiveCapabilitiesAssertionUnchanged": true,
+    "privatePidNamespaceUnchanged": true,
+    "noHostPidOrDockerSocket": true,
+    "readOnlySourceMountAndSyntheticEvidenceMountOnly": true,
+    "noNewPrivilegesUnchanged": true,
+    "sameDedicatedPushTrigger": true,
+    "oneTestElevenAssertionsNoSkipGatesUnchanged": true,
+    "allDeadlinesUnchanged": true,
+    "boundedFaultMetadata": "At most8 records, name/code80 chars each, message512 chars; last4096 childstderr chars in failure message; child exit code/signal included."
+  },
+  "retainedArtifactReadback": {
+    "containerInspect": "campaign-t/artifacts/container-inspect.json",
+    "originalCapAdd": [
+      "CAP_CHOWN",
+      "CAP_DAC_OVERRIDE",
+      "CAP_KILL",
+      "CAP_SETGID",
+      "CAP_SETUID"
+    ],
+    "originalPidMode": "private/default",
+    "originalPrivileged": false
+  },
+  "uncertainty": "Retained failed run does not contain originating controller errno; missing SYS_PTRACE is a justified static identity-observation correction, not empirically confirmed sole cause. Hosted successor must pass full unchanged examination.",
+  "acceptanceScope": "Staging only; no hosted pass, production coverage, operating cutover, full restoration or custody acceptance.",
+  "newlyAcceptedRows": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "reviewActions": {
+    "sourceChanged": false,
+    "testsRun": false,
+    "remoteCalls": false
+  },
+  "requiredAuthority": "Fresh exact-tree source/evidence publication approval before one successor push; no failed-run rerun or production action."
+}

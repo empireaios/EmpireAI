@@ -1,0 +1,68 @@
+{
+  "reviewer": "/root/review_t",
+  "decision": "REJECT_HOSTED_JOURNAL_ACCEPTANCE",
+  "runId": 40146101531,
+  "jobId": 121027656871,
+  "source": "7c7eb0e902f3f8e1e1108111c17ab0a2b536c5ed",
+  "tree": "c9ba46605373a1a56bdb1bffb3e23686bc9acf9c",
+  "observed": {
+    "checkoutExactSource": true,
+    "nodeImageDigest": "sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "redisImageDigest": "sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952",
+    "testEntered": true,
+    "tests": 1,
+    "pass": 0,
+    "fail": 1,
+    "skipped": 0,
+    "todo": 0,
+    "failure": "CHILD_NOT_READY",
+    "testDurationMs": 73.721344,
+    "artifactUpload": "SUCCESS",
+    "artifactId": 12580647158
+  },
+  "provenBoundary": "First declared child did not reach READY. No eleven-assertion hosted acceptance receipt was established. Isolation infrastructure started, but complete identity separation and journal guarantees were not accepted.",
+  "diagnosticDefect": "hosted test installs c.on(fault,()=>{}); controller catches enrollment errors, kills cohort, and emits fault. ready() reports only child stderr, which contains SQLite warning. The originating controller error and child exit signal/code are absent from retained log.",
+  "leadingStaticHypothesis": {
+    "status": "PLAUSIBLE_NOT_CONFIRMED_BY_RETAINED_LOG",
+    "cause": "Operator reads /proc/<distinct-UID child>/ns/pid in processIdentity but Docker operator capability allowlist omits SYS_PTRACE. Cross-principal proc namespace inspection is subject to ptrace access checks; DAC_OVERRIDE alone does not establish that authority. The resulting error would match swallowed-fault/rapid-kill path.",
+    "mustNotClaim": "Do not assert the exact failing syscall or errno was observed."
+  },
+  "minimumCorrection": {
+    "mandatory": "Retain a bounded, secret-free controller fault code/message/stack plus child exit code/signal in failure evidence and propagate the original fault to the failing test. Preserve all identity, permissions, readiness and no-skip assertions.",
+    "capabilityDecision": "If retaining direct cross-principal /proc identity inspection, explicitly authorize only the isolated operator SYS_PTRACE capability, never runtime capabilities; verify runtime CapEff remains zero and no host PID namespace or production mount exists. Alternatively use an independently reviewed equivalent identity-observation mechanism, without weakening identity proof.",
+    "scope": "Only targeted harness/identity-observation boundary; no broad journal rewrite and no deadline increase.",
+    "execution": "Any changed tree needs fresh review and owner exact-tree approval before one new automatic targeted run. No rerun of failed approved source."
+  },
+  "wholeRequirementAcceptance": false,
+  "newlyAcceptedRows": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "preserved": "All prior accepted scopes and six local journal checks remain preserved. Production writer graph, cutover, full restoration and protected custody remain separately unproved.",
+  "reviewedFiles": [
+    {
+      "path": "campaign-t/HOSTED-JOB-LOG.txt",
+      "sha256": "de98b8970f808dbecd71c2d438cb806b383d993b4ffcc5bf7f56aba112de0eb2"
+    },
+    {
+      "path": "campaign-s/source/deployment/runtime-membership-controller.cjs",
+      "sha256": "8dc83460f2bdede0f1010e45189751b9b924b252ca0448fe762c04ba4e2713a6"
+    },
+    {
+      "path": "campaign-s/source/deployment/runtime-membership-bootstrap.mjs",
+      "sha256": "3606b697b6bc1dec0e0476cedb3748e773d6f2d20c7e06a3e4e7d2679e02bdce"
+    },
+    {
+      "path": "campaign-s/source/deployment/runtime-membership-controller.hosted.test.cjs",
+      "sha256": "54798ac06bb233faf32885230ee9788f643cbf0b71d714e4206be87c7e8710cf"
+    },
+    {
+      "path": "campaign-s/source/scripts/work8/run-journal-examination.sh",
+      "sha256": "c250d41cfa45af851429f02a3f10b2b242c80e9c0089e7a157d2c98266f2aa58"
+    }
+  ],
+  "reviewActions": {
+    "testsRun": false,
+    "remoteCalls": false,
+    "sourceChanged": false
+  }
+}

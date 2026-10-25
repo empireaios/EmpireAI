@@ -1,0 +1,10 @@
+{
+  "bashSyntax": "PASS",
+  "nodeSyntax": "PASS",
+  "privatePidNoPrivileged": "PASS",
+  "runtimeZeroCapabilitiesPreserved": "PASS",
+  "mandatoryNoSkipGatePreserved": "PASS",
+  "boundedFailureDiagnostics": "PASS",
+  "hostedExecuted": false,
+  "scope": "static changed-boundary checks only"
+}

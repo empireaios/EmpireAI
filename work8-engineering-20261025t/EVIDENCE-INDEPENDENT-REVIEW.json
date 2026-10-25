@@ -1,0 +1,55 @@
+{
+  "reviewer": "/root/review_t",
+  "decision": "ACCEPT_EVIDENCE_FOR_EXACT_STAGING_ONLY",
+  "sourceCommit": "70db355abf322f78ddeb34369a23f1c2d4ecc7d5",
+  "sourceTree": "ccb0c3d2579b1f9babc20e260847c021c2e32358",
+  "sourceParent": "7c7eb0e902f3f8e1e1108111c17ab0a2b536c5ed",
+  "reviewedEvidence": [
+    {
+      "path": "campaign-t/Work8-Targeted-Journal-Result-20261025t.md",
+      "sha256": "5535a2ad1b263afe7d3c590f52ccc83498640710b52f3372baf67fdaa8589a01"
+    },
+    {
+      "path": "campaign-t/FULL-TRACKER.json",
+      "sha256": "6803c0a989d580e86ff0e6e100755c8e14a60e6df4b677a2f0a27876581c75a3"
+    },
+    {
+      "path": "campaign-t/INTEGRATION-PLAN.md",
+      "sha256": "04e278d7e9601cd69c2f9cff8ede128adc3c8a8d03df7bdbdca8f006dcf2466a"
+    },
+    {
+      "path": "campaign-t/SOURCE-LOCAL-CANDIDATE.json",
+      "sha256": "e895d4025fa0e915d106bc65c9637afd653576ce4a08ca07753981e177bbe2d5"
+    },
+    {
+      "path": "campaign-t/HOSTED-INDEPENDENT-REVIEW.json",
+      "sha256": "ac7c4d30846cf53045da090c33e0fad1a64b760294fae9b7c49b2a02776df5ef"
+    },
+    {
+      "path": "campaign-t/CORRECTION-INDEPENDENT-REVIEW.json",
+      "sha256": "4b94c2cfe540f65336edbbe625d8de57f5c1f622b32f68ae7b5a0de6b27f573f"
+    }
+  ],
+  "checks": {
+    "twoChangedBlobsAndModesMatchCorrectionReview": true,
+    "artifactZipDigestMatchesGitHubReceipt": true,
+    "artifactSourceAndTreeMatchPublishedS": true,
+    "all64TrackerStatusesPreserved": true,
+    "currentPublishedAndCandidateMetadataCorrected": true,
+    "failedHostedScopeAccurate": true,
+    "hypothesisNotMisreportedAsConfirmedRootCause": true,
+    "integrationPlanIsNotImplementedCandidate": true,
+    "productionCustodyAndCutoverGatesPreserved": true
+  },
+  "newAcceptedRows": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "hostedDecision": "REJECT_ACCEPTANCE",
+  "successorHosted": "NOT_RUN",
+  "requiredNextAuthority": "Exact evidence/source successor publication approval; source push may trigger one new changed-candidate examination only. No production action.",
+  "reviewActions": {
+    "testsRun": false,
+    "sourceChanged": false,
+    "remoteCalls": false
+  }
+}

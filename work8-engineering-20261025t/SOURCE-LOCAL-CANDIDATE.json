@@ -1,0 +1,25 @@
+{
+  "commit": null,
+  "tree": "ccb0c3d2579b1f9babc20e260847c021c2e32358",
+  "parent": "7c7eb0e902f3f8e1e1108111c17ab0a2b536c5ed",
+  "baseTree": "c9ba46605373a1a56bdb1bffb3e23686bc9acf9c",
+  "entries": [
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "mode": "100644",
+      "blob": "75948a8054d5fa770e49b8efe08f7915a17feba9",
+      "sha256": "bc16de886279d4730294d2cbbad40b045190d7896df2ae968ecb06d527960769",
+      "bytes": 11684
+    },
+    {
+      "path": "scripts/work8/run-journal-examination.sh",
+      "mode": "100644",
+      "blob": "839af1214a88666b93a13d9acf36dd951d637e62",
+      "sha256": "21c457eeb8ad740937f5140f33bfa6aad07100cb5a5365128bc356677dbd27a4",
+      "bytes": 5541
+    }
+  ],
+  "refsUpdated": false,
+  "published": false,
+  "deployed": false
+}
