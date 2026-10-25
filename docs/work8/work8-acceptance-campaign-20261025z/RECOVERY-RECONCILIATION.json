@@ -1,0 +1,203 @@
+{
+  "recordType": "WORK8_Z_INDEPENDENT_SIX_ROW_DEPENDENCY_RECONCILIATION",
+  "reviewer": "recovery_closure independent lane",
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19,
+    "missionLedger": "IN_PROGRESS / NO_GO"
+  },
+  "method": "Bounded read-only review of retained original-criterion matrix and latest accepted Y evidence/plans. No new tests, CI, external service investigations, source edits or production actions. Retained criteria are not represented as newly recovered verbatim owner contract documents.",
+  "evidencePaths": [
+    "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+    "campaign-y/FULL-TRACKER.json",
+    "campaign-y/INDEPENDENT-HOSTED-REVIEW.json",
+    "campaign-y/INTEGRATED-RECOVERY-CAMPAIGN.json",
+    "campaign-y/INTEGRATED-RECOVERY-PLAN.json",
+    "campaign-y/SOURCE-BOUND-RESTORE-READBACK.json",
+    "campaign-z/O33-INDEPENDENT-SOURCE-REVIEW.json",
+    "campaign-z/O33-LOCAL-BOUNDARY-RESULT.json",
+    "campaign-z/O33-COORDINATOR-LOCAL-CHECKS.json",
+    "campaign-z/SOURCE-STAGED.json"
+  ],
+  "rows": [
+    {
+      "id": "O33",
+      "status": "PENDING",
+      "originalRetainedCriterion": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in declared runtime topology, including still-active prior instances. Preserve scoped reviewed lifecycle-marker and held-handoff corrections; neither establishes operational replay or full topology. Arbitrary privileged host attackers are not an added criterion.",
+      "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+      "acceptedReusableEvidence": [
+        "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+        "Original session, financial/history and admission controls within retained scopes",
+        "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+        "U controller journal11/11 within isolated cohort",
+        "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+      ],
+      "exactUnprovenAssertions": [
+        "Complete actual declared primary/worker/observer/session/journal/visual-memory/queue writer and transport census, including prior instances still able to write",
+        "Source-bound actual-application coordinated capture and replay with all writer holds/exclusion",
+        "Coupled pending-work continuation exactly once under that complete integrated graph"
+      ],
+      "existingEvidenceAloneCompletes": false,
+      "isolatedFeasibility": "YES for the complete concurrency/capture/replay contract of the declared actual application topology: use real compiled entries, all writer/transport classes and current/prior generations in a fresh isolated epoch. Neither production cutover nor custody is an automatic original O33 criterion. This would not certify production historical coverage or the other five operating/custody contracts. Current Y synthetic entries do not provide this proof.",
+      "nextActionClassification": "OWNER DECISION REQUIRED",
+      "authorityOrEvidenceNeeded": "The minimum actual-application integration has been implemented, independently reviewed and staged as source0329e389035e96599e439fff068bf11b3496ecd4/tree210751c83aef4737b6962f6d17b5e52335debfc7. Next required action is exact-tree source/evidence publication approval for one automatic Node22/Docker examination; no production cutover or custody prerequisite is added to O33.",
+      "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+      "scopeGuard": "Do not add protected custody as a universal O33 criterion. Assess concurrency/replay against its original declared runtime topology; custody is separately mandatory for A3/O39.",
+      "minimumEngineering": "Completed: private controller-reserved/recipient-bound capability, admitted actual-brain source initialization and coordinated held capture, operator-only sealed-copy/materialization coordinator, actual controller-admitted target/restart, reused pure pending/readiness oracles. Incompatible old orchestration is not invoked or weakened.",
+      "hostedExaminationClass": "OWNER DECISION REQUIRED",
+      "assignedImplementationLane": "o33_integration",
+      "engineeringStatus": "COMPLETE_REVIEWED_STAGED_HOSTED_UNVERIFIED",
+      "sourceCandidate": {
+        "commit": "0329e389035e96599e439fff068bf11b3496ecd4",
+        "tree": "210751c83aef4737b6962f6d17b5e52335debfc7",
+        "parent": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+        "branch": "work8/writer-integration-20261025v",
+        "verified": true,
+        "published": false,
+        "review": "O33-INDEPENDENT-SOURCE-REVIEW.json",
+        "changedPaths": 14
+      }
+    },
+    {
+      "id": "O39",
+      "status": "PENDING",
+      "originalRetainedCriterion": "Distinct password-protected Redis replacement after original shutdown, atomic target identity, AOF-only crash recovery, paused fence and once-only labelled pending continuation independently pass. Full authorized application restoration, owner-session restoration into replacement topology and protected independently authenticated off-host custody remain.",
+      "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+      "acceptedReusableEvidence": [
+        "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+        "Original session, financial/history and admission controls within retained scopes",
+        "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+        "U controller journal11/11 within isolated cohort",
+        "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+      ],
+      "exactUnprovenAssertions": [
+        "Complete authorized application restoration into replacement topology from one consistent source set",
+        "Owner-session and pending-work continuity bound to that same set",
+        "Protected independently authenticated off-host custody and readback",
+        "Compatible rollback/migration with corruption refusal and no copied execution authority"
+      ],
+      "existingEvidenceAloneCompletes": false,
+      "isolatedFeasibility": "A fresh isolated target is appropriate and does not require production restart. However the source must be a complete authorized operational set and protected full-data readback must exist. Current synthetic/control evidence does not provide that set.",
+      "nextActionClassification": "OWNER DECISION REQUIRED",
+      "authorityOrEvidenceNeeded": "Authorize exact operating source capture/data handling and isolated restore only after source membership/exclusion, protected route and compatible image pair are established; live cutover remains separately gated.",
+      "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+      "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+    },
+    {
+      "id": "A1",
+      "status": "PENDING",
+      "originalRetainedCriterion": "Complete global capture/replay and genuine operating acceptance through the existing twin and Console; preserve new scoped integration and accepted isolated capability.",
+      "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+      "acceptedReusableEvidence": [
+        "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+        "Original session, financial/history and admission controls within retained scopes",
+        "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+        "U controller journal11/11 within isolated cohort",
+        "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+      ],
+      "exactUnprovenAssertions": [
+        "Complete global application capture/replay and persistent identity/state continuity",
+        "Genuine operating twin and connected Console acceptance",
+        "Authoritative safe operating epoch when prior production membership is unprovable"
+      ],
+      "existingEvidenceAloneCompletes": false,
+      "isolatedFeasibility": "Isolated integration is useful but insufficient for the retained genuine operating/Console requirement. An owner-connected authorized runtime and complete source records are indispensable.",
+      "nextActionClassification": "OWNER DECISION REQUIRED",
+      "authorityOrEvidenceNeeded": "Exact corrected operating release/rollback and owner-connected runtime authorization; no repeated live DEFER and no inferred commercial authority.",
+      "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+      "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+    },
+    {
+      "id": "A2",
+      "status": "PENDING",
+      "originalRetainedCriterion": "Cooperating writer coverage and distinct Redis inspection replacement verified; global exclusion and complete whole-system operational restoration remain. completeLiveState=false and bootAllowed=false preserved.",
+      "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+      "acceptedReusableEvidence": [
+        "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+        "Original session, financial/history and admission controls within retained scopes",
+        "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+        "U controller journal11/11 within isolated cohort",
+        "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+      ],
+      "exactUnprovenAssertions": [
+        "Complete actual primary/worker/observer and canonical store graph with current/prior writer exclusion",
+        "One globally consistent full-data capture and fresh-target operational restoration",
+        "No inspection-only bootAllowed=false/completeLiveState=false material relabelled operational"
+      ],
+      "existingEvidenceAloneCompletes": false,
+      "isolatedFeasibility": "Full application restoration can be demonstrated on an isolated target, but current evidence lacks complete actual operating source coverage. An isolated synthetic cohort cannot substitute for omitted operating writers.",
+      "nextActionClassification": "OWNER DECISION REQUIRED",
+      "authorityOrEvidenceNeeded": "Exact source capture and safe prospective epoch/old-writer exclusion authorization where required; new integration publication approval separately required.",
+      "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+      "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+    },
+    {
+      "id": "A3",
+      "status": "PENDING",
+      "originalRetainedCriterion": "Prove complete consistent snapshot, runtime credential exclusion from alteration/deletion, protected retention, independently authenticated off-host readback and complete fresh-target application restoration with canonical/session/pending-work invariants and no authority replay.",
+      "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+      "acceptedReusableEvidence": [
+        "Existing authorized Library route and independently authenticated report readback",
+        "Retained corruption/refusal and scoped restoration evidence; not complete operational custody"
+      ],
+      "exactUnprovenAssertions": [
+        "Complete consistent operational snapshot, not reports or inspection material",
+        "Object-specific retention/version integrity",
+        "Proof runtime cannot alter/delete protected original",
+        "Independent authenticated full-data readback and digest verification",
+        "Fresh-target restoration from exactly that retrieved copy; corruption refusal and no authority replay"
+      ],
+      "existingEvidenceAloneCompletes": false,
+      "isolatedFeasibility": "Fresh restore and local-copy corruption refusal can be isolated. Custody cannot be proven by local files or GitHub artifacts alone. Existing Library is an eligible route, not yet demonstrated as sufficient for this complete operational object and rights/retention contract.",
+      "nextActionClassification": "EXTERNAL EVIDENCE REQUIRED",
+      "authorityOrEvidenceNeeded": "Existing protected storage account/object version retention semantics, runtime exclusion and independent read-principal evidence are needed. Existing route use may be authorized; do not request storage purchase without first proving a capability gap.",
+      "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+      "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+    },
+    {
+      "id": "A5",
+      "status": "PENDING",
+      "originalRetainedCriterion": "Preserve accepted operating rollback. Complete whole-application consistency and authorized restore across all domains; paused inspection recovery is not complete application rollback.",
+      "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+      "acceptedReusableEvidence": [
+        "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+        "Original session, financial/history and admission controls within retained scopes",
+        "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+        "U controller journal11/11 within isolated cohort",
+        "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+      ],
+      "exactUnprovenAssertions": [
+        "Explicit compatible forward and rollback source/image pair",
+        "Whole-application schema/data/generation consistency across upgrade and rollback",
+        "Original sessions and financial/mission records preserved with no stale re-entry or duplicate work",
+        "Authorized full restore across all domains, rather than paused inspection rollback"
+      ],
+      "existingEvidenceAloneCompletes": false,
+      "isolatedFeasibility": "Compatible image and schema transitions can be examined in isolation. The current accepted controller source is only a prospective compatibility floor; no exact proven pair is supplied. Actual operating cutover needs separate authority.",
+      "nextActionClassification": "OWNER DECISION REQUIRED",
+      "authorityOrEvidenceNeeded": "Prepare exact compatible forward/rollback pair under existing engineering authority; require publication/examination approval for new trees and separate operating deployment approval. Legacy unfenced or DEFER-incompatible releases are not eligible rollback targets.",
+      "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+      "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+    }
+  ],
+  "newAcceptedRows": [],
+  "wholeRowExecuteNow": [],
+  "engineeringDecision": "O33 isolated actual-application integration authoring is complete and independently reviewed for staging only. No immediate whole-row examination remains executable under current no-source-publication/no-CI directive. One exact-tree approval enables the complete declared-topology hosted examination. Other recovery rows retain their distinct operating/custody inputs.",
+  "oneIntegratedCampaign": [
+    "Verify declared operating source writer membership or safely establish a prospective epoch with explicit exclusion of old writers; do not invent history",
+    "Capture actual compiled application graph under accepted controller/fencing and stable holds, canonical13stores/Redis/session/journal/visual memory/financial and mission manifest",
+    "Protect the complete snapshot at an identified off-host object/version, prove retention and runtime exclusion, independently read full bytes",
+    "Use retrieved intact copy for one fresh-target operational restore with original sessions and pending work exactly once; corrupt only a disposable local copy to test refusal",
+    "Verify exact compatible rollback pair and no copied authority/stale generations, then independently decide each row against its own criteria"
+  ],
+  "minimumOwnerDecision": "Approve the consolidated exact reviewed evidence/source candidate, evidence first and source0329e389035e96599e439fff068bf11b3496ecd4/tree210751c83aef4737b6962f6d17b5e52335debfc7 second on work8/writer-integration-20261025v, allowing one automatic Node22 build/actual-application O33 examination. No production cutover, protected-custody acceptance, or other whole-row acceptance follows automatically.",
+  "cost": "No paid service, CI or external execution incurred in this reconciliation. Future cost not invented; cap each commissioned task at US$10 and establish runner/storage inputs before approval.",
+  "custodyConclusion": "Existing Library route is potentially eligible but sufficiency is UNPROVEN, not established unavailable. Missing complete object, retention/version semantics, runtime-rights exclusion and independent full-data readback/restore evidence. No new storage purchase justified by retained evidence alone.",
+  "safety": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "productionActions": 0,
+    "ciRuns": 0
+  }
+}

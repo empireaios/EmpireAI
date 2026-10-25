@@ -1,0 +1,10 @@
+{
+  "commit": "0329e389035e96599e439fff068bf11b3496ecd4",
+  "tree": "210751c83aef4737b6962f6d17b5e52335debfc7",
+  "parent": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "branch": "work8/writer-integration-20261025v",
+  "verified": true,
+  "published": false,
+  "review": "O33-INDEPENDENT-SOURCE-REVIEW.json",
+  "changedPaths": 14
+}

@@ -1,0 +1,13 @@
+{
+  "decision": "NOT_ESTABLISHED_AS_PROTECTED_OPERATIONAL_BACKUP",
+  "available": "Authenticated Library file create/read/version restore exists.",
+  "missing": [
+    "Complete consistent operational backup bytes and manifest",
+    "Enforced retention policy and runtime alteration/deletion exclusion evidence",
+    "Separately authenticated independent reader identity",
+    "Restoration from that exact protected copy with corruption refusal"
+  ],
+  "basis": "Current Library capabilities expose version restore and deletion, but do not establish an enforced retention policy or independent-principal administration. This is unproven capability, not proof of impossibility.",
+  "cost": "No new service commissioned. Qualifying storage cost unknown until existing account and policy identified.",
+  "minimumInput": "Existing storage account/container and retention policy, separate custodian/read principal, authorised complete-data transfer route. No credentials in chat."
+}

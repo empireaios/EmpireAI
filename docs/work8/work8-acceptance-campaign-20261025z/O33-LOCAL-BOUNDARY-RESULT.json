@@ -1,0 +1,31 @@
+{
+  "command": "node --test campaign-z/source/deployment/runtime-isolated-application.test.cjs",
+  "runtime": "Node 24.22.1 local",
+  "tests": 5,
+  "pass": 5,
+  "fail": 0,
+  "skipped": 0,
+  "durationMs": 119.392144,
+  "scope": [
+    "expiry before durable consume",
+    "exact admitted role/source/generation",
+    "real filesystem fsync and exclusive replay refusal preserving recipient receipt",
+    "target Redis host mismatch refusal before network",
+    "exclusive fsynced reservation before application child rejects reused/interrupted grant"
+  ],
+  "notProven": [
+    "Node22 compilation",
+    "operator/runtime identity separation",
+    "actual Redis network identity",
+    "full graph capture/restoration",
+    "whole O33 acceptance"
+  ],
+  "acceptedTestsRepeated": false,
+  "hostedExecution": false,
+  "priorRun": {
+    "tests": 4,
+    "pass": 4,
+    "durationMs": 90.1712,
+    "supersededBy": "reservation-before-any-child correction"
+  }
+}

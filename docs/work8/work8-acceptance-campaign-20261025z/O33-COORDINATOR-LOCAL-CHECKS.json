@@ -1,0 +1,49 @@
+{
+  "scope": "Syntax and workflow structure only; no hosted or whole-row acceptance",
+  "runtime": "v24.22.1",
+  "checks": [
+    {
+      "command": [
+        "node",
+        "--check",
+        "campaign-z/source/scripts/work8/o33-application-coordinator.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "campaign-z/source/scripts/work8/run-o33-application.sh"
+      ],
+      "exitCode": 0
+    },
+    {
+      "check": "workflow YAML exact single automatic branch job; no manual dispatch",
+      "result": "PASS"
+    }
+  ],
+  "files": [
+    {
+      "path": "scripts/work8/o33-application-coordinator.mjs",
+      "sha256": "fc458e3ddc27c64c6f8a5c35bec6d6dd77593fd6fce021dd02031c576a50cf5b",
+      "bytes": 26973,
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/work8/run-o33-application.sh",
+      "sha256": "c8bfdb07b28c7461ea605a61e7ea92da700ae110ef015d14c841ea6273217865",
+      "bytes": 9421,
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/work8-writer-integration.yml",
+      "sha256": "6cb3adcaf1eacdd3ea19390ebc56d4119c48d61c5f45c49e94f4ebd69e1ac08d",
+      "bytes": 1767,
+      "mode": "100644"
+    }
+  ],
+  "hostedExecuted": false,
+  "acceptedRows": [],
+  "deadlineReviewCorrection": "until checks original deadline before and after awaited probe, including success; no late success accepted."
+}

@@ -1,0 +1,109 @@
+{
+  "commit": null,
+  "tree": "210751c83aef4737b6962f6d17b5e52335debfc7",
+  "parent": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "baseTree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+  "entries": [
+    {
+      "path": ".github/workflows/work8-writer-integration.yml",
+      "mode": "100644",
+      "blob": "869ec6ded350b1036d8b31cd534b947d5ef13ab4",
+      "sha256": "6cb3adcaf1eacdd3ea19390ebc56d4119c48d61c5f45c49e94f4ebd69e1ac08d",
+      "bytes": 1767
+    },
+    {
+      "path": "backend/src/app.ts",
+      "mode": "100644",
+      "blob": "ce2ec2a31ac3bf867e87a224452a94d7ca0e3409",
+      "sha256": "11817943ba55e4293525dc65ac2a9b34f9e9ae6b8a44a07a52d482dfcbadfc84",
+      "bytes": 75639
+    },
+    {
+      "path": "backend/src/index.ts",
+      "mode": "100644",
+      "blob": "01df58fce14c2f39d2b541a089398d76d6f7648f",
+      "sha256": "96c51f9ee18aeeb2850ea90dbac88e610db81c2ce79d2816a4fe9de8c8d6f2d2",
+      "bytes": 5868
+    },
+    {
+      "path": "backend/src/runtime/work8-admitted-application.ts",
+      "mode": "100644",
+      "blob": "25d86fc6ea100b9ba3976b1114b6aceb50c44ba5",
+      "sha256": "02c4bd72b66902ebb24af71be459eb52451dc43d44ddf32037cb8cb455eb821d",
+      "bytes": 6421
+    },
+    {
+      "path": "deployment/fixtures/runtime-graph-redis.cjs",
+      "mode": "100644",
+      "blob": "cd920e1171c86178c59c4a8cf1489953fa45ab9f",
+      "sha256": "2bfc676aaba2dbff8ac077d3036d9e871c77e7660e4db1887a5dfd2126762ebd",
+      "bytes": 2462
+    },
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "mode": "100644",
+      "blob": "9206dc2976f05787e7b024e3f36a981ab9d9dd2c",
+      "sha256": "db58e4f070c8e8b1fbf382c624d19dfc421405349b9fdfae0ce805580f49af6f",
+      "bytes": 7056
+    },
+    {
+      "path": "deployment/runtime-isolated-application.cjs",
+      "mode": "100644",
+      "blob": "27d91030fe5e2c12f6f2bdb5c91284e4d3520a68",
+      "sha256": "5af890a86d50a58b48bf82b42e751a17d553a1fbe9a4d6b06bb9403c0c12c8be",
+      "bytes": 7996
+    },
+    {
+      "path": "deployment/runtime-isolated-application.test.cjs",
+      "mode": "100644",
+      "blob": "6d485dedc67d39113ff2e009b0cb99289d0be5d1",
+      "sha256": "d818e840fb86dacd1de22bb6e51f3c63f05f98badc0a43e618c9ebe7dfc5219b",
+      "bytes": 2972
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "mode": "100644",
+      "blob": "5fb306a78f59d951a716d86ea3d5438e62534cb8",
+      "sha256": "73ad1447fcc29191b0f2e5281035e1c59f13f16524873cd7f185b4744cc4e591",
+      "bytes": 3947
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "mode": "100644",
+      "blob": "58f4b7c2c9fe29b6f607aa985197ffe9fa3b19aa",
+      "sha256": "b519778debbbaa708b826010dd318134525c993f47e3fa800f63b30c3c3b4cb2",
+      "bytes": 20836
+    },
+    {
+      "path": "deployment/runtime-writer-controller.cjs",
+      "mode": "100644",
+      "blob": "90cde2ebd4041939325de359470f06bf1d317359",
+      "sha256": "c54bcaeeb743eaf33318b8bc0f7c50a9f53525c11c2b12861c7b5e273aaa56f2",
+      "bytes": 9754
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "mode": "100644",
+      "blob": "62bd09527cd0ea55be05f195022b7e5daa5fcb5c",
+      "sha256": "f5842e2534a8e7181a4e2098b4d6224186e3e0f7073b97a6ef98671a91898e62",
+      "bytes": 17519
+    },
+    {
+      "path": "scripts/work8/o33-application-coordinator.mjs",
+      "mode": "100644",
+      "blob": "25dde6e53b9a618f9e8ade5d6f0a41fc9f1899b1",
+      "sha256": "fc458e3ddc27c64c6f8a5c35bec6d6dd77593fd6fce021dd02031c576a50cf5b",
+      "bytes": 26973
+    },
+    {
+      "path": "scripts/work8/run-o33-application.sh",
+      "mode": "100644",
+      "blob": "18ba1c93591782088f5cb777af194925c458389c",
+      "sha256": "c8bfdb07b28c7461ea605a61e7ea92da700ae110ef015d14c841ea6273217865",
+      "bytes": 9421
+    }
+  ],
+  "refsUpdated": false,
+  "published": false,
+  "deployed": false
+}

@@ -1,0 +1,1430 @@
+{
+  "date": "2026-10-25",
+  "publication": {
+    "commit": "a38cec1dea11772b20df86a83780d47919b10a69",
+    "tree": "db03c30002b4459fcc8fcb4342af25fef63a5bf4",
+    "parent": "c3a1b673f9034063b352b66df8df7a49d6da3b13",
+    "verified": true,
+    "noSourcePublication": true,
+    "noCIDispatch": true,
+    "noReruns": true,
+    "pr113Head": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+    "draft": true,
+    "merged": false
+  },
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19,
+    "missionLedger": "IN_PROGRESS / NO_GO"
+  },
+  "full64Tracker": {
+    "accepted": 45,
+    "outstanding": 19,
+    "rows": [
+      {
+        "id": "O1",
+        "status": "PASS",
+        "requirement": "Work7 exact production/closure",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O2",
+        "status": "BLOCKED",
+        "requirement": "Financial and historical preservation",
+        "preservation": "No credible new original-224 baseline or audited lineage lead. Existing 227 accounting records and historical digests remain preserved without repeated unsupported search.",
+        "currentProgress": "Preserve retained 227 accounting records and historical/journal digests. No original 224-record baseline or attributable audited count-change lineage has been recovered in the bounded records.",
+        "remainingProof": "Missing historical provenance"
+      },
+      {
+        "id": "O3",
+        "status": "PASS",
+        "requirement": "Approved UX and fifteen safety controls",
+        "preservation": "Complete original preservation/safety row independently accepted: Work7 exact public assets/cockpit route trees/navigation/presentation and11destination order preserved; approved Home/art/mobilechat and scoped actualconsumers retained. No fullgenuinejourney or historicalfinancial certification inferred."
+      },
+      {
+        "id": "O4",
+        "status": "PASS",
+        "requirement": "Sandbox isolation and denied egress",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O5",
+        "status": "PASS",
+        "requirement": "Real-source connectivity and entitlements",
+        "preservation": "Original connectivity and availability-boundary criteria independently accepted: actual CJ/Amazon reads; four capability levels; explicit unavailable403/stale/Keepa unknown. No optional paid activation or source entitlement inferred."
+      },
+      {
+        "id": "O6",
+        "status": "PASS",
+        "requirement": "Authentic source product records",
+        "preservation": "PASS: authentic retained CJ records, exact source identity/provenance and denominated cohort verified; actual authenticated application consumer displayed genuine records on desktop1440/mobile390. Unknown supplier/media/market fields remain explicit. No qualification/Pillow/owner decision inferred."
+      },
+      {
+        "id": "O7",
+        "status": "BLOCKED",
+        "requirement": "Product images and usage rights",
+        "preservation": "Retained CJ source evidence remains explicitly identity- and expiry-bound, without matched marketplace qualification, complete processing/returns/media-rights/economics evidence or an eligible new Pillow assessment. No repeated provider query or paid inference.",
+        "currentProgress": "Q connector capability review confirms no exact external CJ refresh operation. Existing exact-job client or reviewed native control required; no matching Amazon evidence inferred.",
+        "remainingProof": "Attributable exact-asset usage-rights evidence"
+      },
+      {
+        "id": "O8",
+        "status": "PASS",
+        "requirement": "Observed supplier prices/currencies",
+        "preservation": "PASS: exact observed CJ variant USD2.76 and source currency contract/time/reference displayed on desktop/mobile; parent currency remains explicitly unknown. Freight selection and profitable qualification belong to12, not observed-price acceptance."
+      },
+      {
+        "id": "O9",
+        "status": "PASS",
+        "requirement": "Competitor and market evidence",
+        "preservation": "Preserve complete independently accepted original scope and retained evidence. No demonstrated regression; no repeated examination."
+      },
+      {
+        "id": "O10",
+        "status": "PASS",
+        "requirement": "Normalization identity and deduplication",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O11",
+        "status": "PASS",
+        "requirement": "Freshness and quarantine",
+        "preservation": "PASS: original freshness/quarantine criterion met by retained scanner expiry/contradiction/envelope tests, genuine exact-expiry and pinned-source tamper refusal, and truthful consumer freshness labels. No genuine provider refresh or Assurance recovery claim inferred."
+      },
+      {
+        "id": "O12",
+        "status": "PASS",
+        "requirement": "Software screening and economics",
+        "preservation": "Original software screening/economics criteria independently accepted: genuine persisted deferral and owner unknowns; labelled positive canonical economics equals actual component. No genuine qualification or Pillow inference asserted."
+      },
+      {
+        "id": "O13",
+        "status": "BLOCKED",
+        "requirement": "Actual Pillow assessment binding",
+        "preservation": "Retained CJ source evidence remains explicitly identity- and expiry-bound, without matched marketplace qualification, complete processing/returns/media-rights/economics evidence or an eligible new Pillow assessment. No repeated provider query or paid inference.",
+        "currentProgress": "Q connector capability review confirms no exact external CJ refresh operation. Existing exact-job client or reviewed native control required; no matching Amazon evidence inferred.",
+        "remainingProof": "Matched current product evidence, processing/returns/freight/media rights/eligibility and separately bounded inference authority"
+      },
+      {
+        "id": "O14",
+        "status": "PENDING",
+        "requirement": "Owner recommendations and decisions",
+        "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+        "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+      },
+      {
+        "id": "O15",
+        "status": "PASS",
+        "requirement": "Initial up-to-100 qualification",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O16",
+        "status": "PASS",
+        "requirement": "Daily discovery and low-supply outcomes",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O17",
+        "status": "PASS",
+        "requirement": "Transactional active portfolio cap",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O18",
+        "status": "PASS",
+        "requirement": "Portfolio review retirement/replacement",
+        "preservation": "Preserve complete independently accepted original scope and retained evidence. No demonstrated regression; no repeated examination."
+      },
+      {
+        "id": "O19",
+        "status": "PASS",
+        "requirement": "Simulated listing schema/media",
+        "preservation": "Preserve final independent O19 acceptance: hosted authenticated approval-to-listing transfer and intercepted publication joined with actual local SIGKILL/fresh-process recovery on unchanged production hashes. No external commerce."
+      },
+      {
+        "id": "O20",
+        "status": "PASS",
+        "requirement": "Simulated orders and supplier intents",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O21",
+        "status": "PASS",
+        "requirement": "Partial shipments tracking/delivery",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O22",
+        "status": "PASS",
+        "requirement": "Refund returns and supplier credits",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O23",
+        "status": "PASS",
+        "requirement": "Settlement payout holds/bank receipts",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O24",
+        "status": "PASS",
+        "requirement": "Financial reconciliation and money conservation",
+        "preservation": "Complete original independent financial-reconciliation row accepted: retained canonical/adversarial/FX/retirement evidence plus authenticated actual browser equality. Held payout remains null; completed simulated contribution2040minor equals events/journal/API/display; source unchanged."
+      },
+      {
+        "id": "O25",
+        "status": "PASS",
+        "requirement": "Live Cost Centre separate accounting",
+        "preservation": "Preserve isolated full section22 Cost Centre software acceptance. Actual historical224 preservation and real invoice/payment/cash attestation remain separate2/A17; no actual financial evidence is fabricated."
+      },
+      {
+        "id": "O26",
+        "status": "PASS",
+        "requirement": "Assurance detection/correlation",
+        "preservation": "Complete original scope independently accepted. Preserve exact retained and new F27 evidence; no repeated examination needed without changed boundary."
+      },
+      {
+        "id": "O27",
+        "status": "PASS",
+        "requirement": "Bounded repair authority catalogue",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O28",
+        "status": "PASS",
+        "requirement": "Fresh independent recovery verification",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O29",
+        "status": "PASS",
+        "requirement": "Recurrence budget and circuit breaker",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O30",
+        "status": "PENDING",
+        "requirement": "Assurance watchdog/degraded operation",
+        "preservation": "Independent delivery prerequisites remain unestablished. The accepted notification ledger is in the primary application database; no new provider, verified destination, observer or exact send authority was established. No message was sent.",
+        "currentProgress": "Q authenticated GitHub actor empireaios identified; its profile email differs from retained Gmail observer. Actual notification routing/preference/quota/escalation remains unverified; no test message sent.",
+        "remainingProof": "Independent executor, off-host durable attempt store, provider and authorized sender, verified destination, independent observer, escalation route and exact test-message authorization"
+      },
+      {
+        "id": "O31",
+        "status": "PASS",
+        "requirement": "Scenario blueprint seeds and independent oracles",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O32",
+        "status": "PASS",
+        "requirement": "Unit integration/contract and property exams",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O33",
+        "status": "PENDING",
+        "requirement": "Concurrency races and replay",
+        "preservation": "Preserve accepted application graph, thirteen-store inspection, sessions, index/watchdog readiness within8s and hosted queued-work restoration18.792s; backend340/340, Runtime417/417 and four prior automatic workflows retained. U journal11/11 remains accepted isolated-cohort scope only. Historical startup/capture failures are superseded within those accepted scopes; no whole-row restoration or custody acceptance inferred.",
+        "currentProgress": "Y run40175524098 independently PASS actual control modules with synthetic application entries:1test1pass0fail0skip. Executable native mount, distinct runtime identity, admission/census, generation exclusion, journal mutation/descendant refusal, clean drain and primary-death group containment proven within scope. Native correction cycle CLOSED. No whole-row promotion. Z complete actual-application integration candidate0329e389/tree210751c independently reviewed and staged;5/5 new local Node24 checks, no hosted execution.",
+        "remainingProof": "One approved exact-source Node22 build and complete declared actual-application topology capture/replay examination, with independent whole O33 review. Production cutover and custody are not unconditional O33 gates.",
+        "campaignS": "Controller-owned journal and isolated CI examination staged; hosted identity proof, production writer integration/safe cutover and protected operational custody remain unsatisfied. No status promotion.",
+        "campaignU": "Hosted isolated controller journal passed eleven assertions, independently accepted within its tested scope. Production graph, prospective safe cutover, full operational restoration and custody remain separate unproved gates."
+      },
+      {
+        "id": "O34",
+        "status": "PASS",
+        "requirement": "Fault injection and compounded failures",
+        "preservation": "Complete original scope independently accepted. Preserve exact retained and new F27 evidence; no repeated examination needed without changed boundary."
+      },
+      {
+        "id": "O35",
+        "status": "PASS",
+        "requirement": "Provider outage malformed output and correlation",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O36",
+        "status": "PASS",
+        "requirement": "All fifteen safety controls positive/negative exams",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O37",
+        "status": "PASS",
+        "requirement": "Multi-day virtual-time operations",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O38",
+        "status": "PASS",
+        "requirement": "Measured elapsed endurance",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O39",
+        "status": "PENDING",
+        "requirement": "Cold restart rollback/migration/restore",
+        "preservation": "Preserve accepted application graph, thirteen-store inspection, sessions, index/watchdog readiness within8s and hosted queued-work restoration18.792s; backend340/340, Runtime417/417 and four prior automatic workflows retained. U journal11/11 remains accepted isolated-cohort scope only. Historical startup/capture failures are superseded within those accepted scopes; no whole-row restoration or custody acceptance inferred.",
+        "currentProgress": "Y run40175524098 independently PASS actual control modules with synthetic application entries:1test1pass0fail0skip. Executable native mount, distinct runtime identity, admission/census, generation exclusion, journal mutation/descendant refusal, clean drain and primary-death group containment proven within scope. Native correction cycle CLOSED. No whole-row promotion.",
+        "remainingProof": "Reuse accepted compile, journal and Y control-module evidence. Execute one real-application coordinated capture, protected-copy independent readback, fresh-target operational restoration and compatible rollback campaign after exact inputs and operating authority gates are satisfied.",
+        "campaignS": "Controller-owned journal and isolated CI examination staged; hosted identity proof, production writer integration/safe cutover and protected operational custody remain unsatisfied. No status promotion.",
+        "campaignU": "Hosted isolated controller journal passed eleven assertions, independently accepted within its tested scope. Production graph, prospective safe cutover, full operational restoration and custody remain separate unproved gates."
+      },
+      {
+        "id": "O40",
+        "status": "BLOCKED",
+        "requirement": "Actual owner-view real-product walkthrough",
+        "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+        "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+      },
+      {
+        "id": "O41",
+        "status": "PENDING",
+        "requirement": "Mobile desktop source-to-finance equality",
+        "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+        "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+      },
+      {
+        "id": "O42",
+        "status": "PENDING",
+        "requirement": "Review exact-head CI and release authority",
+        "preservation": "Preserve45 independently accepted complete rows, prior four successful workflows on a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a, backend340/340 and Runtime417/417. U journal11/11 remains accepted. V run40161831246 executed: Pillow/backend compile PASS, graph failed pre-admission; no graph acceptance or whole-row promotion.",
+        "currentProgress": "Y run40175524098 independently PASS actual control modules with synthetic application entries:1test1pass0fail0skip. Executable native mount, distinct runtime identity, admission/census, generation exclusion, journal mutation/descendant refusal, clean drain and primary-death group containment proven within scope. Native correction cycle CLOSED. No whole-row promotion.",
+        "remainingProof": "Complete remaining owner, operational, custody and external-evidence contracts; final exact-source review"
+      },
+      {
+        "id": "O43",
+        "status": "PENDING",
+        "requirement": "Independent Mission Ledger closure",
+        "preservation": "Preserve45 independently accepted complete rows, prior four successful workflows on a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a, backend340/340 and Runtime417/417. U journal11/11 remains accepted. V run40161831246 executed: Pillow/backend compile PASS, graph failed pre-admission; no graph acceptance or whole-row promotion.",
+        "currentProgress": "Y run40175524098 independently PASS actual control modules with synthetic application entries:1test1pass0fail0skip. Executable native mount, distinct runtime identity, admission/census, generation exclusion, journal mutation/descendant refusal, clean drain and primary-death group containment proven within scope. Native correction cycle CLOSED. No whole-row promotion.",
+        "remainingProof": "Complete remaining owner, operational, custody and external-evidence contracts; final exact-source review"
+      },
+      {
+        "id": "O44",
+        "status": "PASS",
+        "requirement": "GO/NO-GO residual risks",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "O45",
+        "status": "PASS",
+        "requirement": "Work9 handoff without activation",
+        "preservation": "Preserve accepted scope; no repeat or status change."
+      },
+      {
+        "id": "A1",
+        "status": "PENDING",
+        "requirement": "Persistent autonomous digital twin",
+        "preservation": "Preserve accepted application graph, thirteen-store inspection, sessions, index/watchdog readiness within8s and hosted queued-work restoration18.792s; backend340/340, Runtime417/417 and four prior automatic workflows retained. U journal11/11 remains accepted isolated-cohort scope only. Historical startup/capture failures are superseded within those accepted scopes; no whole-row restoration or custody acceptance inferred.",
+        "currentProgress": "Y run40175524098 independently PASS actual control modules with synthetic application entries:1test1pass0fail0skip. Executable native mount, distinct runtime identity, admission/census, generation exclusion, journal mutation/descendant refusal, clean drain and primary-death group containment proven within scope. Native correction cycle CLOSED. No whole-row promotion.",
+        "remainingProof": "Reuse accepted compile, journal and Y control-module evidence. Execute one real-application coordinated capture, protected-copy independent readback, fresh-target operational restoration and compatible rollback campaign after exact inputs and operating authority gates are satisfied.",
+        "campaignS": "Controller-owned journal and isolated CI examination staged; hosted identity proof, production writer integration/safe cutover and protected operational custody remain unsatisfied. No status promotion.",
+        "campaignU": "Hosted isolated controller journal passed eleven assertions, independently accepted within its tested scope. Production graph, prospective safe cutover, full operational restoration and custody remain separate unproved gates."
+      },
+      {
+        "id": "A2",
+        "status": "PENDING",
+        "requirement": "Whole-system twin",
+        "preservation": "Preserve accepted application graph, thirteen-store inspection, sessions, index/watchdog readiness within8s and hosted queued-work restoration18.792s; backend340/340, Runtime417/417 and four prior automatic workflows retained. U journal11/11 remains accepted isolated-cohort scope only. Historical startup/capture failures are superseded within those accepted scopes; no whole-row restoration or custody acceptance inferred.",
+        "currentProgress": "Y run40175524098 independently PASS actual control modules with synthetic application entries:1test1pass0fail0skip. Executable native mount, distinct runtime identity, admission/census, generation exclusion, journal mutation/descendant refusal, clean drain and primary-death group containment proven within scope. Native correction cycle CLOSED. No whole-row promotion.",
+        "remainingProof": "Reuse accepted compile, journal and Y control-module evidence. Execute one real-application coordinated capture, protected-copy independent readback, fresh-target operational restoration and compatible rollback campaign after exact inputs and operating authority gates are satisfied.",
+        "campaignS": "Controller-owned journal and isolated CI examination staged; hosted identity proof, production writer integration/safe cutover and protected operational custody remain unsatisfied. No status promotion.",
+        "campaignU": "Hosted isolated controller journal passed eleven assertions, independently accepted within its tested scope. Production graph, prospective safe cutover, full operational restoration and custody remain separate unproved gates."
+      },
+      {
+        "id": "A3",
+        "status": "PENDING",
+        "requirement": "Protected backup vault",
+        "preservation": "Preserve accepted application graph, thirteen-store inspection, sessions, index/watchdog readiness within8s and hosted queued-work restoration18.792s; backend340/340, Runtime417/417 and four prior automatic workflows retained. U journal11/11 remains accepted isolated-cohort scope only. Historical startup/capture failures are superseded within those accepted scopes; no whole-row restoration or custody acceptance inferred.",
+        "currentProgress": "Y run40175524098 independently PASS actual control modules with synthetic application entries:1test1pass0fail0skip. Executable native mount, distinct runtime identity, admission/census, generation exclusion, journal mutation/descendant refusal, clean drain and primary-death group containment proven within scope. Native correction cycle CLOSED. No whole-row promotion.",
+        "remainingProof": "Reuse accepted compile, journal and Y control-module evidence. Execute one real-application coordinated capture, protected-copy independent readback, fresh-target operational restoration and compatible rollback campaign after exact inputs and operating authority gates are satisfied.",
+        "campaignS": "Controller-owned journal and isolated CI examination staged; hosted identity proof, production writer integration/safe cutover and protected operational custody remain unsatisfied. No status promotion.",
+        "campaignU": "Hosted isolated controller journal passed eleven assertions, independently accepted within its tested scope. Production graph, prospective safe cutover, full operational restoration and custody remain separate unproved gates."
+      },
+      {
+        "id": "A4",
+        "status": "PASS",
+        "requirement": "Future-state workspace",
+        "preservation": "None for isolated future-state workspace foundation. Protected backup custody and live whole-system synchronization remain amendments3/2."
+      },
+      {
+        "id": "A5",
+        "status": "PENDING",
+        "requirement": "Seamless upgrades and rollback",
+        "preservation": "Preserve accepted application graph, thirteen-store inspection, sessions, index/watchdog readiness within8s and hosted queued-work restoration18.792s; backend340/340, Runtime417/417 and four prior automatic workflows retained. U journal11/11 remains accepted isolated-cohort scope only. Historical startup/capture failures are superseded within those accepted scopes; no whole-row restoration or custody acceptance inferred.",
+        "currentProgress": "Y run40175524098 independently PASS actual control modules with synthetic application entries:1test1pass0fail0skip. Executable native mount, distinct runtime identity, admission/census, generation exclusion, journal mutation/descendant refusal, clean drain and primary-death group containment proven within scope. Native correction cycle CLOSED. No whole-row promotion.",
+        "remainingProof": "Reuse accepted compile, journal and Y control-module evidence. Execute one real-application coordinated capture, protected-copy independent readback, fresh-target operational restoration and compatible rollback campaign after exact inputs and operating authority gates are satisfied.",
+        "campaignS": "Controller-owned journal and isolated CI examination staged; hosted identity proof, production writer integration/safe cutover and protected operational custody remain unsatisfied. No status promotion.",
+        "campaignU": "Hosted isolated controller journal passed eleven assertions, independently accepted within its tested scope. Production graph, prospective safe cutover, full operational restoration and custody remain separate unproved gates."
+      },
+      {
+        "id": "A6",
+        "status": "PENDING",
+        "requirement": "Owner-visible autonomous dry run",
+        "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+        "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+      },
+      {
+        "id": "A7",
+        "status": "PASS",
+        "requirement": "Five mobile shortcuts",
+        "preservation": "Five required shortcuts, Home/logo, artwork preservation, readability/touch/keyboard/narrow geometry and native34px safe-area verified on exact retained Work8 frontend7dff79a6. Isolated acceptance; deployment-linked branch is unchanged."
+      },
+      {
+        "id": "A8",
+        "status": "PASS",
+        "requirement": "Product-linked Pillow Chat",
+        "preservation": "Independently accepted complete original A8 contract on exact published tree f21713b9b90cad36531372b775bfd6ff9a8f9e71: authenticated native390/1440 Products/Listings/Orders context entry/removal/switch/comparison/followup, native reload and archive/history; exact source/workspace identity, forged-source rejection and truthful unknowns; retained unchanged cold-process persistence and independently reviewed concurrency/cancellation/session reuse. Receipt A8-INDEPENDENT-ACCEPTANCE.json. Intercepted inference; no product qualification or broader restoration inferred."
+      },
+      {
+        "id": "A9",
+        "status": "PASS",
+        "requirement": "Product image/video management",
+        "preservation": "Independently accepted full A9 contract on source d6069705a9a2e8f7b58550afa2474a8382be2663, Product39114039622 artifact12130899341:18 native assertions; exact permitted image/video bytes/version, gallery screenshots390/1440, archive/reload, authenticated boundaries and retained unchanged durable store evidence. A11 PASS preserved. Owner-created fixtures do not establish supplier rights, Canva or personal owner approval. Receipt:A9-INDEPENDENT-ACCEPTANCE.json."
+      },
+      {
+        "id": "A10",
+        "status": "PENDING",
+        "requirement": "Canva-assisted editing",
+        "preservation": "Two bounded read-only Canva account searches hung and were stopped by the controller for cost control. No account/design result was retained; entitlement remains unknown. No edit/export or retry occurred; runtime export authority remains unproven.",
+        "currentProgress": "Prior connector reads hung and were interrupted without a usable entitlement response. No demonstrated change in availability is present. Server-side export authority remains required; Console sign-in supplies no Canva entitlement.",
+        "remainingProof": "Applicable account/consumer entitlement, working authorized export path and actual edited/exported artifact receipt"
+      },
+      {
+        "id": "A11",
+        "status": "PASS",
+        "requirement": "Separate internal/external media approval",
+        "preservation": "PRESERVED OWNER-SUPPLIED INDEPENDENT ACCEPTANCE: sixteen passing assertions; material edit invalidation, fresh internal approval, exact identity/version binding, stale/replay/mismatch rejection, durable history, authenticated desktop/mobile and intercepted publication. No fresh decision by this reconciliation. Recovered hosted receipt attribution is recorded in A11-RECEIPT-ATTRIBUTION.json."
+      },
+      {
+        "id": "A12",
+        "status": "PASS",
+        "requirement": "Temporary Systems authority",
+        "preservation": "Complete original temporary Systems authority criteria independently accepted: four preparation scopes, one-task/timed/expiry/revocation, owner/scope binding, durable native state and bounded saved-request preview. No actual new inference or live authority."
+      },
+      {
+        "id": "A13",
+        "status": "PASS",
+        "requirement": "Conversational UX changes",
+        "preservation": "Preserve independently accepted isolated conversational preview software; personal King acceptance, arbitrary app-wide changes and deployment remain separate."
+      },
+      {
+        "id": "A14",
+        "status": "PASS",
+        "requirement": "Human-interaction risk management",
+        "preservation": "Preserve complete isolated simulated communication acceptance; actual model judgement, real sending and genuine integrated business journey remain separate."
+      },
+      {
+        "id": "A15",
+        "status": "PENDING",
+        "requirement": "Keepa and Helium 10 readiness",
+        "preservation": "One bounded root Keepa discovery query returned no plugins; no Keepa tools were loaded. This non-exhaustive result does not prove account entitlement absence. The actual runtime remains NOT_CONFIGURED and unverified; no purchase or activation.",
+        "currentProgress": "Retained runtime NOT_CONFIGURED and missing credential do not establish absent account subscription. Keepa account entitlement remains unknown; Helium 10 remains truthfully deferred.",
+        "remainingProof": "Applicable account entitlement and authorized usable read capability"
+      },
+      {
+        "id": "A16",
+        "status": "PASS",
+        "requirement": "Financial Birth Cutover",
+        "preservation": "All ten original isolated cutover assertions independently accepted. Archive/identity/conservation and actual prior-code/checkpoint compatibility retained; mobile Finance fixed. No actual financial Birth."
+      },
+      {
+        "id": "A17",
+        "status": "PASS",
+        "requirement": "Autonomous Cost Intelligence",
+        "preservation": "Preserve full Work8 software acceptance with authenticated governed discovery and truthful unavailable access; continuous live billing remains Work9, not activated."
+      },
+      {
+        "id": "A18",
+        "status": "PASS",
+        "requirement": "Isolated hosted twin",
+        "preservation": "Owner direction already removes separately purchased demonstration hosting. Verify equivalent isolated technical capability and full required runtime scope; protected custody remains mandatory under amendment3."
+      },
+      {
+        "id": "A19",
+        "status": "PENDING",
+        "requirement": "Integrated owner acceptance",
+        "preservation": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "currentProgress": "P current backend source binding confirmed608f. Q exact projection execution demonstrates corrected DEFER behavior and old-release rollback incompatibility. No live DEFER, builds or deployment claimed.",
+        "remainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation"
+      }
+    ],
+    "campaign": "20261025y",
+    "publication": {
+      "evidence": {
+        "commit": "c3a1b673f9034063b352b66df8df7a49d6da3b13",
+        "tree": "3f818345762831fdf22d63e8c249d168af7e9980",
+        "branch": "work8/examination-evidence-20261011"
+      },
+      "source": {
+        "commit": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+        "tree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+        "branch": "work8/writer-integration-20261025v"
+      },
+      "evidenceFirst": true,
+      "completeTreeEquality": true,
+      "metadataChanged": false,
+      "dispatches": 0,
+      "reruns": 0,
+      "pr113Head": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+      "prDraft": true,
+      "merged": false,
+      "automaticRun": 40175524098
+    },
+    "newAcceptedIds": [],
+    "missionStatus": "IN_PROGRESS",
+    "certification": "NO_GO",
+    "hostedQueuedWorkDecision": "PASS_SCOPED_GENERATED_READONLY_COUPLED_CONTINUATION_AND_RESTART",
+    "checkpoint": "2026-10-25 Y",
+    "sourceBaseline": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+    "evidenceBaseline": "b14faa6d8cd50e2ee57c60a420f96c10e5dc1af3",
+    "candidateSource": {
+      "commit": "0329e389035e96599e439fff068bf11b3496ecd4",
+      "tree": "210751c83aef4737b6962f6d17b5e52335debfc7",
+      "parent": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+      "branch": "work8/writer-integration-20261025v",
+      "verified": true,
+      "published": false,
+      "review": "O33-INDEPENDENT-SOURCE-REVIEW.json",
+      "changedPaths": 14
+    },
+    "newlyAccepted": [],
+    "preservedBaseCandidateSource": {
+      "commit": "a11087d2eca4157a2ca2cfc65e6e2415dcaa42f6",
+      "tree": "26a030a5db565a8d501acd072c99d0dbfd7cac4d",
+      "parent": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+      "remoteCompleteTreeEquality": true,
+      "branchRefsUpdated": false,
+      "published": false,
+      "deployed": false,
+      "reviewScope": "EXACT_STAGING_ONLY_NOT_RELEASE_READY",
+      "retention": "Unreferenced Git object: retained remotely but subject to eventual garbage collection until approved ref publication"
+    },
+    "targetedJournalHosted": {
+      "run": 40146543781,
+      "attempt": 1,
+      "source": "70db355abf322f78ddeb34369a23f1c2d4ecc7d5",
+      "status": "completed",
+      "conclusion": "success",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    "publishedSource": {
+      "commit": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+      "tree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+      "branch": "work8/writer-integration-20261025v"
+    },
+    "historicalBaseline": {
+      "publication": {
+        "evidence": {
+          "commit": "982f535ed409c7563d0a323bf6586d320fed61ef",
+          "tree": "ce9aa5b83cc4d3c6b204e6d3086053a113e14f0a"
+        },
+        "source": {
+          "approved": "ddb4426476ea54f900b148cb23c50c77a8192a1d",
+          "published": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+          "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f"
+        },
+        "evidenceFirst": true,
+        "safeDirectParentAncestry": true,
+        "remoteCompleteTreeEquality": true,
+        "metadataOnlyChange": "remove skip ci marker for normal automatic source CI",
+        "prDraft": true,
+        "merged": false
+      },
+      "checkpoint": "2026-10-25 Q",
+      "UIntegrationStatus": {
+        "contractReviewed": true,
+        "implementationStarted": false,
+        "remainingScope": "Approximately11existingfiles+2newmodules+actualgraphharness; enforceableunadmitteddescendantboundary unresolved",
+        "engineeringAlreadyAuthorized": true
+      }
+    },
+    "preservedAcceptedCI": {
+      "source": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+      "tree": "1d8d91c69a70272ebd386e04ea371e8cd2ecf51f",
+      "runs": [
+        {
+          "id": 40104285260,
+          "name": "Product path CI",
+          "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "updated_at": "2026-10-24T15:01:13Z"
+        },
+        {
+          "id": 40104285262,
+          "name": "Pillow semantic repair CI",
+          "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "updated_at": "2026-10-24T14:55:08Z"
+        },
+        {
+          "id": 40104285264,
+          "name": "Independent Assurance Core",
+          "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "updated_at": "2026-10-24T14:50:45Z"
+        },
+        {
+          "id": 40104285277,
+          "name": "Pillow runtime repair CI",
+          "head_sha": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "updated_at": "2026-10-24T15:03:31Z"
+        }
+      ],
+      "runtimeJobs": 6,
+      "productJobs": 10,
+      "dispatches": 0,
+      "reruns": 0
+    },
+    "independentJournalDecision": "PASS_DECLARED_ISOLATED_COHORT_ONLY",
+    "integrationStatus": {
+      "sourceImplemented": true,
+      "hostedExecuted": true,
+      "hostedIntegrationAccepted": "ACTUAL_CONTROL_MODULES_SYNTHETIC_APPLICATION_ENTRIES_ONLY",
+      "environmentSuitableForTestedScope": true,
+      "nativeCorrectionCycle": "CLOSED",
+      "remainingScope": "Real compiled application coverage, safe operating epoch/cutover, full capture/protected copy/fresh restore and compatible rollback"
+    },
+    "candidateCI": null,
+    "lastAttemptedIntegrationCI": {
+      "run": 40175524098,
+      "attempt": 1,
+      "conclusion": "success",
+      "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+      "scope": "ACTUAL_CONTROL_MODULES_SYNTHETIC_APPLICATION_ENTRIES",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    "lastAcceptedJournalCI": {
+      "run": 40146543781,
+      "attempt": 1,
+      "source": "70db355abf322f78ddeb34369a23f1c2d4ecc7d5",
+      "status": "completed",
+      "conclusion": "success",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    "lastAcceptedHostedCI": {
+      "run": 40175524098,
+      "attempt": 1,
+      "conclusion": "success",
+      "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+      "scope": "ACTUAL_CONTROL_MODULES_SYNTHETIC_APPLICATION_ENTRIES",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    "latestEvidencePublication": {
+      "commit": "a38cec1dea11772b20df86a83780d47919b10a69",
+      "tree": "db03c30002b4459fcc8fcb4342af25fef63a5bf4",
+      "parent": "c3a1b673f9034063b352b66df8df7a49d6da3b13",
+      "verified": true,
+      "noSourcePublication": true,
+      "noCIDispatch": true,
+      "noReruns": true,
+      "pr113Head": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+      "draft": true,
+      "merged": false
+    },
+    "latestContinuation": "campaign-z/Work8-Strategic-Closure-20261025z.json",
+    "newAcceptedRows": []
+  },
+  "recovery": {
+    "recordType": "WORK8_Z_INDEPENDENT_SIX_ROW_DEPENDENCY_RECONCILIATION",
+    "reviewer": "recovery_closure independent lane",
+    "baseline": {
+      "accepted": 45,
+      "outstanding": 19,
+      "missionLedger": "IN_PROGRESS / NO_GO"
+    },
+    "method": "Bounded read-only review of retained original-criterion matrix and latest accepted Y evidence/plans. No new tests, CI, external service investigations, source edits or production actions. Retained criteria are not represented as newly recovered verbatim owner contract documents.",
+    "evidencePaths": [
+      "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+      "campaign-y/FULL-TRACKER.json",
+      "campaign-y/INDEPENDENT-HOSTED-REVIEW.json",
+      "campaign-y/INTEGRATED-RECOVERY-CAMPAIGN.json",
+      "campaign-y/INTEGRATED-RECOVERY-PLAN.json",
+      "campaign-y/SOURCE-BOUND-RESTORE-READBACK.json",
+      "campaign-z/O33-INDEPENDENT-SOURCE-REVIEW.json",
+      "campaign-z/O33-LOCAL-BOUNDARY-RESULT.json",
+      "campaign-z/O33-COORDINATOR-LOCAL-CHECKS.json",
+      "campaign-z/SOURCE-STAGED.json"
+    ],
+    "rows": [
+      {
+        "id": "O33",
+        "status": "PENDING",
+        "originalRetainedCriterion": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in declared runtime topology, including still-active prior instances. Preserve scoped reviewed lifecycle-marker and held-handoff corrections; neither establishes operational replay or full topology. Arbitrary privileged host attackers are not an added criterion.",
+        "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+        "acceptedReusableEvidence": [
+          "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+          "Original session, financial/history and admission controls within retained scopes",
+          "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+          "U controller journal11/11 within isolated cohort",
+          "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+        ],
+        "exactUnprovenAssertions": [
+          "Complete actual declared primary/worker/observer/session/journal/visual-memory/queue writer and transport census, including prior instances still able to write",
+          "Source-bound actual-application coordinated capture and replay with all writer holds/exclusion",
+          "Coupled pending-work continuation exactly once under that complete integrated graph"
+        ],
+        "existingEvidenceAloneCompletes": false,
+        "isolatedFeasibility": "YES for the complete concurrency/capture/replay contract of the declared actual application topology: use real compiled entries, all writer/transport classes and current/prior generations in a fresh isolated epoch. Neither production cutover nor custody is an automatic original O33 criterion. This would not certify production historical coverage or the other five operating/custody contracts. Current Y synthetic entries do not provide this proof.",
+        "nextActionClassification": "OWNER DECISION REQUIRED",
+        "authorityOrEvidenceNeeded": "The minimum actual-application integration has been implemented, independently reviewed and staged as source0329e389035e96599e439fff068bf11b3496ecd4/tree210751c83aef4737b6962f6d17b5e52335debfc7. Next required action is exact-tree source/evidence publication approval for one automatic Node22/Docker examination; no production cutover or custody prerequisite is added to O33.",
+        "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+        "scopeGuard": "Do not add protected custody as a universal O33 criterion. Assess concurrency/replay against its original declared runtime topology; custody is separately mandatory for A3/O39.",
+        "minimumEngineering": "Completed: private controller-reserved/recipient-bound capability, admitted actual-brain source initialization and coordinated held capture, operator-only sealed-copy/materialization coordinator, actual controller-admitted target/restart, reused pure pending/readiness oracles. Incompatible old orchestration is not invoked or weakened.",
+        "hostedExaminationClass": "OWNER DECISION REQUIRED",
+        "assignedImplementationLane": "o33_integration",
+        "engineeringStatus": "COMPLETE_REVIEWED_STAGED_HOSTED_UNVERIFIED",
+        "sourceCandidate": {
+          "commit": "0329e389035e96599e439fff068bf11b3496ecd4",
+          "tree": "210751c83aef4737b6962f6d17b5e52335debfc7",
+          "parent": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+          "branch": "work8/writer-integration-20261025v",
+          "verified": true,
+          "published": false,
+          "review": "O33-INDEPENDENT-SOURCE-REVIEW.json",
+          "changedPaths": 14
+        }
+      },
+      {
+        "id": "O39",
+        "status": "PENDING",
+        "originalRetainedCriterion": "Distinct password-protected Redis replacement after original shutdown, atomic target identity, AOF-only crash recovery, paused fence and once-only labelled pending continuation independently pass. Full authorized application restoration, owner-session restoration into replacement topology and protected independently authenticated off-host custody remain.",
+        "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+        "acceptedReusableEvidence": [
+          "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+          "Original session, financial/history and admission controls within retained scopes",
+          "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+          "U controller journal11/11 within isolated cohort",
+          "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+        ],
+        "exactUnprovenAssertions": [
+          "Complete authorized application restoration into replacement topology from one consistent source set",
+          "Owner-session and pending-work continuity bound to that same set",
+          "Protected independently authenticated off-host custody and readback",
+          "Compatible rollback/migration with corruption refusal and no copied execution authority"
+        ],
+        "existingEvidenceAloneCompletes": false,
+        "isolatedFeasibility": "A fresh isolated target is appropriate and does not require production restart. However the source must be a complete authorized operational set and protected full-data readback must exist. Current synthetic/control evidence does not provide that set.",
+        "nextActionClassification": "OWNER DECISION REQUIRED",
+        "authorityOrEvidenceNeeded": "Authorize exact operating source capture/data handling and isolated restore only after source membership/exclusion, protected route and compatible image pair are established; live cutover remains separately gated.",
+        "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+        "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+      },
+      {
+        "id": "A1",
+        "status": "PENDING",
+        "originalRetainedCriterion": "Complete global capture/replay and genuine operating acceptance through the existing twin and Console; preserve new scoped integration and accepted isolated capability.",
+        "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+        "acceptedReusableEvidence": [
+          "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+          "Original session, financial/history and admission controls within retained scopes",
+          "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+          "U controller journal11/11 within isolated cohort",
+          "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+        ],
+        "exactUnprovenAssertions": [
+          "Complete global application capture/replay and persistent identity/state continuity",
+          "Genuine operating twin and connected Console acceptance",
+          "Authoritative safe operating epoch when prior production membership is unprovable"
+        ],
+        "existingEvidenceAloneCompletes": false,
+        "isolatedFeasibility": "Isolated integration is useful but insufficient for the retained genuine operating/Console requirement. An owner-connected authorized runtime and complete source records are indispensable.",
+        "nextActionClassification": "OWNER DECISION REQUIRED",
+        "authorityOrEvidenceNeeded": "Exact corrected operating release/rollback and owner-connected runtime authorization; no repeated live DEFER and no inferred commercial authority.",
+        "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+        "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+      },
+      {
+        "id": "A2",
+        "status": "PENDING",
+        "originalRetainedCriterion": "Cooperating writer coverage and distinct Redis inspection replacement verified; global exclusion and complete whole-system operational restoration remain. completeLiveState=false and bootAllowed=false preserved.",
+        "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+        "acceptedReusableEvidence": [
+          "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+          "Original session, financial/history and admission controls within retained scopes",
+          "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+          "U controller journal11/11 within isolated cohort",
+          "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+        ],
+        "exactUnprovenAssertions": [
+          "Complete actual primary/worker/observer and canonical store graph with current/prior writer exclusion",
+          "One globally consistent full-data capture and fresh-target operational restoration",
+          "No inspection-only bootAllowed=false/completeLiveState=false material relabelled operational"
+        ],
+        "existingEvidenceAloneCompletes": false,
+        "isolatedFeasibility": "Full application restoration can be demonstrated on an isolated target, but current evidence lacks complete actual operating source coverage. An isolated synthetic cohort cannot substitute for omitted operating writers.",
+        "nextActionClassification": "OWNER DECISION REQUIRED",
+        "authorityOrEvidenceNeeded": "Exact source capture and safe prospective epoch/old-writer exclusion authorization where required; new integration publication approval separately required.",
+        "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+        "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+      },
+      {
+        "id": "A3",
+        "status": "PENDING",
+        "originalRetainedCriterion": "Prove complete consistent snapshot, runtime credential exclusion from alteration/deletion, protected retention, independently authenticated off-host readback and complete fresh-target application restoration with canonical/session/pending-work invariants and no authority replay.",
+        "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+        "acceptedReusableEvidence": [
+          "Existing authorized Library route and independently authenticated report readback",
+          "Retained corruption/refusal and scoped restoration evidence; not complete operational custody"
+        ],
+        "exactUnprovenAssertions": [
+          "Complete consistent operational snapshot, not reports or inspection material",
+          "Object-specific retention/version integrity",
+          "Proof runtime cannot alter/delete protected original",
+          "Independent authenticated full-data readback and digest verification",
+          "Fresh-target restoration from exactly that retrieved copy; corruption refusal and no authority replay"
+        ],
+        "existingEvidenceAloneCompletes": false,
+        "isolatedFeasibility": "Fresh restore and local-copy corruption refusal can be isolated. Custody cannot be proven by local files or GitHub artifacts alone. Existing Library is an eligible route, not yet demonstrated as sufficient for this complete operational object and rights/retention contract.",
+        "nextActionClassification": "EXTERNAL EVIDENCE REQUIRED",
+        "authorityOrEvidenceNeeded": "Existing protected storage account/object version retention semantics, runtime exclusion and independent read-principal evidence are needed. Existing route use may be authorized; do not request storage purchase without first proving a capability gap.",
+        "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+        "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+      },
+      {
+        "id": "A5",
+        "status": "PENDING",
+        "originalRetainedCriterion": "Preserve accepted operating rollback. Complete whole-application consistency and authorized restore across all domains; paused inspection recovery is not complete application rollback.",
+        "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+        "acceptedReusableEvidence": [
+          "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+          "Original session, financial/history and admission controls within retained scopes",
+          "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+          "U controller journal11/11 within isolated cohort",
+          "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+        ],
+        "exactUnprovenAssertions": [
+          "Explicit compatible forward and rollback source/image pair",
+          "Whole-application schema/data/generation consistency across upgrade and rollback",
+          "Original sessions and financial/mission records preserved with no stale re-entry or duplicate work",
+          "Authorized full restore across all domains, rather than paused inspection rollback"
+        ],
+        "existingEvidenceAloneCompletes": false,
+        "isolatedFeasibility": "Compatible image and schema transitions can be examined in isolation. The current accepted controller source is only a prospective compatibility floor; no exact proven pair is supplied. Actual operating cutover needs separate authority.",
+        "nextActionClassification": "OWNER DECISION REQUIRED",
+        "authorityOrEvidenceNeeded": "Prepare exact compatible forward/rollback pair under existing engineering authority; require publication/examination approval for new trees and separate operating deployment approval. Legacy unfenced or DEFER-incompatible releases are not eligible rollback targets.",
+        "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+        "scopeGuard": "No additional criterion beyond the retained original contract; no production proof inferred from an isolated result."
+      }
+    ],
+    "newAcceptedRows": [],
+    "wholeRowExecuteNow": [],
+    "engineeringDecision": "O33 isolated actual-application integration authoring is complete and independently reviewed for staging only. No immediate whole-row examination remains executable under current no-source-publication/no-CI directive. One exact-tree approval enables the complete declared-topology hosted examination. Other recovery rows retain their distinct operating/custody inputs.",
+    "oneIntegratedCampaign": [
+      "Verify declared operating source writer membership or safely establish a prospective epoch with explicit exclusion of old writers; do not invent history",
+      "Capture actual compiled application graph under accepted controller/fencing and stable holds, canonical13stores/Redis/session/journal/visual memory/financial and mission manifest",
+      "Protect the complete snapshot at an identified off-host object/version, prove retention and runtime exclusion, independently read full bytes",
+      "Use retrieved intact copy for one fresh-target operational restore with original sessions and pending work exactly once; corrupt only a disposable local copy to test refusal",
+      "Verify exact compatible rollback pair and no copied authority/stale generations, then independently decide each row against its own criteria"
+    ],
+    "minimumOwnerDecision": "Approve the consolidated exact reviewed evidence/source candidate, evidence first and source0329e389035e96599e439fff068bf11b3496ecd4/tree210751c83aef4737b6962f6d17b5e52335debfc7 second on work8/writer-integration-20261025v, allowing one automatic Node22 build/actual-application O33 examination. No production cutover, protected-custody acceptance, or other whole-row acceptance follows automatically.",
+    "cost": "No paid service, CI or external execution incurred in this reconciliation. Future cost not invented; cap each commissioned task at US$10 and establish runner/storage inputs before approval.",
+    "custodyConclusion": "Existing Library route is potentially eligible but sufficiency is UNPROVEN, not established unavailable. Missing complete object, retention/version semantics, runtime-rights exclusion and independent full-data readback/restore evidence. No new storage purchase justified by retained evidence alone.",
+    "safety": {
+      "pillow": "NOT_BORN",
+      "commerce": "LOCKED",
+      "work9": "INACTIVE",
+      "productionActions": 0,
+      "ciRuns": 0
+    }
+  },
+  "other13": {
+    "campaign": "Z",
+    "date": "2026-10-25",
+    "reviewer": "/root/other_closure",
+    "method": "Bounded reconciliation of retained authoritative tracker and specifically referenced N/O/Q/S evidence; no external reads, tests, CI, source edits, messages or live decisions.",
+    "sources": [
+      "campaign-y/FULL-TRACKER.json",
+      "campaign-q/OWNER-RELEASE-ROLLBACK-GATES.md",
+      "campaign-q/BUSINESS-EXACT-READ-ACCESS.json",
+      "campaign-s/BUSINESS-PROVIDER-READBACK-INTERFACE.json",
+      "campaign-q/ALERT-ENTITLEMENT-EXECUTION-BOUNDARY.md",
+      "campaign-o/O30-BOUNDED-TEST-AUTHORITY.md",
+      "campaign-n/ALERTS-ENTITLEMENTS-ACCOUNTING-CLOSURE.md"
+    ],
+    "newCompleteAcceptances": [],
+    "totalsPreserved": {
+      "accepted": 45,
+      "outstanding": 19
+    },
+    "rows": [
+      {
+        "id": "O2",
+        "statusPreserved": "BLOCKED",
+        "requirement": "Financial and historical preservation",
+        "nextActionClass": "EXTERNAL EVIDENCE REQUIRED",
+        "mandatoryMissing": "Immutable original accounting snapshot or audited attributable lineage from original224 to current227, with stable identities, mutations/business events, totals/currency/period reconciliation and retained digests.",
+        "boundary": "No new credible provenance lead; preserve227 and digests.",
+        "lane": "accounting",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "No credible new original-224 baseline or audited lineage lead. Existing 227 accounting records and historical digests remain preserved without repeated unsupported search.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "O7",
+        "statusPreserved": "BLOCKED",
+        "requirement": "Product images and usage rights",
+        "nextActionClass": "EXTERNAL EVIDENCE REQUIRED",
+        "mandatoryMissing": "Applicable exact-asset rights evidence, which may include attributable blanket permission proven applicable to current account, asset and intended use.",
+        "boundary": "Do not invent a bespoke per-asset license requirement or imply revocation.",
+        "lane": "business",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "Retained CJ source evidence remains explicitly identity- and expiry-bound, without matched marketplace qualification, complete processing/returns/media-rights/economics evidence or an eligible new Pillow assessment. No repeated provider query or paid inference.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "O13",
+        "statusPreserved": "BLOCKED",
+        "requirement": "Actual Pillow assessment binding",
+        "nextActionClass": "EXTERNAL EVIDENCE REQUIRED",
+        "mandatoryMissing": "One exact current CJ product/variant and attributable matching Amazon record, current stock/USfreight/processing/returns/media rights/fees/FX/economics, eligibility; then separately bounded inference commissioning if required.",
+        "boundary": "Exact provider-read interface absent; unrelated catalogue read does not qualify.",
+        "lane": "business",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "Retained CJ source evidence remains explicitly identity- and expiry-bound, without matched marketplace qualification, complete processing/returns/media-rights/economics evidence or an eligible new Pillow assessment. No repeated provider query or paid inference.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "O14",
+        "statusPreserved": "PENDING",
+        "requirement": "Owner recommendations and decisions",
+        "nextActionClass": "OWNER DECISION REQUIRED",
+        "mandatoryMissing": "Exact production-compatible corrected backend/frontend build artifacts, isolated authenticated persistence and rollback proof, protected pre-release copy; separately approved genuine owner-connected operating runtime and same-product chain.",
+        "boundary": "Existing conditional DEFER remains valid only exact unchanged decision/version; no repeated click.",
+        "lane": "owner",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "O30",
+        "statusPreserved": "PENDING",
+        "requirement": "Assurance watchdog/degraded operation",
+        "nextActionClass": "OWNER DECISION REQUIRED",
+        "mandatoryMissing": "Authenticated GitHub notification routing/quota evidence, exact independently reviewed safe monitor publication/activation, verified destination/observer/escalation, then bounded send authority.",
+        "boundary": "One message approval alone cannot establish executor or verified route.",
+        "lane": "alerts",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "Independent delivery prerequisites remain unestablished. The accepted notification ledger is in the primary application database; no new provider, verified destination, observer or exact send authority was established. No message was sent.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "O40",
+        "statusPreserved": "BLOCKED",
+        "requirement": "Actual owner-view real-product walkthrough",
+        "nextActionClass": "OWNER DECISION REQUIRED",
+        "mandatoryMissing": "Genuine owner-connected corrected runtime plus actual same-product source/recommendation/decision/simulated-results/finance/Assurance journey on required presentation surfaces.",
+        "boundary": "Positive product qualification is not an unconditional gate: a truthful rejected/deferred/insufficient-evidence walkthrough can satisfy the retained criteria where the genuine same-product source/disposition and durable records exist. Corrected operating runtime and exact artifact/rollback gates remain.",
+        "lane": "owner",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "O41",
+        "statusPreserved": "PENDING",
+        "requirement": "Mobile desktop source-to-finance equality",
+        "nextActionClass": "OWNER DECISION REQUIRED",
+        "mandatoryMissing": "Same genuine source-to-finance chain read on authenticated desktop and mobile after corrected runtime is available.",
+        "boundary": "Current missing mobile examination alone cannot close absent durable decision/result chain.",
+        "lane": "owner",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "O42",
+        "statusPreserved": "PENDING",
+        "requirement": "Review exact-head CI and release authority",
+        "nextActionClass": "EXTERNAL EVIDENCE REQUIRED",
+        "mandatoryMissing": "Final integrated exact-source independent review and applicable exact-head evidence after remaining mandatory owner, operational, custody and external contracts close.",
+        "boundary": "Accepted scoped CI remains preserved; another CI run cannot close prerequisite contracts.",
+        "lane": "certification",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "45 complete rows preserved; four accepted a12 workflows/backend340/340/Runtime417/417; U journal11/11; latest Y40175524098 PASS actual controls/synthetic entries on fe442e0c1a0d792173f8bc818ab1deecdb7d601a. No whole-row inference.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "O43",
+        "statusPreserved": "PENDING",
+        "requirement": "Independent Mission Ledger closure",
+        "nextActionClass": "EXTERNAL EVIDENCE REQUIRED",
+        "mandatoryMissing": "Independent complete-row receipts for remaining mandatory contracts, final authoritative64-row reconciliation and MissionLedger certification.",
+        "boundary": "Aggregate certification dependency, not missing provider data alone; retain IN_PROGRESS/NO_GO.",
+        "lane": "certification",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "45 complete rows preserved; four accepted a12 workflows/backend340/340/Runtime417/417; U journal11/11; latest Y40175524098 PASS actual controls/synthetic entries on fe442e0c1a0d792173f8bc818ab1deecdb7d601a. No whole-row inference.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "A6",
+        "statusPreserved": "PENDING",
+        "requirement": "Owner-visible autonomous dry run",
+        "nextActionClass": "OWNER DECISION REQUIRED",
+        "mandatoryMissing": "Genuine owner-visible autonomous dry-run records and durable decisions/results on corrected owner-connected runtime, within original contract.",
+        "boundary": "Projection/synthetic software proof is retained but not genuine owner acceptance.",
+        "lane": "owner",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "A10",
+        "statusPreserved": "PENDING",
+        "requirement": "Canva-assisted editing",
+        "nextActionClass": "OWNER DECISION REQUIRED",
+        "mandatoryMissing": "Applicable account/design entitlement and company-bound server OAuth design:content:read export authority, exact binding grant; actual authorised edit/export and hash-bound artifact receipt.",
+        "boundary": "ChatGPT Canva auth/Console sign-in does not grant backend export. No hanging reads repeated.",
+        "lane": "entitlements",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "Two bounded read-only Canva account searches hung and were stopped by the controller for cost control. No account/design result was retained; entitlement remains unknown. No edit/export or retry occurred; runtime export authority remains unproven.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "A15",
+        "statusPreserved": "PENDING",
+        "requirement": "Keepa and Helium 10 readiness",
+        "nextActionClass": "EXTERNAL EVIDENCE REQUIRED",
+        "mandatoryMissing": "Authenticated redacted Keepa API account entitlement: active period/token refill and key presence; then authorised bounded exact-ASIN/domain read if required.",
+        "boundary": "NOT_CONFIGURED is not proof of no subscription; no purchase. Helium10 remains truthfully deferred.",
+        "lane": "entitlements",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "One bounded root Keepa discovery query returned no plugins; no Keepa tools were loaded. This non-exhaustive result does not prove account entitlement absence. The actual runtime remains NOT_CONFIGURED and unverified; no purchase or activation.",
+        "decision": "NO_PROMOTION"
+      },
+      {
+        "id": "A19",
+        "statusPreserved": "PENDING",
+        "requirement": "Integrated owner acceptance",
+        "nextActionClass": "OWNER DECISION REQUIRED",
+        "mandatoryMissing": "Complete genuine integrated owner acceptance on corrected authorised runtime with durable same-product records and all mandatory dependent evidence.",
+        "boundary": "Do not join unrelated products or fixtures; no whole-row promotion from local projection.",
+        "lane": "owner",
+        "wholeRowExecutableNow": false,
+        "acceptedEvidenceReused": "The exact authorized DEFER was clicked once. Native reload retained version 0 and Awaiting owner review, with no durable event/history transition. Source review confirms the deployed handler only displayed local feedback. A four-path durable correction passes local changed-boundary tests; it is not deployed or accepted as a real owner decision. Current mobile presentation remains unexamined.",
+        "decision": "NO_PROMOTION"
+      }
+    ],
+    "consoleExactPreparedPair": {
+      "backendCommit": "98970018d579e5a7c720d25293cdddbe294856c0",
+      "backendTree": "7469666e172da6c7ed63648edb673b599e08079e",
+      "frontendCommit": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+      "frontendTree": "6d7d834b45964dadf3dab24818467ba6b5187e94",
+      "retainedProductionBackend": "608f3f5382e32d295ebe3733194846ac7cbb9d57",
+      "retainedBackendDeployment": "4303f5e9-afef-4f70-9388-996a0e923949",
+      "retainedFrontendSource": "71f9414d6c534b4c35dbd22696b82a77fcf7c597",
+      "retainedFrontendDeployment": "dpl_FH2y8VBSN1QwLRq9smUzy3JNgHog",
+      "freshDeploymentBinding": false,
+      "releaseReady": false,
+      "missing": [
+        "Node22 production-compatible exact builds and immutable artifacts",
+        "Exact-pair isolated authenticated route persistence/version/replay/history proof",
+        "Protected consistent pre-release institutional-memory/session copy",
+        "Selectable pre-DEFER rollback artifact; retained corrected backend as post-DEFER rollback floor",
+        "Separate exact publication and operating release approval"
+      ],
+      "rollbackRule": "After any durable DEFER, never downgrade to legacy backend projection or restore institutional-memory DB to erase event. Corrected backend is minimum compatible floor; immutable executable floor artifact not yet evidenced."
+    },
+    "alertConcreteConditionalRoute": {
+      "executor": "Existing GitHub-hosted Ubuntu Actions runner outside Railway failure domain",
+      "attemptStore": "Unique intent and outcome GitHub artifacts, proposed7days; not operational backup",
+      "provider": "GitHub native failed-Actions email",
+      "actor": "empireaios",
+      "actorProfileEmail": "empireaiengine@gmail.com",
+      "connectedObserverMailbox": "kerlancia@gmail.com",
+      "verifiedDestination": null,
+      "routeVerified": false,
+      "observer": "Connected Gmail readback can independently observe receipt only after verified routing; unattended escalation observer not established",
+      "escalation": "Owner acknowledgement and contract-bound missed-ack escalation; actual autonomous observer and route still required",
+      "testBounds": "Proposed one isolated target run, at most2runner minutes/1MiB/7days/US$0.10, no retry; actual rate/allowance unverified",
+      "minimumFirstInput": "Authenticated secret-free account notification settings showing verified recipient, repo/org overrides, failed-Actions preference and existing allowance; user can provide attributable redacted readback. No send approval until verified."
+    },
+    "businessExactSubject": {
+      "cjProduct": "2610240019051639200",
+      "cjVariant": "2610240019061630200",
+      "destination": "US",
+      "matchedAmazonRecord": null,
+      "existingExactInterface": "Authenticated owner POST /api/owner/advisor/intelligence action job with cj.detail/cj.stock/cj.freight is retained plan, not callable connector operation or executed proof.",
+      "existingWorkflowNotSufficient": "provider-readback hardcodes one-row catalogue observation, not exact selected detail/stock/freight.",
+      "cost": "30configuredCJpoints for proposed threecalls; marginalUSD unknown; no call made."
+    },
+    "decision": "No other13 complete row is fully evidenced or executable to full acceptance under present retained inputs. Do not perform partial repeat tests. Recover precise access/artifact/authority prerequisites; independently review complete boundaries when available.",
+    "classificationCaveat": "OWNER DECISION identifies an indispensable operating/access boundary, not a claim that a generic approval alone closes the row. O42/O43 are aggregate evidence gates, with no demonstrated implementation defect."
+  },
+  "custody": {
+    "decision": "NOT_ESTABLISHED_AS_PROTECTED_OPERATIONAL_BACKUP",
+    "available": "Authenticated Library file create/read/version restore exists.",
+    "missing": [
+      "Complete consistent operational backup bytes and manifest",
+      "Enforced retention policy and runtime alteration/deletion exclusion evidence",
+      "Separately authenticated independent reader identity",
+      "Restoration from that exact protected copy with corruption refusal"
+    ],
+    "basis": "Current Library capabilities expose version restore and deletion, but do not establish an enforced retention policy or independent-principal administration. This is unproven capability, not proof of impossibility.",
+    "cost": "No new service commissioned. Qualifying storage cost unknown until existing account and policy identified.",
+    "minimumInput": "Existing storage account/container and retention policy, separate custodian/read principal, authorised complete-data transfer route. No credentials in chat."
+  },
+  "independentReview": {
+    "recordType": "WORK8_Z_INDEPENDENT_ACCEPTANCE_CONTROLLER_REVIEW",
+    "reviewer": "/root/recovery_closure",
+    "reviewed": [
+      "campaign-z/RECOVERY-RECONCILIATION.json",
+      "campaign-z/OTHER-RECONCILIATION.json",
+      "campaign-z/CUSTODY-CAPABILITY.json"
+    ],
+    "verdict": "RETAIN_45_ACCEPTED_19_OUTSTANDING_NO_UNSUPPORTED_PROMOTION",
+    "newAcceptedRows": [],
+    "wholeRowExaminationsExecutableImmediately": [],
+    "engineeringExecutableNow": [],
+    "requiredCorrection": [],
+    "qualifiedUnknowns": [
+      "Library operational retention, independent principal administration and complete-data protected restore remain unproven, not shown impossible.",
+      "Keepa runtime NOT_CONFIGURED does not establish no subscription.",
+      "GitHub notification destination and missed-ack escalation observer are not verified; proposed allowance/cost is not a quote.",
+      "Prepared Console source commits are not immutable built release/rollback artifacts or fresh deployment bindings.",
+      "O42/O43 aggregate mandatory evidence dependencies are not demonstrated implementation defects."
+    ],
+    "scopeSeparation": [
+      "Y hosted writer integration accepted actual control modules with synthetic application entries only.",
+      "O33 isolated actual graph proof can certify concurrency/replay for the complete declared topology without certifying production historical membership.",
+      "O39/A1/A2/A3/A5 retain their distinct operating/source/Console/custody/rollback criteria; do not collapse them into O33."
+    ],
+    "noActionsRepeated": {
+      "tests": 0,
+      "CI": 0,
+      "externalInvestigations": 0,
+      "liveDecisions": 0
+    },
+    "publicationApprovalRequired": "Any new source/evidence tree remains unapproved until exact-tree owner authorization.",
+    "engineeringCompleted": "O33 minimum complete-boundary candidate implemented/reviewed/staged; one hosted exact-tree approval remains.",
+    "resolvedCorrection": "O40 now permits a genuine truthful rejected/deferred/insufficient-evidence walkthrough; positive qualification not an unconditional gate."
+  },
+  "engineering": {
+    "O33": {
+      "status": "IMPLEMENTED_INDEPENDENTLY_REVIEWED_STAGED_NOT_PUBLISHED",
+      "target": "Complete declared actual application topology concurrency/capture/replay in isolation",
+      "local": "5/5 changed-boundary Node24 checks; syntax/TSparse only",
+      "hosted": "Node22 build and complete examination pending exact-tree approval",
+      "cost": "No new paid service or CI executed; single proposed job capped20min, US$10 task ceiling remains; account allowance not newly verified",
+      "scope": "No production cutover, custody, other five recovery rows inferred"
+    }
+  },
+  "newAcceptedRows": [],
+  "safeguards": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "PR113": "draft/unmerged",
+    "productionChanged": false,
+    "newCIRuns": 0
+  },
+  "classification": {
+    "EXECUTE NOW": [],
+    "OWNER DECISION REQUIRED": [
+      "O33",
+      "O39",
+      "A1",
+      "A2",
+      "A5",
+      "O14",
+      "O30",
+      "O40",
+      "O41",
+      "A6",
+      "A10",
+      "A19"
+    ],
+    "EXTERNAL EVIDENCE REQUIRED": [
+      "O2",
+      "O7",
+      "O13",
+      "A3",
+      "A15",
+      "O42",
+      "O43"
+    ],
+    "TECHNICAL BLOCKER": []
+  },
+  "sourceCandidate": {
+    "commit": "0329e389035e96599e439fff068bf11b3496ecd4",
+    "tree": "210751c83aef4737b6962f6d17b5e52335debfc7",
+    "parent": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+    "branch": "work8/writer-integration-20261025v",
+    "verified": true,
+    "published": false,
+    "review": "O33-INDEPENDENT-SOURCE-REVIEW.json",
+    "changedPaths": 14
+  },
+  "sourceReview": {
+    "recordType": "O33_INDEPENDENT_SOURCE_REVIEW_FINAL",
+    "reviewer": "/root/recovery_closure",
+    "status": "PASS_FOR_STAGING_AND_TARGETED_HOSTED_EXAMINATION_ONLY",
+    "sourceBase": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+    "baseTree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+    "files": [
+      {
+        "path": ".github/workflows/work8-writer-integration.yml",
+        "mode": "100644",
+        "bytes": 1767,
+        "sha256": "6cb3adcaf1eacdd3ea19390ebc56d4119c48d61c5f45c49e94f4ebd69e1ac08d",
+        "gitBlob": "869ec6ded350b1036d8b31cd534b947d5ef13ab4"
+      },
+      {
+        "path": "backend/src/app.ts",
+        "mode": "100644",
+        "bytes": 75639,
+        "sha256": "11817943ba55e4293525dc65ac2a9b34f9e9ae6b8a44a07a52d482dfcbadfc84",
+        "gitBlob": "ce2ec2a31ac3bf867e87a224452a94d7ca0e3409"
+      },
+      {
+        "path": "backend/src/index.ts",
+        "mode": "100644",
+        "bytes": 5868,
+        "sha256": "96c51f9ee18aeeb2850ea90dbac88e610db81c2ce79d2816a4fe9de8c8d6f2d2",
+        "gitBlob": "01df58fce14c2f39d2b541a089398d76d6f7648f"
+      },
+      {
+        "path": "backend/src/runtime/work8-admitted-application.ts",
+        "mode": "100644",
+        "bytes": 6421,
+        "sha256": "02c4bd72b66902ebb24af71be459eb52451dc43d44ddf32037cb8cb455eb821d",
+        "gitBlob": "25d86fc6ea100b9ba3976b1114b6aceb50c44ba5"
+      },
+      {
+        "path": "deployment/fixtures/runtime-graph-redis.cjs",
+        "mode": "100644",
+        "bytes": 2462,
+        "sha256": "2bfc676aaba2dbff8ac077d3036d9e871c77e7660e4db1887a5dfd2126762ebd",
+        "gitBlob": "cd920e1171c86178c59c4a8cf1489953fa45ab9f"
+      },
+      {
+        "path": "deployment/locked-runtime.cjs",
+        "mode": "100644",
+        "bytes": 7056,
+        "sha256": "db58e4f070c8e8b1fbf382c624d19dfc421405349b9fdfae0ce805580f49af6f",
+        "gitBlob": "9206dc2976f05787e7b024e3f36a981ab9d9dd2c"
+      },
+      {
+        "path": "deployment/runtime-isolated-application.cjs",
+        "mode": "100644",
+        "bytes": 7996,
+        "sha256": "5af890a86d50a58b48bf82b42e751a17d553a1fbe9a4d6b06bb9403c0c12c8be",
+        "gitBlob": "27d91030fe5e2c12f6f2bdb5c91284e4d3520a68"
+      },
+      {
+        "path": "deployment/runtime-isolated-application.test.cjs",
+        "mode": "100644",
+        "bytes": 2972,
+        "sha256": "d818e840fb86dacd1de22bb6e51f3c63f05f98badc0a43e618c9ebe7dfc5219b",
+        "gitBlob": "6d485dedc67d39113ff2e009b0cb99289d0be5d1"
+      },
+      {
+        "path": "deployment/runtime-membership-bootstrap.mjs",
+        "mode": "100644",
+        "bytes": 3947,
+        "sha256": "73ad1447fcc29191b0f2e5281035e1c59f13f16524873cd7f185b4744cc4e591",
+        "gitBlob": "5fb306a78f59d951a716d86ea3d5438e62534cb8"
+      },
+      {
+        "path": "deployment/runtime-membership-controller.cjs",
+        "mode": "100644",
+        "bytes": 20836,
+        "sha256": "b519778debbbaa708b826010dd318134525c993f47e3fa800f63b30c3c3b4cb2",
+        "gitBlob": "58f4b7c2c9fe29b6f607aa985197ffe9fa3b19aa"
+      },
+      {
+        "path": "deployment/runtime-writer-controller.cjs",
+        "mode": "100644",
+        "bytes": 9754,
+        "sha256": "c54bcaeeb743eaf33318b8bc0f7c50a9f53525c11c2b12861c7b5e273aaa56f2",
+        "gitBlob": "90cde2ebd4041939325de359470f06bf1d317359"
+      },
+      {
+        "path": "scripts/work8/hh4-domain-state.mjs",
+        "mode": "100644",
+        "bytes": 17519,
+        "sha256": "f5842e2534a8e7181a4e2098b4d6224186e3e0f7073b97a6ef98671a91898e62",
+        "gitBlob": "62bd09527cd0ea55be05f195022b7e5daa5fcb5c"
+      },
+      {
+        "path": "scripts/work8/o33-application-coordinator.mjs",
+        "mode": "100644",
+        "bytes": 26973,
+        "sha256": "fc458e3ddc27c64c6f8a5c35bec6d6dd77593fd6fce021dd02031c576a50cf5b",
+        "gitBlob": "25dde6e53b9a618f9e8ade5d6f0a41fc9f1899b1"
+      },
+      {
+        "path": "scripts/work8/run-o33-application.sh",
+        "mode": "100644",
+        "bytes": 9421,
+        "sha256": "c8bfdb07b28c7461ea605a61e7ea92da700ae110ef015d14c841ea6273217865",
+        "gitBlob": "18ba1c93591782088f5cb777af194925c458389c"
+      }
+    ],
+    "reviewedScope": "Minimum actual application source capture, controller-private examination capability, fresh isolated actual target and current/prior generation replay examination; no production deployment or custody scope.",
+    "resolvedFindings": [
+      {
+        "id": "R1",
+        "resolution": "Sealed complete copy preserves source file modes under root-owned0500 directories/operator0700 parent; target materialization retains correct runtime-writable canonical file modes."
+      },
+      {
+        "id": "R2",
+        "resolution": "Prior generation probe requires exact same-input guard lease generation refusal, actual launcher guard startup refusal, unchanged canonical hashes/journal/Redis DUMP; cannot pass on arbitrary nonzero only."
+      },
+      {
+        "id": "R3",
+        "resolution": "Full13 SQL preboot bytes, inert exact source authority approvals[], one exact denied request owner, historical watchdog, visual/session state, readonly repository journal and Redis are explicitly mapped/read back; no historical freshness/execution authority inferred."
+      },
+      {
+        "id": "R4",
+        "resolution": "Twelve assertion-to-oracle/evidence mappings now recorded; noAuthorityReplay includes original mission-runtime403, forged401, inert authority and readonly completed output; failureClosed scope explicit."
+      },
+      {
+        "id": "R5",
+        "resolution": "One180second target deadline spans preparation/start/pending/restart; polling checks deadline before and after awaited probes. Original5second held-copy ACK and20second guard preserved."
+      },
+      {
+        "id": "R6",
+        "resolution": "Root-only exclusive grant reservation fsynced before any controller child; exact recipient consumption fsynced before private brain admission ACK. Replay/interrupted reservation requires fresh nonce."
+      },
+      {
+        "id": "R7",
+        "resolution": "Authoritative internal Docker network/container inspection, root-protected digest, network namespace/hostname and no default-route checks; source canonical state must be fresh before child import; grant expiry rechecked at issuance."
+      }
+    ],
+    "localEvidence": [
+      "campaign-z/O33-LOCAL-BOUNDARY-RESULT.json:5/5 Node24 changed-boundary checks; no failures/skips; not hosted acceptance",
+      "campaign-z/O33-COORDINATOR-LOCAL-CHECKS.json:Node24 syntax/bash syntax/single automatic workflow structure; no hosted acceptance"
+    ],
+    "remainingExamination": [
+      "Node22 Pillow/backend compilation on reviewed exact source",
+      "Actual admitted primary/brain/Assurance entries and native isolation on existing runner",
+      "Complete declared census/current-prior exclusion, stable coordinated source snapshot, fresh-target restore and once-only restart/readback within original bounds",
+      "Independent whole O33 criterion decision from exact retained artifacts; green job alone does not promote row"
+    ],
+    "wholeRowDecision": "PENDING_HOSTED_COMPLETE_DECLARED_TOPOLOGY_EVIDENCE",
+    "newAcceptedRows": [],
+    "accepted": 45,
+    "outstanding": 19,
+    "sourcePublicationAuthorized": false,
+    "CIExecutedByReviewer": false,
+    "productionCutoverProven": false,
+    "protectedCustodyProven": false,
+    "costBoundary": "Existing runner only; no purchase, provider inference or external message. Task ceiling US$10; execution needs exact-tree owner approval.",
+    "limitations": "Independent source review and limited local checks cannot establish full runtime compatibility. Previously accepted synthetic journal/writer examinations remain preserved and are not rerun. No production historical membership or other recovery-row closure inferred."
+  },
+  "localResults": {
+    "command": "node --test campaign-z/source/deployment/runtime-isolated-application.test.cjs",
+    "runtime": "Node 24.22.1 local",
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "skipped": 0,
+    "durationMs": 119.392144,
+    "scope": [
+      "expiry before durable consume",
+      "exact admitted role/source/generation",
+      "real filesystem fsync and exclusive replay refusal preserving recipient receipt",
+      "target Redis host mismatch refusal before network",
+      "exclusive fsynced reservation before application child rejects reused/interrupted grant"
+    ],
+    "notProven": [
+      "Node22 compilation",
+      "operator/runtime identity separation",
+      "actual Redis network identity",
+      "full graph capture/restoration",
+      "whole O33 acceptance"
+    ],
+    "acceptedTestsRepeated": false,
+    "hostedExecution": false,
+    "priorRun": {
+      "tests": 4,
+      "pass": 4,
+      "durationMs": 90.1712,
+      "supersededBy": "reservation-before-any-child correction"
+    }
+  },
+  "coordinatorChecks": {
+    "scope": "Syntax and workflow structure only; no hosted or whole-row acceptance",
+    "runtime": "v24.22.1",
+    "checks": [
+      {
+        "command": [
+          "node",
+          "--check",
+          "campaign-z/source/scripts/work8/o33-application-coordinator.mjs"
+        ],
+        "exitCode": 0
+      },
+      {
+        "command": [
+          "bash",
+          "-n",
+          "campaign-z/source/scripts/work8/run-o33-application.sh"
+        ],
+        "exitCode": 0
+      },
+      {
+        "check": "workflow YAML exact single automatic branch job; no manual dispatch",
+        "result": "PASS"
+      }
+    ],
+    "files": [
+      {
+        "path": "scripts/work8/o33-application-coordinator.mjs",
+        "sha256": "fc458e3ddc27c64c6f8a5c35bec6d6dd77593fd6fce021dd02031c576a50cf5b",
+        "bytes": 26973,
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/work8/run-o33-application.sh",
+        "sha256": "c8bfdb07b28c7461ea605a61e7ea92da700ae110ef015d14c841ea6273217865",
+        "bytes": 9421,
+        "mode": "100644"
+      },
+      {
+        "path": ".github/workflows/work8-writer-integration.yml",
+        "sha256": "6cb3adcaf1eacdd3ea19390ebc56d4119c48d61c5f45c49e94f4ebd69e1ac08d",
+        "bytes": 1767,
+        "mode": "100644"
+      }
+    ],
+    "hostedExecuted": false,
+    "acceptedRows": [],
+    "deadlineReviewCorrection": "until checks original deadline before and after awaited probe, including success; no late success accepted."
+  },
+  "nextDecision": "Publish evidence first then exact staged O33 source on existing targeted branch, allowing one normal automatic Node22/Docker examination only. No production or additional workflow authority.",
+  "classificationNotes": {
+    "O33": "Demonstrated integration gap corrected in reviewed staged14-file candidate; hosted compilation/examination still unverified. Classified OWNER DECISION REQUIRED for exact-tree publication and one automatic examination, not unresolved source defect.",
+    "O42_O43": "Aggregate mandatory independent evidence dependencies; external-evidence classification does not imply only third-party provider data is missing.",
+    "EXECUTE_NOW": "No whole-row examination is immediately executable after completing authorized O33 engineering; no accepted result is being withheld."
+  }
+}

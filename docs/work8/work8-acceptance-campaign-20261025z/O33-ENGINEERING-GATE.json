@@ -1,0 +1,90 @@
+{
+  "recordType": "O33_ACTUAL_INTEGRATION_ENGINEERING_GATE",
+  "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "tree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+  "target": "O33",
+  "status": "PAIRED_ADMISSION_BOUND_APPLICATION_BRIDGE_AUTHORED_REVIEW_PENDING",
+  "scope": "Actual declared application topology concurrency/capture/replay in isolated epoch; no automatic production cutover or custody prerequisite.",
+  "environment": {
+    "execution": "Existing accepted GitHub Node22.23.2/Docker runner",
+    "local": "Node24, no Docker/Redis; not an equivalent accepted examination environment",
+    "authority": "Local engineering authorized; no source publication or CI dispatch under current directive",
+    "cost": "No hosted execution, paid service or infrastructure incurred; task ceiling US$10, no unverified price estimate"
+  },
+  "findings": [
+    {
+      "path": "backend/src/runtime/work8-generated-capture-hold.ts",
+      "blob": "c75c7bbe7762b7cb09b236dc6c3400db525cddca",
+      "fact": "Generated scope requires NODE_ENV=test, loopback-only routes, fresh self-created root and process-local nonserializable WeakMap capability."
+    },
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "fact": "Actual locked configuration forces NODE_ENV=production and canonical commissioning path; arbitrary generated scope is not admitted."
+    },
+    {
+      "path": "scripts/work8/hh4-held-capture-controller.mjs",
+      "blob": "cfa4fe875146a0c54a85c3b64c0c5f7be65ce9d3",
+      "fact": "Retained accepted controller asserts PID1 generated-primary and exact generated-worker argv; cannot attest actual primary/brain graph unchanged."
+    },
+    {
+      "path": "scripts/work8/application-graph-restoration.mjs",
+      "blob": "24ce08b2b54434aab6b07833e8e18ef994c7dc96",
+      "fact": "Orchestration directly spawns Redis and imports buildApp into coordinator; index/pending mode delegates direct child spawn. Running as admitted runtime conflicts with required native descendant exclusion; running as operator leaves application writers outside controller."
+    },
+    {
+      "path": "scripts/work8/index-restoration-phase.mjs",
+      "blob": "59ddc8ad70ac791c07fa7ededf523d3e28812c03",
+      "fact": "Requires test-mode environment and creates child-specific fresh capability/IPC by direct index-restoration-launcher spawn; not controller-managed."
+    }
+  ],
+  "minimumCorrection": {
+    "sourceInitialization": "Add bounded controller-authorized isolated command inside actual admitted brain for labelled source initialization and held capture. Bind exact source, canonical stores, controller generation/census, one-shot nonce and no external route/credential capability. Never relax production launcher admission or native process restrictions.",
+    "target": "Operator coordinator manages only infrastructure and preparation before admission. All actual restored primary/brain/Assurance entries launched through existing realRoles. Redis separately declared infrastructure with exact identity and frozen mutation boundary.",
+    "reuse": "Reuse accepted validation, table digests, original-session and pending-state oracles as pure read-only assertions; do not blindly reuse incompatible orchestration or claim its old result covers new graph.",
+    "pending": "Transfer one fresh bounded readonly examination capability through controller admission to actual restored brain, preserve source/runtime identity and exactly-once persistence across controller restart, reject stale generations.",
+    "affectedInterfaces": [
+      "backend/src/index.ts or its bounded initialization hook",
+      "backend/src/runtime/work8-primary-capture.ts",
+      "backend/src/runtime/work8-generated-capture-hold.ts (new isolated capability must not weaken existing)",
+      "deployment/runtime-writer-controller.cjs admission capability binding",
+      "new scripts/work8 actual-graph operator coordinator",
+      "scripts/work8/index-restoration-phase.mjs pure-oracle extraction or separate adapter",
+      "targeted hosted workflow/runner exact source binding"
+    ],
+    "acceptance": "Independent reviewer verifies complete declared writer/transport census, current/prior exclusion, coordinated stable capture, actual restored graph and once-only replay before whole O33 PASS. No isolated-only success promoted automatically."
+  },
+  "decision": "Bounded source read identified a genuine orchestration gap; authoring proceeded under existing authority. New private consumed grant binds actual admitted brain source initialization/heldcapture and restored pending startup. Operator coordinator is separate and must complete/review before staging. No hosted execution or O33 acceptance claimed.",
+  "newAcceptedRows": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "localChecks": "O33-LOCAL-BOUNDARY-RESULT.json",
+  "sourceOwner": "/root/o33_integration",
+  "changedPaths": [
+    "deployment/locked-runtime.cjs",
+    "deployment/runtime-writer-controller.cjs",
+    "deployment/runtime-membership-controller.cjs",
+    "deployment/runtime-membership-bootstrap.mjs",
+    "deployment/runtime-isolated-application.cjs",
+    "deployment/runtime-isolated-application.test.cjs",
+    "deployment/fixtures/runtime-graph-redis.cjs",
+    "backend/src/index.ts",
+    "backend/src/app.ts",
+    "backend/src/runtime/work8-admitted-application.ts",
+    "scripts/work8/hh4-domain-state.mjs"
+  ],
+  "fileHashes": {
+    "deployment/locked-runtime.cjs": "db58e4f070c8e8b1fbf382c624d19dfc421405349b9fdfae0ce805580f49af6f",
+    "deployment/runtime-writer-controller.cjs": "c54bcaeeb743eaf33318b8bc0f7c50a9f53525c11c2b12861c7b5e273aaa56f2",
+    "deployment/runtime-membership-controller.cjs": "b519778debbbaa708b826010dd318134525c993f47e3fa800f63b30c3c3b4cb2",
+    "deployment/runtime-membership-bootstrap.mjs": "73ad1447fcc29191b0f2e5281035e1c59f13f16524873cd7f185b4744cc4e591",
+    "deployment/runtime-isolated-application.cjs": "5af890a86d50a58b48bf82b42e751a17d553a1fbe9a4d6b06bb9403c0c12c8be",
+    "deployment/runtime-isolated-application.test.cjs": "d818e840fb86dacd1de22bb6e51f3c63f05f98badc0a43e618c9ebe7dfc5219b",
+    "deployment/fixtures/runtime-graph-redis.cjs": "2bfc676aaba2dbff8ac077d3036d9e871c77e7660e4db1887a5dfd2126762ebd",
+    "backend/src/index.ts": "96c51f9ee18aeeb2850ea90dbac88e610db81c2ce79d2816a4fe9de8c8d6f2d2",
+    "backend/src/app.ts": "11817943ba55e4293525dc65ac2a9b34f9e9ae6b8a44a07a52d482dfcbadfc84",
+    "backend/src/runtime/work8-admitted-application.ts": "02c4bd72b66902ebb24af71be459eb52451dc43d44ddf32037cb8cb455eb821d",
+    "scripts/work8/hh4-domain-state.mjs": "f5842e2534a8e7181a4e2098b4d6224186e3e0f7073b97a6ef98671a91898e62"
+  },
+  "reservation": "Exclusive root-owned fsynced reservation occurs before every controller child; recipient-bound consume occurs before brain private ACK. Interrupted reservation requires fresh nonce.",
+  "recipientBinding": "Private ACK validates admission ID, nonce, PID and /proc startTicks before exposing frozen grant and importing application."
+}

@@ -1,0 +1,62 @@
+{
+  "recordType": "O33_INDEPENDENT_INTEGRATION_DESIGN_GATE",
+  "reviewer": "/root/recovery_closure",
+  "source": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "verifiedReferences": [
+    {
+      "path": "backend/src/runtime/work8-generated-capture-hold.ts",
+      "blob": "c75c7bbe7762b7cb09b236dc6c3400db525cddca",
+      "bytes": 5795
+    },
+    {
+      "path": "scripts/work8/hh4-held-capture-controller.mjs",
+      "blob": "cfa4fe875146a0c54a85c3b64c0c5f7be65ce9d3",
+      "bytes": 7621
+    },
+    {
+      "path": "scripts/work8/index-restoration-phase.mjs",
+      "blob": "59ddc8ad70ac791c07fa7ededf523d3e28812c03",
+      "bytes": 9491
+    }
+  ],
+  "decision": "TECHNICAL_INTERFACE_GAP_CONFIRMED_WRAPPER_REJECTED_IMPLEMENTATION_NOT_YET_REVIEWED",
+  "facts": [
+    "Generated capture creates test-only process-local nonserializable scope and fresh self-owned root; actual locked launcher forces production and canonical commissioning path.",
+    "HH4 held-capture verifier requires PID1/generated primary and generated-worker exact argv, not actual controller-admitted entries.",
+    "Old restoration imports buildApp or directly spawns index/Redis; running under native runtime would violate descendant restriction, while operator execution would leave app writers unadmitted."
+  ],
+  "supportedRoute": "Private controller-admission-bound source initialization/capture and fresh restored-target examination capability; operator coordinator handles infrastructure and non-running-state preparation only, while all app entries are realRoles-admitted. Reuse pure accepted oracles, not incompatible orchestration.",
+  "mandatoryDesignBeforeAcceptance": [
+    "Exact nonce/source/generation/cohort/store/Redis-bound capability issuer and private recipient; fail closed against replay and unauthorized commands",
+    "Explicit no-writer preparation phase and active-writer capture phase; stable complete census and all hold acknowledgments",
+    "Restored app runs only as demoted controller-admitted actual primary/brain/Assurance; Redis declared infrastructure and mutation boundary explicit",
+    "Fresh readonly pending capability not restored execution authority; persistent once-only state examined across controller-managed restart",
+    "No NODE_ENV production weakening, forged argv allowance, native isolation bypass or synthetic-entry replacement"
+  ],
+  "authorityDecision": "Local implementation is already authorized. Change size alone is not an owner-authority blocker or proved US$10 budget overrun. Hosted execution still requires exact-tree approval after full implementation and independent review.",
+  "scope": "O33 isolated declared actual topology concurrency/capture/replay; not production historical membership, A3 custody or whole-system operating certification.",
+  "newAcceptedRows": [],
+  "captureDeadlineDesignReview": {
+    "decision": "SUPPORTED_WITH_MANDATORY_CONDITIONS_NOT_IMPLEMENTATION_ACCEPTANCE",
+    "originalBoundsPreserved": {
+      "captureHold": "5 seconds",
+      "guardDrain": "20 seconds"
+    },
+    "criterionInterpretation": "O33 requires a complete consistent coordinated snapshot and exclusion/replay proof; it does not require all application processes to terminate inside the capture hold. Releasing holds after an immutable complete snapshot is sealed is compatible with the retained criterion.",
+    "conditions": [
+      "All actual writer/store/Redis and guard-audit exclusion spans full byte capture, manifest completion and digest finalization.",
+      "Operator verifies source/generation/nonce/current full census and stable journal revision, then seals the complete copy into operator-owned storage inaccessible to runtime alteration/deletion before acknowledgement. Runtime-owned writable parent plus0444 files is not immutable.",
+      "Runtime releases hold only after matching operator acknowledgement within unchanged5-second bound; late, partial or missing acknowledgement invalidates the candidate copy and fails closed.",
+      "No snapshot data or manifest finalization after exclusion release.",
+      "Subsequent clean drain remains independently guard-bounded20seconds; no guard suppression or deadline extension.",
+      "Retained HH4 protocol and accepted tests remain unchanged."
+    ],
+    "requiredImplementationEvidence": "Exact sealed-copy ownership/ancestor permissions, atomic finalization/readback order, ACK binding and timeout cleanup must be independently reviewed in implementation; this design decision alone is not a PASS."
+  },
+  "deadlineReview": {
+    "acceptedTargetBound": "One shared180000ms deadline beginning before target materialization, spanning target startup, pending continuation and no-replay restart; no reset on restart.",
+    "sourceBound": "Preserve source startup180seconds, capturehold5seconds and guarddrain20seconds.",
+    "overallJobBound": "A larger housekeeping cap must not relax any mandatory phase deadline.",
+    "basis": "campaign-y/reference/application-graph-restoration.mjs sets deadline once before materialization and passes same value to both examineRestoredIndex calls."
+  }
+}

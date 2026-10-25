@@ -1,0 +1,158 @@
+{
+  "recordType": "O33_INDEPENDENT_SOURCE_REVIEW_FINAL",
+  "reviewer": "/root/recovery_closure",
+  "status": "PASS_FOR_STAGING_AND_TARGETED_HOSTED_EXAMINATION_ONLY",
+  "sourceBase": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+  "baseTree": "3a313c39a9f7cdf7aef28fb481ed2a41147e83a8",
+  "files": [
+    {
+      "path": ".github/workflows/work8-writer-integration.yml",
+      "mode": "100644",
+      "bytes": 1767,
+      "sha256": "6cb3adcaf1eacdd3ea19390ebc56d4119c48d61c5f45c49e94f4ebd69e1ac08d",
+      "gitBlob": "869ec6ded350b1036d8b31cd534b947d5ef13ab4"
+    },
+    {
+      "path": "backend/src/app.ts",
+      "mode": "100644",
+      "bytes": 75639,
+      "sha256": "11817943ba55e4293525dc65ac2a9b34f9e9ae6b8a44a07a52d482dfcbadfc84",
+      "gitBlob": "ce2ec2a31ac3bf867e87a224452a94d7ca0e3409"
+    },
+    {
+      "path": "backend/src/index.ts",
+      "mode": "100644",
+      "bytes": 5868,
+      "sha256": "96c51f9ee18aeeb2850ea90dbac88e610db81c2ce79d2816a4fe9de8c8d6f2d2",
+      "gitBlob": "01df58fce14c2f39d2b541a089398d76d6f7648f"
+    },
+    {
+      "path": "backend/src/runtime/work8-admitted-application.ts",
+      "mode": "100644",
+      "bytes": 6421,
+      "sha256": "02c4bd72b66902ebb24af71be459eb52451dc43d44ddf32037cb8cb455eb821d",
+      "gitBlob": "25d86fc6ea100b9ba3976b1114b6aceb50c44ba5"
+    },
+    {
+      "path": "deployment/fixtures/runtime-graph-redis.cjs",
+      "mode": "100644",
+      "bytes": 2462,
+      "sha256": "2bfc676aaba2dbff8ac077d3036d9e871c77e7660e4db1887a5dfd2126762ebd",
+      "gitBlob": "cd920e1171c86178c59c4a8cf1489953fa45ab9f"
+    },
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "mode": "100644",
+      "bytes": 7056,
+      "sha256": "db58e4f070c8e8b1fbf382c624d19dfc421405349b9fdfae0ce805580f49af6f",
+      "gitBlob": "9206dc2976f05787e7b024e3f36a981ab9d9dd2c"
+    },
+    {
+      "path": "deployment/runtime-isolated-application.cjs",
+      "mode": "100644",
+      "bytes": 7996,
+      "sha256": "5af890a86d50a58b48bf82b42e751a17d553a1fbe9a4d6b06bb9403c0c12c8be",
+      "gitBlob": "27d91030fe5e2c12f6f2bdb5c91284e4d3520a68"
+    },
+    {
+      "path": "deployment/runtime-isolated-application.test.cjs",
+      "mode": "100644",
+      "bytes": 2972,
+      "sha256": "d818e840fb86dacd1de22bb6e51f3c63f05f98badc0a43e618c9ebe7dfc5219b",
+      "gitBlob": "6d485dedc67d39113ff2e009b0cb99289d0be5d1"
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "mode": "100644",
+      "bytes": 3947,
+      "sha256": "73ad1447fcc29191b0f2e5281035e1c59f13f16524873cd7f185b4744cc4e591",
+      "gitBlob": "5fb306a78f59d951a716d86ea3d5438e62534cb8"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "mode": "100644",
+      "bytes": 20836,
+      "sha256": "b519778debbbaa708b826010dd318134525c993f47e3fa800f63b30c3c3b4cb2",
+      "gitBlob": "58f4b7c2c9fe29b6f607aa985197ffe9fa3b19aa"
+    },
+    {
+      "path": "deployment/runtime-writer-controller.cjs",
+      "mode": "100644",
+      "bytes": 9754,
+      "sha256": "c54bcaeeb743eaf33318b8bc0f7c50a9f53525c11c2b12861c7b5e273aaa56f2",
+      "gitBlob": "90cde2ebd4041939325de359470f06bf1d317359"
+    },
+    {
+      "path": "scripts/work8/hh4-domain-state.mjs",
+      "mode": "100644",
+      "bytes": 17519,
+      "sha256": "f5842e2534a8e7181a4e2098b4d6224186e3e0f7073b97a6ef98671a91898e62",
+      "gitBlob": "62bd09527cd0ea55be05f195022b7e5daa5fcb5c"
+    },
+    {
+      "path": "scripts/work8/o33-application-coordinator.mjs",
+      "mode": "100644",
+      "bytes": 26973,
+      "sha256": "fc458e3ddc27c64c6f8a5c35bec6d6dd77593fd6fce021dd02031c576a50cf5b",
+      "gitBlob": "25dde6e53b9a618f9e8ade5d6f0a41fc9f1899b1"
+    },
+    {
+      "path": "scripts/work8/run-o33-application.sh",
+      "mode": "100644",
+      "bytes": 9421,
+      "sha256": "c8bfdb07b28c7461ea605a61e7ea92da700ae110ef015d14c841ea6273217865",
+      "gitBlob": "18ba1c93591782088f5cb777af194925c458389c"
+    }
+  ],
+  "reviewedScope": "Minimum actual application source capture, controller-private examination capability, fresh isolated actual target and current/prior generation replay examination; no production deployment or custody scope.",
+  "resolvedFindings": [
+    {
+      "id": "R1",
+      "resolution": "Sealed complete copy preserves source file modes under root-owned0500 directories/operator0700 parent; target materialization retains correct runtime-writable canonical file modes."
+    },
+    {
+      "id": "R2",
+      "resolution": "Prior generation probe requires exact same-input guard lease generation refusal, actual launcher guard startup refusal, unchanged canonical hashes/journal/Redis DUMP; cannot pass on arbitrary nonzero only."
+    },
+    {
+      "id": "R3",
+      "resolution": "Full13 SQL preboot bytes, inert exact source authority approvals[], one exact denied request owner, historical watchdog, visual/session state, readonly repository journal and Redis are explicitly mapped/read back; no historical freshness/execution authority inferred."
+    },
+    {
+      "id": "R4",
+      "resolution": "Twelve assertion-to-oracle/evidence mappings now recorded; noAuthorityReplay includes original mission-runtime403, forged401, inert authority and readonly completed output; failureClosed scope explicit."
+    },
+    {
+      "id": "R5",
+      "resolution": "One180second target deadline spans preparation/start/pending/restart; polling checks deadline before and after awaited probes. Original5second held-copy ACK and20second guard preserved."
+    },
+    {
+      "id": "R6",
+      "resolution": "Root-only exclusive grant reservation fsynced before any controller child; exact recipient consumption fsynced before private brain admission ACK. Replay/interrupted reservation requires fresh nonce."
+    },
+    {
+      "id": "R7",
+      "resolution": "Authoritative internal Docker network/container inspection, root-protected digest, network namespace/hostname and no default-route checks; source canonical state must be fresh before child import; grant expiry rechecked at issuance."
+    }
+  ],
+  "localEvidence": [
+    "campaign-z/O33-LOCAL-BOUNDARY-RESULT.json:5/5 Node24 changed-boundary checks; no failures/skips; not hosted acceptance",
+    "campaign-z/O33-COORDINATOR-LOCAL-CHECKS.json:Node24 syntax/bash syntax/single automatic workflow structure; no hosted acceptance"
+  ],
+  "remainingExamination": [
+    "Node22 Pillow/backend compilation on reviewed exact source",
+    "Actual admitted primary/brain/Assurance entries and native isolation on existing runner",
+    "Complete declared census/current-prior exclusion, stable coordinated source snapshot, fresh-target restore and once-only restart/readback within original bounds",
+    "Independent whole O33 criterion decision from exact retained artifacts; green job alone does not promote row"
+  ],
+  "wholeRowDecision": "PENDING_HOSTED_COMPLETE_DECLARED_TOPOLOGY_EVIDENCE",
+  "newAcceptedRows": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "sourcePublicationAuthorized": false,
+  "CIExecutedByReviewer": false,
+  "productionCutoverProven": false,
+  "protectedCustodyProven": false,
+  "costBoundary": "Existing runner only; no purchase, provider inference or external message. Task ceiling US$10; execution needs exact-tree owner approval.",
+  "limitations": "Independent source review and limited local checks cannot establish full runtime compatibility. Previously accepted synthetic journal/writer examinations remain preserved and are not rerun. No production historical membership or other recovery-row closure inferred."
+}
