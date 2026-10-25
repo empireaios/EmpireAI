@@ -1,0 +1,18 @@
+(node:1) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:fs:2058
+  binding.chmod(path, mode);
+          ^
+
+Error: EPERM: operation not permitted, chmod '/evidence/application-image.json'
+    at Object.chmodSync (node:fs:2058:11)
+    at readableEvidence (file:///app/scripts/work8/o33-application-coordinator.mjs:60:178)
+    at file:///app/scripts/work8/o33-application-coordinator.mjs:126:101
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'chmod',
+  path: '/evidence/application-image.json'
+}
+
+Node.js v22.23.2

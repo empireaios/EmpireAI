@@ -1,0 +1,62 @@
+{
+  "recordType": "WORK8_O33_INDEPENDENT_HOSTED_ACCEPTANCE_REVIEW",
+  "reviewer": "/root/o33_acceptance_review",
+  "runId": 40192656947,
+  "source": "2b3bec3f5584258bb28ab6f0c49a359518ccf704",
+  "tree": "98db296b8b16fde5a897e34f0b8672d6cf9c6b19",
+  "verdict": "NOT_ACCEPTED_PREPARATION_FAILURE",
+  "compilation": "PASS_HOSTED_NODE_22_23_2_NPM_10_9_8",
+  "wholeRowO33": "PENDING",
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19
+  },
+  "observations": [
+    "Exact source and tree artifact readback match approved identities.",
+    "Pillow and backend compilation reached successful backend postbuild.",
+    "Native tmpfs mount readback preserves executable operator-owned readonly native artifact and noexec data/tmp mounts.",
+    "Two distinct Redis identities were read before prepare, but full integrated graph was not launched.",
+    "Application result has FAIL, no accepted rows and empty assertions. No complete census/capture/replay evidence exists for this run."
+  ],
+  "primaryFailure": {
+    "error": "EPERM chmod /work8-exam/source/capture",
+    "location": "scripts/work8/o33-application-coordinator.mjs mkdir line23, prepare line33",
+    "cause": "mkdir helper transfers directory ownership to UID65534 before chmod by operator UID0. Operator deliberately lacks CAP_FOWNER; CAP_CHOWN and CAP_DAC_OVERRIDE do not grant chmod on a differently owned object."
+  },
+  "secondaryFailure": {
+    "error": "EPERM chmod /evidence/application-image.json",
+    "location": "readableEvidence finalizer line60",
+    "cause": "Blanket permission normalization attempts chmod on host-owned bind-mounted evidence and masks primary error in container console. Primary error remains retained in o33-application-result.json."
+  },
+  "smallestSafeRemedy": {
+    "directoryPreparation": "Set requested mode while operator owns fresh inactive directory, then transfer ownership; for legitimate existing nonoperator-owned inactive paths, explicitly reacquire operator ownership before chmod and handoff. Preserve final owner/mode and no runtime privilege expansion.",
+    "evidenceFinalizer": "Normalize only operator-owned created evidence; preserve already-readable host-owned evidence or normalize it in host cleanup under its owner. Record cleanup errors separately without replacing the primary examination error.",
+    "avoid": "Do not add CAP_FOWNER, broad capabilities, privileged mode or relax runtime isolation merely to bypass ownership ordering."
+  },
+  "limitations": [
+    "No correction applied or validated by reviewer.",
+    "No hosted assertion or whole-row promotion inferred from compilation or native mount evidence.",
+    "Production and protected custody are not added as O33 acceptance criteria."
+  ],
+  "safety": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE"
+  },
+  "reviewerActions": {
+    "tests": 0,
+    "builds": 0,
+    "ciDispatches": 0,
+    "sourceChanges": 0,
+    "externalMutations": 0
+  },
+  "evidenceHashes": {
+    "source-commit.txt": "2e773fa78e2f55468702cd5472201b298c7686c67e2c2dadff0a6d3c82d2df0f",
+    "source-tree.txt": "ad902070682f01c4c9e5a74e3fb7ffbd7f6cf2a6143b5e07b4f08041de321334",
+    "build.log": "cebabc558caf2d3f4f45924a74f3cededee2d9af3a48d1ee579e33d2a40146ac",
+    "o33-application-result.json": "745c3fb4845d6176384663c002533f39c517dfe56634e1ce3642f0d055326809",
+    "prestart-container.json": "c8d5c0f1b133231543a360d60995f8f81db3f63a8ebc7f534c4b8e3124508c83",
+    "native-mount-readback.json": "6de6e9fcf86a231977109df9f50739794fddf5ec2395b0cf23208b1559e8ecf5",
+    "container.log": "a52f79265e21da1e59644347238051f510b54fae13ec8a39efa60b139bef68d6"
+  }
+}

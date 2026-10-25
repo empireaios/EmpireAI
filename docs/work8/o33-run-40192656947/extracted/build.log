@@ -1,0 +1,52 @@
+
+> @empireai/pillow@0.1.0 preinstall
+> node ../scripts/verify-build-runtime.mjs
+
+{"event":"build_runtime_verified","nodeVersion":"22.23.2","npmVersion":"10.9.8","npmVersionVerified":true}
+
+added 6 packages, and audited 7 packages in 780ms
+
+found 0 vulnerabilities
+npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+
+> @empireai/backend@0.1.0 preinstall
+> node ../scripts/verify-build-runtime.mjs
+
+{"event":"build_runtime_verified","nodeVersion":"22.23.2","npmVersion":"10.9.8","npmVersionVerified":true}
+
+> @empireai/backend@0.1.0 postinstall
+> node scripts/verify-dev-environment.mjs --postinstall
+
+
+added 140 packages, and audited 142 packages in 3s
+
+31 packages are looking for funding
+  run `npm fund` for details
+
+5 high severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[sync-pillow-governance] Bundle ready at /home/runner/work/EmpireAI/EmpireAI/backend/.pillow-governance-bundle
+
+> @empireai/pillow@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @empireai/backend@0.1.0 prebuild
+> node ../scripts/sync-pillow-governance.mjs
+
+[sync-pillow-governance] Bundle ready at /home/runner/work/EmpireAI/EmpireAI/backend/.pillow-governance-bundle
+
+> @empireai/backend@0.1.0 build
+> tsc -p tsconfig.json && node scripts/record-runtime-revision.cjs
+
+
+> @empireai/backend@0.1.0 postbuild
+> node -e "require('node:fs').copyFileSync('src/runtime/native-store-capture-lock.cjs','dist/runtime/native-store-capture-lock.cjs')"
+

@@ -1,0 +1,275 @@
+[
+    {
+        "Id": "20ae09aa22df71714bffb3e75cc7aa031041c1a11bb5bdae2ea1cd60be5e75c7",
+        "Created": "2026-10-25T12:23:16.891946804Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "sh",
+            "-ec",
+            "\n    cp /native/runtime-writer-isolation.so /work8-native/writer.so\n    chmod 0444 /work8-native/writer.so\n    export WORK8_WRITER_ISOLATION_LIBRARY=/work8-native/writer.so\n    export WORK8_WRITER_ISOLATION_SHA256=$(sha256sum /work8-native/writer.so | cut -d \" \" -f1)\n    node <<\"MOUNT_CHECK\"\nconst fs=require(\"node:fs\"),assert=require(\"node:assert/strict\");\nconst rows=fs.readFileSync(\"/proc/self/mountinfo\",\"utf8\").trim().split(\"\\n\").map(line=>{const [left,right]=line.split(\" - \");const fields=left.split(\" \");return {mount:fields[4],options:fields[5].split(\",\"),filesystem:right.split(\" \")[0]};});\nconst required=[\"/work8-native\",\"/work8-exam\",\"/tmp\"];\nfs.writeFileSync(process.env.WORK8_EVIDENCE_DIR+\"/native-mount-readback.json\",JSON.stringify({scope:\"ISOLATED_EXAMINATION_ONLY\",verdict:\"UNVERIFIED\",mounts:rows.filter(row=>required.includes(row.mount))})+\"\\n\");\nconst selected=required.map(mount=>{const matches=rows.filter(row=>row.mount===mount);assert.equal(matches.length,1,\"EXACT_MOUNT_REQUIRED\");return matches[0];});\nfor(const row of selected){assert.equal(row.filesystem,\"tmpfs\");assert.ok(row.options.includes(\"nosuid\")&&row.options.includes(\"nodev\"));assert.equal(row.options.includes(\"noexec\"),row.mount!==\"/work8-native\",\"NATIVE_EXEC_DATA_NOEXEC_REQUIRED\");}\nconst dir=fs.statSync(\"/work8-native\"),file=fs.lstatSync(\"/work8-native/writer.so\");\nassert.equal(dir.uid,0);assert.equal(dir.mode&0o777,0o755);assert.equal(file.uid,0);assert.equal(file.mode&0o777,0o444);assert.ok(file.isFile());assert.equal(file.nlink,1);\nfs.writeFileSync(process.env.WORK8_EVIDENCE_DIR+\"/native-mount-readback.json\",JSON.stringify({scope:\"ISOLATED_EXAMINATION_ONLY\",mounts:selected,operatorOwnedArtifact:true,runtimeWritable:false})+\"\\n\");\nMOUNT_CHECK\n    cd /app\n    exec node scripts/work8/o33-application-coordinator.mjs\n  "
+        ],
+        "State": {
+            "Status": "created",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "0001-01-01T00:00:00Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:4fc426f028e7998277441f618bb5b055edd4f5e41000a5a128ba345151b53b85",
+        "ResolvConfPath": "",
+        "HostnamePath": "",
+        "HostsPath": "",
+        "LogPath": "",
+        "Name": "/work8-o33-40192656947-exam",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "work8-o33-40192656947-net",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": [
+                "CAP_CHOWN",
+                "CAP_DAC_OVERRIDE",
+                "CAP_KILL",
+                "CAP_SETGID",
+                "CAP_SETUID",
+                "CAP_SYS_PTRACE"
+            ],
+            "CapDrop": [
+                "ALL"
+            ],
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": true,
+            "SecurityOpt": [
+                "no-new-privileges"
+            ],
+            "Tmpfs": {
+                "/tmp": "rw,noexec,nosuid,nodev,mode=1777,size=16m",
+                "/work8-exam": "rw,noexec,nosuid,nodev,mode=0755,size=2g",
+                "/work8-native": "rw,exec,nosuid,nodev,mode=0755,size=1m"
+            },
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 5368709120,
+            "NanoCpus": 2000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 10737418240,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": 256,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "/home/runner/work/_temp/work8-o33-evidence",
+                    "Target": "/evidence"
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/home/runner/work/_temp/work8-o33-network-proof.json",
+                    "Target": "/network-proof.json",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/home/runner/work/_temp/work8-writer-native",
+                    "Target": "/native",
+                    "ReadOnly": true
+                }
+            ],
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "ID": "20ae09aa22df71714bffb3e75cc7aa031041c1a11bb5bdae2ea1cd60be5e75c7",
+                "LowerDir": "/var/lib/docker/overlay2/e79461f0fca744e594dfab7c1a9e248bf5a5ad2bbaefd7d15f31dc12a6198449-init/diff:/var/lib/docker/overlay2/16hk3i1qw1jvy1tc7b9do98a9/diff:/var/lib/docker/overlay2/7srt2qy1tpm7yl5uw6xhkw6il/diff:/var/lib/docker/overlay2/m747s3ik4ev791dhtuim5sbug/diff:/var/lib/docker/overlay2/2e8e07991935f261ee379e4be1988f164caece6538a3bd7ecad1af03b04c2035/diff:/var/lib/docker/overlay2/97dd6acab2cb5adb83de8fa39caaa2d65573a5f6919aef76b88f5b406fab1349/diff:/var/lib/docker/overlay2/7589e5056fd36fef00d19cbb577b78067666e74bca6c2003aef8a5f64c5e8eda/diff:/var/lib/docker/overlay2/6dbd649d70084f603af182f47eedb982185064d3d0bdfde56ce782d6aa2f0fd3/diff:/var/lib/docker/overlay2/814748e8784637d700a0b05cdf87fdb944f11b83e82b04cfdda88184b1af9260/diff",
+                "MergedDir": "/var/lib/docker/overlay2/e79461f0fca744e594dfab7c1a9e248bf5a5ad2bbaefd7d15f31dc12a6198449/merged",
+                "UpperDir": "/var/lib/docker/overlay2/e79461f0fca744e594dfab7c1a9e248bf5a5ad2bbaefd7d15f31dc12a6198449/diff",
+                "WorkDir": "/var/lib/docker/overlay2/e79461f0fca744e594dfab7c1a9e248bf5a5ad2bbaefd7d15f31dc12a6198449/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/runner/work/_temp/work8-o33-evidence",
+                "Destination": "/evidence",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/runner/work/_temp/work8-o33-network-proof.json",
+                "Destination": "/network-proof.json",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/runner/work/_temp/work8-writer-native",
+                "Destination": "/native",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "20ae09aa22df",
+            "Domainname": "",
+            "User": "0:0",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "WORK8_SOURCE_SHA=2b3bec3f5584258bb28ab6f0c49a359518ccf704",
+                "WORK8_MEMBERSHIP_REDIS_URL=redis://:work8-synthetic-only@journal-redis:6379/0",
+                "WORK8_TARGET_REDIS_URL=redis://:work8-synthetic-only@target-redis:6379/0",
+                "WORK8_EVIDENCE_DIR=/evidence",
+                "PILLOW_BIRTH_STATE=NOT_BORN",
+                "COMMERCE_STATE=LOCKED",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NODE_VERSION=22.23.2",
+                "YARN_VERSION=1.22.22"
+            ],
+            "Cmd": [
+                "sh",
+                "-ec",
+                "\n    cp /native/runtime-writer-isolation.so /work8-native/writer.so\n    chmod 0444 /work8-native/writer.so\n    export WORK8_WRITER_ISOLATION_LIBRARY=/work8-native/writer.so\n    export WORK8_WRITER_ISOLATION_SHA256=$(sha256sum /work8-native/writer.so | cut -d \" \" -f1)\n    node <<\"MOUNT_CHECK\"\nconst fs=require(\"node:fs\"),assert=require(\"node:assert/strict\");\nconst rows=fs.readFileSync(\"/proc/self/mountinfo\",\"utf8\").trim().split(\"\\n\").map(line=>{const [left,right]=line.split(\" - \");const fields=left.split(\" \");return {mount:fields[4],options:fields[5].split(\",\"),filesystem:right.split(\" \")[0]};});\nconst required=[\"/work8-native\",\"/work8-exam\",\"/tmp\"];\nfs.writeFileSync(process.env.WORK8_EVIDENCE_DIR+\"/native-mount-readback.json\",JSON.stringify({scope:\"ISOLATED_EXAMINATION_ONLY\",verdict:\"UNVERIFIED\",mounts:rows.filter(row=>required.includes(row.mount))})+\"\\n\");\nconst selected=required.map(mount=>{const matches=rows.filter(row=>row.mount===mount);assert.equal(matches.length,1,\"EXACT_MOUNT_REQUIRED\");return matches[0];});\nfor(const row of selected){assert.equal(row.filesystem,\"tmpfs\");assert.ok(row.options.includes(\"nosuid\")&&row.options.includes(\"nodev\"));assert.equal(row.options.includes(\"noexec\"),row.mount!==\"/work8-native\",\"NATIVE_EXEC_DATA_NOEXEC_REQUIRED\");}\nconst dir=fs.statSync(\"/work8-native\"),file=fs.lstatSync(\"/work8-native/writer.so\");\nassert.equal(dir.uid,0);assert.equal(dir.mode&0o777,0o755);assert.equal(file.uid,0);assert.equal(file.mode&0o777,0o444);assert.ok(file.isFile());assert.equal(file.nlink,1);\nfs.writeFileSync(process.env.WORK8_EVIDENCE_DIR+\"/native-mount-readback.json\",JSON.stringify({scope:\"ISOLATED_EXAMINATION_ONLY\",mounts:selected,operatorOwnedArtifact:true,runtimeWritable:false})+\"\\n\");\nMOUNT_CHECK\n    cd /app\n    exec node scripts/work8/o33-application-coordinator.mjs\n  "
+            ],
+            "Image": "sha256:4fc426f028e7998277441f618bb5b055edd4f5e41000a5a128ba345151b53b85",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "work8-o33-40192656947-net": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "",
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        }
+    }
+]

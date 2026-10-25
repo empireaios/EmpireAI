@@ -1,0 +1,31 @@
+[
+    {
+        "Name": "work8-o33-40192656947-net",
+        "Id": "92bbb2793623039ba2d0718c8b5b18375ca451ded011ffe0a3b25f5011ba67ba",
+        "Created": "2026-10-25T12:22:07.256434225Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]

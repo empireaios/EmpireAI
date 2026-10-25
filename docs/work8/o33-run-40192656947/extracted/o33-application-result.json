@@ -1,0 +1,11 @@
+{
+  "source": "2b3bec3f5584258bb28ab6f0c49a359518ccf704",
+  "scope": "O33_ACTUAL_DECLARED_ISOLATED_TOPOLOGY",
+  "status": "FAIL",
+  "productionCutover": false,
+  "protectedCustody": false,
+  "acceptedRows": [],
+  "assertions": {},
+  "error": "Error: EPERM: operation not permitted, chmod '/work8-exam/source/capture'",
+  "stack": "Error: EPERM: operation not permitted, chmod '/work8-exam/source/capture'\n    at Object.chmodSync (node:fs:2058:11)\n    at mkdir (file:///app/scripts/work8/o33-application-coordinator.mjs:23:107)\n    at prepare (file:///app/scripts/work8/o33-application-coordinator.mjs:33:161)\n    at file:///app/scripts/work8/o33-application-coordinator.mjs:68:10\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+}
