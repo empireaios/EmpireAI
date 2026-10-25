@@ -23,7 +23,7 @@ function fixture(source,redisUrl,redisRunId){
  const roles=['primary','brain-worker','assurance-worker','assurance-inspector'].map(role=>{const stateDirectory=path.join(volume,role);fs.mkdirSync(stateDirectory,{mode:0o700});fs.chownSync(stateDirectory,65534,65534);return {role,entry,entrySha256:digest(fs.readFileSync(entry)),stateDirectory,scope:role==='assurance-inspector'?['native-sqlite','ordinary-file']:['native-sqlite','ordinary-file','redis-producer']};});
  return {root,image,roles,config:{journalPath:path.join(operator,'journal.sqlite'),initialize:true,runtimeUid:65534,runtimeGid:65534,source,generation,generationEnv,roles,volumeRoot:volume,redisUrl,bootstrap:path.join(image,'deployment/runtime-membership-bootstrap.mjs')},transition:{root:authority,expectedGeneration:generation,nextGeneration:crypto.randomUUID(),cutoverDigest,expectedDevice:inode.dev,expectedInode:inode.ino}};
 }
-async function ready(c,role,options){const member=c.launch(role,options);let stderr='';member.child.stderr.on('data',b=>stderr+=b);await until(()=>{if(member.child.exitCode!==null||member.child.signalCode!==null)throw Error('CHILD_NOT_READY '+stderr);return member.ready;},role);return member;}
+async function ready(c,role,options){const member=c.launch(role,options);let stderr='';member.child.stderr.on('data',b=>stderr+=b);await until(()=>{if(member.child.exitCode!==null||member.child.signalCode!==null)throw Error('CHILD_NOT_READY '+JSON.stringify({role,exitCode:member.child.exitCode,signal:member.child.signalCode,controllerFaults:c.examinationFaults||[]})+' '+stderr.slice(-4096));return member.ready;},role);return member;}
 async function exit(member){if(member.child.exitCode!==null||member.child.signalCode!==null)return;const wait=once(member.child,'exit');member.child.kill('SIGKILL');await wait;}
 function counts(f){return f.roles.map(r=>{const p=path.join(r.stateDirectory,'writes.jsonl');return fs.existsSync(p)?fs.readFileSync(p,'utf8').trim().split('\n').length:0;});}
 test('authoritative distinct-principal journal and complete declared synthetic cohort', {timeout:45000},async t=>{
@@ -32,7 +32,7 @@ test('authoritative distinct-principal journal and complete declared synthetic c
  assert.match(source??'',/^[a-f0-9]{40}$/);assert.ok(redisUrl&&evidence);assert.equal(await command(redisUrl,['PING']),'PONG');
  const server=await command(redisUrl,['INFO','server']),redisRunId=server.match(/^run_id:([a-f0-9]{40})\r?$/m)?.[1];assert.match(redisRunId??'',/^[a-f0-9]{40}$/);
  const assertions={},controllers=[],runners=[];t.after(async()=>{for(const p of runners)if(p.exitCode===null&&p.signalCode===null)p.kill('SIGKILL');for(const c of controllers)if(c.phase!=='STOPPED')await c.stop().catch(()=>{});});
- const f=fixture(source,redisUrl,redisRunId),c=new MembershipController(f.config);controllers.push(c);c.on('fault',()=>{});
+ const f=fixture(source,redisUrl,redisRunId),c=new MembershipController(f.config);controllers.push(c);c.examinationFaults=[];c.on('fault',e=>{if(c.examinationFaults.length<8)c.examinationFaults.push({name:String(e.name).slice(0,80),code:String(e.code||'').slice(0,80),message:String(e.message).slice(0,512)});});
  const first=[];
  for(const role of f.roles){first.push(await ready(c,role.role,{afterCommit(record){assert.equal(fs.existsSync(path.join(role.stateDirectory,'first-write.json')),false);const read=new MembershipJournal(f.config.journalPath);try{assert.ok(read.read().members.some(m=>m.id===record.id&&m.state==='ADMITTED'));}finally{read.close();}}}));}
  assertions.durableAdmission=true;

@@ -63,10 +63,11 @@ docker exec "$redis" redis-cli INFO server > "$out/redis-server-identity.txt"
 grep -qx 'redis_version:7.4.2' <(tr -d '\r' < "$out/redis-server-identity.txt")
 
 # No host ports, production mounts, Docker socket, inherited token, or secrets.
-# Operator gets only the capabilities needed for distinct synthetic runtime UIDs.
+# Operator may inspect its distinct-UID children in this private PID namespace.
+# SYS_PTRACE is operator-only; admitted runtime children must still have CapEff=0.
 timeout --signal=TERM --kill-after=10s 360s docker run --name "$exam" \
   --network "$network" --read-only --user 0:0 --cap-drop ALL \
-  --cap-add SETUID --cap-add SETGID --cap-add CHOWN --cap-add DAC_OVERRIDE --cap-add KILL \
+  --cap-add SETUID --cap-add SETGID --cap-add CHOWN --cap-add DAC_OVERRIDE --cap-add KILL --cap-add SYS_PTRACE \
   --security-opt no-new-privileges --memory 512m --cpus 2 --pids-limit 128 \
   --tmpfs /work8-exam:rw,nosuid,nodev,mode=0755,size=64m \
   --tmpfs /tmp:rw,noexec,nosuid,nodev,mode=1777,size=16m \
