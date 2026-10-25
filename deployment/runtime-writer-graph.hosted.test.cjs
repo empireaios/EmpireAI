@@ -6,7 +6,7 @@ const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypt
 const {spawn}=require('node:child_process'),{once}=require('node:events');
 const {DatabaseSync}=require('node:sqlite');
 const {MembershipJournal,processIdentity,digest}=require('./runtime-membership-controller.cjs');
-const {command}=require('./fixtures/runtime-membership-redis.cjs');
+const {command}=require('./fixtures/runtime-graph-redis.cjs');
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(fn,label,timeout=12000){const end=Date.now()+timeout;while(Date.now()<end){if(await fn())return;await delay(30);}throw Error('GRAPH_DEADLINE_'+label);}
 function fixture(source,redisUrl,redisRunId){
