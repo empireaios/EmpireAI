@@ -1,0 +1,44 @@
+{
+  "reviewer": "/root/journal_review_u",
+  "decision": "ACCEPT_EVIDENCE_FOR_DURABLE_STAGING_AND_LATER_CONSOLIDATION",
+  "scope": "Scoped hosted journal PASS; full actual-graph implementation remains unstarted with explicit enforcement prerequisite. No source successor or new publication request.",
+  "reviewedFiles": [
+    {
+      "path": "campaign-u/Work8-Journal-Hosted-Acceptance-20261025u.md",
+      "sha256": "58017bd0dee15f065b4a66ea6c50de2d48a0ba12205e842a8c7577c122844e9c"
+    },
+    {
+      "path": "campaign-u/FULL-TRACKER.json",
+      "sha256": "2f1713223019d0b9f1c9320e3b7a5ede03abab24a271f34d5727afab85ed8b00"
+    },
+    {
+      "path": "campaign-u/ACTUAL-GRAPH-CONTRACT.md",
+      "sha256": "e55745e225f9f4f8a240cce738f6038e4004f680d4f91e96fe6bc871d947b307"
+    },
+    {
+      "path": "campaign-u/TOPOLOGY-REVIEW.md",
+      "sha256": "701de7d327826707beace1a70048246c9cce81d44f65cbb16be28da0dc1a5555"
+    },
+    {
+      "path": "campaign-u/HOSTED-INDEPENDENT-REVIEW.json",
+      "sha256": "a2359b31f5b454625999e9ac4233f5c830c863761042a2e8a5bca8c5ffa0d1ae"
+    }
+  ],
+  "trackerRows": 64,
+  "accepted": 45,
+  "outstanding": 19,
+  "newWholeRequirementIds": [],
+  "hostedScopeAccepted": true,
+  "productionIntegrationAccepted": false,
+  "custodyAccepted": false,
+  "topologyConstraints": [
+    "Preserve independently guarded process group and signal authority over privileged controller",
+    "Privileged guard must not bypass census through direct ordinary-store audit writes",
+    "Move observer supervision with its actual spawn owner or use explicit broker",
+    "Acknowledged broker signaling must preserve actual shutdown/capture transport contracts",
+    "Known spawn-call mediation alone does not deny unadmitted same-UID descendant access"
+  ],
+  "authorityAssessment": "Non-production engineering permission already exists; unresolved design/implementation work is not a missing owner engineering permission. Exact-tree publication and operating cutover remain separate.",
+  "reviewerTestsRun": false,
+  "reviewerRemoteCalls": false
+}

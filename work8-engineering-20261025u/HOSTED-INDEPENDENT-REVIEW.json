@@ -1,0 +1,113 @@
+{
+  "reviewer": "/root/journal_review_u",
+  "decision": "ACCEPT_SCOPED_HOSTED_CONTROLLER_JOURNAL",
+  "run": 40146543781,
+  "job": 121028995151,
+  "attempt": 1,
+  "source": "70db355abf322f78ddeb34369a23f1c2d4ecc7d5",
+  "tree": "ccb0c3d2579b1f9babc20e260847c021c2e32358",
+  "artifact": 12580407916,
+  "artifactZipSha256": "6e5ed4c334fe8dd4bb566ce45e391fcbb605dd9620774ca16cb1e78d8840e6f5",
+  "tap": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "assertions": {
+    "durableAdmission": true,
+    "identitySeparation": true,
+    "journalProtection": true,
+    "scopeBinding": true,
+    "competingAdmission": true,
+    "captureExclusion": true,
+    "incompleteMembershipRefusal": true,
+    "currentPriorCensus": true,
+    "secretFreeReadback": true,
+    "staleGenerationRefusal": true,
+    "crashRestart": true
+  },
+  "scope": "One protected controller journal; declared four-role synthetic cohort plus one replacement; isolated Node22.23.2 and Redis7.4.2",
+  "identity": {
+    "operatorUid": 0,
+    "runtimeUid": 65534,
+    "runtimeGid": 65534,
+    "runtimeCapEff": "zero enforced before admission",
+    "operatorSysPtrace": "isolated private PID namespace only",
+    "privilegedContainer": false,
+    "noNewPrivileges": true,
+    "internalNetwork": true
+  },
+  "proven": [
+    "Durable admission before application first write/private ACK",
+    "Controller journal overwrite/append/unlink/rename refused to runtime",
+    "Current and prior membership for declared cohort",
+    "Per-journal competing controller and duplicate role refusal",
+    "Held capture drains declared file/SQLite/Redis writers",
+    "Missing declared member refuses capture",
+    "Retained admission reconciled after controller crash before ACK",
+    "Native generation transition excluded while cohort active and old generation re-entry refused afterward",
+    "Source/canonical store/inode and isolated Redis identity binding",
+    "Secret-free projected readback"
+  ],
+  "previousFailure": {
+    "run": 40146101531,
+    "classification": "Identity/permission configuration is the supported causal inference",
+    "exactOriginalErrnoKnown": false,
+    "explanation": "Original controller exception was discarded. Success after adding isolated operator SYS_PTRACE and passive diagnostics corroborates the cross-UID proc inspection permission hypothesis but does not recover a missing original errno or stack. No failing child condition exists in the new successful run."
+  },
+  "limitations": [
+    "No production writer graph integration",
+    "No complete operating or historical writer census",
+    "No global Redis producer exclusion proof",
+    "No production epoch cutover",
+    "No compatible operating rollback artifact verification",
+    "No full operational restoration or protected custody acceptance",
+    "The test uses generated synthetic cutover receipts and does not prove historical exclusion"
+  ],
+  "newWholeRequirementIds": [],
+  "accepted": 45,
+  "outstanding": 19,
+  "sourceFilesMatchedToArtifactGitBlobs": [
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "blob": "4645a96d6f6c1ba73fa137c49eec6bff2418b070"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.test.cjs",
+      "blob": "d477c8f14c982d84dca86e2e434071bb02f4f2ef"
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "blob": "f55c87b355f2f30fe7fce20d623a188910c490d8"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-redis.cjs",
+      "blob": "0399ebf693480605dc89c9ddcda8c170bfe7cb3a"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-runner.cjs",
+      "blob": "415d9abf689949079eec9ad2f5d3d1147256aa04"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-writer.mjs",
+      "blob": "29bdebbe42cda86f79e28da884f04adb029e5ed1"
+    },
+    {
+      "path": ".github/workflows/work8-journal-examination.yml",
+      "blob": "98dbff6bbca2e022474d95e30c0960c4270c54fa"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "blob": "75948a8054d5fa770e49b8efe08f7915a17feba9"
+    },
+    {
+      "path": "scripts/work8/run-journal-examination.sh",
+      "blob": "839af1214a88666b93a13d9acf36dd951d637e62"
+    }
+  ],
+  "testsRepeatedByReviewer": false,
+  "remoteCallsByReviewer": false
+}

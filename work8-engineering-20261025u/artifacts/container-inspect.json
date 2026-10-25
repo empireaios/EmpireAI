@@ -1,0 +1,262 @@
+[
+    {
+        "Id": "120c5bdbe5065760bdbeb846a42dbe3821ebc921361435f94453feaf80fbb731",
+        "Created": "2026-10-25T00:24:18.446705979Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "sh",
+            "-ec",
+            "\n    mkdir /work8-exam/source\n    cp -R /src/deployment /work8-exam/source/deployment\n    chmod -R a-w /work8-exam/source/deployment\n    cd /work8-exam/source\n    exec node --test --test-reporter=tap deployment/runtime-membership-controller.hosted.test.cjs\n  "
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-10-25T00:24:18.462777358Z",
+            "FinishedAt": "2026-10-25T00:24:19.157139514Z"
+        },
+        "Image": "sha256:c72861c6705868ed7f08e1cf22ef4f7ba07a82c19a54ba65d931c442d3575889",
+        "ResolvConfPath": "/var/lib/docker/containers/120c5bdbe5065760bdbeb846a42dbe3821ebc921361435f94453feaf80fbb731/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/120c5bdbe5065760bdbeb846a42dbe3821ebc921361435f94453feaf80fbb731/hostname",
+        "HostsPath": "/var/lib/docker/containers/120c5bdbe5065760bdbeb846a42dbe3821ebc921361435f94453feaf80fbb731/hosts",
+        "LogPath": "/var/lib/docker/containers/120c5bdbe5065760bdbeb846a42dbe3821ebc921361435f94453feaf80fbb731/120c5bdbe5065760bdbeb846a42dbe3821ebc921361435f94453feaf80fbb731-json.log",
+        "Name": "/work8-journal-40146543781-exam",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "work8-journal-40146543781-net",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": [
+                "CAP_CHOWN",
+                "CAP_DAC_OVERRIDE",
+                "CAP_KILL",
+                "CAP_SETGID",
+                "CAP_SETUID",
+                "CAP_SYS_PTRACE"
+            ],
+            "CapDrop": [
+                "ALL"
+            ],
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": true,
+            "SecurityOpt": [
+                "no-new-privileges"
+            ],
+            "Tmpfs": {
+                "/tmp": "rw,noexec,nosuid,nodev,mode=1777,size=16m",
+                "/work8-exam": "rw,nosuid,nodev,mode=0755,size=64m"
+            },
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 536870912,
+            "NanoCpus": 2000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 1073741824,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": 128,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "/home/runner/work/EmpireAI/EmpireAI",
+                    "Target": "/src",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/home/runner/work/_temp/work8-journal-evidence",
+                    "Target": "/evidence"
+                }
+            ],
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "ID": "120c5bdbe5065760bdbeb846a42dbe3821ebc921361435f94453feaf80fbb731",
+                "LowerDir": "/var/lib/docker/overlay2/1ff8c82278d5021db5b1aef9ef679475dfaa00b801aa69d5b768144e60487c2b-init/diff:/var/lib/docker/overlay2/adecc97009b598537912091af87ec9e20e9d86685a7326dcafcd44fbe3ac7cd2/diff:/var/lib/docker/overlay2/99c23e730bca7c5a7c875c8fd4329307bfac3f17abc1ced20c99f5a9bf1ede6f/diff:/var/lib/docker/overlay2/d91f69b75746aac11e939be7b69e57a3f1b5739883e6e268c361051b1180b3f2/diff:/var/lib/docker/overlay2/42bab1b41fc047e8e332cea7026e48dba7a79626d19c19506350aa72f9a9604c/diff:/var/lib/docker/overlay2/b82c4b1be4b7161fcee4e0bf82de377c62a4b376a94bf47018636a7a47f970d7/diff",
+                "MergedDir": "/var/lib/docker/overlay2/1ff8c82278d5021db5b1aef9ef679475dfaa00b801aa69d5b768144e60487c2b/merged",
+                "UpperDir": "/var/lib/docker/overlay2/1ff8c82278d5021db5b1aef9ef679475dfaa00b801aa69d5b768144e60487c2b/diff",
+                "WorkDir": "/var/lib/docker/overlay2/1ff8c82278d5021db5b1aef9ef679475dfaa00b801aa69d5b768144e60487c2b/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/runner/work/EmpireAI/EmpireAI",
+                "Destination": "/src",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/runner/work/_temp/work8-journal-evidence",
+                "Destination": "/evidence",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "120c5bdbe506",
+            "Domainname": "",
+            "User": "0:0",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "WORK8_MEMBERSHIP_REDIS_URL=redis://journal-redis:6379/0",
+                "WORK8_EVIDENCE_DIR=/evidence",
+                "PILLOW_BIRTH_STATE=NOT_BORN",
+                "COMMERCE_STATE=LOCKED",
+                "WORK8_SOURCE_SHA=70db355abf322f78ddeb34369a23f1c2d4ecc7d5",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NODE_VERSION=22.23.2",
+                "YARN_VERSION=1.22.22"
+            ],
+            "Cmd": [
+                "sh",
+                "-ec",
+                "\n    mkdir /work8-exam/source\n    cp -R /src/deployment /work8-exam/source/deployment\n    chmod -R a-w /work8-exam/source/deployment\n    cd /work8-exam/source\n    exec node --test --test-reporter=tap deployment/runtime-membership-controller.hosted.test.cjs\n  "
+            ],
+            "Image": "sha256:c72861c6705868ed7f08e1cf22ef4f7ba07a82c19a54ba65d931c442d3575889",
+            "Volumes": null,
+            "WorkingDir": "/src",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "work8-journal-40146543781-net": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "",
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "a69a655cf987c42fa9f3e1a5988aeff1d29e4fd3f9fb6ec441090611edb03869",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "work8-journal-40146543781-exam",
+                        "120c5bdbe506"
+                    ]
+                }
+            }
+        }
+    }
+]

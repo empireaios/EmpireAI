@@ -1,0 +1,31 @@
+[
+    {
+        "Name": "work8-journal-40146543781-net",
+        "Id": "a69a655cf987c42fa9f3e1a5988aeff1d29e4fd3f9fb6ec441090611edb03869",
+        "Created": "2026-10-25T00:24:18.125370943Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]

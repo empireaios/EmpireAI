@@ -1,0 +1,55 @@
+# Actual process graph integration contract — U
+
+25 October 2026. Retained-source examination only. No test, CI dispatch, production operation or source mutation. Whole-row baseline remains 45 accepted / 19 outstanding. The independent hosted journal decision is supplied separately by the integration controller.
+
+## Resolved primary-to-brain contract
+
+The actual `backend/src/runtime/tier0-isolated-primary.ts` directly calls `spawn(process.execPath, [workerEntryPath()], {env, stdio:[inherit,inherit,inherit,ipc], detached:false})`. The return value is an actual Node ChildProcess, assigned synchronously to WorkerState.child. The code observes spawn/error/exit, uses pid for logging, and independently probes the fixed localhost worker port for readiness. Exit preserves primary operation and schedules replacement after the existing bounded 1–6 second delay (upper cap 8 seconds); spawn errors retry after 5 seconds. The heavy worker starts after the primary is listening, with the existing 1500ms default delay.
+
+`work8-primary-capture.ts` requires the same object's connected, exitCode and signalCode state; send callback; kill; and on/off message/disconnect/exit operations. Worker-side capture uses its inherited process IPC. The requester acquires and releases a primary drain with a random identity/generation. Primary containment remains 30 seconds and worker fence deadline 29 seconds. Disconnect does not authorize writers to reopen. These are real transport semantics, not properties that can safely be reconstructed by casting a JSON identifier to ChildProcess.
+
+Exact primary shutdown source was recovered at the published revision. It receives getChild, calls kill(SIGTERM) synchronously and treats false as failure, waits for actual exit(code,signal), and escalates SIGKILL at the existing deadline. A remote handle cannot truthfully provide synchronous OS signal success. The broker interface must make signal acknowledgment explicit and adapt shutdown without extending its deadline. The generated-worker adoption path is explicitly examination-only and suppresses ordinary respawn; it is not a production shortcut.
+
+## Smallest credible mediation route
+
+Keep the operator as the only authoritative admission/history writer. Supervised Assurance already exposes a spawnImpl injection: within the operator-owned launcher, it can receive the actual controller-spawned ChildProcess while preserving existing observer progress, quarantine and capture events. This part needs no cross-process fake process handle.
+
+For the nested primary-to-brain edge, explicitly introduce a narrow RuntimeProcessHandle interface covering the observed operations, then a controller-owned spawn broker. The admitted primary requests only a fixed allowlisted brain role; the controller chooses executable, args, environment, UID/GID, generation and scopes. It creates the real child, durably admits it, and returns identity-correlated lifecycle events. Brokered send/message must preserve the private primary-capture protocol, callbacks and disconnect semantics; kill must be executed by the controller against the matching observed PID/start identity, never against an arbitrary caller PID. Late events from an earlier member must not mutate a replacement's state. Primary restart counters and deadlines remain unchanged.
+
+A parallel option is retaining nested OS parentage while requiring controller-issued admission and validated child ownership before ACK. This has a more complex authentication boundary because the runtime parent must not choose authoritative identity or admit arbitrary descendants. It should not be selected merely to avoid the explicit handle contract.
+
+## Concrete incompatibility to prevent
+
+The present primary spreads process.env into each child. A naive NODE_OPTIONS/bootstrap insertion would inherit the primary's WORK8_MEMBERSHIP_ID/nonce and connect the worker's IPC to the primary, not the operator. It cannot produce a fresh controller-owned admission. Per-child membership material must be replaced, never inherited as authority. Application code must remain blocked before durable ACK.
+
+## Scope and exact files
+
+- deployment/runtime-membership-controller.cjs: fixed real-role spawn/capture manifest, controller broker and exact-source/scope binding.
+- deployment/runtime-membership-bootstrap.mjs: operator transport lifecycle and per-child admission; no runtime-controlled history.
+- deployment/locked-runtime.cjs: operator initialization and admitted startup-readback participant.
+- deployment/assurance-supervisor.cjs: use controller-owned spawnImpl while retaining capture/progress/quarantine contracts.
+- deployment/locked-supervision.cjs and deployment/launcher-loss-guard.cjs: preserve guard lease, containment and audit writer coverage.
+- backend/src/runtime/tier0-isolated-primary.ts: replace the direct spawn boundary with the explicit process-handle/broker contract.
+- backend/src/runtime/work8-primary-capture.ts and backend/src/runtime/primary-shutdown.ts: type narrow process contract and preserve actual send/kill/exit guarantees.
+
+No speculative infrastructure is required. Non-production engineering is already authorized; no additional owner engineering permission is needed. Exact-tree publication and later operating cutover remain separate approvals.
+
+## Engineering prerequisites and acceptance
+
+The two initially missing dependencies were recovered and read at the exact published70db revision. The complete inspected contract reveals a concrete containment dependency: canary-launcher spawns the launcher-loss guard with detached:true; the guard kills its entire process group using -process.pid, and primary/brain currently inherit that group. Moving them to operator-owned sibling processes outside the guarded group would silently break accepted launcher-loss containment. Minimum integration must preserve group ownership by placing the authoritative controller within the independently guarded process group, or provide an equally bounded independently enforced group-control design. The guard also performs containment-audit writes and must be part of the authoritative writer scope. This is a source/topology integration requirement, not a missing owner engineering permission or inaccessible environment.
+
+A safe coordinated candidate therefore requires group-preserving controller bootstrap, a real acknowledged process-control broker, primary shutdown/capture consumer changes, observer spawn adaptation, admitted audit/readback writers and explicit real-role environment manifests together. A standalone unused handle shim or a default-off flag that never exercises this operating graph would not remove the blocker and is not proposed. No source was edited in this bounded contract examination.
+
+After independent source review, one isolated actual-graph examination should prove broker admission before mutation, private capture IPC, primary/worker/observer replacement, guard loss, preserved deadlines, complete scope census and stale-generation refusal. Reuse previous recovery evidence only across unchanged boundaries. Production safe epoch, exclusion of all external Redis producers and protected complete-data custody remain independent operating gates; no whole recovery row follows from the isolated primitive alone.
+
+## Proposed topology decision for independent review before implementation
+
+Keep `canary-launcher` as the independent deadline owner and keep `launcher-loss-guard` as detached process-group leader. The guard starts a separate operator/controller entrypoint in its own group. That controller owns actual primary, brain and observer child processes (all explicitly demoted to runtime UID/GID with zero capabilities), and mediates their role-scoped IPC. The guard must remain outside the controller event loop so controller stalls cannot disable lease containment. The controller and every admitted runtime process inherit the guarded group; no descendant may request detached/session changes through the broker. The original launcher renews the guard lease; guard loss still kills that group. Do not put the controller directly into the guard's event loop.
+
+The privileged guard must become non-application-writing: its existing containment-audit operation must be delegated to an explicitly admitted audit participant, with failure to log never delaying group containment. The controller journal is operator-owned lifecycle state, not an application store. Runtime payloads may request fixed operations but cannot choose executable, arguments, environment, UID/GID, scope, PID, generation, group or journal mutation. Real-role environment material is allowlisted; per-child membership values are controller-generated. This topology still needs an independent proof that runtime code cannot create unadmitted writer descendants outside the declared source graph; default filesystem/Redis access alone is not that proof.
+
+Minimum coherent implementation boundary (not completed): approximately eleven existing production call-site files plus two new broker/controller-entry modules and their meaningful actual-graph examination. Existing files include the nine listed above, canary-launcher.cjs (group invariants), and containment-audit.cjs (admitted delegation). The actual-graph harness must test guard/controller/primary/worker loss independently, acknowledged signals and late events, observer replacement, capture while writes are active, all scoped mutation participants, and absence of inherited parent membership authority. This is substantially larger than the completed isolated primitive and cannot be represented as a two-file follow-up. No new infrastructure or production access is needed for engineering; exact implementation, independent review and a later isolated examination remain work to perform.
+
+Independent topology review clarification: the guard is an operator/control-plane principal and must retain permission to kill the privileged controller; blindly demoting it or applying the Q runtime preload (which rejects UID0) would break containment. Runtime children remain demoted and zero-capability. Because actual observer children move into the guarded controller group, observer supervision must move into that controller entrypoint or use an explicit broker; the old outer launcher cannot directly receive native ChildProcess objects across a process boundary. The earlier spawnImpl reuse applies only when supervisor and real spawn owner share the controller process.
+
+Execution status: contract/topology preparation complete; coordinated source implementation not started. The bounded contract lane cannot honestly deliver and independently verify the quantified full-graph change as a small patch. No dollar expenditure is asserted. Preserve this as the next integrated engineering assignment, not as a newly required owner engineering permission, and do not stage an unused broker. Hosted access and the isolated journal primitive are no longer the immediate blocker; full actual-graph enforcement, group containment and operating custody remain.

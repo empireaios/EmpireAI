@@ -1,0 +1,29 @@
+{
+  "schema": "work8-journal-examination-v1",
+  "source": "70db355abf322f78ddeb34369a23f1c2d4ecc7d5",
+  "node": "22.23.2",
+  "operatorUid": 0,
+  "runtimeUids": [
+    65534
+  ],
+  "externalEffects": 0,
+  "redisRunId": "228b736346c453e46c47827ba6d4aaf9b32a4929",
+  "assertions": {
+    "durableAdmission": true,
+    "identitySeparation": true,
+    "journalProtection": true,
+    "scopeBinding": true,
+    "competingAdmission": true,
+    "captureExclusion": true,
+    "incompleteMembershipRefusal": true,
+    "currentPriorCensus": true,
+    "secretFreeReadback": true,
+    "staleGenerationRefusal": true,
+    "crashRestart": true
+  },
+  "scope": "DECLARED_SYNTHETIC_COHORT_ONLY",
+  "productionGraphIntegrated": false,
+  "operatingRecoveryCertified": false,
+  "acceptedRows": [],
+  "observedMemberCount": 5
+}
