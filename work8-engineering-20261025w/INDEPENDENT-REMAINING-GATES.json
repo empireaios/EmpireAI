@@ -1,0 +1,125 @@
+{
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19,
+    "missionLedger": "IN_PROGRESS / NO_GO"
+  },
+  "pendingHostedReview": {
+    "run": 40161831246,
+    "source": "c8b56b5e230c064982b9a8ed24ecf78f475137d3",
+    "tree": "7de4dac72a9b5ac13ee0db573520ecf8c53add05",
+    "expectedScope": "Actual launcher/guard/controller/broker modules with synthetic application entries; Pillow/backend compile",
+    "decision": "PENDING_ARTIFACTS",
+    "noReruns": true
+  },
+  "remainingGates": [
+    {
+      "gate": "Actual application writer coverage",
+      "requiredProof": "Execute the compiled real primary/brain/Assurance/startup entries under the reviewed controller, native filter and distinct identities; reconcile every canonical store, session/journal/visual-memory/queue writer against authoritative role/scope admission and capture acknowledgements. Verify necessary application behavior does not require prohibited descendants. Five-role synthetic census alone is insufficient.",
+      "reuse": "Accepted thirteen-store/application-graph inventory and source-bound scoped recovery receipts; repeat only boundaries changed by integration.",
+      "authority": "Existing isolated infrastructure and exact reviewed source; any new tree requires owner exact-tree approval."
+    },
+    {
+      "gate": "Safe prospective operating epoch",
+      "requiredProof": "Authenticated inventory of current admitted operating writers and explicit exclusion of every pre-protocol writer by verified termination/fencing and storage/Redis access control. Record exact source, deployment, scope, generation, controller history, Redis identity and reviewed cutover receipt. Unknown historical membership is not reconstructed; old access must be demonstrably excluded before admitting new epoch.",
+      "authority": "Separate exact operating cutover/deployment approval; none granted by source publication."
+    },
+    {
+      "gate": "Complete capture exclusion",
+      "requiredProof": "Freeze admission and reconcile current/prior lifecycle journal; prove all actual mutable application participants held or terminated, including trusted guard audit exclusion/emergency invalidation and controller revision stability. No unknown writer or stale generation may retain write authority.",
+      "reuse": "Retain accepted session/Redis/SQL checks where source and operating boundaries still apply; metadata-only receipt does not replace live hold proof."
+    },
+    {
+      "gate": "One operational restoration campaign",
+      "requiredProof": "Capture complete canonical data and Redis chronology; restore on fresh isolated target under explicitly compatible new authority; prove original sessions, financial/mission records, index/watchdog readiness and pending work exactly once; refuse corruption and copied/stale authority. Preserve original deadlines.",
+      "reuse": "Accepted startup, index/watchdog8s, queued18.792s,13store/session/journal/visual-memory evidence only within retained scopes. Do not rerun unrelated accepted suites."
+    },
+    {
+      "gate": "Protected operational custody",
+      "requiredProof": "Actual complete-data protected copy, exact manifest/hash/version and retention policy, runtime credential exclusion, separately authenticated off-host readback, corruption refusal and fresh-target restore from that protected copy. Evidence archives alone are not operational backups.",
+      "authority": "Use existing eligible authorized route only; new storage/provisioning or missing access requires separate owner authority."
+    },
+    {
+      "gate": "Compatible rollback",
+      "requiredProof": "Exact forward/rollback source pair explicitly allowed by generation protocol; preserve controller journal and durable DEFER schema, exclude stale writer re-entry and duplicate replay. Non-controller historical releases are prohibited rollback targets. Validate fail-closed behavior if authority unavailable.",
+      "authority": "Engineering review may prepare pair; production execution requires separate exact operating approval."
+    },
+    {
+      "gate": "Independent whole-row decisions",
+      "requiredProof": "Map complete mandatory criteria for O33/O39/A1/A2/A3/A5 to the shared operating/custody evidence; issue separate complete-row verdicts without multiplying examinations. Leave any incomplete row pending.",
+      "noAutomaticPromotion": true
+    }
+  ],
+  "hostedArtifactAcceptanceChecks": [
+    "Terminal run/attempt/source/tree identity and complete logs",
+    "Pillow/backend compile terminal success",
+    "Node22.23.2/private authenticated synthetic Redis/actual distinct UID and zero runtime capabilities",
+    "Strict1test1pass0fail0skip0todo and both clean/primary-death receipts",
+    "Scope flags productionGraphIntegrated=false and operatingRecoveryCertified=false",
+    "Original deadlines and no skipped mandatory assertions",
+    "Failing condition classified from retained evidence without automatic rerun"
+  ],
+  "sixRowGateMatrix": [
+    {
+      "id": "O33",
+      "mandatoryRemaining": [
+        "Actual concurrent writers and capture exclusion",
+        "Stale/current generation replay exclusion",
+        "Once-only coupled pending work under real integrated graph"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "O39",
+      "mandatoryRemaining": [
+        "Full fresh-target operational restore",
+        "Compatible rollback and migrations",
+        "Corruption refusal and no authority replay"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "A1",
+      "mandatoryRemaining": [
+        "Persistent real application identity/state continuity",
+        "Complete operational restoration and safe epoch"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "A2",
+      "mandatoryRemaining": [
+        "Complete actual primary/worker/observer and data-store graph",
+        "Consistent capture and full restoration"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "A3",
+      "mandatoryRemaining": [
+        "Complete-data off-host protected custody",
+        "Retention/version integrity and runtime credential exclusion",
+        "Independent authenticated readback and restoration"
+      ],
+      "decision": "PENDING"
+    },
+    {
+      "id": "A5",
+      "mandatoryRemaining": [
+        "Explicit compatible forward/rollback pair",
+        "Generation consistency and stale re-entry refusal",
+        "Original session/financial preservation without duplicate work"
+      ],
+      "decision": "PENDING"
+    }
+  ],
+  "independentLaneDependencies": {
+    "ownerConsole": "Existing conditional DEFER preserved; no click. Corrected release/rollback pair and separate production authority remain required.",
+    "business": "No new credible matched current supplier/marketplace terms, media rights and economics evidence; no expired observations promoted.",
+    "alerts": "Verified independent executor/attempt store/provider/destination/observer plus bounded message authority remain required; no message sent.",
+    "accounting": "227 records and historical digests preserved; original224 provenance or audited lineage missing; no unsupported search repeated.",
+    "Canva": "Server-side export authority/entitlement gap preserved; no hanging reads repeated.",
+    "Keepa": "Runtime NOT_CONFIGURED is not account entitlement evidence; applicable authenticated entitlement readback still needed."
+  },
+  "otherLaneActionBoundary": "No new input or authority is supplied by journal source publication to resolve these retained external dependencies. Do not repeat blocked searches, live DEFER, messages, purchases or deployments. Certification may reconcile new hosted scope but cannot infer missing business/owner/custody proof."
+}

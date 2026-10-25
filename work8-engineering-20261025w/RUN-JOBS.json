@@ -1,0 +1,105 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 121074832365,
+      "run_id": 40161831246,
+      "workflow_name": "Work 8 actual writer integration examination",
+      "head_branch": "work8/writer-integration-20261025v",
+      "run_url": "https://api.github.com/repos/empireaios/EmpireAI/actions/runs/40161831246",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOTA0IHM8AAAAcMJ9T7Q",
+      "head_sha": "c8b56b5e230c064982b9a8ed24ecf78f475137d3",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/actions/jobs/121074832365",
+      "html_url": "https://github.com/empireaios/EmpireAI/actions/runs/40161831246/job/121074832365",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-25T04:25:34Z",
+      "started_at": "2026-10-25T04:25:36Z",
+      "completed_at": "2026-10-25T04:27:24Z",
+      "name": "writer-integration",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T04:25:36Z",
+          "completed_at": "2026-10-25T04:25:37Z"
+        },
+        {
+          "name": "Checkout approved event source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T04:25:37Z",
+          "completed_at": "2026-10-25T04:25:41Z"
+        },
+        {
+          "name": "Node runtime from reviewed repository pin",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T04:25:41Z",
+          "completed_at": "2026-10-25T04:25:46Z"
+        },
+        {
+          "name": "Compile changed backend boundary with its Pillow dependency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T04:25:46Z",
+          "completed_at": "2026-10-25T04:27:12Z"
+        },
+        {
+          "name": "Examine only the new writer integration boundary",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5,
+          "started_at": "2026-10-25T04:27:12Z",
+          "completed_at": "2026-10-25T04:27:20Z"
+        },
+        {
+          "name": "Retain exact-source evidence including failures",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T04:27:20Z",
+          "completed_at": "2026-10-25T04:27:21Z"
+        },
+        {
+          "name": "Post Node runtime from reviewed repository pin",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-25T04:27:21Z",
+          "completed_at": "2026-10-25T04:27:21Z"
+        },
+        {
+          "name": "Post Checkout approved event source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-25T04:27:21Z",
+          "completed_at": "2026-10-25T04:27:21Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-25T04:27:21Z",
+          "completed_at": "2026-10-25T04:27:21Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/empireaios/EmpireAI/check-runs/121074832365",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000008479,
+      "runner_name": "GitHub Actions 1000008479",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

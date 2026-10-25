@@ -1,0 +1,276 @@
+[
+    {
+        "Id": "92d2276305a06b407c7eb5f749dd7e8fd72c43356f693c6170cc90e624836227",
+        "Created": "2026-10-25T04:27:20.060801162Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "sh",
+            "-ec",
+            "\n    mkdir /work8-exam/source\n    cp -R /src/deployment /work8-exam/source/deployment\n    chmod -R a-w /work8-exam/source/deployment\n    mkdir /work8-exam/native\n    cp /native/runtime-writer-isolation.so /work8-exam/native/writer.so\n    chmod 0444 /work8-exam/native/writer.so\n    export WORK8_WRITER_ISOLATION_LIBRARY=/work8-exam/native/writer.so\n    export WORK8_WRITER_ISOLATION_SHA256=$(sha256sum /work8-exam/native/writer.so | cut -d \" \" -f1)\n    cd /work8-exam/source\n    exec node --test --test-reporter=tap deployment/runtime-writer-graph.hosted.test.cjs\n  "
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 1,
+            "Error": "",
+            "StartedAt": "2026-10-25T04:27:20.095643133Z",
+            "FinishedAt": "2026-10-25T04:27:20.254992191Z"
+        },
+        "Image": "sha256:c72861c6705868ed7f08e1cf22ef4f7ba07a82c19a54ba65d931c442d3575889",
+        "ResolvConfPath": "/var/lib/docker/containers/92d2276305a06b407c7eb5f749dd7e8fd72c43356f693c6170cc90e624836227/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/92d2276305a06b407c7eb5f749dd7e8fd72c43356f693c6170cc90e624836227/hostname",
+        "HostsPath": "/var/lib/docker/containers/92d2276305a06b407c7eb5f749dd7e8fd72c43356f693c6170cc90e624836227/hosts",
+        "LogPath": "/var/lib/docker/containers/92d2276305a06b407c7eb5f749dd7e8fd72c43356f693c6170cc90e624836227/92d2276305a06b407c7eb5f749dd7e8fd72c43356f693c6170cc90e624836227-json.log",
+        "Name": "/work8-writer-40161831246-exam",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "work8-writer-40161831246-net",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": [
+                "CAP_CHOWN",
+                "CAP_DAC_OVERRIDE",
+                "CAP_KILL",
+                "CAP_SETGID",
+                "CAP_SETUID",
+                "CAP_SYS_PTRACE"
+            ],
+            "CapDrop": [
+                "ALL"
+            ],
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": true,
+            "SecurityOpt": [
+                "no-new-privileges"
+            ],
+            "Tmpfs": {
+                "/tmp": "rw,noexec,nosuid,nodev,mode=1777,size=16m",
+                "/work8-exam": "rw,nosuid,nodev,mode=0755,size=128m"
+            },
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 536870912,
+            "NanoCpus": 2000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 1073741824,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": 128,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "/home/runner/work/EmpireAI/EmpireAI",
+                    "Target": "/src",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/home/runner/work/_temp/work8-writer-evidence",
+                    "Target": "/evidence"
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/home/runner/work/_temp/work8-writer-native",
+                    "Target": "/native",
+                    "ReadOnly": true
+                }
+            ],
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "ID": "92d2276305a06b407c7eb5f749dd7e8fd72c43356f693c6170cc90e624836227",
+                "LowerDir": "/var/lib/docker/overlay2/6dc40e991b50be00e7ea72517a2701c3d8639633eb98e5d0e006f49ee0784ebb-init/diff:/var/lib/docker/overlay2/3cad200b11d6723f6c64c4c89121315f7adeb6734937a149724b915d4587af6c/diff:/var/lib/docker/overlay2/cc3ac21cd8fdf3ca7d5967019b6edd1afb27c61358452d88f2ecc617b8d4ae39/diff:/var/lib/docker/overlay2/684a3e571244f1edf72f9f9d5ce416618a3d0269d74de12464da8bc310056a2a/diff:/var/lib/docker/overlay2/286e128e7c9ea14b309e03309482a6b460cc28c8b020d31c2f6c39304d6336c4/diff:/var/lib/docker/overlay2/e9eb4bf34e6dfeecefb7cd4c5dc7c68c0193adcdd7f34ec1e6c12af0ec60f284/diff",
+                "MergedDir": "/var/lib/docker/overlay2/6dc40e991b50be00e7ea72517a2701c3d8639633eb98e5d0e006f49ee0784ebb/merged",
+                "UpperDir": "/var/lib/docker/overlay2/6dc40e991b50be00e7ea72517a2701c3d8639633eb98e5d0e006f49ee0784ebb/diff",
+                "WorkDir": "/var/lib/docker/overlay2/6dc40e991b50be00e7ea72517a2701c3d8639633eb98e5d0e006f49ee0784ebb/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/runner/work/EmpireAI/EmpireAI",
+                "Destination": "/src",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/runner/work/_temp/work8-writer-evidence",
+                "Destination": "/evidence",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/runner/work/_temp/work8-writer-native",
+                "Destination": "/native",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "92d2276305a0",
+            "Domainname": "",
+            "User": "0:0",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "COMMERCE_STATE=LOCKED",
+                "WORK8_SOURCE_SHA=c8b56b5e230c064982b9a8ed24ecf78f475137d3",
+                "WORK8_MEMBERSHIP_REDIS_URL=redis://:work8-synthetic-only@journal-redis:6379/0",
+                "WORK8_EVIDENCE_DIR=/evidence",
+                "PILLOW_BIRTH_STATE=NOT_BORN",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NODE_VERSION=22.23.2",
+                "YARN_VERSION=1.22.22"
+            ],
+            "Cmd": [
+                "sh",
+                "-ec",
+                "\n    mkdir /work8-exam/source\n    cp -R /src/deployment /work8-exam/source/deployment\n    chmod -R a-w /work8-exam/source/deployment\n    mkdir /work8-exam/native\n    cp /native/runtime-writer-isolation.so /work8-exam/native/writer.so\n    chmod 0444 /work8-exam/native/writer.so\n    export WORK8_WRITER_ISOLATION_LIBRARY=/work8-exam/native/writer.so\n    export WORK8_WRITER_ISOLATION_SHA256=$(sha256sum /work8-exam/native/writer.so | cut -d \" \" -f1)\n    cd /work8-exam/source\n    exec node --test --test-reporter=tap deployment/runtime-writer-graph.hosted.test.cjs\n  "
+            ],
+            "Image": "sha256:c72861c6705868ed7f08e1cf22ef4f7ba07a82c19a54ba65d931c442d3575889",
+            "Volumes": null,
+            "WorkingDir": "/src",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "work8-writer-40161831246-net": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "",
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "f5117bd1a5571b95e025b48f0ebee8cb852ef187fb1213f898be902014d2b28f",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "work8-writer-40161831246-exam",
+                        "92d2276305a0"
+                    ]
+                }
+            }
+        }
+    }
+]

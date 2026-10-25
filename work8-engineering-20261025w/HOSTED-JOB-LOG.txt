@@ -1,0 +1,352 @@
+﻿2026-10-25T04:25:36.7591557Z Current runner version: '2.338.0'
+2026-10-25T04:25:36.7613456Z ##[group]Runner Image Provisioner
+2026-10-25T04:25:36.7614262Z Hosted Compute Agent
+2026-10-25T04:25:36.7614746Z Version: 20261021.618
+2026-10-25T04:25:36.7615340Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-25T04:25:36.7615963Z Build Date: 2026-10-21T00:45:21Z
+2026-10-25T04:25:36.7616508Z Worker ID: {af060cc9-1625-4393-a221-725556415c29}
+2026-10-25T04:25:36.7617133Z Region: westus3
+2026-10-25T04:25:36.7617724Z Cloud: Azure
+2026-10-25T04:25:36.7618203Z ##[endgroup]
+2026-10-25T04:25:36.7619551Z ##[group]Operating System
+2026-10-25T04:25:36.7620062Z Ubuntu
+2026-10-25T04:25:36.7620551Z 24.04.5
+2026-10-25T04:25:36.7620980Z LTS
+2026-10-25T04:25:36.7621461Z ##[endgroup]
+2026-10-25T04:25:36.7621958Z ##[group]Runner Image
+2026-10-25T04:25:36.7622458Z Image: ubuntu-24.04
+2026-10-25T04:25:36.7623244Z Version: 20261012.334.1
+2026-10-25T04:25:36.7624299Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-25T04:25:36.7625586Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-25T04:25:36.7626364Z ##[endgroup]
+2026-10-25T04:25:36.7627281Z ##[group]GITHUB_TOKEN Permissions
+2026-10-25T04:25:36.7629202Z Contents: read
+2026-10-25T04:25:36.7629790Z Metadata: read
+2026-10-25T04:25:36.7630249Z ##[endgroup]
+2026-10-25T04:25:36.7631998Z Secret source: Actions
+2026-10-25T04:25:36.7632869Z Cache mode: write
+2026-10-25T04:25:36.7633429Z Prepare workflow directory
+2026-10-25T04:25:36.7907117Z Prepare all required actions
+2026-10-25T04:25:36.7948551Z Getting action download info
+2026-10-25T04:25:37.1050365Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+2026-10-25T04:25:37.2526542Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-25T04:25:37.3569207Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-25T04:25:37.5889439Z Complete job name: writer-integration
+2026-10-25T04:25:37.6582136Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-10-25T04:25:37.6582961Z with:
+2026-10-25T04:25:37.6583342Z   ref: c8b56b5e230c064982b9a8ed24ecf78f475137d3
+2026-10-25T04:25:37.6583874Z   persist-credentials: false
+2026-10-25T04:25:37.6584274Z   fetch-depth: 1
+2026-10-25T04:25:37.6584694Z   repository: empireaios/EmpireAI
+2026-10-25T04:25:37.6587863Z   token: ***
+2026-10-25T04:25:37.6588214Z   ssh-strict: true
+2026-10-25T04:25:37.6588563Z   ssh-user: git
+2026-10-25T04:25:37.6588895Z   clean: true
+2026-10-25T04:25:37.6589246Z   sparse-checkout-cone-mode: true
+2026-10-25T04:25:37.6589657Z   fetch-tags: false
+2026-10-25T04:25:37.6590007Z   show-progress: true
+2026-10-25T04:25:37.6590362Z   lfs: false
+2026-10-25T04:25:37.6590688Z   submodules: false
+2026-10-25T04:25:37.6591072Z   set-safe-directory: true
+2026-10-25T04:25:37.6591653Z ##[endgroup]
+2026-10-25T04:25:37.7483938Z Syncing repository: empireaios/EmpireAI
+2026-10-25T04:25:37.7486112Z ##[group]Getting Git version info
+2026-10-25T04:25:37.7486947Z Working directory is '/home/runner/work/EmpireAI/EmpireAI'
+2026-10-25T04:25:37.7488321Z [command]/usr/bin/git version
+2026-10-25T04:25:37.7546795Z git version 2.55.0
+2026-10-25T04:25:37.7575059Z ##[endgroup]
+2026-10-25T04:25:37.7583047Z Temporarily overriding HOME='/home/runner/work/_temp/2f3ec6a4-ee65-4a54-b4dd-129af3c22a0b' before making global git config changes
+2026-10-25T04:25:37.7585239Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-25T04:25:37.7586772Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EmpireAI/EmpireAI
+2026-10-25T04:25:37.7630793Z Deleting the contents of '/home/runner/work/EmpireAI/EmpireAI'
+2026-10-25T04:25:37.7635195Z ##[group]Initializing the repository
+2026-10-25T04:25:37.7640125Z [command]/usr/bin/git init /home/runner/work/EmpireAI/EmpireAI
+2026-10-25T04:25:37.7718900Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-25T04:25:37.7720207Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-25T04:25:37.7721194Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-25T04:25:37.7722469Z hint: call:
+2026-10-25T04:25:37.7722965Z hint:
+2026-10-25T04:25:37.7723597Z hint: 	git config --global init.defaultBranch <name>
+2026-10-25T04:25:37.7724318Z hint:
+2026-10-25T04:25:37.7725009Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-25T04:25:37.7726084Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-25T04:25:37.7726985Z hint:
+2026-10-25T04:25:37.7727653Z hint: 	git branch -m <name>
+2026-10-25T04:25:37.7728216Z hint:
+2026-10-25T04:25:37.7728941Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-25T04:25:37.7730139Z Initialized empty Git repository in /home/runner/work/EmpireAI/EmpireAI/.git/
+2026-10-25T04:25:37.7733475Z [command]/usr/bin/git remote add origin https://github.com/empireaios/EmpireAI
+2026-10-25T04:25:37.7777993Z ##[endgroup]
+2026-10-25T04:25:37.7779116Z ##[group]Disabling automatic garbage collection
+2026-10-25T04:25:37.7782874Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-25T04:25:37.7823357Z ##[endgroup]
+2026-10-25T04:25:37.7824503Z ##[group]Setting up auth
+2026-10-25T04:25:37.7830535Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-25T04:25:37.7883910Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-25T04:25:37.8195901Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-25T04:25:37.8231559Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-25T04:25:37.8450908Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-25T04:25:37.8495986Z ##[endgroup]
+2026-10-25T04:25:37.8497620Z ##[group]Fetching the repository
+2026-10-25T04:25:37.8505301Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin c8b56b5e230c064982b9a8ed24ecf78f475137d3
+2026-10-25T04:25:40.4563789Z From https://github.com/empireaios/EmpireAI
+2026-10-25T04:25:40.4565231Z  * branch              c8b56b5e230c064982b9a8ed24ecf78f475137d3 -> FETCH_HEAD
+2026-10-25T04:25:40.4570093Z ##[endgroup]
+2026-10-25T04:25:40.4571107Z ##[group]Determining the checkout info
+2026-10-25T04:25:40.4572404Z ##[endgroup]
+2026-10-25T04:25:40.4579588Z [command]/usr/bin/git sparse-checkout disable
+2026-10-25T04:25:40.5801663Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-25T04:25:40.6431575Z ##[group]Checking out the ref
+2026-10-25T04:25:40.6435385Z [command]/usr/bin/git checkout --progress --force c8b56b5e230c064982b9a8ed24ecf78f475137d3
+2026-10-25T04:25:41.5026492Z Note: switching to 'c8b56b5e230c064982b9a8ed24ecf78f475137d3'.
+2026-10-25T04:25:41.5027027Z 
+2026-10-25T04:25:41.5027303Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-25T04:25:41.5028257Z changes and commit them, and you can discard any commits you make in this
+2026-10-25T04:25:41.5028888Z state without impacting any branches by switching back to a branch.
+2026-10-25T04:25:41.5029250Z 
+2026-10-25T04:25:41.5029560Z If you want to create a new branch to retain commits you create, you may
+2026-10-25T04:25:41.5030163Z do so (now or later) by using -c with the switch command. Example:
+2026-10-25T04:25:41.5030491Z 
+2026-10-25T04:25:41.5030654Z   git switch -c <new-branch-name>
+2026-10-25T04:25:41.5031259Z 
+2026-10-25T04:25:41.5031422Z Or undo this operation with:
+2026-10-25T04:25:41.5031652Z 
+2026-10-25T04:25:41.5031794Z   git switch -
+2026-10-25T04:25:41.5032103Z 
+2026-10-25T04:25:41.5032419Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-25T04:25:41.5032828Z 
+2026-10-25T04:25:41.5033308Z HEAD is now at c8b56b5e Work 8 actual writer admission, containment and targeted integration examination (staged only)
+2026-10-25T04:25:41.5048446Z ##[endgroup]
+2026-10-25T04:25:41.5091882Z [command]/usr/bin/git log -1 --format=%H
+2026-10-25T04:25:41.5119664Z c8b56b5e230c064982b9a8ed24ecf78f475137d3
+2026-10-25T04:25:41.5127731Z ##[group]Removing auth
+2026-10-25T04:25:41.5130767Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-25T04:25:41.5159560Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-25T04:25:41.5366921Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-25T04:25:41.5393746Z http.https://github.com/.extraheader
+2026-10-25T04:25:41.5432696Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-25T04:25:41.5465768Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-25T04:25:41.5670748Z ##[endgroup]
+2026-10-25T04:25:41.5880596Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-10-25T04:25:41.5880968Z with:
+2026-10-25T04:25:41.5881184Z   node-version-file: .node-version
+2026-10-25T04:25:41.5881441Z   always-auth: false
+2026-10-25T04:25:41.5881654Z   check-latest: false
+2026-10-25T04:25:41.5883520Z   token: ***
+2026-10-25T04:25:41.5883728Z ##[endgroup]
+2026-10-25T04:25:41.7035978Z Node version file is not JSON file
+2026-10-25T04:25:41.7038180Z Resolved .node-version as 22.23.2
+2026-10-25T04:25:41.7148263Z Attempting to download 22.23.2...
+2026-10-25T04:25:41.7198768Z (node:2122) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-25T04:25:41.7199786Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-25T04:25:42.7096320Z Acquiring 22.23.2 - x64 from https://github.com/actions/node-versions/releases/download/22.23.2-30508424155/node-22.23.2-linux-x64.tar.gz
+2026-10-25T04:25:43.8101137Z Extracting ...
+2026-10-25T04:25:43.8199665Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/f1e87bf2-1128-44a2-a281-c35132af0152 -f /home/runner/work/_temp/cf836e59-f7ab-4a22-a7c5-eac7cc7cba17
+2026-10-25T04:25:44.8704462Z Adding to the cache ...
+2026-10-25T04:25:46.7499911Z ##[group]Environment details
+2026-10-25T04:25:46.9336635Z node: v22.23.2
+2026-10-25T04:25:46.9337414Z npm: 10.9.8
+2026-10-25T04:25:46.9337956Z yarn: 1.22.22
+2026-10-25T04:25:46.9338519Z ##[endgroup]
+2026-10-25T04:25:46.9500077Z ##[group]Run set -euo pipefail
+2026-10-25T04:25:46.9500438Z [36;1mset -euo pipefail[0m
+2026-10-25T04:25:46.9500707Z [36;1mmkdir -p "$RUNNER_TEMP/work8-writer-evidence"[0m
+2026-10-25T04:25:46.9500991Z [36;1m{[0m
+2026-10-25T04:25:46.9501177Z [36;1m  npm ci --prefix pillow[0m
+2026-10-25T04:25:46.9501419Z [36;1m  npm ci --prefix backend[0m
+2026-10-25T04:25:46.9501691Z [36;1m  node scripts/sync-pillow-governance.mjs[0m
+2026-10-25T04:25:46.9501974Z [36;1m  npm run build --prefix pillow[0m
+2026-10-25T04:25:46.9502213Z [36;1m  npm run build --prefix backend[0m
+2026-10-25T04:25:46.9502498Z [36;1m} 2>&1 | tee "$RUNNER_TEMP/work8-writer-evidence/build.log"[0m
+2026-10-25T04:25:46.9703604Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-25T04:25:46.9703954Z ##[endgroup]
+2026-10-25T04:25:47.7446705Z 
+2026-10-25T04:25:47.7452786Z > @empireai/pillow@0.1.0 preinstall
+2026-10-25T04:25:47.7453568Z > node ../scripts/verify-build-runtime.mjs
+2026-10-25T04:25:47.7453818Z 
+2026-10-25T04:25:47.7724201Z {"event":"build_runtime_verified","nodeVersion":"22.23.2","npmVersion":"10.9.8","npmVersionVerified":true}
+2026-10-25T04:25:47.7778670Z 
+2026-10-25T04:25:47.7779397Z added 6 packages, and audited 7 packages in 756ms
+2026-10-25T04:25:47.7784946Z 
+2026-10-25T04:25:49.1275094Z found 0 vulnerabilities
+2026-10-25T04:25:49.1275697Z npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2026-10-25T04:25:50.2764356Z 
+2026-10-25T04:25:50.2765325Z > @empireai/backend@0.1.0 preinstall
+2026-10-25T04:25:50.2765817Z > node ../scripts/verify-build-runtime.mjs
+2026-10-25T04:25:50.2766050Z 
+2026-10-25T04:25:50.3054844Z {"event":"build_runtime_verified","nodeVersion":"22.23.2","npmVersion":"10.9.8","npmVersionVerified":true}
+2026-10-25T04:25:50.3091067Z 
+2026-10-25T04:25:50.3091577Z > @empireai/backend@0.1.0 postinstall
+2026-10-25T04:25:50.3092178Z > node scripts/verify-dev-environment.mjs --postinstall
+2026-10-25T04:25:50.3092467Z 
+2026-10-25T04:25:50.3436189Z 
+2026-10-25T04:25:50.3436961Z added 140 packages, and audited 142 packages in 2s
+2026-10-25T04:25:50.3437294Z 
+2026-10-25T04:25:50.3437622Z 31 packages are looking for funding
+2026-10-25T04:25:50.3448882Z   run `npm fund` for details
+2026-10-25T04:25:50.3557014Z 
+2026-10-25T04:25:50.3557797Z 5 high severity vulnerabilities
+2026-10-25T04:25:50.3558082Z 
+2026-10-25T04:25:50.3558372Z To address issues that do not require attention, run:
+2026-10-25T04:25:50.3558805Z   npm audit fix
+2026-10-25T04:25:50.3558956Z 
+2026-10-25T04:25:50.3559224Z To address all issues (including breaking changes), run:
+2026-10-25T04:25:50.3559638Z   npm audit fix --force
+2026-10-25T04:25:50.3559837Z 
+2026-10-25T04:25:50.3559990Z Run `npm audit` for details.
+2026-10-25T04:25:51.0181655Z [sync-pillow-governance] Bundle ready at /home/runner/work/EmpireAI/EmpireAI/backend/.pillow-governance-bundle
+2026-10-25T04:25:51.1017293Z 
+2026-10-25T04:25:51.1018309Z > @empireai/pillow@0.1.0 build
+2026-10-25T04:25:51.1018760Z > tsc -p tsconfig.json
+2026-10-25T04:25:51.1018893Z 
+2026-10-25T04:26:29.1098342Z 
+2026-10-25T04:26:29.1099038Z > @empireai/backend@0.1.0 prebuild
+2026-10-25T04:26:29.1099437Z > node ../scripts/sync-pillow-governance.mjs
+2026-10-25T04:26:29.1099610Z 
+2026-10-25T04:26:29.7526162Z [sync-pillow-governance] Bundle ready at /home/runner/work/EmpireAI/EmpireAI/backend/.pillow-governance-bundle
+2026-10-25T04:26:29.7620082Z 
+2026-10-25T04:26:29.7620807Z > @empireai/backend@0.1.0 build
+2026-10-25T04:26:29.7621351Z > tsc -p tsconfig.json && node scripts/record-runtime-revision.cjs
+2026-10-25T04:26:29.7621664Z 
+2026-10-25T04:27:12.4766820Z 
+2026-10-25T04:27:12.4767638Z > @empireai/backend@0.1.0 postbuild
+2026-10-25T04:27:12.4768677Z > node -e "require('node:fs').copyFileSync('src/runtime/native-store-capture-lock.cjs','dist/runtime/native-store-capture-lock.cjs')"
+2026-10-25T04:27:12.4769315Z 
+2026-10-25T04:27:12.5052189Z ##[group]Run bash scripts/work8/run-writer-integration.sh
+2026-10-25T04:27:12.5052536Z [36;1mbash scripts/work8/run-writer-integration.sh[0m
+2026-10-25T04:27:12.5110634Z shell: /usr/bin/bash -e {0}
+2026-10-25T04:27:12.5110831Z env:
+2026-10-25T04:27:12.5111055Z   WORK8_EXPECTED_SOURCE: c8b56b5e230c064982b9a8ed24ecf78f475137d3
+2026-10-25T04:27:12.5111339Z ##[endgroup]
+2026-10-25T04:27:13.4143606Z docker.io/library/node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9: Pulling from library/node
+2026-10-25T04:27:13.6390956Z 774043ccc8cc: Pulling fs layer
+2026-10-25T04:27:13.6391401Z d456d1aa143e: Pulling fs layer
+2026-10-25T04:27:13.6391794Z 60f37e2c93ec: Pulling fs layer
+2026-10-25T04:27:13.6392019Z e53f92c42dd6: Pulling fs layer
+2026-10-25T04:27:13.6392238Z b571db164614: Pulling fs layer
+2026-10-25T04:27:13.6392544Z b571db164614: Waiting
+2026-10-25T04:27:13.8247602Z d456d1aa143e: Verifying Checksum
+2026-10-25T04:27:13.8250743Z d456d1aa143e: Download complete
+2026-10-25T04:27:13.8994045Z 774043ccc8cc: Verifying Checksum
+2026-10-25T04:27:13.8994537Z 774043ccc8cc: Download complete
+2026-10-25T04:27:13.9487022Z 60f37e2c93ec: Verifying Checksum
+2026-10-25T04:27:13.9487400Z 60f37e2c93ec: Download complete
+2026-10-25T04:27:14.0012164Z e53f92c42dd6: Verifying Checksum
+2026-10-25T04:27:14.0012605Z e53f92c42dd6: Download complete
+2026-10-25T04:27:14.0829554Z b571db164614: Download complete
+2026-10-25T04:27:14.7368779Z 774043ccc8cc: Pull complete
+2026-10-25T04:27:15.8959275Z d456d1aa143e: Pull complete
+2026-10-25T04:27:17.6033673Z 60f37e2c93ec: Pull complete
+2026-10-25T04:27:17.6809282Z e53f92c42dd6: Pull complete
+2026-10-25T04:27:17.6901073Z b571db164614: Pull complete
+2026-10-25T04:27:17.6929762Z Digest: sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9
+2026-10-25T04:27:17.6934777Z Status: Downloaded newer image for node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9
+2026-10-25T04:27:17.6941586Z docker.io/library/node:22.23.2-bookworm-slim@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9
+2026-10-25T04:27:18.2103796Z docker.io/library/redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952: Pulling from library/redis
+2026-10-25T04:27:18.4291479Z f18232174bc9: Pulling fs layer
+2026-10-25T04:27:18.4292199Z 16cd0457255f: Pulling fs layer
+2026-10-25T04:27:18.4292696Z fa05f5234346: Pulling fs layer
+2026-10-25T04:27:18.4293072Z 4d03bd351ab9: Pulling fs layer
+2026-10-25T04:27:18.4293447Z 4738865c5f32: Pulling fs layer
+2026-10-25T04:27:18.4293785Z 927ba88b2847: Pulling fs layer
+2026-10-25T04:27:18.4294104Z 4f4fb700ef54: Pulling fs layer
+2026-10-25T04:27:18.4294418Z 4c7f0522bc7d: Pulling fs layer
+2026-10-25T04:27:18.4294701Z 4d03bd351ab9: Waiting
+2026-10-25T04:27:18.4294936Z 4738865c5f32: Waiting
+2026-10-25T04:27:18.4295111Z 927ba88b2847: Waiting
+2026-10-25T04:27:18.4295385Z 4c7f0522bc7d: Waiting
+2026-10-25T04:27:18.4295653Z 4f4fb700ef54: Waiting
+2026-10-25T04:27:18.5950015Z 16cd0457255f: Verifying Checksum
+2026-10-25T04:27:18.5950544Z 16cd0457255f: Download complete
+2026-10-25T04:27:18.5974639Z fa05f5234346: Verifying Checksum
+2026-10-25T04:27:18.5975496Z fa05f5234346: Download complete
+2026-10-25T04:27:18.6094183Z f18232174bc9: Verifying Checksum
+2026-10-25T04:27:18.6098172Z f18232174bc9: Download complete
+2026-10-25T04:27:18.6884360Z f18232174bc9: Pull complete
+2026-10-25T04:27:18.7451082Z 16cd0457255f: Pull complete
+2026-10-25T04:27:18.7735429Z 927ba88b2847: Verifying Checksum
+2026-10-25T04:27:18.7735835Z 927ba88b2847: Download complete
+2026-10-25T04:27:18.7803614Z 4d03bd351ab9: Download complete
+2026-10-25T04:27:18.8075208Z 4738865c5f32: Verifying Checksum
+2026-10-25T04:27:18.8075632Z 4738865c5f32: Download complete
+2026-10-25T04:27:18.9311047Z fa05f5234346: Pull complete
+2026-10-25T04:27:18.9513761Z 4f4fb700ef54: Verifying Checksum
+2026-10-25T04:27:18.9514173Z 4f4fb700ef54: Download complete
+2026-10-25T04:27:18.9556101Z 4c7f0522bc7d: Verifying Checksum
+2026-10-25T04:27:18.9556624Z 4c7f0522bc7d: Download complete
+2026-10-25T04:27:18.9657034Z 4d03bd351ab9: Pull complete
+2026-10-25T04:27:19.2618775Z 4738865c5f32: Pull complete
+2026-10-25T04:27:19.2673444Z 927ba88b2847: Pull complete
+2026-10-25T04:27:19.2731805Z 4f4fb700ef54: Pull complete
+2026-10-25T04:27:19.2803698Z 4c7f0522bc7d: Pull complete
+2026-10-25T04:27:19.2831587Z Digest: sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+2026-10-25T04:27:19.2837402Z Status: Downloaded newer image for redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+2026-10-25T04:27:19.2843657Z docker.io/library/redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+2026-10-25T04:27:20.2110647Z TAP version 13
+2026-10-25T04:27:20.2367340Z # (node:22) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-10-25T04:27:20.2368196Z # (Use `node --trace-warnings ...` to show where the warning was created)
+2026-10-25T04:27:20.2425798Z # Subtest: actual production control modules: synthetic application admission, capture and independent containment
+2026-10-25T04:27:20.2435955Z not ok 1 - actual production control modules: synthetic application admission, capture and independent containment
+2026-10-25T04:27:20.2438438Z   ---
+2026-10-25T04:27:20.2438743Z   duration_ms: 1.701315
+2026-10-25T04:27:20.2439037Z   type: 'test'
+2026-10-25T04:27:20.2439588Z   location: '/work8-exam/source/deployment/runtime-writer-graph.hosted.test.cjs:32:1'
+2026-10-25T04:27:20.2440194Z   failureType: 'testCodeFailure'
+2026-10-25T04:27:20.2440552Z   error: 'ISOLATED_REDIS_ONLY'
+2026-10-25T04:27:20.2440876Z   code: 'ERR_TEST_FAILURE'
+2026-10-25T04:27:20.2441159Z   stack: |-
+2026-10-25T04:27:20.2441680Z     command (/work8-exam/source/deployment/fixtures/runtime-membership-redis.cjs:4:115)
+2026-10-25T04:27:20.2442590Z     TestContext.<anonymous> (/work8-exam/source/deployment/runtime-writer-graph.hosted.test.cjs:35:83)
+2026-10-25T04:27:20.2443392Z     Test.runInAsyncScope (node:async_hooks:214:14)
+2026-10-25T04:27:20.2443890Z     Test.run (node:internal/test_runner/test:1047:25)
+2026-10-25T04:27:20.2444356Z     Test.start (node:internal/test_runner/test:944:17)
+2026-10-25T04:27:20.2444936Z     startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+2026-10-25T04:27:20.2445902Z     process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2026-10-25T04:27:20.2446608Z   ...
+2026-10-25T04:27:20.2497194Z 1..1
+2026-10-25T04:27:20.2497620Z # tests 1
+2026-10-25T04:27:20.2498783Z # suites 0
+2026-10-25T04:27:20.2499396Z # pass 0
+2026-10-25T04:27:20.2500594Z # fail 1
+2026-10-25T04:27:20.2501182Z # cancelled 0
+2026-10-25T04:27:20.2501979Z # skipped 0
+2026-10-25T04:27:20.2503770Z # todo 0
+2026-10-25T04:27:20.2504390Z # duration_ms 47.797193
+2026-10-25T04:27:20.4562478Z ##[error]Process completed with exit code 1.
+2026-10-25T04:27:20.4642738Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-25T04:27:20.4643049Z with:
+2026-10-25T04:27:20.4643297Z   name: work8-writer-c8b56b5e230c064982b9a8ed24ecf78f475137d3-40161831246
+2026-10-25T04:27:20.4643653Z   path: /home/runner/work/_temp/work8-writer-evidence/
+2026-10-25T04:27:20.4643901Z   if-no-files-found: error
+2026-10-25T04:27:20.4644087Z   retention-days: 7
+2026-10-25T04:27:20.4644256Z   compression-level: 6
+2026-10-25T04:27:20.4644425Z   overwrite: false
+2026-10-25T04:27:20.4644607Z   include-hidden-files: false
+2026-10-25T04:27:20.4644796Z ##[endgroup]
+2026-10-25T04:27:20.5867786Z (node:2923) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-25T04:27:20.5868434Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-25T04:27:20.5923400Z With the provided path, there will be 13 files uploaded
+2026-10-25T04:27:20.5928060Z Artifact name is valid!
+2026-10-25T04:27:20.5929033Z Root directory input is valid!
+2026-10-25T04:27:20.9194690Z Beginning upload of artifact content to blob storage
+2026-10-25T04:27:20.9491553Z (node:2923) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-25T04:27:21.1672406Z Uploaded bytes 12794
+2026-10-25T04:27:21.2287374Z Finished uploading artifact content to blob storage!
+2026-10-25T04:27:21.2288432Z SHA256 digest of uploaded artifact zip is fc7970f579e4cec1829f038bb485536a17d579ddfa2ba549fc37adcb9f36246e
+2026-10-25T04:27:21.2289531Z Finalizing artifact upload
+2026-10-25T04:27:21.7027265Z Artifact work8-writer-c8b56b5e230c064982b9a8ed24ecf78f475137d3-40161831246.zip successfully finalized. Artifact ID 12586527767
+2026-10-25T04:27:21.7028479Z Artifact work8-writer-c8b56b5e230c064982b9a8ed24ecf78f475137d3-40161831246 has been successfully uploaded! Final size is 12794 bytes. Artifact ID is 12586527767
+2026-10-25T04:27:21.7033713Z Artifact download URL: https://github.com/empireaios/EmpireAI/actions/runs/40161831246/artifacts/12586527767
+2026-10-25T04:27:21.7215195Z Post job cleanup.
+2026-10-25T04:27:21.7876361Z [command]/usr/bin/git version
+2026-10-25T04:27:21.7908261Z git version 2.55.0
+2026-10-25T04:27:21.7936720Z Temporarily overriding HOME='/home/runner/work/_temp/f6a7ab92-8161-462e-98ae-8d128405703c' before making global git config changes
+2026-10-25T04:27:21.7938036Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-25T04:27:21.7940778Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/EmpireAI/EmpireAI
+2026-10-25T04:27:21.7970474Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-25T04:27:21.7997794Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-25T04:27:21.8217617Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-25T04:27:21.8246717Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-25T04:27:21.8604245Z Cleaning up orphan processes
+2026-10-25T04:27:21.8952717Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

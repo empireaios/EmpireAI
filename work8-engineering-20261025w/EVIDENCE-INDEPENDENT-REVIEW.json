@@ -1,0 +1,46 @@
+{
+  "decision": "ACCEPT_EVIDENCE_FOR_STAGING_AND_EXACT_TREE_OWNER_REVIEW",
+  "reviewedFiles": [
+    {
+      "path": "FULL-TRACKER.json",
+      "sha256": "dc7153025e555d543a654f6b238406b620ac606a829cfdb082bdd023a85ad49e",
+      "bytes": 40775
+    },
+    {
+      "path": "Work8-Published-Writer-Checkpoint-20261025w.json",
+      "sha256": "0e115e54d71995018e08b16c99c7c49e4ba0c0aedce7177f579f480f76fdda26",
+      "bytes": 46561
+    }
+  ],
+  "stagedCorrection": {
+    "commit": "1177578c6543224d5d819286ec931f4a33ed1c10",
+    "tree": "916e8feb2cd5c195855ce1683628f625774e5424",
+    "parent": "c8b56b5e230c064982b9a8ed24ecf78f475137d3",
+    "published": false,
+    "refsUpdated": false
+  },
+  "sourceFourHashesMatchIndependentReview": true,
+  "publishedAndHostedScope": "Published V exact pair retained; run40161831246 compile PASS but graph FAIL before admission; no runtime integration assertion accepted",
+  "counts": {
+    "original": {
+      "PASS": 34,
+      "PENDING": 7,
+      "BLOCKED": 4
+    },
+    "amendments": {
+      "PASS": 11,
+      "PENDING": 8
+    },
+    "accepted": 45,
+    "outstanding": 19
+  },
+  "findingsResolved": [
+    "O42/O43 bind four accepted workflows to prior sourcea12 rather than currentc8",
+    "Hosted V attempt no longer described unexecuted",
+    "Compile gate recorded satisfied and reused for fixture-only successor"
+  ],
+  "noNewWholeRows": true,
+  "missionLedger": "IN_PROGRESS / NO_GO",
+  "noReruns": true,
+  "limits": "Whole operational restoration, safe operating cutover and protected custody remain unaccepted; correction requires exact-tree publication approval."
+}

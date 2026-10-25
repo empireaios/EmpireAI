@@ -1,0 +1,30 @@
+TAP version 13
+# (node:22) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual production control modules: synthetic application admission, capture and independent containment
+not ok 1 - actual production control modules: synthetic application admission, capture and independent containment
+  ---
+  duration_ms: 1.701315
+  type: 'test'
+  location: '/work8-exam/source/deployment/runtime-writer-graph.hosted.test.cjs:32:1'
+  failureType: 'testCodeFailure'
+  error: 'ISOLATED_REDIS_ONLY'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    command (/work8-exam/source/deployment/fixtures/runtime-membership-redis.cjs:4:115)
+    TestContext.<anonymous> (/work8-exam/source/deployment/runtime-writer-graph.hosted.test.cjs:35:83)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 47.797193

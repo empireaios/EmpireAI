@@ -1,0 +1,11 @@
+✔ graph fixture authenticates before PING and fragmented INFO readback (58.374724ms)
+✔ graph fixture refuses auth failure without issuing requested command (3.500348ms)
+✔ graph fixture refuses unrelated credentials, endpoints, database and writes before connection (0.482123ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.554871

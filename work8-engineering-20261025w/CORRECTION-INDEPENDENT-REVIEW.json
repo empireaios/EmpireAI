@@ -1,0 +1,55 @@
+{
+  "decision": "ACCEPT_FOR_STAGING_AND_EXACT_TREE_OWNER_REVIEW_ONLY",
+  "baseCommit": "c8b56b5e230c064982b9a8ed24ecf78f475137d3",
+  "baseTree": "7de4dac72a9b5ac13ee0db573520ecf8c53add05",
+  "files": [
+    {
+      "path": ".github/workflows/work8-writer-integration.yml",
+      "sha256": "ff1cc9f6a31f5288150150e7a26f6b09b645f36e652eed82911a3fd543d5b53c",
+      "gitBlob": "a7cf8faedabefa88f3d3dfed224b9fbd06ed4024",
+      "bytes": 1425,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/fixtures/runtime-graph-redis.cjs",
+      "sha256": "2478c560b0a5fda01cc0e3b8f274df57a436a99b37d7fc1269e2477b0f0abf91",
+      "gitBlob": "4bdec956d0c46f7bfc9db054ef74ae778880d49e",
+      "bytes": 2333,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-graph-redis.test.cjs",
+      "sha256": "7e6445688605bbc6da119dc3e3a5523d84340dfe113a799bc34ba3aab52c5c8d",
+      "gitBlob": "8d2c7f82e2d7cd15d03c8fd53b2b1def86c8056c",
+      "bytes": 2230,
+      "mode": "100644"
+    },
+    {
+      "path": "deployment/runtime-writer-graph.hosted.test.cjs",
+      "sha256": "1dc78b24bab5a0902425c4f8bfdd2e1f34ae63a98c8cd29818739ed3b41ed74a",
+      "gitBlob": "32740f440d1f86604adf00273292c29fa1a11008",
+      "bytes": 9430,
+      "mode": "100644"
+    }
+  ],
+  "correction": "Dedicated graph-only authenticated synthetic Redis PING/INFO helper; AUTH validated before requested command. Old accepted journal helper untouched. Graph import only changes helper.",
+  "localEvidence": {
+    "path": "REDIS-FIXTURE-LOCAL-TEST.txt",
+    "sha256": "c328e6079fd0eee7f48801cade8be269e5f87754a3567705afa63b4e8401ce38",
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "skipped": 0,
+    "reviewerReran": false
+  },
+  "compileReuse": "Workflow omits repeated Pillow/backend compilation accepted on exact base in run40161831246; four-path delta changes no application/runtime/build inputs. Future application changes require applicable compile gate.",
+  "safety": "No deadlines or identity/fencing assertions changed. Exact event/source/attempt1 and isolated Docker/Redis boundaries preserved. No publication or rerun performed.",
+  "limits": [
+    "Hosted graph remains failed/unaccepted until approved successor automatic run",
+    "Local fake TCP auth checks do not establish real graph behavior",
+    "Production integration/cutover/restoration/custody remain unaccepted"
+  ],
+  "newlyAcceptedWholeRows": [],
+  "accepted": 45,
+  "outstanding": 19
+}

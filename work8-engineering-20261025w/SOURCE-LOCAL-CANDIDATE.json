@@ -1,0 +1,39 @@
+{
+  "commit": null,
+  "tree": "916e8feb2cd5c195855ce1683628f625774e5424",
+  "parent": "c8b56b5e230c064982b9a8ed24ecf78f475137d3",
+  "baseTree": "7de4dac72a9b5ac13ee0db573520ecf8c53add05",
+  "entries": [
+    {
+      "path": ".github/workflows/work8-writer-integration.yml",
+      "mode": "100644",
+      "blob": "a7cf8faedabefa88f3d3dfed224b9fbd06ed4024",
+      "sha256": "ff1cc9f6a31f5288150150e7a26f6b09b645f36e652eed82911a3fd543d5b53c",
+      "bytes": 1425
+    },
+    {
+      "path": "deployment/fixtures/runtime-graph-redis.cjs",
+      "mode": "100644",
+      "blob": "4bdec956d0c46f7bfc9db054ef74ae778880d49e",
+      "sha256": "2478c560b0a5fda01cc0e3b8f274df57a436a99b37d7fc1269e2477b0f0abf91",
+      "bytes": 2333
+    },
+    {
+      "path": "deployment/runtime-graph-redis.test.cjs",
+      "mode": "100644",
+      "blob": "8d2c7f82e2d7cd15d03c8fd53b2b1def86c8056c",
+      "sha256": "7e6445688605bbc6da119dc3e3a5523d84340dfe113a799bc34ba3aab52c5c8d",
+      "bytes": 2230
+    },
+    {
+      "path": "deployment/runtime-writer-graph.hosted.test.cjs",
+      "mode": "100644",
+      "blob": "32740f440d1f86604adf00273292c29fa1a11008",
+      "sha256": "1dc78b24bab5a0902425c4f8bfdd2e1f34ae63a98c8cd29818739ed3b41ed74a",
+      "bytes": 9430
+    }
+  ],
+  "refsUpdated": false,
+  "published": false,
+  "deployed": false
+}

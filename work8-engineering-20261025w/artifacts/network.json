@@ -1,0 +1,31 @@
+[
+    {
+        "Name": "work8-writer-40161831246-net",
+        "Id": "f5117bd1a5571b95e025b48f0ebee8cb852ef187fb1213f898be902014d2b28f",
+        "Created": "2026-10-25T04:27:19.325465352Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": true,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]

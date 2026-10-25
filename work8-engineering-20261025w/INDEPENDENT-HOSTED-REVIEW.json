@@ -1,0 +1,32 @@
+{
+  "decision": "FAIL_HOSTED_GRAPH_EXAMINATION_PRE_ADMISSION",
+  "run": 40161831246,
+  "source": "c8b56b5e230c064982b9a8ed24ecf78f475137d3",
+  "tree": "7de4dac72a9b5ac13ee0db573520ecf8c53add05",
+  "artifactSha256": "fc7970f579e4cec1829f038bb485536a17d579ddfa2ba549fc37adcb9f36246e",
+  "failure": {
+    "classification": "TEST_HARNESS_DEFECT",
+    "condition": "ISOLATED_REDIS_ONLY",
+    "cause": "Accepted older fixture helper rejects any URL password; new graph runner deliberately supplies authenticated synthetic Redis. First PING fails before fixture/admission.",
+    "stack": "runtime-membership-redis.cjs:4 -> runtime-writer-graph.hosted.test.cjs:35",
+    "tests": 1,
+    "pass": 0,
+    "fail": 1,
+    "skip": 0
+  },
+  "acceptedNewScopedEvidence": [
+    "Pillow and backend compilation completed in Node22.23.2 job before targeted graph step"
+  ],
+  "notEstablished": [
+    "Actual writer admission",
+    "Native artifact load under runtime identity",
+    "Capture and descendant containment",
+    "Full operational restoration",
+    "Protected custody"
+  ],
+  "minimumCorrection": "New graph-only RESP helper permits exact synthetic credential and sends AUTH before PING/INFO; graph import changes; targeted local auth sequencing/failure tests. Preserve accepted original helper and all runtime safety criteria.",
+  "noRerunNeededForDiagnosis": true,
+  "newlyAcceptedWholeRows": [],
+  "accepted": 45,
+  "outstanding": 19
+}
