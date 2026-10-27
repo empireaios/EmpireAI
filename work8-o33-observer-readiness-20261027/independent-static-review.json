@@ -1,0 +1,48 @@
+{
+  "schema": "work8-observer-inventory-independent-static-review-v1",
+  "reviewer": "/root/o33_acceptance",
+  "base": "09f06edce5b56069933621ad999406d175545d5f",
+  "tree": "f7eabb6e65ca176ffe41a423ee116c60803a0c3e",
+  "paths": [
+    {
+      "path": "backend/src/assurance/permanent-inspector.mjs",
+      "matchesReviewedOverlay": true
+    },
+    {
+      "path": "scripts/work8/o33-application-coordinator.mjs",
+      "matchesReviewedOverlay": true
+    },
+    {
+      "path": "scripts/work8/o33-capture-readiness.mjs",
+      "matchesReviewedOverlay": true
+    },
+    {
+      "path": "scripts/work8/o33-capture-readiness.test.mjs",
+      "matchesReviewedOverlay": true
+    }
+  ],
+  "verdict": "STATIC_REVIEW_PASS_HOSTED_PENDING",
+  "review": {
+    "barrier": "Read-only canonical/ownership/shape checks for13 SQL files, mandatory controls/markers and native roots; actual watchdog bounded/current-launch/fresh/settled. No writes or synthetic heartbeat.",
+    "truthfulness": "Actual inspector may complete with ASSURANCE_OVERDUE; initialization-ready does not claim healthy. Failed pass retains heartbeatRenewed:false and adds diagnostic code only.",
+    "phaseCoverage": "Source,target,restart all gated with each launch timestamp; restored historical heartbeat cannot satisfy current launch.",
+    "captureProof": "Metadata remains explicitly INITIALIZATION_READINESS_ONLY_NOT_CAPTURE_PROOF. Existing native locks, finalv2receipt, fenced copy/seal/ACK and independent whole-row criteria untouched.",
+    "deadlines": "All original startup/shared restoration/capture deadlines unchanged; no polling deadline reset.",
+    "scope": "Four files only; seven-role controller/holder/client/isolation and Redis capability unchanged."
+  },
+  "tests": {
+    "inspected": "11 targeted cases use real inspector pass and labelled prerequisite fixtures: failed-first/noheartbeat, completed overdue truthful readiness, missing4inventory classes, stale/future/restored timestamps, links, unsettled tmp, ownership refusal.",
+    "reportedResult": "11/11 PASS Node24, no skips, by test author/release_review",
+    "independentRerun": false,
+    "limitations": "Does not prove Node22 actual admitted seven-process capture or complete restoration."
+  },
+  "additionalDeterministicDefects": "None identified in this bounded delta and dependency review; unexecuted runtime stages remain unproven.",
+  "wholeRow": "O33_PENDING",
+  "accepted": 45,
+  "outstanding": 19,
+  "actions": {
+    "ci": false,
+    "publication": false,
+    "production": false
+  }
+}

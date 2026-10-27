@@ -1,0 +1,16 @@
+{
+  "runtime": "v24.22.1",
+  "scope": "ACTUAL_INSPECTOR_FRESH_DATABASE_NO_RUNTIME_OR_HEALTH_ACCEPTANCE",
+  "preinit": "Error: no such table: assurance_cycles",
+  "noHeartbeatBeforeInit": true,
+  "verdict": {
+    "status": "ASSURANCE_OVERDUE",
+    "healthy": false,
+    "due": 1793064300000
+  },
+  "heartbeat": {
+    "observedAt": 1793064552729,
+    "status": "ASSURANCE_OVERDUE"
+  },
+  "success": true
+}

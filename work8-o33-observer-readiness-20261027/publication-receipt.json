@@ -1,0 +1,24 @@
+{
+  "evidence": {
+    "approvedCommit": "c896df0fc166d84932a9ef641ad0e1540cbd574a",
+    "publishedCommit": "48e7fecd1dca0e74c4e36cda235590d55269d081",
+    "tree": "58717680c968c21a013433ba0b0c55235843e87b",
+    "parent": "4aa1cd5c3e8ebb4e9bb9b2d7bee24a3f434a8073"
+  },
+  "source": {
+    "approvedCommit": "7181ac2a01bb614bf61bd18093518e07e5df6adc",
+    "publishedCommit": "09f06edce5b56069933621ad999406d175545d5f",
+    "tree": "bf8de7a3b224c683645317f4717f42b74fadd06d",
+    "parent": "c48ddae2165632cf279ea145bacc7e2b74945af3"
+  },
+  "order": [
+    "evidence",
+    "source"
+  ],
+  "nonForcedExpectedHeadUpdates": true,
+  "remoteReadback": true,
+  "emptyFullTreeDiffs": true,
+  "run": 40432294535,
+  "attempt": 1,
+  "duplicateDispatch": false
+}
