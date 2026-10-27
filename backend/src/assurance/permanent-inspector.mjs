@@ -22,8 +22,8 @@ while(!stopping){
   try{
     const verdict=runInspectorPass(database);
     console.log(JSON.stringify({event:'independent_assurance_watchdog',...verdict}));
-  }catch{
-    console.log(JSON.stringify({event:'independent_assurance_watchdog',status:'SOURCE_UNAVAILABLE',healthy:false,observerFailed:true,heartbeatRenewed:false}));
+  }catch(error){
+    console.log(JSON.stringify({event:'independent_assurance_watchdog',status:'SOURCE_UNAVAILABLE',healthy:false,observerFailed:true,heartbeatRenewed:false,failureCode:typeof error?.code==='string'?error.code:'INSPECTOR_PASS_FAILED'}));
   }
   });
   if(ran&&process.connected)process.send({type:'assurance_progress'},()=>{});
