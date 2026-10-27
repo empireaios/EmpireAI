@@ -6,7 +6,7 @@ import {DatabaseSync} from 'node:sqlite';
 import contract from '../../deployment/o33-path-contract.cjs';
 import {createHash} from 'node:crypto';
 import {mkdir,readableEvidence,preparePathContract,ownedTree} from './o33-permissions.mjs';
-const root='/work8-exam/permission-preflight',evidence=process.env.WORK8_EVIDENCE_DIR;
+const root='/data/work8-exam/permission-preflight',evidence=process.env.WORK8_EVIDENCE_DIR;
 const receipt={source:process.env.WORK8_SOURCE_SHA,scope:'O33_PERMISSION_PREFLIGHT_ONLY',status:'FAIL',checks:{}};
 const snapshot=f=>{const s=fs.lstatSync(f);return {uid:s.uid,gid:s.gid,mode:s.mode&0o777,sha256:s.isFile()?createHash('sha256').update(fs.readFileSync(f)).digest('hex'):null};};
 try{
