@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 import { CONTINUITY_BUFFER_BYTES, attachContinuityHeartbeat, monotonicNowMs, readContinuityHeartbeat, writeContinuityHeartbeat, type ContinuityHeartbeat } from "./continuity-heartbeat.js";
 import { logger } from "../config/logger.js";
 import { getRecentEventLoopLagMs } from "./event-loop-cooperative.js";
+import { watchdogWorkerArguments } from "./watchdog-worker-arguments.js";
 import { bindSqliteFlushGuard, getSqlitePersistStats } from "../brain/sqlite-database.js";
 
 const ENABLED =
@@ -209,6 +210,8 @@ export function startExecutiveContinuityWatchdog(options: { workerFile?: string 
 
   try {
     const currentWorker = new Worker(options.workerFile ?? workerPath(), {
+      execArgv: watchdogWorkerArguments(process.execArgv),
+      resourceLimits: { maxOldGenerationSizeMb: 1536 },
       workerData: {
         sharedBuffer,
         stallExitMs: STALL_EXIT_MS,
