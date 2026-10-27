@@ -9,7 +9,8 @@
       "ci/provider-readback-amazon-v1": false,
       "ci/provider-readback-cj-v1": false,
       "work8/owner-packaging-20261027": false,
-      "work8/owner-execution-20261027": false
+      "work8/owner-execution-20261027": false,
+      "work8/owner-execution-20261027b": false
     }
   }
 }

@@ -1,0 +1,126 @@
+{
+  "schema": "work8-independent-owner-terminal-row-decisions-v1",
+  "reviewer": "/root/replacement_review",
+  "reviewedAt": "2026-10-27T10:25:15.903231+00:00",
+  "decision": "FAIL_HOSTED_HARNESS_BEFORE_CONNECTED_OWNER_EXAMINATION",
+  "publication": {
+    "approvedLocalCommit": "68922958bc326c4c8d80c5eace49929e3c83b5b7",
+    "publishedCommit": "645612d8ed04802dda038936b64b30e47eba9afe",
+    "completeTree": "379c12c105a83c189b70f39bff070ebb1107216e",
+    "parent": "f77a78bc3d73db1161d2e7af962f1d9628edcaed",
+    "independentRemoteCommitTreeAndParentVerified": true,
+    "metadataOnlyChange": true
+  },
+  "execution": {
+    "run": 40487774633,
+    "job": 122133784620,
+    "runNumber": 1,
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "event": "push",
+    "maximumMinutes": 20,
+    "retries": 0,
+    "dispatches": 0,
+    "runnerExitCode": 125
+  },
+  "artifact": {
+    "id": 12725812823,
+    "sha256": "7239eaee6a5dcb08d4d726afcbbb4d1cdf0bb7796318df0f18f83d34c1ebe31b",
+    "files": {
+      "backend.log": "202ffa578c1ca4b29b9417f7169096d5414fce2f02d740e4fe57d5eb50ca018c",
+      "controller.commit": "64eb87ed768c870e15e78090bd598496f0a29a21c33e20b0ca0e3fd67efebc92",
+      "controller.tree": "e3d8bb48a1c94a2e078e6ec64b210480b8d96d2728539ab0f264703737bf3f67",
+      "frontend-assembly.json": "3fba7695d98b4d5ccc0ba4efb6fdd512c8e1065f64906dfc2cf51ada82ea240a",
+      "frontend.log": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "image-identity.json": "d9911e003a699ffa582eb7fdfebbb5dfcaa38c36ffb29446ee6100d9080cca6e",
+      "isolation.json": "3f9623edd10a0bc0d8764e7424f6da376d5b3dfc1f4605eacff27a35ceac32c1",
+      "redis.log": "93cbe3dd7bb9a852f60724df49b5f04537fab26fe777b1a4e2404751939ac0a1",
+      "runner-result.json": "3891356e1e19106246d3aaf2046b6353965168323956027893c9f73f08ca51ed"
+    }
+  },
+  "observed": {
+    "immutablePackageAcquisition": "PASS fixed artifact ZIP checksums and backend image identity gates completed",
+    "frontendNoBuildAssembly": "PASS source-bound4955file assembly receipt; application startup not reached",
+    "realRedis": "STARTED; runner progressed past authenticated PONG gate before frontend creation failure",
+    "dockerIsolation": "internal network true and no host-published ports per runtime receipt",
+    "backendLockedEntryPoint": "STARTED log confirms exact98970018 source, LOCKED_COMMISSIONING_V1, NOT_BORN, commerceLOCKED, operationalfalse",
+    "backendReadiness": "NOT_EXAMINED; startup log alone is insufficient",
+    "frontendStartup": "NOT_STARTED: Docker failed creating absent /frontend/.next/cache tmpfs target under read-only bind mount",
+    "authenticatedFrontendBackend": "NOT_REACHED",
+    "nativeDeferPersistenceVersionHistory": "NOT_REACHED",
+    "identicalReplayConflictAndStaleRejection": "NOT_REACHED",
+    "authenticatedWrongOwnerRejection": "NOT_EXAMINED; approved harness lacked this probe; anonymous401 is not equivalent",
+    "restart": "NOT_REACHED",
+    "desktopMobile": "NOT_REACHED",
+    "runtimeCleanup": "containers/network removed; host private/data/commissioning removal reported Permission denied",
+    "evidenceCustody": "bounded scanner and9fileartifact upload succeeded"
+  },
+  "failureBoundary": {
+    "primary": "Harness container-mount preparation, not observed application failure",
+    "secondary": "Harness private-directory ownership cleanup",
+    "backendDiagnostic": "Initial independent_assurance_watchdog SOURCE_UNAVAILABLE is retained; runtime readiness was never examined, so no unrelated backend finding is inferred"
+  },
+  "rows": [
+    {
+      "id": "O14",
+      "originalCriterion": "Owner recommendations and decisions",
+      "originalRemainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation",
+      "priorStatus": "PENDING",
+      "decision": "PENDING",
+      "completeRowAccepted": false,
+      "reason": "No actual authenticated owner DEFER/version/history/replay result; genuine same-product decision/result/finance/Assurance chain remains missing."
+    },
+    {
+      "id": "O40",
+      "originalCriterion": "Actual owner-view real-product walkthrough",
+      "originalRemainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation",
+      "priorStatus": "BLOCKED",
+      "decision": "BLOCKED",
+      "completeRowAccepted": false,
+      "reason": "No actual owner-view walkthrough reached; synthetic fixture could not establish real-product walkthrough even if executed."
+    },
+    {
+      "id": "O41",
+      "originalCriterion": "Mobile desktop source-to-finance equality",
+      "originalRemainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation",
+      "priorStatus": "PENDING",
+      "decision": "PENDING",
+      "completeRowAccepted": false,
+      "reason": "No desktop/mobile examination reached; complete genuine source-to-decision/result/finance equality remains missing."
+    },
+    {
+      "id": "A6",
+      "originalCriterion": "Owner-visible autonomous dry run",
+      "originalRemainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation",
+      "priorStatus": "PENDING",
+      "decision": "PENDING",
+      "completeRowAccepted": false,
+      "reason": "No owner-visible autonomous dry-run result or complete downstream simulated-result/finance/Assurance examination."
+    },
+    {
+      "id": "A19",
+      "originalCriterion": "Integrated owner acceptance",
+      "originalRemainingProof": "Corrected authorized live or genuine owner-connected examination runtime and complete same-product decision/result/finance/Assurance record chain; required desktop/mobile presentation",
+      "priorStatus": "PENDING",
+      "decision": "PENDING",
+      "completeRowAccepted": false,
+      "reason": "No integrated connected-owner acceptance chain; runtime, compatible rollback and protected-custody prerequisites remain incomplete."
+    }
+  ],
+  "newAcceptedWholeRows": [],
+  "accepted": 46,
+  "outstanding": 18,
+  "releaseReadiness": "NOT_ESTABLISHED",
+  "compatibleRollbackReadiness": "NOT_ESTABLISHED",
+  "protectedCustodyReadiness": "NOT_ESTABLISHED",
+  "preserved": {
+    "O33": "ACCEPTED_NO_REPEAT",
+    "packagingRun": 40439511464,
+    "PR113": "DRAFT_UNMERGED",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE"
+  },
+  "nextBoundary": "Locally correct only tmpfs mountpoint/cleanup and add explicitly requested authenticated wrong-owner probe; fresh independent source review and one consolidated exact-tree approval before any new publication or job. No rerun of this attempt."
+}

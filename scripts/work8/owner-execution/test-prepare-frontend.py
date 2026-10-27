@@ -51,6 +51,21 @@ class AssemblyBoundary(unittest.TestCase):
         self.assertEqual((self.output / "public/logo.txt").read_text(), "synthetic public")
         self.assertEqual(json.loads(self.receipt.read_text())["fileCount"], 5)
 
+    def test_absent_cache_gets_empty_real_mountpoint(self):
+        self.make_archive()
+        self.run_assembly()
+        cache = self.output / ".next/cache"
+        self.assertTrue(cache.is_dir())
+        self.assertFalse(cache.is_symlink())
+        self.assertEqual(list(cache.iterdir()), [])
+        self.assertEqual(json.loads(self.receipt.read_text())["runtimeMountpoints"],
+                         {".next/cache": "EMPTY_DIRECTORY"})
+
+    def test_refuses_nonempty_cache_mountpoint(self):
+        self.make_archive(tarfile.TarInfo(".next/standalone/.next/cache/existing"))
+        with self.assertRaisesRegex(ValueError, "must be empty"):
+            self.run_assembly()
+
     def test_refuses_wrong_source_identity(self):
         self.make_archive()
         with self.assertRaisesRegex(ValueError, "identity mismatch"):

@@ -1,0 +1,26 @@
+{
+  "approvedCommit": "68922958bc326c4c8d80c5eace49929e3c83b5b7",
+  "publishedCommit": "645612d8ed04802dda038936b64b30e47eba9afe",
+  "completeTree": "379c12c105a83c189b70f39bff070ebb1107216e",
+  "parent": "f77a78bc3d73db1161d2e7af962f1d9628edcaed",
+  "destination": "work8/owner-execution-20261027",
+  "metadataDifference": "GitHub connector author/committer/date/message; source complete tree and parent unchanged",
+  "changedReviewedFiles": 18,
+  "prepublicationVerification": "PASS",
+  "postpublicationRemoteRef": {
+    "ref": "refs/heads/work8/owner-execution-20261027",
+    "node_id": "REF_kwDOTA0IHNoAKXJlZnMvaGVhZHMvd29yazgvb3duZXItZXhlY3V0aW9uLTIwMjYxMDI3",
+    "url": "https://api.github.com/repos/empireaios/EmpireAI/git/refs/heads/work8/owner-execution-20261027",
+    "object": {
+      "sha": "645612d8ed04802dda038936b64b30e47eba9afe",
+      "type": "commit",
+      "url": "https://api.github.com/repos/empireaios/EmpireAI/git/commits/645612d8ed04802dda038936b64b30e47eba9afe"
+    }
+  },
+  "run": 40487774633,
+  "attempt": 1,
+  "runNumber": 1,
+  "dispatch": "automatic push only",
+  "maximumMinutes": 20,
+  "postpublicationVerification": "PASS: complete tree, direct parent, all18 reviewed blobs"
+}

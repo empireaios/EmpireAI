@@ -1,0 +1,74 @@
+name: Work 8 corrected immutable Owner Console examination
+on:
+  push:
+    branches: [work8/owner-execution-20261027b]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-owner-execution-20261027b
+  cancel-in-progress: false
+jobs:
+  examine:
+    if: github.run_number == 1 && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          path: controller
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 42dfd0aa9d69a74d237f17555e6a1aeb343c59b9
+          path: frontend-source
+          persist-credentials: false
+      - name: Acquire immutable packages and bind source identities
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_CONTROLLER: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p retained/backend retained/frontend owner-execution-output
+          test "$(git -C controller rev-parse HEAD)" = "$EXPECTED_CONTROLLER"
+          git -C controller rev-parse HEAD > owner-execution-output/controller.commit
+          git -C controller rev-parse 'HEAD^{tree}' > owner-execution-output/controller.tree
+          test "$(git -C frontend-source rev-parse HEAD)" = 42dfd0aa9d69a74d237f17555e6a1aeb343c59b9
+          test "$(git -C frontend-source rev-parse 'HEAD^{tree}')" = 6d7d834b45964dadf3dab24818467ba6b5187e94
+          test "$(git -C frontend-source rev-parse HEAD:empireai-web/public)" = 3ad543debfd8821c3b3413729903ab177fea4fc8
+          gh api repos/empireaios/EmpireAI/actions/artifacts/12706121104/zip > retained/backend.zip
+          gh api repos/empireaios/EmpireAI/actions/artifacts/12698388923/zip > retained/frontend.zip
+          echo 'eb76703f3a4a78f63361b8ee19727cf5cec21ce27501280e2f1b66c1b644fc8c  retained/backend.zip' | sha256sum -c -
+          echo '15b531fcab695b43a0fddfccb0afbaa4504ce8d927dfa67aa1a9595ac7f2adb1  retained/frontend.zip' | sha256sum -c -
+          unzip -q retained/backend.zip -d retained/backend
+          unzip -q retained/frontend.zip -d retained/frontend
+          python3 controller/scripts/work8/owner-execution/prepare-frontend.py retained/frontend/frontend-compiled.tar.gz frontend-source frontend-runtime owner-execution-output/frontend-assembly.json
+      - name: Prepare pinned examination tools before network isolation
+        run: |
+          set -euo pipefail
+          docker pull redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+          docker pull mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e
+          npm ci --prefix controller/scripts/work8/owner-execution/tools --ignore-scripts --omit=optional --no-audit --no-fund
+      - name: Examine exact pair without rebuild or external effects
+        run: |
+          timeout --signal=TERM --kill-after=30s 600s bash controller/scripts/work8/owner-execution/run-hosted.sh retained/backend/owner-package-output/owner-backend-image.tar.gz frontend-runtime controller/scripts/work8/owner-execution/tools owner-execution-output
+      - name: Always remove examination containers and networks
+        if: always()
+        run: |
+          ids=$(docker ps -aq --filter label=work8.owner-examination=true)
+          if [ -n "$ids" ]; then docker rm -fv $ids; fi
+          nets=$(docker network ls -q --filter label=work8.owner-examination=true)
+          if [ -n "$nets" ]; then docker network rm $nets; fi
+      - name: Validate bounded evidence for upload
+        id: evidence
+        if: always()
+        run: python3 controller/scripts/work8/owner-execution/check-evidence.py owner-execution-output
+      - name: Retain bounded examination evidence
+        if: always() && steps.evidence.outcome == 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-owner-execution-${{ github.run_id }}
+          path: owner-execution-output/
+          retention-days: 7
+          if-no-files-found: error

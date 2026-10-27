@@ -66,6 +66,14 @@ def assemble(archive, source, output, receipt):
     for path in output.rglob("*"):
         if path.is_symlink() and not path.resolve().is_relative_to(output.resolve()):
             raise ValueError("Assembled symlink escapes standalone root")
+    # Docker cannot create a nested tmpfs mountpoint beneath a readonly bind.
+    # This empty runtime directory adds no compiled files or application changes.
+    cache = output / ".next/cache"
+    if cache.is_symlink():
+        raise ValueError("Cache mountpoint must be a real directory")
+    cache.mkdir(exist_ok=True)
+    if not cache.is_dir() or any(cache.iterdir()):
+        raise ValueError("Cache mountpoint must be empty")
     entries = []
     for path in sorted(output.rglob("*")):
         if path.is_file() and not path.is_symlink():
@@ -74,7 +82,8 @@ def assemble(archive, source, output, receipt):
         "sourceCommit": SOURCE, "sourceTree": TREE, "publicTree": PUBLIC,
         "compiledArchiveSha256": digest(archive), "buildId": (output / ".next/BUILD_ID").read_text().strip(),
         "manifestSha256": hashlib.sha256(json.dumps(entries, separators=(",", ":")).encode()).hexdigest(),
-        "fileCount": len(entries), "reexaminesAcceptedPackaging": False}, indent=2) + "\n")
+        "fileCount": len(entries), "runtimeMountpoints": {".next/cache": "EMPTY_DIRECTORY"},
+        "reexaminesAcceptedPackaging": False}, indent=2) + "\n")
 
 
 if __name__ == "__main__":

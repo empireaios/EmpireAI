@@ -1,0 +1,12 @@
+{
+  "classification": "LOCAL_CHANGED_HARNESS_VALIDATION_ONLY",
+  "assemblySyntheticCases": "9/9 PASS",
+  "cleanupAndBrowserArgvMockCases": "5/5 PASS",
+  "wrongOwnerGuardCases": "4/4 PASS",
+  "workflowTriggerIsolation": "PASS",
+  "acceptedRowObjectsAndAll64Statuses": "UNCHANGED",
+  "applicationBuilds": 0,
+  "dockerExecutions": 0,
+  "ciDispatches": 0,
+  "runtimeResult": "NOT_RUN"
+}

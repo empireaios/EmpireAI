@@ -18,7 +18,8 @@ for path in out.iterdir():
     if path.name not in allowed or path.is_symlink() or not path.is_file():
         raise SystemExit('Refusing unexpected or stale examination output')
 PY
-private=$(mktemp -d)
+private_parent=$(realpath -e "${RUNNER_TEMP:-${TMPDIR:-/tmp}}")
+private=$(mktemp -d "$private_parent/work8-owner.XXXXXXXX")
 label="work8-owner-${GITHUB_RUN_ID:-local}-${GITHUB_RUN_ATTEMPT:-1}"
 network="$label"
 backend="$label-backend"
@@ -28,10 +29,30 @@ browser="$label-browser"
 image=sha256:4b1a7f3be41a509b606f609650edddb1abfd458db48d085bd34b8ee4dcc50673
 redis_image=redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
 browser_image=mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e
+# BEGIN PRIVATE CLEANUP CONTRACT
+cleanup_private_directory() {
+  local directory=$1 parent=$2
+  [[ "$directory" == "$parent"/work8-owner.* && -d "$directory" && ! -L "$directory" ]] || return 1
+  [[ $(realpath -e "$directory") == "$directory" ]] || return 1
+  if [[ -e "$directory/data" || -L "$directory/data" ]]; then
+    [[ -d "$directory/data" && ! -L "$directory/data" ]] || return 1
+    if [[ $(id -u) == 0 ]]; then
+      timeout 20s rm -rf --one-file-system -- "$directory/data" || return 1
+    else
+      # Only the disposable bind can contain root-owned application files.
+      timeout 20s sudo -n -- rm -rf --one-file-system -- "$directory/data" || return 1
+    fi
+  fi
+  timeout 10s rm -rf --one-file-system -- "$directory" || return 1
+  [[ ! -e "$directory" && ! -L "$directory" ]]
+}
+# END PRIVATE CLEANUP CONTRACT
 cleanup() {
   status=$?
   trap - EXIT TERM INT
   set +e
+  # Keep a conservative receipt even if the outer deadline kills cleanup.
+  printf '{"exitCode":1,"examinationExitCode":%s,"cleanup":{"state":"IN_PROGRESS"},"classification":"SYNTHETIC_EXACT_PACKAGE_TECHNICAL_EXAMINATION","wholeRowsAccepted":[]}\n' "$status" > "$out/runner-result.json"
   for name in "$backend" "$web" "$redis"; do
     docker logs "$name" > "$private/$name.log" 2>&1
   done
@@ -58,11 +79,25 @@ for path in private.glob('*.log'):
     role = path.stem.rsplit('-', 1)[-1]
     (out / (role + '.log')).write_text(text + '\n')
 PY
+  log_status=$?
   docker rm -fv "$browser" "$backend" "$web" "$redis" >/dev/null 2>&1
+  containers_removed=true
+  remaining=$(docker ps -aq --filter "label=work8.owner-run=$label") || containers_removed=false
+  [[ -z "$remaining" ]] || containers_removed=false
   docker network rm "$network" >/dev/null 2>&1
-  rm -rf -- "$private"
-  printf '{"exitCode":%s,"classification":"SYNTHETIC_EXACT_PACKAGE_TECHNICAL_EXAMINATION","wholeRowsAccepted":[]}\n' "$status" > "$out/runner-result.json"
-  exit "$status"
+  network_removed=true
+  remaining=$(docker network ls -q --filter "label=work8.owner-run=$label") || network_removed=false
+  [[ -z "$remaining" ]] || network_removed=false
+  private_removed=false
+  # Never delete a bind while a known examination container remains attached.
+  if [[ "$containers_removed" == true ]] && cleanup_private_directory "$private" "$private_parent"; then private_removed=true; fi
+  final_status=$status
+  if [[ "$log_status" != 0 || "$containers_removed" != true || "$network_removed" != true || "$private_removed" != true ]]; then
+    [[ "$final_status" != 0 ]] || final_status=1
+  fi
+  printf '{"exitCode":%s,"examinationExitCode":%s,"cleanup":{"logsSanitized":%s,"containersRemoved":%s,"networkRemoved":%s,"privateDataRemoved":%s},"classification":"SYNTHETIC_EXACT_PACKAGE_TECHNICAL_EXAMINATION","wholeRowsAccepted":[]}\n' \
+    "$final_status" "$status" "$([[ "$log_status" == 0 ]] && echo true || echo false)" "$containers_removed" "$network_removed" "$private_removed" > "$out/runner-result.json"
+  exit "$final_status"
 }
 trap cleanup EXIT
 trap 'exit 143' TERM
@@ -87,6 +122,8 @@ for pinned in "$redis_image" "$browser_image"; do
   docker image inspect "$pinned" --format '{{json .RepoDigests}}' | python3 -c 'import json,sys; expected=sys.argv[1].split("@",1)[1]; assert any(x.endswith("@"+expected) for x in json.load(sys.stdin))' "$pinned"
 done
 [[ -s "$frontend/server.js" && -d "$tooling/node_modules/playwright" && -s "$script/checks.mjs" ]]
+[[ -d "$frontend/.next/cache" && ! -L "$frontend/.next/cache" ]]
+[[ -z $(find "$frontend/.next/cache" -mindepth 1 -maxdepth 1 -print -quit) ]]
 python3 - "$private" <<'PY'
 import pathlib, secrets, sys
 p = pathlib.Path(sys.argv[1])
@@ -102,7 +139,7 @@ env = {'EMPIRE_RUNTIME_PROFILE':'LOCKED_COMMISSIONING_V1', 'RAILWAY_VOLUME_MOUNT
        'CORS_ORIGIN':'http://localhost:43117', 'INTELLIGENCE_ENABLED':'false', 'INTELLIGENCE_DISABLED':'true',
        'RAILWAY_GIT_COMMIT_SHA':'98970018d579e5a7c720d25293cdddbe294856c0'}
 (p / 'backend.env').write_text(''.join(k+'='+v+'\n' for k,v in env.items()))
-(p / 'browser.env').write_text('OWNER_EMAIL=owner@work8.invalid\nOWNER_PASSWORD='+founder+'\nEXPECTED_SOURCE_COMMIT=98970018d579e5a7c720d25293cdddbe294856c0\nOUTPUT_DIR=/evidence\nBACKEND_URL=http://owner-backend:43118\nFRONTEND_URL=http://localhost:43117\n')
+(p / 'browser.env').write_text('OWNER_EMAIL=owner@work8.invalid\nOWNER_PASSWORD='+founder+'\nWRONG_OWNER_EMAIL=admin@work8.invalid\nWRONG_OWNER_PASSWORD='+admin+'\nEXPECTED_SOURCE_COMMIT=98970018d579e5a7c720d25293cdddbe294856c0\nOUTPUT_DIR=/evidence\nBACKEND_URL=http://owner-backend:43118\nFRONTEND_URL=http://localhost:43117\n')
 (p / 'data').mkdir(mode=0o700)
 PY
 docker network create --internal --label "work8.owner-examination=true" --label "work8.owner-run=$label" "$network" >/dev/null
@@ -132,6 +169,7 @@ docker run -d --pull never --name "$web" --label "work8.owner-examination=true" 
 run_checks() {
   docker run --rm --pull never --name "$browser" --label "work8.owner-examination=true" --label "work8.owner-run=$label" \
     --network "container:$web" --memory 2g --cpus 2 --shm-size 512m \
+    --user "$(id -u):$(id -g)" --env HOME=/tmp \
     --env-file "$private/browser.env" --env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 \
     --mount "type=bind,src=$script,dst=/examination,readonly" \
     --mount "type=bind,src=$tooling,dst=/tools,readonly" \

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {createRequire} from 'node:module';
 import {assertReadiness, assertRecord, assertExecutive, digest, requireCheck} from './check-contract.mjs';
+import {examineWrongOwner} from './wrong-owner-check.mjs';
 
 const phase = process.argv[2];
 requireCheck(['initial', 'after-restart'].includes(phase), 'INVALID_PHASE');
@@ -150,6 +151,8 @@ try {
     await jsonRequest(context, '/api/owner/advisor/memory', {...command, id:command.id+'-stale'}, 400);
     const final = assertRecord(await readRecord(context), target, command);
     requireCheck(digest(first) === digest(final), 'REPLAY_MUTATED_HISTORY');
+    stage = 'authenticated-wrong-owner';
+    receipt.checks.wrongOwner = await examineWrongOwner({browser, frontend, target, ownerEmail:process.env.OWNER_EMAIL, adminEmail:process.env.WRONG_OWNER_EMAIL, adminPassword:process.env.WRONG_OWNER_PASSWORD, request:jsonRequest, readOwnerRecord:() => readRecord(context)});
     save('initial-defer.json', {classification:receipt.classification, target, command, record:final, historyDigest:digest(final)});
     receipt.checks.nativeDefer = {status:'PASS', versionBefore:0, versionAfter:1, events:1, nativeUiClick:true};
     receipt.checks.replay = {status:'PASS', identicalReplay:'200_CREATED_FALSE_NO_MUTATION', conflictingReplay:400, staleVersion:400, unchangedHistory:true};
