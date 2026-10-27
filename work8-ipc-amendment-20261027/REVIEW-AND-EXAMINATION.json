@@ -1,0 +1,148 @@
+{
+  "schema": "work8-watchdog-amendment-staging-v1",
+  "date": "2026-10-27",
+  "accepted": 45,
+  "outstanding": 19,
+  "source": {
+    "commit": "97c30e2dcc26facccbf9cefccaee9821ba2f64c4",
+    "tree": "d3cf447492f39c2c16a4486c1387e8dcd5b30c43",
+    "parent": "f6da3b15aa5e7ff35316b23b38a977a085cfe2af",
+    "files": [
+      {
+        "path": ".github/workflows/work8-writer-integration.yml",
+        "blob": "dce948e774e344c4a6df7e94e222c7892dc56992"
+      },
+      {
+        "path": "backend/src/runtime/executive-continuity-watchdog.ts",
+        "blob": "140e9602b12fab7903f7a780e5757d312d8805fd"
+      },
+      {
+        "path": "backend/src/runtime/watchdog-worker-arguments.ts",
+        "blob": "50ee78fb6d9b6929688f2ee06c6425e1dcbe65b7"
+      },
+      {
+        "path": "scripts/work8/o33-application-coordinator.mjs",
+        "blob": "07025035cf3209e8e10752825a3ac8a91f981039"
+      },
+      {
+        "path": "scripts/work8/prepare-owner-build.sh",
+        "blob": "368b44292d9b0971aef7dbddf3ce4d923f6a6fc6"
+      },
+      {
+        "path": "scripts/work8/watchdog-ipc-preflight-worker.mjs",
+        "blob": "61a8b52585e209037f607d9d46c4f1a758a40761"
+      },
+      {
+        "path": "scripts/work8/watchdog-ipc-preflight.mjs",
+        "blob": "eba7262fe34fd3b3134045d533572c72dc471108"
+      }
+    ],
+    "status": "LOCAL_UNPUBLISHED_STATIC_REVIEW_ONLY"
+  },
+  "evidenceParent": "7417433c2d04e042d2189cc217e9863464853812",
+  "independentReview": {
+    "reviewer": "/root/o33_acceptance",
+    "verdict": "STATIC_ENGINEERING_REVIEW_PASS",
+    "completeDeltaVerified": true,
+    "paths": 7,
+    "allBlobsEqualReviewedOverlay": true,
+    "hostedCompilation": "NOT_RUN",
+    "node22Startup": "NOT_RUN",
+    "O33CaptureReplay": "NOT_RUN",
+    "wholeRowAcceptance": "PENDING"
+  },
+  "correction": {
+    "parentArguments": "UNCHANGED",
+    "removedFromWorkerOnly": [
+      "exact --import /repository/deployment/runtime-membership-bootstrap.mjs pair (resolved absolute repository path)",
+      "--max-old-space-size=1536"
+    ],
+    "workerResourceLimits": {
+      "maxOldGenerationSizeMb": 1536
+    },
+    "otherArguments": "PRESERVED",
+    "controllerAdmissionAndGenerationFencing": "UNCHANGED",
+    "heartbeatReadinessFailStop": "UNCHANGED"
+  },
+  "validation": {
+    "mjsSyntax": "PASS",
+    "shellSyntax": "PASS",
+    "workflowStructure": "PASS",
+    "typescriptCompilation": "DEFERRED_TO_APPROVED_HOSTED_RUN",
+    "localNode24TypescriptCheck": "NOT_VALID_COMPILATION: node --check did not parse TypeScript annotations",
+    "node22Runtime": "NOT_RUN"
+  },
+  "examination": {
+    "trigger": "one push to work8/writer-integration-20261025v after exact-tree approval",
+    "manualDispatch": false,
+    "jobAttemptMustEqual": 1,
+    "jobs": [
+      {
+        "name": "writer-integration",
+        "timeoutMinutes": 20,
+        "sequence": [
+          "Pillow/backend compilation",
+          "compiled watchdog actual argument/resource-limit/readiness preflight",
+          "single actual controller-managed application startup",
+          "validated watchdog/authenticated Pillow readiness plus exact census receipt BEFORE capture",
+          "existing full O33 source capture, fresh-target pending replay, restart, refusal and shutdown examination under unchanged deadlines"
+        ]
+      },
+      {
+        "name": "owner-build-preparation",
+        "timeoutMinutes": 20,
+        "sequence": [
+          "verify pinned backend/frontend commit and complete tree",
+          "compile backend/Pillow and frontend",
+          "retain hashed outputs, lockfiles, toolchain, source/tree and release gates"
+        ]
+      }
+    ],
+    "maximumRunnerMinutes": 40,
+    "artifactRetentionDays": 7,
+    "automaticRetry": false,
+    "deployment": false
+  },
+  "O33OriginalAcceptance": [
+    "actual Node22 application entries and complete declared census",
+    "controller-owned admission/history and prior writer exclusion",
+    "all-writer hold and stable coordinated capture under original deadlines",
+    "specific current/prior refusal with unchanged canonical/journal/Redis state",
+    "fresh admitted target and pending work once-only continuation",
+    "restart without duplicate continuation, original session and no authority replay",
+    "clean contained shutdown"
+  ],
+  "ownerConsole": {
+    "backend": "98970018d579e5a7c720d25293cdddbe294856c0",
+    "backendTree": "7469666e172da6c7ed63648edb673b599e08079e",
+    "frontend": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+    "frontendTree": "6d7d834b45964dadf3dab24818467ba6b5187e94",
+    "outputs": "COMPILATION_PREPARATION_ONLY_NOT_DEPLOYABLE_PLATFORM_BUNDLES",
+    "releaseBlockers": [
+      "platform-compatible packaging and public frontend build configuration",
+      "authenticated durable DEFER persistence/version/replay/history examination",
+      "protected consistent institutional-memory and session copy with independent readback",
+      "selectable compatible rollback artifacts",
+      "separate production deployment approval"
+    ],
+    "rollbackFloor": "corrected backend after committed DEFER; never restore database to fit older projection code",
+    "protectedCustody": "NOT_ESTABLISHED_BY_ACTIONS_ARTIFACT_RETENTION"
+  },
+  "remoteReadback": {
+    "source": "f6da3b15aa5e7ff35316b23b38a977a085cfe2af",
+    "evidence": "7417433c2d04e042d2189cc217e9863464853812",
+    "pr113Head": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a",
+    "draft": true,
+    "merged": false
+  },
+  "safety": {
+    "pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "productionChanges": 0,
+    "ciRuns": 0,
+    "publication": false,
+    "chargesAuthorizedByThisStaging": false
+  },
+  "approvalBoundary": "Owner engineering amendment applied locally. Exact-tree publication and hosted execution still require separate approval. Actual hosted startup cannot honestly be verified before that authorization."
+}
