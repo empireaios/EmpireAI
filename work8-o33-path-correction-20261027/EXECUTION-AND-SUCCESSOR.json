@@ -1,0 +1,201 @@
+{
+  "schema": "work8-run40424964819-closure-v1",
+  "run": 40424964819,
+  "attempt": 1,
+  "accepted": 45,
+  "outstanding": 19,
+  "O33": "PENDING",
+  "watchdogBoundary": "PASS: Node22.23.2 actual arguments and effective1536MB compiled readiness",
+  "ownerBuildPreparation": "PASS:14 hashes independently verified",
+  "frontendStandalonePackage": {
+    "sha256": "c1f2b32938d22728c8ed2e4c6cf963d73bcf5d96e0b07f0ae6922b21a95b2913",
+    "files": 4955,
+    "independentFileVerification": "PASS",
+    "deployablePlatformArtifact": false
+  },
+  "terminalO33": "ORIGINAL_INDEX_STARTUP_DEADLINE before capture/replay",
+  "confirmedBlocker": "NODE_ENV production auth persistenceOk requires /data/ but actual examination DB was /work8-exam/source/volume/commissioning/empireai-brain.db",
+  "correction": {
+    "commit": "5ce85b16ba6512458a8f41e91ccc0f3b1808bb89",
+    "tree": "5f9428fda299d4b379d8a23e3914afed3fe4b02e",
+    "parent": "be4836877ce0547efed6dc97cad33a9cb0565480",
+    "files": [
+      {
+        "path": ".github/workflows/work8-writer-integration.yml",
+        "blob": "0d585a22f35b7f3f178949fdd7f805ded08de2a8"
+      },
+      {
+        "path": "deployment/runtime-isolated-application.cjs",
+        "blob": "af936b7c7f529be7690a5507519aabfac075d9e0"
+      },
+      {
+        "path": "scripts/work8/o33-application-coordinator.mjs",
+        "blob": "913ae16233c82db565c1920d12820a2b17fc482b"
+      },
+      {
+        "path": "scripts/work8/o33-permissions-preflight.mjs",
+        "blob": "5d13d795117b2e62110a633b579c1f932f0b4d32"
+      },
+      {
+        "path": "scripts/work8/run-o33-application.sh",
+        "blob": "f011fb455bb8cbf690746e83e812b3aed1dbae1e"
+      }
+    ],
+    "published": false,
+    "hostedVerification": "NOT_RUN"
+  },
+  "correctionScope": [
+    "move isolated tmpfs to /data/work8-exam",
+    "update exact grant allowlist, coordinator and permission preflight paths",
+    "retain root-owned0755 /data nonsymlink ancestor and existing mount protections",
+    "record direct worker readiness blockers while requiring original primary auth/health gate",
+    "remove already passed watchdog preflight and owner job from proposed next workflow"
+  ],
+  "productionAuthCode": "UNCHANGED",
+  "deadlines": "UNCHANGED",
+  "localRegression": "actual production predicate oldpathfalse/newsource-targettrue/otherpathsrefused; narrow grant allowlist PASS on Node24; not hosted runtime proof",
+  "independentReview": "/root/o33_acceptance STATIC_PASS and artifact integrity verified",
+  "nextRun": "requires exact-new-tree publication approval; sole automatic O33 job20min attempt1; no retry",
+  "ownerReleaseGates": [
+    "backend runtime dependencies/governance packaging and platform artifact",
+    "frontend public build-environment binding and platform packaging",
+    "authenticated durable DEFER version/persistence/replay/history",
+    "protected consistent operational session/institutional-memory copy and independent readback",
+    "selectable corrected-backend-compatible rollback artifacts",
+    "separate production deployment approval"
+  ],
+  "safety": {
+    "pr113": "draft/unmerged",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "work9": "INACTIVE",
+    "duplicateCI": 0,
+    "productionChanges": 0,
+    "newPaidCommitments": 0
+  },
+  "publicationReceipt": {
+    "run": 40424964819,
+    "attempt": 1,
+    "approvedEvidenceCommit": "460d2f0daaa00725c28c826543e7abb6caadc0f2",
+    "publishedEvidenceCommit": "139ecd872bfdbad6eb1dd228cc13906b369e829c",
+    "evidenceTree": "9c0a3073633cd04bc961994b7a709136ef0e5e32",
+    "approvedSourceCommit": "97c30e2dcc26facccbf9cefccaee9821ba2f64c4",
+    "publishedSourceCommit": "be4836877ce0547efed6dc97cad33a9cb0565480",
+    "sourceTree": "d3cf447492f39c2c16a4486c1387e8dcd5b30c43",
+    "order": [
+      "evidence",
+      "source"
+    ],
+    "completeTreeEqualityBeforeAfter": true,
+    "safeAncestry": true,
+    "metadataOnlyChanged": true,
+    "manualDispatches": 0,
+    "reruns": 0,
+    "accepted": 45,
+    "outstanding": 19,
+    "productionChanges": 0
+  },
+  "independentO33Review": {
+    "schema": "work8-o33-independent-run-review-v1",
+    "reviewer": "/root/o33_acceptance",
+    "runId": "40424964819",
+    "attempt": 1,
+    "source": "be4836877ce0547efed6dc97cad33a9cb0565480",
+    "sourceTree": "d3cf447492f39c2c16a4486c1387e8dcd5b30c43",
+    "decision": "O33_PENDING",
+    "accepted": 45,
+    "outstanding": 19,
+    "scopedEvidence": {
+      "compiledWatchdogPreflight": "PASS: Node22.23.2 actual controller argument vector, effective old-generation limit1536MB, compiled watchdog ready",
+      "actualApplicationStartup": "FAIL: ORIGINAL_INDEX_STARTUP_DEADLINE",
+      "wholeRowAssertions": {},
+      "captureEvidencePresent": false,
+      "targetReplayEvidencePresent": false
+    },
+    "observations": [
+      "source.log records primary listening port43100 and actual Brain listening port43101",
+      "primary repeatedly reports worker_unavailable for executive continuity and Pillow status",
+      "startup receipt absent; capture and replay acceptance evidence absent",
+      "source-last-readiness ends with fetch TimeoutError"
+    ],
+    "boundedContractReview": {
+      "controllerBroker": "after durable membership admission, sends spawn(pid) then acknowledgement",
+      "processHandle": "valid spawn frame sets pid and emits spawn; primary spawn listener clears starting",
+      "proxy": "worker_unavailable also includes actual /health/ready response not meeting ready and Pillow enabled/ready/running requirements",
+      "conclusion": "Independent exact-source check establishes a deterministic readiness blocker: locked runtime enforces NODE_ENV=production, while coordinator sets DATABASE_PATH under /work8-exam; auth-readiness.persistenceOk rejects every production database path outside /data/. This is sufficient to block readiness, but retained artifacts do not exclude additional later blockers.",
+      "safeCorrection": "Relocate isolated examination canonical filesystem root beneath /data/work8-exam; update exact grant allowlist, coordinator base, permission-preflight base, Docker tmpfs and exact mount readback. Preserve production auth-readiness and every original isolation, admission, capture, replay and deadline requirement. No symlink alias or readiness bypass.",
+      "prefixConsumers": [
+        "deployment/runtime-isolated-application.cjs:19",
+        "scripts/work8/o33-application-coordinator.mjs:34",
+        "scripts/work8/run-o33-application.sh:101,119",
+        "scripts/work8/o33-permissions-preflight.mjs:9"
+      ]
+    },
+    "originalCriteria": {
+      "complete_live_declared_census": "NOT_ESTABLISHED",
+      "prior_writer_exclusion": "NOT_ESTABLISHED",
+      "all_writer_coordinated_capture_under_original_deadlines": "NOT_ESTABLISHED",
+      "fresh_target_once_only_pending_continuation": "NOT_ESTABLISHED",
+      "restart_no_replay_session_and_authority_safeguards": "NOT_ESTABLISHED",
+      "clean_contained_shutdown": "NOT_ESTABLISHED"
+    },
+    "scope": "Declared isolated topology; no added production-custody criterion",
+    "actions": {
+      "rerun": false,
+      "patch": false,
+      "publication": false,
+      "production": false
+    }
+  },
+  "independentOwnerBuildReview": {
+    "reviewer": "release_review",
+    "run": 40424964819,
+    "attempt": 1,
+    "artifact": 12698388923,
+    "decision": "PASS_EXACT_SOURCE_COMPILED_PREPARATION_ONLY",
+    "checks": {
+      "manifestEntriesVerified": 14,
+      "node": "22.23.2",
+      "npm": "10.9.8",
+      "exitCode": 0,
+      "backendSource": "98970018d579e5a7c720d25293cdddbe294856c0",
+      "backendTree": "7469666e172da6c7ed63648edb673b599e08079e",
+      "frontendSource": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+      "frontendTree": "6d7d834b45964dadf3dab24818467ba6b5187e94",
+      "controllerSource": "be4836877ce0547efed6dc97cad33a9cb0565480",
+      "controllerTree": "d3cf447492f39c2c16a4486c1387e8dcd5b30c43",
+      "backendLifecycleBuildObserved": true,
+      "frontendWebpackBuildObserved": true,
+      "frontendStandalonePresent": true
+    },
+    "limitations": [
+      "Reviewer authored preparation script; this is separate artifact examination, not independent author review",
+      "Build log and exit-code are in enclosing artifact, not SHA256SUMS",
+      "Backend tar contains compiled pillow/backend dist but no runtime dependencies or governance bundle",
+      "Frontend contains .next standalone and static assets; public assets and verified production public environment not established",
+      "No Railway OCI image or Vercel output bundle",
+      "No protected pre-release operational copy or authenticated DEFER persistence/replay examination",
+      "No confirmed selectable rollback artifact"
+    ],
+    "nextAction": "Reuse verified frontend standalone output for bounded offline layout/public-assets/package completeness review; backend runtime dependencies and governance bundle must be packaged from exact pinned source/build inputs on compatible runner, without repeating accepted compilation. No deployment or whole-row acceptance.",
+    "newAcceptedRows": [],
+    "releaseReady": false,
+    "protectedCustody": false
+  },
+  "independentSuccessorTreeReview": {
+    "reviewer": "/root/o33_acceptance",
+    "commit": "5ce85b16ba6512458a8f41e91ccc0f3b1808bb89",
+    "tree": "5f9428fda299d4b379d8a23e3914afed3fe4b02e",
+    "changedPaths": 5,
+    "allBlobsMatch": true,
+    "productionReadinessAndLockedRuntimeUnchanged": true,
+    "verdict": "STATIC_PASS_HOSTED_PENDING"
+  },
+  "retainedArtifacts": {
+    "libraryFileId": "libfile_ad48dbc77acc81919dd9e3fbcf4d577c",
+    "archiveSHA256": "bd48e3a0c58b883007295ba4a996a15c1761347ac54c4490017e4e72530639e0",
+    "ownerArtifact": 12698388923,
+    "o33Artifact": 12698869710,
+    "scope": "raw run artifacts, compiled outputs, standalone package and independent reviews; not operational backup"
+  }
+}
