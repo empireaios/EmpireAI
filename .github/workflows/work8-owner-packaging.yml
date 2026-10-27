@@ -1,0 +1,59 @@
+name: Work 8 retained Owner runtime packaging
+on:
+  push:
+    branches: [work8/owner-packaging-20261027]
+concurrency:
+  group: work8-owner-packaging
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+jobs:
+  package:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          path: controller
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 98970018d579e5a7c720d25293cdddbe294856c0
+          path: backend-source
+          persist-credentials: false
+      - name: Bind controller and obtain retained artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_CONTROLLER: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git -C controller rev-parse HEAD)" = "$EXPECTED_CONTROLLER"
+          mkdir retained download-evidence
+          exec > >(tee download-evidence/download.log) 2>&1
+          trap 'printf "%s\n" "$?" > download-evidence/exit-code.txt' EXIT
+          git -C controller rev-parse HEAD > download-evidence/controller.commit
+          git -C controller rev-parse "HEAD^{tree}" > download-evidence/controller.tree
+          gh api repos/empireaios/EmpireAI/actions/artifacts/12698388923/zip > retained.zip
+          echo '15b531fcab695b43a0fddfccb0afbaa4504ce8d927dfa67aa1a9595ac7f2adb1  retained.zip' | sha256sum -c -
+          unzip -q retained.zip -d retained
+      - name: Package exact retained backend without compilation
+        env:
+          OWNER_NODE_IMAGE: node:22.23.2-bookworm-slim@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9
+        run: bash controller/scripts/work8/owner-package/package-owner-backend.sh backend-source retained owner-package-output
+      - name: Retain package or failure evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-owner-runtime-package
+          path: |
+            owner-package-output/*.json
+            owner-package-output/*.txt
+            owner-package-output/*.log
+            owner-package-output/*.tar.gz
+            owner-package-output/SHA256SUMS
+            download-evidence/
+          retention-days: 7
+          if-no-files-found: warn
